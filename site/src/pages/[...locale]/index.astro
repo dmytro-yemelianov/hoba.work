@@ -1,7 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
+import Specimen from '../../components/Specimen.astro';
 import { countGraphNodes, getBundle, getGraph, siteVersion } from '../../lib/registry';
-import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { asHeading, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -12,20 +14,30 @@ const t = useTranslations(lang);
 const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 const totalNodes = countGraphNodes(bundle);
+
 const steps = [
   { k: 'h', letter: 'H' },
   { k: 'o', letter: 'O' },
   { k: 'b', letter: 'B' },
   { k: 'a', letter: 'A' },
 ] as const;
-// The hero's second column: the registry in four numbers, so the headline is
-// not left floating against half a screen of nothing.
+
+// The registry in four numbers, so the headline is not left against half a
+// screen of nothing.
 const stats = [
   { n: totalNodes, label: t('home.stat.entities') },
   { n: bundle.barriers.length, label: t('home.stat.barriers') },
   { n: bundle.mechanisms.length, label: t('home.stat.mechanisms') },
   { n: getGraph(lang).edges.length, label: t('home.stat.edges') },
 ];
+
+// The landing argues by demonstration: the generic rejection everybody has
+// received, then the mechanisms that can each produce exactly that message.
+const caseArtifact = bundle.artifacts.find((a) => a.id === 'A-002')!;
+const caseSpecimen = caseArtifact.specimens[0];
+const caseMechanisms = bundle.mechanisms
+  .filter((m) => m.emissions.some((e) => e.artifact === caseArtifact.id))
+  .slice(0, 5);
 ---
 <Layout lang={lang} title={t('home.title')} activeNav="home">
   <section class="pb-12 border-b border-hoba-border grid gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-end">
@@ -54,6 +66,48 @@ const stats = [
   </section>
 
   <section class="py-12 border-b border-hoba-border">
+    <p class="kicker">{t('home.case.kicker')}</p>
+    <h2 class="mt-1 text-2xl font-semibold text-hoba-text text-balance max-w-3xl">{t('home.case.title')}</h2>
+    <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.case.sub')}</p>
+
+    <div class="mt-8 grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
+      <Specimen specimen={caseSpecimen} lang={lang} />
+
+      <div class="lg:pt-6 space-y-6">
+        <div>
+          <h3 class="text-base font-semibold text-hoba-text">{t('home.case.establishes')}</h3>
+          <p class="mt-1 text-base text-hoba-muted">{t('home.case.establishesText')}</p>
+        </div>
+        <div class="callout border-l-hoba-exogenous my-0">
+          <h3 class="text-base font-semibold text-hoba-text">{asHeading(t('art.nonInf'))}</h3>
+          <ul class="mt-2 list-disc pl-5 space-y-1 text-base text-hoba-muted">
+            {caseArtifact.non_inferences.map((ni) => <li>{ni}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <h3 class="text-base font-semibold text-hoba-text">{t('home.case.behind')}</h3>
+      <p class="mt-1 text-base text-hoba-muted max-w-3xl">{t('home.case.behindText')}</p>
+      <ul class="row-list mt-3">
+        {caseMechanisms.map((m) => (
+          <li>
+            <a href={`${prefix}/mechanisms/${m.id}`} class="row-link">
+              <span class="font-mono text-sm text-hoba-accent shrink-0">{m.id}</span>
+              <span class="text-hoba-text">{m.title}</span>
+              <span class="ml-auto shrink-0"><RemovabilityBadge removability={m.facets.removability} lang={lang} /></span>
+              <span class="w-full text-sm text-hoba-muted">{m.summary}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-4 text-base text-hoba-muted max-w-3xl">{t('home.case.agencyText')}</p>
+      <a href={`${prefix}/artifacts/${caseArtifact.id}`} class="btn btn-secondary mt-5">{t('home.case.cta')} →</a>
+    </div>
+  </section>
+
+  <section class="py-12 border-b border-hoba-border">
     <p class="kicker">{t('home.protocol.kicker')}</p>
     <h2 class="mt-1 text-2xl font-semibold text-hoba-text">{t('home.protocol.title')}</h2>
     <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.protocol.sub')}</p>
@@ -72,14 +126,45 @@ const stats = [
   </section>
 
   <section class="py-12 border-b border-hoba-border">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10">
-      {(['1', '2', '3'] as const).map((n) => (
-        <div>
-          <p class="kicker">{t(`home.pillar${n}.kicker`)}</p>
-          <h3 class="mt-1 text-lg font-semibold text-hoba-text">{t(`home.pillar${n}.title`)}</h3>
-          <p class="mt-2 text-base text-hoba-muted">{t(`home.pillar${n}.text`)}</p>
-        </div>
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="kicker">{t('home.patterns.kicker')}</p>
+        <h2 class="mt-1 text-2xl font-semibold text-hoba-text">{t('home.patterns.title')}</h2>
+        <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.patterns.sub')}</p>
+      </div>
+      <a href={`${prefix}/patterns`} class="text-sm text-hoba-accent underline underline-offset-2">{t('home.patterns.all')} →</a>
+    </div>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+      {bundle.patterns.map((p) => (
+        <article>
+          <h3 class="flex flex-wrap items-baseline gap-x-3">
+            <span class="font-mono text-sm text-hoba-accent">{p.id}</span>
+            <a href={`${prefix}/patterns/${p.id}`} class="text-lg font-semibold text-hoba-text hover:text-hoba-accent transition-colors">{p.title}</a>
+          </h3>
+          <p class="mt-2 text-base text-hoba-muted">{p.summary}</p>
+          <p class="mt-2 text-sm text-hoba-muted"><span class="text-hoba-text">{asHeading(t('patterns.trigger'))}:</span> {p.trigger_rule}</p>
+        </article>
       ))}
+    </div>
+  </section>
+
+  <section class="py-12 border-b border-hoba-border grid gap-x-12 gap-y-8 lg:grid-cols-2">
+    <div>
+      <p class="kicker">{t('home.not.kicker')}</p>
+      <h2 class="mt-1 text-2xl font-semibold text-hoba-text">{t('home.not.title')}</h2>
+      <ul class="mt-4 row-list">
+        {(['1', '2', '3', '4', '5'] as const).map((n) => (
+          <li class="row text-base text-hoba-muted">{t(`method.nongoals.${n}`)}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="lg:pt-12">
+      <h2 class="text-2xl font-semibold text-hoba-text">{t('home.dev.title')}</h2>
+      <p class="mt-2 text-base text-hoba-muted">{t('home.dev.text')}</p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href={`${prefix}/developers`} class="btn btn-secondary">{t('nav.developers')}</a>
+        <a href="/data/latest/registry.json" target="_blank" class="btn btn-ghost font-mono">registry.json</a>
+      </div>
     </div>
   </section>
 

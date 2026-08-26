@@ -12,6 +12,7 @@ import {
 import { REPO_ROOT } from './helpers';
 
 const bundle = loadRegistryFromRoot(REPO_ROOT, 'en');
+const uk = loadRegistryFromRoot(REPO_ROOT, 'uk');
 const graph = new HOBAKnowledgeGraph(bundle);
 const engine = new HOBADiagnosticEngine(bundle, graph);
 
@@ -80,5 +81,47 @@ describe('registry content', () => {
     const uk = loadRegistryFromRoot(REPO_ROOT, 'uk');
     expect(validateRegistry(uk).errors).toEqual([]);
     expect(compareBundleStructure(bundle, uk)).toEqual([]);
+  });
+});
+
+describe('specimens', () => {
+  const readerFacing = (b: typeof bundle) => [...b.artifacts, ...b.mechanisms, ...b.patterns];
+
+  it('covers every reader-facing entity in both languages', () => {
+    for (const b of [bundle, uk]) {
+      const missing = readerFacing(b).filter((node) => node.specimens.length === 0);
+      expect(missing.map((n) => n.id)).toEqual([]);
+    }
+  });
+
+  it('keeps the two mirrors structurally identical', () => {
+    const shape = (b: typeof bundle) =>
+      readerFacing(b)
+        .map((n) => `${n.id}:${n.specimens.map((s) => `${s.kind}/${s.lines.length}`).join(',')}`)
+        .sort();
+    expect(shape(uk)).toEqual(shape(bundle));
+  });
+
+  it('marks the line each specimen is about, and says what to notice', () => {
+    for (const node of readerFacing(bundle)) {
+      for (const specimen of node.specimens) {
+        expect(specimen.lines.some((line) => line.tell), `${node.id} ${specimen.label}`).toBe(true);
+        expect(specimen.reading, `${node.id} ${specimen.label}`).toBeTruthy();
+      }
+    }
+  });
+
+  it('names no real company or person', () => {
+    // Specimens are composites. A named employer would turn the atlas into the
+    // blacklist its own methodology says it must not be.
+    const forbidden = /\b(Google|Meta|Amazon|Microsoft|Apple|Netflix|Uber|Stripe|Revolut|Monobank|PrivatBank|EPAM|SoftServe|Luxoft)\b/i;
+    for (const b of [bundle, uk]) {
+      for (const node of readerFacing(b)) {
+        for (const specimen of node.specimens) {
+          const text = [specimen.label, specimen.subject, specimen.context, specimen.reading, ...specimen.lines.map((l) => `${l.speaker ?? ''} ${l.text}`)].join(' ');
+          expect(forbidden.test(text), `${node.id}: ${text.slice(0, 80)}`).toBe(false);
+        }
+      }
+    }
   });
 });
