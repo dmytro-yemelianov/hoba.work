@@ -8,6 +8,11 @@ const registrySrc = path.resolve(__dirname, '../packages/registry/src');
 
 export default defineConfig({
   site: 'https://hoba.work',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'uk'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     tailwind({
       applyBaseStyles: true,

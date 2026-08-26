@@ -1,26 +1,26 @@
 ---
+import '../styles/theme.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { alternates, OG_LOCALES, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   title: string;
   description?: string;
-  lang?: 'en' | 'uk';
+  lang?: Lang;
   activeNav?: string;
 }
 
-const {
-  title,
-  description = 'hoba — Hiring Obstacles & Barriers Atlas. Turn hiring outcomes into structured facts.',
-  lang = 'en',
-  activeNav = '',
-} = Astro.props;
+const { title, lang = 'en', activeNav = '' } = Astro.props;
+const t = useTranslations(lang);
+const description = Astro.props.description ?? t('meta.description');
 
 const site = Astro.site ?? new URL('https://hoba.work');
 const canonicalURL = new URL(Astro.url.pathname, site);
+const alternateLinks = alternates(Astro.url.pathname, site);
 ---
 <!doctype html>
-<html lang={lang} class="dark bg-hoba-bg text-hoba-text antialiased">
+<html lang={lang} class="bg-hoba-bg text-hoba-text antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,17 +30,31 @@ const canonicalURL = new URL(Astro.url.pathname, site);
     <title>{title} | hoba.work</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {alternateLinks.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
 
-    <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | hoba`} />
     <meta property="og:description" content={description} />
-    <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
+    <meta property="og:locale" content={OG_LOCALES[lang]} />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Theme: explicit choice in localStorage wins; otherwise follow the system; dark when the browser reports no preference. Runs before paint to avoid a flash. -->
+    <script is:inline>
+      (function () {
+        var dark = true;
+        try {
+          var stored = localStorage.getItem('hoba_theme');
+          if (stored === 'light' || stored === 'dark') dark = stored === 'dark';
+          else if (window.matchMedia) dark = !window.matchMedia('(prefers-color-scheme: light)').matches;
+        } catch (e) {}
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body class="min-h-screen flex flex-col bg-hoba-bg selection:bg-hoba-accent/20 selection:text-hoba-accent">
     <Navbar lang={lang} active={activeNav} />

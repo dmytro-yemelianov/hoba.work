@@ -45,12 +45,7 @@ export function getGraph(lang: ContentLang = 'en'): HOBAKnowledgeGraph {
   return graph;
 }
 
-/** `/uk/...` routes render the Ukrainian mirror; everything else is canonical English. */
-export function langFromUrl(url: URL): ContentLang {
-  return url.pathname === '/uk' || url.pathname.startsWith('/uk/') ? 'uk' : 'en';
-}
 
-export const localePrefix = (lang: ContentLang): string => (lang === 'uk' ? '/uk' : '');
 
 export function countGraphNodes(bundle: RegistryBundle): number {
   return (

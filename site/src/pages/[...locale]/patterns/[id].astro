@@ -1,0 +1,100 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import EntityBadge from '../../../components/EntityBadge.astro';
+import { getBundle } from '../../../lib/registry';
+import { LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import type { PatternNode } from '@hoba/registry';
+
+export async function getStaticPaths() {
+  return LANGS.flatMap((lang) =>
+    getBundle(lang).patterns.map((pattern) => ({ params: { locale: lang === 'uk' ? 'uk' : undefined, id: pattern.id }, props: { lang, pattern } }))
+  );
+}
+
+const { lang, pattern } = Astro.props as { lang: Lang; pattern: PatternNode };
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const bundle = getBundle(lang);
+const requiredArtifacts = bundle.artifacts.filter((a) => pattern.required_artifacts.includes(a.id));
+const compatibleMechanisms = bundle.mechanisms.filter((m) => pattern.compatible_mechanisms.includes(m.id));
+const relevantInterventions = bundle.interventions.filter((i) => pattern.interventions.includes(i.id));
+---
+<Layout lang={lang} title={`${pattern.id} — ${pattern.title}`} description={pattern.summary} activeNav="patterns">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <nav class="text-xs text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
+      <a href={`${prefix}/patterns`} class="hover:text-hoba-text">{t('entity.plural.pattern')}</a><span>/</span>
+      <span class="text-hoba-accent font-mono">{pattern.id}</span>
+    </nav>
+
+    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <EntityBadge type="pattern" id={pattern.id} size="md" lang={lang} />
+        <span class="text-xs text-hoba-muted">{t('common.evidence')}: <strong class="text-hoba-text">{t(`level.${pattern.evidence_level}`)}</strong></span>
+      </div>
+      <h1 class="text-2xl font-semibold text-hoba-text">{pattern.title}</h1>
+      <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{pattern.summary}</p>
+      <div class="mt-4 p-3 rounded-md border border-hoba-border border-l-2 border-l-amber-500 bg-hoba-card text-xs text-hoba-text"><strong class="text-amber-700 dark:text-amber-300">{t('patterns.trigger')}</strong> {pattern.trigger_rule}</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-md border border-hoba-border border-l-2 border-l-emerald-500 bg-hoba-card text-sm">
+        <h2 class="font-semibold text-emerald-700 dark:text-emerald-300 mb-3 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>{t('pat.establishes')}</span>
+        </h2>
+        <ul class="space-y-2 text-hoba-text list-disc list-inside">{pattern.establishes.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div class="p-5 rounded-md border border-hoba-border border-l-2 border-l-rose-500 bg-hoba-card text-sm">
+        <h2 class="font-semibold text-rose-700 dark:text-rose-300 mb-3 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <span>{t('pat.notEstablishes')}</span>
+        </h2>
+        <ul class="space-y-2 text-hoba-text list-disc list-inside">{pattern.non_inferences.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </div>
+
+    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
+      <h2 class="text-sm font-semibold text-hoba-text mb-3">{t('pat.required')}</h2>
+      <div class="space-y-2">
+        {requiredArtifacts.map((a) => (
+          <a href={`${prefix}/artifacts/${a.id}`} class="p-3 rounded-md bg-hoba-bg border border-hoba-border hover:border-purple-500/50 block text-xs">
+            <span class="font-semibold text-purple-700 dark:text-purple-300 font-mono">{a.id}:</span> <strong class="text-hoba-text">{a.title}</strong>
+            <p class="text-hoba-muted text-sm mt-1">{a.summary}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
+      <h2 class="text-sm font-semibold text-hoba-text mb-3">{t('pat.mechanisms')}</h2>
+      <div class="space-y-2">
+        {compatibleMechanisms.map((m) => (
+          <a href={`${prefix}/mechanisms/${m.id}`} class="p-3 rounded-md bg-hoba-bg border border-hoba-border hover:border-blue-500/50 block text-xs">
+            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-600 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
+            <strong class="text-hoba-text">{m.title}</strong>
+            <p class="text-hoba-muted text-sm mt-1">{m.summary}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    {relevantInterventions.length > 0 && (
+      <div class="p-6 rounded-md border border-hoba-border border-l-2 border-l-cyan-500 bg-hoba-card text-sm">
+        <h2 class="font-semibold text-cyan-700 dark:text-cyan-300 mb-3">{t('pat.interventions')}</h2>
+        <div class="space-y-2">
+          {relevantInterventions.map((i) => (
+            <a href={`${prefix}/interventions/${i.id}`} class="p-3 rounded-md bg-hoba-card border border-hoba-border border-l-2 border-l-cyan-500 block hover:bg-hoba-hover">
+              <span class="font-semibold text-cyan-600 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
+              <p class="text-hoba-muted mt-1">{i.summary}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="p-4 rounded-md border border-hoba-border bg-hoba-card flex items-center justify-between text-xs text-hoba-muted gap-2 flex-wrap">
+      <span>{t('common.machineEndpoint')}</span>
+      <a href={`/api/v1/patterns/${pattern.id}.json`} target="_blank" class="text-hoba-accent hover:underline font-mono">/api/v1/patterns/{pattern.id}.json</a>
+    </div>
+  </div>
+</Layout>

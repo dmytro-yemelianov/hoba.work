@@ -1,0 +1,180 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getGraph } from '../../lib/registry';
+import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+const lang = localeFromParams(Astro.params);
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const graph = getGraph(lang);
+const graphData = JSON.stringify(graph.toCytoscapeJSON()).replace(/</g, '\\u003c');
+const i18n = JSON.stringify({
+  prefix,
+  ...clientDictionary(lang, ['common.type', 'common.stage', 'facet.removability', 'common.evidence']),
+}).replace(/</g, '\\u003c');
+const layers = [
+  { type: 'artifact', color: 'purple' },
+  { type: 'barrier', color: 'emerald' },
+  { type: 'mechanism', color: 'blue' },
+  { type: 'pattern', color: 'amber' },
+  { type: 'loop', color: 'pink' },
+  { type: 'intervention', color: 'cyan' },
+] as const;
+const layerText: Record<string, string> = { purple: 'text-purple-700 dark:text-purple-300', emerald: 'text-emerald-700 dark:text-emerald-300', blue: 'text-blue-700 dark:text-blue-300', amber: 'text-amber-700 dark:text-amber-300', pink: 'text-pink-700 dark:text-pink-300', cyan: 'text-cyan-700 dark:text-cyan-300' };
+---
+<Layout lang={lang} title={t('graph.title')} activeNav="graph">
+  <div class="mb-6 border-b border-hoba-border pb-4">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <span class="text-xs font-medium text-hoba-muted">{t('graph.kicker')}</span>
+        <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('graph.title')}</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/data/latest/graph.graphml" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">{t('graph.downloadGraphml')}</a>
+        <a href="/data/latest/graph.json" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">{t('graph.downloadJson')}</a>
+      </div>
+    </div>
+    <p class="text-sm text-hoba-muted mt-2">{t('graph.intro', { nodes: graph.nodeMap.size - graph.bundle.evidence.length, edges: graph.edges.length })}</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div class="lg:col-span-4 space-y-4">
+      <div class="p-4 rounded-md border border-hoba-border bg-hoba-card text-xs">
+        <h2 class="text-xs font-semibold text-hoba-muted mb-3">{t('graph.filterLayers')}</h2>
+        <div class="grid grid-cols-2 gap-2">
+          {layers.map((l) => (
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="type-toggle rounded focus:ring-0" data-type={l.type} checked />
+              <span class={`${layerText[l.color]} font-semibold`}>{t(`entity.plural.${l.type}`)}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="p-4 rounded-md border border-hoba-border bg-hoba-card text-xs">
+        <label for="select-removability" class="text-xs font-semibold text-hoba-muted mb-2 block">{t('graph.removabilityFilter')}</label>
+        <select id="select-removability" class="w-full p-2 bg-hoba-bg border border-hoba-border rounded text-xs text-hoba-text">
+          <option value="all">{t('graph.rem.all')}</option>
+          <option value="candidate">{t('graph.rem.candidate')}</option>
+          <option value="intermediary">{t('graph.rem.intermediary')}</option>
+          <option value="none">{t('graph.rem.none')}</option>
+        </select>
+      </div>
+
+      <div id="inspector-card" class="p-4 rounded-md border border-hoba-border bg-hoba-card text-xs space-y-3" aria-live="polite">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-hoba-muted">{t('graph.inspector')}</span>
+          <span id="insp-id" class="text-hoba-accent font-semibold">{t('graph.selectNode')}</span>
+        </div>
+        <h3 id="insp-title" class="text-sm font-semibold text-hoba-text">{t('graph.clickHint')}</h3>
+        <p id="insp-desc" class="text-hoba-muted leading-relaxed text-xs"></p>
+        <div id="insp-link-container" class="pt-2 border-t border-hoba-border hidden">
+          <a id="insp-link" href="#" class="text-hoba-accent hover:underline flex items-center gap-1 text-xs"><span>{t('graph.openDetail')}</span><span>&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8">
+      <div class="relative w-full h-[650px] rounded-md border border-hoba-border bg-hoba-card/40 overflow-hidden">
+        <div id="cy" class="w-full h-full" role="img" aria-label={t('graph.canvasLabel')}></div>
+        <div class="absolute bottom-3 right-3 text-xs text-hoba-muted bg-hoba-bg/80 px-2.5 py-1 rounded border border-hoba-border pointer-events-none">{t('graph.controls')}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-12 pt-8 border-t border-hoba-border">
+    <h2 class="text-sm font-semibold text-hoba-text mb-4">{t('graph.fallback')}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+      {graph.bundle.barriers.map((b) => (
+        <a href={`${prefix}/barriers/${b.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-emerald-500/50 block"><span class="text-emerald-600 dark:text-emerald-400 font-semibold font-mono">{b.id}:</span> {b.title}</a>
+      ))}
+      {graph.bundle.mechanisms.map((m) => (
+        <a href={`${prefix}/mechanisms/${m.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-blue-500/50 block"><span class="text-blue-600 dark:text-blue-400 font-semibold font-mono">{m.id}:</span> {m.title}</a>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/json" id="graph-data" set:html={graphData} />
+  <script type="application/json" id="graph-i18n" set:html={i18n} />
+  <script>
+    import cytoscape from 'cytoscape';
+
+    const ROUTES: Record<string, string> = { artifact: 'artifacts', barrier: 'barriers', mechanism: 'mechanisms', pattern: 'patterns', loop: 'loops', intervention: 'interventions' };
+    const raw = document.getElementById('graph-data')?.textContent;
+    const i18n = JSON.parse(document.getElementById('graph-i18n')?.textContent ?? '{}') as Record<string, string>;
+    const container = document.getElementById('cy');
+
+    // Node fills/borders per theme; label + edge colours come from the CSS tokens.
+    const PALETTE = {
+      dark: {
+        artifact: ['#a371f7', '#2e1065'], barrier: ['#3fb950', '#064e3b'], mechanism: ['#58a6ff', '#1e3a8a'],
+        pattern: ['#f0883e', '#7c2d12'], loop: ['#db61a2', '#831843'], intervention: ['#22d3ee', '#164e63'], edge: '#30363d',
+      },
+      light: {
+        artifact: ['#7c3aed', '#ede9fe'], barrier: ['#15803d', '#dcfce7'], mechanism: ['#1d4ed8', '#dbeafe'],
+        pattern: ['#c2410c', '#ffedd5'], loop: ['#be185d', '#fce7f3'], intervention: ['#0e7490', '#cffafe'], edge: '#cbd5e1',
+      },
+    } as const;
+
+    const cssVar = (name: string) => `rgb(${getComputedStyle(document.documentElement).getPropertyValue(name).trim()})`;
+    const isDark = () => document.documentElement.classList.contains('dark');
+
+    function buildStyle(): cytoscape.StylesheetJson {
+      const p = PALETTE[isDark() ? 'dark' : 'light'];
+      const typeStyles = (Object.keys(ROUTES) as (keyof typeof p)[])
+        .filter((k) => k !== 'edge')
+        .map((type) => ({ selector: `node[type = "${type}"]`, style: { 'border-color': p[type][0], 'background-color': p[type][1] } }));
+      return [
+        { selector: 'node', style: { label: 'data(id)', 'font-size': '10px', 'font-family': 'monospace', color: cssVar('--c-text'), 'text-valign': 'center', 'text-halign': 'center', width: '32px', height: '32px', 'border-width': '2px' } },
+        ...typeStyles,
+        { selector: 'edge', style: { width: 1.5, 'line-color': p.edge, 'target-arrow-color': cssVar('--c-accent'), 'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.8 } },
+        { selector: 'edge[type = "amplifies"]', style: { 'line-color': p.loop[0], 'target-arrow-color': p.loop[0] } },
+        { selector: 'edge[type = "masks"]', style: { 'line-color': cssVar('--c-muted'), 'line-style': 'dashed', 'target-arrow-color': cssVar('--c-muted') } },
+        { selector: 'edge[type = "precedes"]', style: { 'line-color': p.barrier[0], 'target-arrow-color': p.barrier[0], width: 2 } },
+      ] as cytoscape.StylesheetJson;
+    }
+
+    if (raw && container) {
+      const graphData = JSON.parse(raw) as { elements: cytoscape.ElementsDefinition };
+      const cy = cytoscape({
+        container,
+        elements: graphData.elements,
+        style: buildStyle(),
+        layout: { name: 'cose', animate: false, nodeRepulsion: () => 8000, idealEdgeLength: () => 60, edgeElasticity: () => 100 } as cytoscape.LayoutOptions,
+      });
+
+      window.addEventListener('hoba:theme', () => cy.style(buildStyle()));
+
+      cy.on('tap', 'node', (evt) => {
+        const d = evt.target.data() as Record<string, string | undefined>;
+        document.getElementById('insp-id')!.textContent = d.id ?? '';
+        document.getElementById('insp-title')!.textContent = d.label || d.id || '';
+        document.getElementById('insp-desc')!.textContent =
+          `${i18n['common.type']}: ${d.type} | ${i18n['common.stage']}: ${d.stage || 'N/A'} | ${i18n['facet.removability']}: ${d.removability || 'N/A'} | ${i18n['common.evidence']}: ${d.evidence_level || 'N/A'}`;
+        document.getElementById('insp-link-container')!.classList.remove('hidden');
+        document.getElementById('insp-link')!.setAttribute('href', `${i18n.prefix}/${ROUTES[d.type ?? ''] ?? 'registry'}/${d.id}`);
+      });
+
+      const toggles = document.querySelectorAll<HTMLInputElement>('.type-toggle');
+      const removabilitySelect = document.getElementById('select-removability') as HTMLSelectElement | null;
+      function applyFilters() {
+        const hidden = new Set<string>();
+        toggles.forEach((t) => { if (!t.checked && t.dataset.type) hidden.add(t.dataset.type); });
+        const removability = removabilitySelect?.value ?? 'all';
+        cy.batch(() => {
+          cy.nodes().forEach((node) => {
+            const type = node.data('type') as string;
+            const visible = !hidden.has(type) && (type !== 'mechanism' || removability === 'all' || node.data('removability') === removability);
+            if (visible) node.show(); else node.hide();
+          });
+        });
+      }
+      toggles.forEach((t) => t.addEventListener('change', applyFilters));
+      removabilitySelect?.addEventListener('change', applyFilters);
+    }
+  </script>
+</Layout>

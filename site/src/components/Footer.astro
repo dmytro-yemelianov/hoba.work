@@ -1,84 +1,65 @@
 ---
 import Logo from './Logo.astro';
 import { getBundle, siteVersion } from '../lib/registry';
+import { localePrefix, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
-  lang?: 'en' | 'uk';
+  lang?: Lang;
 }
 
 const { lang = 'en' } = Astro.props;
-const prefix = lang === 'uk' ? '/uk' : '';
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
 const registryVersion = getBundle(lang).version;
 ---
 <footer class="border-t border-hoba-border bg-hoba-card/40 mt-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <!-- Col 1: Brand & Principle -->
       <div class="md:col-span-1">
         <Logo showText={true} />
-        <p class="text-xs text-hoba-muted mt-3 leading-relaxed">
-          {lang === 'uk'
-            ? 'hoba — відкритий машинночитний атлас перешкод, сигналів та механізмів у наймі. Коли сигнал неясний — моделюй систему.'
-            : 'hoba — a public, versioned, machine-readable atlas of hiring obstacles, signals, and mechanisms. When the signal is unclear, map the system.'}
-        </p>
-        <p class="text-[11px] font-mono text-hoba-muted mt-3">
-          Canonical domain: <span class="text-hoba-accent">hoba.work</span>
+        <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{t('footer.blurb')}</p>
+        <p class="text-sm text-hoba-muted mt-3">
+          {t('footer.canonical')} <span class="text-hoba-accent">hoba.work</span>
         </p>
       </div>
 
-      <!-- Col 2: Navigation -->
       <div>
-        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-hoba-text mb-3">
-          {lang === 'uk' ? 'Атлас' : 'Atlas'}
-        </h4>
-        <ul class="space-y-2 text-xs text-hoba-muted">
-          <li><a href={`${prefix}/analyze`} class="hover:text-hoba-accent">{lang === 'uk' ? 'HOBA Аналіз' : 'HOBA Analysis'}</a></li>
-          <li><a href={`${prefix}/registry`} class="hover:text-hoba-accent">{lang === 'uk' ? 'Реєстр сутностей' : 'Registry Directory'}</a></li>
-          <li><a href={`${prefix}/patterns`} class="hover:text-hoba-accent">{lang === 'uk' ? 'Патерни та суперечності' : 'Patterns & Contradictions'}</a></li>
-          <li><a href={`${prefix}/graph`} class="hover:text-hoba-accent">{lang === 'uk' ? 'Інтерактивний граф' : 'Graph Explorer'}</a></li>
-          <li><a href={`${prefix}/data`} class="hover:text-hoba-accent">{lang === 'uk' ? 'Агреговані дані' : 'Aggregate Data'}</a></li>
+        <h4 class="text-xs font-semibold text-hoba-text mb-3">{t('footer.atlas')}</h4>
+        <ul class="space-y-2 text-sm text-hoba-muted">
+          <li><a href={`${prefix}/analyze`} class="hover:text-hoba-accent">{t('footer.analysis')}</a></li>
+          <li><a href={`${prefix}/registry`} class="hover:text-hoba-accent">{t('footer.registryDirectory')}</a></li>
+          <li><a href={`${prefix}/patterns`} class="hover:text-hoba-accent">{t('footer.patterns')}</a></li>
+          <li><a href={`${prefix}/graph`} class="hover:text-hoba-accent">{t('footer.graph')}</a></li>
+          <li><a href={`${prefix}/data`} class="hover:text-hoba-accent">{t('footer.data')}</a></li>
         </ul>
       </div>
 
-      <!-- Col 3: Technical & Developers -->
       <div>
-        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-hoba-text mb-3">
-          {lang === 'uk' ? 'Розробникам' : 'Developers'}
-        </h4>
-        <ul class="space-y-2 text-xs text-hoba-muted">
-          <li><a href={`${prefix}/developers`} class="hover:text-hoba-accent">{lang === 'uk' ? 'API та Інтеграція' : 'API & Integration'}</a></li>
-          <li><a href="/openapi.json" target="_blank" class="hover:text-hoba-accent font-mono text-[11px]">/openapi.json</a></li>
-          <li><a href="/data/latest/registry.json" target="_blank" class="hover:text-hoba-accent font-mono text-[11px]">/data/latest/registry.json</a></li>
-          <li><a href="/data/latest/graph.graphml" target="_blank" class="hover:text-hoba-accent font-mono text-[11px]">/data/latest/graph.graphml</a></li>
-          <li><a href={`${prefix}/developers#mcp`} class="hover:text-hoba-accent font-mono text-[11px]">MCP server (stdio)</a></li>
+        <h4 class="text-xs font-semibold text-hoba-text mb-3">{t('footer.developers')}</h4>
+        <ul class="space-y-2 text-sm text-hoba-muted">
+          <li><a href={`${prefix}/developers`} class="hover:text-hoba-accent">{t('footer.api')}</a></li>
+          <li><a href="/openapi.json" target="_blank" class="hover:text-hoba-accent text-xs font-mono">/openapi.json</a></li>
+          <li><a href="/data/latest/registry.json" target="_blank" class="hover:text-hoba-accent text-xs font-mono">/data/latest/registry.json</a></li>
+          <li><a href="/data/latest/graph.graphml" target="_blank" class="hover:text-hoba-accent text-xs font-mono">/data/latest/graph.graphml</a></li>
+          <li><a href={`${prefix}/developers#mcp`} class="hover:text-hoba-accent text-xs">{t('footer.mcp')}</a></li>
         </ul>
       </div>
 
-      <!-- Col 4: Epistemic Posture & Author -->
       <div>
-        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-hoba-text mb-3">
-          {lang === 'uk' ? 'Принципи' : 'Principles'}
-        </h4>
-        <p class="text-xs text-hoba-muted leading-relaxed">
-          {lang === 'uk'
-            ? 'hoba розділяє спостереження від причини та повідомлення від мотиву. Жодних чорних списків компаній та фальшивої визначеності.'
-            : 'hoba separates observation from cause and message from motive. No company blacklists, no intent speculation, no false precision.'}
-        </p>
-        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-[11px] text-hoba-muted flex items-center justify-between">
-          <span>Author: <a href="https://github.com/dmytro-yemelianov" class="text-hoba-text hover:underline">Dmytro Yemelianov</a></span>
-          <span class="font-mono" title={`Registry release ${registryVersion}`}>site v{siteVersion} · registry {registryVersion}</span>
+        <h4 class="text-xs font-semibold text-hoba-text mb-3">{t('footer.principles')}</h4>
+        <p class="text-sm text-hoba-muted leading-relaxed">{t('footer.principlesText')}</p>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs text-hoba-muted flex items-center justify-between gap-2">
+          <span>{t('footer.author')} <a href="https://github.com/dmytro-yemelianov" class="text-hoba-text hover:underline">Dmytro Yemelianov</a></span>
+          <span class="">{t('footer.version', { site: siteVersion, registry: registryVersion })}</span>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
     <div class="mt-8 pt-6 border-t border-hoba-border/40 flex flex-col sm:flex-row items-center justify-between text-xs text-hoba-muted gap-4">
       <div>
-        Content: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="text-hoba-text hover:underline">CC BY-SA 4.0</a> | Code: <a href="https://opensource.org/licenses/MIT" target="_blank" class="text-hoba-text hover:underline">MIT License</a>
+        {t('footer.content')} <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="text-hoba-text hover:underline">CC BY-SA 4.0</a> | {t('footer.code')} <a href="https://opensource.org/licenses/MIT" target="_blank" class="text-hoba-text hover:underline">MIT</a>
       </div>
-      <div class="text-[11px] font-mono">
-        Deterministic build • Zero telemetry
-      </div>
+      <div class="text-xs">{t('footer.deterministic')}</div>
     </div>
   </div>
 </footer>

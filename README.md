@@ -175,7 +175,21 @@ hoba validate --strict
 
 ---
 
-## 6. Epistemic Posture & Rules
+## 6. Website: Languages & Themes
+
+- Every page is prerendered in **English** (`/…`, canonical) and **Ukrainian** (`/uk/…`), including entity detail
+  pages; `<link rel="alternate" hreflang>` ties the pairs together. UI copy lives in `site/src/i18n/ui.ts` (the `uk`
+  dictionary is typed against `en` and parity-tested); registry prose comes from `content/` and `content-uk/`.
+- `site/public/_worker.js` (Cloudflare Pages Advanced Mode) negotiates the language for unprefixed HTML requests:
+  explicit choice (`hoba_lang` cookie, set by the switcher) → `Accept-Language: uk` → Cloudflare geo `UA` → and, with
+  no signal at all, Ukrainian. `/uk/…` URLs are always honoured; assets and `/api`, `/data`, `/schemas` are never redirected.
+- Light and dark themes: the toggle in the navbar persists to `localStorage`; without a stored choice the site follows
+  `prefers-color-scheme`, defaulting to dark when the browser reports none. Surfaces use CSS tokens
+  (`site/src/styles/theme.css`); palette tints carry explicit `dark:` variants.
+
+---
+
+## 7. Epistemic Posture & Rules
 
 1. **No False Precision:** Logical compatibility in the graph does not imply probability without calibrated priors.
 2. **Honest Baselines:** Candidate skill-depth shortfalls, leveling mismatches, and communication friction are mandatory baseline mechanisms.
@@ -186,7 +200,7 @@ hoba validate --strict
 
 ---
 
-## 7. Author & Licensing
+## 8. Author & Licensing
 
 - **Author:** [Dmytro Yemelianov](https://github.com/dmytro-yemelianov)
 - **Registry Content:** [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)

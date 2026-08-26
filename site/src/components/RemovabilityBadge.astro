@@ -1,31 +1,16 @@
 ---
+import { useTranslations, type Lang } from '../i18n/utils';
+
 interface Props {
   removability: 'candidate' | 'intermediary' | 'none';
+  lang?: Lang;
 }
 
-const { removability } = Astro.props;
-
-const config = {
-  candidate: {
-    bg: 'bg-emerald-950/70 border-emerald-700/60 text-emerald-300',
-    label: 'Candidate Action',
-    desc: 'Endogenous Zone: Applicant has direct agency to test or adapt'
-  },
-  intermediary: {
-    bg: 'bg-amber-950/70 border-amber-700/60 text-amber-300',
-    label: 'Intermediary Dependent',
-    desc: 'Requires recruiter, hiring manager, or company policy intervention'
-  },
-  none: {
-    bg: 'bg-rose-950/70 border-rose-700/60 text-rose-300',
-    label: 'Exogenous (No Agency)',
-    desc: 'Exogenous Zone: Structural factor outside candidate optimization control'
-  }
-};
-
-const item = config[removability] || config.none;
+const { removability, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const dot = { candidate: 'bg-emerald-500', intermediary: 'bg-amber-500', none: 'bg-rose-500' }[removability];
 ---
-<span class={`inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded border ${item.bg}`} title={item.desc}>
-  <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
-  <span>{item.label}</span>
+<span class="inline-flex items-center gap-1.5 text-xs font-medium text-hoba-muted px-2 py-0.5 rounded-md border border-hoba-border bg-hoba-bg" title={t(`removability.${removability}.desc`)}>
+  <span class={`w-1.5 h-1.5 rounded-full ${dot}`} aria-hidden="true"></span>
+  <span>{t(`removability.${removability}`)}</span>
 </span>

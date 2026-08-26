@@ -1,32 +1,33 @@
 ---
-// A real 404 page. Without it Cloudflare Pages falls back to SPA mode and answers
-// every unknown path — including missing /api/v1/*.json files — with index.html and HTTP 200.
+// Single static 404.html (Cloudflare Pages serves one for the whole site). The copy is
+// rendered in both languages and the visible one is chosen client-side from the URL
+// prefix / preference cookie, so /uk/… misses read Ukrainian.
 import Layout from '../layouts/Layout.astro';
 import Mascot from '../components/Mascot.astro';
-import { langFromUrl, localePrefix } from '../lib/registry';
-
-const lang = langFromUrl(Astro.url);
-const prefix = localePrefix(lang);
+import { LANGS, localePrefix, useTranslations } from '../i18n/utils';
 ---
-<Layout lang={lang} title={lang === 'uk' ? 'Сторінку не знайдено' : 'Page not found'} activeNav="">
-  <section class="py-16 text-center max-w-2xl mx-auto">
-    <Mascot className="w-40 h-40 mx-auto" />
-    <p class="mt-6 text-xs font-mono uppercase tracking-widest text-hoba-accent">404 · {lang === 'uk' ? 'спостереження без сутності' : 'observation without an entity'}</p>
-    <h1 class="mt-2 text-3xl font-black font-mono text-hoba-text">
-      {lang === 'uk' ? 'Такого вузла в реєстрі немає' : 'No such node in the registry'}
-    </h1>
-    <p class="mt-4 text-sm text-hoba-muted leading-relaxed">
-      {lang === 'uk'
-        ? 'Відсутня сторінка — це факт, а не причина. Перевірте канонічний ID (A-, B-, M-, P-, L-, I-xxx) або поверніться до реєстру.'
-        : 'A missing page is an observation, not a cause. Check the canonical ID (A-, B-, M-, P-, L-, I-xxx) or return to the registry.'}
-    </p>
-    <div class="mt-8 flex justify-center gap-3 text-sm font-mono">
-      <a href={`${prefix}/registry`} class="px-5 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold transition-colors">
-        {lang === 'uk' ? 'Відкрити реєстр' : 'Open the registry'}
-      </a>
-      <a href={prefix || '/'} class="px-5 py-2.5 rounded-lg border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text transition-colors">
-        {lang === 'uk' ? 'На головну' : 'Home'}
-      </a>
-    </div>
-  </section>
+<Layout lang="en" title={useTranslations('en')('nf.title')} activeNav="">
+  {LANGS.map((lang) => {
+    const t = useTranslations(lang);
+    const prefix = localePrefix(lang);
+    return (
+      <section data-nf-lang={lang} class={`py-16 text-center max-w-2xl mx-auto ${lang === 'en' ? '' : 'hidden'}`} lang={lang}>
+        <Mascot className="w-40 h-40 mx-auto" />
+        <p class="mt-6 text-sm text-hoba-muted">{t('nf.kicker')}</p>
+        <h1 class="mt-2 text-2xl font-semibold text-hoba-text">{t('nf.heading')}</h1>
+        <p class="mt-4 text-sm text-hoba-muted leading-relaxed">{t('nf.text')}</p>
+        <div class="mt-8 flex justify-center gap-3 text-sm">
+          <a href={`${prefix}/registry`} class="px-5 py-2.5 rounded-md bg-hoba-accent hover:opacity-90 text-hoba-bg font-semibold transition-colors">{t('nf.registry')}</a>
+          <a href={prefix || '/'} class="px-5 py-2.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text transition-colors">{t('common.home')}</a>
+        </div>
+      </section>
+    );
+  })}
+  <script>
+    const uk = /^\/uk(\/|$)/.test(location.pathname) || /(?:^|;\s*)hoba_lang=uk/.test(document.cookie);
+    if (uk) {
+      document.documentElement.lang = 'uk';
+      document.querySelectorAll<HTMLElement>('[data-nf-lang]').forEach((el) => el.classList.toggle('hidden', el.dataset.nfLang !== 'uk'));
+    }
+  </script>
 </Layout>

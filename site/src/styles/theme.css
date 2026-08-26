@@ -1,0 +1,35 @@
+/* Theme tokens. Tailwind's `hoba-*` colors read these RGB triples, so every
+   `bg-hoba-card/60`-style utility follows the active theme automatically. */
+:root {
+  color-scheme: light;
+  --c-bg: 247 249 252;
+  --c-card: 255 255 255;
+  --c-border: 222 228 237;
+  --c-hover: 238 242 248;
+  --c-text: 17 24 39;
+  --c-muted: 82 96 115;
+  --c-accent: 29 78 216;
+}
+.dark {
+  color-scheme: dark;
+  --c-bg: 10 12 16;
+  --c-card: 18 22 31;
+  --c-border: 31 38 51;
+  --c-hover: 24 31 44;
+  --c-text: 230 237 243;
+  --c-muted: 139 148 158;
+  --c-accent: 88 166 255;
+}
+html {
+  background-color: rgb(var(--c-bg));
+  color: rgb(var(--c-text));
+}
+
+code, kbd, pre, samp {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 0.9em;
+}
+body {
+  font-size: 0.875rem; /* 14px base; the scale is 12 / 14 / 16 / 18 / 24 / 30 */
+  line-height: 1.55;
+}

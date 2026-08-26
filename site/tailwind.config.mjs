@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--c-${name}) / <alpha-value>)`;
+
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   darkMode: 'class',
@@ -6,13 +8,15 @@ export default {
     extend: {
       colors: {
         hoba: {
-          bg: '#0a0c10',
-          card: '#12161f',
-          border: '#1f2633',
-          hover: '#181f2c',
-          text: '#e6edf3',
-          muted: '#8b949e',
-          accent: '#58a6ff',
+          // Theme-aware surfaces (see src/styles/theme.css)
+          bg: token('bg'),
+          card: token('card'),
+          border: token('border'),
+          hover: token('hover'),
+          text: token('text'),
+          muted: token('muted'),
+          accent: token('accent'),
+          // Entity hues (fixed; legible on both themes)
           candidate: '#2ea043',
           intermediary: '#d29922',
           exogenous: '#f85149',

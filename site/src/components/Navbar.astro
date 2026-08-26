@@ -1,92 +1,107 @@
 ---
 import Logo from './Logo.astro';
+import { LANGS, LANG_LABELS, LANG_COOKIE, localePrefix, localizePath, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
-  lang?: 'en' | 'uk';
+  lang?: Lang;
   active?: string;
 }
 
 const { lang = 'en', active = '' } = Astro.props;
-
-const prefix = lang === 'uk' ? '/uk' : '';
-
-// Keep the visitor on the equivalent page when switching language. Entity detail
-// pages exist only in English, so they fall back to the mirror's home page.
-const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const stripped = pathname.replace(/^\/uk(?=\/|$)/, '') || '/';
-const mirrored = ['/', '/analyze', '/registry', '/patterns', '/graph', '/data', '/methodology', '/developers', '/contribute', '/about'];
-const enHref = mirrored.includes(stripped) ? stripped : '/';
-const ukHref = mirrored.includes(stripped) ? (stripped === '/' ? '/uk' : `/uk${stripped}`) : '/uk';
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
 
 const navLinks = [
-  { name: lang === 'uk' ? 'Аналіз' : 'Analyze', href: `${prefix}/analyze`, key: 'analyze', highlight: true },
-  { name: lang === 'uk' ? 'Реєстр' : 'Registry', href: `${prefix}/registry`, key: 'registry' },
-  { name: lang === 'uk' ? 'Патерни' : 'Patterns', href: `${prefix}/patterns`, key: 'patterns' },
-  { name: lang === 'uk' ? 'Граф' : 'Graph', href: `${prefix}/graph`, key: 'graph' },
-  { name: lang === 'uk' ? 'Дані' : 'Data', href: `${prefix}/data`, key: 'data' },
-  { name: lang === 'uk' ? 'Методологія' : 'Methodology', href: `${prefix}/methodology`, key: 'methodology' },
-  { name: lang === 'uk' ? 'Розробникам' : 'Developers', href: `${prefix}/developers`, key: 'developers' },
-  { name: lang === 'uk' ? 'Контриб’ют' : 'Contribute', href: `${prefix}/contribute`, key: 'contribute' },
-  { name: lang === 'uk' ? 'Про проект' : 'About', href: `${prefix}/about`, key: 'about' },
+  { name: t('nav.analyze'), href: `${prefix}/analyze`, key: 'analyze', highlight: true },
+  { name: t('nav.registry'), href: `${prefix}/registry`, key: 'registry' },
+  { name: t('nav.patterns'), href: `${prefix}/patterns`, key: 'patterns' },
+  { name: t('nav.graph'), href: `${prefix}/graph`, key: 'graph' },
+  { name: t('nav.data'), href: `${prefix}/data`, key: 'data' },
+  { name: t('nav.methodology'), href: `${prefix}/methodology`, key: 'methodology' },
+  { name: t('nav.developers'), href: `${prefix}/developers`, key: 'developers' },
+  { name: t('nav.contribute'), href: `${prefix}/contribute`, key: 'contribute' },
+  { name: t('nav.about'), href: `${prefix}/about`, key: 'about' },
 ];
+
+// Every page exists in both languages, so the switcher keeps the visitor on the same page.
+const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: localizePath(Astro.url.pathname, l) }));
+const linkClass = (item: { key: string; highlight?: boolean }) =>
+  active === item.key
+    ? 'bg-hoba-card text-hoba-text border border-hoba-border'
+    : item.highlight
+      ? 'text-hoba-accent hover:bg-hoba-hover font-semibold'
+      : 'text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover';
 ---
-<header class="sticky top-0 z-50 w-full border-b border-hoba-border bg-hoba-bg/90 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <!-- Logo -->
-    <a href={lang === 'uk' ? '/uk' : '/'} class="hover:opacity-90 transition-opacity">
+<header class="sticky top-0 z-50 w-full border-b border-hoba-border bg-hoba-bg/90">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+    <a href={prefix || '/'} class="hover:opacity-90 transition-opacity shrink-0">
       <Logo />
     </a>
 
-    <!-- Navigation Links -->
-    <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+    <nav class="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Primary">
       {navLinks.map((item) => (
-        <a
-          href={item.href}
-          class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-            active === item.key
-              ? 'bg-hoba-card text-hoba-text border border-hoba-border'
-              : item.highlight
-              ? 'text-hoba-accent hover:bg-hoba-hover font-semibold'
-              : 'text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover'
-          }`}
-        >
+        <a href={item.href} class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${linkClass(item)}`} aria-current={active === item.key ? 'page' : undefined}>
           {item.name}
         </a>
       ))}
     </nav>
 
-    <!-- Right Utility Controls: Language Switcher & GitHub -->
-    <div class="flex items-center gap-3">
-      <!-- Language Switch -->
-      <div class="flex items-center text-xs font-mono bg-hoba-card border border-hoba-border rounded-md p-0.5">
-        <a
-          href={enHref}
-          hreflang="en"
-          class={`px-2 py-1 rounded transition-colors ${lang === 'en' ? 'bg-hoba-border text-hoba-text font-bold' : 'text-hoba-muted hover:text-hoba-text'}`}
-        >
-          EN
-        </a>
-        <a
-          href={ukHref}
-          hreflang="uk"
-          class={`px-2 py-1 rounded transition-colors ${lang === 'uk' ? 'bg-hoba-border text-hoba-text font-bold' : 'text-hoba-muted hover:text-hoba-text'}`}
-        >
-          UA
-        </a>
+    <div class="flex items-center gap-2">
+      <!-- Language switch (sets the preference cookie the edge worker honours) -->
+      <div class="flex items-center text-xs bg-hoba-card border border-hoba-border rounded-md p-0.5" role="group" aria-label={t('nav.language')}>
+        {switchLinks.map((s) => (
+          <a
+            href={s.href}
+            hreflang={s.lang}
+            lang={s.lang}
+            data-lang-switch={s.lang}
+            aria-current={s.lang === lang ? 'true' : undefined}
+            class={`px-2 py-1 rounded transition-colors ${s.lang === lang ? 'bg-hoba-border text-hoba-text font-semibold' : 'text-hoba-muted hover:text-hoba-text'}`}
+          >
+            {s.label}
+          </a>
+        ))}
       </div>
 
-      <!-- GitHub Link -->
-      <a
-        href="https://github.com/dmytro-yemelianov/hoba.work"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-hoba-muted hover:text-hoba-text transition-colors p-2 rounded-md hover:bg-hoba-hover"
-        aria-label="GitHub Repository"
-      >
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" type="button" class="text-hoba-muted hover:text-hoba-text transition-colors p-2 rounded-md hover:bg-hoba-hover" aria-label={t('nav.theme')} title={t('nav.theme')}>
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+
+      <a href="https://github.com/dmytro-yemelianov/hoba.work" target="_blank" rel="noopener noreferrer" class="hidden sm:block text-hoba-muted hover:text-hoba-text transition-colors p-2 rounded-md hover:bg-hoba-hover" aria-label={t('nav.github')}>
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
         </svg>
       </a>
+
+      <!-- Mobile menu -->
+      <details class="lg:hidden relative">
+        <summary class="list-none cursor-pointer text-hoba-muted hover:text-hoba-text p-2 rounded-md hover:bg-hoba-hover" aria-label={t('nav.menu')}>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </summary>
+        <nav class="absolute right-0 mt-2 w-56 rounded-md border border-hoba-border bg-hoba-card p-2 flex flex-col gap-1" aria-label="Primary (mobile)">
+          {navLinks.map((item) => (
+            <a href={item.href} class={`px-3 py-2 rounded-md text-sm font-medium ${linkClass(item)}`}>{item.name}</a>
+          ))}
+        </nav>
+      </details>
     </div>
   </div>
 </header>
+
+<script define:vars={{ LANG_COOKIE }}>
+  document.querySelectorAll('[data-lang-switch]').forEach((a) => {
+    a.addEventListener('click', () => {
+      document.cookie = `${LANG_COOKIE}=${a.dataset.langSwitch}; path=/; max-age=31536000; samesite=lax`;
+    });
+  });
+
+  const toggle = document.getElementById('theme-toggle');
+  toggle?.addEventListener('click', () => {
+    const dark = !document.documentElement.classList.contains('dark');
+    document.documentElement.classList.toggle('dark', dark);
+    try { localStorage.setItem('hoba_theme', dark ? 'dark' : 'light'); } catch {}
+    window.dispatchEvent(new CustomEvent('hoba:theme', { detail: { dark } }));
+  });
+</script>
