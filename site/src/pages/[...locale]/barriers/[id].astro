@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
 import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import { getBundle } from '../../../lib/registry';
@@ -22,22 +23,20 @@ const succeedingBarriers = bundle.barriers.filter((b) => barrier.precedes.includ
 const targetedInterventions = bundle.interventions.filter((i) => i.targets.includes(barrier.id));
 ---
 <Layout lang={lang} title={`${barrier.id} — ${barrier.title}`} description={barrier.description} activeNav="registry">
-  <article class="max-w-3xl mx-auto">
-    <nav class="text-sm text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
-      <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
-      <a href={`${prefix}/registry?type=barrier`} class="hover:text-hoba-text">{t('entity.plural.barrier')}</a><span>/</span>
-      <span class="text-hoba-accent font-mono">{barrier.id}</span>
-    </nav>
-
-    <header class="mt-5">
-      <div class="flex flex-wrap items-center gap-2">
+  <article>
+    <PageHeader title={barrier.title} lead={barrier.description}>
+      <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
+        <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
+        <a href={`${prefix}/registry?type=barrier`} class="hover:text-hoba-text">{t('entity.plural.barrier')}</a><span>/</span>
+        <span class="text-hoba-accent font-mono">{barrier.id}</span>
+      </nav>
+      <div slot="meta" class="flex flex-wrap items-center gap-1.5">
         <EntityBadge type="barrier" id={barrier.id} lang={lang} />
         <span class="pill pill-muted">{asHeading(t('common.stage'))}: <span class="text-hoba-text">{t(`stage.${barrier.stage}`)}</span></span>
         <span class="pill pill-muted">{t('bar.order', { n: barrier.order })}</span>
+        <span class="pill pill-muted">{asHeading(t('common.evidence'))}: <span class="text-hoba-text">{t(`level.${barrier.evidence_level}`)}</span></span>
       </div>
-      <h1 class="mt-4 text-2xl font-semibold text-hoba-text">{barrier.title}</h1>
-      <p class="mt-3 text-lg text-hoba-muted">{barrier.description}</p>
-    </header>
+    </PageHeader>
 
     <div class="callout border-l-hoba-barrier">
       <h2 class="text-base font-semibold text-hoba-text">{asHeading(t('bar.pass'))}</h2>

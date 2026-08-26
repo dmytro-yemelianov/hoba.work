@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -29,12 +30,8 @@ ${t('dev.mcp.configComment2')}
 }`;
 ---
 <Layout lang={lang} title={t('dev.title')} activeNav="developers">
-  <article class="prose-hoba mx-auto">
-    <header class="page-header">
-      <p class="kicker">{t('dev.kicker')}</p>
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('dev.heading')}</h1>
-      <p class="mt-2 lead">{t('dev.intro')}</p>
-    </header>
+  <article class="prose-hoba">
+    <PageHeader kicker={t('dev.kicker')} title={t('dev.heading')} lead={t('dev.intro')} />
 
     <h2>{t('dev.rest.title')}</h2>
     <p>{t('dev.rest.text')} <a href="/openapi.json" target="_blank" class="font-mono">/openapi.json</a></p>
@@ -60,7 +57,7 @@ ${t('dev.mcp.configComment2')}
     <dl>
       {cli.map((c) => (
         <>
-          <dt><code class="whitespace-nowrap">{c.command}</code></dt>
+          <dt><code>{c.command}</code></dt>
           <dd>{c.text}</dd>
         </>
       ))}

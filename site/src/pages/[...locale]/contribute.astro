@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -17,12 +18,8 @@ const commands = [
 ];
 ---
 <Layout lang={lang} title={t('contrib.title')} activeNav="contribute">
-  <article class="prose-hoba mx-auto">
-    <header class="page-header">
-      <p class="kicker">{t('contrib.kicker')}</p>
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('contrib.heading')}</h1>
-      <p class="mt-2 lead">{t('contrib.intro')}</p>
-    </header>
+  <article class="prose-hoba">
+    <PageHeader kicker={t('contrib.kicker')} title={t('contrib.heading')} lead={t('contrib.intro')} />
 
     <h2>{t('contrib.workflow')}</h2>
     <pre tabindex="0"><code>{commands.join('\n')}</code></pre>

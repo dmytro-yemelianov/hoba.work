@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
 import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import ViewSwitch from '../../components/ViewSwitch.astro';
 import type { RemovabilityType, StageId } from '@hoba/registry';
 import { countGraphNodes, getBundle } from '../../lib/registry';
@@ -62,19 +63,14 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
   { key: 'none', label: t('removability.none'), dot: 'bg-rose-500' },
 ];
 ---
-<Layout lang={lang} title={t('registry.title')} activeNav="registry">
-  <header class="page-header flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-    <div>
-      <p class="kicker">{t('registry.kicker', { version: bundle.version })}</p>
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('registry.title')}</h1>
-      <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('registry.intro', { n: totalCount })}</p>
-    </div>
-    <div class="flex flex-wrap items-center gap-4">
+<Layout lang={lang} title={t('registry.title')} activeNav="registry" width="app">
+  <PageHeader kicker={t('registry.kicker', { version: bundle.version })} title={t('registry.title')} lead={t('registry.intro', { n: totalCount })} wide>
+    <Fragment slot="actions">
       <ViewSwitch lang={lang} />
       <a href="/openapi.json" target="_blank" class="text-sm font-mono text-hoba-accent underline underline-offset-2">openapi.json</a>
       <a href="/data/latest/registry.json" target="_blank" class="text-sm font-mono text-hoba-accent underline underline-offset-2">registry.json</a>
-    </div>
-  </header>
+    </Fragment>
+  </PageHeader>
 
   <div class="space-y-4 mb-8">
     <div class="relative max-w-xl">

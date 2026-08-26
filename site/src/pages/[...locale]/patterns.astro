@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import ViewSwitch from '../../components/ViewSwitch.astro';
 import { getBundle } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
@@ -15,15 +16,10 @@ const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 const idLinks = (ids: string[], route: string) => ids.map((id) => ({ id, href: `${prefix}/${route}/${id}` }));
 ---
-<Layout lang={lang} title={t('patterns.title')} activeNav="patterns">
-  <header class="page-header flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-    <div>
-      <p class="kicker">{t('patterns.kicker')}</p>
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('patterns.heading')}</h1>
-      <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('patterns.intro')}</p>
-    </div>
-    <ViewSwitch lang={lang} />
-  </header>
+<Layout lang={lang} title={t('patterns.title')} activeNav="patterns" width="app">
+  <PageHeader kicker={t('patterns.kicker')} title={t('patterns.heading')} lead={t('patterns.intro')} wide>
+    <ViewSwitch slot="actions" lang={lang} />
+  </PageHeader>
 
   <div data-view-root>
     <div data-view="table" class="overflow-x-auto">
@@ -43,9 +39,9 @@ const idLinks = (ids: string[], route: string) => ids.map((id) => ({ id, href: `
             <tr class="hover:bg-hoba-hover">
               <td class="font-mono text-sm whitespace-nowrap"><a href={`${prefix}/patterns/${p.id}`} class="text-hoba-accent hover:underline">{p.id}</a></td>
               <td><a href={`${prefix}/patterns/${p.id}`} class="font-medium text-hoba-text hover:underline">{p.title}</a><p class="text-sm text-hoba-muted line-clamp-2">{p.summary}</p></td>
-              <td class="font-mono text-sm">{idLinks(p.required_artifacts, 'artifacts').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline">{l.id}</a>{i < p.required_artifacts.length - 1 ? ', ' : ''}</>)}</td>
-              <td class="font-mono text-sm">{idLinks(p.compatible_mechanisms, 'mechanisms').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline">{l.id}</a>{i < p.compatible_mechanisms.length - 1 ? ', ' : ''}</>)}</td>
-              <td class="font-mono text-sm">{p.interventions.length ? idLinks(p.interventions, 'interventions').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline">{l.id}</a>{i < p.interventions.length - 1 ? ', ' : ''}</>) : '—'}</td>
+              <td class="font-mono text-sm">{idLinks(p.required_artifacts, 'artifacts').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.required_artifacts.length - 1 ? ', ' : ''}</>)}</td>
+              <td class="font-mono text-sm">{idLinks(p.compatible_mechanisms, 'mechanisms').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.compatible_mechanisms.length - 1 ? ', ' : ''}</>)}</td>
+              <td class="font-mono text-sm">{p.interventions.length ? idLinks(p.interventions, 'interventions').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.interventions.length - 1 ? ', ' : ''}</>) : '—'}</td>
               <td class="whitespace-nowrap"><span class="pill pill-muted">{t(`level.${p.evidence_level}`)}</span></td>
             </tr>
           ))}

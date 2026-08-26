@@ -11,44 +11,55 @@ const { lang = 'en', active = '' } = Astro.props;
 const t = useTranslations(lang);
 const prefix = localePrefix(lang);
 
-const navLinks = [
+// The atlas itself stays on the bar; everything about the project moves into
+// the overflow menu, so the bar fits without shrinking to 13px links.
+const primary = [
   { name: t('nav.analyze'), href: `${prefix}/analyze`, key: 'analyze', highlight: true },
   { name: t('nav.registry'), href: `${prefix}/registry`, key: 'registry' },
   { name: t('nav.patterns'), href: `${prefix}/patterns`, key: 'patterns' },
   { name: t('nav.graph'), href: `${prefix}/graph`, key: 'graph' },
   { name: t('nav.data'), href: `${prefix}/data`, key: 'data' },
+];
+const secondary = [
   { name: t('nav.methodology'), href: `${prefix}/methodology`, key: 'methodology' },
   { name: t('nav.developers'), href: `${prefix}/developers`, key: 'developers' },
   { name: t('nav.contribute'), href: `${prefix}/contribute`, key: 'contribute' },
   { name: t('nav.about'), href: `${prefix}/about`, key: 'about' },
 ];
+const inSecondary = secondary.some((item) => item.key === active);
 
 // Every page exists in both languages, so the switcher keeps the visitor on the same page.
 // The 404 page is a single static file, so its switcher points at the language home pages.
 const switchBase = Astro.url.pathname.startsWith('/404') ? '/' : Astro.url.pathname;
 const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: localizePath(switchBase, l) }));
-const linkClass = (item: { key: string; highlight?: boolean }) =>
-  active === item.key
-    ? 'bg-hoba-card text-hoba-text border border-hoba-border'
-    : item.highlight
-      ? 'text-hoba-accent hover:bg-hoba-hover font-semibold'
-      : 'text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover';
 ---
-<header class="sticky top-0 z-50 w-full border-b border-hoba-border bg-hoba-bg/90">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-    <a href={prefix || '/'} class="hover:opacity-90 transition-opacity shrink-0">
+<header class="sticky top-0 z-50 w-full relative border-b border-hoba-border bg-hoba-bg/95 backdrop-blur supports-[backdrop-filter]:bg-hoba-bg/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center gap-3">
+    <a href={prefix || '/'} class="shrink-0 rounded-md hover:opacity-90 transition-opacity" aria-label="hoba">
       <Logo />
     </a>
 
-    <nav class="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Primary">
-      {navLinks.map((item) => (
-        <a href={item.href} class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${linkClass(item)}`} aria-current={active === item.key ? 'page' : undefined}>
+    <nav class="hidden lg:flex items-center gap-0.5 ml-4" aria-label="Primary">
+      {primary.map((item) => (
+        <a href={item.href} class={`nav-link ${active === item.key ? 'nav-link-active' : ''} ${item.highlight && active !== item.key ? 'text-hoba-accent' : ''}`} aria-current={active === item.key ? 'page' : undefined}>
           {item.name}
         </a>
       ))}
+
+      <details class="nav-more relative">
+        <summary class={`nav-link list-none cursor-pointer inline-flex items-center gap-1 ${inSecondary ? 'nav-link-active' : ''}`} aria-label={t('nav.more')}>
+          <span>{t('nav.more')}</span>
+          <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="absolute right-0 mt-2 w-56 rounded-md border border-hoba-border bg-hoba-card shadow-lg p-1.5 flex flex-col">
+          {secondary.map((item) => (
+            <a href={item.href} class={`nav-link justify-start ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
+          ))}
+        </div>
+      </details>
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div class="ml-auto flex items-center gap-1 sm:gap-2">
       <!-- Language switch (sets the preference cookie the edge worker honours) -->
       <div class="flex items-center text-xs bg-hoba-card border border-hoba-border rounded-md p-0.5" role="group" aria-label={t('nav.language')}>
         {switchLinks.map((s) => (
@@ -65,28 +76,41 @@ const linkClass = (item: { key: string; highlight?: boolean }) =>
         ))}
       </div>
 
-      <!-- Theme toggle -->
-      <button id="theme-toggle" type="button" class="text-hoba-muted hover:text-hoba-text transition-colors p-2 rounded-md hover:bg-hoba-hover" aria-label={t('nav.theme')} title={t('nav.theme')}>
+      <button id="theme-toggle" type="button" class="icon-btn" aria-label={t('nav.theme')} title={t('nav.theme')}>
         <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
       </button>
 
-      <a href="https://github.com/dmytro-yemelianov/hoba.work" target="_blank" rel="noopener noreferrer" class="hidden sm:block text-hoba-muted hover:text-hoba-text transition-colors p-2 rounded-md hover:bg-hoba-hover" aria-label={t('nav.github')}>
+      <a href="https://github.com/dmytro-yemelianov/hoba.work" target="_blank" rel="noopener noreferrer" class="icon-btn hidden sm:inline-flex" aria-label={t('nav.github')}>
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
         </svg>
       </a>
 
-      <!-- Mobile menu -->
-      <details class="lg:hidden relative">
-        <summary class="list-none cursor-pointer text-hoba-muted hover:text-hoba-text p-2 rounded-md hover:bg-hoba-hover" aria-label={t('nav.menu')}>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <!-- Mobile drawer. <details> so it opens with JavaScript disabled; the
+           script below only adds Escape, scroll locking and outside clicks. -->
+      <details id="mobile-nav" class="lg:hidden">
+        <summary class="icon-btn list-none cursor-pointer" aria-label={t('nav.menu')}>
+          <svg class="w-5 h-5 nav-open" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="w-5 h-5 nav-close hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
         </summary>
-        <nav class="absolute right-0 mt-2 w-56 rounded-md border border-hoba-border bg-hoba-card p-2 flex flex-col gap-1" aria-label="Primary (mobile)">
-          {navLinks.map((item) => (
-            <a href={item.href} class={`px-3 py-2 rounded-md text-sm font-medium ${linkClass(item)}`}>{item.name}</a>
-          ))}
-        </nav>
+        <div class="nav-drawer">
+          <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4" aria-label="Primary (mobile)">
+            <p class="kicker px-3">{t('nav.sectionAtlas')}</p>
+            <div class="mt-1 flex flex-col">
+              {primary.map((item) => (
+                <a href={item.href} class={`nav-link-mobile ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
+              ))}
+            </div>
+            <p class="kicker px-3 mt-5">{t('nav.sectionProject')}</p>
+            <div class="mt-1 flex flex-col">
+              {secondary.map((item) => (
+                <a href={item.href} class={`nav-link-mobile ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
+              ))}
+            </div>
+            <a href="https://github.com/dmytro-yemelianov/hoba.work" target="_blank" rel="noopener noreferrer" class="nav-link-mobile mt-5 sm:hidden">{t('nav.github')}</a>
+          </nav>
+        </div>
       </details>
     </div>
   </div>
@@ -105,5 +129,28 @@ const linkClass = (item: { key: string; highlight?: boolean }) =>
     document.documentElement.classList.toggle('dark', dark);
     try { localStorage.setItem('hoba_theme', dark ? 'dark' : 'light'); } catch {}
     window.dispatchEvent(new CustomEvent('hoba:theme', { detail: { dark } }));
+  });
+
+  const drawer = document.getElementById('mobile-nav');
+  const more = document.querySelector('.nav-more');
+  const close = (el) => el && el.removeAttribute('open');
+
+  drawer?.addEventListener('toggle', () => {
+    const open = drawer.hasAttribute('open');
+    document.body.classList.toggle('overflow-hidden', open);
+    drawer.querySelector('.nav-open')?.classList.toggle('hidden', open);
+    drawer.querySelector('.nav-close')?.classList.toggle('hidden', !open);
+    if (open) close(more);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    close(drawer);
+    close(more);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (more?.hasAttribute('open') && !more.contains(event.target)) close(more);
+    if (drawer?.hasAttribute('open') && event.target.closest('.nav-drawer a')) close(drawer);
   });
 </script>

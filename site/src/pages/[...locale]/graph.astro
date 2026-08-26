@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import { getGraph, STAGES } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 import type { GraphNodeInput, GraphRelationType } from '../../lib/graph-view';
@@ -136,18 +137,13 @@ const strings = json({
 const layers = ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
 const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 ---
-<Layout lang={lang} title={t('graph.title')} activeNav="graph">
-  <header class="page-header flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-    <div>
-      <p class="kicker">{t('graph.kicker')}</p>
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('graph.title')}</h1>
-      <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('graph.intro', { nodes: nodeCount, edges: graph.edges.length })}</p>
-    </div>
-    <div class="flex gap-4 text-sm">
-      <a href="/data/latest/graph.graphml" target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">graph.graphml</a>
-      <a href="/data/latest/graph.json" target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">graph.json</a>
-    </div>
-  </header>
+<Layout lang={lang} title={t('graph.title')} activeNav="graph" width="app">
+  <PageHeader kicker={t('graph.kicker')} title={t('graph.title')} lead={t('graph.intro', { nodes: nodeCount, edges: graph.edges.length })} wide>
+    <Fragment slot="actions">
+      <a href="/data/latest/graph.graphml" target="_blank" class="text-sm text-hoba-accent underline underline-offset-2 font-mono">graph.graphml</a>
+      <a href="/data/latest/graph.json" target="_blank" class="text-sm text-hoba-accent underline underline-offset-2 font-mono">graph.json</a>
+    </Fragment>
+  </PageHeader>
 
   <div id="graph-shell" class="graph-shell h-[min(74vh,760px)] min-h-[480px]">
     <div class="graph-toolbar">

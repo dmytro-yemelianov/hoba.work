@@ -7,7 +7,7 @@ test.describe('internationalisation', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Каталог реєстру');
 
     // primary navigation is prefixed
-    const navHrefs = await page.locator('header nav a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+    const navHrefs = await page.locator('header nav a:not([target="_blank"])').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
     expect(navHrefs.length).toBeGreaterThan(5);
     for (const href of navHrefs) expect(href).toMatch(/^\/uk(\/|$)/);
 

@@ -9,22 +9,30 @@ interface Props {
   description?: string;
   lang?: Lang;
   activeNav?: string;
+  /**
+   * `reading` is the default measure for prose and entity pages; `app` widens
+   * the container for catalogs, the graph canvas and the data dashboard.
+   */
+  width?: 'reading' | 'app';
 }
 
-const { title, lang = 'en', activeNav = '' } = Astro.props;
+const { title, lang = 'en', activeNav = '', width = 'reading' } = Astro.props;
 const t = useTranslations(lang);
 const description = Astro.props.description ?? t('meta.description');
 
 const site = Astro.site ?? new URL('https://hoba.work');
 const canonicalURL = new URL(Astro.url.pathname, site);
 const alternateLinks = Astro.url.pathname.startsWith('/404') ? [] : alternates(Astro.url.pathname, site);
+const container = width === 'app' ? 'max-w-7xl' : 'max-w-3xl';
 ---
 <!doctype html>
 <html lang={lang} class="bg-hoba-bg text-hoba-text antialiased">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title} | hoba.work</title>
@@ -37,7 +45,14 @@ const alternateLinks = Astro.url.pathname.startsWith('/404') ? [] : alternates(A
     <meta property="og:title" content={`${title} | hoba`} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={OG_LOCALES[lang]} />
+
     <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f9fc" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0c10" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="hoba" />
 
     <!-- Theme: explicit choice in localStorage wins; otherwise follow the system; dark when the browser reports no preference. Runs before paint to avoid a flash. -->
     <script is:inline>
@@ -61,10 +76,20 @@ const alternateLinks = Astro.url.pathname.startsWith('/404') ? [] : alternates(A
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body class="min-h-screen flex flex-col bg-hoba-bg selection:bg-hoba-accent/20 selection:text-hoba-accent">
+    <a href="#main" class="skip-link">{t('nav.skip')}</a>
     <Navbar lang={lang} active={activeNav} />
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main id="main" class={`flex-1 w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 ${container}`}>
       <slot />
     </main>
     <Footer lang={lang} />
+
+    <!-- Offline shell. Registered late so it never competes with the first paint. -->
+    <script is:inline>
+      if ('serviceWorker' in navigator && window.isSecureContext) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
+    </script>
   </body>
 </html>

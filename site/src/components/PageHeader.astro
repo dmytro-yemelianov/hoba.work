@@ -1,0 +1,38 @@
+---
+/**
+ * The one page header on the site.
+ *
+ * Every page — catalog, article, entity, wizard — opens with the same block:
+ * an optional eyebrow (breadcrumb or badges), a kicker, the H1, a lead
+ * paragraph, optional meta pills, and right-aligned actions. Pages differ in
+ * what they put in the slots, never in the rhythm.
+ */
+interface Props {
+  title: string;
+  kicker?: string | undefined;
+  lead?: string | undefined;
+  /** Narrower measure for reading pages; catalogs let the lead run wider. */
+  wide?: boolean;
+}
+
+const { title, kicker, lead, wide = false } = Astro.props;
+const hasEyebrow = Astro.slots.has('eyebrow');
+const hasMeta = Astro.slots.has('meta');
+const hasActions = Astro.slots.has('actions');
+---
+<header class="pb-6 mb-8 border-b border-hoba-border">
+  <div class="flex flex-col gap-x-8 gap-y-5 md:flex-row md:items-end md:justify-between">
+    <div class="min-w-0">
+      {hasEyebrow && <div class="mb-4"><slot name="eyebrow" /></div>}
+      {kicker && <p class="kicker">{kicker}</p>}
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text text-balance">{title}</h1>
+      {lead && <p class={`mt-3 text-lg text-hoba-muted ${wide ? 'max-w-3xl' : 'max-w-2xl'}`}>{lead}</p>}
+      {hasMeta && <div class="mt-5"><slot name="meta" /></div>}
+    </div>
+    {hasActions && (
+      <div class="flex flex-wrap items-center gap-3 md:justify-end md:shrink-0">
+        <slot name="actions" />
+      </div>
+    )}
+  </div>
+</header>

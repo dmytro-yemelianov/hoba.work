@@ -101,7 +101,6 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .meta { @apply text-sm text-hoba-muted; }
 
   /* Long-form prose (methodology, about, developers, contribute) */
-  .prose-hoba { @apply max-w-3xl; }
   .prose-hoba > * + * { @apply mt-4; }
   .prose-hoba h2 { @apply text-xl font-semibold text-hoba-text mt-10 mb-2; }
   .prose-hoba h3 { @apply text-lg font-semibold text-hoba-text mt-8 mb-2; }
@@ -110,18 +109,25 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .prose-hoba ul { @apply list-disc pl-6 space-y-1; }
   .prose-hoba ol { @apply list-decimal pl-6 space-y-1; }
   .prose-hoba blockquote { @apply border-l-2 border-hoba-accent pl-4 text-hoba-text italic; }
-  .prose-hoba code { @apply text-sm bg-hoba-hover rounded px-1 py-0.5; }
+  .prose-hoba code { @apply text-sm bg-hoba-hover rounded px-1 py-0.5 break-words; }
   .prose-hoba pre { @apply text-sm bg-hoba-hover rounded-md p-4 overflow-x-auto; }
   .prose-hoba pre:focus-visible { @apply outline-none ring-2 ring-hoba-accent; }
   .prose-hoba pre code { @apply bg-transparent p-0; }
   .prose-hoba a { @apply text-hoba-accent underline underline-offset-2; }
   .prose-hoba hr { @apply border-hoba-border my-8; }
-  .prose-hoba dl { @apply grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2; }
+  .prose-hoba dl { @apply grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-[max-content_1fr] sm:gap-y-2; }
   .prose-hoba dt { @apply text-hoba-text font-medium; }
   .prose-hoba dd { @apply text-hoba-muted; }
   /* Row lists keep their own affordances inside prose. */
   .prose-hoba .row-list { @apply list-none pl-0 space-y-0; }
   .prose-hoba .row-link { @apply no-underline text-hoba-text; }
+
+  /* Navigation */
+  .skip-link { @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-md focus:bg-hoba-card focus:text-hoba-text focus:border focus:border-hoba-accent; }
+  .nav-link { @apply inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors whitespace-nowrap; }
+  .nav-link-active { @apply text-hoba-text bg-hoba-hover; }
+  .nav-link-mobile { @apply block px-3 py-3 rounded-md text-base font-medium text-hoba-text hover:bg-hoba-hover transition-colors; }
+  .nav-drawer { @apply absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-hoba-border bg-hoba-bg shadow-lg; }
 
   /* Knowledge-graph explorer */
   .graph-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
