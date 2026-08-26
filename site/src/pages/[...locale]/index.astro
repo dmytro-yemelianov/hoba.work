@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Mascot from '../../components/Mascot.astro';
 import { countGraphNodes, getBundle, siteVersion } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
@@ -30,9 +29,8 @@ const stepOut: Record<string, string> = { purple: 'text-purple-600 dark:text-pur
 ---
 <Layout lang={lang} title={t('home.title')} activeNav="home">
   <section class="relative py-12 md:py-20 border-b border-hoba-border overflow-hidden">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-8">
-        <p class="text-sm font-mono text-hoba-muted mb-6">{t('home.badge', { registry: bundle.version, site: siteVersion })} · {t('home.canonical')}</p>
+    <div class="max-w-3xl">
+        <p class="text-xs font-mono text-hoba-muted mb-6">{t('home.badge', { registry: bundle.version, site: siteVersion })} · {t('home.canonical')}</p>
 
         <h1 class="text-3xl font-semibold text-hoba-text leading-tight">
           {t('home.h1.before')}<span class="text-hoba-accent">{t('home.h1.accent')}</span>.
@@ -50,15 +48,6 @@ const stepOut: Record<string, string> = { purple: 'text-purple-600 dark:text-pur
           <a href={`${prefix}/registry`} class="px-6 py-3 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text text-sm transition-colors">
             {t('home.cta.registry', { n: totalNodes })}
           </a>
-        </div>
-      </div>
-
-      <div class="lg:col-span-4 flex justify-center lg:justify-end">
-        <div class="relative p-6 rounded-md border border-hoba-border bg-hoba-card text-center">
-          <Mascot className="w-44 h-44 mx-auto" />
-          <div class="mt-2 text-xs text-hoba-muted">
-            {t('home.pose.before')}<span class="text-hoba-accent font-semibold">хоба</span>{t('home.pose.after')}
-          </div>
         </div>
       </div>
     </div>
