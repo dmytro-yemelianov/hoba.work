@@ -19,15 +19,36 @@ test.describe('responsive layout', () => {
     });
   }
 
-  test('every page opens with the same header block', async ({ page }) => {
-    for (const path of ['/uk/registry', '/uk/data', '/uk/methodology', '/uk/mechanisms/M-001', '/uk/analyze']) {
+  test('every page sits in the same frame as the navbar and the footer', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const FRAMED = [
+      '/uk/', '/uk/registry', '/uk/patterns', '/uk/graph', '/uk/data', '/uk/analyze',
+      '/uk/methodology', '/uk/developers', '/uk/contribute', '/uk/about',
+      '/uk/mechanisms/M-001', '/uk/barriers/B-001', '/uk/artifacts/A-001',
+      '/uk/patterns/P-001', '/uk/loops/L-001', '/uk/interventions/I-001', '/404',
+    ];
+    let reference: Record<string, number> | null = null;
+
+    for (const path of FRAMED) {
       await page.goto(path);
-      const h1 = page.getByRole('heading', { level: 1 });
-      await expect(h1, path).toHaveCount(1);
-      await expect(h1, path).toBeVisible();
-      // One shared measure: the main column is never wider than the app container.
-      const width = await page.locator('main').evaluate((el) => el.getBoundingClientRect().width);
-      expect(width, path).toBeLessThanOrEqual(1280);
+      const frame = await page.evaluate(() => {
+        const edge = (el: Element | null) =>
+          el ? Math.round(el.getBoundingClientRect().left + parseFloat(getComputedStyle(el).paddingLeft)) : -1;
+        const main = document.querySelector('main');
+        return {
+          content: edge(main),
+          width: main ? Math.round(main.getBoundingClientRect().width) : -1,
+          navbar: Math.round(document.querySelector('header a')!.getBoundingClientRect().left),
+          footer: edge(document.querySelector('footer > div')),
+          h1: Math.round(document.querySelector('h1')!.getBoundingClientRect().left),
+        };
+      });
+      // The content edge, the logo, the footer and the H1 all share one gutter.
+      expect(frame.navbar, path).toBe(frame.content);
+      expect(frame.footer, path).toBe(frame.content);
+      expect(frame.h1, path).toBe(frame.content);
+      reference ??= frame;
+      expect(frame, path).toEqual(reference);
     }
   });
 

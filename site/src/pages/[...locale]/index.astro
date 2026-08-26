@@ -27,7 +27,7 @@ const stats = [
   { n: getGraph(lang).edges.length, label: t('home.stat.edges') },
 ];
 ---
-<Layout lang={lang} title={t('home.title')} activeNav="home" width="app">
+<Layout lang={lang} title={t('home.title')} activeNav="home">
   <section class="pb-12 border-b border-hoba-border grid gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-end">
     <div>
       <p class="meta font-mono">{t('home.badge', { registry: bundle.version, site: siteVersion })} · {t('home.canonical')}</p>

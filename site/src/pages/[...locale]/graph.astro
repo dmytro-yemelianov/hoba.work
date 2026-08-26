@@ -137,7 +137,7 @@ const strings = json({
 const layers = ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
 const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 ---
-<Layout lang={lang} title={t('graph.title')} activeNav="graph" width="app">
+<Layout lang={lang} title={t('graph.title')} activeNav="graph">
   <PageHeader kicker={t('graph.kicker')} title={t('graph.title')} lead={t('graph.intro', { nodes: nodeCount, edges: graph.edges.length })} wide>
     <Fragment slot="actions">
       <a href="/data/latest/graph.graphml" target="_blank" class="text-sm text-hoba-accent underline underline-offset-2 font-mono">graph.graphml</a>

@@ -16,7 +16,7 @@ const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 const idLinks = (ids: string[], route: string) => ids.map((id) => ({ id, href: `${prefix}/${route}/${id}` }));
 ---
-<Layout lang={lang} title={t('patterns.title')} activeNav="patterns" width="app">
+<Layout lang={lang} title={t('patterns.title')} activeNav="patterns">
   <PageHeader kicker={t('patterns.kicker')} title={t('patterns.heading')} lead={t('patterns.intro')} wide>
     <ViewSwitch slot="actions" lang={lang} />
   </PageHeader>

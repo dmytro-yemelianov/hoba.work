@@ -12,11 +12,11 @@ const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 ---
 <Layout lang={lang} title={t('about.title')} activeNav="about">
-  <article class="prose-hoba">
-    <PageHeader kicker={t('about.kicker')} title={t('about.heading')}>
-      <p slot="meta" class="text-lg text-hoba-muted">{t('about.sub.before')}<strong class="text-hoba-text">hoba.work</strong></p>
-    </PageHeader>
+  <PageHeader kicker={t('about.kicker')} title={t('about.heading')}>
+  <p slot="meta" class="text-lg text-hoba-muted">{t('about.sub.before')}<strong class="text-hoba-text">hoba.work</strong></p>
+  </PageHeader>
 
+  <article class="page-body prose-hoba">
     <p>{t('about.p1.before')}<strong class="text-hoba-text">{t('about.p1.strong')}</strong>{t('about.p1.after')}</p>
     <p>{t('about.p2.before')}<strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
     <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>

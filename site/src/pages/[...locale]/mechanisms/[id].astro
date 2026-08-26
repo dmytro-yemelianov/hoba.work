@@ -32,8 +32,7 @@ const facets = [
 ];
 ---
 <Layout lang={lang} title={`${mechanism.id} — ${mechanism.title}`} description={mechanism.summary} activeNav="registry">
-  <article>
-    <PageHeader title={mechanism.title} lead={mechanism.summary}>
+  <PageHeader title={mechanism.title} lead={mechanism.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
         <a href={`${prefix}/registry?type=mechanism`} class="hover:text-hoba-text">{t('entity.plural.mechanism')}</a><span>/</span>
@@ -49,6 +48,7 @@ const facets = [
       </Fragment>
     </PageHeader>
 
+  <div>
     <section class="section">
       <h2 class="section-title">{t('mech.barriers')}</h2>
       <ul class="row-list">
@@ -111,5 +111,5 @@ const facets = [
       <span>{t('common.machineEndpoint')}</span>
       <a href={`/api/v1/mechanisms/${mechanism.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/mechanisms/{mechanism.id}.json</a>
     </p>
-  </article>
+  </div>
 </Layout>

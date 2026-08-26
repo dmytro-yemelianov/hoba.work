@@ -40,11 +40,11 @@ const zones = [
 ] as const;
 ---
 <Layout lang={lang} title={t('analyze.title')} activeNav="analyze">
-  <div>
-    <PageHeader kicker={t('analyze.kicker', { version: bundle.version })} title={t('analyze.heading')} lead={t('analyze.intro')}>
+  <PageHeader kicker={t('analyze.kicker', { version: bundle.version })} title={t('analyze.heading')} lead={t('analyze.intro')}>
       <p slot="actions" class="flex items-center gap-2 text-sm text-hoba-muted"><span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('analyze.privacy')}</p>
     </PageHeader>
 
+  <div>
     <div class="flex flex-wrap gap-2 mb-8" role="tablist">
       {tabs.map((tab) => (
         <button id={`tab-${tab.k}`} data-step={tab.k} class="wizard-tab pill" role="tab">
@@ -76,7 +76,7 @@ const zones = [
       <div>
         <div class="flex flex-wrap items-center justify-between gap-3 mb-2">
           <label for="artifact-search-input" class="text-sm font-medium text-hoba-muted">{t('analyze.h.selectSignals')}</label>
-          <input type="text" id="artifact-search-input" placeholder={t('analyze.h.filter')} class="px-3 py-1.5 bg-hoba-card border border-hoba-border rounded-md text-sm text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
+          <input type="text" id="artifact-search-input" placeholder={t('analyze.h.filter')} class="w-full sm:w-72 px-3 py-1.5 bg-hoba-card border border-hoba-border rounded-md text-sm text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
         </div>
         <ul id="artifacts-list" class="row-list">
           {bundle.artifacts.map((art) => (

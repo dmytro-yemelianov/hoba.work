@@ -34,7 +34,7 @@ const bars = [
   { label: t('data.rem.none'), n: byRemovability('none'), dot: 'bg-rose-500' },
 ];
 ---
-<Layout lang={lang} title={t('data.title')} activeNav="data" width="app">
+<Layout lang={lang} title={t('data.title')} activeNav="data">
   <PageHeader kicker={t('data.kicker')} title={t('data.heading')} lead={t('data.intro')} wide>
     <a slot="actions" href="/data/latest/nodes.csv" target="_blank" class="btn btn-secondary font-mono">{t('data.downloadNodes')}</a>
   </PageHeader>

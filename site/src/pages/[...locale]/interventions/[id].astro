@@ -25,8 +25,7 @@ const targets = intervention.targets.map((id) => {
 });
 ---
 <Layout lang={lang} title={`${intervention.id} — ${intervention.title}`} description={intervention.summary} activeNav="registry">
-  <article>
-    <PageHeader title={intervention.title} lead={intervention.summary}>
+  <PageHeader title={intervention.title} lead={intervention.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
         <a href={`${prefix}/registry?type=intervention`} class="hover:text-hoba-text">{t('entity.plural.intervention')}</a><span>/</span>
@@ -41,6 +40,7 @@ const targets = intervention.targets.map((id) => {
       </div>
     </PageHeader>
 
+  <div>
     <section class="section">
       <h2 class="section-title">{asHeading(t('int.targets'))}</h2>
       <ul class="row-list">
@@ -65,5 +65,5 @@ const targets = intervention.targets.map((id) => {
       <span>{t('common.machineEndpoint')}</span>
       <a href={`/api/v1/interventions/${intervention.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/interventions/{intervention.id}.json</a>
     </p>
-  </article>
+  </div>
 </Layout>

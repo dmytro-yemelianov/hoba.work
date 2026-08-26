@@ -100,6 +100,10 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .kicker { @apply text-sm text-hoba-muted; }
   .meta { @apply text-sm text-hoba-muted; }
 
+  /* Text bodies keep a readable measure inside the shared page frame; the
+     page header always spans the frame, so every page opens identically. */
+  .page-body { @apply max-w-3xl; }
+
   /* Long-form prose (methodology, about, developers, contribute) */
   .prose-hoba > * + * { @apply mt-4; }
   .prose-hoba h2 { @apply text-xl font-semibold text-hoba-text mt-10 mb-2; }

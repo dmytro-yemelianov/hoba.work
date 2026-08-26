@@ -22,8 +22,7 @@ const compatibleMechanisms = bundle.mechanisms.filter((m) => pattern.compatible_
 const relevantInterventions = bundle.interventions.filter((i) => pattern.interventions.includes(i.id));
 ---
 <Layout lang={lang} title={`${pattern.id} — ${pattern.title}`} description={pattern.summary} activeNav="patterns">
-  <article>
-    <PageHeader title={pattern.title} lead={pattern.summary}>
+  <PageHeader title={pattern.title} lead={pattern.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/patterns`} class="hover:text-hoba-text">{t('entity.plural.pattern')}</a><span>/</span>
         <span class="text-hoba-accent font-mono">{pattern.id}</span>
@@ -34,6 +33,7 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
       </div>
     </PageHeader>
 
+  <div>
     <div class="callout border-l-hoba-pattern">
       <h2 class="text-base font-semibold text-hoba-text">{asHeading(t('patterns.trigger'))}</h2>
       <p class="mt-1 text-base text-hoba-muted">{pattern.trigger_rule}</p>
@@ -89,5 +89,5 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
       <span>{t('common.machineEndpoint')}</span>
       <a href={`/api/v1/patterns/${pattern.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/patterns/{pattern.id}.json</a>
     </p>
-  </article>
+  </div>
 </Layout>

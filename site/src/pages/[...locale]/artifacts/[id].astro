@@ -21,8 +21,7 @@ const compatibleMechanisms = bundle.mechanisms.filter((m) => m.emissions.some((e
 const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.includes(artifact.id));
 ---
 <Layout lang={lang} title={`${artifact.id} — ${artifact.title}`} description={artifact.summary} activeNav="registry">
-  <article>
-    <PageHeader title={artifact.title} lead={artifact.summary}>
+  <PageHeader title={artifact.title} lead={artifact.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
         <a href={`${prefix}/registry?type=artifact`} class="hover:text-hoba-text">{t('entity.plural.artifact')}</a><span>/</span>
@@ -36,6 +35,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
       </div>
     </PageHeader>
 
+  <div>
     <div class="callout border-l-hoba-border">
       <h2 class="text-base font-semibold text-hoba-text">{t('art.posture.title')}</h2>
       <p class="mt-1 text-base text-hoba-muted">{t('art.posture.text')}</p>
@@ -97,5 +97,5 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
       <span>{t('common.machineEndpoint')}</span>
       <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/artifacts/{artifact.id}.json</a>
     </p>
-  </article>
+  </div>
 </Layout>

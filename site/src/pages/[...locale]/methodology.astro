@@ -12,9 +12,9 @@ const t = useTranslations(lang);
 const verbs = ['observed', 'compatible', 'supported', 'established'] as const;
 ---
 <Layout lang={lang} title={t('method.title')} activeNav="methodology">
-  <article class="prose-hoba">
-    <PageHeader kicker={t('method.kicker')} title={t('method.heading')} lead={t('method.intro')} />
+  <PageHeader kicker={t('method.kicker')} title={t('method.heading')} lead={t('method.intro')} />
 
+  <article class="page-body prose-hoba">
     <h2>{t('method.core.title')}</h2>
     <blockquote>{t('method.core.quote')}</blockquote>
     <p>{t('method.core.text')}</p>

@@ -63,7 +63,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
   { key: 'none', label: t('removability.none'), dot: 'bg-rose-500' },
 ];
 ---
-<Layout lang={lang} title={t('registry.title')} activeNav="registry" width="app">
+<Layout lang={lang} title={t('registry.title')} activeNav="registry">
   <PageHeader kicker={t('registry.kicker', { version: bundle.version })} title={t('registry.title')} lead={t('registry.intro', { n: totalCount })} wide>
     <Fragment slot="actions">
       <ViewSwitch lang={lang} />
