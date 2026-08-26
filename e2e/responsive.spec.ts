@@ -59,4 +59,28 @@ test.describe('responsive layout', () => {
     await expect(scroller).toHaveCSS('overflow-x', 'auto');
     expect(await overflow(page)).toBeLessThanOrEqual(1);
   });
+
+  test('structural elements span the frame on every page, articles included', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const PAGES = [
+      '/uk/methodology', '/uk/developers', '/uk/contribute', '/uk/about',
+      '/uk/registry', '/uk/data', '/uk/analyze', '/uk/mechanisms/M-001', '/uk/loops/L-001',
+    ];
+    for (const path of PAGES) {
+      await page.goto(path);
+      const widths = await page.evaluate(() => {
+        const visible = (sel: string) => {
+          const el = document.querySelector(`main ${sel}`);
+          if (!el) return null;
+          const rect = el.getBoundingClientRect();
+          return rect.width === 0 ? null : Math.round(rect.width);
+        };
+        return { rule: visible('header'), h2: visible('h2'), rowList: visible('.row-list'), pre: visible('pre'), section: visible('section') };
+      });
+      // A narrow body is what made the project pages look like another template.
+      for (const [name, width] of Object.entries(widths)) {
+        if (width !== null) expect(width, `${path} ${name}`).toBe(1216);
+      }
+    }
+  });
 });

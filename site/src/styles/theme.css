@@ -100,14 +100,13 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .kicker { @apply text-sm text-hoba-muted; }
   .meta { @apply text-sm text-hoba-muted; }
 
-  /* Text bodies keep a readable measure inside the shared page frame; the
-     page header always spans the frame, so every page opens identically. */
-  .page-body { @apply max-w-3xl; }
-
   /* Long-form prose (methodology, about, developers, contribute) */
   .prose-hoba > * + * { @apply mt-4; }
   .prose-hoba h2 { @apply text-xl font-semibold text-hoba-text mt-10 mb-2; }
   .prose-hoba h3 { @apply text-lg font-semibold text-hoba-text mt-8 mb-2; }
+  /* Measure belongs to the running text, never to the page: headings, rules and
+     lists keep the frame's gutters so an article opens like every other page. */
+  .prose-hoba p, .prose-hoba li, .prose-hoba dd, .prose-hoba blockquote { @apply max-w-3xl; }
   .prose-hoba p, .prose-hoba li { @apply text-base leading-relaxed; }
   .prose-hoba .lead { @apply text-lg text-hoba-muted; }
   .prose-hoba ul { @apply list-disc pl-6 space-y-1; }
@@ -123,7 +122,9 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .prose-hoba dt { @apply text-hoba-text font-medium; }
   .prose-hoba dd { @apply text-hoba-muted; }
   /* Row lists keep their own affordances inside prose. */
+  /* Structured rows are not running text: they keep the frame's full width. */
   .prose-hoba .row-list { @apply list-none pl-0 space-y-0; }
+  .prose-hoba .row-list li { @apply max-w-none; }
   .prose-hoba .row-link { @apply no-underline text-hoba-text; }
 
   /* Navigation */

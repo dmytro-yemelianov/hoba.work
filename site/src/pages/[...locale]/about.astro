@@ -16,14 +16,14 @@ const t = useTranslations(lang);
   <p slot="meta" class="text-lg text-hoba-muted">{t('about.sub.before')}<strong class="text-hoba-text">hoba.work</strong></p>
   </PageHeader>
 
-  <article class="page-body prose-hoba">
+  <article class="prose-hoba">
     <p>{t('about.p1.before')}<strong class="text-hoba-text">{t('about.p1.strong')}</strong>{t('about.p1.after')}</p>
     <p>{t('about.p2.before')}<strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
     <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>
 
-    <figure class="my-10 text-center">
-      <Mascot className="w-32 h-32 mx-auto" />
-      <figcaption class="mt-2 text-sm text-hoba-muted">{t('about.mascot')}</figcaption>
+    <figure class="my-10">
+      <Mascot className="w-28 h-28" />
+      <figcaption class="mt-2 text-sm text-hoba-muted max-w-3xl">{t('about.mascot')}</figcaption>
     </figure>
 
     <h2 id="license">{t('about.author.title')}</h2>
