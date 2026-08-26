@@ -71,6 +71,18 @@ jobs:
           name: site-dist
           path: site/dist
 
+      # wrangler-action installs wrangler with the package manager it detects from the
+      # lockfile (pnpm), so pnpm must be on PATH here too.
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
