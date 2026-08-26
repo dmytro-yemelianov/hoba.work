@@ -1,0 +1,13 @@
+# hoba — Hiring Obstacles & Barriers Atlas
+# Every entity is also available as JSON under /api/v1/ and in bulk under /data/latest/.
+# Model-readable orientation: /llms.txt · full corpus: /llms-full.txt
+
+User-agent: *
+Allow: /
+
+# The API and the bulk exports are the cheap way to read this site.
+# Crawling 150 HTML pages to reconstruct them is wasted on both sides.
+User-agent: *
+Disallow: /api/v1/*/index.json
+
+Sitemap: https://hoba.work/sitemap.xml

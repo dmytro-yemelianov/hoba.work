@@ -1,0 +1,34 @@
+# hoba — Hiring Obstacles & Barriers Atlas
+
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 2026.08.2, schema 1.1.0. Content CC BY-SA 4.0, code MIT.
+
+hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
+
+## Ontology
+
+- **Observations** (`A-*`, 14) — signals a candidate can actually witness.
+- **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
+- **Mechanisms** (`M-*`, 24) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
+- **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
+- **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
+- **Interventions** (`I-*`, 6) — concrete changes, each attributed to the actor who can make it.
+- **Evidence** (`EVD-*`, 6) — the published sources behind the claims.
+
+The graph has 65 nodes and 199 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+
+## Reading it by machine
+
+- Full registry: https://hoba.work/data/latest/registry.json
+- One entity: https://hoba.work/api/v1/mechanisms/M-001.json
+- Graph: https://hoba.work/data/latest/graph.json · https://hoba.work/data/latest/graph.graphml
+- Tabular: https://hoba.work/data/latest/nodes.csv · https://hoba.work/data/latest/edges.csv
+- Schema: https://hoba.work/data/latest/schema.json · OpenAPI: https://hoba.work/openapi.json
+- This file in full: https://hoba.work/llms-full.txt
+
+An MCP server ships in the repository (`packages/mcp`) exposing search, entity lookup, the diagnostic protocol, pattern matching and graph traversal over stdio.
+
+## What it will not do
+
+- It does not name or rank employers, and it holds no company records.
+- It does not attribute intent. Mechanisms describe structure, not motive.
+- Document excerpts on the site are reconstructions, written to be typical, and are labelled as such. They are not captured records.

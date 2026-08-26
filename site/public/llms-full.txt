@@ -1,0 +1,635 @@
+# hoba — Hiring Obstacles & Barriers Atlas
+
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 2026.08.2, schema 1.1.0. Content CC BY-SA 4.0, code MIT.
+
+hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
+
+## Ontology
+
+- **Observations** (`A-*`, 14) — signals a candidate can actually witness.
+- **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
+- **Mechanisms** (`M-*`, 24) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
+- **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
+- **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
+- **Interventions** (`I-*`, 6) — concrete changes, each attributed to the actor who can make it.
+- **Evidence** (`EVD-*`, 6) — the published sources behind the claims.
+
+The graph has 65 nodes and 199 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+
+## Reading it by machine
+
+- Full registry: https://hoba.work/data/latest/registry.json
+- One entity: https://hoba.work/api/v1/mechanisms/M-001.json
+- Graph: https://hoba.work/data/latest/graph.json · https://hoba.work/data/latest/graph.graphml
+- Tabular: https://hoba.work/data/latest/nodes.csv · https://hoba.work/data/latest/edges.csv
+- Schema: https://hoba.work/data/latest/schema.json · OpenAPI: https://hoba.work/openapi.json
+- This file in full: https://hoba.work/llms-full.txt
+
+An MCP server ships in the repository (`packages/mcp`) exposing search, entity lookup, the diagnostic protocol, pattern matching and graph traversal over stdio.
+
+## What it will not do
+
+- It does not name or rank employers, and it holds no company records.
+- It does not attribute intent. Mechanisms describe structure, not motive.
+- Document excerpts on the site are reconstructions, written to be typical, and are labelled as such. They are not captured records.
+
+---
+
+## Observations
+
+### A-001 — Complete silence after submission
+
+No automated receipt, acknowledgement, rejection, or recruiter outreach is received following application submission.
+
+- Stages: ingestion, sourcing · Evidence: supported
+- Does NOT establish: Does not prove the application was reviewed by a human.
+- Does NOT establish: Does not prove the role was cancelled or already filled.
+- Probe [PROBE-A-001-1] (low): Check email spam and security quarantine folders for ATS automated acknowledgement tokens. → Confirms whether application was ingested and generated a confirmation ID.
+
+### A-002 — Generic "closer alignment" rejection template
+
+Standard automated email stating the team decided to proceed with candidates whose profiles more closely match role requirements.
+
+- Stages: screening, recruiter, technical · Evidence: supported
+- Does NOT establish: Does not establish which specific skill was deemed insufficient.
+- Does NOT establish: Does not establish whether a human reviewer read the full resume.
+- Probe [PROBE-A-002-1] (low): Compare CV keyword density with exact requirement phrases in the published job description. → Reveals potential vocabulary mismatch between candidate phrasing and ATS rubric.
+
+### A-003 — Position closed after final interview without hire
+
+Candidate completes all interview rounds, but is informed that the requisition has been cancelled, frozen, or closed.
+
+- Stages: team, offer · Evidence: supported
+- Does NOT establish: Does not prove candidate failed technical or behavioral evaluations.
+- Does NOT establish: Does not prove the company lied about opening intention.
+- Probe [PROBE-A-003-1] (low): Politely inquire with recruiter if the position was closed due to business budget restructuring or team reallocation. → Clarifies whether barrier was candidate-specific or macroeconomic/budgetary.
+
+### A-004 — Materially similar role reposted shortly after rejection
+
+Candidate observes the same or near-identical job listing reposted or refreshed on job boards within 1–8 weeks of rejection.
+
+- Stages: sourcing, screening, technical · Evidence: supported
+- Does NOT establish: Does not establish that the role was a "fake" or "ghost" posting.
+- Does NOT establish: Does not establish that the prior interview feedback was fraudulent.
+- Probe [PROBE-A-004-1] (low): Check job listing requisition ID or ask recruiter whether the posting is an automated ATS refresh or a distinct headcount opening. → Distinguishes between automated job board bot refreshes and genuine recurring hiring demand.
+
+### A-005 — Compensation band reduced or altered mid-process
+
+Offered or discussed compensation band is revised downward from previously agreed or advertised range.
+
+- Stages: recruiter, compensation, offer · Evidence: supported
+- Does NOT establish: Does not prove intentional bait-and-switch malice unless verified by company policy evidence.
+- Probe [PROBE-A-005-1] (medium): Request clarification on whether the revised band reflects a lower leveling grade or a company-wide budget adjustment. → Separates leveling evaluation outcome from company financial constraints.
+
+### A-006 — Take-home assignment exceeding reasonable stated scope
+
+Take-home assignment requires building complex production-grade features demanding 20+ hours instead of stated 2–4 hours.
+
+- Stages: technical · Evidence: supported
+- Does NOT establish: Does not prove the company is harvesting free intellectual property for production use.
+- Probe [PROBE-A-006-1] (low): Define explicit boundaries and trade-offs in submission README stating assumptions made to fit the agreed timebox. → Tests whether evaluators value scope management and communication over unbounded free work.
+
+### A-007 — Multiple interview reschedulings or interviewer no-show
+
+Interviews are repeatedly postponed, delayed at short notice, or interviewer fails to join scheduled call.
+
+- Stages: recruiter, technical, team · Evidence: supported
+- Does NOT establish: Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.
+- Probe [PROBE-A-007-1] (low): Offer clear flexible availability slots and confirm contact details 2 hours prior to the call. → Minimizes scheduling friction and verifies recruiter responsiveness.
+
+### A-008 — Explicit feedback citing skill-depth shortfall
+
+Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.
+
+- Stages: technical, team · Evidence: supported
+- Does NOT establish: Does not imply general incompetence; reflects threshold for this specific role level.
+- Probe [PROBE-A-008-1] (medium): Review interview problem solution against industry standard patterns and identify edge cases missed. → Verifies whether candidate code truly lacked required optimization or rigor.
+
+### A-009 — Rejection within minutes of application submission
+
+Automated rejection email arrives within 2 to 30 minutes of form submission, outside human business hours.
+
+- Stages: ingestion · Evidence: supported
+- Does NOT establish: Does not imply candidate resume was judged as poor by human engineers.
+- Probe [PROBE-A-009-1] (low): Audit application answers to mandatory knock-out questions (work permit, country of residence, minimum years experience). → Identifies exact boolean filter rule triggered by ATS.
+
+### A-010 — Communication mismatch or tone friction in panel
+
+Noticeable divergence in communication style, pacing, or terminology during live panel discussions.
+
+- Stages: recruiter, team · Evidence: supported
+- Does NOT establish: Does not prove candidate lacks teamwork skills globally.
+- Probe [PROBE-A-010-1] (low): Request explicit feedback on collaborative dynamic from recruiter. → Clarifies whether friction was perceived as attitude issue or stylistic preference.
+
+### A-011 — Offer rescinded or delayed due to internal freeze
+
+Candidate is verbally offered a role or receives written offer which is subsequently delayed or retracted before start date.
+
+- Stages: offer, post-offer · Evidence: supported
+- Does NOT establish: Does not imply candidate failed reference checks unless explicitly stated.
+- Probe [PROBE-A-011-1] (low): Request formal written notice regarding whether requisition is permanently cancelled or deferred to next fiscal quarter. → Provides timeline clarity for candidate decision-making.
+
+### A-012 — Unsolicited recruiter outreach followed by ghosting
+
+Recruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.
+
+- Stages: sourcing, recruiter · Evidence: supported
+- Does NOT establish: Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns.
+- Probe [PROBE-A-012-1] (low): Send one single polite follow-up after 5 business days referencing original outreach thread. → Recovers stalled conversation if recruiter was out-of-office or overwhelmed.
+
+### A-013 — Feedback stating candidate is overqualified for the grade
+
+Candidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.
+
+- Stages: recruiter, screening, team · Evidence: supported
+- Does NOT establish: Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns.
+- Probe [PROBE-A-013-1] (low): Inquire whether the organization has higher-tier or staff-level requisitions open where broader scope is desired. → Channels candidate into appropriate leveling track.
+
+### A-014 — Conflicting feedback across different interviewers
+
+Feedback from one round praises architectural depth while another round claims insufficient technical background.
+
+- Stages: technical, team · Evidence: supported
+- Does NOT establish: Does not prove bad faith; highlights lack of rubric calibration across the hiring committee.
+- Probe [PROBE-A-014-1] (low): Request aggregated hiring rubric summary from talent partner. → Reveals whether team had misaligned internal evaluation criteria.
+
+## Barriers
+
+### B-013 — Requisition Approval & Public Posting
+
+The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.
+
+- Stage: pre-posting · Order: 1 · Passes when: An approved requisition with a written job description is published against real, funded headcount.
+- Precedes: B-014, B-001
+
+### B-014 — Outbound Sourcing & Talent Pool Contact
+
+Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.
+
+- Stage: sourcing · Order: 2 · Passes when: The candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.
+- Precedes: B-001, B-004
+
+### B-001 — Application Ingestion
+
+The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.
+
+- Stage: ingestion · Order: 3 · Passes when: Application record is successfully received, validated for minimum schema, and linked to the active job requisition.
+- Precedes: B-002
+
+### B-002 — Automated Filter & Parser Threshold
+
+Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.
+
+- Stage: ingestion · Order: 4 · Passes when: CV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.
+- Precedes: B-003, B-004
+
+### B-003 — Inbound Screening & Triage
+
+Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.
+
+- Stage: screening · Order: 5 · Passes when: Recruiter assigns application to the active short-list for initial conversational outreach.
+- Precedes: B-004
+
+### B-004 — Recruiter Screening Call
+
+Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.
+
+- Stage: recruiter · Order: 6 · Passes when: Recruiter and candidate align on core parameters and candidate is submitted to hiring team.
+- Precedes: B-005
+
+### B-005 — Technical Screen / Live Assessment
+
+Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.
+
+- Stage: technical · Order: 7 · Passes when: Candidate achieves passing score on technical evaluation rubric from the assessing engineer.
+- Precedes: B-006, B-007
+
+### B-006 — Take-Home / Work Sample Evaluation
+
+Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.
+
+- Stage: technical · Order: 8 · Passes when: Code artifact satisfies architectural, functional, test coverage, and documentation requirements.
+- Precedes: B-007
+
+### B-007 — Hiring Manager In-Depth Review
+
+Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.
+
+- Stage: hiring-manager · Order: 9 · Passes when: Hiring manager confirms candidate has required depth and approves progression to final panel.
+- Precedes: B-008
+
+### B-008 — Team & Cross-Functional Panel
+
+Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.
+
+- Stage: team · Order: 10 · Passes when: Consensus score among team panelists meets or exceeds hire recommendation threshold.
+- Precedes: B-009
+
+### B-009 — Compensation & Leveling Reconciliation
+
+Internal alignment between candidate expected compensation/level and company pay bands / leveling grid.
+
+- Stage: compensation · Order: 11 · Passes when: Candidate expectations fit within approved salary band and equity guidelines for the target grade.
+- Precedes: B-010
+
+### B-010 — Headcount & Executive Budget Approval
+
+Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.
+
+- Stage: offer · Order: 12 · Passes when: Active headcount requisition is formally certified and unblocked by financial leadership.
+- Precedes: B-011
+
+### B-011 — Reference & Background Verification
+
+Third-party or internal verification of past employment records, academic degrees, and professional references.
+
+- Stage: post-offer · Order: 13 · Passes when: All mandatory background checks clear with no unresolved factual discrepancies.
+- Precedes: B-012
+
+### B-012 — Offer Closing & Contract Execution
+
+Final mutual execution of the formal employment agreement and start-date confirmation.
+
+- Stage: post-offer · Order: 14 · Passes when: Both parties sign offer contract and onboarding workflow is triggered.
+
+## Mechanisms
+
+### M-001 — Genuine Technical Skill Shortfall
+
+The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.
+
+- Actor: candidate · Nature: rule · Visibility: inferable · Removability: candidate
+- Operates at: B-005, B-006, B-007 · honest baseline
+- Emits: A-008 (direct), A-002 (euphemism)
+- Does NOT establish: Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark.
+
+### M-002 — Stronger Competing Candidate in Final Cohort
+
+Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.
+
+- Actor: candidate · Nature: rule · Visibility: opaque · Removability: none
+- Operates at: B-007, B-008, B-010 · honest baseline
+- Emits: A-002 (euphemism), A-003 (distortion)
+- Does NOT establish: Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.
+
+### M-003 — ATS Parser Extraction Failure
+
+Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.
+
+- Actor: system · Nature: noise · Visibility: inferable · Removability: candidate
+- Operates at: B-001, B-002
+- Emits: A-001 (void), A-009 (direct)
+- Does NOT establish: Does not imply human recruiter evaluated and disliked candidate experience.
+
+### M-004 — Unstated Compensation Band Discrepancy
+
+Candidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.
+
+- Actor: policy · Nature: rule · Visibility: opaque · Removability: intermediary
+- Operates at: B-004, B-009
+- Emits: A-002 (euphemism), A-005 (direct), A-013 (euphemism)
+- Does NOT establish: Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.
+
+### M-005 — Pre-Selected Internal Candidate
+
+Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.
+
+- Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
+- Operates at: B-013, B-001, B-003, B-007
+- Emits: A-002 (euphemism), A-003 (euphemism)
+- Does NOT establish: Cannot be asserted as fact without internal hiring log confirmation.
+
+### M-006 — Stale or Orphaned Job Requisition
+
+Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.
+
+- Actor: system · Nature: void · Visibility: opaque · Removability: none
+- Operates at: B-013, B-001, B-002, B-003
+- Emits: A-001 (void), A-004 (noise)
+- Does NOT establish: Application silence does not reflect candidate suitability.
+
+### M-007 — Headcount Freeze or Budget Cancellation
+
+Executive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.
+
+- Actor: policy · Nature: rule · Visibility: inferable · Removability: none
+- Operates at: B-008, B-010, B-012
+- Emits: A-003 (direct), A-011 (direct)
+- Does NOT establish: Candidate performance in interview was not the causal trigger for process termination.
+
+### M-008 — Automated Keyword / Qualification Filter
+
+Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.
+
+- Actor: system · Nature: rule · Visibility: inferable · Removability: candidate
+- Operates at: B-002
+- Emits: A-009 (direct), A-002 (euphemism)
+- Does NOT establish: Passing keyword filters does not guarantee interview invitation.
+
+### M-009 — Recruiter Volume & Quota Incentive Distortion
+
+Recruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).
+
+- Actor: recruiter · Nature: incentive · Visibility: inferable · Removability: intermediary
+- Operates at: B-003, B-004
+- Emits: A-001 (void), A-012 (noise)
+- Does NOT establish: Does not mean recruiter is individually negligent; reflects structural capacity mismatch.
+
+### M-010 — Hidden Evaluation Rubric or Undisclosed Priority
+
+The interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.
+
+- Actor: hiring-manager · Nature: bias · Visibility: opaque · Removability: intermediary
+- Operates at: B-005, B-007, B-008
+- Emits: A-008 (distortion), A-014 (direct)
+- Does NOT establish: Failure to guess unstated preferences is not equivalent to lack of core competence.
+
+### M-011 — Employment Gap Downranking Bias
+
+Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.
+
+- Actor: system · Nature: bias · Visibility: inferable · Removability: none
+- Operates at: B-002, B-003
+- Emits: A-001 (void), A-002 (euphemism)
+- Does NOT establish: Employment gap does not correlate with underlying technical decline.
+
+### M-012 — Interview Resource & Scheduling Saturation
+
+Engineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.
+
+- Actor: hiring-manager · Nature: noise · Visibility: inferable · Removability: intermediary
+- Operates at: B-005, B-007, B-008
+- Emits: A-007 (direct), A-001 (noise)
+- Does NOT establish: Rescheduling is an operational issue and does not indicate negative evaluation.
+
+### M-013 — Mid-Process Role Requirement Redefinition
+
+Team changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.
+
+- Actor: hiring-manager · Nature: noise · Visibility: inferable · Removability: none
+- Operates at: B-007, B-008, B-009
+- Emits: A-003 (distortion), A-004 (direct)
+- Does NOT establish: Candidate rejection was driven by shifting team mandate, not prior interview answers.
+
+### M-014 — Location or Timezone Compliance Constraint
+
+Company legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.
+
+- Actor: policy · Nature: rule · Visibility: observable · Removability: intermediary
+- Operates at: B-002, B-004
+- Emits: A-009 (direct), A-002 (euphemism)
+- Does NOT establish: Legal geography barrier is completely independent of candidate technical competence.
+
+### M-015 — Communication or Working Style Friction
+
+Candidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.
+
+- Actor: candidate · Nature: bias · Visibility: observable · Removability: candidate
+- Operates at: B-004, B-008 · honest baseline
+- Emits: A-010 (direct), A-002 (euphemism)
+- Does NOT establish: Style friction during high-stress interview is not a permanent personality defect.
+
+### M-016 — Speculative Sourcing / Talent Pooling Without Opening
+
+Recruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.
+
+- Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
+- Operates at: B-013, B-014, B-003, B-004
+- Emits: A-012 (distortion), A-001 (void)
+- Does NOT establish: Ghosting after outbound message indicates absence of immediate opening, not profile rejection.
+
+### M-017 — Experience-Age Grading Mismatch
+
+Candidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.
+
+- Actor: recruiter · Nature: bias · Visibility: inferable · Removability: none
+- Operates at: B-003, B-004, B-007
+- Emits: A-013 (direct), A-002 (euphemism)
+- Does NOT establish: Being rejected as "overqualified" is an organizational tier mismatch, not a candidate deficiency.
+
+### M-018 — Domain Specificity Over-Weighting
+
+Interviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.
+
+- Actor: hiring-manager · Nature: bias · Visibility: inferable · Removability: intermediary
+- Operates at: B-004, B-007
+- Emits: A-002 (euphemism), A-008 (direct)
+- Does NOT establish: Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.
+
+### M-019 — Take-Home Evaluation Fatigue & Asymmetry
+
+Reviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.
+
+- Actor: hiring-manager · Nature: noise · Visibility: opaque · Removability: none
+- Operates at: B-006
+- Emits: A-006 (noise), A-002 (euphemism)
+- Does NOT establish: Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.
+
+### M-020 — Automated Application Expiration Timeout
+
+ATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.
+
+- Actor: system · Nature: rule · Visibility: opaque · Removability: none
+- Operates at: B-001, B-003
+- Emits: A-002 (void), A-001 (void)
+- Does NOT establish: Bulk timeout rejection contains zero qualitative assessment of candidate profile.
+
+### M-021 — Reference Check Discrepancy or Regulatory Ineligibility
+
+Third-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.
+
+- Actor: candidate · Nature: rule · Visibility: observable · Removability: candidate
+- Operates at: B-011 · honest baseline
+- Emits: A-011 (direct), A-002 (euphemism)
+- Does NOT establish: Administrative mismatch in dates is distinct from fraudulent resume misrepresentation.
+
+### M-022 — Hiring Manager Consensus Impasse
+
+The interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a "no-hire" decision.
+
+- Actor: hiring-manager · Nature: bias · Visibility: opaque · Removability: none
+- Operates at: B-008
+- Emits: A-014 (direct), A-002 (euphemism)
+- Does NOT establish: Split panel reflects lack of calibrated internal standards rather than candidate failure.
+
+### M-023 — Portfolio / Work Artifact Misinterpretation
+
+Screeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.
+
+- Actor: candidate · Nature: noise · Visibility: inferable · Removability: candidate
+- Operates at: B-003, B-005
+- Emits: A-002 (euphemism), A-008 (distortion)
+- Does NOT establish: Misinterpreted architecture can be corrected through structured documentation.
+
+### M-024 — Inflated Requisition Requirements vs Actual Team Needs
+
+Job description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.
+
+- Actor: hiring-manager · Nature: incentive · Visibility: inferable · Removability: intermediary
+- Operates at: B-013, B-002, B-004
+- Emits: A-002 (euphemism), A-004 (noise)
+- Does NOT establish: Failing to meet an inflated "wishlist" does not mean candidate cannot excel at the team’s actual core tasks.
+
+## Patterns
+
+### P-001 — Seniority Double Bind
+
+Candidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.
+
+- Triggers when: Candidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.
+- Requires: A-002, A-013 · Mechanisms: M-001, M-004, M-017
+- Establishes: Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.
+- Does NOT establish: Does not establish that the candidate lacks market value.
+- Does NOT establish: Does not establish malice or coordinated collusion between employers.
+
+### P-002 — Closed-Then-Reposted Requisition Motif
+
+A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.
+
+- Triggers when: Candidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.
+- Requires: A-003, A-004 · Mechanisms: M-002, M-006, M-010, M-013
+- Establishes: The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.
+- Does NOT establish: Does not establish that the original job listing was fake or a ghost job.
+- Does NOT establish: Does not establish that candidate was intentionally misled.
+
+### P-003 — Experience-Age Impossibility
+
+Requisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.
+
+- Triggers when: Job description or automated screen requires X years of experience where X > technology_age.
+- Requires: A-002, A-009 · Mechanisms: M-008, M-024
+- Establishes: Job description was authored without technical review, using copy-paste templates with automated gating rules.
+- Does NOT establish: Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation.
+
+### P-004 — Compensation Double Bind
+
+Candidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.
+
+- Triggers when: Asymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.
+- Requires: A-002, A-005 · Mechanisms: M-004, M-017
+- Establishes: Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated.
+- Does NOT establish: Does not mean employer has unlimited budget or malice.
+
+## Loops
+
+### L-001 — Employment Gap Penalty Loop
+
+An employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.
+
+- M-011 amplifies M-008
+- M-008 amplifies M-011
+
+### L-002 — Take-Home Opportunity-Cost Saturation Loop
+
+Candidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.
+
+- M-012 amplifies M-019
+- M-019 amplifies M-012
+
+### L-003 — Inflated-Requirements Search Saturation Loop
+
+Teams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.
+
+- M-024 amplifies M-008
+- M-008 amplifies M-013
+- M-013 amplifies M-024
+
+## Interventions
+
+### I-001 — Auto-Close Stale Job Requisitions
+
+Implement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.
+
+- Actor: employer-policy · Scope: organizational · Cost: low
+- Targets: M-006, B-001, P-002, L-003
+- Expected: Reduce stale public listings and candidate application waste
+- Expected: Reduce ambiguous post-application silence
+
+### I-002 — Upfront Compensation Band Disclosure
+
+Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.
+
+- Actor: employer-policy · Scope: industry · Cost: low
+- Targets: M-004, B-004, B-009, P-001, P-004
+- Expected: Eliminate late-stage compensation mismatch dropouts
+- Expected: Reduce time wasted on mismatched leveling conversations
+
+### I-003 — Standardized Late-Stage Rejection Feedback Taxonomy
+
+Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
+
+- Actor: recruiter-process · Scope: organizational · Cost: medium
+- Targets: M-001, M-010, B-007, B-008, P-001, P-002, L-003
+- Expected: Provide actionable feedback signals to candidates
+- Expected: Enforce consistent interviewer calibration across rounds
+
+### I-004 — Remove Career Gap Feature from Automated Ranking Models
+
+Disable employment duration gap penalties in recruitment AI algorithms and screening models.
+
+- Actor: ats-vendor · Scope: ecosystem · Cost: low
+- Targets: M-011, L-001
+- Expected: Break algorithmic unemployment penalty loop
+- Expected: Broaden candidate pool to include skilled returning talent
+
+### I-005 — Candidate ATS Parser Conformance Test Utility
+
+Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.
+
+- Actor: candidate-action · Scope: individual · Cost: low
+- Targets: M-003, B-002, P-003
+- Expected: Eliminate formatting-induced silent parsing failures
+- Expected: Increase candidate confidence in resume ingestion fidelity
+
+### I-006 — Strict Take-Home Timebox & Blinded Evaluation Rubric
+
+Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.
+
+- Actor: hiring-manager · Scope: organizational · Cost: medium
+- Targets: M-019, L-002, B-006
+- Expected: Prevent reviewer fatigue and asymmetric code evaluation
+- Expected: Respect candidate time investment and eliminate IP exploitation concerns
+
+## Evidence
+
+### EVD-001 — Hidden Workers: Untapped Talent (HBS / Accenture)
+
+Survey of 8,000 workers and 2,250 executives in the US, UK and Germany on automated hiring. 88% of employers agree that qualified high-skill candidates are vetted out of the process by applicant tracking systems because they do not match the exact criteria of the job description; the report attributes a large "hidden worker" population to configurable ATS exclusion rules and knock-out filters.
+
+- Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). Hidden Workers: Untapped Talent. Harvard Business School Project on Managing the Future of Work & Accenture.
+- https://www.hbs.edu/managing-the-future-of-work/research/hidden-workers-untapped-talent
+
+### EVD-002 — Too Good to Hire? Capability and Inferences about Commitment in Labor Markets
+
+Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for "overqualified" rejections and the seniority double bind.
+
+- Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313.
+- https://doi.org/10.1177/0001839219840022
+
+### EVD-003 — Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment
+
+Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.
+
+- Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167.
+- https://doi.org/10.1093/qje/qjt015
+
+### EVD-004 — Job Seekers Beware of Ghost Jobs (Clarify Capital survey of hiring managers)
+
+Survey of 1,045 managers involved in hiring (fielded 31 Aug – 1 Sep 2022) on job postings kept live without active hiring: about half keep postings open because they are "always open to new people", 43% cite giving the impression that the company is growing or keeping existing employees motivated, one in three postings had been active for more than 30 days, and one in four respondents did not plan to fill the role for three months or longer.
+
+- Clarify Capital (2022). Job Seekers Beware of Ghost Jobs. Survey of 1,045 hiring managers, 31 Aug – 1 Sep 2022.
+- https://clarifycapital.com/job-seekers-beware-of-ghost-jobs-survey
+
+### EVD-005 — Salary Transparency: Growth Slows, but Momentum Continues (Indeed Hiring Lab)
+
+Tracks the share of US job postings on Indeed that disclose pay: 57.8% in September 2024, up from 52.2% a year earlier, with wide variation by occupation. Roughly four in ten postings still omit compensation — the structural precondition for compensation-band discrepancies surfacing only at late stages.
+
+- Indeed Hiring Lab (2024, October 23). Salary Transparency: Growth Slows, but Momentum Continues.
+- https://hiringlab.indeed.com/2024/10/23/salary-transparency-growth-slows-but-momentum-continues/
+
+### EVD-006 — Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format
+
+Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.
+
+- Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.
+- https://doi.org/10.1111/ijsa.12036

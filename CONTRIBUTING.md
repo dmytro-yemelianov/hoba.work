@@ -2,6 +2,25 @@
 
 We welcome contributions to expand and refine the **Hiring Obstacles & Barriers Atlas** (`hoba.work`).
 
+
+## The task runner
+
+Every repeatable chore has one entry point:
+
+```
+pnpm task check              # validate → typecheck → unit → build → e2e, stops at the first failure
+pnpm task check registry     # or a single stage
+pnpm task new mechanism "Title of the thing"
+pnpm task specimens          # coverage, mirror parity, forbidden names
+pnpm task preview            # build and serve, reuses a running server
+pnpm task shots /registry /artifacts/A-013
+pnpm task deploy-preview     # branch deploy
+```
+
+`pnpm task new` scaffolds both language mirrors with the next free ID and
+frontmatter that already validates, so the first `pnpm task check registry`
+passes before a word of prose is written.
+
 ## 1. Ground Rules & Epistemic Standards
 
 1. **No Defamation or Naming:** Never include the name of any employer, recruiter, interviewer, ATS vendor, or candidate in public registry entries.
