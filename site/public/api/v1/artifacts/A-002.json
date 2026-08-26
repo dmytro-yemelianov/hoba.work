@@ -24,6 +24,48 @@
         "cost": "low"
       }
     ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Rejection email",
+        "subject": "Update on your application",
+        "context": "day 9, sent at 03:14 local time",
+        "lines": [
+          {
+            "text": "Thank you for your interest in our company and for the time you invested in the process.",
+            "tell": false
+          },
+          {
+            "text": "After careful consideration we have decided to move forward with candidates whose profiles more closely align with the requirements of the role.",
+            "tell": true
+          },
+          {
+            "text": "We wish you the best in your search and encourage you to apply for future openings.",
+            "tell": false
+          }
+        ],
+        "reading": "Nothing in the text is specific to this candidate, this conversation or this role. The message is a routing decision rendered as prose."
+      },
+      {
+        "kind": "chat",
+        "label": "Request for specifics, and the reply",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "day 9",
+            "text": "Thanks for letting me know. If it is possible, I would value one line on which requirement was the gap — it would genuinely help me aim better.",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "day 11",
+            "text": "Unfortunately we are not able to share individual feedback. It was a very competitive process.",
+            "tell": true
+          }
+        ],
+        "reading": "The follow-up returns the same shape of answer. A template that survives a direct question is a policy, not an opinion about you."
+      }
+    ],
     "non_inferences": [
       "Does not establish which specific skill was deemed insufficient.",
       "Does not establish whether a human reviewer read the full resume."

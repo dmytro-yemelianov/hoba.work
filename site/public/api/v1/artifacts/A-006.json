@@ -22,6 +22,48 @@
         "cost": "low"
       }
     ],
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "The assignment brief, as received",
+        "subject": "Take-home exercise — Senior Backend Engineer",
+        "context": "stated budget: 2–4 hours",
+        "lines": [
+          {
+            "text": "Build a service that ingests order events, deduplicates them, and exposes a query API over the resulting state.",
+            "tell": false
+          },
+          {
+            "text": "Requirements: persistence with migrations, idempotent consumers, retry with backoff, structured logging, metrics endpoint, containerised local run, integration tests, and a short design document covering scaling and failure modes.",
+            "tell": true
+          },
+          {
+            "text": "Please submit within one week. We estimate 2–4 hours.",
+            "tell": false
+          }
+        ],
+        "reading": "Count the deliverables against the stated budget. The mismatch is measurable, which makes it a fact rather than a feeling."
+      },
+      {
+        "kind": "chat",
+        "label": "Asking about scope",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "day 1",
+            "text": "Happy to do this. To fit the 2–4 hours, which parts should I treat as the core and which can I stub with a note in the README?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "day 2",
+            "text": "Ideally all of it — we use it to see how you work end to end.",
+            "tell": true
+          }
+        ],
+        "reading": "The stated budget and the expected deliverable are not reconciled when asked directly. That is the observation; the reason for it is not visible from here."
+      }
+    ],
     "non_inferences": [
       "Does not prove the company is harvesting free intellectual property for production use."
     ]

@@ -94,6 +94,73 @@
             "illustrative"
           ],
           "default": "supported"
+        },
+        "specimens": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "chat",
+                  "ats",
+                  "transcript",
+                  "posting",
+                  "note"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 3
+              },
+              "subject": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string"
+              },
+              "lines": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "speaker": {
+                      "type": "string"
+                    },
+                    "at": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "tell": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              "reading": {
+                "type": "string",
+                "minLength": 10
+              }
+            },
+            "required": [
+              "kind",
+              "label",
+              "lines"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
         }
       },
       "required": [

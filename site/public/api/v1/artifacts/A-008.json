@@ -23,6 +23,67 @@
         "cost": "medium"
       }
     ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Structured feedback notes",
+        "subject": "Feedback — technical panel",
+        "context": "day 3 after the panel",
+        "lines": [
+          {
+            "text": "The panel was positive on system decomposition and on how you reasoned about failure modes.",
+            "tell": false
+          },
+          {
+            "text": "The gap was in the second exercise: the solution was correct but quadratic, and the panel was looking for the linear approach using a hash index. We would want to see that reached without prompting at this level.",
+            "tell": true
+          },
+          {
+            "text": "We are not moving forward now, but this was close and we would welcome a re-application in six months.",
+            "tell": false
+          }
+        ],
+        "reading": "A named exercise, a named property, a named expectation. This is the rare rejection that is actually actionable."
+      },
+      {
+        "kind": "transcript",
+        "label": "The moment in the panel",
+        "context": "minute 38, second exercise",
+        "lines": [
+          {
+            "speaker": "Interviewer",
+            "at": "38:04",
+            "text": "This works. What is the complexity?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "38:11",
+            "text": "Quadratic — nested scan over the same list.",
+            "tell": false
+          },
+          {
+            "speaker": "Interviewer",
+            "at": "38:15",
+            "text": "Right. Can you get it down?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "38:22",
+            "text": "Probably with an index of some kind. I would want to think about it.",
+            "tell": true
+          },
+          {
+            "speaker": "Interviewer",
+            "at": "38:40",
+            "text": "That is fine, let us move on for time.",
+            "tell": false
+          }
+        ],
+        "reading": "The transcript and the written feedback agree. When they agree, the feedback is describing something that actually happened."
+      }
+    ],
     "non_inferences": [
       "Does not imply general incompetence; reflects threshold for this specific role level."
     ]

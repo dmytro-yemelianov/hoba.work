@@ -127,6 +127,26 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .prose-hoba .row-list li { @apply max-w-none; }
   .prose-hoba .row-link { @apply no-underline text-hoba-text; }
 
+  /* Reconstructed document excerpts. A specimen should read as a thing you
+     are looking at, not a paragraph you are reading — hence the frame, the
+     stamped gutter and the tell that is lit rather than bolded. */
+  .specimen { @apply my-6 rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
+  .specimen-head { @apply flex flex-wrap items-center gap-2 px-4 py-2.5 text-sm border-b border-hoba-border bg-hoba-bg; }
+  .specimen-body { @apply px-4 py-4 sm:px-5; }
+  .specimen-subject { @apply flex flex-wrap gap-x-2 pb-3 mb-3 border-b border-dashed border-hoba-border text-base text-hoba-text; }
+  .specimen-prose > * + * { @apply mt-3; }
+  .specimen-prose p { @apply text-base leading-relaxed text-hoba-text max-w-2xl; }
+  .specimen-turns { @apply space-y-3; }
+  .specimen-turns li { @apply grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 sm:grid-cols-[5.5rem_auto_1fr]; }
+  .specimen-stamp { @apply font-mono text-xs text-hoba-muted tabular-nums pt-1 col-span-2 sm:col-span-1; }
+  .specimen-speaker { @apply text-sm font-medium text-hoba-muted whitespace-nowrap pt-0.5; }
+  .specimen-text { @apply text-base leading-relaxed text-hoba-text max-w-2xl; }
+  /* The line the entity is actually about. */
+  .specimen-tell { @apply relative; }
+  .specimen-prose p.specimen-tell { @apply -mx-2 px-2 py-1 rounded bg-hoba-accent/10 border-l-2 border-hoba-accent; }
+  .specimen-turns li.specimen-tell .specimen-text { @apply bg-hoba-accent/10 -mx-1.5 px-1.5 py-0.5 rounded box-decoration-clone; }
+  .specimen-reading { @apply px-4 py-3 sm:px-5 text-sm text-hoba-muted border-t border-hoba-border bg-hoba-bg; }
+
   /* Navigation */
   .skip-link { @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-md focus:bg-hoba-card focus:text-hoba-text focus:border focus:border-hoba-accent; }
   .nav-link { @apply inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors whitespace-nowrap; }

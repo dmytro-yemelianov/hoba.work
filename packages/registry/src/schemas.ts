@@ -109,6 +109,39 @@ export const emissionEdgeSchema = z.object({
   evidence: z.array(evidenceId).default([]),
 });
 
+/**
+ * A specimen is a short, reconstructed excerpt of the kind of document the
+ * entity shows up in — a rejection email, an ATS status log, a recruiter chat,
+ * an interview transcript. Specimens are composites written to be typical, not
+ * copies of any particular message, and the site labels them as such: the
+ * registry's whole point is to make uncertainty explicit, so a page must never
+ * pass a reconstruction off as a captured record.
+ */
+export const specimenKindSchema = z.enum(['email', 'chat', 'ats', 'transcript', 'posting', 'note']);
+
+export const specimenLineSchema = z.object({
+  /** Speaker or sender, for chats and transcripts. */
+  speaker: z.string().optional(),
+  /** Timecode, timestamp or relative day — whatever the medium stamps. */
+  at: z.string().optional(),
+  text: z.string().min(1),
+  /** Marks the line the entity is actually about, so the page can point at it. */
+  tell: z.boolean().default(false),
+});
+
+export const specimenSchema = z.object({
+  kind: specimenKindSchema,
+  /** What the reader is looking at: "Rejection email", "ATS status history". */
+  label: z.string().min(3),
+  /** Subject line, ticket title or file name, when the medium has one. */
+  subject: z.string().optional(),
+  /** Context the excerpt needs to make sense: "day 34 after submission". */
+  context: z.string().optional(),
+  lines: z.array(specimenLineSchema).min(1),
+  /** What to notice — one sentence, printed under the excerpt. */
+  reading: z.string().min(10).optional(),
+});
+
 export const loopEdgeSchema = z.object({
   from: mechanismId,
   to: mechanismId,
@@ -134,6 +167,7 @@ export const artifactSchema = z.object({
   superseded_by: artifactId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   probes: z.array(diagnosticProbeSchema).default([]),
+  specimens: z.array(specimenSchema).default([]),
   non_inferences: z.array(z.string()).min(1),
 });
 
@@ -172,6 +206,7 @@ export const mechanismSchema = z.object({
   superseded_by: mechanismId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   honest_baseline: z.boolean().default(false),
+  specimens: z.array(specimenSchema).default([]),
   non_inferences: z.array(z.string()).min(1),
 });
 
@@ -189,6 +224,7 @@ export const patternSchema = z.object({
   interventions: z.array(interventionId).default([]),
   superseded_by: patternId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
+  specimens: z.array(specimenSchema).default([]),
 });
 
 // Loop frontmatter schema

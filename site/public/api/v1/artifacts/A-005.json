@@ -24,6 +24,65 @@
         "cost": "medium"
       }
     ],
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "Recruiter message before the offer call",
+        "lines": [
+          {
+            "speaker": "Recruiter",
+            "at": "week 5",
+            "text": "Quick heads-up before we talk numbers tomorrow — where did we land on expectations?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "week 5",
+            "text": "Same as the range in the posting and what we agreed at the screen: 85–95k.",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "week 5",
+            "text": "Right. So finance has revised the band for this level since we opened the role. We are working with 72–78k now.",
+            "tell": true
+          }
+        ],
+        "reading": "The number moved after the candidate had already spent the process. Note the date the original band was stated and by whom."
+      },
+      {
+        "kind": "transcript",
+        "label": "Offer call, transcript fragment",
+        "context": "minute 6 of 20",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "06:12",
+            "text": "Was the change specific to me, or to the level?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "06:19",
+            "text": "To the level. Everyone coming in at this grade this quarter is on the new band.",
+            "tell": true
+          },
+          {
+            "speaker": "Candidate",
+            "at": "06:31",
+            "text": "And the posting still shows the old range?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "06:35",
+            "text": "It does. I will get that updated.",
+            "tell": false
+          }
+        ],
+        "reading": "An answer that generalises to the whole grade describes a policy. An answer that is specific to you would describe an assessment. They are different mechanisms."
+      }
+    ],
     "non_inferences": [
       "Does not prove intentional bait-and-switch malice unless verified by company policy evidence."
     ]

@@ -25,6 +25,56 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "ATS status history",
+          "context": "exported by the candidate on day 41",
+          "lines": [
+            {
+              "at": "day 0, 18:22",
+              "text": "Application received — Senior Backend Engineer",
+              "tell": false
+            },
+            {
+              "at": "day 0, 18:22",
+              "text": "Status: Under review",
+              "tell": false
+            },
+            {
+              "at": "day 41, 09:00",
+              "text": "Status: Under review",
+              "tell": true
+            }
+          ],
+          "reading": "The record shows one state change and then nothing. Silence here is the absence of an event, not an event with a hidden meaning."
+        },
+        {
+          "kind": "chat",
+          "label": "Follow-up message to the listed contact",
+          "context": "two attempts, three weeks apart",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "day 14",
+              "text": "Hello — I applied for the Senior Backend Engineer role on the 3rd and wanted to check the application went through. Happy to send anything else that helps.",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 35",
+              "text": "Following up on the note above. If the search has been paused or filled, that is completely fine — I would just like to close the loop on my side.",
+              "tell": false
+            },
+            {
+              "at": "day 41",
+              "text": "— no reply —",
+              "tell": true
+            }
+          ],
+          "reading": "Two polite, dated attempts and no response. What is established is the absence of a reply, not a decision about the candidate."
+        }
+      ],
       "non_inferences": [
         "Does not prove the application was reviewed by a human.",
         "Does not prove the role was cancelled or already filled."
@@ -54,6 +104,48 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Rejection email",
+          "subject": "Update on your application",
+          "context": "day 9, sent at 03:14 local time",
+          "lines": [
+            {
+              "text": "Thank you for your interest in our company and for the time you invested in the process.",
+              "tell": false
+            },
+            {
+              "text": "After careful consideration we have decided to move forward with candidates whose profiles more closely align with the requirements of the role.",
+              "tell": true
+            },
+            {
+              "text": "We wish you the best in your search and encourage you to apply for future openings.",
+              "tell": false
+            }
+          ],
+          "reading": "Nothing in the text is specific to this candidate, this conversation or this role. The message is a routing decision rendered as prose."
+        },
+        {
+          "kind": "chat",
+          "label": "Request for specifics, and the reply",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "day 9",
+              "text": "Thanks for letting me know. If it is possible, I would value one line on which requirement was the gap — it would genuinely help me aim better.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "day 11",
+              "text": "Unfortunately we are not able to share individual feedback. It was a very competitive process.",
+              "tell": true
+            }
+          ],
+          "reading": "The follow-up returns the same shape of answer. A template that survives a direct question is a policy, not an opinion about you."
+        }
+      ],
       "non_inferences": [
         "Does not establish which specific skill was deemed insufficient.",
         "Does not establish whether a human reviewer read the full resume."
@@ -80,6 +172,61 @@
           "action": "Politely inquire with recruiter if the position was closed due to business budget restructuring or team reallocation.",
           "expected_signal": "Clarifies whether barrier was candidate-specific or macroeconomic/budgetary.",
           "cost": "low"
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "Final round, closing minutes",
+          "context": "minute 47 of 50, four days before the email below",
+          "lines": [
+            {
+              "speaker": "Hiring manager",
+              "at": "47:10",
+              "text": "That is everything from our side. Any questions for us?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "47:18",
+              "text": "Only about timing — what happens next?",
+              "tell": false
+            },
+            {
+              "speaker": "Hiring manager",
+              "at": "47:24",
+              "text": "We are wrapping up the loop this week. You are the last of three finalists, so expect to hear back by Friday at the latest.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "47:41",
+              "text": "Understood. Thank you for the time.",
+              "tell": false
+            }
+          ],
+          "reading": "The process was described as live and near a decision. Whatever happened next happened after this point, not before it."
+        },
+        {
+          "kind": "email",
+          "label": "Rejection email",
+          "subject": "Regarding the Senior Backend Engineer search",
+          "context": "day 4 after the final round",
+          "lines": [
+            {
+              "text": "Thank you again for the conversations over the past six weeks — the panel was consistently positive about your work.",
+              "tell": false
+            },
+            {
+              "text": "I am writing with disappointing news: the requisition has been put on hold as part of a wider planning review, and we will not be filling the role this quarter.",
+              "tell": true
+            },
+            {
+              "text": "This is not a reflection on your interviews. If the role reopens I would like to come back to you first.",
+              "tell": false
+            }
+          ],
+          "reading": "The stated cause sits above the hiring loop entirely. A candidate cannot pass or fail a budget review."
         }
       ],
       "non_inferences": [
@@ -111,6 +258,47 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The two postings, side by side",
+          "context": "rejection on 14 March, repost seen on 2 April",
+          "lines": [
+            {
+              "text": "14 Mar — Senior Backend Engineer · Payments · Remote (EU) · 5+ years · Go, PostgreSQL, Kafka · req #4471",
+              "tell": false
+            },
+            {
+              "text": "2 Apr — Senior Backend Engineer · Payments · Remote (EU) · 5+ years · Go, PostgreSQL, Kafka · req #4471",
+              "tell": true
+            },
+            {
+              "text": "Body text identical except for the posted date. Same requisition number, same team, same band.",
+              "tell": false
+            }
+          ],
+          "reading": "The requisition number is the thing to record. A refreshed listing and a genuinely new headcount look identical on the board and are different facts underneath."
+        },
+        {
+          "kind": "chat",
+          "label": "Asking the recruiter directly",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "2 Apr",
+              "text": "I saw req #4471 posted again this week. Is this a second opening on the team, or the same one refreshed?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "3 Apr",
+              "text": "Good catch — the board auto-refreshes listings after 30 days so they stay visible. Same requisition, still open.",
+              "tell": true
+            }
+          ],
+          "reading": "One question separated an automated refresh from a real second opening. This is the cheapest probe in the whole registry."
+        }
+      ],
       "non_inferences": [
         "Does not establish that the role was a \"fake\" or \"ghost\" posting.",
         "Does not establish that the prior interview feedback was fraudulent."
@@ -140,6 +328,65 @@
           "cost": "medium"
         }
       ],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Recruiter message before the offer call",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "week 5",
+              "text": "Quick heads-up before we talk numbers tomorrow — where did we land on expectations?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "week 5",
+              "text": "Same as the range in the posting and what we agreed at the screen: 85–95k.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 5",
+              "text": "Right. So finance has revised the band for this level since we opened the role. We are working with 72–78k now.",
+              "tell": true
+            }
+          ],
+          "reading": "The number moved after the candidate had already spent the process. Note the date the original band was stated and by whom."
+        },
+        {
+          "kind": "transcript",
+          "label": "Offer call, transcript fragment",
+          "context": "minute 6 of 20",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "06:12",
+              "text": "Was the change specific to me, or to the level?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "06:19",
+              "text": "To the level. Everyone coming in at this grade this quarter is on the new band.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "06:31",
+              "text": "And the posting still shows the old range?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "06:35",
+              "text": "It does. I will get that updated.",
+              "tell": false
+            }
+          ],
+          "reading": "An answer that generalises to the whole grade describes a policy. An answer that is specific to you would describe an assessment. They are different mechanisms."
+        }
+      ],
       "non_inferences": [
         "Does not prove intentional bait-and-switch malice unless verified by company policy evidence."
       ]
@@ -164,6 +411,48 @@
           "action": "Define explicit boundaries and trade-offs in submission README stating assumptions made to fit the agreed timebox.",
           "expected_signal": "Tests whether evaluators value scope management and communication over unbounded free work.",
           "cost": "low"
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "The assignment brief, as received",
+          "subject": "Take-home exercise — Senior Backend Engineer",
+          "context": "stated budget: 2–4 hours",
+          "lines": [
+            {
+              "text": "Build a service that ingests order events, deduplicates them, and exposes a query API over the resulting state.",
+              "tell": false
+            },
+            {
+              "text": "Requirements: persistence with migrations, idempotent consumers, retry with backoff, structured logging, metrics endpoint, containerised local run, integration tests, and a short design document covering scaling and failure modes.",
+              "tell": true
+            },
+            {
+              "text": "Please submit within one week. We estimate 2–4 hours.",
+              "tell": false
+            }
+          ],
+          "reading": "Count the deliverables against the stated budget. The mismatch is measurable, which makes it a fact rather than a feeling."
+        },
+        {
+          "kind": "chat",
+          "label": "Asking about scope",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "day 1",
+              "text": "Happy to do this. To fit the 2–4 hours, which parts should I treat as the core and which can I stub with a note in the README?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "day 2",
+              "text": "Ideally all of it — we use it to see how you work end to end.",
+              "tell": true
+            }
+          ],
+          "reading": "The stated budget and the expected deliverable are not reconciled when asked directly. That is the observation; the reason for it is not visible from here."
         }
       ],
       "non_inferences": [
@@ -194,6 +483,67 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Scheduling thread",
+          "context": "same interview, four dates",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "week 2",
+              "text": "Tuesday 14:00 works for the panel — sending the invite now.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 2",
+              "text": "Apologies, the interviewer has a conflict. Can we move to Thursday same time?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 3",
+              "text": "Sorry to do this again — Thursday is out. Would Monday work?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 4",
+              "text": "Something urgent came up on the team. I will come back to you with new slots.",
+              "tell": true
+            }
+          ],
+          "reading": "Four movements, no interview. Record the dates: a pattern of postponement is evidence about the process, not about the candidate."
+        },
+        {
+          "kind": "ats",
+          "label": "Calendar record",
+          "lines": [
+            {
+              "at": "week 2, Tue",
+              "text": "Invite sent — Technical panel",
+              "tell": false
+            },
+            {
+              "at": "week 2, Tue",
+              "text": "Cancelled by organiser",
+              "tell": false
+            },
+            {
+              "at": "week 3, Mon",
+              "text": "Invite sent — Technical panel",
+              "tell": false
+            },
+            {
+              "at": "week 4",
+              "text": "Cancelled by organiser · no replacement issued",
+              "tell": true
+            }
+          ],
+          "reading": "Every cancellation came from the same side. That asymmetry is the observable part."
+        }
+      ],
       "non_inferences": [
         "Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents."
       ]
@@ -221,6 +571,67 @@
           "cost": "medium"
         }
       ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Structured feedback notes",
+          "subject": "Feedback — technical panel",
+          "context": "day 3 after the panel",
+          "lines": [
+            {
+              "text": "The panel was positive on system decomposition and on how you reasoned about failure modes.",
+              "tell": false
+            },
+            {
+              "text": "The gap was in the second exercise: the solution was correct but quadratic, and the panel was looking for the linear approach using a hash index. We would want to see that reached without prompting at this level.",
+              "tell": true
+            },
+            {
+              "text": "We are not moving forward now, but this was close and we would welcome a re-application in six months.",
+              "tell": false
+            }
+          ],
+          "reading": "A named exercise, a named property, a named expectation. This is the rare rejection that is actually actionable."
+        },
+        {
+          "kind": "transcript",
+          "label": "The moment in the panel",
+          "context": "minute 38, second exercise",
+          "lines": [
+            {
+              "speaker": "Interviewer",
+              "at": "38:04",
+              "text": "This works. What is the complexity?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "38:11",
+              "text": "Quadratic — nested scan over the same list.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "38:15",
+              "text": "Right. Can you get it down?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "38:22",
+              "text": "Probably with an index of some kind. I would want to think about it.",
+              "tell": true
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "38:40",
+              "text": "That is fine, let us move on for time.",
+              "tell": false
+            }
+          ],
+          "reading": "The transcript and the written feedback agree. When they agree, the feedback is describing something that actually happened."
+        }
+      ],
       "non_inferences": [
         "Does not imply general incompetence; reflects threshold for this specific role level."
       ]
@@ -245,6 +656,52 @@
           "action": "Audit application answers to mandatory knock-out questions (work permit, country of residence, minimum years experience).",
           "expected_signal": "Identifies exact boolean filter rule triggered by ATS.",
           "cost": "low"
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Rejection email",
+          "subject": "Your application",
+          "context": "submitted 23:47, rejected 23:58",
+          "lines": [
+            {
+              "text": "Thank you for applying. After reviewing your application we have decided not to proceed at this time.",
+              "tell": false
+            },
+            {
+              "text": "Sent 23:58 — eleven minutes after submission, outside working hours in every timezone the company operates in.",
+              "tell": true
+            }
+          ],
+          "reading": "The interval is the evidence. Eleven minutes at midnight describes the throughput of a rule, not the attention of a reader."
+        },
+        {
+          "kind": "ats",
+          "label": "Application timeline",
+          "lines": [
+            {
+              "at": "23:47:12",
+              "text": "Application submitted",
+              "tell": false
+            },
+            {
+              "at": "23:47:13",
+              "text": "Screening rules evaluated",
+              "tell": false
+            },
+            {
+              "at": "23:47:14",
+              "text": "Status: Rejected — does not meet minimum criteria",
+              "tell": true
+            },
+            {
+              "at": "23:58:00",
+              "text": "Notification email queued",
+              "tell": false
+            }
+          ],
+          "reading": "Two seconds between submission and decision. The eleven-minute delay was the mail queue, not deliberation."
         }
       ],
       "non_inferences": [
@@ -274,6 +731,62 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "Panel discussion, transcript fragment",
+          "context": "minute 22, architecture round",
+          "lines": [
+            {
+              "speaker": "Interviewer A",
+              "at": "22:05",
+              "text": "So when you say the write path is eventually consistent, what does the client see?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "22:14",
+              "text": "Depends on the read. If it goes through the cache it can be stale by up to the TTL; if it goes to the primary it is current.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer A",
+              "at": "22:26",
+              "text": "Sorry, I think we are talking past each other. I meant from the user perspective.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "22:33",
+              "text": "Ah — then: they may see their own write missing for a second or two.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer A",
+              "at": "22:38",
+              "text": "That is what I was after.",
+              "tell": false
+            }
+          ],
+          "reading": "The disagreement was about which layer the question lived in, not about the answer. The content was right at both levels."
+        },
+        {
+          "kind": "email",
+          "label": "Panel feedback",
+          "subject": "Feedback — architecture round",
+          "lines": [
+            {
+              "text": "Technically solid throughout.",
+              "tell": false
+            },
+            {
+              "text": "The panel felt communication was not always calibrated to the audience — answers went to implementation detail where a product-level framing was wanted.",
+              "tell": true
+            }
+          ],
+          "reading": "Read against the transcript this is one exchange generalised into a trait. Both readings fit the same recording, which is exactly why the observation is not a verdict."
+        }
+      ],
       "non_inferences": [
         "Does not prove candidate lacks teamwork skills globally."
       ]
@@ -301,6 +814,48 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "The offer, then the retraction",
+          "subject": "Offer — Senior Backend Engineer",
+          "context": "nine days apart",
+          "lines": [
+            {
+              "text": "Day 0 — Delighted to confirm the offer we discussed. Start date 1 June, contract attached for signature.",
+              "tell": false
+            },
+            {
+              "text": "Day 9 — I am very sorry to write this. A company-wide hiring freeze was announced this morning and all outstanding offers are suspended, including yours.",
+              "tell": true
+            },
+            {
+              "text": "Day 9 — I understand you may have given notice. Please tell me if there is anything I can do, and I will be honest with you about what I can and cannot influence.",
+              "tell": false
+            }
+          ],
+          "reading": "Two dated documents about the same role. Whatever happens next, the fact that a written offer existed on day 0 is established, not remembered."
+        },
+        {
+          "kind": "chat",
+          "label": "Establishing the scope of the freeze",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "day 9",
+              "text": "Is the freeze specific to the team, or company-wide?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "day 9",
+              "text": "Company-wide. Every open req is paused, and three other offers are in the same position as yours.",
+              "tell": true
+            }
+          ],
+          "reading": "The answer places the cause outside the hiring loop and outside the candidate. It also makes the claim checkable against public news."
+        }
+      ],
       "non_inferences": [
         "Does not imply candidate failed reference checks unless explicitly stated."
       ]
@@ -326,6 +881,59 @@
           "action": "Send one single polite follow-up after 5 business days referencing original outreach thread.",
           "expected_signal": "Recovers stalled conversation if recruiter was out-of-office or overwhelmed.",
           "cost": "low"
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Inbound outreach, then silence",
+          "context": "the whole thread, eleven days",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "day 0",
+              "text": "Hi! I came across your profile — your work on payment infrastructure is exactly what our team needs. Would you be open to a chat this week?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 0",
+              "text": "Thanks for reaching out. Yes, happy to talk. I am free Tuesday or Thursday after 15:00, and here is a short summary of what I have been working on.",
+              "tell": false
+            },
+            {
+              "at": "day 4",
+              "text": "— no reply —",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 4",
+              "text": "Following up in case this got buried. Still interested.",
+              "tell": false
+            },
+            {
+              "at": "day 11",
+              "text": "— no reply —",
+              "tell": true
+            }
+          ],
+          "reading": "The enthusiasm and the disappearance came from the same side, and the candidate did nothing between them except answer."
+        },
+        {
+          "kind": "note",
+          "label": "What was and was not established",
+          "lines": [
+            {
+              "text": "Established: an outreach message was sent on day 0; the candidate replied the same day with availability; two follow-ups went unanswered over eleven days.",
+              "tell": false
+            },
+            {
+              "text": "Not established: whether the role existed, whether it was filled, whether anyone read the reply, or what the recruiter thought of the profile.",
+              "tell": true
+            }
+          ],
+          "reading": "Writing the two lists separately is the whole method. Most of the pain of this signal comes from filling the second list with guesses."
         }
       ],
       "non_inferences": [
@@ -356,6 +964,67 @@
           "cost": "low"
         }
       ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Rejection email",
+          "subject": "Your application — Senior Backend Engineer",
+          "context": "day 6 after the final conversation",
+          "lines": [
+            {
+              "text": "Thank you for the time you gave us over the past two weeks. The team enjoyed the conversation and rated your systems background highly.",
+              "tell": false
+            },
+            {
+              "text": "After discussion we have decided not to move forward. Your experience sits above the band we scoped for this role, and we were concerned the day-to-day would not stay interesting for you for very long.",
+              "tell": true
+            },
+            {
+              "text": "We would be glad to keep your profile on file and reach out when something at the right level opens up.",
+              "tell": false
+            }
+          ],
+          "reading": "The stated ground is fit with a band, not the quality of the work — and the risk named is retention, not capability."
+        },
+        {
+          "kind": "transcript",
+          "label": "Recruiter screen, transcript fragment",
+          "context": "minute 14 of a 30-minute call",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "14:02",
+              "text": "Your last role was a team lead position, is that right?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "14:09",
+              "text": "Formally, yes. In practice about two thirds of my week was hands-on.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "14:21",
+              "text": "Got it. I will be honest with you — my worry is that this role is a step down, and six months in you would be looking again.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "14:33",
+              "text": "Right now I am optimising for depth rather than scope.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "14:38",
+              "text": "Understood. I will pass that on either way.",
+              "tell": false
+            }
+          ],
+          "reading": "The concern is raised before any technical assessment: the level question is being settled ahead of the skill question."
+        }
+      ],
       "non_inferences": [
         "Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns."
       ]
@@ -381,6 +1050,48 @@
           "action": "Request aggregated hiring rubric summary from talent partner.",
           "expected_signal": "Reveals whether team had misaligned internal evaluation criteria.",
           "cost": "low"
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Two rounds, two verdicts",
+          "subject": "Consolidated feedback",
+          "context": "same candidate, four days apart",
+          "lines": [
+            {
+              "text": "Round 2 (systems): Strong architectural depth. Reasoned clearly about consistency trade-offs and failure modes. Recommend proceed.",
+              "tell": false
+            },
+            {
+              "text": "Round 4 (technical): Insufficient depth for the level. Struggled to move past a first-pass solution. Recommend do not proceed.",
+              "tell": true
+            },
+            {
+              "text": "Final decision: do not proceed.",
+              "tell": false
+            }
+          ],
+          "reading": "Both notes are about the same person in the same week. At least one of them is measuring something other than the candidate."
+        },
+        {
+          "kind": "transcript",
+          "label": "What the two rounds actually asked",
+          "lines": [
+            {
+              "speaker": "Interviewer B",
+              "at": "08:30",
+              "text": "Round 2 — Walk me through how you would keep two regions in sync when the link between them drops.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer D",
+              "at": "03:10",
+              "text": "Round 4 — Here is a string parsing problem. You have twenty-five minutes.",
+              "tell": true
+            }
+          ],
+          "reading": "The rounds did not disagree about the candidate; they measured different things and reported both as depth."
         }
       ],
       "non_inferences": [

@@ -29,6 +29,9 @@ import type {
   natureTypeSchema,
   nodeStatusSchema,
   patternSchema,
+  specimenSchema,
+  specimenKindSchema,
+  specimenLineSchema,
   registryBundleSchema,
   registryManifestSchema,
   removabilityTypeSchema,
@@ -53,6 +56,9 @@ export type CostBand = z.infer<typeof costBandSchema>;
 export type ScopeType = z.infer<typeof scopeTypeSchema>;
 
 export type DiagnosticProbe = z.infer<typeof diagnosticProbeSchema>;
+export type SpecimenKind = z.infer<typeof specimenKindSchema>;
+export type SpecimenLine = z.infer<typeof specimenLineSchema>;
+export type Specimen = z.infer<typeof specimenSchema>;
 export type EmissionEdge = z.infer<typeof emissionEdgeSchema>;
 export type LoopEdge = z.infer<typeof loopEdgeSchema>;
 export type MechanismFacets = z.infer<typeof mechanismFacetsSchema>;

@@ -3,6 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
+import Specimen from '../../../components/Specimen.astro';
 import RemovabilityBadge from '../../../components/RemovabilityBadge.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
@@ -49,6 +50,14 @@ const facets = [
     </PageHeader>
 
   <div>
+    {mechanism.specimens.length > 0 && (
+      <section class="section">
+        <h2 class="section-title">{t('specimen.section')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('specimen.disclaimer')}</p>
+        {mechanism.specimens.map((specimen) => <Specimen specimen={specimen} lang={lang} />)}
+      </section>
+    )}
+
     <section class="section">
       <h2 class="section-title">{t('mech.barriers')}</h2>
       <ul class="row-list">

@@ -23,6 +23,48 @@
         "cost": "low"
       }
     ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "The offer, then the retraction",
+        "subject": "Offer — Senior Backend Engineer",
+        "context": "nine days apart",
+        "lines": [
+          {
+            "text": "Day 0 — Delighted to confirm the offer we discussed. Start date 1 June, contract attached for signature.",
+            "tell": false
+          },
+          {
+            "text": "Day 9 — I am very sorry to write this. A company-wide hiring freeze was announced this morning and all outstanding offers are suspended, including yours.",
+            "tell": true
+          },
+          {
+            "text": "Day 9 — I understand you may have given notice. Please tell me if there is anything I can do, and I will be honest with you about what I can and cannot influence.",
+            "tell": false
+          }
+        ],
+        "reading": "Two dated documents about the same role. Whatever happens next, the fact that a written offer existed on day 0 is established, not remembered."
+      },
+      {
+        "kind": "chat",
+        "label": "Establishing the scope of the freeze",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "day 9",
+            "text": "Is the freeze specific to the team, or company-wide?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "day 9",
+            "text": "Company-wide. Every open req is paused, and three other offers are in the same position as yours.",
+            "tell": true
+          }
+        ],
+        "reading": "The answer places the cause outside the hiring loop and outside the candidate. It also makes the claim checkable against public news."
+      }
+    ],
     "non_inferences": [
       "Does not imply candidate failed reference checks unless explicitly stated."
     ]

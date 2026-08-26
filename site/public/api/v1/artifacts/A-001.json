@@ -23,6 +23,56 @@
         "cost": "low"
       }
     ],
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "ATS status history",
+        "context": "exported by the candidate on day 41",
+        "lines": [
+          {
+            "at": "day 0, 18:22",
+            "text": "Application received — Senior Backend Engineer",
+            "tell": false
+          },
+          {
+            "at": "day 0, 18:22",
+            "text": "Status: Under review",
+            "tell": false
+          },
+          {
+            "at": "day 41, 09:00",
+            "text": "Status: Under review",
+            "tell": true
+          }
+        ],
+        "reading": "The record shows one state change and then nothing. Silence here is the absence of an event, not an event with a hidden meaning."
+      },
+      {
+        "kind": "chat",
+        "label": "Follow-up message to the listed contact",
+        "context": "two attempts, three weeks apart",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "day 14",
+            "text": "Hello — I applied for the Senior Backend Engineer role on the 3rd and wanted to check the application went through. Happy to send anything else that helps.",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "day 35",
+            "text": "Following up on the note above. If the search has been paused or filled, that is completely fine — I would just like to close the loop on my side.",
+            "tell": false
+          },
+          {
+            "at": "day 41",
+            "text": "— no reply —",
+            "tell": true
+          }
+        ],
+        "reading": "Two polite, dated attempts and no response. What is established is the absence of a reply, not a decision about the candidate."
+      }
+    ],
     "non_inferences": [
       "Does not prove the application was reviewed by a human.",
       "Does not prove the role was cancelled or already filled."

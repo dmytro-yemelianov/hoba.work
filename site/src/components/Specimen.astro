@@ -1,0 +1,75 @@
+---
+/**
+ * A reconstructed document excerpt — the thing a candidate actually holds in
+ * their hand when an entity in this registry occurs: a rejection email, an ATS
+ * status history, a recruiter chat, an interview transcript, a job posting.
+ *
+ * Specimens are composites, written to be typical rather than copied from any
+ * one message, and the frame says so out loud. The registry exists to make
+ * uncertainty explicit; a page that dressed a reconstruction up as a captured
+ * record would be doing the opposite.
+ */
+import type { Specimen } from '@hoba/registry';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  specimen: Specimen;
+  lang?: Lang;
+}
+
+const { specimen, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const { kind, label, subject, context, lines, reading } = specimen;
+
+const ICON: Record<Specimen['kind'], string> = {
+  email: 'M3 7l9 6 9-6M3 7v10a1 1 0 001 1h16a1 1 0 001-1V7M3 7a1 1 0 011-1h16a1 1 0 011 1',
+  chat: 'M21 12a8 8 0 01-8 8H7l-4 3V12a8 8 0 018-8h2a8 8 0 018 8z',
+  ats: 'M4 6h16M4 12h16M4 18h10',
+  transcript: 'M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3zm7-3a7 7 0 01-14 0m7 7v3',
+  posting: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9h6m-6 4h4',
+  note: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
+};
+---
+<figure class="specimen">
+  <figcaption class="specimen-head">
+    <svg class="w-4 h-4 shrink-0 text-hoba-muted" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d={ICON[kind]} />
+    </svg>
+    <span class="font-medium text-hoba-text">{label}</span>
+    {context && <span class="text-hoba-muted">· {context}</span>}
+    <span class="ml-auto pill pill-muted shrink-0">{t('specimen.badge')}</span>
+  </figcaption>
+
+  <div class="specimen-body">
+    {subject && (
+      <p class="specimen-subject">
+        <span class="text-hoba-muted">{t(`specimen.subject.${kind === 'posting' || kind === 'ats' || kind === 'note' ? 'title' : 'line'}`)}</span>
+        {subject}
+      </p>
+    )}
+
+    {kind === 'email' || kind === 'posting' || kind === 'note' ? (
+      <div class="specimen-prose">
+        {lines.map((line) => (
+          <p class={line.tell ? 'specimen-tell' : ''}>{line.text}</p>
+        ))}
+      </div>
+    ) : (
+      <ol class="specimen-turns">
+        {lines.map((line) => (
+          <li class={line.tell ? 'specimen-tell' : ''}>
+            <span class="specimen-stamp">{line.at ?? ''}</span>
+            {line.speaker && <span class="specimen-speaker">{line.speaker}</span>}
+            <span class="specimen-text">{line.text}</span>
+          </li>
+        ))}
+      </ol>
+    )}
+  </div>
+
+  {reading && (
+    <p class="specimen-reading">
+      <span class="text-hoba-text font-medium">{t('specimen.reading')}</span> {reading}
+    </p>
+  )}
+</figure>
