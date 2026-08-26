@@ -31,7 +31,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
         <EntityBadge type="artifact" id={artifact.id} size="md" lang={lang} />
         <div class="flex items-center gap-2 text-xs text-hoba-muted">
           <span>{t('common.evidence')}: <strong class="text-hoba-text">{t(`level.${artifact.evidence_level}`)}</strong></span><span>•</span>
-          <span>{t('common.status')}: <strong class="text-emerald-600 dark:text-emerald-400">{t(`status.${artifact.status}`)}</strong></span>
+          <span>{t('common.status')}: <strong class="text-emerald-700 dark:text-emerald-400">{t(`status.${artifact.status}`)}</strong></span>
         </div>
       </div>
       <h1 class="text-2xl font-semibold text-hoba-text">{artifact.title}</h1>
@@ -73,7 +73,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {compatibleMechanisms.map((m) => (
           <a href={`${prefix}/mechanisms/${m.id}`} class="p-3 rounded-md border border-hoba-border bg-hoba-bg hover:border-blue-500/50 transition-colors block text-xs">
-            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-600 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
+            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-700 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
             <div class="font-semibold text-hoba-text">{m.title}</div>
             <p class="text-hoba-muted text-sm mt-1 line-clamp-2">{m.summary}</p>
           </a>
@@ -92,7 +92,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
         <div class="space-y-2">
           {relatedPatterns.map((p) => (
             <a href={`${prefix}/patterns/${p.id}`} class="p-2.5 rounded bg-hoba-card/60 border border-hoba-border border-l-2 border-l-amber-500 block hover:bg-hoba-hover">
-              <span class="font-semibold text-amber-600 dark:text-amber-400 font-mono">{p.id}:</span> <strong class="text-hoba-text">{p.title}</strong>
+              <span class="font-semibold text-amber-700 dark:text-amber-400 font-mono">{p.id}:</span> <strong class="text-hoba-text">{p.title}</strong>
               <p class="text-hoba-muted mt-0.5">{p.summary}</p>
             </a>
           ))}

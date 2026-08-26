@@ -8,12 +8,7 @@ interface Props {
 
 const { className = 'h-8 w-auto', showText = true } = Astro.props;
 ---
-<div class="inline-flex items-center gap-2.5 font-semibold">
-  <HobaMark class={`${className} text-hoba-text shrink-0`} role="img" aria-label="hoba logo" />
-  {showText && (
-    <div class="flex flex-col">
-      <span class="text-lg font-semibold text-hoba-text">hoba</span>
-      <span class="text-xs text-hoba-muted -mt-1">hoba.work</span>
-    </div>
-  )}
+<div class="inline-flex items-center gap-2.5">
+  <HobaMark class={`${className} text-hoba-text shrink-0`} role="img" aria-label="hoba" />
+  {showText && <span class="text-2xl font-semibold leading-none text-hoba-text">hoba</span>}
 </div>

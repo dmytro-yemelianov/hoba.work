@@ -9,10 +9,10 @@ export function getStaticPaths() {
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const verbs = [
-  { k: 'observed', color: 'text-purple-600 dark:text-purple-400' },
-  { k: 'compatible', color: 'text-blue-600 dark:text-blue-400' },
-  { k: 'supported', color: 'text-amber-600 dark:text-amber-400' },
-  { k: 'established', color: 'text-emerald-600 dark:text-emerald-400' },
+  { k: 'observed', color: 'text-purple-700 dark:text-purple-400' },
+  { k: 'compatible', color: 'text-blue-700 dark:text-blue-400' },
+  { k: 'supported', color: 'text-amber-700 dark:text-amber-400' },
+  { k: 'established', color: 'text-emerald-700 dark:text-emerald-400' },
 ] as const;
 ---
 <Layout lang={lang} title={t('method.title')} activeNav="methodology">

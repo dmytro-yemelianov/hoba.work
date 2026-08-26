@@ -90,10 +90,10 @@ const layerText: Record<string, string> = { purple: 'text-purple-700 dark:text-p
     <h2 class="text-sm font-semibold text-hoba-text mb-4">{t('graph.fallback')}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
       {graph.bundle.barriers.map((b) => (
-        <a href={`${prefix}/barriers/${b.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-emerald-500/50 block"><span class="text-emerald-600 dark:text-emerald-400 font-semibold font-mono">{b.id}:</span> {b.title}</a>
+        <a href={`${prefix}/barriers/${b.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-emerald-500/50 block"><span class="text-emerald-700 dark:text-emerald-400 font-semibold font-mono">{b.id}:</span> {b.title}</a>
       ))}
       {graph.bundle.mechanisms.map((m) => (
-        <a href={`${prefix}/mechanisms/${m.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-blue-500/50 block"><span class="text-blue-600 dark:text-blue-400 font-semibold font-mono">{m.id}:</span> {m.title}</a>
+        <a href={`${prefix}/mechanisms/${m.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-blue-500/50 block"><span class="text-blue-700 dark:text-blue-400 font-semibold font-mono">{m.id}:</span> {m.title}</a>
       ))}
     </div>
   </div>

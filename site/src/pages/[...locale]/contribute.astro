@@ -32,7 +32,7 @@ const t = useTranslations(lang);
       <h2 class="text-sm font-semibold text-hoba-text">{t('contrib.checks.title')}</h2>
       <ul class="space-y-2 text-sm text-hoba-muted">
         {(['1', '2', '3', '4', '5', '6'] as const).map((n) => (
-          <li class="flex items-center gap-2"><span class="text-emerald-600 dark:text-emerald-400">✓</span> {t(`contrib.checks.${n}`)}</li>
+          <li class="flex items-center gap-2"><span class="text-emerald-700 dark:text-emerald-400">✓</span> {t(`contrib.checks.${n}`)}</li>
         ))}
       </ul>
     </div>

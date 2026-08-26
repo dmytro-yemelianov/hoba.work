@@ -22,9 +22,9 @@ const barriersByStage = STAGES.map((st) => ({
   artifacts: bundle.artifacts.filter((a) => a.stages.includes(st)).length,
 }));
 const bars = [
-  { key: 'candidate', label: t('data.rem.candidate'), n: byRemovability('candidate'), text: 'text-emerald-700 dark:text-emerald-300', num: 'text-emerald-600 dark:text-emerald-400', fill: 'bg-emerald-500' },
-  { key: 'intermediary', label: t('data.rem.intermediary'), n: byRemovability('intermediary'), text: 'text-amber-700 dark:text-amber-300', num: 'text-amber-600 dark:text-amber-400', fill: 'bg-amber-500' },
-  { key: 'none', label: t('data.rem.none'), n: byRemovability('none'), text: 'text-rose-700 dark:text-rose-300', num: 'text-rose-600 dark:text-rose-400', fill: 'bg-rose-500' },
+  { key: 'candidate', label: t('data.rem.candidate'), n: byRemovability('candidate'), text: 'text-emerald-700 dark:text-emerald-300', num: 'text-emerald-700 dark:text-emerald-400', fill: 'bg-emerald-500' },
+  { key: 'intermediary', label: t('data.rem.intermediary'), n: byRemovability('intermediary'), text: 'text-amber-700 dark:text-amber-300', num: 'text-amber-700 dark:text-amber-400', fill: 'bg-amber-500' },
+  { key: 'none', label: t('data.rem.none'), n: byRemovability('none'), text: 'text-rose-700 dark:text-rose-300', num: 'text-rose-700 dark:text-rose-400', fill: 'bg-rose-500' },
 ];
 ---
 <Layout lang={lang} title={t('data.title')} activeNav="data">
@@ -41,7 +41,7 @@ const bars = [
 
   <div class="p-4 rounded-md border border-hoba-border border-l-2 border-l-amber-500 bg-hoba-card text-xs text-hoba-text mb-8 space-y-1">
     <div class="font-semibold flex items-center gap-1.5">
-      <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      <svg class="w-4 h-4 text-amber-700 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
       <span>{t('data.guard.title')}</span>
     </div>
     <p class="text-amber-700 dark:text-amber-300/80 leading-relaxed">{t('data.guard.text')}</p>
@@ -50,22 +50,22 @@ const bars = [
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
     <div class="p-4 rounded-md border border-hoba-border bg-hoba-card">
       <span class="text-xs text-hoba-muted">{t('data.metric.barriers')}</span>
-      <div class="text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mt-1">{bundle.barriers.length}</div>
+      <div class="text-2xl font-semibold text-emerald-700 dark:text-emerald-400 mt-1">{bundle.barriers.length}</div>
       <span class="text-xs text-hoba-muted">{t('data.metric.barriersSub')}</span>
     </div>
     <div class="p-4 rounded-md border border-hoba-border bg-hoba-card">
       <span class="text-xs text-hoba-muted">{t('data.metric.mechanisms')}</span>
-      <div class="text-2xl font-semibold text-blue-600 dark:text-blue-400 mt-1">{bundle.mechanisms.length}</div>
+      <div class="text-2xl font-semibold text-blue-700 dark:text-blue-400 mt-1">{bundle.mechanisms.length}</div>
       <span class="text-xs text-hoba-muted">{t('data.metric.honest', { n: honestBaselineCount })}</span>
     </div>
     <div class="p-4 rounded-md border border-hoba-border bg-hoba-card">
       <span class="text-xs text-hoba-muted">{t('data.metric.patterns')}</span>
-      <div class="text-2xl font-semibold text-amber-600 dark:text-amber-400 mt-1">{bundle.patterns.length}</div>
+      <div class="text-2xl font-semibold text-amber-700 dark:text-amber-400 mt-1">{bundle.patterns.length}</div>
       <span class="text-xs text-hoba-muted">{t('data.metric.patternsSub')}</span>
     </div>
     <div class="p-4 rounded-md border border-hoba-border bg-hoba-card">
       <span class="text-xs text-hoba-muted">{t('data.metric.loops')}</span>
-      <div class="text-2xl font-semibold text-pink-600 dark:text-pink-400 mt-1">{bundle.loops.length}</div>
+      <div class="text-2xl font-semibold text-pink-700 dark:text-pink-400 mt-1">{bundle.loops.length}</div>
       <span class="text-xs text-hoba-muted">{t('data.metric.loopsSub')}</span>
     </div>
   </div>
@@ -95,9 +95,9 @@ const bars = [
           <div class="flex items-center justify-between p-2 rounded bg-hoba-bg border border-hoba-border">
             <span class="text-hoba-text">{t(`stage.${st.stage}`)}</span>
             <div class="flex gap-3 text-hoba-muted text-xs">
-              <span>{t('data.byStage.barriers')} <strong class="text-emerald-600 dark:text-emerald-400">{st.barriers}</strong></span>
-              <span>{t('data.byStage.mechanisms')} <strong class="text-blue-600 dark:text-blue-400">{st.mechanisms}</strong></span>
-              <span>{t('data.byStage.signals')} <strong class="text-purple-600 dark:text-purple-400">{st.artifacts}</strong></span>
+              <span>{t('data.byStage.barriers')} <strong class="text-emerald-700 dark:text-emerald-400">{st.barriers}</strong></span>
+              <span>{t('data.byStage.mechanisms')} <strong class="text-blue-700 dark:text-blue-400">{st.mechanisms}</strong></span>
+              <span>{t('data.byStage.signals')} <strong class="text-purple-700 dark:text-purple-400">{st.artifacts}</strong></span>
             </div>
           </div>
         ))}

@@ -70,7 +70,7 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
       <div class="space-y-2">
         {compatibleMechanisms.map((m) => (
           <a href={`${prefix}/mechanisms/${m.id}`} class="p-3 rounded-md bg-hoba-bg border border-hoba-border hover:border-blue-500/50 block text-xs">
-            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-600 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
+            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-700 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
             <strong class="text-hoba-text">{m.title}</strong>
             <p class="text-hoba-muted text-sm mt-1">{m.summary}</p>
           </a>
@@ -84,7 +84,7 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
         <div class="space-y-2">
           {relevantInterventions.map((i) => (
             <a href={`${prefix}/interventions/${i.id}`} class="p-3 rounded-md bg-hoba-card border border-hoba-border border-l-2 border-l-cyan-500 block hover:bg-hoba-hover">
-              <span class="font-semibold text-cyan-600 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
+              <span class="font-semibold text-cyan-700 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
               <p class="text-hoba-muted mt-1">{i.summary}</p>
             </a>
           ))}

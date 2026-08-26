@@ -24,7 +24,9 @@ const navLinks = [
 ];
 
 // Every page exists in both languages, so the switcher keeps the visitor on the same page.
-const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: localizePath(Astro.url.pathname, l) }));
+// The 404 page is a single static file, so its switcher points at the language home pages.
+const switchBase = Astro.url.pathname.startsWith('/404') ? '/' : Astro.url.pathname;
+const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: localizePath(switchBase, l) }));
 const linkClass = (item: { key: string; highlight?: boolean }) =>
   active === item.key
     ? 'bg-hoba-card text-hoba-text border border-hoba-border'

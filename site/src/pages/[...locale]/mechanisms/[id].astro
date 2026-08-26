@@ -65,7 +65,7 @@ const facets = [
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
         {operatingBarriers.map((b) => (
           <a href={`${prefix}/barriers/${b.id}`} class="p-2.5 rounded bg-hoba-bg border border-hoba-border hover:border-emerald-500/50 block">
-            <span class="text-emerald-600 dark:text-emerald-400 font-semibold font-mono">{b.id}:</span> <span class="text-hoba-text">{b.title}</span>
+            <span class="text-emerald-700 dark:text-emerald-400 font-semibold font-mono">{b.id}:</span> <span class="text-hoba-text">{b.title}</span>
             <span class="text-xs text-hoba-muted block mt-0.5">{t('common.stage')}: {t(`stage.${b.stage}`)}</span>
           </a>
         ))}
@@ -101,18 +101,18 @@ const facets = [
         {amplifiedMechanisms.length > 0 && (
           <div>
             <span class="text-hoba-muted font-semibold text-xs">{t('mech.amplifies')}</span>
-            <div class="mt-1 space-y-1">{amplifiedMechanisms.map((am) => <a href={`${prefix}/mechanisms/${am.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline"><span class="text-blue-600 dark:text-blue-400 font-semibold font-mono">{am.id}:</span> {am.title}</a>)}</div>
+            <div class="mt-1 space-y-1">{amplifiedMechanisms.map((am) => <a href={`${prefix}/mechanisms/${am.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline"><span class="text-blue-700 dark:text-blue-400 font-semibold font-mono">{am.id}:</span> {am.title}</a>)}</div>
           </div>
         )}
         {maskedMechanisms.length > 0 && (
           <div>
             <span class="text-hoba-muted font-semibold text-xs">{t('mech.masks')}</span>
-            <div class="mt-1 space-y-1">{maskedMechanisms.map((mm) => <a href={`${prefix}/mechanisms/${mm.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline"><span class="text-blue-600 dark:text-blue-400 font-semibold font-mono">{mm.id}:</span> {mm.title}</a>)}</div>
+            <div class="mt-1 space-y-1">{maskedMechanisms.map((mm) => <a href={`${prefix}/mechanisms/${mm.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline"><span class="text-blue-700 dark:text-blue-400 font-semibold font-mono">{mm.id}:</span> {mm.title}</a>)}</div>
           </div>
         )}
         {participatingLoops.length > 0 && (
           <div>
-            <span class="text-pink-600 dark:text-pink-400 font-semibold text-xs">{t('mech.loops')}</span>
+            <span class="text-pink-700 dark:text-pink-400 font-semibold text-xs">{t('mech.loops')}</span>
             <div class="mt-1 space-y-1">{participatingLoops.map((lp) => <a href={`${prefix}/loops/${lp.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline"><span class="font-semibold font-mono">{lp.id}:</span> {lp.title}</a>)}</div>
           </div>
         )}
@@ -125,7 +125,7 @@ const facets = [
         <div class="space-y-2">
           {targetingInterventions.map((i) => (
             <a href={`${prefix}/interventions/${i.id}`} class="p-3 rounded-md bg-hoba-card border border-hoba-border border-l-2 border-l-cyan-500 block hover:bg-hoba-hover">
-              <span class="font-semibold text-cyan-600 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
+              <span class="font-semibold text-cyan-700 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
               <p class="text-hoba-muted mt-1">{i.summary}</p>
             </a>
           ))}

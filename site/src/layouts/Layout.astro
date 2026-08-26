@@ -17,7 +17,7 @@ const description = Astro.props.description ?? t('meta.description');
 
 const site = Astro.site ?? new URL('https://hoba.work');
 const canonicalURL = new URL(Astro.url.pathname, site);
-const alternateLinks = alternates(Astro.url.pathname, site);
+const alternateLinks = Astro.url.pathname.startsWith('/404') ? [] : alternates(Astro.url.pathname, site);
 ---
 <!doctype html>
 <html lang={lang} class="bg-hoba-bg text-hoba-text antialiased">

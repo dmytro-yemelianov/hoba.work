@@ -146,7 +146,7 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
               <div class="flex items-center justify-between gap-2 mb-2.5">
                 <EntityBadge type={node.type} id={node.id} lang={lang} />
                 {node.removability && <RemovabilityBadge removability={node.removability} lang={lang} />}
-                {typeof node.stage === 'string' && <span class="text-xs px-1.5 py-0.5 rounded bg-hoba-border text-hoba-muted">{t(`stage.${node.stage}`)}</span>}
+                {typeof node.stage === 'string' && <span class="text-xs px-1.5 py-0.5 rounded border border-hoba-border bg-hoba-bg text-hoba-muted">{t(`stage.${node.stage}`)}</span>}
               </div>
               <h3 class="font-semibold text-sm text-hoba-text group-hover:text-hoba-accent transition-colors">{node.title}</h3>
               <p class="text-sm text-hoba-muted mt-2 leading-relaxed line-clamp-3">{node.text}</p>
@@ -213,8 +213,8 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
     removabilityFilters.forEach((rf) => {
       rf.addEventListener('click', () => {
         activeRemovability = rf.dataset.removability ?? 'all';
-        removabilityFilters.forEach((r) => r.classList.remove('ring-1', 'ring-gray-900 dark:ring-white'));
-        rf.classList.add('ring-1', 'ring-gray-900 dark:ring-white');
+        removabilityFilters.forEach((r) => r.classList.remove('ring-1', 'ring-gray-900', 'dark:ring-white'));
+        rf.classList.add('ring-1', 'ring-gray-900', 'dark:ring-white');
         applyFilters();
       });
     });

@@ -41,9 +41,9 @@ const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.titl
       <div class="space-y-2">
         {loop.edges.map((edge) => (
           <div class="p-3 rounded bg-hoba-card border border-hoba-border border-l-2 border-l-pink-500 flex items-center justify-between gap-2 flex-wrap">
-            <div><a href={`${prefix}/mechanisms/${edge.from}`} class="text-blue-600 dark:text-blue-400 font-semibold hover:underline font-mono">{edge.from}</a> <span class="text-hoba-muted">({titleOf(edge.from)})</span></div>
-            <span class="text-pink-600 dark:text-pink-400 font-semibold text-xs px-2 py-0.5 rounded bg-hoba-bg">&rarr; {t(`relation.${edge.relation}`)} &rarr;</span>
-            <div><a href={`${prefix}/mechanisms/${edge.to}`} class="text-blue-600 dark:text-blue-400 font-semibold hover:underline font-mono">{edge.to}</a> <span class="text-hoba-muted">({titleOf(edge.to)})</span></div>
+            <div><a href={`${prefix}/mechanisms/${edge.from}`} class="text-blue-700 dark:text-blue-400 font-semibold hover:underline font-mono">{edge.from}</a> <span class="text-hoba-muted">({titleOf(edge.from)})</span></div>
+            <span class="text-pink-700 dark:text-pink-400 font-semibold text-xs px-2 py-0.5 rounded bg-hoba-bg">&rarr; {t(`relation.${edge.relation}`)} &rarr;</span>
+            <div><a href={`${prefix}/mechanisms/${edge.to}`} class="text-blue-700 dark:text-blue-400 font-semibold hover:underline font-mono">{edge.to}</a> <span class="text-hoba-muted">({titleOf(edge.to)})</span></div>
           </div>
         ))}
       </div>
@@ -54,7 +54,7 @@ const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.titl
       <div class="space-y-2">
         {memberMechanisms.map((m) => (
           <a href={`${prefix}/mechanisms/${m.id}`} class="p-3 rounded-md bg-hoba-bg border border-hoba-border hover:border-blue-500/50 block text-xs">
-            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-600 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
+            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-700 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
             <strong class="text-hoba-text">{m.title}</strong>
             <p class="text-hoba-muted text-sm mt-1">{m.summary}</p>
           </a>
@@ -68,7 +68,7 @@ const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.titl
         <div class="space-y-2">
           {breakingInterventions.map((i) => (
             <a href={`${prefix}/interventions/${i.id}`} class="p-3 rounded-md bg-hoba-card border border-hoba-border border-l-2 border-l-cyan-500 block hover:bg-hoba-hover">
-              <span class="font-semibold text-cyan-600 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
+              <span class="font-semibold text-cyan-700 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
               <p class="text-hoba-muted mt-1">{i.summary}</p>
             </a>
           ))}
