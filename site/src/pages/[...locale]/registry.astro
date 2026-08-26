@@ -17,7 +17,7 @@ const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 
 type EntityType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
-interface Card {
+interface Item {
   id: string;
   type: EntityType;
   title: string;
@@ -28,17 +28,24 @@ interface Card {
   removability?: RemovabilityType;
 }
 
-const cards: Card[] = [
-  ...bundle.artifacts.map<Card>((a) => ({ id: a.id, type: 'artifact', title: a.title, text: a.summary, link: `${prefix}/artifacts/${a.id}`, evidenceLevel: a.evidence_level, stage: a.stages })),
-  ...bundle.barriers.map<Card>((b) => ({ id: b.id, type: 'barrier', title: b.title, text: b.description, link: `${prefix}/barriers/${b.id}`, evidenceLevel: b.evidence_level, stage: b.stage })),
-  ...bundle.mechanisms.map<Card>((m) => ({ id: m.id, type: 'mechanism', title: m.title, text: m.summary, link: `${prefix}/mechanisms/${m.id}`, evidenceLevel: m.evidence_level, removability: m.facets.removability })),
-  ...bundle.patterns.map<Card>((p) => ({ id: p.id, type: 'pattern', title: p.title, text: p.summary, link: `${prefix}/patterns/${p.id}`, evidenceLevel: p.evidence_level })),
-  ...bundle.loops.map<Card>((l) => ({ id: l.id, type: 'loop', title: l.title, text: l.summary, link: `${prefix}/loops/${l.id}`, evidenceLevel: l.evidence_level })),
-  ...bundle.interventions.map<Card>((i) => ({ id: i.id, type: 'intervention', title: i.title, text: i.summary, link: `${prefix}/interventions/${i.id}`, evidenceLevel: i.evidence_level })),
+const items: Item[] = [
+  ...bundle.artifacts.map<Item>((a) => ({ id: a.id, type: 'artifact', title: a.title, text: a.summary, link: `${prefix}/artifacts/${a.id}`, evidenceLevel: a.evidence_level, stage: a.stages })),
+  ...bundle.barriers.map<Item>((b) => ({ id: b.id, type: 'barrier', title: b.title, text: b.description, link: `${prefix}/barriers/${b.id}`, evidenceLevel: b.evidence_level, stage: b.stage })),
+  ...bundle.mechanisms.map<Item>((m) => ({ id: m.id, type: 'mechanism', title: m.title, text: m.summary, link: `${prefix}/mechanisms/${m.id}`, evidenceLevel: m.evidence_level, removability: m.facets.removability })),
+  ...bundle.patterns.map<Item>((p) => ({ id: p.id, type: 'pattern', title: p.title, text: p.summary, link: `${prefix}/patterns/${p.id}`, evidenceLevel: p.evidence_level })),
+  ...bundle.loops.map<Item>((l) => ({ id: l.id, type: 'loop', title: l.title, text: l.summary, link: `${prefix}/loops/${l.id}`, evidenceLevel: l.evidence_level })),
+  ...bundle.interventions.map<Item>((i) => ({ id: i.id, type: 'intervention', title: i.title, text: i.summary, link: `${prefix}/interventions/${i.id}`, evidenceLevel: i.evidence_level })),
 ];
 
 const totalCount = countGraphNodes(bundle);
-const stageText = (stage: Card['stage']) => (Array.isArray(stage) ? stage.map((s) => t(`stage.${s}`)).join(' ') : stage ? t(`stage.${stage}`) : '');
+const stageLabels = (stage: Item['stage']): string[] => (Array.isArray(stage) ? stage.map((s) => t(`stage.${s}`)) : stage ? [t(`stage.${stage}`)] : []);
+const dataAttrs = (node: Item) => ({
+  'data-type': node.type,
+  'data-id': node.id.toLowerCase(),
+  'data-title': node.title.toLowerCase(),
+  'data-text': `${node.text} ${stageLabels(node.stage).join(' ')}`.toLowerCase(),
+  'data-removability': node.removability ?? '',
+});
 const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
   { type: 'all', label: t('registry.all'), count: totalCount },
   { type: 'artifact', label: t('entity.plural.artifact'), count: bundle.artifacts.length },
@@ -48,125 +55,117 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
   { type: 'loop', label: t('entity.plural.loop'), count: bundle.loops.length },
   { type: 'intervention', label: t('entity.plural.intervention'), count: bundle.interventions.length },
 ];
+const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] = [
+  { key: 'all', label: t('removability.all') },
+  { key: 'candidate', label: t('removability.candidate'), dot: 'bg-emerald-500' },
+  { key: 'intermediary', label: t('removability.intermediary'), dot: 'bg-amber-500' },
+  { key: 'none', label: t('removability.none'), dot: 'bg-rose-500' },
+];
 ---
 <Layout lang={lang} title={t('registry.title')} activeNav="registry">
-  <div class="mb-8">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-hoba-border pb-6">
-      <div>
-        <span class="text-xs font-medium text-hoba-muted">{t('registry.kicker', { version: bundle.version })}</span>
-        <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('registry.title')}</h1>
-      </div>
-      <div class="flex items-center gap-2 flex-wrap">
-        <ViewSwitch lang={lang} />
-        <a href="/openapi.json" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">{t('registry.openapi')}</a>
-        <a href="/data/latest/registry.json" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">registry.json</a>
-      </div>
+  <header class="page-header flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="kicker">{t('registry.kicker', { version: bundle.version })}</p>
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('registry.title')}</h1>
+      <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('registry.intro', { n: totalCount })}</p>
     </div>
-    <p class="text-sm text-hoba-muted mt-2">{t('registry.intro', { n: totalCount })}</p>
-  </div>
+    <div class="flex flex-wrap items-center gap-4">
+      <ViewSwitch lang={lang} />
+      <a href="/openapi.json" target="_blank" class="text-sm font-mono text-hoba-accent underline underline-offset-2">openapi.json</a>
+      <a href="/data/latest/registry.json" target="_blank" class="text-sm font-mono text-hoba-accent underline underline-offset-2">registry.json</a>
+    </div>
+  </header>
 
   <div class="space-y-4 mb-8">
-    <div class="relative">
+    <div class="relative max-w-xl">
       <label for="search-input" class="sr-only">{t('registry.search')}</label>
-      <input type="text" id="search-input" placeholder={t('registry.search')} class="w-full px-4 py-3 pl-11 rounded-md bg-hoba-card border border-hoba-border text-hoba-text placeholder-hoba-muted text-sm focus:outline-none focus:border-hoba-accent transition-colors" />
-      <svg class="w-5 h-5 text-hoba-muted absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input type="text" id="search-input" placeholder={t('registry.search')} class="w-full rounded-md border border-hoba-border bg-hoba-card pl-10 pr-4 py-2 text-base text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
+      <svg class="w-4 h-4 text-hoba-muted absolute left-3 top-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </div>
-
-    <div class="flex flex-wrap gap-2 text-xs" role="tablist" aria-label={t('registry.typeTabs')}>
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label={t('registry.typeTabs')}>
       {tabs.map((tab) => (
-        <button class={`type-tab px-3 py-1.5 rounded-md border ${tab.type === 'all' ? 'border-hoba-accent bg-hoba-accent/10 text-hoba-accent font-semibold' : 'border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text'}`} data-type={tab.type} role="tab">
-          {tab.label} ({tab.count})
+        <button type="button" role="tab" class={`type-tab pill ${tab.type === 'all' ? 'pill-active' : 'pill-muted hover:text-hoba-text'}`} data-type={tab.type} aria-selected={tab.type === 'all' ? 'true' : 'false'}>
+          {tab.label} <span class="font-mono">{tab.count}</span>
         </button>
       ))}
     </div>
-
-    <div class="flex flex-wrap items-center gap-3 p-3 rounded-md border border-hoba-border bg-hoba-card/40 text-xs">
-      <span class="text-hoba-muted font-semibold text-xs">{t('registry.filterAgency')}</span>
-      <button class="removability-filter px-2 py-0.5 rounded border border-transparent text-hoba-muted hover:text-hoba-text ring-1 ring-gray-900 dark:ring-white" data-removability="all">{t('removability.all')}</button>
-      <button class="removability-filter px-2 py-0.5 rounded border border-hoba-border bg-hoba-bg text-emerald-700 dark:text-emerald-300" data-removability="candidate">{t('removability.candidate')}</button>
-      <button class="removability-filter px-2 py-0.5 rounded border border-hoba-border bg-hoba-bg text-amber-700 dark:text-amber-300" data-removability="intermediary">{t('removability.intermediary')}</button>
-      <button class="removability-filter px-2 py-0.5 rounded border border-hoba-border bg-hoba-bg text-rose-700 dark:text-rose-300" data-removability="none">{t('removability.none')}</button>
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="meta mr-1">{t('registry.filterAgency')}</span>
+      {agency.map((a) => (
+        <button type="button" class={`removability-filter pill ${a.key === 'all' ? 'pill-active' : 'pill-muted hover:text-hoba-text'}`} data-removability={a.key} aria-pressed={a.key === 'all' ? 'true' : 'false'}>
+          {a.dot && <span class={`dot ${a.dot}`} aria-hidden="true"></span>}{a.label}
+        </button>
+      ))}
     </div>
   </div>
 
   <div data-view-root>
-    <!-- Table (default) -->
-    <div data-view="table" class="overflow-x-auto rounded-md border border-hoba-border bg-hoba-card">
-      <table class="w-full text-sm">
+    <div data-view="table" class="overflow-x-auto">
+      <table class="table">
         <thead>
-          <tr class="text-left text-xs text-hoba-muted border-b border-hoba-border">
-            <th scope="col" class="px-3 py-2 font-medium">{t('table.id')}</th>
-            <th scope="col" class="px-3 py-2 font-medium">{t('table.type')}</th>
-            <th scope="col" class="px-3 py-2 font-medium">{t('table.title')}</th>
-            <th scope="col" class="px-3 py-2 font-medium">{t('table.context')}</th>
-            <th scope="col" class="px-3 py-2 font-medium">{t('table.evidence')}</th>
+          <tr>
+            <th scope="col">{t('table.id')}</th>
+            <th scope="col">{t('table.type')}</th>
+            <th scope="col">{t('table.title')}</th>
+            <th scope="col">{t('table.context')}</th>
+            <th scope="col">{t('table.evidence')}</th>
           </tr>
         </thead>
         <tbody>
-          {cards.map((node) => (
-            <tr class="node-item border-b border-hoba-border last:border-0 hover:bg-hoba-hover" data-type={node.type} data-id={node.id.toLowerCase()} data-title={node.title.toLowerCase()} data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()} data-removability={node.removability ?? ''}>
-              <td class="px-3 py-2 font-mono whitespace-nowrap"><a href={node.link} class="text-hoba-accent hover:underline">{node.id}</a></td>
-              <td class="px-3 py-2 whitespace-nowrap"><EntityBadge type={node.type} lang={lang} /></td>
-              <td class="px-3 py-2"><a href={node.link} class="font-medium text-hoba-text hover:underline">{node.title}</a><div class="text-xs text-hoba-muted line-clamp-1">{node.text}</div></td>
-              <td class="px-3 py-2 whitespace-nowrap text-xs text-hoba-muted">
-                {node.removability ? <RemovabilityBadge removability={node.removability} lang={lang} /> : typeof node.stage === 'string' ? t(`stage.${node.stage}`) : Array.isArray(node.stage) ? node.stage.map((st) => t(`stage.${st}`)).join(', ') : '—'}
+          {items.map((node) => (
+            <tr class="node-item hover:bg-hoba-hover" {...dataAttrs(node)}>
+              <td class="font-mono text-sm whitespace-nowrap"><a href={node.link} class="text-hoba-accent hover:underline">{node.id}</a></td>
+              <td class="whitespace-nowrap"><EntityBadge type={node.type} lang={lang} /></td>
+              <td><a href={node.link} class="font-medium text-hoba-text hover:underline">{node.title}</a><p class="text-sm text-hoba-muted line-clamp-1">{node.text}</p></td>
+              <td class="whitespace-nowrap">
+                {node.removability ? <RemovabilityBadge removability={node.removability} lang={lang} /> : stageLabels(node.stage).length ? <span class="flex flex-wrap gap-1">{stageLabels(node.stage).map((s) => <span class="pill pill-muted">{s}</span>)}</span> : <span class="text-hoba-muted">—</span>}
               </td>
-              <td class="px-3 py-2 whitespace-nowrap text-xs text-hoba-muted">{t(`level.${node.evidenceLevel as 'established'}`)}</td>
+              <td class="whitespace-nowrap"><span class="pill pill-muted">{t(`level.${node.evidenceLevel as 'established'}`)}</span></td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
 
-    <!-- List -->
-    <div data-view="list" class="rounded-md border border-hoba-border bg-hoba-card divide-y divide-hoba-border">
-      {cards.map((node) => (
-        <a href={node.link} class="node-item flex items-baseline gap-3 px-3 py-2 hover:bg-hoba-hover text-sm" data-type={node.type} data-id={node.id.toLowerCase()} data-title={node.title.toLowerCase()} data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()} data-removability={node.removability ?? ''}>
-          <span class="font-mono text-hoba-accent w-14 shrink-0">{node.id}</span>
-          <span class="font-medium text-hoba-text shrink-0">{node.title}</span>
-          <span class="text-hoba-muted truncate hidden md:inline">{node.text}</span>
+    <div data-view="list" class="row-list border-t border-hoba-border">
+      {items.map((node) => (
+        <a href={node.link} class="node-item row-link text-base" {...dataAttrs(node)}>
+          <span class="font-mono text-sm text-hoba-accent w-16 shrink-0">{node.id}</span>
+          <span class="font-medium text-hoba-text">{node.title}</span>
+          <span class="text-sm text-hoba-muted truncate hidden md:inline flex-1 min-w-0">{node.text}</span>
         </a>
       ))}
     </div>
 
-    <!-- Cards -->
     <div data-view="cards">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {cards.map((node) => (
-          <a
-            href={node.link}
-            class="node-item p-4 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover transition-colors flex flex-col justify-between group"
-            data-type={node.type}
-            data-id={node.id.toLowerCase()}
-            data-title={node.title.toLowerCase()}
-            data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()}
-            data-removability={node.removability ?? ''}
-          >
+        {items.map((node) => (
+          <a href={node.link} class="node-item rounded-md border border-hoba-border bg-hoba-card p-4 hover:bg-hoba-hover transition-colors flex flex-col gap-3" {...dataAttrs(node)}>
+            <div class="flex flex-wrap items-center gap-2">
+              <EntityBadge type={node.type} id={node.id} lang={lang} />
+              {node.removability && <RemovabilityBadge removability={node.removability} lang={lang} />}
+              {stageLabels(node.stage).slice(0, 1).map((s) => <span class="pill pill-muted">{s}</span>)}
+            </div>
             <div>
-              <div class="flex items-center justify-between gap-2 mb-2.5">
-                <EntityBadge type={node.type} id={node.id} lang={lang} />
-                {node.removability && <RemovabilityBadge removability={node.removability} lang={lang} />}
-                {typeof node.stage === 'string' && <span class="text-xs px-1.5 py-0.5 rounded border border-hoba-border bg-hoba-bg text-hoba-muted">{t(`stage.${node.stage}`)}</span>}
-              </div>
-              <h3 class="font-semibold text-sm text-hoba-text group-hover:text-hoba-accent transition-colors">{node.title}</h3>
-              <p class="text-sm text-hoba-muted mt-2 leading-relaxed line-clamp-3">{node.text}</p>
+              <h3 class="text-base font-semibold text-hoba-text">{node.title}</h3>
+              <p class="mt-1 text-sm text-hoba-muted line-clamp-3">{node.text}</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-hoba-border flex items-center justify-between text-xs text-hoba-muted">
-              <span>{t('common.evidence')}: <strong class="text-hoba-text font-medium">{t(`level.${node.evidenceLevel as 'established'}`)}</strong></span>
-              <span class="text-hoba-accent">{t('common.viewNode')} &rarr;</span>
-            </div>
+            <p class="meta mt-auto">{t('common.evidence')}: {t(`level.${node.evidenceLevel as 'established'}`)}</p>
           </a>
         ))}
       </div>
     </div>
   </div>
 
-  <div id="no-results" class="hidden py-16 text-center text-hoba-muted text-sm">{t('registry.noResults')}</div>
+  <p id="no-results" class="hidden py-16 text-center text-hoba-muted text-base">{t('registry.noResults')}</p>
 
   <script>
     const TYPES = ['all', 'artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
-    const ACTIVE_TAB = 'type-tab px-3 py-1.5 rounded-md border border-hoba-accent bg-hoba-accent/10 text-hoba-accent font-semibold';
-    const IDLE_TAB = 'type-tab px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text';
+    const setActive = (el: Element, on: boolean) => {
+      el.classList.toggle('pill-active', on);
+      el.classList.toggle('pill-muted', !on);
+      el.classList.toggle('hover:text-hoba-text', !on);
+    };
 
     let activeType = 'all';
     let activeRemovability = 'all';
@@ -181,13 +180,13 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
     function applyFilters() {
       let visibleCount = 0;
       const activeView = document.documentElement.dataset.view ?? 'table';
-      items.forEach((card) => {
-        const matchesType = activeType === 'all' || card.dataset.type === activeType;
-        const matchesRemovability = activeRemovability === 'all' || card.dataset.removability === activeRemovability;
-        const matchesSearch = !searchQuery || (card.dataset.id ?? '').includes(searchQuery) || (card.dataset.title ?? '').includes(searchQuery) || (card.dataset.text ?? '').includes(searchQuery);
+      items.forEach((item) => {
+        const matchesType = activeType === 'all' || item.dataset.type === activeType;
+        const matchesRemovability = activeRemovability === 'all' || item.dataset.removability === activeRemovability;
+        const matchesSearch = !searchQuery || (item.dataset.id ?? '').includes(searchQuery) || (item.dataset.title ?? '').includes(searchQuery) || (item.dataset.text ?? '').includes(searchQuery);
         const visible = matchesType && matchesRemovability && matchesSearch;
-        card.classList.toggle('hidden', !visible);
-        if (visible && card.closest('[data-view]')?.getAttribute('data-view') === activeView) visibleCount++;
+        item.classList.toggle('hidden', !visible);
+        if (visible && item.closest('[data-view]')?.getAttribute('data-view') === activeView) visibleCount++;
       });
       noResults?.classList.toggle('hidden', visibleCount !== 0);
     }
@@ -195,8 +194,9 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
     function selectType(type: string) {
       activeType = TYPES.includes(type) ? type : 'all';
       typeTabs.forEach((tab) => {
-        tab.className = tab.dataset.type === activeType ? ACTIVE_TAB : IDLE_TAB;
-        tab.setAttribute('aria-selected', String(tab.dataset.type === activeType));
+        const on = tab.dataset.type === activeType;
+        setActive(tab, on);
+        tab.setAttribute('aria-selected', String(on));
       });
       const url = new URL(window.location.href);
       if (activeType === 'all') url.searchParams.delete('type');
@@ -213,13 +213,16 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
     removabilityFilters.forEach((rf) => {
       rf.addEventListener('click', () => {
         activeRemovability = rf.dataset.removability ?? 'all';
-        removabilityFilters.forEach((r) => r.classList.remove('ring-1', 'ring-gray-900', 'dark:ring-white'));
-        rf.classList.add('ring-1', 'ring-gray-900', 'dark:ring-white');
+        removabilityFilters.forEach((r) => {
+          const on = r === rf;
+          setActive(r, on);
+          r.setAttribute('aria-pressed', String(on));
+        });
         applyFilters();
       });
     });
-
     window.addEventListener('hoba:view', applyFilters);
+
     const initialType = new URLSearchParams(window.location.search).get('type');
     if (initialType) selectType(initialType);
   </script>

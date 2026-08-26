@@ -28,6 +28,16 @@ export default {
           intervention: '#1f6feb',
         },
       },
+      // Gentle scale: 13 / 14 / 16 / 18 / 20 / 24 / 28 — no large jumps, nothing below 13px.
+      fontSize: {
+        xs: ['0.8125rem', { lineHeight: '1.25rem' }],
+        sm: ['0.875rem', { lineHeight: '1.375rem' }],
+        base: ['1rem', { lineHeight: '1.6rem' }],
+        lg: ['1.125rem', { lineHeight: '1.65rem' }],
+        xl: ['1.25rem', { lineHeight: '1.7rem' }],
+        '2xl': ['1.5rem', { lineHeight: '1.9rem' }],
+        '3xl': ['1.75rem', { lineHeight: '2.1rem' }],
+      },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],

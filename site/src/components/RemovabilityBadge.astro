@@ -10,7 +10,7 @@ const { removability, lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 const dot = { candidate: 'bg-emerald-500', intermediary: 'bg-amber-500', none: 'bg-rose-500' }[removability];
 ---
-<span class="inline-flex items-center gap-1.5 text-xs font-medium text-hoba-muted px-2 py-0.5 rounded-md border border-hoba-border bg-hoba-bg" title={t(`removability.${removability}.desc`)}>
-  <span class={`w-1.5 h-1.5 rounded-full ${dot}`} aria-hidden="true"></span>
+<span class="pill pill-muted" title={t(`removability.${removability}.desc`)}>
+  <span class={`dot ${dot}`} aria-hidden="true"></span>
   <span>{t(`removability.${removability}`)}</span>
 </span>

@@ -5,13 +5,11 @@ type EntityType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'i
 interface Props {
   type: EntityType;
   id?: string;
-  size?: 'sm' | 'md';
   lang?: Lang;
 }
 
-const { type, id, size = 'sm', lang = 'en' } = Astro.props;
+const { type, id, lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
-
 const DOT: Record<EntityType, string> = {
   artifact: 'bg-purple-500',
   barrier: 'bg-emerald-500',
@@ -21,10 +19,9 @@ const DOT: Record<EntityType, string> = {
   intervention: 'bg-cyan-500',
   evidence: 'bg-gray-500',
 };
-const pad = size === 'sm' ? 'px-2 py-0.5' : 'px-2.5 py-1';
 ---
-<span class={`inline-flex items-center gap-1.5 rounded-md border border-hoba-border bg-hoba-bg text-xs font-medium text-hoba-text ${pad}`}>
-  <span class={`w-1.5 h-1.5 rounded-full ${DOT[type]}`} aria-hidden="true"></span>
+<span class="pill">
+  <span class={`dot ${DOT[type]}`} aria-hidden="true"></span>
   <span>{t(`entity.${type}`)}</span>
   {id && <span class="font-mono text-hoba-muted">{id}</span>}
 </span>

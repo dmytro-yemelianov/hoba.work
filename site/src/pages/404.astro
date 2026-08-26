@@ -1,7 +1,4 @@
 ---
-// Single static 404.html (Cloudflare Pages serves one for the whole site). The copy is
-// rendered in both languages and the visible one is chosen client-side from the URL
-// prefix / preference cookie, so /uk/… misses read Ukrainian.
 import Layout from '../layouts/Layout.astro';
 import Mascot from '../components/Mascot.astro';
 import { LANGS, localePrefix, useTranslations } from '../i18n/utils';
@@ -11,14 +8,14 @@ import { LANGS, localePrefix, useTranslations } from '../i18n/utils';
     const t = useTranslations(lang);
     const prefix = localePrefix(lang);
     return (
-      <section data-nf-lang={lang} class={`py-16 text-center max-w-2xl mx-auto ${lang === 'en' ? '' : 'hidden'}`} lang={lang}>
-        <Mascot className="w-40 h-40 mx-auto" />
-        <p class="mt-6 text-sm text-hoba-muted">{t('nf.kicker')}</p>
+      <section data-nf-lang={lang} class={`py-16 max-w-2xl mx-auto text-center ${lang === 'en' ? '' : 'hidden'}`} lang={lang}>
+        <Mascot className="w-32 h-32 mx-auto" />
+        <p class="kicker mt-6">{t('nf.kicker')}</p>
         <h1 class="mt-2 text-2xl font-semibold text-hoba-text">{t('nf.heading')}</h1>
-        <p class="mt-4 text-sm text-hoba-muted leading-relaxed">{t('nf.text')}</p>
-        <div class="mt-8 flex justify-center gap-3 text-sm">
-          <a href={`${prefix}/registry`} class="px-5 py-2.5 rounded-md bg-hoba-accent hover:opacity-90 text-hoba-bg font-semibold transition-colors">{t('nf.registry')}</a>
-          <a href={prefix || '/'} class="px-5 py-2.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text transition-colors">{t('common.home')}</a>
+        <p class="mt-4 text-base text-hoba-muted">{t('nf.text')}</p>
+        <div class="mt-8 flex justify-center gap-3">
+          <a href={`${prefix}/registry`} class="btn btn-primary">{t('nf.registry')}</a>
+          <a href={prefix || '/'} class="btn btn-secondary">{t('common.home')}</a>
         </div>
       </section>
     );

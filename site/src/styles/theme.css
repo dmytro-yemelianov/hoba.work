@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Theme tokens. Tailwind's `hoba-*` colors read these RGB triples, so every
    `bg-hoba-card/60`-style utility follows the active theme automatically. */
 :root {
@@ -9,6 +13,13 @@
   --c-text: 17 24 39;
   --c-muted: 82 96 115;
   --c-accent: 29 78 216;
+  /* Graph layer hues — shared by the canvas renderer and the legend pills. */
+  --g-artifact: 109 40 217;
+  --g-barrier: 21 128 61;
+  --g-mechanism: 29 78 216;
+  --g-pattern: 180 60 10;
+  --g-loop: 190 24 93;
+  --g-intervention: 14 116 144;
 }
 .dark {
   color-scheme: dark;
@@ -19,19 +30,24 @@
   --c-text: 230 237 243;
   --c-muted: 139 148 158;
   --c-accent: 88 166 255;
+  --g-artifact: 163 113 247;
+  --g-barrier: 63 185 80;
+  --g-mechanism: 88 166 255;
+  --g-pattern: 240 136 62;
+  --g-loop: 219 97 162;
+  --g-intervention: 34 211 238;
 }
 html {
   background-color: rgb(var(--c-bg));
   color: rgb(var(--c-text));
 }
-
+body {
+  font-size: 1rem; /* 16px body; scale 13 / 14 / 16 / 18 / 20 / 24 / 28 */
+  line-height: 1.6;
+}
 code, kbd, pre, samp {
   font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
   font-size: 0.9em;
-}
-body {
-  font-size: 0.875rem; /* 14px base; the scale is 12 / 14 / 16 / 18 / 24 / 30 */
-  line-height: 1.55;
 }
 
 /* Data views: table is the default; the choice is stored in localStorage and
@@ -41,3 +57,97 @@ html:not([data-view]) [data-view-root] > [data-view="table"],
 html[data-view="table"] [data-view-root] > [data-view="table"],
 html[data-view="list"] [data-view-root] > [data-view="list"],
 html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block; }
+
+@layer components {
+  /* Tags */
+  .pill { @apply inline-flex items-center gap-1.5 rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-xs font-medium text-hoba-text whitespace-nowrap leading-5; }
+  .pill-muted { @apply text-hoba-muted; }
+  .pill-active { @apply bg-hoba-text border-hoba-text text-hoba-bg; }
+  /* Checkbox styled as a pill: on = solid, off = struck through and faded. */
+  .pill-toggle { @apply pill cursor-pointer select-none transition-opacity; }
+  .pill-toggle:has(:checked) { @apply bg-hoba-hover border-hoba-text/25; }
+  .pill-toggle:not(:has(:checked)) { @apply text-hoba-muted opacity-60; }
+  .pill-toggle:not(:has(:checked)) .pill-label { @apply line-through; }
+  .pill-toggle:not(:has(:checked)) .dot { @apply opacity-40; }
+  .pill-toggle:has(:focus-visible) { @apply ring-2 ring-hoba-accent ring-offset-1 ring-offset-hoba-bg; }
+  .dot { @apply inline-block w-1.5 h-1.5 rounded-full shrink-0; }
+
+  /* Buttons */
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors; }
+  .btn-primary { @apply bg-hoba-accent text-hoba-bg hover:opacity-90; }
+  .btn-secondary { @apply border border-hoba-border text-hoba-text hover:bg-hoba-hover; }
+  .btn-ghost { @apply text-hoba-muted hover:text-hoba-text; }
+
+  /* Lists of rows separated by hairlines instead of boxes */
+  .row-list { @apply divide-y divide-hoba-border; }
+  .row { @apply flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3; }
+  .row-link { @apply row hover:bg-hoba-hover -mx-2 px-2 rounded-md; }
+
+  /* Blog-style callout: a coloured left rule, no box */
+  .callout { @apply border-l-2 pl-4 my-6; }
+
+  /* Section rhythm */
+  .page-header { @apply pb-6 mb-8 border-b border-hoba-border; }
+  .section { @apply mt-10; }
+  .section-title { @apply text-xl font-semibold text-hoba-text mb-3; }
+  .kicker { @apply text-sm text-hoba-muted; }
+  .meta { @apply text-sm text-hoba-muted; }
+
+  /* Long-form prose (methodology, about, developers, contribute) */
+  .prose-hoba { @apply max-w-3xl; }
+  .prose-hoba > * + * { @apply mt-4; }
+  .prose-hoba h2 { @apply text-xl font-semibold text-hoba-text mt-10 mb-2; }
+  .prose-hoba h3 { @apply text-lg font-semibold text-hoba-text mt-8 mb-2; }
+  .prose-hoba p, .prose-hoba li { @apply text-base leading-relaxed; }
+  .prose-hoba .lead { @apply text-lg text-hoba-muted; }
+  .prose-hoba ul { @apply list-disc pl-6 space-y-1; }
+  .prose-hoba ol { @apply list-decimal pl-6 space-y-1; }
+  .prose-hoba blockquote { @apply border-l-2 border-hoba-accent pl-4 text-hoba-text italic; }
+  .prose-hoba code { @apply text-sm bg-hoba-hover rounded px-1 py-0.5; }
+  .prose-hoba pre { @apply text-sm bg-hoba-hover rounded-md p-4 overflow-x-auto; }
+  .prose-hoba pre code { @apply bg-transparent p-0; }
+  .prose-hoba a { @apply text-hoba-accent underline underline-offset-2; }
+  .prose-hoba hr { @apply border-hoba-border my-8; }
+  .prose-hoba dl { @apply grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2; }
+  .prose-hoba dt { @apply text-hoba-muted; }
+
+  /* Knowledge-graph explorer */
+  .graph-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
+  .graph-toolbar { @apply flex flex-wrap items-center gap-x-4 gap-y-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }
+  .graph-canvas { @apply block w-full flex-1 outline-none; }
+  .graph-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
+  .icon-btn { @apply inline-flex items-center justify-center w-8 h-8 rounded-md text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors; }
+  /* Details: a bottom sheet on a phone, a side panel from `sm` up. */
+  .graph-panel {
+    @apply absolute z-10 overflow-y-auto bg-hoba-card/95 backdrop-blur-sm transition-transform duration-200 ease-out;
+    @apply inset-x-0 bottom-0 max-h-[70%] border-t border-hoba-border translate-y-full;
+    @apply sm:inset-y-0 sm:left-auto sm:right-0 sm:w-[23rem] sm:max-h-none sm:border-t-0 sm:border-l sm:translate-y-0 sm:translate-x-full;
+  }
+  .graph-panel.is-open { @apply translate-y-0 sm:translate-x-0; }
+
+  /* Tables */
+  .table { @apply w-full text-base; }
+  .table th { @apply text-left text-sm font-medium text-hoba-muted pb-2 pr-4 border-b border-hoba-border; }
+  .table td { @apply py-3 pr-4 border-b border-hoba-border align-top; }
+  .table tr:last-child td { @apply border-0; }
+}
+
+/* The explorer keeps working when promoted to the fullscreen layer: the theme
+   tokens live on <html>, so only the box needs resizing. */
+.graph-shell:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background-color: rgb(var(--c-bg));
+}
+.graph-shell:fullscreen .graph-toolbar { background-color: rgb(var(--c-card)); }
+/* Fallback for browsers that refuse the Fullscreen API on ordinary elements. */
+.graph-shell.is-pseudo-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  height: 100vh !important;
+  border: 0;
+  border-radius: 0;
+}

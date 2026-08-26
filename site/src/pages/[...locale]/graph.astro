@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getGraph } from '../../lib/registry';
-import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { getGraph, STAGES } from '../../lib/registry';
+import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import type { GraphNodeInput, GraphRelationType } from '../../lib/graph-view';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -11,170 +12,443 @@ const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const prefix = localePrefix(lang);
 const graph = getGraph(lang);
-const graphData = JSON.stringify(graph.toCytoscapeJSON()).replace(/</g, '\\u003c');
-const i18n = JSON.stringify({
-  prefix,
-  ...clientDictionary(lang, ['common.type', 'common.stage', 'facet.removability', 'common.evidence']),
-}).replace(/</g, '\\u003c');
-const layers = [
-  { type: 'artifact', color: 'purple' },
-  { type: 'barrier', color: 'emerald' },
-  { type: 'mechanism', color: 'blue' },
-  { type: 'pattern', color: 'amber' },
-  { type: 'loop', color: 'pink' },
-  { type: 'intervention', color: 'cyan' },
-] as const;
-const layerText: Record<string, string> = { purple: 'text-purple-700 dark:text-purple-300', emerald: 'text-emerald-700 dark:text-emerald-300', blue: 'text-blue-700 dark:text-blue-300', amber: 'text-amber-700 dark:text-amber-300', pink: 'text-pink-700 dark:text-pink-300', cyan: 'text-cyan-700 dark:text-cyan-300' };
+const bundle = graph.bundle;
+
+// The x axis is the hiring funnel itself: every node inherits the stage of what
+// it attaches to, so the picture reads left to right instead of as a hairball.
+const stageIndex = new Map(STAGES.map((stage, index) => [stage, index] as const));
+const mean = (values: (number | undefined)[]): number | undefined => {
+  const known = values.filter((v): v is number => v !== undefined);
+  return known.length ? known.reduce((a, b) => a + b, 0) / known.length : undefined;
+};
+const barrierLane = new Map(bundle.barriers.map((b) => [b.id, stageIndex.get(b.stage)] as const));
+const artifactLane = new Map(bundle.artifacts.map((a) => [a.id, mean(a.stages.map((s) => stageIndex.get(s)))] as const));
+const mechanismLane = new Map(bundle.mechanisms.map((m) => [m.id, mean(m.operates_at.map((id) => barrierLane.get(id)))] as const));
+const patternLane = new Map(
+  bundle.patterns.map((p) => [p.id, mean([...p.required_artifacts.map((id) => artifactLane.get(id)), ...p.compatible_mechanisms.map((id) => mechanismLane.get(id))])] as const)
+);
+const loopLane = new Map(bundle.loops.map((l) => [l.id, mean(l.mechanisms.map((id) => mechanismLane.get(id)))] as const));
+const laneOf = (id: string): number | undefined =>
+  barrierLane.get(id) ?? artifactLane.get(id) ?? mechanismLane.get(id) ?? patternLane.get(id) ?? loopLane.get(id);
+const interventionLane = new Map(bundle.interventions.map((i) => [i.id, mean(i.targets.map(laneOf))] as const));
+
+/** Facet labels double as list headings elsewhere, where they carry a colon. */
+const label = (key: Parameters<typeof t>[0]) => t(key).replace(/:$/, '');
+const evidence = (level: string) => ({ label: label('common.evidence'), value: t(`level.${level}` as Parameters<typeof t>[0]) });
+
+// Everything the explorer shows is localized here, at build time: the client
+// ships a plain data file and never needs the dictionary for facet values.
+const nodes: GraphNodeInput[] = [
+  ...bundle.artifacts.map((a) => ({
+    id: a.id,
+    type: 'artifact' as const,
+    title: a.title,
+    summary: a.summary,
+    href: `${prefix}/artifacts/${a.id}`,
+    lane: artifactLane.get(a.id),
+    facts: [
+      { label: label('common.stage'), value: a.stages.map((s) => t(`stage.${s}`)).join(' · ') },
+      evidence(a.evidence_level),
+    ],
+  })),
+  ...bundle.barriers.map((b) => ({
+    id: b.id,
+    type: 'barrier' as const,
+    title: b.title,
+    summary: b.description,
+    href: `${prefix}/barriers/${b.id}`,
+    lane: barrierLane.get(b.id),
+    facts: [
+      { label: label('common.stage'), value: t(`stage.${b.stage}`) },
+      { label: t('bar.order', { n: b.order }).split(':')[0], value: `#${b.order}` },
+      evidence(b.evidence_level),
+    ],
+  })),
+  ...bundle.mechanisms.map((m) => ({
+    id: m.id,
+    type: 'mechanism' as const,
+    title: m.title,
+    summary: m.summary,
+    href: `${prefix}/mechanisms/${m.id}`,
+    lane: mechanismLane.get(m.id),
+    removability: m.facets.removability,
+    facts: [
+      { label: label('facet.actor'), value: t(`actor.${m.facets.actor}`) },
+      { label: label('facet.nature'), value: t(`nature.${m.facets.nature}`) },
+      { label: label('facet.visibility'), value: t(`visibility.${m.facets.visibility}`) },
+      { label: label('facet.removability'), value: t(`removability.short.${m.facets.removability}`) },
+      evidence(m.evidence_level),
+    ],
+  })),
+  ...bundle.patterns.map((p) => ({
+    id: p.id,
+    type: 'pattern' as const,
+    title: p.title,
+    summary: p.summary,
+    href: `${prefix}/patterns/${p.id}`,
+    lane: patternLane.get(p.id),
+    facts: [evidence(p.evidence_level)],
+  })),
+  ...bundle.loops.map((l) => ({
+    id: l.id,
+    type: 'loop' as const,
+    title: l.title,
+    summary: l.summary,
+    href: `${prefix}/loops/${l.id}`,
+    lane: loopLane.get(l.id),
+    facts: [{ label: label('loop.members', { n: l.mechanisms.length }).split('(')[0].trim(), value: String(l.mechanisms.length) }, evidence(l.evidence_level)],
+  })),
+  ...bundle.interventions.map((i) => ({
+    id: i.id,
+    type: 'intervention' as const,
+    title: i.title,
+    summary: i.summary,
+    href: `${prefix}/interventions/${i.id}`,
+    lane: interventionLane.get(i.id),
+    facts: [
+      { label: label('int.actor'), value: t(`iactor.${i.actor}`) },
+      { label: label('int.scope'), value: t(`scope.${i.scope}`) },
+      { label: label('int.cost'), value: t(`cost.${i.cost}`) },
+      evidence(i.evidence_level),
+    ],
+  })),
+];
+
+const edges = graph.edges.map((e) => ({ source: e.source, target: e.target, relation: e.type }));
+const relationTypes: GraphRelationType[] = ['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates'];
+
+const json = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
+const graphData = json({ nodes, edges, lanes: STAGES.map((stage) => ({ label: t(`stage.${stage}`) })) });
+const strings = json({
+  relations: Object.fromEntries(relationTypes.map((r) => [r, t(`relation.${r}`)])),
+  outgoing: t('graph.outgoing'),
+  incoming: t('graph.incoming'),
+  noEdges: t('graph.noEdges'),
+  degree: t('graph.degree'),
+  visible: t('graph.visible'),
+  fullscreen: t('graph.fullscreen'),
+  exitFullscreen: t('graph.exitFullscreen'),
+  tooltipHint: t('graph.tooltipHint'),
+  openDetail: t('graph.openDetail'),
+  types: Object.fromEntries(['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'].map((k) => [k, t(`entity.${k}` as Parameters<typeof t>[0])])),
+});
+
+const layers = ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
+const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 ---
 <Layout lang={lang} title={t('graph.title')} activeNav="graph">
-  <div class="mb-6 border-b border-hoba-border pb-4">
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <div>
-        <span class="text-xs font-medium text-hoba-muted">{t('graph.kicker')}</span>
-        <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('graph.title')}</h1>
-      </div>
-      <div class="flex items-center gap-2">
-        <a href="/data/latest/graph.graphml" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">{t('graph.downloadGraphml')}</a>
-        <a href="/data/latest/graph.json" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">{t('graph.downloadJson')}</a>
-      </div>
+  <header class="page-header flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="kicker">{t('graph.kicker')}</p>
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('graph.title')}</h1>
+      <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('graph.intro', { nodes: nodeCount, edges: graph.edges.length })}</p>
     </div>
-    <p class="text-sm text-hoba-muted mt-2">{t('graph.intro', { nodes: graph.nodeMap.size - graph.bundle.evidence.length, edges: graph.edges.length })}</p>
-  </div>
+    <div class="flex gap-4 text-sm">
+      <a href="/data/latest/graph.graphml" target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">graph.graphml</a>
+      <a href="/data/latest/graph.json" target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">graph.json</a>
+    </div>
+  </header>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-    <div class="lg:col-span-4 space-y-4">
-      <div class="p-4 rounded-md border border-hoba-border bg-hoba-card text-xs">
-        <h2 class="text-xs font-semibold text-hoba-muted mb-3">{t('graph.filterLayers')}</h2>
-        <div class="grid grid-cols-2 gap-2">
-          {layers.map((l) => (
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="type-toggle rounded focus:ring-0" data-type={l.type} checked />
-              <span class={`${layerText[l.color]} font-semibold`}>{t(`entity.plural.${l.type}`)}</span>
-            </label>
-          ))}
-        </div>
-      </div>
+  <div id="graph-shell" class="graph-shell h-[min(74vh,760px)] min-h-[480px]">
+    <div class="graph-toolbar">
+      <fieldset class="flex flex-wrap items-center gap-1.5">
+        <legend class="sr-only">{t('graph.filterLayers')}</legend>
+        {layers.map((type) => (
+          <label class="pill-toggle">
+            <input type="checkbox" class="type-toggle sr-only" data-type={type} checked />
+            <span class="dot" style={`background-color: rgb(var(--g-${type}))`} aria-hidden="true"></span>
+            <span class="pill-label">{t(`entity.plural.${type}`)}</span>
+          </label>
+        ))}
+      </fieldset>
 
-      <div class="p-4 rounded-md border border-hoba-border bg-hoba-card text-xs">
-        <label for="select-removability" class="text-xs font-semibold text-hoba-muted mb-2 block">{t('graph.removabilityFilter')}</label>
-        <select id="select-removability" class="w-full p-2 bg-hoba-bg border border-hoba-border rounded text-xs text-hoba-text">
+      <div class="flex w-full sm:w-auto sm:ml-auto items-center gap-2">
+      <label class="flex flex-1 sm:flex-none items-center gap-2 text-sm text-hoba-muted min-w-0">
+        <span class="hidden lg:inline">{t('graph.removabilityFilter')}</span>
+        <select id="select-removability" class="w-full sm:w-auto rounded-md border border-hoba-border bg-hoba-card px-2 py-1 text-sm text-hoba-text">
           <option value="all">{t('graph.rem.all')}</option>
           <option value="candidate">{t('graph.rem.candidate')}</option>
           <option value="intermediary">{t('graph.rem.intermediary')}</option>
           <option value="none">{t('graph.rem.none')}</option>
         </select>
-      </div>
+      </label>
 
-      <div id="inspector-card" class="p-4 rounded-md border border-hoba-border bg-hoba-card text-xs space-y-3" aria-live="polite">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-semibold text-hoba-muted">{t('graph.inspector')}</span>
-          <span id="insp-id" class="text-hoba-accent font-semibold">{t('graph.selectNode')}</span>
-        </div>
-        <h3 id="insp-title" class="text-sm font-semibold text-hoba-text">{t('graph.clickHint')}</h3>
-        <p id="insp-desc" class="text-hoba-muted leading-relaxed text-xs"></p>
-        <div id="insp-link-container" class="pt-2 border-t border-hoba-border hidden">
-          <a id="insp-link" href="#" class="text-hoba-accent hover:underline flex items-center gap-1 text-xs"><span>{t('graph.openDetail')}</span><span>&rarr;</span></a>
-        </div>
+      <div class="flex items-center gap-1">
+        <span id="graph-count" class="hidden md:inline text-sm text-hoba-muted tabular-nums mr-1"></span>
+        <button type="button" id="graph-zoom-out" class="icon-btn" aria-label={t('graph.zoomOut')} title={t('graph.zoomOut')}>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.6-3.6M8 11h6"/></svg>
+        </button>
+        <button type="button" id="graph-zoom-in" class="icon-btn" aria-label={t('graph.zoomIn')} title={t('graph.zoomIn')}>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.6-3.6M8 11h6M11 8v6"/></svg>
+        </button>
+        <button type="button" id="graph-fit" class="icon-btn" aria-label={t('graph.fit')} title={t('graph.fit')}>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path stroke-linecap="round" d="M12 2.5v3m0 13v3M2.5 12h3m13 0h3"/></svg>
+        </button>
+        <button type="button" id="graph-fullscreen" class="icon-btn" aria-label={t('graph.fullscreen')} title={t('graph.fullscreen')}>
+          <svg class="w-4 h-4 fs-open" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3"/></svg>
+          <svg class="w-4 h-4 fs-close hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3M3 16h3a2 2 0 012 2v3m8 0v-3a2 2 0 012-2h3"/></svg>
+        </button>
+      </div>
       </div>
     </div>
 
-    <div class="lg:col-span-8">
-      <div class="relative w-full h-[650px] rounded-md border border-hoba-border bg-hoba-card/40 overflow-hidden">
-        <div id="cy" class="w-full h-full" role="img" aria-label={t('graph.canvasLabel')}></div>
-        <div class="absolute bottom-3 right-3 text-xs text-hoba-muted bg-hoba-bg/80 px-2.5 py-1 rounded border border-hoba-border pointer-events-none">{t('graph.controls')}</div>
+    <div class="relative flex-1 min-h-0">
+      <canvas id="graph-canvas" class="graph-canvas h-full" tabindex="0" role="img" aria-label={t('graph.canvasLabel')}></canvas>
+
+      <p id="graph-empty" class="absolute inset-0 hidden place-content-center text-center px-6 text-base text-hoba-muted">{t('graph.emptyLayers')}</p>
+      <p class="absolute bottom-2 left-3 text-xs text-hoba-muted pointer-events-none select-none">{t('graph.controls')}</p>
+
+      <div id="graph-tooltip" class="pointer-events-none absolute z-20 hidden max-w-[16rem] rounded-md border border-hoba-border bg-hoba-card px-3 py-2 shadow-lg">
+        <p class="flex items-center gap-1.5 text-xs text-hoba-muted"><span id="tip-dot" class="dot"></span><span id="tip-type"></span><span id="tip-id" class="font-mono"></span></p>
+        <p id="tip-title" class="mt-0.5 text-sm font-medium text-hoba-text leading-snug"></p>
+        <p id="tip-meta" class="mt-1 text-xs text-hoba-muted"></p>
       </div>
+
+      <aside
+        id="graph-panel"
+        class="graph-panel"
+        aria-label={t('graph.inspector')}
+        inert
+      >
+        <div class="p-5">
+          <div class="flex items-start justify-between gap-3">
+            <span id="panel-type" class="pill"></span>
+            <button type="button" id="panel-close" class="icon-btn -mr-2 -mt-1" aria-label={t('graph.close')} title={t('graph.close')}>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+          </div>
+          <p id="panel-id" class="mt-3 font-mono text-sm text-hoba-accent"></p>
+          <h2 id="panel-title" class="mt-1 text-lg font-semibold text-hoba-text leading-snug"></h2>
+          <p id="panel-summary" class="mt-2 text-base text-hoba-muted"></p>
+          <ul id="panel-facts" class="mt-4 flex flex-wrap gap-1.5"></ul>
+          <a id="panel-link" href="#" class="btn btn-secondary mt-5 w-full">{t('graph.openDetail')} →</a>
+          <div id="panel-edges" class="mt-6 space-y-6"></div>
+        </div>
+      </aside>
     </div>
   </div>
 
-  <div class="mt-12 pt-8 border-t border-hoba-border">
-    <h2 class="text-sm font-semibold text-hoba-text mb-4">{t('graph.fallback')}</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
-      {graph.bundle.barriers.map((b) => (
-        <a href={`${prefix}/barriers/${b.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-emerald-500/50 block"><span class="text-emerald-700 dark:text-emerald-400 font-semibold font-mono">{b.id}:</span> {b.title}</a>
-      ))}
-      {graph.bundle.mechanisms.map((m) => (
-        <a href={`${prefix}/mechanisms/${m.id}`} class="p-2 rounded border border-hoba-border bg-hoba-card hover:border-blue-500/50 block"><span class="text-blue-700 dark:text-blue-400 font-semibold font-mono">{m.id}:</span> {m.title}</a>
-      ))}
+  <p class="mt-3 text-sm text-hoba-muted">{t('graph.clickHint')}</p>
+
+  <section class="section pt-8 border-t border-hoba-border">
+    <h2 class="section-title">{t('graph.fallback')}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+      <ul class="row-list">
+        {bundle.barriers.map((b) => <li><a href={`${prefix}/barriers/${b.id}`} class="row-link text-base"><span class="font-mono text-sm text-hoba-accent">{b.id}</span><span>{b.title}</span></a></li>)}
+      </ul>
+      <ul class="row-list">
+        {bundle.mechanisms.map((m) => <li><a href={`${prefix}/mechanisms/${m.id}`} class="row-link text-base"><span class="font-mono text-sm text-hoba-accent">{m.id}</span><span>{m.title}</span></a></li>)}
+      </ul>
     </div>
-  </div>
+  </section>
 
   <script type="application/json" id="graph-data" set:html={graphData} />
-  <script type="application/json" id="graph-i18n" set:html={i18n} />
+  <script type="application/json" id="graph-strings" set:html={strings} />
   <script>
-    import cytoscape from 'cytoscape';
+    import { GraphView, type GraphData, type GraphRelationType, type SimNode } from '../../lib/graph-view';
 
-    const ROUTES: Record<string, string> = { artifact: 'artifacts', barrier: 'barriers', mechanism: 'mechanisms', pattern: 'patterns', loop: 'loops', intervention: 'interventions' };
-    const raw = document.getElementById('graph-data')?.textContent;
-    const i18n = JSON.parse(document.getElementById('graph-i18n')?.textContent ?? '{}') as Record<string, string>;
-    const container = document.getElementById('cy');
-
-    // Node fills/borders per theme; label + edge colours come from the CSS tokens.
-    const PALETTE = {
-      dark: {
-        artifact: ['#a371f7', '#2e1065'], barrier: ['#3fb950', '#064e3b'], mechanism: ['#58a6ff', '#1e3a8a'],
-        pattern: ['#f0883e', '#7c2d12'], loop: ['#db61a2', '#831843'], intervention: ['#22d3ee', '#164e63'], edge: '#30363d',
-      },
-      light: {
-        artifact: ['#7c3aed', '#ede9fe'], barrier: ['#15803d', '#dcfce7'], mechanism: ['#1d4ed8', '#dbeafe'],
-        pattern: ['#c2410c', '#ffedd5'], loop: ['#be185d', '#fce7f3'], intervention: ['#0e7490', '#cffafe'], edge: '#cbd5e1',
-      },
-    } as const;
-
-    const cssVar = (name: string) => `rgb(${getComputedStyle(document.documentElement).getPropertyValue(name).trim()})`;
-    const isDark = () => document.documentElement.classList.contains('dark');
-
-    function buildStyle(): cytoscape.StylesheetJson {
-      const p = PALETTE[isDark() ? 'dark' : 'light'];
-      const typeStyles = (Object.keys(ROUTES) as (keyof typeof p)[])
-        .filter((k) => k !== 'edge')
-        .map((type) => ({ selector: `node[type = "${type}"]`, style: { 'border-color': p[type][0], 'background-color': p[type][1] } }));
-      return [
-        { selector: 'node', style: { label: 'data(id)', 'font-size': '10px', 'font-family': 'monospace', color: cssVar('--c-text'), 'text-valign': 'center', 'text-halign': 'center', width: '32px', height: '32px', 'border-width': '2px' } },
-        ...typeStyles,
-        { selector: 'edge', style: { width: 1.5, 'line-color': p.edge, 'target-arrow-color': cssVar('--c-accent'), 'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.8 } },
-        { selector: 'edge[type = "amplifies"]', style: { 'line-color': p.loop[0], 'target-arrow-color': p.loop[0] } },
-        { selector: 'edge[type = "masks"]', style: { 'line-color': cssVar('--c-muted'), 'line-style': 'dashed', 'target-arrow-color': cssVar('--c-muted') } },
-        { selector: 'edge[type = "precedes"]', style: { 'line-color': p.barrier[0], 'target-arrow-color': p.barrier[0], width: 2 } },
-      ] as cytoscape.StylesheetJson;
+    interface Strings {
+      relations: Record<GraphRelationType, string>;
+      types: Record<string, string>;
+      outgoing: string;
+      incoming: string;
+      noEdges: string;
+      degree: string;
+      visible: string;
+      fullscreen: string;
+      exitFullscreen: string;
+      tooltipHint: string;
+      openDetail: string;
     }
 
-    if (raw && container) {
-      const graphData = JSON.parse(raw) as { elements: cytoscape.ElementsDefinition };
-      const cy = cytoscape({
-        container,
-        elements: graphData.elements,
-        style: buildStyle(),
-        layout: { name: 'cose', animate: false, nodeRepulsion: () => 8000, idealEdgeLength: () => 60, edgeElasticity: () => 100 } as cytoscape.LayoutOptions,
+    const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
+    const canvas = el<HTMLCanvasElement>('graph-canvas');
+    const dataNode = el('graph-data');
+    const stringsNode = el('graph-strings');
+
+    if (canvas && dataNode?.textContent && stringsNode?.textContent) {
+      const data = JSON.parse(dataNode.textContent) as GraphData;
+      const s = JSON.parse(stringsNode.textContent) as Strings;
+      const fill = (template: string, vars: Record<string, string | number>) =>
+        template.replace(/\{(\w+)\}/g, (_, name: string) => String(vars[name] ?? `{${name}}`));
+
+      const shell = el('graph-shell')!;
+      const tooltip = el('graph-tooltip')!;
+      const panel = el('graph-panel')!;
+      const empty = el('graph-empty')!;
+      const count = el('graph-count')!;
+
+      const view = new GraphView(canvas, data, {
+        onHover: (payload) => {
+          if (!payload) {
+            tooltip.classList.add('hidden');
+            return;
+          }
+          const { node, x, y, radius } = payload;
+          el('tip-dot')!.style.backgroundColor = `rgb(var(--g-${node.type}))`;
+          el('tip-type')!.textContent = s.types[node.type] ?? node.type;
+          el('tip-id')!.textContent = node.id;
+          el('tip-title')!.textContent = node.title;
+          el('tip-meta')!.textContent = `${fill(s.degree, { n: node.degree })} · ${s.tooltipHint}`;
+          tooltip.classList.remove('hidden');
+          const bounds = canvas.getBoundingClientRect();
+          const width = tooltip.offsetWidth;
+          const height = tooltip.offsetHeight;
+          const axis = 30; // never cover the sticky stage axis
+          const above = y - radius - 10 - height > axis;
+          tooltip.style.left = `${Math.min(Math.max(x - width / 2, 8), bounds.width - width - 8)}px`;
+          tooltip.style.top = `${Math.min(above ? y - radius - 10 - height : y + radius + 10, bounds.height - height - 8)}px`;
+        },
+        onSelect: (node) => renderPanel(node),
       });
 
-      window.addEventListener('hoba:theme', () => cy.style(buildStyle()));
+      // ---- details panel ---------------------------------------------------
 
-      cy.on('tap', 'node', (evt) => {
-        const d = evt.target.data() as Record<string, string | undefined>;
-        document.getElementById('insp-id')!.textContent = d.id ?? '';
-        document.getElementById('insp-title')!.textContent = d.label || d.id || '';
-        document.getElementById('insp-desc')!.textContent =
-          `${i18n['common.type']}: ${d.type} | ${i18n['common.stage']}: ${d.stage || 'N/A'} | ${i18n['facet.removability']}: ${d.removability || 'N/A'} | ${i18n['common.evidence']}: ${d.evidence_level || 'N/A'}`;
-        document.getElementById('insp-link-container')!.classList.remove('hidden');
-        document.getElementById('insp-link')!.setAttribute('href', `${i18n.prefix}/${ROUTES[d.type ?? ''] ?? 'registry'}/${d.id}`);
-      });
-
-      const toggles = document.querySelectorAll<HTMLInputElement>('.type-toggle');
-      const removabilitySelect = document.getElementById('select-removability') as HTMLSelectElement | null;
-      function applyFilters() {
-        const hidden = new Set<string>();
-        toggles.forEach((t) => { if (!t.checked && t.dataset.type) hidden.add(t.dataset.type); });
-        const removability = removabilitySelect?.value ?? 'all';
-        cy.batch(() => {
-          cy.nodes().forEach((node) => {
-            const type = node.data('type') as string;
-            const visible = !hidden.has(type) && (type !== 'mechanism' || removability === 'all' || node.data('removability') === removability);
-            if (visible) node.show(); else node.hide();
-          });
+      function connectionRow(neighbor: SimNode, relation: GraphRelationType): HTMLLIElement {
+        const li = document.createElement('li');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'row-link w-full text-left';
+        const rel = document.createElement('span');
+        rel.className = 'pill pill-muted';
+        rel.textContent = s.relations[relation] ?? relation;
+        const id = document.createElement('span');
+        id.className = 'font-mono text-sm text-hoba-accent';
+        id.textContent = neighbor.id;
+        const title = document.createElement('span');
+        title.className = 'text-sm text-hoba-text';
+        title.textContent = neighbor.title;
+        button.append(rel, id, title);
+        button.addEventListener('click', () => {
+          view.select(neighbor.id);
+          view.centerOn(neighbor.id);
         });
+        li.append(button);
+        return li;
       }
-      toggles.forEach((t) => t.addEventListener('change', applyFilters));
-      removabilitySelect?.addEventListener('change', applyFilters);
+
+      function connectionGroup(heading: string, rows: HTMLLIElement[]): HTMLElement | null {
+        if (!rows.length) return null;
+        const section = document.createElement('div');
+        const h = document.createElement('h3');
+        h.className = 'text-sm font-medium text-hoba-muted mb-1';
+        h.textContent = heading;
+        const list = document.createElement('ul');
+        list.className = 'row-list';
+        list.append(...rows);
+        section.append(h, list);
+        return section;
+      }
+
+      function renderPanel(node: SimNode | null) {
+        if (!node) {
+          panel.classList.remove('is-open');
+          panel.setAttribute('inert', '');
+          return;
+        }
+        el('panel-type')!.textContent = s.types[node.type] ?? node.type;
+        el('panel-type')!.style.borderColor = `rgb(var(--g-${node.type}))`;
+        el('panel-id')!.textContent = node.id;
+        el('panel-title')!.textContent = node.title;
+        el('panel-summary')!.textContent = node.summary;
+        el<HTMLAnchorElement>('panel-link')!.href = node.href;
+
+        const facts = el('panel-facts')!;
+        facts.replaceChildren(
+          ...node.facts.map((fact) => {
+            const li = document.createElement('li');
+            li.className = 'pill pill-muted';
+            li.textContent = `${fact.label}: ${fact.value}`;
+            return li;
+          })
+        );
+
+        const out: HTMLLIElement[] = [];
+        const inbound: HTMLLIElement[] = [];
+        for (const edge of view.edges) {
+          if (edge.hidden) continue;
+          if (edge.source === node) out.push(connectionRow(edge.target, edge.relation));
+          else if (edge.target === node) inbound.push(connectionRow(edge.source, edge.relation));
+        }
+        const groups = [connectionGroup(s.outgoing, out), connectionGroup(s.incoming, inbound)].filter(Boolean) as HTMLElement[];
+        if (!groups.length) {
+          const note = document.createElement('p');
+          note.className = 'text-sm text-hoba-muted';
+          note.textContent = s.noEdges;
+          groups.push(note);
+        }
+        el('panel-edges')!.replaceChildren(...groups);
+
+        panel.classList.add('is-open');
+        panel.removeAttribute('inert');
+        panel.scrollTop = 0;
+      }
+
+      el('panel-close')!.addEventListener('click', () => view.select(null));
+
+      // ---- filters ---------------------------------------------------------
+
+      const toggles = Array.from(document.querySelectorAll<HTMLInputElement>('.type-toggle'));
+      const removability = el<HTMLSelectElement>('select-removability')!;
+
+      function applyFilters() {
+        const hidden = new Set(toggles.filter((t) => !t.checked).map((t) => t.dataset.type));
+        const agency = removability.value;
+        const visible = view.setVisibility(
+          (node) => !hidden.has(node.type) && (node.type !== 'mechanism' || agency === 'all' || node.removability === agency)
+        );
+        empty.classList.toggle('hidden', visible > 0);
+        empty.classList.toggle('grid', visible === 0);
+        count.textContent = fill(s.visible, { visible, total: view.nodes.length });
+      }
+      toggles.forEach((toggle) => toggle.addEventListener('change', applyFilters));
+      removability.addEventListener('change', applyFilters);
+      applyFilters();
+
+      // ---- viewport controls ----------------------------------------------
+
+      el('graph-zoom-in')!.addEventListener('click', () => view.zoomBy(1.3));
+      el('graph-zoom-out')!.addEventListener('click', () => view.zoomBy(1 / 1.3));
+      el('graph-fit')!.addEventListener('click', () => view.fit());
+
+      const fullscreenButton = el<HTMLButtonElement>('graph-fullscreen')!;
+      const supportsFullscreen = typeof shell.requestFullscreen === 'function';
+
+      function isFullscreen() {
+        return document.fullscreenElement === shell || shell.classList.contains('is-pseudo-fullscreen');
+      }
+
+      function syncFullscreen() {
+        const active = isFullscreen();
+        fullscreenButton.querySelector('.fs-open')!.classList.toggle('hidden', active);
+        fullscreenButton.querySelector('.fs-close')!.classList.toggle('hidden', !active);
+        const label = active ? s.exitFullscreen : s.fullscreen;
+        fullscreenButton.setAttribute('aria-label', label);
+        fullscreenButton.title = label;
+        view.setFreeTouchPanning(active);
+        // The box changes size in the same frame; refit once the browser settles.
+        requestAnimationFrame(() => view.fit());
+      }
+
+      function toggleFullscreen() {
+        if (supportsFullscreen) {
+          if (document.fullscreenElement === shell) void document.exitFullscreen();
+          else void shell.requestFullscreen().catch(() => shell.classList.add('is-pseudo-fullscreen'));
+          return;
+        }
+        // iOS Safari refuses requestFullscreen on ordinary elements.
+        shell.classList.toggle('is-pseudo-fullscreen');
+        document.body.classList.toggle('overflow-hidden', shell.classList.contains('is-pseudo-fullscreen'));
+        syncFullscreen();
+      }
+
+      fullscreenButton.addEventListener('click', toggleFullscreen);
+      document.addEventListener('fullscreenchange', syncFullscreen);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && shell.classList.contains('is-pseudo-fullscreen')) toggleFullscreen();
+      });
+
+      window.addEventListener('hoba:theme', () => view.refreshTheme());
     }
   </script>
 </Layout>
