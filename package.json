@@ -21,7 +21,8 @@
     "validate:strict": "tsx scripts/validate.ts --strict",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -b packages/registry packages/cli packages/mcp --dry",
     "deploy:pages": "pnpm build && wrangler pages deploy site/dist --project-name hoba-work --branch main",
-    "clean": "rimraf node_modules packages/*/dist packages/*/node_modules packages/*/tsconfig.tsbuildinfo site/.astro site/dist site/node_modules"
+    "clean": "rimraf node_modules packages/*/dist packages/*/node_modules packages/*/tsconfig.tsbuildinfo site/.astro site/dist site/node_modules",
+    "deploy:preview": "pnpm build && wrangler pages deploy site/dist --project-name hoba-work --branch \"$(git branch --show-current)\""
   },
   "devDependencies": {
     "@hoba/registry": "workspace:*",

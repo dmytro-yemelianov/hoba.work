@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   validate-and-build:
     runs-on: ubuntu-latest
@@ -31,7 +34,7 @@ jobs:
         run: pnpm typecheck
 
       - name: Validate Registry Ontology & Graph Integrity
-        run: pnpm validate
+        run: pnpm validate:strict
 
       - name: Run Test Suite
         run: pnpm test
@@ -41,3 +44,36 @@ jobs:
 
       - name: Verify committed registry exports are up to date
         run: git diff --exit-code --stat -- schemas site/public
+
+      - name: Upload site build
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: site/dist
+          retention-days: 7
+
+  deploy:
+    # Production deploy to Cloudflare Pages (direct-upload project "hoba-work") on pushes to main.
+    # Requires repository secrets CLOUDFLARE_API_TOKEN (Pages: Edit) and CLOUDFLARE_ACCOUNT_ID.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://hoba-work.pages.dev
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download site build
+        uses: actions/download-artifact@v4
+        with:
+          name: site-dist
+          path: site/dist
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site/dist --project-name hoba-work --branch main --commit-dirty=true
