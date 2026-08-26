@@ -60,27 +60,33 @@ test.describe('responsive layout', () => {
     expect(await overflow(page)).toBeLessThanOrEqual(1);
   });
 
-  test('structural elements span the frame on every page, articles included', async ({ page }) => {
+  test('every block of every page body spans the frame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     const PAGES = [
+      '/uk/', '/uk/registry', '/uk/patterns', '/uk/graph', '/uk/data', '/uk/analyze',
       '/uk/methodology', '/uk/developers', '/uk/contribute', '/uk/about',
-      '/uk/registry', '/uk/data', '/uk/analyze', '/uk/mechanisms/M-001', '/uk/loops/L-001',
+      '/uk/mechanisms/M-001', '/uk/barriers/B-001', '/uk/artifacts/A-001',
+      '/uk/patterns/P-001', '/uk/loops/L-001', '/uk/interventions/I-001', '/404',
     ];
     for (const path of PAGES) {
       await page.goto(path);
-      const widths = await page.evaluate(() => {
-        const visible = (sel: string) => {
-          const el = document.querySelector(`main ${sel}`);
-          if (!el) return null;
-          const rect = el.getBoundingClientRect();
-          return rect.width === 0 ? null : Math.round(rect.width);
-        };
-        return { rule: visible('header'), h2: visible('h2'), rowList: visible('.row-list'), pre: visible('pre'), section: visible('section') };
+      // Leaf elements may be any width — a search box, a capped paragraph. The
+      // structural blocks may not: a narrow body is what reads as another template.
+      const narrow = await page.evaluate(() => {
+        const main = document.querySelector('main')!;
+        const frame = Math.round(main.getBoundingClientRect().width - parseFloat(getComputedStyle(main).paddingLeft) * 2);
+        const bodies = [main, ...Array.from(main.children).filter((el) => /^(ARTICLE|DIV)$/.test(el.tagName))];
+        const offenders: string[] = [];
+        for (const body of bodies) {
+          for (const block of Array.from(body.children)) {
+            if (!/^(ARTICLE|SECTION|HEADER)$/.test(block.tagName)) continue;
+            const width = Math.round(block.getBoundingClientRect().width);
+            if (width !== 0 && width !== frame) offenders.push(`${block.tagName}=${width}`);
+          }
+        }
+        return { frame, offenders };
       });
-      // A narrow body is what made the project pages look like another template.
-      for (const [name, width] of Object.entries(widths)) {
-        if (width !== null) expect(width, `${path} ${name}`).toBe(1216);
-      }
+      expect(narrow.offenders, `${path} (frame ${narrow.frame})`).toEqual([]);
     }
   });
 });
