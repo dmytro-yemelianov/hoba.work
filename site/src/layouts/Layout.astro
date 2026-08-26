@@ -49,6 +49,10 @@ const alternateLinks = alternates(Astro.url.pathname, site);
           else if (window.matchMedia) dark = !window.matchMedia('(prefers-color-scheme: light)').matches;
         } catch (e) {}
         document.documentElement.classList.toggle('dark', dark);
+        try {
+          var view = localStorage.getItem('hoba_view');
+          if (view === 'table' || view === 'list' || view === 'cards') document.documentElement.dataset.view = view;
+        } catch (e) {}
       })();
     </script>
 

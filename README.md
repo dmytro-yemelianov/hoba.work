@@ -183,6 +183,8 @@ hoba validate --strict
 - `site/public/_worker.js` (Cloudflare Pages Advanced Mode) negotiates the language for unprefixed HTML requests:
   explicit choice (`hoba_lang` cookie, set by the switcher) → `Accept-Language: uk` → Cloudflare geo `UA` → and, with
   no signal at all, Ukrainian. `/uk/…` URLs are always honoured; assets and `/api`, `/data`, `/schemas` are never redirected.
+- Catalog pages (Registry, Patterns) render the same data as a **table (default)**, a compact list, or cards; the
+  switch persists to `localStorage` and is applied before paint via `<html data-view>`.
 - Light and dark themes: the toggle in the navbar persists to `localStorage`; without a stored choice the site follows
   `prefers-color-scheme`, defaulting to dark when the browser reports none. Surfaces use CSS tokens
   (`site/src/styles/theme.css`); palette tints carry explicit `dark:` variants.

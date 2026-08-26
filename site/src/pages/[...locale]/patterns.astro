@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
+import ViewSwitch from '../../components/ViewSwitch.astro';
 import { getBundle } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
@@ -14,12 +15,54 @@ const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 ---
 <Layout lang={lang} title={t('patterns.title')} activeNav="patterns">
-  <div class="mb-8 border-b border-hoba-border pb-6">
-    <span class="text-xs font-medium text-hoba-muted">{t('patterns.kicker')}</span>
-    <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('patterns.heading')}</h1>
-    <p class="text-sm text-hoba-muted mt-2">{t('patterns.intro')}</p>
+  <div class="mb-8 border-b border-hoba-border pb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <span class="text-xs font-medium text-hoba-muted">{t('patterns.kicker')}</span>
+      <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('patterns.heading')}</h1>
+      <p class="text-sm text-hoba-muted mt-2">{t('patterns.intro')}</p>
+    </div>
+    <ViewSwitch lang={lang} />
   </div>
 
+  <div data-view-root>
+    <div data-view="table" class="overflow-x-auto rounded-md border border-hoba-border bg-hoba-card">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-left text-xs text-hoba-muted border-b border-hoba-border">
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.id')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.title')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.signals')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.mechanisms')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.interventions')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.evidence')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bundle.patterns.map((p) => (
+            <tr class="border-b border-hoba-border last:border-0 hover:bg-hoba-hover align-top">
+              <td class="px-3 py-2 font-mono whitespace-nowrap"><a href={`${prefix}/patterns/${p.id}`} class="text-hoba-accent hover:underline">{p.id}</a></td>
+              <td class="px-3 py-2"><a href={`${prefix}/patterns/${p.id}`} class="font-medium text-hoba-text hover:underline">{p.title}</a><div class="text-xs text-hoba-muted line-clamp-2">{p.summary}</div></td>
+              <td class="px-3 py-2 font-mono text-xs whitespace-nowrap">{p.required_artifacts.map((a, i) => <><a href={`${prefix}/artifacts/${a}`} class="text-hoba-accent hover:underline">{a}</a>{i < p.required_artifacts.length - 1 ? ', ' : ''}</>)}</td>
+              <td class="px-3 py-2 font-mono text-xs">{p.compatible_mechanisms.map((m, i) => <><a href={`${prefix}/mechanisms/${m}`} class="text-hoba-accent hover:underline">{m}</a>{i < p.compatible_mechanisms.length - 1 ? ', ' : ''}</>)}</td>
+              <td class="px-3 py-2 font-mono text-xs whitespace-nowrap">{p.interventions.length ? p.interventions.map((i, k) => <><a href={`${prefix}/interventions/${i}`} class="text-hoba-accent hover:underline">{i}</a>{k < p.interventions.length - 1 ? ', ' : ''}</>) : '—'}</td>
+              <td class="px-3 py-2 text-xs text-hoba-muted whitespace-nowrap">{t(`level.${p.evidence_level}`)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div data-view="list" class="rounded-md border border-hoba-border bg-hoba-card divide-y divide-hoba-border">
+      {bundle.patterns.map((p) => (
+        <a href={`${prefix}/patterns/${p.id}`} class="flex items-baseline gap-3 px-3 py-2 hover:bg-hoba-hover text-sm">
+          <span class="font-mono text-hoba-accent w-14 shrink-0">{p.id}</span>
+          <span class="font-medium text-hoba-text shrink-0">{p.title}</span>
+          <span class="text-hoba-muted truncate hidden md:inline">{p.summary}</span>
+        </a>
+      ))}
+    </div>
+
+    <div data-view="cards">
   <div class="space-y-6">
     {bundle.patterns.map((p) => {
       const requiredArts = bundle.artifacts.filter((a) => p.required_artifacts.includes(a.id));
@@ -65,5 +108,7 @@ const bundle = getBundle(lang);
         </article>
       );
     })}
+  </div>
+    </div>
   </div>
 </Layout>

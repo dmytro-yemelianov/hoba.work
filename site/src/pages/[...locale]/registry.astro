@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
 import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
+import ViewSwitch from '../../components/ViewSwitch.astro';
 import type { RemovabilityType, StageId } from '@hoba/registry';
 import { countGraphNodes, getBundle } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
@@ -55,7 +56,8 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
         <span class="text-xs font-medium text-hoba-muted">{t('registry.kicker', { version: bundle.version })}</span>
         <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('registry.title')}</h1>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 flex-wrap">
+        <ViewSwitch lang={lang} />
         <a href="/openapi.json" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">{t('registry.openapi')}</a>
         <a href="/data/latest/registry.json" target="_blank" class="text-xs px-3 py-1.5 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono">registry.json</a>
       </div>
@@ -87,32 +89,76 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
     </div>
   </div>
 
-  <div id="nodes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {cards.map((node) => (
-      <a
-        href={node.link}
-        class="node-card p-4 rounded-md border border-hoba-border bg-hoba-card/60 hover:bg-hoba-hover hover:border-hoba-accent/50 transition-all flex flex-col justify-between group"
-        data-type={node.type}
-        data-id={node.id.toLowerCase()}
-        data-title={node.title.toLowerCase()}
-        data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()}
-        data-removability={node.removability ?? ''}
-      >
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-2.5">
-            <EntityBadge type={node.type} id={node.id} lang={lang} />
-            {node.removability && <RemovabilityBadge removability={node.removability} lang={lang} />}
-            {typeof node.stage === 'string' && <span class="text-xs px-1.5 py-0.5 rounded bg-hoba-border text-hoba-muted">{t(`stage.${node.stage}`)}</span>}
-          </div>
-          <h3 class="font-semibold text-sm text-hoba-text group-hover:text-hoba-accent transition-colors">{node.title}</h3>
-          <p class="text-sm text-hoba-muted mt-2 leading-relaxed line-clamp-3">{node.text}</p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-hoba-border/60 flex items-center justify-between text-xs text-hoba-muted">
-          <span>{t('common.evidence')}: <strong class="text-hoba-text">{t(`level.${node.evidenceLevel as 'established'}`)}</strong></span>
-          <span class="text-hoba-accent flex items-center gap-1 group-"><span>{t('common.viewNode')}</span><span>&rarr;</span></span>
-        </div>
-      </a>
-    ))}
+  <div data-view-root>
+    <!-- Table (default) -->
+    <div data-view="table" class="overflow-x-auto rounded-md border border-hoba-border bg-hoba-card">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-left text-xs text-hoba-muted border-b border-hoba-border">
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.id')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.type')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.title')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.context')}</th>
+            <th scope="col" class="px-3 py-2 font-medium">{t('table.evidence')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cards.map((node) => (
+            <tr class="node-item border-b border-hoba-border last:border-0 hover:bg-hoba-hover" data-type={node.type} data-id={node.id.toLowerCase()} data-title={node.title.toLowerCase()} data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()} data-removability={node.removability ?? ''}>
+              <td class="px-3 py-2 font-mono whitespace-nowrap"><a href={node.link} class="text-hoba-accent hover:underline">{node.id}</a></td>
+              <td class="px-3 py-2 whitespace-nowrap"><EntityBadge type={node.type} lang={lang} /></td>
+              <td class="px-3 py-2"><a href={node.link} class="font-medium text-hoba-text hover:underline">{node.title}</a><div class="text-xs text-hoba-muted line-clamp-1">{node.text}</div></td>
+              <td class="px-3 py-2 whitespace-nowrap text-xs text-hoba-muted">
+                {node.removability ? <RemovabilityBadge removability={node.removability} lang={lang} /> : typeof node.stage === 'string' ? t(`stage.${node.stage}`) : Array.isArray(node.stage) ? node.stage.map((st) => t(`stage.${st}`)).join(', ') : '—'}
+              </td>
+              <td class="px-3 py-2 whitespace-nowrap text-xs text-hoba-muted">{t(`level.${node.evidenceLevel as 'established'}`)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- List -->
+    <div data-view="list" class="rounded-md border border-hoba-border bg-hoba-card divide-y divide-hoba-border">
+      {cards.map((node) => (
+        <a href={node.link} class="node-item flex items-baseline gap-3 px-3 py-2 hover:bg-hoba-hover text-sm" data-type={node.type} data-id={node.id.toLowerCase()} data-title={node.title.toLowerCase()} data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()} data-removability={node.removability ?? ''}>
+          <span class="font-mono text-hoba-accent w-14 shrink-0">{node.id}</span>
+          <span class="font-medium text-hoba-text shrink-0">{node.title}</span>
+          <span class="text-hoba-muted truncate hidden md:inline">{node.text}</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Cards -->
+    <div data-view="cards">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {cards.map((node) => (
+          <a
+            href={node.link}
+            class="node-item p-4 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover transition-colors flex flex-col justify-between group"
+            data-type={node.type}
+            data-id={node.id.toLowerCase()}
+            data-title={node.title.toLowerCase()}
+            data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()}
+            data-removability={node.removability ?? ''}
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <EntityBadge type={node.type} id={node.id} lang={lang} />
+                {node.removability && <RemovabilityBadge removability={node.removability} lang={lang} />}
+                {typeof node.stage === 'string' && <span class="text-xs px-1.5 py-0.5 rounded bg-hoba-border text-hoba-muted">{t(`stage.${node.stage}`)}</span>}
+              </div>
+              <h3 class="font-semibold text-sm text-hoba-text group-hover:text-hoba-accent transition-colors">{node.title}</h3>
+              <p class="text-sm text-hoba-muted mt-2 leading-relaxed line-clamp-3">{node.text}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-hoba-border flex items-center justify-between text-xs text-hoba-muted">
+              <span>{t('common.evidence')}: <strong class="text-hoba-text font-medium">{t(`level.${node.evidenceLevel as 'established'}`)}</strong></span>
+              <span class="text-hoba-accent">{t('common.viewNode')} &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
   </div>
 
   <div id="no-results" class="hidden py-16 text-center text-hoba-muted text-sm">{t('registry.noResults')}</div>
@@ -126,7 +172,7 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
     let activeRemovability = 'all';
     let searchQuery = '';
 
-    const cards = document.querySelectorAll<HTMLElement>('.node-card');
+    const items = document.querySelectorAll<HTMLElement>('.node-item');
     const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
     const typeTabs = document.querySelectorAll<HTMLButtonElement>('.type-tab');
     const removabilityFilters = document.querySelectorAll<HTMLButtonElement>('.removability-filter');
@@ -134,13 +180,14 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
 
     function applyFilters() {
       let visibleCount = 0;
-      cards.forEach((card) => {
+      const activeView = document.documentElement.dataset.view ?? 'table';
+      items.forEach((card) => {
         const matchesType = activeType === 'all' || card.dataset.type === activeType;
         const matchesRemovability = activeRemovability === 'all' || card.dataset.removability === activeRemovability;
         const matchesSearch = !searchQuery || (card.dataset.id ?? '').includes(searchQuery) || (card.dataset.title ?? '').includes(searchQuery) || (card.dataset.text ?? '').includes(searchQuery);
         const visible = matchesType && matchesRemovability && matchesSearch;
         card.classList.toggle('hidden', !visible);
-        if (visible) visibleCount++;
+        if (visible && card.closest('[data-view]')?.getAttribute('data-view') === activeView) visibleCount++;
       });
       noResults?.classList.toggle('hidden', visibleCount !== 0);
     }
@@ -172,6 +219,7 @@ const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
       });
     });
 
+    window.addEventListener('hoba:view', applyFilters);
     const initialType = new URLSearchParams(window.location.search).get('type');
     if (initialType) selectType(initialType);
   </script>

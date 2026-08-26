@@ -33,3 +33,11 @@ body {
   font-size: 0.875rem; /* 14px base; the scale is 12 / 14 / 16 / 18 / 24 / 30 */
   line-height: 1.55;
 }
+
+/* Data views: table is the default; the choice is stored in localStorage and
+   applied to <html data-view> before paint (see Layout.astro). */
+[data-view-root] > [data-view] { display: none; }
+html:not([data-view]) [data-view-root] > [data-view="table"],
+html[data-view="table"] [data-view-root] > [data-view="table"],
+html[data-view="list"] [data-view-root] > [data-view="list"],
+html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block; }

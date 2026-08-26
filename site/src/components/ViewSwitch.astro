@@ -1,0 +1,48 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+const views = ['table', 'list', 'cards'] as const;
+const icons: Record<(typeof views)[number], string> = {
+  table: 'M3 5h18M3 12h18M3 19h18M9 5v14M15 5v14',
+  list: 'M4 6h16M4 12h16M4 18h16',
+  cards: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+};
+---
+<div class="inline-flex items-center gap-1 rounded-md border border-hoba-border bg-hoba-card p-0.5 text-xs" role="group" aria-label={t('view.label')}>
+  {views.map((v) => (
+    <button
+      type="button"
+      data-view-choice={v}
+      aria-pressed={v === 'table' ? 'true' : 'false'}
+      class="view-choice inline-flex items-center gap-1.5 px-2 py-1 rounded text-hoba-muted hover:text-hoba-text aria-pressed:bg-hoba-border aria-pressed:text-hoba-text"
+    >
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={icons[v]} /></svg>
+      <span>{t(`view.${v}`)}</span>
+    </button>
+  ))}
+</div>
+
+<script>
+  const VIEWS = ['table', 'list', 'cards'];
+  const html = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-view-choice]');
+
+  function apply(view: string, persist: boolean) {
+    if (!VIEWS.includes(view)) view = 'table';
+    html.dataset.view = view;
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.viewChoice === view)));
+    if (persist) {
+      try { localStorage.setItem('hoba_view', view); } catch {}
+    }
+    window.dispatchEvent(new CustomEvent('hoba:view', { detail: { view } }));
+  }
+
+  apply(html.dataset.view ?? 'table', false);
+  buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.viewChoice ?? 'table', true)));
+</script>

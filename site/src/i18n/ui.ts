@@ -477,6 +477,21 @@ const en = {
   'contrib.mirror.title': 'Both languages, one structure',
   'contrib.mirror.text': 'Every node lives in content/ (English, canonical) and content-uk/ (Ukrainian). IDs and graph structure must be identical; only prose may differ — the validator enforces it.',
 
+  // ---- data views --------------------------------------------------------
+  'view.label': 'View',
+  'view.table': 'Table',
+  'view.list': 'List',
+  'view.cards': 'Cards',
+  'table.id': 'ID',
+  'table.type': 'Type',
+  'table.title': 'Title',
+  'table.context': 'Stage / agency',
+  'table.evidence': 'Evidence',
+  'table.summary': 'Summary',
+  'table.signals': 'Required signals',
+  'table.mechanisms': 'Mechanisms',
+  'table.interventions': 'Interventions',
+
   // ---- 404 ---------------------------------------------------------------
   'nf.title': 'Page not found',
   'nf.kicker': '404 · observation without an entity',
@@ -942,6 +957,20 @@ const uk: Record<UIKey, string> = {
   'contrib.checks.6': 'Структурний паритет англійської та української версій',
   'contrib.mirror.title': 'Дві мови, одна структура',
   'contrib.mirror.text': 'Кожен вузол існує в content/ (англійська, канонічна) та content-uk/ (українська). ID і структура графа мають бути ідентичними; відрізнятися може лише текст — це перевіряє валідатор.',
+
+  'view.label': 'Вигляд',
+  'view.table': 'Таблиця',
+  'view.list': 'Список',
+  'view.cards': 'Картки',
+  'table.id': 'ID',
+  'table.type': 'Тип',
+  'table.title': 'Назва',
+  'table.context': 'Етап / вплив',
+  'table.evidence': 'Доказовість',
+  'table.summary': 'Опис',
+  'table.signals': 'Необхідні сигнали',
+  'table.mechanisms': 'Механізми',
+  'table.interventions': 'Інтервенції',
 
   'nf.title': 'Сторінку не знайдено',
   'nf.kicker': '404 · спостереження без сутності',
