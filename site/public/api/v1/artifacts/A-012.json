@@ -1,19 +1,20 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Unsolicited recruiter outreach followed by ghosting",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns.",
     "id": "A-012",
     "type": "artifact",
-    "title": "Unsolicited recruiter outreach followed by ghosting",
     "summary": "Recruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.",
     "stages": [
       "sourcing",
       "recruiter"
     ],
-    "status": "active",
     "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-001"
-    ],
     "probes": [
       {
         "id": "PROBE-A-012-1",
@@ -24,7 +25,6 @@
     ],
     "non_inferences": [
       "Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns."
-    ],
-    "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns."
+    ]
   }
 }

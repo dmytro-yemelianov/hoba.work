@@ -1,19 +1,19 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Offer Closing & Contract Execution",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-004"
+    ],
+    "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered.",
     "id": "B-012",
     "type": "barrier",
-    "title": "Offer Closing & Contract Execution",
     "stage": "post-offer",
     "order": 12,
     "precedes": [],
     "description": "Final mutual execution of the formal employment agreement and start-date confirmation.",
     "pass_condition": "Both parties sign offer contract and onboarding workflow is triggered.",
-    "status": "active",
-    "evidence_level": "established",
-    "evidence_ids": [
-      "EVD-004"
-    ],
-    "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered."
+    "evidence_level": "established"
   }
 }

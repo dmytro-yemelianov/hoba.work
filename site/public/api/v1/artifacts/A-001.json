@@ -1,19 +1,20 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Complete silence after submission",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "content": "# Complete silence after submission\n\nNo automated receipt, acknowledgement, rejection, or recruiter outreach is received following application submission.\n\n### Diagnostic Non-Inferences\n- Does not prove the application was reviewed by a human.\n- Does not prove the role was cancelled or already filled.",
     "id": "A-001",
     "type": "artifact",
-    "title": "Complete silence after submission",
     "summary": "No automated receipt, acknowledgement, rejection, or recruiter outreach is received following application submission.",
     "stages": [
       "ingestion",
       "sourcing"
     ],
-    "status": "active",
     "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-001"
-    ],
     "probes": [
       {
         "id": "PROBE-A-001-1",
@@ -25,7 +26,6 @@
     "non_inferences": [
       "Does not prove the application was reviewed by a human.",
       "Does not prove the role was cancelled or already filled."
-    ],
-    "content": "# Complete silence after submission\n\nNo automated receipt, acknowledgement, rejection, or recruiter outreach is received following application submission.\n\n### Diagnostic Non-Inferences\n- Does not prove the application was reviewed by a human.\n- Does not prove the role was cancelled or already filled."
+    ]
   }
 }

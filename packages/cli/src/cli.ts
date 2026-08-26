@@ -1,37 +1,62 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import { cmdExplain, cmdSearch, cmdShow } from './commands.js';
+import pc from 'picocolors';
+import { readPackageVersion, RegistryLoadError } from '@hoba/registry';
+import { CliError, cmdExplain, cmdSearch, cmdShow, cmdValidate, type GlobalOptions } from './commands.js';
 
 const program = new Command();
 
 program
   .name('hoba')
   .description('Hiring Obstacles & Barriers Atlas CLI tool')
-  .version('0.4.1');
+  .version(readPackageVersion(new URL('../package.json', import.meta.url)))
+  .option('-d, --dir <path>', 'Registry root directory (defaults to $HOBA_ROOT, then auto-detection from cwd)')
+  .option('--json', 'Emit machine-readable JSON instead of formatted text');
+
+function run(action: () => number | void) {
+  try {
+    const code = action();
+    if (typeof code === 'number') process.exitCode = code;
+  } catch (error) {
+    if (error instanceof CliError || error instanceof RegistryLoadError) {
+      console.error(pc.red(`Error: ${error.message}`));
+    } else {
+      console.error(pc.red(`Error: ${error instanceof Error ? error.message : String(error)}`));
+    }
+    process.exitCode = 1;
+  }
+}
 
 program
   .command('search <query>')
   .description('Search across all entities in the HOBA knowledge graph')
-  .option('-d, --dir <path>', 'Base repository directory')
-  .action((query, opts) => {
-    cmdSearch(query, opts);
+  .option('-t, --types <list>', 'Comma-separated entity types to include (artifact,barrier,mechanism,pattern,loop,intervention)')
+  .action((query: string, opts: { types?: string }, cmd: Command) => {
+    run(() => cmdSearch(query, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
   });
 
 program
   .command('show <id>')
-  .description('Display detailed specification of a given entity ID (e.g. M-001)')
-  .option('-d, --dir <path>', 'Base repository directory')
-  .action((id, opts) => {
-    cmdShow(id, opts);
+  .description('Display detailed specification of a given entity ID (e.g. M-001, EVD-001)')
+  .action((id: string, _opts: unknown, cmd: Command) => {
+    run(() => cmdShow(id, cmd.optsWithGlobals() as GlobalOptions));
   });
 
 program
-  .command('explain <artifact_id>')
-  .description('Execute HOBA forensic analysis protocol for an observed artifact')
-  .option('-s, --stage <stage>', 'Hiring funnel stage')
-  .option('-d, --dir <path>', 'Base repository directory')
-  .action((artifactId, opts) => {
-    cmdExplain(artifactId, opts);
+  .command('explain <artifact_ids...>')
+  .description('Execute the HOBA forensic analysis protocol for one or more observed artifacts')
+  .option('-s, --stage <stage>', 'Hiring funnel stage the process reached')
+  .action((artifactIds: string[], opts: { stage?: string }, cmd: Command) => {
+    run(() => cmdExplain(artifactIds, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
+  });
+
+program
+  .command('validate')
+  .description('Validate registry content: schemas, referential integrity, barrier DAG, loop declarations, mirror parity')
+  .option('--strict', 'Treat warnings as errors')
+  .option('-l, --lang <lang>', 'Content mirror to validate: en, uk or all', 'all')
+  .action((opts: { strict?: boolean; lang?: string }, cmd: Command) => {
+    run(() => cmdValidate({ ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
   });
 
 program.parse(process.argv);

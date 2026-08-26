@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Seniority Double Bind",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-002"
+    ],
+    "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
     "id": "P-001",
     "type": "pattern",
-    "title": "Seniority Double Bind",
     "summary": "Candidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.",
     "required_artifacts": [
       "A-002",
@@ -26,11 +31,6 @@
       "I-002",
       "I-003"
     ],
-    "status": "active",
-    "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-002"
-    ],
-    "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers."
+    "evidence_level": "supported"
   }
 }

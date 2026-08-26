@@ -1,19 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory } from '@hoba/registry';
+import { getBundle } from '../../lib/registry';
 
 export async function getStaticPaths() {
-  const rootDir = path.resolve(process.cwd(), '..');
-  const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-  return bundle.loops.map((loop) => ({
+  return getBundle().loops.map((loop) => ({
     params: { id: loop.id },
-    props: { loop, bundle },
+    props: { loop },
   }));
 }
 
-const { loop, bundle } = Astro.props;
+const { loop } = Astro.props;
+const bundle = getBundle();
 const memberMechanisms = bundle.mechanisms.filter((m) =>
   loop.mechanisms.includes(m.id)
 );

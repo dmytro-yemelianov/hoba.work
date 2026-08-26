@@ -1,21 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory, HOBAKnowledgeGraph } from '@hoba/registry';
+import { getBundle } from '../../lib/registry';
 
 export async function getStaticPaths() {
-  const rootDir = path.resolve(process.cwd(), '..');
-  const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-  return bundle.artifacts.map((artifact) => ({
+  return getBundle().artifacts.map((artifact) => ({
     params: { id: artifact.id },
-    props: { artifact, bundle },
+    props: { artifact },
   }));
 }
 
-const { artifact, bundle } = Astro.props;
-const graph = new HOBAKnowledgeGraph(bundle);
-const neighbors = graph.getNeighbors(artifact.id, { depth: 1 });
+const { artifact } = Astro.props;
+const bundle = getBundle();
 const compatibleMechanisms = bundle.mechanisms.filter((m) =>
   m.emissions.some((e) => e.artifact === artifact.id)
 );
@@ -49,7 +45,7 @@ const relatedPatterns = bundle.patterns.filter((p) =>
 
       <div class="mt-4 pt-4 border-t border-hoba-border flex flex-wrap gap-2 text-xs font-mono">
         <span class="text-hoba-muted">Funnel Stages:</span>
-        {artifact.stages.map((st: string) => (
+        {artifact.stages.map((st) => (
           <span class="px-2 py-0.5 rounded bg-hoba-bg border border-hoba-border text-hoba-text uppercase text-[10px]">{st}</span>
         ))}
       </div>
@@ -64,11 +60,11 @@ const relatedPatterns = bundle.patterns.filter((p) =>
     </div>
 
     <!-- 2. Diagnostic Probes -->
-    {artifact.probes && artifact.probes.length > 0 && (
+    {artifact.probes.length > 0 && (
       <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card">
         <h2 class="text-sm font-mono font-bold uppercase text-hoba-text mb-4">Recommended Diagnostic Probes</h2>
         <div class="space-y-3">
-          {artifact.probes.map((probe: any) => (
+          {artifact.probes.map((probe) => (
             <div class="p-3 rounded-lg border border-hoba-border bg-hoba-bg text-xs font-mono">
               <div class="flex items-center justify-between text-hoba-accent font-bold mb-1">
                 <span>[{probe.id}] Diagnostic Probe</span>
@@ -106,7 +102,7 @@ const relatedPatterns = bundle.patterns.filter((p) =>
     <div class="p-6 rounded-xl border border-rose-900/40 bg-rose-950/20 text-xs">
       <h2 class="font-mono font-bold uppercase text-rose-300 mb-2">What this observation does NOT establish:</h2>
       <ul class="space-y-1.5 text-rose-200/80 list-disc list-inside">
-        {artifact.non_inferences.map((ni: string) => (
+        {artifact.non_inferences.map((ni) => (
           <li>{ni}</li>
         ))}
       </ul>

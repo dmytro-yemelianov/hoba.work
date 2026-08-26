@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import EntityBadge from '../components/EntityBadge.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory } from '@hoba/registry';
+import { getBundle, langFromUrl } from '../lib/registry';
 
-const rootDir = path.resolve(process.cwd(), '..');
-const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
+const lang = langFromUrl(Astro.url);
+const bundle = getBundle(lang);
 ---
-<Layout title="Recurring Contradiction Patterns" activeNav="patterns">
+<Layout lang={lang} title="Recurring Contradiction Patterns" activeNav="patterns">
   <div class="mb-8 border-b border-hoba-border pb-6">
     <span class="text-xs font-mono uppercase font-bold text-hoba-pattern tracking-wider">Systemic Contradictions</span>
     <h1 class="text-3xl font-black font-mono text-hoba-text mt-1">Recurring Patterns Catalog</h1>

@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Inflated Requisition Requirements vs Actual Team Needs",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nJob description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks.",
     "id": "M-024",
     "type": "mechanism",
-    "title": "Inflated Requisition Requirements vs Actual Team Needs",
     "summary": "Job description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.",
     "operates_at": [
       "B-002",
@@ -38,15 +43,10 @@
       "M-004"
     ],
     "masks": [],
-    "status": "active",
     "evidence_level": "supported",
     "honest_baseline": false,
-    "evidence_ids": [
-      "EVD-001"
-    ],
     "non_inferences": [
       "Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
-    ],
-    "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nJob description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
+    ]
   }
 }

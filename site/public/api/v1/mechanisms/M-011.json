@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Employment Gap Downranking Bias",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-003"
+    ],
+    "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline.",
     "id": "M-011",
     "type": "mechanism",
-    "title": "Employment Gap Downranking Bias",
     "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
     "operates_at": [
       "B-002",
@@ -37,15 +42,10 @@
       "M-008"
     ],
     "masks": [],
-    "status": "active",
     "evidence_level": "supported",
     "honest_baseline": false,
-    "evidence_ids": [
-      "EVD-003"
-    ],
     "non_inferences": [
       "Employment gap does not correlate with underlying technical decline."
-    ],
-    "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline."
+    ]
   }
 }

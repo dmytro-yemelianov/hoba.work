@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { langFromUrl } from '../lib/registry';
 import Mascot from '../components/Mascot.astro';
+
+const lang = langFromUrl(Astro.url);
 ---
-<Layout title="About HOBA" activeNav="about">
+<Layout lang={lang} title="About HOBA" activeNav="about">
   <div class="max-w-4xl mx-auto space-y-10">
     <div class="border-b border-hoba-border pb-6">
       <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Project Identity</span>

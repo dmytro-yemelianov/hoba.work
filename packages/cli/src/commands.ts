@@ -1,93 +1,106 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import pc from 'picocolors';
 import {
+  compareBundleStructure,
+  formatValidationIssue,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
-  loadRegistryFromDirectory,
-  validateRegistryBundle,
+  loadRegistryFromRoot,
+  resolveRegistryRoot,
+  searchBundle,
+  stageIdSchema,
+  validateRegistry,
+  type ContentLang,
+  type RegistryBundle,
+  type SearchableType,
+  type StageId,
 } from '@hoba/registry';
 
-export function resolveRegistryBundle(dirOption?: string) {
-  const root = dirOption ? path.resolve(dirOption) : process.cwd();
-  let contentDir = path.join(root, 'content');
-  let evidenceDir = path.join(root, 'evidence');
-
-  if (!fs.existsSync(contentDir)) {
-    // Check if we are inside packages/cli or site
-    contentDir = path.resolve(root, '..', '..', 'content');
-    evidenceDir = path.resolve(root, '..', '..', 'evidence');
-  }
-
-  if (!fs.existsSync(contentDir)) {
-    throw new Error(`Could not locate /content directory from ${root}. Please specify --dir <path>`);
-  }
-
-  return loadRegistryFromDirectory(contentDir, evidenceDir);
+export interface GlobalOptions {
+  dir?: string;
+  json?: boolean;
 }
 
-export function cmdSearch(query: string, options: { dir?: string }) {
-  const bundle = resolveRegistryBundle(options.dir);
-  const q = query.toLowerCase();
+export class CliError extends Error {}
 
-  console.log(pc.bold(pc.cyan(`\nSearching HOBA Registry for: "${query}"...\n`)));
+/** Resolve the registry root (explicit --dir → HOBA_ROOT → cwd → CLI install location) and load a bundle. */
+export function loadBundle(options: GlobalOptions, lang: ContentLang = 'en'): { root: string; bundle: RegistryBundle } {
+  const root = resolveRegistryRoot({ explicit: options.dir, fromModuleUrl: import.meta.url });
+  return { root, bundle: loadRegistryFromRoot(root, lang) };
+}
 
-  const results: { type: string; id: string; title: string; summary: string }[] = [];
+export function parseStage(value: string | undefined): StageId | undefined {
+  if (value === undefined) return undefined;
+  const parsed = stageIdSchema.safeParse(value);
+  if (!parsed.success) {
+    throw new CliError(`Unknown stage "${value}". Expected one of: ${stageIdSchema.options.join(', ')}`);
+  }
+  return parsed.data;
+}
 
-  for (const a of bundle.artifacts) {
-    if (a.id.toLowerCase().includes(q) || a.title.toLowerCase().includes(q) || a.summary.toLowerCase().includes(q)) {
-      results.push({ type: 'Observation (A)', id: a.id, title: a.title, summary: a.summary });
-    }
-  }
-  for (const b of bundle.barriers) {
-    if (b.id.toLowerCase().includes(q) || b.title.toLowerCase().includes(q) || b.description.toLowerCase().includes(q)) {
-      results.push({ type: 'Barrier (B)', id: b.id, title: b.title, summary: b.description });
-    }
-  }
-  for (const m of bundle.mechanisms) {
-    if (m.id.toLowerCase().includes(q) || m.title.toLowerCase().includes(q) || m.summary.toLowerCase().includes(q)) {
-      results.push({ type: 'Mechanism (M)', id: m.id, title: m.title, summary: m.summary });
-    }
-  }
-  for (const p of bundle.patterns) {
-    if (p.id.toLowerCase().includes(q) || p.title.toLowerCase().includes(q) || p.summary.toLowerCase().includes(q)) {
-      results.push({ type: 'Pattern (P)', id: p.id, title: p.title, summary: p.summary });
-    }
-  }
-  for (const l of bundle.loops) {
-    if (l.id.toLowerCase().includes(q) || l.title.toLowerCase().includes(q) || l.summary.toLowerCase().includes(q)) {
-      results.push({ type: 'Loop (L)', id: l.id, title: l.title, summary: l.summary });
-    }
-  }
-  for (const i of bundle.interventions) {
-    if (i.id.toLowerCase().includes(q) || i.title.toLowerCase().includes(q) || i.summary.toLowerCase().includes(q)) {
-      results.push({ type: 'Intervention (I)', id: i.id, title: i.title, summary: i.summary });
-    }
-  }
+const printJson = (value: unknown) => console.log(JSON.stringify(value, null, 2));
 
-  if (results.length === 0) {
-    console.log(pc.yellow('No matching registry entities found.'));
+const TYPE_LABELS: Record<SearchableType, string> = {
+  artifact: 'Observation (A)',
+  barrier: 'Barrier (B)',
+  mechanism: 'Mechanism (M)',
+  pattern: 'Pattern (P)',
+  loop: 'Loop (L)',
+  intervention: 'Intervention (I)',
+};
+
+export function cmdSearch(query: string, options: GlobalOptions & { types?: string }) {
+  const { bundle } = loadBundle(options);
+  const types = options.types
+    ?.split(',')
+    .map((t) => t.trim())
+    .filter((t): t is SearchableType => t in TYPE_LABELS);
+  const hits = searchBundle(bundle, query, { types: types?.length ? types : undefined });
+
+  if (options.json) {
+    printJson({
+      registry_version: bundle.version,
+      count: hits.length,
+      results: hits.map(({ type, id, title, text }) => ({ type, id, title, summary: text })),
+    });
     return;
   }
 
-  for (const r of results) {
-    console.log(`[${pc.magenta(r.type)}] ${pc.green(r.id)}: ${pc.bold(r.title)}`);
-    console.log(`  ${pc.dim(r.summary.slice(0, 120))}${r.summary.length > 120 ? '...' : ''}\n`);
+  console.log(pc.bold(pc.cyan(`\nSearching HOBA Registry (${bundle.version}) for: "${query}"...\n`)));
+  if (hits.length === 0) {
+    console.log(pc.yellow('No matching registry entities found.'));
+    return;
+  }
+  for (const r of hits) {
+    console.log(`[${pc.magenta(TYPE_LABELS[r.type])}] ${pc.green(r.id)}: ${pc.bold(r.title)}`);
+    console.log(`  ${pc.dim(r.text.slice(0, 120))}${r.text.length > 120 ? '...' : ''}\n`);
   }
 }
 
-export function cmdShow(id: string, options: { dir?: string }) {
-  const bundle = resolveRegistryBundle(options.dir);
+export function cmdShow(id: string, options: GlobalOptions) {
+  const { bundle } = loadBundle(options);
   const graph = new HOBAKnowledgeGraph(bundle);
   const node = graph.getNode(id);
 
-  if (!node) {
-    console.error(pc.red(`Error: Entity with ID "${id}" not found in registry.`));
-    process.exit(1);
+  if (!node) throw new CliError(`Entity with ID "${id}" not found in registry.`);
+
+  if (options.json) {
+    printJson({ registry_version: bundle.version, node });
+    return;
   }
 
   console.log(pc.bold(pc.cyan(`\n=== [${node.type.toUpperCase()}] ${node.id} ===`)));
   console.log(pc.bold(node.title));
+
+  if (node.type === 'evidence') {
+    console.log(`Kind: ${node.kind}${node.period ? ` | Period: ${node.period}` : ''}\n`);
+    console.log(pc.yellow('Summary:'));
+    console.log(`  ${node.summary}`);
+    if (node.citation) console.log(pc.yellow('Citation:'), node.citation);
+    if (node.url) console.log(pc.yellow('URL:'), node.url);
+    console.log();
+    return;
+  }
+
   console.log(`Status: ${node.status} | Evidence: ${node.evidence_level}\n`);
 
   if ('summary' in node) {
@@ -95,78 +108,148 @@ export function cmdShow(id: string, options: { dir?: string }) {
     console.log(`  ${node.summary}\n`);
   }
 
-  if (node.type === 'barrier') {
-    console.log(pc.yellow('Stage:'), node.stage);
-    console.log(pc.yellow('Pass Condition:'), node.pass_condition);
-    console.log(pc.yellow('Precedes:'), node.precedes.join(', ') || 'none (terminal)');
-  } else if (node.type === 'mechanism') {
-    console.log(pc.yellow('Facets:'));
-    console.log(`  Actor: ${node.facets.actor} | Nature: ${node.facets.nature} | Visibility: ${node.facets.visibility} | Removability: ${pc.bold(node.facets.removability)}`);
-    console.log(pc.yellow('Operates At:'), node.operates_at.join(', '));
-    console.log(pc.yellow('Emissions:'), node.emissions.map((e) => `${e.artifact} (${e.fidelity || 'direct'})`).join(', '));
-    console.log(pc.yellow('Amplifies:'), node.amplifies.join(', ') || 'none');
-    console.log(pc.yellow('Masks:'), node.masks.join(', ') || 'none');
-  } else if (node.type === 'artifact') {
-    console.log(pc.yellow('Stages:'), node.stages.join(', '));
-    if (node.probes && node.probes.length > 0) {
-      console.log(pc.yellow('Diagnostic Probes:'));
-      for (const p of node.probes) {
-        console.log(`  - [${p.id}] ${p.action} (Cost: ${p.cost})`);
+  switch (node.type) {
+    case 'barrier':
+      console.log(pc.yellow('Stage:'), node.stage, pc.dim(`(funnel order #${node.order})`));
+      console.log(pc.yellow('Description:'), node.description);
+      console.log(pc.yellow('Pass Condition:'), node.pass_condition);
+      console.log(pc.yellow('Precedes:'), node.precedes.join(', ') || 'none (terminal)');
+      break;
+    case 'mechanism':
+      console.log(pc.yellow('Facets:'));
+      console.log(
+        `  Actor: ${node.facets.actor} | Nature: ${node.facets.nature} | Visibility: ${node.facets.visibility} | Removability: ${pc.bold(node.facets.removability)}`
+      );
+      if (node.honest_baseline) console.log(pc.green('  Honest baseline mechanism'));
+      console.log(pc.yellow('Operates At:'), node.operates_at.join(', '));
+      console.log(pc.yellow('Emissions:'), node.emissions.map((e) => `${e.artifact} (${e.fidelity ?? 'unspecified'})`).join(', ') || 'none');
+      console.log(pc.yellow('Amplifies:'), node.amplifies.join(', ') || 'none');
+      console.log(pc.yellow('Masks:'), node.masks.join(', ') || 'none');
+      break;
+    case 'artifact':
+      console.log(pc.yellow('Stages:'), node.stages.join(', '));
+      if (node.probes.length > 0) {
+        console.log(pc.yellow('Diagnostic Probes:'));
+        for (const p of node.probes) console.log(`  - [${p.id}] ${p.action} (Cost: ${p.cost})`);
       }
-    }
+      break;
+    case 'pattern':
+      console.log(pc.yellow('Trigger Rule:'), node.trigger_rule);
+      console.log(pc.yellow('Required Artifacts:'), node.required_artifacts.join(', '));
+      console.log(pc.yellow('Compatible Mechanisms:'), node.compatible_mechanisms.join(', '));
+      console.log(pc.yellow('Interventions:'), node.interventions.join(', ') || 'none');
+      break;
+    case 'loop':
+      console.log(pc.yellow('Mechanisms:'), node.mechanisms.join(', '));
+      console.log(pc.yellow('Edges:'));
+      for (const e of node.edges) console.log(`  - ${e.from} ${e.relation} ${e.to}`);
+      console.log(pc.yellow('Entry Points:'), node.entry_points.join(', '));
+      break;
+    case 'intervention':
+      console.log(pc.yellow('Actor:'), node.actor, '|', pc.yellow('Scope:'), node.scope, '|', pc.yellow('Cost:'), node.cost);
+      console.log(pc.yellow('Targets:'), node.targets.join(', '));
+      console.log(pc.yellow('Expected Effects:'));
+      for (const e of node.expected_effects) console.log(`  - ${e}`);
+      console.log(pc.yellow('Measurements:'), node.measurements.join(', '));
+      break;
   }
 
   if ('non_inferences' in node && node.non_inferences.length > 0) {
     console.log(pc.yellow('\nNon-Inferences (What this does NOT establish):'));
-    for (const ni of node.non_inferences) {
-      console.log(`  - ${pc.dim(ni)}`);
-    }
+    for (const ni of node.non_inferences) console.log(`  - ${pc.dim(ni)}`);
   }
   console.log();
 }
 
-export function cmdExplain(artifactId: string, options: { stage?: string; dir?: string }) {
-  const bundle = resolveRegistryBundle(options.dir);
+export function cmdExplain(artifactIds: string[], options: GlobalOptions & { stage?: string }) {
+  const { bundle } = loadBundle(options);
   const engine = new HOBADiagnosticEngine(bundle);
+  const res = engine.analyze({ artifacts: artifactIds, stage: parseStage(options.stage) });
 
-  const res = engine.analyze({
-    artifacts: [artifactId],
-    stage: options.stage as any,
-  });
+  if (options.json) {
+    printJson({ registry_version: bundle.version, analysis: res });
+    return;
+  }
 
   console.log(pc.bold(pc.cyan('\n=== HOBA Forensic Diagnostic Analysis ===\n')));
+  if (res.hard_facts.unknown_artifact_ids.length > 0) {
+    console.log(pc.yellow(`Warning: unknown or inactive artifact ID(s) ignored: ${res.hard_facts.unknown_artifact_ids.join(', ')}\n`));
+  }
+
   console.log(pc.bold('H — Hard Facts:'));
-  for (const a of res.hard_facts.selected_artifacts) {
-    console.log(`  - [${a.id}] ${a.title}`);
-  }
-  if (res.hard_facts.stage) {
-    console.log(`  - Confirmed Stage: ${res.hard_facts.stage}`);
-  }
+  for (const a of res.hard_facts.selected_artifacts) console.log(`  - [${a.id}] ${a.title}`);
+  if (res.hard_facts.stage) console.log(`  - Confirmed Stage: ${res.hard_facts.stage}`);
 
   console.log(pc.bold('\nO — Obstacle (Localized Barriers):'));
-  for (const b of res.obstacle.identified_barriers) {
-    console.log(`  - [${b.id}] ${b.title} (${b.stage})`);
-  }
+  if (res.obstacle.identified_barriers.length === 0) console.log(pc.dim('  (none localized)'));
+  for (const b of res.obstacle.identified_barriers) console.log(`  - [${b.id}] ${b.title} (${b.stage})`);
 
   console.log(pc.bold('\nB — Behind the Obstacle (Compatible Mechanisms):'));
+  if (res.behind.compatible_mechanisms.length === 0) console.log(pc.dim('  (none)'));
   for (const item of res.behind.compatible_mechanisms) {
     const baselineTag = item.honest_baseline ? pc.green(' [HONEST BASELINE]') : '';
     const removabilityTag =
       item.removability === 'candidate'
         ? pc.green(' [CANDIDATE AGENCY]')
         : item.removability === 'intermediary'
-        ? pc.yellow(' [INTERMEDIARY]')
-        : pc.red(' [NO AGENCY]');
-    console.log(`  - [${item.mechanism.id}] ${item.mechanism.title}${baselineTag}${removabilityTag}`);
+          ? pc.yellow(' [INTERMEDIARY]')
+          : pc.red(' [NO AGENCY]');
+    const emitsTag = item.emitted_by_evidence ? pc.dim(' (emits observed signal)') : '';
+    console.log(`  - [${item.mechanism.id}] ${item.mechanism.title}${baselineTag}${removabilityTag}${emitsTag}`);
+  }
+  if (res.behind.related_patterns.length > 0) {
+    console.log(pc.bold('\n  Related Patterns:'));
+    for (const p of res.behind.related_patterns) console.log(`  - [${p.id}] ${p.title}`);
+  }
+  if (res.behind.related_loops.length > 0) {
+    console.log(pc.bold('\n  Related Causal Loops:'));
+    for (const l of res.behind.related_loops) console.log(`  - [${l.id}] ${l.title}`);
+  }
+  if (res.behind.non_inferences.length > 0) {
+    console.log(pc.bold('\n  Non-Inferences:'));
+    for (const ni of res.behind.non_inferences) console.log(`  - ${pc.dim(ni)}`);
   }
 
   console.log(pc.bold('\nA — Agency & Diagnostic Probes:'));
-  console.log(`  Zone: ${pc.bold(res.agency.agency_zone.toUpperCase())}`);
+  console.log(`  Verdict: ${pc.bold(res.verdict)} | Zone: ${pc.bold(res.agency.agency_zone.toUpperCase())}`);
   console.log(`  Summary: ${res.agency.probes_summary}`);
   for (const p of res.agency.diagnostic_probes) {
-    console.log(`  - Action: ${p.action}`);
+    console.log(`  - [${p.id}] ${p.action}`);
     console.log(`    Expected Signal: ${pc.dim(p.expected_signal)} (Cost: ${p.cost})`);
   }
 
   console.log(pc.dim(`\nDisclaimer: ${res.epistemic_disclaimer}\n`));
+}
+
+export function cmdValidate(options: GlobalOptions & { strict?: boolean; lang?: string }): number {
+  const root = resolveRegistryRoot({ explicit: options.dir, fromModuleUrl: import.meta.url });
+  const langs: ContentLang[] = options.lang === 'all' || !options.lang ? ['en', 'uk'] : [options.lang as ContentLang];
+  if (!langs.every((l) => l === 'en' || l === 'uk')) throw new CliError(`Unknown --lang "${options.lang}" (expected en, uk or all)`);
+
+  const canonical = loadRegistryFromRoot(root, 'en');
+  let errorCount = 0;
+  let warningCount = 0;
+
+  for (const lang of langs) {
+    const bundle = lang === 'en' ? canonical : loadRegistryFromRoot(root, lang);
+    const report = validateRegistry(bundle);
+    const issues = lang === 'en' ? report.issues : [...report.issues, ...compareBundleStructure(canonical, bundle)];
+    const errors = issues.filter((i) => i.severity === 'error');
+    const warnings = issues.filter((i) => i.severity === 'warning');
+    errorCount += errors.length;
+    warningCount += warnings.length;
+
+    console.log(pc.bold(pc.cyan(`\n--- ${lang.toUpperCase()} content (${bundle.version}) ---`)));
+    for (const issue of errors) console.log(pc.red(formatValidationIssue(issue)));
+    for (const issue of warnings) console.log(pc.yellow(formatValidationIssue(issue)));
+    if (issues.length === 0) console.log(pc.green('✓ No issues'));
+  }
+
+  console.log(`\n${errorCount} error(s), ${warningCount} warning(s)`);
+  if (errorCount > 0) return 1;
+  if (options.strict && warningCount > 0) {
+    console.log(pc.red('--strict: warnings are treated as errors'));
+    return 1;
+  }
+  return 0;
 }

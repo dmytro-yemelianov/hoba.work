@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- Prevent reviewer fatigue and asymmetric code evaluation\n- Respect candidate time investment and eliminate IP exploitation concerns\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`",
     "id": "I-006",
     "type": "intervention",
-    "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
     "summary": "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.",
     "targets": [
       "M-019",
@@ -13,7 +18,6 @@
     "actor": "hiring-manager",
     "scope": "organizational",
     "cost": "medium",
-    "status": "active",
     "evidence_level": "supported",
     "expected_effects": [
       "Prevent reviewer fatigue and asymmetric code evaluation",
@@ -22,10 +26,6 @@
     "measurements": [
       "take_home_completion_rate",
       "inter_rater_rubric_correlation"
-    ],
-    "evidence_ids": [
-      "EVD-006"
-    ],
-    "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- Prevent reviewer fatigue and asymmetric code evaluation\n- Respect candidate time investment and eliminate IP exploitation concerns\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`"
+    ]
   }
 }

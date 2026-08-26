@@ -1,5 +1,6 @@
 ---
 import Logo from './Logo.astro';
+import { getBundle, siteVersion } from '../lib/registry';
 
 interface Props {
   lang?: 'en' | 'uk';
@@ -7,6 +8,7 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 const prefix = lang === 'uk' ? '/uk' : '';
+const registryVersion = getBundle(lang).version;
 ---
 <footer class="border-t border-hoba-border bg-hoba-card/40 mt-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -48,7 +50,7 @@ const prefix = lang === 'uk' ? '/uk' : '';
           <li><a href="/openapi.json" target="_blank" class="hover:text-hoba-accent font-mono text-[11px]">/openapi.json</a></li>
           <li><a href="/data/latest/registry.json" target="_blank" class="hover:text-hoba-accent font-mono text-[11px]">/data/latest/registry.json</a></li>
           <li><a href="/data/latest/graph.graphml" target="_blank" class="hover:text-hoba-accent font-mono text-[11px]">/data/latest/graph.graphml</a></li>
-          <li><a href={`${prefix}/developers#mcp`} class="hover:text-hoba-accent font-mono text-[11px]">mcp.hoba.work</a></li>
+          <li><a href={`${prefix}/developers#mcp`} class="hover:text-hoba-accent font-mono text-[11px]">MCP server (stdio)</a></li>
         </ul>
       </div>
 
@@ -64,7 +66,7 @@ const prefix = lang === 'uk' ? '/uk' : '';
         </p>
         <div class="mt-4 pt-3 border-t border-hoba-border/60 text-[11px] text-hoba-muted flex items-center justify-between">
           <span>Author: <a href="https://github.com/dmytro-yemelianov" class="text-hoba-text hover:underline">Dmytro Yemelianov</a></span>
-          <span class="font-mono">v0.4.1</span>
+          <span class="font-mono" title={`Registry release ${registryVersion}`}>site v{siteVersion} · registry {registryVersion}</span>
         </div>
       </div>
     </div>

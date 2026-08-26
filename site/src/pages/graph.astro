@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory, HOBAKnowledgeGraph } from '@hoba/registry';
+import { getGraph, langFromUrl } from '../lib/registry';
 
-const rootDir = path.resolve(process.cwd(), '..');
-const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-const graph = new HOBAKnowledgeGraph(bundle);
-const cytoData = JSON.stringify(graph.toCytoscapeJSON());
+const lang = langFromUrl(Astro.url);
+const graph = getGraph(lang);
+// Escape "<" so the JSON can never terminate the script element early.
+const graphData = JSON.stringify(graph.toCytoscapeJSON()).replace(/</g, '\\u003c');
 ---
-<Layout title="Knowledge Graph Explorer" activeNav="graph">
+<Layout lang={lang} title="Knowledge Graph Explorer" activeNav="graph">
   <div class="mb-6 border-b border-hoba-border pb-4">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
@@ -25,7 +24,7 @@ const cytoData = JSON.stringify(graph.toCytoscapeJSON());
       </div>
     </div>
     <p class="text-xs text-hoba-muted mt-2">
-      Interactive network of {graph.nodeMap.size} nodes and {graph.edges.length} edges across funnel stages, emission channels, and causal loops.
+      Interactive network of {graph.nodeMap.size - graph.bundle.evidence.length} nodes and {graph.edges.length} edges across funnel stages, emission channels, and causal loops.
     </p>
   </div>
 
@@ -33,40 +32,20 @@ const cytoData = JSON.stringify(graph.toCytoscapeJSON());
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
     <!-- Left Sidebar: Filter Controls & Node Inspector -->
     <div class="lg:col-span-4 space-y-4">
-      <!-- Layer Toggles -->
       <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card text-xs font-mono">
         <h2 class="text-xs font-bold uppercase text-hoba-muted mb-3">Filter Layers (Entity Types):</h2>
         <div class="grid grid-cols-2 gap-2">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="toggle-artifact" checked class="text-purple-500 rounded focus:ring-0" />
-            <span class="text-purple-300 font-bold">Observations (A)</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="toggle-barrier" checked class="text-emerald-500 rounded focus:ring-0" />
-            <span class="text-emerald-300 font-bold">Barriers (B)</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="toggle-mechanism" checked class="text-blue-500 rounded focus:ring-0" />
-            <span class="text-blue-300 font-bold">Mechanisms (M)</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="toggle-pattern" checked class="text-amber-500 rounded focus:ring-0" />
-            <span class="text-amber-300 font-bold">Patterns (P)</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="toggle-loop" checked class="text-pink-500 rounded focus:ring-0" />
-            <span class="text-pink-300 font-bold">Loops (L)</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="toggle-intervention" checked class="text-cyan-500 rounded focus:ring-0" />
-            <span class="text-cyan-300 font-bold">Interventions (I)</span>
-          </label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="type-toggle text-purple-500 rounded focus:ring-0" data-type="artifact" checked /><span class="text-purple-300 font-bold">Observations (A)</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="type-toggle text-emerald-500 rounded focus:ring-0" data-type="barrier" checked /><span class="text-emerald-300 font-bold">Barriers (B)</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="type-toggle text-blue-500 rounded focus:ring-0" data-type="mechanism" checked /><span class="text-blue-300 font-bold">Mechanisms (M)</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="type-toggle text-amber-500 rounded focus:ring-0" data-type="pattern" checked /><span class="text-amber-300 font-bold">Patterns (P)</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="type-toggle text-pink-500 rounded focus:ring-0" data-type="loop" checked /><span class="text-pink-300 font-bold">Loops (L)</span></label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="type-toggle text-cyan-500 rounded focus:ring-0" data-type="intervention" checked /><span class="text-cyan-300 font-bold">Interventions (I)</span></label>
         </div>
       </div>
 
-      <!-- Agency Filter -->
       <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card text-xs font-mono">
-        <h2 class="text-xs font-bold uppercase text-hoba-muted mb-2">Removability Filter:</h2>
+        <label for="select-removability" class="text-xs font-bold uppercase text-hoba-muted mb-2 block">Removability Filter (Mechanisms):</label>
         <select id="select-removability" class="w-full p-2 bg-hoba-bg border border-hoba-border rounded text-xs text-hoba-text">
           <option value="all">All Loci of Agency</option>
           <option value="candidate">Candidate Actionable Only</option>
@@ -75,8 +54,7 @@ const cytoData = JSON.stringify(graph.toCytoscapeJSON());
         </select>
       </div>
 
-      <!-- Selected Node Inspector Box -->
-      <div id="inspector-card" class="p-4 rounded-xl border border-hoba-border bg-hoba-card text-xs font-mono space-y-3">
+      <div id="inspector-card" class="p-4 rounded-xl border border-hoba-border bg-hoba-card text-xs font-mono space-y-3" aria-live="polite">
         <div class="flex items-center justify-between">
           <span class="text-[10px] uppercase font-bold text-hoba-muted">Node Inspector:</span>
           <span id="insp-id" class="text-hoba-accent font-bold">Select a node</span>
@@ -95,7 +73,7 @@ const cytoData = JSON.stringify(graph.toCytoscapeJSON());
     <!-- Right: Cytoscape Canvas Container -->
     <div class="lg:col-span-8">
       <div class="relative w-full h-[650px] rounded-2xl border border-hoba-border bg-hoba-card/40 overflow-hidden">
-        <div id="cy" class="w-full h-full"></div>
+        <div id="cy" class="w-full h-full" role="img" aria-label="Interactive knowledge graph canvas; an equivalent text catalog follows below."></div>
         <div class="absolute bottom-3 right-3 text-[10px] font-mono text-hoba-muted bg-hoba-bg/80 px-2.5 py-1 rounded border border-hoba-border pointer-events-none">
           Scroll to zoom • Drag to pan
         </div>
@@ -120,155 +98,110 @@ const cytoData = JSON.stringify(graph.toCytoscapeJSON());
     </div>
   </div>
 
-  <!-- Cytoscape.js Bundle Script -->
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
-  <script define:vars={{ cytoData }}>
-    const graphData = JSON.parse(cytoData);
+  <script type="application/json" id="graph-data" set:html={graphData} />
+  <script>
+    import cytoscape from 'cytoscape';
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // @ts-ignore
-      const cy = window.cytoscape({
-        container: document.getElementById('cy'),
+    const ROUTES: Record<string, string> = {
+      artifact: 'artifacts',
+      barrier: 'barriers',
+      mechanism: 'mechanisms',
+      pattern: 'patterns',
+      loop: 'loops',
+      intervention: 'interventions',
+    };
+
+    const raw = document.getElementById('graph-data')?.textContent;
+    const container = document.getElementById('cy');
+    if (raw && container) {
+      const graphData = JSON.parse(raw) as { elements: cytoscape.ElementsDefinition };
+
+      const cy = cytoscape({
+        container,
         elements: graphData.elements,
         style: [
           {
             selector: 'node',
             style: {
-              'label': 'data(id)',
+              label: 'data(id)',
               'font-size': '10px',
               'font-family': 'monospace',
-              'color': '#e6edf3',
+              color: '#e6edf3',
               'text-valign': 'center',
               'text-halign': 'center',
-              'width': '32px',
-              'height': '32px',
+              width: '32px',
+              height: '32px',
               'background-color': '#1f2633',
               'border-width': '2px',
-              'border-color': '#58a6ff'
-            }
-          },
-          {
-            selector: 'node[type = "artifact"]',
-            style: {
-              'border-color': '#a371f7',
-              'background-color': '#2e1065'
-            }
-          },
-          {
-            selector: 'node[type = "barrier"]',
-            style: {
-              'border-color': '#3fb950',
-              'background-color': '#064e3b'
-            }
-          },
-          {
-            selector: 'node[type = "mechanism"]',
-            style: {
               'border-color': '#58a6ff',
-              'background-color': '#1e3a8a'
-            }
+            },
           },
-          {
-            selector: 'node[type = "pattern"]',
-            style: {
-              'border-color': '#f0883e',
-              'background-color': '#7c2d12'
-            }
-          },
-          {
-            selector: 'node[type = "loop"]',
-            style: {
-              'border-color': '#db61a2',
-              'background-color': '#831843'
-            }
-          },
-          {
-            selector: 'node[type = "intervention"]',
-            style: {
-              'border-color': '#22d3ee',
-              'background-color': '#164e63'
-            }
-          },
+          { selector: 'node[type = "artifact"]', style: { 'border-color': '#a371f7', 'background-color': '#2e1065' } },
+          { selector: 'node[type = "barrier"]', style: { 'border-color': '#3fb950', 'background-color': '#064e3b' } },
+          { selector: 'node[type = "mechanism"]', style: { 'border-color': '#58a6ff', 'background-color': '#1e3a8a' } },
+          { selector: 'node[type = "pattern"]', style: { 'border-color': '#f0883e', 'background-color': '#7c2d12' } },
+          { selector: 'node[type = "loop"]', style: { 'border-color': '#db61a2', 'background-color': '#831843' } },
+          { selector: 'node[type = "intervention"]', style: { 'border-color': '#22d3ee', 'background-color': '#164e63' } },
           {
             selector: 'edge',
             style: {
-              'width': 1.5,
+              width: 1.5,
               'line-color': '#30363d',
               'target-arrow-color': '#58a6ff',
               'target-arrow-shape': 'triangle',
               'curve-style': 'bezier',
-              'arrow-scale': 0.8
-            }
+              'arrow-scale': 0.8,
+            },
           },
-          {
-            selector: 'edge[type = "amplifies"]',
-            style: {
-              'line-color': '#db61a2',
-              'target-arrow-color': '#db61a2'
-            }
-          },
-          {
-            selector: 'edge[type = "precedes"]',
-            style: {
-              'line-color': '#3fb950',
-              'target-arrow-color': '#3fb950',
-              'width': 2
-            }
-          }
+          { selector: 'edge[type = "amplifies"]', style: { 'line-color': '#db61a2', 'target-arrow-color': '#db61a2' } },
+          { selector: 'edge[type = "masks"]', style: { 'line-color': '#8b949e', 'line-style': 'dashed', 'target-arrow-color': '#8b949e' } },
+          { selector: 'edge[type = "precedes"]', style: { 'line-color': '#3fb950', 'target-arrow-color': '#3fb950', width: 2 } },
         ],
         layout: {
           name: 'cose',
           animate: false,
           nodeRepulsion: () => 8000,
           idealEdgeLength: () => 60,
-          edgeElasticity: () => 100
-        }
+          edgeElasticity: () => 100,
+        } as cytoscape.LayoutOptions,
       });
 
       // Node selection inspector
       cy.on('tap', 'node', (evt) => {
-        const node = evt.target;
-        const d = node.data();
-
-        document.getElementById('insp-id').textContent = d.id;
-        document.getElementById('insp-title').textContent = d.label || d.id;
-        document.getElementById('insp-desc').textContent = `Type: ${d.type} | Stage: ${d.stage || 'N/A'} | Removability: ${d.removability || 'N/A'}`;
-
-        const linkContainer = document.getElementById('insp-link-container');
-        const link = document.getElementById('insp-link');
-        linkContainer.classList.remove('hidden');
-
-        let pathPrefix = 'artifacts';
-        if (d.type === 'barrier') pathPrefix = 'barriers';
-        if (d.type === 'mechanism') pathPrefix = 'mechanisms';
-        if (d.type === 'pattern') pathPrefix = 'patterns';
-        if (d.type === 'loop') pathPrefix = 'loops';
-        if (d.type === 'intervention') pathPrefix = 'interventions';
-
-        link.setAttribute('href', `/${pathPrefix}/${d.id}`);
+        const d = evt.target.data() as Record<string, string | undefined>;
+        document.getElementById('insp-id')!.textContent = d.id ?? '';
+        document.getElementById('insp-title')!.textContent = d.label || d.id || '';
+        document.getElementById('insp-desc')!.textContent =
+          `Type: ${d.type} | Stage: ${d.stage || 'N/A'} | Removability: ${d.removability || 'N/A'} | Evidence: ${d.evidence_level || 'N/A'}`;
+        document.getElementById('insp-link-container')!.classList.remove('hidden');
+        document.getElementById('insp-link')!.setAttribute('href', `/${ROUTES[d.type ?? ''] ?? 'registry'}/${d.id}`);
       });
 
-      // Filter toggles
-      const toggles = {
-        artifact: document.getElementById('toggle-artifact'),
-        barrier: document.getElementById('toggle-barrier'),
-        mechanism: document.getElementById('toggle-mechanism'),
-        pattern: document.getElementById('toggle-pattern'),
-        loop: document.getElementById('toggle-loop'),
-        intervention: document.getElementById('toggle-intervention')
-      };
+      // Filters: entity-type toggles and the removability selector combine.
+      const toggles = document.querySelectorAll<HTMLInputElement>('.type-toggle');
+      const removabilitySelect = document.getElementById('select-removability') as HTMLSelectElement | null;
 
-      Object.entries(toggles).forEach(([type, el]) => {
-        el.addEventListener('change', () => {
-          const visible = el.checked;
-          const nodes = cy.nodes(`[type = "${type}"]`);
-          if (visible) {
-            nodes.show();
-          } else {
-            nodes.hide();
-          }
+      function applyFilters() {
+        const hiddenTypes = new Set<string>();
+        toggles.forEach((t) => {
+          if (!t.checked && t.dataset.type) hiddenTypes.add(t.dataset.type);
         });
-      });
-    });
+        const removability = removabilitySelect?.value ?? 'all';
+
+        cy.batch(() => {
+          cy.nodes().forEach((node) => {
+            const type = node.data('type') as string;
+            const visible =
+              !hiddenTypes.has(type) &&
+              (type !== 'mechanism' || removability === 'all' || node.data('removability') === removability);
+            if (visible) node.show();
+            else node.hide();
+          });
+        });
+      }
+
+      toggles.forEach((t) => t.addEventListener('change', applyFilters));
+      removabilitySelect?.addEventListener('change', applyFilters);
+    }
   </script>
 </Layout>

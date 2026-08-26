@@ -1,9 +1,33 @@
 {
+  "$id": "https://hoba.work/schemas/barrier.schema.json",
   "$ref": "#/definitions/Barrier",
   "definitions": {
     "Barrier": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "pattern": "^B-\\d{3}$"
@@ -11,10 +35,6 @@
         "type": {
           "type": "string",
           "const": "barrier"
-        },
-        "title": {
-          "type": "string",
-          "minLength": 3
         },
         "stage": {
           "type": "string",
@@ -38,8 +58,7 @@
         "precedes": {
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^B-\\d{3}$"
+            "$ref": "#/definitions/Barrier/properties/id"
           },
           "default": []
         },
@@ -51,17 +70,8 @@
           "type": "string",
           "minLength": 5
         },
-        "status": {
-          "type": "string",
-          "enum": [
-            "active",
-            "deprecated"
-          ],
-          "default": "active"
-        },
         "superseded_by": {
-          "type": "string",
-          "pattern": "^B-\\d{3}$"
+          "$ref": "#/definitions/Barrier/properties/id"
         },
         "evidence_level": {
           "type": "string",
@@ -72,21 +82,12 @@
             "illustrative"
           ],
           "default": "established"
-        },
-        "evidence_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "content": {
-          "type": "string"
         }
       },
       "required": [
+        "title",
         "id",
         "type",
-        "title",
         "stage",
         "order",
         "description",

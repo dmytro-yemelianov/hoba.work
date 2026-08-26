@@ -10,6 +10,14 @@ const { lang = 'en', active = '' } = Astro.props;
 
 const prefix = lang === 'uk' ? '/uk' : '';
 
+// Keep the visitor on the equivalent page when switching language. Entity detail
+// pages exist only in English, so they fall back to the mirror's home page.
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const stripped = pathname.replace(/^\/uk(?=\/|$)/, '') || '/';
+const mirrored = ['/', '/analyze', '/registry', '/patterns', '/graph', '/data', '/methodology', '/developers', '/contribute', '/about'];
+const enHref = mirrored.includes(stripped) ? stripped : '/';
+const ukHref = mirrored.includes(stripped) ? (stripped === '/' ? '/uk' : `/uk${stripped}`) : '/uk';
+
 const navLinks = [
   { name: lang === 'uk' ? 'Аналіз' : 'Analyze', href: `${prefix}/analyze`, key: 'analyze', highlight: true },
   { name: lang === 'uk' ? 'Реєстр' : 'Registry', href: `${prefix}/registry`, key: 'registry' },
@@ -52,13 +60,15 @@ const navLinks = [
       <!-- Language Switch -->
       <div class="flex items-center text-xs font-mono bg-hoba-card border border-hoba-border rounded-md p-0.5">
         <a
-          href="/"
+          href={enHref}
+          hreflang="en"
           class={`px-2 py-1 rounded transition-colors ${lang === 'en' ? 'bg-hoba-border text-hoba-text font-bold' : 'text-hoba-muted hover:text-hoba-text'}`}
         >
           EN
         </a>
         <a
-          href="/uk"
+          href={ukHref}
+          hreflang="uk"
           class={`px-2 py-1 rounded transition-colors ${lang === 'uk' ? 'bg-hoba-border text-hoba-text font-bold' : 'text-hoba-muted hover:text-hoba-text'}`}
         >
           UA

@@ -8,15 +8,12 @@ importers:
 
   .:
     devDependencies:
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
+      '@hoba/registry':
+        specifier: workspace:*
+        version: link:packages/registry
       '@types/node':
         specifier: ^22.13.4
         version: 22.20.1
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.3.1
       rimraf:
         specifier: ^6.0.1
         version: 6.1.3

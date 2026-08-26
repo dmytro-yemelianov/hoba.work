@@ -2,6 +2,8 @@
   "name": "HOBA Public API",
   "version": "v1",
   "registry_version": "2026.08.1",
+  "schema_version": "1.0.0",
+  "openapi": "/openapi.json",
   "endpoints": [
     "/api/v1/artifacts",
     "/api/v1/barriers",
@@ -9,7 +11,7 @@
     "/api/v1/patterns",
     "/api/v1/loops",
     "/api/v1/interventions",
-    "/api/v1/graph",
-    "/api/v1/search"
+    "/api/v1/evidence",
+    "/api/v1/graph"
   ]
 }

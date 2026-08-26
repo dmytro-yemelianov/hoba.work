@@ -1,9 +1,33 @@
 {
+  "$id": "https://hoba.work/schemas/artifact.schema.json",
   "$ref": "#/definitions/Artifact",
   "definitions": {
     "Artifact": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "pattern": "^A-\\d{3}$"
@@ -11,10 +35,6 @@
         "type": {
           "type": "string",
           "const": "artifact"
-        },
-        "title": {
-          "type": "string",
-          "minLength": 3
         },
         "summary": {
           "type": "string",
@@ -56,17 +76,8 @@
             }
           ]
         },
-        "status": {
-          "type": "string",
-          "enum": [
-            "active",
-            "deprecated"
-          ],
-          "default": "active"
-        },
         "superseded_by": {
-          "type": "string",
-          "pattern": "^A-\\d{3}$"
+          "$ref": "#/definitions/Artifact/properties/id"
         },
         "evidence_level": {
           "type": "string",
@@ -77,12 +88,6 @@
             "illustrative"
           ],
           "default": "supported"
-        },
-        "evidence_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "probes": {
           "type": "array",
@@ -125,7 +130,8 @@
               "cost"
             ],
             "additionalProperties": false
-          }
+          },
+          "default": []
         },
         "non_inferences": {
           "type": "array",
@@ -133,15 +139,12 @@
             "type": "string"
           },
           "minItems": 1
-        },
-        "content": {
-          "type": "string"
         }
       },
       "required": [
+        "title",
         "id",
         "type",
-        "title",
         "summary",
         "stages",
         "non_inferences"

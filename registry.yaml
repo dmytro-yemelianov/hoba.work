@@ -1,0 +1,7 @@
+# HOBA registry release manifest — the single source of truth for the three
+# version axes described in spec §17. Bump `version` on every content release,
+# `schema_version` when the entity contract changes. `updated_at` is set
+# explicitly (not at build time) so registry exports stay byte-deterministic.
+version: "2026.08.1"
+schema_version: "1.0.0"
+updated_at: "2026-08-26T20:00:00Z"

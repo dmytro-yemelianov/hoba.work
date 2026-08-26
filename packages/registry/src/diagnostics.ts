@@ -1,153 +1,120 @@
 import { HOBAKnowledgeGraph } from './graph.js';
-import {
+import type {
+  AgencyZone,
   ArtifactNode,
-  BarrierNode,
+  CompatibleMechanism,
   DiagnosticInput,
   DiagnosticProbe,
   DiagnosticResult,
-  EvidenceLevel,
   MechanismNode,
-  PatternNode,
-  LoopNode,
   RegistryBundle,
-  RemovabilityType,
   StageId,
 } from './types.js';
 
+export const EPISTEMIC_DISCLAIMER =
+  'Topological / Uncalibrated Analysis: Compatible mechanisms reflect logical compatibility with observed facts and structural gates, not probabilistic certainty. An observation is not a cause; a rejection message is not necessarily a reason.';
+
+/**
+ * The HOBA protocol (H → O → B → A) over a loaded registry.
+ *
+ * The engine is pure and browser-safe; it is the single implementation shared by
+ * the CLI, the MCP server and the site's analysis wizard.
+ */
 export class HOBADiagnosticEngine {
-  private bundle: RegistryBundle;
-  private graph: HOBAKnowledgeGraph;
+  private readonly bundle: RegistryBundle;
+  private readonly graph: HOBAKnowledgeGraph;
 
   constructor(bundle: RegistryBundle, graph?: HOBAKnowledgeGraph) {
     this.bundle = bundle;
-    this.graph = graph || new HOBAKnowledgeGraph(bundle);
+    this.graph = graph ?? new HOBAKnowledgeGraph(bundle);
   }
 
   public analyze(input: DiagnosticInput): DiagnosticResult {
-    // 1. Step H: Hard Facts
-    const selectedArtifacts: ArtifactNode[] = input.artifacts
-      .map((id) => this.bundle.artifacts.find((a) => a.id === id))
-      .filter((a): a is ArtifactNode => Boolean(a));
-
+    // 1. Step H: Hard Facts — resolve the observed artifacts (deprecated nodes are excluded from analysis).
+    const selectedArtifacts: ArtifactNode[] = [];
+    const unknownArtifactIds: string[] = [];
+    for (const id of input.artifacts) {
+      const node = this.graph.getNode(id);
+      if (node?.type === 'artifact' && node.status === 'active') selectedArtifacts.push(node);
+      else unknownArtifactIds.push(id);
+    }
+    const selectedArtifactIds = new Set(selectedArtifacts.map((a) => a.id));
     const selectedStage: StageId | undefined = input.stage;
 
-    // 2. Step O: Obstacle (Barrier Localization)
-    const barrierSet = new Set<string>();
-
+    // 2. Step O: Obstacle — localize barriers by explicit stage, else by the stages the artifacts appear at.
+    const stagesInScope = new Set<StageId>();
     if (selectedStage) {
-      const stageBarriers = this.bundle.barriers.filter((b) => b.stage === selectedStage);
-      for (const b of stageBarriers) barrierSet.add(b.id);
+      stagesInScope.add(selectedStage);
     } else {
-      // Infer potential stages from artifacts
-      const inferredStages = new Set<StageId>();
-      for (const a of selectedArtifacts) {
-        for (const s of a.stages) inferredStages.add(s);
-      }
-      const matchingBarriers = this.bundle.barriers.filter((b) => inferredStages.has(b.stage));
-      for (const b of matchingBarriers) barrierSet.add(b.id);
+      for (const a of selectedArtifacts) for (const s of a.stages) stagesInScope.add(s);
     }
+    const identifiedBarriers = this.bundle.barriers.filter((b) => b.status === 'active' && stagesInScope.has(b.stage));
+    const barrierSet = new Set(identifiedBarriers.map((b) => b.id));
 
-    const identifiedBarriers = this.bundle.barriers.filter((b) => barrierSet.has(b.id));
-
-    // 3. Step B: Behind the Obstacle (Compatible Mechanisms)
-    // Find mechanisms that operate at identified barriers OR emit selected artifacts
-    const compatibleMechMap = new Map<
-      string,
-      {
-        mechanism: MechanismNode;
-        evidence_level: EvidenceLevel;
-        honest_baseline: boolean;
-        emitted_by_evidence: boolean;
-        removability: RemovabilityType;
-        amplified_by: string[];
-        masks: string[];
-      }
-    >();
-
-    const selectedArtifactIds = new Set(selectedArtifacts.map((a) => a.id));
-
+    // 3. Step B: Behind the Obstacle — mechanisms that operate at an identified barrier OR emit a selected artifact.
+    const compatibleMechanisms: CompatibleMechanism[] = [];
     for (const m of this.bundle.mechanisms) {
+      if (m.status !== 'active') continue;
       const operatesAtIdentifiedBarrier = m.operates_at.some((bid) => barrierSet.has(bid));
       const directlyEmitsArtifact = m.emissions.some((e) => selectedArtifactIds.has(e.artifact));
+      if (!operatesAtIdentifiedBarrier && !directlyEmitsArtifact) continue;
 
-      if (operatesAtIdentifiedBarrier || directlyEmitsArtifact) {
-        compatibleMechMap.set(m.id, {
-          mechanism: m,
-          evidence_level: m.evidence_level,
-          honest_baseline: Boolean(m.honest_baseline),
-          emitted_by_evidence: directlyEmitsArtifact,
-          removability: m.facets.removability,
-          amplified_by: this.graph.reverseAdjacency
-            .get(m.id)
-            ?.filter((edge) => edge.edge.type === 'amplifies')
-            .map((edge) => edge.source) || [],
-          masks: m.masks,
-        });
-      }
+      compatibleMechanisms.push({
+        mechanism: m,
+        evidence_level: m.evidence_level,
+        honest_baseline: m.honest_baseline,
+        emitted_by_evidence: directlyEmitsArtifact,
+        removability: m.facets.removability,
+        amplified_by: (this.graph.reverseAdjacency.get(m.id) ?? [])
+          .filter((item) => item.edge.type === 'amplifies')
+          .map((item) => item.source),
+        masks: m.masks,
+      });
     }
+    const compatibleIds = new Set(compatibleMechanisms.map((c) => c.mechanism.id));
 
-    const compatibleMechanisms = Array.from(compatibleMechMap.values());
+    const relatedPatterns = this.bundle.patterns.filter(
+      (p) =>
+        p.status === 'active' &&
+        (p.required_artifacts.some((aid) => selectedArtifactIds.has(aid)) ||
+          p.compatible_mechanisms.some((mid) => compatibleIds.has(mid)))
+    );
 
-    // Related Patterns
-    const relatedPatterns = this.bundle.patterns.filter((p) => {
-      const matchesArtifact = p.required_artifacts.some((aid) => selectedArtifactIds.has(aid));
-      const matchesMechanism = p.compatible_mechanisms.some((mid) => compatibleMechMap.has(mid));
-      return matchesArtifact || matchesMechanism;
-    });
+    const relatedLoops = this.bundle.loops.filter(
+      (l) => l.status === 'active' && l.mechanisms.some((mid) => compatibleIds.has(mid))
+    );
 
-    // Related Loops
-    const relatedLoops = this.bundle.loops.filter((l) => {
-      return l.mechanisms.some((mid) => compatibleMechMap.has(mid));
-    });
-
-    // Collect Non-inferences
     const nonInferenceSet = new Set<string>();
-    for (const a of selectedArtifacts) {
-      for (const ni of a.non_inferences) nonInferenceSet.add(ni);
-    }
-    for (const { mechanism } of compatibleMechanisms) {
-      for (const ni of mechanism.non_inferences) nonInferenceSet.add(ni);
-    }
-    for (const p of relatedPatterns) {
-      for (const ni of p.non_inferences) nonInferenceSet.add(ni);
-    }
+    for (const a of selectedArtifacts) for (const ni of a.non_inferences) nonInferenceSet.add(ni);
+    for (const { mechanism } of compatibleMechanisms) for (const ni of mechanism.non_inferences) nonInferenceSet.add(ni);
+    for (const p of relatedPatterns) for (const ni of p.non_inferences) nonInferenceSet.add(ni);
 
-    // 4. Step A: Agency Partitioning & Probes
+    // 4. Step A: Agency partitioning & probes.
     const candidateRemovable: MechanismNode[] = [];
     const intermediaryDependent: MechanismNode[] = [];
     const exogenousNoAgency: MechanismNode[] = [];
-
     for (const { mechanism } of compatibleMechanisms) {
-      if (mechanism.facets.removability === 'candidate') {
-        candidateRemovable.push(mechanism);
-      } else if (mechanism.facets.removability === 'intermediary') {
-        intermediaryDependent.push(mechanism);
-      } else {
-        exogenousNoAgency.push(mechanism);
+      switch (mechanism.facets.removability) {
+        case 'candidate':
+          candidateRemovable.push(mechanism);
+          break;
+        case 'intermediary':
+          intermediaryDependent.push(mechanism);
+          break;
+        default:
+          exogenousNoAgency.push(mechanism);
       }
     }
 
-    // Collect Diagnostic Probes
+    // Probes are attached to observations; de-duplicate by probe ID (IDs are validated to be unique).
     const probeMap = new Map<string, DiagnosticProbe>();
-    for (const a of selectedArtifacts) {
-      if (a.probes) {
-        for (const p of a.probes) probeMap.set(p.id, p);
-      }
-    }
-
+    for (const a of selectedArtifacts) for (const p of a.probes) probeMap.set(p.id, p);
     const diagnosticProbes = Array.from(probeMap.values());
 
-    // Agency Zone & Verdict
-    let agencyZone: 'endogenous' | 'exogenous' | 'mixed' = 'mixed';
-    if (candidateRemovable.length > 0 && exogenousNoAgency.length === 0 && intermediaryDependent.length === 0) {
-      agencyZone = 'endogenous';
-    } else if (candidateRemovable.length === 0 && (exogenousNoAgency.length > 0 || intermediaryDependent.length > 0)) {
-      agencyZone = 'exogenous';
-    }
+    const agencyZone = classifyAgencyZone(candidateRemovable.length, intermediaryDependent.length, exogenousNoAgency.length);
 
-    let verdict: 'diagnostic' | 'low_signal_ambiguity' = 'diagnostic';
-    let probesSummary = '';
-
+    let verdict: DiagnosticResult['verdict'] = 'diagnostic';
+    let probesSummary: string;
     if (selectedArtifacts.length === 0) {
       verdict = 'low_signal_ambiguity';
       probesSummary = 'No direct observations provided. Cannot establish compatible mechanisms without factual anchors.';
@@ -156,7 +123,7 @@ export class HOBADiagnosticEngine {
       probesSummary =
         'Low signal. No additional candidate action is justified by the available evidence. The compatible mechanisms are purely exogenous or intermediary-controlled.';
     } else {
-      probesSummary = `${diagnosticProbes.length} bounded diagnostic probe(s) identified across ${candidateRemovable.length} candidate-removable mechanism(s).`;
+      probesSummary = `${diagnosticProbes.length} bounded diagnostic probe(s) attached to the selected observation(s); ${candidateRemovable.length} candidate-removable mechanism(s) in scope.`;
     }
 
     return {
@@ -166,15 +133,16 @@ export class HOBADiagnosticEngine {
       summary:
         verdict === 'low_signal_ambiguity'
           ? 'Low signal / high ambiguity. System indicates minimal candidate agency.'
-          : `Decomposed into ${identifiedBarriers.length} barrier stage(s), ${compatibleMechanisms.length} compatible mechanism(s), and ${diagnosticProbes.length} diagnostic probe(s).`,
+          : `Decomposed into ${identifiedBarriers.length} barrier gate(s), ${compatibleMechanisms.length} compatible mechanism(s), and ${diagnosticProbes.length} diagnostic probe(s).`,
       hard_facts: {
         selected_artifacts: selectedArtifacts,
+        unknown_artifact_ids: unknownArtifactIds,
         stage: selectedStage,
         notes: input.notes,
       },
       obstacle: {
         identified_barriers: identifiedBarriers,
-        primary_stage: selectedStage || (identifiedBarriers[0]?.stage),
+        primary_stage: selectedStage ?? identifiedBarriers[0]?.stage,
       },
       behind: {
         compatible_mechanisms: compatibleMechanisms,
@@ -199,8 +167,14 @@ export class HOBADiagnosticEngine {
         loops: relatedLoops.length,
         probes: diagnosticProbes.length,
       },
-      epistemic_disclaimer:
-        'Topological / Uncalibrated Analysis: Compatible mechanisms reflect logical compatibility with observed facts and structural gates, not probabilistic certainty. An observation is not a cause; a rejection message is not necessarily a reason.',
+      epistemic_disclaimer: EPISTEMIC_DISCLAIMER,
     };
   }
+}
+
+export function classifyAgencyZone(candidate: number, intermediary: number, exogenous: number): AgencyZone {
+  if (candidate + intermediary + exogenous === 0) return 'undetermined';
+  if (candidate > 0 && intermediary === 0 && exogenous === 0) return 'endogenous';
+  if (candidate === 0) return 'exogenous';
+  return 'mixed';
 }

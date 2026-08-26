@@ -3,9 +3,14 @@
   "count": 3,
   "items": [
     {
+      "title": "Employment Gap Penalty Loop",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-003"
+      ],
+      "content": "# Employment Gap Penalty Loop\n\nAn initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-009`\n- `M-009` amplifies `M-011`",
       "id": "L-001",
       "type": "loop",
-      "title": "Employment Gap Penalty Loop",
       "summary": "An initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.",
       "mechanisms": [
         "M-011",
@@ -35,17 +40,17 @@
       "interventions": [
         "I-004"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-003"
-      ],
-      "content": "# Employment Gap Penalty Loop\n\nAn initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-009`\n- `M-009` amplifies `M-011`"
+      "evidence_level": "supported"
     },
     {
+      "title": "Take-Home Opportunity-Cost Saturation Loop",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`",
       "id": "L-002",
       "type": "loop",
-      "title": "Take-Home Opportunity-Cost Saturation Loop",
       "summary": "Candidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.",
       "mechanisms": [
         "M-012",
@@ -69,17 +74,18 @@
       "interventions": [
         "I-006"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-006"
-      ],
-      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`"
+      "evidence_level": "supported"
     },
     {
+      "title": "Inflated-Requirements Search Saturation Loop",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-004"
+      ],
+      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`",
       "id": "L-003",
       "type": "loop",
-      "title": "Inflated-Requirements Search Saturation Loop",
       "summary": "Teams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.",
       "mechanisms": [
         "M-024",
@@ -110,13 +116,7 @@
         "I-001",
         "I-003"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-001",
-        "EVD-004"
-      ],
-      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`"
+      "evidence_level": "supported"
     }
   ]
 }

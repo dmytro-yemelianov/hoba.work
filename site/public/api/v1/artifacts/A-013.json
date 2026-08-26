@@ -1,20 +1,21 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Feedback stating candidate is overqualified for the grade",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-002"
+    ],
+    "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns.",
     "id": "A-013",
     "type": "artifact",
-    "title": "Feedback stating candidate is overqualified for the grade",
     "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.",
     "stages": [
       "recruiter",
       "screening",
       "team"
     ],
-    "status": "active",
     "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-002"
-    ],
     "probes": [
       {
         "id": "PROBE-A-013-1",
@@ -25,7 +26,6 @@
     ],
     "non_inferences": [
       "Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns."
-    ],
-    "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns."
+    ]
   }
 }

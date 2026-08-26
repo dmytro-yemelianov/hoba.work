@@ -16,7 +16,8 @@ const {
   activeNav = '',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://hoba.work');
+const site = Astro.site ?? new URL('https://hoba.work');
+const canonicalURL = new URL(Astro.url.pathname, site);
 ---
 <!doctype html>
 <html lang={lang} class="dark bg-hoba-bg text-hoba-text antialiased">
@@ -35,6 +36,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://hoba.work');
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | hoba`} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === 'uk' ? 'uk_UA' : 'en_US'} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

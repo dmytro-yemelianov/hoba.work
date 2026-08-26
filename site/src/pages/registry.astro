@@ -2,28 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 import EntityBadge from '../components/EntityBadge.astro';
 import RemovabilityBadge from '../components/RemovabilityBadge.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory } from '@hoba/registry';
+import type { RemovabilityType, StageId } from '@hoba/registry';
+import { getBundle, langFromUrl } from '../lib/registry';
 
-const rootDir = path.resolve(process.cwd(), '..');
-const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
+const lang = langFromUrl(Astro.url);
+const bundle = getBundle(lang);
 
-const allNodes = [
-  ...bundle.artifacts.map((a) => ({ ...a, entityType: 'artifact', link: `/artifacts/${a.id}` })),
-  ...bundle.barriers.map((b) => ({ ...b, entityType: 'barrier', link: `/barriers/${b.id}` })),
-  ...bundle.mechanisms.map((m) => ({ ...m, entityType: 'mechanism', link: `/mechanisms/${m.id}` })),
-  ...bundle.patterns.map((p) => ({ ...p, entityType: 'pattern', link: `/patterns/${p.id}` })),
-  ...bundle.loops.map((l) => ({ ...l, entityType: 'loop', link: `/loops/${l.id}` })),
-  ...bundle.interventions.map((i) => ({ ...i, entityType: 'intervention', link: `/interventions/${i.id}` })),
+type EntityType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
+interface Card {
+  id: string;
+  type: EntityType;
+  title: string;
+  text: string;
+  link: string;
+  evidenceLevel: string;
+  stage?: StageId | StageId[];
+  removability?: RemovabilityType;
+}
+
+// Entity detail pages are English-only for now; the mirror's cards link to them.
+const cards: Card[] = [
+  ...bundle.artifacts.map<Card>((a) => ({ id: a.id, type: 'artifact', title: a.title, text: a.summary, link: `/artifacts/${a.id}`, evidenceLevel: a.evidence_level, stage: a.stages })),
+  ...bundle.barriers.map<Card>((b) => ({ id: b.id, type: 'barrier', title: b.title, text: b.description, link: `/barriers/${b.id}`, evidenceLevel: b.evidence_level, stage: b.stage })),
+  ...bundle.mechanisms.map<Card>((m) => ({ id: m.id, type: 'mechanism', title: m.title, text: m.summary, link: `/mechanisms/${m.id}`, evidenceLevel: m.evidence_level, removability: m.facets.removability })),
+  ...bundle.patterns.map<Card>((p) => ({ id: p.id, type: 'pattern', title: p.title, text: p.summary, link: `/patterns/${p.id}`, evidenceLevel: p.evidence_level })),
+  ...bundle.loops.map<Card>((l) => ({ id: l.id, type: 'loop', title: l.title, text: l.summary, link: `/loops/${l.id}`, evidenceLevel: l.evidence_level })),
+  ...bundle.interventions.map<Card>((i) => ({ id: i.id, type: 'intervention', title: i.title, text: i.summary, link: `/interventions/${i.id}`, evidenceLevel: i.evidence_level })),
 ];
 
-const totalCount = allNodes.length;
+const totalCount = cards.length;
+const stageText = (stage: Card['stage']) => (Array.isArray(stage) ? stage.join(' ') : stage ?? '');
 ---
-<Layout title="Registry Directory" activeNav="registry">
+<Layout lang={lang} title="Registry Directory" activeNav="registry">
   <div class="mb-8">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-hoba-border pb-6">
       <div>
-        <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Curated Knowledge Graph</span>
+        <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Curated Knowledge Graph · {bundle.version}</span>
         <h1 class="text-3xl font-black font-mono text-hoba-text mt-1">Registry Directory</h1>
       </div>
       <div class="flex items-center gap-2">
@@ -42,12 +56,11 @@ const totalCount = allNodes.length;
 
   <!-- Search & Type Tabs Bar -->
   <div class="space-y-4 mb-8">
-    <!-- Instant Search Input -->
     <div class="relative">
       <input
         type="text"
         id="search-input"
-        placeholder="Search by ID, keyword, title, stage, or mechanism..."
+        placeholder="Search by ID, title, summary or stage..."
         class="w-full px-4 py-3 pl-11 rounded-xl bg-hoba-card border border-hoba-border text-hoba-text placeholder-hoba-muted text-sm font-mono focus:outline-none focus:border-hoba-accent transition-colors"
       />
       <svg class="w-5 h-5 text-hoba-muted absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,35 +68,19 @@ const totalCount = allNodes.length;
       </svg>
     </div>
 
-    <!-- Entity Type Tabs -->
-    <div class="flex flex-wrap gap-2 text-xs font-mono">
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-accent bg-hoba-accent/10 text-hoba-accent font-bold" data-type="all">
-        All ({totalCount})
-      </button>
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="artifact">
-        Observations ({bundle.artifacts.length})
-      </button>
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="barrier">
-        Barriers ({bundle.barriers.length})
-      </button>
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="mechanism">
-        Mechanisms ({bundle.mechanisms.length})
-      </button>
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="pattern">
-        Patterns ({bundle.patterns.length})
-      </button>
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="loop">
-        Loops ({bundle.loops.length})
-      </button>
-      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="intervention">
-        Interventions ({bundle.interventions.length})
-      </button>
+    <div class="flex flex-wrap gap-2 text-xs font-mono" role="tablist" aria-label="Entity type">
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-accent bg-hoba-accent/10 text-hoba-accent font-bold" data-type="all">All ({totalCount})</button>
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="artifact">Observations ({bundle.artifacts.length})</button>
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="barrier">Barriers ({bundle.barriers.length})</button>
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="mechanism">Mechanisms ({bundle.mechanisms.length})</button>
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="pattern">Patterns ({bundle.patterns.length})</button>
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="loop">Loops ({bundle.loops.length})</button>
+      <button class="type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text" data-type="intervention">Interventions ({bundle.interventions.length})</button>
     </div>
 
-    <!-- Facet Filter Bar -->
     <div class="flex flex-wrap items-center gap-3 p-3 rounded-lg border border-hoba-border bg-hoba-card/40 text-xs font-mono">
       <span class="text-hoba-muted font-bold uppercase text-[10px]">Filter by Agency:</span>
-      <button class="removability-filter px-2 py-0.5 rounded border border-transparent text-hoba-muted hover:text-hoba-text" data-removability="all">All</button>
+      <button class="removability-filter px-2 py-0.5 rounded border border-transparent text-hoba-muted hover:text-hoba-text ring-1 ring-white" data-removability="all">All</button>
       <button class="removability-filter px-2 py-0.5 rounded border border-emerald-800/40 bg-emerald-950/30 text-emerald-300" data-removability="candidate">Candidate Action</button>
       <button class="removability-filter px-2 py-0.5 rounded border border-amber-800/40 bg-amber-950/30 text-amber-300" data-removability="intermediary">Intermediary</button>
       <button class="removability-filter px-2 py-0.5 rounded border border-rose-800/40 bg-rose-950/30 text-rose-300" data-removability="none">No Agency</button>
@@ -92,38 +89,27 @@ const totalCount = allNodes.length;
 
   <!-- Cards Grid -->
   <div id="nodes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {allNodes.map((node: any) => (
+    {cards.map((node) => (
       <a
         href={node.link}
         class="node-card p-4 rounded-xl border border-hoba-border bg-hoba-card/60 hover:bg-hoba-hover hover:border-hoba-accent/50 transition-all flex flex-col justify-between group"
-        data-type={node.entityType}
-        data-id={node.id}
+        data-type={node.type}
+        data-id={node.id.toLowerCase()}
         data-title={node.title.toLowerCase()}
-        data-text={(node.summary || node.description || '').toLowerCase()}
-        data-removability={node.facets?.removability || ''}
+        data-text={`${node.text} ${stageText(node.stage)}`.toLowerCase()}
+        data-removability={node.removability ?? ''}
       >
         <div>
-          <!-- Header -->
           <div class="flex items-center justify-between gap-2 mb-2.5">
-            <EntityBadge type={node.entityType} id={node.id} />
-            {node.facets?.removability && <RemovabilityBadge removability={node.facets.removability} />}
-            {node.stage && <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-hoba-border text-hoba-muted">{node.stage}</span>}
+            <EntityBadge type={node.type} id={node.id} />
+            {node.removability && <RemovabilityBadge removability={node.removability} />}
+            {typeof node.stage === 'string' && <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-hoba-border text-hoba-muted">{node.stage}</span>}
           </div>
-
-          <!-- Title -->
-          <h3 class="font-bold text-sm text-hoba-text group-hover:text-hoba-accent transition-colors">
-            {node.title}
-          </h3>
-
-          <!-- Summary -->
-          <p class="text-xs text-hoba-muted mt-2 leading-relaxed line-clamp-3">
-            {node.summary || node.description}
-          </p>
+          <h3 class="font-bold text-sm text-hoba-text group-hover:text-hoba-accent transition-colors">{node.title}</h3>
+          <p class="text-xs text-hoba-muted mt-2 leading-relaxed line-clamp-3">{node.text}</p>
         </div>
-
-        <!-- Footer Meta -->
         <div class="mt-4 pt-3 border-t border-hoba-border/60 flex items-center justify-between text-[11px] font-mono text-hoba-muted">
-          <span>Evidence: <strong class="text-hoba-text">{node.evidence_level || 'supported'}</strong></span>
+          <span>Evidence: <strong class="text-hoba-text">{node.evidenceLevel}</strong></span>
           <span class="text-hoba-accent flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
             <span>View node</span>
             <span>&rarr;</span>
@@ -138,49 +124,47 @@ const totalCount = allNodes.length;
   </div>
 
   <script>
+    const TYPES = ['all', 'artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
+    const ACTIVE_TAB = 'type-tab px-3 py-1.5 rounded-lg border border-hoba-accent bg-hoba-accent/10 text-hoba-accent font-bold';
+    const IDLE_TAB = 'type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text';
+
     let activeType = 'all';
     let activeRemovability = 'all';
     let searchQuery = '';
 
-    const cards = document.querySelectorAll('.node-card');
-    const searchInput = document.getElementById('search-input') as HTMLInputElement;
-    const typeTabs = document.querySelectorAll('.type-tab');
-    const removabilityFilters = document.querySelectorAll('.removability-filter');
+    const cards = document.querySelectorAll<HTMLElement>('.node-card');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const typeTabs = document.querySelectorAll<HTMLButtonElement>('.type-tab');
+    const removabilityFilters = document.querySelectorAll<HTMLButtonElement>('.removability-filter');
     const noResults = document.getElementById('no-results');
 
     function applyFilters() {
       let visibleCount = 0;
-
       cards.forEach((card) => {
-        const type = card.getAttribute('data-type') || '';
-        const id = card.getAttribute('data-id') || '';
-        const title = card.getAttribute('data-title') || '';
-        const text = card.getAttribute('data-text') || '';
-        const removability = card.getAttribute('data-removability') || '';
-
-        const matchesType = activeType === 'all' || type === activeType;
-        const matchesRemovability = activeRemovability === 'all' || removability === activeRemovability;
+        const matchesType = activeType === 'all' || card.dataset.type === activeType;
+        const matchesRemovability = activeRemovability === 'all' || card.dataset.removability === activeRemovability;
         const matchesSearch =
           !searchQuery ||
-          id.toLowerCase().includes(searchQuery) ||
-          title.includes(searchQuery) ||
-          text.includes(searchQuery);
-
-        if (matchesType && matchesRemovability && matchesSearch) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
+          (card.dataset.id ?? '').includes(searchQuery) ||
+          (card.dataset.title ?? '').includes(searchQuery) ||
+          (card.dataset.text ?? '').includes(searchQuery);
+        const visible = matchesType && matchesRemovability && matchesSearch;
+        card.classList.toggle('hidden', !visible);
+        if (visible) visibleCount++;
       });
+      noResults?.classList.toggle('hidden', visibleCount !== 0);
+    }
 
-      if (noResults) {
-        if (visibleCount === 0) {
-          noResults.classList.remove('hidden');
-        } else {
-          noResults.classList.add('hidden');
-        }
-      }
+    function selectType(type: string) {
+      activeType = TYPES.includes(type) ? type : 'all';
+      typeTabs.forEach((t) => {
+        t.className = t.dataset.type === activeType ? ACTIVE_TAB : IDLE_TAB;
+      });
+      const url = new URL(window.location.href);
+      if (activeType === 'all') url.searchParams.delete('type');
+      else url.searchParams.set('type', activeType);
+      history.replaceState(null, '', url);
+      applyFilters();
     }
 
     searchInput?.addEventListener('input', (e) => {
@@ -188,26 +172,19 @@ const totalCount = allNodes.length;
       applyFilters();
     });
 
-    typeTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        typeTabs.forEach((t) => {
-          t.className = 'type-tab px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted hover:text-hoba-text';
-        });
-        tab.className = 'type-tab px-3 py-1.5 rounded-lg border border-hoba-accent bg-hoba-accent/10 text-hoba-accent font-bold';
-        activeType = tab.getAttribute('data-type') || 'all';
-        applyFilters();
-      });
-    });
+    typeTabs.forEach((tab) => tab.addEventListener('click', () => selectType(tab.dataset.type ?? 'all')));
 
     removabilityFilters.forEach((rf) => {
       rf.addEventListener('click', () => {
-        activeRemovability = rf.getAttribute('data-removability') || 'all';
-        removabilityFilters.forEach((r) => {
-          r.classList.remove('ring-1', 'ring-white');
-        });
+        activeRemovability = rf.dataset.removability ?? 'all';
+        removabilityFilters.forEach((r) => r.classList.remove('ring-1', 'ring-white'));
         rf.classList.add('ring-1', 'ring-white');
         applyFilters();
       });
     });
+
+    // Deep links such as /registry?type=loop (used by breadcrumbs) preselect a tab.
+    const initialType = new URLSearchParams(window.location.search).get('type');
+    if (initialType) selectType(initialType);
   </script>
 </Layout>

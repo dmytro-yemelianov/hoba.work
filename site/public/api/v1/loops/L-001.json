@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Employment Gap Penalty Loop",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-003"
+    ],
+    "content": "# Employment Gap Penalty Loop\n\nAn initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-009`\n- `M-009` amplifies `M-011`",
     "id": "L-001",
     "type": "loop",
-    "title": "Employment Gap Penalty Loop",
     "summary": "An initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.",
     "mechanisms": [
       "M-011",
@@ -33,11 +38,6 @@
     "interventions": [
       "I-004"
     ],
-    "status": "active",
-    "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-003"
-    ],
-    "content": "# Employment Gap Penalty Loop\n\nAn initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-009`\n- `M-009` amplifies `M-011`"
+    "evidence_level": "supported"
   }
 }

@@ -15,15 +15,22 @@ We welcome contributions to expand and refine the **Hiring Obstacles & Barriers 
 Before submitting a pull request, ensure all local checks pass:
 
 ```bash
-# Validate Zod schemas, DAG acyclicity, and referential integrity
-pnpm validate
+# Typecheck everything
+pnpm typecheck
+
+# Validate Zod schemas, referential integrity, DAG acyclicity, loop declarations, EN/UK parity
+pnpm validate:strict
 
 # Run test suite
 pnpm test
 
-# Verify successful deterministic build
+# Regenerate committed exports (schemas/, site/public/**) and verify the deterministic build
 pnpm build
+git status --short   # generated files must be committed alongside content changes
 ```
+
+When you publish a content release, bump `version` in `registry.yaml` (format `YYYY.MM.N`) and set `updated_at`
+to the release timestamp. Bump `schema_version` only when the entity contract in `packages/registry/src/schemas.ts` changes.
 
 ## 3. Adding New Nodes
 
@@ -35,3 +42,14 @@ pnpm build
 - Interventions: Place in `/content/interventions/I-xxx.md` (and `/content-uk/interventions/I-xxx.md`)
 
 Each node must have valid YAML frontmatter conforming to schemas in `@hoba/registry`.
+
+Rules the validator enforces beyond the schema:
+
+- every `evidence_ids` / `emissions[].evidence` entry must resolve to an `EVD-xxx` record;
+- `superseded_by` requires `status: deprecated` and must point at an existing node;
+- barrier `order` values are unique and increase along `precedes`;
+- loop `edges` and `entry_points` stay inside the loop's `mechanisms`; an edge that the source mechanism does not
+  declare in `amplifies`/`masks` is reported as a warning (the loop is editorial prose until it is declared);
+- an intervention listed in a pattern/loop `interventions` field must include that pattern/loop in its `targets`
+  (and vice versa) — this is what produces `mitigates` edges in the graph;
+- the Ukrainian mirror must contain exactly the same IDs and structural fields; only prose may differ.

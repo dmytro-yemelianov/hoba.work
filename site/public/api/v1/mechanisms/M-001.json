@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Genuine Technical Skill Shortfall",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Genuine Technical Skill Shortfall\n\nThe candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark.",
     "id": "M-001",
     "type": "mechanism",
-    "title": "Genuine Technical Skill Shortfall",
     "summary": "The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.",
     "operates_at": [
       "B-005",
@@ -36,15 +41,10 @@
     },
     "amplifies": [],
     "masks": [],
-    "status": "active",
     "evidence_level": "established",
     "honest_baseline": true,
-    "evidence_ids": [
-      "EVD-006"
-    ],
     "non_inferences": [
       "Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
-    ],
-    "content": "# Genuine Technical Skill Shortfall\n\nThe candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
+    ]
   }
 }

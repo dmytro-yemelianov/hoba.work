@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { langFromUrl } from '../lib/registry';
+
+const lang = langFromUrl(Astro.url);
 ---
-<Layout title="Contributing to HOBA" activeNav="contribute">
+<Layout lang={lang} title="Contributing to HOBA" activeNav="contribute">
   <div class="max-w-4xl mx-auto space-y-10">
     <div class="border-b border-hoba-border pb-6">
       <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Git-First Knowledge Curation</span>

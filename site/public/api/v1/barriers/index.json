@@ -3,9 +3,14 @@
   "count": 12,
   "items": [
     {
+      "title": "Application Ingestion",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nApplication record is successfully received, validated for minimum schema, and linked to the active job requisition.",
       "id": "B-001",
       "type": "barrier",
-      "title": "Application Ingestion",
       "stage": "ingestion",
       "order": 1,
       "precedes": [
@@ -13,17 +18,17 @@
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
       "pass_condition": "Application record is successfully received, validated for minimum schema, and linked to the active job requisition.",
+      "evidence_level": "established"
+    },
+    {
+      "title": "Automated Filter & Parser Threshold",
       "status": "active",
-      "evidence_level": "established",
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nApplication record is successfully received, validated for minimum schema, and linked to the active job requisition."
-    },
-    {
+      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nCV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
       "id": "B-002",
       "type": "barrier",
-      "title": "Automated Filter & Parser Threshold",
       "stage": "ingestion",
       "order": 2,
       "precedes": [
@@ -32,17 +37,17 @@
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.",
       "pass_condition": "CV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
+      "evidence_level": "established"
+    },
+    {
+      "title": "Sourcing & Inbound Triage",
       "status": "active",
-      "evidence_level": "established",
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nCV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules."
-    },
-    {
+      "content": "# Sourcing & Inbound Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach.",
       "id": "B-003",
       "type": "barrier",
-      "title": "Sourcing & Inbound Triage",
       "stage": "sourcing",
       "order": 3,
       "precedes": [
@@ -50,17 +55,18 @@
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
       "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-001"
-      ],
-      "content": "# Sourcing & Inbound Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach."
+      "evidence_level": "established"
     },
     {
+      "title": "Recruiter Screening Call",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-005"
+      ],
+      "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nRecruiter and candidate align on core parameters and candidate is submitted to hiring team.",
       "id": "B-004",
       "type": "barrier",
-      "title": "Recruiter Screening Call",
       "stage": "recruiter",
       "order": 4,
       "precedes": [
@@ -68,18 +74,17 @@
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
       "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-001",
-        "EVD-005"
-      ],
-      "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nRecruiter and candidate align on core parameters and candidate is submitted to hiring team."
+      "evidence_level": "established"
     },
     {
+      "title": "Technical Screen / Live Assessment",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nCandidate achieves passing score on technical evaluation rubric from the assessing engineer.",
       "id": "B-005",
       "type": "barrier",
-      "title": "Technical Screen / Live Assessment",
       "stage": "technical",
       "order": 5,
       "precedes": [
@@ -88,17 +93,17 @@
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
       "pass_condition": "Candidate achieves passing score on technical evaluation rubric from the assessing engineer.",
+      "evidence_level": "established"
+    },
+    {
+      "title": "Take-Home / Work Sample Evaluation",
       "status": "active",
-      "evidence_level": "established",
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nCandidate achieves passing score on technical evaluation rubric from the assessing engineer."
-    },
-    {
+      "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nCode artifact satisfies architectural, functional, test coverage, and documentation requirements.",
       "id": "B-006",
       "type": "barrier",
-      "title": "Take-Home / Work Sample Evaluation",
       "stage": "technical",
       "order": 6,
       "precedes": [
@@ -106,17 +111,17 @@
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
       "pass_condition": "Code artifact satisfies architectural, functional, test coverage, and documentation requirements.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-006"
-      ],
-      "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nCode artifact satisfies architectural, functional, test coverage, and documentation requirements."
+      "evidence_level": "established"
     },
     {
+      "title": "Hiring Manager In-Depth Review",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nHiring manager confirms candidate has required depth and approves progression to final panel.",
       "id": "B-007",
       "type": "barrier",
-      "title": "Hiring Manager In-Depth Review",
       "stage": "screening",
       "order": 7,
       "precedes": [
@@ -124,17 +129,17 @@
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
       "pass_condition": "Hiring manager confirms candidate has required depth and approves progression to final panel.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-002"
-      ],
-      "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nHiring manager confirms candidate has required depth and approves progression to final panel."
+      "evidence_level": "established"
     },
     {
+      "title": "Team & Cross-Functional Panel",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold.",
       "id": "B-008",
       "type": "barrier",
-      "title": "Team & Cross-Functional Panel",
       "stage": "team",
       "order": 8,
       "precedes": [
@@ -142,17 +147,18 @@
       ],
       "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
       "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-006"
-      ],
-      "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold."
+      "evidence_level": "established"
     },
     {
+      "title": "Compensation & Leveling Reconciliation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-002",
+        "EVD-005"
+      ],
+      "content": "# Compensation & Leveling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / leveling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
       "id": "B-009",
       "type": "barrier",
-      "title": "Compensation & Leveling Reconciliation",
       "stage": "compensation",
       "order": 9,
       "precedes": [
@@ -160,18 +166,17 @@
       ],
       "description": "Internal alignment between candidate expected compensation/level and company pay bands / leveling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-002",
-        "EVD-005"
-      ],
-      "content": "# Compensation & Leveling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / leveling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade."
+      "evidence_level": "established"
     },
     {
+      "title": "Headcount & Executive Budget Approval",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership.",
       "id": "B-010",
       "type": "barrier",
-      "title": "Headcount & Executive Budget Approval",
       "stage": "offer",
       "order": 10,
       "precedes": [
@@ -179,17 +184,17 @@
       ],
       "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
       "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-004"
-      ],
-      "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership."
+      "evidence_level": "established"
     },
     {
+      "title": "Reference & Background Verification",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "content": "# Reference & Background Verification\n\nThird-party or internal verification of past employment records, academic degrees, and professional references.\n\n### Pass Condition\nAll mandatory background checks clear with no unresolved factual discrepancies.",
       "id": "B-011",
       "type": "barrier",
-      "title": "Reference & Background Verification",
       "stage": "post-offer",
       "order": 11,
       "precedes": [
@@ -197,28 +202,23 @@
       ],
       "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
       "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-001"
-      ],
-      "content": "# Reference & Background Verification\n\nThird-party or internal verification of past employment records, academic degrees, and professional references.\n\n### Pass Condition\nAll mandatory background checks clear with no unresolved factual discrepancies."
+      "evidence_level": "established"
     },
     {
+      "title": "Offer Closing & Contract Execution",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered.",
       "id": "B-012",
       "type": "barrier",
-      "title": "Offer Closing & Contract Execution",
       "stage": "post-offer",
       "order": 12,
       "precedes": [],
       "description": "Final mutual execution of the formal employment agreement and start-date confirmation.",
       "pass_condition": "Both parties sign offer contract and onboarding workflow is triggered.",
-      "status": "active",
-      "evidence_level": "established",
-      "evidence_ids": [
-        "EVD-004"
-      ],
-      "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered."
+      "evidence_level": "established"
     }
   ]
 }

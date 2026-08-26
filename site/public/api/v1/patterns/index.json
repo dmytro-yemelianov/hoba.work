@@ -3,9 +3,14 @@
   "count": 4,
   "items": [
     {
+      "title": "Seniority Double Bind",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
       "id": "P-001",
       "type": "pattern",
-      "title": "Seniority Double Bind",
       "summary": "Candidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.",
       "required_artifacts": [
         "A-002",
@@ -28,17 +33,17 @@
         "I-002",
         "I-003"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-002"
-      ],
-      "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers."
+      "evidence_level": "supported"
     },
     {
+      "title": "Closed-Then-Reposted Requisition Motif",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nCandidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.\n\n### What this Establishes\n- The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that candidate was intentionally misled.",
       "id": "P-002",
       "type": "pattern",
-      "title": "Closed-Then-Reposted Requisition Motif",
       "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
       "required_artifacts": [
         "A-003",
@@ -62,17 +67,17 @@
         "I-001",
         "I-003"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-004"
-      ],
-      "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nCandidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.\n\n### What this Establishes\n- The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that candidate was intentionally misled."
+      "evidence_level": "supported"
     },
     {
+      "title": "Experience-Age Impossibility",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "content": "# Experience-Age Impossibility\n\nRequisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- Job description was authored without technical review, using copy-paste templates with automated gating rules.\n\n### What this Does NOT Establish\n- Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation.",
       "id": "P-003",
       "type": "pattern",
-      "title": "Experience-Age Impossibility",
       "summary": "Requisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.",
       "required_artifacts": [
         "A-002",
@@ -92,17 +97,17 @@
       "interventions": [
         "I-005"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-001"
-      ],
-      "content": "# Experience-Age Impossibility\n\nRequisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- Job description was authored without technical review, using copy-paste templates with automated gating rules.\n\n### What this Does NOT Establish\n- Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation."
+      "evidence_level": "supported"
     },
     {
+      "title": "Compensation Double Bind",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-005"
+      ],
+      "content": "# Compensation Double Bind\n\nCandidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.\n\n### Trigger Rule\nAsymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.\n\n### What this Establishes\n- Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated.\n\n### What this Does NOT Establish\n- Does not mean employer has unlimited budget or malice.",
       "id": "P-004",
       "type": "pattern",
-      "title": "Compensation Double Bind",
       "summary": "Candidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.",
       "required_artifacts": [
         "A-002",
@@ -122,12 +127,7 @@
       "interventions": [
         "I-002"
       ],
-      "status": "active",
-      "evidence_level": "supported",
-      "evidence_ids": [
-        "EVD-005"
-      ],
-      "content": "# Compensation Double Bind\n\nCandidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.\n\n### Trigger Rule\nAsymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.\n\n### What this Establishes\n- Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated.\n\n### What this Does NOT Establish\n- Does not mean employer has unlimited budget or malice."
+      "evidence_level": "supported"
     }
   ]
 }

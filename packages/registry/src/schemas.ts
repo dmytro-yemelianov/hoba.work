@@ -1,5 +1,29 @@
 import { z } from 'zod';
 
+// ---------------------------------------------------------------------------
+// Canonical ID patterns (single source of truth for every ID regex)
+// ---------------------------------------------------------------------------
+export const ID_PATTERNS = {
+  artifact: /^A-\d{3}$/,
+  barrier: /^B-\d{3}$/,
+  mechanism: /^M-\d{3}$/,
+  pattern: /^P-\d{3}$/,
+  loop: /^L-\d{3}$/,
+  intervention: /^I-\d{3}$/,
+  evidence: /^EVD-\d{3}$/,
+  probe: /^PROBE-[A-Z0-9-]+$/,
+} as const;
+
+const artifactId = z.string().regex(ID_PATTERNS.artifact);
+const barrierId = z.string().regex(ID_PATTERNS.barrier);
+const mechanismId = z.string().regex(ID_PATTERNS.mechanism);
+const patternId = z.string().regex(ID_PATTERNS.pattern);
+const loopId = z.string().regex(ID_PATTERNS.loop);
+const interventionId = z.string().regex(ID_PATTERNS.intervention);
+const evidenceId = z.string().regex(ID_PATTERNS.evidence);
+
+// Ordered by funnel progression. The order of this list is meaningful and is
+// reused by the site (stage pickers) and the CLI/MCP (stage validation).
 export const stageIdSchema = z.enum([
   'pre-posting',
   'sourcing',
@@ -22,39 +46,15 @@ export const actorTypeSchema = z.enum([
   'candidate',
 ]);
 
-export const natureTypeSchema = z.enum([
-  'rule',
-  'incentive',
-  'bias',
-  'noise',
-  'void',
-]);
+export const natureTypeSchema = z.enum(['rule', 'incentive', 'bias', 'noise', 'void']);
 
-export const visibilityTypeSchema = z.enum([
-  'observable',
-  'inferable',
-  'opaque',
-]);
+export const visibilityTypeSchema = z.enum(['observable', 'inferable', 'opaque']);
 
-export const removabilityTypeSchema = z.enum([
-  'candidate',
-  'intermediary',
-  'none',
-]);
+export const removabilityTypeSchema = z.enum(['candidate', 'intermediary', 'none']);
 
-export const emissionFidelitySchema = z.enum([
-  'direct',
-  'euphemism',
-  'distortion',
-  'noise',
-  'void',
-]);
+export const emissionFidelitySchema = z.enum(['direct', 'euphemism', 'distortion', 'noise', 'void']);
 
-export const emissionLikelihoodSchema = z.enum([
-  'low',
-  'medium',
-  'high',
-]);
+export const emissionLikelihoodSchema = z.enum(['low', 'medium', 'high']);
 
 export const evidenceKindSchema = z.enum([
   'primary',
@@ -65,24 +65,13 @@ export const evidenceKindSchema = z.enum([
   'illustrative',
 ]);
 
-export const evidenceLevelSchema = z.enum([
-  'established',
-  'supported',
-  'hypothesis',
-  'illustrative',
-]);
+export const evidenceLevelSchema = z.enum(['established', 'supported', 'hypothesis', 'illustrative']);
 
 export const nodeStatusSchema = z.enum(['active', 'deprecated']);
 
 export const costBandSchema = z.enum(['low', 'medium', 'high']);
 
-export const scopeTypeSchema = z.enum([
-  'individual',
-  'team',
-  'organizational',
-  'industry',
-  'ecosystem',
-]);
+export const scopeTypeSchema = z.enum(['individual', 'team', 'organizational', 'industry', 'ecosystem']);
 
 export const interventionActorSchema = z.enum([
   'employer-policy',
@@ -94,8 +83,18 @@ export const interventionActorSchema = z.enum([
   'policy',
 ]);
 
+export const entityTypeSchema = z.enum([
+  'artifact',
+  'barrier',
+  'mechanism',
+  'pattern',
+  'loop',
+  'intervention',
+  'evidence',
+]);
+
 export const diagnosticProbeSchema = z.object({
-  id: z.string().regex(/^PROBE-[A-Z0-9-]+$/),
+  id: z.string().regex(ID_PATTERNS.probe),
   action: z.string().min(5),
   expected_signal: z.string().min(5),
   cost: costBandSchema,
@@ -103,50 +102,52 @@ export const diagnosticProbeSchema = z.object({
 });
 
 export const emissionEdgeSchema = z.object({
-  artifact: z.string().regex(/^A-\d{3}$/),
+  artifact: artifactId,
   fidelity: emissionFidelitySchema.nullable().optional(),
   likelihood: emissionLikelihoodSchema.nullable().optional(),
-  evidence: z.array(z.string()).optional(),
+  evidence: z.array(evidenceId).default([]),
 });
 
 export const loopEdgeSchema = z.object({
-  from: z.string().regex(/^M-\d{3}$/),
-  to: z.string().regex(/^M-\d{3}$/),
+  from: mechanismId,
+  to: mechanismId,
   relation: z.enum(['amplifies', 'masks']),
 });
 
+// Fields shared by every graph node.
+const nodeBase = {
+  title: z.string().min(3),
+  status: nodeStatusSchema.default('active'),
+  evidence_ids: z.array(evidenceId).default([]),
+  content: z.string().optional(),
+};
+
 // Artifact frontmatter schema
 export const artifactSchema = z.object({
-  id: z.string().regex(/^A-\d{3}$/),
+  ...nodeBase,
+  id: artifactId,
   type: z.literal('artifact'),
-  title: z.string().min(3),
   summary: z.string().min(10),
   stages: z.array(stageIdSchema).min(1),
   fidelity: emissionFidelitySchema.nullable().optional(),
-  status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^A-\d{3}$/).optional(),
+  superseded_by: artifactId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
-  evidence_ids: z.array(z.string()).optional(),
-  probes: z.array(diagnosticProbeSchema).optional(),
+  probes: z.array(diagnosticProbeSchema).default([]),
   non_inferences: z.array(z.string()).min(1),
-  content: z.string().optional(),
 });
 
 // Barrier frontmatter schema
 export const barrierSchema = z.object({
-  id: z.string().regex(/^B-\d{3}$/),
+  ...nodeBase,
+  id: barrierId,
   type: z.literal('barrier'),
-  title: z.string().min(3),
   stage: stageIdSchema,
   order: z.number().int().positive(),
-  precedes: z.array(z.string().regex(/^B-\d{3}$/)).default([]),
+  precedes: z.array(barrierId).default([]),
   description: z.string().min(10),
   pass_condition: z.string().min(5),
-  status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^B-\d{3}$/).optional(),
+  superseded_by: barrierId.optional(),
   evidence_level: evidenceLevelSchema.default('established'),
-  evidence_ids: z.array(z.string()).optional(),
-  content: z.string().optional(),
 });
 
 // Mechanism frontmatter schema
@@ -158,82 +159,72 @@ export const mechanismFacetsSchema = z.object({
 });
 
 export const mechanismSchema = z.object({
-  id: z.string().regex(/^M-\d{3}$/),
+  ...nodeBase,
+  id: mechanismId,
   type: z.literal('mechanism'),
-  title: z.string().min(3),
   summary: z.string().min(10),
-  operates_at: z.array(z.string().regex(/^B-\d{3}$/)).min(1),
+  operates_at: z.array(barrierId).min(1),
   emissions: z.array(emissionEdgeSchema).default([]),
   facets: mechanismFacetsSchema,
-  amplifies: z.array(z.string().regex(/^M-\d{3}$/)).default([]),
-  masks: z.array(z.string().regex(/^M-\d{3}$/)).default([]),
-  status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^M-\d{3}$/).optional(),
+  amplifies: z.array(mechanismId).default([]),
+  masks: z.array(mechanismId).default([]),
+  superseded_by: mechanismId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   honest_baseline: z.boolean().default(false),
-  evidence_ids: z.array(z.string()).optional(),
   non_inferences: z.array(z.string()).min(1),
-  content: z.string().optional(),
 });
 
 // Pattern frontmatter schema
 export const patternSchema = z.object({
-  id: z.string().regex(/^P-\d{3}$/),
+  ...nodeBase,
+  id: patternId,
   type: z.literal('pattern'),
-  title: z.string().min(3),
   summary: z.string().min(10),
-  required_artifacts: z.array(z.string().regex(/^A-\d{3}$/)).min(1),
-  compatible_mechanisms: z.array(z.string().regex(/^M-\d{3}$/)).min(1),
+  required_artifacts: z.array(artifactId).min(1),
+  compatible_mechanisms: z.array(mechanismId).min(1),
   trigger_rule: z.string().min(10),
   establishes: z.array(z.string()).min(1),
   non_inferences: z.array(z.string()).min(1),
-  interventions: z.array(z.string().regex(/^I-\d{3}$/)).default([]),
-  status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^P-\d{3}$/).optional(),
+  interventions: z.array(interventionId).default([]),
+  superseded_by: patternId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
-  evidence_ids: z.array(z.string()).optional(),
-  content: z.string().optional(),
 });
 
 // Loop frontmatter schema
 export const loopSchema = z.object({
-  id: z.string().regex(/^L-\d{3}$/),
+  ...nodeBase,
+  id: loopId,
   type: z.literal('loop'),
-  title: z.string().min(3),
   summary: z.string().min(10),
-  mechanisms: z.array(z.string().regex(/^M-\d{3}$/)).min(2),
+  mechanisms: z.array(mechanismId).min(2),
   edges: z.array(loopEdgeSchema).min(2),
-  entry_points: z.array(z.string().regex(/^M-\d{3}$/)).min(1),
-  interventions: z.array(z.string().regex(/^I-\d{3}$/)).default([]),
-  status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^L-\d{3}$/).optional(),
+  entry_points: z.array(mechanismId).min(1),
+  interventions: z.array(interventionId).default([]),
+  superseded_by: loopId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
-  evidence_ids: z.array(z.string()).optional(),
-  content: z.string().optional(),
 });
 
-// Intervention frontmatter schema
+// Intervention frontmatter schema.
+// Targets are Mechanisms, Barriers, Patterns or Loops (spec §5); an intervention
+// cannot target another intervention.
 export const interventionSchema = z.object({
-  id: z.string().regex(/^I-\d{3}$/),
+  ...nodeBase,
+  id: interventionId,
   type: z.literal('intervention'),
-  title: z.string().min(3),
   summary: z.string().min(10),
-  targets: z.array(z.string().regex(/^[MBPLI]-\d{3}$/)).min(1),
+  targets: z.array(z.string().regex(/^[MBPL]-\d{3}$/)).min(1),
   actor: interventionActorSchema,
   scope: scopeTypeSchema,
   cost: costBandSchema,
-  status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^I-\d{3}$/).optional(),
+  superseded_by: interventionId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   expected_effects: z.array(z.string()).min(1),
   measurements: z.array(z.string()).min(1),
-  evidence_ids: z.array(z.string()).optional(),
-  content: z.string().optional(),
 });
 
 // Evidence record schema
 export const evidenceSchema = z.object({
-  id: z.string().regex(/^EVD-\d{3}$/),
+  id: evidenceId,
   type: z.literal('evidence'),
   title: z.string().min(3),
   kind: evidenceKindSchema,
@@ -243,10 +234,15 @@ export const evidenceSchema = z.object({
   period: z.string().optional(),
 });
 
-export const registryBundleSchema = z.object({
-  version: z.string(),
-  schema_version: z.string(),
-  updated_at: z.string(),
+// Registry release manifest (`registry.yaml` at the repository root).
+// Keeps the three version axes required by spec §17 in one place.
+export const registryManifestSchema = z.object({
+  version: z.string().regex(/^\d{4}\.\d{2}\.\d+$/, 'registry version must look like YYYY.MM.N'),
+  schema_version: z.string().regex(/^\d+\.\d+\.\d+$/, 'schema_version must be semver'),
+  updated_at: z.string().datetime(),
+});
+
+export const registryBundleSchema = registryManifestSchema.extend({
   artifacts: z.array(artifactSchema),
   barriers: z.array(barrierSchema),
   mechanisms: z.array(mechanismSchema),

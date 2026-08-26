@@ -1,24 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory } from '@hoba/registry';
+import { getBundle, langFromUrl, slimBundle, STAGES } from '../lib/registry';
 
-const rootDir = path.resolve(process.cwd(), '..');
-const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-const bundleJSON = JSON.stringify(bundle);
+const lang = langFromUrl(Astro.url);
+const bundle = getBundle(lang);
+// Only the structured fields reach the browser (no markdown bodies); "<" is
+// escaped so the JSON can never terminate the script element early.
+const bundleJSON = JSON.stringify(slimBundle(bundle)).replace(/</g, '\\u003c');
+const stagesWithBarriers = STAGES.filter((st) => bundle.barriers.some((b) => b.stage === st));
 ---
-<Layout title="HOBA Analysis Wizard" activeNav="analyze">
+<Layout lang={lang} title="HOBA Analysis Wizard" activeNav="analyze">
   <div class="max-w-5xl mx-auto">
     <!-- Header -->
     <div class="mb-8 border-b border-hoba-border pb-6">
       <div class="flex items-center justify-between">
         <div>
-          <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Interactive Protocol</span>
+          <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Interactive Protocol · registry {bundle.version}</span>
           <h1 class="text-3xl font-black font-mono text-hoba-text mt-1">HOBA Forensic Analysis</h1>
         </div>
         <div class="hidden sm:flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/60 px-3 py-1.5 rounded-lg">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>Privacy Guaranteed: In-Memory Only</span>
+          <span>Runs in your browser · nothing is sent anywhere</span>
         </div>
       </div>
       <p class="text-sm text-hoba-muted mt-2">
@@ -27,52 +29,50 @@ const bundleJSON = JSON.stringify(bundle);
     </div>
 
     <!-- Wizard Steps Tabs -->
-    <div class="grid grid-cols-4 gap-2 mb-8 font-mono text-xs">
-      <button id="tab-h" class="wizard-tab p-3 rounded-lg border border-purple-500/50 bg-purple-950/30 text-purple-300 font-bold flex items-center justify-center gap-2">
-        <span class="w-5 h-5 rounded-full bg-purple-800 flex items-center justify-center text-[11px]">H</span>
+    <div class="grid grid-cols-4 gap-2 mb-8 font-mono text-xs" role="tablist">
+      <button id="tab-h" data-step="h" class="wizard-tab p-3 rounded-lg border flex items-center justify-center gap-2" role="tab">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center text-[11px]">H</span>
         <span class="hidden sm:inline">1. Hard Facts</span>
       </button>
-      <button id="tab-o" class="wizard-tab p-3 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted font-medium flex items-center justify-center gap-2">
-        <span class="w-5 h-5 rounded-full bg-hoba-border flex items-center justify-center text-[11px]">O</span>
+      <button id="tab-o" data-step="o" class="wizard-tab p-3 rounded-lg border flex items-center justify-center gap-2" role="tab">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center text-[11px]">O</span>
         <span class="hidden sm:inline">2. Obstacle</span>
       </button>
-      <button id="tab-b" class="wizard-tab p-3 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted font-medium flex items-center justify-center gap-2">
-        <span class="w-5 h-5 rounded-full bg-hoba-border flex items-center justify-center text-[11px]">B</span>
+      <button id="tab-b" data-step="b" class="wizard-tab p-3 rounded-lg border flex items-center justify-center gap-2" role="tab">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center text-[11px]">B</span>
         <span class="hidden sm:inline">3. Behind</span>
       </button>
-      <button id="tab-a" class="wizard-tab p-3 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted font-medium flex items-center justify-center gap-2">
-        <span class="w-5 h-5 rounded-full bg-hoba-border flex items-center justify-center text-[11px]">A</span>
+      <button id="tab-a" data-step="a" class="wizard-tab p-3 rounded-lg border flex items-center justify-center gap-2" role="tab">
+        <span class="w-5 h-5 rounded-full flex items-center justify-center text-[11px]">A</span>
         <span class="hidden sm:inline">4. Agency</span>
       </button>
     </div>
 
-    <!-- WIZARD STEP CONTAINER -->
     <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/60 backdrop-blur">
-      
+
       <!-- STEP H: HARD FACTS -->
-      <div id="step-h" class="wizard-step block space-y-6">
+      <section id="step-h" class="wizard-step space-y-6">
         <div>
           <h2 class="text-xl font-bold font-mono text-hoba-text">Step H — What actually happened?</h2>
           <p class="text-xs text-hoba-muted mt-1">Select one or more factual observations directly witnessed. No intent speculation.</p>
         </div>
 
-        <!-- Stage Filter -->
-        <div>
-          <label class="block text-xs font-mono font-semibold text-hoba-muted uppercase mb-2">Stage reached before process stalled:</label>
+        <fieldset>
+          <legend class="block text-xs font-mono font-semibold text-hoba-muted uppercase mb-2">Stage reached before the process stalled (optional):</legend>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
-            {['ingestion', 'screening', 'recruiter', 'technical', 'team', 'compensation', 'offer', 'post-offer'].map((st) => (
+            {stagesWithBarriers.map((st) => (
               <label class="flex items-center gap-2 p-2 rounded border border-hoba-border bg-hoba-card hover:bg-hoba-hover cursor-pointer">
                 <input type="radio" name="stage_select" value={st} class="text-hoba-accent focus:ring-0" />
                 <span class="capitalize">{st}</span>
               </label>
             ))}
           </div>
-        </div>
+          <p class="text-[11px] text-hoba-muted mt-2">Leave empty to infer gates from the stages where the selected observations occur.</p>
+        </fieldset>
 
-        <!-- Searchable Observation List -->
         <div>
           <div class="flex items-center justify-between mb-2">
-            <label class="text-xs font-mono font-semibold text-hoba-muted uppercase">Select Observed Signals (Artifacts):</label>
+            <label for="artifact-search-input" class="text-xs font-mono font-semibold text-hoba-muted uppercase">Select Observed Signals (Artifacts):</label>
             <input
               type="text"
               id="artifact-search-input"
@@ -83,7 +83,7 @@ const bundleJSON = JSON.stringify(bundle);
 
           <div id="artifacts-list" class="space-y-2 max-h-96 overflow-y-auto pr-1">
             {bundle.artifacts.map((art) => (
-              <label class="artifact-item flex items-start gap-3 p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-purple-500/40 transition-colors cursor-pointer" data-id={art.id} data-title={art.title.toLowerCase()} data-summary={art.summary.toLowerCase()}>
+              <label class="artifact-item flex items-start gap-3 p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-purple-500/40 transition-colors cursor-pointer" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
                 <input type="checkbox" name="artifacts_selected" value={art.id} class="mt-1 text-hoba-accent rounded focus:ring-0" />
                 <div class="flex-1 text-xs">
                   <div class="flex items-center gap-2">
@@ -98,35 +98,27 @@ const bundleJSON = JSON.stringify(bundle);
         </div>
 
         <div class="pt-4 border-t border-hoba-border flex justify-end">
-          <button id="btn-next-to-o" class="px-6 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-xs transition-colors">
+          <button data-goto="o" class="px-6 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-xs transition-colors">
             Proceed to Step O (Obstacle) &rarr;
           </button>
         </div>
-      </div>
+      </section>
 
       <!-- STEP O: OBSTACLE -->
-      <div id="step-o" class="wizard-step hidden space-y-6">
+      <section id="step-o" class="wizard-step hidden space-y-6">
         <div>
           <h2 class="text-xl font-bold font-mono text-hoba-text">Step O — Where did the hiring process stop?</h2>
           <p class="text-xs text-hoba-muted mt-1">Identified structural funnel gate(s) based on your selected observations.</p>
         </div>
-
-        <div id="barriers-output" class="space-y-3">
-          <!-- Populated by JS -->
-        </div>
-
+        <div id="barriers-output" class="space-y-3"></div>
         <div class="pt-4 border-t border-hoba-border flex justify-between">
-          <button id="btn-back-to-h" class="px-5 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-hoba-text font-mono text-xs">
-            &larr; Back to Hard Facts
-          </button>
-          <button id="btn-next-to-b" class="px-6 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-xs transition-colors">
-            Proceed to Step B (Behind Obstacle) &rarr;
-          </button>
+          <button data-goto="h" class="px-5 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-hoba-text font-mono text-xs">&larr; Back to Hard Facts</button>
+          <button data-goto="b" class="px-6 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-xs transition-colors">Proceed to Step B (Behind Obstacle) &rarr;</button>
         </div>
-      </div>
+      </section>
 
       <!-- STEP B: BEHIND THE OBSTACLE -->
-      <div id="step-b" class="wizard-step hidden space-y-6">
+      <section id="step-b" class="wizard-step hidden space-y-6">
         <div>
           <h2 class="text-xl font-bold font-mono text-hoba-text">Step B — What mechanisms are compatible with the evidence?</h2>
           <p class="text-xs text-hoba-muted mt-1">Logically compatible causes without pretending certainty. Includes honest baseline factors.</p>
@@ -135,48 +127,38 @@ const bundleJSON = JSON.stringify(bundle);
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h3 class="text-xs font-mono font-bold uppercase text-hoba-text mb-3">Compatible Mechanisms:</h3>
-            <div id="mechanisms-output" class="space-y-2 max-h-96 overflow-y-auto pr-1">
-              <!-- Populated by JS -->
-            </div>
+            <div id="mechanisms-output" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
           </div>
-
           <div class="space-y-4">
             <div>
               <h3 class="text-xs font-mono font-bold uppercase text-hoba-pattern mb-2">Matching Contradiction Patterns:</h3>
-              <div id="patterns-output" class="space-y-2 text-xs">
-                <!-- Populated by JS -->
-              </div>
+              <div id="patterns-output" class="space-y-2 text-xs"></div>
             </div>
-
+            <div>
+              <h3 class="text-xs font-mono font-bold uppercase text-pink-400 mb-2">Causal Loops in Scope:</h3>
+              <div id="loops-output" class="space-y-2 text-xs"></div>
+            </div>
             <div>
               <h3 class="text-xs font-mono font-bold uppercase text-rose-400 mb-2">Non-Inferences (What NOT to assume):</h3>
-              <div id="noninferences-output" class="p-3 rounded-lg border border-rose-900/40 bg-rose-950/20 text-xs text-rose-200/80 space-y-1.5">
-                <!-- Populated by JS -->
-              </div>
+              <div id="noninferences-output" class="p-3 rounded-lg border border-rose-900/40 bg-rose-950/20 text-xs text-rose-200/80 space-y-1.5"></div>
             </div>
           </div>
         </div>
 
         <div class="pt-4 border-t border-hoba-border flex justify-between">
-          <button id="btn-back-to-o" class="px-5 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-hoba-text font-mono text-xs">
-            &larr; Back to Obstacle
-          </button>
-          <button id="btn-next-to-a" class="px-6 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-xs transition-colors">
-            Proceed to Step A (Agency & Probes) &rarr;
-          </button>
+          <button data-goto="o" class="px-5 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-hoba-text font-mono text-xs">&larr; Back to Obstacle</button>
+          <button data-goto="a" class="px-6 py-2.5 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-xs transition-colors">Proceed to Step A (Agency & Probes) &rarr;</button>
         </div>
-      </div>
+      </section>
 
       <!-- STEP A: AGENCY & PROBES -->
-      <div id="step-a" class="wizard-step hidden space-y-6">
+      <section id="step-a" class="wizard-step hidden space-y-6">
         <div>
           <h2 class="text-xl font-bold font-mono text-hoba-text">Step A — Locus of Agency & Diagnostic Probes</h2>
           <p class="text-xs text-hoba-muted mt-1">Separating what you can test from factors outside your control.</p>
         </div>
 
-        <!-- Agency Partitioning Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Candidate Zone -->
           <div class="p-4 rounded-lg border border-emerald-800/60 bg-emerald-950/30">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-bold text-emerald-300 uppercase">Endogenous (You)</span>
@@ -185,8 +167,6 @@ const bundleJSON = JSON.stringify(bundle);
             <p class="text-[11px] text-hoba-muted mb-3">Factors where candidate optimization or test probes are viable.</p>
             <div id="list-candidate" class="space-y-1 text-xs"></div>
           </div>
-
-          <!-- Intermediary Zone -->
           <div class="p-4 rounded-lg border border-amber-800/60 bg-amber-950/30">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-bold text-amber-300 uppercase">Intermediary</span>
@@ -195,8 +175,6 @@ const bundleJSON = JSON.stringify(bundle);
             <p class="text-[11px] text-hoba-muted mb-3">Depends on recruiter, manager, or compensation authority.</p>
             <div id="list-intermediary" class="space-y-1 text-xs"></div>
           </div>
-
-          <!-- Exogenous Zone -->
           <div class="p-4 rounded-lg border border-rose-800/60 bg-rose-950/30">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono font-bold text-rose-300 uppercase">Exogenous (No Agency)</span>
@@ -207,339 +185,260 @@ const bundleJSON = JSON.stringify(bundle);
           </div>
         </div>
 
-        <!-- Diagnostic Probes Action List -->
         <div class="p-4 rounded-lg border border-hoba-border bg-hoba-bg">
           <h3 class="text-xs font-mono font-bold uppercase text-hoba-accent mb-2">Bounded Diagnostic Probes:</h3>
-          <div id="probes-output" class="space-y-2">
-            <!-- Populated by JS -->
-          </div>
+          <div id="probes-output" class="space-y-2"></div>
         </div>
 
-        <!-- Stop Condition / Verdict Banner -->
-        <div id="verdict-banner" class="p-4 rounded-lg border text-xs font-mono">
-          <!-- Populated by JS -->
-        </div>
+        <div id="verdict-banner" class="p-4 rounded-lg border text-xs font-mono" aria-live="polite"></div>
 
-        <!-- Export / Action Bar -->
         <div class="pt-4 border-t border-hoba-border flex flex-wrap items-center justify-between gap-4">
-          <button id="btn-back-to-b" class="px-5 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-hoba-text font-mono text-xs">
-            &larr; Back to Behind
-          </button>
+          <button data-goto="b" class="px-5 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-hoba-text font-mono text-xs">&larr; Back to Behind</button>
           <div class="flex gap-2">
             <button id="btn-copy-report" class="px-4 py-2 rounded-lg border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono text-xs flex items-center gap-1.5">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
               <span>Copy Markdown Report</span>
             </button>
-            <button id="btn-reset" class="px-4 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-rose-400 font-mono text-xs">
-              Reset Analysis
-            </button>
+            <button id="btn-reset" class="px-4 py-2 rounded-lg border border-hoba-border text-hoba-muted hover:text-rose-400 font-mono text-xs">Reset Analysis</button>
           </div>
         </div>
-      </div>
-
+      </section>
     </div>
   </div>
 
-  <script define:vars={{ bundleJSON }}>
-    const bundle = JSON.parse(bundleJSON);
+  <script type="application/json" id="hoba-bundle" set:html={bundleJSON} />
+  <script>
+    // The wizard runs the very same HOBADiagnosticEngine as the CLI and the MCP
+    // server — there is no second, hand-rolled copy of the protocol in the browser.
+    import { HOBADiagnosticEngine, type DiagnosticResult, type RegistryBundle, type StageId } from '@hoba/registry/core';
 
-    // State
-    let selectedArtifactIds = [];
-    let selectedStage = null;
-    let currentStep = 'h';
-    let lastAnalysis = null;
+    type Step = 'h' | 'o' | 'b' | 'a';
+    const STEPS: Step[] = ['h', 'o', 'b', 'a'];
+    const TAB_STYLE: Record<Step, { active: string; badge: string }> = {
+      h: { active: 'border-purple-500/50 bg-purple-950/30 text-purple-300 font-bold', badge: 'bg-purple-800' },
+      o: { active: 'border-emerald-500/50 bg-emerald-950/30 text-emerald-300 font-bold', badge: 'bg-emerald-800' },
+      b: { active: 'border-blue-500/50 bg-blue-950/30 text-blue-300 font-bold', badge: 'bg-blue-800' },
+      a: { active: 'border-amber-500/50 bg-amber-950/30 text-amber-300 font-bold', badge: 'bg-amber-800' },
+    };
+    const IDLE_TAB = 'border-hoba-border bg-hoba-card text-hoba-muted font-medium';
 
-    // Elements
-    const stepH = document.getElementById('step-h');
-    const stepO = document.getElementById('step-o');
-    const stepB = document.getElementById('step-b');
-    const stepA = document.getElementById('step-a');
+    const bundle = JSON.parse(document.getElementById('hoba-bundle')!.textContent!) as RegistryBundle;
+    const engine = new HOBADiagnosticEngine(bundle);
 
-    const tabH = document.getElementById('tab-h');
-    const tabO = document.getElementById('tab-o');
-    const tabB = document.getElementById('tab-b');
-    const tabA = document.getElementById('tab-a');
+    const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+    const esc = (value: unknown) =>
+      String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
-    function setStep(step) {
-      currentStep = step;
-      [stepH, stepO, stepB, stepA].forEach((el) => el.classList.add('hidden'));
-      [tabH, tabO, tabB, tabA].forEach((t) => {
-        t.className = 'wizard-tab p-3 rounded-lg border border-hoba-border bg-hoba-card text-hoba-muted font-medium flex items-center justify-center gap-2';
-      });
+    const REMOVABILITY_TAG: Record<string, string> = {
+      candidate: 'bg-emerald-950 text-emerald-300 border-emerald-800',
+      intermediary: 'bg-amber-950 text-amber-300 border-amber-800',
+      none: 'bg-rose-950 text-rose-300 border-rose-800',
+    };
 
-      if (step === 'h') {
-        stepH.classList.remove('hidden');
-        tabH.className = 'wizard-tab p-3 rounded-lg border border-purple-500/50 bg-purple-950/30 text-purple-300 font-bold flex items-center justify-center gap-2';
-      } else if (step === 'o') {
-        stepO.classList.remove('hidden');
-        tabO.className = 'wizard-tab p-3 rounded-lg border border-emerald-500/50 bg-emerald-950/30 text-emerald-300 font-bold flex items-center justify-center gap-2';
-        renderStepO();
-      } else if (step === 'b') {
-        stepB.classList.remove('hidden');
-        tabB.className = 'wizard-tab p-3 rounded-lg border border-blue-500/50 bg-blue-950/30 text-blue-300 font-bold flex items-center justify-center gap-2';
-        renderStepB();
-      } else if (step === 'a') {
-        stepA.classList.remove('hidden');
-        tabA.className = 'wizard-tab p-3 rounded-lg border border-amber-500/50 bg-amber-950/30 text-amber-300 font-bold flex items-center justify-center gap-2';
-        renderStepA();
-      }
+    function collectInputs(): { artifacts: string[]; stage?: StageId } {
+      const artifacts = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]:checked')).map((el) => el.value);
+      const stage = document.querySelector<HTMLInputElement>('input[name="stage_select"]:checked')?.value as StageId | undefined;
+      return { artifacts, stage };
     }
 
-    // Wizard Navigation listeners
-    tabH.addEventListener('click', () => setStep('h'));
-    tabO.addEventListener('click', () => setStep('o'));
-    tabB.addEventListener('click', () => setStep('b'));
-    tabA.addEventListener('click', () => setStep('a'));
+    const analyze = (): DiagnosticResult => engine.analyze(collectInputs());
 
-    document.getElementById('btn-next-to-o').addEventListener('click', () => setStep('o'));
-    document.getElementById('btn-back-to-h').addEventListener('click', () => setStep('h'));
-    document.getElementById('btn-next-to-b').addEventListener('click', () => setStep('b'));
-    document.getElementById('btn-back-to-o').addEventListener('click', () => setStep('o'));
-    document.getElementById('btn-next-to-a').addEventListener('click', () => setStep('a'));
-    document.getElementById('btn-back-to-b').addEventListener('click', () => setStep('b'));
+    function setStep(step: Step) {
+      for (const s of STEPS) {
+        $(`step-${s}`).classList.toggle('hidden', s !== step);
+        const tab = $(`tab-${s}`);
+        tab.className = `wizard-tab p-3 rounded-lg border flex items-center justify-center gap-2 ${s === step ? TAB_STYLE[s].active : IDLE_TAB}`;
+        tab.setAttribute('aria-selected', String(s === step));
+        tab.firstElementChild!.className = `w-5 h-5 rounded-full flex items-center justify-center text-[11px] ${s === step ? TAB_STYLE[s].badge : 'bg-hoba-border'}`;
+      }
+      if (step === 'o') renderStepO();
+      if (step === 'b') renderStepB();
+      if (step === 'a') renderStepA();
+    }
 
-    // Filter artifacts in search
-    const searchInput = document.getElementById('artifact-search-input');
-    searchInput.addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase();
-      document.querySelectorAll('.artifact-item').forEach((el) => {
-        const title = el.getAttribute('data-title') || '';
-        const summary = el.getAttribute('data-summary') || '';
-        const id = el.getAttribute('data-id') || '';
-        if (title.includes(q) || summary.includes(q) || id.toLowerCase().includes(q)) {
-          el.classList.remove('hidden');
-        } else {
-          el.classList.add('hidden');
-        }
+    document.querySelectorAll<HTMLElement>('.wizard-tab').forEach((t) => t.addEventListener('click', () => setStep(t.dataset.step as Step)));
+    document.querySelectorAll<HTMLElement>('[data-goto]').forEach((b) => b.addEventListener('click', () => setStep(b.dataset.goto as Step)));
+
+    $<HTMLInputElement>('artifact-search-input').addEventListener('input', (e) => {
+      const q = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      document.querySelectorAll<HTMLElement>('.artifact-item').forEach((el) => {
+        el.classList.toggle('hidden', Boolean(q) && !(el.dataset.search ?? '').includes(q));
       });
     });
 
-    function collectInputs() {
-      const checked = Array.from(document.querySelectorAll('input[name="artifacts_selected"]:checked')).map((el) => el.value);
-      selectedArtifactIds = checked;
-      const stageRadio = document.querySelector('input[name="stage_select"]:checked');
-      selectedStage = stageRadio ? stageRadio.value : null;
-    }
-
-    function runAnalysis() {
-      collectInputs();
-      const selectedArts = bundle.artifacts.filter((a) => selectedArtifactIds.includes(a.id));
-
-      // Identify barriers
-      const barrierSet = new Set();
-      if (selectedStage) {
-        bundle.barriers.filter((b) => b.stage === selectedStage).forEach((b) => barrierSet.add(b.id));
-      } else {
-        const stages = new Set();
-        selectedArts.forEach((a) => a.stages.forEach((s) => stages.add(s)));
-        bundle.barriers.filter((b) => stages.has(b.stage)).forEach((b) => barrierSet.add(b.id));
-      }
-      const identifiedBarriers = bundle.barriers.filter((b) => barrierSet.has(b.id));
-
-      // Find compatible mechanisms
-      const compatibleMechs = bundle.mechanisms.filter((m) => {
-        const atBarrier = m.operates_at.some((bid) => barrierSet.has(bid));
-        const emitsArt = m.emissions.some((e) => selectedArtifactIds.includes(e.artifact));
-        return atBarrier || emitsArt;
-      });
-
-      // Related patterns
-      const relatedPatterns = bundle.patterns.filter((p) => {
-        return p.required_artifacts.some((a) => selectedArtifactIds.includes(a)) ||
-               p.compatible_mechanisms.some((mid) => compatibleMechs.some((m) => m.id === mid));
-      });
-
-      // Agency breakdown
-      const candidateRemovable = compatibleMechs.filter((m) => m.facets.removability === 'candidate');
-      const intermediaryDep = compatibleMechs.filter((m) => m.facets.removability === 'intermediary');
-      const noAgency = compatibleMechs.filter((m) => m.facets.removability === 'none');
-
-      // Probes
-      const probes = [];
-      selectedArts.forEach((a) => {
-        if (a.probes) probes.push(...a.probes);
-      });
-
-      // Non inferences
-      const nonInferences = new Set();
-      selectedArts.forEach((a) => a.non_inferences.forEach((ni) => nonInferences.add(ni)));
-      compatibleMechs.forEach((m) => m.non_inferences.forEach((ni) => nonInferences.add(ni)));
-
-      lastAnalysis = {
-        selectedArts,
-        selectedStage,
-        identifiedBarriers,
-        compatibleMechs,
-        relatedPatterns,
-        candidateRemovable,
-        intermediaryDep,
-        noAgency,
-        probes,
-        nonInferences: Array.from(nonInferences)
-      };
-
-      return lastAnalysis;
-    }
+    const mechanismCard = (m: DiagnosticResult['behind']['compatible_mechanisms'][number]) => `
+      <div class="p-2.5 rounded border border-hoba-border bg-hoba-bg text-xs">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5 font-mono">
+            <span class="text-blue-400 font-bold">${esc(m.mechanism.id)}</span>
+            <a href="/mechanisms/${esc(m.mechanism.id)}" target="_blank" class="font-semibold text-hoba-text hover:underline">${esc(m.mechanism.title)}</a>
+          </div>
+          <div class="flex items-center gap-1">
+            ${m.honest_baseline ? '<span class="text-[9px] font-mono px-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Honest Baseline</span>' : ''}
+            ${m.emitted_by_evidence ? '<span class="text-[9px] font-mono px-1 rounded bg-purple-950 text-purple-300 border border-purple-800" title="Directly emits a selected observation">emits signal</span>' : ''}
+            <span class="text-[9px] font-mono px-1 rounded border ${REMOVABILITY_TAG[m.removability]}">${esc(m.removability)}</span>
+          </div>
+        </div>
+        <p class="text-[11px] text-hoba-muted mt-1 leading-snug">${esc(m.mechanism.summary)}</p>
+      </div>`;
 
     function renderStepO() {
-      const res = runAnalysis();
-      const container = document.getElementById('barriers-output');
-      if (res.identifiedBarriers.length === 0) {
+      const res = analyze();
+      const container = $('barriers-output');
+      if (res.hard_facts.selected_artifacts.length === 0 && !res.hard_facts.stage) {
         container.innerHTML = `<div class="p-4 rounded-lg bg-hoba-bg text-hoba-muted text-xs font-mono">No stage or observations selected yet. Please select at least one observation in Step H.</div>`;
         return;
       }
-
-      container.innerHTML = res.identifiedBarriers.map((b) => `
+      if (res.obstacle.identified_barriers.length === 0) {
+        container.innerHTML = `<div class="p-4 rounded-lg bg-hoba-bg text-hoba-muted text-xs font-mono">No funnel gate is registered for the selected stage yet.</div>`;
+        return;
+      }
+      container.innerHTML = res.obstacle.identified_barriers
+        .map(
+          (b) => `
         <div class="p-3 rounded-lg border border-emerald-800/40 bg-emerald-950/20 flex items-start justify-between gap-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-mono text-xs font-bold text-emerald-400">${b.id}</span>
-              <a href="/barriers/${b.id}" target="_blank" class="text-xs font-bold text-hoba-text hover:text-emerald-300 underline underline-offset-2">${b.title}</a>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-900/60 text-emerald-200 uppercase">${b.stage}</span>
+              <span class="font-mono text-xs font-bold text-emerald-400">${esc(b.id)}</span>
+              <a href="/barriers/${esc(b.id)}" target="_blank" class="text-xs font-bold text-hoba-text hover:text-emerald-300 underline underline-offset-2">${esc(b.title)}</a>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-900/60 text-emerald-200 uppercase">${esc(b.stage)}</span>
             </div>
-            <p class="text-xs text-hoba-muted mt-1">${b.description}</p>
-            <div class="text-[11px] text-emerald-300/80 mt-2 font-mono"><strong class="text-hoba-text">Pass Condition:</strong> ${b.pass_condition}</div>
+            <p class="text-xs text-hoba-muted mt-1">${esc(b.description)}</p>
+            <div class="text-[11px] text-emerald-300/80 mt-2 font-mono"><strong class="text-hoba-text">Pass Condition:</strong> ${esc(b.pass_condition)}</div>
           </div>
           <span class="text-xs font-mono text-emerald-400/60 shrink-0">Gate #${b.order}</span>
-        </div>
-      `).join('');
+        </div>`
+        )
+        .join('');
     }
 
     function renderStepB() {
-      const res = runAnalysis();
-      const mechsContainer = document.getElementById('mechanisms-output');
-      const patternsContainer = document.getElementById('patterns-output');
-      const nonInfContainer = document.getElementById('noninferences-output');
+      const res = analyze();
+      $('mechanisms-output').innerHTML =
+        res.behind.compatible_mechanisms.map(mechanismCard).join('') ||
+        `<div class="p-3 rounded bg-hoba-bg text-xs text-hoba-muted font-mono">No compatible mechanisms resolved.</div>`;
 
-      if (res.compatibleMechs.length === 0) {
-        mechsContainer.innerHTML = `<div class="p-3 rounded bg-hoba-bg text-xs text-hoba-muted font-mono">No compatible mechanisms resolved.</div>`;
-      } else {
-        mechsContainer.innerHTML = res.compatibleMechs.map((m) => `
-          <div class="p-2.5 rounded border border-hoba-border bg-hoba-bg text-xs">
-            <div class="flex items-center justify-between gap-2">
-              <div class="flex items-center gap-1.5 font-mono">
-                <span class="text-blue-400 font-bold">${m.id}</span>
-                <a href="/mechanisms/${m.id}" target="_blank" class="font-semibold text-hoba-text hover:underline">${m.title}</a>
-              </div>
-              <div class="flex items-center gap-1">
-                ${m.honest_baseline ? '<span class="text-[9px] font-mono px-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Honest Baseline</span>' : ''}
-                <span class="text-[9px] font-mono px-1 rounded bg-hoba-card text-hoba-muted">${m.facets.removability}</span>
-              </div>
-            </div>
-            <p class="text-[11px] text-hoba-muted mt-1 leading-snug">${m.summary}</p>
-          </div>
-        `).join('');
-      }
-
-      if (res.relatedPatterns.length === 0) {
-        patternsContainer.innerHTML = `<div class="text-xs text-hoba-muted font-mono">No specific graph contradiction patterns triggered.</div>`;
-      } else {
-        patternsContainer.innerHTML = res.relatedPatterns.map((p) => `
+      $('patterns-output').innerHTML =
+        res.behind.related_patterns
+          .map(
+            (p) => `
           <div class="p-2.5 rounded border border-amber-800/40 bg-amber-950/20">
             <div class="flex items-center gap-1.5 font-mono text-xs">
-              <span class="text-amber-400 font-bold">${p.id}</span>
-              <a href="/patterns/${p.id}" target="_blank" class="font-bold text-amber-200 hover:underline">${p.title}</a>
+              <span class="text-amber-400 font-bold">${esc(p.id)}</span>
+              <a href="/patterns/${esc(p.id)}" target="_blank" class="font-bold text-amber-200 hover:underline">${esc(p.title)}</a>
             </div>
-            <p class="text-[11px] text-hoba-muted mt-1">${p.summary}</p>
-          </div>
-        `).join('');
-      }
+            <p class="text-[11px] text-hoba-muted mt-1">${esc(p.summary)}</p>
+          </div>`
+          )
+          .join('') || `<div class="text-xs text-hoba-muted font-mono">No specific graph contradiction patterns triggered.</div>`;
 
-      if (res.nonInferences.length === 0) {
-        nonInfContainer.innerHTML = `<div>No specific non-inferences registered for selection.</div>`;
-      } else {
-        nonInfContainer.innerHTML = res.nonInferences.map((ni) => `<div>&bull; ${ni}</div>`).join('');
-      }
+      $('loops-output').innerHTML =
+        res.behind.related_loops
+          .map(
+            (l) => `
+          <div class="p-2.5 rounded border border-pink-800/40 bg-pink-950/20">
+            <div class="flex items-center gap-1.5 font-mono text-xs">
+              <span class="text-pink-400 font-bold">${esc(l.id)}</span>
+              <a href="/loops/${esc(l.id)}" target="_blank" class="font-bold text-pink-200 hover:underline">${esc(l.title)}</a>
+            </div>
+            <p class="text-[11px] text-hoba-muted mt-1">${esc(l.summary)}</p>
+          </div>`
+          )
+          .join('') || `<div class="text-xs text-hoba-muted font-mono">No causal loop touches the compatible mechanisms.</div>`;
+
+      $('noninferences-output').innerHTML =
+        res.behind.non_inferences.map((ni) => `<div>&bull; ${esc(ni)}</div>`).join('') ||
+        `<div>No specific non-inferences registered for selection.</div>`;
     }
+
+    const agencyList = (items: DiagnosticResult['agency']['candidate_removable'], cls: string) =>
+      items
+        .map((m) => `<div class="p-1.5 rounded ${cls} font-mono text-[11px]"><strong>${esc(m.id)}:</strong> ${esc(m.title)}</div>`)
+        .join('') || '<div class="text-hoba-muted text-[11px]">None identified</div>';
 
     function renderStepA() {
-      const res = runAnalysis();
-      document.getElementById('count-candidate').textContent = res.candidateRemovable.length;
-      document.getElementById('count-intermediary').textContent = res.intermediaryDep.length;
-      document.getElementById('count-noagency').textContent = res.noAgency.length;
+      const res = analyze();
+      $('count-candidate').textContent = String(res.counts.candidate_removable);
+      $('count-intermediary').textContent = String(res.counts.intermediary);
+      $('count-noagency').textContent = String(res.counts.no_agency);
+      $('list-candidate').innerHTML = agencyList(res.agency.candidate_removable, 'bg-emerald-950/60 border border-emerald-800/40 text-emerald-200');
+      $('list-intermediary').innerHTML = agencyList(res.agency.intermediary_dependent, 'bg-amber-950/60 border border-amber-800/40 text-amber-200');
+      $('list-noagency').innerHTML = agencyList(res.agency.exogenous_no_agency, 'bg-rose-950/60 border border-rose-800/40 text-rose-200');
 
-      document.getElementById('list-candidate').innerHTML = res.candidateRemovable.map((m) => `
-        <div class="p-1.5 rounded bg-emerald-950/60 border border-emerald-800/40 font-mono text-[11px] text-emerald-200">
-          <strong>${m.id}:</strong> ${m.title}
-        </div>
-      `).join('') || '<div class="text-hoba-muted text-[11px]">None identified</div>';
-
-      document.getElementById('list-intermediary').innerHTML = res.intermediaryDep.map((m) => `
-        <div class="p-1.5 rounded bg-amber-950/60 border border-amber-800/40 font-mono text-[11px] text-amber-200">
-          <strong>${m.id}:</strong> ${m.title}
-        </div>
-      `).join('') || '<div class="text-hoba-muted text-[11px]">None identified</div>';
-
-      document.getElementById('list-noagency').innerHTML = res.noAgency.map((m) => `
-        <div class="p-1.5 rounded bg-rose-950/60 border border-rose-800/40 font-mono text-[11px] text-rose-200">
-          <strong>${m.id}:</strong> ${m.title}
-        </div>
-      `).join('') || '<div class="text-hoba-muted text-[11px]">None identified</div>';
-
-      const probesContainer = document.getElementById('probes-output');
-      if (res.probes.length === 0) {
-        probesContainer.innerHTML = `<div class="text-xs text-hoba-muted font-mono">No candidate action probe is justified by current facts.</div>`;
-      } else {
-        probesContainer.innerHTML = res.probes.map((p) => `
+      $('probes-output').innerHTML =
+        res.agency.diagnostic_probes
+          .map(
+            (p) => `
           <div class="p-3 rounded border border-hoba-border bg-hoba-card text-xs font-mono">
             <div class="flex items-center justify-between text-hoba-accent font-bold mb-1">
-              <span>Probe ${p.id}</span>
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-hoba-bg text-hoba-muted border border-hoba-border">Cost: ${p.cost}</span>
+              <span>Probe ${esc(p.id)}</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-hoba-bg text-hoba-muted border border-hoba-border">Cost: ${esc(p.cost)}</span>
             </div>
-            <div class="text-hoba-text"><strong class="text-hoba-muted">Action:</strong> ${p.action}</div>
-            <div class="text-hoba-muted mt-1"><strong class="text-hoba-text">Expected Signal:</strong> ${p.expected_signal}</div>
-          </div>
-        `).join('');
-      }
+            <div class="text-hoba-text"><strong class="text-hoba-muted">Action:</strong> ${esc(p.action)}</div>
+            <div class="text-hoba-muted mt-1"><strong class="text-hoba-text">Expected Signal:</strong> ${esc(p.expected_signal)}</div>
+          </div>`
+          )
+          .join('') || `<div class="text-xs text-hoba-muted font-mono">No candidate action probe is justified by current facts.</div>`;
 
-      const banner = document.getElementById('verdict-banner');
-      if (res.candidateRemovable.length === 0 && res.probes.length === 0) {
+      const banner = $('verdict-banner');
+      if (res.verdict === 'low_signal_ambiguity') {
         banner.className = 'p-4 rounded-lg border border-amber-800/60 bg-amber-950/30 text-amber-200 text-xs font-mono';
-        banner.innerHTML = `<strong>Diagnostic Stop Condition:</strong> Low signal. No additional candidate action is justified by the available evidence. Compatible mechanisms are purely exogenous or intermediary-controlled. Do not waste further energy optimizing against this specific outcome.`;
+        banner.innerHTML = `<strong>Diagnostic Stop Condition (zone: ${esc(res.agency.agency_zone)}):</strong> ${esc(res.agency.probes_summary)} Do not spend further energy optimizing against this specific outcome.`;
       } else {
         banner.className = 'p-4 rounded-lg border border-blue-800/60 bg-blue-950/30 text-blue-200 text-xs font-mono';
-        banner.innerHTML = `<strong>Diagnostic Verdict:</strong> ${res.candidateRemovable.length} candidate-removable item(s) found. Execute the low-cost diagnostic probes above before submitting comparable applications.`;
+        banner.innerHTML = `<strong>Diagnostic Verdict (zone: ${esc(res.agency.agency_zone)}):</strong> ${esc(res.agency.probes_summary)} Execute the low-cost probes above before submitting comparable applications.`;
       }
     }
 
-    // Copy Markdown Report
-    document.getElementById('btn-copy-report').addEventListener('click', () => {
-      const res = runAnalysis();
-      const md = `# HOBA Forensic Analysis Report
-**Generated by:** https://hoba.work/analyze  
-**Date:** ${new Date().toISOString().split('T')[0]}  
-**Mode:** Topological / Uncalibrated  
-
-## H — Hard Facts
-${res.selectedArts.map((a) => `- **${a.id}**: ${a.title}`).join('\n')}
-${res.selectedStage ? `- **Confirmed Stage:** ${res.selectedStage}\n` : ''}
-
-## O — Obstacle (Funnel Gates)
-${res.identifiedBarriers.map((b) => `- **${b.id}** (${b.stage}): ${b.title} -> ${b.pass_condition}`).join('\n')}
-
-## B — Behind Obstacle (Compatible Mechanisms)
-${res.compatibleMechs.map((m) => `- **${m.id}** [${m.facets.removability}]: ${m.title}`).join('\n')}
-
-### Non-Inferences
-${res.nonInferences.map((ni) => `- ${ni}`).join('\n')}
-
-## A — Agency & Probes
-- **Candidate Removable:** ${res.candidateRemovable.length}
-- **Intermediary Dependent:** ${res.intermediaryDep.length}
-- **Exogenous (No Agency):** ${res.noAgency.length}
-
-### Probes:
-${res.probes.map((p) => `- [${p.id}] ${p.action} (Cost: ${p.cost})`).join('\n') || '- None justified.'}
-`;
-      navigator.clipboard.writeText(md).then(() => {
+    $('btn-copy-report').addEventListener('click', async () => {
+      const res = analyze();
+      const md = [
+        '# HOBA Forensic Analysis Report',
+        `**Generated by:** https://hoba.work/analyze  `,
+        `**Registry:** ${bundle.version} (schema ${bundle.schema_version})  `,
+        `**Mode:** ${res.mode}  `,
+        `**Verdict:** ${res.verdict} · agency zone: ${res.agency.agency_zone}`,
+        '',
+        '## H — Hard Facts',
+        ...res.hard_facts.selected_artifacts.map((a) => `- **${a.id}**: ${a.title}`),
+        res.hard_facts.stage ? `- **Confirmed Stage:** ${res.hard_facts.stage}` : '',
+        '',
+        '## O — Obstacle (Funnel Gates)',
+        ...res.obstacle.identified_barriers.map((b) => `- **${b.id}** (${b.stage}): ${b.title} -> ${b.pass_condition}`),
+        '',
+        '## B — Behind Obstacle (Compatible Mechanisms)',
+        ...res.behind.compatible_mechanisms.map((m) => `- **${m.mechanism.id}** [${m.removability}${m.honest_baseline ? ', honest baseline' : ''}]: ${m.mechanism.title}`),
+        '',
+        '### Related Patterns',
+        ...(res.behind.related_patterns.map((p) => `- **${p.id}**: ${p.title}`).length ? res.behind.related_patterns.map((p) => `- **${p.id}**: ${p.title}`) : ['- None']),
+        '',
+        '### Non-Inferences',
+        ...res.behind.non_inferences.map((ni) => `- ${ni}`),
+        '',
+        '## A — Agency & Probes',
+        `- **Candidate Removable:** ${res.counts.candidate_removable}`,
+        `- **Intermediary Dependent:** ${res.counts.intermediary}`,
+        `- **Exogenous (No Agency):** ${res.counts.no_agency}`,
+        '',
+        '### Probes',
+        ...(res.agency.diagnostic_probes.length ? res.agency.diagnostic_probes.map((p) => `- [${p.id}] ${p.action} (Cost: ${p.cost})`) : ['- None justified.']),
+        '',
+        `> ${res.epistemic_disclaimer}`,
+        '',
+      ].join('\n');
+      try {
+        await navigator.clipboard.writeText(md);
         alert('Diagnostic Markdown Report copied to clipboard!');
-      });
+      } catch {
+        alert('Clipboard access was denied by the browser.');
+      }
     });
 
-    document.getElementById('btn-reset').addEventListener('click', () => {
-      document.querySelectorAll('input[type="checkbox"]').forEach((cb) => (cb.checked = false));
-      document.querySelectorAll('input[type="radio"]').forEach((rb) => (rb.checked = false));
+    $('btn-reset').addEventListener('click', () => {
+      document.querySelectorAll<HTMLInputElement>('input[type="checkbox"], input[type="radio"]').forEach((el) => (el.checked = false));
       setStep('h');
     });
+
+    setStep('h');
   </script>
 </Layout>

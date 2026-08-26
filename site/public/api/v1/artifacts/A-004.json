@@ -1,20 +1,21 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Materially similar role reposted shortly after rejection",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-004"
+    ],
+    "content": "# Materially similar role reposted shortly after rejection\n\nCandidate observes the same or near-identical job listing reposted or refreshed on job boards within 1–8 weeks of rejection.\n\n### Diagnostic Non-Inferences\n- Does not establish that the role was a \"fake\" or \"ghost\" posting.\n- Does not establish that the prior interview feedback was fraudulent.",
     "id": "A-004",
     "type": "artifact",
-    "title": "Materially similar role reposted shortly after rejection",
     "summary": "Candidate observes the same or near-identical job listing reposted or refreshed on job boards within 1–8 weeks of rejection.",
     "stages": [
       "sourcing",
       "screening",
       "technical"
     ],
-    "status": "active",
     "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-004"
-    ],
     "probes": [
       {
         "id": "PROBE-A-004-1",
@@ -26,7 +27,6 @@
     "non_inferences": [
       "Does not establish that the role was a \"fake\" or \"ghost\" posting.",
       "Does not establish that the prior interview feedback was fraudulent."
-    ],
-    "content": "# Materially similar role reposted shortly after rejection\n\nCandidate observes the same or near-identical job listing reposted or refreshed on job boards within 1–8 weeks of rejection.\n\n### Diagnostic Non-Inferences\n- Does not establish that the role was a \"fake\" or \"ghost\" posting.\n- Does not establish that the prior interview feedback was fraudulent."
+    ]
   }
 }

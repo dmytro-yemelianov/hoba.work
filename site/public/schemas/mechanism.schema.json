@@ -1,9 +1,33 @@
 {
+  "$id": "https://hoba.work/schemas/mechanism.schema.json",
   "$ref": "#/definitions/Mechanism",
   "definitions": {
     "Mechanism": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "pattern": "^M-\\d{3}$"
@@ -11,10 +35,6 @@
         "type": {
           "type": "string",
           "const": "mechanism"
-        },
-        "title": {
-          "type": "string",
-          "minLength": 3
         },
         "summary": {
           "type": "string",
@@ -72,8 +92,9 @@
               "evidence": {
                 "type": "array",
                 "items": {
-                  "type": "string"
-                }
+                  "$ref": "#/definitions/Mechanism/properties/evidence_ids/items"
+                },
+                "default": []
               }
             },
             "required": [
@@ -135,30 +156,19 @@
         "amplifies": {
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^M-\\d{3}$"
+            "$ref": "#/definitions/Mechanism/properties/id"
           },
           "default": []
         },
         "masks": {
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^M-\\d{3}$"
+            "$ref": "#/definitions/Mechanism/properties/id"
           },
           "default": []
         },
-        "status": {
-          "type": "string",
-          "enum": [
-            "active",
-            "deprecated"
-          ],
-          "default": "active"
-        },
         "superseded_by": {
-          "type": "string",
-          "pattern": "^M-\\d{3}$"
+          "$ref": "#/definitions/Mechanism/properties/id"
         },
         "evidence_level": {
           "type": "string",
@@ -174,27 +184,18 @@
           "type": "boolean",
           "default": false
         },
-        "evidence_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "non_inferences": {
           "type": "array",
           "items": {
             "type": "string"
           },
           "minItems": 1
-        },
-        "content": {
-          "type": "string"
         }
       },
       "required": [
+        "title",
         "id",
         "type",
-        "title",
         "summary",
         "operates_at",
         "facets",

@@ -1,19 +1,20 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Explicit feedback citing skill-depth shortfall",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; reflects threshold for this specific role level.",
     "id": "A-008",
     "type": "artifact",
-    "title": "Explicit feedback citing skill-depth shortfall",
     "summary": "Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.",
     "stages": [
       "technical",
       "team"
     ],
-    "status": "active",
     "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-006"
-    ],
     "probes": [
       {
         "id": "PROBE-A-008-1",
@@ -24,7 +25,6 @@
     ],
     "non_inferences": [
       "Does not imply general incompetence; reflects threshold for this specific role level."
-    ],
-    "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; reflects threshold for this specific role level."
+    ]
   }
 }

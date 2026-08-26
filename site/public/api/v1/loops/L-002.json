@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Take-Home Opportunity-Cost Saturation Loop",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`",
     "id": "L-002",
     "type": "loop",
-    "title": "Take-Home Opportunity-Cost Saturation Loop",
     "summary": "Candidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.",
     "mechanisms": [
       "M-012",
@@ -27,11 +32,6 @@
     "interventions": [
       "I-006"
     ],
-    "status": "active",
-    "evidence_level": "supported",
-    "evidence_ids": [
-      "EVD-006"
-    ],
-    "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`"
+    "evidence_level": "supported"
   }
 }

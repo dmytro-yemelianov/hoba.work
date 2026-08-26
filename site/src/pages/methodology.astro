@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { langFromUrl } from '../lib/registry';
+
+const lang = langFromUrl(Astro.url);
 ---
-<Layout title="Methodology & Epistemic Rules" activeNav="methodology">
+<Layout lang={lang} title="Methodology & Epistemic Rules" activeNav="methodology">
   <div class="max-w-4xl mx-auto space-y-10">
     <div class="border-b border-hoba-border pb-6">
       <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Epistemic Foundation</span>
@@ -52,6 +55,21 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="text-lg font-bold font-mono text-hoba-text">Preservation of Honest Baselines</h2>
       <p class="text-hoba-muted">
         A credible registry cannot become an echo chamber that blames external factors for every outcome. Genuine skill-depth shortfalls, communication friction, and leveling mismatches are first-class, mandatory baseline mechanisms in the ontology (<code class="text-emerald-300">honest_baseline: true</code>).
+      </p>
+    </div>
+
+    <!-- Evidence Model (anchor target for evidence record URLs) -->
+    <div id="evidence" class="p-6 rounded-2xl border border-hoba-border bg-hoba-card space-y-4 text-xs">
+      <h2 class="text-lg font-bold font-mono text-hoba-text">Evidence Records & Levels</h2>
+      <p class="text-hoba-muted leading-relaxed">
+        Every node declares an <code class="text-hoba-accent">evidence_level</code> and may cite <code class="text-hoba-accent">EVD-xxx</code> records.
+        Evidence <em>kinds</em> describe the source (primary, research, reporting, survey, anecdote, illustrative);
+        evidence <em>levels</em> describe how far the claim is supported (established, supported, hypothesis, illustrative).
+        A citation raises a claim to "supported" only when it addresses the specific mechanism, not the general topic.
+      </p>
+      <p class="text-amber-300/90 leading-relaxed">
+        The current evidence catalog is a development scaffold: records describe the class of source the maintainers intend to cite
+        and do not yet point at external publications. Treat "established" and "supported" levels as provisional until each record links a primary source.
       </p>
     </div>
 

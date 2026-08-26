@@ -1,9 +1,33 @@
 {
+  "$id": "https://hoba.work/schemas/pattern.schema.json",
   "$ref": "#/definitions/Pattern",
   "definitions": {
     "Pattern": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "pattern": "^P-\\d{3}$"
@@ -11,10 +35,6 @@
         "type": {
           "type": "string",
           "const": "pattern"
-        },
-        "title": {
-          "type": "string",
-          "minLength": 3
         },
         "summary": {
           "type": "string",
@@ -62,17 +82,8 @@
           },
           "default": []
         },
-        "status": {
-          "type": "string",
-          "enum": [
-            "active",
-            "deprecated"
-          ],
-          "default": "active"
-        },
         "superseded_by": {
-          "type": "string",
-          "pattern": "^P-\\d{3}$"
+          "$ref": "#/definitions/Pattern/properties/id"
         },
         "evidence_level": {
           "type": "string",
@@ -83,21 +94,12 @@
             "illustrative"
           ],
           "default": "supported"
-        },
-        "evidence_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "content": {
-          "type": "string"
         }
       },
       "required": [
+        "title",
         "id",
         "type",
-        "title",
         "summary",
         "required_artifacts",
         "compatible_mechanisms",

@@ -1,11 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Mascot from '../../components/Mascot.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory } from '@hoba/registry';
+import { countGraphNodes, getBundle, siteVersion } from '../../lib/registry';
 
-const rootDir = path.resolve(process.cwd(), '..');
-const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content-uk'), path.join(rootDir, 'evidence'));
+const bundle = getBundle('uk');
+const totalNodes = countGraphNodes(bundle);
 ---
 <Layout title="Перетворюй результати найму на структуровані факти" lang="uk" activeNav="home">
   <!-- Hero Section -->
@@ -14,7 +13,7 @@ const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content-uk'), path.
       <div class="lg:col-span-8">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hoba-border bg-hoba-card text-xs font-mono text-hoba-muted mb-6">
           <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse"></span>
-          <span>Граф знань HOBA v0.4.1</span>
+          <span>Реєстр {bundle.version} · сайт v{siteVersion}</span>
           <span class="text-hoba-border">|</span>
           <span class="text-hoba-text">Домен: hoba.work</span>
         </div>
@@ -39,7 +38,7 @@ const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content-uk'), path.
             href="/uk/registry"
             class="px-6 py-3 rounded-lg border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono text-sm transition-colors"
           >
-            Відкрити Реєстр ({bundle.artifacts.length + bundle.barriers.length + bundle.mechanisms.length + bundle.patterns.length + bundle.loops.length + bundle.interventions.length} Сутностей)
+            Відкрити Реєстр ({totalNodes} Сутностей)
           </a>
         </div>
       </div>

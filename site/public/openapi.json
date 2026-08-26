@@ -2,14 +2,16 @@
   "openapi": "3.1.0",
   "info": {
     "title": "hoba API",
-    "description": "Hiring Obstacles & Barriers Atlas — Versioned Knowledge Graph API",
+    "description": "Hiring Obstacles & Barriers Atlas — versioned, read-only knowledge graph served as static JSON.",
     "version": "0.4.1",
+    "x-registry-version": "2026.08.1",
+    "x-schema-version": "1.0.0",
     "contact": {
       "name": "Dmytro Yemelianov",
       "url": "https://hoba.work/about"
     },
     "license": {
-      "name": "MIT / CC BY-SA 4.0",
+      "name": "MIT (code) / CC BY-SA 4.0 (content)",
       "url": "https://hoba.work/about#license"
     }
   },
@@ -20,19 +22,71 @@
     }
   ],
   "paths": {
-    "/artifacts": {
+    "/index.json": {
       "get": {
-        "summary": "List all Artifacts / Observations",
+        "operationId": "getApiIndex",
+        "summary": "API index and registry version",
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/artifacts/{id}": {
+    "/artifacts/index.json": {
       "get": {
+        "operationId": "listArtifacts",
+        "summary": "List all Observations / Artifacts",
+        "tags": [
+          "Artifact"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Artifact"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/artifacts/{id}.json": {
+      "get": {
+        "operationId": "getArtifact",
         "summary": "Get Artifact by ID",
+        "tags": [
+          "Artifact"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -40,29 +94,86 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Canonical Artifact ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Artifact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
           }
         }
       }
     },
-    "/barriers": {
+    "/barriers/index.json": {
       "get": {
-        "summary": "List all Barriers in the Funnel DAG",
+        "operationId": "listBarriers",
+        "summary": "List all Funnel Barriers (strictly acyclic DAG)",
+        "tags": [
+          "Barrier"
+        ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Barrier"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/barriers/{id}": {
+    "/barriers/{id}.json": {
       "get": {
+        "operationId": "getBarrier",
         "summary": "Get Barrier by ID",
+        "tags": [
+          "Barrier"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -70,29 +181,86 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Canonical Barrier ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Barrier"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
           }
         }
       }
     },
-    "/mechanisms": {
+    "/mechanisms/index.json": {
       "get": {
-        "summary": "List all Mechanisms with Facets",
+        "operationId": "listMechanisms",
+        "summary": "List all Mechanisms with classification facets",
+        "tags": [
+          "Mechanism"
+        ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Mechanism"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/mechanisms/{id}": {
+    "/mechanisms/{id}.json": {
       "get": {
+        "operationId": "getMechanism",
         "summary": "Get Mechanism by ID",
+        "tags": [
+          "Mechanism"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -100,54 +268,442 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "Canonical Mechanism ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Mechanism"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
           }
         }
       }
     },
-    "/patterns": {
+    "/patterns/index.json": {
       "get": {
-        "summary": "List all Recurring Graph Patterns",
+        "operationId": "listPatterns",
+        "summary": "List all Recurring contradiction patterns",
+        "tags": [
+          "Pattern"
+        ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Pattern"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/loops": {
+    "/patterns/{id}.json": {
       "get": {
-        "summary": "List all Strongly Connected Causal Loops",
+        "operationId": "getPattern",
+        "summary": "Get Pattern by ID",
+        "tags": [
+          "Pattern"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Pattern ID"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Pattern"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
           }
         }
       }
     },
-    "/interventions": {
+    "/loops/index.json": {
       "get": {
-        "summary": "List all Targeted System Interventions",
+        "operationId": "listLoops",
+        "summary": "List all Causal loops (Tarjan SCC validated)",
+        "tags": [
+          "Loop"
+        ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Loop"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/graph": {
+    "/loops/{id}.json": {
       "get": {
-        "summary": "Retrieve complete knowledge graph structure (nodes & edges)",
+        "operationId": "getLoop",
+        "summary": "Get Loop by ID",
+        "tags": [
+          "Loop"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Loop ID"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful response"
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Loop"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
           }
         }
+      }
+    },
+    "/interventions/index.json": {
+      "get": {
+        "operationId": "listInterventions",
+        "summary": "List all Targeted system interventions",
+        "tags": [
+          "Intervention"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Intervention"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interventions/{id}.json": {
+      "get": {
+        "operationId": "getIntervention",
+        "summary": "Get Intervention by ID",
+        "tags": [
+          "Intervention"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Intervention ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Intervention"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
+    "/evidence/index.json": {
+      "get": {
+        "operationId": "listEvidences",
+        "summary": "List all Evidence records",
+        "tags": [
+          "Evidence"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Evidence"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evidence/{id}.json": {
+      "get": {
+        "operationId": "getEvidence",
+        "summary": "Get Evidence by ID",
+        "tags": [
+          "Evidence"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Evidence ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Evidence"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
+    "/graph/index.json": {
+      "get": {
+        "operationId": "getGraph",
+        "summary": "Retrieve the complete knowledge graph (Cytoscape.js elements)",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "nodes_count": {
+                      "type": "integer"
+                    },
+                    "edges_count": {
+                      "type": "integer"
+                    },
+                    "elements": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Artifact": {
+        "$ref": "https://hoba.work/schemas/artifact.schema.json#/definitions/Artifact"
+      },
+      "Barrier": {
+        "$ref": "https://hoba.work/schemas/barrier.schema.json#/definitions/Barrier"
+      },
+      "Mechanism": {
+        "$ref": "https://hoba.work/schemas/mechanism.schema.json#/definitions/Mechanism"
+      },
+      "Pattern": {
+        "$ref": "https://hoba.work/schemas/pattern.schema.json#/definitions/Pattern"
+      },
+      "Loop": {
+        "$ref": "https://hoba.work/schemas/loop.schema.json#/definitions/Loop"
+      },
+      "Intervention": {
+        "$ref": "https://hoba.work/schemas/intervention.schema.json#/definitions/Intervention"
+      },
+      "Evidence": {
+        "$ref": "https://hoba.work/schemas/evidence.schema.json#/definitions/Evidence"
       }
     }
   }

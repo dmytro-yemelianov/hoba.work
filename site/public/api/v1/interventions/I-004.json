@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Remove Career Gap Feature from Automated Ranking Models",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-003"
+    ],
+    "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- Break algorithmic unemployment penalty loop\n- Broaden candidate pool to include skilled returning talent\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
     "id": "I-004",
     "type": "intervention",
-    "title": "Remove Career Gap Feature from Automated Ranking Models",
     "summary": "Disable employment duration gap penalties in recruitment AI algorithms and screening models.",
     "targets": [
       "M-011",
@@ -12,7 +17,6 @@
     "actor": "ats-vendor",
     "scope": "ecosystem",
     "cost": "low",
-    "status": "active",
     "evidence_level": "supported",
     "expected_effects": [
       "Break algorithmic unemployment penalty loop",
@@ -21,10 +25,6 @@
     "measurements": [
       "gap_candidate_screen_rate",
       "long_term_placement_success"
-    ],
-    "evidence_ids": [
-      "EVD-003"
-    ],
-    "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- Break algorithmic unemployment penalty loop\n- Broaden candidate pool to include skilled returning talent\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`"
+    ]
   }
 }

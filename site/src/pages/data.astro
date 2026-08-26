@@ -1,24 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory, HOBAKnowledgeGraph } from '@hoba/registry';
+import { getBundle, getGraph, langFromUrl, STAGES } from '../lib/registry';
 
-const rootDir = path.resolve(process.cwd(), '..');
-const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-const graph = new HOBAKnowledgeGraph(bundle);
+const lang = langFromUrl(Astro.url);
+const bundle = getBundle(lang);
+const graph = getGraph(lang);
+const honestBaselineCount = bundle.mechanisms.filter((m) => m.honest_baseline).length;
+const pct = (n: number) => Math.round((n / Math.max(1, bundle.mechanisms.length)) * 100);
 
 const candidateMechs = bundle.mechanisms.filter((m) => m.facets.removability === 'candidate');
 const intermediaryMechs = bundle.mechanisms.filter((m) => m.facets.removability === 'intermediary');
 const noAgencyMechs = bundle.mechanisms.filter((m) => m.facets.removability === 'none');
 
-const stages = ['ingestion', 'screening', 'recruiter', 'technical', 'team', 'compensation', 'offer', 'post-offer'];
-const barriersByStage = stages.map((st) => ({
+const barriersByStage = STAGES.map((st) => ({
   stage: st,
   barriers: bundle.barriers.filter((b) => b.stage === st).length,
-  artifacts: bundle.artifacts.filter((a) => a.stages.includes(st as any)).length,
+  mechanisms: graph.bundle.mechanisms.filter((m) => m.operates_at.some((bid) => bundle.barriers.find((b) => b.id === bid)?.stage === st)).length,
+  artifacts: bundle.artifacts.filter((a) => a.stages.includes(st)).length,
 }));
 ---
-<Layout title="Aggregate Data & Empirical Metrics" activeNav="data">
+<Layout lang={lang} title="Aggregate Data & Empirical Metrics" activeNav="data">
   <div class="mb-8 border-b border-hoba-border pb-6">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
@@ -55,7 +56,7 @@ const barriersByStage = stages.map((st) => ({
     <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card">
       <span class="text-xs font-mono text-hoba-muted uppercase">Mechanisms:</span>
       <div class="text-2xl font-black font-mono text-blue-400 mt-1">{bundle.mechanisms.length}</div>
-      <span class="text-[10px] font-mono text-hoba-muted">3 Honest Baselines</span>
+      <span class="text-[10px] font-mono text-hoba-muted">{honestBaselineCount} Honest Baselines</span>
     </div>
     <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card">
       <span class="text-xs font-mono text-hoba-muted uppercase">Contradiction Patterns:</span>
@@ -78,30 +79,30 @@ const barriersByStage = stages.map((st) => ({
         <div>
           <div class="flex justify-between mb-1">
             <span class="text-emerald-300 font-bold">Candidate Action (Endogenous):</span>
-            <span class="text-emerald-400 font-bold">{candidateMechs.length} ({Math.round((candidateMechs.length / bundle.mechanisms.length) * 100)}%)</span>
+            <span class="text-emerald-400 font-bold">{candidateMechs.length} ({pct(candidateMechs.length)}%)</span>
           </div>
           <div class="w-full h-2 rounded-full bg-hoba-bg overflow-hidden">
-            <div class="h-full bg-emerald-500 rounded-full" style={`width: ${(candidateMechs.length / bundle.mechanisms.length) * 100}%`}></div>
+            <div class="h-full bg-emerald-500 rounded-full" style={`width: ${pct(candidateMechs.length)}%`}></div>
           </div>
         </div>
 
         <div>
           <div class="flex justify-between mb-1">
             <span class="text-amber-300 font-bold">Intermediary Dependent:</span>
-            <span class="text-amber-400 font-bold">{intermediaryMechs.length} ({Math.round((intermediaryMechs.length / bundle.mechanisms.length) * 100)}%)</span>
+            <span class="text-amber-400 font-bold">{intermediaryMechs.length} ({pct(intermediaryMechs.length)}%)</span>
           </div>
           <div class="w-full h-2 rounded-full bg-hoba-bg overflow-hidden">
-            <div class="h-full bg-amber-500 rounded-full" style={`width: ${(intermediaryMechs.length / bundle.mechanisms.length) * 100}%`}></div>
+            <div class="h-full bg-amber-500 rounded-full" style={`width: ${pct(intermediaryMechs.length)}%`}></div>
           </div>
         </div>
 
         <div>
           <div class="flex justify-between mb-1">
             <span class="text-rose-300 font-bold">Exogenous (No Candidate Agency):</span>
-            <span class="text-rose-400 font-bold">{noAgencyMechs.length} ({Math.round((noAgencyMechs.length / bundle.mechanisms.length) * 100)}%)</span>
+            <span class="text-rose-400 font-bold">{noAgencyMechs.length} ({pct(noAgencyMechs.length)}%)</span>
           </div>
           <div class="w-full h-2 rounded-full bg-hoba-bg overflow-hidden">
-            <div class="h-full bg-rose-500 rounded-full" style={`width: ${(noAgencyMechs.length / bundle.mechanisms.length) * 100}%`}></div>
+            <div class="h-full bg-rose-500 rounded-full" style={`width: ${pct(noAgencyMechs.length)}%`}></div>
           </div>
         </div>
       </div>
@@ -116,6 +117,7 @@ const barriersByStage = stages.map((st) => ({
             <span class="capitalize text-hoba-text">{st.stage}</span>
             <div class="flex gap-3 text-hoba-muted text-[11px]">
               <span>Barriers: <strong class="text-emerald-400">{st.barriers}</strong></span>
+              <span>Mechanisms: <strong class="text-blue-400">{st.mechanisms}</strong></span>
               <span>Signals: <strong class="text-purple-400">{st.artifacts}</strong></span>
             </div>
           </div>

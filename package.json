@@ -11,25 +11,30 @@
     "url": "git+https://github.com/dmytro-yemelianov/hoba.work.git"
   },
   "scripts": {
-    "build": "pnpm --filter @hoba/registry build && pnpm --filter @hoba/cli build && pnpm --filter @hoba/mcp build && tsx scripts/build-registry.ts && pnpm --filter hoba-site build",
-    "build:registry": "pnpm --filter @hoba/registry build && tsx scripts/build-registry.ts",
+    "build": "pnpm build:packages && pnpm build:registry && pnpm --filter hoba-site build",
+    "build:packages": "tsc -b packages/registry packages/cli packages/mcp && chmod +x packages/cli/dist/cli.js packages/mcp/dist/index.js",
+    "build:registry": "tsx scripts/build-registry.ts",
     "dev": "pnpm --filter hoba-site dev",
     "test": "vitest run",
     "test:watch": "vitest",
     "validate": "tsx scripts/validate.ts",
-    "typecheck": "tsc --build --verbose",
+    "validate:strict": "tsx scripts/validate.ts --strict",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -b packages/registry packages/cli packages/mcp --dry",
     "deploy:pages": "pnpm build && wrangler pages deploy site/dist --project-name hoba-work --branch main",
-    "clean": "rimraf node_modules packages/*/dist packages/*/node_modules site/.astro site/dist site/node_modules"
+    "clean": "rimraf node_modules packages/*/dist packages/*/node_modules packages/*/tsconfig.tsbuildinfo site/.astro site/dist site/node_modules"
   },
   "devDependencies": {
+    "@hoba/registry": "workspace:*",
     "@types/node": "^22.13.4",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3",
     "vitest": "^3.0.6",
     "zod": "^3.24.2",
-    "zod-to-json-schema": "^3.24.3",
-    "js-yaml": "^4.1.0",
-    "@types/js-yaml": "^4.0.9"
+    "zod-to-json-schema": "^3.24.3"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20"
   }
 }

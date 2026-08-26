@@ -65,11 +65,12 @@ Pattern (P) = recurring contradiction / double-bind / reversal
 │   └── mcp/           # @hoba/mcp: Model Context Protocol server for AI coding assistants
 ├── site/              # Astro 5 + Tailwind CSS + Cytoscape.js static web app (hoba.work)
 ├── content/           # Canonical English Markdown + YAML frontmatter registry content
-├── content-uk/        # Mirrored Ukrainian localized registry content
-├── evidence/          # Empirical and research citations catalog
-├── schemas/           # Auto-generated JSON Schemas for all entity types
-├── scripts/           # Build and validation scripts (DAG acyclicity, SCC cycles, exports)
-├── tests/             # Vitest test suite
+├── content-uk/        # Mirrored Ukrainian localized registry content (same IDs & structure)
+├── evidence/          # Evidence records cited by nodes
+├── registry.yaml      # Release manifest: registry version, schema version, release timestamp
+├── schemas/           # Generated JSON Schemas for all entity types (do not edit by hand)
+├── scripts/           # build-registry.ts (exports/API/OpenAPI) and validate.ts
+├── tests/             # Vitest unit + content integration suites
 └── spec/              # Full HOBA System & Website Specification
 ```
 
@@ -90,15 +91,27 @@ cd hoba.work
 # Install dependencies across all workspace packages
 pnpm install
 
-# Validate ontology schemas and DAG graph integrity
-pnpm validate
+# Typecheck scripts, tests and all packages
+pnpm typecheck
+
+# Validate schemas, referential integrity, barrier DAG, loop declarations and EN/UK parity
+pnpm validate            # warnings are reported, errors fail
+pnpm validate:strict     # warnings fail too
 
 # Run unit and integration tests
 pnpm test
 
-# Build all packages, static exports, schemas, and Astro website
+# Build all packages, regenerate static exports/schemas/API, and build the Astro website
 pnpm build
 ```
+
+Generated files under `schemas/` and `site/public/{api,data,schemas,openapi.json}` are committed and must be
+regenerated with `pnpm build:registry` after any content change — CI fails if they drift.
+
+### Versioning
+`registry.yaml` is the single source of truth for the **registry version** (`YYYY.MM.N`, bump on every content
+release), the **schema version** (semver, bump when the entity contract changes) and the release timestamp
+(set explicitly so exports stay byte-deterministic). The **site/package version** lives in `package.json`.
 
 ### Running Local Development Server
 ```bash
@@ -119,28 +132,38 @@ Hosted with zero database latency under `https://hoba.work/api/v1/`:
 - OpenAPI 3.1 Contract: [`/openapi.json`](https://hoba.work/openapi.json)
 
 ### Model Context Protocol (MCP) Server
-Equip AI agents and IDE assistants with direct access to HOBA knowledge:
+Equip AI agents and IDE assistants with direct access to HOBA knowledge. The packages are **not yet published to
+npm**; run the server from a local checkout (`pnpm install && pnpm build:packages`):
 ```json
 {
   "mcpServers": {
     "hoba": {
-      "command": "npx",
-      "args": ["-y", "@hoba/mcp"]
+      "command": "node",
+      "args": ["/path/to/hoba.work/packages/mcp/dist/index.js", "--dir", "/path/to/hoba.work"]
     }
   }
 }
 ```
+The registry root is resolved from `--dir`, then `$HOBA_ROOT`, then by walking up from the working directory.
+Tools: `get_registry_info`, `search_registry`, `get_node`, `explain_observation`, `find_compatible_mechanisms`,
+`get_diagnostic_probes`, `find_patterns`, `get_interventions`, `traverse_graph`, `get_methodology`.
 
 ### CLI Tool
 ```bash
-# Run forensic HOBA analysis on an observation
-npx @hoba/cli explain A-004 --stage technical
+alias hoba="node $PWD/packages/cli/dist/cli.js"
+
+# Run forensic HOBA analysis on one or more observations
+hoba explain A-004 --stage technical
+hoba explain A-001 A-004 --json
 
 # Search across the knowledge graph
-npx @hoba/cli search "reposted"
+hoba search "reposted" --types artifact,pattern
 
 # Inspect detailed entity specification
-npx @hoba/cli show M-001
+hoba show M-001
+
+# Validate content (schemas, references, DAG, loop declarations, EN/UK parity)
+hoba validate --strict
 ```
 
 ### Raw Graph Exports
@@ -158,6 +181,8 @@ npx @hoba/cli show M-001
 2. **Honest Baselines:** Candidate skill-depth shortfalls, leveling mismatches, and communication friction are mandatory baseline mechanisms.
 3. **No Intent Mind-Reading:** The registry classifies structural forces, never accusing named individuals or organizations of hidden malice.
 4. **Explicit Verbs:** Claims strictly adhere to *Observed*, *Compatible with*, *Supported*, and *Established*.
+5. **Loops Are Graph Facts:** A loop is only "established" when every edge is declared on the mechanisms themselves
+   (`amplifies` / `masks`) so Tarjan SCC detection can confirm it; `pnpm validate` warns about editorial-only loops.
 
 ---
 

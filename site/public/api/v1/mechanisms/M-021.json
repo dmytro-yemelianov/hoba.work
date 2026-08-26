@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Reference Check Discrepancy or Regulatory Ineligibility",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nThird-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Administrative mismatch in dates is distinct from fraudulent resume misrepresentation.",
     "id": "M-021",
     "type": "mechanism",
-    "title": "Reference Check Discrepancy or Regulatory Ineligibility",
     "summary": "Third-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.",
     "operates_at": [
       "B-011"
@@ -34,15 +39,10 @@
     },
     "amplifies": [],
     "masks": [],
-    "status": "active",
     "evidence_level": "established",
     "honest_baseline": true,
-    "evidence_ids": [
-      "EVD-001"
-    ],
     "non_inferences": [
       "Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
-    ],
-    "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nThird-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
+    ]
   }
 }

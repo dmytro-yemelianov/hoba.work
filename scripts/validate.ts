@@ -1,62 +1,64 @@
-import path from 'node:path';
+/**
+ * Validate registry content for both language mirrors.
+ *   pnpm validate            # errors fail, warnings are reported
+ *   pnpm validate --strict   # warnings fail too
+ */
 import {
+  compareBundleStructure,
+  formatValidationIssue,
   HOBAKnowledgeGraph,
-  loadRegistryFromDirectory,
-  validateRegistryBundle,
+  loadRegistryFromRoot,
+  resolveRegistryRoot,
+  validateRegistry,
+  type ValidationIssue,
 } from '@hoba/registry';
 
-const rootDir = process.cwd();
-const contentDir = path.join(rootDir, 'content');
-const evidenceDir = path.join(rootDir, 'evidence');
+const strict = process.argv.includes('--strict');
+const root = resolveRegistryRoot();
 
-console.log('--- Validating HOBA Registry Content (English) ---');
-const bundleEn = loadRegistryFromDirectory(contentDir, evidenceDir);
-const issuesEn = validateRegistryBundle(bundleEn);
+let errorCount = 0;
+let warningCount = 0;
 
-if (issuesEn.length > 0) {
-  console.error('Validation errors found in content:');
-  for (const issue of issuesEn) {
-    console.error(`[${issue.severity.toUpperCase()}] ${issue.nodeId ? `(${issue.nodeId}) ` : ''}${issue.message}`);
-  }
-  process.exit(1);
+function report(label: string, issues: ValidationIssue[]) {
+  const errors = issues.filter((i) => i.severity === 'error');
+  const warnings = issues.filter((i) => i.severity === 'warning');
+  errorCount += errors.length;
+  warningCount += warnings.length;
+  console.log(`\n--- ${label} ---`);
+  for (const issue of errors) console.error(formatValidationIssue(issue));
+  for (const issue of warnings) console.warn(formatValidationIssue(issue));
+  if (issues.length === 0) console.log('✓ No issues');
 }
+
+// 1. Canonical (English) content
+const bundleEn = loadRegistryFromRoot(root, 'en');
+report(`English content (registry ${bundleEn.version}, schema ${bundleEn.schema_version})`, validateRegistry(bundleEn).issues);
 
 const graphEn = new HOBAKnowledgeGraph(bundleEn);
+const dag = graphEn.validateBarrierDAG();
+if (dag.valid) console.log(`✓ Barrier DAG is strictly acyclic (${dag.sorted?.join(' -> ')})`);
 
-// 1. Barrier DAG validation
-const dagRes = graphEn.validateBarrierDAG();
-if (!dagRes.valid) {
-  console.error(`Barrier DAG Validation failed: ${dagRes.error}`);
-  process.exit(1);
-}
-console.log(`✓ Barrier DAG is strictly acyclic (${bundleEn.barriers.length} barriers sorted: ${dagRes.sorted?.join(' -> ')})`);
-
-// 2. Tarjan SCC check
 const sccs = graphEn.findMechanismSCCs();
-console.log(`✓ Tarjan Mechanism SCC check: found ${sccs.length} strongly connected component cycle(s):`);
-for (const scc of sccs) {
-  console.log(`  - SCC cycle: [${scc.join(', ')}]`);
+console.log(`✓ Tarjan SCC check: ${sccs.length} strongly connected mechanism cycle(s)`);
+for (const scc of sccs) console.log(`  - [${scc.join(', ')}]`);
+for (const loop of bundleEn.loops) {
+  const confirmed = sccs.some((scc) => loop.mechanisms.every((m) => scc.includes(m)));
+  console.log(`  ${confirmed ? '✓' : '⚠'} ${loop.id} ${confirmed ? 'is backed by a declared SCC' : 'is NOT fully backed by a declared mechanism cycle'}`);
 }
 
-// Check Ukrainian mirror
-console.log('--- Validating HOBA Registry Content (Ukrainian Mirror) ---');
-const contentUkDir = path.join(rootDir, 'content-uk');
-const bundleUk = loadRegistryFromDirectory(contentUkDir, evidenceDir);
-const issuesUk = validateRegistryBundle(bundleUk);
+// 2. Ukrainian mirror: same rules + structural parity with the canonical content
+const bundleUk = loadRegistryFromRoot(root, 'uk');
+report('Ukrainian mirror', [...validateRegistry(bundleUk).issues, ...compareBundleStructure(bundleEn, bundleUk)]);
 
-if (issuesUk.length > 0) {
-  console.error('Validation errors found in content-uk:');
-  for (const issue of issuesUk) {
-    console.error(`[${issue.severity.toUpperCase()}] ${issue.nodeId ? `(${issue.nodeId}) ` : ''}${issue.message}`);
-  }
+console.log(
+  `\n${bundleEn.artifacts.length} artifacts, ${bundleEn.barriers.length} barriers, ${bundleEn.mechanisms.length} mechanisms, ` +
+    `${bundleEn.patterns.length} patterns, ${bundleEn.loops.length} loops, ${bundleEn.interventions.length} interventions, ` +
+    `${bundleEn.evidence.length} evidence records`
+);
+console.log(`${errorCount} error(s), ${warningCount} warning(s)`);
+
+if (errorCount > 0 || (strict && warningCount > 0)) {
+  console.error(strict && errorCount === 0 ? '--strict: warnings are treated as errors' : 'Registry validation FAILED');
   process.exit(1);
 }
-
-console.log(`✓ All ${bundleEn.artifacts.length} Artifacts valid`);
-console.log(`✓ All ${bundleEn.barriers.length} Barriers valid`);
-console.log(`✓ All ${bundleEn.mechanisms.length} Mechanisms valid (honest baseline preserved)`);
-console.log(`✓ All ${bundleEn.patterns.length} Patterns valid`);
-console.log(`✓ All ${bundleEn.loops.length} Loops valid`);
-console.log(`✓ All ${bundleEn.interventions.length} Interventions valid`);
-console.log(`✓ All ${bundleEn.evidence.length} Evidence records valid`);
 console.log('--- Registry Validation PASSED ---');

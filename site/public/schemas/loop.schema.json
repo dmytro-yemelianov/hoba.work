@@ -1,9 +1,33 @@
 {
+  "$id": "https://hoba.work/schemas/loop.schema.json",
   "$ref": "#/definitions/Loop",
   "definitions": {
     "Loop": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "pattern": "^L-\\d{3}$"
@@ -11,10 +35,6 @@
         "type": {
           "type": "string",
           "const": "loop"
-        },
-        "title": {
-          "type": "string",
-          "minLength": 3
         },
         "summary": {
           "type": "string",
@@ -34,12 +54,10 @@
             "type": "object",
             "properties": {
               "from": {
-                "type": "string",
-                "pattern": "^M-\\d{3}$"
+                "$ref": "#/definitions/Loop/properties/mechanisms/items"
               },
               "to": {
-                "type": "string",
-                "pattern": "^M-\\d{3}$"
+                "$ref": "#/definitions/Loop/properties/mechanisms/items"
               },
               "relation": {
                 "type": "string",
@@ -61,8 +79,7 @@
         "entry_points": {
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^M-\\d{3}$"
+            "$ref": "#/definitions/Loop/properties/mechanisms/items"
           },
           "minItems": 1
         },
@@ -74,17 +91,8 @@
           },
           "default": []
         },
-        "status": {
-          "type": "string",
-          "enum": [
-            "active",
-            "deprecated"
-          ],
-          "default": "active"
-        },
         "superseded_by": {
-          "type": "string",
-          "pattern": "^L-\\d{3}$"
+          "$ref": "#/definitions/Loop/properties/id"
         },
         "evidence_level": {
           "type": "string",
@@ -95,21 +103,12 @@
             "illustrative"
           ],
           "default": "supported"
-        },
-        "evidence_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "content": {
-          "type": "string"
         }
       },
       "required": [
+        "title",
         "id",
         "type",
-        "title",
         "summary",
         "mechanisms",
         "edges",

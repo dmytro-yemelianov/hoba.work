@@ -1,9 +1,14 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Headcount & Executive Budget Approval",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-004"
+    ],
+    "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership.",
     "id": "B-010",
     "type": "barrier",
-    "title": "Headcount & Executive Budget Approval",
     "stage": "offer",
     "order": 10,
     "precedes": [
@@ -11,11 +16,6 @@
     ],
     "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
     "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
-    "status": "active",
-    "evidence_level": "established",
-    "evidence_ids": [
-      "EVD-004"
-    ],
-    "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership."
+    "evidence_level": "established"
   }
 }

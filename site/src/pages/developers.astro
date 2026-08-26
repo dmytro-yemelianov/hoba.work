@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { langFromUrl } from '../lib/registry';
+
+const lang = langFromUrl(Astro.url);
 ---
-<Layout title="Developers & Machine Interfaces" activeNav="developers">
+<Layout lang={lang} title="Developers & Machine Interfaces" activeNav="developers">
   <div class="max-w-4xl mx-auto space-y-10">
     <div class="border-b border-hoba-border pb-6">
       <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Developer API & MCP</span>
@@ -45,19 +48,20 @@ import Layout from '../layouts/Layout.astro';
     <div id="mcp" class="p-6 rounded-2xl border border-hoba-border bg-hoba-card space-y-4">
       <div class="flex items-center justify-between">
         <h2 class="text-lg font-bold font-mono text-hoba-text">Model Context Protocol (MCP) Server</h2>
-        <span class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">mcp.hoba.work</span>
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">stdio · local</span>
       </div>
       <p class="text-xs text-hoba-muted leading-relaxed">
         Connect AI coding assistants and autonomous agents directly to the HOBA Knowledge Graph.
       </p>
 
       <div class="p-4 rounded-lg bg-hoba-bg border border-hoba-border text-xs font-mono text-hoba-text overflow-x-auto">
-        <pre><code>{`// claude_desktop_config.json or antigravity mcp config
+        <pre><code>{`// claude_desktop_config.json / .mcp.json — run from a local checkout
+// (git clone … && pnpm install && pnpm build:packages)
 {
   "mcpServers": {
     "hoba": {
-      "command": "npx",
-      "args": ["-y", "@hoba/mcp"]
+      "command": "node",
+      "args": ["/path/to/hoba.work/packages/mcp/dist/index.js", "--dir", "/path/to/hoba.work"]
     }
   }
 }`}</code></pre>
@@ -65,7 +69,8 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="text-xs font-mono text-hoba-muted space-y-1">
         <strong class="text-hoba-text">Available Tools:</strong>
-        <p><code>search_registry</code>, <code>get_node</code>, <code>explain_observation</code>, <code>find_compatible_mechanisms</code>, <code>get_diagnostic_probes</code>, <code>find_patterns</code>, <code>get_interventions</code>, <code>traverse_graph</code>, <code>get_methodology</code>.</p>
+        <p><code>get_registry_info</code>, <code>search_registry</code>, <code>get_node</code>, <code>explain_observation</code>, <code>find_compatible_mechanisms</code>, <code>get_diagnostic_probes</code>, <code>find_patterns</code>, <code>get_interventions</code>, <code>traverse_graph</code>, <code>get_methodology</code>.</p>
+        <p class="text-amber-300/80">Packages are not published to npm yet; the <code>npx @hoba/mcp</code> form will work once they are.</p>
       </div>
     </div>
 
@@ -73,12 +78,14 @@ import Layout from '../layouts/Layout.astro';
     <div class="p-6 rounded-2xl border border-hoba-border bg-hoba-card space-y-4">
       <h2 class="text-lg font-bold font-mono text-hoba-text">Command Line Interface (CLI)</h2>
       <div class="p-4 rounded-lg bg-hoba-bg border border-hoba-border text-xs font-mono text-emerald-300">
-        <code>npm install -g @hoba/cli</code>
+        <code>pnpm build:packages && node packages/cli/dist/cli.js --help</code>
       </div>
       <div class="p-4 rounded-lg bg-hoba-bg border border-hoba-border text-xs font-mono text-hoba-muted space-y-1">
         <p><strong class="text-hoba-text">hoba search "reposted"</strong> — Find matching entities</p>
         <p><strong class="text-hoba-text">hoba explain A-004 --stage technical</strong> — Run HOBA diagnostic protocol</p>
         <p><strong class="text-hoba-text">hoba show M-001</strong> — Inspect mechanism specifications</p>
+        <p><strong class="text-hoba-text">hoba validate --strict</strong> — Validate content, DAG, loop declarations and mirror parity</p>
+        <p class="text-hoba-muted/80">Add <code>--json</code> to any command for machine-readable output.</p>
       </div>
     </div>
 

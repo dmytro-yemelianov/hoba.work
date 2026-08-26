@@ -1,19 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory } from '@hoba/registry';
+import { getBundle } from '../../lib/registry';
 
 export async function getStaticPaths() {
-  const rootDir = path.resolve(process.cwd(), '..');
-  const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-  return bundle.patterns.map((pattern) => ({
+  return getBundle().patterns.map((pattern) => ({
     params: { id: pattern.id },
-    props: { pattern, bundle },
+    props: { pattern },
   }));
 }
 
-const { pattern, bundle } = Astro.props;
+const { pattern } = Astro.props;
+const bundle = getBundle();
 const requiredArtifacts = bundle.artifacts.filter((a) =>
   pattern.required_artifacts.includes(a.id)
 );
@@ -55,7 +53,7 @@ const relevantInterventions = bundle.interventions.filter((i) =>
           <span>What This Pattern Establishes:</span>
         </h2>
         <ul class="space-y-2 text-emerald-100/90 list-disc list-inside">
-          {pattern.establishes.map((item: string) => <li>{item}</li>)}
+          {pattern.establishes.map((item) => <li>{item}</li>)}
         </ul>
       </div>
 
@@ -65,7 +63,7 @@ const relevantInterventions = bundle.interventions.filter((i) =>
           <span>What This Does NOT Establish:</span>
         </h2>
         <ul class="space-y-2 text-rose-200/90 list-disc list-inside">
-          {pattern.non_inferences.map((item: string) => <li>{item}</li>)}
+          {pattern.non_inferences.map((item) => <li>{item}</li>)}
         </ul>
       </div>
     </div>

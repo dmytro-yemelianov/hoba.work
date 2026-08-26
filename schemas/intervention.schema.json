@@ -1,9 +1,33 @@
 {
+  "$id": "https://hoba.work/schemas/intervention.schema.json",
   "$ref": "#/definitions/Intervention",
   "definitions": {
     "Intervention": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
         "id": {
           "type": "string",
           "pattern": "^I-\\d{3}$"
@@ -11,10 +35,6 @@
         "type": {
           "type": "string",
           "const": "intervention"
-        },
-        "title": {
-          "type": "string",
-          "minLength": 3
         },
         "summary": {
           "type": "string",
@@ -24,7 +44,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[MBPLI]-\\d{3}$"
+            "pattern": "^[MBPL]-\\d{3}$"
           },
           "minItems": 1
         },
@@ -58,17 +78,8 @@
             "high"
           ]
         },
-        "status": {
-          "type": "string",
-          "enum": [
-            "active",
-            "deprecated"
-          ],
-          "default": "active"
-        },
         "superseded_by": {
-          "type": "string",
-          "pattern": "^I-\\d{3}$"
+          "$ref": "#/definitions/Intervention/properties/id"
         },
         "evidence_level": {
           "type": "string",
@@ -93,21 +104,12 @@
             "type": "string"
           },
           "minItems": 1
-        },
-        "evidence_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "content": {
-          "type": "string"
         }
       },
       "required": [
+        "title",
         "id",
         "type",
-        "title",
         "summary",
         "targets",
         "actor",

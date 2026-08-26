@@ -2,21 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
 import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
-import path from 'node:path';
-import { loadRegistryFromDirectory, HOBAKnowledgeGraph } from '@hoba/registry';
+import { getBundle } from '../../lib/registry';
 
 export async function getStaticPaths() {
-  const rootDir = path.resolve(process.cwd(), '..');
-  const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
-  return bundle.mechanisms.map((mechanism) => ({
+  return getBundle().mechanisms.map((mechanism) => ({
     params: { id: mechanism.id },
-    props: { mechanism, bundle },
+    props: { mechanism },
   }));
 }
 
-const { mechanism, bundle } = Astro.props;
-const graph = new HOBAKnowledgeGraph(bundle);
-
+const { mechanism } = Astro.props;
+const bundle = getBundle();
 const operatingBarriers = bundle.barriers.filter((b) =>
   mechanism.operates_at.includes(b.id)
 );

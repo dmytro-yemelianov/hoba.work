@@ -1,7 +1,7 @@
 {
   "registry_version": "2026.08.1",
   "nodes_count": 69,
-  "edges_count": 180,
+  "edges_count": 188,
   "elements": {
     "nodes": [
       {
@@ -2382,6 +2382,24 @@
       },
       {
         "data": {
+          "id": "I-001->mitigates->P-002",
+          "source": "I-001",
+          "target": "P-002",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "I-001->mitigates->L-003",
+          "source": "I-001",
+          "target": "L-003",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
           "id": "I-002->targets->M-004",
           "source": "I-002",
           "target": "M-004",
@@ -2406,6 +2424,24 @@
           "type": "targets"
         },
         "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-002->mitigates->P-001",
+          "source": "I-002",
+          "target": "P-001",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "I-002->mitigates->P-004",
+          "source": "I-002",
+          "target": "P-004",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
       },
       {
         "data": {
@@ -2445,6 +2481,33 @@
       },
       {
         "data": {
+          "id": "I-003->mitigates->P-001",
+          "source": "I-003",
+          "target": "P-001",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "I-003->mitigates->P-002",
+          "source": "I-003",
+          "target": "P-002",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "I-003->mitigates->L-003",
+          "source": "I-003",
+          "target": "L-003",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
           "id": "I-004->targets->M-011",
           "source": "I-004",
           "target": "M-011",
@@ -2478,6 +2541,15 @@
           "type": "targets"
         },
         "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-005->mitigates->P-003",
+          "source": "I-005",
+          "target": "P-003",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
       },
       {
         "data": {

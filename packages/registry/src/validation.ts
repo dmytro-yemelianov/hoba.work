@@ -1,0 +1,298 @@
+import { HOBAKnowledgeGraph } from './graph.js';
+import type { RegistryBundle, RegistryNode } from './types.js';
+
+export type ValidationSeverity = 'error' | 'warning';
+
+export interface ValidationIssue {
+  severity: ValidationSeverity;
+  /** Stable machine-readable rule identifier. */
+  rule: string;
+  nodeId?: string;
+  message: string;
+}
+
+export interface ValidationReport {
+  issues: ValidationIssue[];
+  errors: ValidationIssue[];
+  warnings: ValidationIssue[];
+  ok: boolean;
+}
+
+const allNodes = (bundle: RegistryBundle): RegistryNode[] => [
+  ...bundle.artifacts,
+  ...bundle.barriers,
+  ...bundle.mechanisms,
+  ...bundle.patterns,
+  ...bundle.loops,
+  ...bundle.interventions,
+];
+
+/**
+ * Referential-integrity and editorial rules for a loaded bundle (spec §23).
+ *
+ * Errors break the build. Warnings surface content inconsistencies that need an
+ * editorial decision but do not make the graph unusable.
+ */
+export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[] {
+  const issues: ValidationIssue[] = [];
+  const error = (rule: string, message: string, nodeId?: string) =>
+    issues.push({ severity: 'error', rule, nodeId, message });
+  const warning = (rule: string, message: string, nodeId?: string) =>
+    issues.push({ severity: 'warning', rule, nodeId, message });
+
+  const nodes = allNodes(bundle);
+  const nodeById = new Map<string, RegistryNode>();
+
+  // 1. Unique IDs across all node collections (and evidence).
+  for (const n of nodes) {
+    if (nodeById.has(n.id)) error('duplicate-id', `Duplicate ID detected: ${n.id}`, n.id);
+    nodeById.set(n.id, n);
+  }
+  const evidenceIds = new Set<string>();
+  for (const e of bundle.evidence) {
+    if (evidenceIds.has(e.id)) error('duplicate-id', `Duplicate evidence ID detected: ${e.id}`, e.id);
+    evidenceIds.add(e.id);
+  }
+
+  const barrierIds = new Set(bundle.barriers.map((b) => b.id));
+  const artifactIds = new Set(bundle.artifacts.map((a) => a.id));
+  const mechanismIds = new Set(bundle.mechanisms.map((m) => m.id));
+  const patternById = new Map(bundle.patterns.map((p) => [p.id, p]));
+  const loopById = new Map(bundle.loops.map((l) => [l.id, l]));
+  const interventionById = new Map(bundle.interventions.map((i) => [i.id, i]));
+
+  const requireRef = (owner: string, field: string, ref: string, pool: Set<string>, label: string) => {
+    if (!pool.has(ref)) error('dangling-reference', `${field} references unknown ${label}: ${ref}`, owner);
+  };
+
+  // 2. Evidence references and lifecycle fields on every node.
+  for (const n of nodes) {
+    for (const e of n.evidence_ids) requireRef(n.id, 'evidence_ids', e, evidenceIds, 'evidence record');
+
+    if (n.superseded_by !== undefined) {
+      if (!nodeById.has(n.superseded_by)) {
+        error('dangling-reference', `superseded_by references unknown node: ${n.superseded_by}`, n.id);
+      } else if (n.superseded_by === n.id) {
+        error('lifecycle', 'Node cannot supersede itself', n.id);
+      }
+      if (n.status !== 'deprecated') {
+        error('lifecycle', `Node declares superseded_by but status is "${n.status}" (expected "deprecated")`, n.id);
+      }
+    }
+  }
+
+  // 3. Barriers: funnel ordering.
+  const seenOrders = new Map<number, string>();
+  for (const b of bundle.barriers) {
+    const prev = seenOrders.get(b.order);
+    if (prev) error('barrier-order', `Barrier order ${b.order} is shared with ${prev}`, b.id);
+    seenOrders.set(b.order, b.id);
+
+    for (const next of b.precedes) {
+      requireRef(b.id, 'precedes', next, barrierIds, 'barrier');
+      const nb = bundle.barriers.find((x) => x.id === next);
+      if (nb && nb.order <= b.order) {
+        error('barrier-order', `precedes ${next} (order ${nb.order}) but has order ${b.order}; funnel order must increase`, b.id);
+      }
+    }
+  }
+
+  // 4. Mechanisms.
+  let hasHonestBaseline = false;
+  for (const m of bundle.mechanisms) {
+    if (m.honest_baseline && m.status === 'active') hasHonestBaseline = true;
+    for (const bid of m.operates_at) requireRef(m.id, 'operates_at', bid, barrierIds, 'barrier');
+
+    const emitted = new Set<string>();
+    for (const em of m.emissions) {
+      requireRef(m.id, 'emissions', em.artifact, artifactIds, 'artifact');
+      if (emitted.has(em.artifact)) error('duplicate-edge', `Artifact ${em.artifact} is listed twice in emissions`, m.id);
+      emitted.add(em.artifact);
+      for (const e of em.evidence) requireRef(m.id, `emissions[${em.artifact}].evidence`, e, evidenceIds, 'evidence record');
+    }
+    for (const amp of m.amplifies) {
+      requireRef(m.id, 'amplifies', amp, mechanismIds, 'mechanism');
+      if (amp === m.id) error('self-reference', 'Mechanism cannot amplify itself', m.id);
+    }
+    for (const mask of m.masks) {
+      requireRef(m.id, 'masks', mask, mechanismIds, 'mechanism');
+      if (mask === m.id) error('self-reference', 'Mechanism cannot mask itself', m.id);
+    }
+  }
+
+  if (!hasHonestBaseline) {
+    error(
+      'honest-baseline',
+      'Preservation Rule Violation: Registry must include at least one active honest-baseline mechanism (honest_baseline: true)'
+    );
+  }
+
+  // 5. Patterns.
+  for (const p of bundle.patterns) {
+    for (const aid of p.required_artifacts) requireRef(p.id, 'required_artifacts', aid, artifactIds, 'artifact');
+    for (const mid of p.compatible_mechanisms) requireRef(p.id, 'compatible_mechanisms', mid, mechanismIds, 'mechanism');
+    for (const iid of p.interventions) {
+      const intervention = interventionById.get(iid);
+      if (!intervention) {
+        error('dangling-reference', `interventions references unknown intervention: ${iid}`, p.id);
+      } else if (!intervention.targets.includes(p.id)) {
+        warning('reciprocity', `lists intervention ${iid}, but ${iid}.targets does not include ${p.id}`, p.id);
+      }
+    }
+  }
+
+  // 6. Loops: edges must be declared on the mechanisms themselves (spec §4.6:
+  //    "Loops are validated from graph SCCs and cannot exist only as editorial prose").
+  for (const l of bundle.loops) {
+    const members = new Set(l.mechanisms);
+    for (const mid of l.mechanisms) requireRef(l.id, 'mechanisms', mid, mechanismIds, 'mechanism');
+    for (const ep of l.entry_points) {
+      if (!members.has(ep)) error('loop-membership', `entry_point ${ep} is not in the loop's mechanisms list`, l.id);
+    }
+    for (const edge of l.edges) {
+      if (!members.has(edge.from) || !members.has(edge.to)) {
+        error('loop-membership', `edge ${edge.from} -> ${edge.to} references a mechanism outside the loop's mechanisms list`, l.id);
+        continue;
+      }
+      const from = bundle.mechanisms.find((m) => m.id === edge.from);
+      if (from) {
+        const declared = edge.relation === 'amplifies' ? from.amplifies : from.masks;
+        if (!declared.includes(edge.to)) {
+          warning(
+            'undeclared-loop-edge',
+            `edge "${edge.from} ${edge.relation} ${edge.to}" is not declared on ${edge.from} (${edge.relation}: [${declared.join(', ')}]); the loop is editorial prose until the mechanism declares it`,
+            l.id
+          );
+        }
+      }
+    }
+    for (const iid of l.interventions) {
+      const intervention = interventionById.get(iid);
+      if (!intervention) {
+        error('dangling-reference', `interventions references unknown intervention: ${iid}`, l.id);
+      } else if (!intervention.targets.includes(l.id)) {
+        warning('reciprocity', `lists intervention ${iid}, but ${iid}.targets does not include ${l.id}`, l.id);
+      }
+    }
+  }
+
+  // 7. Interventions.
+  for (const i of bundle.interventions) {
+    for (const target of i.targets) {
+      if (!nodeById.has(target)) {
+        error('dangling-reference', `targets references unknown entity: ${target}`, i.id);
+        continue;
+      }
+      const pattern = patternById.get(target);
+      if (pattern && !pattern.interventions.includes(i.id)) {
+        warning('reciprocity', `targets ${target}, but ${target}.interventions does not list ${i.id}`, i.id);
+      }
+      const loop = loopById.get(target);
+      if (loop && !loop.interventions.includes(i.id)) {
+        warning('reciprocity', `targets ${target}, but ${target}.interventions does not list ${i.id}`, i.id);
+      }
+    }
+  }
+
+  // 8. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
+  const probeOwners = new Map<string, string>();
+  for (const a of bundle.artifacts) {
+    for (const p of a.probes) {
+      const owner = probeOwners.get(p.id);
+      if (owner) error('duplicate-id', `Probe ${p.id} is also defined on ${owner}`, a.id);
+      probeOwners.set(p.id, a.id);
+    }
+  }
+
+  return issues;
+}
+
+/**
+ * Full validation pipeline: referential rules + barrier DAG acyclicity.
+ * Barrier cycles are only checked when no barrier references dangle.
+ */
+export function validateRegistry(bundle: RegistryBundle): ValidationReport {
+  const issues = validateRegistryBundle(bundle);
+
+  const hasBarrierRefErrors = issues.some(
+    (i) => i.severity === 'error' && i.rule === 'dangling-reference' && i.nodeId?.startsWith('B-')
+  );
+  if (!hasBarrierRefErrors) {
+    const dag = new HOBAKnowledgeGraph(bundle).validateBarrierDAG();
+    if (!dag.valid) issues.push({ severity: 'error', rule: 'barrier-cycle', message: dag.error ?? 'Barrier graph contains a cycle' });
+  }
+
+  const errors = issues.filter((i) => i.severity === 'error');
+  const warnings = issues.filter((i) => i.severity === 'warning');
+  return { issues, errors, warnings, ok: errors.length === 0 };
+}
+
+export function formatValidationIssue(issue: ValidationIssue): string {
+  return `[${issue.severity.toUpperCase()}] ${issue.nodeId ? `(${issue.nodeId}) ` : ''}${issue.message} [${issue.rule}]`;
+}
+
+/** Fields whose values are expected to differ between language mirrors. */
+const TRANSLATABLE_FIELDS = new Set([
+  'title',
+  'summary',
+  'description',
+  'pass_condition',
+  'trigger_rule',
+  'establishes',
+  'non_inferences',
+  'expected_effects',
+  'content',
+]);
+
+function structuralProjection(node: RegistryNode): string {
+  const projected: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(node)) {
+    if (TRANSLATABLE_FIELDS.has(key)) continue;
+    if (key === 'probes' && Array.isArray(value)) {
+      // Probe text is translatable; the probe identity and cost are structural.
+      projected[key] = value.map((p: { id: string; cost: string; removability_target?: string }) => ({
+        id: p.id,
+        cost: p.cost,
+        removability_target: p.removability_target,
+      }));
+      continue;
+    }
+    projected[key] = value;
+  }
+  return JSON.stringify(projected, Object.keys(projected).sort());
+}
+
+/**
+ * Check that a translated mirror has exactly the same IDs and graph structure as
+ * the canonical bundle (spec §21: "IDs and graph structure never change by language").
+ */
+export function compareBundleStructure(canonical: RegistryBundle, mirror: RegistryBundle): ValidationIssue[] {
+  const issues: ValidationIssue[] = [];
+  const mirrorById = new Map(allNodes(mirror).map((n) => [n.id, n]));
+  const canonicalIds = new Set<string>();
+
+  for (const node of allNodes(canonical)) {
+    canonicalIds.add(node.id);
+    const twin = mirrorById.get(node.id);
+    if (!twin) {
+      issues.push({ severity: 'error', rule: 'mirror-missing', nodeId: node.id, message: `Node ${node.id} is missing from the mirror` });
+      continue;
+    }
+    if (structuralProjection(node) !== structuralProjection(twin)) {
+      issues.push({
+        severity: 'error',
+        rule: 'mirror-drift',
+        nodeId: node.id,
+        message: `Structural fields of ${node.id} differ between canonical content and the mirror`,
+      });
+    }
+  }
+
+  for (const id of mirrorById.keys()) {
+    if (!canonicalIds.has(id)) {
+      issues.push({ severity: 'error', rule: 'mirror-extra', nodeId: id, message: `Node ${id} exists only in the mirror` });
+    }
+  }
+
+  return issues;
+}

@@ -1,19 +1,25 @@
 {
   "registry_version": "2026.08.1",
   "data": {
+    "title": "Upfront Compensation Band Disclosure",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-005"
+    ],
+    "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- Eliminate late-stage compensation mismatch dropouts\n- Reduce time wasted on mismatched leveling conversations\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `candidate_pipeline_satisfaction`",
     "id": "I-002",
     "type": "intervention",
-    "title": "Upfront Compensation Band Disclosure",
     "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
     "targets": [
       "M-004",
       "B-004",
-      "B-009"
+      "B-009",
+      "P-001",
+      "P-004"
     ],
     "actor": "employer-policy",
     "scope": "industry",
     "cost": "low",
-    "status": "active",
     "evidence_level": "supported",
     "expected_effects": [
       "Eliminate late-stage compensation mismatch dropouts",
@@ -22,10 +28,6 @@
     "measurements": [
       "late_stage_compensation_drop_rate",
       "candidate_pipeline_satisfaction"
-    ],
-    "evidence_ids": [
-      "EVD-005"
-    ],
-    "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- Eliminate late-stage compensation mismatch dropouts\n- Reduce time wasted on mismatched leveling conversations\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `candidate_pipeline_satisfaction`"
+    ]
   }
 }
