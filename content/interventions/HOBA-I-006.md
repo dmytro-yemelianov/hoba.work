@@ -1,0 +1,35 @@
+---
+id: "HOBA-I-006"
+type: "intervention"
+title: "Strict Take-Home Timebox & Blinded Evaluation Rubric"
+summary: "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind."
+targets:
+  - "HOBA-M-019"
+  - "HOBA-L-002"
+  - "HOBA-B-006"
+actor: "hiring-manager"
+scope: "organizational"
+cost: "medium"
+status: "active"
+evidence_level: "supported"
+expected_effects:
+  - "Prevent reviewer fatigue and asymmetric code evaluation"
+  - "Respect candidate time investment and eliminate IP exploitation concerns"
+measurements:
+  - "take_home_completion_rate"
+  - "inter_rater_rubric_correlation"
+evidence_ids:
+  - "EVD-006"
+---
+
+# Strict Take-Home Timebox & Blinded Evaluation Rubric
+
+Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.
+
+### Expected Effects
+- Prevent reviewer fatigue and asymmetric code evaluation
+- Respect candidate time investment and eliminate IP exploitation concerns
+
+### Measurements
+- `take_home_completion_rate`
+- `inter_rater_rubric_correlation`

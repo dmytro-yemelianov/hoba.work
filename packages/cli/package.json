@@ -1,0 +1,23 @@
+{
+  "name": "@hoba/cli",
+  "version": "0.4.1",
+  "description": "Command-line interface for HOBA (Hiring Obstacles & Barriers Atlas)",
+  "bin": {
+    "hoba": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b && chmod +x dist/cli.js",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@hoba/registry": "workspace:*",
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  }
+}

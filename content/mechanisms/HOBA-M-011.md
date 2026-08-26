@@ -1,0 +1,47 @@
+---
+id: "HOBA-M-011"
+type: "mechanism"
+title: "Employment Gap Downranking Bias"
+summary: "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history."
+operates_at:
+  - "HOBA-B-002"
+  - "HOBA-B-003"
+emissions:
+  -
+    artifact: "HOBA-A-001"
+    fidelity: "void"
+    likelihood: "high"
+    evidence: ["EVD-003"]
+  -
+    artifact: "HOBA-A-002"
+    fidelity: "euphemism"
+    likelihood: "high"
+    evidence: ["EVD-003"]
+facets:
+  actor: "system"
+  nature: "bias"
+  visibility: "inferable"
+  removability: "none"
+amplifies:
+  - "HOBA-M-008"
+masks: []
+status: "active"
+evidence_level: "supported"
+honest_baseline: false
+evidence_ids:
+  - "EVD-003"
+non_inferences:
+  - "Employment gap does not correlate with underlying technical decline."
+---
+
+# Employment Gap Downranking Bias
+
+Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.
+
+### Structural Context
+- **Actor:** `system`
+- **Nature:** `bias`
+- **Removability:** `none`
+
+### Non-Inferences
+- Employment gap does not correlate with underlying technical decline.

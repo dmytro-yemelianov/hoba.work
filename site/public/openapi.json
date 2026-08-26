@@ -1,0 +1,154 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "hoba API",
+    "description": "Hiring Obstacles & Barriers Atlas — Versioned Knowledge Graph API",
+    "version": "0.4.1",
+    "contact": {
+      "name": "Dmytro Yemelianov",
+      "url": "https://hoba.work/about"
+    },
+    "license": {
+      "name": "MIT / CC BY-SA 4.0",
+      "url": "https://hoba.work/about#license"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://hoba.work/api/v1",
+      "description": "Canonical Production API"
+    }
+  ],
+  "paths": {
+    "/artifacts": {
+      "get": {
+        "summary": "List all Artifacts / Observations",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/artifacts/{id}": {
+      "get": {
+        "summary": "Get Artifact by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/barriers": {
+      "get": {
+        "summary": "List all Barriers in the Funnel DAG",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/barriers/{id}": {
+      "get": {
+        "summary": "Get Barrier by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/mechanisms": {
+      "get": {
+        "summary": "List all Mechanisms with Facets",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/mechanisms/{id}": {
+      "get": {
+        "summary": "Get Mechanism by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/patterns": {
+      "get": {
+        "summary": "List all Recurring Graph Patterns",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/loops": {
+      "get": {
+        "summary": "List all Strongly Connected Causal Loops",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/interventions": {
+      "get": {
+        "summary": "List all Targeted System Interventions",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/graph": {
+      "get": {
+        "summary": "Retrieve complete knowledge graph structure (nodes & edges)",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "$ref": "#/definitions/Barrier",
+  "definitions": {
+    "Barrier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HOBA-B-\\d{3}$"
+        },
+        "type": {
+          "type": "string",
+          "const": "barrier"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "pre-posting",
+            "sourcing",
+            "ingestion",
+            "screening",
+            "recruiter",
+            "technical",
+            "team",
+            "compensation",
+            "offer",
+            "post-offer"
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "precedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-B-\\d{3}$"
+          },
+          "default": []
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10
+        },
+        "pass_condition": {
+          "type": "string",
+          "minLength": 5
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "superseded_by": {
+          "type": "string",
+          "pattern": "^HOBA-B-\\d{3}$"
+        },
+        "evidence_level": {
+          "type": "string",
+          "enum": [
+            "established",
+            "supported",
+            "hypothesis",
+            "illustrative"
+          ],
+          "default": "established"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "stage",
+        "order",
+        "description",
+        "pass_condition"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

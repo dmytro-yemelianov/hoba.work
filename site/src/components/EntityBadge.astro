@@ -1,0 +1,27 @@
+---
+interface Props {
+  type: 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention' | 'evidence';
+  id?: string;
+  size?: 'sm' | 'md';
+}
+
+const { type, id, size = 'sm' } = Astro.props;
+
+const styles: Record<string, { bg: string; text: string; label: string; short: string }> = {
+  artifact: { bg: 'bg-purple-950/60 border-purple-800/60', text: 'text-purple-300', label: 'Observation', short: 'A' },
+  barrier: { bg: 'bg-emerald-950/60 border-emerald-800/60', text: 'text-emerald-300', label: 'Barrier', short: 'B' },
+  mechanism: { bg: 'bg-blue-950/60 border-blue-800/60', text: 'text-blue-300', label: 'Mechanism', short: 'M' },
+  pattern: { bg: 'bg-amber-950/60 border-amber-800/60', text: 'text-amber-300', label: 'Pattern', short: 'P' },
+  loop: { bg: 'bg-pink-950/60 border-pink-800/60', text: 'text-pink-300', label: 'Loop', short: 'L' },
+  intervention: { bg: 'bg-cyan-950/60 border-cyan-800/60', text: 'text-cyan-300', label: 'Intervention', short: 'I' },
+  evidence: { bg: 'bg-gray-900 border-gray-700', text: 'text-gray-300', label: 'Evidence', short: 'EVD' },
+};
+
+const conf = styles[type] || styles.artifact;
+const sizeClass = size === 'sm' ? 'text-[11px] px-2 py-0.5' : 'text-xs px-2.5 py-1';
+---
+<span class={`inline-flex items-center gap-1.5 font-mono font-medium rounded border ${conf.bg} ${conf.text} ${sizeClass}`}>
+  <span class="font-bold">{conf.short}</span>
+  <span>{conf.label}</span>
+  {id && <span class="opacity-60 text-[10px]">({id})</span>}
+</span>

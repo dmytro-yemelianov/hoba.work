@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import path from 'node:path';
+import { loadRegistryFromDirectory, HOBAKnowledgeGraph } from '@hoba/registry';
+
+const rootDir = path.resolve(process.cwd(), '..');
+const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
+const graph = new HOBAKnowledgeGraph(bundle);
+
+const candidateMechs = bundle.mechanisms.filter((m) => m.facets.removability === 'candidate');
+const intermediaryMechs = bundle.mechanisms.filter((m) => m.facets.removability === 'intermediary');
+const noAgencyMechs = bundle.mechanisms.filter((m) => m.facets.removability === 'none');
+
+const stages = ['ingestion', 'screening', 'recruiter', 'technical', 'team', 'compensation', 'offer', 'post-offer'];
+const barriersByStage = stages.map((st) => ({
+  stage: st,
+  barriers: bundle.barriers.filter((b) => b.stage === st).length,
+  artifacts: bundle.artifacts.filter((a) => a.stages.includes(st as any)).length,
+}));
+---
+<Layout title="Aggregate Data & Empirical Metrics" activeNav="data">
+  <div class="mb-8 border-b border-hoba-border pb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <span class="text-xs font-mono uppercase font-bold text-hoba-accent tracking-wider">Empirical Layer</span>
+        <h1 class="text-3xl font-black font-mono text-hoba-text mt-1">Aggregate Metrics & Distribution</h1>
+      </div>
+      <a href="/data/latest/nodes.csv" target="_blank" class="text-xs font-mono px-3 py-1.5 rounded-lg border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text">
+        Download nodes.csv
+      </a>
+    </div>
+    <p class="text-sm text-hoba-muted mt-2">
+      Decomposing registry topology counts and empirical distribution across funnel barriers, candidate agency zones, and recurring patterns.
+    </p>
+  </div>
+
+  <!-- Epistemic Guard Banner -->
+  <div class="p-4 rounded-xl border border-amber-800/50 bg-amber-950/20 text-xs font-mono text-amber-200 mb-8 space-y-1">
+    <div class="font-bold flex items-center gap-1.5">
+      <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      <span>Epistemic Guard: Topology vs Population Prevalence</span>
+    </div>
+    <p class="text-amber-300/80 leading-relaxed">
+      Counts displayed reflect the curated Knowledge Graph model topology. Convenience submission metrics must never be conflated with representative labor-market statistics without rigorous sampling calibration.
+    </p>
+  </div>
+
+  <!-- Top Metric Cards -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+    <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card">
+      <span class="text-xs font-mono text-hoba-muted uppercase">Barriers in Funnel:</span>
+      <div class="text-2xl font-black font-mono text-emerald-400 mt-1">{bundle.barriers.length}</div>
+      <span class="text-[10px] font-mono text-hoba-muted">Strictly Acyclic DAG</span>
+    </div>
+    <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card">
+      <span class="text-xs font-mono text-hoba-muted uppercase">Mechanisms:</span>
+      <div class="text-2xl font-black font-mono text-blue-400 mt-1">{bundle.mechanisms.length}</div>
+      <span class="text-[10px] font-mono text-hoba-muted">3 Honest Baselines</span>
+    </div>
+    <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card">
+      <span class="text-xs font-mono text-hoba-muted uppercase">Contradiction Patterns:</span>
+      <div class="text-2xl font-black font-mono text-amber-400 mt-1">{bundle.patterns.length}</div>
+      <span class="text-[10px] font-mono text-hoba-muted">Named Double-Binds</span>
+    </div>
+    <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card">
+      <span class="text-xs font-mono text-hoba-muted uppercase">Causal Loops:</span>
+      <div class="text-2xl font-black font-mono text-pink-400 mt-1">{bundle.loops.length}</div>
+      <span class="text-[10px] font-mono text-hoba-muted">Tarjan Graph SCCs</span>
+    </div>
+  </div>
+
+  <!-- Agency Breakdown & Distribution -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <!-- Agency Split -->
+    <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card">
+      <h2 class="text-sm font-mono font-bold uppercase text-hoba-text mb-4">Mechanism Removability Distribution</h2>
+      <div class="space-y-4 text-xs font-mono">
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-emerald-300 font-bold">Candidate Action (Endogenous):</span>
+            <span class="text-emerald-400 font-bold">{candidateMechs.length} ({Math.round((candidateMechs.length / bundle.mechanisms.length) * 100)}%)</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-hoba-bg overflow-hidden">
+            <div class="h-full bg-emerald-500 rounded-full" style={`width: ${(candidateMechs.length / bundle.mechanisms.length) * 100}%`}></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-amber-300 font-bold">Intermediary Dependent:</span>
+            <span class="text-amber-400 font-bold">{intermediaryMechs.length} ({Math.round((intermediaryMechs.length / bundle.mechanisms.length) * 100)}%)</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-hoba-bg overflow-hidden">
+            <div class="h-full bg-amber-500 rounded-full" style={`width: ${(intermediaryMechs.length / bundle.mechanisms.length) * 100}%`}></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-rose-300 font-bold">Exogenous (No Candidate Agency):</span>
+            <span class="text-rose-400 font-bold">{noAgencyMechs.length} ({Math.round((noAgencyMechs.length / bundle.mechanisms.length) * 100)}%)</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-hoba-bg overflow-hidden">
+            <div class="h-full bg-rose-500 rounded-full" style={`width: ${(noAgencyMechs.length / bundle.mechanisms.length) * 100}%`}></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funnel Stage Concentration -->
+    <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card">
+      <h2 class="text-sm font-mono font-bold uppercase text-hoba-text mb-4">Barriers by Hiring Funnel Stage</h2>
+      <div class="space-y-2 text-xs font-mono">
+        {barriersByStage.map((st) => (
+          <div class="flex items-center justify-between p-2 rounded bg-hoba-bg border border-hoba-border">
+            <span class="capitalize text-hoba-text">{st.stage}</span>
+            <div class="flex gap-3 text-hoba-muted text-[11px]">
+              <span>Barriers: <strong class="text-emerald-400">{st.barriers}</strong></span>
+              <span>Signals: <strong class="text-purple-400">{st.artifacts}</strong></span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

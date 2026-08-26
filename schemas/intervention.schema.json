@@ -1,0 +1,123 @@
+{
+  "$ref": "#/definitions/Intervention",
+  "definitions": {
+    "Intervention": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HOBA-I-\\d{3}$"
+        },
+        "type": {
+          "type": "string",
+          "const": "intervention"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-[MBPLI]-\\d{3}$"
+          },
+          "minItems": 1
+        },
+        "actor": {
+          "type": "string",
+          "enum": [
+            "employer-policy",
+            "recruiter-process",
+            "ats-vendor",
+            "hiring-manager",
+            "candidate-action",
+            "industry-standard",
+            "policy"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "individual",
+            "team",
+            "organizational",
+            "industry",
+            "ecosystem"
+          ]
+        },
+        "cost": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "superseded_by": {
+          "type": "string",
+          "pattern": "^HOBA-I-\\d{3}$"
+        },
+        "evidence_level": {
+          "type": "string",
+          "enum": [
+            "established",
+            "supported",
+            "hypothesis",
+            "illustrative"
+          ],
+          "default": "supported"
+        },
+        "expected_effects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "summary",
+        "targets",
+        "actor",
+        "scope",
+        "cost",
+        "expected_effects",
+        "measurements"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

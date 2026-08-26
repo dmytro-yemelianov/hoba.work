@@ -1,0 +1,35 @@
+---
+id: "HOBA-I-002"
+type: "intervention"
+title: "Відкрите розкриття зарплатної вилки на старті"
+summary: "Публікація точного зарплатного діапазону в описі вакансії або на першому скринінгу до початку технічних етапів."
+targets:
+  - "HOBA-M-004"
+  - "HOBA-B-004"
+  - "HOBA-B-009"
+actor: "employer-policy"
+scope: "industry"
+cost: "low"
+status: "active"
+evidence_level: "supported"
+expected_effects:
+  - "Усунення відмов на фінальних етапах через невідповідність зарплати"
+  - "Економія часу команди на невідповідних грейдах"
+measurements:
+  - "late_stage_compensation_drop_rate"
+  - "candidate_pipeline_satisfaction"
+evidence_ids:
+  - "EVD-005"
+---
+
+# Відкрите розкриття зарплатної вилки на старті
+
+Публікація точного зарплатного діапазону в описі вакансії або на першому скринінгу до початку технічних етапів.
+
+### Expected Effects
+- Усунення відмов на фінальних етапах через невідповідність зарплати
+- Економія часу команди на невідповідних грейдах
+
+### Measurements
+- `late_stage_compensation_drop_rate`
+- `candidate_pipeline_satisfaction`

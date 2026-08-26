@@ -1,0 +1,22 @@
+---
+id: "HOBA-B-011"
+type: "barrier"
+title: "Reference & Background Verification"
+stage: "post-offer"
+order: 11
+precedes:
+  - "HOBA-B-012"
+description: "Third-party or internal verification of past employment records, academic degrees, and professional references."
+pass_condition: "All mandatory background checks clear with no unresolved factual discrepancies."
+status: "active"
+evidence_level: "established"
+evidence_ids:
+  - "EVD-001"
+---
+
+# Reference & Background Verification
+
+Third-party or internal verification of past employment records, academic degrees, and professional references.
+
+### Pass Condition
+All mandatory background checks clear with no unresolved factual discrepancies.

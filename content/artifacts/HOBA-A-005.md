@@ -1,0 +1,29 @@
+---
+id: "HOBA-A-005"
+type: "artifact"
+title: "Compensation band reduced or altered mid-process"
+summary: "Offered or discussed compensation band is revised downward from previously agreed or advertised range."
+stages:
+  - "recruiter"
+  - "compensation"
+  - "offer"
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "EVD-005"
+probes:
+  -
+    id: "PROBE-A-005-1"
+    action: "Request clarification on whether the revised band reflects a lower leveling grade or a company-wide budget adjustment."
+    expected_signal: "Separates leveling evaluation outcome from company financial constraints."
+    cost: "medium"
+non_inferences:
+  - "Does not prove intentional bait-and-switch malice unless verified by company policy evidence."
+---
+
+# Compensation band reduced or altered mid-process
+
+Offered or discussed compensation band is revised downward from previously agreed or advertised range.
+
+### Diagnostic Non-Inferences
+- Does not prove intentional bait-and-switch malice unless verified by company policy evidence.

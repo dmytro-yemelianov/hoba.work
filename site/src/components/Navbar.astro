@@ -1,0 +1,82 @@
+---
+import Logo from './Logo.astro';
+
+interface Props {
+  lang?: 'en' | 'uk';
+  active?: string;
+}
+
+const { lang = 'en', active = '' } = Astro.props;
+
+const prefix = lang === 'uk' ? '/uk' : '';
+
+const navLinks = [
+  { name: lang === 'uk' ? 'Аналіз' : 'Analyze', href: `${prefix}/analyze`, key: 'analyze', highlight: true },
+  { name: lang === 'uk' ? 'Реєстр' : 'Registry', href: `${prefix}/registry`, key: 'registry' },
+  { name: lang === 'uk' ? 'Патерни' : 'Patterns', href: `${prefix}/patterns`, key: 'patterns' },
+  { name: lang === 'uk' ? 'Граф' : 'Graph', href: `${prefix}/graph`, key: 'graph' },
+  { name: lang === 'uk' ? 'Дані' : 'Data', href: `${prefix}/data`, key: 'data' },
+  { name: lang === 'uk' ? 'Методологія' : 'Methodology', href: `${prefix}/methodology`, key: 'methodology' },
+  { name: lang === 'uk' ? 'Розробникам' : 'Developers', href: `${prefix}/developers`, key: 'developers' },
+  { name: lang === 'uk' ? 'Контриб’ют' : 'Contribute', href: `${prefix}/contribute`, key: 'contribute' },
+  { name: lang === 'uk' ? 'Про проект' : 'About', href: `${prefix}/about`, key: 'about' },
+];
+---
+<header class="sticky top-0 z-50 w-full border-b border-hoba-border bg-hoba-bg/90 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href={lang === 'uk' ? '/uk' : '/'} class="hover:opacity-90 transition-opacity">
+      <Logo />
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+      {navLinks.map((item) => (
+        <a
+          href={item.href}
+          class={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+            active === item.key
+              ? 'bg-hoba-card text-hoba-text border border-hoba-border'
+              : item.highlight
+              ? 'text-hoba-accent hover:bg-hoba-hover font-semibold'
+              : 'text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover'
+          }`}
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right Utility Controls: Language Switcher & GitHub -->
+    <div class="flex items-center gap-3">
+      <!-- Language Switch -->
+      <div class="flex items-center text-xs font-mono bg-hoba-card border border-hoba-border rounded-md p-0.5">
+        <a
+          href="/"
+          class={`px-2 py-1 rounded transition-colors ${lang === 'en' ? 'bg-hoba-border text-hoba-text font-bold' : 'text-hoba-muted hover:text-hoba-text'}`}
+        >
+          EN
+        </a>
+        <a
+          href="/uk"
+          class={`px-2 py-1 rounded transition-colors ${lang === 'uk' ? 'bg-hoba-border text-hoba-text font-bold' : 'text-hoba-muted hover:text-hoba-text'}`}
+        >
+          UA
+        </a>
+      </div>
+
+      <!-- GitHub Link -->
+      <a
+        href="https://github.com/dmytro-yemelianov/hoba.work"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-hoba-muted hover:text-hoba-text transition-colors p-2 rounded-md hover:bg-hoba-hover"
+        aria-label="GitHub Repository"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>

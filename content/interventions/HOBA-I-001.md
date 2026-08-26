@@ -1,0 +1,34 @@
+---
+id: "HOBA-I-001"
+type: "intervention"
+title: "Auto-Close Stale Job Requisitions"
+summary: "Implement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days."
+targets:
+  - "HOBA-M-006"
+  - "HOBA-B-001"
+actor: "employer-policy"
+scope: "organizational"
+cost: "low"
+status: "active"
+evidence_level: "supported"
+expected_effects:
+  - "Reduce stale public listings and candidate application waste"
+  - "Reduce ambiguous post-application silence"
+measurements:
+  - "stale_requisition_rate"
+  - "closure_latency_days"
+evidence_ids:
+  - "EVD-004"
+---
+
+# Auto-Close Stale Job Requisitions
+
+Implement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.
+
+### Expected Effects
+- Reduce stale public listings and candidate application waste
+- Reduce ambiguous post-application silence
+
+### Measurements
+- `stale_requisition_rate`
+- `closure_latency_days`

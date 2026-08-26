@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Mascot from '../components/Mascot.astro';
+import EntityBadge from '../components/EntityBadge.astro';
+import path from 'node:path';
+import { loadRegistryFromDirectory } from '@hoba/registry';
+
+const rootDir = path.resolve(process.cwd(), '..');
+const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
+---
+<Layout title="Turn Hiring Outcomes into Structured Facts" activeNav="home">
+  <!-- Hero Section -->
+  <section class="relative py-12 md:py-20 border-b border-hoba-border overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hoba-border bg-hoba-card text-xs font-mono text-hoba-muted mb-6">
+          <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse"></span>
+          <span>HOBA Knowledge Graph v0.4.1</span>
+          <span class="text-hoba-border">|</span>
+          <span class="text-hoba-text">Canonical: hoba.work</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-hoba-text font-mono">
+          Turn hiring outcomes into <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">structured facts</span>.
+        </h1>
+
+        <p class="mt-6 text-lg sm:text-xl text-hoba-muted leading-relaxed max-w-2xl font-sans">
+          Hiring signals are weak and ambiguous. When the outcome is silence or generic rejection, do not invent a story: <strong class="text-hoba-text font-semibold">pause, separate observation from interpretation, and map the system.</strong>
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4 items-center">
+          <a
+            href="/analyze"
+            class="px-6 py-3 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-sm transition-all shadow-lg shadow-blue-500/10 flex items-center gap-2"
+          >
+            <span>Run a HOBA Analysis</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a
+            href="/registry"
+            class="px-6 py-3 rounded-lg border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono text-sm transition-colors"
+          >
+            Explore Registry ({bundle.artifacts.length + bundle.barriers.length + bundle.mechanisms.length + bundle.patterns.length + bundle.loops.length + bundle.interventions.length} Entities)
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 flex justify-center lg:justify-end">
+        <div class="relative p-6 rounded-2xl border border-hoba-border bg-gradient-to-b from-hoba-card/80 to-hoba-card/20 backdrop-blur text-center">
+          <Mascot className="w-44 h-44 mx-auto" />
+          <div class="mt-2 text-xs font-mono text-hoba-muted">
+            <span class="text-hoba-accent font-bold">хоба</span> pose: pause, observe, analyze
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Protocol Grid -->
+  <section class="py-16 border-b border-hoba-border">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-xs uppercase font-mono font-bold tracking-widest text-hoba-accent">Diagnostic Methodology</h2>
+      <p class="text-2xl sm:text-3xl font-bold font-mono text-hoba-text mt-2">The HOBA Protocol</p>
+      <p class="text-sm text-hoba-muted mt-2">A structured procedure replacing emotional rumination with factual decomposition.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- H -->
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/50 hover:border-purple-500/40 transition-colors flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-purple-950/60 border border-purple-800/60 text-purple-300 font-mono font-black text-xl flex items-center justify-center mb-4">
+          H
+        </div>
+        <h3 class="text-base font-bold font-mono text-hoba-text">Hard Facts</h3>
+        <p class="text-xs text-hoba-muted mt-2 leading-relaxed flex-1">
+          Capture only direct observations: emails received, exact stages reached, or timeline gaps. Zero mind-reading or intent speculation.
+        </p>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-[11px] font-mono text-purple-400">
+          Output: Observation Nodes
+        </div>
+      </div>
+
+      <!-- O -->
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/50 hover:border-emerald-500/40 transition-colors flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-emerald-950/60 border border-emerald-800/60 text-emerald-300 font-mono font-black text-xl flex items-center justify-center mb-4">
+          O
+        </div>
+        <h3 class="text-base font-bold font-mono text-hoba-text">Obstacle</h3>
+        <p class="text-xs text-hoba-muted mt-2 leading-relaxed flex-1">
+          Localize the structural gate in the hiring funnel where progress stopped (e.g. ATS parsing, technical screen, budget freeze).
+        </p>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-[11px] font-mono text-emerald-400">
+          Output: Funnel Barrier DAG
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/50 hover:border-blue-500/40 transition-colors flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-blue-950/60 border border-blue-800/60 text-blue-300 font-mono font-black text-xl flex items-center justify-center mb-4">
+          B
+        </div>
+        <h3 class="text-base font-bold font-mono text-hoba-text">Behind Obstacle</h3>
+        <p class="text-xs text-hoba-muted mt-2 leading-relaxed flex-1">
+          Enumerate mechanisms logically compatible with the hard facts. Preserves honest baseline competence factors alongside structural friction.
+        </p>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-[11px] font-mono text-blue-400">
+          Output: Compatible Mechanisms
+        </div>
+      </div>
+
+      <!-- A -->
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/50 hover:border-amber-500/40 transition-colors flex flex-col">
+        <div class="w-10 h-10 rounded-lg bg-amber-950/60 border border-amber-800/60 text-amber-300 font-mono font-black text-xl flex items-center justify-center mb-4">
+          A
+        </div>
+        <h3 class="text-base font-bold font-mono text-hoba-text">Agency</h3>
+        <p class="text-xs text-hoba-muted mt-2 leading-relaxed flex-1">
+          Separate candidate-actionable items from intermediary-dependent and exogenous factors. Emits bounded, low-cost diagnostic probes.
+        </p>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-[11px] font-mono text-amber-400">
+          Output: Actionable Probes & Stop Condition
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Core Pillars -->
+  <section class="py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/30">
+        <div class="text-xs font-mono font-bold text-hoba-accent uppercase mb-2">01 / Forensic Precision</div>
+        <h3 class="text-lg font-bold font-mono text-hoba-text">Diagnose Without Guessing</h3>
+        <p class="text-xs text-hoba-muted mt-3 leading-relaxed">
+          An observation is not a cause; a rejection email is not necessarily a reason. hoba explicitly calculates uncertainty and prevents false inferences.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/30">
+        <div class="text-xs font-mono font-bold text-hoba-pattern uppercase mb-2">02 / Systemic Dynamics</div>
+        <h3 class="text-lg font-bold font-mono text-hoba-text">Discover Contradiction Patterns</h3>
+        <p class="text-xs text-hoba-muted mt-3 leading-relaxed">
+          Explore named motifs like Seniority Double Bind and Closed-Then-Reposted, backed by graph Strongly Connected Components (SCCs).
+        </p>
+      </div>
+
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/30">
+        <div class="text-xs font-mono font-bold text-hoba-intervention uppercase mb-2">03 / Closed Improvement Loop</div>
+        <h3 class="text-lg font-bold font-mono text-hoba-text">Targeted System Interventions</h3>
+        <p class="text-xs text-hoba-muted mt-3 leading-relaxed">
+          Propose concrete policy and process changes for employers and ATS platforms with measurable metrics to reduce noise across the market.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="my-8 p-8 rounded-2xl border border-hoba-border bg-gradient-to-r from-blue-950/30 via-hoba-card to-purple-950/30 text-center">
+    <h2 class="text-2xl font-bold font-mono text-hoba-text">Ready to analyze a hiring event?</h2>
+    <p class="text-sm text-hoba-muted mt-2 max-w-xl mx-auto">
+      Private, client-side only. Your inputs stay in your browser.
+    </p>
+    <div class="mt-6 flex justify-center gap-4">
+      <a href="/analyze" class="px-6 py-3 rounded-lg bg-hoba-accent hover:bg-blue-500 text-hoba-bg font-bold font-mono text-sm transition-colors">
+        Start HOBA Wizard
+      </a>
+      <a href="/methodology" class="px-6 py-3 rounded-lg border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text font-mono text-sm transition-colors">
+        Read Methodology
+      </a>
+    </div>
+  </section>
+</Layout>

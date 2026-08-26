@@ -1,0 +1,122 @@
+{
+  "$ref": "#/definitions/Loop",
+  "definitions": {
+    "Loop": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HOBA-L-\\d{3}$"
+        },
+        "type": {
+          "type": "string",
+          "const": "loop"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "mechanisms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-M-\\d{3}$"
+          },
+          "minItems": 2
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "pattern": "^HOBA-M-\\d{3}$"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^HOBA-M-\\d{3}$"
+              },
+              "relation": {
+                "type": "string",
+                "enum": [
+                  "amplifies",
+                  "masks"
+                ]
+              }
+            },
+            "required": [
+              "from",
+              "to",
+              "relation"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2
+        },
+        "entry_points": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-M-\\d{3}$"
+          },
+          "minItems": 1
+        },
+        "interventions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-I-\\d{3}$"
+          },
+          "default": []
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "superseded_by": {
+          "type": "string",
+          "pattern": "^HOBA-L-\\d{3}$"
+        },
+        "evidence_level": {
+          "type": "string",
+          "enum": [
+            "established",
+            "supported",
+            "hypothesis",
+            "illustrative"
+          ],
+          "default": "supported"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "summary",
+        "mechanisms",
+        "edges",
+        "entry_points"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

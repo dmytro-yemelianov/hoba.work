@@ -1,0 +1,31 @@
+---
+id: "HOBA-A-002"
+type: "artifact"
+title: "Шаблонна відмова про \"кандидата з більшою відповідністю\""
+summary: "Стандартний лист про те, що компанія вирішила рухатися далі з кандидатами, чий досвід точніше відповідає ролі."
+stages:
+  - "screening"
+  - "recruiter"
+  - "technical"
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "EVD-001"
+probes:
+  -
+    id: "PROBE-A-002-1"
+    action: "Compare CV keyword density with exact requirement phrases in the published job description."
+    expected_signal: "Reveals potential vocabulary mismatch between candidate phrasing and ATS rubric."
+    cost: "low"
+non_inferences:
+  - "Does not establish which specific skill was deemed insufficient."
+  - "Does not establish whether a human reviewer read the full resume."
+---
+
+# Шаблонна відмова про "кандидата з більшою відповідністю"
+
+Стандартний лист про те, що компанія вирішила рухатися далі з кандидатами, чий досвід точніше відповідає ролі.
+
+### Diagnostic Non-Inferences
+- Does not establish which specific skill was deemed insufficient.
+- Does not establish whether a human reviewer read the full resume.

@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+    http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d_label" for="node" attr.name="label" attr.type="string"/>
+  <key id="d_type" for="node" attr.name="type" attr.type="string"/>
+  <key id="d_evidence" for="node" attr.name="evidence_level" attr.type="string"/>
+  <key id="d_edge_type" for="edge" attr.name="relation" attr.type="string"/>
+  <graph id="HOBA" edgedefault="directed">
+    <node id="HOBA-A-001">
+      <data key="d_label">Complete silence after submission</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-002">
+      <data key="d_label">Generic &quot;closer alignment&quot; rejection template</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-003">
+      <data key="d_label">Position closed after final interview without hire</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-004">
+      <data key="d_label">Materially similar role reposted shortly after rejection</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-005">
+      <data key="d_label">Compensation band reduced or altered mid-process</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-006">
+      <data key="d_label">Take-home assignment exceeding reasonable stated scope</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-007">
+      <data key="d_label">Multiple interview reschedulings or interviewer no-show</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-008">
+      <data key="d_label">Explicit feedback citing skill-depth shortfall</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-009">
+      <data key="d_label">Rejection within minutes of application submission</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-010">
+      <data key="d_label">Communication mismatch or tone friction in panel</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-011">
+      <data key="d_label">Offer rescinded or delayed due to internal freeze</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-012">
+      <data key="d_label">Unsolicited recruiter outreach followed by ghosting</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-013">
+      <data key="d_label">Feedback stating candidate is overqualified for the grade</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-A-014">
+      <data key="d_label">Conflicting feedback across different interviewers</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-B-001">
+      <data key="d_label">Application Ingestion</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-002">
+      <data key="d_label">Automated Filter &amp; Parser Threshold</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-003">
+      <data key="d_label">Sourcing &amp; Inbound Triage</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-004">
+      <data key="d_label">Recruiter Screening Call</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-005">
+      <data key="d_label">Technical Screen / Live Assessment</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-006">
+      <data key="d_label">Take-Home / Work Sample Evaluation</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-007">
+      <data key="d_label">Hiring Manager In-Depth Review</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-008">
+      <data key="d_label">Team &amp; Cross-Functional Panel</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-009">
+      <data key="d_label">Compensation &amp; Leveling Reconciliation</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-010">
+      <data key="d_label">Headcount &amp; Executive Budget Approval</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-011">
+      <data key="d_label">Reference &amp; Background Verification</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-B-012">
+      <data key="d_label">Offer Closing &amp; Contract Execution</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-001">
+      <data key="d_label">Genuine Technical Skill Shortfall</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-002">
+      <data key="d_label">Stronger Competing Candidate in Final Cohort</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-003">
+      <data key="d_label">ATS Parser Extraction Failure</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-004">
+      <data key="d_label">Unstated Compensation Band Discrepancy</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-005">
+      <data key="d_label">Pre-Selected Internal Candidate</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-006">
+      <data key="d_label">Stale or Orphaned Job Requisition</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-007">
+      <data key="d_label">Headcount Freeze or Budget Cancellation</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-008">
+      <data key="d_label">Automated Keyword / Qualification Filter</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-009">
+      <data key="d_label">Recruiter Volume &amp; Quota Incentive Distortion</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-010">
+      <data key="d_label">Hidden Evaluation Rubric or Undisclosed Priority</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-011">
+      <data key="d_label">Employment Gap Downranking Bias</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-012">
+      <data key="d_label">Interview Resource &amp; Scheduling Saturation</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-013">
+      <data key="d_label">Mid-Process Role Requirement Redefinition</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-014">
+      <data key="d_label">Location or Timezone Compliance Constraint</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-015">
+      <data key="d_label">Communication or Working Style Friction</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-016">
+      <data key="d_label">Speculative Sourcing / Talent Pooling Without Opening</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-017">
+      <data key="d_label">Experience-Age Grading Mismatch</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-018">
+      <data key="d_label">Domain Specificity Over-Weighting</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-019">
+      <data key="d_label">Take-Home Evaluation Fatigue &amp; Asymmetry</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-020">
+      <data key="d_label">Automated Application Expiration Timeout</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-021">
+      <data key="d_label">Reference Check Discrepancy or Regulatory Ineligibility</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="HOBA-M-022">
+      <data key="d_label">Hiring Manager Consensus Impasse</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-023">
+      <data key="d_label">Portfolio / Work Artifact Misinterpretation</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-M-024">
+      <data key="d_label">Inflated Requisition Requirements vs Actual Team Needs</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-P-001">
+      <data key="d_label">Seniority Double Bind</data>
+      <data key="d_type">pattern</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-P-002">
+      <data key="d_label">Closed-Then-Reposted Requisition Motif</data>
+      <data key="d_type">pattern</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-P-003">
+      <data key="d_label">Experience-Age Impossibility</data>
+      <data key="d_type">pattern</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-P-004">
+      <data key="d_label">Compensation Double Bind</data>
+      <data key="d_type">pattern</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-L-001">
+      <data key="d_label">Employment Gap Penalty Loop</data>
+      <data key="d_type">loop</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-L-002">
+      <data key="d_label">Take-Home Opportunity-Cost Saturation Loop</data>
+      <data key="d_type">loop</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-L-003">
+      <data key="d_label">Inflated-Requirements Search Saturation Loop</data>
+      <data key="d_type">loop</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-I-001">
+      <data key="d_label">Auto-Close Stale Job Requisitions</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-I-002">
+      <data key="d_label">Upfront Compensation Band Disclosure</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-I-003">
+      <data key="d_label">Standardized Late-Stage Rejection Feedback Taxonomy</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-I-004">
+      <data key="d_label">Remove Career Gap Feature from Automated Ranking Models</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-I-005">
+      <data key="d_label">Candidate ATS Parser Conformance Test Utility</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="HOBA-I-006">
+      <data key="d_label">Strict Take-Home Timebox &amp; Blinded Evaluation Rubric</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <edge id="HOBA-B-001->precedes->HOBA-B-002" source="HOBA-B-001" target="HOBA-B-002">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-002->precedes->HOBA-B-003" source="HOBA-B-002" target="HOBA-B-003">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-002->precedes->HOBA-B-004" source="HOBA-B-002" target="HOBA-B-004">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-003->precedes->HOBA-B-004" source="HOBA-B-003" target="HOBA-B-004">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-004->precedes->HOBA-B-005" source="HOBA-B-004" target="HOBA-B-005">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-005->precedes->HOBA-B-006" source="HOBA-B-005" target="HOBA-B-006">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-005->precedes->HOBA-B-007" source="HOBA-B-005" target="HOBA-B-007">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-006->precedes->HOBA-B-007" source="HOBA-B-006" target="HOBA-B-007">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-007->precedes->HOBA-B-008" source="HOBA-B-007" target="HOBA-B-008">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-008->precedes->HOBA-B-009" source="HOBA-B-008" target="HOBA-B-009">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-009->precedes->HOBA-B-010" source="HOBA-B-009" target="HOBA-B-010">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-010->precedes->HOBA-B-011" source="HOBA-B-010" target="HOBA-B-011">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-B-011->precedes->HOBA-B-012" source="HOBA-B-011" target="HOBA-B-012">
+      <data key="d_edge_type">precedes</data>
+    </edge>
+    <edge id="HOBA-M-001->operates_at->HOBA-B-005" source="HOBA-M-001" target="HOBA-B-005">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-001->operates_at->HOBA-B-006" source="HOBA-M-001" target="HOBA-B-006">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-001->operates_at->HOBA-B-007" source="HOBA-M-001" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-001->emits->HOBA-A-008" source="HOBA-M-001" target="HOBA-A-008">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-001->emits->HOBA-A-002" source="HOBA-M-001" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-002->operates_at->HOBA-B-007" source="HOBA-M-002" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-002->operates_at->HOBA-B-008" source="HOBA-M-002" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-002->operates_at->HOBA-B-010" source="HOBA-M-002" target="HOBA-B-010">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-002->emits->HOBA-A-002" source="HOBA-M-002" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-002->emits->HOBA-A-003" source="HOBA-M-002" target="HOBA-A-003">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-002->masks->HOBA-M-001" source="HOBA-M-002" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-003->operates_at->HOBA-B-001" source="HOBA-M-003" target="HOBA-B-001">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-003->operates_at->HOBA-B-002" source="HOBA-M-003" target="HOBA-B-002">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-003->emits->HOBA-A-001" source="HOBA-M-003" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-003->emits->HOBA-A-009" source="HOBA-M-003" target="HOBA-A-009">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-003->amplifies->HOBA-M-008" source="HOBA-M-003" target="HOBA-M-008">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-004->operates_at->HOBA-B-004" source="HOBA-M-004" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-004->operates_at->HOBA-B-009" source="HOBA-M-004" target="HOBA-B-009">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-004->emits->HOBA-A-002" source="HOBA-M-004" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-004->emits->HOBA-A-005" source="HOBA-M-004" target="HOBA-A-005">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-004->emits->HOBA-A-013" source="HOBA-M-004" target="HOBA-A-013">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-004->amplifies->HOBA-M-013" source="HOBA-M-004" target="HOBA-M-013">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-004->masks->HOBA-M-001" source="HOBA-M-004" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-005->operates_at->HOBA-B-001" source="HOBA-M-005" target="HOBA-B-001">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-005->operates_at->HOBA-B-003" source="HOBA-M-005" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-005->operates_at->HOBA-B-007" source="HOBA-M-005" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-005->emits->HOBA-A-002" source="HOBA-M-005" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-005->emits->HOBA-A-003" source="HOBA-M-005" target="HOBA-A-003">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-005->masks->HOBA-M-002" source="HOBA-M-005" target="HOBA-M-002">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-006->operates_at->HOBA-B-001" source="HOBA-M-006" target="HOBA-B-001">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-006->operates_at->HOBA-B-002" source="HOBA-M-006" target="HOBA-B-002">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-006->operates_at->HOBA-B-003" source="HOBA-M-006" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-006->emits->HOBA-A-001" source="HOBA-M-006" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-006->emits->HOBA-A-004" source="HOBA-M-006" target="HOBA-A-004">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-006->amplifies->HOBA-M-020" source="HOBA-M-006" target="HOBA-M-020">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-007->operates_at->HOBA-B-008" source="HOBA-M-007" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-007->operates_at->HOBA-B-010" source="HOBA-M-007" target="HOBA-B-010">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-007->operates_at->HOBA-B-012" source="HOBA-M-007" target="HOBA-B-012">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-007->emits->HOBA-A-003" source="HOBA-M-007" target="HOBA-A-003">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-007->emits->HOBA-A-011" source="HOBA-M-007" target="HOBA-A-011">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-007->amplifies->HOBA-M-006" source="HOBA-M-007" target="HOBA-M-006">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-007->masks->HOBA-M-001" source="HOBA-M-007" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-007->masks->HOBA-M-002" source="HOBA-M-007" target="HOBA-M-002">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-008->operates_at->HOBA-B-002" source="HOBA-M-008" target="HOBA-B-002">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-008->emits->HOBA-A-009" source="HOBA-M-008" target="HOBA-A-009">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-008->emits->HOBA-A-002" source="HOBA-M-008" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-008->amplifies->HOBA-M-011" source="HOBA-M-008" target="HOBA-M-011">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-009->operates_at->HOBA-B-003" source="HOBA-M-009" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-009->operates_at->HOBA-B-004" source="HOBA-M-009" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-009->emits->HOBA-A-001" source="HOBA-M-009" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-009->emits->HOBA-A-012" source="HOBA-M-009" target="HOBA-A-012">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-009->amplifies->HOBA-M-012" source="HOBA-M-009" target="HOBA-M-012">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-009->masks->HOBA-M-008" source="HOBA-M-009" target="HOBA-M-008">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-010->operates_at->HOBA-B-005" source="HOBA-M-010" target="HOBA-B-005">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-010->operates_at->HOBA-B-007" source="HOBA-M-010" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-010->operates_at->HOBA-B-008" source="HOBA-M-010" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-010->emits->HOBA-A-008" source="HOBA-M-010" target="HOBA-A-008">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-010->emits->HOBA-A-014" source="HOBA-M-010" target="HOBA-A-014">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-010->amplifies->HOBA-M-022" source="HOBA-M-010" target="HOBA-M-022">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-010->masks->HOBA-M-001" source="HOBA-M-010" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-011->operates_at->HOBA-B-002" source="HOBA-M-011" target="HOBA-B-002">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-011->operates_at->HOBA-B-003" source="HOBA-M-011" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-011->emits->HOBA-A-001" source="HOBA-M-011" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-011->emits->HOBA-A-002" source="HOBA-M-011" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-011->amplifies->HOBA-M-008" source="HOBA-M-011" target="HOBA-M-008">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-012->operates_at->HOBA-B-005" source="HOBA-M-012" target="HOBA-B-005">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-012->operates_at->HOBA-B-007" source="HOBA-M-012" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-012->operates_at->HOBA-B-008" source="HOBA-M-012" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-012->emits->HOBA-A-007" source="HOBA-M-012" target="HOBA-A-007">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-012->emits->HOBA-A-001" source="HOBA-M-012" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-012->amplifies->HOBA-M-019" source="HOBA-M-012" target="HOBA-M-019">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-013->operates_at->HOBA-B-007" source="HOBA-M-013" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-013->operates_at->HOBA-B-008" source="HOBA-M-013" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-013->operates_at->HOBA-B-009" source="HOBA-M-013" target="HOBA-B-009">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-013->emits->HOBA-A-003" source="HOBA-M-013" target="HOBA-A-003">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-013->emits->HOBA-A-004" source="HOBA-M-013" target="HOBA-A-004">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-013->amplifies->HOBA-M-004" source="HOBA-M-013" target="HOBA-M-004">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-013->masks->HOBA-M-001" source="HOBA-M-013" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-014->operates_at->HOBA-B-002" source="HOBA-M-014" target="HOBA-B-002">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-014->operates_at->HOBA-B-004" source="HOBA-M-014" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-014->emits->HOBA-A-009" source="HOBA-M-014" target="HOBA-A-009">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-014->emits->HOBA-A-002" source="HOBA-M-014" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-015->operates_at->HOBA-B-004" source="HOBA-M-015" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-015->operates_at->HOBA-B-008" source="HOBA-M-015" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-015->emits->HOBA-A-010" source="HOBA-M-015" target="HOBA-A-010">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-015->emits->HOBA-A-002" source="HOBA-M-015" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-016->operates_at->HOBA-B-003" source="HOBA-M-016" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-016->operates_at->HOBA-B-004" source="HOBA-M-016" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-016->emits->HOBA-A-012" source="HOBA-M-016" target="HOBA-A-012">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-016->emits->HOBA-A-001" source="HOBA-M-016" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-016->amplifies->HOBA-M-009" source="HOBA-M-016" target="HOBA-M-009">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-017->operates_at->HOBA-B-003" source="HOBA-M-017" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-017->operates_at->HOBA-B-004" source="HOBA-M-017" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-017->operates_at->HOBA-B-007" source="HOBA-M-017" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-017->emits->HOBA-A-013" source="HOBA-M-017" target="HOBA-A-013">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-017->emits->HOBA-A-002" source="HOBA-M-017" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-017->amplifies->HOBA-M-004" source="HOBA-M-017" target="HOBA-M-004">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-017->masks->HOBA-M-001" source="HOBA-M-017" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-018->operates_at->HOBA-B-004" source="HOBA-M-018" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-018->operates_at->HOBA-B-007" source="HOBA-M-018" target="HOBA-B-007">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-018->emits->HOBA-A-002" source="HOBA-M-018" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-018->emits->HOBA-A-008" source="HOBA-M-018" target="HOBA-A-008">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-018->amplifies->HOBA-M-010" source="HOBA-M-018" target="HOBA-M-010">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-018->masks->HOBA-M-001" source="HOBA-M-018" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-019->operates_at->HOBA-B-006" source="HOBA-M-019" target="HOBA-B-006">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-019->emits->HOBA-A-006" source="HOBA-M-019" target="HOBA-A-006">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-019->emits->HOBA-A-002" source="HOBA-M-019" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-019->amplifies->HOBA-M-012" source="HOBA-M-019" target="HOBA-M-012">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-019->masks->HOBA-M-001" source="HOBA-M-019" target="HOBA-M-001">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-020->operates_at->HOBA-B-001" source="HOBA-M-020" target="HOBA-B-001">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-020->operates_at->HOBA-B-003" source="HOBA-M-020" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-020->emits->HOBA-A-002" source="HOBA-M-020" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-020->emits->HOBA-A-001" source="HOBA-M-020" target="HOBA-A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-020->masks->HOBA-M-006" source="HOBA-M-020" target="HOBA-M-006">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-021->operates_at->HOBA-B-011" source="HOBA-M-021" target="HOBA-B-011">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-021->emits->HOBA-A-011" source="HOBA-M-021" target="HOBA-A-011">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-021->emits->HOBA-A-002" source="HOBA-M-021" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-022->operates_at->HOBA-B-008" source="HOBA-M-022" target="HOBA-B-008">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-022->emits->HOBA-A-014" source="HOBA-M-022" target="HOBA-A-014">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-022->emits->HOBA-A-002" source="HOBA-M-022" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-022->masks->HOBA-M-002" source="HOBA-M-022" target="HOBA-M-002">
+      <data key="d_edge_type">masks</data>
+    </edge>
+    <edge id="HOBA-M-023->operates_at->HOBA-B-003" source="HOBA-M-023" target="HOBA-B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-023->operates_at->HOBA-B-005" source="HOBA-M-023" target="HOBA-B-005">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-023->emits->HOBA-A-002" source="HOBA-M-023" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-023->emits->HOBA-A-008" source="HOBA-M-023" target="HOBA-A-008">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-023->amplifies->HOBA-M-001" source="HOBA-M-023" target="HOBA-M-001">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-024->operates_at->HOBA-B-002" source="HOBA-M-024" target="HOBA-B-002">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-024->operates_at->HOBA-B-004" source="HOBA-M-024" target="HOBA-B-004">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="HOBA-M-024->emits->HOBA-A-002" source="HOBA-M-024" target="HOBA-A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-024->emits->HOBA-A-004" source="HOBA-M-024" target="HOBA-A-004">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="HOBA-M-024->amplifies->HOBA-M-008" source="HOBA-M-024" target="HOBA-M-008">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-M-024->amplifies->HOBA-M-004" source="HOBA-M-024" target="HOBA-M-004">
+      <data key="d_edge_type">amplifies</data>
+    </edge>
+    <edge id="HOBA-A-002->instantiates->HOBA-P-001" source="HOBA-A-002" target="HOBA-P-001">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-013->instantiates->HOBA-P-001" source="HOBA-A-013" target="HOBA-P-001">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-001->instantiates->HOBA-P-001" source="HOBA-M-001" target="HOBA-P-001">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-004->instantiates->HOBA-P-001" source="HOBA-M-004" target="HOBA-P-001">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-017->instantiates->HOBA-P-001" source="HOBA-M-017" target="HOBA-P-001">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-003->instantiates->HOBA-P-002" source="HOBA-A-003" target="HOBA-P-002">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-004->instantiates->HOBA-P-002" source="HOBA-A-004" target="HOBA-P-002">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-002->instantiates->HOBA-P-002" source="HOBA-M-002" target="HOBA-P-002">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-006->instantiates->HOBA-P-002" source="HOBA-M-006" target="HOBA-P-002">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-010->instantiates->HOBA-P-002" source="HOBA-M-010" target="HOBA-P-002">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-013->instantiates->HOBA-P-002" source="HOBA-M-013" target="HOBA-P-002">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-002->instantiates->HOBA-P-003" source="HOBA-A-002" target="HOBA-P-003">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-009->instantiates->HOBA-P-003" source="HOBA-A-009" target="HOBA-P-003">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-008->instantiates->HOBA-P-003" source="HOBA-M-008" target="HOBA-P-003">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-024->instantiates->HOBA-P-003" source="HOBA-M-024" target="HOBA-P-003">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-002->instantiates->HOBA-P-004" source="HOBA-A-002" target="HOBA-P-004">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-A-005->instantiates->HOBA-P-004" source="HOBA-A-005" target="HOBA-P-004">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-004->instantiates->HOBA-P-004" source="HOBA-M-004" target="HOBA-P-004">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-M-017->instantiates->HOBA-P-004" source="HOBA-M-017" target="HOBA-P-004">
+      <data key="d_edge_type">instantiates</data>
+    </edge>
+    <edge id="HOBA-I-001->targets->HOBA-M-006" source="HOBA-I-001" target="HOBA-M-006">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-001->targets->HOBA-B-001" source="HOBA-I-001" target="HOBA-B-001">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-002->targets->HOBA-M-004" source="HOBA-I-002" target="HOBA-M-004">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-002->targets->HOBA-B-004" source="HOBA-I-002" target="HOBA-B-004">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-002->targets->HOBA-B-009" source="HOBA-I-002" target="HOBA-B-009">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-003->targets->HOBA-M-001" source="HOBA-I-003" target="HOBA-M-001">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-003->targets->HOBA-M-010" source="HOBA-I-003" target="HOBA-M-010">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-003->targets->HOBA-B-007" source="HOBA-I-003" target="HOBA-B-007">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-003->targets->HOBA-B-008" source="HOBA-I-003" target="HOBA-B-008">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-004->targets->HOBA-M-011" source="HOBA-I-004" target="HOBA-M-011">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-004->mitigates->HOBA-L-001" source="HOBA-I-004" target="HOBA-L-001">
+      <data key="d_edge_type">mitigates</data>
+    </edge>
+    <edge id="HOBA-I-005->targets->HOBA-M-003" source="HOBA-I-005" target="HOBA-M-003">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-005->targets->HOBA-B-002" source="HOBA-I-005" target="HOBA-B-002">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-006->targets->HOBA-M-019" source="HOBA-I-006" target="HOBA-M-019">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="HOBA-I-006->mitigates->HOBA-L-002" source="HOBA-I-006" target="HOBA-L-002">
+      <data key="d_edge_type">mitigates</data>
+    </edge>
+    <edge id="HOBA-I-006->targets->HOBA-B-006" source="HOBA-I-006" target="HOBA-B-006">
+      <data key="d_edge_type">targets</data>
+    </edge>
+  </graph>
+</graphml>

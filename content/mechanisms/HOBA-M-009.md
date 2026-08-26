@@ -1,0 +1,48 @@
+---
+id: "HOBA-M-009"
+type: "mechanism"
+title: "Recruiter Volume & Quota Incentive Distortion"
+summary: "Recruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req)."
+operates_at:
+  - "HOBA-B-003"
+  - "HOBA-B-004"
+emissions:
+  -
+    artifact: "HOBA-A-001"
+    fidelity: "void"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+  -
+    artifact: "HOBA-A-012"
+    fidelity: "noise"
+    likelihood: "medium"
+    evidence: ["EVD-001"]
+facets:
+  actor: "recruiter"
+  nature: "incentive"
+  visibility: "inferable"
+  removability: "intermediary"
+amplifies:
+  - "HOBA-M-012"
+masks:
+  - "HOBA-M-008"
+status: "active"
+evidence_level: "supported"
+honest_baseline: false
+evidence_ids:
+  - "EVD-001"
+non_inferences:
+  - "Does not mean recruiter is individually negligent; reflects structural capacity mismatch."
+---
+
+# Recruiter Volume & Quota Incentive Distortion
+
+Recruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).
+
+### Structural Context
+- **Actor:** `recruiter`
+- **Nature:** `incentive`
+- **Removability:** `intermediary`
+
+### Non-Inferences
+- Does not mean recruiter is individually negligent; reflects structural capacity mismatch.

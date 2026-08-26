@@ -1,0 +1,51 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "HOBA-M-016",
+    "type": "mechanism",
+    "title": "Speculative Sourcing / Talent Pooling Without Opening",
+    "summary": "Recruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.",
+    "operates_at": [
+      "HOBA-B-003",
+      "HOBA-B-004"
+    ],
+    "emissions": [
+      {
+        "artifact": "HOBA-A-012",
+        "fidelity": "distortion",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ]
+      },
+      {
+        "artifact": "HOBA-A-001",
+        "fidelity": "void",
+        "likelihood": "medium",
+        "evidence": [
+          "EVD-001"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "recruiter",
+      "nature": "incentive",
+      "visibility": "opaque",
+      "removability": "none"
+    },
+    "amplifies": [
+      "HOBA-M-009"
+    ],
+    "masks": [],
+    "status": "active",
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "non_inferences": [
+      "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
+    ],
+    "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
+  }
+}

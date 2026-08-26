@@ -1,0 +1,122 @@
+{
+  "registry_version": "2026.08.1",
+  "count": 3,
+  "items": [
+    {
+      "id": "HOBA-L-001",
+      "type": "loop",
+      "title": "Employment Gap Penalty Loop",
+      "summary": "An initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.",
+      "mechanisms": [
+        "HOBA-M-011",
+        "HOBA-M-008",
+        "HOBA-M-009"
+      ],
+      "edges": [
+        {
+          "from": "HOBA-M-011",
+          "to": "HOBA-M-008",
+          "relation": "amplifies"
+        },
+        {
+          "from": "HOBA-M-008",
+          "to": "HOBA-M-009",
+          "relation": "amplifies"
+        },
+        {
+          "from": "HOBA-M-009",
+          "to": "HOBA-M-011",
+          "relation": "amplifies"
+        }
+      ],
+      "entry_points": [
+        "HOBA-M-011"
+      ],
+      "interventions": [
+        "HOBA-I-004"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "evidence_ids": [
+        "EVD-003"
+      ],
+      "content": "# Employment Gap Penalty Loop\n\nAn initial gap in employment triggers automated ATS downranking, resulting in fewer interview invitations, which extends the employment gap.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `HOBA-M-011` amplifies `HOBA-M-008`\n- `HOBA-M-008` amplifies `HOBA-M-009`\n- `HOBA-M-009` amplifies `HOBA-M-011`"
+    },
+    {
+      "id": "HOBA-L-002",
+      "type": "loop",
+      "title": "Take-Home Opportunity-Cost Saturation Loop",
+      "summary": "Candidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.",
+      "mechanisms": [
+        "HOBA-M-012",
+        "HOBA-M-019"
+      ],
+      "edges": [
+        {
+          "from": "HOBA-M-012",
+          "to": "HOBA-M-019",
+          "relation": "amplifies"
+        },
+        {
+          "from": "HOBA-M-019",
+          "to": "HOBA-M-012",
+          "relation": "amplifies"
+        }
+      ],
+      "entry_points": [
+        "HOBA-M-012"
+      ],
+      "interventions": [
+        "HOBA-I-006"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `HOBA-M-012` amplifies `HOBA-M-019`\n- `HOBA-M-019` amplifies `HOBA-M-012`"
+    },
+    {
+      "id": "HOBA-L-003",
+      "type": "loop",
+      "title": "Inflated-Requirements Search Saturation Loop",
+      "summary": "Teams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.",
+      "mechanisms": [
+        "HOBA-M-024",
+        "HOBA-M-008",
+        "HOBA-M-013"
+      ],
+      "edges": [
+        {
+          "from": "HOBA-M-024",
+          "to": "HOBA-M-008",
+          "relation": "amplifies"
+        },
+        {
+          "from": "HOBA-M-008",
+          "to": "HOBA-M-013",
+          "relation": "amplifies"
+        },
+        {
+          "from": "HOBA-M-013",
+          "to": "HOBA-M-024",
+          "relation": "amplifies"
+        }
+      ],
+      "entry_points": [
+        "HOBA-M-024"
+      ],
+      "interventions": [
+        "HOBA-I-001",
+        "HOBA-I-003"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-004"
+      ],
+      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `HOBA-M-024` amplifies `HOBA-M-008`\n- `HOBA-M-008` amplifies `HOBA-M-013`\n- `HOBA-M-013` amplifies `HOBA-M-024`"
+    }
+  ]
+}

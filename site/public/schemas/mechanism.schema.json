@@ -1,0 +1,207 @@
+{
+  "$ref": "#/definitions/Mechanism",
+  "definitions": {
+    "Mechanism": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HOBA-M-\\d{3}$"
+        },
+        "type": {
+          "type": "string",
+          "const": "mechanism"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "operates_at": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-B-\\d{3}$"
+          },
+          "minItems": 1
+        },
+        "emissions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "artifact": {
+                "type": "string",
+                "pattern": "^HOBA-A-\\d{3}$"
+              },
+              "fidelity": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "direct",
+                      "euphemism",
+                      "distortion",
+                      "noise",
+                      "void"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "likelihood": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "artifact"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "facets": {
+          "type": "object",
+          "properties": {
+            "actor": {
+              "type": "string",
+              "enum": [
+                "system",
+                "recruiter",
+                "hiring-manager",
+                "policy",
+                "external",
+                "candidate"
+              ]
+            },
+            "nature": {
+              "type": "string",
+              "enum": [
+                "rule",
+                "incentive",
+                "bias",
+                "noise",
+                "void"
+              ]
+            },
+            "visibility": {
+              "type": "string",
+              "enum": [
+                "observable",
+                "inferable",
+                "opaque"
+              ]
+            },
+            "removability": {
+              "type": "string",
+              "enum": [
+                "candidate",
+                "intermediary",
+                "none"
+              ]
+            }
+          },
+          "required": [
+            "actor",
+            "nature",
+            "visibility",
+            "removability"
+          ],
+          "additionalProperties": false
+        },
+        "amplifies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-M-\\d{3}$"
+          },
+          "default": []
+        },
+        "masks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-M-\\d{3}$"
+          },
+          "default": []
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "superseded_by": {
+          "type": "string",
+          "pattern": "^HOBA-M-\\d{3}$"
+        },
+        "evidence_level": {
+          "type": "string",
+          "enum": [
+            "established",
+            "supported",
+            "hypothesis",
+            "illustrative"
+          ],
+          "default": "supported"
+        },
+        "honest_baseline": {
+          "type": "boolean",
+          "default": false
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "non_inferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "summary",
+        "operates_at",
+        "facets",
+        "non_inferences"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@hoba/registry",
+  "version": "0.4.1",
+  "description": "Core knowledge graph, schemas, and diagnostic engine for HOBA (Hiring Obstacles & Barriers Atlas)",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,1182 @@
+{
+  "registry_version": "2026.08.1",
+  "count": 24,
+  "items": [
+    {
+      "id": "HOBA-M-001",
+      "type": "mechanism",
+      "title": "Genuine Technical Skill Shortfall",
+      "summary": "The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.",
+      "operates_at": [
+        "HOBA-B-005",
+        "HOBA-B-006",
+        "HOBA-B-007"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-008",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-006"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "candidate",
+        "nature": "rule",
+        "visibility": "inferable",
+        "removability": "candidate"
+      },
+      "amplifies": [],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": true,
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
+      ],
+      "content": "# Genuine Technical Skill Shortfall\n\nThe candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
+    },
+    {
+      "id": "HOBA-M-002",
+      "type": "mechanism",
+      "title": "Stronger Competing Candidate in Final Cohort",
+      "summary": "Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.",
+      "operates_at": [
+        "HOBA-B-007",
+        "HOBA-B-008",
+        "HOBA-B-010"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-003",
+          "fidelity": "distortion",
+          "likelihood": "low",
+          "evidence": [
+            "EVD-004"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "candidate",
+        "nature": "rule",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": true,
+      "evidence_ids": [
+        "EVD-001",
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control."
+      ],
+      "content": "# Stronger Competing Candidate in Final Cohort\n\nCandidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control."
+    },
+    {
+      "id": "HOBA-M-003",
+      "type": "mechanism",
+      "title": "ATS Parser Extraction Failure",
+      "summary": "Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.",
+      "operates_at": [
+        "HOBA-B-001",
+        "HOBA-B-002"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "void",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-009",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "system",
+        "nature": "noise",
+        "visibility": "inferable",
+        "removability": "candidate"
+      },
+      "amplifies": [
+        "HOBA-M-008"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Does not imply human recruiter evaluated and disliked candidate experience."
+      ],
+      "content": "# ATS Parser Extraction Failure\n\nMulti-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Does not imply human recruiter evaluated and disliked candidate experience."
+    },
+    {
+      "id": "HOBA-M-004",
+      "type": "mechanism",
+      "title": "Unstated Compensation Band Discrepancy",
+      "summary": "Candidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.",
+      "operates_at": [
+        "HOBA-B-004",
+        "HOBA-B-009"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-005"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-005",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-005"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-013",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-002"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "rule",
+        "visibility": "opaque",
+        "removability": "intermediary"
+      },
+      "amplifies": [
+        "HOBA-M-013"
+      ],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-005"
+      ],
+      "non_inferences": [
+        "Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget."
+      ],
+      "content": "# Unstated Compensation Band Discrepancy\n\nCandidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget."
+    },
+    {
+      "id": "HOBA-M-005",
+      "type": "mechanism",
+      "title": "Pre-Selected Internal Candidate",
+      "summary": "Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.",
+      "operates_at": [
+        "HOBA-B-001",
+        "HOBA-B-003",
+        "HOBA-B-007"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-004"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-003",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-004"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "incentive",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [
+        "HOBA-M-002"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "non_inferences": [
+        "Cannot be asserted as fact without internal hiring log confirmation."
+      ],
+      "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation."
+    },
+    {
+      "id": "HOBA-M-006",
+      "type": "mechanism",
+      "title": "Stale or Orphaned Job Requisition",
+      "summary": "Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.",
+      "operates_at": [
+        "HOBA-B-001",
+        "HOBA-B-002",
+        "HOBA-B-003"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "void",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-004"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-004",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-004"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "system",
+        "nature": "void",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-020"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "non_inferences": [
+        "Application silence does not reflect candidate suitability."
+      ],
+      "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability."
+    },
+    {
+      "id": "HOBA-M-007",
+      "type": "mechanism",
+      "title": "Headcount Freeze or Budget Cancellation",
+      "summary": "Executive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.",
+      "operates_at": [
+        "HOBA-B-008",
+        "HOBA-B-010",
+        "HOBA-B-012"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-003",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-004"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-011",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-004"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "rule",
+        "visibility": "inferable",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-006"
+      ],
+      "masks": [
+        "HOBA-M-001",
+        "HOBA-M-002"
+      ],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "non_inferences": [
+        "Candidate performance in interview was not the causal trigger for process termination."
+      ],
+      "content": "# Headcount Freeze or Budget Cancellation\n\nExecutive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Candidate performance in interview was not the causal trigger for process termination."
+    },
+    {
+      "id": "HOBA-M-008",
+      "type": "mechanism",
+      "title": "Automated Keyword / Qualification Filter",
+      "summary": "Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.",
+      "operates_at": [
+        "HOBA-B-002"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-009",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "system",
+        "nature": "rule",
+        "visibility": "inferable",
+        "removability": "candidate"
+      },
+      "amplifies": [
+        "HOBA-M-011"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Passing keyword filters does not guarantee interview invitation."
+      ],
+      "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation."
+    },
+    {
+      "id": "HOBA-M-009",
+      "type": "mechanism",
+      "title": "Recruiter Volume & Quota Incentive Distortion",
+      "summary": "Recruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).",
+      "operates_at": [
+        "HOBA-B-003",
+        "HOBA-B-004"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "void",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-012",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "recruiter",
+        "nature": "incentive",
+        "visibility": "inferable",
+        "removability": "intermediary"
+      },
+      "amplifies": [
+        "HOBA-M-012"
+      ],
+      "masks": [
+        "HOBA-M-008"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Does not mean recruiter is individually negligent; reflects structural capacity mismatch."
+      ],
+      "content": "# Recruiter Volume & Quota Incentive Distortion\n\nRecruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Does not mean recruiter is individually negligent; reflects structural capacity mismatch."
+    },
+    {
+      "id": "HOBA-M-010",
+      "type": "mechanism",
+      "title": "Hidden Evaluation Rubric or Undisclosed Priority",
+      "summary": "The interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.",
+      "operates_at": [
+        "HOBA-B-005",
+        "HOBA-B-007",
+        "HOBA-B-008"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-008",
+          "fidelity": "distortion",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-006"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-014",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-006"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "bias",
+        "visibility": "opaque",
+        "removability": "intermediary"
+      },
+      "amplifies": [
+        "HOBA-M-022"
+      ],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Failure to guess unstated preferences is not equivalent to lack of core competence."
+      ],
+      "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failure to guess unstated preferences is not equivalent to lack of core competence."
+    },
+    {
+      "id": "HOBA-M-011",
+      "type": "mechanism",
+      "title": "Employment Gap Downranking Bias",
+      "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
+      "operates_at": [
+        "HOBA-B-002",
+        "HOBA-B-003"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "void",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-003"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-003"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "system",
+        "nature": "bias",
+        "visibility": "inferable",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-008"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-003"
+      ],
+      "non_inferences": [
+        "Employment gap does not correlate with underlying technical decline."
+      ],
+      "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline."
+    },
+    {
+      "id": "HOBA-M-012",
+      "type": "mechanism",
+      "title": "Interview Resource & Scheduling Saturation",
+      "summary": "Engineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.",
+      "operates_at": [
+        "HOBA-B-005",
+        "HOBA-B-007",
+        "HOBA-B-008"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-007",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "noise",
+        "visibility": "inferable",
+        "removability": "intermediary"
+      },
+      "amplifies": [
+        "HOBA-M-019"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Rescheduling is an operational issue and does not indicate negative evaluation."
+      ],
+      "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Rescheduling is an operational issue and does not indicate negative evaluation."
+    },
+    {
+      "id": "HOBA-M-013",
+      "type": "mechanism",
+      "title": "Mid-Process Role Requirement Redefinition",
+      "summary": "Team changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.",
+      "operates_at": [
+        "HOBA-B-007",
+        "HOBA-B-008",
+        "HOBA-B-009"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-003",
+          "fidelity": "distortion",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-004"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-004",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-004"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "noise",
+        "visibility": "inferable",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-004"
+      ],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "non_inferences": [
+        "Candidate rejection was driven by shifting team mandate, not prior interview answers."
+      ],
+      "content": "# Mid-Process Role Requirement Redefinition\n\nTeam changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Non-Inferences\n- Candidate rejection was driven by shifting team mandate, not prior interview answers."
+    },
+    {
+      "id": "HOBA-M-014",
+      "type": "mechanism",
+      "title": "Location or Timezone Compliance Constraint",
+      "summary": "Company legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.",
+      "operates_at": [
+        "HOBA-B-002",
+        "HOBA-B-004"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-009",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "rule",
+        "visibility": "observable",
+        "removability": "intermediary"
+      },
+      "amplifies": [],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Legal geography barrier is completely independent of candidate technical competence."
+      ],
+      "content": "# Location or Timezone Compliance Constraint\n\nCompany legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Legal geography barrier is completely independent of candidate technical competence."
+    },
+    {
+      "id": "HOBA-M-015",
+      "type": "mechanism",
+      "title": "Communication or Working Style Friction",
+      "summary": "Candidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.",
+      "operates_at": [
+        "HOBA-B-004",
+        "HOBA-B-008"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-010",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-006"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "candidate",
+        "nature": "bias",
+        "visibility": "observable",
+        "removability": "candidate"
+      },
+      "amplifies": [],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": true,
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Style friction during high-stress interview is not a permanent personality defect."
+      ],
+      "content": "# Communication or Working Style Friction\n\nCandidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction during high-stress interview is not a permanent personality defect."
+    },
+    {
+      "id": "HOBA-M-016",
+      "type": "mechanism",
+      "title": "Speculative Sourcing / Talent Pooling Without Opening",
+      "summary": "Recruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.",
+      "operates_at": [
+        "HOBA-B-003",
+        "HOBA-B-004"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-012",
+          "fidelity": "distortion",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "void",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "recruiter",
+        "nature": "incentive",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-009"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
+      ],
+      "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
+    },
+    {
+      "id": "HOBA-M-017",
+      "type": "mechanism",
+      "title": "Experience-Age Grading Mismatch",
+      "summary": "Candidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.",
+      "operates_at": [
+        "HOBA-B-003",
+        "HOBA-B-004",
+        "HOBA-B-007"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-013",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-002"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "recruiter",
+        "nature": "bias",
+        "visibility": "inferable",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-004"
+      ],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "non_inferences": [
+        "Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
+      ],
+      "content": "# Experience-Age Grading Mismatch\n\nCandidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
+    },
+    {
+      "id": "HOBA-M-018",
+      "type": "mechanism",
+      "title": "Domain Specificity Over-Weighting",
+      "summary": "Interviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.",
+      "operates_at": [
+        "HOBA-B-004",
+        "HOBA-B-007"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-008",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-006"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "bias",
+        "visibility": "inferable",
+        "removability": "intermediary"
+      },
+      "amplifies": [
+        "HOBA-M-010"
+      ],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
+      ],
+      "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
+    },
+    {
+      "id": "HOBA-M-019",
+      "type": "mechanism",
+      "title": "Take-Home Evaluation Fatigue & Asymmetry",
+      "summary": "Reviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.",
+      "operates_at": [
+        "HOBA-B-006"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-006",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-006"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "noise",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [
+        "HOBA-M-012"
+      ],
+      "masks": [
+        "HOBA-M-001"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship."
+      ],
+      "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship."
+    },
+    {
+      "id": "HOBA-M-020",
+      "type": "mechanism",
+      "title": "Automated Application Expiration Timeout",
+      "summary": "ATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.",
+      "operates_at": [
+        "HOBA-B-001",
+        "HOBA-B-003"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "void",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-001",
+          "fidelity": "void",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "system",
+        "nature": "rule",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [
+        "HOBA-M-006"
+      ],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Bulk timeout rejection contains zero qualitative assessment of candidate profile."
+      ],
+      "content": "# Automated Application Expiration Timeout\n\nATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Bulk timeout rejection contains zero qualitative assessment of candidate profile."
+    },
+    {
+      "id": "HOBA-M-021",
+      "type": "mechanism",
+      "title": "Reference Check Discrepancy or Regulatory Ineligibility",
+      "summary": "Third-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.",
+      "operates_at": [
+        "HOBA-B-011"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-011",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "candidate",
+        "nature": "rule",
+        "visibility": "observable",
+        "removability": "candidate"
+      },
+      "amplifies": [],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "established",
+      "honest_baseline": true,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
+      ],
+      "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nThird-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
+    },
+    {
+      "id": "HOBA-M-022",
+      "type": "mechanism",
+      "title": "Hiring Manager Consensus Impasse",
+      "summary": "The interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.",
+      "operates_at": [
+        "HOBA-B-008"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-014",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-006"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "bias",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [
+        "HOBA-M-002"
+      ],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "non_inferences": [
+        "Split panel reflects lack of calibrated internal standards rather than candidate failure."
+      ],
+      "content": "# Hiring Manager Consensus Impasse\n\nThe interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Split panel reflects lack of calibrated internal standards rather than candidate failure."
+    },
+    {
+      "id": "HOBA-M-023",
+      "type": "mechanism",
+      "title": "Portfolio / Work Artifact Misinterpretation",
+      "summary": "Screeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.",
+      "operates_at": [
+        "HOBA-B-003",
+        "HOBA-B-005"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-008",
+          "fidelity": "distortion",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-006"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "candidate",
+        "nature": "noise",
+        "visibility": "inferable",
+        "removability": "candidate"
+      },
+      "amplifies": [
+        "HOBA-M-001"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Misinterpreted architecture can be corrected through structured documentation."
+      ],
+      "content": "# Portfolio / Work Artifact Misinterpretation\n\nScreeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation."
+    },
+    {
+      "id": "HOBA-M-024",
+      "type": "mechanism",
+      "title": "Inflated Requisition Requirements vs Actual Team Needs",
+      "summary": "Job description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.",
+      "operates_at": [
+        "HOBA-B-002",
+        "HOBA-B-004"
+      ],
+      "emissions": [
+        {
+          "artifact": "HOBA-A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-001"
+          ]
+        },
+        {
+          "artifact": "HOBA-A-004",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-004"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "incentive",
+        "visibility": "inferable",
+        "removability": "intermediary"
+      },
+      "amplifies": [
+        "HOBA-M-008",
+        "HOBA-M-004"
+      ],
+      "masks": [],
+      "status": "active",
+      "evidence_level": "supported",
+      "honest_baseline": false,
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "non_inferences": [
+        "Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
+      ],
+      "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nJob description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
+    }
+  ]
+}

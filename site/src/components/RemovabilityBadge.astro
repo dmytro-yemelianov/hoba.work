@@ -1,0 +1,31 @@
+---
+interface Props {
+  removability: 'candidate' | 'intermediary' | 'none';
+}
+
+const { removability } = Astro.props;
+
+const config = {
+  candidate: {
+    bg: 'bg-emerald-950/70 border-emerald-700/60 text-emerald-300',
+    label: 'Candidate Action',
+    desc: 'Endogenous Zone: Applicant has direct agency to test or adapt'
+  },
+  intermediary: {
+    bg: 'bg-amber-950/70 border-amber-700/60 text-amber-300',
+    label: 'Intermediary Dependent',
+    desc: 'Requires recruiter, hiring manager, or company policy intervention'
+  },
+  none: {
+    bg: 'bg-rose-950/70 border-rose-700/60 text-rose-300',
+    label: 'Exogenous (No Agency)',
+    desc: 'Exogenous Zone: Structural factor outside candidate optimization control'
+  }
+};
+
+const item = config[removability] || config.none;
+---
+<span class={`inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded border ${item.bg}`} title={item.desc}>
+  <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+  <span>{item.label}</span>
+</span>

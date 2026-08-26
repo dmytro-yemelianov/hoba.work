@@ -1,0 +1,27 @@
+---
+interface Props {
+  className?: string;
+  showText?: boolean;
+}
+
+const { className = "h-8 w-auto", showText = true } = Astro.props;
+---
+<div class="inline-flex items-center gap-2.5 font-bold tracking-tight">
+  <svg class={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="hoba logo">
+    <!-- Horizontal Leg Form -->
+    <line x1="18" y1="76" x2="82" y2="76" stroke="currentColor" stroke-width="8" stroke-linecap="round" class="text-hoba-accent"/>
+    <!-- Raised Diagonal Leg Form (The iconic 'хоба' grooming pose) -->
+    <line x1="42" y1="76" x2="82" y2="20" stroke="currentColor" stroke-width="8" stroke-linecap="round" class="text-hoba-accent"/>
+    <!-- Circular Head nestled between the legs -->
+    <circle cx="42" cy="54" r="17" fill="currentColor" class="text-hoba-text"/>
+    <!-- Triangular Ears aligned radially -->
+    <polygon points="31,41 37,25 45,39" fill="currentColor" class="text-hoba-text"/>
+    <polygon points="46,39 54,27 58,43" fill="currentColor" class="text-hoba-text"/>
+  </svg>
+  {showText && (
+    <div class="flex flex-col">
+      <span class="text-xl font-black lowercase tracking-tighter text-hoba-text font-mono">hoba</span>
+      <span class="text-[9px] uppercase tracking-widest text-hoba-muted -mt-1 font-mono">hoba.work</span>
+    </div>
+  )}
+</div>

@@ -1,0 +1,2511 @@
+{
+  "registry_version": "2026.08.1",
+  "nodes_count": 69,
+  "edges_count": 180,
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "HOBA-A-001",
+          "label": "Complete silence after submission",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "ingestion",
+            "sourcing"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-002",
+          "label": "Generic \"closer alignment\" rejection template",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "screening",
+            "recruiter",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-003",
+          "label": "Position closed after final interview without hire",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "team",
+            "offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-004",
+          "label": "Materially similar role reposted shortly after rejection",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "sourcing",
+            "screening",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-005",
+          "label": "Compensation band reduced or altered mid-process",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "recruiter",
+            "compensation",
+            "offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-006",
+          "label": "Take-home assignment exceeding reasonable stated scope",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-007",
+          "label": "Multiple interview reschedulings or interviewer no-show",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "recruiter",
+            "technical",
+            "team"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-008",
+          "label": "Explicit feedback citing skill-depth shortfall",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "technical",
+            "team"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-009",
+          "label": "Rejection within minutes of application submission",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "ingestion"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-010",
+          "label": "Communication mismatch or tone friction in panel",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "recruiter",
+            "team"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-011",
+          "label": "Offer rescinded or delayed due to internal freeze",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "offer",
+            "post-offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-012",
+          "label": "Unsolicited recruiter outreach followed by ghosting",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "sourcing",
+            "recruiter"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-013",
+          "label": "Feedback stating candidate is overqualified for the grade",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "recruiter",
+            "screening",
+            "team"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-014",
+          "label": "Conflicting feedback across different interviewers",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "technical",
+            "team"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-001",
+          "label": "Application Ingestion",
+          "type": "barrier",
+          "stage": "ingestion",
+          "order": 1,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-002",
+          "label": "Automated Filter & Parser Threshold",
+          "type": "barrier",
+          "stage": "ingestion",
+          "order": 2,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-003",
+          "label": "Sourcing & Inbound Triage",
+          "type": "barrier",
+          "stage": "sourcing",
+          "order": 3,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-004",
+          "label": "Recruiter Screening Call",
+          "type": "barrier",
+          "stage": "recruiter",
+          "order": 4,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-005",
+          "label": "Technical Screen / Live Assessment",
+          "type": "barrier",
+          "stage": "technical",
+          "order": 5,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-006",
+          "label": "Take-Home / Work Sample Evaluation",
+          "type": "barrier",
+          "stage": "technical",
+          "order": 6,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-007",
+          "label": "Hiring Manager In-Depth Review",
+          "type": "barrier",
+          "stage": "screening",
+          "order": 7,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-008",
+          "label": "Team & Cross-Functional Panel",
+          "type": "barrier",
+          "stage": "team",
+          "order": 8,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-009",
+          "label": "Compensation & Leveling Reconciliation",
+          "type": "barrier",
+          "stage": "compensation",
+          "order": 9,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-010",
+          "label": "Headcount & Executive Budget Approval",
+          "type": "barrier",
+          "stage": "offer",
+          "order": 10,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-011",
+          "label": "Reference & Background Verification",
+          "type": "barrier",
+          "stage": "post-offer",
+          "order": 11,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-012",
+          "label": "Offer Closing & Contract Execution",
+          "type": "barrier",
+          "stage": "post-offer",
+          "order": 12,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001",
+          "label": "Genuine Technical Skill Shortfall",
+          "type": "mechanism",
+          "actor": "candidate",
+          "nature": "rule",
+          "visibility": "inferable",
+          "removability": "candidate",
+          "honest_baseline": true,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-candidate"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002",
+          "label": "Stronger Competing Candidate in Final Cohort",
+          "type": "mechanism",
+          "actor": "candidate",
+          "nature": "rule",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": true,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-003",
+          "label": "ATS Parser Extraction Failure",
+          "type": "mechanism",
+          "actor": "system",
+          "nature": "noise",
+          "visibility": "inferable",
+          "removability": "candidate",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-candidate"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004",
+          "label": "Unstated Compensation Band Discrepancy",
+          "type": "mechanism",
+          "actor": "policy",
+          "nature": "rule",
+          "visibility": "opaque",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005",
+          "label": "Pre-Selected Internal Candidate",
+          "type": "mechanism",
+          "actor": "policy",
+          "nature": "incentive",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006",
+          "label": "Stale or Orphaned Job Requisition",
+          "type": "mechanism",
+          "actor": "system",
+          "nature": "void",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007",
+          "label": "Headcount Freeze or Budget Cancellation",
+          "type": "mechanism",
+          "actor": "policy",
+          "nature": "rule",
+          "visibility": "inferable",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-008",
+          "label": "Automated Keyword / Qualification Filter",
+          "type": "mechanism",
+          "actor": "system",
+          "nature": "rule",
+          "visibility": "inferable",
+          "removability": "candidate",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-candidate"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009",
+          "label": "Recruiter Volume & Quota Incentive Distortion",
+          "type": "mechanism",
+          "actor": "recruiter",
+          "nature": "incentive",
+          "visibility": "inferable",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010",
+          "label": "Hidden Evaluation Rubric or Undisclosed Priority",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "bias",
+          "visibility": "opaque",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-011",
+          "label": "Employment Gap Downranking Bias",
+          "type": "mechanism",
+          "actor": "system",
+          "nature": "bias",
+          "visibility": "inferable",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012",
+          "label": "Interview Resource & Scheduling Saturation",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "noise",
+          "visibility": "inferable",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013",
+          "label": "Mid-Process Role Requirement Redefinition",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "noise",
+          "visibility": "inferable",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-014",
+          "label": "Location or Timezone Compliance Constraint",
+          "type": "mechanism",
+          "actor": "policy",
+          "nature": "rule",
+          "visibility": "observable",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-015",
+          "label": "Communication or Working Style Friction",
+          "type": "mechanism",
+          "actor": "candidate",
+          "nature": "bias",
+          "visibility": "observable",
+          "removability": "candidate",
+          "honest_baseline": true,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-candidate"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-016",
+          "label": "Speculative Sourcing / Talent Pooling Without Opening",
+          "type": "mechanism",
+          "actor": "recruiter",
+          "nature": "incentive",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017",
+          "label": "Experience-Age Grading Mismatch",
+          "type": "mechanism",
+          "actor": "recruiter",
+          "nature": "bias",
+          "visibility": "inferable",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018",
+          "label": "Domain Specificity Over-Weighting",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "bias",
+          "visibility": "inferable",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-019",
+          "label": "Take-Home Evaluation Fatigue & Asymmetry",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "noise",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-020",
+          "label": "Automated Application Expiration Timeout",
+          "type": "mechanism",
+          "actor": "system",
+          "nature": "rule",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-021",
+          "label": "Reference Check Discrepancy or Regulatory Ineligibility",
+          "type": "mechanism",
+          "actor": "candidate",
+          "nature": "rule",
+          "visibility": "observable",
+          "removability": "candidate",
+          "honest_baseline": true,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-candidate"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-022",
+          "label": "Hiring Manager Consensus Impasse",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "bias",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-023",
+          "label": "Portfolio / Work Artifact Misinterpretation",
+          "type": "mechanism",
+          "actor": "candidate",
+          "nature": "noise",
+          "visibility": "inferable",
+          "removability": "candidate",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-candidate"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024",
+          "label": "Inflated Requisition Requirements vs Actual Team Needs",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "incentive",
+          "visibility": "inferable",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "supported"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
+          "id": "HOBA-P-001",
+          "label": "Seniority Double Bind",
+          "type": "pattern",
+          "evidence_level": "supported"
+        },
+        "classes": "node-pattern"
+      },
+      {
+        "data": {
+          "id": "HOBA-P-002",
+          "label": "Closed-Then-Reposted Requisition Motif",
+          "type": "pattern",
+          "evidence_level": "supported"
+        },
+        "classes": "node-pattern"
+      },
+      {
+        "data": {
+          "id": "HOBA-P-003",
+          "label": "Experience-Age Impossibility",
+          "type": "pattern",
+          "evidence_level": "supported"
+        },
+        "classes": "node-pattern"
+      },
+      {
+        "data": {
+          "id": "HOBA-P-004",
+          "label": "Compensation Double Bind",
+          "type": "pattern",
+          "evidence_level": "supported"
+        },
+        "classes": "node-pattern"
+      },
+      {
+        "data": {
+          "id": "HOBA-L-001",
+          "label": "Employment Gap Penalty Loop",
+          "type": "loop",
+          "evidence_level": "supported"
+        },
+        "classes": "node-loop"
+      },
+      {
+        "data": {
+          "id": "HOBA-L-002",
+          "label": "Take-Home Opportunity-Cost Saturation Loop",
+          "type": "loop",
+          "evidence_level": "supported"
+        },
+        "classes": "node-loop"
+      },
+      {
+        "data": {
+          "id": "HOBA-L-003",
+          "label": "Inflated-Requirements Search Saturation Loop",
+          "type": "loop",
+          "evidence_level": "supported"
+        },
+        "classes": "node-loop"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-001",
+          "label": "Auto-Close Stale Job Requisitions",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-002",
+          "label": "Upfront Compensation Band Disclosure",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-003",
+          "label": "Standardized Late-Stage Rejection Feedback Taxonomy",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-004",
+          "label": "Remove Career Gap Feature from Automated Ranking Models",
+          "type": "intervention",
+          "actor": "ats-vendor",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-005",
+          "label": "Candidate ATS Parser Conformance Test Utility",
+          "type": "intervention",
+          "actor": "candidate-action",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-006",
+          "label": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "id": "HOBA-B-001->precedes->HOBA-B-002",
+          "source": "HOBA-B-001",
+          "target": "HOBA-B-002",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-002->precedes->HOBA-B-003",
+          "source": "HOBA-B-002",
+          "target": "HOBA-B-003",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-002->precedes->HOBA-B-004",
+          "source": "HOBA-B-002",
+          "target": "HOBA-B-004",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-003->precedes->HOBA-B-004",
+          "source": "HOBA-B-003",
+          "target": "HOBA-B-004",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-004->precedes->HOBA-B-005",
+          "source": "HOBA-B-004",
+          "target": "HOBA-B-005",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-005->precedes->HOBA-B-006",
+          "source": "HOBA-B-005",
+          "target": "HOBA-B-006",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-005->precedes->HOBA-B-007",
+          "source": "HOBA-B-005",
+          "target": "HOBA-B-007",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-006->precedes->HOBA-B-007",
+          "source": "HOBA-B-006",
+          "target": "HOBA-B-007",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-007->precedes->HOBA-B-008",
+          "source": "HOBA-B-007",
+          "target": "HOBA-B-008",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-008->precedes->HOBA-B-009",
+          "source": "HOBA-B-008",
+          "target": "HOBA-B-009",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-009->precedes->HOBA-B-010",
+          "source": "HOBA-B-009",
+          "target": "HOBA-B-010",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-010->precedes->HOBA-B-011",
+          "source": "HOBA-B-010",
+          "target": "HOBA-B-011",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-B-011->precedes->HOBA-B-012",
+          "source": "HOBA-B-011",
+          "target": "HOBA-B-012",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001->operates_at->HOBA-B-005",
+          "source": "HOBA-M-001",
+          "target": "HOBA-B-005",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001->operates_at->HOBA-B-006",
+          "source": "HOBA-M-001",
+          "target": "HOBA-B-006",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001->operates_at->HOBA-B-007",
+          "source": "HOBA-M-001",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001->emits->HOBA-A-008",
+          "source": "HOBA-M-001",
+          "target": "HOBA-A-008",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001->emits->HOBA-A-002",
+          "source": "HOBA-M-001",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->operates_at->HOBA-B-007",
+          "source": "HOBA-M-002",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->operates_at->HOBA-B-008",
+          "source": "HOBA-M-002",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->operates_at->HOBA-B-010",
+          "source": "HOBA-M-002",
+          "target": "HOBA-B-010",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->emits->HOBA-A-002",
+          "source": "HOBA-M-002",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->emits->HOBA-A-003",
+          "source": "HOBA-M-002",
+          "target": "HOBA-A-003",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "low"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->masks->HOBA-M-001",
+          "source": "HOBA-M-002",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-003->operates_at->HOBA-B-001",
+          "source": "HOBA-M-003",
+          "target": "HOBA-B-001",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-003->operates_at->HOBA-B-002",
+          "source": "HOBA-M-003",
+          "target": "HOBA-B-002",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-003->emits->HOBA-A-001",
+          "source": "HOBA-M-003",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-003->emits->HOBA-A-009",
+          "source": "HOBA-M-003",
+          "target": "HOBA-A-009",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-003->amplifies->HOBA-M-008",
+          "source": "HOBA-M-003",
+          "target": "HOBA-M-008",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->operates_at->HOBA-B-004",
+          "source": "HOBA-M-004",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->operates_at->HOBA-B-009",
+          "source": "HOBA-M-004",
+          "target": "HOBA-B-009",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->emits->HOBA-A-002",
+          "source": "HOBA-M-004",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->emits->HOBA-A-005",
+          "source": "HOBA-M-004",
+          "target": "HOBA-A-005",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->emits->HOBA-A-013",
+          "source": "HOBA-M-004",
+          "target": "HOBA-A-013",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->amplifies->HOBA-M-013",
+          "source": "HOBA-M-004",
+          "target": "HOBA-M-013",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->masks->HOBA-M-001",
+          "source": "HOBA-M-004",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005->operates_at->HOBA-B-001",
+          "source": "HOBA-M-005",
+          "target": "HOBA-B-001",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005->operates_at->HOBA-B-003",
+          "source": "HOBA-M-005",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005->operates_at->HOBA-B-007",
+          "source": "HOBA-M-005",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005->emits->HOBA-A-002",
+          "source": "HOBA-M-005",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005->emits->HOBA-A-003",
+          "source": "HOBA-M-005",
+          "target": "HOBA-A-003",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-005->masks->HOBA-M-002",
+          "source": "HOBA-M-005",
+          "target": "HOBA-M-002",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->operates_at->HOBA-B-001",
+          "source": "HOBA-M-006",
+          "target": "HOBA-B-001",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->operates_at->HOBA-B-002",
+          "source": "HOBA-M-006",
+          "target": "HOBA-B-002",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->operates_at->HOBA-B-003",
+          "source": "HOBA-M-006",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->emits->HOBA-A-001",
+          "source": "HOBA-M-006",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->emits->HOBA-A-004",
+          "source": "HOBA-M-006",
+          "target": "HOBA-A-004",
+          "type": "emits",
+          "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->amplifies->HOBA-M-020",
+          "source": "HOBA-M-006",
+          "target": "HOBA-M-020",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->operates_at->HOBA-B-008",
+          "source": "HOBA-M-007",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->operates_at->HOBA-B-010",
+          "source": "HOBA-M-007",
+          "target": "HOBA-B-010",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->operates_at->HOBA-B-012",
+          "source": "HOBA-M-007",
+          "target": "HOBA-B-012",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->emits->HOBA-A-003",
+          "source": "HOBA-M-007",
+          "target": "HOBA-A-003",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->emits->HOBA-A-011",
+          "source": "HOBA-M-007",
+          "target": "HOBA-A-011",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->amplifies->HOBA-M-006",
+          "source": "HOBA-M-007",
+          "target": "HOBA-M-006",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->masks->HOBA-M-001",
+          "source": "HOBA-M-007",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-007->masks->HOBA-M-002",
+          "source": "HOBA-M-007",
+          "target": "HOBA-M-002",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-008->operates_at->HOBA-B-002",
+          "source": "HOBA-M-008",
+          "target": "HOBA-B-002",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-008->emits->HOBA-A-009",
+          "source": "HOBA-M-008",
+          "target": "HOBA-A-009",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-008->emits->HOBA-A-002",
+          "source": "HOBA-M-008",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-008->amplifies->HOBA-M-011",
+          "source": "HOBA-M-008",
+          "target": "HOBA-M-011",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009->operates_at->HOBA-B-003",
+          "source": "HOBA-M-009",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009->operates_at->HOBA-B-004",
+          "source": "HOBA-M-009",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009->emits->HOBA-A-001",
+          "source": "HOBA-M-009",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009->emits->HOBA-A-012",
+          "source": "HOBA-M-009",
+          "target": "HOBA-A-012",
+          "type": "emits",
+          "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009->amplifies->HOBA-M-012",
+          "source": "HOBA-M-009",
+          "target": "HOBA-M-012",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-009->masks->HOBA-M-008",
+          "source": "HOBA-M-009",
+          "target": "HOBA-M-008",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->operates_at->HOBA-B-005",
+          "source": "HOBA-M-010",
+          "target": "HOBA-B-005",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->operates_at->HOBA-B-007",
+          "source": "HOBA-M-010",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->operates_at->HOBA-B-008",
+          "source": "HOBA-M-010",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->emits->HOBA-A-008",
+          "source": "HOBA-M-010",
+          "target": "HOBA-A-008",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->emits->HOBA-A-014",
+          "source": "HOBA-M-010",
+          "target": "HOBA-A-014",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->amplifies->HOBA-M-022",
+          "source": "HOBA-M-010",
+          "target": "HOBA-M-022",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->masks->HOBA-M-001",
+          "source": "HOBA-M-010",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-011->operates_at->HOBA-B-002",
+          "source": "HOBA-M-011",
+          "target": "HOBA-B-002",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-011->operates_at->HOBA-B-003",
+          "source": "HOBA-M-011",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-011->emits->HOBA-A-001",
+          "source": "HOBA-M-011",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-011->emits->HOBA-A-002",
+          "source": "HOBA-M-011",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-011->amplifies->HOBA-M-008",
+          "source": "HOBA-M-011",
+          "target": "HOBA-M-008",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012->operates_at->HOBA-B-005",
+          "source": "HOBA-M-012",
+          "target": "HOBA-B-005",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012->operates_at->HOBA-B-007",
+          "source": "HOBA-M-012",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012->operates_at->HOBA-B-008",
+          "source": "HOBA-M-012",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012->emits->HOBA-A-007",
+          "source": "HOBA-M-012",
+          "target": "HOBA-A-007",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012->emits->HOBA-A-001",
+          "source": "HOBA-M-012",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-012->amplifies->HOBA-M-019",
+          "source": "HOBA-M-012",
+          "target": "HOBA-M-019",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->operates_at->HOBA-B-007",
+          "source": "HOBA-M-013",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->operates_at->HOBA-B-008",
+          "source": "HOBA-M-013",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->operates_at->HOBA-B-009",
+          "source": "HOBA-M-013",
+          "target": "HOBA-B-009",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->emits->HOBA-A-003",
+          "source": "HOBA-M-013",
+          "target": "HOBA-A-003",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->emits->HOBA-A-004",
+          "source": "HOBA-M-013",
+          "target": "HOBA-A-004",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->amplifies->HOBA-M-004",
+          "source": "HOBA-M-013",
+          "target": "HOBA-M-004",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->masks->HOBA-M-001",
+          "source": "HOBA-M-013",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-014->operates_at->HOBA-B-002",
+          "source": "HOBA-M-014",
+          "target": "HOBA-B-002",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-014->operates_at->HOBA-B-004",
+          "source": "HOBA-M-014",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-014->emits->HOBA-A-009",
+          "source": "HOBA-M-014",
+          "target": "HOBA-A-009",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-014->emits->HOBA-A-002",
+          "source": "HOBA-M-014",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-015->operates_at->HOBA-B-004",
+          "source": "HOBA-M-015",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-015->operates_at->HOBA-B-008",
+          "source": "HOBA-M-015",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-015->emits->HOBA-A-010",
+          "source": "HOBA-M-015",
+          "target": "HOBA-A-010",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-015->emits->HOBA-A-002",
+          "source": "HOBA-M-015",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-016->operates_at->HOBA-B-003",
+          "source": "HOBA-M-016",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-016->operates_at->HOBA-B-004",
+          "source": "HOBA-M-016",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-016->emits->HOBA-A-012",
+          "source": "HOBA-M-016",
+          "target": "HOBA-A-012",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-016->emits->HOBA-A-001",
+          "source": "HOBA-M-016",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-016->amplifies->HOBA-M-009",
+          "source": "HOBA-M-016",
+          "target": "HOBA-M-009",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->operates_at->HOBA-B-003",
+          "source": "HOBA-M-017",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->operates_at->HOBA-B-004",
+          "source": "HOBA-M-017",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->operates_at->HOBA-B-007",
+          "source": "HOBA-M-017",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->emits->HOBA-A-013",
+          "source": "HOBA-M-017",
+          "target": "HOBA-A-013",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->emits->HOBA-A-002",
+          "source": "HOBA-M-017",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->amplifies->HOBA-M-004",
+          "source": "HOBA-M-017",
+          "target": "HOBA-M-004",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->masks->HOBA-M-001",
+          "source": "HOBA-M-017",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018->operates_at->HOBA-B-004",
+          "source": "HOBA-M-018",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018->operates_at->HOBA-B-007",
+          "source": "HOBA-M-018",
+          "target": "HOBA-B-007",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018->emits->HOBA-A-002",
+          "source": "HOBA-M-018",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018->emits->HOBA-A-008",
+          "source": "HOBA-M-018",
+          "target": "HOBA-A-008",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018->amplifies->HOBA-M-010",
+          "source": "HOBA-M-018",
+          "target": "HOBA-M-010",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-018->masks->HOBA-M-001",
+          "source": "HOBA-M-018",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-019->operates_at->HOBA-B-006",
+          "source": "HOBA-M-019",
+          "target": "HOBA-B-006",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-019->emits->HOBA-A-006",
+          "source": "HOBA-M-019",
+          "target": "HOBA-A-006",
+          "type": "emits",
+          "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-019->emits->HOBA-A-002",
+          "source": "HOBA-M-019",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-019->amplifies->HOBA-M-012",
+          "source": "HOBA-M-019",
+          "target": "HOBA-M-012",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-019->masks->HOBA-M-001",
+          "source": "HOBA-M-019",
+          "target": "HOBA-M-001",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-020->operates_at->HOBA-B-001",
+          "source": "HOBA-M-020",
+          "target": "HOBA-B-001",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-020->operates_at->HOBA-B-003",
+          "source": "HOBA-M-020",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-020->emits->HOBA-A-002",
+          "source": "HOBA-M-020",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-020->emits->HOBA-A-001",
+          "source": "HOBA-M-020",
+          "target": "HOBA-A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-020->masks->HOBA-M-006",
+          "source": "HOBA-M-020",
+          "target": "HOBA-M-006",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-021->operates_at->HOBA-B-011",
+          "source": "HOBA-M-021",
+          "target": "HOBA-B-011",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-021->emits->HOBA-A-011",
+          "source": "HOBA-M-021",
+          "target": "HOBA-A-011",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-021->emits->HOBA-A-002",
+          "source": "HOBA-M-021",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-022->operates_at->HOBA-B-008",
+          "source": "HOBA-M-022",
+          "target": "HOBA-B-008",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-022->emits->HOBA-A-014",
+          "source": "HOBA-M-022",
+          "target": "HOBA-A-014",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-022->emits->HOBA-A-002",
+          "source": "HOBA-M-022",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-022->masks->HOBA-M-002",
+          "source": "HOBA-M-022",
+          "target": "HOBA-M-002",
+          "type": "masks"
+        },
+        "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-023->operates_at->HOBA-B-003",
+          "source": "HOBA-M-023",
+          "target": "HOBA-B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-023->operates_at->HOBA-B-005",
+          "source": "HOBA-M-023",
+          "target": "HOBA-B-005",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-023->emits->HOBA-A-002",
+          "source": "HOBA-M-023",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-023->emits->HOBA-A-008",
+          "source": "HOBA-M-023",
+          "target": "HOBA-A-008",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-023->amplifies->HOBA-M-001",
+          "source": "HOBA-M-023",
+          "target": "HOBA-M-001",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->operates_at->HOBA-B-002",
+          "source": "HOBA-M-024",
+          "target": "HOBA-B-002",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->operates_at->HOBA-B-004",
+          "source": "HOBA-M-024",
+          "target": "HOBA-B-004",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->emits->HOBA-A-002",
+          "source": "HOBA-M-024",
+          "target": "HOBA-A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->emits->HOBA-A-004",
+          "source": "HOBA-M-024",
+          "target": "HOBA-A-004",
+          "type": "emits",
+          "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->amplifies->HOBA-M-008",
+          "source": "HOBA-M-024",
+          "target": "HOBA-M-008",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->amplifies->HOBA-M-004",
+          "source": "HOBA-M-024",
+          "target": "HOBA-M-004",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-002->instantiates->HOBA-P-001",
+          "source": "HOBA-A-002",
+          "target": "HOBA-P-001",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-013->instantiates->HOBA-P-001",
+          "source": "HOBA-A-013",
+          "target": "HOBA-P-001",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-001->instantiates->HOBA-P-001",
+          "source": "HOBA-M-001",
+          "target": "HOBA-P-001",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->instantiates->HOBA-P-001",
+          "source": "HOBA-M-004",
+          "target": "HOBA-P-001",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->instantiates->HOBA-P-001",
+          "source": "HOBA-M-017",
+          "target": "HOBA-P-001",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-003->instantiates->HOBA-P-002",
+          "source": "HOBA-A-003",
+          "target": "HOBA-P-002",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-004->instantiates->HOBA-P-002",
+          "source": "HOBA-A-004",
+          "target": "HOBA-P-002",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-002->instantiates->HOBA-P-002",
+          "source": "HOBA-M-002",
+          "target": "HOBA-P-002",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-006->instantiates->HOBA-P-002",
+          "source": "HOBA-M-006",
+          "target": "HOBA-P-002",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-010->instantiates->HOBA-P-002",
+          "source": "HOBA-M-010",
+          "target": "HOBA-P-002",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-013->instantiates->HOBA-P-002",
+          "source": "HOBA-M-013",
+          "target": "HOBA-P-002",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-002->instantiates->HOBA-P-003",
+          "source": "HOBA-A-002",
+          "target": "HOBA-P-003",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-009->instantiates->HOBA-P-003",
+          "source": "HOBA-A-009",
+          "target": "HOBA-P-003",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-008->instantiates->HOBA-P-003",
+          "source": "HOBA-M-008",
+          "target": "HOBA-P-003",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-024->instantiates->HOBA-P-003",
+          "source": "HOBA-M-024",
+          "target": "HOBA-P-003",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-002->instantiates->HOBA-P-004",
+          "source": "HOBA-A-002",
+          "target": "HOBA-P-004",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-A-005->instantiates->HOBA-P-004",
+          "source": "HOBA-A-005",
+          "target": "HOBA-P-004",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-004->instantiates->HOBA-P-004",
+          "source": "HOBA-M-004",
+          "target": "HOBA-P-004",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-M-017->instantiates->HOBA-P-004",
+          "source": "HOBA-M-017",
+          "target": "HOBA-P-004",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-001->targets->HOBA-M-006",
+          "source": "HOBA-I-001",
+          "target": "HOBA-M-006",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-001->targets->HOBA-B-001",
+          "source": "HOBA-I-001",
+          "target": "HOBA-B-001",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-002->targets->HOBA-M-004",
+          "source": "HOBA-I-002",
+          "target": "HOBA-M-004",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-002->targets->HOBA-B-004",
+          "source": "HOBA-I-002",
+          "target": "HOBA-B-004",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-002->targets->HOBA-B-009",
+          "source": "HOBA-I-002",
+          "target": "HOBA-B-009",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-003->targets->HOBA-M-001",
+          "source": "HOBA-I-003",
+          "target": "HOBA-M-001",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-003->targets->HOBA-M-010",
+          "source": "HOBA-I-003",
+          "target": "HOBA-M-010",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-003->targets->HOBA-B-007",
+          "source": "HOBA-I-003",
+          "target": "HOBA-B-007",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-003->targets->HOBA-B-008",
+          "source": "HOBA-I-003",
+          "target": "HOBA-B-008",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-004->targets->HOBA-M-011",
+          "source": "HOBA-I-004",
+          "target": "HOBA-M-011",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-004->mitigates->HOBA-L-001",
+          "source": "HOBA-I-004",
+          "target": "HOBA-L-001",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-005->targets->HOBA-M-003",
+          "source": "HOBA-I-005",
+          "target": "HOBA-M-003",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-005->targets->HOBA-B-002",
+          "source": "HOBA-I-005",
+          "target": "HOBA-B-002",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-006->targets->HOBA-M-019",
+          "source": "HOBA-I-006",
+          "target": "HOBA-M-019",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-006->mitigates->HOBA-L-002",
+          "source": "HOBA-I-006",
+          "target": "HOBA-L-002",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "HOBA-I-006->targets->HOBA-B-006",
+          "source": "HOBA-I-006",
+          "target": "HOBA-B-006",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      }
+    ]
+  }
+}

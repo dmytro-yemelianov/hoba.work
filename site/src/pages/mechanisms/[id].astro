@@ -1,0 +1,201 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EntityBadge from '../../components/EntityBadge.astro';
+import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
+import path from 'node:path';
+import { loadRegistryFromDirectory, HOBAKnowledgeGraph } from '@hoba/registry';
+
+export async function getStaticPaths() {
+  const rootDir = path.resolve(process.cwd(), '..');
+  const bundle = loadRegistryFromDirectory(path.join(rootDir, 'content'), path.join(rootDir, 'evidence'));
+  return bundle.mechanisms.map((mechanism) => ({
+    params: { id: mechanism.id },
+    props: { mechanism, bundle },
+  }));
+}
+
+const { mechanism, bundle } = Astro.props;
+const graph = new HOBAKnowledgeGraph(bundle);
+
+const operatingBarriers = bundle.barriers.filter((b) =>
+  mechanism.operates_at.includes(b.id)
+);
+const emittedArtifacts = bundle.artifacts.filter((a) =>
+  mechanism.emissions.some((e) => e.artifact === a.id)
+);
+const amplifiedMechanisms = bundle.mechanisms.filter((m) =>
+  mechanism.amplifies.includes(m.id)
+);
+const maskedMechanisms = bundle.mechanisms.filter((m) =>
+  mechanism.masks.includes(m.id)
+);
+const targetingInterventions = bundle.interventions.filter((i) =>
+  i.targets.includes(mechanism.id)
+);
+const participatingLoops = bundle.loops.filter((l) =>
+  l.mechanisms.includes(mechanism.id)
+);
+---
+<Layout title={`${mechanism.id} — ${mechanism.title}`} activeNav="registry">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Breadcrumbs -->
+    <div class="text-xs font-mono text-hoba-muted flex items-center gap-2">
+      <a href="/registry" class="hover:text-hoba-text">Registry</a>
+      <span>/</span>
+      <a href="/registry" class="hover:text-hoba-text">Mechanisms</a>
+      <span>/</span>
+      <span class="text-hoba-accent">{mechanism.id}</span>
+    </div>
+
+    <!-- Header Section -->
+    <div class="p-6 rounded-2xl border border-hoba-border bg-hoba-card">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <EntityBadge type="mechanism" id={mechanism.id} size="md" />
+        <div class="flex items-center gap-2">
+          {mechanism.honest_baseline && (
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+              Honest Baseline
+            </span>
+          )}
+          <RemovabilityBadge removability={mechanism.facets.removability} />
+        </div>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black font-mono text-hoba-text">{mechanism.title}</h1>
+      <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{mechanism.summary}</p>
+    </div>
+
+    <!-- Classification Facets Grid -->
+    <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card/50">
+      <h2 class="text-xs font-mono font-bold uppercase text-hoba-accent tracking-wider mb-4">Classification Facets</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
+        <div class="p-3 rounded-lg bg-hoba-bg border border-hoba-border">
+          <span class="text-hoba-muted text-[10px] uppercase block">Actor Locus:</span>
+          <span class="font-bold text-hoba-text capitalize">{mechanism.facets.actor}</span>
+        </div>
+        <div class="p-3 rounded-lg bg-hoba-bg border border-hoba-border">
+          <span class="text-hoba-muted text-[10px] uppercase block">Nature:</span>
+          <span class="font-bold text-hoba-text capitalize">{mechanism.facets.nature}</span>
+        </div>
+        <div class="p-3 rounded-lg bg-hoba-bg border border-hoba-border">
+          <span class="text-hoba-muted text-[10px] uppercase block">Visibility:</span>
+          <span class="font-bold text-hoba-text capitalize">{mechanism.facets.visibility}</span>
+        </div>
+        <div class="p-3 rounded-lg bg-hoba-bg border border-hoba-border">
+          <span class="text-hoba-muted text-[10px] uppercase block">Removability:</span>
+          <span class="font-bold text-hoba-text capitalize">{mechanism.facets.removability}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Operating Barriers -->
+    <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card">
+      <h2 class="text-sm font-mono font-bold uppercase text-hoba-text mb-3">Structural Funnel Gates (Barriers) Where Mechanism Operates</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+        {operatingBarriers.map((b) => (
+          <a href={`/barriers/${b.id}`} class="p-2.5 rounded bg-hoba-bg border border-hoba-border hover:border-emerald-500/50 block">
+            <span class="text-emerald-400 font-bold">{b.id}:</span> <span class="text-hoba-text">{b.title}</span>
+            <span class="text-[10px] text-hoba-muted block mt-0.5 uppercase">Stage: {b.stage}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Emitted Observations -->
+    <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card">
+      <h2 class="text-sm font-mono font-bold uppercase text-hoba-text mb-3">Observable Signals Emitted (Artifacts)</h2>
+      <div class="space-y-2">
+        {mechanism.emissions.map((em) => {
+          const art = bundle.artifacts.find((a) => a.id === em.artifact);
+          return (
+            <a href={`/artifacts/${em.artifact}`} class="p-3 rounded-lg bg-hoba-bg border border-hoba-border hover:border-purple-500/50 block text-xs">
+              <div class="flex items-center justify-between font-mono mb-1">
+                <span class="font-bold text-purple-300">{em.artifact}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-hoba-card text-hoba-muted border border-hoba-border">
+                  Fidelity: {em.fidelity || 'direct'}
+                </span>
+              </div>
+              <div class="font-semibold text-hoba-text">{art?.title || em.artifact}</div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Non-Inferences -->
+    <div class="p-6 rounded-xl border border-rose-900/40 bg-rose-950/20 text-xs">
+      <h2 class="font-mono font-bold uppercase text-rose-300 mb-2">Explicit Forensic Non-Inferences:</h2>
+      <ul class="space-y-1.5 text-rose-200/80 list-disc list-inside">
+        {mechanism.non_inferences.map((ni: string) => (
+          <li>{ni}</li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Causal Graph Interactions: Amplifies, Masks, Loops -->
+    {(amplifiedMechanisms.length > 0 || maskedMechanisms.length > 0 || participatingLoops.length > 0) && (
+      <div class="p-6 rounded-xl border border-hoba-border bg-hoba-card space-y-4 text-xs font-mono">
+        <h2 class="text-sm font-bold uppercase text-hoba-text">Causal Graph Relations</h2>
+        
+        {amplifiedMechanisms.length > 0 && (
+          <div>
+            <span class="text-hoba-muted uppercase font-bold text-[10px]">Amplifies (Increases likelihood of):</span>
+            <div class="mt-1 space-y-1">
+              {amplifiedMechanisms.map((am) => (
+                <a href={`/mechanisms/${am.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline">
+                  <span class="text-blue-400 font-bold">{am.id}:</span> {am.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {maskedMechanisms.length > 0 && (
+          <div>
+            <span class="text-hoba-muted uppercase font-bold text-[10px]">Masks (Provides plausible cover for):</span>
+            <div class="mt-1 space-y-1">
+              {maskedMechanisms.map((mm) => (
+                <a href={`/mechanisms/${mm.id}`} class="block p-2 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:underline">
+                  <span class="text-blue-400 font-bold">{mm.id}:</span> {mm.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {participatingLoops.length > 0 && (
+          <div>
+            <span class="text-pink-400 uppercase font-bold text-[10px]">Member of Causal Loops:</span>
+            <div class="mt-1 space-y-1">
+              {participatingLoops.map((lp) => (
+                <a href={`/loops/${lp.id}`} class="block p-2 rounded bg-pink-950/20 border border-pink-800/40 text-pink-200 hover:underline">
+                  <span class="font-bold">{lp.id}:</span> {lp.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    <!-- Targeting Interventions -->
+    {targetingInterventions.length > 0 && (
+      <div class="p-6 rounded-xl border border-cyan-900/40 bg-cyan-950/20 text-xs">
+        <h2 class="font-mono font-bold uppercase text-cyan-300 mb-3">Targeted System Interventions:</h2>
+        <div class="space-y-2">
+          {targetingInterventions.map((i) => (
+            <a href={`/interventions/${i.id}`} class="p-3 rounded-lg bg-hoba-card border border-cyan-800/40 block hover:bg-hoba-hover">
+              <span class="font-mono font-bold text-cyan-400">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
+              <p class="text-hoba-muted mt-1">{i.summary}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- JSON API Link -->
+    <div class="p-4 rounded-lg border border-hoba-border bg-hoba-card flex items-center justify-between text-xs font-mono text-hoba-muted">
+      <span>Machine-readable static endpoint:</span>
+      <a href={`/api/v1/mechanisms/${mechanism.id}.json`} target="_blank" class="text-hoba-accent hover:underline">/api/v1/mechanisms/{mechanism.id}.json</a>
+    </div>
+  </div>
+</Layout>

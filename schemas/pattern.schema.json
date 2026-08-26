@@ -1,0 +1,112 @@
+{
+  "$ref": "#/definitions/Pattern",
+  "definitions": {
+    "Pattern": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^HOBA-P-\\d{3}$"
+        },
+        "type": {
+          "type": "string",
+          "const": "pattern"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "required_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-A-\\d{3}$"
+          },
+          "minItems": 1
+        },
+        "compatible_mechanisms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-M-\\d{3}$"
+          },
+          "minItems": 1
+        },
+        "trigger_rule": {
+          "type": "string",
+          "minLength": 10
+        },
+        "establishes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "non_inferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "interventions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^HOBA-I-\\d{3}$"
+          },
+          "default": []
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "superseded_by": {
+          "type": "string",
+          "pattern": "^HOBA-P-\\d{3}$"
+        },
+        "evidence_level": {
+          "type": "string",
+          "enum": [
+            "established",
+            "supported",
+            "hypothesis",
+            "illustrative"
+          ],
+          "default": "supported"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "summary",
+        "required_artifacts",
+        "compatible_mechanisms",
+        "trigger_rule",
+        "establishes",
+        "non_inferences"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

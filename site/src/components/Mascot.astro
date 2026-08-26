@@ -1,0 +1,52 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = "w-48 h-48" } = Astro.props;
+---
+<div class={`inline-flex flex-col items-center justify-center ${className}`}>
+  <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-hoba-text">
+    <!-- Subtle Background Glow -->
+    <circle cx="100" cy="100" r="80" fill="currentColor" fill-opacity="0.03" />
+    
+    <!-- Body Core -->
+    <ellipse cx="90" cy="130" rx="35" ry="25" fill="#1f2633" stroke="currentColor" stroke-width="3" />
+    
+    <!-- Horizontal Grooming Leg Form -->
+    <path d="M 40 145 Q 90 145 155 145" stroke="#58a6ff" stroke-width="9" stroke-linecap="round" />
+    
+    <!-- Iconic Raised 'хоба' Paw / Leg -->
+    <path d="M 85 140 Q 120 100 160 35" stroke="#58a6ff" stroke-width="9" stroke-linecap="round" />
+    <!-- Cute paw pads on raised foot -->
+    <ellipse cx="160" cy="35" rx="7" ry="5" fill="#e6edf3" transform="rotate(-30 160 35)" />
+    <circle cx="154" cy="28" r="2" fill="#58a6ff" />
+    <circle cx="160" cy="26" r="2" fill="#58a6ff" />
+    <circle cx="166" cy="29" r="2" fill="#58a6ff" />
+
+    <!-- Cat Head looking inquisitively -->
+    <circle cx="85" cy="95" r="28" fill="#161b22" stroke="currentColor" stroke-width="3" />
+    
+    <!-- Ears -->
+    <polygon points="65,75 75,45 90,70" fill="#161b22" stroke="currentColor" stroke-width="3" />
+    <polygon points="88,68 105,48 112,75" fill="#161b22" stroke="currentColor" stroke-width="3" />
+    <polygon points="72,70 77,52 86,68" fill="#f0883e" fill-opacity="0.6" />
+    <polygon points="92,66 102,54 107,72" fill="#f0883e" fill-opacity="0.6" />
+
+    <!-- Expressive Forensic Inquisitive Eyes -->
+    <ellipse cx="76" cy="95" rx="5" ry="7" fill="#58a6ff" />
+    <ellipse cx="96" cy="95" rx="5" ry="7" fill="#58a6ff" />
+    <circle cx="78" cy="93" r="2" fill="#ffffff" />
+    <circle cx="98" cy="93" r="2" fill="#ffffff" />
+
+    <!-- Subtle nose & mouth -->
+    <polygon points="84,103 88,103 86,106" fill="#f0883e" />
+    <path d="M 82 108 Q 86 111 90 108" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" />
+    
+    <!-- Whiskers -->
+    <line x1="68" y1="102" x2="50" y2="99" stroke="#8b949e" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="68" y1="106" x2="52" y2="108" stroke="#8b949e" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="104" y1="102" x2="122" y2="99" stroke="#8b949e" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="104" y1="106" x2="120" y2="108" stroke="#8b949e" stroke-width="1.5" stroke-linecap="round" />
+  </svg>
+</div>
