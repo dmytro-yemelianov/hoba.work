@@ -22,6 +22,7 @@ export const artifact = (over: Partial<ArtifactNode> & { id: string }): Artifact
   evidence_level: 'supported',
   evidence_ids: [],
   probes: [],
+  specimens: [],
   non_inferences: ['Does not establish anything by itself.'],
   ...over,
 });
@@ -52,6 +53,7 @@ export const mechanism = (over: Partial<MechanismNode> & { id: string }): Mechan
   evidence_level: 'supported',
   honest_baseline: false,
   evidence_ids: [],
+  specimens: [],
   non_inferences: ['Does not establish intent.'],
   ...over,
 });
@@ -62,6 +64,7 @@ export const pattern = (over: Partial<PatternNode> & { id: string }): PatternNod
   summary: 'A sufficiently long summary for the fixture.',
   required_artifacts: ['A-001'],
   compatible_mechanisms: ['M-001'],
+  specimens: [],
   trigger_rule: 'Triggers when the fixture says so.',
   establishes: ['Something structural.'],
   non_inferences: ['Not malice.'],
