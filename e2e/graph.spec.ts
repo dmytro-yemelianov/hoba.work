@@ -13,9 +13,10 @@ async function hoverANode(page: Page): Promise<void> {
   throw new Error('no node found under the cursor anywhere on the canvas');
 }
 
-/** The checkbox itself is visually hidden; users click the pill that wraps it. */
+/** The checkbox fills its pill, so this is the same click a reader makes. */
 async function toggleLayer(page: Page, type: string): Promise<void> {
-  await page.locator(`label:has(.type-toggle[data-type="${type}"])`).click();
+  const box = page.locator(`.type-toggle[data-type="${type}"]`);
+  await ((await box.isChecked()) ? box.uncheck() : box.check());
 }
 
 test.describe('knowledge graph explorer', () => {

@@ -34,6 +34,9 @@ export function localizePath(pathname: string, lang: Lang): string {
 
 export type Translate = (key: UIKey, vars?: Record<string, string | number>) => string;
 
+/** Several dictionary strings double as inline labels and carry a trailing colon. */
+export const asHeading = (value: string): string => value.replace(/\s*:\s*$/, '');
+
 function interpolate(template: string, vars?: Record<string, string | number>): string {
   if (!vars) return template;
   return template.replace(/\{(\w+)\}/g, (_, name: string) => (name in vars ? String(vars[name]) : `{${name}}`));

@@ -1,8 +1,9 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import EntityBadge from '../../../components/EntityBadge.astro';
+import EntityRow from '../../../components/EntityRow.astro';
 import { getBundle } from '../../../lib/registry';
-import { LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import { asHeading, LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { LoopNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
@@ -20,65 +21,66 @@ const breakingInterventions = bundle.interventions.filter((i) => loop.interventi
 const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.title ?? id;
 ---
 <Layout lang={lang} title={`${loop.id} — ${loop.title}`} description={loop.summary} activeNav="registry">
-  <div class="max-w-4xl mx-auto space-y-8">
-    <nav class="text-xs text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
+  <article class="max-w-3xl mx-auto">
+    <nav class="text-sm text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
       <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
       <a href={`${prefix}/registry?type=loop`} class="hover:text-hoba-text">{t('entity.plural.loop')}</a><span>/</span>
       <span class="text-hoba-accent font-mono">{loop.id}</span>
     </nav>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
-      <div class="flex items-center justify-between gap-2 mb-3">
-        <EntityBadge type="loop" id={loop.id} size="md" lang={lang} />
-        <span class="text-xs text-hoba-muted">{t('common.evidence')}: <strong class="text-hoba-text">{t(`level.${loop.evidence_level}`)}</strong></span>
+    <header class="mt-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <EntityBadge type="loop" id={loop.id} lang={lang} />
+        <span class="pill pill-muted">{asHeading(t('common.evidence'))}: <span class="text-hoba-text">{t(`level.${loop.evidence_level}`)}</span></span>
       </div>
-      <h1 class="text-2xl font-semibold text-hoba-text">{loop.title}</h1>
-      <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{loop.summary}</p>
-    </div>
+      <h1 class="mt-4 text-2xl font-semibold text-hoba-text">{loop.title}</h1>
+      <p class="mt-3 text-lg text-hoba-muted">{loop.summary}</p>
+    </header>
 
-    <div class="p-6 rounded-md border border-hoba-border border-l-2 border-l-pink-500 bg-hoba-card text-sm">
-      <h2 class="font-semibold text-pink-700 dark:text-pink-300 mb-3">{t('loop.edges')}</h2>
-      <div class="space-y-2">
+    <section class="section">
+      <h2 class="section-title">{t('loop.edges')}</h2>
+      <ol class="row-list">
         {loop.edges.map((edge) => (
-          <div class="p-3 rounded bg-hoba-card border border-hoba-border border-l-2 border-l-pink-500 flex items-center justify-between gap-2 flex-wrap">
-            <div><a href={`${prefix}/mechanisms/${edge.from}`} class="text-blue-700 dark:text-blue-400 font-semibold hover:underline font-mono">{edge.from}</a> <span class="text-hoba-muted">({titleOf(edge.from)})</span></div>
-            <span class="text-pink-700 dark:text-pink-400 font-semibold text-xs px-2 py-0.5 rounded bg-hoba-bg">&rarr; {t(`relation.${edge.relation}`)} &rarr;</span>
-            <div><a href={`${prefix}/mechanisms/${edge.to}`} class="text-blue-700 dark:text-blue-400 font-semibold hover:underline font-mono">{edge.to}</a> <span class="text-hoba-muted">({titleOf(edge.to)})</span></div>
-          </div>
+          <li class="row text-base">
+            <a href={`${prefix}/mechanisms/${edge.from}`} class="font-mono text-sm text-hoba-accent">{edge.from}</a>
+            <span class="text-hoba-text">{titleOf(edge.from)}</span>
+            <span class="pill pill-muted">→ {t(`relation.${edge.relation}`)} →</span>
+            <a href={`${prefix}/mechanisms/${edge.to}`} class="font-mono text-sm text-hoba-accent">{edge.to}</a>
+            <span class="text-hoba-text">{titleOf(edge.to)}</span>
+          </li>
         ))}
-      </div>
-    </div>
+      </ol>
+    </section>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
-      <h2 class="text-sm font-semibold text-hoba-text mb-3">{t('loop.members', { n: memberMechanisms.length })}</h2>
-      <div class="space-y-2">
+    <section class="section">
+      <h2 class="section-title">{t('loop.members', { n: memberMechanisms.length })}</h2>
+      <ul class="row-list">
         {memberMechanisms.map((m) => (
-          <a href={`${prefix}/mechanisms/${m.id}`} class="p-3 rounded-md bg-hoba-bg border border-hoba-border hover:border-blue-500/50 block text-xs">
-            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-700 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
-            <strong class="text-hoba-text">{m.title}</strong>
-            <p class="text-hoba-muted text-sm mt-1">{m.summary}</p>
-          </a>
+          <EntityRow
+            id={m.id}
+            title={m.title}
+            href={`${prefix}/mechanisms/${m.id}`}
+            pill={t(`removability.short.${m.facets.removability}`)}
+            note={m.summary}
+          />
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
 
     {breakingInterventions.length > 0 && (
-      <div class="p-6 rounded-md border border-hoba-border border-l-2 border-l-cyan-500 bg-hoba-card text-sm">
-        <h2 class="font-semibold text-cyan-700 dark:text-cyan-300 mb-3">{t('loop.interventions')}</h2>
-        <div class="space-y-2">
+      <section class="section">
+        <h2 class="section-title">{asHeading(t('loop.interventions'))}</h2>
+        <ul class="row-list">
           {breakingInterventions.map((i) => (
-            <a href={`${prefix}/interventions/${i.id}`} class="p-3 rounded-md bg-hoba-card border border-hoba-border border-l-2 border-l-cyan-500 block hover:bg-hoba-hover">
-              <span class="font-semibold text-cyan-700 dark:text-cyan-400 font-mono">{i.id}:</span> <strong class="text-hoba-text">{i.title}</strong>
-              <p class="text-hoba-muted mt-1">{i.summary}</p>
-            </a>
+            <EntityRow id={i.id} title={i.title} href={`${prefix}/interventions/${i.id}`} note={i.summary} />
           ))}
-        </div>
-      </div>
+        </ul>
+      </section>
     )}
 
-    <div class="p-4 rounded-md border border-hoba-border bg-hoba-card flex items-center justify-between text-xs text-hoba-muted gap-2 flex-wrap">
+    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-2">
       <span>{t('common.machineEndpoint')}</span>
-      <a href={`/api/v1/loops/${loop.id}.json`} target="_blank" class="text-hoba-accent hover:underline font-mono">/api/v1/loops/{loop.id}.json</a>
-    </div>
-  </div>
+      <a href={`/api/v1/loops/${loop.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/loops/{loop.id}.json</a>
+    </p>
+  </article>
 </Layout>

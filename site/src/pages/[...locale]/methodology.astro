@@ -8,61 +8,42 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
-const verbs = [
-  { k: 'observed', color: 'text-purple-700 dark:text-purple-400' },
-  { k: 'compatible', color: 'text-blue-700 dark:text-blue-400' },
-  { k: 'supported', color: 'text-amber-700 dark:text-amber-400' },
-  { k: 'established', color: 'text-emerald-700 dark:text-emerald-400' },
-] as const;
+const verbs = ['observed', 'compatible', 'supported', 'established'] as const;
 ---
 <Layout lang={lang} title={t('method.title')} activeNav="methodology">
-  <div class="max-w-4xl mx-auto space-y-10">
-    <div class="border-b border-hoba-border pb-6">
-      <span class="text-xs font-medium text-hoba-muted">{t('method.kicker')}</span>
-      <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('method.heading')}</h1>
-      <p class="text-sm text-hoba-muted mt-2">{t('method.intro')}</p>
-    </div>
+  <article class="prose-hoba mx-auto">
+    <header class="page-header">
+      <p class="kicker">{t('method.kicker')}</p>
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('method.heading')}</h1>
+      <p class="mt-2 lead">{t('method.intro')}</p>
+    </header>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card/60">
-      <h2 class="text-lg font-semibold text-hoba-text mb-2">{t('method.core.title')}</h2>
-      <blockquote class="text-sm text-hoba-accent border-l-2 border-hoba-accent pl-4 my-3 italic">{t('method.core.quote')}</blockquote>
-      <p class="text-sm text-hoba-muted leading-relaxed">{t('method.core.text')}</p>
-    </div>
+    <h2>{t('method.core.title')}</h2>
+    <blockquote>{t('method.core.quote')}</blockquote>
+    <p>{t('method.core.text')}</p>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4">
-      <h2 class="text-lg font-semibold text-hoba-text">{t('method.verbs.title')}</h2>
-      <p class="text-sm text-hoba-muted">{t('method.verbs.sub')}</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-        {verbs.map((v) => (
-          <div class="p-4 rounded-md bg-hoba-bg border border-hoba-border">
-            <span class={`${v.color} font-semibold block mb-1`}>{t(`method.verbs.${v.k}`)}</span>
-            <p class="text-hoba-muted leading-relaxed">{t(`method.verbs.${v.k}.text`)}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <h2>{t('method.verbs.title')}</h2>
+    <p>{t('method.verbs.sub')}</p>
+    <dl>
+      {verbs.map((v) => (
+        <>
+          <dt class="font-mono text-hoba-text">{t(`method.verbs.${v}`)}</dt>
+          <dd class="text-hoba-muted">{t(`method.verbs.${v}.text`)}</dd>
+        </>
+      ))}
+    </dl>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card/60 space-y-3 text-sm leading-relaxed">
-      <h2 class="text-lg font-semibold text-hoba-text">{t('method.honest.title')}</h2>
-      <p class="text-hoba-muted">{t('method.honest.text')}<code class="text-emerald-700 dark:text-emerald-300">honest_baseline: true</code>{t('method.honest.textAfter')}</p>
-    </div>
+    <h2>{t('method.honest.title')}</h2>
+    <p>{t('method.honest.text')}<code>honest_baseline: true</code>{t('method.honest.textAfter')}</p>
 
-    <div id="evidence" class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4 text-xs">
-      <h2 class="text-lg font-semibold text-hoba-text">{t('method.evidence.title')}</h2>
-      <p class="text-hoba-muted leading-relaxed">
-        {t('method.evidence.text1.before')}<code class="text-hoba-accent">evidence_level</code>{t('method.evidence.text1.middle')}<code class="text-hoba-accent">EVD-xxx</code>{t('method.evidence.text1.after')}
-      </p>
-      <p class="text-amber-700 dark:text-amber-300/90 leading-relaxed">
-        {t('method.evidence.text2.before')}<code class="text-hoba-accent">hypothesis</code>{t('method.evidence.text2.after')}
-      </p>
-    </div>
+    <h2 id="evidence">{t('method.evidence.title')}</h2>
+    <p>{t('method.evidence.text1.before')}<code>evidence_level</code>{t('method.evidence.text1.middle')}<code>EVD-xxx</code>{t('method.evidence.text1.after')}</p>
+    <p>{t('method.evidence.text2.before')}<code>hypothesis</code>{t('method.evidence.text2.after')}</p>
 
-    <div class="p-6 rounded-md border border-hoba-border border-l-2 border-l-rose-500 bg-hoba-card space-y-3 text-sm">
-      <h2 class="text-sm font-semibold text-rose-700 dark:text-rose-300">{t('method.nongoals.title')}</h2>
-      <p class="text-hoba-text">{t('method.nongoals.sub')}</p>
-      <ul class="space-y-1 text-hoba-text list-disc list-inside">
-        {(['1', '2', '3', '4', '5'] as const).map((n) => <li>{t(`method.nongoals.${n}`)}</li>)}
-      </ul>
+    <div class="callout border-l-hoba-exogenous">
+      <h2 class="mt-0">{t('method.nongoals.title')}</h2>
+      <p>{t('method.nongoals.sub')}</p>
+      <ul>{(['1', '2', '3', '4', '5'] as const).map((n) => <li>{t(`method.nongoals.${n}`)}</li>)}</ul>
     </div>
-  </div>
+  </article>
 </Layout>

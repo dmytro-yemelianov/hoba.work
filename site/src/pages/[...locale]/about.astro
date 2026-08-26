@@ -11,34 +11,27 @@ const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 ---
 <Layout lang={lang} title={t('about.title')} activeNav="about">
-  <div class="max-w-4xl mx-auto space-y-10">
-    <div class="border-b border-hoba-border pb-6">
-      <span class="text-xs font-medium text-hoba-muted">{t('about.kicker')}</span>
-      <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('about.heading')}</h1>
-      <p class="text-sm text-hoba-muted mt-2">{t('about.sub.before')}<strong class="text-hoba-accent">hoba.work</strong></p>
-    </div>
+  <article class="prose-hoba mx-auto">
+    <header class="page-header">
+      <p class="kicker">{t('about.kicker')}</p>
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('about.heading')}</h1>
+      <p class="mt-2 lead">{t('about.sub.before')}<strong class="text-hoba-text">hoba.work</strong></p>
+    </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-      <div class="md:col-span-8 space-y-4 text-sm text-hoba-muted leading-relaxed">
-        <p>{t('about.p1.before')}<strong class="text-hoba-text">{t('about.p1.strong')}</strong>{t('about.p1.after')}</p>
-        <p>{t('about.p2.before')}<strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
-        <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>
-      </div>
-      <div class="md:col-span-4 flex justify-center">
-        <div class="p-4 rounded-md border border-hoba-border bg-hoba-card text-center">
-          <Mascot className="w-36 h-36 mx-auto" />
-          <span class="text-xs text-hoba-muted">{t('about.mascot')}</span>
-        </div>
-      </div>
-    </div>
+    <p>{t('about.p1.before')}<strong class="text-hoba-text">{t('about.p1.strong')}</strong>{t('about.p1.after')}</p>
+    <p>{t('about.p2.before')}<strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
+    <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>
 
-    <div id="license" class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4 text-xs">
-      <h2 class="text-sm font-semibold text-hoba-text">{t('about.author.title')}</h2>
-      <p class="text-hoba-muted">{t('about.author.text.before')}<a href="https://github.com/dmytro-yemelianov" class="text-hoba-accent font-medium underline underline-offset-2">Dmytro Yemelianov</a>{t('about.author.text.after')}</p>
-      <div class="pt-3 border-t border-hoba-border text-hoba-muted space-y-1 text-xs">
-        <p>• <strong>{t('about.license.content')}</strong> <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-hoba-text underline underline-offset-2">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></p>
-        <p>• <strong>{t('about.license.code')}</strong> <a href="https://opensource.org/licenses/MIT" class="text-hoba-text underline underline-offset-2">MIT License</a></p>
-      </div>
-    </div>
-  </div>
+    <figure class="my-10 text-center">
+      <Mascot className="w-32 h-32 mx-auto" />
+      <figcaption class="mt-2 text-sm text-hoba-muted">{t('about.mascot')}</figcaption>
+    </figure>
+
+    <h2 id="license">{t('about.author.title')}</h2>
+    <p>{t('about.author.text.before')}<a href="https://github.com/dmytro-yemelianov">Dmytro Yemelianov</a>{t('about.author.text.after')}</p>
+    <ul>
+      <li>{t('about.license.content')} <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></li>
+      <li>{t('about.license.code')} <a href="https://opensource.org/licenses/MIT">MIT License</a></li>
+    </ul>
+  </article>
 </Layout>

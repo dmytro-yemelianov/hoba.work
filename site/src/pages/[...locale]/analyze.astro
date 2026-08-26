@@ -32,148 +32,153 @@ const tabs = [
   { k: 'b', letter: 'B' },
   { k: 'a', letter: 'A' },
 ] as const;
+const zones = [
+  { key: 'candidate', count: 'count-candidate', list: 'list-candidate', rule: 'border-l-hoba-candidate' },
+  { key: 'intermediary', count: 'count-intermediary', list: 'list-intermediary', rule: 'border-l-hoba-intermediary' },
+  { key: 'none', count: 'count-noagency', list: 'list-noagency', rule: 'border-l-hoba-exogenous' },
+] as const;
 ---
 <Layout lang={lang} title={t('analyze.title')} activeNav="analyze">
-  <div class="max-w-5xl mx-auto">
-    <div class="mb-8 border-b border-hoba-border pb-6">
-      <div class="flex items-center justify-between gap-4">
+  <div class="max-w-4xl mx-auto">
+    <header class="page-header">
+      <div class="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <span class="text-xs font-medium text-hoba-muted">{t('analyze.kicker', { version: bundle.version })}</span>
-          <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('analyze.heading')}</h1>
+          <p class="kicker">{t('analyze.kicker', { version: bundle.version })}</p>
+          <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('analyze.heading')}</h1>
         </div>
-        <div class="hidden sm:flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-400 bg-hoba-bg border border-hoba-border px-3 py-1.5 rounded-md">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>{t('analyze.privacy')}</span>
-        </div>
+        <span class="pill pill-muted"><span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('analyze.privacy')}</span>
       </div>
-      <p class="text-sm text-hoba-muted mt-2">{t('analyze.intro')}</p>
-    </div>
+      <p class="mt-2 text-base text-hoba-muted">{t('analyze.intro')}</p>
+    </header>
 
-    <div class="grid grid-cols-4 gap-2 mb-8 text-xs" role="tablist">
+    <div class="flex flex-wrap gap-2 mb-8" role="tablist">
       {tabs.map((tab) => (
-        <button id={`tab-${tab.k}`} data-step={tab.k} class="wizard-tab p-3 rounded-md border flex items-center justify-center gap-2" role="tab">
-          <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs">{tab.letter}</span>
-          <span class="hidden sm:inline">{t(`analyze.tab.${tab.k}`)}</span>
+        <button id={`tab-${tab.k}`} data-step={tab.k} class="wizard-tab pill" role="tab">
+          <span class="font-mono">{tab.letter}</span>
+          <span>{t(`analyze.tab.${tab.k}`)}</span>
         </button>
       ))}
     </div>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card/60">
-      <section id="step-h" class="wizard-step space-y-6">
-        <div>
-          <h2 class="text-lg font-semibold text-hoba-text">{t('analyze.h.title')}</h2>
-          <p class="text-sm text-hoba-muted mt-1">{t('analyze.h.sub')}</p>
-        </div>
+    <section id="step-h" class="wizard-step space-y-8">
+      <div>
+        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.h.title')}</h2>
+        <p class="mt-1 text-base text-hoba-muted">{t('analyze.h.sub')}</p>
+      </div>
 
-        <fieldset>
-          <legend class="block text-xs font-semibold text-hoba-muted mb-2">{t('analyze.h.stageLegend')}</legend>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-            {stagesWithBarriers.map((st) => (
-              <label class="flex items-center gap-2 p-2 rounded border border-hoba-border bg-hoba-card hover:bg-hoba-hover cursor-pointer">
-                <input type="radio" name="stage_select" value={st} class="text-hoba-accent focus:ring-0" />
-                <span>{t(`stage.${st}`)}</span>
+      <fieldset>
+        <legend class="text-sm font-medium text-hoba-muted mb-2">{t('analyze.h.stageLegend')}</legend>
+        <div class="flex flex-wrap gap-1.5">
+          {stagesWithBarriers.map((st) => (
+            <label class="pill-toggle">
+              <input type="radio" name="stage_select" value={st} />
+              <span class="pill-label">{t(`stage.${st}`)}</span>
+            </label>
+          ))}
+        </div>
+        <p class="mt-2 text-sm text-hoba-muted">{t('analyze.h.stageHint')}</p>
+      </fieldset>
+
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-2">
+          <label for="artifact-search-input" class="text-sm font-medium text-hoba-muted">{t('analyze.h.selectSignals')}</label>
+          <input type="text" id="artifact-search-input" placeholder={t('analyze.h.filter')} class="px-3 py-1.5 bg-hoba-card border border-hoba-border rounded-md text-sm text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
+        </div>
+        <ul id="artifacts-list" class="row-list">
+          {bundle.artifacts.map((art) => (
+            <li class="artifact-item" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
+              <label class="row cursor-pointer hover:bg-hoba-hover -mx-2 px-2 rounded-md">
+                <input type="checkbox" name="artifacts_selected" value={art.id} class="checkbox mt-1" />
+                <span class="font-mono text-sm text-hoba-accent">{art.id}</span>
+                <span class="text-hoba-text">{art.title}</span>
+                <span class="w-full text-sm text-hoba-muted">{art.summary}</span>
               </label>
-            ))}
-          </div>
-          <p class="text-sm text-hoba-muted mt-2">{t('analyze.h.stageHint')}</p>
-        </fieldset>
+            </li>
+          ))}
+        </ul>
+      </div>
 
+      <div class="pt-4 border-t border-hoba-border flex justify-end">
+        <button data-goto="o" class="btn btn-primary">{t('analyze.h.next')}</button>
+      </div>
+    </section>
+
+    <section id="step-o" class="wizard-step hidden space-y-8">
+      <div>
+        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.o.title')}</h2>
+        <p class="mt-1 text-base text-hoba-muted">{t('analyze.o.sub')}</p>
+      </div>
+      <div id="barriers-output"></div>
+      <div class="pt-4 border-t border-hoba-border flex justify-between">
+        <button data-goto="h" class="btn btn-secondary">{t('analyze.o.back')}</button>
+        <button data-goto="b" class="btn btn-primary">{t('analyze.o.next')}</button>
+      </div>
+    </section>
+
+    <section id="step-b" class="wizard-step hidden space-y-8">
+      <div>
+        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.b.title')}</h2>
+        <p class="mt-1 text-base text-hoba-muted">{t('analyze.b.sub')}</p>
+      </div>
+      <div>
+        <h3 class="section-title">{t('analyze.b.mechanisms')}</h3>
+        <div id="mechanisms-output"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
         <div>
-          <div class="flex items-center justify-between mb-2 gap-2">
-            <label for="artifact-search-input" class="text-xs font-semibold text-hoba-muted">{t('analyze.h.selectSignals')}</label>
-            <input type="text" id="artifact-search-input" placeholder={t('analyze.h.filter')} class="px-3 py-1 bg-hoba-bg border border-hoba-border rounded text-xs text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
-          </div>
-          <div id="artifacts-list" class="space-y-2 max-h-96 overflow-y-auto pr-1">
-            {bundle.artifacts.map((art) => (
-              <label class="artifact-item flex items-start gap-3 p-3 rounded-md border border-hoba-border bg-hoba-bg hover:border-purple-500/40 transition-colors cursor-pointer" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
-                <input type="checkbox" name="artifacts_selected" value={art.id} class="mt-1 text-hoba-accent rounded focus:ring-0" />
-                <div class="flex-1 text-xs">
-                  <div class="flex items-center gap-2"><span class="font-semibold text-purple-700 dark:text-purple-300 font-mono">{art.id}</span><span class="font-semibold text-hoba-text">{art.title}</span></div>
-                  <p class="text-hoba-muted mt-1 leading-relaxed">{art.summary}</p>
-                </div>
-              </label>
-            ))}
-          </div>
+          <h3 class="section-title">{t('analyze.b.patterns')}</h3>
+          <div id="patterns-output"></div>
         </div>
-
-        <div class="pt-4 border-t border-hoba-border flex justify-end">
-          <button data-goto="o" class="px-6 py-2.5 rounded-md bg-hoba-accent hover:opacity-90 text-hoba-bg font-semibold text-xs transition-colors">{t('analyze.h.next')}</button>
-        </div>
-      </section>
-
-      <section id="step-o" class="wizard-step hidden space-y-6">
         <div>
-          <h2 class="text-lg font-semibold text-hoba-text">{t('analyze.o.title')}</h2>
-          <p class="text-sm text-hoba-muted mt-1">{t('analyze.o.sub')}</p>
+          <h3 class="section-title">{t('analyze.b.loops')}</h3>
+          <div id="loops-output"></div>
         </div>
-        <div id="barriers-output" class="space-y-3"></div>
-        <div class="pt-4 border-t border-hoba-border flex justify-between">
-          <button data-goto="h" class="px-5 py-2 rounded-md border border-hoba-border text-hoba-muted hover:text-hoba-text text-xs">{t('analyze.o.back')}</button>
-          <button data-goto="b" class="px-6 py-2.5 rounded-md bg-hoba-accent hover:opacity-90 text-hoba-bg font-semibold text-xs transition-colors">{t('analyze.o.next')}</button>
-        </div>
-      </section>
+      </div>
+      <div class="callout border-l-hoba-exogenous">
+        <h3 class="text-base font-semibold text-hoba-text">{t('analyze.b.nonInf')}</h3>
+        <ul id="noninferences-output" class="mt-2 list-disc pl-5 space-y-1 text-base text-hoba-muted"></ul>
+      </div>
+      <div class="pt-4 border-t border-hoba-border flex justify-between">
+        <button data-goto="o" class="btn btn-secondary">{t('analyze.b.back')}</button>
+        <button data-goto="a" class="btn btn-primary">{t('analyze.b.next')}</button>
+      </div>
+    </section>
 
-      <section id="step-b" class="wizard-step hidden space-y-6">
-        <div>
-          <h2 class="text-lg font-semibold text-hoba-text">{t('analyze.b.title')}</h2>
-          <p class="text-sm text-hoba-muted mt-1">{t('analyze.b.sub')}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h3 class="text-xs font-semibold text-hoba-text mb-3">{t('analyze.b.mechanisms')}</h3>
-            <div id="mechanisms-output" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
-          </div>
-          <div class="space-y-4">
-            <div><h3 class="text-xs font-semibold text-hoba-text mb-2">{t('analyze.b.patterns')}</h3><div id="patterns-output" class="space-y-2 text-xs"></div></div>
-            <div><h3 class="text-xs font-semibold text-pink-700 dark:text-pink-400 mb-2">{t('analyze.b.loops')}</h3><div id="loops-output" class="space-y-2 text-xs"></div></div>
-            <div><h3 class="text-xs font-semibold text-rose-700 dark:text-rose-400 mb-2">{t('analyze.b.nonInf')}</h3><div id="noninferences-output" class="p-3 rounded-md border border-hoba-border border-l-2 border-l-rose-500 bg-hoba-card text-xs text-hoba-text space-y-1.5"></div></div>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-hoba-border flex justify-between">
-          <button data-goto="o" class="px-5 py-2 rounded-md border border-hoba-border text-hoba-muted hover:text-hoba-text text-xs">{t('analyze.b.back')}</button>
-          <button data-goto="a" class="px-6 py-2.5 rounded-md bg-hoba-accent hover:opacity-90 text-hoba-bg font-semibold text-xs transition-colors">{t('analyze.b.next')}</button>
-        </div>
-      </section>
+    <section id="step-a" class="wizard-step hidden space-y-8">
+      <div>
+        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.a.title')}</h2>
+        <p class="mt-1 text-base text-hoba-muted">{t('analyze.a.sub')}</p>
+      </div>
 
-      <section id="step-a" class="wizard-step hidden space-y-6">
-        <div>
-          <h2 class="text-lg font-semibold text-hoba-text">{t('analyze.a.title')}</h2>
-          <p class="text-sm text-hoba-muted mt-1">{t('analyze.a.sub')}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="p-4 rounded-md border border-hoba-border border-l-2 border-l-emerald-500 bg-hoba-card">
-            <div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">{t('analyze.a.zone.candidate')}</span><span id="count-candidate" class="text-xs font-semibold px-2 py-0.5 rounded bg-hoba-bg text-hoba-text">0</span></div>
-            <p class="text-sm text-hoba-muted mb-3">{t('analyze.a.zone.candidate.desc')}</p>
-            <div id="list-candidate" class="space-y-1 text-xs"></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {zones.map((zone) => (
+          <div class={`pl-4 border-l-2 ${zone.rule}`}>
+            <h3 class="flex items-baseline gap-2 text-base font-semibold text-hoba-text">
+              {t(`analyze.a.zone.${zone.key}`)}
+              <span id={zone.count} class="pill pill-muted tabular-nums">0</span>
+            </h3>
+            <p class="mt-1 text-sm text-hoba-muted">{t(`analyze.a.zone.${zone.key}.desc`)}</p>
+            <ul id={zone.list} class="row-list mt-2"></ul>
           </div>
-          <div class="p-4 rounded-md border border-hoba-border border-l-2 border-l-amber-500 bg-hoba-card">
-            <div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold text-amber-700 dark:text-amber-300">{t('analyze.a.zone.intermediary')}</span><span id="count-intermediary" class="text-xs font-semibold px-2 py-0.5 rounded bg-hoba-bg text-hoba-text">0</span></div>
-            <p class="text-sm text-hoba-muted mb-3">{t('analyze.a.zone.intermediary.desc')}</p>
-            <div id="list-intermediary" class="space-y-1 text-xs"></div>
-          </div>
-          <div class="p-4 rounded-md border border-hoba-border border-l-2 border-l-rose-500 bg-hoba-card">
-            <div class="flex items-center justify-between mb-2"><span class="text-xs font-semibold text-rose-700 dark:text-rose-300">{t('analyze.a.zone.none')}</span><span id="count-noagency" class="text-xs font-semibold px-2 py-0.5 rounded bg-hoba-bg text-hoba-text">0</span></div>
-            <p class="text-sm text-hoba-muted mb-3">{t('analyze.a.zone.none.desc')}</p>
-            <div id="list-noagency" class="space-y-1 text-xs"></div>
-          </div>
+        ))}
+      </div>
+
+      <div>
+        <h3 class="section-title">{t('analyze.a.probes')}</h3>
+        <ul id="probes-output" class="row-list"></ul>
+      </div>
+
+      <div id="verdict-banner" class="callout" aria-live="polite"></div>
+
+      <div class="pt-4 border-t border-hoba-border flex flex-wrap items-center justify-between gap-4">
+        <button data-goto="b" class="btn btn-secondary">{t('analyze.a.back')}</button>
+        <div class="flex items-center gap-3">
+          <span id="copy-status" class="text-sm text-hoba-muted" role="status"></span>
+          <button id="btn-copy-report" class="btn btn-secondary">{t('analyze.a.copy')}</button>
+          <button id="btn-reset" class="btn btn-ghost">{t('analyze.a.reset')}</button>
         </div>
-        <div class="p-4 rounded-md border border-hoba-border bg-hoba-bg">
-          <h3 class="text-xs font-semibold text-hoba-accent mb-2">{t('analyze.a.probes')}</h3>
-          <div id="probes-output" class="space-y-2"></div>
-        </div>
-        <div id="verdict-banner" class="p-4 rounded-md border text-xs" aria-live="polite"></div>
-        <div class="pt-4 border-t border-hoba-border flex flex-wrap items-center justify-between gap-4">
-          <button data-goto="b" class="px-5 py-2 rounded-md border border-hoba-border text-hoba-muted hover:text-hoba-text text-xs">{t('analyze.a.back')}</button>
-          <div class="flex gap-2">
-            <button id="btn-copy-report" class="px-4 py-2 rounded-md border border-hoba-border bg-hoba-card hover:bg-hoba-hover text-hoba-text text-xs flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-              <span>{t('analyze.a.copy')}</span>
-            </button>
-            <button id="btn-reset" class="px-4 py-2 rounded-md border border-hoba-border text-hoba-muted hover:text-rose-600 dark:hover:text-rose-400 text-xs">{t('analyze.a.reset')}</button>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
 
   <script type="application/json" id="hoba-bundle" set:html={bundleJSON} />
@@ -184,13 +189,6 @@ const tabs = [
 
     type Step = 'h' | 'o' | 'b' | 'a';
     const STEPS: Step[] = ['h', 'o', 'b', 'a'];
-    const TAB_STYLE: Record<Step, { active: string; badge: string }> = {
-      h: { active: 'border-purple-500/50 bg-hoba-bg text-purple-700 dark:text-purple-300 font-semibold', badge: 'bg-hoba-bg' },
-      o: { active: 'border-emerald-500/50 bg-hoba-bg text-emerald-700 dark:text-emerald-300 font-semibold', badge: 'bg-hoba-bg' },
-      b: { active: 'border-blue-500/50 bg-hoba-bg text-blue-700 dark:text-blue-300 font-semibold', badge: 'bg-hoba-bg' },
-      a: { active: 'border-amber-500/50 bg-hoba-bg text-amber-700 dark:text-amber-300 font-semibold', badge: 'bg-hoba-bg' },
-    };
-    const IDLE_TAB = 'border-hoba-border bg-hoba-card text-hoba-muted font-medium';
 
     const bundle = JSON.parse(document.getElementById('hoba-bundle')!.textContent!) as RegistryBundle;
     const i18n = JSON.parse(document.getElementById('hoba-i18n')!.textContent!) as Record<string, string>;
@@ -201,11 +199,19 @@ const tabs = [
 
     const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
     const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
-    const REMOVABILITY_TAG: Record<string, string> = {
-      candidate: 'bg-hoba-bg text-emerald-700 dark:text-emerald-300 border-hoba-border',
-      intermediary: 'bg-hoba-bg text-amber-700 dark:text-amber-300 border-hoba-border',
-      none: 'bg-hoba-bg text-rose-700 dark:text-rose-300 border-hoba-border',
-    };
+    /** One hairline row: id, linked title, qualifier pills, and a note underneath. */
+    const row = (id: string, href: string, title: string, pills: string[], note?: string) => `
+      <li>
+        <a href="${href}" target="_blank" class="row-link">
+          <span class="font-mono text-sm text-hoba-accent shrink-0">${esc(id)}</span>
+          <span class="text-hoba-text">${esc(title)}</span>
+          ${pills.length ? `<span class="ml-auto flex flex-wrap gap-1.5">${pills.join('')}</span>` : ''}
+          ${note ? `<span class="w-full text-sm text-hoba-muted">${esc(note)}</span>` : ''}
+        </a>
+      </li>`;
+    const pill = (text: string, title?: string) =>
+      `<span class="pill pill-muted"${title ? ` title="${esc(title)}"` : ''}>${esc(text)}</span>`;
+    const empty = (text: string) => `<p class="text-base text-hoba-muted">${esc(text)}</p>`;
 
     function collectInputs(): { artifacts: string[]; stage?: StageId } {
       const artifacts = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]:checked')).map((el) => el.value);
@@ -218,9 +224,9 @@ const tabs = [
       for (const s of STEPS) {
         $(`step-${s}`).classList.toggle('hidden', s !== step);
         const tab = $(`tab-${s}`);
-        tab.className = `wizard-tab p-3 rounded-md border flex items-center justify-center gap-2 ${s === step ? TAB_STYLE[s].active : IDLE_TAB}`;
+        tab.classList.toggle('pill-active', s === step);
+        tab.classList.toggle('pill-muted', s !== step);
         tab.setAttribute('aria-selected', String(s === step));
-        tab.firstElementChild!.className = `w-5 h-5 rounded-full flex items-center justify-center text-xs ${s === step ? TAB_STYLE[s].badge : 'bg-hoba-border'}`;
       }
       if (step === 'o') renderStepO();
       if (step === 'b') renderStepB();
@@ -238,66 +244,56 @@ const tabs = [
     const stageLabel = (s: string) => t(`stage.${s}`);
     const zoneLabel = (z: string) => t(`zone.${z}`);
 
-    const mechanismCard = (m: DiagnosticResult['behind']['compatible_mechanisms'][number]) => `
-      <div class="p-2.5 rounded border border-hoba-border bg-hoba-bg text-xs">
-        <div class="flex items-center justify-between gap-2">
-          <div class="flex items-center gap-1.5">
-            <span class="text-blue-700 dark:text-blue-400 font-semibold font-mono">${esc(m.mechanism.id)}</span>
-            <a href="${prefix}/mechanisms/${esc(m.mechanism.id)}" target="_blank" class="font-semibold text-hoba-text hover:underline">${esc(m.mechanism.title)}</a>
-          </div>
-          <div class="flex items-center gap-1">
-            ${m.honest_baseline ? `<span class="text-xs px-1 rounded bg-hoba-bg text-emerald-700 dark:text-emerald-300 border border-hoba-border">${esc(t('wiz.honestBaseline'))}</span>` : ''}
-            ${m.emitted_by_evidence ? `<span class="text-xs px-1 rounded bg-hoba-bg text-purple-700 dark:text-purple-300 border border-hoba-border" title="${esc(t('wiz.emitsTitle'))}">${esc(t('wiz.emitsSignal'))}</span>` : ''}
-            <span class="text-xs px-1 rounded border ${REMOVABILITY_TAG[m.removability]}">${esc(t(`removability.short.${m.removability}`))}</span>
-          </div>
-        </div>
-        <p class="text-sm text-hoba-muted mt-1 leading-snug">${esc(m.mechanism.summary)}</p>
-      </div>`;
-
     function renderStepO() {
       const res = analyze();
       const container = $('barriers-output');
       if (res.hard_facts.selected_artifacts.length === 0 && !res.hard_facts.stage) {
-        container.innerHTML = `<div class="p-4 rounded-md bg-hoba-bg text-hoba-muted text-xs">${esc(t('wiz.noSelection'))}</div>`;
+        container.innerHTML = empty(t('wiz.noSelection'));
         return;
       }
       if (res.obstacle.identified_barriers.length === 0) {
-        container.innerHTML = `<div class="p-4 rounded-md bg-hoba-bg text-hoba-muted text-xs">${esc(t('wiz.noGate'))}</div>`;
+        container.innerHTML = empty(t('wiz.noGate'));
         return;
       }
-      container.innerHTML = res.obstacle.identified_barriers.map((b) => `
-        <div class="p-3 rounded-md border border-hoba-border border-l-2 border-l-emerald-500 bg-hoba-card flex items-start justify-between gap-4">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-xs font-semibold text-emerald-700 dark:text-emerald-400 font-mono">${esc(b.id)}</span>
-              <a href="${prefix}/barriers/${esc(b.id)}" target="_blank" class="text-xs font-semibold text-hoba-text hover:text-emerald-700 dark:hover:text-emerald-300 underline underline-offset-2">${esc(b.title)}</a>
-              <span class="text-xs px-1.5 py-0.5 rounded bg-hoba-bg text-hoba-text">${esc(stageLabel(b.stage))}</span>
-            </div>
-            <p class="text-sm text-hoba-muted mt-1">${esc(b.description)}</p>
-            <div class="text-xs text-emerald-700 dark:text-emerald-300/80 mt-2"><strong class="text-hoba-text">${esc(t('wiz.passCondition'))}</strong> ${esc(b.pass_condition)}</div>
-          </div>
-          <span class="text-xs text-emerald-700 dark:text-emerald-400/60 shrink-0">${esc(t('wiz.gate', { n: b.order }))}</span>
-        </div>`).join('');
+      container.innerHTML = `<ul class="row-list">${res.obstacle.identified_barriers
+        .map((b) =>
+          row(b.id, `${prefix}/barriers/${b.id}`, b.title, [pill(stageLabel(b.stage)), pill(t('wiz.gate', { n: b.order }))],
+            `${b.description} — ${t('wiz.passCondition')} ${b.pass_condition}`)
+        )
+        .join('')}</ul>`;
     }
 
     function renderStepB() {
       const res = analyze();
-      $('mechanisms-output').innerHTML = res.behind.compatible_mechanisms.map(mechanismCard).join('') || `<div class="p-3 rounded bg-hoba-bg text-xs text-hoba-muted">${esc(t('wiz.noMechanisms'))}</div>`;
-      $('patterns-output').innerHTML = res.behind.related_patterns.map((p) => `
-          <div class="p-2.5 rounded border border-hoba-border border-l-2 border-l-amber-500 bg-hoba-card">
-            <div class="flex items-center gap-1.5 text-xs"><span class="text-amber-700 dark:text-amber-400 font-semibold font-mono">${esc(p.id)}</span><a href="${prefix}/patterns/${esc(p.id)}" target="_blank" class="font-semibold text-hoba-text hover:underline">${esc(p.title)}</a></div>
-            <p class="text-sm text-hoba-muted mt-1">${esc(p.summary)}</p>
-          </div>`).join('') || `<div class="text-xs text-hoba-muted">${esc(t('wiz.noPatterns'))}</div>`;
-      $('loops-output').innerHTML = res.behind.related_loops.map((l) => `
-          <div class="p-2.5 rounded border border-hoba-border border-l-2 border-l-pink-500 bg-hoba-card">
-            <div class="flex items-center gap-1.5 text-xs"><span class="text-pink-700 dark:text-pink-400 font-semibold font-mono">${esc(l.id)}</span><a href="${prefix}/loops/${esc(l.id)}" target="_blank" class="font-semibold text-hoba-text hover:underline">${esc(l.title)}</a></div>
-            <p class="text-sm text-hoba-muted mt-1">${esc(l.summary)}</p>
-          </div>`).join('') || `<div class="text-xs text-hoba-muted">${esc(t('wiz.noLoops'))}</div>`;
-      $('noninferences-output').innerHTML = res.behind.non_inferences.map((ni) => `<div>&bull; ${esc(ni)}</div>`).join('') || `<div>${esc(t('wiz.noNonInf'))}</div>`;
+      $('mechanisms-output').innerHTML = res.behind.compatible_mechanisms.length
+        ? `<ul class="row-list">${res.behind.compatible_mechanisms
+            .map((m) =>
+              row(m.mechanism.id, `${prefix}/mechanisms/${m.mechanism.id}`, m.mechanism.title, [
+                ...(m.honest_baseline ? [pill(t('wiz.honestBaseline'))] : []),
+                ...(m.emitted_by_evidence ? [pill(t('wiz.emitsSignal'), t('wiz.emitsTitle'))] : []),
+                pill(t(`removability.short.${m.removability}`)),
+              ], m.mechanism.summary)
+            )
+            .join('')}</ul>`
+        : empty(t('wiz.noMechanisms'));
+
+      $('patterns-output').innerHTML = res.behind.related_patterns.length
+        ? `<ul class="row-list">${res.behind.related_patterns.map((p) => row(p.id, `${prefix}/patterns/${p.id}`, p.title, [], p.summary)).join('')}</ul>`
+        : empty(t('wiz.noPatterns'));
+
+      $('loops-output').innerHTML = res.behind.related_loops.length
+        ? `<ul class="row-list">${res.behind.related_loops.map((l) => row(l.id, `${prefix}/loops/${l.id}`, l.title, [], l.summary)).join('')}</ul>`
+        : empty(t('wiz.noLoops'));
+
+      $('noninferences-output').innerHTML = (res.behind.non_inferences.length ? res.behind.non_inferences : [t('wiz.noNonInf')])
+        .map((ni) => `<li>${esc(ni)}</li>`)
+        .join('');
     }
 
-    const agencyList = (items: DiagnosticResult['agency']['candidate_removable'], cls: string) =>
-      items.map((m) => `<div class="p-1.5 rounded ${cls} text-xs"><strong>${esc(m.id)}:</strong> ${esc(m.title)}</div>`).join('') || `<div class="text-hoba-muted text-xs">${esc(t('wiz.noneIdentified'))}</div>`;
+    const agencyList = (items: DiagnosticResult['agency']['candidate_removable']) =>
+      items.length
+        ? items.map((m) => row(m.id, `${prefix}/mechanisms/${m.id}`, m.title, [])).join('')
+        : `<li class="row text-hoba-muted text-sm">${esc(t('wiz.noneIdentified'))}</li>`;
 
     function summaryText(res: DiagnosticResult): string {
       if (res.hard_facts.selected_artifacts.length === 0) return t('wiz.summaryNoObs');
@@ -310,30 +306,34 @@ const tabs = [
       $('count-candidate').textContent = String(res.counts.candidate_removable);
       $('count-intermediary').textContent = String(res.counts.intermediary);
       $('count-noagency').textContent = String(res.counts.no_agency);
-      $('list-candidate').innerHTML = agencyList(res.agency.candidate_removable, 'bg-hoba-bg border border-hoba-border text-hoba-text');
-      $('list-intermediary').innerHTML = agencyList(res.agency.intermediary_dependent, 'bg-hoba-bg border border-hoba-border text-hoba-text');
-      $('list-noagency').innerHTML = agencyList(res.agency.exogenous_no_agency, 'bg-hoba-bg border border-hoba-border text-hoba-text');
-      $('probes-output').innerHTML = res.agency.diagnostic_probes.map((p) => `
-          <div class="p-3 rounded border border-hoba-border bg-hoba-card text-xs">
-            <div class="flex items-center justify-between text-hoba-accent font-semibold mb-1"><span>${esc(t('wiz.probe', { id: p.id }))}</span><span class="text-xs px-1.5 py-0.5 rounded bg-hoba-bg text-hoba-muted border border-hoba-border">${esc(t('wiz.cost', { cost: t(`cost.${p.cost}`) }))}</span></div>
-            <div class="text-hoba-text"><strong class="text-hoba-muted">${esc(t('wiz.action'))}</strong> ${esc(p.action)}</div>
-            <div class="text-hoba-muted mt-1"><strong class="text-hoba-text">${esc(t('wiz.expectedSignal'))}</strong> ${esc(p.expected_signal)}</div>
-          </div>`).join('') || `<div class="text-xs text-hoba-muted">${esc(t('wiz.noProbes'))}</div>`;
+      $('list-candidate').innerHTML = agencyList(res.agency.candidate_removable);
+      $('list-intermediary').innerHTML = agencyList(res.agency.intermediary_dependent);
+      $('list-noagency').innerHTML = agencyList(res.agency.exogenous_no_agency);
+
+      $('probes-output').innerHTML = res.agency.diagnostic_probes.length
+        ? res.agency.diagnostic_probes
+            .map((p) => `
+              <li class="py-3">
+                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span class="font-mono text-sm text-hoba-accent">${esc(t('wiz.probe', { id: p.id }))}</span>
+                  <span class="ml-auto">${pill(t('wiz.cost', { cost: t(`cost.${p.cost}`) }))}</span>
+                </div>
+                <p class="mt-1 text-base text-hoba-text"><span class="text-hoba-muted">${esc(t('wiz.action'))}</span> ${esc(p.action)}</p>
+                <p class="mt-0.5 text-base text-hoba-muted"><span class="text-hoba-text">${esc(t('wiz.expectedSignal'))}</span> ${esc(p.expected_signal)}</p>
+              </li>`)
+            .join('')
+        : `<li class="row text-hoba-muted text-sm">${esc(t('wiz.noProbes'))}</li>`;
 
       const banner = $('verdict-banner');
       const zone = zoneLabel(res.agency.agency_zone);
-      if (res.verdict === 'low_signal_ambiguity') {
-        banner.className = 'p-4 rounded-md border border-hoba-border border-l-2 border-l-amber-500 bg-hoba-card text-hoba-text text-xs';
-        banner.innerHTML = `<strong>${esc(t('wiz.stop', { zone }))}</strong> ${esc(summaryText(res))} ${esc(t('wiz.stopTail'))}`;
-      } else {
-        banner.className = 'p-4 rounded-md border border-hoba-border border-l-2 border-l-blue-500 bg-hoba-card text-hoba-text text-xs';
-        banner.innerHTML = `<strong>${esc(t('wiz.verdict', { zone }))}</strong> ${esc(summaryText(res))} ${esc(t('wiz.verdictTail'))}`;
-      }
+      const low = res.verdict === 'low_signal_ambiguity';
+      banner.className = `callout ${low ? 'border-l-hoba-intermediary' : 'border-l-hoba-accent'}`;
+      banner.innerHTML = `<p class="text-base text-hoba-text"><strong>${esc(low ? t('wiz.stop', { zone }) : t('wiz.verdict', { zone }))}</strong> ${esc(summaryText(res))} ${esc(low ? t('wiz.stopTail') : t('wiz.verdictTail'))}</p>`;
     }
 
     $('btn-copy-report').addEventListener('click', async () => {
       const res = analyze();
-      const list = (items: string[], empty: string) => (items.length ? items : [`- ${empty}`]);
+      const list = (items: string[], fallback: string) => (items.length ? items : [`- ${fallback}`]);
       const md = [
         `# ${t('wiz.md.title')}`,
         `**${t('wiz.md.generatedBy')}:** https://hoba.work${prefix}/analyze  `,
@@ -368,12 +368,15 @@ const tabs = [
         `> ${t('wiz.disclaimer')}`,
         '',
       ].join('\n');
+      // A modal alert would freeze the page; the status line is announced instead.
+      const status = $('copy-status');
       try {
         await navigator.clipboard.writeText(md);
-        alert(t('wiz.copied'));
+        status.textContent = t('wiz.copied');
       } catch {
-        alert(t('wiz.clipboardDenied'));
+        status.textContent = t('wiz.clipboardDenied');
       }
+      window.setTimeout(() => (status.textContent = ''), 4000);
     });
 
     $('btn-reset').addEventListener('click', () => {

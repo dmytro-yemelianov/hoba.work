@@ -10,18 +10,9 @@ interface Props {
 
 const { type, id, lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
-const DOT: Record<EntityType, string> = {
-  artifact: 'bg-purple-500',
-  barrier: 'bg-emerald-500',
-  mechanism: 'bg-blue-500',
-  pattern: 'bg-amber-500',
-  loop: 'bg-pink-500',
-  intervention: 'bg-cyan-500',
-  evidence: 'bg-gray-500',
-};
 ---
 <span class="pill">
-  <span class={`dot ${DOT[type]}`} aria-hidden="true"></span>
+  <span class="dot" style={`background-color: rgb(var(--g-${type}))`} aria-hidden="true"></span>
   <span>{t(`entity.${type}`)}</span>
   {id && <span class="font-mono text-hoba-muted">{id}</span>}
 </span>

@@ -1,8 +1,9 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import EntityBadge from '../../../components/EntityBadge.astro';
+import EntityRow from '../../../components/EntityRow.astro';
 import { getBundle } from '../../../lib/registry';
-import { LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import { asHeading, LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { ArtifactNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
@@ -19,90 +20,84 @@ const compatibleMechanisms = bundle.mechanisms.filter((m) => m.emissions.some((e
 const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.includes(artifact.id));
 ---
 <Layout lang={lang} title={`${artifact.id} — ${artifact.title}`} description={artifact.summary} activeNav="registry">
-  <div class="max-w-4xl mx-auto space-y-8">
-    <nav class="text-xs text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
+  <article class="max-w-3xl mx-auto">
+    <nav class="text-sm text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
       <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
       <a href={`${prefix}/registry?type=artifact`} class="hover:text-hoba-text">{t('entity.plural.artifact')}</a><span>/</span>
       <span class="text-hoba-accent font-mono">{artifact.id}</span>
     </nav>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <EntityBadge type="artifact" id={artifact.id} size="md" lang={lang} />
-        <div class="flex items-center gap-2 text-xs text-hoba-muted">
-          <span>{t('common.evidence')}: <strong class="text-hoba-text">{t(`level.${artifact.evidence_level}`)}</strong></span><span>•</span>
-          <span>{t('common.status')}: <strong class="text-emerald-700 dark:text-emerald-400">{t(`status.${artifact.status}`)}</strong></span>
-        </div>
-      </div>
-      <h1 class="text-2xl font-semibold text-hoba-text">{artifact.title}</h1>
-      <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{artifact.summary}</p>
-      <div class="mt-4 pt-4 border-t border-hoba-border flex flex-wrap gap-2 text-xs">
-        <span class="text-hoba-muted">{t('common.stages')}</span>
-        {artifact.stages.map((st) => <span class="px-2 py-0.5 rounded bg-hoba-bg border border-hoba-border text-hoba-text text-xs">{t(`stage.${st}`)}</span>)}
-      </div>
-    </div>
+    <header class="mt-5">
+      <EntityBadge type="artifact" id={artifact.id} lang={lang} />
+      <h1 class="mt-4 text-2xl font-semibold text-hoba-text">{artifact.title}</h1>
+      <p class="mt-3 text-lg text-hoba-muted">{artifact.summary}</p>
+      <ul class="mt-5 flex flex-wrap gap-1.5">
+        {artifact.stages.map((st) => <li class="pill pill-muted">{t(`stage.${st}`)}</li>)}
+        <li class="pill pill-muted">{asHeading(t('common.evidence'))}: <span class="text-hoba-text">{t(`level.${artifact.evidence_level}`)}</span></li>
+        <li class="pill pill-muted">{asHeading(t('common.status'))}: <span class="text-hoba-text">{t(`status.${artifact.status}`)}</span></li>
+      </ul>
+    </header>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card/50">
-      <h2 class="text-xs font-medium text-hoba-muted mb-2">{t('art.posture.title')}</h2>
-      <p class="text-sm text-hoba-muted leading-relaxed">{t('art.posture.text')}</p>
+    <div class="callout border-l-hoba-border">
+      <h2 class="text-base font-semibold text-hoba-text">{t('art.posture.title')}</h2>
+      <p class="mt-1 text-base text-hoba-muted">{t('art.posture.text')}</p>
     </div>
 
     {artifact.probes.length > 0 && (
-      <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
-        <h2 class="text-sm font-semibold text-hoba-text mb-4">{t('art.probes')}</h2>
-        <div class="space-y-3">
+      <section class="section">
+        <h2 class="section-title">{t('art.probes')}</h2>
+        <ul class="row-list">
           {artifact.probes.map((probe) => (
-            <div class="p-3 rounded-md border border-hoba-border bg-hoba-bg text-xs">
-              <div class="flex items-center justify-between text-hoba-accent font-semibold mb-1">
-                <span>{t('art.probeLabel', { id: probe.id })}</span>
-                <span class="text-xs px-1.5 py-0.5 rounded bg-hoba-card text-hoba-muted border border-hoba-border">{t('wiz.cost', { cost: t(`cost.${probe.cost}`) })}</span>
+            <li class="py-3">
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span class="font-mono text-sm text-hoba-accent">{t('art.probeLabel', { id: probe.id })}</span>
+                <span class="pill pill-muted ml-auto">{t('wiz.cost', { cost: t(`cost.${probe.cost}`) })}</span>
               </div>
-              <div class="text-hoba-text"><strong class="text-hoba-muted">{t('wiz.action')}</strong> {probe.action}</div>
-              <div class="text-hoba-muted mt-1"><strong class="text-hoba-text">{t('wiz.expectedSignal')}</strong> {probe.expected_signal}</div>
-            </div>
+              <p class="mt-1 text-base text-hoba-text"><span class="text-hoba-muted">{t('wiz.action')}</span> {probe.action}</p>
+              <p class="mt-0.5 text-base text-hoba-muted"><span class="text-hoba-text">{t('wiz.expectedSignal')}</span> {probe.expected_signal}</p>
+            </li>
           ))}
-        </div>
-      </div>
+        </ul>
+      </section>
     )}
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-sm font-semibold text-hoba-text">{t('art.compatible', { n: compatibleMechanisms.length })}</h2>
-        <a href={`${prefix}/analyze`} class="text-xs text-hoba-accent hover:underline">{t('art.runWizard')}</a>
+    <section class="section">
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 class="section-title mb-0">{t('art.compatible', { n: compatibleMechanisms.length })}</h2>
+        <a href={`${prefix}/analyze`} class="text-sm text-hoba-accent underline underline-offset-2">{t('art.runWizard')}</a>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <ul class="row-list mt-3">
         {compatibleMechanisms.map((m) => (
-          <a href={`${prefix}/mechanisms/${m.id}`} class="p-3 rounded-md border border-hoba-border bg-hoba-bg hover:border-blue-500/50 transition-colors block text-xs">
-            <div class="flex items-center justify-between mb-1"><span class="font-semibold text-blue-700 dark:text-blue-400 font-mono">{m.id}</span><span class="text-xs px-1 rounded bg-hoba-card text-hoba-muted">{t(`removability.short.${m.facets.removability}`)}</span></div>
-            <div class="font-semibold text-hoba-text">{m.title}</div>
-            <p class="text-hoba-muted text-sm mt-1 line-clamp-2">{m.summary}</p>
-          </a>
+          <EntityRow
+            id={m.id}
+            title={m.title}
+            href={`${prefix}/mechanisms/${m.id}`}
+            pill={t(`removability.short.${m.facets.removability}`)}
+            note={m.summary}
+          />
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
 
-    <div class="p-6 rounded-md border border-hoba-border border-l-2 border-l-rose-500 bg-hoba-card text-sm">
-      <h2 class="font-semibold text-rose-700 dark:text-rose-300 mb-2">{t('art.nonInf')}</h2>
-      <ul class="space-y-1.5 text-hoba-text list-disc list-inside">{artifact.non_inferences.map((ni) => <li>{ni}</li>)}</ul>
+    <div class="callout border-l-hoba-exogenous">
+      <h2 class="text-base font-semibold text-hoba-text">{asHeading(t('art.nonInf'))}</h2>
+      <ul class="mt-2 list-disc pl-5 space-y-1 text-base text-hoba-muted">{artifact.non_inferences.map((ni) => <li>{ni}</li>)}</ul>
     </div>
 
     {relatedPatterns.length > 0 && (
-      <div class="p-6 rounded-md border border-hoba-border border-l-2 border-l-amber-500 bg-hoba-card text-sm">
-        <h2 class="font-semibold text-amber-700 dark:text-amber-300 mb-2">{t('art.patterns')}</h2>
-        <div class="space-y-2">
+      <section class="section">
+        <h2 class="section-title">{asHeading(t('art.patterns'))}</h2>
+        <ul class="row-list">
           {relatedPatterns.map((p) => (
-            <a href={`${prefix}/patterns/${p.id}`} class="p-2.5 rounded bg-hoba-card/60 border border-hoba-border border-l-2 border-l-amber-500 block hover:bg-hoba-hover">
-              <span class="font-semibold text-amber-700 dark:text-amber-400 font-mono">{p.id}:</span> <strong class="text-hoba-text">{p.title}</strong>
-              <p class="text-hoba-muted mt-0.5">{p.summary}</p>
-            </a>
+            <EntityRow id={p.id} title={p.title} href={`${prefix}/patterns/${p.id}`} note={p.summary} />
           ))}
-        </div>
-      </div>
+        </ul>
+      </section>
     )}
 
-    <div class="p-4 rounded-md border border-hoba-border bg-hoba-card flex items-center justify-between text-xs text-hoba-muted gap-2 flex-wrap">
+    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-2">
       <span>{t('common.machineEndpoint')}</span>
-      <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent hover:underline font-mono">/api/v1/artifacts/{artifact.id}.json</a>
-    </div>
-  </div>
+      <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/artifacts/{artifact.id}.json</a>
+    </p>
+  </article>
 </Layout>

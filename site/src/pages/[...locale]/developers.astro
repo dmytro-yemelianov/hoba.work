@@ -10,6 +10,13 @@ const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const endpoints = ['artifacts', 'barriers', 'mechanisms', 'patterns', 'loops', 'interventions', 'evidence', 'graph'];
 const tools = ['get_registry_info', 'search_registry', 'get_node', 'explain_observation', 'find_compatible_mechanisms', 'get_diagnostic_probes', 'find_patterns', 'get_interventions', 'traverse_graph', 'get_methodology'];
+const exports = ['registry.json', 'registry.ndjson', 'nodes.csv', 'edges.csv', 'graph.graphml', 'graph.json', 'schema.json', 'manifest.json'];
+const cli = [
+  { command: 'hoba search "reposted"', text: t('dev.cli.search') },
+  { command: 'hoba explain A-004 --stage technical', text: t('dev.cli.explain') },
+  { command: 'hoba show M-001', text: t('dev.cli.show') },
+  { command: 'hoba validate --strict', text: t('dev.cli.validate') },
+];
 const mcpConfig = `${t('dev.mcp.configComment1')}
 ${t('dev.mcp.configComment2')}
 {
@@ -22,62 +29,51 @@ ${t('dev.mcp.configComment2')}
 }`;
 ---
 <Layout lang={lang} title={t('dev.title')} activeNav="developers">
-  <div class="max-w-4xl mx-auto space-y-10">
-    <div class="border-b border-hoba-border pb-6">
-      <span class="text-xs font-medium text-hoba-muted">{t('dev.kicker')}</span>
-      <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('dev.heading')}</h1>
-      <p class="text-sm text-hoba-muted mt-2">{t('dev.intro')}</p>
-    </div>
+  <article class="prose-hoba mx-auto">
+    <header class="page-header">
+      <p class="kicker">{t('dev.kicker')}</p>
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('dev.heading')}</h1>
+      <p class="mt-2 lead">{t('dev.intro')}</p>
+    </header>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-hoba-text">{t('dev.rest.title')}</h2>
-        <a href="/openapi.json" target="_blank" class="text-xs text-hoba-accent hover:underline font-mono">/openapi.json &rarr;</a>
-      </div>
-      <p class="text-sm text-hoba-muted leading-relaxed">{t('dev.rest.text')}</p>
-      <div class="space-y-2 text-xs">
-        {endpoints.map((e) => (
-          <div class="p-2.5 rounded bg-hoba-bg border border-hoba-border flex items-center justify-between">
-            <span><code>GET /api/v1/{e}</code></span>
-            <a href={`/api/v1/${e}/index.json`} target="_blank" class="text-hoba-accent hover:underline text-xs font-mono">{t('dev.rest.view')}</a>
-          </div>
-        ))}
-      </div>
-    </div>
+    <h2>{t('dev.rest.title')}</h2>
+    <p>{t('dev.rest.text')} <a href="/openapi.json" target="_blank" class="font-mono">/openapi.json</a></p>
+    <ul class="row-list">
+      {endpoints.map((e) => (
+        <li>
+          <a href={`/api/v1/${e}/index.json`} target="_blank" class="row-link">
+            <code class="text-sm">GET /api/v1/{e}</code>
+            <span class="ml-auto text-sm text-hoba-accent">{t('dev.rest.view')} →</span>
+          </a>
+        </li>
+      ))}
+    </ul>
 
-    <div id="mcp" class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-hoba-text">{t('dev.mcp.title')}</h2>
-        <span class="text-xs px-2 py-0.5 rounded bg-hoba-bg text-cyan-700 dark:text-cyan-300 border border-hoba-border">{t('dev.mcp.badge')}</span>
-      </div>
-      <p class="text-sm text-hoba-muted leading-relaxed">{t('dev.mcp.text')}</p>
-      <div class="p-4 rounded-md bg-hoba-bg border border-hoba-border text-xs text-hoba-text overflow-x-auto"><pre><code>{mcpConfig}</code></pre></div>
-      <div class="text-xs text-hoba-muted space-y-1">
-        <strong class="text-hoba-text">{t('dev.mcp.tools')}</strong>
-        <p>{tools.map((tool, i) => <><code>{tool}</code>{i < tools.length - 1 ? ', ' : '.'}</>)}</p>
-        <p class="text-amber-700 dark:text-amber-300/80">{t('dev.mcp.npm')}</p>
-      </div>
-    </div>
+    <h2 id="mcp">{t('dev.mcp.title')} <span class="pill pill-muted align-middle">{t('dev.mcp.badge')}</span></h2>
+    <p>{t('dev.mcp.text')}</p>
+    <pre tabindex="0"><code>{mcpConfig}</code></pre>
+    <p><strong class="text-hoba-text">{t('dev.mcp.tools')}</strong> {tools.map((tool, i) => <><code>{tool}</code>{i < tools.length - 1 ? ', ' : '.'}</>)}</p>
+    <p>{t('dev.mcp.npm')}</p>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4">
-      <h2 class="text-lg font-semibold text-hoba-text">{t('dev.cli.title')}</h2>
-      <div class="p-4 rounded-md bg-hoba-bg border border-hoba-border text-xs text-emerald-700 dark:text-emerald-300"><code>pnpm build:packages && node packages/cli/dist/cli.js --help</code></div>
-      <div class="p-4 rounded-md bg-hoba-bg border border-hoba-border text-xs text-hoba-muted space-y-1">
-        <p><strong class="text-hoba-text">hoba search "reposted"</strong> — {t('dev.cli.search')}</p>
-        <p><strong class="text-hoba-text">hoba explain A-004 --stage technical</strong> — {t('dev.cli.explain')}</p>
-        <p><strong class="text-hoba-text">hoba show M-001</strong> — {t('dev.cli.show')}</p>
-        <p><strong class="text-hoba-text">hoba validate --strict</strong> — {t('dev.cli.validate')}</p>
-        <p class="text-hoba-muted">{t('dev.cli.json')}</p>
-      </div>
-    </div>
+    <h2>{t('dev.cli.title')}</h2>
+    <pre tabindex="0"><code>pnpm build:packages && node packages/cli/dist/cli.js --help</code></pre>
+    <dl>
+      {cli.map((c) => (
+        <>
+          <dt><code class="whitespace-nowrap">{c.command}</code></dt>
+          <dd>{c.text}</dd>
+        </>
+      ))}
+    </dl>
+    <p>{t('dev.cli.json')}</p>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-3">
-      <h2 class="text-lg font-semibold text-hoba-text">{t('dev.exports.title')}</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-        {['registry.json', 'registry.ndjson', 'nodes.csv', 'edges.csv', 'graph.graphml', 'graph.json', 'schema.json', 'manifest.json'].map((f) => (
-          <a href={`/data/latest/${f}`} target="_blank" class="p-3 rounded bg-hoba-bg border border-hoba-border text-hoba-text hover:border-hoba-accent text-center block">{f}</a>
-        ))}
-      </div>
-    </div>
-  </div>
+    <h2>{t('dev.exports.title')}</h2>
+    <ul class="row-list">
+      {exports.map((f) => (
+        <li>
+          <a href={`/data/latest/${f}`} target="_blank" class="row-link"><span class="font-mono text-sm text-hoba-accent">{f}</span></a>
+        </li>
+      ))}
+    </ul>
+  </article>
 </Layout>

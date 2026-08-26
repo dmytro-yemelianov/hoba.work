@@ -1,13 +1,14 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import EntityBadge from '../../../components/EntityBadge.astro';
-import { getBundle, getGraph } from '../../../lib/registry';
-import { LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import EntityRow from '../../../components/EntityRow.astro';
+import { getGraph } from '../../../lib/registry';
+import { asHeading, LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { InterventionNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
   return LANGS.flatMap((lang) =>
-    getBundle(lang).interventions.map((intervention) => ({ params: { locale: lang === 'uk' ? 'uk' : undefined, id: intervention.id }, props: { lang, intervention } }))
+    getGraph(lang).bundle.interventions.map((intervention) => ({ params: { locale: lang === 'uk' ? 'uk' : undefined, id: intervention.id }, props: { lang, intervention } }))
   );
 }
 
@@ -23,53 +24,48 @@ const targets = intervention.targets.map((id) => {
 });
 ---
 <Layout lang={lang} title={`${intervention.id} — ${intervention.title}`} description={intervention.summary} activeNav="registry">
-  <div class="max-w-4xl mx-auto space-y-8">
-    <nav class="text-xs text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
+  <article class="max-w-3xl mx-auto">
+    <nav class="text-sm text-hoba-muted flex items-center gap-2" aria-label="Breadcrumb">
       <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
       <a href={`${prefix}/registry?type=intervention`} class="hover:text-hoba-text">{t('entity.plural.intervention')}</a><span>/</span>
       <span class="text-hoba-accent font-mono">{intervention.id}</span>
     </nav>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <EntityBadge type="intervention" id={intervention.id} size="md" lang={lang} />
-        <div class="flex items-center gap-2 text-xs text-hoba-muted flex-wrap">
-          <span>{t('int.actor')} <strong class="text-cyan-700 dark:text-cyan-300">{t(`iactor.${intervention.actor}`)}</strong></span><span>•</span>
-          <span>{t('int.scope')} <strong class="text-hoba-text">{t(`scope.${intervention.scope}`)}</strong></span><span>•</span>
-          <span>{t('int.cost')} <strong class="text-hoba-text">{t(`cost.${intervention.cost}`)}</strong></span>
-        </div>
-      </div>
-      <h1 class="text-2xl font-semibold text-hoba-text">{intervention.title}</h1>
-      <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{intervention.summary}</p>
-    </div>
+    <header class="mt-5">
+      <EntityBadge type="intervention" id={intervention.id} lang={lang} />
+      <h1 class="mt-4 text-2xl font-semibold text-hoba-text">{intervention.title}</h1>
+      <p class="mt-3 text-lg text-hoba-muted">{intervention.summary}</p>
+      <ul class="mt-5 flex flex-wrap gap-1.5">
+        <li class="pill pill-muted">{asHeading(t('int.actor'))}: <span class="text-hoba-text">{t(`iactor.${intervention.actor}`)}</span></li>
+        <li class="pill pill-muted">{asHeading(t('int.scope'))}: <span class="text-hoba-text">{t(`scope.${intervention.scope}`)}</span></li>
+        <li class="pill pill-muted">{asHeading(t('int.cost'))}: <span class="text-hoba-text">{t(`cost.${intervention.cost}`)}</span></li>
+        <li class="pill pill-muted">{asHeading(t('common.evidence'))}: <span class="text-hoba-text">{t(`level.${intervention.evidence_level}`)}</span></li>
+      </ul>
+    </header>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card text-sm">
-      <h2 class="text-xs font-semibold text-hoba-muted mb-2">{t('int.targets')}</h2>
-      <div class="flex flex-wrap gap-2">
+    <section class="section">
+      <h2 class="section-title">{asHeading(t('int.targets'))}</h2>
+      <ul class="row-list">
         {targets.map((tg) => (
-          <a href={tg.href} class="px-2.5 py-1 rounded bg-hoba-bg border border-hoba-border hover:border-cyan-500/50 block">
-            <span class="text-cyan-700 dark:text-cyan-300 font-semibold font-mono">{tg.id}</span>
-            <span class="text-hoba-muted ml-1">{tg.title}</span>
-            {tg.type && <span class="text-xs text-hoba-muted ml-1">({t(`entity.${tg.type as 'mechanism'}`)})</span>}
-          </a>
+          <EntityRow id={tg.id} title={tg.title} href={tg.href} pill={tg.type ? t(`entity.${tg.type as 'mechanism'}`) : undefined} />
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="p-5 rounded-md border border-hoba-border border-l-2 border-l-emerald-500 bg-hoba-card text-sm">
-        <h2 class="font-semibold text-emerald-700 dark:text-emerald-300 mb-3">{t('int.effects')}</h2>
-        <ul class="space-y-2 text-hoba-text list-disc list-inside">{intervention.expected_effects.map((ef) => <li>{ef}</li>)}</ul>
+    <section class="section grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+      <div>
+        <h2 class="section-title">{asHeading(t('int.effects'))}</h2>
+        <ul class="list-disc pl-5 space-y-1 text-base text-hoba-muted">{intervention.expected_effects.map((ef) => <li>{ef}</li>)}</ul>
       </div>
-      <div class="p-5 rounded-md border border-hoba-border border-l-2 border-l-cyan-500 bg-hoba-card text-sm">
-        <h2 class="font-semibold text-cyan-700 dark:text-cyan-300 mb-3">{t('int.measurements')}</h2>
-        <ul class="space-y-2 text-hoba-text list-disc list-inside">{intervention.measurements.map((m) => <li class=""><code>{m}</code></li>)}</ul>
+      <div>
+        <h2 class="section-title">{asHeading(t('int.measurements'))}</h2>
+        <ul class="list-disc pl-5 space-y-1 text-base text-hoba-muted">{intervention.measurements.map((m) => <li><code class="text-sm">{m}</code></li>)}</ul>
       </div>
-    </div>
+    </section>
 
-    <div class="p-4 rounded-md border border-hoba-border bg-hoba-card flex items-center justify-between text-xs text-hoba-muted gap-2 flex-wrap">
+    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-2">
       <span>{t('common.machineEndpoint')}</span>
-      <a href={`/api/v1/interventions/${intervention.id}.json`} target="_blank" class="text-hoba-accent hover:underline font-mono">/api/v1/interventions/{intervention.id}.json</a>
-    </div>
-  </div>
+      <a href={`/api/v1/interventions/${intervention.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/interventions/{intervention.id}.json</a>
+    </p>
+  </article>
 </Layout>

@@ -154,8 +154,8 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
       <fieldset class="flex flex-wrap items-center gap-1.5">
         <legend class="sr-only">{t('graph.filterLayers')}</legend>
         {layers.map((type) => (
-          <label class="pill-toggle">
-            <input type="checkbox" class="type-toggle sr-only" data-type={type} checked />
+          <label class="pill-toggle pill-filter">
+            <input type="checkbox" class="type-toggle" data-type={type} checked />
             <span class="dot" style={`background-color: rgb(var(--g-${type}))`} aria-hidden="true"></span>
             <span class="pill-label">{t(`entity.plural.${type}`)}</span>
           </label>

@@ -8,38 +8,31 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
+const commands = [
+  'git clone https://github.com/dmytro-yemelianov/hoba.work.git',
+  'pnpm install',
+  'pnpm validate:strict',
+  'pnpm test',
+  'pnpm build',
+];
 ---
 <Layout lang={lang} title={t('contrib.title')} activeNav="contribute">
-  <div class="max-w-4xl mx-auto space-y-10">
-    <div class="border-b border-hoba-border pb-6">
-      <span class="text-xs font-medium text-hoba-muted">{t('contrib.kicker')}</span>
-      <h1 class="text-2xl font-semibold text-hoba-text mt-1">{t('contrib.heading')}</h1>
-      <p class="text-sm text-hoba-muted mt-2">{t('contrib.intro')}</p>
-    </div>
+  <article class="prose-hoba mx-auto">
+    <header class="page-header">
+      <p class="kicker">{t('contrib.kicker')}</p>
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text">{t('contrib.heading')}</h1>
+      <p class="mt-2 lead">{t('contrib.intro')}</p>
+    </header>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-4 text-sm">
-      <h2 class="text-sm font-semibold text-hoba-text">{t('contrib.workflow')}</h2>
-      <div class="p-4 rounded-md bg-hoba-bg border border-hoba-border space-y-2 text-emerald-700 dark:text-emerald-300">
-        <p>git clone https://github.com/dmytro-yemelianov/hoba.work.git</p>
-        <p>pnpm install</p>
-        <p>pnpm validate:strict</p>
-        <p>pnpm test</p>
-        <p>pnpm build</p>
-      </div>
-    </div>
+    <h2>{t('contrib.workflow')}</h2>
+    <pre tabindex="0"><code>{commands.join('\n')}</code></pre>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card space-y-3">
-      <h2 class="text-sm font-semibold text-hoba-text">{t('contrib.checks.title')}</h2>
-      <ul class="space-y-2 text-sm text-hoba-muted">
-        {(['1', '2', '3', '4', '5', '6'] as const).map((n) => (
-          <li class="flex items-center gap-2"><span class="text-emerald-700 dark:text-emerald-400">✓</span> {t(`contrib.checks.${n}`)}</li>
-        ))}
-      </ul>
-    </div>
+    <h2>{t('contrib.checks.title')}</h2>
+    <ul>
+      {(['1', '2', '3', '4', '5', '6'] as const).map((n) => <li>{t(`contrib.checks.${n}`)}</li>)}
+    </ul>
 
-    <div class="p-6 rounded-md border border-hoba-border bg-hoba-card/60 space-y-2 text-sm">
-      <h2 class="text-sm font-semibold text-hoba-text">{t('contrib.mirror.title')}</h2>
-      <p class="text-hoba-muted leading-relaxed">{t('contrib.mirror.text')}</p>
-    </div>
-  </div>
+    <h2>{t('contrib.mirror.title')}</h2>
+    <p>{t('contrib.mirror.text')}</p>
+  </article>
 </Layout>

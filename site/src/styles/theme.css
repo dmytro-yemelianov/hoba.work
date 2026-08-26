@@ -20,6 +20,7 @@
   --g-pattern: 180 60 10;
   --g-loop: 190 24 93;
   --g-intervention: 14 116 144;
+  --g-evidence: 82 96 115;
 }
 .dark {
   color-scheme: dark;
@@ -36,6 +37,7 @@
   --g-pattern: 240 136 62;
   --g-loop: 219 97 162;
   --g-intervention: 34 211 238;
+  --g-evidence: 139 148 158;
 }
 html {
   background-color: rgb(var(--c-bg));
@@ -64,13 +66,18 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .pill-muted { @apply text-hoba-muted; }
   .pill-active { @apply bg-hoba-text border-hoba-text text-hoba-bg; }
   /* Checkbox styled as a pill: on = solid, off = struck through and faded. */
-  .pill-toggle { @apply pill cursor-pointer select-none transition-opacity; }
+  /* The input covers the whole pill, so a click anywhere toggles it and the
+     control stays a real, focusable checkbox/radio. */
+  .pill-toggle { @apply pill relative cursor-pointer select-none transition-opacity; }
+  .pill-toggle input { @apply absolute inset-0 m-0 w-full h-full opacity-0 cursor-pointer; }
   .pill-toggle:has(:checked) { @apply bg-hoba-hover border-hoba-text/25; }
-  .pill-toggle:not(:has(:checked)) { @apply text-hoba-muted opacity-60; }
-  .pill-toggle:not(:has(:checked)) .pill-label { @apply line-through; }
-  .pill-toggle:not(:has(:checked)) .dot { @apply opacity-40; }
+  .pill-toggle:not(:has(:checked)) { @apply text-hoba-muted; }
+  /* A filter pill also reads as struck out when it is switched off. */
+  .pill-filter:not(:has(:checked)) .pill-label { @apply line-through; }
+  .pill-filter:not(:has(:checked)) .dot { @apply opacity-40; }
   .pill-toggle:has(:focus-visible) { @apply ring-2 ring-hoba-accent ring-offset-1 ring-offset-hoba-bg; }
   .dot { @apply inline-block w-1.5 h-1.5 rounded-full shrink-0; }
+  .checkbox { @apply w-4 h-4 shrink-0 rounded accent-hoba-accent; }
 
   /* Buttons */
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors; }
@@ -105,11 +112,16 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .prose-hoba blockquote { @apply border-l-2 border-hoba-accent pl-4 text-hoba-text italic; }
   .prose-hoba code { @apply text-sm bg-hoba-hover rounded px-1 py-0.5; }
   .prose-hoba pre { @apply text-sm bg-hoba-hover rounded-md p-4 overflow-x-auto; }
+  .prose-hoba pre:focus-visible { @apply outline-none ring-2 ring-hoba-accent; }
   .prose-hoba pre code { @apply bg-transparent p-0; }
   .prose-hoba a { @apply text-hoba-accent underline underline-offset-2; }
   .prose-hoba hr { @apply border-hoba-border my-8; }
   .prose-hoba dl { @apply grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2; }
-  .prose-hoba dt { @apply text-hoba-muted; }
+  .prose-hoba dt { @apply text-hoba-text font-medium; }
+  .prose-hoba dd { @apply text-hoba-muted; }
+  /* Row lists keep their own affordances inside prose. */
+  .prose-hoba .row-list { @apply list-none pl-0 space-y-0; }
+  .prose-hoba .row-link { @apply no-underline text-hoba-text; }
 
   /* Knowledge-graph explorer */
   .graph-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }

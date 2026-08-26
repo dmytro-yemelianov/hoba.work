@@ -1,0 +1,29 @@
+---
+/** One entry in a `.row-list`: id, title, an optional qualifier pill and note. */
+interface Props {
+  id: string;
+  title: string;
+  href?: string | undefined;
+  pill?: string | undefined;
+  note?: string | undefined;
+}
+
+const { id, title, href, pill, note } = Astro.props;
+---
+<li>
+  {href ? (
+    <a href={href} class="row-link">
+      <span class="font-mono text-sm text-hoba-accent shrink-0">{id}</span>
+      <span class="text-hoba-text">{title}</span>
+      {pill && <span class="pill pill-muted ml-auto">{pill}</span>}
+      {note && <span class="w-full text-sm text-hoba-muted">{note}</span>}
+    </a>
+  ) : (
+    <div class="row">
+      <span class="font-mono text-sm text-hoba-muted shrink-0">{id}</span>
+      <span class="text-hoba-text">{title}</span>
+      {pill && <span class="pill pill-muted ml-auto">{pill}</span>}
+      {note && <span class="w-full text-sm text-hoba-muted">{note}</span>}
+    </div>
+  )}
+</li>
