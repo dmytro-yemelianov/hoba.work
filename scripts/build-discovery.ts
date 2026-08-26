@@ -104,20 +104,20 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
 /** The whole registry as one document, in the order a reader would need it. */
 function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
   const out: string[] = [llms(bundle, graph), '---', ''];
-  const section = (title: string, nodes: { id: string; title: string; [k: string]: unknown }[], body: (n: never) => string[]) => {
-    out.push(`## ${title}`, '');
+  function section<T extends { id: string; title: string }>(heading: string, nodes: T[], body: (node: T) => string[]): void {
+    out.push(`## ${heading}`, '');
     for (const node of nodes) {
       out.push(`### ${node.id} — ${node.title}`, '');
-      out.push(...body(node as never));
+      out.push(...body(node));
       out.push('');
     }
-  };
+  }
 
   section('Observations', bundle.artifacts, (a) => [
     a.summary,
     '',
     `- Stages: ${a.stages.join(', ')} · Evidence: ${a.evidence_level}`,
-    ...a.non_inferences.map((n: string) => `- Does NOT establish: ${n}`),
+    ...a.non_inferences.map((n) => `- Does NOT establish: ${n}`),
     ...a.probes.map((p) => `- Probe [${p.id}] (${p.cost}): ${p.action} → ${p.expected_signal}`),
   ]);
 
@@ -134,7 +134,7 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     `- Actor: ${m.facets.actor} · Nature: ${m.facets.nature} · Visibility: ${m.facets.visibility} · Removability: ${m.facets.removability}`,
     `- Operates at: ${m.operates_at.join(', ')}${m.honest_baseline ? ' · honest baseline' : ''}`,
     ...(m.emissions.length ? [`- Emits: ${m.emissions.map((e) => `${e.artifact} (${e.fidelity ?? 'unspecified'})`).join(', ')}`] : []),
-    ...m.non_inferences.map((n: string) => `- Does NOT establish: ${n}`),
+    ...m.non_inferences.map((n) => `- Does NOT establish: ${n}`),
   ]);
 
   section('Patterns', bundle.patterns, (p) => [
@@ -142,8 +142,8 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     '',
     `- Triggers when: ${p.trigger_rule}`,
     `- Requires: ${p.required_artifacts.join(', ')} · Mechanisms: ${p.compatible_mechanisms.join(', ')}`,
-    ...p.establishes.map((e: string) => `- Establishes: ${e}`),
-    ...p.non_inferences.map((n: string) => `- Does NOT establish: ${n}`),
+    ...p.establishes.map((e) => `- Establishes: ${e}`),
+    ...p.non_inferences.map((n) => `- Does NOT establish: ${n}`),
   ]);
 
   section('Loops', bundle.loops, (l) => [
@@ -157,7 +157,7 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     '',
     `- Actor: ${i.actor} · Scope: ${i.scope} · Cost: ${i.cost}`,
     `- Targets: ${i.targets.join(', ')}`,
-    ...i.expected_effects.map((e: string) => `- Expected: ${e}`),
+    ...i.expected_effects.map((e) => `- Expected: ${e}`),
   ]);
 
   section('Evidence', bundle.evidence, (e) => [
