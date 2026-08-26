@@ -1,12 +1,12 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Take-Home Evaluation Fatigue & Asymmetry",
     "status": "active",
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.",
+    "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.",
     "id": "M-019",
     "type": "mechanism",
     "summary": "Reviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.",

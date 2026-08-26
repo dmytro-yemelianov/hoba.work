@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "count": 24,
   "items": [
     {
@@ -56,7 +56,7 @@
         "EVD-001",
         "EVD-006"
       ],
-      "content": "# Stronger Competing Candidate in Final Cohort\n\nCandidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.",
+      "content": "# Stronger Competing Candidate in Final Cohort\n\nCandidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.",
       "id": "M-002",
       "type": "mechanism",
       "summary": "Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.",
@@ -105,7 +105,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# ATS Parser Extraction Failure\n\nMulti-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Does not imply human recruiter evaluated and disliked candidate experience.",
+      "content": "# ATS Parser Extraction Failure\n\nMulti-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not imply human recruiter evaluated and disliked candidate experience.",
       "id": "M-003",
       "type": "mechanism",
       "summary": "Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.",
@@ -153,7 +153,7 @@
       "evidence_ids": [
         "EVD-005"
       ],
-      "content": "# Unstated Compensation Band Discrepancy\n\nCandidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.",
+      "content": "# Unstated Compensation Band Discrepancy\n\nCandidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.",
       "id": "M-004",
       "type": "mechanism",
       "summary": "Candidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.",
@@ -211,11 +211,12 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
+      "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
       "id": "M-005",
       "type": "mechanism",
       "summary": "Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.",
       "operates_at": [
+        "B-013",
         "B-001",
         "B-003",
         "B-007"
@@ -260,11 +261,12 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability.",
+      "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-020` — Automated Application Expiration Timeout\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability.",
       "id": "M-006",
       "type": "mechanism",
       "summary": "Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.",
       "operates_at": [
+        "B-013",
         "B-001",
         "B-002",
         "B-003"
@@ -309,7 +311,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Headcount Freeze or Budget Cancellation\n\nExecutive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Candidate performance in interview was not the causal trigger for process termination.",
+      "content": "# Headcount Freeze or Budget Cancellation\n\nExecutive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-006` — Stale or Orphaned Job Requisition\n- Masks `M-001` — Genuine Technical Skill Shortfall\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Candidate performance in interview was not the causal trigger for process termination.",
       "id": "M-007",
       "type": "mechanism",
       "summary": "Executive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.",
@@ -361,7 +363,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
+      "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-011` — Employment Gap Downranking Bias\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition — over-filtering strong generalists prolongs the search until the team redefines the role mid-process; see loop L-003\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
       "id": "M-008",
       "type": "mechanism",
       "summary": "Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.",
@@ -393,7 +395,8 @@
         "removability": "candidate"
       },
       "amplifies": [
-        "M-011"
+        "M-011",
+        "M-013"
       ],
       "masks": [],
       "evidence_level": "established",
@@ -408,7 +411,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Recruiter Volume & Quota Incentive Distortion\n\nRecruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Does not mean recruiter is individually negligent; reflects structural capacity mismatch.",
+      "content": "# Recruiter Volume & Quota Incentive Distortion\n\nRecruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not mean recruiter is individually negligent; reflects structural capacity mismatch.",
       "id": "M-009",
       "type": "mechanism",
       "summary": "Recruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).",
@@ -458,7 +461,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failure to guess unstated preferences is not equivalent to lack of core competence.",
+      "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-022` — Hiring Manager Consensus Impasse\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Failure to guess unstated preferences is not equivalent to lack of core competence.",
       "id": "M-010",
       "type": "mechanism",
       "summary": "The interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.",
@@ -509,7 +512,7 @@
       "evidence_ids": [
         "EVD-003"
       ],
-      "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline.",
+      "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline.",
       "id": "M-011",
       "type": "mechanism",
       "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
@@ -557,7 +560,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Rescheduling is an operational issue and does not indicate negative evaluation.",
+      "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-019` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational issue and does not indicate negative evaluation.",
       "id": "M-012",
       "type": "mechanism",
       "summary": "Engineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.",
@@ -606,7 +609,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Mid-Process Role Requirement Redefinition\n\nTeam changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Non-Inferences\n- Candidate rejection was driven by shifting team mandate, not prior interview answers.",
+      "content": "# Mid-Process Role Requirement Redefinition\n\nTeam changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Amplifies `M-024` — Inflated Requisition Requirements vs Actual Team Needs — each redefinition re-inflates the requisition with new must-haves instead of trimming it; see loop L-003\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Candidate rejection was driven by shifting team mandate, not prior interview answers.",
       "id": "M-013",
       "type": "mechanism",
       "summary": "Team changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.",
@@ -640,7 +643,8 @@
         "removability": "none"
       },
       "amplifies": [
-        "M-004"
+        "M-004",
+        "M-024"
       ],
       "masks": [
         "M-001"
@@ -749,11 +753,13 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Ghosting after outbound message indicates absence of immediate opening, not profile rejection.",
+      "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-009` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after outbound message indicates absence of immediate opening, not profile rejection.",
       "id": "M-016",
       "type": "mechanism",
       "summary": "Recruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.",
       "operates_at": [
+        "B-013",
+        "B-014",
         "B-003",
         "B-004"
       ],
@@ -797,7 +803,7 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Experience-Age Grading Mismatch\n\nCandidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency.",
+      "content": "# Experience-Age Grading Mismatch\n\nCandidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency.",
       "id": "M-017",
       "type": "mechanism",
       "summary": "Candidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.",
@@ -848,7 +854,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
+      "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-010` — Hidden Evaluation Rubric or Undisclosed Priority\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
       "id": "M-018",
       "type": "mechanism",
       "summary": "Interviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.",
@@ -898,7 +904,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.",
+      "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.",
       "id": "M-019",
       "type": "mechanism",
       "summary": "Reviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.",
@@ -947,7 +953,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Application Expiration Timeout\n\nATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Bulk timeout rejection contains zero qualitative assessment of candidate profile.",
+      "content": "# Automated Application Expiration Timeout\n\nATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-006` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- Bulk timeout rejection contains zero qualitative assessment of candidate profile.",
       "id": "M-020",
       "type": "mechanism",
       "summary": "ATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.",
@@ -1040,7 +1046,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Hiring Manager Consensus Impasse\n\nThe interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Split panel reflects lack of calibrated internal standards rather than candidate failure.",
+      "content": "# Hiring Manager Consensus Impasse\n\nThe interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Split panel reflects lack of calibrated internal standards rather than candidate failure.",
       "id": "M-022",
       "type": "mechanism",
       "summary": "The interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.",
@@ -1087,7 +1093,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Portfolio / Work Artifact Misinterpretation\n\nScreeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
+      "content": "# Portfolio / Work Artifact Misinterpretation\n\nScreeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
       "id": "M-023",
       "type": "mechanism",
       "summary": "Screeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.",
@@ -1135,11 +1141,12 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nJob description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks.",
+      "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nJob description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks.",
       "id": "M-024",
       "type": "mechanism",
       "summary": "Job description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.",
       "operates_at": [
+        "B-013",
         "B-002",
         "B-004"
       ],

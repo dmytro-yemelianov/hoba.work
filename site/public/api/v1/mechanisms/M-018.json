@@ -1,12 +1,12 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Domain Specificity Over-Weighting",
     "status": "active",
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
+    "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-010` — Hidden Evaluation Rubric or Undisclosed Priority\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
     "id": "M-018",
     "type": "mechanism",
     "summary": "Interviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.",

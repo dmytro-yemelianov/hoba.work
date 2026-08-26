@@ -1,12 +1,12 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Automated Application Expiration Timeout",
     "status": "active",
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Automated Application Expiration Timeout\n\nATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Non-Inferences\n- Bulk timeout rejection contains zero qualitative assessment of candidate profile.",
+    "content": "# Automated Application Expiration Timeout\n\nATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-006` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- Bulk timeout rejection contains zero qualitative assessment of candidate profile.",
     "id": "M-020",
     "type": "mechanism",
     "summary": "ATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.",

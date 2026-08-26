@@ -1,16 +1,17 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Pre-Selected Internal Candidate",
     "status": "active",
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
+    "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
     "id": "M-005",
     "type": "mechanism",
     "summary": "Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.",
     "operates_at": [
+      "B-013",
       "B-001",
       "B-003",
       "B-007"

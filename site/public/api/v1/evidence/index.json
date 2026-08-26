@@ -1,66 +1,66 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "count": 6,
   "items": [
     {
       "id": "EVD-001",
       "type": "evidence",
-      "title": "Labor Market Screening & ATS Extraction Dynamics",
+      "title": "Hidden Workers: Untapped Talent (HBS / Accenture)",
       "kind": "research",
-      "summary": "Empirical studies on automated resume parsing failure rates, keyword filtering thresholds, and recruiter scanning latency.",
-      "citation": "Benchmark Report on Technical Recruitment Funnels & Parsing Variance (2024–2026)",
-      "url": "https://hoba.work/methodology#evidence",
-      "period": "2024-2026"
+      "summary": "Survey of 8,000 workers and 2,250 executives in the US, UK and Germany on automated hiring. 88% of employers agree that qualified high-skill candidates are vetted out of the process by applicant tracking systems because they do not match the exact criteria of the job description; the report attributes a large \"hidden worker\" population to configurable ATS exclusion rules and knock-out filters.",
+      "citation": "Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). Hidden Workers: Untapped Talent. Harvard Business School Project on Managing the Future of Work & Accenture.",
+      "url": "https://www.hbs.edu/managing-the-future-of-work/research/hidden-workers-untapped-talent",
+      "period": "2021"
     },
     {
       "id": "EVD-002",
       "type": "evidence",
-      "title": "Career Mobility and Seniority Tier Boundary Studies",
-      "kind": "reporting",
-      "summary": "Analysis of leveling mismatches, overqualification penalties, and leveling bands in engineering hiring.",
-      "citation": "Engineering Leveling & Compensation Transparency Field Analysis (2025)",
-      "url": "https://hoba.work/methodology#evidence",
-      "period": "2025-2026"
+      "title": "Too Good to Hire? Capability and Inferences about Commitment in Labor Markets",
+      "kind": "research",
+      "summary": "Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for \"overqualified\" rejections and the seniority double bind.",
+      "citation": "Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313.",
+      "url": "https://doi.org/10.1177/0001839219840022",
+      "period": "2020"
     },
     {
       "id": "EVD-003",
       "type": "evidence",
-      "title": "Unemployment Duration & Automated Downranking Research",
+      "title": "Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment",
       "kind": "research",
-      "summary": "Quantitative investigation into automated ranking penalties associated with employment resume gaps.",
-      "citation": "Algorithmic Hiring Discrimination and Employment Gap Signals (2024)",
-      "url": "https://hoba.work/methodology#evidence",
-      "period": "2024-2025"
+      "summary": "Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.",
+      "citation": "Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167.",
+      "url": "https://doi.org/10.1093/qje/qjt015",
+      "period": "2013"
     },
     {
       "id": "EVD-004",
       "type": "evidence",
-      "title": "Requisition Lifecycle & Headcount Volatility Industry Data",
+      "title": "Job Seekers Beware of Ghost Jobs (Clarify Capital survey of hiring managers)",
       "kind": "survey",
-      "summary": "Survey on orphan requisitions, post-interview budget freezes, and compliance-driven public job postings.",
-      "citation": "Talent Acquisition Operations and Requisition Shelf-Life Survey (2025)",
-      "url": "https://hoba.work/methodology#evidence",
-      "period": "2025"
+      "summary": "Survey of 1,045 managers involved in hiring (fielded 31 Aug – 1 Sep 2022) on job postings kept live without active hiring: about half keep postings open because they are \"always open to new people\", 43% cite giving the impression that the company is growing or keeping existing employees motivated, one in three postings had been active for more than 30 days, and one in four respondents did not plan to fill the role for three months or longer.",
+      "citation": "Clarify Capital (2022). Job Seekers Beware of Ghost Jobs. Survey of 1,045 hiring managers, 31 Aug – 1 Sep 2022.",
+      "url": "https://clarifycapital.com/job-seekers-beware-of-ghost-jobs-survey",
+      "period": "2022"
     },
     {
       "id": "EVD-005",
       "type": "evidence",
-      "title": "Compensation Transparency & Pipeline Quality Studies",
-      "kind": "primary",
-      "summary": "Measurement of offer acceptance rates and late-stage dropouts following early salary band disclosures.",
-      "citation": "Pay Transparency Impact on Technical Hiring Retention (2025)",
-      "url": "https://hoba.work/methodology#evidence",
-      "period": "2025-2026"
+      "title": "Salary Transparency: Growth Slows, but Momentum Continues (Indeed Hiring Lab)",
+      "kind": "research",
+      "summary": "Tracks the share of US job postings on Indeed that disclose pay: 57.8% in September 2024, up from 52.2% a year earlier, with wide variation by occupation. Roughly four in ten postings still omit compensation — the structural precondition for compensation-band discrepancies surfacing only at late stages.",
+      "citation": "Indeed Hiring Lab (2024, October 23). Salary Transparency: Growth Slows, but Momentum Continues.",
+      "url": "https://hiringlab.indeed.com/2024/10/23/salary-transparency-growth-slows-but-momentum-continues/",
+      "period": "2024"
     },
     {
       "id": "EVD-006",
       "type": "evidence",
-      "title": "Technical Evaluation Rubrics & Interviewer Variance Benchmarks",
+      "title": "Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format",
       "kind": "research",
-      "summary": "Statistical evaluation of inter-rater reliability among technical interviewers and take-home reviewers.",
-      "citation": "Structured Rubric Calibration vs Unstructured Technical Assessment (2024)",
-      "url": "https://hoba.work/methodology#evidence",
-      "period": "2024-2026"
+      "summary": "Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.",
+      "citation": "Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.",
+      "url": "https://doi.org/10.1111/ijsa.12036",
+      "period": "2013"
     }
   ]
 }

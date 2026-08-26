@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Automated Filter & Parser Threshold",
     "status": "active",
@@ -10,7 +10,7 @@
     "id": "B-002",
     "type": "barrier",
     "stage": "ingestion",
-    "order": 2,
+    "order": 4,
     "precedes": [
       "B-003",
       "B-004"

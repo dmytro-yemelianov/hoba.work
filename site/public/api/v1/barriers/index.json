@@ -1,7 +1,43 @@
 {
-  "registry_version": "2026.08.1",
-  "count": 12,
+  "registry_version": "2026.08.2",
+  "count": 14,
   "items": [
+    {
+      "title": "Requisition Approval & Public Posting",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-004"
+      ],
+      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
+      "id": "B-013",
+      "type": "barrier",
+      "stage": "pre-posting",
+      "order": 1,
+      "precedes": [
+        "B-014",
+        "B-001"
+      ],
+      "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.",
+      "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
+      "evidence_level": "established"
+    },
+    {
+      "title": "Outbound Sourcing & Talent Pool Contact",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Outbound Sourcing & Talent Pool Contact\n\nRecruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.\n\n### Pass Condition\nThe candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.",
+      "id": "B-014",
+      "type": "barrier",
+      "stage": "sourcing",
+      "order": 2,
+      "precedes": [
+        "B-001",
+        "B-004"
+      ],
+      "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
+      "pass_condition": "The candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.",
+      "evidence_level": "established"
+    },
     {
       "title": "Application Ingestion",
       "status": "active",
@@ -12,7 +48,7 @@
       "id": "B-001",
       "type": "barrier",
       "stage": "ingestion",
-      "order": 1,
+      "order": 3,
       "precedes": [
         "B-002"
       ],
@@ -30,7 +66,7 @@
       "id": "B-002",
       "type": "barrier",
       "stage": "ingestion",
-      "order": 2,
+      "order": 4,
       "precedes": [
         "B-003",
         "B-004"
@@ -40,16 +76,16 @@
       "evidence_level": "established"
     },
     {
-      "title": "Sourcing & Inbound Triage",
+      "title": "Inbound Screening & Triage",
       "status": "active",
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Sourcing & Inbound Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach.",
+      "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach.",
       "id": "B-003",
       "type": "barrier",
-      "stage": "sourcing",
-      "order": 3,
+      "stage": "screening",
+      "order": 5,
       "precedes": [
         "B-004"
       ],
@@ -68,7 +104,7 @@
       "id": "B-004",
       "type": "barrier",
       "stage": "recruiter",
-      "order": 4,
+      "order": 6,
       "precedes": [
         "B-005"
       ],
@@ -86,7 +122,7 @@
       "id": "B-005",
       "type": "barrier",
       "stage": "technical",
-      "order": 5,
+      "order": 7,
       "precedes": [
         "B-006",
         "B-007"
@@ -105,7 +141,7 @@
       "id": "B-006",
       "type": "barrier",
       "stage": "technical",
-      "order": 6,
+      "order": 8,
       "precedes": [
         "B-007"
       ],
@@ -122,8 +158,8 @@
       "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nHiring manager confirms candidate has required depth and approves progression to final panel.",
       "id": "B-007",
       "type": "barrier",
-      "stage": "screening",
-      "order": 7,
+      "stage": "hiring-manager",
+      "order": 9,
       "precedes": [
         "B-008"
       ],
@@ -141,7 +177,7 @@
       "id": "B-008",
       "type": "barrier",
       "stage": "team",
-      "order": 8,
+      "order": 10,
       "precedes": [
         "B-009"
       ],
@@ -160,7 +196,7 @@
       "id": "B-009",
       "type": "barrier",
       "stage": "compensation",
-      "order": 9,
+      "order": 11,
       "precedes": [
         "B-010"
       ],
@@ -178,7 +214,7 @@
       "id": "B-010",
       "type": "barrier",
       "stage": "offer",
-      "order": 10,
+      "order": 12,
       "precedes": [
         "B-011"
       ],
@@ -196,7 +232,7 @@
       "id": "B-011",
       "type": "barrier",
       "stage": "post-offer",
-      "order": 11,
+      "order": 13,
       "precedes": [
         "B-012"
       ],
@@ -214,7 +250,7 @@
       "id": "B-012",
       "type": "barrier",
       "stage": "post-offer",
-      "order": 12,
+      "order": 14,
       "precedes": [],
       "description": "Final mutual execution of the formal employment agreement and start-date confirmation.",
       "pass_condition": "Both parties sign offer contract and onboarding workflow is triggered.",

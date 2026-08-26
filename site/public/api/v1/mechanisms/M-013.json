@@ -1,12 +1,12 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Mid-Process Role Requirement Redefinition",
     "status": "active",
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Mid-Process Role Requirement Redefinition\n\nTeam changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Non-Inferences\n- Candidate rejection was driven by shifting team mandate, not prior interview answers.",
+    "content": "# Mid-Process Role Requirement Redefinition\n\nTeam changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Amplifies `M-024` — Inflated Requisition Requirements vs Actual Team Needs — each redefinition re-inflates the requisition with new must-haves instead of trimming it; see loop L-003\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Candidate rejection was driven by shifting team mandate, not prior interview answers.",
     "id": "M-013",
     "type": "mechanism",
     "summary": "Team changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.",
@@ -40,7 +40,8 @@
       "removability": "none"
     },
     "amplifies": [
-      "M-004"
+      "M-004",
+      "M-024"
     ],
     "masks": [
       "M-001"

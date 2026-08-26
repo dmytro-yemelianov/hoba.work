@@ -68,8 +68,9 @@ const lang = langFromUrl(Astro.url);
         A citation raises a claim to "supported" only when it addresses the specific mechanism, not the general topic.
       </p>
       <p class="text-amber-300/90 leading-relaxed">
-        The current evidence catalog is a development scaffold: records describe the class of source the maintainers intend to cite
-        and do not yet point at external publications. Treat "established" and "supported" levels as provisional until each record links a primary source.
+        Each evidence record currently anchors one published source (peer-reviewed study, institutional report, or practitioner survey).
+        Levels remain provisional where a node cites a source that addresses its general topic rather than the specific mechanism;
+        loops without a source addressing the feedback cycle itself are marked <code class="text-hoba-accent">hypothesis</code>.
       </p>
     </div>
 

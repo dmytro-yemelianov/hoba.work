@@ -1,13 +1,13 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "id": "EVD-003",
     "type": "evidence",
-    "title": "Unemployment Duration & Automated Downranking Research",
+    "title": "Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment",
     "kind": "research",
-    "summary": "Quantitative investigation into automated ranking penalties associated with employment resume gaps.",
-    "citation": "Algorithmic Hiring Discrimination and Employment Gap Signals (2024)",
-    "url": "https://hoba.work/methodology#evidence",
-    "period": "2024-2025"
+    "summary": "Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.",
+    "citation": "Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167.",
+    "url": "https://doi.org/10.1093/qje/qjt015",
+    "period": "2013"
   }
 }

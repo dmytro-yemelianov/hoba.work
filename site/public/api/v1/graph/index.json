@@ -1,7 +1,7 @@
 {
-  "registry_version": "2026.08.1",
-  "nodes_count": 69,
-  "edges_count": 188,
+  "registry_version": "2026.08.2",
+  "nodes_count": 71,
+  "edges_count": 199,
   "elements": {
     "nodes": [
       {
@@ -191,11 +191,33 @@
       },
       {
         "data": {
+          "id": "B-013",
+          "label": "Requisition Approval & Public Posting",
+          "type": "barrier",
+          "stage": "pre-posting",
+          "order": 1,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "B-014",
+          "label": "Outbound Sourcing & Talent Pool Contact",
+          "type": "barrier",
+          "stage": "sourcing",
+          "order": 2,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
           "id": "B-001",
           "label": "Application Ingestion",
           "type": "barrier",
           "stage": "ingestion",
-          "order": 1,
+          "order": 3,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -206,7 +228,7 @@
           "label": "Automated Filter & Parser Threshold",
           "type": "barrier",
           "stage": "ingestion",
-          "order": 2,
+          "order": 4,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -214,10 +236,10 @@
       {
         "data": {
           "id": "B-003",
-          "label": "Sourcing & Inbound Triage",
+          "label": "Inbound Screening & Triage",
           "type": "barrier",
-          "stage": "sourcing",
-          "order": 3,
+          "stage": "screening",
+          "order": 5,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -228,7 +250,7 @@
           "label": "Recruiter Screening Call",
           "type": "barrier",
           "stage": "recruiter",
-          "order": 4,
+          "order": 6,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -239,7 +261,7 @@
           "label": "Technical Screen / Live Assessment",
           "type": "barrier",
           "stage": "technical",
-          "order": 5,
+          "order": 7,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -250,7 +272,7 @@
           "label": "Take-Home / Work Sample Evaluation",
           "type": "barrier",
           "stage": "technical",
-          "order": 6,
+          "order": 8,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -260,8 +282,8 @@
           "id": "B-007",
           "label": "Hiring Manager In-Depth Review",
           "type": "barrier",
-          "stage": "screening",
-          "order": 7,
+          "stage": "hiring-manager",
+          "order": 9,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -272,7 +294,7 @@
           "label": "Team & Cross-Functional Panel",
           "type": "barrier",
           "stage": "team",
-          "order": 8,
+          "order": 10,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -283,7 +305,7 @@
           "label": "Compensation & Leveling Reconciliation",
           "type": "barrier",
           "stage": "compensation",
-          "order": 9,
+          "order": 11,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -294,7 +316,7 @@
           "label": "Headcount & Executive Budget Approval",
           "type": "barrier",
           "stage": "offer",
-          "order": 10,
+          "order": 12,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -305,7 +327,7 @@
           "label": "Reference & Background Verification",
           "type": "barrier",
           "stage": "post-offer",
-          "order": 11,
+          "order": 13,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -316,7 +338,7 @@
           "label": "Offer Closing & Contract Execution",
           "type": "barrier",
           "stage": "post-offer",
-          "order": 12,
+          "order": 14,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -716,7 +738,7 @@
           "id": "L-003",
           "label": "Inflated-Requirements Search Saturation Loop",
           "type": "loop",
-          "evidence_level": "supported"
+          "evidence_level": "hypothesis"
         },
         "classes": "node-loop"
       },
@@ -788,6 +810,42 @@
       }
     ],
     "edges": [
+      {
+        "data": {
+          "id": "B-013->precedes->B-014",
+          "source": "B-013",
+          "target": "B-014",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "B-013->precedes->B-001",
+          "source": "B-013",
+          "target": "B-001",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "B-014->precedes->B-001",
+          "source": "B-014",
+          "target": "B-001",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
+      {
+        "data": {
+          "id": "B-014->precedes->B-004",
+          "source": "B-014",
+          "target": "B-004",
+          "type": "precedes"
+        },
+        "classes": "edge-precedes"
+      },
       {
         "data": {
           "id": "B-001->precedes->B-002",
@@ -1132,6 +1190,15 @@
       },
       {
         "data": {
+          "id": "M-005->operates_at->B-013",
+          "source": "M-005",
+          "target": "B-013",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
           "id": "M-005->operates_at->B-001",
           "source": "M-005",
           "target": "B-001",
@@ -1187,6 +1254,15 @@
           "type": "masks"
         },
         "classes": "edge-masks"
+      },
+      {
+        "data": {
+          "id": "M-006->operates_at->B-013",
+          "source": "M-006",
+          "target": "B-013",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
       },
       {
         "data": {
@@ -1358,6 +1434,15 @@
           "id": "M-008->amplifies->M-011",
           "source": "M-008",
           "target": "M-011",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "M-008->amplifies->M-013",
+          "source": "M-008",
+          "target": "M-013",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
@@ -1654,6 +1739,15 @@
       },
       {
         "data": {
+          "id": "M-013->amplifies->M-024",
+          "source": "M-013",
+          "target": "M-024",
+          "type": "amplifies"
+        },
+        "classes": "edge-amplifies"
+      },
+      {
+        "data": {
           "id": "M-013->masks->M-001",
           "source": "M-013",
           "target": "M-001",
@@ -1740,6 +1834,24 @@
           "likelihood": "high"
         },
         "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-016->operates_at->B-013",
+          "source": "M-016",
+          "target": "B-013",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-016->operates_at->B-014",
+          "source": "M-016",
+          "target": "B-014",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
       },
       {
         "data": {
@@ -2132,6 +2244,15 @@
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
+      },
+      {
+        "data": {
+          "id": "M-024->operates_at->B-013",
+          "source": "M-024",
+          "target": "B-013",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
       },
       {
         "data": {

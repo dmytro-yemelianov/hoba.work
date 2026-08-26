@@ -31,6 +31,7 @@ export const stageIdSchema = z.enum([
   'screening',
   'recruiter',
   'technical',
+  'hiring-manager',
   'team',
   'compensation',
   'offer',

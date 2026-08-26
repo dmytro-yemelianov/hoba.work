@@ -1,12 +1,12 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Portfolio / Work Artifact Misinterpretation",
     "status": "active",
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Portfolio / Work Artifact Misinterpretation\n\nScreeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
+    "content": "# Portfolio / Work Artifact Misinterpretation\n\nScreeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
     "id": "M-023",
     "type": "mechanism",
     "summary": "Screeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.",

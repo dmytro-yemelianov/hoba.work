@@ -1,16 +1,17 @@
 {
-  "registry_version": "2026.08.1",
+  "registry_version": "2026.08.2",
   "data": {
     "title": "Stale or Orphaned Job Requisition",
     "status": "active",
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability.",
+    "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-020` — Automated Application Expiration Timeout\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability.",
     "id": "M-006",
     "type": "mechanism",
     "summary": "Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.",
     "operates_at": [
+      "B-013",
       "B-001",
       "B-002",
       "B-003"
