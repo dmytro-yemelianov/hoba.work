@@ -43,7 +43,28 @@
     "masks": [],
     "evidence_level": "established",
     "honest_baseline": true,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Feedback naming the gap",
+        "subject": "Feedback — technical round",
+        "lines": [
+          {
+            "text": "The panel was positive on communication and on how you structured the problem.",
+            "tell": false
+          },
+          {
+            "text": "The gap was concrete: the concurrency exercise needed a bounded worker pool and the submitted solution spawned unbounded goroutines, which the panel would expect to be caught at this level.",
+            "tell": true
+          },
+          {
+            "text": "We would genuinely welcome a re-application once that area has had some time.",
+            "tell": false
+          }
+        ],
+        "reading": "A named exercise and a named property. This is the shape of feedback that is about the work rather than about fit — rare, and worth keeping."
+      }
+    ],
     "non_inferences": [
       "Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
     ]

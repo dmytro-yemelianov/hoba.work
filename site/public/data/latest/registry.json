@@ -1400,7 +1400,28 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": true,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Feedback naming the gap",
+          "subject": "Feedback — technical round",
+          "lines": [
+            {
+              "text": "The panel was positive on communication and on how you structured the problem.",
+              "tell": false
+            },
+            {
+              "text": "The gap was concrete: the concurrency exercise needed a bounded worker pool and the submitted solution spawned unbounded goroutines, which the panel would expect to be caught at this level.",
+              "tell": true
+            },
+            {
+              "text": "We would genuinely welcome a re-application once that area has had some time.",
+              "tell": false
+            }
+          ],
+          "reading": "A named exercise and a named property. This is the shape of feedback that is about the work rather than about fit — rare, and worth keeping."
+        }
+      ],
       "non_inferences": [
         "Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
       ]
@@ -1451,7 +1472,27 @@
       ],
       "evidence_level": "established",
       "honest_baseline": true,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Rejection naming the comparison",
+          "lines": [
+            {
+              "text": "This was a genuinely difficult decision — you cleared every bar we set.",
+              "tell": false
+            },
+            {
+              "text": "We went with another finalist who has shipped the same payment rails we are migrating to, which shortens the ramp by a quarter or so.",
+              "tell": true
+            },
+            {
+              "text": "If anything opens at this level again I would like to come back to you directly.",
+              "tell": false
+            }
+          ],
+          "reading": "Nothing here says the candidate fell short. A comparison decided it, and comparisons are not properties of either person."
+        }
+      ],
       "non_inferences": [
         "Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control."
       ]
@@ -1500,7 +1541,36 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Parsed profile, as the ATS stored it",
+          "context": "the same CV that renders correctly in a PDF reader",
+          "lines": [
+            {
+              "text": "Name: parsed · Email: parsed · Phone: parsed",
+              "tell": false
+            },
+            {
+              "text": "Work experience: 0 entries",
+              "tell": true
+            },
+            {
+              "text": "Skills: 0 entries",
+              "tell": false
+            },
+            {
+              "text": "Raw text captured: 340 characters of a 4,100-character document",
+              "tell": false
+            },
+            {
+              "text": "Ranking score: 12/100 — insufficient experience",
+              "tell": false
+            }
+          ],
+          "reading": "The document was not read and rejected; it was not read. A two-column layout and a graphic header are enough to produce this."
+        }
+      ],
       "non_inferences": [
         "Does not imply human recruiter evaluated and disliked candidate experience."
       ]
@@ -1559,7 +1629,33 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "The number nobody published",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "week 4",
+              "text": "Before the manager round — what were your expectations again?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "week 4",
+              "text": "85–95k, as I mentioned at the screen.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 4",
+              "text": "Right. I should be straight with you: the approved budget for this req tops out at 74k. It was never in the posting.",
+              "tell": true
+            }
+          ],
+          "reading": "The mismatch existed on day one and surfaced in week four. Four rounds were spent on a gap that a published band would have shown immediately."
+        }
+      ],
       "non_inferences": [
         "Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget."
       ]
@@ -1610,7 +1706,40 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "Final round, an aside",
+          "context": "minute 41",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "41:02",
+              "text": "How many people are you seeing for this?",
+              "tell": false
+            },
+            {
+              "speaker": "Hiring manager",
+              "at": "41:11",
+              "text": "You are the third external. There is also someone internal who has been covering part of the scope since spring.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "41:26",
+              "text": "Understood. Is that a formal candidacy?",
+              "tell": false
+            },
+            {
+              "speaker": "Hiring manager",
+              "at": "41:31",
+              "text": "It is. We post externally regardless — that is policy.",
+              "tell": false
+            }
+          ],
+          "reading": "Nothing improper is described. The posting is real, the process is real, and the odds were set before the first external application arrived."
+        }
+      ],
       "non_inferences": [
         "Cannot be asserted as fact without internal hiring log confirmation."
       ]
@@ -1661,7 +1790,27 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Asking whether the role is alive",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "day 0",
+              "text": "I applied for this in January and again in March — is the posting current?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "day 2",
+              "text": "Let me check. That team stopped hiring in December; the listing should have come down. I will get it removed.",
+              "tell": true
+            }
+          ],
+          "reading": "The posting was not bait and it was not a decision. It was a record nobody owned, which is a different thing to be angry at."
+        }
+      ],
       "non_inferences": [
         "Application silence does not reflect candidate suitability."
       ]
@@ -1714,7 +1863,27 @@
       ],
       "evidence_level": "established",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "The freeze, as announced downward",
+          "lines": [
+            {
+              "text": "I have to pause our process. A hiring freeze was announced across the division this morning, effective immediately.",
+              "tell": true
+            },
+            {
+              "text": "Your final round was scheduled for Thursday. I am cancelling it rather than having you prepare for something I cannot honour.",
+              "tell": false
+            },
+            {
+              "text": "I will tell you plainly when I know anything, including if the answer is that this will not reopen.",
+              "tell": false
+            }
+          ],
+          "reading": "The cause is above the hiring loop and dated. Whether it is checkable against public news is the probe worth running."
+        }
+      ],
       "non_inferences": [
         "Candidate performance in interview was not the causal trigger for process termination."
       ]
@@ -1763,7 +1932,35 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Screening rules, as they ran",
+          "lines": [
+            {
+              "at": "+0.4s",
+              "text": "Rule 1: must_contain(\"Kubernetes\") — PASS",
+              "tell": false
+            },
+            {
+              "at": "+0.4s",
+              "text": "Rule 2: must_contain(\"CKA\") — candidate holds CKAD — FAIL",
+              "tell": true
+            },
+            {
+              "at": "+0.4s",
+              "text": "Rule 3: not evaluated (short-circuit)",
+              "tell": false
+            },
+            {
+              "at": "+0.5s",
+              "text": "Status: Rejected — does not meet minimum criteria",
+              "tell": false
+            }
+          ],
+          "reading": "An adjacent certification is not a near miss to a string match; it is a miss. The filter compares tokens, not competence."
+        }
+      ],
       "non_inferences": [
         "Passing keyword filters does not guarantee interview invitation."
       ]
@@ -1814,7 +2011,35 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The queue the screen ran against",
+          "context": "one requisition, one week",
+          "lines": [
+            {
+              "at": "week 1",
+              "text": "Applications received: 640",
+              "tell": false
+            },
+            {
+              "at": "week 1",
+              "text": "Recruiter screening capacity this week: 40",
+              "tell": false
+            },
+            {
+              "at": "week 1",
+              "text": "Median time spent per profile: 7 seconds",
+              "tell": true
+            },
+            {
+              "text": "Profiles advanced: 11",
+              "tell": false
+            }
+          ],
+          "reading": "Seven seconds is not a judgement of a career. It is what a queue of 640 does to attention, whoever is holding it."
+        }
+      ],
       "non_inferences": [
         "Does not mean recruiter is individually negligent; reflects structural capacity mismatch."
       ]
@@ -1866,7 +2091,40 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "The rubric that was not in the brief",
+          "context": "minute 29, design round",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "29:04",
+              "text": "I would put a queue between them so the write path stays available if the consumer is down.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "29:12",
+              "text": "Mm. We do not use queues here.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "29:18",
+              "text": "Is that a constraint I should design within?",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "29:21",
+              "text": "Just carry on.",
+              "tell": false
+            }
+          ],
+          "reading": "A house preference was applied as a grading criterion without being stated as one. The candidate could not have designed to a rule they were not told."
+        }
+      ],
       "non_inferences": [
         "Failure to guess unstated preferences is not equivalent to lack of core competence."
       ]
@@ -1915,7 +2173,31 @@
       "masks": [],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Ranking breakdown, as scored",
+          "lines": [
+            {
+              "text": "Skills match: 91/100",
+              "tell": false
+            },
+            {
+              "text": "Domain match: 88/100",
+              "tell": false
+            },
+            {
+              "text": "Continuity penalty: −22 (gap of 14 months detected)",
+              "tell": true
+            },
+            {
+              "text": "Final rank: 57/100 — below advance threshold",
+              "tell": false
+            }
+          ],
+          "reading": "The penalty is applied to a date range, not to anything in the work. Nothing the candidate shipped during or after the gap is in the arithmetic."
+        }
+      ],
       "non_inferences": [
         "Employment gap does not correlate with underlying technical decline."
       ]
@@ -1965,7 +2247,33 @@
       "masks": [],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Inside the interviewer calendar",
+          "lines": [
+            {
+              "speaker": "Engineering manager",
+              "at": "Wed 17:40",
+              "text": "Can you take the panel Thursday? Nobody else on the team is free.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "Wed 17:52",
+              "text": "I am on release duty and I have not read the take-home. I can do it but it will be a cold read.",
+              "tell": true
+            },
+            {
+              "speaker": "Engineering manager",
+              "at": "Wed 17:55",
+              "text": "Take it. We are already two weeks over on this req.",
+              "tell": false
+            }
+          ],
+          "reading": "The evaluation was compromised before it began, and nothing in the candidate could have changed that. This trace lives on the other side of the table."
+        }
+      ],
       "non_inferences": [
         "Rescheduling is an operational issue and does not indicate negative evaluation."
       ]
@@ -2018,7 +2326,27 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "The role that changed underneath",
+          "lines": [
+            {
+              "text": "Thank you for the four rounds — the panel notes were strong throughout.",
+              "tell": false
+            },
+            {
+              "text": "Since we opened this req the team has moved the service to Rust and folded the on-call leadership into the role. Weighted against the new profile we are looking for someone with production Rust and formal lead experience.",
+              "tell": true
+            },
+            {
+              "text": "I recognise you interviewed against the previous description. I am sorry about that.",
+              "tell": false
+            }
+          ],
+          "reading": "The assessments were not re-run, they were re-scored against a target that moved after they were taken."
+        }
+      ],
       "non_inferences": [
         "Candidate rejection was driven by shifting team mandate, not prior interview answers."
       ]
@@ -2065,7 +2393,33 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Where the constraint actually sits",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "offer stage",
+              "text": "Everything is agreed on our side. One question — you are resident where exactly?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "offer stage",
+              "text": "Same country as in my application, no change.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "offer stage",
+              "text": "Then I have bad news. We have no legal entity there and our provider does not cover it, so we cannot issue a contract regardless of the role.",
+              "tell": true
+            }
+          ],
+          "reading": "A hard constraint that is knowable on day one and was checked at the offer. Nothing about the candidate is being assessed here."
+        }
+      ],
       "non_inferences": [
         "Legal geography barrier is completely independent of candidate technical competence."
       ]
@@ -2112,7 +2466,40 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": true,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "The exchange the note refers to",
+          "context": "minute 33, pairing exercise",
+          "lines": [
+            {
+              "speaker": "Interviewer",
+              "at": "33:02",
+              "text": "I think this loop is doing more work than it needs to.",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "33:06",
+              "text": "It is fine. The input is bounded.",
+              "tell": true
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "33:11",
+              "text": "Sure, but if it were not?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "33:14",
+              "text": "Then I would change it. But it is.",
+              "tell": false
+            }
+          ],
+          "reading": "The panel recorded this as resistance to critique. A short answer under time pressure and a defensive posture look identical in a transcript — which is why this belongs in the honest-baseline set and not in the excuses."
+        }
+      ],
       "non_inferences": [
         "Style friction during high-stress interview is not a permanent personality defect."
       ]
@@ -2163,7 +2550,33 @@
       "masks": [],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "What the outreach was actually for",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "day 1",
+              "text": "Great talking today. To set expectations — is there an open requisition behind this?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "day 1",
+              "text": "Not yet. We are building a bench ahead of the Q3 planning round; if the headcount is approved you would be first in line.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 1",
+              "text": "Understood, thanks for saying so.",
+              "tell": false
+            }
+          ],
+          "reading": "A straight answer converts a mystery into a schedule. The same silence three months later means something entirely different once this line exists."
+        }
+      ],
       "non_inferences": [
         "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
       ]
@@ -2215,7 +2628,27 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Screening note, internal",
+          "lines": [
+            {
+              "text": "12 years experience against a role scoped at 4–6.",
+              "tell": false
+            },
+            {
+              "text": "Concern: likely to be bored within two quarters; salary expectation probably above band; risk of using us as a bridge.",
+              "tell": true
+            },
+            {
+              "text": "Recommend: pass, unless the manager wants to see them for the level above.",
+              "tell": false
+            }
+          ],
+          "reading": "Every line is a forecast about the future, none is an observation about the work. This is why the rejection can arrive before any technical signal exists."
+        }
+      ],
       "non_inferences": [
         "Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
       ]
@@ -2266,7 +2699,34 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "Where the round turned",
+          "context": "minute 12",
+          "lines": [
+            {
+              "speaker": "Interviewer",
+              "at": "12:03",
+              "text": "You have built settlement systems, but not in cards specifically?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "12:09",
+              "text": "Not cards. Same problem shape though — idempotency, reconciliation, chargeback-equivalent reversals.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "12:19",
+              "text": "We really need someone who has lived in card rails. The scheme rules are their own world.",
+              "tell": true
+            }
+          ],
+          "reading": "Transferable depth was heard and set aside for vertical familiarity. That is a legitimate preference and a narrow one; the rejection is about the filter, not the engineering."
+        }
+      ],
       "non_inferences": [
         "Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
       ]
@@ -2316,7 +2776,27 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Review record for a 15-hour submission",
+          "lines": [
+            {
+              "text": "Submission: 41 files, 78 tests, migrations, README with design rationale.",
+              "tell": false
+            },
+            {
+              "text": "Reviewer time logged: 6 minutes. Files opened: 3.",
+              "tell": true
+            },
+            {
+              "text": "Note: no tests visible, structure unclear.",
+              "tell": false
+            }
+          ],
+          "reading": "The note is false about the submission and true about the review. The asymmetry between the two efforts is the mechanism."
+        }
+      ],
       "non_inferences": [
         "Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship."
       ]
@@ -2365,7 +2845,36 @@
       ],
       "evidence_level": "established",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Bulk expiry, as logged",
+          "context": "one batch, 312 applications",
+          "lines": [
+            {
+              "at": "02:00",
+              "text": "Scheduled job: expire_stale_applications",
+              "tell": false
+            },
+            {
+              "at": "02:00",
+              "text": "Selecting applications with status=submitted and age>60d — 312 matched",
+              "tell": false
+            },
+            {
+              "at": "02:00",
+              "text": "Human review recorded on 0 of 312",
+              "tell": true
+            },
+            {
+              "at": "02:01",
+              "text": "Status set to Rejected — 312 notification emails queued",
+              "tell": false
+            }
+          ],
+          "reading": "The rejection email is real and the review it implies never happened. Timing is the tell: everyone in the batch is notified in the same minute."
+        }
+      ],
       "non_inferences": [
         "Bulk timeout rejection contains zero qualitative assessment of candidate profile."
       ]
@@ -2411,7 +2920,23 @@
       "masks": [],
       "evidence_level": "established",
       "honest_baseline": true,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Where the check disagreed with the record",
+          "lines": [
+            {
+              "text": "The background provider returned a mismatch on employment dates for one role: our vendor has March 2019 – June 2021, your application states January 2019 – August 2021.",
+              "tell": true
+            },
+            {
+              "text": "We are required to pause the offer while this is reconciled. If you have a payslip or contract covering those months, that resolves it.",
+              "tell": false
+            }
+          ],
+          "reading": "A resolvable discrepancy in a third-party record, with a named document that closes it. This is one of the few mechanisms with a direct, evidenced remedy."
+        }
+      ],
       "non_inferences": [
         "Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
       ]
@@ -2459,7 +2984,27 @@
       ],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Debrief tally",
+          "lines": [
+            {
+              "text": "Interviewer A: hire. Interviewer B: hire. Interviewer C: no hire. Interviewer D: no hire.",
+              "tell": false
+            },
+            {
+              "text": "No tiebreaker present. Policy: absent consensus, default to no hire.",
+              "tell": true
+            },
+            {
+              "text": "Outcome recorded as: not aligned with team needs.",
+              "tell": false
+            }
+          ],
+          "reading": "A 2–2 split became a rejection by rule, and the rule was then written up as a judgement about the candidate."
+        }
+      ],
       "non_inferences": [
         "Split panel reflects lack of calibrated internal standards rather than candidate failure."
       ]
@@ -2508,7 +3053,23 @@
       "masks": [],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "What the screener saw and what was there",
+          "lines": [
+            {
+              "text": "Screener note: mostly forks, little original work, no evidence of architecture ownership.",
+              "tell": false
+            },
+            {
+              "text": "The account: 3 pinned forks, and 40 commits over two years to an upstream project under a different org — including the storage layer rewrite referenced in the CV.",
+              "tell": true
+            }
+          ],
+          "reading": "The work exists and the surface that was checked does not show it. This is a discovery failure, and it is one of the few the candidate can fix directly."
+        }
+      ],
       "non_inferences": [
         "Misinterpreted architecture can be corrected through structured documentation."
       ]
@@ -2559,7 +3120,27 @@
       "masks": [],
       "evidence_level": "supported",
       "honest_baseline": false,
-      "specimens": [],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The posting against the first month of work",
+          "lines": [
+            {
+              "text": "Posting: 10+ years distributed systems, Kubernetes, Kafka, Rust, Go, Terraform, GraphQL, ML serving, on-call leadership, mentoring.",
+              "tell": true
+            },
+            {
+              "text": "Same team, standup notes from the quarter: CRUD endpoints for the billing dashboard, a report export, two library upgrades.",
+              "tell": false
+            },
+            {
+              "text": "Both descriptions are of the same role.",
+              "tell": false
+            }
+          ],
+          "reading": "The requirement list is a wish, an anchor and a filter at once. It describes the ceiling somebody imagined, not the work in the sprint."
+        }
+      ],
       "non_inferences": [
         "Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
       ]
@@ -2598,7 +3179,43 @@
         "I-003"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Two rejections, six weeks apart",
+          "context": "same candidate, same market, adjacent levels",
+          "lines": [
+            {
+              "text": "12 Feb — Senior Backend Engineer (level 4). Your experience sits above the band scoped for this role and we were concerned it would not hold your interest.",
+              "tell": true
+            },
+            {
+              "text": "26 Mar — Staff Engineer (level 5). The panel felt the depth of platform ownership was not yet at staff scope; we would look for a broader track record of org-wide impact.",
+              "tell": true
+            },
+            {
+              "text": "Both roles: same city, same domain, same six-week window.",
+              "tell": false
+            }
+          ],
+          "reading": "Neither message is unreasonable on its own. Put next to each other they describe a candidate who is above one level and below the next, with nothing in between open."
+        },
+        {
+          "kind": "note",
+          "label": "What the pair does and does not establish",
+          "lines": [
+            {
+              "text": "Established: two rejections, two stated grounds, two adjacent levels, one market cycle.",
+              "tell": false
+            },
+            {
+              "text": "Not established: that either judgement was wrong, that the two employers coordinated, or that the candidate is unhireable. The motif is a property of the level grid, not of the person moving through it.",
+              "tell": true
+            }
+          ],
+          "reading": "The pattern is worth naming precisely because each half is defensible. The trap is structural, which is also why no single conversation can argue it away."
+        }
+      ]
     },
     {
       "title": "Closed-Then-Reposted Requisition Motif",
@@ -2633,7 +3250,65 @@
         "I-003"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The sequence, as recorded",
+          "context": "one requisition, eleven weeks",
+          "lines": [
+            {
+              "at": "week 0",
+              "text": "Applied — req #4471",
+              "tell": false
+            },
+            {
+              "at": "week 2",
+              "text": "Recruiter screen — passed",
+              "tell": false
+            },
+            {
+              "at": "week 4",
+              "text": "Technical panel — passed",
+              "tell": false
+            },
+            {
+              "at": "week 5",
+              "text": "Final round with hiring manager — completed",
+              "tell": false
+            },
+            {
+              "at": "week 6",
+              "text": "Rejected — generic template, no specifics given",
+              "tell": true
+            },
+            {
+              "at": "week 11",
+              "text": "req #4471 visible on the careers page again, text unchanged",
+              "tell": true
+            }
+          ],
+          "reading": "Late-stage progress, a contentless rejection, and the same requisition number back on the board. The sequence is the observation; its cause is not in the sequence."
+        },
+        {
+          "kind": "chat",
+          "label": "The question that splits the branches",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "week 11",
+              "text": "I saw req #4471 listed again. Is this a new opening on the team, or the same one?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 12",
+              "text": "Same requisition. We restarted the search with a revised profile after the first round of interviews.",
+              "tell": true
+            }
+          ],
+          "reading": "A revised profile, an automated refresh and a genuinely new headcount are three different mechanisms with one appearance. This is the question that tells them apart."
+        }
+      ]
     },
     {
       "title": "Experience-Age Impossibility",
@@ -2664,7 +3339,50 @@
         "I-005"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The requirement, as published",
+          "subject": "Senior Platform Engineer — requirements",
+          "lines": [
+            {
+              "text": "7+ years of production experience with Kubernetes.",
+              "tell": false
+            },
+            {
+              "text": "5+ years with a framework first released three years ago.",
+              "tell": true
+            },
+            {
+              "text": "Screening is automated: applications below the stated year counts are filtered before human review.",
+              "tell": false
+            }
+          ],
+          "reading": "This is checkable against a release date, which makes it one of the few claims in hiring that can simply be false rather than debatable."
+        },
+        {
+          "kind": "ats",
+          "label": "What the filter did with it",
+          "lines": [
+            {
+              "at": "00:00:04",
+              "text": "Application submitted",
+              "tell": false
+            },
+            {
+              "at": "00:00:05",
+              "text": "Rule: years_with_framework >= 5 — candidate value 3 — FAIL",
+              "tell": true
+            },
+            {
+              "at": "00:00:05",
+              "text": "Status: Rejected — does not meet minimum criteria",
+              "tell": false
+            }
+          ],
+          "reading": "No one decided anything about this candidate. An impossible threshold was copied into a rule and the rule ran."
+        }
+      ]
     },
     {
       "title": "Compensation Double Bind",
@@ -2695,7 +3413,55 @@
         "I-002"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "The asymmetry, in four messages",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "screen, minute 3",
+              "text": "Before we go further — what are your compensation expectations?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "screen, minute 3",
+              "text": "Happy to discuss. What is the band for the role?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "screen, minute 4",
+              "text": "We prefer to hear the candidate number first so we can match it to the right level.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "screen, minute 5",
+              "text": "Understood. My expectation is in the range of 85–95k.",
+              "tell": false
+            }
+          ],
+          "reading": "The number is required from one side and withheld by the other, and it is collected before the level is fixed. Both outcomes below follow from that ordering."
+        },
+        {
+          "kind": "email",
+          "label": "The two branches",
+          "context": "the same question, two candidates, one week",
+          "lines": [
+            {
+              "text": "Quoted 95k — We are not able to proceed; the expectation is outside the range we have for this role.",
+              "tell": true
+            },
+            {
+              "text": "Quoted 70k — Good news, we would like to move ahead. Based on the conversation we are looking at this as a mid-level hire rather than senior.",
+              "tell": true
+            }
+          ],
+          "reading": "A high number ends the process and a low one moves the level. There is no answer that leaves both the process and the grade untouched — which is what makes it a bind rather than a negotiation."
+        }
+      ]
     }
   ],
   "loops": [

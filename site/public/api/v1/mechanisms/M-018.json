@@ -46,7 +46,34 @@
     ],
     "evidence_level": "supported",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "transcript",
+        "label": "Where the round turned",
+        "context": "minute 12",
+        "lines": [
+          {
+            "speaker": "Interviewer",
+            "at": "12:03",
+            "text": "You have built settlement systems, but not in cards specifically?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "12:09",
+            "text": "Not cards. Same problem shape though — idempotency, reconciliation, chargeback-equivalent reversals.",
+            "tell": false
+          },
+          {
+            "speaker": "Interviewer",
+            "at": "12:19",
+            "text": "We really need someone who has lived in card rails. The scheme rules are their own world.",
+            "tell": true
+          }
+        ],
+        "reading": "Transferable depth was heard and set aside for vertical familiarity. That is a legitimate preference and a narrow one; the rejection is about the filter, not the engineering."
+      }
+    ],
     "non_inferences": [
       "Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
     ]

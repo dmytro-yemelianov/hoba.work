@@ -45,7 +45,27 @@
     ],
     "evidence_level": "supported",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Review record for a 15-hour submission",
+        "lines": [
+          {
+            "text": "Submission: 41 files, 78 tests, migrations, README with design rationale.",
+            "tell": false
+          },
+          {
+            "text": "Reviewer time logged: 6 minutes. Files opened: 3.",
+            "tell": true
+          },
+          {
+            "text": "Note: no tests visible, structure unclear.",
+            "tell": false
+          }
+        ],
+        "reading": "The note is false about the submission and true about the review. The asymmetry between the two efforts is the mechanism."
+      }
+    ],
     "non_inferences": [
       "Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship."
     ]

@@ -47,7 +47,27 @@
     ],
     "evidence_level": "supported",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Screening note, internal",
+        "lines": [
+          {
+            "text": "12 years experience against a role scoped at 4–6.",
+            "tell": false
+          },
+          {
+            "text": "Concern: likely to be bored within two quarters; salary expectation probably above band; risk of using us as a bridge.",
+            "tell": true
+          },
+          {
+            "text": "Recommend: pass, unless the manager wants to see them for the level above.",
+            "tell": false
+          }
+        ],
+        "reading": "Every line is a forecast about the future, none is an observation about the work. This is why the rejection can arrive before any technical signal exists."
+      }
+    ],
     "non_inferences": [
       "Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
     ]

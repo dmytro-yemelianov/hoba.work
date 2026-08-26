@@ -46,7 +46,27 @@
     ],
     "evidence_level": "established",
     "honest_baseline": true,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Rejection naming the comparison",
+        "lines": [
+          {
+            "text": "This was a genuinely difficult decision — you cleared every bar we set.",
+            "tell": false
+          },
+          {
+            "text": "We went with another finalist who has shipped the same payment rails we are migrating to, which shortens the ramp by a quarter or so.",
+            "tell": true
+          },
+          {
+            "text": "If anything opens at this level again I would like to come back to you directly.",
+            "tell": false
+          }
+        ],
+        "reading": "Nothing here says the candidate fell short. A comparison decided it, and comparisons are not properties of either person."
+      }
+    ],
     "non_inferences": [
       "Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control."
     ]

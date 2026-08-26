@@ -46,7 +46,27 @@
     "masks": [],
     "evidence_level": "supported",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "posting",
+        "label": "The posting against the first month of work",
+        "lines": [
+          {
+            "text": "Posting: 10+ years distributed systems, Kubernetes, Kafka, Rust, Go, Terraform, GraphQL, ML serving, on-call leadership, mentoring.",
+            "tell": true
+          },
+          {
+            "text": "Same team, standup notes from the quarter: CRUD endpoints for the billing dashboard, a report export, two library upgrades.",
+            "tell": false
+          },
+          {
+            "text": "Both descriptions are of the same role.",
+            "tell": false
+          }
+        ],
+        "reading": "The requirement list is a wish, an anchor and a filter at once. It describes the ceiling somebody imagined, not the work in the sprint."
+      }
+    ],
     "non_inferences": [
       "Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
     ]

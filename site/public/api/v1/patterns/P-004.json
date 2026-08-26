@@ -29,6 +29,54 @@
       "I-002"
     ],
     "evidence_level": "supported",
-    "specimens": []
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "The asymmetry, in four messages",
+        "lines": [
+          {
+            "speaker": "Recruiter",
+            "at": "screen, minute 3",
+            "text": "Before we go further — what are your compensation expectations?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "screen, minute 3",
+            "text": "Happy to discuss. What is the band for the role?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "screen, minute 4",
+            "text": "We prefer to hear the candidate number first so we can match it to the right level.",
+            "tell": true
+          },
+          {
+            "speaker": "Candidate",
+            "at": "screen, minute 5",
+            "text": "Understood. My expectation is in the range of 85–95k.",
+            "tell": false
+          }
+        ],
+        "reading": "The number is required from one side and withheld by the other, and it is collected before the level is fixed. Both outcomes below follow from that ordering."
+      },
+      {
+        "kind": "email",
+        "label": "The two branches",
+        "context": "the same question, two candidates, one week",
+        "lines": [
+          {
+            "text": "Quoted 95k — We are not able to proceed; the expectation is outside the range we have for this role.",
+            "tell": true
+          },
+          {
+            "text": "Quoted 70k — Good news, we would like to move ahead. Based on the conversation we are looking at this as a mid-level hire rather than senior.",
+            "tell": true
+          }
+        ],
+        "reading": "A high number ends the process and a low one moves the level. There is no answer that leaves both the process and the grade untouched — which is what makes it a bind rather than a negotiation."
+      }
+    ]
   }
 }

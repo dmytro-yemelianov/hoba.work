@@ -34,7 +34,43 @@
         "I-003"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Two rejections, six weeks apart",
+          "context": "same candidate, same market, adjacent levels",
+          "lines": [
+            {
+              "text": "12 Feb — Senior Backend Engineer (level 4). Your experience sits above the band scoped for this role and we were concerned it would not hold your interest.",
+              "tell": true
+            },
+            {
+              "text": "26 Mar — Staff Engineer (level 5). The panel felt the depth of platform ownership was not yet at staff scope; we would look for a broader track record of org-wide impact.",
+              "tell": true
+            },
+            {
+              "text": "Both roles: same city, same domain, same six-week window.",
+              "tell": false
+            }
+          ],
+          "reading": "Neither message is unreasonable on its own. Put next to each other they describe a candidate who is above one level and below the next, with nothing in between open."
+        },
+        {
+          "kind": "note",
+          "label": "What the pair does and does not establish",
+          "lines": [
+            {
+              "text": "Established: two rejections, two stated grounds, two adjacent levels, one market cycle.",
+              "tell": false
+            },
+            {
+              "text": "Not established: that either judgement was wrong, that the two employers coordinated, or that the candidate is unhireable. The motif is a property of the level grid, not of the person moving through it.",
+              "tell": true
+            }
+          ],
+          "reading": "The pattern is worth naming precisely because each half is defensible. The trap is structural, which is also why no single conversation can argue it away."
+        }
+      ]
     },
     {
       "title": "Closed-Then-Reposted Requisition Motif",
@@ -69,7 +105,65 @@
         "I-003"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The sequence, as recorded",
+          "context": "one requisition, eleven weeks",
+          "lines": [
+            {
+              "at": "week 0",
+              "text": "Applied — req #4471",
+              "tell": false
+            },
+            {
+              "at": "week 2",
+              "text": "Recruiter screen — passed",
+              "tell": false
+            },
+            {
+              "at": "week 4",
+              "text": "Technical panel — passed",
+              "tell": false
+            },
+            {
+              "at": "week 5",
+              "text": "Final round with hiring manager — completed",
+              "tell": false
+            },
+            {
+              "at": "week 6",
+              "text": "Rejected — generic template, no specifics given",
+              "tell": true
+            },
+            {
+              "at": "week 11",
+              "text": "req #4471 visible on the careers page again, text unchanged",
+              "tell": true
+            }
+          ],
+          "reading": "Late-stage progress, a contentless rejection, and the same requisition number back on the board. The sequence is the observation; its cause is not in the sequence."
+        },
+        {
+          "kind": "chat",
+          "label": "The question that splits the branches",
+          "lines": [
+            {
+              "speaker": "Candidate",
+              "at": "week 11",
+              "text": "I saw req #4471 listed again. Is this a new opening on the team, or the same one?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "week 12",
+              "text": "Same requisition. We restarted the search with a revised profile after the first round of interviews.",
+              "tell": true
+            }
+          ],
+          "reading": "A revised profile, an automated refresh and a genuinely new headcount are three different mechanisms with one appearance. This is the question that tells them apart."
+        }
+      ]
     },
     {
       "title": "Experience-Age Impossibility",
@@ -100,7 +194,50 @@
         "I-005"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The requirement, as published",
+          "subject": "Senior Platform Engineer — requirements",
+          "lines": [
+            {
+              "text": "7+ years of production experience with Kubernetes.",
+              "tell": false
+            },
+            {
+              "text": "5+ years with a framework first released three years ago.",
+              "tell": true
+            },
+            {
+              "text": "Screening is automated: applications below the stated year counts are filtered before human review.",
+              "tell": false
+            }
+          ],
+          "reading": "This is checkable against a release date, which makes it one of the few claims in hiring that can simply be false rather than debatable."
+        },
+        {
+          "kind": "ats",
+          "label": "What the filter did with it",
+          "lines": [
+            {
+              "at": "00:00:04",
+              "text": "Application submitted",
+              "tell": false
+            },
+            {
+              "at": "00:00:05",
+              "text": "Rule: years_with_framework >= 5 — candidate value 3 — FAIL",
+              "tell": true
+            },
+            {
+              "at": "00:00:05",
+              "text": "Status: Rejected — does not meet minimum criteria",
+              "tell": false
+            }
+          ],
+          "reading": "No one decided anything about this candidate. An impossible threshold was copied into a rule and the rule ran."
+        }
+      ]
     },
     {
       "title": "Compensation Double Bind",
@@ -131,7 +268,55 @@
         "I-002"
       ],
       "evidence_level": "supported",
-      "specimens": []
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "The asymmetry, in four messages",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "screen, minute 3",
+              "text": "Before we go further — what are your compensation expectations?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "screen, minute 3",
+              "text": "Happy to discuss. What is the band for the role?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "screen, minute 4",
+              "text": "We prefer to hear the candidate number first so we can match it to the right level.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "screen, minute 5",
+              "text": "Understood. My expectation is in the range of 85–95k.",
+              "tell": false
+            }
+          ],
+          "reading": "The number is required from one side and withheld by the other, and it is collected before the level is fixed. Both outcomes below follow from that ordering."
+        },
+        {
+          "kind": "email",
+          "label": "The two branches",
+          "context": "the same question, two candidates, one week",
+          "lines": [
+            {
+              "text": "Quoted 95k — We are not able to proceed; the expectation is outside the range we have for this role.",
+              "tell": true
+            },
+            {
+              "text": "Quoted 70k — Good news, we would like to move ahead. Based on the conversation we are looking at this as a mid-level hire rather than senior.",
+              "tell": true
+            }
+          ],
+          "reading": "A high number ends the process and a low one moves the level. There is no answer that leaves both the process and the grade untouched — which is what makes it a bind rather than a negotiation."
+        }
+      ]
     }
   ]
 }

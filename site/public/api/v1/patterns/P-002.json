@@ -33,6 +33,64 @@
       "I-003"
     ],
     "evidence_level": "supported",
-    "specimens": []
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "The sequence, as recorded",
+        "context": "one requisition, eleven weeks",
+        "lines": [
+          {
+            "at": "week 0",
+            "text": "Applied — req #4471",
+            "tell": false
+          },
+          {
+            "at": "week 2",
+            "text": "Recruiter screen — passed",
+            "tell": false
+          },
+          {
+            "at": "week 4",
+            "text": "Technical panel — passed",
+            "tell": false
+          },
+          {
+            "at": "week 5",
+            "text": "Final round with hiring manager — completed",
+            "tell": false
+          },
+          {
+            "at": "week 6",
+            "text": "Rejected — generic template, no specifics given",
+            "tell": true
+          },
+          {
+            "at": "week 11",
+            "text": "req #4471 visible on the careers page again, text unchanged",
+            "tell": true
+          }
+        ],
+        "reading": "Late-stage progress, a contentless rejection, and the same requisition number back on the board. The sequence is the observation; its cause is not in the sequence."
+      },
+      {
+        "kind": "chat",
+        "label": "The question that splits the branches",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "week 11",
+            "text": "I saw req #4471 listed again. Is this a new opening on the team, or the same one?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "week 12",
+            "text": "Same requisition. We restarted the search with a revised profile after the first round of interviews.",
+            "tell": true
+          }
+        ],
+        "reading": "A revised profile, an automated refresh and a genuinely new headcount are three different mechanisms with one appearance. This is the question that tells them apart."
+      }
+    ]
   }
 }

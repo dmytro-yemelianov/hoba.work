@@ -46,7 +46,33 @@
     "masks": [],
     "evidence_level": "supported",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "What the outreach was actually for",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "day 1",
+            "text": "Great talking today. To set expectations — is there an open requisition behind this?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "day 1",
+            "text": "Not yet. We are building a bench ahead of the Q3 planning round; if the headcount is approved you would be first in line.",
+            "tell": true
+          },
+          {
+            "speaker": "Candidate",
+            "at": "day 1",
+            "text": "Understood, thanks for saying so.",
+            "tell": false
+          }
+        ],
+        "reading": "A straight answer converts a mystery into a schedule. The same silence three months later means something entirely different once this line exists."
+      }
+    ],
     "non_inferences": [
       "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
     ]

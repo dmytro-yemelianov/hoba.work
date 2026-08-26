@@ -48,7 +48,27 @@
     ],
     "evidence_level": "supported",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "The role that changed underneath",
+        "lines": [
+          {
+            "text": "Thank you for the four rounds — the panel notes were strong throughout.",
+            "tell": false
+          },
+          {
+            "text": "Since we opened this req the team has moved the service to Rust and folded the on-call leadership into the role. Weighted against the new profile we are looking for someone with production Rust and formal lead experience.",
+            "tell": true
+          },
+          {
+            "text": "I recognise you interviewed against the previous description. I am sorry about that.",
+            "tell": false
+          }
+        ],
+        "reading": "The assessments were not re-run, they were re-scored against a target that moved after they were taken."
+      }
+    ],
     "non_inferences": [
       "Candidate rejection was driven by shifting team mandate, not prior interview answers."
     ]

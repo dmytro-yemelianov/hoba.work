@@ -44,7 +44,36 @@
     ],
     "evidence_level": "established",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "Bulk expiry, as logged",
+        "context": "one batch, 312 applications",
+        "lines": [
+          {
+            "at": "02:00",
+            "text": "Scheduled job: expire_stale_applications",
+            "tell": false
+          },
+          {
+            "at": "02:00",
+            "text": "Selecting applications with status=submitted and age>60d — 312 matched",
+            "tell": false
+          },
+          {
+            "at": "02:00",
+            "text": "Human review recorded on 0 of 312",
+            "tell": true
+          },
+          {
+            "at": "02:01",
+            "text": "Status set to Rejected — 312 notification emails queued",
+            "tell": false
+          }
+        ],
+        "reading": "The rejection email is real and the review it implies never happened. Timing is the tell: everyone in the batch is notified in the same minute."
+      }
+    ],
     "non_inferences": [
       "Bulk timeout rejection contains zero qualitative assessment of candidate profile."
     ]

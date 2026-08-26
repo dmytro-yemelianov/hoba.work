@@ -32,6 +32,42 @@
       "I-003"
     ],
     "evidence_level": "supported",
-    "specimens": []
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Two rejections, six weeks apart",
+        "context": "same candidate, same market, adjacent levels",
+        "lines": [
+          {
+            "text": "12 Feb — Senior Backend Engineer (level 4). Your experience sits above the band scoped for this role and we were concerned it would not hold your interest.",
+            "tell": true
+          },
+          {
+            "text": "26 Mar — Staff Engineer (level 5). The panel felt the depth of platform ownership was not yet at staff scope; we would look for a broader track record of org-wide impact.",
+            "tell": true
+          },
+          {
+            "text": "Both roles: same city, same domain, same six-week window.",
+            "tell": false
+          }
+        ],
+        "reading": "Neither message is unreasonable on its own. Put next to each other they describe a candidate who is above one level and below the next, with nothing in between open."
+      },
+      {
+        "kind": "note",
+        "label": "What the pair does and does not establish",
+        "lines": [
+          {
+            "text": "Established: two rejections, two stated grounds, two adjacent levels, one market cycle.",
+            "tell": false
+          },
+          {
+            "text": "Not established: that either judgement was wrong, that the two employers coordinated, or that the candidate is unhireable. The motif is a property of the level grid, not of the person moving through it.",
+            "tell": true
+          }
+        ],
+        "reading": "The pattern is worth naming precisely because each half is defensible. The trap is structural, which is also why no single conversation can argue it away."
+      }
+    ]
   }
 }

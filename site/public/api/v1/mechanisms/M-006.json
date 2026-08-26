@@ -46,7 +46,27 @@
     "masks": [],
     "evidence_level": "established",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "Asking whether the role is alive",
+        "lines": [
+          {
+            "speaker": "Candidate",
+            "at": "day 0",
+            "text": "I applied for this in January and again in March — is the posting current?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "day 2",
+            "text": "Let me check. That team stopped hiring in December; the listing should have come down. I will get it removed.",
+            "tell": true
+          }
+        ],
+        "reading": "The posting was not bait and it was not a decision. It was a record nobody owned, which is a different thing to be angry at."
+      }
+    ],
     "non_inferences": [
       "Application silence does not reflect candidate suitability."
     ]

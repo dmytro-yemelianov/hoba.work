@@ -44,7 +44,36 @@
     "masks": [],
     "evidence_level": "established",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "Parsed profile, as the ATS stored it",
+        "context": "the same CV that renders correctly in a PDF reader",
+        "lines": [
+          {
+            "text": "Name: parsed · Email: parsed · Phone: parsed",
+            "tell": false
+          },
+          {
+            "text": "Work experience: 0 entries",
+            "tell": true
+          },
+          {
+            "text": "Skills: 0 entries",
+            "tell": false
+          },
+          {
+            "text": "Raw text captured: 340 characters of a 4,100-character document",
+            "tell": false
+          },
+          {
+            "text": "Ranking score: 12/100 — insufficient experience",
+            "tell": false
+          }
+        ],
+        "reading": "The document was not read and rejected; it was not read. A two-column layout and a graphic header are enough to produce this."
+      }
+    ],
     "non_inferences": [
       "Does not imply human recruiter evaluated and disliked candidate experience."
     ]

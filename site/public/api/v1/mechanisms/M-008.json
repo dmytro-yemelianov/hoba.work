@@ -44,7 +44,35 @@
     "masks": [],
     "evidence_level": "established",
     "honest_baseline": false,
-    "specimens": [],
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "Screening rules, as they ran",
+        "lines": [
+          {
+            "at": "+0.4s",
+            "text": "Rule 1: must_contain(\"Kubernetes\") — PASS",
+            "tell": false
+          },
+          {
+            "at": "+0.4s",
+            "text": "Rule 2: must_contain(\"CKA\") — candidate holds CKAD — FAIL",
+            "tell": true
+          },
+          {
+            "at": "+0.4s",
+            "text": "Rule 3: not evaluated (short-circuit)",
+            "tell": false
+          },
+          {
+            "at": "+0.5s",
+            "text": "Status: Rejected — does not meet minimum criteria",
+            "tell": false
+          }
+        ],
+        "reading": "An adjacent certification is not a near miss to a string match; it is a miss. The filter compares tokens, not competence."
+      }
+    ],
     "non_inferences": [
       "Passing keyword filters does not guarantee interview invitation."
     ]
