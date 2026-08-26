@@ -21,8 +21,9 @@ pnpm typecheck
 # Validate Zod schemas, referential integrity, DAG acyclicity, loop declarations, EN/UK parity
 pnpm validate:strict
 
-# Run test suite
+# Run unit/integration tests, then the browser suite against the built site
 pnpm test
+pnpm build && pnpm e2e
 
 # Regenerate committed exports (schemas/, site/public/**) and verify the deterministic build
 pnpm build

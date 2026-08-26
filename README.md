@@ -98,8 +98,13 @@ pnpm typecheck
 pnpm validate            # warnings are reported, errors fail
 pnpm validate:strict     # warnings fail too
 
-# Run unit and integration tests
+# Unit + integration tests (registry, validator, diagnostics, i18n dictionary, language worker,
+# CLI and MCP server run from source)
 pnpm test
+
+# Browser tests against the built site: routing/i18n, theme, data views, wizard, graph, 404,
+# mobile navigation, link integrity, axe WCAG 2.1 AA in light and dark (needs `pnpm build` first)
+pnpm e2e
 
 # Build all packages, regenerate static exports/schemas/API, and build the Astro website
 pnpm build
