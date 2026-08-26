@@ -3,18 +3,18 @@
   "count": 4,
   "items": [
     {
-      "id": "HOBA-P-001",
+      "id": "P-001",
       "type": "pattern",
       "title": "Seniority Double Bind",
       "summary": "Candidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.",
       "required_artifacts": [
-        "HOBA-A-002",
-        "HOBA-A-013"
+        "A-002",
+        "A-013"
       ],
       "compatible_mechanisms": [
-        "HOBA-M-001",
-        "HOBA-M-004",
-        "HOBA-M-017"
+        "M-001",
+        "M-004",
+        "M-017"
       ],
       "trigger_rule": "Candidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.",
       "establishes": [
@@ -25,8 +25,8 @@
         "Does not establish malice or coordinated collusion between employers."
       ],
       "interventions": [
-        "HOBA-I-002",
-        "HOBA-I-003"
+        "I-002",
+        "I-003"
       ],
       "status": "active",
       "evidence_level": "supported",
@@ -36,19 +36,19 @@
       "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers."
     },
     {
-      "id": "HOBA-P-002",
+      "id": "P-002",
       "type": "pattern",
       "title": "Closed-Then-Reposted Requisition Motif",
       "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
       "required_artifacts": [
-        "HOBA-A-003",
-        "HOBA-A-004"
+        "A-003",
+        "A-004"
       ],
       "compatible_mechanisms": [
-        "HOBA-M-002",
-        "HOBA-M-006",
-        "HOBA-M-010",
-        "HOBA-M-013"
+        "M-002",
+        "M-006",
+        "M-010",
+        "M-013"
       ],
       "trigger_rule": "Candidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.",
       "establishes": [
@@ -59,8 +59,8 @@
         "Does not establish that candidate was intentionally misled."
       ],
       "interventions": [
-        "HOBA-I-001",
-        "HOBA-I-003"
+        "I-001",
+        "I-003"
       ],
       "status": "active",
       "evidence_level": "supported",
@@ -70,17 +70,17 @@
       "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nCandidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.\n\n### What this Establishes\n- The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that candidate was intentionally misled."
     },
     {
-      "id": "HOBA-P-003",
+      "id": "P-003",
       "type": "pattern",
       "title": "Experience-Age Impossibility",
       "summary": "Requisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.",
       "required_artifacts": [
-        "HOBA-A-002",
-        "HOBA-A-009"
+        "A-002",
+        "A-009"
       ],
       "compatible_mechanisms": [
-        "HOBA-M-008",
-        "HOBA-M-024"
+        "M-008",
+        "M-024"
       ],
       "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
       "establishes": [
@@ -90,7 +90,7 @@
         "Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation."
       ],
       "interventions": [
-        "HOBA-I-005"
+        "I-005"
       ],
       "status": "active",
       "evidence_level": "supported",
@@ -100,17 +100,17 @@
       "content": "# Experience-Age Impossibility\n\nRequisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- Job description was authored without technical review, using copy-paste templates with automated gating rules.\n\n### What this Does NOT Establish\n- Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation."
     },
     {
-      "id": "HOBA-P-004",
+      "id": "P-004",
       "type": "pattern",
       "title": "Compensation Double Bind",
       "summary": "Candidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.",
       "required_artifacts": [
-        "HOBA-A-002",
-        "HOBA-A-005"
+        "A-002",
+        "A-005"
       ],
       "compatible_mechanisms": [
-        "HOBA-M-004",
-        "HOBA-M-017"
+        "M-004",
+        "M-017"
       ],
       "trigger_rule": "Asymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.",
       "establishes": [
@@ -120,7 +120,7 @@
         "Does not mean employer has unlimited budget or malice."
       ],
       "interventions": [
-        "HOBA-I-002"
+        "I-002"
       ],
       "status": "active",
       "evidence_level": "supported",

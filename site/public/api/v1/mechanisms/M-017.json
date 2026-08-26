@@ -1,0 +1,54 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "M-017",
+    "type": "mechanism",
+    "title": "Experience-Age Grading Mismatch",
+    "summary": "Candidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.",
+    "operates_at": [
+      "B-003",
+      "B-004",
+      "B-007"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-013",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-002"
+        ]
+      },
+      {
+        "artifact": "A-002",
+        "fidelity": "euphemism",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "recruiter",
+      "nature": "bias",
+      "visibility": "inferable",
+      "removability": "none"
+    },
+    "amplifies": [
+      "M-004"
+    ],
+    "masks": [
+      "M-001"
+    ],
+    "status": "active",
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "evidence_ids": [
+      "EVD-002"
+    ],
+    "non_inferences": [
+      "Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
+    ],
+    "content": "# Experience-Age Grading Mismatch\n\nCandidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
+  }
+}

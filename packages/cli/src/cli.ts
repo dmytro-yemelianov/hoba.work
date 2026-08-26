@@ -19,7 +19,7 @@ program
 
 program
   .command('show <id>')
-  .description('Display detailed specification of a given entity ID (e.g. HOBA-M-001)')
+  .description('Display detailed specification of a given entity ID (e.g. M-001)')
   .option('-d, --dir <path>', 'Base repository directory')
   .action((id, opts) => {
     cmdShow(id, opts);

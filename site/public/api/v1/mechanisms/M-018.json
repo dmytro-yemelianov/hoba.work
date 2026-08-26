@@ -1,0 +1,53 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "M-018",
+    "type": "mechanism",
+    "title": "Domain Specificity Over-Weighting",
+    "summary": "Interviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.",
+    "operates_at": [
+      "B-004",
+      "B-007"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-002",
+        "fidelity": "euphemism",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ]
+      },
+      {
+        "artifact": "A-008",
+        "fidelity": "direct",
+        "likelihood": "medium",
+        "evidence": [
+          "EVD-006"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "hiring-manager",
+      "nature": "bias",
+      "visibility": "inferable",
+      "removability": "intermediary"
+    },
+    "amplifies": [
+      "M-010"
+    ],
+    "masks": [
+      "M-001"
+    ],
+    "status": "active",
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "non_inferences": [
+      "Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
+    ],
+    "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
+  }
+}

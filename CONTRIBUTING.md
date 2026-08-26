@@ -27,11 +27,11 @@ pnpm build
 
 ## 3. Adding New Nodes
 
-- Artifacts: Place in `/content/artifacts/HOBA-A-xxx.md` (and `/content-uk/artifacts/HOBA-A-xxx.md`)
-- Barriers: Place in `/content/barriers/HOBA-B-xxx.md` (and `/content-uk/barriers/HOBA-B-xxx.md`)
-- Mechanisms: Place in `/content/mechanisms/HOBA-M-xxx.md` (and `/content-uk/mechanisms/HOBA-M-xxx.md`)
-- Patterns: Place in `/content/patterns/HOBA-P-xxx.md` (and `/content-uk/patterns/HOBA-P-xxx.md`)
-- Loops: Place in `/content/loops/HOBA-L-xxx.md` (and `/content-uk/loops/HOBA-L-xxx.md`)
-- Interventions: Place in `/content/interventions/HOBA-I-xxx.md` (and `/content-uk/interventions/HOBA-I-xxx.md`)
+- Artifacts: Place in `/content/artifacts/A-xxx.md` (and `/content-uk/artifacts/A-xxx.md`)
+- Barriers: Place in `/content/barriers/B-xxx.md` (and `/content-uk/barriers/B-xxx.md`)
+- Mechanisms: Place in `/content/mechanisms/M-xxx.md` (and `/content-uk/mechanisms/M-xxx.md`)
+- Patterns: Place in `/content/patterns/P-xxx.md` (and `/content-uk/patterns/P-xxx.md`)
+- Loops: Place in `/content/loops/L-xxx.md` (and `/content-uk/loops/L-xxx.md`)
+- Interventions: Place in `/content/interventions/I-xxx.md` (and `/content-uk/interventions/I-xxx.md`)
 
 Each node must have valid YAML frontmatter conforming to schemas in `@hoba/registry`.

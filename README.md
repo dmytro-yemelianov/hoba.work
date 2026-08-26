@@ -46,12 +46,12 @@ Loop (L)    = persistent causal cycle among mechanisms (validated via Tarjan SCC
 Pattern (P) = recurring contradiction / double-bind / reversal
 ```
 
-- **Observations (`HOBA-A-xxx`):** Observable artifacts (silence, generic rejection, role reposted, scope creep).
-- **Barriers (`HOBA-B-xxx`):** Strictly acyclic DAG of hiring funnel structural gates.
-- **Mechanisms (`HOBA-M-xxx`):** Forces operating at gates with explicit classification facets (`actor`, `nature`, `visibility`, `removability`). Includes mandatory honest-baseline mechanisms.
-- **Patterns (`HOBA-P-xxx`):** Named systemic motifs (e.g. *Seniority Double Bind*, *Closed-Then-Reposted*).
-- **Loops (`HOBA-L-xxx`):** Causal cycles among mechanisms validated via graph SCCs.
-- **Interventions (`HOBA-I-xxx`):** Targeted process and policy changes for employers, recruiters, and ATS platforms.
+- **Observations (`A-xxx`):** Observable artifacts (silence, generic rejection, role reposted, scope creep).
+- **Barriers (`B-xxx`):** Strictly acyclic DAG of hiring funnel structural gates.
+- **Mechanisms (`M-xxx`):** Forces operating at gates with explicit classification facets (`actor`, `nature`, `visibility`, `removability`). Includes mandatory honest-baseline mechanisms.
+- **Patterns (`P-xxx`):** Named systemic motifs (e.g. *Seniority Double Bind*, *Closed-Then-Reposted*).
+- **Loops (`L-xxx`):** Causal cycles among mechanisms validated via graph SCCs.
+- **Interventions (`I-xxx`):** Targeted process and policy changes for employers, recruiters, and ATS platforms.
 
 ---
 
@@ -134,13 +134,13 @@ Equip AI agents and IDE assistants with direct access to HOBA knowledge:
 ### CLI Tool
 ```bash
 # Run forensic HOBA analysis on an observation
-npx @hoba/cli explain HOBA-A-004 --stage technical
+npx @hoba/cli explain A-004 --stage technical
 
 # Search across the knowledge graph
 npx @hoba/cli search "reposted"
 
 # Inspect detailed entity specification
-npx @hoba/cli show HOBA-M-001
+npx @hoba/cli show M-001
 ```
 
 ### Raw Graph Exports

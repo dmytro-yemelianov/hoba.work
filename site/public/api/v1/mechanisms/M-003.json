@@ -1,0 +1,51 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "M-003",
+    "type": "mechanism",
+    "title": "ATS Parser Extraction Failure",
+    "summary": "Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.",
+    "operates_at": [
+      "B-001",
+      "B-002"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-001",
+        "fidelity": "void",
+        "likelihood": "medium",
+        "evidence": [
+          "EVD-001"
+        ]
+      },
+      {
+        "artifact": "A-009",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "system",
+      "nature": "noise",
+      "visibility": "inferable",
+      "removability": "candidate"
+    },
+    "amplifies": [
+      "M-008"
+    ],
+    "masks": [],
+    "status": "active",
+    "evidence_level": "established",
+    "honest_baseline": false,
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "non_inferences": [
+      "Does not imply human recruiter evaluated and disliked candidate experience."
+    ],
+    "content": "# ATS Parser Extraction Failure\n\nMulti-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Does not imply human recruiter evaluated and disliked candidate experience."
+  }
+}

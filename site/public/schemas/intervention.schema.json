@@ -6,7 +6,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^HOBA-I-\\d{3}$"
+          "pattern": "^I-\\d{3}$"
         },
         "type": {
           "type": "string",
@@ -24,7 +24,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-[MBPLI]-\\d{3}$"
+            "pattern": "^[MBPLI]-\\d{3}$"
           },
           "minItems": 1
         },
@@ -68,7 +68,7 @@
         },
         "superseded_by": {
           "type": "string",
-          "pattern": "^HOBA-I-\\d{3}$"
+          "pattern": "^I-\\d{3}$"
         },
         "evidence_level": {
           "type": "string",

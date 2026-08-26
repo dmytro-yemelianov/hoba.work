@@ -30,7 +30,7 @@ describe('HOBA Knowledge Graph & Registry Tests', () => {
   it('should preserve honest-baseline mechanisms', () => {
     const honestBaselines = bundle.mechanisms.filter((m) => m.honest_baseline);
     expect(honestBaselines.length).toBeGreaterThanOrEqual(1);
-    expect(honestBaselines.some((m) => m.id === 'HOBA-M-001')).toBe(true);
+    expect(honestBaselines.some((m) => m.id === 'M-001')).toBe(true);
   });
 
   it('should enforce strictly acyclic DAG on Barriers', () => {
@@ -47,7 +47,7 @@ describe('HOBA Knowledge Graph & Registry Tests', () => {
 
   it('should run HOBA Diagnostic Engine and produce structured 4-step decomposition', () => {
     const result = engine.analyze({
-      artifacts: ['HOBA-A-004'],
+      artifacts: ['A-004'],
       stage: 'technical',
     });
 
@@ -70,7 +70,7 @@ describe('HOBA Knowledge Graph & Registry Tests', () => {
     expect(graphml).toContain('</graphml>');
 
     const { nodesCSV, edgesCSV } = graph.toCSV();
-    expect(nodesCSV).toContain('HOBA-M-001');
+    expect(nodesCSV).toContain('M-001');
     expect(edgesCSV).toContain('operates_at');
   });
 });

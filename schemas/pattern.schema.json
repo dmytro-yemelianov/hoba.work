@@ -6,7 +6,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^HOBA-P-\\d{3}$"
+          "pattern": "^P-\\d{3}$"
         },
         "type": {
           "type": "string",
@@ -24,7 +24,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-A-\\d{3}$"
+            "pattern": "^A-\\d{3}$"
           },
           "minItems": 1
         },
@@ -32,7 +32,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-M-\\d{3}$"
+            "pattern": "^M-\\d{3}$"
           },
           "minItems": 1
         },
@@ -58,7 +58,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-I-\\d{3}$"
+            "pattern": "^I-\\d{3}$"
           },
           "default": []
         },
@@ -72,7 +72,7 @@
         },
         "superseded_by": {
           "type": "string",
-          "pattern": "^HOBA-P-\\d{3}$"
+          "pattern": "^P-\\d{3}$"
         },
         "evidence_level": {
           "type": "string",

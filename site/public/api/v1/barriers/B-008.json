@@ -1,0 +1,21 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "B-008",
+    "type": "barrier",
+    "title": "Team & Cross-Functional Panel",
+    "stage": "team",
+    "order": 8,
+    "precedes": [
+      "B-009"
+    ],
+    "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
+    "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
+    "status": "active",
+    "evidence_level": "established",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold."
+  }
+}

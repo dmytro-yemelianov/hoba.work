@@ -3,13 +3,13 @@
   "count": 6,
   "items": [
     {
-      "id": "HOBA-I-001",
+      "id": "I-001",
       "type": "intervention",
       "title": "Auto-Close Stale Job Requisitions",
       "summary": "Implement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.",
       "targets": [
-        "HOBA-M-006",
-        "HOBA-B-001"
+        "M-006",
+        "B-001"
       ],
       "actor": "employer-policy",
       "scope": "organizational",
@@ -30,14 +30,14 @@
       "content": "# Auto-Close Stale Job Requisitions\n\nImplement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.\n\n### Expected Effects\n- Reduce stale public listings and candidate application waste\n- Reduce ambiguous post-application silence\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`"
     },
     {
-      "id": "HOBA-I-002",
+      "id": "I-002",
       "type": "intervention",
       "title": "Upfront Compensation Band Disclosure",
       "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
       "targets": [
-        "HOBA-M-004",
-        "HOBA-B-004",
-        "HOBA-B-009"
+        "M-004",
+        "B-004",
+        "B-009"
       ],
       "actor": "employer-policy",
       "scope": "industry",
@@ -58,15 +58,15 @@
       "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- Eliminate late-stage compensation mismatch dropouts\n- Reduce time wasted on mismatched leveling conversations\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `candidate_pipeline_satisfaction`"
     },
     {
-      "id": "HOBA-I-003",
+      "id": "I-003",
       "type": "intervention",
       "title": "Standardized Late-Stage Rejection Feedback Taxonomy",
       "summary": "Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.",
       "targets": [
-        "HOBA-M-001",
-        "HOBA-M-010",
-        "HOBA-B-007",
-        "HOBA-B-008"
+        "M-001",
+        "M-010",
+        "B-007",
+        "B-008"
       ],
       "actor": "recruiter-process",
       "scope": "organizational",
@@ -87,13 +87,13 @@
       "content": "# Standardized Late-Stage Rejection Feedback Taxonomy\n\nProvide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.\n\n### Expected Effects\n- Provide actionable feedback signals to candidates\n- Enforce consistent interviewer calibration across rounds\n\n### Measurements\n- `informative_feedback_ratio`\n- `interviewer_calibration_variance`"
     },
     {
-      "id": "HOBA-I-004",
+      "id": "I-004",
       "type": "intervention",
       "title": "Remove Career Gap Feature from Automated Ranking Models",
       "summary": "Disable employment duration gap penalties in recruitment AI algorithms and screening models.",
       "targets": [
-        "HOBA-M-011",
-        "HOBA-L-001"
+        "M-011",
+        "L-001"
       ],
       "actor": "ats-vendor",
       "scope": "ecosystem",
@@ -114,13 +114,13 @@
       "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- Break algorithmic unemployment penalty loop\n- Broaden candidate pool to include skilled returning talent\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`"
     },
     {
-      "id": "HOBA-I-005",
+      "id": "I-005",
       "type": "intervention",
       "title": "Candidate ATS Parser Conformance Test Utility",
       "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
       "targets": [
-        "HOBA-M-003",
-        "HOBA-B-002"
+        "M-003",
+        "B-002"
       ],
       "actor": "candidate-action",
       "scope": "individual",
@@ -141,14 +141,14 @@
       "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- Eliminate formatting-induced silent parsing failures\n- Increase candidate confidence in resume ingestion fidelity\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`"
     },
     {
-      "id": "HOBA-I-006",
+      "id": "I-006",
       "type": "intervention",
       "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
       "summary": "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.",
       "targets": [
-        "HOBA-M-019",
-        "HOBA-L-002",
-        "HOBA-B-006"
+        "M-019",
+        "L-002",
+        "B-006"
       ],
       "actor": "hiring-manager",
       "scope": "organizational",

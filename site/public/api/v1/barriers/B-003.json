@@ -1,0 +1,21 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "B-003",
+    "type": "barrier",
+    "title": "Sourcing & Inbound Triage",
+    "stage": "sourcing",
+    "order": 3,
+    "precedes": [
+      "B-004"
+    ],
+    "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
+    "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
+    "status": "active",
+    "evidence_level": "established",
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "content": "# Sourcing & Inbound Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach."
+  }
+}

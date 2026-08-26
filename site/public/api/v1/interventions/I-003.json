@@ -1,0 +1,32 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "I-003",
+    "type": "intervention",
+    "title": "Standardized Late-Stage Rejection Feedback Taxonomy",
+    "summary": "Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.",
+    "targets": [
+      "M-001",
+      "M-010",
+      "B-007",
+      "B-008"
+    ],
+    "actor": "recruiter-process",
+    "scope": "organizational",
+    "cost": "medium",
+    "status": "active",
+    "evidence_level": "supported",
+    "expected_effects": [
+      "Provide actionable feedback signals to candidates",
+      "Enforce consistent interviewer calibration across rounds"
+    ],
+    "measurements": [
+      "informative_feedback_ratio",
+      "interviewer_calibration_variance"
+    ],
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Standardized Late-Stage Rejection Feedback Taxonomy\n\nProvide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.\n\n### Expected Effects\n- Provide actionable feedback signals to candidates\n- Enforce consistent interviewer calibration across rounds\n\n### Measurements\n- `informative_feedback_ratio`\n- `interviewer_calibration_variance`"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "L-003",
+    "type": "loop",
+    "title": "Inflated-Requirements Search Saturation Loop",
+    "summary": "Teams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.",
+    "mechanisms": [
+      "M-024",
+      "M-008",
+      "M-013"
+    ],
+    "edges": [
+      {
+        "from": "M-024",
+        "to": "M-008",
+        "relation": "amplifies"
+      },
+      {
+        "from": "M-008",
+        "to": "M-013",
+        "relation": "amplifies"
+      },
+      {
+        "from": "M-013",
+        "to": "M-024",
+        "relation": "amplifies"
+      }
+    ],
+    "entry_points": [
+      "M-024"
+    ],
+    "interventions": [
+      "I-001",
+      "I-003"
+    ],
+    "status": "active",
+    "evidence_level": "supported",
+    "evidence_ids": [
+      "EVD-001",
+      "EVD-004"
+    ],
+    "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`"
+  }
+}

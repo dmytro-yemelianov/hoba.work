@@ -1,0 +1,49 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "M-015",
+    "type": "mechanism",
+    "title": "Communication or Working Style Friction",
+    "summary": "Candidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.",
+    "operates_at": [
+      "B-004",
+      "B-008"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-010",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-006"
+        ]
+      },
+      {
+        "artifact": "A-002",
+        "fidelity": "euphemism",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "candidate",
+      "nature": "bias",
+      "visibility": "observable",
+      "removability": "candidate"
+    },
+    "amplifies": [],
+    "masks": [],
+    "status": "active",
+    "evidence_level": "established",
+    "honest_baseline": true,
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "non_inferences": [
+      "Style friction during high-stress interview is not a permanent personality defect."
+    ],
+    "content": "# Communication or Working Style Friction\n\nCandidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction during high-stress interview is not a permanent personality defect."
+  }
+}

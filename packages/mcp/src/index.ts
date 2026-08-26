@@ -65,7 +65,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: 'get_node',
-        description: 'Retrieve full specification of an entity by its canonical ID (e.g. HOBA-A-001, HOBA-B-005, HOBA-M-014, HOBA-P-001, HOBA-L-001, HOBA-I-001)',
+        description: 'Retrieve full specification of an entity by its canonical ID (e.g. A-001, B-005, M-014, P-001, L-001, I-001)',
         inputSchema: {
           type: 'object',
           properties: {
@@ -80,7 +80,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: 'object',
           properties: {
-            artifact_id: { type: 'string', description: 'Observed Artifact ID (e.g. HOBA-A-004)' },
+            artifact_id: { type: 'string', description: 'Observed Artifact ID (e.g. A-004)' },
             stage: { type: 'string', description: 'Hiring funnel stage (e.g. screening, technical, team, offer)' }
           },
           required: ['artifact_id']
@@ -126,7 +126,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: 'object',
           properties: {
-            target_id: { type: 'string', description: 'Target entity ID (e.g. HOBA-M-004, HOBA-B-001, HOBA-L-001)' }
+            target_id: { type: 'string', description: 'Target entity ID (e.g. M-004, B-001, L-001)' }
           },
           required: ['target_id']
         }

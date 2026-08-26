@@ -3,7 +3,7 @@
     "nodes": [
       {
         "data": {
-          "id": "HOBA-A-001",
+          "id": "A-001",
           "label": "Complete silence after submission",
           "type": "artifact",
           "evidence_level": "supported",
@@ -16,7 +16,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-002",
+          "id": "A-002",
           "label": "Generic \"closer alignment\" rejection template",
           "type": "artifact",
           "evidence_level": "supported",
@@ -30,7 +30,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-003",
+          "id": "A-003",
           "label": "Position closed after final interview without hire",
           "type": "artifact",
           "evidence_level": "supported",
@@ -43,7 +43,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-004",
+          "id": "A-004",
           "label": "Materially similar role reposted shortly after rejection",
           "type": "artifact",
           "evidence_level": "supported",
@@ -57,7 +57,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-005",
+          "id": "A-005",
           "label": "Compensation band reduced or altered mid-process",
           "type": "artifact",
           "evidence_level": "supported",
@@ -71,7 +71,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-006",
+          "id": "A-006",
           "label": "Take-home assignment exceeding reasonable stated scope",
           "type": "artifact",
           "evidence_level": "supported",
@@ -83,7 +83,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-007",
+          "id": "A-007",
           "label": "Multiple interview reschedulings or interviewer no-show",
           "type": "artifact",
           "evidence_level": "supported",
@@ -97,7 +97,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-008",
+          "id": "A-008",
           "label": "Explicit feedback citing skill-depth shortfall",
           "type": "artifact",
           "evidence_level": "supported",
@@ -110,7 +110,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-009",
+          "id": "A-009",
           "label": "Rejection within minutes of application submission",
           "type": "artifact",
           "evidence_level": "supported",
@@ -122,7 +122,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-010",
+          "id": "A-010",
           "label": "Communication mismatch or tone friction in panel",
           "type": "artifact",
           "evidence_level": "supported",
@@ -135,7 +135,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-011",
+          "id": "A-011",
           "label": "Offer rescinded or delayed due to internal freeze",
           "type": "artifact",
           "evidence_level": "supported",
@@ -148,7 +148,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-012",
+          "id": "A-012",
           "label": "Unsolicited recruiter outreach followed by ghosting",
           "type": "artifact",
           "evidence_level": "supported",
@@ -161,7 +161,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-013",
+          "id": "A-013",
           "label": "Feedback stating candidate is overqualified for the grade",
           "type": "artifact",
           "evidence_level": "supported",
@@ -175,7 +175,7 @@
       },
       {
         "data": {
-          "id": "HOBA-A-014",
+          "id": "A-014",
           "label": "Conflicting feedback across different interviewers",
           "type": "artifact",
           "evidence_level": "supported",
@@ -188,7 +188,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-001",
+          "id": "B-001",
           "label": "Application Ingestion",
           "type": "barrier",
           "stage": "ingestion",
@@ -199,7 +199,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-002",
+          "id": "B-002",
           "label": "Automated Filter & Parser Threshold",
           "type": "barrier",
           "stage": "ingestion",
@@ -210,7 +210,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-003",
+          "id": "B-003",
           "label": "Sourcing & Inbound Triage",
           "type": "barrier",
           "stage": "sourcing",
@@ -221,7 +221,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-004",
+          "id": "B-004",
           "label": "Recruiter Screening Call",
           "type": "barrier",
           "stage": "recruiter",
@@ -232,7 +232,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-005",
+          "id": "B-005",
           "label": "Technical Screen / Live Assessment",
           "type": "barrier",
           "stage": "technical",
@@ -243,7 +243,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-006",
+          "id": "B-006",
           "label": "Take-Home / Work Sample Evaluation",
           "type": "barrier",
           "stage": "technical",
@@ -254,7 +254,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-007",
+          "id": "B-007",
           "label": "Hiring Manager In-Depth Review",
           "type": "barrier",
           "stage": "screening",
@@ -265,7 +265,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-008",
+          "id": "B-008",
           "label": "Team & Cross-Functional Panel",
           "type": "barrier",
           "stage": "team",
@@ -276,7 +276,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-009",
+          "id": "B-009",
           "label": "Compensation & Leveling Reconciliation",
           "type": "barrier",
           "stage": "compensation",
@@ -287,7 +287,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-010",
+          "id": "B-010",
           "label": "Headcount & Executive Budget Approval",
           "type": "barrier",
           "stage": "offer",
@@ -298,7 +298,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-011",
+          "id": "B-011",
           "label": "Reference & Background Verification",
           "type": "barrier",
           "stage": "post-offer",
@@ -309,7 +309,7 @@
       },
       {
         "data": {
-          "id": "HOBA-B-012",
+          "id": "B-012",
           "label": "Offer Closing & Contract Execution",
           "type": "barrier",
           "stage": "post-offer",
@@ -320,7 +320,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-001",
+          "id": "M-001",
           "label": "Genuine Technical Skill Shortfall",
           "type": "mechanism",
           "actor": "candidate",
@@ -334,7 +334,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-002",
+          "id": "M-002",
           "label": "Stronger Competing Candidate in Final Cohort",
           "type": "mechanism",
           "actor": "candidate",
@@ -348,7 +348,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-003",
+          "id": "M-003",
           "label": "ATS Parser Extraction Failure",
           "type": "mechanism",
           "actor": "system",
@@ -362,7 +362,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-004",
+          "id": "M-004",
           "label": "Unstated Compensation Band Discrepancy",
           "type": "mechanism",
           "actor": "policy",
@@ -376,7 +376,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-005",
+          "id": "M-005",
           "label": "Pre-Selected Internal Candidate",
           "type": "mechanism",
           "actor": "policy",
@@ -390,7 +390,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-006",
+          "id": "M-006",
           "label": "Stale or Orphaned Job Requisition",
           "type": "mechanism",
           "actor": "system",
@@ -404,7 +404,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-007",
+          "id": "M-007",
           "label": "Headcount Freeze or Budget Cancellation",
           "type": "mechanism",
           "actor": "policy",
@@ -418,7 +418,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-008",
+          "id": "M-008",
           "label": "Automated Keyword / Qualification Filter",
           "type": "mechanism",
           "actor": "system",
@@ -432,7 +432,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-009",
+          "id": "M-009",
           "label": "Recruiter Volume & Quota Incentive Distortion",
           "type": "mechanism",
           "actor": "recruiter",
@@ -446,7 +446,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-010",
+          "id": "M-010",
           "label": "Hidden Evaluation Rubric or Undisclosed Priority",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -460,7 +460,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-011",
+          "id": "M-011",
           "label": "Employment Gap Downranking Bias",
           "type": "mechanism",
           "actor": "system",
@@ -474,7 +474,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-012",
+          "id": "M-012",
           "label": "Interview Resource & Scheduling Saturation",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -488,7 +488,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-013",
+          "id": "M-013",
           "label": "Mid-Process Role Requirement Redefinition",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -502,7 +502,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-014",
+          "id": "M-014",
           "label": "Location or Timezone Compliance Constraint",
           "type": "mechanism",
           "actor": "policy",
@@ -516,7 +516,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-015",
+          "id": "M-015",
           "label": "Communication or Working Style Friction",
           "type": "mechanism",
           "actor": "candidate",
@@ -530,7 +530,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-016",
+          "id": "M-016",
           "label": "Speculative Sourcing / Talent Pooling Without Opening",
           "type": "mechanism",
           "actor": "recruiter",
@@ -544,7 +544,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-017",
+          "id": "M-017",
           "label": "Experience-Age Grading Mismatch",
           "type": "mechanism",
           "actor": "recruiter",
@@ -558,7 +558,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-018",
+          "id": "M-018",
           "label": "Domain Specificity Over-Weighting",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -572,7 +572,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-019",
+          "id": "M-019",
           "label": "Take-Home Evaluation Fatigue & Asymmetry",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -586,7 +586,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-020",
+          "id": "M-020",
           "label": "Automated Application Expiration Timeout",
           "type": "mechanism",
           "actor": "system",
@@ -600,7 +600,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-021",
+          "id": "M-021",
           "label": "Reference Check Discrepancy or Regulatory Ineligibility",
           "type": "mechanism",
           "actor": "candidate",
@@ -614,7 +614,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-022",
+          "id": "M-022",
           "label": "Hiring Manager Consensus Impasse",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -628,7 +628,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-023",
+          "id": "M-023",
           "label": "Portfolio / Work Artifact Misinterpretation",
           "type": "mechanism",
           "actor": "candidate",
@@ -642,7 +642,7 @@
       },
       {
         "data": {
-          "id": "HOBA-M-024",
+          "id": "M-024",
           "label": "Inflated Requisition Requirements vs Actual Team Needs",
           "type": "mechanism",
           "actor": "hiring-manager",
@@ -656,7 +656,7 @@
       },
       {
         "data": {
-          "id": "HOBA-P-001",
+          "id": "P-001",
           "label": "Seniority Double Bind",
           "type": "pattern",
           "evidence_level": "supported"
@@ -665,7 +665,7 @@
       },
       {
         "data": {
-          "id": "HOBA-P-002",
+          "id": "P-002",
           "label": "Closed-Then-Reposted Requisition Motif",
           "type": "pattern",
           "evidence_level": "supported"
@@ -674,7 +674,7 @@
       },
       {
         "data": {
-          "id": "HOBA-P-003",
+          "id": "P-003",
           "label": "Experience-Age Impossibility",
           "type": "pattern",
           "evidence_level": "supported"
@@ -683,7 +683,7 @@
       },
       {
         "data": {
-          "id": "HOBA-P-004",
+          "id": "P-004",
           "label": "Compensation Double Bind",
           "type": "pattern",
           "evidence_level": "supported"
@@ -692,7 +692,7 @@
       },
       {
         "data": {
-          "id": "HOBA-L-001",
+          "id": "L-001",
           "label": "Employment Gap Penalty Loop",
           "type": "loop",
           "evidence_level": "supported"
@@ -701,7 +701,7 @@
       },
       {
         "data": {
-          "id": "HOBA-L-002",
+          "id": "L-002",
           "label": "Take-Home Opportunity-Cost Saturation Loop",
           "type": "loop",
           "evidence_level": "supported"
@@ -710,7 +710,7 @@
       },
       {
         "data": {
-          "id": "HOBA-L-003",
+          "id": "L-003",
           "label": "Inflated-Requirements Search Saturation Loop",
           "type": "loop",
           "evidence_level": "supported"
@@ -719,7 +719,7 @@
       },
       {
         "data": {
-          "id": "HOBA-I-001",
+          "id": "I-001",
           "label": "Auto-Close Stale Job Requisitions",
           "type": "intervention",
           "actor": "employer-policy",
@@ -730,7 +730,7 @@
       },
       {
         "data": {
-          "id": "HOBA-I-002",
+          "id": "I-002",
           "label": "Upfront Compensation Band Disclosure",
           "type": "intervention",
           "actor": "employer-policy",
@@ -741,7 +741,7 @@
       },
       {
         "data": {
-          "id": "HOBA-I-003",
+          "id": "I-003",
           "label": "Standardized Late-Stage Rejection Feedback Taxonomy",
           "type": "intervention",
           "actor": "recruiter-process",
@@ -752,7 +752,7 @@
       },
       {
         "data": {
-          "id": "HOBA-I-004",
+          "id": "I-004",
           "label": "Remove Career Gap Feature from Automated Ranking Models",
           "type": "intervention",
           "actor": "ats-vendor",
@@ -763,7 +763,7 @@
       },
       {
         "data": {
-          "id": "HOBA-I-005",
+          "id": "I-005",
           "label": "Candidate ATS Parser Conformance Test Utility",
           "type": "intervention",
           "actor": "candidate-action",
@@ -774,7 +774,7 @@
       },
       {
         "data": {
-          "id": "HOBA-I-006",
+          "id": "I-006",
           "label": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
           "type": "intervention",
           "actor": "hiring-manager",
@@ -787,153 +787,153 @@
     "edges": [
       {
         "data": {
-          "id": "HOBA-B-001->precedes->HOBA-B-002",
-          "source": "HOBA-B-001",
-          "target": "HOBA-B-002",
+          "id": "B-001->precedes->B-002",
+          "source": "B-001",
+          "target": "B-002",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-002->precedes->HOBA-B-003",
-          "source": "HOBA-B-002",
-          "target": "HOBA-B-003",
+          "id": "B-002->precedes->B-003",
+          "source": "B-002",
+          "target": "B-003",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-002->precedes->HOBA-B-004",
-          "source": "HOBA-B-002",
-          "target": "HOBA-B-004",
+          "id": "B-002->precedes->B-004",
+          "source": "B-002",
+          "target": "B-004",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-003->precedes->HOBA-B-004",
-          "source": "HOBA-B-003",
-          "target": "HOBA-B-004",
+          "id": "B-003->precedes->B-004",
+          "source": "B-003",
+          "target": "B-004",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-004->precedes->HOBA-B-005",
-          "source": "HOBA-B-004",
-          "target": "HOBA-B-005",
+          "id": "B-004->precedes->B-005",
+          "source": "B-004",
+          "target": "B-005",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-005->precedes->HOBA-B-006",
-          "source": "HOBA-B-005",
-          "target": "HOBA-B-006",
+          "id": "B-005->precedes->B-006",
+          "source": "B-005",
+          "target": "B-006",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-005->precedes->HOBA-B-007",
-          "source": "HOBA-B-005",
-          "target": "HOBA-B-007",
+          "id": "B-005->precedes->B-007",
+          "source": "B-005",
+          "target": "B-007",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-006->precedes->HOBA-B-007",
-          "source": "HOBA-B-006",
-          "target": "HOBA-B-007",
+          "id": "B-006->precedes->B-007",
+          "source": "B-006",
+          "target": "B-007",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-007->precedes->HOBA-B-008",
-          "source": "HOBA-B-007",
-          "target": "HOBA-B-008",
+          "id": "B-007->precedes->B-008",
+          "source": "B-007",
+          "target": "B-008",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-008->precedes->HOBA-B-009",
-          "source": "HOBA-B-008",
-          "target": "HOBA-B-009",
+          "id": "B-008->precedes->B-009",
+          "source": "B-008",
+          "target": "B-009",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-009->precedes->HOBA-B-010",
-          "source": "HOBA-B-009",
-          "target": "HOBA-B-010",
+          "id": "B-009->precedes->B-010",
+          "source": "B-009",
+          "target": "B-010",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-010->precedes->HOBA-B-011",
-          "source": "HOBA-B-010",
-          "target": "HOBA-B-011",
+          "id": "B-010->precedes->B-011",
+          "source": "B-010",
+          "target": "B-011",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-B-011->precedes->HOBA-B-012",
-          "source": "HOBA-B-011",
-          "target": "HOBA-B-012",
+          "id": "B-011->precedes->B-012",
+          "source": "B-011",
+          "target": "B-012",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "HOBA-M-001->operates_at->HOBA-B-005",
-          "source": "HOBA-M-001",
-          "target": "HOBA-B-005",
+          "id": "M-001->operates_at->B-005",
+          "source": "M-001",
+          "target": "B-005",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-001->operates_at->HOBA-B-006",
-          "source": "HOBA-M-001",
-          "target": "HOBA-B-006",
+          "id": "M-001->operates_at->B-006",
+          "source": "M-001",
+          "target": "B-006",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-001->operates_at->HOBA-B-007",
-          "source": "HOBA-M-001",
-          "target": "HOBA-B-007",
+          "id": "M-001->operates_at->B-007",
+          "source": "M-001",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-001->emits->HOBA-A-008",
-          "source": "HOBA-M-001",
-          "target": "HOBA-A-008",
+          "id": "M-001->emits->A-008",
+          "source": "M-001",
+          "target": "A-008",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -942,9 +942,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-001->emits->HOBA-A-002",
-          "source": "HOBA-M-001",
-          "target": "HOBA-A-002",
+          "id": "M-001->emits->A-002",
+          "source": "M-001",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -953,36 +953,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-002->operates_at->HOBA-B-007",
-          "source": "HOBA-M-002",
-          "target": "HOBA-B-007",
+          "id": "M-002->operates_at->B-007",
+          "source": "M-002",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-002->operates_at->HOBA-B-008",
-          "source": "HOBA-M-002",
-          "target": "HOBA-B-008",
+          "id": "M-002->operates_at->B-008",
+          "source": "M-002",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-002->operates_at->HOBA-B-010",
-          "source": "HOBA-M-002",
-          "target": "HOBA-B-010",
+          "id": "M-002->operates_at->B-010",
+          "source": "M-002",
+          "target": "B-010",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-002->emits->HOBA-A-002",
-          "source": "HOBA-M-002",
-          "target": "HOBA-A-002",
+          "id": "M-002->emits->A-002",
+          "source": "M-002",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -991,9 +991,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-002->emits->HOBA-A-003",
-          "source": "HOBA-M-002",
-          "target": "HOBA-A-003",
+          "id": "M-002->emits->A-003",
+          "source": "M-002",
+          "target": "A-003",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "low"
@@ -1002,36 +1002,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-002->masks->HOBA-M-001",
-          "source": "HOBA-M-002",
-          "target": "HOBA-M-001",
+          "id": "M-002->masks->M-001",
+          "source": "M-002",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-003->operates_at->HOBA-B-001",
-          "source": "HOBA-M-003",
-          "target": "HOBA-B-001",
+          "id": "M-003->operates_at->B-001",
+          "source": "M-003",
+          "target": "B-001",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-003->operates_at->HOBA-B-002",
-          "source": "HOBA-M-003",
-          "target": "HOBA-B-002",
+          "id": "M-003->operates_at->B-002",
+          "source": "M-003",
+          "target": "B-002",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-003->emits->HOBA-A-001",
-          "source": "HOBA-M-003",
-          "target": "HOBA-A-001",
+          "id": "M-003->emits->A-001",
+          "source": "M-003",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -1040,9 +1040,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-003->emits->HOBA-A-009",
-          "source": "HOBA-M-003",
-          "target": "HOBA-A-009",
+          "id": "M-003->emits->A-009",
+          "source": "M-003",
+          "target": "A-009",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1051,36 +1051,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-003->amplifies->HOBA-M-008",
-          "source": "HOBA-M-003",
-          "target": "HOBA-M-008",
+          "id": "M-003->amplifies->M-008",
+          "source": "M-003",
+          "target": "M-008",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-004->operates_at->HOBA-B-004",
-          "source": "HOBA-M-004",
-          "target": "HOBA-B-004",
+          "id": "M-004->operates_at->B-004",
+          "source": "M-004",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-004->operates_at->HOBA-B-009",
-          "source": "HOBA-M-004",
-          "target": "HOBA-B-009",
+          "id": "M-004->operates_at->B-009",
+          "source": "M-004",
+          "target": "B-009",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-004->emits->HOBA-A-002",
-          "source": "HOBA-M-004",
-          "target": "HOBA-A-002",
+          "id": "M-004->emits->A-002",
+          "source": "M-004",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1089,9 +1089,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-004->emits->HOBA-A-005",
-          "source": "HOBA-M-004",
-          "target": "HOBA-A-005",
+          "id": "M-004->emits->A-005",
+          "source": "M-004",
+          "target": "A-005",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -1100,9 +1100,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-004->emits->HOBA-A-013",
-          "source": "HOBA-M-004",
-          "target": "HOBA-A-013",
+          "id": "M-004->emits->A-013",
+          "source": "M-004",
+          "target": "A-013",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -1111,54 +1111,54 @@
       },
       {
         "data": {
-          "id": "HOBA-M-004->amplifies->HOBA-M-013",
-          "source": "HOBA-M-004",
-          "target": "HOBA-M-013",
+          "id": "M-004->amplifies->M-013",
+          "source": "M-004",
+          "target": "M-013",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-004->masks->HOBA-M-001",
-          "source": "HOBA-M-004",
-          "target": "HOBA-M-001",
+          "id": "M-004->masks->M-001",
+          "source": "M-004",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-005->operates_at->HOBA-B-001",
-          "source": "HOBA-M-005",
-          "target": "HOBA-B-001",
+          "id": "M-005->operates_at->B-001",
+          "source": "M-005",
+          "target": "B-001",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-005->operates_at->HOBA-B-003",
-          "source": "HOBA-M-005",
-          "target": "HOBA-B-003",
+          "id": "M-005->operates_at->B-003",
+          "source": "M-005",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-005->operates_at->HOBA-B-007",
-          "source": "HOBA-M-005",
-          "target": "HOBA-B-007",
+          "id": "M-005->operates_at->B-007",
+          "source": "M-005",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-005->emits->HOBA-A-002",
-          "source": "HOBA-M-005",
-          "target": "HOBA-A-002",
+          "id": "M-005->emits->A-002",
+          "source": "M-005",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1167,9 +1167,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-005->emits->HOBA-A-003",
-          "source": "HOBA-M-005",
-          "target": "HOBA-A-003",
+          "id": "M-005->emits->A-003",
+          "source": "M-005",
+          "target": "A-003",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -1178,45 +1178,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-005->masks->HOBA-M-002",
-          "source": "HOBA-M-005",
-          "target": "HOBA-M-002",
+          "id": "M-005->masks->M-002",
+          "source": "M-005",
+          "target": "M-002",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-006->operates_at->HOBA-B-001",
-          "source": "HOBA-M-006",
-          "target": "HOBA-B-001",
+          "id": "M-006->operates_at->B-001",
+          "source": "M-006",
+          "target": "B-001",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-006->operates_at->HOBA-B-002",
-          "source": "HOBA-M-006",
-          "target": "HOBA-B-002",
+          "id": "M-006->operates_at->B-002",
+          "source": "M-006",
+          "target": "B-002",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-006->operates_at->HOBA-B-003",
-          "source": "HOBA-M-006",
-          "target": "HOBA-B-003",
+          "id": "M-006->operates_at->B-003",
+          "source": "M-006",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-006->emits->HOBA-A-001",
-          "source": "HOBA-M-006",
-          "target": "HOBA-A-001",
+          "id": "M-006->emits->A-001",
+          "source": "M-006",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1225,9 +1225,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-006->emits->HOBA-A-004",
-          "source": "HOBA-M-006",
-          "target": "HOBA-A-004",
+          "id": "M-006->emits->A-004",
+          "source": "M-006",
+          "target": "A-004",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -1236,45 +1236,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-006->amplifies->HOBA-M-020",
-          "source": "HOBA-M-006",
-          "target": "HOBA-M-020",
+          "id": "M-006->amplifies->M-020",
+          "source": "M-006",
+          "target": "M-020",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-007->operates_at->HOBA-B-008",
-          "source": "HOBA-M-007",
-          "target": "HOBA-B-008",
+          "id": "M-007->operates_at->B-008",
+          "source": "M-007",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-007->operates_at->HOBA-B-010",
-          "source": "HOBA-M-007",
-          "target": "HOBA-B-010",
+          "id": "M-007->operates_at->B-010",
+          "source": "M-007",
+          "target": "B-010",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-007->operates_at->HOBA-B-012",
-          "source": "HOBA-M-007",
-          "target": "HOBA-B-012",
+          "id": "M-007->operates_at->B-012",
+          "source": "M-007",
+          "target": "B-012",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-007->emits->HOBA-A-003",
-          "source": "HOBA-M-007",
-          "target": "HOBA-A-003",
+          "id": "M-007->emits->A-003",
+          "source": "M-007",
+          "target": "A-003",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1283,9 +1283,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-007->emits->HOBA-A-011",
-          "source": "HOBA-M-007",
-          "target": "HOBA-A-011",
+          "id": "M-007->emits->A-011",
+          "source": "M-007",
+          "target": "A-011",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1294,45 +1294,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-007->amplifies->HOBA-M-006",
-          "source": "HOBA-M-007",
-          "target": "HOBA-M-006",
+          "id": "M-007->amplifies->M-006",
+          "source": "M-007",
+          "target": "M-006",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-007->masks->HOBA-M-001",
-          "source": "HOBA-M-007",
-          "target": "HOBA-M-001",
+          "id": "M-007->masks->M-001",
+          "source": "M-007",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-007->masks->HOBA-M-002",
-          "source": "HOBA-M-007",
-          "target": "HOBA-M-002",
+          "id": "M-007->masks->M-002",
+          "source": "M-007",
+          "target": "M-002",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-008->operates_at->HOBA-B-002",
-          "source": "HOBA-M-008",
-          "target": "HOBA-B-002",
+          "id": "M-008->operates_at->B-002",
+          "source": "M-008",
+          "target": "B-002",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-008->emits->HOBA-A-009",
-          "source": "HOBA-M-008",
-          "target": "HOBA-A-009",
+          "id": "M-008->emits->A-009",
+          "source": "M-008",
+          "target": "A-009",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1341,9 +1341,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-008->emits->HOBA-A-002",
-          "source": "HOBA-M-008",
-          "target": "HOBA-A-002",
+          "id": "M-008->emits->A-002",
+          "source": "M-008",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1352,36 +1352,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-008->amplifies->HOBA-M-011",
-          "source": "HOBA-M-008",
-          "target": "HOBA-M-011",
+          "id": "M-008->amplifies->M-011",
+          "source": "M-008",
+          "target": "M-011",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-009->operates_at->HOBA-B-003",
-          "source": "HOBA-M-009",
-          "target": "HOBA-B-003",
+          "id": "M-009->operates_at->B-003",
+          "source": "M-009",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-009->operates_at->HOBA-B-004",
-          "source": "HOBA-M-009",
-          "target": "HOBA-B-004",
+          "id": "M-009->operates_at->B-004",
+          "source": "M-009",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-009->emits->HOBA-A-001",
-          "source": "HOBA-M-009",
-          "target": "HOBA-A-001",
+          "id": "M-009->emits->A-001",
+          "source": "M-009",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1390,9 +1390,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-009->emits->HOBA-A-012",
-          "source": "HOBA-M-009",
-          "target": "HOBA-A-012",
+          "id": "M-009->emits->A-012",
+          "source": "M-009",
+          "target": "A-012",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -1401,54 +1401,54 @@
       },
       {
         "data": {
-          "id": "HOBA-M-009->amplifies->HOBA-M-012",
-          "source": "HOBA-M-009",
-          "target": "HOBA-M-012",
+          "id": "M-009->amplifies->M-012",
+          "source": "M-009",
+          "target": "M-012",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-009->masks->HOBA-M-008",
-          "source": "HOBA-M-009",
-          "target": "HOBA-M-008",
+          "id": "M-009->masks->M-008",
+          "source": "M-009",
+          "target": "M-008",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-010->operates_at->HOBA-B-005",
-          "source": "HOBA-M-010",
-          "target": "HOBA-B-005",
+          "id": "M-010->operates_at->B-005",
+          "source": "M-010",
+          "target": "B-005",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-010->operates_at->HOBA-B-007",
-          "source": "HOBA-M-010",
-          "target": "HOBA-B-007",
+          "id": "M-010->operates_at->B-007",
+          "source": "M-010",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-010->operates_at->HOBA-B-008",
-          "source": "HOBA-M-010",
-          "target": "HOBA-B-008",
+          "id": "M-010->operates_at->B-008",
+          "source": "M-010",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-010->emits->HOBA-A-008",
-          "source": "HOBA-M-010",
-          "target": "HOBA-A-008",
+          "id": "M-010->emits->A-008",
+          "source": "M-010",
+          "target": "A-008",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "medium"
@@ -1457,9 +1457,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-010->emits->HOBA-A-014",
-          "source": "HOBA-M-010",
-          "target": "HOBA-A-014",
+          "id": "M-010->emits->A-014",
+          "source": "M-010",
+          "target": "A-014",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1468,45 +1468,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-010->amplifies->HOBA-M-022",
-          "source": "HOBA-M-010",
-          "target": "HOBA-M-022",
+          "id": "M-010->amplifies->M-022",
+          "source": "M-010",
+          "target": "M-022",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-010->masks->HOBA-M-001",
-          "source": "HOBA-M-010",
-          "target": "HOBA-M-001",
+          "id": "M-010->masks->M-001",
+          "source": "M-010",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-011->operates_at->HOBA-B-002",
-          "source": "HOBA-M-011",
-          "target": "HOBA-B-002",
+          "id": "M-011->operates_at->B-002",
+          "source": "M-011",
+          "target": "B-002",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-011->operates_at->HOBA-B-003",
-          "source": "HOBA-M-011",
-          "target": "HOBA-B-003",
+          "id": "M-011->operates_at->B-003",
+          "source": "M-011",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-011->emits->HOBA-A-001",
-          "source": "HOBA-M-011",
-          "target": "HOBA-A-001",
+          "id": "M-011->emits->A-001",
+          "source": "M-011",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1515,9 +1515,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-011->emits->HOBA-A-002",
-          "source": "HOBA-M-011",
-          "target": "HOBA-A-002",
+          "id": "M-011->emits->A-002",
+          "source": "M-011",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1526,45 +1526,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-011->amplifies->HOBA-M-008",
-          "source": "HOBA-M-011",
-          "target": "HOBA-M-008",
+          "id": "M-011->amplifies->M-008",
+          "source": "M-011",
+          "target": "M-008",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-012->operates_at->HOBA-B-005",
-          "source": "HOBA-M-012",
-          "target": "HOBA-B-005",
+          "id": "M-012->operates_at->B-005",
+          "source": "M-012",
+          "target": "B-005",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-012->operates_at->HOBA-B-007",
-          "source": "HOBA-M-012",
-          "target": "HOBA-B-007",
+          "id": "M-012->operates_at->B-007",
+          "source": "M-012",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-012->operates_at->HOBA-B-008",
-          "source": "HOBA-M-012",
-          "target": "HOBA-B-008",
+          "id": "M-012->operates_at->B-008",
+          "source": "M-012",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-012->emits->HOBA-A-007",
-          "source": "HOBA-M-012",
-          "target": "HOBA-A-007",
+          "id": "M-012->emits->A-007",
+          "source": "M-012",
+          "target": "A-007",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1573,9 +1573,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-012->emits->HOBA-A-001",
-          "source": "HOBA-M-012",
-          "target": "HOBA-A-001",
+          "id": "M-012->emits->A-001",
+          "source": "M-012",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -1584,45 +1584,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-012->amplifies->HOBA-M-019",
-          "source": "HOBA-M-012",
-          "target": "HOBA-M-019",
+          "id": "M-012->amplifies->M-019",
+          "source": "M-012",
+          "target": "M-019",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-013->operates_at->HOBA-B-007",
-          "source": "HOBA-M-013",
-          "target": "HOBA-B-007",
+          "id": "M-013->operates_at->B-007",
+          "source": "M-013",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-013->operates_at->HOBA-B-008",
-          "source": "HOBA-M-013",
-          "target": "HOBA-B-008",
+          "id": "M-013->operates_at->B-008",
+          "source": "M-013",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-013->operates_at->HOBA-B-009",
-          "source": "HOBA-M-013",
-          "target": "HOBA-B-009",
+          "id": "M-013->operates_at->B-009",
+          "source": "M-013",
+          "target": "B-009",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-013->emits->HOBA-A-003",
-          "source": "HOBA-M-013",
-          "target": "HOBA-A-003",
+          "id": "M-013->emits->A-003",
+          "source": "M-013",
+          "target": "A-003",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "medium"
@@ -1631,9 +1631,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-013->emits->HOBA-A-004",
-          "source": "HOBA-M-013",
-          "target": "HOBA-A-004",
+          "id": "M-013->emits->A-004",
+          "source": "M-013",
+          "target": "A-004",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1642,45 +1642,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-013->amplifies->HOBA-M-004",
-          "source": "HOBA-M-013",
-          "target": "HOBA-M-004",
+          "id": "M-013->amplifies->M-004",
+          "source": "M-013",
+          "target": "M-004",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-013->masks->HOBA-M-001",
-          "source": "HOBA-M-013",
-          "target": "HOBA-M-001",
+          "id": "M-013->masks->M-001",
+          "source": "M-013",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-014->operates_at->HOBA-B-002",
-          "source": "HOBA-M-014",
-          "target": "HOBA-B-002",
+          "id": "M-014->operates_at->B-002",
+          "source": "M-014",
+          "target": "B-002",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-014->operates_at->HOBA-B-004",
-          "source": "HOBA-M-014",
-          "target": "HOBA-B-004",
+          "id": "M-014->operates_at->B-004",
+          "source": "M-014",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-014->emits->HOBA-A-009",
-          "source": "HOBA-M-014",
-          "target": "HOBA-A-009",
+          "id": "M-014->emits->A-009",
+          "source": "M-014",
+          "target": "A-009",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1689,9 +1689,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-014->emits->HOBA-A-002",
-          "source": "HOBA-M-014",
-          "target": "HOBA-A-002",
+          "id": "M-014->emits->A-002",
+          "source": "M-014",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -1700,27 +1700,27 @@
       },
       {
         "data": {
-          "id": "HOBA-M-015->operates_at->HOBA-B-004",
-          "source": "HOBA-M-015",
-          "target": "HOBA-B-004",
+          "id": "M-015->operates_at->B-004",
+          "source": "M-015",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-015->operates_at->HOBA-B-008",
-          "source": "HOBA-M-015",
-          "target": "HOBA-B-008",
+          "id": "M-015->operates_at->B-008",
+          "source": "M-015",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-015->emits->HOBA-A-010",
-          "source": "HOBA-M-015",
-          "target": "HOBA-A-010",
+          "id": "M-015->emits->A-010",
+          "source": "M-015",
+          "target": "A-010",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1729,9 +1729,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-015->emits->HOBA-A-002",
-          "source": "HOBA-M-015",
-          "target": "HOBA-A-002",
+          "id": "M-015->emits->A-002",
+          "source": "M-015",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1740,27 +1740,27 @@
       },
       {
         "data": {
-          "id": "HOBA-M-016->operates_at->HOBA-B-003",
-          "source": "HOBA-M-016",
-          "target": "HOBA-B-003",
+          "id": "M-016->operates_at->B-003",
+          "source": "M-016",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-016->operates_at->HOBA-B-004",
-          "source": "HOBA-M-016",
-          "target": "HOBA-B-004",
+          "id": "M-016->operates_at->B-004",
+          "source": "M-016",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-016->emits->HOBA-A-012",
-          "source": "HOBA-M-016",
-          "target": "HOBA-A-012",
+          "id": "M-016->emits->A-012",
+          "source": "M-016",
+          "target": "A-012",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "high"
@@ -1769,9 +1769,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-016->emits->HOBA-A-001",
-          "source": "HOBA-M-016",
-          "target": "HOBA-A-001",
+          "id": "M-016->emits->A-001",
+          "source": "M-016",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -1780,45 +1780,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-016->amplifies->HOBA-M-009",
-          "source": "HOBA-M-016",
-          "target": "HOBA-M-009",
+          "id": "M-016->amplifies->M-009",
+          "source": "M-016",
+          "target": "M-009",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-017->operates_at->HOBA-B-003",
-          "source": "HOBA-M-017",
-          "target": "HOBA-B-003",
+          "id": "M-017->operates_at->B-003",
+          "source": "M-017",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-017->operates_at->HOBA-B-004",
-          "source": "HOBA-M-017",
-          "target": "HOBA-B-004",
+          "id": "M-017->operates_at->B-004",
+          "source": "M-017",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-017->operates_at->HOBA-B-007",
-          "source": "HOBA-M-017",
-          "target": "HOBA-B-007",
+          "id": "M-017->operates_at->B-007",
+          "source": "M-017",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-017->emits->HOBA-A-013",
-          "source": "HOBA-M-017",
-          "target": "HOBA-A-013",
+          "id": "M-017->emits->A-013",
+          "source": "M-017",
+          "target": "A-013",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1827,9 +1827,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-017->emits->HOBA-A-002",
-          "source": "HOBA-M-017",
-          "target": "HOBA-A-002",
+          "id": "M-017->emits->A-002",
+          "source": "M-017",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1838,45 +1838,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-017->amplifies->HOBA-M-004",
-          "source": "HOBA-M-017",
-          "target": "HOBA-M-004",
+          "id": "M-017->amplifies->M-004",
+          "source": "M-017",
+          "target": "M-004",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-017->masks->HOBA-M-001",
-          "source": "HOBA-M-017",
-          "target": "HOBA-M-001",
+          "id": "M-017->masks->M-001",
+          "source": "M-017",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-018->operates_at->HOBA-B-004",
-          "source": "HOBA-M-018",
-          "target": "HOBA-B-004",
+          "id": "M-018->operates_at->B-004",
+          "source": "M-018",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-018->operates_at->HOBA-B-007",
-          "source": "HOBA-M-018",
-          "target": "HOBA-B-007",
+          "id": "M-018->operates_at->B-007",
+          "source": "M-018",
+          "target": "B-007",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-018->emits->HOBA-A-002",
-          "source": "HOBA-M-018",
-          "target": "HOBA-A-002",
+          "id": "M-018->emits->A-002",
+          "source": "M-018",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1885,9 +1885,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-018->emits->HOBA-A-008",
-          "source": "HOBA-M-018",
-          "target": "HOBA-A-008",
+          "id": "M-018->emits->A-008",
+          "source": "M-018",
+          "target": "A-008",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -1896,36 +1896,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-018->amplifies->HOBA-M-010",
-          "source": "HOBA-M-018",
-          "target": "HOBA-M-010",
+          "id": "M-018->amplifies->M-010",
+          "source": "M-018",
+          "target": "M-010",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-018->masks->HOBA-M-001",
-          "source": "HOBA-M-018",
-          "target": "HOBA-M-001",
+          "id": "M-018->masks->M-001",
+          "source": "M-018",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-019->operates_at->HOBA-B-006",
-          "source": "HOBA-M-019",
-          "target": "HOBA-B-006",
+          "id": "M-019->operates_at->B-006",
+          "source": "M-019",
+          "target": "B-006",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-019->emits->HOBA-A-006",
-          "source": "HOBA-M-019",
-          "target": "HOBA-A-006",
+          "id": "M-019->emits->A-006",
+          "source": "M-019",
+          "target": "A-006",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -1934,9 +1934,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-019->emits->HOBA-A-002",
-          "source": "HOBA-M-019",
-          "target": "HOBA-A-002",
+          "id": "M-019->emits->A-002",
+          "source": "M-019",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1945,45 +1945,45 @@
       },
       {
         "data": {
-          "id": "HOBA-M-019->amplifies->HOBA-M-012",
-          "source": "HOBA-M-019",
-          "target": "HOBA-M-012",
+          "id": "M-019->amplifies->M-012",
+          "source": "M-019",
+          "target": "M-012",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-019->masks->HOBA-M-001",
-          "source": "HOBA-M-019",
-          "target": "HOBA-M-001",
+          "id": "M-019->masks->M-001",
+          "source": "M-019",
+          "target": "M-001",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-020->operates_at->HOBA-B-001",
-          "source": "HOBA-M-020",
-          "target": "HOBA-B-001",
+          "id": "M-020->operates_at->B-001",
+          "source": "M-020",
+          "target": "B-001",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-020->operates_at->HOBA-B-003",
-          "source": "HOBA-M-020",
-          "target": "HOBA-B-003",
+          "id": "M-020->operates_at->B-003",
+          "source": "M-020",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-020->emits->HOBA-A-002",
-          "source": "HOBA-M-020",
-          "target": "HOBA-A-002",
+          "id": "M-020->emits->A-002",
+          "source": "M-020",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1992,9 +1992,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-020->emits->HOBA-A-001",
-          "source": "HOBA-M-020",
-          "target": "HOBA-A-001",
+          "id": "M-020->emits->A-001",
+          "source": "M-020",
+          "target": "A-001",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -2003,27 +2003,27 @@
       },
       {
         "data": {
-          "id": "HOBA-M-020->masks->HOBA-M-006",
-          "source": "HOBA-M-020",
-          "target": "HOBA-M-006",
+          "id": "M-020->masks->M-006",
+          "source": "M-020",
+          "target": "M-006",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-021->operates_at->HOBA-B-011",
-          "source": "HOBA-M-021",
-          "target": "HOBA-B-011",
+          "id": "M-021->operates_at->B-011",
+          "source": "M-021",
+          "target": "B-011",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-021->emits->HOBA-A-011",
-          "source": "HOBA-M-021",
-          "target": "HOBA-A-011",
+          "id": "M-021->emits->A-011",
+          "source": "M-021",
+          "target": "A-011",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2032,9 +2032,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-021->emits->HOBA-A-002",
-          "source": "HOBA-M-021",
-          "target": "HOBA-A-002",
+          "id": "M-021->emits->A-002",
+          "source": "M-021",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -2043,18 +2043,18 @@
       },
       {
         "data": {
-          "id": "HOBA-M-022->operates_at->HOBA-B-008",
-          "source": "HOBA-M-022",
-          "target": "HOBA-B-008",
+          "id": "M-022->operates_at->B-008",
+          "source": "M-022",
+          "target": "B-008",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-022->emits->HOBA-A-014",
-          "source": "HOBA-M-022",
-          "target": "HOBA-A-014",
+          "id": "M-022->emits->A-014",
+          "source": "M-022",
+          "target": "A-014",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2063,9 +2063,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-022->emits->HOBA-A-002",
-          "source": "HOBA-M-022",
-          "target": "HOBA-A-002",
+          "id": "M-022->emits->A-002",
+          "source": "M-022",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2074,36 +2074,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-022->masks->HOBA-M-002",
-          "source": "HOBA-M-022",
-          "target": "HOBA-M-002",
+          "id": "M-022->masks->M-002",
+          "source": "M-022",
+          "target": "M-002",
           "type": "masks"
         },
         "classes": "edge-masks"
       },
       {
         "data": {
-          "id": "HOBA-M-023->operates_at->HOBA-B-003",
-          "source": "HOBA-M-023",
-          "target": "HOBA-B-003",
+          "id": "M-023->operates_at->B-003",
+          "source": "M-023",
+          "target": "B-003",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-023->operates_at->HOBA-B-005",
-          "source": "HOBA-M-023",
-          "target": "HOBA-B-005",
+          "id": "M-023->operates_at->B-005",
+          "source": "M-023",
+          "target": "B-005",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-023->emits->HOBA-A-002",
-          "source": "HOBA-M-023",
-          "target": "HOBA-A-002",
+          "id": "M-023->emits->A-002",
+          "source": "M-023",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2112,9 +2112,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-023->emits->HOBA-A-008",
-          "source": "HOBA-M-023",
-          "target": "HOBA-A-008",
+          "id": "M-023->emits->A-008",
+          "source": "M-023",
+          "target": "A-008",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "medium"
@@ -2123,36 +2123,36 @@
       },
       {
         "data": {
-          "id": "HOBA-M-023->amplifies->HOBA-M-001",
-          "source": "HOBA-M-023",
-          "target": "HOBA-M-001",
+          "id": "M-023->amplifies->M-001",
+          "source": "M-023",
+          "target": "M-001",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-024->operates_at->HOBA-B-002",
-          "source": "HOBA-M-024",
-          "target": "HOBA-B-002",
+          "id": "M-024->operates_at->B-002",
+          "source": "M-024",
+          "target": "B-002",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-024->operates_at->HOBA-B-004",
-          "source": "HOBA-M-024",
-          "target": "HOBA-B-004",
+          "id": "M-024->operates_at->B-004",
+          "source": "M-024",
+          "target": "B-004",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "HOBA-M-024->emits->HOBA-A-002",
-          "source": "HOBA-M-024",
-          "target": "HOBA-A-002",
+          "id": "M-024->emits->A-002",
+          "source": "M-024",
+          "target": "A-002",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2161,9 +2161,9 @@
       },
       {
         "data": {
-          "id": "HOBA-M-024->emits->HOBA-A-004",
-          "source": "HOBA-M-024",
-          "target": "HOBA-A-004",
+          "id": "M-024->emits->A-004",
+          "source": "M-024",
+          "target": "A-004",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2172,333 +2172,333 @@
       },
       {
         "data": {
-          "id": "HOBA-M-024->amplifies->HOBA-M-008",
-          "source": "HOBA-M-024",
-          "target": "HOBA-M-008",
+          "id": "M-024->amplifies->M-008",
+          "source": "M-024",
+          "target": "M-008",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-M-024->amplifies->HOBA-M-004",
-          "source": "HOBA-M-024",
-          "target": "HOBA-M-004",
+          "id": "M-024->amplifies->M-004",
+          "source": "M-024",
+          "target": "M-004",
           "type": "amplifies"
         },
         "classes": "edge-amplifies"
       },
       {
         "data": {
-          "id": "HOBA-A-002->instantiates->HOBA-P-001",
-          "source": "HOBA-A-002",
-          "target": "HOBA-P-001",
+          "id": "A-002->instantiates->P-001",
+          "source": "A-002",
+          "target": "P-001",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-013->instantiates->HOBA-P-001",
-          "source": "HOBA-A-013",
-          "target": "HOBA-P-001",
+          "id": "A-013->instantiates->P-001",
+          "source": "A-013",
+          "target": "P-001",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-001->instantiates->HOBA-P-001",
-          "source": "HOBA-M-001",
-          "target": "HOBA-P-001",
+          "id": "M-001->instantiates->P-001",
+          "source": "M-001",
+          "target": "P-001",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-004->instantiates->HOBA-P-001",
-          "source": "HOBA-M-004",
-          "target": "HOBA-P-001",
+          "id": "M-004->instantiates->P-001",
+          "source": "M-004",
+          "target": "P-001",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-017->instantiates->HOBA-P-001",
-          "source": "HOBA-M-017",
-          "target": "HOBA-P-001",
+          "id": "M-017->instantiates->P-001",
+          "source": "M-017",
+          "target": "P-001",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-003->instantiates->HOBA-P-002",
-          "source": "HOBA-A-003",
-          "target": "HOBA-P-002",
+          "id": "A-003->instantiates->P-002",
+          "source": "A-003",
+          "target": "P-002",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-004->instantiates->HOBA-P-002",
-          "source": "HOBA-A-004",
-          "target": "HOBA-P-002",
+          "id": "A-004->instantiates->P-002",
+          "source": "A-004",
+          "target": "P-002",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-002->instantiates->HOBA-P-002",
-          "source": "HOBA-M-002",
-          "target": "HOBA-P-002",
+          "id": "M-002->instantiates->P-002",
+          "source": "M-002",
+          "target": "P-002",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-006->instantiates->HOBA-P-002",
-          "source": "HOBA-M-006",
-          "target": "HOBA-P-002",
+          "id": "M-006->instantiates->P-002",
+          "source": "M-006",
+          "target": "P-002",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-010->instantiates->HOBA-P-002",
-          "source": "HOBA-M-010",
-          "target": "HOBA-P-002",
+          "id": "M-010->instantiates->P-002",
+          "source": "M-010",
+          "target": "P-002",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-013->instantiates->HOBA-P-002",
-          "source": "HOBA-M-013",
-          "target": "HOBA-P-002",
+          "id": "M-013->instantiates->P-002",
+          "source": "M-013",
+          "target": "P-002",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-002->instantiates->HOBA-P-003",
-          "source": "HOBA-A-002",
-          "target": "HOBA-P-003",
+          "id": "A-002->instantiates->P-003",
+          "source": "A-002",
+          "target": "P-003",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-009->instantiates->HOBA-P-003",
-          "source": "HOBA-A-009",
-          "target": "HOBA-P-003",
+          "id": "A-009->instantiates->P-003",
+          "source": "A-009",
+          "target": "P-003",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-008->instantiates->HOBA-P-003",
-          "source": "HOBA-M-008",
-          "target": "HOBA-P-003",
+          "id": "M-008->instantiates->P-003",
+          "source": "M-008",
+          "target": "P-003",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-024->instantiates->HOBA-P-003",
-          "source": "HOBA-M-024",
-          "target": "HOBA-P-003",
+          "id": "M-024->instantiates->P-003",
+          "source": "M-024",
+          "target": "P-003",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-002->instantiates->HOBA-P-004",
-          "source": "HOBA-A-002",
-          "target": "HOBA-P-004",
+          "id": "A-002->instantiates->P-004",
+          "source": "A-002",
+          "target": "P-004",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-A-005->instantiates->HOBA-P-004",
-          "source": "HOBA-A-005",
-          "target": "HOBA-P-004",
+          "id": "A-005->instantiates->P-004",
+          "source": "A-005",
+          "target": "P-004",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-004->instantiates->HOBA-P-004",
-          "source": "HOBA-M-004",
-          "target": "HOBA-P-004",
+          "id": "M-004->instantiates->P-004",
+          "source": "M-004",
+          "target": "P-004",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-M-017->instantiates->HOBA-P-004",
-          "source": "HOBA-M-017",
-          "target": "HOBA-P-004",
+          "id": "M-017->instantiates->P-004",
+          "source": "M-017",
+          "target": "P-004",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "HOBA-I-001->targets->HOBA-M-006",
-          "source": "HOBA-I-001",
-          "target": "HOBA-M-006",
+          "id": "I-001->targets->M-006",
+          "source": "I-001",
+          "target": "M-006",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-001->targets->HOBA-B-001",
-          "source": "HOBA-I-001",
-          "target": "HOBA-B-001",
+          "id": "I-001->targets->B-001",
+          "source": "I-001",
+          "target": "B-001",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-002->targets->HOBA-M-004",
-          "source": "HOBA-I-002",
-          "target": "HOBA-M-004",
+          "id": "I-002->targets->M-004",
+          "source": "I-002",
+          "target": "M-004",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-002->targets->HOBA-B-004",
-          "source": "HOBA-I-002",
-          "target": "HOBA-B-004",
+          "id": "I-002->targets->B-004",
+          "source": "I-002",
+          "target": "B-004",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-002->targets->HOBA-B-009",
-          "source": "HOBA-I-002",
-          "target": "HOBA-B-009",
+          "id": "I-002->targets->B-009",
+          "source": "I-002",
+          "target": "B-009",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-003->targets->HOBA-M-001",
-          "source": "HOBA-I-003",
-          "target": "HOBA-M-001",
+          "id": "I-003->targets->M-001",
+          "source": "I-003",
+          "target": "M-001",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-003->targets->HOBA-M-010",
-          "source": "HOBA-I-003",
-          "target": "HOBA-M-010",
+          "id": "I-003->targets->M-010",
+          "source": "I-003",
+          "target": "M-010",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-003->targets->HOBA-B-007",
-          "source": "HOBA-I-003",
-          "target": "HOBA-B-007",
+          "id": "I-003->targets->B-007",
+          "source": "I-003",
+          "target": "B-007",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-003->targets->HOBA-B-008",
-          "source": "HOBA-I-003",
-          "target": "HOBA-B-008",
+          "id": "I-003->targets->B-008",
+          "source": "I-003",
+          "target": "B-008",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-004->targets->HOBA-M-011",
-          "source": "HOBA-I-004",
-          "target": "HOBA-M-011",
+          "id": "I-004->targets->M-011",
+          "source": "I-004",
+          "target": "M-011",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-004->mitigates->HOBA-L-001",
-          "source": "HOBA-I-004",
-          "target": "HOBA-L-001",
+          "id": "I-004->mitigates->L-001",
+          "source": "I-004",
+          "target": "L-001",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
       },
       {
         "data": {
-          "id": "HOBA-I-005->targets->HOBA-M-003",
-          "source": "HOBA-I-005",
-          "target": "HOBA-M-003",
+          "id": "I-005->targets->M-003",
+          "source": "I-005",
+          "target": "M-003",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-005->targets->HOBA-B-002",
-          "source": "HOBA-I-005",
-          "target": "HOBA-B-002",
+          "id": "I-005->targets->B-002",
+          "source": "I-005",
+          "target": "B-002",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-006->targets->HOBA-M-019",
-          "source": "HOBA-I-006",
-          "target": "HOBA-M-019",
+          "id": "I-006->targets->M-019",
+          "source": "I-006",
+          "target": "M-019",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "HOBA-I-006->mitigates->HOBA-L-002",
-          "source": "HOBA-I-006",
-          "target": "HOBA-L-002",
+          "id": "I-006->mitigates->L-002",
+          "source": "I-006",
+          "target": "L-002",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
       },
       {
         "data": {
-          "id": "HOBA-I-006->targets->HOBA-B-006",
-          "source": "HOBA-I-006",
-          "target": "HOBA-B-006",
+          "id": "I-006->targets->B-006",
+          "source": "I-006",
+          "target": "B-006",
           "type": "targets"
         },
         "classes": "edge-targets"

@@ -6,7 +6,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^HOBA-M-\\d{3}$"
+          "pattern": "^M-\\d{3}$"
         },
         "type": {
           "type": "string",
@@ -24,7 +24,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-B-\\d{3}$"
+            "pattern": "^B-\\d{3}$"
           },
           "minItems": 1
         },
@@ -35,7 +35,7 @@
             "properties": {
               "artifact": {
                 "type": "string",
-                "pattern": "^HOBA-A-\\d{3}$"
+                "pattern": "^A-\\d{3}$"
               },
               "fidelity": {
                 "anyOf": [
@@ -136,7 +136,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-M-\\d{3}$"
+            "pattern": "^M-\\d{3}$"
           },
           "default": []
         },
@@ -144,7 +144,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^HOBA-M-\\d{3}$"
+            "pattern": "^M-\\d{3}$"
           },
           "default": []
         },
@@ -158,7 +158,7 @@
         },
         "superseded_by": {
           "type": "string",
-          "pattern": "^HOBA-M-\\d{3}$"
+          "pattern": "^M-\\d{3}$"
         },
         "evidence_level": {
           "type": "string",

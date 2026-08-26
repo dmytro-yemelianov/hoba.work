@@ -1,0 +1,52 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "M-012",
+    "type": "mechanism",
+    "title": "Interview Resource & Scheduling Saturation",
+    "summary": "Engineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.",
+    "operates_at": [
+      "B-005",
+      "B-007",
+      "B-008"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-007",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ]
+      },
+      {
+        "artifact": "A-001",
+        "fidelity": "noise",
+        "likelihood": "medium",
+        "evidence": [
+          "EVD-001"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "hiring-manager",
+      "nature": "noise",
+      "visibility": "inferable",
+      "removability": "intermediary"
+    },
+    "amplifies": [
+      "M-019"
+    ],
+    "masks": [],
+    "status": "active",
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "non_inferences": [
+      "Rescheduling is an operational issue and does not indicate negative evaluation."
+    ],
+    "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Rescheduling is an operational issue and does not indicate negative evaluation."
+  }
+}

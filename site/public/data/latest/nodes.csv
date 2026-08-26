@@ -1,64 +1,64 @@
 id,type,title,evidence_level,stage,removability,nature,actor
-"HOBA-A-001","artifact","Complete silence after submission","supported","ingestion;sourcing",,"",
-"HOBA-A-002","artifact","Generic ""closer alignment"" rejection template","supported","screening;recruiter;technical",,"",
-"HOBA-A-003","artifact","Position closed after final interview without hire","supported","team;offer",,"",
-"HOBA-A-004","artifact","Materially similar role reposted shortly after rejection","supported","sourcing;screening;technical",,"",
-"HOBA-A-005","artifact","Compensation band reduced or altered mid-process","supported","recruiter;compensation;offer",,"",
-"HOBA-A-006","artifact","Take-home assignment exceeding reasonable stated scope","supported","technical",,"",
-"HOBA-A-007","artifact","Multiple interview reschedulings or interviewer no-show","supported","recruiter;technical;team",,"",
-"HOBA-A-008","artifact","Explicit feedback citing skill-depth shortfall","supported","technical;team",,"",
-"HOBA-A-009","artifact","Rejection within minutes of application submission","supported","ingestion",,"",
-"HOBA-A-010","artifact","Communication mismatch or tone friction in panel","supported","recruiter;team",,"",
-"HOBA-A-011","artifact","Offer rescinded or delayed due to internal freeze","supported","offer;post-offer",,"",
-"HOBA-A-012","artifact","Unsolicited recruiter outreach followed by ghosting","supported","sourcing;recruiter",,"",
-"HOBA-A-013","artifact","Feedback stating candidate is overqualified for the grade","supported","recruiter;screening;team",,"",
-"HOBA-A-014","artifact","Conflicting feedback across different interviewers","supported","technical;team",,"",
-"HOBA-B-001","barrier","Application Ingestion","established","ingestion",,"",
-"HOBA-B-002","barrier","Automated Filter & Parser Threshold","established","ingestion",,"",
-"HOBA-B-003","barrier","Sourcing & Inbound Triage","established","sourcing",,"",
-"HOBA-B-004","barrier","Recruiter Screening Call","established","recruiter",,"",
-"HOBA-B-005","barrier","Technical Screen / Live Assessment","established","technical",,"",
-"HOBA-B-006","barrier","Take-Home / Work Sample Evaluation","established","technical",,"",
-"HOBA-B-007","barrier","Hiring Manager In-Depth Review","established","screening",,"",
-"HOBA-B-008","barrier","Team & Cross-Functional Panel","established","team",,"",
-"HOBA-B-009","barrier","Compensation & Leveling Reconciliation","established","compensation",,"",
-"HOBA-B-010","barrier","Headcount & Executive Budget Approval","established","offer",,"",
-"HOBA-B-011","barrier","Reference & Background Verification","established","post-offer",,"",
-"HOBA-B-012","barrier","Offer Closing & Contract Execution","established","post-offer",,"",
-"HOBA-M-001","mechanism","Genuine Technical Skill Shortfall","established",,"candidate","rule","candidate"
-"HOBA-M-002","mechanism","Stronger Competing Candidate in Final Cohort","established",,"none","rule","candidate"
-"HOBA-M-003","mechanism","ATS Parser Extraction Failure","established",,"candidate","noise","system"
-"HOBA-M-004","mechanism","Unstated Compensation Band Discrepancy","supported",,"intermediary","rule","policy"
-"HOBA-M-005","mechanism","Pre-Selected Internal Candidate","supported",,"none","incentive","policy"
-"HOBA-M-006","mechanism","Stale or Orphaned Job Requisition","established",,"none","void","system"
-"HOBA-M-007","mechanism","Headcount Freeze or Budget Cancellation","established",,"none","rule","policy"
-"HOBA-M-008","mechanism","Automated Keyword / Qualification Filter","established",,"candidate","rule","system"
-"HOBA-M-009","mechanism","Recruiter Volume & Quota Incentive Distortion","supported",,"intermediary","incentive","recruiter"
-"HOBA-M-010","mechanism","Hidden Evaluation Rubric or Undisclosed Priority","supported",,"intermediary","bias","hiring-manager"
-"HOBA-M-011","mechanism","Employment Gap Downranking Bias","supported",,"none","bias","system"
-"HOBA-M-012","mechanism","Interview Resource & Scheduling Saturation","supported",,"intermediary","noise","hiring-manager"
-"HOBA-M-013","mechanism","Mid-Process Role Requirement Redefinition","supported",,"none","noise","hiring-manager"
-"HOBA-M-014","mechanism","Location or Timezone Compliance Constraint","established",,"intermediary","rule","policy"
-"HOBA-M-015","mechanism","Communication or Working Style Friction","established",,"candidate","bias","candidate"
-"HOBA-M-016","mechanism","Speculative Sourcing / Talent Pooling Without Opening","supported",,"none","incentive","recruiter"
-"HOBA-M-017","mechanism","Experience-Age Grading Mismatch","supported",,"none","bias","recruiter"
-"HOBA-M-018","mechanism","Domain Specificity Over-Weighting","supported",,"intermediary","bias","hiring-manager"
-"HOBA-M-019","mechanism","Take-Home Evaluation Fatigue & Asymmetry","supported",,"none","noise","hiring-manager"
-"HOBA-M-020","mechanism","Automated Application Expiration Timeout","established",,"none","rule","system"
-"HOBA-M-021","mechanism","Reference Check Discrepancy or Regulatory Ineligibility","established",,"candidate","rule","candidate"
-"HOBA-M-022","mechanism","Hiring Manager Consensus Impasse","supported",,"none","bias","hiring-manager"
-"HOBA-M-023","mechanism","Portfolio / Work Artifact Misinterpretation","supported",,"candidate","noise","candidate"
-"HOBA-M-024","mechanism","Inflated Requisition Requirements vs Actual Team Needs","supported",,"intermediary","incentive","hiring-manager"
-"HOBA-P-001","pattern","Seniority Double Bind","supported",,,,
-"HOBA-P-002","pattern","Closed-Then-Reposted Requisition Motif","supported",,,,
-"HOBA-P-003","pattern","Experience-Age Impossibility","supported",,,,
-"HOBA-P-004","pattern","Compensation Double Bind","supported",,,,
-"HOBA-L-001","loop","Employment Gap Penalty Loop","supported",,,,
-"HOBA-L-002","loop","Take-Home Opportunity-Cost Saturation Loop","supported",,,,
-"HOBA-L-003","loop","Inflated-Requirements Search Saturation Loop","supported",,,,
-"HOBA-I-001","intervention","Auto-Close Stale Job Requisitions","supported",,,,employer-policy
-"HOBA-I-002","intervention","Upfront Compensation Band Disclosure","supported",,,,employer-policy
-"HOBA-I-003","intervention","Standardized Late-Stage Rejection Feedback Taxonomy","supported",,,,recruiter-process
-"HOBA-I-004","intervention","Remove Career Gap Feature from Automated Ranking Models","supported",,,,ats-vendor
-"HOBA-I-005","intervention","Candidate ATS Parser Conformance Test Utility","supported",,,,candidate-action
-"HOBA-I-006","intervention","Strict Take-Home Timebox & Blinded Evaluation Rubric","supported",,,,hiring-manager
+"A-001","artifact","Complete silence after submission","supported","ingestion;sourcing",,"",
+"A-002","artifact","Generic ""closer alignment"" rejection template","supported","screening;recruiter;technical",,"",
+"A-003","artifact","Position closed after final interview without hire","supported","team;offer",,"",
+"A-004","artifact","Materially similar role reposted shortly after rejection","supported","sourcing;screening;technical",,"",
+"A-005","artifact","Compensation band reduced or altered mid-process","supported","recruiter;compensation;offer",,"",
+"A-006","artifact","Take-home assignment exceeding reasonable stated scope","supported","technical",,"",
+"A-007","artifact","Multiple interview reschedulings or interviewer no-show","supported","recruiter;technical;team",,"",
+"A-008","artifact","Explicit feedback citing skill-depth shortfall","supported","technical;team",,"",
+"A-009","artifact","Rejection within minutes of application submission","supported","ingestion",,"",
+"A-010","artifact","Communication mismatch or tone friction in panel","supported","recruiter;team",,"",
+"A-011","artifact","Offer rescinded or delayed due to internal freeze","supported","offer;post-offer",,"",
+"A-012","artifact","Unsolicited recruiter outreach followed by ghosting","supported","sourcing;recruiter",,"",
+"A-013","artifact","Feedback stating candidate is overqualified for the grade","supported","recruiter;screening;team",,"",
+"A-014","artifact","Conflicting feedback across different interviewers","supported","technical;team",,"",
+"B-001","barrier","Application Ingestion","established","ingestion",,"",
+"B-002","barrier","Automated Filter & Parser Threshold","established","ingestion",,"",
+"B-003","barrier","Sourcing & Inbound Triage","established","sourcing",,"",
+"B-004","barrier","Recruiter Screening Call","established","recruiter",,"",
+"B-005","barrier","Technical Screen / Live Assessment","established","technical",,"",
+"B-006","barrier","Take-Home / Work Sample Evaluation","established","technical",,"",
+"B-007","barrier","Hiring Manager In-Depth Review","established","screening",,"",
+"B-008","barrier","Team & Cross-Functional Panel","established","team",,"",
+"B-009","barrier","Compensation & Leveling Reconciliation","established","compensation",,"",
+"B-010","barrier","Headcount & Executive Budget Approval","established","offer",,"",
+"B-011","barrier","Reference & Background Verification","established","post-offer",,"",
+"B-012","barrier","Offer Closing & Contract Execution","established","post-offer",,"",
+"M-001","mechanism","Genuine Technical Skill Shortfall","established",,"candidate","rule","candidate"
+"M-002","mechanism","Stronger Competing Candidate in Final Cohort","established",,"none","rule","candidate"
+"M-003","mechanism","ATS Parser Extraction Failure","established",,"candidate","noise","system"
+"M-004","mechanism","Unstated Compensation Band Discrepancy","supported",,"intermediary","rule","policy"
+"M-005","mechanism","Pre-Selected Internal Candidate","supported",,"none","incentive","policy"
+"M-006","mechanism","Stale or Orphaned Job Requisition","established",,"none","void","system"
+"M-007","mechanism","Headcount Freeze or Budget Cancellation","established",,"none","rule","policy"
+"M-008","mechanism","Automated Keyword / Qualification Filter","established",,"candidate","rule","system"
+"M-009","mechanism","Recruiter Volume & Quota Incentive Distortion","supported",,"intermediary","incentive","recruiter"
+"M-010","mechanism","Hidden Evaluation Rubric or Undisclosed Priority","supported",,"intermediary","bias","hiring-manager"
+"M-011","mechanism","Employment Gap Downranking Bias","supported",,"none","bias","system"
+"M-012","mechanism","Interview Resource & Scheduling Saturation","supported",,"intermediary","noise","hiring-manager"
+"M-013","mechanism","Mid-Process Role Requirement Redefinition","supported",,"none","noise","hiring-manager"
+"M-014","mechanism","Location or Timezone Compliance Constraint","established",,"intermediary","rule","policy"
+"M-015","mechanism","Communication or Working Style Friction","established",,"candidate","bias","candidate"
+"M-016","mechanism","Speculative Sourcing / Talent Pooling Without Opening","supported",,"none","incentive","recruiter"
+"M-017","mechanism","Experience-Age Grading Mismatch","supported",,"none","bias","recruiter"
+"M-018","mechanism","Domain Specificity Over-Weighting","supported",,"intermediary","bias","hiring-manager"
+"M-019","mechanism","Take-Home Evaluation Fatigue & Asymmetry","supported",,"none","noise","hiring-manager"
+"M-020","mechanism","Automated Application Expiration Timeout","established",,"none","rule","system"
+"M-021","mechanism","Reference Check Discrepancy or Regulatory Ineligibility","established",,"candidate","rule","candidate"
+"M-022","mechanism","Hiring Manager Consensus Impasse","supported",,"none","bias","hiring-manager"
+"M-023","mechanism","Portfolio / Work Artifact Misinterpretation","supported",,"candidate","noise","candidate"
+"M-024","mechanism","Inflated Requisition Requirements vs Actual Team Needs","supported",,"intermediary","incentive","hiring-manager"
+"P-001","pattern","Seniority Double Bind","supported",,,,
+"P-002","pattern","Closed-Then-Reposted Requisition Motif","supported",,,,
+"P-003","pattern","Experience-Age Impossibility","supported",,,,
+"P-004","pattern","Compensation Double Bind","supported",,,,
+"L-001","loop","Employment Gap Penalty Loop","supported",,,,
+"L-002","loop","Take-Home Opportunity-Cost Saturation Loop","supported",,,,
+"L-003","loop","Inflated-Requirements Search Saturation Loop","supported",,,,
+"I-001","intervention","Auto-Close Stale Job Requisitions","supported",,,,employer-policy
+"I-002","intervention","Upfront Compensation Band Disclosure","supported",,,,employer-policy
+"I-003","intervention","Standardized Late-Stage Rejection Feedback Taxonomy","supported",,,,recruiter-process
+"I-004","intervention","Remove Career Gap Feature from Automated Ranking Models","supported",,,,ats-vendor
+"I-005","intervention","Candidate ATS Parser Conformance Test Utility","supported",,,,candidate-action
+"I-006","intervention","Strict Take-Home Timebox & Blinded Evaluation Rubric","supported",,,,hiring-manager

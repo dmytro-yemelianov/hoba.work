@@ -103,28 +103,28 @@ export const diagnosticProbeSchema = z.object({
 });
 
 export const emissionEdgeSchema = z.object({
-  artifact: z.string().regex(/^HOBA-A-\d{3}$/),
+  artifact: z.string().regex(/^A-\d{3}$/),
   fidelity: emissionFidelitySchema.nullable().optional(),
   likelihood: emissionLikelihoodSchema.nullable().optional(),
   evidence: z.array(z.string()).optional(),
 });
 
 export const loopEdgeSchema = z.object({
-  from: z.string().regex(/^HOBA-M-\d{3}$/),
-  to: z.string().regex(/^HOBA-M-\d{3}$/),
+  from: z.string().regex(/^M-\d{3}$/),
+  to: z.string().regex(/^M-\d{3}$/),
   relation: z.enum(['amplifies', 'masks']),
 });
 
 // Artifact frontmatter schema
 export const artifactSchema = z.object({
-  id: z.string().regex(/^HOBA-A-\d{3}$/),
+  id: z.string().regex(/^A-\d{3}$/),
   type: z.literal('artifact'),
   title: z.string().min(3),
   summary: z.string().min(10),
   stages: z.array(stageIdSchema).min(1),
   fidelity: emissionFidelitySchema.nullable().optional(),
   status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^HOBA-A-\d{3}$/).optional(),
+  superseded_by: z.string().regex(/^A-\d{3}$/).optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   evidence_ids: z.array(z.string()).optional(),
   probes: z.array(diagnosticProbeSchema).optional(),
@@ -134,16 +134,16 @@ export const artifactSchema = z.object({
 
 // Barrier frontmatter schema
 export const barrierSchema = z.object({
-  id: z.string().regex(/^HOBA-B-\d{3}$/),
+  id: z.string().regex(/^B-\d{3}$/),
   type: z.literal('barrier'),
   title: z.string().min(3),
   stage: stageIdSchema,
   order: z.number().int().positive(),
-  precedes: z.array(z.string().regex(/^HOBA-B-\d{3}$/)).default([]),
+  precedes: z.array(z.string().regex(/^B-\d{3}$/)).default([]),
   description: z.string().min(10),
   pass_condition: z.string().min(5),
   status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^HOBA-B-\d{3}$/).optional(),
+  superseded_by: z.string().regex(/^B-\d{3}$/).optional(),
   evidence_level: evidenceLevelSchema.default('established'),
   evidence_ids: z.array(z.string()).optional(),
   content: z.string().optional(),
@@ -158,17 +158,17 @@ export const mechanismFacetsSchema = z.object({
 });
 
 export const mechanismSchema = z.object({
-  id: z.string().regex(/^HOBA-M-\d{3}$/),
+  id: z.string().regex(/^M-\d{3}$/),
   type: z.literal('mechanism'),
   title: z.string().min(3),
   summary: z.string().min(10),
-  operates_at: z.array(z.string().regex(/^HOBA-B-\d{3}$/)).min(1),
+  operates_at: z.array(z.string().regex(/^B-\d{3}$/)).min(1),
   emissions: z.array(emissionEdgeSchema).default([]),
   facets: mechanismFacetsSchema,
-  amplifies: z.array(z.string().regex(/^HOBA-M-\d{3}$/)).default([]),
-  masks: z.array(z.string().regex(/^HOBA-M-\d{3}$/)).default([]),
+  amplifies: z.array(z.string().regex(/^M-\d{3}$/)).default([]),
+  masks: z.array(z.string().regex(/^M-\d{3}$/)).default([]),
   status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^HOBA-M-\d{3}$/).optional(),
+  superseded_by: z.string().regex(/^M-\d{3}$/).optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   honest_baseline: z.boolean().default(false),
   evidence_ids: z.array(z.string()).optional(),
@@ -178,18 +178,18 @@ export const mechanismSchema = z.object({
 
 // Pattern frontmatter schema
 export const patternSchema = z.object({
-  id: z.string().regex(/^HOBA-P-\d{3}$/),
+  id: z.string().regex(/^P-\d{3}$/),
   type: z.literal('pattern'),
   title: z.string().min(3),
   summary: z.string().min(10),
-  required_artifacts: z.array(z.string().regex(/^HOBA-A-\d{3}$/)).min(1),
-  compatible_mechanisms: z.array(z.string().regex(/^HOBA-M-\d{3}$/)).min(1),
+  required_artifacts: z.array(z.string().regex(/^A-\d{3}$/)).min(1),
+  compatible_mechanisms: z.array(z.string().regex(/^M-\d{3}$/)).min(1),
   trigger_rule: z.string().min(10),
   establishes: z.array(z.string()).min(1),
   non_inferences: z.array(z.string()).min(1),
-  interventions: z.array(z.string().regex(/^HOBA-I-\d{3}$/)).default([]),
+  interventions: z.array(z.string().regex(/^I-\d{3}$/)).default([]),
   status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^HOBA-P-\d{3}$/).optional(),
+  superseded_by: z.string().regex(/^P-\d{3}$/).optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   evidence_ids: z.array(z.string()).optional(),
   content: z.string().optional(),
@@ -197,16 +197,16 @@ export const patternSchema = z.object({
 
 // Loop frontmatter schema
 export const loopSchema = z.object({
-  id: z.string().regex(/^HOBA-L-\d{3}$/),
+  id: z.string().regex(/^L-\d{3}$/),
   type: z.literal('loop'),
   title: z.string().min(3),
   summary: z.string().min(10),
-  mechanisms: z.array(z.string().regex(/^HOBA-M-\d{3}$/)).min(2),
+  mechanisms: z.array(z.string().regex(/^M-\d{3}$/)).min(2),
   edges: z.array(loopEdgeSchema).min(2),
-  entry_points: z.array(z.string().regex(/^HOBA-M-\d{3}$/)).min(1),
-  interventions: z.array(z.string().regex(/^HOBA-I-\d{3}$/)).default([]),
+  entry_points: z.array(z.string().regex(/^M-\d{3}$/)).min(1),
+  interventions: z.array(z.string().regex(/^I-\d{3}$/)).default([]),
   status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^HOBA-L-\d{3}$/).optional(),
+  superseded_by: z.string().regex(/^L-\d{3}$/).optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   evidence_ids: z.array(z.string()).optional(),
   content: z.string().optional(),
@@ -214,16 +214,16 @@ export const loopSchema = z.object({
 
 // Intervention frontmatter schema
 export const interventionSchema = z.object({
-  id: z.string().regex(/^HOBA-I-\d{3}$/),
+  id: z.string().regex(/^I-\d{3}$/),
   type: z.literal('intervention'),
   title: z.string().min(3),
   summary: z.string().min(10),
-  targets: z.array(z.string().regex(/^HOBA-[MBPLI]-\d{3}$/)).min(1),
+  targets: z.array(z.string().regex(/^[MBPLI]-\d{3}$/)).min(1),
   actor: interventionActorSchema,
   scope: scopeTypeSchema,
   cost: costBandSchema,
   status: nodeStatusSchema.default('active'),
-  superseded_by: z.string().regex(/^HOBA-I-\d{3}$/).optional(),
+  superseded_by: z.string().regex(/^I-\d{3}$/).optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   expected_effects: z.array(z.string()).min(1),
   measurements: z.array(z.string()).min(1),

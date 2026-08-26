@@ -1,0 +1,54 @@
+{
+  "registry_version": "2026.08.1",
+  "data": {
+    "id": "M-010",
+    "type": "mechanism",
+    "title": "Hidden Evaluation Rubric or Undisclosed Priority",
+    "summary": "The interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.",
+    "operates_at": [
+      "B-005",
+      "B-007",
+      "B-008"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-008",
+        "fidelity": "distortion",
+        "likelihood": "medium",
+        "evidence": [
+          "EVD-006"
+        ]
+      },
+      {
+        "artifact": "A-014",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-006"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "hiring-manager",
+      "nature": "bias",
+      "visibility": "opaque",
+      "removability": "intermediary"
+    },
+    "amplifies": [
+      "M-022"
+    ],
+    "masks": [
+      "M-001"
+    ],
+    "status": "active",
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "non_inferences": [
+      "Failure to guess unstated preferences is not equivalent to lack of core competence."
+    ],
+    "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Failure to guess unstated preferences is not equivalent to lack of core competence."
+  }
+}

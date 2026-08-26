@@ -3,13 +3,13 @@
   "count": 12,
   "items": [
     {
-      "id": "HOBA-B-001",
+      "id": "B-001",
       "type": "barrier",
       "title": "Application Ingestion",
       "stage": "ingestion",
       "order": 1,
       "precedes": [
-        "HOBA-B-002"
+        "B-002"
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
       "pass_condition": "Application record is successfully received, validated for minimum schema, and linked to the active job requisition.",
@@ -21,14 +21,14 @@
       "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nApplication record is successfully received, validated for minimum schema, and linked to the active job requisition."
     },
     {
-      "id": "HOBA-B-002",
+      "id": "B-002",
       "type": "barrier",
       "title": "Automated Filter & Parser Threshold",
       "stage": "ingestion",
       "order": 2,
       "precedes": [
-        "HOBA-B-003",
-        "HOBA-B-004"
+        "B-003",
+        "B-004"
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.",
       "pass_condition": "CV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
@@ -40,13 +40,13 @@
       "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nCV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules."
     },
     {
-      "id": "HOBA-B-003",
+      "id": "B-003",
       "type": "barrier",
       "title": "Sourcing & Inbound Triage",
       "stage": "sourcing",
       "order": 3,
       "precedes": [
-        "HOBA-B-004"
+        "B-004"
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
       "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
@@ -58,13 +58,13 @@
       "content": "# Sourcing & Inbound Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach."
     },
     {
-      "id": "HOBA-B-004",
+      "id": "B-004",
       "type": "barrier",
       "title": "Recruiter Screening Call",
       "stage": "recruiter",
       "order": 4,
       "precedes": [
-        "HOBA-B-005"
+        "B-005"
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
       "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
@@ -77,14 +77,14 @@
       "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nRecruiter and candidate align on core parameters and candidate is submitted to hiring team."
     },
     {
-      "id": "HOBA-B-005",
+      "id": "B-005",
       "type": "barrier",
       "title": "Technical Screen / Live Assessment",
       "stage": "technical",
       "order": 5,
       "precedes": [
-        "HOBA-B-006",
-        "HOBA-B-007"
+        "B-006",
+        "B-007"
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
       "pass_condition": "Candidate achieves passing score on technical evaluation rubric from the assessing engineer.",
@@ -96,13 +96,13 @@
       "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nCandidate achieves passing score on technical evaluation rubric from the assessing engineer."
     },
     {
-      "id": "HOBA-B-006",
+      "id": "B-006",
       "type": "barrier",
       "title": "Take-Home / Work Sample Evaluation",
       "stage": "technical",
       "order": 6,
       "precedes": [
-        "HOBA-B-007"
+        "B-007"
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
       "pass_condition": "Code artifact satisfies architectural, functional, test coverage, and documentation requirements.",
@@ -114,13 +114,13 @@
       "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nCode artifact satisfies architectural, functional, test coverage, and documentation requirements."
     },
     {
-      "id": "HOBA-B-007",
+      "id": "B-007",
       "type": "barrier",
       "title": "Hiring Manager In-Depth Review",
       "stage": "screening",
       "order": 7,
       "precedes": [
-        "HOBA-B-008"
+        "B-008"
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
       "pass_condition": "Hiring manager confirms candidate has required depth and approves progression to final panel.",
@@ -132,13 +132,13 @@
       "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nHiring manager confirms candidate has required depth and approves progression to final panel."
     },
     {
-      "id": "HOBA-B-008",
+      "id": "B-008",
       "type": "barrier",
       "title": "Team & Cross-Functional Panel",
       "stage": "team",
       "order": 8,
       "precedes": [
-        "HOBA-B-009"
+        "B-009"
       ],
       "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
       "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
@@ -150,13 +150,13 @@
       "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold."
     },
     {
-      "id": "HOBA-B-009",
+      "id": "B-009",
       "type": "barrier",
       "title": "Compensation & Leveling Reconciliation",
       "stage": "compensation",
       "order": 9,
       "precedes": [
-        "HOBA-B-010"
+        "B-010"
       ],
       "description": "Internal alignment between candidate expected compensation/level and company pay bands / leveling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
@@ -169,13 +169,13 @@
       "content": "# Compensation & Leveling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / leveling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade."
     },
     {
-      "id": "HOBA-B-010",
+      "id": "B-010",
       "type": "barrier",
       "title": "Headcount & Executive Budget Approval",
       "stage": "offer",
       "order": 10,
       "precedes": [
-        "HOBA-B-011"
+        "B-011"
       ],
       "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
       "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
@@ -187,13 +187,13 @@
       "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership."
     },
     {
-      "id": "HOBA-B-011",
+      "id": "B-011",
       "type": "barrier",
       "title": "Reference & Background Verification",
       "stage": "post-offer",
       "order": 11,
       "precedes": [
-        "HOBA-B-012"
+        "B-012"
       ],
       "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
       "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
@@ -205,7 +205,7 @@
       "content": "# Reference & Background Verification\n\nThird-party or internal verification of past employment records, academic degrees, and professional references.\n\n### Pass Condition\nAll mandatory background checks clear with no unresolved factual discrepancies."
     },
     {
-      "id": "HOBA-B-012",
+      "id": "B-012",
       "type": "barrier",
       "title": "Offer Closing & Contract Execution",
       "stage": "post-offer",
