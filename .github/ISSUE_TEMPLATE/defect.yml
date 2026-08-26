@@ -1,0 +1,31 @@
+name: Defect
+description: Something on the site or in the packages is wrong
+labels: ["defect"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: The observed behaviour, and the URL or command that produces it.
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should happen instead
+    validations: { required: true }
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      placeholder: https://hoba.work/mechanisms/M-011 · Firefox 141 · 390px · dark
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshot, console output, or the failing command with its output.
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Before filing
+      options:
+        - label: "`pnpm task check` was run and its output is included above, or this is a defect only visible in a browser."

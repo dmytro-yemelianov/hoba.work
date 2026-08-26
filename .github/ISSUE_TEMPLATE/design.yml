@@ -1,0 +1,35 @@
+name: Design change
+description: A change to how something looks or reads
+labels: ["design"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The site holds one page frame for every page: `main` is `max-w-7xl`, the
+        header spans the frame, and text carries its own measure.
+        `e2e/responsive.spec.ts` enforces it. Say so here if the change moves that line.
+  - type: textarea
+    id: current
+    attributes:
+      label: What it looks like now
+      description: Attach a screenshot. `pnpm task shots <path>` renders a page at three widths in both themes.
+    validations: { required: true }
+  - type: textarea
+    id: wanted
+    attributes:
+      label: What it should look like
+    validations: { required: true }
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options: [one page, one component used across pages, the design system, the page frame itself]
+    validations: { required: true }
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints this must still satisfy
+      options:
+        - label: No horizontal overflow at 360, 768 and 1280.
+        - label: No serious or critical axe violation in either theme.
+        - label: Type stays on the 13/14/16/18/20/24/28 scale.

@@ -73,3 +73,19 @@ Rules the validator enforces beyond the schema:
 - an intervention listed in a pattern/loop `interventions` field must include that pattern/loop in its `targets`
   (and vice versa) — this is what produces `mitigates` edges in the graph;
 - the Ukrainian mirror must contain exactly the same IDs and structural fields; only prose may differ.
+
+## Triage
+
+Issues carry one epic label (`epic:*`) and one kind label (`content`, `defect`,
+`design`). They live on [the roadmap board](https://github.com/users/dmytro-yemelianov/projects/4),
+ordered by what unblocks what rather than by size — the reasoning is in
+[ROADMAP.md](ROADMAP.md).
+
+Two rules a registry entry has to clear before it is merged, both enforced by
+tests rather than by review:
+
+- **Non-inferences are required.** An entry that says what a signal means
+  without saying what it does not mean is a complaint, not a registry entry.
+- **No company, product or person is named.** `pnpm task specimens` fails the
+  build on it. A named employer would turn the atlas into the blacklist the
+  methodology forbids.
