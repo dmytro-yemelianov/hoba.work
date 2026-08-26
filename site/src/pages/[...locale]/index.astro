@@ -76,7 +76,7 @@ const stepOut: Record<string, string> = { purple: 'text-purple-700 dark:text-pur
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {(['1', '2', '3'] as const).map((n) => (
         <div class="p-6 rounded-md border border-hoba-border bg-hoba-card/30">
-          <div class={`text-xs font-semibold mb-2 ${n === '1' ? 'text-hoba-accent' : n === '2' ? 'text-hoba-pattern' : 'text-hoba-intervention'}`}>{t(`home.pillar${n}.kicker`)}</div>
+          <div class="text-xs font-medium text-hoba-muted mb-2">{t(`home.pillar${n}.kicker`)}</div>
           <h3 class="text-lg font-semibold text-hoba-text">{t(`home.pillar${n}.title`)}</h3>
           <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{t(`home.pillar${n}.text`)}</p>
         </div>
