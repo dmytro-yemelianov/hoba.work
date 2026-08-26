@@ -40,6 +40,46 @@
       "I-001",
       "I-003"
     ],
-    "evidence_level": "hypothesis"
+    "evidence_level": "hypothesis",
+    "specimens": [
+      {
+        "kind": "posting",
+        "label": "The same requisition, rewritten twice",
+        "lines": [
+          {
+            "text": "Month 0 — 8 required technologies, 7+ years, staff-level scope. Applications: 340. Advanced to onsite: 2. Hired: 0.",
+            "tell": false
+          },
+          {
+            "text": "Month 3 — search still open. Requirements rewritten upward: 10 technologies, 9+ years, plus formal lead experience.",
+            "tell": true
+          },
+          {
+            "text": "Month 6 — search still open. Recruiter reassigned; team now covering the work with overtime.",
+            "tell": false
+          }
+        ],
+        "reading": "The response to a failed search was a narrower filter. The filter was the reason the search failed, which is the turn that makes this a loop."
+      },
+      {
+        "kind": "chat",
+        "label": "Where the requirement came from",
+        "lines": [
+          {
+            "speaker": "Recruiter",
+            "at": "month 3",
+            "text": "Do we really need nine years and Rust for this? The backlog is mostly billing endpoints.",
+            "tell": false
+          },
+          {
+            "speaker": "Hiring manager",
+            "at": "month 3",
+            "text": "Nobody good has applied in three months. If we lower the bar we will get more of the same.",
+            "tell": true
+          }
+        ],
+        "reading": "The inference runs backwards: an empty pipeline is read as evidence that the bar is too low. That reading is what tightens the next iteration."
+      }
+    ]
   }
 }

@@ -85,9 +85,10 @@ describe('registry content', () => {
 });
 
 describe('specimens', () => {
-  const readerFacing = (b: typeof bundle) => [...b.artifacts, ...b.mechanisms, ...b.patterns];
+  const readerFacing = (b: typeof bundle) =>
+    [...b.artifacts, ...b.barriers, ...b.mechanisms, ...b.patterns, ...b.loops, ...b.interventions];
 
-  it('covers every reader-facing entity in both languages', () => {
+  it('covers every entity in the registry, in both languages', () => {
     for (const b of [bundle, uk]) {
       const missing = readerFacing(b).filter((node) => node.specimens.length === 0);
       expect(missing.map((n) => n.id)).toEqual([]);

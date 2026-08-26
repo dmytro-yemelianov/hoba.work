@@ -17,6 +17,46 @@
     ],
     "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
     "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "transcript",
+        "label": "What this gate actually asks",
+        "context": "a 30-minute call, condensed",
+        "lines": [
+          {
+            "speaker": "Recruiter",
+            "at": "03:10",
+            "text": "What are your compensation expectations?",
+            "tell": true
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "08:45",
+            "text": "What is your notice period and earliest start?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "12:02",
+            "text": "Where are you based, and are you authorised to work there?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "16:30",
+            "text": "Give me the two-minute version of your last project.",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "24:15",
+            "text": "Any other processes running that we should know about?",
+            "tell": false
+          }
+        ],
+        "reading": "Four of the five questions are logistics and one is technical. This gate mostly filters on parameters, which is why it can end a process before any engineering is discussed."
+      }
+    ]
   }
 }

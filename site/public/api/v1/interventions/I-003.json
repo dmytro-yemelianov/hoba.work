@@ -30,6 +30,32 @@
     "measurements": [
       "informative_feedback_ratio",
       "interviewer_calibration_variance"
+    ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "The rejection, rewritten to the taxonomy",
+        "subject": "Outcome — technical panel",
+        "lines": [
+          {
+            "text": "Category: technical depth · Sub-category: complexity reasoning · Round: technical panel, exercise 2",
+            "tell": true
+          },
+          {
+            "text": "What we saw: a correct quadratic solution where the panel was looking for the linear approach, reached without prompting.",
+            "tell": false
+          },
+          {
+            "text": "What we did not assess: system design, collaboration, or domain knowledge — those rounds were positive or not reached.",
+            "tell": false
+          },
+          {
+            "text": "Re-application window: six months, straight to the technical panel.",
+            "tell": false
+          }
+        ],
+        "reading": "The same decision, expressed as a category with a scope. Note the second line: saying what was not assessed is what stops a single round becoming a verdict on the person."
+      }
     ]
   }
 }

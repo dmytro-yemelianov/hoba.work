@@ -21,12 +21,23 @@ test.describe('a shared entity page stands on its own', () => {
     await expect(page.locator('main')).toContainText('НЕ встановлює');
   });
 
-  test('specimens render on mechanisms and patterns too', async ({ page }) => {
-    for (const path of ['/uk/mechanisms/M-020', '/uk/patterns/P-003']) {
+  test('specimens render on every entity type', async ({ page }) => {
+    const ONE_OF_EACH = [
+      '/uk/artifacts/A-009', '/uk/barriers/B-010', '/uk/mechanisms/M-020',
+      '/uk/patterns/P-003', '/uk/loops/L-001', '/uk/interventions/I-004',
+    ];
+    for (const path of ONE_OF_EACH) {
       await page.goto(path);
       await expect(page.locator('.specimen').first(), path).toBeVisible();
       await expect(page.locator('.specimen .pill').first(), path).toHaveText('реконструкція');
+      await expect(page.locator('.specimen-tell').first(), path).toBeVisible();
     }
+  });
+
+  test('an intervention shows the document as it looks once applied', async ({ page }) => {
+    await page.goto('/uk/interventions/I-002');
+    await expect(page.locator('main')).toContainText('Як це виглядає, коли це впроваджено');
+    await expect(page.locator('.specimen')).toContainText('68 000–79 000');
   });
 
   test('the landing argues from a real document, not a description', async ({ page }) => {

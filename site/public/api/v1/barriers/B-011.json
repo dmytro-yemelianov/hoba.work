@@ -16,6 +16,31 @@
     ],
     "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
     "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Verification report",
+        "lines": [
+          {
+            "text": "Employment record 1 of 3: dates confirmed",
+            "tell": false
+          },
+          {
+            "text": "Employment record 2 of 3: vendor has Mar 2019–Jun 2021, application states Jan 2019–Aug 2021 — DISCREPANCY",
+            "tell": true
+          },
+          {
+            "text": "Degree: confirmed · References: 2 of 2 returned, both positive",
+            "tell": false
+          },
+          {
+            "text": "Offer held pending reconciliation.",
+            "tell": false
+          }
+        ],
+        "reading": "The gate is checking a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
+      }
+    ]
   }
 }

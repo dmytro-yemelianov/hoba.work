@@ -25,6 +25,31 @@
     "measurements": [
       "gap_candidate_screen_rate",
       "long_term_placement_success"
+    ],
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "The same profile, with the feature removed",
+        "lines": [
+          {
+            "text": "Skills match: 91/100 · Domain match: 88/100",
+            "tell": false
+          },
+          {
+            "text": "Continuity penalty: feature disabled",
+            "tell": true
+          },
+          {
+            "text": "Final rank: 89/100 — advanced to recruiter queue",
+            "tell": false
+          },
+          {
+            "text": "Model card updated: employment_gap removed from feature set, 14 March.",
+            "tell": false
+          }
+        ],
+        "reading": "The arithmetic is the whole intervention. The same person, the same work, above the threshold instead of below it."
+      }
     ]
   }
 }

@@ -29,6 +29,30 @@
       "measurements": [
         "stale_requisition_rate",
         "closure_latency_days"
+      ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The rule, and what it did",
+          "lines": [
+            {
+              "at": "config",
+              "text": "Policy: expire_listing when headcount_authorisation lapses OR no interview activity for 45 days",
+              "tell": false
+            },
+            {
+              "at": "02:00",
+              "text": "req #4471 — last interview activity 47 days ago → listing withdrawn from careers page and aggregators",
+              "tell": true
+            },
+            {
+              "at": "02:01",
+              "text": "Candidates with applications in flight: 84 — each notified that the search has closed, with the date.",
+              "tell": false
+            }
+          ],
+          "reading": "The same batch job that produces silent bulk rejections can be pointed at the listing instead of the candidate. The cost is a configuration line."
+        }
       ]
     },
     {
@@ -59,6 +83,28 @@
       "measurements": [
         "late_stage_compensation_drop_rate",
         "candidate_pipeline_satisfaction"
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The posting with the band in it",
+          "subject": "Senior Backend Engineer · Payments",
+          "lines": [
+            {
+              "text": "Level: L4 · Base band: 68,000–79,000 · Equity: 0.02–0.04% · Band verified by finance on 3 March.",
+              "tell": true
+            },
+            {
+              "text": "We will not ask for your expectations before showing you this number.",
+              "tell": false
+            },
+            {
+              "text": "If your expectation sits above the band, tell us at the screen and we will say honestly whether the level can move.",
+              "tell": false
+            }
+          ],
+          "reading": "Every branch of the compensation bind needs the candidate to speak first. Publishing the number removes the asymmetry the bind is built on."
+        }
       ]
     },
     {
@@ -91,6 +137,32 @@
       "measurements": [
         "informative_feedback_ratio",
         "interviewer_calibration_variance"
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "The rejection, rewritten to the taxonomy",
+          "subject": "Outcome — technical panel",
+          "lines": [
+            {
+              "text": "Category: technical depth · Sub-category: complexity reasoning · Round: technical panel, exercise 2",
+              "tell": true
+            },
+            {
+              "text": "What we saw: a correct quadratic solution where the panel was looking for the linear approach, reached without prompting.",
+              "tell": false
+            },
+            {
+              "text": "What we did not assess: system design, collaboration, or domain knowledge — those rounds were positive or not reached.",
+              "tell": false
+            },
+            {
+              "text": "Re-application window: six months, straight to the technical panel.",
+              "tell": false
+            }
+          ],
+          "reading": "The same decision, expressed as a category with a scope. Note the second line: saying what was not assessed is what stops a single round becoming a verdict on the person."
+        }
       ]
     },
     {
@@ -118,6 +190,31 @@
       "measurements": [
         "gap_candidate_screen_rate",
         "long_term_placement_success"
+      ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The same profile, with the feature removed",
+          "lines": [
+            {
+              "text": "Skills match: 91/100 · Domain match: 88/100",
+              "tell": false
+            },
+            {
+              "text": "Continuity penalty: feature disabled",
+              "tell": true
+            },
+            {
+              "text": "Final rank: 89/100 — advanced to recruiter queue",
+              "tell": false
+            },
+            {
+              "text": "Model card updated: employment_gap removed from feature set, 14 March.",
+              "tell": false
+            }
+          ],
+          "reading": "The arithmetic is the whole intervention. The same person, the same work, above the threshold instead of below it."
+        }
       ]
     },
     {
@@ -146,6 +243,36 @@
       "measurements": [
         "parser_extraction_error_rate",
         "ingestion_pass_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Tool output, before submitting",
+          "subject": "hoba-parse-check · cv.pdf",
+          "lines": [
+            {
+              "text": "Extraction score: 41/100",
+              "tell": false
+            },
+            {
+              "text": "Work experience entries recovered: 0 of 5 — two-column layout detected",
+              "tell": true
+            },
+            {
+              "text": "Skills recovered: 0 of 24 — rendered inside a graphic",
+              "tell": false
+            },
+            {
+              "text": "Suggested: single-column export, text-based headings, skills as plain text.",
+              "tell": false
+            },
+            {
+              "text": "Re-check after changes: extraction score 93/100, 5 of 5 entries, 24 of 24 skills.",
+              "tell": false
+            }
+          ],
+          "reading": "This is the one mechanism on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
+        }
       ]
     },
     {
@@ -174,6 +301,28 @@
       "measurements": [
         "take_home_completion_rate",
         "inter_rater_rubric_correlation"
+      ],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "The brief and the review record, both bounded",
+          "subject": "Take-home — Senior Backend Engineer",
+          "lines": [
+            {
+              "text": "Scope: one endpoint with persistence and tests. Hard timebox: 3 hours. Submit whatever you have at the three-hour mark.",
+              "tell": true
+            },
+            {
+              "text": "Anything beyond three hours is paid at our contractor rate; tell us in advance if you want that option.",
+              "tell": false
+            },
+            {
+              "text": "Review: submissions are anonymised before grading and scored against the published rubric by two reviewers, minimum 20 minutes each.",
+              "tell": true
+            }
+          ],
+          "reading": "Both halves of the asymmetry are addressed at once: the candidate hours are capped and the reviewer minutes have a floor. Capping only one side moves the problem rather than closing it."
+        }
       ]
     }
   ]

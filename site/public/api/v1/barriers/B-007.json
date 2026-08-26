@@ -16,6 +16,40 @@
     ],
     "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
     "pass_condition": "Hiring manager confirms candidate has required depth and approves progression to final panel.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "transcript",
+        "label": "The question this gate is built around",
+        "context": "minute 18",
+        "lines": [
+          {
+            "speaker": "Hiring manager",
+            "at": "18:04",
+            "text": "Tell me about a decision on that project you would make differently now.",
+            "tell": true
+          },
+          {
+            "speaker": "Candidate",
+            "at": "18:12",
+            "text": "We picked synchronous calls between two services because it was faster to ship. It cost us during incidents — a queue would have been the right call.",
+            "tell": false
+          },
+          {
+            "speaker": "Hiring manager",
+            "at": "18:40",
+            "text": "What made you choose speed at the time?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "18:46",
+            "text": "A launch date we had committed to externally.",
+            "tell": false
+          }
+        ],
+        "reading": "This gate is testing ownership and trade-off reasoning, not knowledge. It is also the gate where an undisclosed house preference does the most damage."
+      }
+    ]
   }
 }

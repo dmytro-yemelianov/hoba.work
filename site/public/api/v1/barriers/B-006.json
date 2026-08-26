@@ -16,6 +16,31 @@
     ],
     "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
     "pass_condition": "Code artifact satisfies architectural, functional, test coverage, and documentation requirements.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Review record",
+        "lines": [
+          {
+            "text": "Submission received: 41 files, 78 tests, README with design rationale.",
+            "tell": false
+          },
+          {
+            "text": "Reviewer 1: 9 minutes. Reviewer 2: 4 minutes.",
+            "tell": true
+          },
+          {
+            "text": "Scored on: architecture, test coverage, documentation, commit hygiene.",
+            "tell": false
+          },
+          {
+            "text": "Outcome: advance.",
+            "tell": false
+          }
+        ],
+        "reading": "This gate compares hours of work against minutes of review. It can pass or fail on what a reader happened to open."
+      }
+    ]
   }
 }

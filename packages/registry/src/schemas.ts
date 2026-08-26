@@ -183,6 +183,7 @@ export const barrierSchema = z.object({
   pass_condition: z.string().min(5),
   superseded_by: barrierId.optional(),
   evidence_level: evidenceLevelSchema.default('established'),
+  specimens: z.array(specimenSchema).default([]),
 });
 
 // Mechanism frontmatter schema
@@ -239,6 +240,7 @@ export const loopSchema = z.object({
   interventions: z.array(interventionId).default([]),
   superseded_by: loopId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
+  specimens: z.array(specimenSchema).default([]),
 });
 
 // Intervention frontmatter schema.
@@ -257,6 +259,7 @@ export const interventionSchema = z.object({
   evidence_level: evidenceLevelSchema.default('supported'),
   expected_effects: z.array(z.string()).min(1),
   measurements: z.array(z.string()).min(1),
+  specimens: z.array(specimenSchema).default([]),
 });
 
 // Evidence record schema

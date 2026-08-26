@@ -17,6 +17,27 @@
     ],
     "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
     "pass_condition": "Candidate achieves passing score on technical evaluation rubric from the assessing engineer.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "The rubric the engineer scored against",
+        "lines": [
+          {
+            "text": "Correctness: 4/5 · Complexity reasoning: 3/5 · Communication: 4/5 · Testing instinct: 3/5",
+            "tell": false
+          },
+          {
+            "text": "Threshold to advance: 14/20. Total: 14.",
+            "tell": true
+          },
+          {
+            "text": "Recommendation: advance, weak yes.",
+            "tell": false
+          }
+        ],
+        "reading": "The gate is a sum against a line. A weak yes and a strong no differ by two points in one column, and the candidate never sees the columns."
+      }
+    ]
   }
 }

@@ -34,7 +34,52 @@
       "interventions": [
         "I-004"
       ],
-      "evidence_level": "supported"
+      "evidence_level": "supported",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The same profile, two cycles apart",
+          "context": "same CV, same market, nine months between",
+          "lines": [
+            {
+              "text": "Cycle 1 — skills 91, domain 88, continuity penalty −22 (gap 14 months) → rank 57",
+              "tell": true
+            },
+            {
+              "text": "Cycle 2 — skills 91, domain 88, continuity penalty −34 (gap 23 months) → rank 45",
+              "tell": true
+            },
+            {
+              "text": "Advance threshold both times: 60.",
+              "tell": false
+            }
+          ],
+          "reading": "Nothing in the work changed between the two rows. The only variable that moved is the one the penalty reads, and it moves because the penalty worked the first time."
+        },
+        {
+          "kind": "note",
+          "label": "Why the loop closes",
+          "lines": [
+            {
+              "text": "Downranking pushes the profile below the filter threshold.",
+              "tell": false
+            },
+            {
+              "text": "Below the threshold there are no interviews.",
+              "tell": false
+            },
+            {
+              "text": "No interviews means no offer, so the gap continues to grow.",
+              "tell": false
+            },
+            {
+              "text": "A longer gap increases the penalty on the next application.",
+              "tell": true
+            }
+          ],
+          "reading": "Each step is a reasonable rule on its own. Together they form a cycle whose input is its own output."
+        }
+      ]
     },
     {
       "title": "Take-Home Opportunity-Cost Saturation Loop",
@@ -68,7 +113,47 @@
       "interventions": [
         "I-006"
       ],
-      "evidence_level": "supported"
+      "evidence_level": "supported",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "One month of a candidate calendar",
+          "lines": [
+            {
+              "text": "Take-home A: 14 hours. Take-home B: 11 hours. Take-home C: 16 hours.",
+              "tell": false
+            },
+            {
+              "text": "Applications sent that month: 4 — down from 21 the month before.",
+              "tell": true
+            },
+            {
+              "text": "Outcomes: two rejections after sub-ten-minute reviews, one no response, one still open.",
+              "tell": false
+            }
+          ],
+          "reading": "The hours are real and they come out of the same budget as the search itself. Fewer applications is not a change in motivation; it is arithmetic."
+        },
+        {
+          "kind": "note",
+          "label": "The same month from the reviewer side",
+          "lines": [
+            {
+              "text": "Submissions in the queue: 19 · Reviewer capacity: 2 hours per week",
+              "tell": true
+            },
+            {
+              "text": "Median review time per submission: 6 minutes.",
+              "tell": false
+            },
+            {
+              "text": "Reviewers report the assignments are too large to assess properly, and the scope is set by the same team.",
+              "tell": false
+            }
+          ],
+          "reading": "Both sides are short of the same thing. Larger assignments do not buy better signal — they buy shallower reads, which is what makes it a loop rather than a trade-off."
+        }
+      ]
     },
     {
       "title": "Inflated-Requirements Search Saturation Loop",
@@ -110,7 +195,47 @@
         "I-001",
         "I-003"
       ],
-      "evidence_level": "hypothesis"
+      "evidence_level": "hypothesis",
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The same requisition, rewritten twice",
+          "lines": [
+            {
+              "text": "Month 0 — 8 required technologies, 7+ years, staff-level scope. Applications: 340. Advanced to onsite: 2. Hired: 0.",
+              "tell": false
+            },
+            {
+              "text": "Month 3 — search still open. Requirements rewritten upward: 10 technologies, 9+ years, plus formal lead experience.",
+              "tell": true
+            },
+            {
+              "text": "Month 6 — search still open. Recruiter reassigned; team now covering the work with overtime.",
+              "tell": false
+            }
+          ],
+          "reading": "The response to a failed search was a narrower filter. The filter was the reason the search failed, which is the turn that makes this a loop."
+        },
+        {
+          "kind": "chat",
+          "label": "Where the requirement came from",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "month 3",
+              "text": "Do we really need nine years and Rust for this? The backlog is mostly billing endpoints.",
+              "tell": false
+            },
+            {
+              "speaker": "Hiring manager",
+              "at": "month 3",
+              "text": "Nobody good has applied in three months. If we lower the bar we will get more of the same.",
+              "tell": true
+            }
+          ],
+          "reading": "The inference runs backwards: an empty pipeline is read as evidence that the bar is too low. That reading is what tightens the next iteration."
+        }
+      ]
     }
   ]
 }

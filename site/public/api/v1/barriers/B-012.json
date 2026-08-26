@@ -14,6 +14,35 @@
     "precedes": [],
     "description": "Final mutual execution of the formal employment agreement and start-date confirmation.",
     "pass_condition": "Both parties sign offer contract and onboarding workflow is triggered.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "Closing sequence",
+        "lines": [
+          {
+            "at": "day 0",
+            "text": "Contract issued for signature",
+            "tell": false
+          },
+          {
+            "at": "day 1",
+            "text": "Candidate signed",
+            "tell": false
+          },
+          {
+            "at": "day 1",
+            "text": "Countersignature pending",
+            "tell": true
+          },
+          {
+            "at": "day 4",
+            "text": "Start date confirmed · onboarding workflow triggered",
+            "tell": false
+          }
+        ],
+        "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, which is where a late freeze can reach it."
+      }
+    ]
   }
 }

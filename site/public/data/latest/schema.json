@@ -289,6 +289,13 @@
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
                 "default": "established"
+              },
+              "specimens": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                },
+                "default": []
               }
             },
             "required": [
@@ -665,6 +672,13 @@
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
                 "default": "supported"
+              },
+              "specimens": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                },
+                "default": []
               }
             },
             "required": [
@@ -760,6 +774,13 @@
                   "type": "string"
                 },
                 "minItems": 1
+              },
+              "specimens": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                },
+                "default": []
               }
             },
             "required": [

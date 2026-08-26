@@ -16,6 +16,36 @@
     ],
     "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
     "pass_condition": "Application record is successfully received, validated for minimum schema, and linked to the active job requisition.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "What the gate wrote",
+        "context": "the whole of it",
+        "lines": [
+          {
+            "at": "18:22:04",
+            "text": "POST /apply — 200 OK",
+            "tell": false
+          },
+          {
+            "at": "18:22:04",
+            "text": "Candidate record created · linked to req #4471",
+            "tell": false
+          },
+          {
+            "at": "18:22:05",
+            "text": "Required fields validated: 12 of 12",
+            "tell": false
+          },
+          {
+            "at": "18:22:05",
+            "text": "Status: Under review",
+            "tell": true
+          }
+        ],
+        "reading": "Passing this gate means a row exists and is attached to a live requisition. It says nothing about whether anyone will read it."
+      }
+    ]
   }
 }

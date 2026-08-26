@@ -27,6 +27,30 @@
     "measurements": [
       "stale_requisition_rate",
       "closure_latency_days"
+    ],
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "The rule, and what it did",
+        "lines": [
+          {
+            "at": "config",
+            "text": "Policy: expire_listing when headcount_authorisation lapses OR no interview activity for 45 days",
+            "tell": false
+          },
+          {
+            "at": "02:00",
+            "text": "req #4471 — last interview activity 47 days ago → listing withdrawn from careers page and aggregators",
+            "tell": true
+          },
+          {
+            "at": "02:01",
+            "text": "Candidates with applications in flight: 84 — each notified that the search has closed, with the date.",
+            "tell": false
+          }
+        ],
+        "reading": "The same batch job that produces silent bulk rejections can be pointed at the listing instead of the candidate. The cost is a configuration line."
+      }
     ]
   }
 }

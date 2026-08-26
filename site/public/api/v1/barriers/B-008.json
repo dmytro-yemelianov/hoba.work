@@ -16,6 +16,35 @@
     ],
     "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
     "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Panel tally, as submitted",
+        "lines": [
+          {
+            "text": "Panelist 1 — collaboration 4, communication 4: hire",
+            "tell": false
+          },
+          {
+            "text": "Panelist 2 — collaboration 4, communication 3: hire",
+            "tell": false
+          },
+          {
+            "text": "Panelist 3 — collaboration 3, communication 2: no hire",
+            "tell": false
+          },
+          {
+            "text": "Consensus threshold: unanimous, or manager override.",
+            "tell": true
+          },
+          {
+            "text": "Outcome: not aligned.",
+            "tell": false
+          }
+        ],
+        "reading": "The gate is not an average, it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
+      }
+    ]
   }
 }

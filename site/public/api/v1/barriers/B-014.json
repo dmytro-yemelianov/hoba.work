@@ -15,6 +15,33 @@
     ],
     "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
     "pass_condition": "The candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "Outreach, and what it was attached to",
+        "lines": [
+          {
+            "speaker": "Recruiter",
+            "at": "day 0",
+            "text": "Your platform work looks like a strong match for a role we are opening. Open to a conversation?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "day 0",
+            "text": "Yes. Is there an approved requisition behind it?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "at": "day 1",
+            "text": "Not yet approved — we expect sign-off next quarter and want to be ready.",
+            "tell": true
+          }
+        ],
+        "reading": "This gate passes only when outreach is attached to a real, funded requisition. Attached to a forecast, it is a pipeline entry with no gate behind it."
+      }
+    ]
   }
 }

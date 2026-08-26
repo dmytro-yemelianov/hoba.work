@@ -16,6 +16,40 @@
     ],
     "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
     "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "ats",
+        "label": "Approval chain",
+        "lines": [
+          {
+            "at": "day 0",
+            "text": "Hiring manager: approved",
+            "tell": false
+          },
+          {
+            "at": "day 2",
+            "text": "Director: approved",
+            "tell": false
+          },
+          {
+            "at": "day 3",
+            "text": "Finance: pending — quarterly review in progress",
+            "tell": true
+          },
+          {
+            "at": "day 3",
+            "text": "Talent committee: blocked on finance",
+            "tell": false
+          },
+          {
+            "at": "day 3",
+            "text": "Offer cannot be issued while any step is pending.",
+            "tell": false
+          }
+        ],
+        "reading": "Everyone the candidate met has already said yes. This gate is the reason a process can stop after a unanimous panel."
+      }
+    ]
   }
 }

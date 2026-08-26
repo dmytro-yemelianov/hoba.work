@@ -28,6 +28,28 @@
     "measurements": [
       "late_stage_compensation_drop_rate",
       "candidate_pipeline_satisfaction"
+    ],
+    "specimens": [
+      {
+        "kind": "posting",
+        "label": "The posting with the band in it",
+        "subject": "Senior Backend Engineer · Payments",
+        "lines": [
+          {
+            "text": "Level: L4 · Base band: 68,000–79,000 · Equity: 0.02–0.04% · Band verified by finance on 3 March.",
+            "tell": true
+          },
+          {
+            "text": "We will not ask for your expectations before showing you this number.",
+            "tell": false
+          },
+          {
+            "text": "If your expectation sits above the band, tell us at the screen and we will say honestly whether the level can move.",
+            "tell": false
+          }
+        ],
+        "reading": "Every branch of the compensation bind needs the candidate to speak first. Publishing the number removes the asymmetry the bind is built on."
+      }
     ]
   }
 }

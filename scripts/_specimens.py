@@ -37,6 +37,6 @@ def attach(path: str, specimens, anchor: str = 'non_inferences:') -> None:
     s = s.replace(anchor, block(specimens) + anchor, 1)
     open(path, 'w').write(s)
 
-def pair(entity: str, en, uk) -> None:
-    attach(f'content/{entity}.md', en)
-    attach(f'content-uk/{entity}.md', uk)
+def pair(entity: str, en, uk, anchor: str = 'non_inferences:') -> None:
+    attach(f'content/{entity}.md', en, anchor)
+    attach(f'content-uk/{entity}.md', uk, anchor)

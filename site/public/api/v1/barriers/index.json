@@ -19,7 +19,28 @@
       ],
       "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "What was approved before anyone applied",
+          "lines": [
+            {
+              "text": "Headcount: 1 · Funded from: platform budget, FY approved · Level: L4 · Band: 68–79k",
+              "tell": false
+            },
+            {
+              "text": "Job description drafted by the hiring manager, edited by recruiting, published unchanged.",
+              "tell": false
+            },
+            {
+              "text": "Requirements list carried over from the previous L5 search for the same team.",
+              "tell": true
+            }
+          ],
+          "reading": "This gate closes before the first candidate exists, and it fixes the level, the band and the requirements that everyone downstream will be measured against."
+        }
+      ]
     },
     {
       "title": "Outbound Sourcing & Talent Pool Contact",
@@ -36,7 +57,34 @@
       ],
       "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
       "pass_condition": "The candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Outreach, and what it was attached to",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "day 0",
+              "text": "Your platform work looks like a strong match for a role we are opening. Open to a conversation?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 0",
+              "text": "Yes. Is there an approved requisition behind it?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "day 1",
+              "text": "Not yet approved — we expect sign-off next quarter and want to be ready.",
+              "tell": true
+            }
+          ],
+          "reading": "This gate passes only when outreach is attached to a real, funded requisition. Attached to a forecast, it is a pipeline entry with no gate behind it."
+        }
+      ]
     },
     {
       "title": "Application Ingestion",
@@ -54,7 +102,37 @@
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
       "pass_condition": "Application record is successfully received, validated for minimum schema, and linked to the active job requisition.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "What the gate wrote",
+          "context": "the whole of it",
+          "lines": [
+            {
+              "at": "18:22:04",
+              "text": "POST /apply — 200 OK",
+              "tell": false
+            },
+            {
+              "at": "18:22:04",
+              "text": "Candidate record created · linked to req #4471",
+              "tell": false
+            },
+            {
+              "at": "18:22:05",
+              "text": "Required fields validated: 12 of 12",
+              "tell": false
+            },
+            {
+              "at": "18:22:05",
+              "text": "Status: Under review",
+              "tell": true
+            }
+          ],
+          "reading": "Passing this gate means a row exists and is attached to a live requisition. It says nothing about whether anyone will read it."
+        }
+      ]
     },
     {
       "title": "Automated Filter & Parser Threshold",
@@ -73,7 +151,41 @@
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.",
       "pass_condition": "CV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The scoring pass",
+          "lines": [
+            {
+              "at": "+0.3s",
+              "text": "Parser extraction score: 84/100 — PASS",
+              "tell": false
+            },
+            {
+              "at": "+0.3s",
+              "text": "Work authorization question: answered — PASS",
+              "tell": false
+            },
+            {
+              "at": "+0.4s",
+              "text": "Knockout rule years_experience >= 5: candidate 6 — PASS",
+              "tell": false
+            },
+            {
+              "at": "+0.4s",
+              "text": "Keyword coverage: 7 of 9 required terms — PASS (threshold 6)",
+              "tell": true
+            },
+            {
+              "at": "+0.4s",
+              "text": "Advanced to recruiter queue",
+              "tell": false
+            }
+          ],
+          "reading": "Everything at this gate is a threshold on a number. A person who clears it and a person who misses by one term are separated by arithmetic, not by judgement."
+        }
+      ]
     },
     {
       "title": "Inbound Screening & Triage",
@@ -91,7 +203,29 @@
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
       "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Triage note, as recorded",
+          "context": "one of 40 profiles reviewed that day",
+          "lines": [
+            {
+              "text": "Source: inbound. Queue position 211 of 640.",
+              "tell": false
+            },
+            {
+              "text": "Skim: backend, payments, right seniority band. No red flags.",
+              "tell": false
+            },
+            {
+              "text": "Action: short-list for screen. Note — we are also running an outbound list for this req and those go first.",
+              "tell": true
+            }
+          ],
+          "reading": "Inbound and outbound applications compete at this gate, and they do not arrive on equal footing. Position in the queue is part of the outcome."
+        }
+      ]
     },
     {
       "title": "Recruiter Screening Call",
@@ -110,7 +244,47 @@
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
       "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "What this gate actually asks",
+          "context": "a 30-minute call, condensed",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "at": "03:10",
+              "text": "What are your compensation expectations?",
+              "tell": true
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "08:45",
+              "text": "What is your notice period and earliest start?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "12:02",
+              "text": "Where are you based, and are you authorised to work there?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "16:30",
+              "text": "Give me the two-minute version of your last project.",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "at": "24:15",
+              "text": "Any other processes running that we should know about?",
+              "tell": false
+            }
+          ],
+          "reading": "Four of the five questions are logistics and one is technical. This gate mostly filters on parameters, which is why it can end a process before any engineering is discussed."
+        }
+      ]
     },
     {
       "title": "Technical Screen / Live Assessment",
@@ -129,7 +303,28 @@
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
       "pass_condition": "Candidate achieves passing score on technical evaluation rubric from the assessing engineer.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "The rubric the engineer scored against",
+          "lines": [
+            {
+              "text": "Correctness: 4/5 · Complexity reasoning: 3/5 · Communication: 4/5 · Testing instinct: 3/5",
+              "tell": false
+            },
+            {
+              "text": "Threshold to advance: 14/20. Total: 14.",
+              "tell": true
+            },
+            {
+              "text": "Recommendation: advance, weak yes.",
+              "tell": false
+            }
+          ],
+          "reading": "The gate is a sum against a line. A weak yes and a strong no differ by two points in one column, and the candidate never sees the columns."
+        }
+      ]
     },
     {
       "title": "Take-Home / Work Sample Evaluation",
@@ -147,7 +342,32 @@
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
       "pass_condition": "Code artifact satisfies architectural, functional, test coverage, and documentation requirements.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Review record",
+          "lines": [
+            {
+              "text": "Submission received: 41 files, 78 tests, README with design rationale.",
+              "tell": false
+            },
+            {
+              "text": "Reviewer 1: 9 minutes. Reviewer 2: 4 minutes.",
+              "tell": true
+            },
+            {
+              "text": "Scored on: architecture, test coverage, documentation, commit hygiene.",
+              "tell": false
+            },
+            {
+              "text": "Outcome: advance.",
+              "tell": false
+            }
+          ],
+          "reading": "This gate compares hours of work against minutes of review. It can pass or fail on what a reader happened to open."
+        }
+      ]
     },
     {
       "title": "Hiring Manager In-Depth Review",
@@ -165,7 +385,41 @@
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
       "pass_condition": "Hiring manager confirms candidate has required depth and approves progression to final panel.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "The question this gate is built around",
+          "context": "minute 18",
+          "lines": [
+            {
+              "speaker": "Hiring manager",
+              "at": "18:04",
+              "text": "Tell me about a decision on that project you would make differently now.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "18:12",
+              "text": "We picked synchronous calls between two services because it was faster to ship. It cost us during incidents — a queue would have been the right call.",
+              "tell": false
+            },
+            {
+              "speaker": "Hiring manager",
+              "at": "18:40",
+              "text": "What made you choose speed at the time?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "18:46",
+              "text": "A launch date we had committed to externally.",
+              "tell": false
+            }
+          ],
+          "reading": "This gate is testing ownership and trade-off reasoning, not knowledge. It is also the gate where an undisclosed house preference does the most damage."
+        }
+      ]
     },
     {
       "title": "Team & Cross-Functional Panel",
@@ -183,7 +437,36 @@
       ],
       "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
       "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Panel tally, as submitted",
+          "lines": [
+            {
+              "text": "Panelist 1 — collaboration 4, communication 4: hire",
+              "tell": false
+            },
+            {
+              "text": "Panelist 2 — collaboration 4, communication 3: hire",
+              "tell": false
+            },
+            {
+              "text": "Panelist 3 — collaboration 3, communication 2: no hire",
+              "tell": false
+            },
+            {
+              "text": "Consensus threshold: unanimous, or manager override.",
+              "tell": true
+            },
+            {
+              "text": "Outcome: not aligned.",
+              "tell": false
+            }
+          ],
+          "reading": "The gate is not an average, it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
+        }
+      ]
     },
     {
       "title": "Compensation & Leveling Reconciliation",
@@ -202,7 +485,28 @@
       ],
       "description": "Internal alignment between candidate expected compensation/level and company pay bands / leveling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Levelling reconciliation sheet",
+          "lines": [
+            {
+              "text": "Candidate expectation: 90k · Approved band for L4: 68–79k · Approved band for L5: 84–98k",
+              "tell": false
+            },
+            {
+              "text": "Panel levelled the candidate at L4.",
+              "tell": true
+            },
+            {
+              "text": "Gap: 11k above the top of the approved band. Options: level up (needs VP approval), reduce expectation, or close.",
+              "tell": false
+            }
+          ],
+          "reading": "Two independent decisions — a level and a band — meet here for the first time. Neither was visible to the candidate while they were being made."
+        }
+      ]
     },
     {
       "title": "Headcount & Executive Budget Approval",
@@ -220,7 +524,41 @@
       ],
       "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
       "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Approval chain",
+          "lines": [
+            {
+              "at": "day 0",
+              "text": "Hiring manager: approved",
+              "tell": false
+            },
+            {
+              "at": "day 2",
+              "text": "Director: approved",
+              "tell": false
+            },
+            {
+              "at": "day 3",
+              "text": "Finance: pending — quarterly review in progress",
+              "tell": true
+            },
+            {
+              "at": "day 3",
+              "text": "Talent committee: blocked on finance",
+              "tell": false
+            },
+            {
+              "at": "day 3",
+              "text": "Offer cannot be issued while any step is pending.",
+              "tell": false
+            }
+          ],
+          "reading": "Everyone the candidate met has already said yes. This gate is the reason a process can stop after a unanimous panel."
+        }
+      ]
     },
     {
       "title": "Reference & Background Verification",
@@ -238,7 +576,32 @@
       ],
       "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
       "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Verification report",
+          "lines": [
+            {
+              "text": "Employment record 1 of 3: dates confirmed",
+              "tell": false
+            },
+            {
+              "text": "Employment record 2 of 3: vendor has Mar 2019–Jun 2021, application states Jan 2019–Aug 2021 — DISCREPANCY",
+              "tell": true
+            },
+            {
+              "text": "Degree: confirmed · References: 2 of 2 returned, both positive",
+              "tell": false
+            },
+            {
+              "text": "Offer held pending reconciliation.",
+              "tell": false
+            }
+          ],
+          "reading": "The gate is checking a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
+        }
+      ]
     },
     {
       "title": "Offer Closing & Contract Execution",
@@ -254,7 +617,36 @@
       "precedes": [],
       "description": "Final mutual execution of the formal employment agreement and start-date confirmation.",
       "pass_condition": "Both parties sign offer contract and onboarding workflow is triggered.",
-      "evidence_level": "established"
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Closing sequence",
+          "lines": [
+            {
+              "at": "day 0",
+              "text": "Contract issued for signature",
+              "tell": false
+            },
+            {
+              "at": "day 1",
+              "text": "Candidate signed",
+              "tell": false
+            },
+            {
+              "at": "day 1",
+              "text": "Countersignature pending",
+              "tell": true
+            },
+            {
+              "at": "day 4",
+              "text": "Start date confirmed · onboarding workflow triggered",
+              "tell": false
+            }
+          ],
+          "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, which is where a late freeze can reach it."
+        }
+      ]
     }
   ]
 }

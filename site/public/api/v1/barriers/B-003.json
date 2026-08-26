@@ -16,6 +16,28 @@
     ],
     "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
     "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
-    "evidence_level": "established"
+    "evidence_level": "established",
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Triage note, as recorded",
+        "context": "one of 40 profiles reviewed that day",
+        "lines": [
+          {
+            "text": "Source: inbound. Queue position 211 of 640.",
+            "tell": false
+          },
+          {
+            "text": "Skim: backend, payments, right seniority band. No red flags.",
+            "tell": false
+          },
+          {
+            "text": "Action: short-list for screen. Note — we are also running an outbound list for this req and those go first.",
+            "tell": true
+          }
+        ],
+        "reading": "Inbound and outbound applications compete at this gate, and they do not arrive on equal footing. Position in the queue is part of the outcome."
+      }
+    ]
   }
 }

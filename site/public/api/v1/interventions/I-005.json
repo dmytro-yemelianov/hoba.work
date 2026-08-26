@@ -26,6 +26,36 @@
     "measurements": [
       "parser_extraction_error_rate",
       "ingestion_pass_rate"
+    ],
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Tool output, before submitting",
+        "subject": "hoba-parse-check · cv.pdf",
+        "lines": [
+          {
+            "text": "Extraction score: 41/100",
+            "tell": false
+          },
+          {
+            "text": "Work experience entries recovered: 0 of 5 — two-column layout detected",
+            "tell": true
+          },
+          {
+            "text": "Skills recovered: 0 of 24 — rendered inside a graphic",
+            "tell": false
+          },
+          {
+            "text": "Suggested: single-column export, text-based headings, skills as plain text.",
+            "tell": false
+          },
+          {
+            "text": "Re-check after changes: extraction score 93/100, 5 of 5 entries, 24 of 24 skills.",
+            "tell": false
+          }
+        ],
+        "reading": "This is the one mechanism on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
+      }
     ]
   }
 }
