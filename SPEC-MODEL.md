@@ -1,7 +1,8 @@
 # Interaction model — specification for review
 
-A model of what happens between an applicant and a company, built from scratch,
-intended to be **necessary and sufficient**: every scenario the atlas must
+A model of what happens between an applicant and the parties hiring runs
+through — the company, its client, the intermediaries between them — built from
+scratch, intended to be **necessary and sufficient**: every scenario the atlas must
 describe is expressible in it, and no primitive can be removed without losing
 something. It must also collapse gracefully — the simplest hiring story should
 be three events and no machinery.
@@ -14,9 +15,11 @@ types rather than replacing them; the cohort is explicit; time is an ordering
 plus an optional elapsed field; concurrent processes are in; visibility is
 authored per class with overrides; the client account becomes first-class
 content; funding chains are authored as shapes now, amounts only with evidence.
-Section 2c is the current stress round — seven gaps found by walking the
-registry against reality, none needing a fifth primitive — and question 8 is
-the one still open.
+Section 2c is the stress round — seven gaps found by walking the registry
+against reality, none needing a fifth primitive; the scope runs to the end of
+probation. **All eight questions are settled**; section 10 keeps the record.
+This revision is the consistency pass that reconciles 2a–2c into the
+primitives, views, degenerations and costs below.
 
 ---
 
@@ -274,10 +277,11 @@ Section 2b modelled the seat's money and forgot the person's. Savings → runway
 consumes an edge, and the reservation wage is a condition parameter that moves
 as the chain drains. This is expressible without motive — no field says the
 applicant *feels* pressure; a record says the runway shortened, and a condition
-parameter depends on it. The evidence side already exists: DOU's 2026 survey
-has 44% of searchers lowering their salary expectations, which is this chain
-observed at population scale. Who can wait longer is a fact about two chains,
-and the model can now say it.
+parameter depends on it. The evidence side is partial and should be stated as
+such: DOU's 2026 survey has 44% of searchers lowering their salary
+expectations — the chain's endpoint observed at population scale, while the
+runway behind it goes unmeasured. Who can wait longer is a fact about two
+chains, and the model can now say it.
 
 ### 5. Records outlive processes
 
@@ -333,8 +337,8 @@ application, a screening note, a score, a message, the offer, an ATS
 configuration, a published rate series.
 
 A **party** is a record that can emit events: applicant, referrer, recruiter,
-hiring manager, interviewer, approver, vendor system, agency, regulator. Not a
-closed list of six — a role held in a particular process.
+hiring manager, interviewer, approver, client, vendor system, agency,
+regulator. Not a closed list of six — a role held in a particular process.
 
 > **Necessary:** events must be about something, and asymmetry must be
 > asymmetric about something. Collapsing parties into records is the one
@@ -363,7 +367,12 @@ A condition carries three things that are not derivable from it:
   ownerless. The middle position is the one section 2a adds, and losing it is
   what made a signed contract look like weather;
 - **determinacy** — `deterministic` (arithmetic on stated values), `judgement`
-  (a person decides), `stochastic` (depends on who else applied that week);
+  (a person decides), `stochastic` (genuinely irreducible chance: a lottery
+  among equals, an outage). One boundary matters here: an outcome that merely
+  *looks* random from outside is usually a comparative condition over a cohort
+  the party cannot see — epistemic, carried by visibility, not by this value.
+  "Depends on who else applied that week" is the comparative case, not this
+  one; the first draft used it as the example here, which was wrong;
 - **arity** — `absolute` (tests this record alone) or `comparative` (ranks this
   record within a set). **This distinction is new and load-bearing.**
 
@@ -402,6 +411,12 @@ a fourth visibility value.
   process, on which condition parameters depend. An era is an interval over
   which those records held certain values. This is what removes a whole entity
   type without losing the eras page.
+- **Money** is records and events: a flow is an event linking two records, a
+  chain is a computed path over flows (section 2b), and conservation is
+  ordinary deterministic arithmetic.
+- **Statements** are records created by communication events; fidelity is
+  computed where both sides are modelled and authored where they are not
+  (section 2c-1).
 - **Motive.** There is no field for why a party did something, and there will not
   be one. Conditions have owners and parameters; they never have purposes. This
   is a modelling constraint, not an oversight, and it is what keeps the atlas
@@ -413,12 +428,12 @@ a fourth visibility value.
 
 | current type | in this model |
 |---|---|
-| observation (`A-*`) | an event whose visibility to the applicant is `observable` |
+| observation (`A-*`) | an event — or an absence (2c-2) — observable to the applicant; where it carries a statement, the statement's fidelity is part of the observation |
 | barrier (`B-*`) | a condition gating a forward event, plus its position in the order |
-| mechanism (`M-*`) | a condition, its owner, and the events it causes — an account of why a gate did not pass |
+| mechanism (`M-*`) | a condition, its owner, and the events it causes — an account of why a gate did not pass. The fidelity mechanisms are a standing divergent statement (M-006) or channel distortion (M-003) |
 | pattern (`P-*`) | a set of conditions whose joint satisfying set is empty for some party. **Computable**, where today it is asserted |
 | loop (`L-*`) | a cycle in the event/condition dependency graph. Already computed; now it need not be stored |
-| intervention (`I-*`) | a proposed change to a condition, or to a visibility edge. The second kind has no clean home today |
+| intervention (`I-*`) | a proposed change to a condition, a visibility edge, a statement's fidelity (I-003 is one), or a distribution edge (2b). Only the first kind has a clean home today |
 | evidence (`EVD-*`) | a record attesting a condition or a class of event |
 | actor | a party |
 | workflow | the graph of event types, with conditions on the edges |
@@ -438,9 +453,10 @@ them as though they changed the rule.
 
 The model must cost nothing when nothing is happening.
 
-- **Everything visible** → the conditions and events remain, visibility drops
-  out, and what is left is an ordinary state machine. This is the canonical
-  path, WF-003.
+- **Everything visible and every statement faithful** → visibility and
+  fidelity both drop out, and what is left is an ordinary state machine. This
+  is the canonical path, WF-003. The first draft required only visibility,
+  which was not enough: a fully visible euphemism is still a euphemism.
 - **No conditions** → a message log. Two parties, some events, an order.
 - **One requisition, one application, no cohort** → three events: submitted,
   decided, answered. One condition. This is the whole model at its floor.
@@ -455,9 +471,11 @@ The model must cost nothing when nothing is happening.
 **Outbound outreach with no requisition.** The recruiter emits a message event
 before any posting record exists. There is no requisition to be a parent, and
 the condition that would gate a forward event — headcount approved — has never
-been evaluated. This is M-016, and note that it now differs from M-009
-*structurally* rather than by an observation we have failed to find: one has a
-parent requisition record, the other does not.
+been evaluated. This is M-016, and 2a refines it: the parent may be absent, or
+may be a bid record not yet won — a real role conditional on a signature.
+Either way it differs from M-009 *structurally* rather than by an observation
+we have failed to find: M-009 has a funded requisition record behind the
+queue; M-016 has none, or a conditional one.
 
 **Cohort.** A requisition has many child application records. A comparative
 condition ranks them. "Stronger competing candidate" stops being an unexplained
@@ -514,7 +532,8 @@ is not one of its six actors.
 This is a substrate change under 120 authored entries — 81 of them registry
 nodes, the rest evidence records — mirrored in two languages. Most of the
 migration is mechanical — the ten types become views and the content maps
-across — but three parts are not:
+across — but the non-mechanical list has grown with each settled question,
+and honesty means keeping it current:
 
 - **Visibility** currently lives as one facet value per mechanism. Turning it
   into a per-party relation is new authoring for every entry, not a rewrite.
@@ -522,13 +541,28 @@ across — but three parts are not:
   (M-002, M-009, M-018) would be re-expressed.
 - **Patterns** become computable, which means the four existing ones must
   actually compute, and one may turn out not to.
+- **Statements** (2c-1): the emission fidelity values survive as they are, but
+  statement records for postings, offers and rejections are new authoring.
+- **The client account** (question 6): a client party, a contract record, a
+  client-approval gate, the bench mechanisms — and a re-read of every entry
+  that quietly assumes an own-account company.
+- **Chain shapes** (question 7): one authored shape per entry class; amounts
+  stay absent until evidenced.
+- **The epilogue** (question 8): states past `hired` in every workflow, and
+  no-shows in both directions.
+
+The discipline that keeps all four tractable is the one already chosen for the
+money: shapes first, amounts and instances only with evidence.
 
 That last risk is worth naming as an argument *for* the change: an assertion
 that stops being true when you compute it was never a finding.
 
 ---
 
-## 10. What I need decided
+## 10. What needed deciding
+
+All eight are settled. The section stays as the record of what was decided and
+why, in the order it was decided.
 
 1. **Substrate or replacement?** Recommendation: substrate. The ten types stay
    as the public vocabulary and the reading experience; the four primitives sit
@@ -568,3 +602,4 @@ that stops being true when you compute it was never a finding.
    both-direction no-shows, probation-end outcomes — and it moves the funnel's
    terminal boundary for every workflow. Recommendation: yes, as model scope
    now and content later, in the same shapes-first discipline as the money.
+   **Settled: yes.**
