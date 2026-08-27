@@ -1,0 +1,71 @@
+import { expect, test } from '@playwright/test';
+
+/**
+ * Every page is also a document. `/mechanisms/M-001.md` and the canonical URL
+ * under `Accept: text/markdown` are the same file, negotiated the same way.
+ */
+test.describe('machine formats', () => {
+  // The API-request fixture sends no Accept-Language, so a bare request falls
+  // through to geography. Anything asserting on wording pins the language.
+  test('an entity is retrievable as Markdown by extension', async ({ request }) => {
+    const response = await request.get('/mechanisms/M-011.md?lang=en');
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toContain('text/markdown');
+
+    const body = await response.text();
+    expect(body.startsWith('---\nid: M-011\n')).toBe(true);
+    expect(body).toContain('canonical: https://hoba.work/mechanisms/M-011');
+    expect(body).toContain('json: https://hoba.work/api/v1/mechanisms/M-011.json');
+    // The specimen keeps its shape, and the tell is still marked.
+    expect(body).toContain('```');
+    expect(body).toMatch(/^> .*Continuity penalty/m);
+    // Relations resolve wherever the file is pasted.
+    expect(body).toMatch(/\[B-002\]\(https:\/\/hoba\.work\/barriers\/B-002\)/);
+  });
+
+  test('the canonical URL serves the same document under Accept', async ({ request }) => {
+    const byExtension = await (await request.get('/mechanisms/M-011.md?lang=en')).text();
+    const byHeader = await request.get('/mechanisms/M-011?lang=en', { headers: { Accept: 'text/markdown, text/html;q=0.9' } });
+    expect(byHeader.headers()['content-type']).toContain('text/markdown');
+    expect(await byHeader.text()).toBe(byExtension);
+  });
+
+  test('a browser is unaffected', async ({ request }) => {
+    const response = await request.get('/mechanisms/M-011', { headers: { Accept: 'text/html,application/xhtml+xml,*/*;q=0.8' } });
+    expect(response.headers()['content-type']).toContain('text/html');
+  });
+
+  test('Markdown follows the reader like the page does', async ({ request }) => {
+    for (const [locale, expected] of [['uk-UA', 'uk'], ['en-GB', 'en']] as const) {
+      const response = await request.get('/mechanisms/M-011.md', { headers: { 'Accept-Language': locale } });
+      expect(response.headers()['content-language'], locale).toBe(expected);
+      expect(await response.text(), locale).toContain(`lang: ${expected}`);
+    }
+    const forced = await request.get('/mechanisms/M-011.md?lang=uk', { headers: { 'Accept-Language': 'en-GB' } });
+    expect(await forced.text()).toContain('lang: uk');
+  });
+
+  test('every entity type has a Markdown representation', async ({ request }) => {
+    for (const path of [
+      '/artifacts/A-013.md', '/barriers/B-010.md', '/mechanisms/M-020.md',
+      '/patterns/P-004.md', '/loops/L-001.md', '/interventions/I-002.md',
+    ]) {
+      const response = await request.get(`${path}?lang=en`);
+      expect(response.status(), path).toBe(200);
+      expect(await response.text(), path).toContain('canonical: https://hoba.work/');
+    }
+  });
+
+  test('the whole catalogue is one file', async ({ request }) => {
+    const body = await (await request.get('/registry.md?lang=en')).text();
+    expect(body).toContain('canonical: https://hoba.work/registry');
+    // Every entity listed, linked, with its summary.
+    expect((body.match(/^- \[[A-Z]-\d{3}\]/gm) ?? []).length).toBeGreaterThanOrEqual(65);
+  });
+
+  test('the page offers both representations', async ({ page }) => {
+    await page.goto('/mechanisms/M-011');
+    await expect(page.locator('main a[href="/mechanisms/M-011.md"]')).toBeVisible();
+    await expect(page.locator('main a[href="/api/v1/mechanisms/M-011.json"]')).toBeVisible();
+  });
+});

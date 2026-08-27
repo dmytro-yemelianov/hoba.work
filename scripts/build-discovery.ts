@@ -90,6 +90,8 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     '',
     `- Full registry: ${SITE}/data/latest/registry.json`,
     `- One entity: ${SITE}/api/v1/mechanisms/M-001.json`,
+    `- Any page as Markdown: ${SITE}/mechanisms/M-001.md — or the canonical URL with \`Accept: text/markdown\``,
+    `- The whole catalogue as one document: ${SITE}/registry.md`,
     `- Graph: ${SITE}/data/latest/graph.json · ${SITE}/data/latest/graph.graphml`,
     `- Tabular: ${SITE}/data/latest/nodes.csv · ${SITE}/data/latest/edges.csv`,
     `- Schema: ${SITE}/data/latest/schema.json · OpenAPI: ${SITE}/openapi.json`,

@@ -102,9 +102,10 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
       </section>
     )}
 
-    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-2">
-      <span>{t('common.machineEndpoint')}</span>
-      <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">/api/v1/artifacts/{artifact.id}.json</a>
+    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('md.view')}</span>
+      <a href={`/artifacts/${artifact.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
+      <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>
     </p>
   </div>
 </Layout>

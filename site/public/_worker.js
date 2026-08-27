@@ -21,6 +21,10 @@
  *
  * /uk/… and /_i/… are permanently redirected to the public path, so every link
  * shared before this change stays alive.
+ *
+ * Every page is also a document. `/mechanisms/M-001.md` and the canonical URL
+ * under `Accept: text/markdown` are the same file, negotiated the same way, so
+ * a reader piping the site somewhere gets the language they would have read.
  */
 const LANG_COOKIE = 'hoba_lang';
 const LANGS = ['en', 'uk'];
@@ -69,9 +73,26 @@ export function preferredLocale({ query, cookie, acceptLanguage, country }) {
   return 'en';
 }
 
+/** Markdown is a representation of a page, so it is negotiated like one. */
+export const MARKDOWN = /\.md$/;
+
 /** True when this path is served from disk as-is, with no language dimension. */
 export function isStaticAsset(pathname) {
+  if (MARKDOWN.test(pathname)) return false;
   return NON_HTML.test(pathname) || STATIC_PREFIXES.some((p) => pathname.startsWith(p));
+}
+
+/**
+ * Which representation the reader asked for: the `.md` extension, or the
+ * canonical URL with an Accept header that prefers Markdown over HTML.
+ */
+export function wantsMarkdown(pathname, accept) {
+  if (MARKDOWN.test(pathname)) return true;
+  if (!accept) return false;
+  const markdown = accept.indexOf('text/markdown');
+  if (markdown === -1) return false;
+  const html = accept.indexOf('text/html');
+  return html === -1 || markdown < html;
 }
 
 /**
@@ -92,8 +113,10 @@ export function legacyRedirect(pathname) {
  * directory form: the bare and .html forms answer with a 308 whose Location
  * would leak the internal path.
  */
-export function internalPath(pathname, lang) {
-  const clean = pathname === '/' ? '' : pathname.replace(/\/$/, '');
+export function internalPath(pathname, lang, { markdown = false } = {}) {
+  const bare = pathname.replace(MARKDOWN, '');
+  if (markdown) return `${INTERNAL}/${lang}${bare === '/' || bare === '' ? '/index' : bare}.md`;
+  const clean = bare === '/' ? '' : bare.replace(/\/$/, '');
   return `${INTERNAL}/${lang}${clean}/`;
 }
 
@@ -119,11 +142,13 @@ export default {
       country: request.cf && request.cf.country,
     });
 
+    const markdown = wantsMarkdown(url.pathname, request.headers.get('accept'));
+
     // The internal request must not carry the public query: it would miss the
     // asset and would pollute any cache key built from it.
-    const internal = (path) => new Request(new URL(internalPath(path, lang), url.origin), request);
+    const internal = (path) => new Request(new URL(internalPath(path, lang, { markdown }), url.origin), request);
     let asset = await env.ASSETS.fetch(internal(url.pathname));
-    if (asset.status === 404) {
+    if (asset.status === 404 && !markdown) {
       // Pages only knows about a root 404.html. Serve the not-found page from
       // the tree we resolved, so it is in the reader's language.
       const notFound = await env.ASSETS.fetch(internal('/404'));
@@ -131,8 +156,9 @@ export default {
     }
 
     const response = new Response(asset.body, asset);
+    if (markdown && asset.ok) response.headers.set('content-type', 'text/markdown; charset=utf-8');
     response.headers.set('content-language', lang);
-    response.headers.set('vary', 'Accept-Language, Cookie');
+    response.headers.set('vary', 'Accept, Accept-Language, Cookie');
     // A language-negotiated document is per-reader. The CDN does not cache HTML
     // here in any case; this states it rather than relying on that.
     response.headers.set('cache-control', 'private, no-cache');

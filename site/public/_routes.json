@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Only HTML navigations need language negotiation; everything below is served from disk unchanged. Patterns must not swallow a page: /data/* would also match the /data page, so the export directory is named exactly.",
+  "description": "Only HTML navigations need language negotiation; everything below is served from disk unchanged. Patterns must not swallow a page: /data/* would also match the /data page, so the export directory is named exactly. Markdown is a representation of a page, not an asset, so .md stays with the Function.",
   "include": [
     "/*"
   ],

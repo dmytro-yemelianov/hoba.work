@@ -54,3 +54,10 @@ test('the sitemap is reproducible from the manifest, not from file mtimes', asyn
   const manifest = await (await request.get('/data/latest/manifest.json')).json();
   expect(stamps[0]).toBe(String(manifest.updated_at).slice(0, 10));
 });
+
+test('llms.txt points a model at the Markdown representation', async ({ request }) => {
+  const body = await (await request.get('/llms.txt')).text();
+  expect(body).toContain('/mechanisms/M-001.md');
+  expect(body).toContain('Accept: text/markdown');
+  expect(body).toContain('/registry.md');
+});

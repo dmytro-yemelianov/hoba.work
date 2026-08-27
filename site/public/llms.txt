@@ -20,6 +20,8 @@ The graph has 65 nodes and 199 edges over the relations `operates_at`, `emits`, 
 
 - Full registry: https://hoba.work/data/latest/registry.json
 - One entity: https://hoba.work/api/v1/mechanisms/M-001.json
+- Any page as Markdown: https://hoba.work/mechanisms/M-001.md — or the canonical URL with `Accept: text/markdown`
+- The whole catalogue as one document: https://hoba.work/registry.md
 - Graph: https://hoba.work/data/latest/graph.json · https://hoba.work/data/latest/graph.graphml
 - Tabular: https://hoba.work/data/latest/nodes.csv · https://hoba.work/data/latest/edges.csv
 - Schema: https://hoba.work/data/latest/schema.json · OpenAPI: https://hoba.work/openapi.json
