@@ -1,0 +1,199 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import EntityRow from '../../components/EntityRow.astro';
+import { getBundle } from '../../lib/registry';
+import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+const lang = localeFromParams(Astro.params);
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const bundle = getBundle(lang);
+
+const ROUTES: Record<string, string> = {
+  artifact: 'artifacts', barrier: 'barriers', mechanism: 'mechanisms',
+  pattern: 'patterns', loop: 'loops', intervention: 'interventions',
+};
+const nodes = new Map(
+  [...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [
+    n.id,
+    { id: n.id, title: n.title, href: `${prefix}/${ROUTES[n.type]}/${n.id}` },
+  ])
+);
+const actors = new Map(bundle.actors.map((a) => [a.id, a.title]));
+
+// The player needs the machine and the names it will print; both are resolved
+// here so the client ships data rather than a second copy of the dictionary.
+const payload = JSON.stringify({
+  workflows: bundle.workflows.map((w) => ({ id: w.id, title: w.title, subject: w.subject, states: w.states, transitions: w.transitions })),
+  nodes: Object.fromEntries(nodes),
+  actors: Object.fromEntries(actors),
+  strings: {
+    play: t('wf.play'), pause: t('wf.pause'), step: t('wf.step'),
+    owner: t('wf.owner'), visible: t('wf.visible'), entities: t('wf.entities'),
+    deviations: t('wf.deviations'), transition: t('wf.transition'), leaves: t('wf.leaves'),
+    terminal: t('wf.terminal'), initial: t('wf.initial'),
+  },
+}).replace(/</g, '\\u003c');
+---
+<Layout lang={lang} title={t('wf.title')} activeNav="process">
+  <PageHeader kicker={t('wf.kicker')} title={t('wf.title')} lead={t('wf.intro')} wide />
+
+  {bundle.workflows.map((workflow, index) => (
+    <section class="section" data-workflow={workflow.id}>
+      <h2 class="section-title">{workflow.id} · {workflow.title}</h2>
+      <p class="text-base text-hoba-muted max-w-3xl">{workflow.summary}</p>
+      <p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">{t('wf.subject')}:</span> {workflow.subject}</p>
+
+      <div class="wf-shell mt-5 h-[min(48vh,460px)] min-h-[360px]">
+        <div class="wf-transport">
+          <button type="button" class="wf-play btn btn-secondary" data-index={index} aria-label={t('wf.play')}>{t('wf.play')}</button>
+          <button type="button" class="wf-prev icon-btn" data-index={index} aria-label={t('wf.prev')} title={t('wf.prev')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button type="button" class="wf-next icon-btn" data-index={index} aria-label={t('wf.next')} title={t('wf.next')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button type="button" class="wf-reset icon-btn" data-index={index} aria-label={t('wf.reset')} title={t('wf.reset')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7M20 19l-7-7 7-7"/></svg>
+          </button>
+          <input type="range" class="wf-scrub" data-index={index} min="0" value="0" aria-label={t('wf.states')} />
+          <span class="wf-step text-sm text-hoba-muted tabular-nums" data-index={index} aria-live="polite"></span>
+        </div>
+        <div class="relative flex-1 min-h-0">
+          <canvas class="wf-canvas h-full" data-index={index} tabindex="0" role="img" aria-label={t('wf.canvasLabel')}></canvas>
+        </div>
+        <div class="wf-detail border-t border-hoba-border px-4 py-3 sm:px-5" data-index={index}></div>
+      </div>
+
+      <details class="section">
+        <summary class="section-title cursor-pointer">{t('wf.fallback')}</summary>
+        <ol class="row-list mt-3">
+          {workflow.states.map((state) => (
+            <li class="py-3">
+              <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span class="font-mono text-sm text-hoba-accent">{state.id}</span>
+                <span class="text-hoba-text font-medium">{state.title}</span>
+                <span class="pill pill-muted">{actors.get(state.owner) ?? state.owner}</span>
+                {state.kind !== 'active' && <span class="pill pill-muted">{state.kind === 'initial' ? t('wf.initial') : t('wf.terminal')}</span>}
+              </p>
+              <p class="mt-1 text-base text-hoba-muted">{state.description}</p>
+              {state.visible_to_candidate && (
+                <p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">{t('wf.visible')}:</span> {state.visible_to_candidate}</p>
+              )}
+              {state.entities.length > 0 && (
+                <ul class="mt-1 flex flex-wrap gap-1.5">
+                  {state.entities.map((id) => (
+                    <li><a href={nodes.get(id)?.href ?? '#'} class="pill pill-muted font-mono">{id}</a></li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+        <ol class="row-list mt-6">
+          {workflow.transitions.map((transition) => (
+            <li class="row text-base">
+              <span class="font-mono text-sm text-hoba-accent">{transition.from} → {transition.to}</span>
+              <span class="text-hoba-text">{transition.label}</span>
+              <span class="w-full text-sm text-hoba-muted">{t('wf.transition')}: {transition.guard}</span>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </section>
+  ))}
+
+  <script type="application/json" id="wf-data" set:html={payload} />
+  <script>
+    import { WorkflowView, type ViewState, type ViewTransition, type WorkflowData } from '../../lib/workflow-view';
+
+    interface Payload {
+      workflows: WorkflowData[];
+      nodes: Record<string, { id: string; title: string; href: string }>;
+      actors: Record<string, string>;
+      strings: Record<string, string>;
+    }
+
+    const raw = document.getElementById('wf-data')?.textContent;
+    if (raw) {
+      const data = JSON.parse(raw) as Payload;
+      const fill = (template: string, vars: Record<string, string | number>) =>
+        template.replace(/\{(\w+)\}/g, (_, name: string) => String(vars[name] ?? ''));
+
+      const pick = <T extends Element>(selector: string, index: number) =>
+        document.querySelector<T>(`${selector}[data-index="${index}"]`);
+
+      const views: WorkflowView[] = [];
+
+      data.workflows.forEach((workflow, index) => {
+        const canvas = pick<HTMLCanvasElement>('canvas.wf-canvas', index);
+        const detail = pick<HTMLElement>('.wf-detail', index);
+        const scrub = pick<HTMLInputElement>('.wf-scrub', index);
+        const stepLabel = pick<HTMLElement>('.wf-step', index);
+        const playButton = pick<HTMLButtonElement>('.wf-play', index);
+        if (!canvas || !detail || !scrub || !stepLabel || !playButton) return;
+
+        const list = (heading: string, ids: string[]) => {
+          if (!ids.length) return '';
+          const items = ids
+            .map((id) => {
+              const node = data.nodes[id];
+              return node
+                ? `<li><a href="${node.href}" class="pill pill-muted font-mono">${id}</a></li>`
+                : `<li><span class="pill pill-muted font-mono">${id}</span></li>`;
+            })
+            .join('');
+          return `<p class="mt-2 text-sm text-hoba-muted">${heading}</p><ul class="mt-1 flex flex-wrap gap-1.5">${items}</ul>`;
+        };
+
+        const view = new WorkflowView(canvas, workflow, {
+          onStep: ({ index: at, total, state, transition }) => {
+            scrub.max = String(total - 1);
+            scrub.value = String(at);
+            stepLabel.textContent = fill(data.strings.step, { n: at + 1, total });
+            const kind = state.kind === 'initial' ? data.strings.initial : state.kind === 'terminal' ? data.strings.terminal : '';
+            detail.innerHTML = [
+              `<p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">`,
+              `<span class="font-mono text-sm text-hoba-accent">${state.id}</span>`,
+              `<span class="text-base font-medium text-hoba-text">${state.title}</span>`,
+              `<span class="pill pill-muted">${data.actors[state.owner] ?? state.owner}</span>`,
+              kind ? `<span class="pill pill-muted">${kind}</span>` : '',
+              `</p>`,
+              `<p class="mt-1 text-base text-hoba-muted">${state.description}</p>`,
+              state.visible_to_candidate
+                ? `<p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">${data.strings.visible}:</span> ${state.visible_to_candidate}</p>`
+                : '',
+              transition
+                ? `<p class="mt-2 text-sm text-hoba-muted"><span class="text-hoba-text">${data.strings.leaves}:</span> ${transition.label}</p>`
+                : '',
+              transition
+                ? `<p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">${data.strings.transition}:</span> ${transition.guard}</p>`
+                : '',
+              list(data.strings.entities, state.entities),
+              list(data.strings.deviations, (state as ViewState).deviations ?? []),
+            ].join('');
+          },
+          onPlaying: (playing) => {
+            playButton.textContent = playing ? data.strings.pause : data.strings.play;
+            playButton.setAttribute('aria-label', playing ? data.strings.pause : data.strings.play);
+          },
+        });
+
+        views.push(view);
+        playButton.addEventListener('click', () => view.toggle());
+        pick<HTMLButtonElement>('.wf-next', index)?.addEventListener('click', () => { view.pause(); view.next(); });
+        pick<HTMLButtonElement>('.wf-prev', index)?.addEventListener('click', () => { view.pause(); view.previous(); });
+        pick<HTMLButtonElement>('.wf-reset', index)?.addEventListener('click', () => view.reset());
+        scrub.addEventListener('input', () => { view.pause(); view.seek(Number(scrub.value)); });
+        view.seek(0);
+      });
+
+      window.addEventListener('hoba:theme', () => views.forEach((v) => v.refreshTheme()));
+    }
+  </script>
+</Layout>

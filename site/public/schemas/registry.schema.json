@@ -277,6 +277,13 @@
                     },
                     "visible_to_candidate": {
                       "type": "string"
+                    },
+                    "deviations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": []
                     }
                   },
                   "required": [

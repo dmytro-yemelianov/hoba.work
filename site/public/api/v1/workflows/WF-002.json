@@ -20,7 +20,8 @@
           "B-001",
           "A-001"
         ],
-        "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email."
+        "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email.",
+        "deviations": []
       },
       {
         "id": "parsing",
@@ -31,7 +32,8 @@
         "entities": [
           "M-003"
         ],
-        "visible_to_candidate": "Nothing."
+        "visible_to_candidate": "Nothing.",
+        "deviations": []
       },
       {
         "id": "scoring",
@@ -44,7 +46,8 @@
           "M-008",
           "M-011"
         ],
-        "visible_to_candidate": "Nothing, for a second or two."
+        "visible_to_candidate": "Nothing, for a second or two.",
+        "deviations": []
       },
       {
         "id": "queued",
@@ -57,7 +60,8 @@
           "M-009",
           "M-016"
         ],
-        "visible_to_candidate": "Silence. This is where most of the waiting happens."
+        "visible_to_candidate": "Silence. This is where most of the waiting happens.",
+        "deviations": []
       },
       {
         "id": "reviewed",
@@ -69,7 +73,8 @@
           "B-003",
           "M-009"
         ],
-        "visible_to_candidate": "Nothing yet."
+        "visible_to_candidate": "Nothing yet.",
+        "deviations": []
       },
       {
         "id": "advanced",
@@ -80,7 +85,8 @@
         "entities": [
           "B-004"
         ],
-        "visible_to_candidate": "An invitation to talk."
+        "visible_to_candidate": "An invitation to talk.",
+        "deviations": []
       },
       {
         "id": "auto-rejected",
@@ -93,7 +99,8 @@
           "M-008",
           "M-011"
         ],
-        "visible_to_candidate": "A rejection email, minutes after applying."
+        "visible_to_candidate": "A rejection email, minutes after applying.",
+        "deviations": []
       },
       {
         "id": "human-rejected",
@@ -104,7 +111,8 @@
         "entities": [
           "A-002"
         ],
-        "visible_to_candidate": "A rejection message, generic unless a feedback policy exists."
+        "visible_to_candidate": "A rejection message, generic unless a feedback policy exists.",
+        "deviations": []
       },
       {
         "id": "expired",
@@ -116,7 +124,8 @@
           "M-020",
           "A-001"
         ],
-        "visible_to_candidate": "A bulk rejection, or nothing at all."
+        "visible_to_candidate": "A bulk rejection, or nothing at all.",
+        "deviations": []
       }
     ],
     "transitions": [

@@ -154,6 +154,13 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .nav-link-mobile { @apply block px-3 py-3 rounded-md text-base font-medium text-hoba-text hover:bg-hoba-hover transition-colors; }
   .nav-drawer { @apply absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-hoba-border bg-hoba-bg shadow-lg; }
 
+  /* Workflow player */
+  .wf-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
+  .wf-transport { @apply flex flex-wrap items-center gap-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }
+  .wf-canvas { @apply block w-full flex-1 outline-none; }
+  .wf-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
+  .wf-scrub { @apply flex-1 min-w-[8rem] accent-hoba-accent; }
+
   /* Knowledge-graph explorer */
   .graph-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
   .graph-toolbar { @apply flex flex-wrap items-center gap-x-4 gap-y-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }

@@ -317,6 +317,12 @@ export const workflowStateSchema = z.object({
   entities: z.array(z.string()).default([]),
   /** What the candidate can actually observe while the subject sits here. */
   visible_to_candidate: z.string().optional(),
+  /**
+   * Registry entities that are the ways this state goes wrong. On the ideal
+   * path this is the load-bearing field: a barrier is not simply a gate, it is
+   * the point at which a documented ideal stops being followed.
+   */
+  deviations: z.array(z.string()).default([]),
 });
 
 export const workflowTransitionSchema = z.object({

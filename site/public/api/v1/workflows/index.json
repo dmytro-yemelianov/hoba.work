@@ -21,7 +21,8 @@
           "entities": [
             "B-013"
           ],
-          "visible_to_candidate": "Nothing. The role does not exist publicly yet."
+          "visible_to_candidate": "Nothing. The role does not exist publicly yet.",
+          "deviations": []
         },
         {
           "id": "authorised",
@@ -33,7 +34,8 @@
             "B-013",
             "B-010"
           ],
-          "visible_to_candidate": "Nothing."
+          "visible_to_candidate": "Nothing.",
+          "deviations": []
         },
         {
           "id": "published",
@@ -46,7 +48,8 @@
             "B-014",
             "M-006"
           ],
-          "visible_to_candidate": "The posting, and whatever the posting chose to disclose."
+          "visible_to_candidate": "The posting, and whatever the posting chose to disclose.",
+          "deviations": []
         },
         {
           "id": "received",
@@ -58,7 +61,8 @@
             "B-001",
             "A-001"
           ],
-          "visible_to_candidate": "A confirmation, or silence."
+          "visible_to_candidate": "A confirmation, or silence.",
+          "deviations": []
         },
         {
           "id": "machine-screened",
@@ -73,7 +77,8 @@
             "M-011",
             "M-020"
           ],
-          "visible_to_candidate": "Either nothing, or a rejection within minutes."
+          "visible_to_candidate": "Either nothing, or a rejection within minutes.",
+          "deviations": []
         },
         {
           "id": "recruiter-queue",
@@ -86,7 +91,8 @@
             "M-009",
             "M-016"
           ],
-          "visible_to_candidate": "Silence, of an indeterminate length."
+          "visible_to_candidate": "Silence, of an indeterminate length.",
+          "deviations": []
         },
         {
           "id": "recruiter-screen",
@@ -100,7 +106,8 @@
             "M-004",
             "M-017"
           ],
-          "visible_to_candidate": "The call itself, and whichever parameters the recruiter chose to share."
+          "visible_to_candidate": "The call itself, and whichever parameters the recruiter chose to share.",
+          "deviations": []
         },
         {
           "id": "technical",
@@ -116,7 +123,8 @@
             "M-001",
             "M-019"
           ],
-          "visible_to_candidate": "The exercise, and sometimes structured feedback afterwards."
+          "visible_to_candidate": "The exercise, and sometimes structured feedback afterwards.",
+          "deviations": []
         },
         {
           "id": "panel",
@@ -133,7 +141,8 @@
             "M-018",
             "M-022"
           ],
-          "visible_to_candidate": "The conversations. Rarely the scores."
+          "visible_to_candidate": "The conversations. Rarely the scores.",
+          "deviations": []
         },
         {
           "id": "levelling",
@@ -146,7 +155,8 @@
             "A-005",
             "M-004"
           ],
-          "visible_to_candidate": "A number, or a renegotiation."
+          "visible_to_candidate": "A number, or a renegotiation.",
+          "deviations": []
         },
         {
           "id": "approval",
@@ -158,7 +168,8 @@
             "B-010",
             "M-007"
           ],
-          "visible_to_candidate": "Silence, usually described as \"final checks\"."
+          "visible_to_candidate": "Silence, usually described as \"final checks\".",
+          "deviations": []
         },
         {
           "id": "offer",
@@ -170,7 +181,8 @@
             "B-012",
             "A-011"
           ],
-          "visible_to_candidate": "The offer document."
+          "visible_to_candidate": "The offer document.",
+          "deviations": []
         },
         {
           "id": "verification",
@@ -182,7 +194,8 @@
             "B-011",
             "M-021"
           ],
-          "visible_to_candidate": "A request for documents, or nothing."
+          "visible_to_candidate": "A request for documents, or nothing.",
+          "deviations": []
         },
         {
           "id": "hired",
@@ -193,7 +206,8 @@
           "entities": [
             "B-012"
           ],
-          "visible_to_candidate": "A signed contract."
+          "visible_to_candidate": "A signed contract.",
+          "deviations": []
         },
         {
           "id": "rejected",
@@ -206,7 +220,8 @@
             "A-008",
             "A-013"
           ],
-          "visible_to_candidate": "A message, ranging from a rubric category to a template."
+          "visible_to_candidate": "A message, ranging from a rubric category to a template.",
+          "deviations": []
         },
         {
           "id": "frozen",
@@ -219,7 +234,8 @@
             "A-011",
             "M-007"
           ],
-          "visible_to_candidate": "If the candidate is lucky, an explanation. Often the posting simply disappears."
+          "visible_to_candidate": "If the candidate is lucky, an explanation. Often the posting simply disappears.",
+          "deviations": []
         },
         {
           "id": "lapsed",
@@ -233,7 +249,8 @@
             "M-006",
             "M-020"
           ],
-          "visible_to_candidate": "Silence, then possibly a bulk rejection at two in the morning."
+          "visible_to_candidate": "Silence, then possibly a bulk rejection at two in the morning.",
+          "deviations": []
         }
       ],
       "transitions": [
@@ -514,7 +531,8 @@
             "B-001",
             "A-001"
           ],
-          "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email."
+          "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email.",
+          "deviations": []
         },
         {
           "id": "parsing",
@@ -525,7 +543,8 @@
           "entities": [
             "M-003"
           ],
-          "visible_to_candidate": "Nothing."
+          "visible_to_candidate": "Nothing.",
+          "deviations": []
         },
         {
           "id": "scoring",
@@ -538,7 +557,8 @@
             "M-008",
             "M-011"
           ],
-          "visible_to_candidate": "Nothing, for a second or two."
+          "visible_to_candidate": "Nothing, for a second or two.",
+          "deviations": []
         },
         {
           "id": "queued",
@@ -551,7 +571,8 @@
             "M-009",
             "M-016"
           ],
-          "visible_to_candidate": "Silence. This is where most of the waiting happens."
+          "visible_to_candidate": "Silence. This is where most of the waiting happens.",
+          "deviations": []
         },
         {
           "id": "reviewed",
@@ -563,7 +584,8 @@
             "B-003",
             "M-009"
           ],
-          "visible_to_candidate": "Nothing yet."
+          "visible_to_candidate": "Nothing yet.",
+          "deviations": []
         },
         {
           "id": "advanced",
@@ -574,7 +596,8 @@
           "entities": [
             "B-004"
           ],
-          "visible_to_candidate": "An invitation to talk."
+          "visible_to_candidate": "An invitation to talk.",
+          "deviations": []
         },
         {
           "id": "auto-rejected",
@@ -587,7 +610,8 @@
             "M-008",
             "M-011"
           ],
-          "visible_to_candidate": "A rejection email, minutes after applying."
+          "visible_to_candidate": "A rejection email, minutes after applying.",
+          "deviations": []
         },
         {
           "id": "human-rejected",
@@ -598,7 +622,8 @@
           "entities": [
             "A-002"
           ],
-          "visible_to_candidate": "A rejection message, generic unless a feedback policy exists."
+          "visible_to_candidate": "A rejection message, generic unless a feedback policy exists.",
+          "deviations": []
         },
         {
           "id": "expired",
@@ -610,7 +635,8 @@
             "M-020",
             "A-001"
           ],
-          "visible_to_candidate": "A bulk rejection, or nothing at all."
+          "visible_to_candidate": "A bulk rejection, or nothing at all.",
+          "deviations": []
         }
       ],
       "transitions": [
