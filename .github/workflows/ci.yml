@@ -81,7 +81,14 @@ jobs:
           path: site/dist
 
       - name: Verify the downloaded build
-        run: test -s site/dist/index.html && test -d site/dist/_astro
+        # Both language trees, the worker that serves them, and the hashed
+        # assets. There is no root index.html: public URLs carry no language,
+        # so every page lives inside a tree.
+        run: |
+          test -s site/dist/_i/en/index.html
+          test -s site/dist/_i/uk/index.html
+          test -s site/dist/_worker.js
+          test -d site/dist/_astro
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
@@ -120,7 +127,14 @@ jobs:
           path: site/dist
 
       - name: Verify the downloaded build
-        run: test -s site/dist/index.html && test -d site/dist/_astro
+        # Both language trees, the worker that serves them, and the hashed
+        # assets. There is no root index.html: public URLs carry no language,
+        # so every page lives inside a tree.
+        run: |
+          test -s site/dist/_i/en/index.html
+          test -s site/dist/_i/uk/index.html
+          test -s site/dist/_worker.js
+          test -d site/dist/_astro
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
