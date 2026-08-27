@@ -240,6 +240,19 @@
       },
       {
         "data": {
+          "id": "A-019",
+          "label": "Feedback naming as absent something the submitted work contains",
+          "type": "artifact",
+          "evidence_level": "hypothesis",
+          "stages": [
+            "screening",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
           "id": "B-013",
           "label": "Requisition Approval & Public Posting",
           "type": "barrier",
@@ -2427,6 +2440,17 @@
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-023->emits->A-019",
+          "source": "M-023",
+          "target": "A-019",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
       },
       {
         "data": {

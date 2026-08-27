@@ -147,9 +147,9 @@ describe('the published registry', () => {
     // Four observations derived from how people describe rejections took this
     // from five classes to two. What remains is named, so a regression is
     // legible rather than a number drifting upward.
-    expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([
-      ['M-001', 'M-023'],
-      ['M-009', 'M-016'],
-    ]);
+    // One class left. M-009 and M-016 differ in whether a requisition exists
+    // behind the outreach, and nothing found so far reports that from the
+    // candidate's side, so no observation has been invented to split them.
+    expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([['M-009', 'M-016']]);
   });
 });

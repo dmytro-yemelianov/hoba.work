@@ -1,7 +1,7 @@
 {
   "registry_version": "2026.08.2",
-  "nodes_count": 115,
-  "edges_count": 231,
+  "nodes_count": 116,
+  "edges_count": 232,
   "elements": {
     "nodes": [
       {
@@ -236,6 +236,19 @@
           "evidence_level": "hypothesis",
           "stages": [
             "recruiter",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "A-019",
+          "label": "Feedback naming as absent something the submitted work contains",
+          "type": "artifact",
+          "evidence_level": "hypothesis",
+          "stages": [
+            "screening",
             "technical"
           ]
         },
@@ -2430,6 +2443,17 @@
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-023->emits->A-019",
+          "source": "M-023",
+          "target": "A-019",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
       },
       {
         "data": {

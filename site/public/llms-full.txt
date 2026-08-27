@@ -6,7 +6,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 
 ## Ontology
 
-- **Observations** (`A-*`, 18) — signals a candidate can actually witness.
+- **Observations** (`A-*`, 19) — signals a candidate can actually witness.
 - **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
 - **Mechanisms** (`M-*`, 24) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
@@ -16,7 +16,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 35) — the published sources behind the claims.
 
-The graph has 80 nodes and 231 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 81 nodes and 232 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -192,6 +192,15 @@ The stated reason is the absence of experience in one named sector, rather than 
 - Does NOT establish: Does not establish that the sector was irrelevant to the work.
 - Does NOT establish: Does not establish that the assessed work fell short in any respect.
 - Probe [PROBE-A-018-1] (low): Compare the sector named in the message against the requirements section of the posting as it stood on the day of application. → Establishes whether the sector was listed as required, listed as preferred, or absent.
+
+### A-019 — Feedback naming as absent something the submitted work contains
+
+The stated shortfall is the absence of work that is present in what the candidate submitted, at the path they gave.
+
+- Stages: screening, technical · Evidence: hypothesis
+- Does NOT establish: Does not establish that the work was never opened, only that the claim and the submission disagree.
+- Does NOT establish: Does not establish that the work would have met the bar had it been read.
+- Probe [PROBE-A-019-1] (low): Open the submitted path in a private window with no session, and note what the first screen shows before any navigation. → Establishes what a reader with no context and no time actually lands on.
 
 ## Barriers
 
@@ -498,7 +507,7 @@ The surface a screener opens does not show the candidate's architecture work, wh
 
 - Actor: candidate · Nature: noise · Visibility: inferable · Removability: candidate
 - Operates at: B-003, B-005
-- Emits: A-002 (euphemism), A-008 (distortion)
+- Emits: A-019 (direct), A-002 (euphemism), A-008 (distortion)
 - Does NOT establish: Misinterpreted architecture can be corrected through structured documentation.
 
 ### M-024 — Inflated Requisition Requirements vs Actual Team Needs
