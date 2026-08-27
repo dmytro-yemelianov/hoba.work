@@ -239,6 +239,52 @@ describe('workflows', () => {
 });
 
 /**
+ * An intervention proposes a change; it does not promise a result.
+ *
+ * The entries used to say "Eliminate formatting-induced silent parsing
+ * failures" while the same entry's own recruiter perspective said the change
+ * removes one of two indistinguishable cases and not the other. A promise the
+ * entry itself contradicts is the false certainty the methodology exists to
+ * forbid, so the shape of an effect is asserted rather than trusted.
+ */
+describe('intervention effects', () => {
+  // Verbs that assert a total outcome nobody can verify, and nouns for states
+  // of mind the atlas cannot observe from outside the system.
+  const PROMISES =
+    /\b(eliminat\w*|prevent\w*|ensur\w*|guarantee\w*|усува\w*|усунення|унеможлив\w*|гаранту\w*|запобіга\w*)\b/i;
+  const FEELINGS = /\b(confidence|trust|satisfaction|fatigue|respect|впевненіст\w*|довір\w*|задоволен\w*|втом\w*)\b/i;
+
+  it('states what changes, never what is promised', () => {
+    for (const b of [bundle, uk]) {
+      for (const intervention of b.interventions) {
+        for (const effect of intervention.expected_effects) {
+          expect(PROMISES.test(effect), `${intervention.id}: ${effect}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('never claims a state of mind it cannot observe', () => {
+    for (const b of [bundle, uk]) {
+      for (const intervention of b.interventions) {
+        for (const effect of intervention.expected_effects) {
+          expect(FEELINGS.test(effect), `${intervention.id}: ${effect}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('says which entry stops operating, for most of them', () => {
+    // Not every effect can name an id, but an intervention whose effects name
+    // none of its own targets is describing something other than its targets.
+    const vague = bundle.interventions.filter(
+      (i) => !i.expected_effects.some((e) => i.targets.some((t) => e.includes(t)))
+    );
+    expect(vague.map((i) => i.id)).toEqual([]);
+  });
+});
+
+/**
  * Probes are the only thing in the atlas that claims to *settle* anything, so
  * the bar is the highest in the repository: an outcome may rule a mechanism out
  * only when the two cannot both be true, and it has to say why.

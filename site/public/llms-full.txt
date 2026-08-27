@@ -546,8 +546,8 @@ Implement automated ATS policy to expire public listings when headcount authoriz
 
 - Actor: employer-policy · Scope: organizational · Cost: low
 - Targets: M-006, B-001, P-002, L-003
-- Expected: Reduce stale public listings and candidate application waste
-- Expected: Reduce ambiguous post-application silence
+- Expected: M-006 stops operating: a listing cannot outlive the authorisation that funded it
+- Expected: Silence after applying acquires a bound — the record is closed and the closure is sent
 
 ### I-002 — Upfront Compensation Band Disclosure
 
@@ -555,8 +555,8 @@ Publish verified salary and equity bands directly in job descriptions or disclos
 
 - Actor: employer-policy · Scope: industry · Cost: low
 - Targets: M-004, B-004, B-009, P-001, P-004
-- Expected: Eliminate late-stage compensation mismatch dropouts
-- Expected: Reduce time wasted on mismatched leveling conversations
+- Expected: M-004 has nothing to operate on: the band is stated before the candidate is asked for a number
+- Expected: B-009 becomes arithmetic rather than a negotiation about whether a band exists
 
 ### I-003 — Standardized Late-Stage Rejection Feedback Taxonomy
 
@@ -564,8 +564,8 @@ Provide candidates reaching technical or panel stages with structured, rubric-ba
 
 - Actor: recruiter-process · Scope: organizational · Cost: medium
 - Targets: M-001, M-010, B-007, B-008, P-001, P-002, L-003
-- Expected: Provide actionable feedback signals to candidates
-- Expected: Enforce consistent interviewer calibration across rounds
+- Expected: The stage and the criterion behind a late rejection become part of what is sent
+- Expected: M-010 becomes checkable: a rubric that is reported has to exist before the round
 
 ### I-004 — Remove Career Gap Feature from Automated Ranking Models
 
@@ -573,8 +573,8 @@ Disable employment duration gap penalties in recruitment AI algorithms and scree
 
 - Actor: ats-vendor · Scope: ecosystem · Cost: low
 - Targets: M-011, L-001
-- Expected: Break algorithmic unemployment penalty loop
-- Expected: Broaden candidate pool to include skilled returning talent
+- Expected: M-011 stops operating in the ranking model: continuity is no longer an input
+- Expected: L-001 loses the edge that closed it, because a gap can no longer widen the next gap
 
 ### I-005 — Candidate ATS Parser Conformance Test Utility
 
@@ -582,8 +582,8 @@ Provide candidates with an open-source parsing validation tool to verify CV mach
 
 - Actor: candidate-action · Scope: individual · Cost: low
 - Targets: M-003, B-002, P-003
-- Expected: Eliminate formatting-induced silent parsing failures
-- Expected: Increase candidate confidence in resume ingestion fidelity
+- Expected: The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one
+- Expected: M-003 moves from invisible to checkable on the candidate's side of the line
 
 ### I-006 — Strict Take-Home Timebox & Blinded Evaluation Rubric
 
@@ -591,8 +591,8 @@ Enforce strict 3-hour scope limits on take-homes, compensate candidates for exte
 
 - Actor: hiring-manager · Scope: organizational · Cost: medium
 - Targets: M-019, L-002, B-006
-- Expected: Prevent reviewer fatigue and asymmetric code evaluation
-- Expected: Respect candidate time investment and eliminate IP exploitation concerns
+- Expected: M-019 loses its asymmetry: the timebox binds the reviewer as well as the candidate
+- Expected: Who wrote a submission stops being an input to how it is scored
 
 ## Actors
 
