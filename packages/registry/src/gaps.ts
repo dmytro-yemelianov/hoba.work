@@ -46,6 +46,26 @@ export interface Unaddressed {
   outOfReach: boolean;
 }
 
+/**
+ * A mechanism that no set of its own emissions can pin down.
+ *
+ * Exact ties are the visible case, but the general one is subsumption: if
+ * everything a mechanism emits is also emitted by another, then every subset of
+ * its trace is consistent with that other too, and no evidence expressible here
+ * ever narrows to it alone. Equality is just subsumption in both directions.
+ */
+export interface NeverAlone {
+  mechanism: string;
+  /** Mechanisms emitting everything this one does, and so never ruled out. */
+  coveredBy: string[];
+}
+
+export interface Identifiability {
+  /** Observations consistent with exactly one mechanism on their own. */
+  identifying: { artifact: string; mechanism: string }[];
+  neverAlone: NeverAlone[];
+}
+
 export interface GapReport {
   indistinguishable: Indistinguishable[];
   /** Mechanism pairs no observation separates, as a share of all pairs. */
@@ -57,6 +77,7 @@ export interface GapReport {
   gatesWithoutLever: string[];
   /** Observations that co-occur in no single mechanism's emissions. */
   unexplainedPairs: [string, string][];
+  identifiability: Identifiability;
 }
 
 const emissionsOf = (m: { emissions: { artifact: string }[] }): Set<string> =>
@@ -134,6 +155,34 @@ export function indistinguishability(bundle: RegistryBundle): Indistinguishable[
     .sort((a, b) => a.mechanisms[0]!.localeCompare(b.mechanisms[0]!));
 }
 
+/**
+ * How far the observation vocabulary gets you.
+ *
+ * A mechanism is identifiable exactly when no other emits everything it does:
+ * otherwise the other survives every observation this one could produce. This
+ * is strictly stronger than looking for identical signatures, and it is the
+ * honest ceiling on what the protocol can ever settle.
+ */
+export function identifiability(bundle: RegistryBundle): Identifiability {
+  const signatures = bundle.mechanisms.map((m) => ({ id: m.id, emits: emissionsOf(m) }));
+
+  const identifying: { artifact: string; mechanism: string }[] = [];
+  for (const a of bundle.artifacts) {
+    const emitters = signatures.filter((s) => s.emits.has(a.id));
+    if (emitters.length === 1) identifying.push({ artifact: a.id, mechanism: emitters[0]!.id });
+  }
+
+  const neverAlone: NeverAlone[] = [];
+  for (const s of signatures) {
+    const coveredBy = signatures
+      .filter((other) => other.id !== s.id && [...s.emits].every((a) => other.emits.has(a)))
+      .map((other) => other.id);
+    if (coveredBy.length) neverAlone.push({ mechanism: s.id, coveredBy });
+  }
+
+  return { identifying, neverAlone };
+}
+
 /** Everything above, computed over one bundle. */
 export function gaps(bundle: RegistryBundle): GapReport {
   const { mechanisms, artifacts, barriers, interventions } = bundle;
@@ -191,5 +240,6 @@ export function gaps(bundle: RegistryBundle): GapReport {
       .sort((a, b) => a.actor.localeCompare(b.actor)),
     gatesWithoutLever: barriers.filter((b) => !reached.has(b.id)).map((b) => b.id),
     unexplainedPairs,
+    identifiability: identifiability(bundle),
   };
 }

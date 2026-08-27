@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { closure, gaps, indistinguishability } from '@hoba/registry';
+import { closure, gaps, identifiability, indistinguishability } from '@hoba/registry';
 import { artifact, barrier, intervention, makeBundle, mechanism } from './helpers';
 import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
@@ -124,6 +124,46 @@ describe('gaps', () => {
   });
 });
 
+describe('identifiability', () => {
+  it('calls a mechanism never-alone when another emits everything it does', () => {
+    const bundle = makeBundle({
+      artifacts: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
+      mechanisms: [
+        mechanism({ id: 'M-001', emissions: emits('A-001') }),
+        mechanism({ id: 'M-002', emissions: emits('A-001', 'A-002') }),
+      ],
+      loops: [],
+      patterns: [],
+      interventions: [],
+    });
+
+    const out = identifiability(bundle);
+    // Strict subset, not an exact tie: M-001 has no trace M-002 cannot also
+    // leave, so nothing observable ever narrows to M-001 alone.
+    expect(out.neverAlone).toEqual([{ mechanism: 'M-001', coveredBy: ['M-002'] }]);
+    expect(out.identifying).toEqual([{ artifact: 'A-002', mechanism: 'M-002' }]);
+  });
+
+  it('treats an exact tie as subsumption in both directions', () => {
+    const bundle = makeBundle({
+      artifacts: [artifact({ id: 'A-001' })],
+      mechanisms: [
+        mechanism({ id: 'M-001', emissions: emits('A-001') }),
+        mechanism({ id: 'M-002', emissions: emits('A-001') }),
+      ],
+      loops: [],
+      patterns: [],
+      interventions: [],
+    });
+
+    expect(identifiability(bundle).neverAlone).toEqual([
+      { mechanism: 'M-001', coveredBy: ['M-002'] },
+      { mechanism: 'M-002', coveredBy: ['M-001'] },
+    ]);
+    expect(identifiability(bundle).identifying).toEqual([]);
+  });
+});
+
 describe('the published registry', () => {
   const bundle = loadRegistryFromRoot(findRegistryRoot(REPO_ROOT)!, 'en');
   const report = gaps(bundle);
@@ -141,15 +181,20 @@ describe('the published registry', () => {
   });
 
   it('cannot separate every mechanism by observation, and says which', () => {
-    // Half the catalogue sits in one of these classes. This is why the
-    // protocol's probes narrow nothing: the vocabulary has no term for the
-    // difference. Growing the number is a regression in diagnostic power.
-    // Four observations derived from how people describe rejections took this
-    // from five classes to two. What remains is named, so a regression is
-    // legible rather than a number drifting upward.
-    // One class left. M-009 and M-016 differ in whether a requisition exists
+    // One class left: M-009 and M-016 differ in whether a requisition exists
     // behind the outreach, and nothing found so far reports that from the
     // candidate's side, so no observation has been invented to split them.
     expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([['M-009', 'M-016']]);
+  });
+
+  it('names every cause no observation can pin down', () => {
+    // Stronger than the class count above, which sees only exact ties. A
+    // mechanism whose trace is a strict subset of another's is never alone
+    // either — so adding an observation can make one side of a pair
+    // identifiable while leaving the other subsumed, and that is not progress
+    // this list will let us overstate.
+    expect(report.identifiability.neverAlone.map((n) => n.mechanism)).toEqual([
+      'M-001', 'M-002', 'M-008', 'M-009', 'M-011', 'M-016', 'M-017',
+    ]);
   });
 });

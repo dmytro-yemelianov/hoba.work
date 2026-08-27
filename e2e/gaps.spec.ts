@@ -40,4 +40,15 @@ test.describe('the atlas reports its own limits', () => {
       await expect(page.locator(`[data-gap-id="${id}"]`)).not.toContainText(says('en', 'gap.outOfReach'));
     }
   });
+
+  test('publishes the ceiling: every cause nothing can settle, and what covers it', async ({ page }) => {
+    await page.goto('/data?lang=en');
+    for (const entry of report.identifiability.neverAlone) {
+      // Addressed by the row's own subject: a mechanism also appears as the
+      // thing covering someone else, so matching on the link alone is ambiguous.
+      const row = page.locator(`[data-ceiling-id="${entry.mechanism}"]`);
+      await expect(row).toBeVisible();
+      for (const id of entry.coveredBy) await expect(row.getByRole('link', { name: id, exact: true })).toBeVisible();
+    }
+  });
 });

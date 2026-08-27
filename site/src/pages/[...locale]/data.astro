@@ -111,6 +111,33 @@ const bars = [
   </section>
 
   <section class="section">
+    <h2 class="section-title">{t('gap.ceiling')}</h2>
+    <p class="text-base text-hoba-muted max-w-3xl">{t('gap.ceilingText', { n: report.identifiability.neverAlone.length, total: bundle.mechanisms.length })}</p>
+
+    {report.identifiability.neverAlone.length === 0 ? (
+      <p class="mt-5 text-base text-hoba-muted">{t('gap.ceilingNone')}</p>
+    ) : (
+      <ul class="row-list mt-5">
+        {report.identifiability.neverAlone.map((n) => (
+          <li data-ceiling-id={n.mechanism} class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <a href={href(n.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{n.mechanism}</a>
+            <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(n.mechanism)}</span>
+            <span class="meta ml-auto shrink-0">{t('gap.ceilingCovered')}</span>
+            <span class="flex flex-wrap gap-1.5">
+              {n.coveredBy.map((id) => <a href={href(id)} class="pill pill-muted font-mono">{id}</a>)}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <p class="mt-6 text-base text-hoba-muted max-w-3xl">{t('gap.identifyingText', { n: report.identifiability.identifying.length, total: bundle.artifacts.length })}</p>
+    <ul class="mt-3 flex flex-wrap gap-1.5">
+      {report.identifiability.identifying.map((i) => <li><a href={href(i.artifact)} class="pill pill-muted font-mono">{i.artifact}</a></li>)}
+    </ul>
+  </section>
+
+  <section class="section">
     <h2 class="section-title">{t('gap.merged')}</h2>
     <p class="text-base text-hoba-muted max-w-3xl">{t('gap.mergedText', { n: report.indistinguishable.length, m: mergedCount, total: bundle.mechanisms.length })}</p>
 
