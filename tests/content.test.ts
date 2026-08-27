@@ -239,6 +239,51 @@ describe('workflows', () => {
 });
 
 /**
+ * Every entry repeats part of its own frontmatter in its Markdown body, so the
+ * file reads on GitHub. Nothing renders that copy — the site, the exports and
+ * the CLI all read the frontmatter — which means it can drift silently, and it
+ * did: rewriting `expected_effects` left the old wording sitting in the bodies,
+ * promises and all, where no test was looking.
+ */
+describe('body and frontmatter agree', () => {
+  const everything = (b: typeof bundle) => [
+    ...b.artifacts, ...b.barriers, ...b.mechanisms,
+    ...b.patterns, ...b.loops, ...b.interventions,
+  ];
+
+  /** Every string anywhere in the entry, which is what the body may quote. */
+  const strings = (node: unknown, into: string[] = []): string[] => {
+    if (typeof node === 'string') into.push(node);
+    else if (Array.isArray(node)) for (const v of node) strings(v, into);
+    else if (node && typeof node === 'object') {
+      for (const [key, v] of Object.entries(node)) if (key !== 'content') strings(v, into);
+    }
+    return into;
+  };
+
+  it('never leaves a bullet in the body that the frontmatter no longer says', () => {
+    const drifted: string[] = [];
+    for (const b of [bundle, uk]) {
+      for (const node of everything(b)) {
+        const pool = strings(node).join('\n');
+        for (const raw of (node.content ?? '').split('\n')) {
+          const line = raw.trim();
+          if (!line.startsWith('- ')) continue;
+          // A line carrying a backticked id is a cross-reference — it quotes
+          // another entry's title, which this entry's frontmatter holds only as
+          // an id. What must agree is the prose an entry repeats about itself.
+          if (/`[A-Z]+-\d+`/.test(line)) continue;
+          const text = line.slice(2).replace(/^\*\*[^*]+\*\*:?\s*/, '').trim();
+          if (text.length < 20 || /^`[^`]+`$/.test(text)) continue;
+          if (!pool.includes(text)) drifted.push(`${node.id}: ${text.slice(0, 70)}`);
+        }
+      }
+    }
+    expect(drifted).toEqual([]);
+  });
+});
+
+/**
  * An intervention proposes a change; it does not promise a result.
  *
  * The entries used to say "Eliminate formatting-induced silent parsing

@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Auto-Close Stale Job Requisitions\n\nImplement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.\n\n### Expected Effects\n- Reduce stale public listings and candidate application waste\n- Reduce ambiguous post-application silence\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`",
+    "content": "# Auto-Close Stale Job Requisitions\n\nImplement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.\n\n### Expected Effects\n- M-006 stops operating: a listing cannot outlive the authorisation that funded it\n- Silence after applying acquires a bound — the record is closed and the closure is sent\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`",
     "id": "I-001",
     "type": "intervention",
     "summary": "Implement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.",

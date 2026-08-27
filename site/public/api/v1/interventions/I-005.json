@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- Eliminate formatting-induced silent parsing failures\n- Increase candidate confidence in resume ingestion fidelity\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
+    "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one\n- M-003 moves from invisible to checkable on the candidate's side of the line\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
     "id": "I-005",
     "type": "intervention",
     "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
