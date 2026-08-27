@@ -2828,7 +2828,8 @@
       "title": "Compensation band reduced or altered mid-process",
       "status": "active",
       "evidence_ids": [
-        "EVD-005"
+        "EVD-005",
+        "EVD-038"
       ],
       "content": "# Compensation band reduced or altered mid-process\n\nThe compensation band offered or discussed is revised downward from the range previously agreed or advertised.\n\n### Diagnostic Non-Inferences\n- Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.",
       "id": "A-005",
@@ -5841,7 +5842,8 @@
       "title": "Unstated Compensation Band Discrepancy",
       "status": "active",
       "evidence_ids": [
-        "EVD-005"
+        "EVD-005",
+        "EVD-038"
       ],
       "content": "# Unstated Compensation Band Discrepancy\n\nCandidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.",
       "id": "M-004",
@@ -5959,7 +5961,8 @@
       "title": "Pre-Selected Internal Candidate",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "EVD-004",
+        "EVD-039"
       ],
       "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
       "id": "M-005",
@@ -6278,7 +6281,8 @@
       "title": "Automated Keyword / Qualification Filter",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "EVD-001",
+        "EVD-037"
       ],
       "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-011` — Employment Gap Downranking Bias\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
       "id": "M-008",
@@ -8804,7 +8808,8 @@
       "title": "Upfront Compensation Band Disclosure",
       "status": "active",
       "evidence_ids": [
-        "EVD-005"
+        "EVD-005",
+        "EVD-038"
       ],
       "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- B-009 becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
       "id": "I-002",
@@ -9408,7 +9413,8 @@
       "title": "Distinct Closure Status for Unreviewed Applications",
       "status": "active",
       "evidence_ids": [
-        "EVD-036"
+        "EVD-036",
+        "EVD-037"
       ],
       "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- B-003 leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
       "id": "I-010",
@@ -9572,7 +9578,9 @@
     {
       "title": "Candidate Work Index Submitted With the Application",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-033"
+      ],
       "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- M-023 loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so B-003 and B-005 open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
       "id": "I-012",
       "type": "intervention",
@@ -10374,12 +10382,12 @@
     {
       "id": "EVD-033",
       "type": "evidence",
-      "title": "Corrected validity estimates place structured interviews above general mental ability",
+      "title": "Corrected validity estimates reorder the selection methods, and work samples fall furthest",
       "kind": "research",
-      "summary": "Sackett et al. (2022) found that the standard corrections for range restriction had systematically overstated the criterion-related validity of several selection methods, and re-estimated them. As reported in this paper's side-by-side table, the earlier Roth et al. (2011) values for biodata, general mental ability tests, conscientiousness tests, structured interviews and integrity tests were .32, .52, .22, .48 and .42; the corrected values are .38, .31, .19, .42 and .31. Structured interviews therefore become the strongest single predictor of job performance in that set, ahead of general mental ability. These are validity coefficients for predicting performance once hired; nothing here measures whether a scoring scheme is applied consistently or published in advance.",
-      "citation": "Berry, C. M., Lievens, F., Zhang, C., & Sackett, P. R. Insights from an Updated Personnel Selection Meta-analytic Matrix: Revisiting General Mental Ability Tests' Role in the Validity-Diversity Tradeoff. Reporting corrected estimates from Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2022), Journal of Applied Psychology.",
-      "url": "https://filiplievens.squarespace.com/s/APL-2022-4078_R3.pdf",
-      "period": "2011–2022"
+      "summary": "Sackett et al. (2022) showed that the range-restriction corrections long used in personnel-selection meta-analyses systematically overstated validity, and re-estimated it. This paper reproduces the full table. Against the prior figures, the corrected operational validities are: structured interviews .42 (was .51), job knowledge tests .40 (was .48), empirically keyed biodata .38 (was .35), work sample tests .33 (was .54), general mental ability .31 (was .51), unstructured interviews .19 (was .38). Two readings matter here. Structured interviews become the strongest single predictor, ahead of general mental ability. And work sample tests fall furthest of anything in the table — .21 — so the familiar claim that a sample of the work is the best available signal no longer holds, though .33 still places it above general mental ability. These are correlations with job performance once hired. Nothing here measures whether a scoring scheme is applied consistently, published in advance, or opened at all.",
+      "citation": "Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2023). Revisiting the design of selection systems in light of new findings regarding the validity of widely used predictors. Industrial and Organizational Psychology, 16(3). Reproducing the corrected estimates of Sackett, Zhang, Berry & Lievens (2022), Journal of Applied Psychology 107(11), 2040–2068.",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A20984B138319E3D432E643978BF026D/S175494262300024Xa.pdf/revisiting_the_design_of_selection_systems_in_light_of_new_findings_regarding_the_validity_of_widely_used_predictors.pdf",
+      "period": "2022–2023"
     },
     {
       "id": "EVD-034",
@@ -10409,6 +10417,36 @@
       "summary": "US federal contracting regulation turns on whether an expression of interest was actually assessed. An individual counts as an \"Internet Applicant\" only where, among four criteria, \"the contractor considers the individual for employment in a particular position\" — defined as assessing the substantive information provided against the qualifications for that position. The rule then states the converse plainly: where there is a large number of expressions of interest, the contractor does *not* consider an individual by using \"data management techniques that do not depend on assessment of qualifications, such as random sampling or absolute numerical limits, to reduce the number of expressions of interest to be considered\". So an application closed without being read is a category the law already names and treats differently from a reviewed decline. The rule binds federal contractors in the United States, it governs who must be counted rather than what a candidate is told, and it does not require a contractor to record why any individual went unconsidered.",
       "citation": "41 C.F.R. §60-1.3, definition of \"Internet Applicant\", paragraphs (1)-(3). Office of Federal Contract Compliance Programs.",
       "url": "https://www.ecfr.gov/current/title-41/subtitle-B/chapter-60/part-60-1/subpart-A/section-60-1.3",
+      "period": "current"
+    },
+    {
+      "id": "EVD-037",
+      "type": "evidence",
+      "title": "A rejection issued without human involvement is regulated in the EU (GDPR Art. 22)",
+      "kind": "primary",
+      "summary": "Under EU data protection law a person has the right not to be subject to a decision based solely on automated processing which produces legal effects or similarly significantly affects them. Recital 71 names the case directly: \"automatic refusal of an online credit application or e-recruiting practices without any human intervention\", and states the person should have \"the right to obtain human intervention, to express his or her point of view, to obtain an explanation of the decision reached after such assessment and to challenge the decision\". The distinction the regulation turns on is whether a human was involved at all — the same line the US applicant rules draw, reached from the opposite direction: one governs who must be counted, this one governs what the person may demand. It binds processing in the EU, it says nothing about decisions a human did make, and a rejection preceded by genuine human review falls outside it.",
+      "citation": "Regulation (EU) 2016/679 (GDPR), Article 22 and Recital 71.",
+      "url": "https://gdpr-info.eu/art-22-gdpr/",
+      "period": "current"
+    },
+    {
+      "id": "EVD-038",
+      "type": "evidence",
+      "title": "Publishing the band before the interview becomes a duty in the EU (Directive 2023/970, Art. 5)",
+      "kind": "primary",
+      "summary": "EU law requires employers to give applicants the initial pay or its range for the advertised position, set on objective and gender-neutral criteria, \"in a manner such as to ensure an informed and transparent negotiation on pay, such as in a published job vacancy notice, prior to the job interview or otherwise\", and to state the applicable collective agreement where there is one. It also forbids asking an applicant about their pay history in current or previous employment, and requires vacancy notices and job titles to be gender-neutral. The directive is being transposed into national law across Member States, and the reporting duties in Article 9 begin on 7 June 2027 for the largest employers. It fixes when a number must be disclosed, not that the number cannot move afterwards.",
+      "citation": "Directive (EU) 2023/970 of the European Parliament and of the Council of 10 May 2023, Article 5 (Pay transparency prior to employment).",
+      "url": "https://eur-lex.europa.eu/eli/dir/2023/970/oj/eng",
+      "period": "2023–2027"
+    },
+    {
+      "id": "EVD-039",
+      "type": "evidence",
+      "title": "Openings that exist because a rule requires them (Ukraine, civil service competitions)",
+      "kind": "primary",
+      "summary": "Ukrainian law requires a competition to fill a civil service post: \"З метою добору осіб, здатних професійно виконувати посадові обов'язки, проводиться конкурс на зайняття посади державної служби\". The requirement covers vacant posts, posts held during an absence, and category \"А\" posts whose term is expiring. Whole classes of publicly advertised openings therefore exist because a statute mandates the competition, not because an employer freely chose to search outside — so a public posting is not by itself evidence that the outcome is open. The law governs the Ukrainian civil service, not private technical hiring, and it says nothing about whether any particular competition has a favoured candidate; it establishes only that mandated-posting regimes exist and are ordinary.",
+      "citation": "Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).",
+      "url": "https://zakon.rada.gov.ua/laws/show/889-19",
       "period": "current"
     }
   ]

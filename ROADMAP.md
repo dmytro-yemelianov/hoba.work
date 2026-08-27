@@ -343,9 +343,24 @@ says outright that volume reduction "by data management techniques that do not
 depend on assessment of qualifications" is not consideration. The distinction
 I-010 asks an ATS to record is one the law already draws.
 
-Ten entries still cite nothing. Five are the forum-derived observations, which
-were never going to be citable. The rest need sources, not code — as do the
-twenty-six unplaced traces and the last merged pair.
+The legal base was then rebalanced, because it had drifted entirely US-side
+under a bilingual atlas. GDPR Article 22 and Recital 71 name "e-recruiting
+practices without any human intervention" outright, which is the same
+reviewed/unreviewed line 41 CFR draws, approached from the other end: one
+governs who must be counted, the other what the person may demand. Directive
+(EU) 2023/970 Article 5 makes publishing the band before the interview a duty,
+which is I-002 stated as law. Ukraine's civil service statute mandates open
+competitions, so whole classes of postings exist because a rule requires them —
+M-005's premise, in Ukrainian primary law.
+
+Nine entries still cite nothing. Five are the forum-derived observations, which
+were never going to be citable. Four are interventions — I-008, I-014, I-015,
+I-017 — where a genuine attempt found nothing openable: the silver-medalist and
+offer-rescission material is vendor and consultant copy carrying unsourced
+percentages, and interview-scheduling capacity is an operations claim the
+selection literature does not speak to. They stay unsourced rather than
+stretched. The rest needs sources, not code, as do the twenty-six unplaced
+traces and the last merged pair.
 
 ## Not scheduled yet
 

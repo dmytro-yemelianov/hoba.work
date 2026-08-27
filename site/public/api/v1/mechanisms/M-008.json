@@ -4,7 +4,8 @@
     "title": "Automated Keyword / Qualification Filter",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "EVD-001",
+      "EVD-037"
     ],
     "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-011` — Employment Gap Downranking Bias\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
     "id": "M-008",

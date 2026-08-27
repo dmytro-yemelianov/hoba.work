@@ -14,7 +14,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (6) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 36) — the published sources behind the claims.
+- **Evidence** (`EVD-*`, 39) — the published sources behind the claims.
 
 The graph has 81 nodes and 232 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -1165,12 +1165,12 @@ Under US federal law, an employer intending to take adverse action based in whol
 - 15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes.
 - https://www.law.cornell.edu/uscode/text/15/1681b
 
-### EVD-033 — Corrected validity estimates place structured interviews above general mental ability
+### EVD-033 — Corrected validity estimates reorder the selection methods, and work samples fall furthest
 
-Sackett et al. (2022) found that the standard corrections for range restriction had systematically overstated the criterion-related validity of several selection methods, and re-estimated them. As reported in this paper's side-by-side table, the earlier Roth et al. (2011) values for biodata, general mental ability tests, conscientiousness tests, structured interviews and integrity tests were .32, .52, .22, .48 and .42; the corrected values are .38, .31, .19, .42 and .31. Structured interviews therefore become the strongest single predictor of job performance in that set, ahead of general mental ability. These are validity coefficients for predicting performance once hired; nothing here measures whether a scoring scheme is applied consistently or published in advance.
+Sackett et al. (2022) showed that the range-restriction corrections long used in personnel-selection meta-analyses systematically overstated validity, and re-estimated it. This paper reproduces the full table. Against the prior figures, the corrected operational validities are: structured interviews .42 (was .51), job knowledge tests .40 (was .48), empirically keyed biodata .38 (was .35), work sample tests .33 (was .54), general mental ability .31 (was .51), unstructured interviews .19 (was .38). Two readings matter here. Structured interviews become the strongest single predictor, ahead of general mental ability. And work sample tests fall furthest of anything in the table — .21 — so the familiar claim that a sample of the work is the best available signal no longer holds, though .33 still places it above general mental ability. These are correlations with job performance once hired. Nothing here measures whether a scoring scheme is applied consistently, published in advance, or opened at all.
 
-- Berry, C. M., Lievens, F., Zhang, C., & Sackett, P. R. Insights from an Updated Personnel Selection Meta-analytic Matrix: Revisiting General Mental Ability Tests' Role in the Validity-Diversity Tradeoff. Reporting corrected estimates from Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2022), Journal of Applied Psychology.
-- https://filiplievens.squarespace.com/s/APL-2022-4078_R3.pdf
+- Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2023). Revisiting the design of selection systems in light of new findings regarding the validity of widely used predictors. Industrial and Organizational Psychology, 16(3). Reproducing the corrected estimates of Sackett, Zhang, Berry & Lievens (2022), Journal of Applied Psychology 107(11), 2040–2068.
+- https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A20984B138319E3D432E643978BF026D/S175494262300024Xa.pdf/revisiting_the_design_of_selection_systems_in_light_of_new_findings_regarding_the_validity_of_widely_used_predictors.pdf
 
 ### EVD-034 — Postings without a fillable requisition, measured on one ATS platform (Greenhouse)
 
@@ -1192,3 +1192,24 @@ US federal contracting regulation turns on whether an expression of interest was
 
 - 41 C.F.R. §60-1.3, definition of "Internet Applicant", paragraphs (1)-(3). Office of Federal Contract Compliance Programs.
 - https://www.ecfr.gov/current/title-41/subtitle-B/chapter-60/part-60-1/subpart-A/section-60-1.3
+
+### EVD-037 — A rejection issued without human involvement is regulated in the EU (GDPR Art. 22)
+
+Under EU data protection law a person has the right not to be subject to a decision based solely on automated processing which produces legal effects or similarly significantly affects them. Recital 71 names the case directly: "automatic refusal of an online credit application or e-recruiting practices without any human intervention", and states the person should have "the right to obtain human intervention, to express his or her point of view, to obtain an explanation of the decision reached after such assessment and to challenge the decision". The distinction the regulation turns on is whether a human was involved at all — the same line the US applicant rules draw, reached from the opposite direction: one governs who must be counted, this one governs what the person may demand. It binds processing in the EU, it says nothing about decisions a human did make, and a rejection preceded by genuine human review falls outside it.
+
+- Regulation (EU) 2016/679 (GDPR), Article 22 and Recital 71.
+- https://gdpr-info.eu/art-22-gdpr/
+
+### EVD-038 — Publishing the band before the interview becomes a duty in the EU (Directive 2023/970, Art. 5)
+
+EU law requires employers to give applicants the initial pay or its range for the advertised position, set on objective and gender-neutral criteria, "in a manner such as to ensure an informed and transparent negotiation on pay, such as in a published job vacancy notice, prior to the job interview or otherwise", and to state the applicable collective agreement where there is one. It also forbids asking an applicant about their pay history in current or previous employment, and requires vacancy notices and job titles to be gender-neutral. The directive is being transposed into national law across Member States, and the reporting duties in Article 9 begin on 7 June 2027 for the largest employers. It fixes when a number must be disclosed, not that the number cannot move afterwards.
+
+- Directive (EU) 2023/970 of the European Parliament and of the Council of 10 May 2023, Article 5 (Pay transparency prior to employment).
+- https://eur-lex.europa.eu/eli/dir/2023/970/oj/eng
+
+### EVD-039 — Openings that exist because a rule requires them (Ukraine, civil service competitions)
+
+Ukrainian law requires a competition to fill a civil service post: "З метою добору осіб, здатних професійно виконувати посадові обов'язки, проводиться конкурс на зайняття посади державної служби". The requirement covers vacant posts, posts held during an absence, and category "А" posts whose term is expiring. Whole classes of publicly advertised openings therefore exist because a statute mandates the competition, not because an employer freely chose to search outside — so a public posting is not by itself evidence that the outcome is open. The law governs the Ukrainian civil service, not private technical hiring, and it says nothing about whether any particular competition has a favoured candidate; it establishes only that mandated-posting regimes exist and are ordinary.
+
+- Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).
+- https://zakon.rada.gov.ua/laws/show/889-19
