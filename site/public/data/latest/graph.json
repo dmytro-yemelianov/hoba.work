@@ -188,6 +188,58 @@
       },
       {
         "data": {
+          "id": "A-015",
+          "label": "Rejection after the application sat pending for months",
+          "type": "artifact",
+          "evidence_level": "hypothesis",
+          "stages": [
+            "ingestion",
+            "screening"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "A-016",
+          "label": "Rejection naming an internal hire as the outcome",
+          "type": "artifact",
+          "evidence_level": "hypothesis",
+          "stages": [
+            "team",
+            "offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "A-017",
+          "label": "Rejection naming a jurisdiction or work-eligibility ground",
+          "type": "artifact",
+          "evidence_level": "hypothesis",
+          "stages": [
+            "ingestion",
+            "recruiter"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "A-018",
+          "label": "Rejection naming a specific industry sector as required",
+          "type": "artifact",
+          "evidence_level": "hypothesis",
+          "stages": [
+            "recruiter",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
           "id": "B-013",
           "label": "Requisition Approval & Public Posting",
           "type": "barrier",
@@ -1344,6 +1396,17 @@
       },
       {
         "data": {
+          "id": "M-005->emits->A-016",
+          "source": "M-005",
+          "target": "A-016",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "M-005->emits->A-002",
           "source": "M-005",
           "target": "A-002",
@@ -1893,6 +1956,17 @@
       },
       {
         "data": {
+          "id": "M-014->emits->A-017",
+          "source": "M-014",
+          "target": "A-017",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "M-014->emits->A-009",
           "source": "M-014",
           "target": "A-009",
@@ -2107,6 +2181,17 @@
       },
       {
         "data": {
+          "id": "M-018->emits->A-018",
+          "source": "M-018",
+          "target": "A-018",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "M-018->emits->A-002",
           "source": "M-018",
           "target": "A-002",
@@ -2211,6 +2296,17 @@
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-020->emits->A-015",
+          "source": "M-020",
+          "target": "A-015",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
       },
       {
         "data": {

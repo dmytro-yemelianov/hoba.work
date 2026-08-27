@@ -4089,6 +4089,411 @@
       "non_inferences": [
         "Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee."
       ]
+    },
+    {
+      "title": "Rejection after the application sat pending for months",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Rejection after the application sat pending for months\n\nA rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.\n\n### Diagnostic Non-Inferences\n- Does not mean the application was read at any point during the interval.\n- Does not mean a decision on the merits was taken at the end of it.",
+      "id": "A-015",
+      "type": "artifact",
+      "summary": "A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.",
+      "stages": [
+        "ingestion",
+        "screening"
+      ],
+      "evidence_level": "hypothesis",
+      "probes": [
+        {
+          "id": "PROBE-A-015-1",
+          "action": "Compare the date the posting came down with the date the rejection arrived, using the portal's own listing history or a saved copy of the posting.",
+          "expected_signal": "Establishes whether the message followed the close of the search or an interval counted from submission.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "message-follows-posting-close",
+              "label": "The posting came down first, and the message followed within days of it.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "message-on-a-round-interval",
+              "label": "The message arrived a round number of days after submission — thirty, forty-five, sixty — and the posting's state did not change around it.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "posting-still-live",
+              "label": "The posting was still accepting applications when the rejection arrived.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "history-unavailable",
+              "label": "The posting's history cannot be recovered and no copy was kept.",
+              "excludes": [],
+              "because": ""
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Application timeline",
+          "lines": [
+            {
+              "at": "02 Mar",
+              "text": "Application submitted",
+              "tell": false
+            },
+            {
+              "at": "02 Mar",
+              "text": "Status: Under review",
+              "tell": false
+            },
+            {
+              "at": "01 May",
+              "text": "Status: Not selected",
+              "tell": true
+            },
+            {
+              "at": "01 May",
+              "text": "Notification email queued",
+              "tell": false
+            }
+          ],
+          "reading": "Sixty days between the two status lines, and nothing recorded in between. The record's history shows one transition, not a review."
+        },
+        {
+          "kind": "email",
+          "label": "Rejection email",
+          "subject": "Update on your application",
+          "context": "received sixty days after submission",
+          "lines": [
+            {
+              "text": "Thank you for your interest. We have decided not to move forward with your application at this time.",
+              "tell": false
+            },
+            {
+              "text": "We encourage you to apply for future openings that match your background.",
+              "tell": false
+            },
+            {
+              "text": "No stage is named, and none was entered.",
+              "tell": true
+            }
+          ],
+          "reading": "The message is written to close a record, not to report a decision about one. Nothing in it distinguishes the sixtieth day from the first."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A submission in one month and a rejection in another, with nothing between them: no acknowledgement beyond the automatic one, no question, no stage.",
+          "reads": "The interval bounds nothing on its own. A long wait is equally consistent with a queue that never reached the record and with a threshold that closed it on a date.",
+          "does": "Checks whether the posting stayed live through the interval and whether the portal shows a status that changed before the message arrived, because those are the two things the interval can be compared against."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A requisition that has been closed for weeks and a disposition list that still has to be cleared before the quarter's reporting.",
+          "reads": "Records that never entered the queue are not decisions deferred; they are decisions the queue never had capacity to reach.",
+          "does": "Clears the outstanding dispositions in one operation, because the alternative is leaving them open against a requisition that no longer exists."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "A retention rule firing against every record still in a pending state past the configured interval, and one notification queued per record.",
+          "reads": "The configuration ran on schedule. Whether any of those records was ever opened is not a condition the rule tests.",
+          "does": "Transitions the records, queues the notifications, and reports the cleared backlog as pipeline hygiene."
+        }
+      ],
+      "non_inferences": [
+        "Does not mean the application was read at any point during the interval.",
+        "Does not mean a decision on the merits was taken at the end of it."
+      ]
+    },
+    {
+      "title": "Rejection naming an internal hire as the outcome",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Rejection naming an internal hire as the outcome\n\nThe closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.\n\n### Diagnostic Non-Inferences\n- Does not establish that the internal candidate was identified before the search was published.\n- Does not establish that the external rounds were run without a decision available to them.",
+      "id": "A-016",
+      "type": "artifact",
+      "summary": "The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.",
+      "stages": [
+        "team",
+        "offer"
+      ],
+      "evidence_level": "hypothesis",
+      "probes": [
+        {
+          "id": "PROBE-A-016-1",
+          "action": "Check whether the posting was withdrawn or remained live, and whether it was reposted with the same level and scope within the following weeks.",
+          "expected_signal": "Distinguishes a filled requisition from a search that continued after the message.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "withdrawn-and-not-reposted",
+              "label": "The posting came down and no materially similar role appeared afterwards.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "reposted-same-scope",
+              "label": "A role with the same level and scope was published again within weeks.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "still-live",
+              "label": "The posting continued to accept applications after the message arrived.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "cannot-establish",
+              "label": "The posting's state after the message cannot be established.",
+              "excludes": [],
+              "because": ""
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Closing message",
+          "subject": "Update following your final round",
+          "context": "after four rounds",
+          "lines": [
+            {
+              "text": "Thank you for the time you gave this process, and for the work you prepared for the final session.",
+              "tell": false
+            },
+            {
+              "text": "We have filled the role with a candidate from inside the company.",
+              "tell": true
+            },
+            {
+              "text": "We would be glad to keep your details for future openings on the team.",
+              "tell": false
+            }
+          ],
+          "reading": "The one specific sentence in the message is about where the hire came from, not about the candidate. That specificity is what separates this from a template, and it is also the limit of what it reports."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A message that names where the hire came from, arriving after several rounds that were scheduled, attended and prepared for.",
+          "reads": "The sentence establishes where the role landed. It does not establish when that became likely, and the difference between those two is the whole of what the candidate wants to know.",
+          "does": "Notes what was asked in the later rounds — whether the questions were about the work or about the team's existing plans — because that is the only record of what the process was doing while it ran."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "An internal transfer that resolves a headcount problem without a notice period, alongside an external shortlist that was assembled in case it did not.",
+          "reads": "Both routes were live. One closed first, and the requisition needed one person, not the better of two processes.",
+          "does": "Asks for the external rounds to be closed out, and writes a reason short enough to be sent unchanged to everyone still open."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A requisition marked filled with an internal disposition code, and a shortlist of external candidates who now need messages.",
+          "reads": "The disposition is accurate and unusually specific — most closing reasons are not this legible from outside.",
+          "does": "Sends the stated reason rather than the generic template, because the internal outcome is the one closing reason that can be given without commenting on any candidate."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the internal candidate was identified before the search was published.",
+        "Does not establish that the external rounds were run without a decision available to them."
+      ]
+    },
+    {
+      "title": "Rejection naming a jurisdiction or work-eligibility ground",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Rejection naming a jurisdiction or work-eligibility ground\n\nThe stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.\n\n### Diagnostic Non-Inferences\n- Does not establish that no route to employment existed, only that none was used here.\n- Does not establish that the constraint was the first ground on which the application was set aside.",
+      "id": "A-017",
+      "type": "artifact",
+      "summary": "The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.",
+      "stages": [
+        "ingestion",
+        "recruiter"
+      ],
+      "evidence_level": "hypothesis",
+      "probes": [
+        {
+          "id": "PROBE-A-017-1",
+          "action": "Compare the ground named in the message against the copy of the posting as it stood on the day of application.",
+          "expected_signal": "Establishes whether the ground was stated up front or introduced afterwards.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "stated-in-the-posting",
+              "label": "The posting stated the same constraint, in the same terms, before the application was made.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "absent-from-the-posting",
+              "label": "The posting said nothing about the constraint, or stated a wider one.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "posting-edited",
+              "label": "The posting now carries the constraint, and the saved copy shows it did not.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "no-saved-copy",
+              "label": "No copy of the posting as applied to was kept, and the listing has changed or gone.",
+              "excludes": [],
+              "because": ""
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Recruiter reply",
+          "subject": "Re: your application",
+          "lines": [
+            {
+              "text": "Thanks for your time on the call earlier this week.",
+              "tell": false
+            },
+            {
+              "text": "We are not able to employ in your country of residence for this role, so we cannot take this forward.",
+              "tell": true
+            },
+            {
+              "text": "If that changes on your side, do let us know.",
+              "tell": false
+            }
+          ],
+          "reading": "The ground is checkable against a document, which almost no other stated reason is. That makes it worth checking — and checkable is not the same as operative."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A reason that can be checked against the posting: a country, a set of hours, a permit. Unlike most stated reasons, this one refers to a fact rather than a judgement.",
+          "reads": "The ground named is verifiable, which is unusual. Whether it was the operative ground, or the one that could be written down without commenting on the candidate, is not settled by the message.",
+          "does": "Compares the ground against what the posting stated when it was applied to, using a saved copy, because a posting can be edited after the fact."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A candidate the team would take and a hiring location list that does not include where they are.",
+          "reads": "This is the one closing reason that is fully outside the candidate and fully inside a document. It can be stated without hedging.",
+          "does": "Names the ground plainly, because doing so is both accurate and easier than a template that would invite a follow-up."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A list of jurisdictions in which a contract can be issued, set by which entities and payroll providers exist, and reviewed on a slower cycle than any single search.",
+          "reads": "The list is a constraint on the search, not an assessment within it. Roles are published against it, and exceptions cost more than a single hire usually justifies.",
+          "does": "Holds the list, and grants exceptions through a route that runs on a different calendar from the requisition."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that no route to employment existed, only that none was used here.",
+        "Does not establish that the constraint was the first ground on which the application was set aside."
+      ]
+    },
+    {
+      "title": "Rejection naming a specific industry sector as required",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Rejection naming a specific industry sector as required\n\nThe stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.\n\n### Diagnostic Non-Inferences\n- Does not establish that the sector was irrelevant to the work.\n- Does not establish that the assessed work fell short in any respect.",
+      "id": "A-018",
+      "type": "artifact",
+      "summary": "The stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.",
+      "stages": [
+        "recruiter",
+        "technical"
+      ],
+      "evidence_level": "hypothesis",
+      "probes": [
+        {
+          "id": "PROBE-A-018-1",
+          "action": "Compare the sector named in the message against the requirements section of the posting as it stood on the day of application.",
+          "expected_signal": "Establishes whether the sector was listed as required, listed as preferred, or absent.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "listed-as-required",
+              "label": "The posting named the sector among the requirements.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "listed-as-preferred",
+              "label": "The posting named the sector, among preferences or nice-to-haves rather than requirements.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "absent-from-the-posting",
+              "label": "The posting did not mention the sector at all.",
+              "excludes": [],
+              "because": ""
+            },
+            {
+              "id": "no-saved-copy",
+              "label": "No copy of the posting as applied to was kept.",
+              "excludes": [],
+              "because": ""
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Feedback after the technical round",
+          "subject": "Following your technical session",
+          "lines": [
+            {
+              "text": "The exercise was solid and the reasoning about failure modes was strong.",
+              "tell": false
+            },
+            {
+              "text": "The team decided to go with someone who has already worked in the payments domain.",
+              "tell": true
+            },
+            {
+              "text": "We would be happy to talk again for a role where that is less central.",
+              "tell": false
+            }
+          ],
+          "reading": "The work is assessed positively and the ground for the decision is elsewhere. That combination is what makes the sector legible as the operative line — and leaves open how heavily it was weighed."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A reason that names an industry rather than a capability: payments, health, advertising, trading — a sector the candidate has not worked in, stated as the thing that was missing.",
+          "reads": "The sector is a real difference. Whether it is a difference in what the work requires, or a proxy standing in for that, the message does not distinguish — and the two look identical from outside.",
+          "does": "Compares the sector named against the requirements the posting listed, because a requirement that appears only in the closing message appeared somewhere between the two."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "Two candidates who can both build the system, one of whom has already met the constraints this sector imposes and will not spend the first quarter discovering them.",
+          "reads": "Sector context is a real cost, paid in ramp-up time that the team carries. Weighing it is judgement, not a rule, and nothing in the process asks how much of it was weighed.",
+          "does": "States the difference plainly, because it is the most concrete thing that separated two people who both passed."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A requirement that was written into the search brief as a preference and is now being applied as a threshold.",
+          "reads": "Preferences and thresholds are recorded in the same field. Which one a line was is decided when it is used, not when it is written.",
+          "does": "Passes the reason on in the manager's words, because it is specific enough to send and not attributable to anything the recruiter assessed."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the sector was irrelevant to the work.",
+        "Does not establish that the assessed work fell short in any respect."
+      ]
     }
   ],
   "barriers": [
@@ -5451,6 +5856,12 @@
       ],
       "emissions": [
         {
+          "artifact": "A-016",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": []
+        },
+        {
           "artifact": "A-002",
           "fidelity": "euphemism",
           "likelihood": "high",
@@ -5834,7 +6245,8 @@
       "title": "Recruiter Volume & Quota Incentive Distortion",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "EVD-001",
+        "EVD-030"
       ],
       "content": "# Recruiter Volume & Quota Incentive Distortion\n\nApplicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not mean the recruiter is individually negligent; the capacity mismatch is structural.",
       "id": "M-009",
@@ -6332,6 +6744,12 @@
       ],
       "emissions": [
         {
+          "artifact": "A-017",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": []
+        },
+        {
           "artifact": "A-009",
           "fidelity": "direct",
           "likelihood": "high",
@@ -6726,6 +7144,12 @@
       ],
       "emissions": [
         {
+          "artifact": "A-018",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": []
+        },
+        {
           "artifact": "A-002",
           "fidelity": "euphemism",
           "likelihood": "high",
@@ -6919,6 +7343,12 @@
         "B-003"
       ],
       "emissions": [
+        {
+          "artifact": "A-015",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": []
+        },
         {
           "artifact": "A-002",
           "fidelity": "void",
@@ -7977,7 +8407,8 @@
       "status": "active",
       "evidence_ids": [
         "EVD-001",
-        "EVD-004"
+        "EVD-004",
+        "EVD-031"
       ],
       "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`",
       "id": "L-003",
@@ -9683,6 +10114,26 @@
       "citation": "Brynjolfsson, E., Chandar, B., & Chen, R. (2025). Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence. Stanford Digital Economy Lab, 13 November 2025.",
       "url": "https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf",
       "period": "2022–2025"
+    },
+    {
+      "id": "EVD-030",
+      "type": "evidence",
+      "title": "Applications per opening on a national IT job board (DOU)",
+      "kind": "primary",
+      "summary": "Platform-reported counts for a single national IT job board. In March 2026 the board carried 7,987 openings and recorded 131,000 applications from 22,800 candidates — an average of 26 applications per opening, and 132 per opening in front-end development. The first quarter of 2026 carried 22,900 openings, 23% more than the same quarter of 2025. These are one board's own counts for one country, not a market-wide measure, and the average conceals the spread: the ratio differs by a factor of five between specialisations on the same board in the same month.",
+      "citation": "Конкуренція серед розробників росте. ІТ-ринок праці у І кварталі 2026. DOU, 2026.",
+      "url": "https://dou.ua/lenta/articles/it-job-market-1-quarter-2026/",
+      "period": "2025–2026"
+    },
+    {
+      "id": "EVD-031",
+      "type": "evidence",
+      "title": "Self-selected survey of IT job seekers in one national market (DOU)",
+      "kind": "survey",
+      "summary": "A web survey run on a national IT community site in March–April 2026, covering 3,777 professionals in the country, 943 working abroad, and 363 looking for a first job in the field. Respondents were not sampled: they answered a questionnaire published on a site they already read, and the publication states no recruitment method, response rate or weighting. It describes who chose to answer, which is a different population from everyone searching.",
+      "citation": "Більше пошуку, менше оптимізму: як змінився ІТ-ринок праці — результати опитування DOU, 2026.",
+      "url": "https://dou.ua/lenta/articles/job-market-2026-part-1/",
+      "period": "2026"
     }
   ]
 }

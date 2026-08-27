@@ -6,7 +6,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 
 ## Ontology
 
-- **Observations** (`A-*`, 14) — signals a candidate can actually witness.
+- **Observations** (`A-*`, 18) — signals a candidate can actually witness.
 - **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
 - **Mechanisms** (`M-*`, 24) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
@@ -14,9 +14,9 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (6) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 29) — the published sources behind the claims.
+- **Evidence** (`EVD-*`, 31) — the published sources behind the claims.
 
-The graph has 76 nodes and 227 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 80 nodes and 231 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -156,6 +156,42 @@ Feedback from one round praises architectural depth while another round claims i
 - Stages: technical, team · Evidence: supported
 - Does NOT establish: Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee.
 - Probe [PROBE-A-014-1] (low): Ask the talent partner for the consolidated rubric summary. → Shows whether the two rounds were scoring against different criteria.
+
+### A-015 — Rejection after the application sat pending for months
+
+A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.
+
+- Stages: ingestion, screening · Evidence: hypothesis
+- Does NOT establish: Does not mean the application was read at any point during the interval.
+- Does NOT establish: Does not mean a decision on the merits was taken at the end of it.
+- Probe [PROBE-A-015-1] (low): Compare the date the posting came down with the date the rejection arrived, using the portal's own listing history or a saved copy of the posting. → Establishes whether the message followed the close of the search or an interval counted from submission.
+
+### A-016 — Rejection naming an internal hire as the outcome
+
+The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.
+
+- Stages: team, offer · Evidence: hypothesis
+- Does NOT establish: Does not establish that the internal candidate was identified before the search was published.
+- Does NOT establish: Does not establish that the external rounds were run without a decision available to them.
+- Probe [PROBE-A-016-1] (low): Check whether the posting was withdrawn or remained live, and whether it was reposted with the same level and scope within the following weeks. → Distinguishes a filled requisition from a search that continued after the message.
+
+### A-017 — Rejection naming a jurisdiction or work-eligibility ground
+
+The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.
+
+- Stages: ingestion, recruiter · Evidence: hypothesis
+- Does NOT establish: Does not establish that no route to employment existed, only that none was used here.
+- Does NOT establish: Does not establish that the constraint was the first ground on which the application was set aside.
+- Probe [PROBE-A-017-1] (low): Compare the ground named in the message against the copy of the posting as it stood on the day of application. → Establishes whether the ground was stated up front or introduced afterwards.
+
+### A-018 — Rejection naming a specific industry sector as required
+
+The stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.
+
+- Stages: recruiter, technical · Evidence: hypothesis
+- Does NOT establish: Does not establish that the sector was irrelevant to the work.
+- Does NOT establish: Does not establish that the assessed work fell short in any respect.
+- Probe [PROBE-A-018-1] (low): Compare the sector named in the message against the requirements section of the posting as it stood on the day of application. → Establishes whether the sector was listed as required, listed as preferred, or absent.
 
 ## Barriers
 
@@ -300,7 +336,7 @@ Requisition was publicly advertised to satisfy corporate policy or legal complia
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: B-013, B-001, B-003, B-007
-- Emits: A-002 (euphemism), A-003 (euphemism)
+- Emits: A-016 (direct), A-002 (euphemism), A-003 (euphemism)
 - Does NOT establish: Cannot be asserted as fact without internal hiring log confirmation.
 
 ### M-006 — Stale or Orphaned Job Requisition
@@ -381,7 +417,7 @@ The company has no legal entity or provider that can issue an employment contrac
 
 - Actor: policy · Nature: rule · Visibility: observable · Removability: intermediary
 - Operates at: B-002, B-004
-- Emits: A-009 (direct), A-002 (euphemism)
+- Emits: A-017 (direct), A-009 (direct), A-002 (euphemism)
 - Does NOT establish: The jurisdictional barrier is entirely independent of the candidate's technical competence.
 
 ### M-015 — Communication or Working Style Friction
@@ -417,7 +453,7 @@ The interviewer holds experience in one exact vertical — adtech, crypto, a nam
 
 - Actor: hiring-manager · Nature: bias · Visibility: inferable · Removability: intermediary
 - Operates at: B-004, B-007
-- Emits: A-002 (euphemism), A-008 (direct)
+- Emits: A-018 (direct), A-002 (euphemism), A-008 (direct)
 - Does NOT establish: Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.
 
 ### M-019 — Take-Home Evaluation Fatigue & Asymmetry
@@ -435,7 +471,7 @@ The ATS is configured to reject in bulk every application still pending after 45
 
 - Actor: system · Nature: rule · Visibility: opaque · Removability: none
 - Operates at: B-001, B-003
-- Emits: A-002 (void), A-001 (void)
+- Emits: A-015 (direct), A-002 (void), A-001 (void)
 - Does NOT establish: A bulk timeout rejection carries no assessment of the profile at all.
 
 ### M-021 — Reference Check Discrepancy or Regulatory Ineligibility
@@ -1098,3 +1134,17 @@ In payroll records covering 3.5–5 million workers a month, employment of softw
 
 - Brynjolfsson, E., Chandar, B., & Chen, R. (2025). Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence. Stanford Digital Economy Lab, 13 November 2025.
 - https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf
+
+### EVD-030 — Applications per opening on a national IT job board (DOU)
+
+Platform-reported counts for a single national IT job board. In March 2026 the board carried 7,987 openings and recorded 131,000 applications from 22,800 candidates — an average of 26 applications per opening, and 132 per opening in front-end development. The first quarter of 2026 carried 22,900 openings, 23% more than the same quarter of 2025. These are one board's own counts for one country, not a market-wide measure, and the average conceals the spread: the ratio differs by a factor of five between specialisations on the same board in the same month.
+
+- Конкуренція серед розробників росте. ІТ-ринок праці у І кварталі 2026. DOU, 2026.
+- https://dou.ua/lenta/articles/it-job-market-1-quarter-2026/
+
+### EVD-031 — Self-selected survey of IT job seekers in one national market (DOU)
+
+A web survey run on a national IT community site in March–April 2026, covering 3,777 professionals in the country, 943 working abroad, and 363 looking for a first job in the field. Respondents were not sampled: they answered a questionnaire published on a site they already read, and the publication states no recruitment method, response rate or weighting. It describes who chose to answer, which is a different population from everyone searching.
+
+- Більше пошуку, менше оптимізму: як змінився ІТ-ринок праці — результати опитування DOU, 2026.
+- https://dou.ua/lenta/articles/job-market-2026-part-1/

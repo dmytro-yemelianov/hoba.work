@@ -403,6 +403,12 @@
       ],
       "emissions": [
         {
+          "artifact": "A-016",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": []
+        },
+        {
           "artifact": "A-002",
           "fidelity": "euphemism",
           "likelihood": "high",
@@ -786,7 +792,8 @@
       "title": "Recruiter Volume & Quota Incentive Distortion",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "EVD-001",
+        "EVD-030"
       ],
       "content": "# Recruiter Volume & Quota Incentive Distortion\n\nApplicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not mean the recruiter is individually negligent; the capacity mismatch is structural.",
       "id": "M-009",
@@ -1284,6 +1291,12 @@
       ],
       "emissions": [
         {
+          "artifact": "A-017",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": []
+        },
+        {
           "artifact": "A-009",
           "fidelity": "direct",
           "likelihood": "high",
@@ -1678,6 +1691,12 @@
       ],
       "emissions": [
         {
+          "artifact": "A-018",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": []
+        },
+        {
           "artifact": "A-002",
           "fidelity": "euphemism",
           "likelihood": "high",
@@ -1871,6 +1890,12 @@
         "B-003"
       ],
       "emissions": [
+        {
+          "artifact": "A-015",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": []
+        },
         {
           "artifact": "A-002",
           "fidelity": "void",

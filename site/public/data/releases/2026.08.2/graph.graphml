@@ -78,6 +78,26 @@
       <data key="d_type">artifact</data>
       <data key="d_evidence">supported</data>
     </node>
+    <node id="A-015">
+      <data key="d_label">Rejection after the application sat pending for months</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="A-016">
+      <data key="d_label">Rejection naming an internal hire as the outcome</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="A-017">
+      <data key="d_label">Rejection naming a jurisdiction or work-eligibility ground</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="A-018">
+      <data key="d_label">Rejection naming a specific industry sector as required</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
     <node id="B-013">
       <data key="d_label">Requisition Approval &amp; Public Posting</data>
       <data key="d_type">barrier</data>
@@ -520,6 +540,9 @@
     <edge id="M-005-&gt;operates_at-&gt;B-007" source="M-005" target="B-007">
       <data key="d_edge_type">operates_at</data>
     </edge>
+    <edge id="M-005-&gt;emits-&gt;A-016" source="M-005" target="A-016">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="M-005-&gt;emits-&gt;A-002" source="M-005" target="A-002">
       <data key="d_edge_type">emits</data>
     </edge>
@@ -691,6 +714,9 @@
     <edge id="M-014-&gt;operates_at-&gt;B-004" source="M-014" target="B-004">
       <data key="d_edge_type">operates_at</data>
     </edge>
+    <edge id="M-014-&gt;emits-&gt;A-017" source="M-014" target="A-017">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="M-014-&gt;emits-&gt;A-009" source="M-014" target="A-009">
       <data key="d_edge_type">emits</data>
     </edge>
@@ -757,6 +783,9 @@
     <edge id="M-018-&gt;operates_at-&gt;B-007" source="M-018" target="B-007">
       <data key="d_edge_type">operates_at</data>
     </edge>
+    <edge id="M-018-&gt;emits-&gt;A-018" source="M-018" target="A-018">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="M-018-&gt;emits-&gt;A-002" source="M-018" target="A-002">
       <data key="d_edge_type">emits</data>
     </edge>
@@ -789,6 +818,9 @@
     </edge>
     <edge id="M-020-&gt;operates_at-&gt;B-003" source="M-020" target="B-003">
       <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-020-&gt;emits-&gt;A-015" source="M-020" target="A-015">
+      <data key="d_edge_type">emits</data>
     </edge>
     <edge id="M-020-&gt;emits-&gt;A-002" source="M-020" target="A-002">
       <data key="d_edge_type">emits</data>

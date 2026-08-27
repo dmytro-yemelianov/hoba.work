@@ -144,8 +144,12 @@ describe('the published registry', () => {
     // Half the catalogue sits in one of these classes. This is why the
     // protocol's probes narrow nothing: the vocabulary has no term for the
     // difference. Growing the number is a regression in diagnostic power.
-    const grouped = report.indistinguishable.flatMap((c) => c.mechanisms);
-    expect(report.indistinguishable.length).toBeLessThanOrEqual(5);
-    expect(grouped.length).toBeLessThanOrEqual(12);
+    // Four observations derived from how people describe rejections took this
+    // from five classes to two. What remains is named, so a regression is
+    // legible rather than a number drifting upward.
+    expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([
+      ['M-001', 'M-023'],
+      ['M-009', 'M-016'],
+    ]);
   });
 });
