@@ -12,8 +12,9 @@ changes until it is agreed.
 **Settled so far:** the four primitives sit *underneath* the ten reader-facing
 types rather than replacing them; the cohort is explicit; time is an ordering
 plus an optional elapsed field; concurrent processes are in; visibility is
-authored per class with overrides. Section 2a and question 6 are the part still
-open, and they arrived from a reader's objection rather than from the model.
+authored per class with overrides. Sections 2a–2b and questions 6–7 are the
+part still open, and both arrived from a reader's objection rather than from
+the model.
 
 ---
 
@@ -24,6 +25,7 @@ The model is **sufficient** if it can express, without new primitives:
 | | must express |
 |---|---|
 | **demand** | **who is paying for the seat, and whether the money exists yet: internal budget, a signed client contract, or a bid not yet won** |
+| **money** | **the funding chain of a seat — source → allocations → payroll — and the fees distributed to third parties along the process** |
 | entry | inbound application, outbound outreach, referral, agency submission, internal transfer, rehire, contract-to-hire |
 | dialogue | recruiter screen, technical round, panel, negotiation, reference call, silence |
 | internal | requisition drafting, headcount approval, levelling, committee sign-off, freeze, reorganisation |
@@ -138,6 +140,79 @@ weather: somebody signed it.
 
 ---
 
+## 2b. Financial flows
+
+Section 2a asks *who* pays. This section asks the two questions around it:
+where that money comes from, and where it goes on its way through the process.
+Money enters the model at three points, and the atlas already holds evidence
+for two of them without a structure to hang it on.
+
+### Source — where the seat's money originates
+
+Product revenue, a client contract, an investment round, credit, a state budget
+line. The macro half is already authored: the eras are literally about the
+price of money — the rate series (EVD-007, EVD-008), §174 making US engineering
+salaries costlier to expense (EVD-012–015) — but nothing connects any
+requisition to any source. The era pages explain the climate; no entry can say
+*this seat was funded by that kind of money*.
+
+### Chain — the path from source to seat
+
+`source → budget → headcount plan → requisition → offer → payroll`, or on a
+client account `client budget → contract rate → margin → band → salary`. The
+chain is what several stubborn facts are made of:
+
+- **a freeze is an edge breaking somewhere upstream** — and section 2a's three
+  ownership positions say where: a client not signing (outside party), a board
+  decision (inside), a rate shock (ownerless);
+- **band rigidity is chain arithmetic.** The number cannot move at the seat's
+  position because there is no slack there; the slack, if any, is several edges
+  up, owned by someone the applicant never meets;
+- **§174 is a chain event**: a tax rule changed the arithmetic of every US
+  engineering seat at once. The atlas holds it as era evidence; the model makes
+  it expressible as a parameter change propagating down every chain at once;
+- **the chain is the most opaque structure in the subject.** The applicant
+  usually sees none of it — not the source, not the margin, not which edge
+  broke. Visibility applies to every edge, and the typical assignment is
+  `opaque` end to end.
+
+### Distribution — who is paid along the process
+
+Fees explain third-party behaviour that the current registry attributes to an
+`incentive` facet without the parameter:
+
+- **contingency agency**: a percentage of first-year salary, paid on placement —
+  which is why the behaviour is speed, volume and overselling, a *different*
+  incentive from the in-house quota already catalogued as M-009;
+- **in-house recruiter**: salary plus quota metrics;
+- **ATS vendor**: per-seat subscription — what the dashboard optimises is what
+  the buyer renews on, which the ats-vendor perspectives already describe in
+  prose;
+- **referral bonus**: the referral entry path exists because of a distribution
+  edge;
+- **job boards**: pay-per-posting is cheap against a funded requisition, which
+  is the arithmetic under the ghost-posting figure (EVD-034) — the posting
+  costs little, the seat costs a great deal, so postings outlive seats;
+- **the applicant also pays.** Unpaid take-home hours (A-006 is defined by
+  them), unreimbursed travel, resignation risk before a countersignature.
+  Distribution edges can point *from* the applicant, and the model must not
+  make employer-side costs the only representable ones.
+
+### In the primitives
+
+A **flow** is an event linking two records, with an optional amount. A **chain**
+is a path over flows — computed, like loops, never authored. Conservation —
+what arrives equals what leaves plus what stays — is ordinary `deterministic`
+condition arithmetic. Sources are records, owned or ownerless per 2a. **No
+fifth primitive**, again — but one more computed view, and one policy:
+
+> **Shape is always expressible; amounts only with evidence.** A chain with
+> every amount unknown is still a finding — the shape alone explains why the
+> band cannot move and which edge a freeze broke. An invented rate card would
+> be the exact false precision the methodology forbids.
+
+---
+
 ## 3. Primitives
 
 Four. Everything else is a view.
@@ -233,8 +308,10 @@ A relation from (party, record field, position in the order) to one of
 | workflow | the graph of event types, with conditions on the edges |
 | era | an interval over which ownerless records held given values |
 
-Nothing is lost, two things are gained: patterns become computable, and an
-intervention that changes only *who can see what* becomes expressible. Several
+Nothing is lost, three things are gained: patterns become computable; an
+intervention that changes only *who can see what* becomes expressible; and the
+funding chain — which no current type can name at all — becomes a computed
+view, stitching the eras to the requisitions they were always the climate for. Several
 of the interventions written this year are of that second kind — publishing a
 rubric changes no rule, only a visibility edge — and the current schema records
 them as though they changed the rule.
@@ -276,14 +353,27 @@ can never see, which is a visibility fact, not a merit fact.
 An accept event in one emits a withdraw event in the other. Nothing new is
 needed.
 
-**A freeze.** An ownerless record changes value. Condition parameters that
-depend on it change. Forward events that were permitted stop being permitted,
-including after an offer. The applicant sees an event whose cause is a record
-they have no visibility on at all — which is exactly the shape of the
-experience, and the model says so rather than describing it.
+**A freeze.** An edge of the funding chain breaks, and the three ownership
+positions name where: a client did not sign (outside party), a board pulled the
+budget (inside the company, outside this process), a rate shock repriced the
+source (ownerless). Condition parameters downstream change, and forward events
+that were permitted stop being permitted, including after an offer. The
+applicant sees one event whose cause sits on a chain they have no visibility on
+at all — which is exactly the shape of the experience, and the model says so
+rather than describing it. Which of the three it was is invisible from the
+outcome, and the model is honest about that too: same observable event, three
+distinct chains.
 
 **A rejection at sixty days.** An event with an elapsed field, caused by a
 condition whose parameter is a retention interval, owned by the vendor.
+
+**An agency placement.** The agency is a party paid by a distribution edge —
+a percentage of first-year salary, on placement. Every behaviour the applicant
+meets follows from that edge's shape without any recourse to motive: speed over
+fit, volume over depth, pressure to accept. Change the edge (retained fee,
+split milestones) and the conditions change with it. This is an intervention
+target the current registry cannot even address, because the party being paid
+is not one of its six actors.
 
 ---
 
@@ -343,3 +433,11 @@ that stops being true when you compute it was never a finding.
    Recommendation: yes, and it is the largest single content gap the atlas has,
    larger than the ten unsourced entries. The registry currently describes one
    organisational shape while presenting itself as describing hiring.
+7. **Money: shapes now, amounts when?** The chain's shape — what funds a seat,
+   who is paid along the way — can be authored for every entry class today, and
+   the distribution edges give the agency, the boards and the vendor their
+   first structural account. Amounts (rates, margins, fee percentages) only
+   ever with an openable source, or the atlas manufactures the precision it
+   forbids. Recommendation: author shapes as first-class content, keep amounts
+   evidence-gated, and let the eras remain the source-side macro record they
+   already are.
