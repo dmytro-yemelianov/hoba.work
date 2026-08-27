@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ui } from '../site/src/i18n/ui';
-import { internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../site/src/i18n/utils';
+import { branded, internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../site/src/i18n/utils';
 
 describe('ui dictionary', () => {
   it('has the same keys in every locale, with no empty Ukrainian strings', () => {
@@ -55,5 +55,32 @@ describe('locale routing helpers', () => {
     expect(withLang(new URL('https://hoba.work/_i/uk/registry/?type=loop'), 'en')).toBe('/registry?type=loop&lang=en');
     expect(withLang(new URL('https://hoba.work/_i/uk/registry/?lang=uk#top'), 'en')).toBe('/registry?lang=en#top');
     expect(withLang(new URL('https://hoba.work/_i/en/'), 'uk')).toBe('/?lang=uk');
+  });
+});
+
+/**
+ * The name is set lowercase everywhere it is read, because capitalised it is
+ * Cyrillic to a Ukrainian eye: HOBA is нова. Bold does the work capitals used
+ * to, and `branded()` in the site adds it.
+ */
+describe('the wordmark', () => {
+  it('is never capitalised in anything a reader sees', () => {
+    for (const [lang, dict] of Object.entries(ui)) {
+      const shouting = Object.entries(dict as Record<string, string>)
+        .filter(([, value]) => /\bHOBA\b|\bHoba\b/.test(value))
+        .map(([key, value]) => `${lang}/${key}: ${value.slice(0, 60)}`);
+      expect(shouting).toEqual([]);
+    }
+  });
+
+  it('bolds the name and escapes everything around it', () => {
+    expect(branded('About hoba')).toBe('About <b class="wordmark">hoba</b>');
+    // Domains, packages, commands and filenames are identifiers, not the name.
+    expect(branded('hoba.work is the domain')).toBe('hoba.work is the domain');
+    expect(branded('npx @hoba/mcp')).toBe('npx @hoba/mcp');
+    expect(branded('hoba-parse-check')).toBe('hoba-parse-check');
+    expect(branded('<script>x</script> hoba')).toBe(
+      '&lt;script&gt;x&lt;/script&gt; <b class="wordmark">hoba</b>'
+    );
   });
 });

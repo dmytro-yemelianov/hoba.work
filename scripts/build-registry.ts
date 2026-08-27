@@ -38,7 +38,7 @@ const sitePublicDir = path.join(root, 'site', 'public');
 const schemasDir = path.join(root, 'schemas');
 const siteVersion = readPackageVersion(path.join(root, 'package.json'));
 
-console.log(`Building HOBA registry exports from ${root} ...`);
+console.log(`Building hoba registry exports from ${root} ...`);
 
 const bundle = loadRegistryFromRoot(root, 'en');
 const report = validateRegistry(bundle);
@@ -146,7 +146,7 @@ const apiDir = path.join(sitePublicDir, 'api', 'v1');
 resetDir(apiDir);
 
 writeJson(path.join(apiDir, 'index.json'), {
-  name: 'HOBA Public API',
+  name: 'hoba Public API',
   version: 'v1',
   registry_version: bundle.version,
   schema_version: bundle.schema_version,

@@ -61,6 +61,14 @@ html[data-view="list"] [data-view-root] > [data-view="list"],
 html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block; }
 
 @layer components {
+  /* The project name. Lowercase so a Ukrainian reader does not see «нова»,
+     bold so lowercase does not make it vanish into the sentence. Weight only —
+     no colour, because it is a name, not a link. */
+  .wordmark { @apply font-semibold text-hoba-text; }
+  /* On a filled button the surrounding text sets the colour; forcing the body
+     colour here put white on accent and failed contrast. */
+  .btn .wordmark, button .wordmark, a.btn .wordmark { @apply text-inherit; }
+
   /* Tags */
   .pill { @apply inline-flex items-center gap-1.5 rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-xs font-medium text-hoba-text whitespace-nowrap leading-5; }
   .pill-muted { @apply text-hoba-muted; }

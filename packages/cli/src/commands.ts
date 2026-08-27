@@ -66,7 +66,7 @@ export function cmdSearch(query: string, options: GlobalOptions & { types?: stri
     return;
   }
 
-  console.log(pc.bold(pc.cyan(`\nSearching HOBA Registry (${bundle.version}) for: "${query}"...\n`)));
+  console.log(pc.bold(pc.cyan(`\nSearching hoba Registry (${bundle.version}) for: "${query}"...\n`)));
   if (hits.length === 0) {
     console.log(pc.yellow('No matching registry entities found.'));
     return;
@@ -187,7 +187,7 @@ export function cmdExplain(artifactIds: string[], options: GlobalOptions & { sta
     return;
   }
 
-  console.log(pc.bold(pc.cyan('\n=== HOBA Forensic Diagnostic Analysis ===\n')));
+  console.log(pc.bold(pc.cyan('\n=== hoba Forensic Diagnostic Analysis ===\n')));
   if (res.hard_facts.unknown_artifact_ids.length > 0) {
     console.log(pc.yellow(`Warning: unknown or inactive artifact ID(s) ignored: ${res.hard_facts.unknown_artifact_ids.join(', ')}\n`));
   }

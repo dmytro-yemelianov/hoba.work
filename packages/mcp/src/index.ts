@@ -125,7 +125,7 @@ server.registerTool(
   'search_registry',
   {
     description:
-      'Search across all entities in the HOBA knowledge graph (Observations, Barriers, Mechanisms, Patterns, Loops, Interventions) by ID, title or summary.',
+      'Search across all entities in the hoba knowledge graph (Observations, Barriers, Mechanisms, Patterns, Loops, Interventions) by ID, title or summary.',
     inputSchema: {
       query: z.string().min(1).describe('Search term or keyword'),
       types: z.array(searchableTypeSchema).optional().describe('Optional entity types to filter by'),
@@ -152,11 +152,11 @@ server.registerTool(
   'get_node',
   {
     description: 'Retrieve the full specification of an entity by its canonical ID (e.g. A-001, B-005, M-014, P-001, L-001, I-001, EVD-001).',
-    inputSchema: { id: z.string().describe('Canonical HOBA entity identifier') },
+    inputSchema: { id: z.string().describe('Canonical hoba entity identifier') },
   },
   async ({ id }) => {
     const node = graph.getNode(id);
-    if (!node) return fail(`Node ${id} not found in HOBA registry.`);
+    if (!node) return fail(`Node ${id} not found in hoba registry.`);
     return ok({ node });
   }
 );
@@ -165,7 +165,7 @@ server.registerTool(
   'explain_observation',
   {
     description:
-      'Execute the HOBA forensic analysis protocol (H → O → B → A) for one or more observed artifacts at an optional funnel stage. Returns compatible mechanisms, agency partition, probes and explicit non-inferences. Never asserts a single hidden cause.',
+      'Execute the hoba forensic analysis protocol (H → O → B → A) for one or more observed artifacts at an optional funnel stage. Returns compatible mechanisms, agency partition, probes and explicit non-inferences. Never asserts a single hidden cause.',
     inputSchema: {
       artifact_ids: z.array(z.string()).min(1).describe('Observed Artifact IDs (e.g. ["A-004"])'),
       stage: stageArg,
@@ -214,7 +214,7 @@ server.registerTool(
   },
   async ({ artifact_id }) => {
     const node = graph.getNode(artifact_id);
-    if (!node || node.type !== 'artifact') return fail(`Artifact ${artifact_id} not found in HOBA registry.`);
+    if (!node || node.type !== 'artifact') return fail(`Artifact ${artifact_id} not found in hoba registry.`);
     return ok({ artifact_id, probes: node.probes, non_inferences: node.non_inferences });
   }
 );
@@ -249,7 +249,7 @@ server.registerTool(
     inputSchema: { target_id: z.string().describe('Target entity ID (e.g. M-004, B-001, P-001, L-001)') },
   },
   async ({ target_id }) => {
-    if (!graph.getNode(target_id)) return fail(`Target ${target_id} not found in HOBA registry.`);
+    if (!graph.getNode(target_id)) return fail(`Target ${target_id} not found in hoba registry.`);
     const interventions = bundle.interventions.filter((i) => i.targets.includes(target_id));
     return ok({ target_id, count: interventions.length, interventions });
   }
@@ -267,7 +267,7 @@ server.registerTool(
     },
   },
   async ({ start_id, depth, direction, relations }) => {
-    if (!graph.getNode(start_id)) return fail(`Node ${start_id} not found in HOBA registry.`);
+    if (!graph.getNode(start_id)) return fail(`Node ${start_id} not found in hoba registry.`);
     const res = graph.getNeighbors(start_id, { depth, direction, relations: relations as GraphRelation[] | undefined });
     return ok({
       start_id,
@@ -281,7 +281,7 @@ server.registerTool(
 server.registerTool(
   'get_methodology',
   {
-    description: `Retrieve HOBA methodology documentation. Topics: ${methodologyTopics.join(', ')}. Omit topic for everything.`,
+    description: `Retrieve hoba methodology documentation. Topics: ${methodologyTopics.join(', ')}. Omit topic for everything.`,
     inputSchema: { topic: z.enum(methodologyTopics as [MethodologyTopic, ...MethodologyTopic[]]).optional() },
   },
   async ({ topic }) => ok(topic ? { topic, [topic]: METHODOLOGY[topic] } : { ...METHODOLOGY })

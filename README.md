@@ -17,9 +17,9 @@ The public web application at [`hoba.work`](https://hoba.work) is one interface 
 
 ---
 
-## 1. The HOBA Diagnostic Protocol
+## 1. The hoba Diagnostic Protocol
 
-A **HOBA Analysis** is a forensic procedure designed to replace emotional interpretation of weak signals with structured, testable facts:
+A **hoba Analysis** is a forensic procedure designed to replace emotional interpretation of weak signals with structured, testable facts:
 
 | Step | Principle | Scope & Output |
 |---|---|---|
@@ -61,7 +61,7 @@ Pattern (P) = recurring contradiction / double-bind / reversal
 .
 ├── packages/
 │   ├── registry/      # @hoba/registry: core knowledge graph, Zod schemas, diagnostic engine
-│   ├── cli/           # @hoba/cli: "hoba" command-line tool (search, show, explain, validate)
+│   ├── cli/           # @hoba/cli: "**hoba**" command-line tool (search, show, explain, validate)
 │   └── mcp/           # @hoba/mcp: Model Context Protocol server for AI coding assistants
 ├── site/              # Astro 5 + Tailwind CSS + Cytoscape.js static web app (hoba.work)
 ├── content/           # Canonical English Markdown + YAML frontmatter registry content
@@ -71,7 +71,7 @@ Pattern (P) = recurring contradiction / double-bind / reversal
 ├── schemas/           # Generated JSON Schemas for all entity types (do not edit by hand)
 ├── scripts/           # build-registry.ts (exports/API/OpenAPI) and validate.ts
 ├── tests/             # Vitest unit + content integration suites
-└── spec/              # Full HOBA System & Website Specification
+└── spec/              # Full **hoba** System & Website Specification
 ```
 
 ---
@@ -137,12 +137,12 @@ Hosted with zero database latency under `https://hoba.work/api/v1/`:
 - OpenAPI 3.1 Contract: [`/openapi.json`](https://hoba.work/openapi.json)
 
 ### Model Context Protocol (MCP) Server
-Equip AI agents and IDE assistants with direct access to HOBA knowledge. The packages are **not yet published to
+Equip AI agents and IDE assistants with direct access to **hoba** knowledge. The packages are **not yet published to
 npm**; run the server from a local checkout (`pnpm install && pnpm build:packages`):
 ```json
 {
   "mcpServers": {
-    "hoba": {
+    "**hoba**": {
       "command": "node",
       "args": ["/path/to/hoba.work/packages/mcp/dist/index.js", "--dir", "/path/to/hoba.work"]
     }
@@ -155,20 +155,20 @@ Tools: `get_registry_info`, `search_registry`, `get_node`, `explain_observation`
 
 ### CLI Tool
 ```bash
-alias hoba="node $PWD/packages/cli/dist/cli.js"
+alias **hoba**="node $PWD/packages/cli/dist/cli.js"
 
-# Run forensic HOBA analysis on one or more observations
-hoba explain A-004 --stage technical
-hoba explain A-001 A-004 --json
+# Run forensic hoba analysis on one or more observations
+**hoba** explain A-004 --stage technical
+**hoba** explain A-001 A-004 --json
 
 # Search across the knowledge graph
-hoba search "reposted" --types artifact,pattern
+**hoba** search "reposted" --types artifact,pattern
 
 # Inspect detailed entity specification
-hoba show M-001
+**hoba** show M-001
 
 # Validate content (schemas, references, DAG, loop declarations, EN/UK parity)
-hoba validate --strict
+**hoba** validate --strict
 ```
 
 ### Raw Graph Exports

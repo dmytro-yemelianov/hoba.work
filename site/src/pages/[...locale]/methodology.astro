@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -16,11 +16,11 @@ const verbs = ['observed', 'compatible', 'supported', 'established'] as const;
 
   <article class="prose-hoba">
     <h2>{t('method.core.title')}</h2>
-    <blockquote>{t('method.core.quote')}</blockquote>
+    <blockquote set:html={branded(t('method.core.quote'))} />
     <p>{t('method.core.text')}</p>
 
     <h2>{t('method.verbs.title')}</h2>
-    <p>{t('method.verbs.sub')}</p>
+    <p set:html={branded(t('method.verbs.sub'))} />
     <dl>
       {verbs.map((v) => (
         <>
@@ -39,7 +39,7 @@ const verbs = ['observed', 'compatible', 'supported', 'established'] as const;
 
     <div class="callout border-l-hoba-exogenous">
       <h2 class="mt-0">{t('method.nongoals.title')}</h2>
-      <p>{t('method.nongoals.sub')}</p>
+      <p set:html={branded(t('method.nongoals.sub'))} />
       <ul>{(['1', '2', '3', '4', '5'] as const).map((n) => <li>{t(`method.nongoals.${n}`)}</li>)}</ul>
     </div>
   </article>

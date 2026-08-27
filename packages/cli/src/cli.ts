@@ -29,7 +29,7 @@ function run(action: () => number | void) {
 
 program
   .command('search <query>')
-  .description('Search across all entities in the HOBA knowledge graph')
+  .description('Search across all entities in the hoba knowledge graph')
   .option('-t, --types <list>', 'Comma-separated entity types to include (artifact,barrier,mechanism,pattern,loop,intervention)')
   .action((query: string, opts: { types?: string }, cmd: Command) => {
     run(() => cmdSearch(query, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
@@ -44,7 +44,7 @@ program
 
 program
   .command('explain <artifact_ids...>')
-  .description('Execute the HOBA forensic analysis protocol for one or more observed artifacts')
+  .description('Execute the hoba forensic analysis protocol for one or more observed artifacts')
   .option('-s, --stage <stage>', 'Hiring funnel stage the process reached')
   .option(
     '-p, --probe <result...>',

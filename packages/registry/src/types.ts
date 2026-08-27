@@ -1,5 +1,5 @@
 /**
- * HOBA (Hiring Obstacles & Barriers Atlas) Core Types
+ * hoba (Hiring Obstacles & Barriers Atlas) Core Types
  *
  * Node types are derived from the Zod schemas in ./schemas.ts so that the
  * TypeScript surface can never drift from what the loader actually validates.
@@ -94,7 +94,7 @@ export type LoopNode = z.infer<typeof loopSchema>;
 export type InterventionNode = z.infer<typeof interventionSchema>;
 export type EvidenceRecord = z.infer<typeof evidenceSchema>;
 
-/** Graph nodes that participate in the HOBA ontology (evidence is a leaf record, not a graph node). */
+/** Graph nodes that participate in the hoba ontology (evidence is a leaf record, not a graph node). */
 export type RegistryNode =
   | ArtifactNode
   | BarrierNode
@@ -131,7 +131,7 @@ export interface GraphEdge {
   likelihood?: EmissionLikelihood | null;
 }
 
-// Diagnostic Engine Types (HOBA Analysis)
+// Diagnostic Engine Types (hoba Analysis)
 export interface DiagnosticInput {
   artifacts: string[]; // Artifact IDs
   /**

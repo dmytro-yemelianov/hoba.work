@@ -16,7 +16,7 @@ export const EPISTEMIC_DISCLAIMER =
   'Topological / Uncalibrated Analysis: Compatible mechanisms reflect logical compatibility with observed facts and structural gates, not probabilistic certainty. An observation is not a cause; a rejection message is not necessarily a reason.';
 
 /**
- * The HOBA protocol (H → O → B → A) over a loaded registry.
+ * The hoba protocol (H → O → B → A) over a loaded registry.
  *
  * The engine is pure and browser-safe; it is the single implementation shared by
  * the CLI, the MCP server and the site's analysis wizard.

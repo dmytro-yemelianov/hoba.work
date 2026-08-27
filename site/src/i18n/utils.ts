@@ -85,3 +85,31 @@ export function clientDictionary<K extends UIKey>(lang: Lang, keys: readonly K[]
 
 export { ui };
 export type { UIKey };
+
+/**
+ * The project name, set so it cannot be misread.
+ *
+ * Lowercase, because capitalised it reads as Cyrillic to a Ukrainian eye —
+ * HOBA is нова. Bold, because lowercase alone makes it disappear into the
+ * sentence. This returns HTML and escapes everything else, so it is only ever
+ * used with `set:html` on our own dictionary strings.
+ */
+// The name on its own — never a domain (hoba.work), a package (@hoba/mcp), a
+// command, or a filename (hoba-parse-check). Those are identifiers; this is a
+// name being read.
+const WORDMARK = /(?<![\w@/.-])hoba(?![\w./-])/g;
+
+const ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+export function branded(text: string): string {
+  return text.replace(/[&<>"']/g, (c) => ESCAPES[c]!).replace(WORDMARK, '<b class="wordmark">hoba</b>');
+}
+
+/** True when the string carries the name at all — lets a caller skip `set:html`. */
+export const hasWordmark = (text: string): boolean => new RegExp(WORDMARK.source).test(text);

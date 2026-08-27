@@ -8,7 +8,7 @@ import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
 import { getBundle } from '../../../lib/registry';
-import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import { branded, asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { ArtifactNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
@@ -53,7 +53,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
 
     <div class="callout border-l-hoba-border">
       <h2 class="text-base font-semibold text-hoba-text">{t('art.posture.title')}</h2>
-      <p class="mt-1 text-base text-hoba-muted">{t('art.posture.text')}</p>
+      <p class="mt-1 text-base text-hoba-muted" set:html={branded(t('art.posture.text'))} />
     </div>
 
     {artifact.probes.length > 0 && (

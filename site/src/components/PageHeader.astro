@@ -7,6 +7,8 @@
  * paragraph, optional meta pills, and right-aligned actions. Pages differ in
  * what they put in the slots, never in the rhythm.
  */
+import { branded } from '../i18n/utils';
+
 interface Props {
   title: string;
   kicker?: string | undefined;
@@ -25,8 +27,8 @@ const hasActions = Astro.slots.has('actions');
     <div class="min-w-0">
       {hasEyebrow && <div class="mb-4"><slot name="eyebrow" /></div>}
       {kicker && <p class="kicker">{kicker}</p>}
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text text-balance">{title}</h1>
-      {lead && <p class={`mt-3 text-lg text-hoba-muted ${wide ? 'max-w-3xl' : 'max-w-2xl'}`}>{lead}</p>}
+      <h1 class="mt-1 text-2xl font-semibold text-hoba-text text-balance" set:html={branded(title)} />
+      {lead && <p class={`mt-3 text-lg text-hoba-muted ${wide ? 'max-w-3xl' : 'max-w-2xl'}`} set:html={branded(lead)} />}
       {hasMeta && <div class="mt-5"><slot name="meta" /></div>}
     </div>
     {hasActions && (

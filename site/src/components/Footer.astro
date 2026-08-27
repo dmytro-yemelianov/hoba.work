@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { getBundle, siteVersion } from '../lib/registry';
-import { localePrefix, useTranslations, type Lang } from '../i18n/utils';
+import { branded, localePrefix, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   lang?: Lang;
@@ -17,7 +17,7 @@ const registryVersion = getBundle(lang).version;
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div class="md:col-span-1">
         <Logo showText={true} />
-        <p class="text-sm text-hoba-muted mt-3 leading-relaxed">{t('footer.blurb')}</p>
+        <p class="text-sm text-hoba-muted mt-3 leading-relaxed" set:html={branded(t('footer.blurb'))} />
         <p class="text-sm text-hoba-muted mt-3">
           {t('footer.canonical')} <span class="text-hoba-accent">hoba.work</span>
         </p>
@@ -50,7 +50,7 @@ const registryVersion = getBundle(lang).version;
 
       <div>
         <h4 class="text-xs font-semibold text-hoba-text mb-3">{t('footer.principles')}</h4>
-        <p class="text-sm text-hoba-muted leading-relaxed">{t('footer.principlesText')}</p>
+        <p class="text-sm text-hoba-muted leading-relaxed" set:html={branded(t('footer.principlesText'))} />
         <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs text-hoba-muted flex items-center justify-between gap-2">
           <span>{t('footer.author')} <a href="https://github.com/dmytro-yemelianov" class="text-hoba-text underline underline-offset-2 decoration-hoba-border hover:decoration-hoba-text">Dmytro Yemelianov</a></span>
           <span class="">{t('footer.version', { site: siteVersion, registry: registryVersion })}</span>

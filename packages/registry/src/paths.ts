@@ -10,7 +10,7 @@ export const CONTENT_DIRS: Record<ContentLang, string> = {
 };
 export const EVIDENCE_DIR = 'evidence';
 
-/** True when `dir` looks like the root of a HOBA registry checkout. */
+/** True when `dir` looks like the root of a hoba registry checkout. */
 export function isRegistryRoot(dir: string): boolean {
   return fs.existsSync(path.join(dir, CONTENT_DIRS.en)) && fs.existsSync(path.join(dir, MANIFEST_FILENAME));
 }
@@ -49,7 +49,7 @@ export function resolveRegistryRoot(options: { explicit?: string; fromModuleUrl?
   }
 
   throw new Error(
-    `Could not locate a HOBA registry root (a directory containing "${CONTENT_DIRS.en}/" and "${MANIFEST_FILENAME}"). ` +
+    `Could not locate a hoba registry root (a directory containing "${CONTENT_DIRS.en}/" and "${MANIFEST_FILENAME}"). ` +
       `Tried: ${candidates.join(', ')}. Pass --dir <path> or set HOBA_ROOT.`
   );
 }
