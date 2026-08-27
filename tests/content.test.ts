@@ -163,3 +163,69 @@ describe('actors', () => {
     expect(uk.actors.map((a) => a.id)).toEqual(bundle.actors.map((a) => a.id));
   });
 });
+
+describe('workflows', () => {
+  const ids = new Set([
+    ...bundle.artifacts.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
+    ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
+    ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
+  ]);
+  const actorIds = new Set(bundle.actors.map((a) => a.id));
+
+  it('has exactly one initial state and at least one terminal state', () => {
+    for (const wf of bundle.workflows) {
+      expect(wf.states.filter((s) => s.kind === 'initial').length, wf.id).toBe(1);
+      expect(wf.states.filter((s) => s.kind === 'terminal').length, wf.id).toBeGreaterThan(0);
+    }
+  });
+
+  it('never transitions to or from a state that does not exist', () => {
+    for (const wf of bundle.workflows) {
+      const states = new Set(wf.states.map((s) => s.id));
+      for (const t of wf.transitions) {
+        expect(states.has(t.from), `${wf.id}: ${t.from} -> ${t.to}`).toBe(true);
+        expect(states.has(t.to), `${wf.id}: ${t.from} -> ${t.to}`).toBe(true);
+      }
+    }
+  });
+
+  it('reaches every state from the initial one, and every terminal state', () => {
+    for (const wf of bundle.workflows) {
+      const out = new Map<string, string[]>();
+      for (const t of wf.transitions) out.set(t.from, [...(out.get(t.from) ?? []), t.to]);
+      const start = wf.states.find((s) => s.kind === 'initial')!;
+      const seen = new Set([start.id]);
+      const queue = [start.id];
+      while (queue.length) for (const next of out.get(queue.shift()!) ?? []) if (!seen.has(next)) { seen.add(next); queue.push(next); }
+      const unreachable = wf.states.filter((s) => !seen.has(s.id)).map((s) => s.id);
+      expect(unreachable, wf.id).toEqual([]);
+    }
+  });
+
+  it('leaves no active state without a way out', () => {
+    for (const wf of bundle.workflows) {
+      const hasExit = new Set(wf.transitions.map((t) => t.from));
+      const stuck = wf.states.filter((s) => s.kind !== 'terminal' && !hasExit.has(s.id)).map((s) => s.id);
+      expect(stuck, wf.id).toEqual([]);
+    }
+  });
+
+  it('names a real actor and real entities everywhere', () => {
+    for (const wf of bundle.workflows) {
+      for (const s of wf.states) {
+        expect(actorIds.has(s.owner), `${wf.id}/${s.id}`).toBe(true);
+        expect(s.entities.filter((e) => !ids.has(e)), `${wf.id}/${s.id}`).toEqual([]);
+      }
+      for (const t of wf.transitions) {
+        expect(actorIds.has(t.owner), `${wf.id}: ${t.from} -> ${t.to}`).toBe(true);
+        expect(t.entities.filter((e) => !ids.has(e)), `${wf.id}: ${t.from} -> ${t.to}`).toEqual([]);
+      }
+    }
+  });
+
+  it('keeps the two mirrors identical in shape', () => {
+    const shape = (b: typeof bundle) =>
+      b.workflows.map((w) => `${w.id}:${w.states.map((s) => s.id).join('|')}:${w.transitions.map((t) => `${t.from}>${t.to}`).join('|')}`);
+    expect(shape(uk)).toEqual(shape(bundle));
+  });
+});

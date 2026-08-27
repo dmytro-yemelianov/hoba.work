@@ -127,6 +127,93 @@
         }
       }
     },
+    "/workflows/index.json": {
+      "get": {
+        "operationId": "listWorkflows",
+        "summary": "List all State machines the funnel runs as",
+        "tags": [
+          "Workflow"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Workflow"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflows/{id}.json": {
+      "get": {
+        "operationId": "getWorkflow",
+        "summary": "Get Workflow by ID",
+        "tags": [
+          "Workflow"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Workflow ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Workflow"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
     "/artifacts/index.json": {
       "get": {
         "operationId": "listArtifacts",
@@ -773,6 +860,9 @@
     "schemas": {
       "Actor": {
         "$ref": "https://hoba.work/schemas/actor.schema.json#/definitions/Actor"
+      },
+      "Workflow": {
+        "$ref": "https://hoba.work/schemas/workflow.schema.json#/definitions/Workflow"
       },
       "Artifact": {
         "$ref": "https://hoba.work/schemas/artifact.schema.json#/definitions/Artifact"

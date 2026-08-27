@@ -21,6 +21,7 @@ const patternId = z.string().regex(ID_PATTERNS.pattern);
 const loopId = z.string().regex(ID_PATTERNS.loop);
 const interventionId = z.string().regex(ID_PATTERNS.intervention);
 const evidenceId = z.string().regex(ID_PATTERNS.evidence);
+const workflowId = z.string().regex(/^WF-\d{3}$/, 'workflow id must look like WF-001');
 
 // Ordered by funnel progression. The order of this list is meaningful and is
 // reused by the site (stage pickers) and the CLI/MCP (stage validation).
@@ -293,6 +294,52 @@ export const actorSchema = z.object({
   specimens: z.array(specimenSchema).default([]),
 });
 
+/**
+ * A workflow is a state machine over one subject — a requisition, an
+ * application — with the actor who owns each state and each transition named.
+ * The registry already holds the gates and the causes; this holds the shape
+ * they occur in, so the site can step through it rather than list it.
+ *
+ * Guards are prose on purpose. A transition fires when a person or a rule
+ * decides it does; formalising that would be exactly the false precision the
+ * methodology forbids.
+ */
+export const workflowStateKindSchema = z.enum(['initial', 'active', 'terminal']);
+
+export const workflowStateSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/, 'state ids are lowercase slugs'),
+  title: z.string().min(3),
+  kind: workflowStateKindSchema.default('active'),
+  /** The actor whose decision this state is waiting on. */
+  owner: actorId,
+  description: z.string().min(10),
+  /** Registry entities that live at this state — barriers, mechanisms, signals. */
+  entities: z.array(z.string()).default([]),
+  /** What the candidate can actually observe while the subject sits here. */
+  visible_to_candidate: z.string().optional(),
+});
+
+export const workflowTransitionSchema = z.object({
+  from: z.string(),
+  to: z.string(),
+  label: z.string().min(3),
+  owner: actorId,
+  guard: z.string().min(5),
+  entities: z.array(z.string()).default([]),
+});
+
+export const workflowSchema = z.object({
+  ...nodeBase,
+  id: workflowId,
+  type: z.literal('workflow'),
+  summary: z.string().min(10),
+  /** What moves through this machine. */
+  subject: z.string().min(3),
+  states: z.array(workflowStateSchema).min(2),
+  transitions: z.array(workflowTransitionSchema).min(1),
+  specimens: z.array(specimenSchema).default([]),
+});
+
 // Evidence record schema
 export const evidenceSchema = z.object({
   id: evidenceId,
@@ -315,6 +362,7 @@ export const registryManifestSchema = z.object({
 
 export const registryBundleSchema = registryManifestSchema.extend({
   actors: z.array(actorSchema),
+  workflows: z.array(workflowSchema),
   artifacts: z.array(artifactSchema),
   barriers: z.array(barrierSchema),
   mechanisms: z.array(mechanismSchema),

@@ -334,6 +334,500 @@
       ]
     }
   ],
+  "workflows": [
+    {
+      "title": "The hiring funnel, end to end",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# The hiring funnel, end to end\n\nFrom the moment headcount is authorised to a signed contract or a closed search, with the actor who owns each step and what the candidate can see from where they stand.",
+      "id": "WF-001",
+      "type": "workflow",
+      "summary": "From the moment headcount is authorised to a signed contract or a closed search, with the actor who owns each step and what the candidate can see from where they stand.",
+      "subject": "a requisition and the candidate moving through it",
+      "states": [
+        {
+          "id": "drafted",
+          "title": "Requisition drafted",
+          "kind": "initial",
+          "owner": "hiring-manager",
+          "description": "A manager writes the role. Level, band and requirements are decided here, usually by copying the last search for the same team.",
+          "entities": [
+            "B-013"
+          ],
+          "visible_to_candidate": "Nothing. The role does not exist publicly yet."
+        },
+        {
+          "id": "authorised",
+          "title": "Headcount authorised",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "Finance and leadership commit budget against the requisition. Approval can lapse or be withdrawn later without the funnel noticing.",
+          "entities": [
+            "B-013",
+            "B-010"
+          ],
+          "visible_to_candidate": "Nothing."
+        },
+        {
+          "id": "published",
+          "title": "Posting live",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "The role is public. It may also be refreshed automatically every thirty days, which looks identical to a new opening.",
+          "entities": [
+            "B-013",
+            "B-014",
+            "M-006"
+          ],
+          "visible_to_candidate": "The posting, and whatever the posting chose to disclose."
+        },
+        {
+          "id": "received",
+          "title": "Application received",
+          "kind": "active",
+          "owner": "ats-vendor",
+          "description": "A record exists and is linked to the requisition. Nothing has been read.",
+          "entities": [
+            "B-001",
+            "A-001"
+          ],
+          "visible_to_candidate": "A confirmation, or silence."
+        },
+        {
+          "id": "machine-screened",
+          "title": "Automated screen",
+          "kind": "active",
+          "owner": "ats-vendor",
+          "description": "Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second.",
+          "entities": [
+            "B-002",
+            "M-003",
+            "M-008",
+            "M-011",
+            "M-020"
+          ],
+          "visible_to_candidate": "Either nothing, or a rejection within minutes."
+        },
+        {
+          "id": "recruiter-queue",
+          "title": "In the recruiter queue",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Waiting to be read by a person, against an inbound queue that is usually larger than the week has hours for.",
+          "entities": [
+            "B-003",
+            "M-009",
+            "M-016"
+          ],
+          "visible_to_candidate": "Silence, of an indeterminate length."
+        },
+        {
+          "id": "recruiter-screen",
+          "title": "Recruiter screen",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "A conversation about compensation, timeline, location and a two-minute version of the last project.",
+          "entities": [
+            "B-004",
+            "A-013",
+            "M-004",
+            "M-017"
+          ],
+          "visible_to_candidate": "The call itself, and whichever parameters the recruiter chose to share."
+        },
+        {
+          "id": "technical",
+          "title": "Technical assessment",
+          "kind": "active",
+          "owner": "hiring-manager",
+          "description": "A live exercise, a take-home, or both, scored against a rubric the candidate does not see.",
+          "entities": [
+            "B-005",
+            "B-006",
+            "A-006",
+            "A-008",
+            "M-001",
+            "M-019"
+          ],
+          "visible_to_candidate": "The exercise, and sometimes structured feedback afterwards."
+        },
+        {
+          "id": "panel",
+          "title": "Manager and team panel",
+          "kind": "active",
+          "owner": "hiring-manager",
+          "description": "Depth, ownership and collaboration, assessed across several interviewers who may be measuring different things.",
+          "entities": [
+            "B-007",
+            "B-008",
+            "A-010",
+            "A-014",
+            "M-010",
+            "M-018",
+            "M-022"
+          ],
+          "visible_to_candidate": "The conversations. Rarely the scores."
+        },
+        {
+          "id": "levelling",
+          "title": "Compensation and levelling",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "The level the panel assigned meets the band finance approved. First time the two are compared.",
+          "entities": [
+            "B-009",
+            "A-005",
+            "M-004"
+          ],
+          "visible_to_candidate": "A number, or a renegotiation."
+        },
+        {
+          "id": "approval",
+          "title": "Offer approval",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes.",
+          "entities": [
+            "B-010",
+            "M-007"
+          ],
+          "visible_to_candidate": "Silence, usually described as \"final checks\"."
+        },
+        {
+          "id": "offer",
+          "title": "Offer issued",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "A written offer exists. The requisition is still open until the countersignature lands.",
+          "entities": [
+            "B-012",
+            "A-011"
+          ],
+          "visible_to_candidate": "The offer document."
+        },
+        {
+          "id": "verification",
+          "title": "Reference and background check",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "A third-party record is compared against what the candidate claimed.",
+          "entities": [
+            "B-011",
+            "M-021"
+          ],
+          "visible_to_candidate": "A request for documents, or nothing."
+        },
+        {
+          "id": "hired",
+          "title": "Hired",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "Contract executed both ways, start date set, onboarding triggered.",
+          "entities": [
+            "B-012"
+          ],
+          "visible_to_candidate": "A signed contract."
+        },
+        {
+          "id": "rejected",
+          "title": "Rejected",
+          "kind": "terminal",
+          "owner": "recruiter",
+          "description": "A decision was made and communicated. What it says about the cause is a separate question entirely.",
+          "entities": [
+            "A-002",
+            "A-008",
+            "A-013"
+          ],
+          "visible_to_candidate": "A message, ranging from a rubric category to a template."
+        },
+        {
+          "id": "frozen",
+          "title": "Search frozen or cancelled",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "Budget withdrawn or the requisition put on hold. Can happen at any point, including after an offer.",
+          "entities": [
+            "A-003",
+            "A-011",
+            "M-007"
+          ],
+          "visible_to_candidate": "If the candidate is lucky, an explanation. Often the posting simply disappears."
+        },
+        {
+          "id": "lapsed",
+          "title": "Lapsed without a decision",
+          "kind": "terminal",
+          "owner": "ats-vendor",
+          "description": "No one decided anything. The record aged past a threshold, or the posting was never taken down.",
+          "entities": [
+            "A-001",
+            "A-012",
+            "M-006",
+            "M-020"
+          ],
+          "visible_to_candidate": "Silence, then possibly a bulk rejection at two in the morning."
+        }
+      ],
+      "transitions": [
+        {
+          "from": "drafted",
+          "to": "authorised",
+          "label": "budget signed off",
+          "owner": "employer-policy",
+          "guard": "Finance commits headcount against the requisition.",
+          "entities": [
+            "B-010"
+          ]
+        },
+        {
+          "from": "authorised",
+          "to": "published",
+          "label": "posting goes live",
+          "owner": "recruiter",
+          "guard": "An approved requisition with a written description is published.",
+          "entities": [
+            "B-013"
+          ]
+        },
+        {
+          "from": "published",
+          "to": "received",
+          "label": "application submitted",
+          "owner": "candidate",
+          "guard": "The candidate applies, or answers outbound outreach.",
+          "entities": [
+            "B-001",
+            "B-014"
+          ]
+        },
+        {
+          "from": "received",
+          "to": "machine-screened",
+          "label": "rules evaluated",
+          "owner": "ats-vendor",
+          "guard": "The record is complete enough for the configured rules to run.",
+          "entities": [
+            "B-002"
+          ]
+        },
+        {
+          "from": "machine-screened",
+          "to": "recruiter-queue",
+          "label": "thresholds cleared",
+          "owner": "ats-vendor",
+          "guard": "Extraction score and every knockout rule pass.",
+          "entities": [
+            "B-002"
+          ]
+        },
+        {
+          "from": "machine-screened",
+          "to": "rejected",
+          "label": "filtered out",
+          "owner": "ats-vendor",
+          "guard": "Any knockout rule fails, or the ranking falls below the advance threshold.",
+          "entities": [
+            "A-009",
+            "M-008",
+            "M-011"
+          ]
+        },
+        {
+          "from": "recruiter-queue",
+          "to": "recruiter-screen",
+          "label": "short-listed",
+          "owner": "recruiter",
+          "guard": "A person reads the profile and puts it on the list.",
+          "entities": [
+            "B-003"
+          ]
+        },
+        {
+          "from": "recruiter-queue",
+          "to": "lapsed",
+          "label": "aged out",
+          "owner": "ats-vendor",
+          "guard": "No review happened before the expiry threshold.",
+          "entities": [
+            "M-020"
+          ]
+        },
+        {
+          "from": "recruiter-screen",
+          "to": "technical",
+          "label": "parameters align",
+          "owner": "recruiter",
+          "guard": "Expectations, timeline and location are compatible, and the profile is submitted to the team.",
+          "entities": [
+            "B-004"
+          ]
+        },
+        {
+          "from": "recruiter-screen",
+          "to": "rejected",
+          "label": "parameters do not align",
+          "owner": "recruiter",
+          "guard": "Compensation, level, location or availability rules the candidate out before any engineering is discussed.",
+          "entities": [
+            "A-013",
+            "M-004",
+            "M-014",
+            "M-017"
+          ]
+        },
+        {
+          "from": "technical",
+          "to": "panel",
+          "label": "assessment passed",
+          "owner": "hiring-manager",
+          "guard": "The score clears the rubric threshold.",
+          "entities": [
+            "B-005",
+            "B-006"
+          ]
+        },
+        {
+          "from": "technical",
+          "to": "rejected",
+          "label": "assessment not passed",
+          "owner": "hiring-manager",
+          "guard": "The score falls short, or the review was too shallow to find what was there.",
+          "entities": [
+            "A-008",
+            "M-001",
+            "M-019"
+          ]
+        },
+        {
+          "from": "panel",
+          "to": "levelling",
+          "label": "panel recommends hire",
+          "owner": "hiring-manager",
+          "guard": "Consensus reaches the hire threshold.",
+          "entities": [
+            "B-007",
+            "B-008"
+          ]
+        },
+        {
+          "from": "panel",
+          "to": "rejected",
+          "label": "panel does not reach consensus",
+          "owner": "hiring-manager",
+          "guard": "A split panel under a unanimity rule defaults to no hire.",
+          "entities": [
+            "A-014",
+            "M-022"
+          ]
+        },
+        {
+          "from": "levelling",
+          "to": "approval",
+          "label": "level and band reconcile",
+          "owner": "employer-policy",
+          "guard": "The assigned level and the approved band overlap.",
+          "entities": [
+            "B-009"
+          ]
+        },
+        {
+          "from": "levelling",
+          "to": "rejected",
+          "label": "level and band do not reconcile",
+          "owner": "employer-policy",
+          "guard": "Expectation sits outside the band and neither the level nor the number moves.",
+          "entities": [
+            "A-005",
+            "M-004"
+          ]
+        },
+        {
+          "from": "approval",
+          "to": "offer",
+          "label": "sign-off complete",
+          "owner": "employer-policy",
+          "guard": "Every approver in the chain has cleared it.",
+          "entities": [
+            "B-010"
+          ]
+        },
+        {
+          "from": "approval",
+          "to": "frozen",
+          "label": "headcount withdrawn",
+          "owner": "employer-policy",
+          "guard": "Budget is pulled or a freeze is announced before the offer is issued.",
+          "entities": [
+            "M-007"
+          ]
+        },
+        {
+          "from": "offer",
+          "to": "verification",
+          "label": "offer accepted",
+          "owner": "candidate",
+          "guard": "The candidate signs and the checks begin.",
+          "entities": [
+            "B-011"
+          ]
+        },
+        {
+          "from": "offer",
+          "to": "frozen",
+          "label": "offer retracted",
+          "owner": "employer-policy",
+          "guard": "A freeze reaches an outstanding offer before the countersignature.",
+          "entities": [
+            "A-011",
+            "M-007"
+          ]
+        },
+        {
+          "from": "verification",
+          "to": "hired",
+          "label": "checks clear",
+          "owner": "employer-policy",
+          "guard": "No unresolved discrepancy in the third-party record.",
+          "entities": [
+            "B-012"
+          ]
+        },
+        {
+          "from": "verification",
+          "to": "rejected",
+          "label": "discrepancy unresolved",
+          "owner": "employer-policy",
+          "guard": "A record mismatch or an eligibility bar is not reconciled.",
+          "entities": [
+            "M-021"
+          ]
+        },
+        {
+          "from": "published",
+          "to": "lapsed",
+          "label": "posting outlives the search",
+          "owner": "ats-vendor",
+          "guard": "Hiring stops but the listing is never withdrawn.",
+          "entities": [
+            "M-006"
+          ]
+        },
+        {
+          "from": "rejected",
+          "to": "published",
+          "label": "requisition reopened",
+          "owner": "recruiter",
+          "guard": "The search restarts, sometimes with a revised profile, sometimes as an automatic refresh.",
+          "entities": [
+            "A-004",
+            "P-002"
+          ]
+        }
+      ],
+      "specimens": []
+    }
+  ],
   "artifacts": [
     {
       "title": "Complete silence after submission",

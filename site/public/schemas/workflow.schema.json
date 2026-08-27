@@ -1,0 +1,227 @@
+{
+  "$id": "https://hoba.work/schemas/workflow.schema.json",
+  "$ref": "#/definitions/Workflow",
+  "definitions": {
+    "Workflow": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^WF-\\d{3}$"
+        },
+        "type": {
+          "type": "string",
+          "const": "workflow"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 3
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 3
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "initial",
+                  "active",
+                  "terminal"
+                ],
+                "default": "active"
+              },
+              "owner": {
+                "type": "string",
+                "enum": [
+                  "candidate",
+                  "recruiter",
+                  "hiring-manager",
+                  "ats-vendor",
+                  "employer-policy",
+                  "public-policy"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "minLength": 10
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "visible_to_candidate": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "owner",
+              "description"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2
+        },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 3
+              },
+              "owner": {
+                "$ref": "#/definitions/Workflow/properties/states/items/properties/owner"
+              },
+              "guard": {
+                "type": "string",
+                "minLength": 5
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "from",
+              "to",
+              "label",
+              "owner",
+              "guard"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "specimens": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "chat",
+                  "ats",
+                  "transcript",
+                  "posting",
+                  "note"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 3
+              },
+              "subject": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string"
+              },
+              "lines": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "speaker": {
+                      "type": "string"
+                    },
+                    "at": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "tell": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              "reading": {
+                "type": "string",
+                "minLength": 10
+              }
+            },
+            "required": [
+              "kind",
+              "label",
+              "lines"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "title",
+        "id",
+        "type",
+        "summary",
+        "subject",
+        "states",
+        "transitions"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

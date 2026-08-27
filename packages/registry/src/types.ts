@@ -31,6 +31,10 @@ import type {
   natureTypeSchema,
   nodeStatusSchema,
   patternSchema,
+  workflowSchema,
+  workflowStateSchema,
+  workflowTransitionSchema,
+  workflowStateKindSchema,
   specimenSchema,
   specimenKindSchema,
   specimenLineSchema,
@@ -67,6 +71,10 @@ export type LoopEdge = z.infer<typeof loopEdgeSchema>;
 export type MechanismFacets = z.infer<typeof mechanismFacetsSchema>;
 
 export type ActorNode = z.infer<typeof actorSchema>;
+export type WorkflowState = z.infer<typeof workflowStateSchema>;
+export type WorkflowTransition = z.infer<typeof workflowTransitionSchema>;
+export type WorkflowStateKind = z.infer<typeof workflowStateKindSchema>;
+export type WorkflowNode = z.infer<typeof workflowSchema>;
 export type ArtifactNode = z.infer<typeof artifactSchema>;
 export type BarrierNode = z.infer<typeof barrierSchema>;
 export type MechanismNode = z.infer<typeof mechanismSchema>;

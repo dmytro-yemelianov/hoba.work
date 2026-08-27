@@ -206,6 +206,150 @@
             "additionalProperties": false
           }
         },
+        "workflows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+              },
+              "status": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+              },
+              "evidence_ids": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+              },
+              "content": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^WF-\\d{3}$"
+              },
+              "type": {
+                "type": "string",
+                "const": "workflow"
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 10
+              },
+              "subject": {
+                "type": "string",
+                "minLength": 3
+              },
+              "states": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9-]+$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 3
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "initial",
+                        "active",
+                        "terminal"
+                      ],
+                      "default": "active"
+                    },
+                    "owner": {
+                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 10
+                    },
+                    "entities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": []
+                    },
+                    "visible_to_candidate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "owner",
+                    "description"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 2
+              },
+              "transitions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string"
+                    },
+                    "to": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 3
+                    },
+                    "owner": {
+                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
+                    },
+                    "guard": {
+                      "type": "string",
+                      "minLength": 5
+                    },
+                    "entities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": []
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to",
+                    "label",
+                    "owner",
+                    "guard"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              "specimens": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "title",
+              "id",
+              "type",
+              "summary",
+              "subject",
+              "states",
+              "transitions"
+            ],
+            "additionalProperties": false
+          }
+        },
         "artifacts": {
           "type": "array",
           "items": {
@@ -958,6 +1102,7 @@
         "schema_version",
         "updated_at",
         "actors",
+        "workflows",
         "artifacts",
         "barriers",
         "mechanisms",
