@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Mascot from '../../components/Mascot.astro';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -16,11 +15,8 @@ const prefix = localePrefix(lang);
 ---
 <Layout lang={lang} title={t('nf.title')} activeNav="">
   <PageHeader kicker={t('nf.kicker')} title={t('nf.heading')} lead={t('nf.text')} />
-  <div class="flex flex-wrap items-center gap-8">
-    <Mascot className="w-28 h-28 shrink-0" />
-    <div class="flex flex-wrap gap-3">
-      <a href={`${prefix}/registry`} class="btn btn-primary">{t('nf.registry')}</a>
-      <a href={prefix || '/'} class="btn btn-secondary">{t('common.home')}</a>
-    </div>
+  <div class="flex flex-wrap gap-3">
+    <a href={`${prefix}/registry`} class="btn btn-primary">{t('nf.registry')}</a>
+    <a href={prefix || '/'} class="btn btn-secondary">{t('common.home')}</a>
   </div>
 </Layout>

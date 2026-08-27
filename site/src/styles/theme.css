@@ -160,6 +160,18 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .nav-link { @apply inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors whitespace-nowrap; }
   .nav-link-active { @apply text-hoba-text bg-hoba-hover; }
   .nav-link-mobile { @apply block px-3 py-3 rounded-md text-base font-medium text-hoba-text hover:bg-hoba-hover transition-colors; }
+  /* Grouped navigation: a summary that opens a panel of named destinations,
+     each with the one line that says what it is for. Eight flat links did not
+     tell a reader that the graph and the registry are the same material. */
+  .nav-group > summary::-webkit-details-marker { display: none; }
+  .nav-group > summary { @apply list-none; }
+  .nav-group[open] > summary { @apply text-hoba-text bg-hoba-hover; }
+  .nav-panel { @apply absolute left-0 z-50 mt-2 w-80 rounded-md border border-hoba-border bg-hoba-card shadow-lg p-1.5 flex flex-col gap-0.5; }
+  .nav-entry { @apply flex flex-col gap-0.5 rounded-md px-3 py-2 transition-colors hover:bg-hoba-hover; }
+  .nav-entry-name { @apply text-sm font-medium text-hoba-text; }
+  .nav-entry-desc { @apply text-xs text-hoba-muted; }
+  .nav-entry.is-active { @apply bg-hoba-hover; }
+
   .nav-drawer { @apply absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-hoba-border bg-hoba-bg shadow-lg; }
 
   /* Workflow player */

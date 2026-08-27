@@ -13,26 +13,36 @@ const { lang = 'en', active = '' } = Astro.props;
 const t = useTranslations(lang);
 const prefix = localePrefix(lang);
 
-// The atlas itself stays on the bar; everything about the project moves into
-// the overflow menu, so the bar fits without shrinking to 13px links.
-const primary = [
-  { name: t('nav.analyze'), href: `${prefix}/analyze`, key: 'analyze', highlight: true },
-  { name: t('nav.registry'), href: `${prefix}/registry`, key: 'registry' },
-  { name: t('nav.patterns'), href: `${prefix}/patterns`, key: 'patterns' },
-  { name: t('nav.graph'), href: `${prefix}/graph`, key: 'graph' },
-  { name: t('nav.process'), href: `${prefix}/process`, key: 'process' },
-  { name: t('nav.eras'), href: `${prefix}/eras`, key: 'eras' },
-  { name: t('nav.data'), href: `${prefix}/data`, key: 'data' },
+// Five things on the bar: the way in, and four groups. Eight flat links plus an
+// overflow menu made the bar a list of words with no shape — a reader could not
+// tell that the graph and the registry are the same material seen twice, or
+// that the API and the aggregates are one concern.
+const item = (key: string, path: string) => ({ key, name: t(`nav.${key}`), href: `${prefix}${path}`, desc: t(`nav.desc.${key}`) });
+
+const groups = [
+  {
+    id: 'atlas',
+    name: t('nav.group.atlas'),
+    items: [item('registry', '/registry'), item('patterns', '/patterns'), item('graph', '/graph'), item('actors', '/actors'), item('eras', '/eras')],
+  },
+  {
+    id: 'process',
+    name: t('nav.group.process'),
+    items: [item('process', '/process'), item('check', '/check')],
+  },
+  {
+    id: 'data',
+    name: t('nav.group.data'),
+    items: [item('data', '/data'), item('developers', '/developers')],
+  },
+  {
+    id: 'project',
+    name: t('nav.group.project'),
+    items: [item('methodology', '/methodology'), item('contribute', '/contribute'), item('about', '/about')],
+  },
 ];
-const secondary = [
-  { name: t('nav.actors'), href: `${prefix}/actors`, key: 'actors' },
-  { name: t('nav.check'), href: `${prefix}/check`, key: 'check' },
-  { name: t('nav.methodology'), href: `${prefix}/methodology`, key: 'methodology' },
-  { name: t('nav.developers'), href: `${prefix}/developers`, key: 'developers' },
-  { name: t('nav.contribute'), href: `${prefix}/contribute`, key: 'contribute' },
-  { name: t('nav.about'), href: `${prefix}/about`, key: 'about' },
-];
-const inSecondary = secondary.some((item) => item.key === active);
+const analyze = item('analyze', '/analyze');
+const activeGroup = (group: (typeof groups)[number]) => group.items.some((i) => i.key === active);
 const actors = getBundle(lang).actors;
 
 // One URL per page: switching language is a query on the page you are already
@@ -48,23 +58,30 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
     </a>
 
     <nav class="hidden lg:flex items-center gap-0.5 ml-4" aria-label="Primary">
-      {primary.map((item) => (
-        <a href={item.href} class={`nav-link ${active === item.key ? 'nav-link-active' : ''} ${item.highlight && active !== item.key ? 'text-hoba-accent' : ''}`} aria-current={active === item.key ? 'page' : undefined}>
-          {item.name}
-        </a>
-      ))}
+      <a
+        href={analyze.href}
+        class={`nav-link ${active === analyze.key ? 'nav-link-active' : 'text-hoba-accent'}`}
+        aria-current={active === analyze.key ? 'page' : undefined}
+      >
+        {analyze.name}
+      </a>
 
-      <details class="nav-more relative">
-        <summary class={`nav-link list-none cursor-pointer inline-flex items-center gap-1 ${inSecondary ? 'nav-link-active' : ''}`} aria-label={t('nav.more')}>
-          <span>{t('nav.more')}</span>
-          <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <div class="absolute right-0 mt-2 w-56 rounded-md border border-hoba-border bg-hoba-card shadow-lg p-1.5 flex flex-col">
-          {secondary.map((item) => (
-            <a href={item.href} class={`nav-link justify-start ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
-          ))}
-        </div>
-      </details>
+      {groups.map((group) => (
+        <details class="nav-group relative">
+          <summary class={`nav-link list-none cursor-pointer inline-flex items-center gap-1 ${activeGroup(group) ? 'nav-link-active' : ''}`}>
+            <span>{group.name}</span>
+            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <div class="nav-panel">
+            {group.items.map((entry) => (
+              <a href={entry.href} class={`nav-entry ${active === entry.key ? 'is-active' : ''}`} aria-current={active === entry.key ? 'page' : undefined}>
+                <span class="nav-entry-name">{entry.name}</span>
+                <span class="nav-entry-desc">{entry.desc}</span>
+              </a>
+            ))}
+          </div>
+        </details>
+      ))}
     </nav>
 
     <div class="ml-auto flex items-center gap-1 sm:gap-2">
@@ -106,18 +123,18 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
         </summary>
         <div class="nav-drawer">
           <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4" aria-label="Primary (mobile)">
-            <p class="kicker px-3">{t('nav.sectionAtlas')}</p>
-            <div class="mt-1 flex flex-col">
-              {primary.map((item) => (
-                <a href={item.href} class={`nav-link-mobile ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
-              ))}
-            </div>
-            <p class="kicker px-3 mt-5">{t('nav.sectionProject')}</p>
-            <div class="mt-1 flex flex-col">
-              {secondary.map((item) => (
-                <a href={item.href} class={`nav-link-mobile ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
-              ))}
-            </div>
+            <a href={analyze.href} class={`nav-link-mobile ${active === analyze.key ? 'nav-link-active' : 'text-hoba-accent'}`} aria-current={active === analyze.key ? 'page' : undefined}>{analyze.name}</a>
+
+            {groups.map((group) => (
+              <>
+                <p class="kicker px-3 mt-5">{group.name}</p>
+                <div class="mt-1 flex flex-col">
+                  {group.items.map((entry) => (
+                    <a href={entry.href} class={`nav-link-mobile ${active === entry.key ? 'nav-link-active' : ''}`} aria-current={active === entry.key ? 'page' : undefined}>{entry.name}</a>
+                  ))}
+                </div>
+              </>
+            ))}
             <p class="kicker px-3 mt-5">{t('lens.label')}</p>
             <div class="mt-1 flex flex-col gap-0.5 px-1">
               <button type="button" class="lens-option" data-lens="" aria-pressed="true">{t('lens.none')}</button>
@@ -151,7 +168,7 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
   });
 
   const drawer = document.getElementById('mobile-nav');
-  const more = document.querySelector('.nav-more');
+  const groups = [...document.querySelectorAll('.nav-group')];
   const close = (el) => el && el.removeAttribute('open');
 
   drawer?.addEventListener('toggle', () => {
@@ -159,17 +176,25 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
     document.body.classList.toggle('overflow-hidden', open);
     drawer.querySelector('.nav-open')?.classList.toggle('hidden', open);
     drawer.querySelector('.nav-close')?.classList.toggle('hidden', !open);
-    if (open) close(more);
+    if (open) groups.forEach(close);
   });
+
+  for (const group of groups) {
+    group.addEventListener('toggle', () => {
+      if (group.hasAttribute('open')) groups.filter((g) => g !== group).forEach(close);
+    });
+  }
 
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
     close(drawer);
-    close(more);
+    groups.forEach(close);
   });
 
   document.addEventListener('click', (event) => {
-    if (more?.hasAttribute('open') && !more.contains(event.target)) close(more);
+    for (const group of groups) {
+      if (group.hasAttribute('open') && !group.contains(event.target)) close(group);
+    }
     if (drawer?.hasAttribute('open') && event.target.closest('.nav-drawer a')) close(drawer);
   });
 </script>

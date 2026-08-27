@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Mascot from '../../components/Mascot.astro';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -20,11 +19,6 @@ const t = useTranslations(lang);
     <p>{t('about.p1.before')}<b class="wordmark">{t('about.p1.strong')}</b>{t('about.p1.after')}</p>
     <p><span set:html={branded(t('about.p2.before'))} /><strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
     <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>
-
-    <figure class="my-10">
-      <Mascot className="w-28 h-28" />
-      <figcaption class="mt-2 text-sm text-hoba-muted max-w-3xl">{t('about.mascot')}</figcaption>
-    </figure>
 
     <h2 id="license">{t('about.author.title')}</h2>
     <p>{t('about.author.text.before')}<a href="https://github.com/dmytro-yemelianov">Dmytro Yemelianov</a>{t('about.author.text.after')}</p>
