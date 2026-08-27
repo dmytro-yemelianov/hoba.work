@@ -14,12 +14,14 @@ describe('language negotiation worker', () => {
     expect(preferredLocale({ cookie: 'a=b; hoba_lang=uk', acceptLanguage: 'en-US', country: 'US' })).toBe('uk');
   });
 
-  it('infers Ukrainian from Accept-Language or geo, English otherwise, Ukrainian when there is no signal', () => {
+  it('infers Ukrainian from Accept-Language or geo, and English when there is no signal at all', () => {
     expect(preferredLocale({ acceptLanguage: 'en-US,en;q=0.9,uk;q=0.5', country: 'DE' })).toBe('uk');
     expect(preferredLocale({ acceptLanguage: 'en-US,en;q=0.9', country: 'UA' })).toBe('uk');
     expect(preferredLocale({ acceptLanguage: 'en-US,en;q=0.9', country: 'US' })).toBe('en');
     expect(preferredLocale({ acceptLanguage: 'de-DE', country: 'DE' })).toBe('en');
-    expect(preferredLocale({})).toBe('uk');
+    // A request with no signal at all is a crawler or a link scraper. It must
+    // get the language the sitemap and the canonical URLs describe.
+    expect(preferredLocale({})).toBe('en');
   });
 
   it('redirects only unprefixed HTML navigations, never assets or /uk URLs', () => {
@@ -46,5 +48,17 @@ describe('language negotiation worker', () => {
 
     const posted = await worker.fetch(new Request('https://hoba.work/', { method: 'POST', headers: { 'accept-language': 'uk' } }), { ASSETS: assets });
     expect(await posted.text()).toBe('asset:/');
+  });
+});
+
+describe('signal-free crawlers', () => {
+  it('never redirects a request that carries no language signal', () => {
+    // Googlebot omits Accept-Language on the ordinary crawl and arrives from a
+    // US IP. Every URL in sitemap.xml is language-free; if a signal-free request
+    // were redirected, every submitted URL would send the crawler somewhere the
+    // sitemap does not list.
+    for (const pathname of ['/', '/registry', '/graph', '/artifacts/A-013', '/mechanisms/M-001']) {
+      expect(resolveLocaleRedirect({ pathname }), pathname).toBeNull();
+    }
   });
 });

@@ -4,8 +4,13 @@
  * Every page is prerendered in English (unprefixed) and Ukrainian (/uk/…). For HTML
  * navigations to an unprefixed URL we redirect to the Ukrainian mirror when the visitor
  * prefers Ukrainian: explicit choice (hoba_lang cookie, set by the language switcher) →
- * Accept-Language → Cloudflare geo (UA) → and, when the browser gives no signal at all,
- * Ukrainian. /uk/… URLs are always honoured; English preference is never overridden.
+ * Accept-Language → Cloudflare geo (UA). /uk/… URLs are always honoured; English
+ * preference is never overridden.
+ *
+ * A request carrying no language signal at all is treated as English. That is a
+ * crawler, an OG scraper or a bare curl, and it must receive the language the
+ * sitemap and the canonical URLs describe — otherwise every submitted URL
+ * redirects the crawler somewhere that is not in the sitemap.
  * Assets, the JSON API and data exports are never redirected.
  */
 const LANG_COOKIE = 'hoba_lang';
@@ -43,8 +48,11 @@ export function preferredLocale({ cookie, acceptLanguage, country }) {
   const languages = parseAcceptLanguage(acceptLanguage);
   if (languages.some((tag) => tag === 'uk' || tag.startsWith('uk-'))) return 'uk';
   if (country === 'UA') return 'uk';
-  if (languages.length > 0) return 'en';
-  return 'uk'; // no signal at all: Ukrainian is the project default
+  // No signal at all means a crawler, an OG scraper or a bare curl. Those must
+  // get one fixed language, and it has to be the one the sitemap and the
+  // canonical URLs describe — otherwise every submitted URL redirects the
+  // crawler somewhere that is not in the sitemap.
+  return 'en';
 }
 
 /** Returns the path to redirect to, or null to serve the request as-is. */
