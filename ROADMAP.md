@@ -33,6 +33,11 @@ The order is driven by what unblocks what, not by size.
    compatibility report (*#20 done*). See
    *What is worth formalising* below for what each of these is and, more
    usefully, what two of them are not.
+9. **Self-measurement** — the atlas computing its own gaps instead of listing
+   the ones someone noticed. Depends on the formal core: the registry had to be
+   a typed graph with proved structural claims before asking it what it cannot
+   answer was worth doing. See *What the atlas can say about itself*. *Done, and
+   it corrected two things this file previously asserted.*
 
 ## Decided
 
@@ -202,6 +207,12 @@ Route counting landed with it: 10 distinct routes run through WF-003, of which
 1 ends in a hire, 6 in a decline and 3 in a closed search. A cardinality, never
 a likelihood.
 
+Why no exclusion survived was answered later, structurally rather than by
+inspection: seven mechanisms emit nothing another does not also emit, so no
+evidence expressible in this registry ever narrows to them alone. See *The
+ceiling is subsumption* below. The empty result was not a shortage of good
+probes.
+
 ### A compatibility report, not a resume compiler (#20) — done
 
 `Resume × Facets → which gates fire` is right, and the refusal that goes with it
@@ -261,6 +272,73 @@ What replaces it, all of which the site already does somewhere:
 
 The difference between "this configuration will filter you out" and "you have a
 12% chance" is the difference between an atlas and a horoscope.
+
+## What the atlas can say about itself
+
+Coverage used to be a list someone wrote down. `packages/registry/src/gaps.ts`
+derives it instead — transitive closure in both directions, which entries no
+observation separates, which gates each actor can reach, which mechanisms carry
+no proposed change. `/data` publishes the result on every build and the tests
+name each finding, so a regression is legible rather than a number drifting.
+
+The boundary is the point and is stated in the module header: **these are gaps
+relative to the registry's own structure, never relative to hiring.** No
+computation over a model reports what the model never contained. A clean report
+means the atlas is internally complete, not that it is finished.
+
+### The ceiling is subsumption, not identical traces
+
+A cause is settled only when nothing else emits everything it does. For seven of
+twenty-four that never holds — M-001, M-002, M-008, M-009, M-011, M-016, M-017 —
+and it is asserted by name.
+
+The first version of this measure looked for *identical* emission signatures and
+found five groups. That is only the symmetric case. Five observations were then
+derived from how people describe rejections (A-015 to A-019, each kept only
+because it split a shared trace), the group count fell to one, and the honest
+figure barely moved: each new observation made **one side** of a pair
+identifiable and left the other a strict subset. The group count read that as
+progress. Subsumption does not.
+
+Nine of nineteen observations are now consistent with exactly one cause, up from
+four. The instrument got sharper; the registry did not.
+
+### Decomposing A-002 was the wrong target, and measuring said so
+
+The generic rejection is emitted by sixteen of twenty-four mechanisms, which
+looked like the thing to fix. It is not: ten of those pair it with a *different*
+second observation each, so they are already told apart. The catch-all is
+uninformative, not confusing. No work was done on it.
+
+### Where a trace is read is not where the mechanism operates
+
+Emissions carry `observed_at`. It is authored, not derived, and the reason is
+measurable: for eleven emissions the mechanism's stages and the observation's do
+not overlap at all — a rule firing at intake produces a message read at
+screening — so an intersection would report nothing where there plainly is
+something. Twenty-eight of fifty-four are filled, being entailed by two recorded
+facts; the rest are published as *traces the atlas cannot place*.
+
+It sharpens attribution and nothing else. Naming a stage still cannot remove a
+mechanism from the compatible set, and `tests/diagnostics.test.ts` asserts the
+set is identical with and without one. The alternative — letting a stage exclude
+— was considered and declined: the atlas has never said *this did not happen*,
+and an exclusion has to be forced rather than plausible.
+
+### Sourcing, after a closed door
+
+reddit.com is closed to the crawler, with no workaround. dou.ua substitutes and
+brought the first non-US material into the atlas. Its forum threads are input
+for deriving vocabulary and never become evidence records; its platform
+statistics and surveys are citable. The `anecdote` and `illustrative` evidence
+kinds exist in the schema and are deliberately held at zero records, so the bar
+stays FRED, US Code, QJE.
+
+Six entries were sourced this way (B-014, I-007, I-009, I-011, I-013, I-016) and
+each summary states what its source does *not* establish. Ten still cite nothing.
+Four are the forum-derived observations, which were never going to be citable.
+The rest need sources, not code — as do the twenty-six unplaced traces and the
+last merged pair.
 
 ## Not scheduled yet
 
