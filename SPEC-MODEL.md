@@ -9,6 +9,12 @@ be three events and no machinery.
 This is a specification, not an implementation. Nothing in the repository
 changes until it is agreed.
 
+**Settled so far:** the four primitives sit *underneath* the ten reader-facing
+types rather than replacing them; the cohort is explicit; time is an ordering
+plus an optional elapsed field; concurrent processes are in; visibility is
+authored per class with overrides. Section 2a and question 6 are the part still
+open, and they arrived from a reader's objection rather than from the model.
+
 ---
 
 ## 1. The adequacy test
@@ -17,6 +23,7 @@ The model is **sufficient** if it can express, without new primitives:
 
 | | must express |
 |---|---|
+| **demand** | **who is paying for the seat, and whether the money exists yet: internal budget, a signed client contract, or a bid not yet won** |
 | entry | inbound application, outbound outreach, referral, agency submission, internal transfer, rehire, contract-to-hire |
 | dialogue | recruiter screen, technical round, panel, negotiation, reference call, silence |
 | internal | requisition drafting, headcount approval, levelling, committee sign-off, freeze, reorganisation |
@@ -60,6 +67,77 @@ Three things the registry cannot express at all:
 
 ---
 
+## 2a. The demand side, which the first draft of this spec missed
+
+The adequacy test above originally asked what happens *to* the applicant and
+never asked why the requisition exists at all. The answer is that somebody is
+paying for the seat, and that party may sit outside the company entirely.
+
+Two shapes, and the model has to hold both:
+
+- **Own account.** The company is its own client. The seat is funded from its
+  own revenue and the demand comes from internal planning.
+- **Client account.** An external client funds the seat through a contract — or
+  has not signed one yet, and the company is staffing a bid it hopes to win.
+
+The registry today describes only the first. The words *client* and *bench*
+appear five and six times across all content, always incidentally; there is no
+client party, no contract record, and no gate owned by anyone outside the
+employer. For the market the Ukrainian half of the atlas addresses, that is the
+wrong default.
+
+**What the omission has been mislabelling.**
+
+- **M-016, "speculative sourcing without an opening."** Often not speculative.
+  CVs are collected because a bid cannot be won without them; the role is real,
+  conditional on the win. That is a different structure with a different remedy,
+  and the current entry cannot say it.
+- **M-007, freeze.** Frequently a client not signing, or cancelling — an event in
+  a record the applicant has no visibility on whatsoever.
+- **Compensation.** On a client account the band is derived from a rate the
+  client pays, minus margin. That is why it reads as arbitrary and immovable:
+  it is downstream of a contract nobody in the interview loop can renegotiate.
+- **A whole missing gate.** Client-side CV approval and the client's own
+  interview, after the employer's loop has already said yes. The applicant
+  passes everything and then waits on a party that is not their prospective
+  employer. The atlas has no B-\* for this.
+- **Bench.** Employment with no project attached, or the interval between two.
+- **Ramp-up.** A won contract needing twenty engineers in six weeks moves
+  thresholds that are stated elsewhere as fixed.
+
+**And one sign flips.** B-005's perspective holds that a bad hire is costlier
+than a missed one, and states it as though it were universal. On a client
+account an unfilled billable seat loses revenue directly, so the asymmetry can
+invert — which is why the same market contains both a five-round loop and a
+same-week offer. Several entries are implicitly own-account and say so nowhere.
+
+**Does this need a fifth primitive? No — and that is the test it had to pass.**
+
+| the thing | in the four primitives |
+|---|---|
+| client | a party, which is a record that emits events |
+| contract, bid, statement of work | records |
+| "is the seat funded" | a condition whose parameter is a field of the contract record |
+| client CV approval, client interview | conditions owned by the client, determinacy `judgement` |
+| band from rate | a condition parameter depending on a record field |
+| bench | an employment record with no parent project record |
+| scaling after a win | many requisitions from one contract, with comparative thresholds relaxed |
+| growth strategy | a record the applicant has no visibility on — the correct representation |
+
+**One attribute must widen, though.** Condition `owner` was written as though the
+only question were which party *inside the company* may change it. There are
+three positions, not two:
+
+1. **inside the process** — the recruiter, the manager, the employer's policy;
+2. **outside it but still a party** — the client, an agency, a regulator. Can be
+   negotiated with, and can be addressed by an intervention;
+3. **ownerless** — rates, layoffs, the legal regime. Nobody in reach.
+
+Collapsing 2 into 3 is what made a client contract look like weather. It is not
+weather: somebody signed it.
+
+---
+
 ## 3. Primitives
 
 Four. Everything else is a view.
@@ -96,8 +174,10 @@ jurisdiction lists, band ceilings.
 
 A condition carries three things that are not derivable from it:
 
-- **owner** — which party may change it, including *none in this process*, which
-  is how the exterior enters;
+- **owner** — which party may change it, in one of three positions: inside the
+  process, outside it but still a party (a client, an agency, a regulator), or
+  ownerless. The middle position is the one section 2a adds, and losing it is
+  what made a signed contract look like weather;
 - **determinacy** — `deterministic` (arithmetic on stated values), `judgement`
   (a person decides), `stochastic` (depends on who else applied that week);
 - **arity** — `absolute` (tests this record alone) or `comparative` (ranks this
@@ -255,3 +335,11 @@ that stops being true when you compute it was never a finding.
 5. **Does the visibility relation get authored per party, or per (party, class)
    with overrides?** Recommendation: per class with overrides, or the authoring
    cost is six times the current registry.
+6. **Does the client account become first-class content, or only permitted by
+   the substrate?** The substrate holds it either way. The content question is
+   whether the atlas grows a client party, a contract record, a client-approval
+   gate and the bench mechanisms — and re-reads the entries that quietly assume
+   an own-account company, B-005's cost asymmetry first among them.
+   Recommendation: yes, and it is the largest single content gap the atlas has,
+   larger than the ten unsourced entries. The registry currently describes one
+   organisational shape while presenting itself as describing hiring.
