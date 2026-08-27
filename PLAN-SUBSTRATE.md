@@ -4,6 +4,25 @@ How SPEC-MODEL.md becomes code and content without breaking a site that is
 live in two languages. The spec is the *what*; this is the *in which order and
 behind which gates*.
 
+## Where this stands (2026-08-29)
+
+Stages are issues #21–#30 on the board. The gate is live and green.
+
+| stage | state |
+|---|---|
+| A1 schema | **done** — `056b55e`. The two parse-enforced policies held. |
+| A2 gate | **done** — `3abe97c`. Held on both mirrors on the first run. |
+| A3 derivations | next in track A |
+| A4 expressiveness | not started |
+| A5 records & flows | **RFC delivered** (`RFC-RECORDS.md`); silence on a point = the recommendation stands |
+| A6 engine swap · A7 Lean | not started |
+| B1 client account | **first cut landed** — `c211cef`; the walk awaits the WF-004 call (`DRAFT-WF-004.md`) |
+| B2 epilogue · B3 observations | not started |
+
+Open decisions, both with the author: the RFC's three points, and the
+WF-004-versus-variant call with its two sub-questions (the `client` stage
+value; `bench-filled` as its own terminal).
+
 ## Invariants, before any stage
 
 1. **`pnpm task check` is green after every commit.** No stage is allowed a
@@ -53,6 +72,9 @@ parties as records that emit; event classes, events, order positions, optional
 visibility classes with per-entry overrides; statement records with the
 existing fidelity enum; flows; processes; cohorts. Unit tests on the schema
 alone. *No content, no site change. Size: M.*
+**Done.** The two policies live in the parser as designed: a flow amount
+refuses to parse without evidence, a comparative condition without its cohort.
+`validateSubstrate()` reports every referential problem at once.
 
 **A2. Lift and project — the gate.** `lift(bundle) → Substrate` and
 `project(substrate) → bundle`, with the equivalence test over both mirrors.
@@ -62,6 +84,13 @@ condition and the projection regenerates both surfaces. When this passes, the
 barrier↔state sync check in `tests/content.test.ts` is true by construction —
 it stays as a regression tripwire but can no longer fail first.
 *Size: L. This is the crux of the whole plan.*
+**Done, and it held on the first run — both mirrors, deep-equal.** It demanded
+two schema amendments straight from the spec's view table: conditions gained
+`causes` (a mechanism-condition's emitted events) and `accounts_for` (the
+gates it is an account of). One data finding, resolved by documented rule:
+B-001 is owned by the candidate on WF-001's edge and by the vendor on
+WF-002's; the first workflow's reading wins until visibility is per-party
+(A4). An authority test proves no stripped field survives in the sidecar.
 
 **A3. Existing derivations, re-derived.** Prove "one query family" on things
 that already have answers: `gaps()` (subsumption, identifiability),
@@ -92,6 +121,8 @@ authored. Surfaces: the entry pages and `/data` gain the shape of *who funds
 this seat and who is paid along the way*; the freeze entry gains its three
 chains. Public data exports gain a new optional file; `schema_version` minor
 bump. *Size: M code, M content ×2 languages.*
+**RFC delivered** (`RFC-RECORDS.md`): `R-` prefix, per-record files with flows
+on the source record, a closed class list, zero amounts in the first cut.
 
 **A6. The query engine swap.** `narrow()`, `checkConformance()` and the
 diagnostic engine become three instances of one projection-consistency query
@@ -117,6 +148,15 @@ cost asymmetry first. All ×2 languages. Sourcing per the standing rule; the
 Ukrainian civil-service statute (EVD-039) already anchors the mandated-posting
 premise. *Size: L content. Starts immediately — it depends on nothing in
 track A.*
+**First cut landed.** The seventh actor (client), M-025 bid-conditional pool
+and M-026 bench-priority fill, both mirrors, and the B-005 re-read: the
+bad-hire asymmetry now names its own-account assumption and its client-account
+inversion. Both mechanisms joined indistinguishability classes deliberately —
+M-025 with the outreach pair (the difference is a bid record, structural and
+invisible from outside), M-026 tied to M-005 (earmarked-before versus
+became-available-during sits in a staffing record no message describes), and
+A-016 honestly stopped identifying anything. Remaining in B1: the walk
+(drafts delivered), B-015, and the rest of the own-account re-read.*
 
 **B2. The epilogue.** States past `hired` in the funnel and the canonical
 path: start-date shift, no-show in both directions, probation, probation-end
@@ -170,10 +210,12 @@ A1, A2 and A4 are deliberately invisible: they are what makes the rest safe.
 
 ## What I need from you, and when
 
-1. Now: agreement on this sequencing, or reordering. On agreement the stages
-   become issues on the project board, as the roadmap convention requires.
-2. At A5: the one-page records-and-flows format RFC, before any file exists.
-3. At B1: the WF-004-versus-variant call, made on drafts, not in the abstract.
+1. ~~Agreement on the sequencing~~ — given; the stages are issues #21–#30.
+2. **Open:** the RFC's three points (`RFC-RECORDS.md`); silence = the
+   recommendation stands.
+3. **Open:** the WF-004-versus-variant call on the drafts
+   (`DRAFT-WF-004.md`), plus its two sub-questions — the `client` stage value
+   and `bench-filled` as its own terminal.
 
-First work on approval: A1 and B1 in parallel — the schema needs no decisions,
-and the client account needs nothing from the schema.
+Next work that needs no decision: A3 — the existing derivations re-derived as
+substrate queries, and the pattern-computability finding either way.
