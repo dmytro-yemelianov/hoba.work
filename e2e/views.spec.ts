@@ -17,7 +17,7 @@ test.describe('registry data views', () => {
     await expect(page.locator('[data-view-root] > [data-view="list"]')).toBeVisible();
     await expect(page.locator('[data-view-root] > [data-view="table"]')).toBeHidden();
 
-    await page.goto('/uk/patterns');
+    await page.goto('/patterns');
     await expect(page.locator('[data-view-root] > [data-view="list"]')).toBeVisible();
   });
 

@@ -2,10 +2,20 @@ import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4321;
 const baseURL = `http://127.0.0.1:${PORT}`;
+// Pinned: wrangler defaults this to today, and the pinned workerd binary only
+// supports dates up to its own release. An unpinned date breaks the day the
+// binary falls behind the calendar.
+const COMPAT_DATE = '2026-07-21';
 
 /**
- * End-to-end suite for the built static site (site/dist). `pnpm build` must have run.
- * Locally: `pnpm e2e` (reuses a running preview server if there is one).
+ * End-to-end suite for the built site.
+ *
+ * The server is `wrangler pages dev`, not `astro preview`: public URLs carry no
+ * language, so every HTML response comes from `site/public/_worker.js`
+ * resolving one. A static file server would serve the internal trees directly
+ * and the suite would be testing a site nobody visits.
+ *
+ * `pnpm build` must have run.
  */
 export default defineConfig({
   testDir: './e2e',
@@ -26,9 +36,10 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] }, testMatch: /mobile\.spec\.ts/ },
   ],
   webServer: {
-    command: `pnpm --filter hoba-site exec astro preview --port ${PORT} --host 127.0.0.1`,
+    command: `pnpm exec wrangler pages dev site/dist --port ${PORT} --ip 127.0.0.1 --compatibility-date ${COMPAT_DATE} --log-level warn`,
     url: `${baseURL}/`,
     reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
+    // workerd takes appreciably longer to come up than a static file server.
+    timeout: 120_000,
   },
 });

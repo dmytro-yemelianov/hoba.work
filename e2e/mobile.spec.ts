@@ -3,8 +3,10 @@ import { expect, test } from '@playwright/test';
 const SECTIONS = ['Аналіз', 'Реєстр', 'Патерни', 'Граф', 'Дані', 'Методологія', 'Розробникам', 'Долучитися', 'Про проєкт'];
 
 test.describe('mobile navigation', () => {
+  test.use({ locale: 'uk-UA' });
+
   test('the drawer exposes every section and closes on navigation', async ({ page }) => {
-    await page.goto('/uk/');
+    await page.goto('/');
     await expect(page.locator('header nav[aria-label="Primary"]')).toBeHidden();
 
     const drawer = page.locator('#mobile-nav');
@@ -17,12 +19,12 @@ test.describe('mobile navigation', () => {
     await expect(page.locator('body')).toHaveClass(/overflow-hidden/);
 
     await links.filter({ hasText: /^Реєстр$/ }).click();
-    await expect(page).toHaveURL(/\/uk\/registry\/?$/);
+    await expect(page).toHaveURL(/\/registry\/?$/);
     await expect(page.locator('#mobile-nav')).not.toHaveAttribute('open', '');
   });
 
   test('Escape closes the drawer', async ({ page }) => {
-    await page.goto('/uk/');
+    await page.goto('/');
     await page.locator('#mobile-nav summary').click();
     await expect(page.locator('#mobile-nav')).toHaveAttribute('open', '');
     await page.keyboard.press('Escape');
@@ -31,7 +33,7 @@ test.describe('mobile navigation', () => {
   });
 
   test('the graph explorer is usable on a phone', async ({ page }) => {
-    await page.goto('/uk/graph');
+    await page.goto('/graph');
     const canvas = page.locator('#graph-canvas');
     await expect(canvas).toBeVisible();
     const box = (await canvas.boundingBox())!;

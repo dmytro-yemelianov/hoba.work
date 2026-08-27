@@ -18,7 +18,8 @@ test.describe('discovery surface', () => {
       expect(locs, route).toContain(`https://hoba.work${route === '/' ? '/' : route}`);
     }
     // No language segment: shareable links carry no locale.
-    expect(locs.filter((l) => l.includes('/uk/'))).toEqual([]);
+    expect(locs.filter((l) => /\/uk(\/|$)/.test(l))).toEqual([]);
+    expect(locs.filter((l) => l.includes('/_i/'))).toEqual([]);
   });
 
   test('llms.txt orients a model and states the boundaries', async ({ request }) => {

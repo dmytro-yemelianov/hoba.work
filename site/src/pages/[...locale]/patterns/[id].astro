@@ -5,12 +5,12 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import { getBundle } from '../../../lib/registry';
-import { asHeading, LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { PatternNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
   return LANGS.flatMap((lang) =>
-    getBundle(lang).patterns.map((pattern) => ({ params: { locale: lang === 'uk' ? 'uk' : undefined, id: pattern.id }, props: { lang, pattern } }))
+    getBundle(lang).patterns.map((pattern) => ({ params: { ...localeParams(lang), id: pattern.id }, props: { lang, pattern } }))
   );
 }
 

@@ -6,8 +6,13 @@ User-agent: *
 Allow: /
 
 # The API and the bulk exports are the cheap way to read this site.
-# Crawling 150 HTML pages to reconstruct them is wasted on both sides.
+# Crawling every HTML page to reconstruct them is wasted on both sides.
 User-agent: *
 Disallow: /api/v1/*/index.json
+
+# Both languages are prerendered into internal trees and served by the edge
+# worker under one language-free URL. The trees themselves are not addresses.
+User-agent: *
+Disallow: /_i/
 
 Sitemap: https://hoba.work/sitemap.xml

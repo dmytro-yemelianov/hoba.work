@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { LANGS, LANG_LABELS, LANG_COOKIE, localePrefix, localizePath, useTranslations, type Lang } from '../i18n/utils';
+import { LANGS, LANG_LABELS, LANG_COOKIE, localePrefix, withLang, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   lang?: Lang;
@@ -28,10 +28,11 @@ const secondary = [
 ];
 const inSecondary = secondary.some((item) => item.key === active);
 
-// Every page exists in both languages, so the switcher keeps the visitor on the same page.
-// The 404 page is a single static file, so its switcher points at the language home pages.
-const switchBase = Astro.url.pathname.startsWith('/404') ? '/' : Astro.url.pathname;
-const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: localizePath(switchBase, l) }));
+// One URL per page: switching language is a query on the page you are already
+// on, never a different address. `?lang=` is the explicit, shareable override;
+// the click handler also writes the cookie the worker honours, so ordinary
+// internal links stay bare and the language survives the next navigation.
+const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: withLang(Astro.url, l) }));
 ---
 <header class="sticky top-0 z-50 w-full relative border-b border-hoba-border bg-hoba-bg/95 backdrop-blur supports-[backdrop-filter]:bg-hoba-bg/80">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center gap-3">

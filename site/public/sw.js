@@ -8,10 +8,12 @@
  *  - hashed build assets and icons are cache-first, they never change in place;
  *  - the JSON API and data exports are network-first with a cache fallback, so
  *    a previously visited entity still opens on a plane;
- *  - a redirected navigation response is never cached under the requested URL,
- *    which would let /uk/ content answer for /.
+ *  - a navigation is cached under its URL *and* the language it came back in,
+ *    because one URL now serves both languages and a language-blind cache
+ *    would hand a reader the other one;
+ *  - a redirected navigation response is never cached under the requested URL.
  */
-const VERSION = 'hoba-v1';
+const VERSION = 'hoba-v2';
 const SHELL = `${VERSION}-shell`;
 const PAGES = `${VERSION}-pages`;
 const ASSETS = `${VERSION}-assets`;
@@ -65,6 +67,46 @@ async function networkFirst(request, cacheName, { onlySameUrl = false } = {}) {
   }
 }
 
+/**
+ * One public URL serves both languages, so a cache entry has to record which
+ * one it holds. The key is the URL plus the language the edge reported, and the
+ * language the reader last received is remembered so an offline lookup can ask
+ * for the right one.
+ */
+const LANG_RECORD = '/__hoba_lang';
+
+function langKey(url, lang) {
+  return `${url}${url.includes('?') ? '&' : '?'}__lang=${lang}`;
+}
+
+async function rememberLanguage(cache, lang) {
+  await cache.put(LANG_RECORD, new Response(lang));
+}
+
+async function lastLanguage(cache) {
+  const record = await cache.match(LANG_RECORD);
+  return record ? record.text() : 'en';
+}
+
+async function navigate(request) {
+  const cache = await caches.open(PAGES);
+  try {
+    const response = await fetch(request);
+    if (response.ok && response.url === request.url) {
+      const lang = response.headers.get('content-language') || 'en';
+      await cache.put(langKey(request.url, lang), response.clone());
+      await rememberLanguage(cache, lang);
+    }
+    return response;
+  } catch (error) {
+    const lang = await lastLanguage(cache);
+    const hit = (await cache.match(langKey(request.url, lang))) || (await cache.match(langKey(request.url, lang === 'uk' ? 'en' : 'uk')));
+    if (hit) return hit;
+    const home = new URL('/', self.location.origin).toString();
+    return (await cache.match(langKey(home, lang))) || Response.error();
+  }
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
@@ -73,14 +115,7 @@ self.addEventListener('fetch', (event) => {
   const sameOrigin = url.origin === self.location.origin;
 
   if (request.mode === 'navigate') {
-    event.respondWith(
-      networkFirst(request, PAGES, { onlySameUrl: true }).catch(async () => {
-        // Last resort: any home page this visitor already opened.
-        const pages = await caches.open(PAGES);
-        const home = url.pathname.startsWith('/uk') ? '/uk/' : '/';
-        return (await pages.match(home)) || (await pages.match('/uk/')) || Response.error();
-      })
-    );
+    event.respondWith(navigate(request));
     return;
   }
 

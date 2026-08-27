@@ -21,7 +21,7 @@ test.describe('theme', () => {
 
     await page.reload();
     expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(false);
-    await page.goto('/uk/registry');
+    await page.goto('/registry');
     expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(false);
 
     // surfaces actually change colour

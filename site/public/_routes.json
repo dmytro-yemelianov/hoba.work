@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "description": "Only HTML navigations need language negotiation; everything below is served from disk unchanged. Patterns must not swallow a page: /data/* would also match the /data page, so the export directory is named exactly.",
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_astro/*",
+    "/api/v1/*",
+    "/data/latest/*",
+    "/schemas/*",
+    "/icons/*",
+    "/favicon.svg",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/llms.txt",
+    "/llms-full.txt",
+    "/manifest.webmanifest",
+    "/sw.js",
+    "/openapi.json"
+  ]
+}

@@ -6,12 +6,12 @@ import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import RemovabilityBadge from '../../../components/RemovabilityBadge.astro';
 import { getBundle } from '../../../lib/registry';
-import { asHeading, LANGS, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { MechanismNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
   return LANGS.flatMap((lang) =>
-    getBundle(lang).mechanisms.map((mechanism) => ({ params: { locale: lang === 'uk' ? 'uk' : undefined, id: mechanism.id }, props: { lang, mechanism } }))
+    getBundle(lang).mechanisms.map((mechanism) => ({ params: { ...localeParams(lang), id: mechanism.id }, props: { lang, mechanism } }))
   );
 }
 

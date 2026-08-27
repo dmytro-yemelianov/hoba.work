@@ -2,7 +2,7 @@
 import '../styles/theme.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { alternates, OG_LOCALES, useTranslations, type Lang } from '../i18n/utils';
+import { OG_LOCALES, publicPath, useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -16,8 +16,9 @@ const t = useTranslations(lang);
 const description = Astro.props.description ?? t('meta.description');
 
 const site = Astro.site ?? new URL('https://hoba.work');
-const canonicalURL = new URL(Astro.url.pathname, site);
-const alternateLinks = Astro.url.pathname.startsWith('/404') ? [] : alternates(Astro.url.pathname, site);
+// The build emits this page under an internal language tree; the canonical URL
+// is the language-free one a reader is given.
+const canonicalURL = new URL(publicPath(Astro.url.pathname), site);
 ---
 <!doctype html>
 <html lang={lang} class="bg-hoba-bg text-hoba-text antialiased">
@@ -32,7 +33,6 @@ const alternateLinks = Astro.url.pathname.startsWith('/404') ? [] : alternates(A
     <title>{title} | hoba.work</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    {alternateLinks.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />

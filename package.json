@@ -2,7 +2,7 @@
   "name": "hoba-monorepo",
   "version": "0.4.1",
   "private": true,
-  "description": "Hiring Obstacles & Barriers Atlas \u2014 canonical repo for hoba.work",
+  "description": "Hiring Obstacles & Barriers Atlas — canonical repo for hoba.work",
   "license": "MIT",
   "author": "Dmytro Yemelianov <dmytro@hoba.work>",
   "homepage": "https://hoba.work",
@@ -37,6 +37,7 @@
     "tsx": "^4.19.3",
     "typescript": "^5.7.3",
     "vitest": "^3.0.6",
+    "wrangler": "4.112.0",
     "zod": "^3.24.2",
     "zod-to-json-schema": "^3.24.3"
   },

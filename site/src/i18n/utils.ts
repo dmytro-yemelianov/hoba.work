@@ -7,29 +7,56 @@ export const LANG_LABELS: Record<Lang, string> = { en: 'EN', uk: 'UA' };
 export const OG_LOCALES: Record<Lang, string> = { en: 'en_US', uk: 'uk_UA' };
 export const LANG_COOKIE = 'hoba_lang';
 
-/** `[...locale]` routes: `undefined` renders the unprefixed English route, `'uk'` the Ukrainian mirror. */
+/**
+ * Public URLs carry no language. Both language trees are prerendered under
+ * internal prefixes and the edge worker serves the right one under the public
+ * URL, so `[...locale]` is now a build-time detail rather than an address.
+ */
+export const INTERNAL_PREFIX = '_i';
+export const internalBase = (lang: Lang): string => `${INTERNAL_PREFIX}/${lang}`;
+
+/** `[...locale]` routes: one prerendered tree per language, both internal. */
 export function localeStaticPaths() {
-  return [{ params: { locale: undefined } }, { params: { locale: 'uk' } }];
+  return LANGS.map((lang) => ({ params: { locale: internalBase(lang) } }));
+}
+
+/** The same, for the entity routes that build their own paths. */
+export function localeParams(lang: Lang): { locale: string } {
+  return { locale: internalBase(lang) };
 }
 
 export function localeFromParams(params: { locale?: string | undefined }): Lang {
-  return params.locale === 'uk' ? 'uk' : 'en';
+  return params.locale === internalBase('uk') ? 'uk' : 'en';
 }
 
-export const localePrefix = (lang: Lang): string => (lang === 'uk' ? '/uk' : '');
+/**
+ * Nothing prefixes a link any more. Kept as a function so the ninety-odd
+ * `${prefix}/…` interpolations across the pages did not all have to change.
+ */
+export const localePrefix = (_lang: Lang): string => '';
 
-/** Strip a leading locale segment from a pathname. */
-export function stripLocale(pathname: string): { lang: Lang; path: string } {
-  const m = pathname.match(/^\/uk(?=\/|$)(.*)$/);
-  if (m) return { lang: 'uk', path: m[1] || '/' };
-  return { lang: 'en', path: pathname || '/' };
+/**
+ * Turn a built (internal) pathname into the public one a reader sees. The
+ * trailing slash goes too: Astro emits directory files, sitemap.xml lists the
+ * bare form, and the canonical must be the one address, not a second one.
+ */
+export function publicPath(pathname: string): string {
+  const stripped = pathname
+    .replace(new RegExp(`^/${INTERNAL_PREFIX}/(?:${LANGS.join('|')})(?=/|$)`), '')
+    .replace(/\/$/, '');
+  return stripped === '' ? '/' : stripped;
 }
 
-/** Same page in another language; keeps trailing-slash-less canonical form. */
-export function localizePath(pathname: string, lang: Lang): string {
-  const { path } = stripLocale(pathname);
-  const clean = path === '/' ? '' : path.replace(/\/$/, '');
-  return lang === 'uk' ? `/uk${clean}` || '/uk' : clean || '/';
+/**
+ * Language is an explicit, shareable override — a query, never part of the
+ * slug. Unrelated params and the hash survive, because `?type=` and a future
+ * `?lens=` share this URL.
+ */
+export function withLang(url: URL, lang: Lang): string {
+  const params = new URLSearchParams(url.search);
+  params.set('lang', lang);
+  const query = params.toString();
+  return `${publicPath(url.pathname)}${query ? `?${query}` : ''}${url.hash}`;
 }
 
 export type Translate = (key: UIKey, vars?: Record<string, string | number>) => string;
@@ -55,16 +82,6 @@ export function clientDictionary<K extends UIKey>(lang: Lang, keys: readonly K[]
   return out;
 }
 
-/** hreflang alternates for the current page. */
-export function alternates(pathname: string, site: URL): { lang: Lang | 'x-default'; href: string }[] {
-  const en = new URL(localizePath(pathname, 'en'), site).href;
-  const uk = new URL(localizePath(pathname, 'uk'), site).href;
-  return [
-    { lang: 'en', href: en },
-    { lang: 'uk', href: uk },
-    { lang: 'x-default', href: en },
-  ];
-}
 
 export { ui };
 export type { UIKey };

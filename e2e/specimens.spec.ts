@@ -1,8 +1,10 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('a shared entity page stands on its own', () => {
+  test.use({ locale: 'uk-UA' });
+
   test('an observation opens with the document, labelled as a reconstruction', async ({ page }) => {
-    await page.goto('/uk/artifacts/A-013');
+    await page.goto('/artifacts/A-013');
 
     const specimens = page.locator('.specimen');
     expect(await specimens.count()).toBeGreaterThanOrEqual(2);
@@ -23,8 +25,8 @@ test.describe('a shared entity page stands on its own', () => {
 
   test('specimens render on every entity type', async ({ page }) => {
     const ONE_OF_EACH = [
-      '/uk/artifacts/A-009', '/uk/barriers/B-010', '/uk/mechanisms/M-020',
-      '/uk/patterns/P-003', '/uk/loops/L-001', '/uk/interventions/I-004',
+      '/artifacts/A-009', '/barriers/B-010', '/mechanisms/M-020',
+      '/patterns/P-003', '/loops/L-001', '/interventions/I-004',
     ];
     for (const path of ONE_OF_EACH) {
       await page.goto(path);
@@ -35,13 +37,13 @@ test.describe('a shared entity page stands on its own', () => {
   });
 
   test('an intervention shows the document as it looks once applied', async ({ page }) => {
-    await page.goto('/uk/interventions/I-002');
+    await page.goto('/interventions/I-002');
     await expect(page.locator('main')).toContainText('Як це виглядає, коли це впроваджено');
     await expect(page.locator('.specimen')).toContainText('68 000–79 000');
   });
 
   test('the landing argues from a real document, not a description', async ({ page }) => {
-    await page.goto('/uk/');
+    await page.goto('/');
     const specimen = page.locator('.specimen').first();
     await expect(specimen).toBeVisible();
     await expect(specimen.locator('.specimen-tell')).toHaveCount(1);

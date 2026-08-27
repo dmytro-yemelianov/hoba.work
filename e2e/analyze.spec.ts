@@ -16,13 +16,17 @@ test.describe('analysis wizard', () => {
     await expect(page.locator('#verdict-banner')).toContainText('Diagnostic verdict');
   });
 
-  test('renders Ukrainian verdicts and probe text', async ({ page }) => {
-    await page.goto('/uk/analyze');
-    await page.locator('input[name="artifacts_selected"][value="A-001"]').check();
-    await page.locator('#tab-a').click();
-    await expect(page.locator('#verdict-banner')).toContainText('Діагностичний висновок');
-    await expect(page.locator('#probes-output')).toContainText('Перевірте папки');
-    await expect(page.locator('#probes-output')).not.toContainText('Check email spam');
+  test.describe('in Ukrainian', () => {
+    test.use({ locale: 'uk-UA' });
+
+    test('renders Ukrainian verdicts and probe text', async ({ page }) => {
+      await page.goto('/analyze');
+      await page.locator('input[name="artifacts_selected"][value="A-001"]').check();
+      await page.locator('#tab-a').click();
+      await expect(page.locator('#verdict-banner')).toContainText('Діагностичний висновок');
+      await expect(page.locator('#probes-output')).toContainText('Перевірте папки');
+      await expect(page.locator('#probes-output')).not.toContainText('Check email spam');
+    });
   });
 
   test('stop condition when nothing is selected', async ({ page }) => {

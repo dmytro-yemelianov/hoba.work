@@ -4,7 +4,7 @@ const REQUIRED_ICONS = ['/icons/icon-192.png', '/icons/icon-512.png', '/icons/ma
 
 test.describe('installability', () => {
   test('every page links the manifest, icons and theme colours', async ({ page }) => {
-    await page.goto('/uk/registry');
+    await page.goto('/registry');
     await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/manifest.webmanifest');
     await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', '/icons/apple-touch-icon.png');
     await expect(page.locator('meta[name="theme-color"][media*="dark"]')).toHaveAttribute('content', '#0a0c10');
@@ -43,15 +43,19 @@ test.describe('installability', () => {
   });
 
   test('the service worker takes control and serves a visited page offline', async ({ page, context }) => {
-    await page.goto('/uk/');
+    await page.goto('/');
     await page.waitForFunction(() => navigator.serviceWorker.controller !== null, undefined, { timeout: 15_000 });
 
-    await page.goto('/uk/registry');
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const online = await page.goto('/registry');
+    const language = online!.headers()['content-language'];
+    const heading = await page.getByRole('heading', { level: 1 }).innerText();
 
     await context.setOffline(true);
     await page.reload();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Каталог реєстру');
+    // One URL now serves both languages, so the cache is keyed by the language
+    // the edge reported. Offline must return the same one, not the other.
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
+    await expect(page.locator('html')).toHaveAttribute('lang', language);
     await context.setOffline(false);
   });
 });

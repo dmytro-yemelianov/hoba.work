@@ -26,6 +26,22 @@ The order is driven by what unblocks what, not by size.
 7. **Lens** (#9, #10 → #11) — per-actor recommendations and perspectives, then
    the selector. Depends on actors existing.
 
+## Decided
+
+**URLs (#2 → #1).** Two prerendered trees at `/_i/en/**` and `/_i/uk/**`; the
+edge worker resolves a language per request and serves the matching asset under
+one language-free URL. The alternative — both languages in one document,
+revealed in the client — was measured and rejected: it leaves the graph
+explorer structurally broken in Ukrainian, binds every `getElementById` to the
+hidden English copy, and can stamp only one `<head>`, so every Ukrainian share
+would carry an English card.
+
+Two things the spike changed about the plan. It is a latency **win**: the worker
+already made exactly one asset fetch per request, and the change deletes both
+the language 302 and the trailing-slash 308 that every in-site click paid —
+about 70 ms. And a stated `Accept-Language` now outranks geography, which is
+both more defensible and what makes the test suite independent of where it runs.
+
 ## The URL trade-off, recorded
 
 Removing the language segment gives one shareable link per page, which is the

@@ -20,10 +20,12 @@ async function toggleLayer(page: Page, type: string): Promise<void> {
 }
 
 test.describe('knowledge graph explorer', () => {
+  test.use({ locale: 'uk-UA' });
+
   test('renders on canvas and survives filtering and a theme switch', async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
-    await page.goto('/uk/graph');
+    await page.goto('/graph');
 
     const canvas = page.locator('#graph-canvas');
     await expect(canvas).toBeVisible();
@@ -58,7 +60,7 @@ test.describe('knowledge graph explorer', () => {
     await expect(tooltip).toBeVisible();
     await expect(tooltip.locator('#tip-id')).toHaveText(/^[ABMPLI]-\d{3}$/);
     await expect(tooltip.locator('#tip-title')).not.toBeEmpty();
-    await expect(tooltip).toContainText('Click for details');
+    await expect(tooltip).toContainText('Клік — деталі');
   });
 
   test('selecting a node opens details with connections that navigate the graph', async ({ page }) => {
@@ -114,10 +116,10 @@ test.describe('knowledge graph explorer', () => {
     await expect
       .poll(() => page.evaluate(() => document.fullscreenElement?.id ?? null))
       .toBe('graph-shell');
-    await expect(button).toHaveAttribute('aria-label', 'Exit fullscreen');
+    await expect(button).toHaveAttribute('aria-label', 'Вийти з повного екрана');
     await button.click();
     await expect.poll(() => page.evaluate(() => document.fullscreenElement?.id ?? null)).toBeNull();
-    await expect(button).toHaveAttribute('aria-label', 'Fullscreen');
+    await expect(button).toHaveAttribute('aria-label', 'На весь екран');
   });
 
   test('the text catalog fallback stays crawlable', async ({ page }) => {

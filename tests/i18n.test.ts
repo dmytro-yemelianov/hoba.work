@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ui } from '../site/src/i18n/ui';
-import { alternates, localizePath, stripLocale, useTranslations } from '../site/src/i18n/utils';
+import { internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../site/src/i18n/utils';
 
 describe('ui dictionary', () => {
   it('has the same keys in every locale, with no empty Ukrainian strings', () => {
@@ -31,27 +31,29 @@ describe('ui dictionary', () => {
   });
 });
 
-describe('locale path helpers', () => {
-  it('detects and strips the /uk prefix', () => {
-    expect(stripLocale('/uk')).toEqual({ lang: 'uk', path: '/' });
-    expect(stripLocale('/uk/registry')).toEqual({ lang: 'uk', path: '/registry' });
-    expect(stripLocale('/ukraine')).toEqual({ lang: 'en', path: '/ukraine' });
-    expect(stripLocale('/')).toEqual({ lang: 'en', path: '/' });
+describe('locale routing helpers', () => {
+  it('prerenders one internal tree per language', () => {
+    expect(localeStaticPaths()).toEqual([{ params: { locale: '_i/en' } }, { params: { locale: '_i/uk' } }]);
+    expect(localeFromParams({ locale: '_i/uk' })).toBe('uk');
+    expect(localeFromParams({ locale: '_i/en' })).toBe('en');
+    expect(localeFromParams({})).toBe('en');
+    expect(internalBase('uk')).toBe('_i/uk');
   });
 
-  it('localizes paths in both directions', () => {
-    expect(localizePath('/registry', 'uk')).toBe('/uk/registry');
-    expect(localizePath('/uk/mechanisms/M-001/', 'en')).toBe('/mechanisms/M-001');
-    expect(localizePath('/', 'uk')).toBe('/uk');
-    expect(localizePath('/uk/', 'en')).toBe('/');
+  it('turns a built path into the one public address', () => {
+    expect(publicPath('/_i/uk/registry/')).toBe('/registry');
+    expect(publicPath('/_i/en/mechanisms/M-001/')).toBe('/mechanisms/M-001');
+    expect(publicPath('/_i/uk/')).toBe('/');
+    expect(publicPath('/_i/en')).toBe('/');
+    // A path that is already public, and one that merely looks internal.
+    expect(publicPath('/registry')).toBe('/registry');
+    expect(publicPath('/_internal/x')).toBe('/_internal/x');
   });
 
-  it('produces hreflang alternates with an x-default', () => {
-    const alts = alternates('/uk/patterns', new URL('https://hoba.work'));
-    expect(alts).toEqual([
-      { lang: 'en', href: 'https://hoba.work/patterns' },
-      { lang: 'uk', href: 'https://hoba.work/uk/patterns' },
-      { lang: 'x-default', href: 'https://hoba.work/patterns' },
-    ]);
+  it('carries the language as a query, never as a segment, and keeps the rest', () => {
+    expect(withLang(new URL('https://hoba.work/_i/en/registry/'), 'uk')).toBe('/registry?lang=uk');
+    expect(withLang(new URL('https://hoba.work/_i/uk/registry/?type=loop'), 'en')).toBe('/registry?type=loop&lang=en');
+    expect(withLang(new URL('https://hoba.work/_i/uk/registry/?lang=uk#top'), 'en')).toBe('/registry?lang=en#top');
+    expect(withLang(new URL('https://hoba.work/_i/en/'), 'uk')).toBe('/?lang=uk');
   });
 });

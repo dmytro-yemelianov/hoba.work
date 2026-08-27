@@ -161,14 +161,19 @@ async function serverUp() {
   }
 }
 
+/** Pinned: wrangler defaults this to today and the bundled workerd lags the calendar. */
+const COMPAT_DATE = '2026-07-21';
+
 async function preview() {
   if (await serverUp()) {
     process.stdout.write(`preview already running on http://localhost:${PREVIEW_PORT}\n`);
     return;
   }
   run('pnpm', ['build']);
+  // wrangler, not astro preview: public URLs carry no language, so every HTML
+  // response comes from the worker resolving one.
   process.stdout.write(`starting preview on http://localhost:${PREVIEW_PORT}\n`);
-  run('pnpm', ['--filter', 'hoba-site', 'preview', '--port', String(PREVIEW_PORT)]);
+  run('pnpm', ['exec', 'wrangler', 'pages', 'dev', 'site/dist', '--port', String(PREVIEW_PORT), '--compatibility-date', COMPAT_DATE, '--log-level', 'warn']);
 }
 
 async function shots(paths) {
@@ -210,7 +215,7 @@ function deployPreview() {
   const branch = run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { quiet: true }).trim();
   if (branch === 'main') throw new Error('on main — preview deploys are for branches');
   run('pnpm', ['build']);
-  run('npx', ['--yes', 'wrangler@4', 'pages', 'deploy', 'site/dist', '--project-name', 'hoba-work', '--branch', branch]);
+  run('pnpm', ['exec', 'wrangler', 'pages', 'deploy', 'site/dist', '--project-name', 'hoba-work', '--branch', branch]);
 }
 
 // ---- dispatch ------------------------------------------------------------
