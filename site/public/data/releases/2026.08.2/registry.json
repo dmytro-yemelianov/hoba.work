@@ -1504,6 +1504,287 @@
       "specimens": []
     }
   ],
+  "eras": [
+    {
+      "title": "Zero rates and a same-year deduction",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-007",
+        "EVD-008",
+        "EVD-011",
+        "EVD-012"
+      ],
+      "content": "# Zero rates and a same-year deduction\n\nTwo policy facts, held for over a decade, set the price of a hire. Money cost\nalmost nothing to borrow, and a developer's salary reduced taxable income in the\nyear it was paid. Neither was about hiring, and both decided how hiring worked.\n\nThe consequence for a candidate was specific: an empty seat cost more than a\nwrong hire, so employers absorbed the risk of training. Nothing in this era\nrequired an employer to be generous for that to be true.",
+      "id": "E-001",
+      "type": "era",
+      "summary": "For over a decade money cost nothing to borrow and engineering payroll reduced taxable income in the year it was paid. Both facts were policy, both were durable, and together they made an empty seat more expensive than a wrong hire.",
+      "from": 2008,
+      "to": 2019,
+      "capital": "From 16 December 2008 the US policy rate sat at its floor for seven years, and the euro-area deposit rate was cut to zero in July 2012 and below zero in June 2014. Under section 174 as it then stood, research and experimental expenditures could be deducted in the year they were paid rather than charged to capital account. Borrowing to fund growth was close to free, and payroll spent building product reduced taxable income immediately.",
+      "hiring": "Headcount was the standard use of raised capital. A salary was a current-year deduction and the return on a hire was measured in growth rather than in margin, so teams were sized to a funded plan and the plan came before the revenue. A listing route stayed open to companies without trailing profits throughout the period, which meant payroll could run ahead of earnings without closing off the exit.",
+      "entry": "Demand for people who could do the work ran ahead of supply, so employers hired for potential and trained afterwards. A beginner's salary carried the same immediate deduction as a senior's, which made junior seats cheap to fund against the cost of leaving a seat empty. Self-teaching, a short conversion course and a first job with training attached were ordinary routes in.",
+      "ended_by": "Not by a contraction. In March 2020 the same policy floor was reimposed and fund flows stepped up by a multiple, and hiring plans were sized to capital raised rather than to current revenue.",
+      "indicators": [
+        {
+          "label": "US federal funds target range, held at its floor",
+          "figure": "0.00–0.25%",
+          "period": "16 Dec 2008 – 15 Dec 2015",
+          "evidence": "EVD-007"
+        },
+        {
+          "label": "ECB deposit facility rate, at or below zero",
+          "figure": "0.00% → −0.50%",
+          "period": "11 Jul 2012 – 26 Jul 2022",
+          "evidence": "EVD-008"
+        },
+        {
+          "label": "Research and development payroll deductible in the year it was paid",
+          "figure": "100%",
+          "period": "to tax year 2021",
+          "evidence": "EVD-012"
+        },
+        {
+          "label": "US technology listings profitable on trailing earnings",
+          "figure": "15–43% a year",
+          "period": "2011–2021",
+          "evidence": "EVD-011"
+        }
+      ],
+      "entities": [
+        "B-014",
+        "M-016"
+      ],
+      "specimens": []
+    },
+    {
+      "title": "The record funding years",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-007",
+        "EVD-009",
+        "EVD-010",
+        "EVD-011"
+      ],
+      "content": "# The record funding years\n\nThe shortest era on this page, and the one that shaped what most people still\nexpect a hiring process to look like. Funding raised in a single year roughly\ndoubled the previous record, and headcount plans were written against that\ncapital rather than against revenue.\n\nTwo things followed that are worth stating plainly, because they are the\nbaseline everything after 2022 is measured against. Roles were opened before the\nwork that would fill them existed. And the constraint an employer optimised for\nwas time-to-fill — which is the only condition under which a process gets\nshorter rather than longer.",
+      "id": "E-002",
+      "type": "era",
+      "summary": "Two years in which the policy floor returned and venture funding roughly doubled its previous record. Headcount plans were set against committed capital rather than against bookings, and the terms of entry were set on the candidate's side.",
+      "from": 2020,
+      "to": 2021,
+      "capital": "The policy rate returned to 0.00–0.25% on 16 March 2020 and stayed there for two years. US venture-backed companies raised $329.6 billion in 2021 against a previous record of $166.6 billion in 2020, and global venture investment reached $671 billion. The listing window stayed open to companies without earnings: of 121 US technology listings in 2021, 21% were profitable on trailing twelve-month earnings.",
+      "hiring": "With several years of funding raised at once, headcount was planned against committed capital rather than against bookings, and roles were opened before the work that would fill them was specified. Time-to-fill became the operative constraint, so loops were shortened, offers raised and candidate pools widened across locations. Recruiting functions were themselves staffed to the expanded plan.",
+      "entry": "Employers competed for candidates, so entry terms were set on the candidate's side: compressed interview loops, offers made on shorter evidence, and pay set by competing bids. Entry-level and career-change intake ran at volume, because the alternative was leaving funded seats empty. Holding a current job was not a precondition, and changing employer was the ordinary way to raise pay.",
+      "ended_by": "Two dated changes. The target range left the floor on 17 March 2022, and for tax years beginning after 31 December 2021 any amount paid in connection with developing software had to be capitalised and amortised over five years — so a developer's salary stopped reducing taxable income in the year it was paid.",
+      "indicators": [
+        {
+          "label": "US venture-backed companies raised",
+          "figure": "$329.6B",
+          "period": "2021, against $166.6B in 2020",
+          "evidence": "EVD-009"
+        },
+        {
+          "label": "Global venture capital invested",
+          "figure": "$671B",
+          "period": "2021",
+          "evidence": "EVD-010"
+        },
+        {
+          "label": "US policy rate, back at its floor",
+          "figure": "0.00–0.25%",
+          "period": "16 Mar 2020 – 16 Mar 2022",
+          "evidence": "EVD-007"
+        },
+        {
+          "label": "US technology listings profitable on trailing earnings",
+          "figure": "21% of 121",
+          "period": "2021",
+          "evidence": "EVD-011"
+        }
+      ],
+      "entities": [
+        "B-014",
+        "M-016",
+        "M-012",
+        "A-012"
+      ],
+      "specimens": []
+    },
+    {
+      "title": "Rates up, payroll repriced",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-013",
+        "EVD-016",
+        "EVD-017",
+        "EVD-018",
+        "EVD-023"
+      ],
+      "content": "# Rates up, payroll repriced\n\nFour things moved at once and in the same direction: the cost of money, the\nvalue of the equity, the availability of new funding, and the tax treatment of\nthe payroll itself. None of them was a judgement about anybody's work.\n\nThe change worth carrying forward is not the size of the reduction. It is what\nhappened to what a job posting *is*. When hiring narrows to replacing specific\ndepartures, a posting stops describing a plan and starts describing a person who\nrecently left — and the evidence that satisfies it narrows to the same title, at\nsimilar scale, in the same stack. That is a different document to apply to, and\nmost of the atlas is about what applying to it does.",
+      "id": "E-003",
+      "type": "era",
+      "summary": "The policy rate reached its cycle peak, technology equities repriced, every stage of the private funding chain contracted at once, and software payroll became something to amortise rather than deduct. The correction ran through announced reductions rather than through attrition.",
+      "from": 2022,
+      "to": 2023,
+      "capital": "The federal funds target range reached a cycle peak of 5.25–5.50% effective 27 July 2023 and was held there for about fourteen months, and the technology-weighted NASDAQ Composite fell 36.4% from its November 2021 close to its December 2022 low. Every stage of the private chain contracted together: US venture deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023, exit value hit a decade low of $61.5 billion, and new fund commitments fell to a six-year low of $66.9 billion. From tax years beginning after 31 December 2021, software development costs were amortised over five years for domestic research and fifteen for foreign research instead of being deducted when paid.",
+      "hiring": "Payroll was now both harder to refinance and slower to deduct, so plans were cut to the capital already in hand. Reductions were announced rather than absorbed through attrition: a tracker of publicly reported technology layoffs records 165,269 employees in 2022 and 265,660 in 2023, its highest year. Open requisitions were closed as well as filled positions eliminated, and the recruiting capacity built for the previous era was itself reduced.",
+      "entry": "Hiring narrowed to the replacement of specific departures, which meant a posted role described work someone had recently been doing. The evidence employers would accept narrowed with it: recent experience in the same title, at similar scale, in the same stack. The routes that worked when employers hired for potential produced no offers, because the seats being filled were defined by an incumbent's job description rather than by a plan.",
+      "ended_by": "The financial conditions reversed without the reduction reversing. The target range came off its peak on 18 September 2024 and the immediate domestic deduction was restored by statute in July 2025, but the headcount removed during the correction was not restored — so the reduced level carried forward as the baseline rather than as a trough.",
+      "indicators": [
+        {
+          "label": "Peak US federal funds target range",
+          "figure": "5.25–5.50%",
+          "period": "27 Jul 2023 – 18 Sep 2024",
+          "evidence": "EVD-016"
+        },
+        {
+          "label": "NASDAQ Composite, record close to cycle low",
+          "figure": "−36.4%",
+          "period": "19 Nov 2021 – 28 Dec 2022",
+          "evidence": "EVD-017"
+        },
+        {
+          "label": "US venture deal value",
+          "figure": "$348.0B → $170.6B",
+          "period": "2021 → 2023",
+          "evidence": "EVD-018"
+        },
+        {
+          "label": "US venture exit value, a decade low",
+          "figure": "$61.5B",
+          "period": "2023",
+          "evidence": "EVD-018"
+        },
+        {
+          "label": "Software payroll amortised rather than deducted",
+          "figure": "5 years domestic, 15 foreign",
+          "period": "tax years from 2022",
+          "evidence": "EVD-013"
+        },
+        {
+          "label": "Tracked technology layoffs, not a census",
+          "figure": "165,269 → 265,660",
+          "period": "2022 → 2023",
+          "evidence": "EVD-023"
+        }
+      ],
+      "entities": [
+        "M-007",
+        "M-013",
+        "A-003",
+        "A-011",
+        "P-002"
+      ],
+      "specimens": []
+    },
+    {
+      "title": "A fixed number of seats",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-015",
+        "EVD-019",
+        "EVD-020",
+        "EVD-021",
+        "EVD-022",
+        "EVD-024",
+        "EVD-025",
+        "EVD-026",
+        "EVD-027",
+        "EVD-028",
+        "EVD-029"
+      ],
+      "content": "# A fixed number of seats\n\nTwo official series say most of it, and they say it together. Gross hires in the\nUS information sector fell 28.9% between 2022 and 2025. Layoffs and discharges\nin the same official series barely moved over those years. The sector shrank\nbecause people were not hired to replace the people who left, not because people\nwere removed at an accelerating rate — which is why a tracker of announced cuts\nand the official separations series tell such different stories about the same\nperiod.\n\nThat distinction is the whole point of this page. A separations problem gets\nbetter when the announcements stop. A hiring problem does not: it gets better\nwhen seats open. Seats open when incumbents leave, and the information-sector\nquits rate is at 1.1%, roughly half what it was in June 2022.\n\nSo the arithmetic a candidate is inside: fewer openings, more applications per\nopening, and the openings that exist described at senior level. That is\ncompetition for a fixed and shrinking number of seats. It is not a statement\nabout anyone's ability, and it is not a claim that any employer behaved badly —\nit is what happens to a queue when the queue stops moving.\n\nThe registry documents what that produces at each gate. This page exists so that\nthose entries are not mistaken for a description of the candidate.",
+      "id": "E-004",
+      "type": "era",
+      "summary": "The conditions that made hiring expensive were reversed; the number of positions was not. The contraction now runs through the hiring channel rather than the separation channel, which is why it is competition for a fixed and shrinking number of seats rather than a shortage of qualified people.",
+      "from": 2024,
+      "to": 2026,
+      "capital": "The tax treatment that penalised payroll was undone: section 174A, added on 4 July 2025, allows domestic research expenditure to be deducted when paid for tax years beginning after 31 December 2024, balances capitalised under the 2022–2024 rules may be recovered in one year or over two, and smaller taxpayers may elect back to 2022. Policy rates came off their cycle peak in September 2024. The inputs that made hiring expensive were reversed. The number of positions was not.",
+      "hiring": "The contraction runs through the hiring channel, not the separation channel. Official gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025 — down 28.9% — while official layoffs and discharges in the same series were roughly flat at 451,000, 399,000, 395,000 and 447,000. Openings averaged 224,000 a month in 2022 and 121,000 in 2025, and stood at 90,000 in June 2026. Sector payrolls fell from 3,115,000 in November 2022 to 2,780,000 in July 2026.",
+      "entry": "Incumbents vacate few seats: the information-sector quits rate was 1.1% in June 2026 against 1.9% in June 2022, and the total-private hires rate 3.7% against 4.7%. Applications per open role rose from 116 in 2022 to 244 in 2025 across one platform's benchmark. Software postings ran 69.3% senior and 4.5% entry-level in the first quarter of 2026, and payroll records show employment of developers aged 22–25 down close to 20% from its late-2022 peak while older ages in the same occupation did not fall. Entry now means succeeding a specific incumbent rather than being trained into a funded seat.",
+      "ended_by": "",
+      "indicators": [
+        {
+          "label": "Immediate deduction restored for domestic research",
+          "figure": "100%",
+          "period": "tax years from 2025",
+          "evidence": "EVD-015"
+        },
+        {
+          "label": "Gross hires, US information sector",
+          "figure": "1,270,000 → 903,000",
+          "period": "2022 → 2025",
+          "evidence": "EVD-022"
+        },
+        {
+          "label": "Layoffs and discharges, US information sector — roughly flat",
+          "figure": "451,000 → 447,000",
+          "period": "2022 → 2025",
+          "evidence": "EVD-021"
+        },
+        {
+          "label": "Job openings, US information sector",
+          "figure": "224,000/mo → 90,000",
+          "period": "2022 average → Jun 2026",
+          "evidence": "EVD-020"
+        },
+        {
+          "label": "Information-sector payrolls",
+          "figure": "3,115,000 → 2,780,000",
+          "period": "Nov 2022 → Jul 2026",
+          "evidence": "EVD-019"
+        },
+        {
+          "label": "Quits rate, US information sector",
+          "figure": "1.9% → 1.1%",
+          "period": "Jun 2022 → Jun 2026",
+          "evidence": "EVD-026"
+        },
+        {
+          "label": "Hires rate, total private",
+          "figure": "4.7% → 3.7%",
+          "period": "Jun 2022 → Jun 2026",
+          "evidence": "EVD-025"
+        },
+        {
+          "label": "Applications received per open role, one platform's benchmark",
+          "figure": "116 → 244",
+          "period": "2022 → 2025",
+          "evidence": "EVD-027"
+        },
+        {
+          "label": "Software postings by level, one job board",
+          "figure": "69.3% senior, 4.5% entry",
+          "period": "Q1 2026",
+          "evidence": "EVD-028"
+        },
+        {
+          "label": "Employment of software developers aged 22–25",
+          "figure": "≈ −20%",
+          "period": "late 2022 → Sep 2025",
+          "evidence": "EVD-029"
+        },
+        {
+          "label": "Announced technology job cuts, not a census",
+          "figure": "149,023",
+          "period": "Jan–Jul 2026",
+          "evidence": "EVD-024"
+        }
+      ],
+      "entities": [
+        "M-024",
+        "M-017",
+        "M-018",
+        "M-009",
+        "M-020",
+        "B-003",
+        "P-001",
+        "P-003",
+        "L-003",
+        "A-001"
+      ],
+      "specimens": []
+    }
+  ],
   "artifacts": [
     {
       "title": "Complete silence after submission",
@@ -5980,6 +6261,236 @@
       "citation": "Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.",
       "url": "https://doi.org/10.1111/ijsa.12036",
       "period": "2013"
+    },
+    {
+      "id": "EVD-007",
+      "type": "evidence",
+      "title": "Federal funds target range and effective rate (FRED)",
+      "kind": "primary",
+      "summary": "The FOMC held the federal funds target range at 0.00–0.25% from 16 December 2008 to 15 December 2015 and again from 16 March 2020 to 16 March 2022. In every full month inside those two windows the effective federal funds rate stayed between 0.05% and 0.22%. Verified against the full daily DFEDTARU/DFEDTARL series (2,556 and 731 daily observations respectively, no other value in either window) and the monthly FEDFUNDS series.",
+      "citation": "Board of Governors of the Federal Reserve System (US), Federal Funds Target Range — Upper Limit [DFEDTARU], Lower Limit [DFEDTARL] and Federal Funds Effective Rate [FEDFUNDS], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
+      "url": "https://fred.stlouisfed.org/series/DFEDTARU",
+      "period": "2008–2022"
+    },
+    {
+      "id": "EVD-008",
+      "type": "evidence",
+      "title": "ECB deposit facility rate (FRED)",
+      "kind": "primary",
+      "summary": "The ECB deposit facility rate was cut to 0.00% on 11 July 2012, turned negative at −0.10% on 11 June 2014, reached −0.50% on 18 September 2019 and returned to 0.00% on 27 July 2022. Every one of the 3,668 daily observations between 11 July 2012 and 26 July 2022 is at or below zero.",
+      "citation": "European Central Bank, ECB Deposit Facility Rate for Euro Area [ECBDFR], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
+      "url": "https://fred.stlouisfed.org/series/ECBDFR",
+      "period": "2012–2022"
+    },
+    {
+      "id": "EVD-009",
+      "type": "evidence",
+      "title": "PitchBook-NVCA Venture Monitor, Q4 2021",
+      "kind": "research",
+      "summary": "US venture-backed companies raised $329.6 billion in 2021, against a previous record of $166.6 billion in 2020. The report states the figures verbatim; they are data-provider estimates and are revised in later vintages.",
+      "citation": "PitchBook Data and National Venture Capital Association, Q4 2021 PitchBook-NVCA Venture Monitor, 13 January 2022.",
+      "url": "https://nvca.org/wp-content/uploads/2022/01/Q4_2021_PitchBook_NVCA_Venture_Monitor.pdf",
+      "period": "2020–2021"
+    },
+    {
+      "id": "EVD-010",
+      "type": "evidence",
+      "title": "KPMG Venture Pulse, Q4 2021",
+      "kind": "research",
+      "summary": "Global venture capital investment totalled $671 billion across 2021, the highest annual figure in the series, of which $171.4 billion was invested in Q4 2021 across 8,710 deals. Underlying data provided by PitchBook as of 31 December 2021.",
+      "citation": "KPMG Private Enterprise, Venture Pulse Q4 2021: Global analysis of venture funding, 19 January 2022, p. 7.",
+      "url": "https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2022/01/venture-pulse-q4-2021.pdf",
+      "period": "2021"
+    },
+    {
+      "id": "EVD-011",
+      "type": "evidence",
+      "title": "Technology IPO profitability, 1980–2025 (Ritter)",
+      "kind": "research",
+      "summary": "Of 121 US technology listings in 2021, 21% were profitable on trailing- twelve-month earnings. The profitable share ranged from 15% to 43% in every year from 2011 to 2021, so a listing route remained open to companies without trailing profits throughout the period.",
+      "citation": "Ritter, Jay R. (2026). Initial Public Offerings: Technology Stock IPOs, Table 4b — Technology and Life Science Company IPOs, 1980–2025. University of Florida.",
+      "url": "https://web.archive.org/web/20260731141233/https://site.warrington.ufl.edu/ritter/files/IPOs-Tech.pdf",
+      "period": "2011–2021"
+    },
+    {
+      "id": "EVD-012",
+      "type": "evidence",
+      "title": "26 U.S.C. §174 as it stood before 2022",
+      "kind": "primary",
+      "summary": "Under section 174(a)(1) as it stood before the Tax Cuts and Jobs Act took effect, a taxpayer could treat research or experimental expenditures paid or incurred in connection with a trade or business as expenses not chargeable to capital account, deductible in the year paid or incurred. Payroll spent on building product reduced taxable income in the same year it was spent.",
+      "citation": "26 U.S.C. §174, United States Code, 2017 Edition. U.S. Government Publishing Office.",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2017-title26/html/USCODE-2017-title26-subtitleA-chap1-subchapB-partVI-sec174.htm",
+      "period": "to 2021"
+    },
+    {
+      "id": "EVD-013",
+      "type": "evidence",
+      "title": "26 U.S.C. §174 after the 2017 amendment",
+      "kind": "primary",
+      "summary": "Section 13206(a) of Public Law 115-97 rewrote section 174 to deny any current deduction for specified research or experimental expenditures and to require them to be charged to capital account and amortised ratably over five years beginning with the midpoint of the taxable year in which they are paid or incurred, effective for amounts paid or incurred in tax years beginning after 31 December 2021. Subsection (c)(3) treats any amount paid or incurred in connection with the development of software as such an expenditure, so roughly 10% of a developer's salary was deductible in the year it was paid.",
+      "citation": "26 U.S.C. §174, United States Code, 2023 Edition. U.S. Government Publishing Office. Amendment: Pub. L. 115-97 §13206(a).",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapB-partVI-sec174.htm",
+      "period": "2022–2024"
+    },
+    {
+      "id": "EVD-014",
+      "type": "evidence",
+      "title": "Rev. Proc. 2025-28 (IRS)",
+      "kind": "primary",
+      "summary": "IRS guidance on the 2025 restoration: foreign research or experimental expenditures keep the 15-year amortisation period; balances capitalised under the 2022–2024 rules may be recovered in full in the first tax year beginning after 31 December 2024 or ratably over two years; and a taxpayer meeting the section 448(c) gross-receipts test — $31,000,000 average annual gross receipts over the three prior tax years for a year beginning in 2025 — may elect the new treatment retroactively to tax years beginning after 31 December 2021, by 6 July 2026.",
+      "citation": "Internal Revenue Service, Rev. Proc. 2025-28, Internal Revenue Bulletin 2025-38, sections 2.02, 2.03(1), 2.06 and 3.02(1).",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-25-28.pdf",
+      "period": "2025–2026"
+    },
+    {
+      "id": "EVD-015",
+      "type": "evidence",
+      "title": "26 U.S.C. §174A — domestic research expenditures",
+      "kind": "primary",
+      "summary": "Section 70302(a) of Public Law 119-21, enacted 4 July 2025, added section 174A, which allows a deduction for domestic research or experimental expenditures paid or incurred during the taxable year notwithstanding section 263, with an election to capitalise and amortise them over not less than 60 months instead. Effective for amounts paid or incurred in tax years beginning after 31 December 2024.",
+      "citation": "26 U.S.C. §174A, Domestic research or experimental expenditures. Added by Pub. L. 119-21 §70302(a), 4 July 2025.",
+      "url": "https://www.law.cornell.edu/uscode/text/26/174A",
+      "period": "2025–"
+    },
+    {
+      "id": "EVD-016",
+      "type": "evidence",
+      "title": "FOMC policy rate decisions (Open Market Operations)",
+      "kind": "primary",
+      "summary": "The FOMC raised the federal funds target range to 5.25–5.50% effective 27 July 2023, the peak of the tightening cycle, and held it there until the 25 basis point reduction of 18 September 2024 — roughly fourteen months.",
+      "citation": "Board of Governors of the Federal Reserve System (US), Open Market Operations, policy tools archive.",
+      "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm",
+      "period": "2022–2024"
+    },
+    {
+      "id": "EVD-017",
+      "type": "evidence",
+      "title": "NASDAQ Composite Index (FRED)",
+      "kind": "primary",
+      "summary": "The NASDAQ Composite fell 36.4% from its record close of 16,057.44 on 19 November 2021 to its cycle low close of 10,213.29 on 28 December 2022.",
+      "citation": "NASDAQ OMX Group, NASDAQ Composite Index [NASDAQCOM], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
+      "url": "https://fred.stlouisfed.org/series/NASDAQCOM",
+      "period": "2021–2022"
+    },
+    {
+      "id": "EVD-018",
+      "type": "evidence",
+      "title": "PitchBook-NVCA Venture Monitor, Q4 2023",
+      "kind": "research",
+      "summary": "Every stage of the US private funding chain contracted at once. Deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value reached a decade low of $61.5 billion across an estimated 1,129 events. New fund commitments fell to a six-year low of $66.9 billion across 474 funds, against $169.2 billion in 2021 and $172.8 billion in 2022.",
+      "citation": "PitchBook Data and National Venture Capital Association, Q4 2023 PitchBook-NVCA Venture Monitor, January 2024.",
+      "url": "https://nvca.org/wp-content/uploads/2024/01/Q4-2023-PitchBook-NVCA-Venture-Monitor.pdf",
+      "period": "2021–2023"
+    },
+    {
+      "id": "EVD-019",
+      "type": "evidence",
+      "title": "US information-sector employment (BLS CES)",
+      "kind": "primary",
+      "summary": "US payroll employment in the information sector (NAICS 51 — software publishing, data processing and telecommunications, but not computer systems design) fell from a November 2022 peak of 3,115,000 to 2,780,000 in July 2026, a decline of 335,000 or 10.8%. An official establishment survey, not a layoff tracker.",
+      "citation": "US Bureau of Labor Statistics, Current Employment Statistics, series CES5000000001 (All employees, thousands, information, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/CES5000000001",
+      "period": "2022–2026"
+    },
+    {
+      "id": "EVD-020",
+      "type": "evidence",
+      "title": "Job openings, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "Job openings in the US information sector averaged 224,000 a month in 2022 and 121,000 a month in 2025, and stood at 90,000 in June 2026, against an April 2022 peak of 274,000.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000JOL (Job openings, information, total US, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTS510000000000000JOL",
+      "period": "2022–2026"
+    },
+    {
+      "id": "EVD-021",
+      "type": "evidence",
+      "title": "Layoffs and discharges, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "Official separations in the US information sector were 451,000 in 2022, 399,000 in 2023, 395,000 in 2024 and 447,000 in 2025 — roughly flat across the period, and without the year-to-year collapse reported by tracked-layoff counts over the same span.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTU510000000000000LDL",
+      "period": "2022–2025"
+    },
+    {
+      "id": "EVD-022",
+      "type": "evidence",
+      "title": "Hires, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "Gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025, a decline of 367,000 or 28.9%. The measure counts hiring flows, not layoff announcements.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000HIL (Hires, information, total US, not seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTU510000000000000HIL",
+      "period": "2022–2025"
+    },
+    {
+      "id": "EVD-023",
+      "type": "evidence",
+      "title": "Tracked technology layoffs (Layoffs.fyi)",
+      "kind": "survey",
+      "summary": "A privately maintained tracker that compiles publicly reported layoff events at technology and startup companies worldwide, revised as new reports arrive. It is not a statistical census. It records 165,269 employees in 2022, 265,660 in 2023, 152,922 in 2024, 122,606 in 2025 and 127,180 between 1 January and 24 August 2026.",
+      "citation": "Layoffs.fyi — Tech and Startup Layoff Tracker, per-year pages, retrieved 27 August 2026.",
+      "url": "https://layoffs.fyi/2026-layoffs/",
+      "period": "2022–2026"
+    },
+    {
+      "id": "EVD-024",
+      "type": "evidence",
+      "title": "Announced job cuts, technology sector (Challenger, Gray & Christmas)",
+      "kind": "survey",
+      "summary": "A count of announcements of planned job cuts by US-based employers rather than of completed separations; not an official statistic. It reports 133,988 technology-sector cuts announced in 2024, 154,445 in 2025 and 149,023 between January and July 2026 — 67% above the 89,251 announced in the same months of 2025.",
+      "citation": "Challenger, Gray & Christmas, Job Cut Announcement Report, July 2026.",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/08/Challenger-Report-July-2026.pdf",
+      "period": "2024–2026"
+    },
+    {
+      "id": "EVD-025",
+      "type": "evidence",
+      "title": "Hires rate, total private (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "The seasonally adjusted hires rate for total private employment was 3.7% in June 2026 (preliminary), a full percentage point below its June 2022 level of 4.7%: fewer positions per hundred jobs are being filled each month.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS100000000000000HIR (Hires rate, total private, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTS100000000000000HIR",
+      "period": "2022–2026"
+    },
+    {
+      "id": "EVD-026",
+      "type": "evidence",
+      "title": "Quits rate, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "The seasonally adjusted quits rate in the US information sector was 1.1% in June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being vacated by the people already in them.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000QUR (Quits rate, information, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTS510000000000000QUR",
+      "period": "2022–2026"
+    },
+    {
+      "id": "EVD-027",
+      "type": "evidence",
+      "title": "Applications per opening (Greenhouse hiring benchmarks)",
+      "kind": "research",
+      "summary": "Applications received per open role across the reporting platform's customer base rose from 116 in 2022 to 244 in 2025, an increase of 111%. The stated dataset covers over 6,000 companies and over 640 million applications, so it measures one platform's customers rather than the labour market.",
+      "citation": "Greenhouse, The Hire Standard: hiring benchmarks report, North America, March 2026.",
+      "url": "https://www.greenhouse.com/recruiting-benchmarks",
+      "period": "2022–2025"
+    },
+    {
+      "id": "EVD-028",
+      "type": "evidence",
+      "title": "Seniority mix of software postings (Indeed Hiring Lab)",
+      "kind": "research",
+      "summary": "Senior-level roles accounted for 69.3% of software development postings and entry-level roles for 4.5% in the first quarter of 2026, measured on one job board's postings rather than on all vacancies.",
+      "citation": "Indeed Hiring Lab, The Labor Market Is Tilting Toward Seniority, 23 July 2026.",
+      "url": "https://hiringlab.indeed.com/2026/07/23/the-labor-market-is-tilting-toward-seniority/",
+      "period": "2026"
+    },
+    {
+      "id": "EVD-029",
+      "type": "evidence",
+      "title": "Employment of young software developers (Stanford Digital Economy Lab)",
+      "kind": "research",
+      "summary": "In payroll records covering 3.5–5 million workers a month, employment of software developers aged 22–25 fell by close to 20% between its late-2022 peak and September 2025, while employment for older workers in the same occupation did not fall. This is the paper's raw descriptive series for one occupation; its headline regression result — a 16% relative decline for ages 22–25 in AI-exposed occupations, controlling for firm-level shocks — is a different figure and should not be conflated with it.",
+      "citation": "Brynjolfsson, E., Chandar, B., & Chen, R. (2025). Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence. Stanford Digital Economy Lab, 13 November 2025.",
+      "url": "https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf",
+      "period": "2022–2025"
     }
   ]
 }

@@ -1,0 +1,455 @@
+- generic [active] [ref=f38e1]:
+  - banner [ref=f38e2]:
+    - link "Skip to Content" [ref=f38e3] [cursor=pointer]:
+      - /url: "#startcontent"
+    - generic [ref=f38e6]:
+      - generic [ref=f38e7]:
+        - img "U.S. flag" [ref=f38e8]
+        - paragraph [ref=f38e9]:
+          - text: An official website of the United States government
+          - button "Here is how you know" [ref=f38e10] [cursor=pointer]
+      - link [ref=f38e11] [cursor=pointer]:
+        - /url: https://www.dol.gov/
+        - img "Department of Labor Logo" [ref=f38e12]
+        - text: United States Department of Labor
+    - generic [ref=f38e16]:
+      - link "U.S. Bureau of Labor Statistics" [ref=f38e18] [cursor=pointer]:
+        - /url: /home.htm
+      - generic [ref=f38e19]:
+        - generic [ref=f38e20]:
+          - link "Release Calendar" [ref=f38e21] [cursor=pointer]:
+            - /url: /schedule/news_release/
+          - text: "|"
+          - link "Subscribe to BLS E-mail Updates" [ref=f38e22] [cursor=pointer]:
+            - /url: javascript:window.open('https://public.govdelivery.com/accounts/USDOLBLS/subscriber/new ','Popup','width=800,height=500,toolbar=no,scrollbars=yes,resizable=yes'); void('');
+            - text: Subscribe
+        - generic [ref=f38e24]:
+          - button "Search button" [ref=f38e25] [cursor=pointer]
+          - textbox "Search:" [ref=f38e26]: Search BLS.gov
+  - navigation "top-level navigation menu" [ref=f38e31]:
+    - list [ref=f38e33]:
+      - listitem [ref=f38e34]:
+        - button "Home" [ref=f38e35] [cursor=pointer]
+        - text: ">> >> >>"
+      - listitem [ref=f38e36]:
+        - button "Subjects" [ref=f38e37] [cursor=pointer]
+        - text: ">> >> >> >> >> >> >> >> >> >>"
+      - listitem [ref=f38e38]:
+        - button "Data Tools" [ref=f38e39] [cursor=pointer]
+        - text: ">> >> >> >>"
+      - listitem [ref=f38e40]:
+        - button "Publications" [ref=f38e41] [cursor=pointer]
+        - text: ">>"
+      - listitem [ref=f38e42]:
+        - button "Economic Releases" [ref=f38e43] [cursor=pointer]
+        - text: ">> >> >> >> >> >> >> >> >> >>"
+      - listitem [ref=f38e44]:
+        - button "Classroom" [ref=f38e45] [cursor=pointer]
+        - text: ">>"
+      - listitem [ref=f38e46]:
+        - button "Beta" [ref=f38e47] [cursor=pointer]
+        - text: ">>"
+  - main [ref=f38e48]:
+    - heading "Databases, Tables & Calculators by Subject" [level=1] [ref=f38e50]
+    - generic [ref=f38e53]:
+      - generic [ref=f38e54]:
+        - link [ref=f38e55] [cursor=pointer]:
+          - /url: /help/notice.htm
+          - img "Link to Special Notice" [ref=f38e56]
+        - link [ref=f38e57] [cursor=pointer]:
+          - /url: /help/notice.htm
+          - strong [ref=f38e58]: Special Notices
+        - emphasis [ref=f38e59]: 1/14/2026
+      - generic [ref=f38e61]:
+        - generic [ref=f38e62]:
+          - generic [ref=f38e63]: "Change Output Options:"
+          - generic [ref=f38e64]:
+            - generic [ref=f38e65]:
+              - text: "From:"
+              - combobox "From:" [ref=f38e66]:
+                - option "2000"
+                - option "2001"
+                - option "2002"
+                - option "2003"
+                - option "2004"
+                - option "2005"
+                - option "2006"
+                - option "2007"
+                - option "2008"
+                - option "2009"
+                - option "2010"
+                - option "2011"
+                - option "2012"
+                - option "2013"
+                - option "2014"
+                - option "2015"
+                - option "2016" [selected]
+                - option "2017"
+                - option "2018"
+                - option "2019"
+                - option "2020"
+                - option "2021"
+                - option "2022"
+                - option "2023"
+                - option "2024"
+                - option "2025"
+                - option "2026"
+              - text: "To:"
+              - combobox "To:" [ref=f38e67]:
+                - option "2000"
+                - option "2001"
+                - option "2002"
+                - option "2003"
+                - option "2004"
+                - option "2005"
+                - option "2006"
+                - option "2007"
+                - option "2008"
+                - option "2009"
+                - option "2010"
+                - option "2011"
+                - option "2012"
+                - option "2013"
+                - option "2014"
+                - option "2015"
+                - option "2016"
+                - option "2017"
+                - option "2018"
+                - option "2019"
+                - option "2020"
+                - option "2021"
+                - option "2022"
+                - option "2023"
+                - option "2024"
+                - option "2025"
+                - option "2026" [selected]
+            - button "Retrieve Data Now!" [ref=f38e68] [cursor=pointer]
+        - generic [ref=f38e70]:
+          - generic [ref=f38e72]:
+            - checkbox "include graphs" [checked] [ref=f38e73]
+            - text: include graphs
+            - checkbox "include annual averages" [ref=f38e74]
+            - text: include annual averages
+          - button "More Formatting Options" [ref=f38e76] [cursor=pointer]
+      - paragraph [ref=f38e77]: "Data extracted on: August 27, 2026 (3:13:37 AM)"
+      - heading "Job Openings and Labor Turnover Survey" [level=4] [ref=f38e78]
+      - table [ref=f38e79]:
+        - rowgroup [ref=f38e80]:
+          - row [ref=f38e81]:
+            - rowheader "Series Id:" [ref=f38e82]
+            - cell "JTS510000000000000JOL" [ref=f38e83]
+          - row [ref=f38e84]:
+            - cell "Seasonally adjusted" [ref=f38e85]
+          - row [ref=f38e86]:
+            - rowheader "Industry:" [ref=f38e87]
+            - cell "Information" [ref=f38e88]
+          - row [ref=f38e89]:
+            - rowheader "State/Region:" [ref=f38e90]
+            - cell "Total US" [ref=f38e91]
+          - row [ref=f38e92]:
+            - rowheader "Area:" [ref=f38e93]
+            - cell "All areas" [ref=f38e94]
+          - row [ref=f38e95]:
+            - rowheader "Data Element:" [ref=f38e96]
+            - cell "Job openings" [ref=f38e97]
+          - row [ref=f38e98]:
+            - rowheader "Size Class:" [ref=f38e99]
+            - cell "All size classes" [ref=f38e100]
+          - row [ref=f38e101]:
+            - rowheader "Rate/Level:" [ref=f38e102]
+            - cell "Level - In Thousands" [ref=f38e103]
+      - img "Graph of JTS510000000000000JOL" [ref=f38e104]
+      - generic [ref=f38e106]:
+        - text: "Download:"
+        - button "Download as an Excel File" [ref=f38e107] [cursor=pointer]
+      - table [ref=f38e108]:
+        - rowgroup [ref=f38e109]:
+          - row [ref=f38e110]:
+            - columnheader "Year" [ref=f38e111]
+            - columnheader "Jan" [ref=f38e112]
+            - columnheader "Feb" [ref=f38e113]
+            - columnheader "Mar" [ref=f38e114]
+            - columnheader "Apr" [ref=f38e115]
+            - columnheader "May" [ref=f38e116]
+            - columnheader "Jun" [ref=f38e117]
+            - columnheader "Jul" [ref=f38e118]
+            - columnheader "Aug" [ref=f38e119]
+            - columnheader "Sep" [ref=f38e120]
+            - columnheader "Oct" [ref=f38e121]
+            - columnheader "Nov" [ref=f38e122]
+            - columnheader "Dec" [ref=f38e123]
+        - rowgroup [ref=f38e124]:
+          - row [ref=f38e125]:
+            - rowheader "2016" [ref=f38e126]
+            - cell "111" [ref=f38e127]
+            - cell "94" [ref=f38e128]
+            - cell "89" [ref=f38e129]
+            - cell "84" [ref=f38e130]
+            - cell "114" [ref=f38e131]
+            - cell "90" [ref=f38e132]
+            - cell "80" [ref=f38e133]
+            - cell "79" [ref=f38e134]
+            - cell "102" [ref=f38e135]
+            - cell "85" [ref=f38e136]
+            - cell "82" [ref=f38e137]
+            - cell "81" [ref=f38e138]
+          - row [ref=f38e139]:
+            - rowheader "2017" [ref=f38e140]
+            - cell "88" [ref=f38e141]
+            - cell "70" [ref=f38e142]
+            - cell "86" [ref=f38e143]
+            - cell "102" [ref=f38e144]
+            - cell "110" [ref=f38e145]
+            - cell "112" [ref=f38e146]
+            - cell "98" [ref=f38e147]
+            - cell "120" [ref=f38e148]
+            - cell "106" [ref=f38e149]
+            - cell "91" [ref=f38e150]
+            - cell "97" [ref=f38e151]
+            - cell "125" [ref=f38e152]
+          - row [ref=f38e153]:
+            - rowheader "2018" [ref=f38e154]
+            - cell "128" [ref=f38e155]
+            - cell "129" [ref=f38e156]
+            - cell "130" [ref=f38e157]
+            - cell "177" [ref=f38e158]
+            - cell "128" [ref=f38e159]
+            - cell "133" [ref=f38e160]
+            - cell "148" [ref=f38e161]
+            - cell "146" [ref=f38e162]
+            - cell "121" [ref=f38e163]
+            - cell "143" [ref=f38e164]
+            - cell "135" [ref=f38e165]
+            - cell "130" [ref=f38e166]
+          - row [ref=f38e167]:
+            - rowheader "2019" [ref=f38e168]
+            - cell "143" [ref=f38e169]
+            - cell "138" [ref=f38e170]
+            - cell "152" [ref=f38e171]
+            - cell "114" [ref=f38e172]
+            - cell "129" [ref=f38e173]
+            - cell "130" [ref=f38e174]
+            - cell "151" [ref=f38e175]
+            - cell "128" [ref=f38e176]
+            - cell "178" [ref=f38e177]
+            - cell "148" [ref=f38e178]
+            - cell "143" [ref=f38e179]
+            - cell "141" [ref=f38e180]
+          - row [ref=f38e181]:
+            - rowheader "2020" [ref=f38e182]
+            - cell "130" [ref=f38e183]
+            - cell "138" [ref=f38e184]
+            - cell "121" [ref=f38e185]
+            - cell "118" [ref=f38e186]
+            - cell "93" [ref=f38e187]
+            - cell "106" [ref=f38e188]
+            - cell "79" [ref=f38e189]
+            - cell "86" [ref=f38e190]
+            - cell "110" [ref=f38e191]
+            - cell "126" [ref=f38e192]
+            - cell "109" [ref=f38e193]
+            - cell "123" [ref=f38e194]
+          - row [ref=f38e195]:
+            - rowheader "2021" [ref=f38e196]
+            - cell "170" [ref=f38e197]
+            - cell "109" [ref=f38e198]
+            - cell "107" [ref=f38e199]
+            - cell "128" [ref=f38e200]
+            - cell "151" [ref=f38e201]
+            - cell "165" [ref=f38e202]
+            - cell "216" [ref=f38e203]
+            - cell "216" [ref=f38e204]
+            - cell "201" [ref=f38e205]
+            - cell "208" [ref=f38e206]
+            - cell "216" [ref=f38e207]
+            - cell "249" [ref=f38e208]
+          - row [ref=f38e209]:
+            - rowheader "2022" [ref=f38e210]
+            - cell "238" [ref=f38e211]
+            - cell "242" [ref=f38e212]
+            - cell "262" [ref=f38e213]
+            - cell "274" [ref=f38e214]
+            - cell "249" [ref=f38e215]
+            - cell "254" [ref=f38e216]
+            - cell "231" [ref=f38e217]
+            - cell "207" [ref=f38e218]
+            - cell "216" [ref=f38e219]
+            - cell "215" [ref=f38e220]
+            - cell "223" [ref=f38e221]
+            - cell "80" [ref=f38e222]
+          - row [ref=f38e223]:
+            - rowheader "2023" [ref=f38e224]
+            - cell "101" [ref=f38e225]
+            - cell "144" [ref=f38e226]
+            - cell "145" [ref=f38e227]
+            - cell "146" [ref=f38e228]
+            - cell "167" [ref=f38e229]
+            - cell "156" [ref=f38e230]
+            - cell "148" [ref=f38e231]
+            - cell "155" [ref=f38e232]
+            - cell "97" [ref=f38e233]
+            - cell "101" [ref=f38e234]
+            - cell "150" [ref=f38e235]
+            - cell "141" [ref=f38e236]
+          - row [ref=f38e237]:
+            - rowheader "2024" [ref=f38e238]
+            - cell "160" [ref=f38e239]
+            - cell "129" [ref=f38e240]
+            - cell "144" [ref=f38e241]
+            - cell "87" [ref=f38e242]
+            - cell "120" [ref=f38e243]
+            - cell "108" [ref=f38e244]
+            - cell "105" [ref=f38e245]
+            - cell "105" [ref=f38e246]
+            - cell "114" [ref=f38e247]
+            - cell "178" [ref=f38e248]
+            - cell "119" [ref=f38e249]
+            - cell "105" [ref=f38e250]
+          - row [ref=f38e251]:
+            - rowheader "2025" [ref=f38e252]
+            - cell "101" [ref=f38e253]
+            - cell "125" [ref=f38e254]
+            - cell "115" [ref=f38e255]
+            - cell "134" [ref=f38e256]
+            - cell "109" [ref=f38e257]
+            - cell "123" [ref=f38e258]
+            - cell "157" [ref=f38e259]
+            - cell "141" [ref=f38e260]
+            - cell "119" [ref=f38e261]
+            - cell "117" [ref=f38e262]
+            - cell "88" [ref=f38e263]
+            - cell "112" [ref=f38e264]
+          - row [ref=f38e265]:
+            - rowheader "2026" [ref=f38e266]
+            - cell "100" [ref=f38e267]
+            - cell "80" [ref=f38e268]
+            - cell "83" [ref=f38e269]
+            - cell "82" [ref=f38e270]
+            - cell "72" [ref=f38e271]
+            - cell "90(P)" [ref=f38e272]
+            - cell [ref=f38e273]
+            - cell [ref=f38e274]
+            - cell [ref=f38e275]
+            - cell [ref=f38e276]
+            - cell [ref=f38e277]
+            - cell [ref=f38e278]
+        - rowgroup [ref=f38e279]:
+          - row [ref=f38e280]:
+            - 'cell "P : preliminary" [ref=f38e281]'
+  - contentinfo [ref=f38e282]:
+    - list [ref=f38e284]:
+      - listitem [ref=f38e285]:
+        - link "Home" [ref=f38e286] [cursor=pointer]:
+          - /url: https://www.bls.gov/
+      - listitem [ref=f38e287]:
+        - link "Subjects" [ref=f38e288] [cursor=pointer]:
+          - /url: /bls/proghome.htm
+      - listitem [ref=f38e289]:
+        - link "Data Tools" [ref=f38e290] [cursor=pointer]:
+          - /url: /data/
+      - listitem [ref=f38e291]:
+        - link "Publications" [ref=f38e292] [cursor=pointer]:
+          - /url: /opub/
+      - listitem [ref=f38e293]:
+        - link "Economic Releases" [ref=f38e294] [cursor=pointer]:
+          - /url: /bls/newsrels.htm
+      - listitem [ref=f38e295]:
+        - link "Classroom" [ref=f38e296] [cursor=pointer]:
+          - /url: /k12/
+      - listitem [ref=f38e297]:
+        - link "Beta" [ref=f38e298] [cursor=pointer]:
+          - /url: /beta/
+    - link "Help improve this site" [ref=f38e299] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=f38e303]:
+      - generic [ref=f38e305]:
+        - img "U.S. Bureau of Labor Statistics Logo" [ref=f38e307]
+        - generic [ref=f38e308]:
+          - generic [ref=f38e309]:
+            - strong [ref=f38e310]: U.S. Bureau of Labor Statistics
+            - generic [ref=f38e311]: Office of Publications and Special Studies
+            - generic [ref=f38e312]: Suitland Federal Center
+            - generic [ref=f38e313]: Floor 7
+            - generic [ref=f38e314]: 4600 Silver Hill Road
+            - generic [ref=f38e315]: Washington, DC 20212-0002
+          - generic [ref=f38e316]:
+            - 'link "Telephone: 202-691-5200" [ref=f38e317] [cursor=pointer]':
+              - /url: tel:12026915200
+              - generic [ref=f38e318]: "Telephone:"
+              - generic [ref=f38e319]: 202-691-5200
+            - 'link "Telecommunications Relay Service: 7-1-1 If you are deaf, hard of hearing, or have a speech disability, please dial 7-1-1 to access telecommunications relay services" [ref=f38e320] [cursor=pointer]':
+              - /url: tel:711
+              - generic [ref=f38e321]: "Telecommunications Relay Service:"
+              - generic [ref=f38e322]: 7-1-1
+            - link "www.bls.gov" [ref=f38e323] [cursor=pointer]:
+              - /url: /home.htm
+            - link "Contact Us" [ref=f38e324] [cursor=pointer]:
+              - /url: /forms/opb.htm
+      - generic [ref=f38e325]:
+        - generic [ref=f38e326]:
+          - strong [ref=f38e327]: resources
+          - text: "[+]"
+          - list [ref=f38e329]:
+            - listitem [ref=f38e330]:
+              - link "Inspector General (OIG) Office of Inspector General (OIG) website" [ref=f38e331] [cursor=pointer]:
+                - /url: https://www.oig.dol.gov/
+                - text: Inspector General (OIG)
+            - listitem [ref=f38e332]:
+              - link "Budget and Performance" [ref=f38e333] [cursor=pointer]:
+                - /url: /bls/bls_budget_and_performance.htm
+            - listitem [ref=f38e334]:
+              - link "Department of Labor Grants" [ref=f38e335] [cursor=pointer]:
+                - /url: https://www.dol.gov/grants
+            - listitem [ref=f38e336]:
+              - link "No Fear Act" [ref=f38e337] [cursor=pointer]:
+                - /url: /bls/no_fear_act.htm
+            - listitem [ref=f38e338]:
+              - link "USA.gov website" [ref=f38e339] [cursor=pointer]:
+                - /url: https://www.usa.gov/
+                - text: USA.gov
+        - generic [ref=f38e340]:
+          - strong [ref=f38e341]: about the site
+          - text: "[+]"
+          - list [ref=f38e343]:
+            - listitem [ref=f38e344]:
+              - link "Sitemap" [ref=f38e345] [cursor=pointer]:
+                - /url: /bls/sitemap.htm
+            - listitem [ref=f38e346]:
+              - link "Freedom of Information Act" [ref=f38e347] [cursor=pointer]:
+                - /url: /bls/blsfoia.htm
+            - listitem [ref=f38e348]:
+              - link "Privacy and Security Statement" [ref=f38e349] [cursor=pointer]:
+                - /url: /bls/pss.htm
+            - listitem [ref=f38e350]:
+              - link "Disclaimers" [ref=f38e351] [cursor=pointer]:
+                - /url: /bls/disclaimer.htm
+            - listitem [ref=f38e352]:
+              - link "Linking and Copyright Information" [ref=f38e353] [cursor=pointer]:
+                - /url: /bls/linksite.htm
+                - text: Linking and Copyright Info
+            - listitem [ref=f38e354]:
+              - link "Important Website Notices" [ref=f38e355] [cursor=pointer]:
+                - /url: /bls/website-policies.htm
+            - listitem [ref=f38e356]:
+              - link "Help and Tutorials" [ref=f38e357] [cursor=pointer]:
+                - /url: /help/
+            - listitem [ref=f38e358]:
+              - link "Accessibility Statement" [ref=f38e359] [cursor=pointer]:
+                - /url: /bls/ada.htm
+    - generic [ref=f38e362]:
+      - text: Connect With BLS
+      - generic [ref=f38e363]:
+        - link "Bluesky" [ref=f38e364] [cursor=pointer]:
+          - /url: https://bsky.app/profile/usbls.bsky.social
+        - link "Instagram" [ref=f38e368] [cursor=pointer]:
+          - /url: https://www.instagram.com/usbls_gov/
+        - link "LinkedIn" [ref=f38e372] [cursor=pointer]:
+          - /url: https://www.linkedin.com/company/bureau-of-labor-statistics/
+        - link "Threads" [ref=f38e376] [cursor=pointer]:
+          - /url: https://www.threads.net/@usbls_gov
+        - link "Visit BLS on X" [ref=f38e380] [cursor=pointer]:
+          - /url: https://x.com/BLS_gov
+        - link "Youtube" [ref=f38e384] [cursor=pointer]:
+          - /url: https://www.youtube.com/channel/UCijn3WBpHtx4AvSya7NER9Q
+        - link "Email" [ref=f38e388] [cursor=pointer]:
+          - /url: javascript:window.open('https://public.govdelivery.com/accounts/USDOLBLS/subscriber/new ','Popup','width=800,height=500,toolbar=no,scrollbars=yes,resizable=yes'); void('');

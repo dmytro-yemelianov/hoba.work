@@ -19,7 +19,7 @@ const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-discovery: registry root not found');
 const PUBLIC = path.join(root, 'site', 'public');
 
-const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/data', '/methodology', '/developers', '/contribute', '/about'];
+const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/data', '/methodology', '/developers', '/contribute', '/about'];
 
 const entityRoutes = (bundle: RegistryBundle): string[] => [
   ...bundle.artifacts.map((a) => `/artifacts/${a.id}`),
@@ -82,6 +82,7 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     `- **Patterns** (\`P-*\`, ${bundle.patterns.length}) — named motifs where several defensible decisions combine into a bind.`,
     `- **Loops** (\`L-*\`, ${bundle.loops.length}) — reinforcing cycles, detected as strongly connected components.`,
     `- **Interventions** (\`I-*\`, ${bundle.interventions.length}) — concrete changes, each attributed to the actor who can make it.`,
+    `- **Eras** (\`E-*\`, ${bundle.eras.length}) — periods of the hiring economy, told as where the money came from and how a person got in.`,
     `- **Evidence** (\`EVD-*\`, ${bundle.evidence.length}) — the published sources behind the claims.`,
     '',
     `The graph has ${graph.nodeMap.size - bundle.evidence.length} nodes and ${graph.edges.length} edges over the relations \`operates_at\`, \`emits\`, \`amplifies\`, \`masks\`, \`precedes\`, \`instantiates\`, \`targets\`, \`mitigates\`.`,
@@ -165,6 +166,17 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     `- Actor: ${i.actor} · Scope: ${i.scope} · Cost: ${i.cost}`,
     `- Targets: ${i.targets.join(', ')}`,
     ...i.expected_effects.map((e) => `- Expected: ${e}`),
+  ]);
+
+  section('Eras', bundle.eras, (e) => [
+    e.summary,
+    '',
+    `- Span: ${e.from}–${e.to}`,
+    `- The money: ${e.capital}`,
+    `- What it did to hiring: ${e.hiring}`,
+    `- How you got in: ${e.entry}`,
+    ...(e.ended_by ? [`- What closed it: ${e.ended_by}`] : []),
+    ...e.indicators.map((i) => `- ${i.figure} — ${i.label} (${i.period}, ${i.evidence})`),
   ]);
 
   section('Evidence', bundle.evidence, (e) => [

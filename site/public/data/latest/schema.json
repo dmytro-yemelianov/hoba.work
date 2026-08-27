@@ -356,6 +356,121 @@
             "additionalProperties": false
           }
         },
+        "eras": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+              },
+              "status": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+              },
+              "evidence_ids": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+              },
+              "content": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^E-\\d{3}$"
+              },
+              "type": {
+                "type": "string",
+                "const": "era"
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 10
+              },
+              "from": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2100
+              },
+              "to": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2100
+              },
+              "capital": {
+                "type": "string",
+                "minLength": 20
+              },
+              "hiring": {
+                "type": "string",
+                "minLength": 20
+              },
+              "entry": {
+                "type": "string",
+                "minLength": 20
+              },
+              "ended_by": {
+                "type": "string",
+                "default": ""
+              },
+              "indicators": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 3
+                    },
+                    "figure": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "period": {
+                      "type": "string",
+                      "minLength": 4
+                    },
+                    "evidence": {
+                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "figure",
+                    "period",
+                    "evidence"
+                  ],
+                  "additionalProperties": false
+                },
+                "default": []
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "specimens": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "title",
+              "id",
+              "type",
+              "summary",
+              "from",
+              "to",
+              "capital",
+              "hiring",
+              "entry"
+            ],
+            "additionalProperties": false
+          }
+        },
         "artifacts": {
           "type": "array",
           "items": {
@@ -1109,6 +1224,7 @@
         "updated_at",
         "actors",
         "workflows",
+        "eras",
         "artifacts",
         "barriers",
         "mechanisms",

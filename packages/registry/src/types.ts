@@ -19,6 +19,8 @@ import type {
   emissionFidelitySchema,
   emissionLikelihoodSchema,
   entityTypeSchema,
+  eraIndicatorSchema,
+  eraSchema,
   evidenceKindSchema,
   evidenceLevelSchema,
   evidenceSchema,
@@ -75,6 +77,8 @@ export type WorkflowState = z.infer<typeof workflowStateSchema>;
 export type WorkflowTransition = z.infer<typeof workflowTransitionSchema>;
 export type WorkflowStateKind = z.infer<typeof workflowStateKindSchema>;
 export type WorkflowNode = z.infer<typeof workflowSchema>;
+export type EraIndicator = z.infer<typeof eraIndicatorSchema>;
+export type EraNode = z.infer<typeof eraSchema>;
 export type ArtifactNode = z.infer<typeof artifactSchema>;
 export type BarrierNode = z.infer<typeof barrierSchema>;
 export type MechanismNode = z.infer<typeof mechanismSchema>;

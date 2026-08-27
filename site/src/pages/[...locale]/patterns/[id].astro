@@ -5,6 +5,7 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
+import EraNote from '../../../components/EraNote.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { PatternNode } from '@hoba/registry';
@@ -37,6 +38,7 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
 
   <div>
     <IdealNote id={pattern.id} lang={lang} bundle={bundle} prefix={prefix} />
+    <EraNote id={pattern.id} lang={lang} bundle={bundle} prefix={prefix} />
 
     <div class="callout border-l-hoba-pattern">
       <h2 class="text-base font-semibold text-hoba-text">{asHeading(t('patterns.trigger'))}</h2>

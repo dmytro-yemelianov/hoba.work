@@ -119,6 +119,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     updated_at: '2026-01-01T00:00:00Z',
     actors: [],
     workflows: [],
+    eras: [],
     artifacts: [
       artifact({
         id: 'A-001',

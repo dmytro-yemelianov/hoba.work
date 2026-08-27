@@ -1,0 +1,109 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#content-container"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link [ref=e8] [cursor=pointer]:
+              - /url: https://www.stlouisfed.org
+              - img "Federal Reserve Bank of St. Louis" [ref=e9]
+            - separator [ref=e10]
+          - generic [ref=e11]:
+            - link [ref=e13] [cursor=pointer]:
+              - /url: //fred.stlouisfed.org
+              - img "FRED homepage" [ref=e14]
+            - generic [ref=e15]:
+              - generic [ref=e16]:
+                - listbox [ref=e17]:
+                  - option [selected] [ref=e18]
+                - combobox [ref=e21]:
+                  - list
+                  - searchbox "Search" [ref=e23]
+                - button "Submit Search" [ref=e24] [cursor=pointer]:
+                  - generic "Submit Search" [ref=e25]: 
+              - navigation [ref=e26]:
+                - list [ref=e27]:
+                  - listitem [ref=e28]:
+                    - button "Toggle Explore Our Apps Menu" [ref=e30] [cursor=pointer]:
+                      - img "Toggle Explore Our Apps Menu" [ref=e31]
+                  - listitem [ref=e32]:
+                    - button "Open Login Modal; User Is Not Signed In" [ref=e37] [cursor=pointer]:
+                      - generic "Open Login Modal; User Is Not Signed In" [ref=e38]: 
+        - text:  X  X
+      - text:    
+      - generic [ref=e42]:
+        - separator [ref=e43]
+        - navigation [ref=e44]:
+          - list [ref=e46]:
+            - listitem [ref=e47]:
+              - link "Release Calendar" [ref=e48] [cursor=pointer]:
+                - /url: https://fred.stlouisfed.org/releases/calendar
+            - listitem [ref=e49]:
+              - button "Tools " [ref=e51] [cursor=pointer]:
+                - text: Tools
+                - generic "Toggle Tools Menu" [ref=e52]: 
+            - listitem [ref=e53]:
+              - link "News" [ref=e54] [cursor=pointer]:
+                - /url: https://news.research.stlouisfed.org/category/fred-announcements/
+            - listitem [ref=e55]:
+              - link "Blog" [ref=e56] [cursor=pointer]:
+                - /url: https://fredblog.stlouisfed.org
+            - listitem [ref=e57]:
+              - button "About " [ref=e59] [cursor=pointer]:
+                - text: About
+                - generic [ref=e60]: 
+    - generic [ref=e61]:
+      - heading "Looking for Something?" [level=1] [ref=e62]
+      - paragraph [ref=e63]:
+        - text: We're sorry, the page you were looking for cannot be found. Please feel free to
+        - link "contact us" [ref=e64] [cursor=pointer]:
+          - /url: /contactus/
+        - text: if the problem persists.
+      - paragraph [ref=e65]:
+        - text: Searching may help find what are you looking for. If all else fails, you can head
+        - link "Home" [ref=e66] [cursor=pointer]:
+          - /url: /
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]: "Search for:"
+          - textbox "Search for:" [ref=e70]
+        - button "Search" [ref=e71] [cursor=pointer]
+  - text:  
+  - generic [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - heading "Subscribe to the FRED newsletter" [level=3] [ref=e76]
+        - generic [ref=e79]:
+          - textbox "email" [ref=e80]:
+            - /placeholder: Email
+          - button "Subscribe" [ref=e81] [cursor=pointer]
+      - generic [ref=e82]:
+        - heading "Follow us" [level=3] [ref=e83]
+        - generic [ref=e84]:
+          - link "Saint Louis Fed linkedin page" [ref=e86] [cursor=pointer]:
+            - /url: http://bit.ly/d056zL
+            - generic [ref=e87]: 
+          - link "Saint Louis Fed facebook page" [ref=e90] [cursor=pointer]:
+            - /url: https://www.facebook.com/stlfed
+            - generic [ref=e91]: 
+          - link "Saint Louis Fed X page" [ref=e94] [cursor=pointer]:
+            - /url: http://bit.ly/9ngC3L
+            - generic [ref=e95]: 
+          - link "Saint Louis Fed YouTube page" [ref=e98] [cursor=pointer]:
+            - /url: http://bit.ly/aY9TVF
+            - generic [ref=e99]: 
+    - generic [ref=e102]:
+      - heading "Need Help?" [level=3] [ref=e103]
+      - generic [ref=e104]:
+        - link "Questions or Comments" [ref=e106] [cursor=pointer]:
+          - /url: //fred.stlouisfed.org/contactus/
+        - link "FRED Help" [ref=e108] [cursor=pointer]:
+          - /url: //fredhelp.stlouisfed.org/
+      - separator [ref=e109]
+      - generic [ref=e110]:
+        - link "Legal" [ref=e112] [cursor=pointer]:
+          - /url: //fred.stlouisfed.org/legal/
+        - link "Privacy Notice & Policy" [ref=e114] [cursor=pointer]:
+          - /url: https://www.stlouisfed.org/about-us/privacy-policy/online-notice

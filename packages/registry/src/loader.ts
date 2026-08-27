@@ -5,6 +5,7 @@ import type { ZodError, ZodTypeAny, z } from 'zod';
 import {
   actorSchema,
   workflowSchema,
+  eraSchema,
   artifactSchema,
   barrierSchema,
   evidenceSchema,
@@ -132,6 +133,8 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
 
   const actors = loadEntityDir(path.join(baseDir, 'actors'), actorSchema).sort(byId);
   const workflows = loadEntityDir(path.join(baseDir, 'workflows'), workflowSchema).sort(byId);
+  // Eras read forward in time, not by id, because the order is the argument.
+  const eras = loadEntityDir(path.join(baseDir, 'eras'), eraSchema).sort((a, b) => a.from - b.from || a.id.localeCompare(b.id));
   const artifacts = loadEntityDir(path.join(baseDir, 'artifacts'), artifactSchema).sort(byId);
   const barriers = loadEntityDir(path.join(baseDir, 'barriers'), barrierSchema).sort(
     (a, b) => a.order - b.order || a.id.localeCompare(b.id)
@@ -146,6 +149,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
     ...manifest,
     actors,
     workflows,
+    eras,
     artifacts,
     barriers,
     mechanisms,

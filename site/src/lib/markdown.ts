@@ -73,6 +73,16 @@ function idealNote(id: string, bundle: RegistryBundle, t: Translate): string[] {
   ];
 }
 
+/** Which era made this entry ordinary — the second axis, in one line. */
+function eraNote(id: string, bundle: RegistryBundle, t: Translate): string[] {
+  const eras = bundle.eras.filter((era) => era.entities.includes(id));
+  if (!eras.length) return [];
+  return [
+    `> **${t('era.made')}** — ${eras.map((e) => `[${e.title}](${SITE}/eras#${e.id}) (${e.from}–${e.to})`).join(', ')}`,
+    '',
+  ];
+}
+
 function frontmatter(entity: Entity, lang: Lang, bundle: RegistryBundle): string[] {
   return [
     '---',
@@ -116,6 +126,7 @@ export function entityMarkdown(entity: Entity, lang: Lang, t: Translate, bundle:
   const summary = 'summary' in entity ? entity.summary : 'description' in entity ? entity.description : '';
   if (summary) out.push(summary, '');
   out.push(...idealNote(entity.id, bundle, t));
+  out.push(...eraNote(entity.id, bundle, t));
 
   const facts: string[] = [];
   if ('stages' in entity) facts.push(`${asHeading(t('common.stage'))}: ${entity.stages.map((s) => t(`stage.${s}`)).join(', ')}`);

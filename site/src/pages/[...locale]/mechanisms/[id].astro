@@ -5,6 +5,7 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
+import EraNote from '../../../components/EraNote.astro';
 import RemovabilityBadge from '../../../components/RemovabilityBadge.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
@@ -52,6 +53,7 @@ const facets = [
 
   <div>
     <IdealNote id={mechanism.id} lang={lang} bundle={bundle} prefix={prefix} />
+    <EraNote id={mechanism.id} lang={lang} bundle={bundle} prefix={prefix} />
 
     {mechanism.specimens.length > 0 && (
       <section class="section">

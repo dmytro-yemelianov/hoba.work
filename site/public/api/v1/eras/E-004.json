@@ -1,0 +1,111 @@
+{
+  "registry_version": "2026.08.2",
+  "data": {
+    "title": "A fixed number of seats",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-015",
+      "EVD-019",
+      "EVD-020",
+      "EVD-021",
+      "EVD-022",
+      "EVD-024",
+      "EVD-025",
+      "EVD-026",
+      "EVD-027",
+      "EVD-028",
+      "EVD-029"
+    ],
+    "content": "# A fixed number of seats\n\nTwo official series say most of it, and they say it together. Gross hires in the\nUS information sector fell 28.9% between 2022 and 2025. Layoffs and discharges\nin the same official series barely moved over those years. The sector shrank\nbecause people were not hired to replace the people who left, not because people\nwere removed at an accelerating rate — which is why a tracker of announced cuts\nand the official separations series tell such different stories about the same\nperiod.\n\nThat distinction is the whole point of this page. A separations problem gets\nbetter when the announcements stop. A hiring problem does not: it gets better\nwhen seats open. Seats open when incumbents leave, and the information-sector\nquits rate is at 1.1%, roughly half what it was in June 2022.\n\nSo the arithmetic a candidate is inside: fewer openings, more applications per\nopening, and the openings that exist described at senior level. That is\ncompetition for a fixed and shrinking number of seats. It is not a statement\nabout anyone's ability, and it is not a claim that any employer behaved badly —\nit is what happens to a queue when the queue stops moving.\n\nThe registry documents what that produces at each gate. This page exists so that\nthose entries are not mistaken for a description of the candidate.",
+    "id": "E-004",
+    "type": "era",
+    "summary": "The conditions that made hiring expensive were reversed; the number of positions was not. The contraction now runs through the hiring channel rather than the separation channel, which is why it is competition for a fixed and shrinking number of seats rather than a shortage of qualified people.",
+    "from": 2024,
+    "to": 2026,
+    "capital": "The tax treatment that penalised payroll was undone: section 174A, added on 4 July 2025, allows domestic research expenditure to be deducted when paid for tax years beginning after 31 December 2024, balances capitalised under the 2022–2024 rules may be recovered in one year or over two, and smaller taxpayers may elect back to 2022. Policy rates came off their cycle peak in September 2024. The inputs that made hiring expensive were reversed. The number of positions was not.",
+    "hiring": "The contraction runs through the hiring channel, not the separation channel. Official gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025 — down 28.9% — while official layoffs and discharges in the same series were roughly flat at 451,000, 399,000, 395,000 and 447,000. Openings averaged 224,000 a month in 2022 and 121,000 in 2025, and stood at 90,000 in June 2026. Sector payrolls fell from 3,115,000 in November 2022 to 2,780,000 in July 2026.",
+    "entry": "Incumbents vacate few seats: the information-sector quits rate was 1.1% in June 2026 against 1.9% in June 2022, and the total-private hires rate 3.7% against 4.7%. Applications per open role rose from 116 in 2022 to 244 in 2025 across one platform's benchmark. Software postings ran 69.3% senior and 4.5% entry-level in the first quarter of 2026, and payroll records show employment of developers aged 22–25 down close to 20% from its late-2022 peak while older ages in the same occupation did not fall. Entry now means succeeding a specific incumbent rather than being trained into a funded seat.",
+    "ended_by": "",
+    "indicators": [
+      {
+        "label": "Immediate deduction restored for domestic research",
+        "figure": "100%",
+        "period": "tax years from 2025",
+        "evidence": "EVD-015"
+      },
+      {
+        "label": "Gross hires, US information sector",
+        "figure": "1,270,000 → 903,000",
+        "period": "2022 → 2025",
+        "evidence": "EVD-022"
+      },
+      {
+        "label": "Layoffs and discharges, US information sector — roughly flat",
+        "figure": "451,000 → 447,000",
+        "period": "2022 → 2025",
+        "evidence": "EVD-021"
+      },
+      {
+        "label": "Job openings, US information sector",
+        "figure": "224,000/mo → 90,000",
+        "period": "2022 average → Jun 2026",
+        "evidence": "EVD-020"
+      },
+      {
+        "label": "Information-sector payrolls",
+        "figure": "3,115,000 → 2,780,000",
+        "period": "Nov 2022 → Jul 2026",
+        "evidence": "EVD-019"
+      },
+      {
+        "label": "Quits rate, US information sector",
+        "figure": "1.9% → 1.1%",
+        "period": "Jun 2022 → Jun 2026",
+        "evidence": "EVD-026"
+      },
+      {
+        "label": "Hires rate, total private",
+        "figure": "4.7% → 3.7%",
+        "period": "Jun 2022 → Jun 2026",
+        "evidence": "EVD-025"
+      },
+      {
+        "label": "Applications received per open role, one platform's benchmark",
+        "figure": "116 → 244",
+        "period": "2022 → 2025",
+        "evidence": "EVD-027"
+      },
+      {
+        "label": "Software postings by level, one job board",
+        "figure": "69.3% senior, 4.5% entry",
+        "period": "Q1 2026",
+        "evidence": "EVD-028"
+      },
+      {
+        "label": "Employment of software developers aged 22–25",
+        "figure": "≈ −20%",
+        "period": "late 2022 → Sep 2025",
+        "evidence": "EVD-029"
+      },
+      {
+        "label": "Announced technology job cuts, not a census",
+        "figure": "149,023",
+        "period": "Jan–Jul 2026",
+        "evidence": "EVD-024"
+      }
+    ],
+    "entities": [
+      "M-024",
+      "M-017",
+      "M-018",
+      "M-009",
+      "M-020",
+      "B-003",
+      "P-001",
+      "P-003",
+      "L-003",
+      "A-001"
+    ],
+    "specimens": []
+  }
+}

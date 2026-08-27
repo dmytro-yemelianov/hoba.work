@@ -5,6 +5,7 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
+import EraNote from '../../../components/EraNote.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { ArtifactNode } from '@hoba/registry';
@@ -39,6 +40,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
 
   <div>
     <IdealNote id={artifact.id} lang={lang} bundle={bundle} prefix={prefix} />
+    <EraNote id={artifact.id} lang={lang} bundle={bundle} prefix={prefix} />
 
     {artifact.specimens.length > 0 && (
       <section class="section">

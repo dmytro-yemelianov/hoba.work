@@ -11,6 +11,7 @@ import {
   stageIdSchema,
   type ContentLang,
   type RegistryBundle,
+  type EraNode,
   type WorkflowNode,
   type WorkflowState,
 } from '@hoba/registry';
@@ -113,3 +114,9 @@ export function idealSupport(bundle: RegistryBundle, id: string): IdealPlacement
 
 /** Anchor for one state of one workflow on /process. */
 export const stateAnchor = (workflowId: string, stateId: string): string => `${workflowId}-${stateId}`;
+
+
+/** The eras that name this entity as one of the things they made ordinary. */
+export function erasNaming(bundle: RegistryBundle, id: string): EraNode[] {
+  return bundle.eras.filter((era) => era.entities.includes(id));
+}

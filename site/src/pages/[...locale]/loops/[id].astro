@@ -5,6 +5,7 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
+import EraNote from '../../../components/EraNote.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { LoopNode } from '@hoba/registry';
@@ -38,6 +39,7 @@ const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.titl
 
   <div>
     <IdealNote id={loop.id} lang={lang} bundle={bundle} prefix={prefix} />
+    <EraNote id={loop.id} lang={lang} bundle={bundle} prefix={prefix} />
 
     {loop.specimens.length > 0 && (
       <section class="section">

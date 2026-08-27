@@ -12,6 +12,7 @@ export const ID_PATTERNS = {
   intervention: /^I-\d{3}$/,
   evidence: /^EVD-\d{3}$/,
   probe: /^PROBE-[A-Z0-9-]+$/,
+  era: /^E-\d{3}$/,
 } as const;
 
 const artifactId = z.string().regex(ID_PATTERNS.artifact);
@@ -22,6 +23,7 @@ const loopId = z.string().regex(ID_PATTERNS.loop);
 const interventionId = z.string().regex(ID_PATTERNS.intervention);
 const evidenceId = z.string().regex(ID_PATTERNS.evidence);
 const workflowId = z.string().regex(/^WF-\d{3}$/, 'workflow id must look like WF-001');
+const eraId = z.string().regex(ID_PATTERNS.era, 'era id must look like E-001');
 
 // Ordered by funnel progression. The order of this list is meaningful and is
 // reused by the site (stage pickers) and the CLI/MCP (stage validation).
@@ -346,6 +348,54 @@ export const workflowSchema = z.object({
   specimens: z.array(specimenSchema).default([]),
 });
 
+/**
+ * One sourced figure inside an era.
+ *
+ * An era is an argument about money, and an argument about money that carries
+ * no numbers is an opinion. Every indicator names the figure, the period it
+ * covers and the evidence record it came from, so a reader can check it without
+ * leaving the page and a claim with no source cannot be written at all.
+ */
+export const eraIndicatorSchema = z.object({
+  label: z.string().min(3),
+  /** The number as its source states it, unit included: "5.25–5.50%", "$345.7B". */
+  figure: z.string().min(1),
+  /** The period the figure covers: "2021", "2022–2024". */
+  period: z.string().min(4),
+  evidence: evidenceId,
+});
+
+/**
+ * A period of the hiring economy, told as where the money came from.
+ *
+ * The registry documents the funnel as it is now. Eras are the other axis: the
+ * same funnel had different physics when capital was free, and the way into a
+ * company that worked under one set of physics stops working under the next.
+ * That transition — not the mood of any particular year — is what these records
+ * exist to state.
+ */
+export const eraSchema = z.object({
+  ...nodeBase,
+  id: eraId,
+  type: z.literal('era'),
+  summary: z.string().min(10),
+  from: z.number().int().min(1900).max(2100),
+  /** The last year of the era; an era still running ends at the current year. */
+  to: z.number().int().min(1900).max(2100),
+  /** Where the money came from, with the mechanism named. */
+  capital: z.string().min(20),
+  /** What that money did to how companies hired. */
+  hiring: z.string().min(20),
+  /** How a person actually got into a company under these conditions. */
+  entry: z.string().min(20),
+  /** What closed the era. Empty for an era that has not ended. */
+  ended_by: z.string().default(''),
+  indicators: z.array(eraIndicatorSchema).default([]),
+  /** Registry entities this era made prevalent. */
+  entities: z.array(z.string()).default([]),
+  specimens: z.array(specimenSchema).default([]),
+});
+
 // Evidence record schema
 export const evidenceSchema = z.object({
   id: evidenceId,
@@ -369,6 +419,7 @@ export const registryManifestSchema = z.object({
 export const registryBundleSchema = registryManifestSchema.extend({
   actors: z.array(actorSchema),
   workflows: z.array(workflowSchema),
+  eras: z.array(eraSchema),
   artifacts: z.array(artifactSchema),
   barriers: z.array(barrierSchema),
   mechanisms: z.array(mechanismSchema),

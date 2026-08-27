@@ -1,0 +1,150 @@
+- generic [active] [ref=f8e1]:
+  - link "Skip to main content" [ref=f8e2] [cursor=pointer]:
+    - /url: "#content-container"
+  - generic [ref=f8e3]:
+    - banner [ref=f8e4]:
+      - navigation [ref=f8e5]:
+        - generic [ref=f8e6]:
+          - generic [ref=f8e7]:
+            - link [ref=f8e8] [cursor=pointer]:
+              - /url: https://www.stlouisfed.org
+              - img "Federal Reserve Bank of St. Louis" [ref=f8e9]
+            - separator [ref=f8e10]
+          - generic [ref=f8e11]:
+            - link [ref=f8e13] [cursor=pointer]:
+              - /url: //fred.stlouisfed.org
+              - img "FRED homepage" [ref=f8e14]
+            - generic [ref=f8e15]:
+              - generic [ref=f8e16]:
+                - listbox [ref=f8e17]:
+                  - option [selected] [ref=f8e18]
+                - combobox [ref=f8e21]:
+                  - list
+                  - searchbox "Search" [ref=f8e23]
+                - button "Submit Search" [ref=f8e24] [cursor=pointer]:
+                  - generic "Submit Search" [ref=f8e25]: 
+              - navigation [ref=f8e26]:
+                - list [ref=f8e27]:
+                  - listitem [ref=f8e28]:
+                    - button "Toggle Explore Our Apps Menu" [ref=f8e30] [cursor=pointer]:
+                      - img "Toggle Explore Our Apps Menu" [ref=f8e31]
+                  - listitem [ref=f8e32]:
+                    - button "Open Login Modal; User Is Not Signed In" [ref=f8e37] [cursor=pointer]:
+                      - generic "Open Login Modal; User Is Not Signed In" [ref=f8e38]: 
+        - text:  X  X
+      - text:    
+      - generic [ref=f8e42]:
+        - separator [ref=f8e43]
+        - navigation [ref=f8e44]:
+          - list [ref=f8e46]:
+            - listitem [ref=f8e47]:
+              - link "Release Calendar" [ref=f8e48] [cursor=pointer]:
+                - /url: https://fred.stlouisfed.org/releases/calendar
+            - listitem [ref=f8e49]:
+              - button "Tools " [ref=f8e51] [cursor=pointer]:
+                - text: Tools
+                - generic "Toggle Tools Menu" [ref=f8e52]: 
+            - listitem [ref=f8e53]:
+              - link "News" [ref=f8e54] [cursor=pointer]:
+                - /url: https://news.research.stlouisfed.org/category/fred-announcements/
+            - listitem [ref=f8e55]:
+              - link "Blog" [ref=f8e56] [cursor=pointer]:
+                - /url: https://fredblog.stlouisfed.org
+            - listitem [ref=f8e57]:
+              - button "About " [ref=f8e59] [cursor=pointer]:
+                - text: About
+                - generic [ref=f8e60]: 
+    - generic [ref=f8e61]:
+      - generic [ref=f8e65]:
+        - heading "Search Results" [level=1] [ref=f8e66]
+        - paragraph [ref=f8e67]: "Displaying 5 series for Hires: Total Private."
+        - separator [ref=f8e68]
+      - generic [ref=f8e69]:
+        - generic [ref=f8e72]:
+          - generic [ref=f8e74]:
+            - generic [ref=f8e75]:
+              - list "applied filters":
+                - listitem [ref=f8e76]:
+                  - generic [ref=f8e77]:
+                    - text: Rate
+                    - link "remove filter for Rate" [ref=f8e78] [cursor=pointer]:
+                      - /url: "?st=Hires%3A%20Total%20Private&t=rate&rt=rate&ob=sr"
+                      - generic [ref=f8e79]: 
+            - link "reset button, press to remove all filters" [ref=f8e81] [cursor=pointer]:
+              - /url: "?st=Hires%3A%20Total%20Private&ob=sr"
+              - text: Reset
+          - button "Sort by Relevance , choose a sort by value" [ref=f8e83] [cursor=pointer]: Sort by Relevance
+          - list [ref=f8e85]:
+            - listitem [ref=f8e86]:
+              - generic [ref=f8e87]:
+                - 'link "Private Nonfarm Business Sector: Total Factor Productivity" [ref=f8e89] [cursor=pointer]':
+                  - /url: /series/MPU4910013
+                - generic [ref=f8e90]:
+                  - text: Percent Change from Year Ago, Annual, Not Seasonally Adjusted
+                  - generic [ref=f8e91]: 1988 to 2025 (Mar 23)
+                - paragraph [ref=f8e93]: "Multifactor productivity is calculated by dividing an index of real output by an index of combined units of labor input and capital services. It is designed to measure the joint influences of technological change, efficiency improvements, returns to scale, reallocation of resources, and other factors of economic growth, accounting for the effects of capital and labor. The real value is the added output divided by combined inputs. For more information, please go to https://www.bls.gov/mfp/ Source Indicator: MPU4910013"
+            - listitem [ref=f8e94]:
+              - generic [ref=f8e95]:
+                - 'link "Private Business Sector: Total Factor Productivity" [ref=f8e97] [cursor=pointer]':
+                  - /url: /series/MPU4900013
+                - generic [ref=f8e98]:
+                  - text: Percent Change from Year Ago, Annual, Not Seasonally Adjusted
+                  - generic [ref=f8e99]: 1988 to 2025 (Mar 23)
+                - paragraph [ref=f8e101]: "Multifactor productivity is calculated by dividing an index of real output by an index of combined units of labor input and capital services. It is designed to measure the joint influences of technological change, efficiency improvements, returns to scale, reallocation of resources, and other factors of economic growth, accounting for the effects of capital and labor. The real value is the added output divided by combined inputs. For more information, please go to https://www.bls.gov/mfp/ Source Indicator: MPU4900013"
+            - listitem [ref=f8e102]:
+              - generic [ref=f8e103]:
+                - link "Total Private Payroll Employment in Texas" [ref=f8e105] [cursor=pointer]:
+                  - /url: /series/TX5000000M158FRBDAL
+                - generic [ref=f8e106]:
+                  - text: Percent Change at Annual Rate, Monthly, Seasonally Adjusted
+                  - generic [ref=f8e107]: Feb 1990 to Jun 2026 (Jul 17)
+                - paragraph [ref=f8e109]: The Dallas Fed has improved the quality of the payroll employment estimates for Texas using early benchmarking and two-step seasonal adjustment. More information regarding the early benchmarking technique can be found at https://www.dallasfed.org/research/basics/benchmark (https://www.dallasfed.org/research/basics/benchmark). More information pertaining to two-step seasonal adjustment can be found at https://www.dallasfed.org/research/basics/twostep (https://www.dallasfed.org/research/basics/twostep).
+                - button "1 other format" [ref=f8e113] [cursor=pointer]:
+                  - text: 1 other format
+                  - generic [ref=f8e114]: 
+            - listitem [ref=f8e115]:
+              - generic [ref=f8e116]:
+                - link "Rate of Change, Total Labor Compensation Per Manhour, Private Economy, Total for United States" [ref=f8e118] [cursor=pointer]:
+                  - /url: /series/Q08363USQ156SNBR
+                - generic [ref=f8e119]:
+                  - text: Percent, Quarterly, Seasonally Adjusted
+                  - generic [ref=f8e120]: Q2 1948 to Q3 1967 (2012-08-17)
+                - paragraph [ref=f8e122]: "Rate Of Change Is The Second Quarter Span At Annual Rate, The Difference Between The Value Of Month \"M\" And Month \"M+6\" Divided By Month \"M\" And Multiplied By 2. Data Are Centered In The Middle Of The Quarter. Source: Data Derived From NBER . This NBER data series q08363 appears on the NBER website in Chapter 8 at http://www.nber.org/databases/macrohistory/contents/chapter08.html. NBER Indicator: q08363"
+        - text: 
+    - text:  
+    - generic [ref=f8e124]:
+      - generic [ref=f8e125]:
+        - generic [ref=f8e126]:
+          - heading "Subscribe to the FRED newsletter" [level=3] [ref=f8e127]
+          - generic [ref=f8e130]:
+            - textbox "email" [ref=f8e131]:
+              - /placeholder: Email
+            - button "Subscribe" [ref=f8e132] [cursor=pointer]
+        - generic [ref=f8e133]:
+          - heading "Follow us" [level=3] [ref=f8e134]
+          - generic [ref=f8e135]:
+            - link "Saint Louis Fed linkedin page" [ref=f8e137] [cursor=pointer]:
+              - /url: http://bit.ly/d056zL
+              - generic [ref=f8e138]: 
+            - link "Saint Louis Fed facebook page" [ref=f8e141] [cursor=pointer]:
+              - /url: https://www.facebook.com/stlfed
+              - generic [ref=f8e142]: 
+            - link "Saint Louis Fed X page" [ref=f8e145] [cursor=pointer]:
+              - /url: http://bit.ly/9ngC3L
+              - generic [ref=f8e146]: 
+            - link "Saint Louis Fed YouTube page" [ref=f8e149] [cursor=pointer]:
+              - /url: http://bit.ly/aY9TVF
+              - generic [ref=f8e150]: 
+      - generic [ref=f8e153]:
+        - heading "Need Help?" [level=3] [ref=f8e154]
+        - generic [ref=f8e155]:
+          - link "Questions or Comments" [ref=f8e157] [cursor=pointer]:
+            - /url: //fred.stlouisfed.org/contactus/
+          - link "FRED Help" [ref=f8e159] [cursor=pointer]:
+            - /url: //fredhelp.stlouisfed.org/
+        - separator [ref=f8e160]
+        - generic [ref=f8e161]:
+          - link "Legal" [ref=f8e163] [cursor=pointer]:
+            - /url: //fred.stlouisfed.org/legal/
+          - link "Privacy Notice & Policy" [ref=f8e165] [cursor=pointer]:
+            - /url: https://www.stlouisfed.org/about-us/privacy-policy/online-notice

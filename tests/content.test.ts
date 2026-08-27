@@ -239,6 +239,63 @@ describe('workflows', () => {
 });
 
 /**
+ * Eras are the atlas's only claims about the world outside the funnel, so they
+ * carry the strictest rule in the repository: no figure without a source.
+ */
+describe('eras', () => {
+  const ids = new Set([
+    ...bundle.artifacts.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
+    ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
+    ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
+  ]);
+  const evidenceIds = new Set(bundle.evidence.map((e) => e.id));
+
+  it('sources every figure it prints', () => {
+    for (const era of bundle.eras) {
+      expect(era.indicators.length, era.id).toBeGreaterThan(0);
+      for (const indicator of era.indicators) {
+        expect(evidenceIds.has(indicator.evidence), `${era.id}: ${indicator.label}`).toBe(true);
+      }
+    }
+  });
+
+  it('gives every cited source a URL a reader can open', () => {
+    const cited = new Set(bundle.eras.flatMap((e) => e.indicators.map((i) => i.evidence)));
+    for (const record of bundle.evidence.filter((e) => cited.has(e.id))) {
+      expect(record.url, record.id).toMatch(/^https:\/\//);
+      expect(record.citation, record.id).toBeTruthy();
+    }
+  });
+
+  it('names real registry entities', () => {
+    for (const era of bundle.eras) {
+      expect(era.entities.filter((e) => !ids.has(e)), era.id).toEqual([]);
+    }
+  });
+
+  it('runs as one continuous timeline with no gap and no overlap', () => {
+    const ordered = [...bundle.eras].sort((a, b) => a.from - b.from);
+    for (const era of ordered) expect(era.to, era.id).toBeGreaterThanOrEqual(era.from);
+    for (let i = 1; i < ordered.length; i++) {
+      expect(ordered[i]!.from, `${ordered[i - 1]!.id} → ${ordered[i]!.id}`).toBe(ordered[i - 1]!.to + 1);
+    }
+  });
+
+  it('leaves exactly one era open-ended', () => {
+    // An era with no `ended_by` is the one we are inside. Two would be a
+    // contradiction, none would mean the page stops before the present.
+    const open = bundle.eras.filter((e) => !e.ended_by);
+    expect(open.map((e) => e.id)).toHaveLength(1);
+  });
+
+  it('mirrors every figure and source into Ukrainian unchanged', () => {
+    const shape = (b: typeof bundle) =>
+      b.eras.map((e) => `${e.id}:${e.from}-${e.to}:${e.indicators.map((i) => i.evidence).join(',')}:${e.entities.join(',')}`);
+    expect(shape(uk)).toEqual(shape(bundle));
+  });
+});
+
+/**
  * WF-003 is the path the rest of the registry is measured against, so the
  * relationship has to hold both ways: no barrier may be missing from it, and
  * none may claim two different commitments as the one it breaks.

@@ -5,6 +5,7 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
+import EraNote from '../../../components/EraNote.astro';
 import { getGraph } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { InterventionNode } from '@hoba/registry';
@@ -44,6 +45,7 @@ const targets = intervention.targets.map((id) => {
 
   <div>
     <IdealNote id={intervention.id} lang={lang} bundle={graph.bundle} prefix={prefix} />
+    <EraNote id={intervention.id} lang={lang} bundle={graph.bundle} prefix={prefix} />
 
     {intervention.specimens.length > 0 && (
       <section class="section">

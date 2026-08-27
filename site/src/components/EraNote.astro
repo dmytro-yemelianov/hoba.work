@@ -1,0 +1,35 @@
+---
+/**
+ * Which era made this ordinary.
+ *
+ * The registry says what happens at a gate. The eras say under what conditions
+ * that became the normal thing to happen. Without this line an entry reads as
+ * timeless, which is the one thing it is not.
+ */
+import { erasNaming } from '../lib/registry';
+import { useTranslations, type Lang } from '../i18n/utils';
+import type { RegistryBundle } from '@hoba/registry';
+
+interface Props {
+  id: string;
+  lang: Lang;
+  bundle: RegistryBundle;
+  prefix: string;
+}
+
+const { id, lang, bundle, prefix } = Astro.props;
+const t = useTranslations(lang);
+const eras = erasNaming(bundle, id);
+---
+{eras.length > 0 && (
+  <section class="callout border-l-hoba-pattern" aria-label={t('era.made')}>
+    <p class="kicker">{t('era.made')}</p>
+    {eras.map((era) => (
+      <p class="mt-1 text-base">
+        <a href={`${prefix}/eras#${era.id}`} class="text-hoba-text font-medium hover:text-hoba-accent">{era.title}</a>
+        <span class="font-mono text-sm text-hoba-muted"> · {era.from}–{era.to}</span>
+        <span class="text-hoba-muted"> — {era.summary}</span>
+      </p>
+    ))}
+  </section>
+)}

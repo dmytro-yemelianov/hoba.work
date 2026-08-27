@@ -12,7 +12,8 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
 - **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
 - **Interventions** (`I-*`, 6) — concrete changes, each attributed to the actor who can make it.
-- **Evidence** (`EVD-*`, 6) — the published sources behind the claims.
+- **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
+- **Evidence** (`EVD-*`, 29) — the published sources behind the claims.
 
 The graph has 65 nodes and 199 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -592,6 +593,72 @@ Enforce strict 3-hour scope limits on take-homes, compensate candidates for exte
 - Expected: Prevent reviewer fatigue and asymmetric code evaluation
 - Expected: Respect candidate time investment and eliminate IP exploitation concerns
 
+## Eras
+
+### E-001 — Zero rates and a same-year deduction
+
+For over a decade money cost nothing to borrow and engineering payroll reduced taxable income in the year it was paid. Both facts were policy, both were durable, and together they made an empty seat more expensive than a wrong hire.
+
+- Span: 2008–2019
+- The money: From 16 December 2008 the US policy rate sat at its floor for seven years, and the euro-area deposit rate was cut to zero in July 2012 and below zero in June 2014. Under section 174 as it then stood, research and experimental expenditures could be deducted in the year they were paid rather than charged to capital account. Borrowing to fund growth was close to free, and payroll spent building product reduced taxable income immediately.
+- What it did to hiring: Headcount was the standard use of raised capital. A salary was a current-year deduction and the return on a hire was measured in growth rather than in margin, so teams were sized to a funded plan and the plan came before the revenue. A listing route stayed open to companies without trailing profits throughout the period, which meant payroll could run ahead of earnings without closing off the exit.
+- How you got in: Demand for people who could do the work ran ahead of supply, so employers hired for potential and trained afterwards. A beginner's salary carried the same immediate deduction as a senior's, which made junior seats cheap to fund against the cost of leaving a seat empty. Self-teaching, a short conversion course and a first job with training attached were ordinary routes in.
+- What closed it: Not by a contraction. In March 2020 the same policy floor was reimposed and fund flows stepped up by a multiple, and hiring plans were sized to capital raised rather than to current revenue.
+- 0.00–0.25% — US federal funds target range, held at its floor (16 Dec 2008 – 15 Dec 2015, EVD-007)
+- 0.00% → −0.50% — ECB deposit facility rate, at or below zero (11 Jul 2012 – 26 Jul 2022, EVD-008)
+- 100% — Research and development payroll deductible in the year it was paid (to tax year 2021, EVD-012)
+- 15–43% a year — US technology listings profitable on trailing earnings (2011–2021, EVD-011)
+
+### E-002 — The record funding years
+
+Two years in which the policy floor returned and venture funding roughly doubled its previous record. Headcount plans were set against committed capital rather than against bookings, and the terms of entry were set on the candidate's side.
+
+- Span: 2020–2021
+- The money: The policy rate returned to 0.00–0.25% on 16 March 2020 and stayed there for two years. US venture-backed companies raised $329.6 billion in 2021 against a previous record of $166.6 billion in 2020, and global venture investment reached $671 billion. The listing window stayed open to companies without earnings: of 121 US technology listings in 2021, 21% were profitable on trailing twelve-month earnings.
+- What it did to hiring: With several years of funding raised at once, headcount was planned against committed capital rather than against bookings, and roles were opened before the work that would fill them was specified. Time-to-fill became the operative constraint, so loops were shortened, offers raised and candidate pools widened across locations. Recruiting functions were themselves staffed to the expanded plan.
+- How you got in: Employers competed for candidates, so entry terms were set on the candidate's side: compressed interview loops, offers made on shorter evidence, and pay set by competing bids. Entry-level and career-change intake ran at volume, because the alternative was leaving funded seats empty. Holding a current job was not a precondition, and changing employer was the ordinary way to raise pay.
+- What closed it: Two dated changes. The target range left the floor on 17 March 2022, and for tax years beginning after 31 December 2021 any amount paid in connection with developing software had to be capitalised and amortised over five years — so a developer's salary stopped reducing taxable income in the year it was paid.
+- $329.6B — US venture-backed companies raised (2021, against $166.6B in 2020, EVD-009)
+- $671B — Global venture capital invested (2021, EVD-010)
+- 0.00–0.25% — US policy rate, back at its floor (16 Mar 2020 – 16 Mar 2022, EVD-007)
+- 21% of 121 — US technology listings profitable on trailing earnings (2021, EVD-011)
+
+### E-003 — Rates up, payroll repriced
+
+The policy rate reached its cycle peak, technology equities repriced, every stage of the private funding chain contracted at once, and software payroll became something to amortise rather than deduct. The correction ran through announced reductions rather than through attrition.
+
+- Span: 2022–2023
+- The money: The federal funds target range reached a cycle peak of 5.25–5.50% effective 27 July 2023 and was held there for about fourteen months, and the technology-weighted NASDAQ Composite fell 36.4% from its November 2021 close to its December 2022 low. Every stage of the private chain contracted together: US venture deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023, exit value hit a decade low of $61.5 billion, and new fund commitments fell to a six-year low of $66.9 billion. From tax years beginning after 31 December 2021, software development costs were amortised over five years for domestic research and fifteen for foreign research instead of being deducted when paid.
+- What it did to hiring: Payroll was now both harder to refinance and slower to deduct, so plans were cut to the capital already in hand. Reductions were announced rather than absorbed through attrition: a tracker of publicly reported technology layoffs records 165,269 employees in 2022 and 265,660 in 2023, its highest year. Open requisitions were closed as well as filled positions eliminated, and the recruiting capacity built for the previous era was itself reduced.
+- How you got in: Hiring narrowed to the replacement of specific departures, which meant a posted role described work someone had recently been doing. The evidence employers would accept narrowed with it: recent experience in the same title, at similar scale, in the same stack. The routes that worked when employers hired for potential produced no offers, because the seats being filled were defined by an incumbent's job description rather than by a plan.
+- What closed it: The financial conditions reversed without the reduction reversing. The target range came off its peak on 18 September 2024 and the immediate domestic deduction was restored by statute in July 2025, but the headcount removed during the correction was not restored — so the reduced level carried forward as the baseline rather than as a trough.
+- 5.25–5.50% — Peak US federal funds target range (27 Jul 2023 – 18 Sep 2024, EVD-016)
+- −36.4% — NASDAQ Composite, record close to cycle low (19 Nov 2021 – 28 Dec 2022, EVD-017)
+- $348.0B → $170.6B — US venture deal value (2021 → 2023, EVD-018)
+- $61.5B — US venture exit value, a decade low (2023, EVD-018)
+- 5 years domestic, 15 foreign — Software payroll amortised rather than deducted (tax years from 2022, EVD-013)
+- 165,269 → 265,660 — Tracked technology layoffs, not a census (2022 → 2023, EVD-023)
+
+### E-004 — A fixed number of seats
+
+The conditions that made hiring expensive were reversed; the number of positions was not. The contraction now runs through the hiring channel rather than the separation channel, which is why it is competition for a fixed and shrinking number of seats rather than a shortage of qualified people.
+
+- Span: 2024–2026
+- The money: The tax treatment that penalised payroll was undone: section 174A, added on 4 July 2025, allows domestic research expenditure to be deducted when paid for tax years beginning after 31 December 2024, balances capitalised under the 2022–2024 rules may be recovered in one year or over two, and smaller taxpayers may elect back to 2022. Policy rates came off their cycle peak in September 2024. The inputs that made hiring expensive were reversed. The number of positions was not.
+- What it did to hiring: The contraction runs through the hiring channel, not the separation channel. Official gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025 — down 28.9% — while official layoffs and discharges in the same series were roughly flat at 451,000, 399,000, 395,000 and 447,000. Openings averaged 224,000 a month in 2022 and 121,000 in 2025, and stood at 90,000 in June 2026. Sector payrolls fell from 3,115,000 in November 2022 to 2,780,000 in July 2026.
+- How you got in: Incumbents vacate few seats: the information-sector quits rate was 1.1% in June 2026 against 1.9% in June 2022, and the total-private hires rate 3.7% against 4.7%. Applications per open role rose from 116 in 2022 to 244 in 2025 across one platform's benchmark. Software postings ran 69.3% senior and 4.5% entry-level in the first quarter of 2026, and payroll records show employment of developers aged 22–25 down close to 20% from its late-2022 peak while older ages in the same occupation did not fall. Entry now means succeeding a specific incumbent rather than being trained into a funded seat.
+- 100% — Immediate deduction restored for domestic research (tax years from 2025, EVD-015)
+- 1,270,000 → 903,000 — Gross hires, US information sector (2022 → 2025, EVD-022)
+- 451,000 → 447,000 — Layoffs and discharges, US information sector — roughly flat (2022 → 2025, EVD-021)
+- 224,000/mo → 90,000 — Job openings, US information sector (2022 average → Jun 2026, EVD-020)
+- 3,115,000 → 2,780,000 — Information-sector payrolls (Nov 2022 → Jul 2026, EVD-019)
+- 1.9% → 1.1% — Quits rate, US information sector (Jun 2022 → Jun 2026, EVD-026)
+- 4.7% → 3.7% — Hires rate, total private (Jun 2022 → Jun 2026, EVD-025)
+- 116 → 244 — Applications received per open role, one platform's benchmark (2022 → 2025, EVD-027)
+- 69.3% senior, 4.5% entry — Software postings by level, one job board (Q1 2026, EVD-028)
+- ≈ −20% — Employment of software developers aged 22–25 (late 2022 → Sep 2025, EVD-029)
+- 149,023 — Announced technology job cuts, not a census (Jan–Jul 2026, EVD-024)
+
 ## Evidence
 
 ### EVD-001 — Hidden Workers: Untapped Talent (HBS / Accenture)
@@ -635,3 +702,164 @@ Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliabil
 
 - Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.
 - https://doi.org/10.1111/ijsa.12036
+
+### EVD-007 — Federal funds target range and effective rate (FRED)
+
+The FOMC held the federal funds target range at 0.00–0.25% from 16 December 2008 to 15 December 2015 and again from 16 March 2020 to 16 March 2022. In every full month inside those two windows the effective federal funds rate stayed between 0.05% and 0.22%. Verified against the full daily DFEDTARU/DFEDTARL series (2,556 and 731 daily observations respectively, no other value in either window) and the monthly FEDFUNDS series.
+
+- Board of Governors of the Federal Reserve System (US), Federal Funds Target Range — Upper Limit [DFEDTARU], Lower Limit [DFEDTARL] and Federal Funds Effective Rate [FEDFUNDS], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.
+- https://fred.stlouisfed.org/series/DFEDTARU
+
+### EVD-008 — ECB deposit facility rate (FRED)
+
+The ECB deposit facility rate was cut to 0.00% on 11 July 2012, turned negative at −0.10% on 11 June 2014, reached −0.50% on 18 September 2019 and returned to 0.00% on 27 July 2022. Every one of the 3,668 daily observations between 11 July 2012 and 26 July 2022 is at or below zero.
+
+- European Central Bank, ECB Deposit Facility Rate for Euro Area [ECBDFR], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.
+- https://fred.stlouisfed.org/series/ECBDFR
+
+### EVD-009 — PitchBook-NVCA Venture Monitor, Q4 2021
+
+US venture-backed companies raised $329.6 billion in 2021, against a previous record of $166.6 billion in 2020. The report states the figures verbatim; they are data-provider estimates and are revised in later vintages.
+
+- PitchBook Data and National Venture Capital Association, Q4 2021 PitchBook-NVCA Venture Monitor, 13 January 2022.
+- https://nvca.org/wp-content/uploads/2022/01/Q4_2021_PitchBook_NVCA_Venture_Monitor.pdf
+
+### EVD-010 — KPMG Venture Pulse, Q4 2021
+
+Global venture capital investment totalled $671 billion across 2021, the highest annual figure in the series, of which $171.4 billion was invested in Q4 2021 across 8,710 deals. Underlying data provided by PitchBook as of 31 December 2021.
+
+- KPMG Private Enterprise, Venture Pulse Q4 2021: Global analysis of venture funding, 19 January 2022, p. 7.
+- https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2022/01/venture-pulse-q4-2021.pdf
+
+### EVD-011 — Technology IPO profitability, 1980–2025 (Ritter)
+
+Of 121 US technology listings in 2021, 21% were profitable on trailing- twelve-month earnings. The profitable share ranged from 15% to 43% in every year from 2011 to 2021, so a listing route remained open to companies without trailing profits throughout the period.
+
+- Ritter, Jay R. (2026). Initial Public Offerings: Technology Stock IPOs, Table 4b — Technology and Life Science Company IPOs, 1980–2025. University of Florida.
+- https://web.archive.org/web/20260731141233/https://site.warrington.ufl.edu/ritter/files/IPOs-Tech.pdf
+
+### EVD-012 — 26 U.S.C. §174 as it stood before 2022
+
+Under section 174(a)(1) as it stood before the Tax Cuts and Jobs Act took effect, a taxpayer could treat research or experimental expenditures paid or incurred in connection with a trade or business as expenses not chargeable to capital account, deductible in the year paid or incurred. Payroll spent on building product reduced taxable income in the same year it was spent.
+
+- 26 U.S.C. §174, United States Code, 2017 Edition. U.S. Government Publishing Office.
+- https://www.govinfo.gov/content/pkg/USCODE-2017-title26/html/USCODE-2017-title26-subtitleA-chap1-subchapB-partVI-sec174.htm
+
+### EVD-013 — 26 U.S.C. §174 after the 2017 amendment
+
+Section 13206(a) of Public Law 115-97 rewrote section 174 to deny any current deduction for specified research or experimental expenditures and to require them to be charged to capital account and amortised ratably over five years beginning with the midpoint of the taxable year in which they are paid or incurred, effective for amounts paid or incurred in tax years beginning after 31 December 2021. Subsection (c)(3) treats any amount paid or incurred in connection with the development of software as such an expenditure, so roughly 10% of a developer's salary was deductible in the year it was paid.
+
+- 26 U.S.C. §174, United States Code, 2023 Edition. U.S. Government Publishing Office. Amendment: Pub. L. 115-97 §13206(a).
+- https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapB-partVI-sec174.htm
+
+### EVD-014 — Rev. Proc. 2025-28 (IRS)
+
+IRS guidance on the 2025 restoration: foreign research or experimental expenditures keep the 15-year amortisation period; balances capitalised under the 2022–2024 rules may be recovered in full in the first tax year beginning after 31 December 2024 or ratably over two years; and a taxpayer meeting the section 448(c) gross-receipts test — $31,000,000 average annual gross receipts over the three prior tax years for a year beginning in 2025 — may elect the new treatment retroactively to tax years beginning after 31 December 2021, by 6 July 2026.
+
+- Internal Revenue Service, Rev. Proc. 2025-28, Internal Revenue Bulletin 2025-38, sections 2.02, 2.03(1), 2.06 and 3.02(1).
+- https://www.irs.gov/pub/irs-drop/rp-25-28.pdf
+
+### EVD-015 — 26 U.S.C. §174A — domestic research expenditures
+
+Section 70302(a) of Public Law 119-21, enacted 4 July 2025, added section 174A, which allows a deduction for domestic research or experimental expenditures paid or incurred during the taxable year notwithstanding section 263, with an election to capitalise and amortise them over not less than 60 months instead. Effective for amounts paid or incurred in tax years beginning after 31 December 2024.
+
+- 26 U.S.C. §174A, Domestic research or experimental expenditures. Added by Pub. L. 119-21 §70302(a), 4 July 2025.
+- https://www.law.cornell.edu/uscode/text/26/174A
+
+### EVD-016 — FOMC policy rate decisions (Open Market Operations)
+
+The FOMC raised the federal funds target range to 5.25–5.50% effective 27 July 2023, the peak of the tightening cycle, and held it there until the 25 basis point reduction of 18 September 2024 — roughly fourteen months.
+
+- Board of Governors of the Federal Reserve System (US), Open Market Operations, policy tools archive.
+- https://www.federalreserve.gov/monetarypolicy/openmarket.htm
+
+### EVD-017 — NASDAQ Composite Index (FRED)
+
+The NASDAQ Composite fell 36.4% from its record close of 16,057.44 on 19 November 2021 to its cycle low close of 10,213.29 on 28 December 2022.
+
+- NASDAQ OMX Group, NASDAQ Composite Index [NASDAQCOM], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.
+- https://fred.stlouisfed.org/series/NASDAQCOM
+
+### EVD-018 — PitchBook-NVCA Venture Monitor, Q4 2023
+
+Every stage of the US private funding chain contracted at once. Deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value reached a decade low of $61.5 billion across an estimated 1,129 events. New fund commitments fell to a six-year low of $66.9 billion across 474 funds, against $169.2 billion in 2021 and $172.8 billion in 2022.
+
+- PitchBook Data and National Venture Capital Association, Q4 2023 PitchBook-NVCA Venture Monitor, January 2024.
+- https://nvca.org/wp-content/uploads/2024/01/Q4-2023-PitchBook-NVCA-Venture-Monitor.pdf
+
+### EVD-019 — US information-sector employment (BLS CES)
+
+US payroll employment in the information sector (NAICS 51 — software publishing, data processing and telecommunications, but not computer systems design) fell from a November 2022 peak of 3,115,000 to 2,780,000 in July 2026, a decline of 335,000 or 10.8%. An official establishment survey, not a layoff tracker.
+
+- US Bureau of Labor Statistics, Current Employment Statistics, series CES5000000001 (All employees, thousands, information, seasonally adjusted).
+- https://data.bls.gov/timeseries/CES5000000001
+
+### EVD-020 — Job openings, information sector (BLS JOLTS)
+
+Job openings in the US information sector averaged 224,000 a month in 2022 and 121,000 a month in 2025, and stood at 90,000 in June 2026, against an April 2022 peak of 274,000.
+
+- US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000JOL (Job openings, information, total US, seasonally adjusted).
+- https://data.bls.gov/timeseries/JTS510000000000000JOL
+
+### EVD-021 — Layoffs and discharges, information sector (BLS JOLTS)
+
+Official separations in the US information sector were 451,000 in 2022, 399,000 in 2023, 395,000 in 2024 and 447,000 in 2025 — roughly flat across the period, and without the year-to-year collapse reported by tracked-layoff counts over the same span.
+
+- US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).
+- https://data.bls.gov/timeseries/JTU510000000000000LDL
+
+### EVD-022 — Hires, information sector (BLS JOLTS)
+
+Gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025, a decline of 367,000 or 28.9%. The measure counts hiring flows, not layoff announcements.
+
+- US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000HIL (Hires, information, total US, not seasonally adjusted).
+- https://data.bls.gov/timeseries/JTU510000000000000HIL
+
+### EVD-023 — Tracked technology layoffs (Layoffs.fyi)
+
+A privately maintained tracker that compiles publicly reported layoff events at technology and startup companies worldwide, revised as new reports arrive. It is not a statistical census. It records 165,269 employees in 2022, 265,660 in 2023, 152,922 in 2024, 122,606 in 2025 and 127,180 between 1 January and 24 August 2026.
+
+- Layoffs.fyi — Tech and Startup Layoff Tracker, per-year pages, retrieved 27 August 2026.
+- https://layoffs.fyi/2026-layoffs/
+
+### EVD-024 — Announced job cuts, technology sector (Challenger, Gray & Christmas)
+
+A count of announcements of planned job cuts by US-based employers rather than of completed separations; not an official statistic. It reports 133,988 technology-sector cuts announced in 2024, 154,445 in 2025 and 149,023 between January and July 2026 — 67% above the 89,251 announced in the same months of 2025.
+
+- Challenger, Gray & Christmas, Job Cut Announcement Report, July 2026.
+- https://www.challengergray.com/wp-content/uploads/2026/08/Challenger-Report-July-2026.pdf
+
+### EVD-025 — Hires rate, total private (BLS JOLTS)
+
+The seasonally adjusted hires rate for total private employment was 3.7% in June 2026 (preliminary), a full percentage point below its June 2022 level of 4.7%: fewer positions per hundred jobs are being filled each month.
+
+- US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS100000000000000HIR (Hires rate, total private, seasonally adjusted).
+- https://data.bls.gov/timeseries/JTS100000000000000HIR
+
+### EVD-026 — Quits rate, information sector (BLS JOLTS)
+
+The seasonally adjusted quits rate in the US information sector was 1.1% in June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being vacated by the people already in them.
+
+- US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000QUR (Quits rate, information, seasonally adjusted).
+- https://data.bls.gov/timeseries/JTS510000000000000QUR
+
+### EVD-027 — Applications per opening (Greenhouse hiring benchmarks)
+
+Applications received per open role across the reporting platform's customer base rose from 116 in 2022 to 244 in 2025, an increase of 111%. The stated dataset covers over 6,000 companies and over 640 million applications, so it measures one platform's customers rather than the labour market.
+
+- Greenhouse, The Hire Standard: hiring benchmarks report, North America, March 2026.
+- https://www.greenhouse.com/recruiting-benchmarks
+
+### EVD-028 — Seniority mix of software postings (Indeed Hiring Lab)
+
+Senior-level roles accounted for 69.3% of software development postings and entry-level roles for 4.5% in the first quarter of 2026, measured on one job board's postings rather than on all vacancies.
+
+- Indeed Hiring Lab, The Labor Market Is Tilting Toward Seniority, 23 July 2026.
+- https://hiringlab.indeed.com/2026/07/23/the-labor-market-is-tilting-toward-seniority/
+
+### EVD-029 — Employment of young software developers (Stanford Digital Economy Lab)
+
+In payroll records covering 3.5–5 million workers a month, employment of software developers aged 22–25 fell by close to 20% between its late-2022 peak and September 2025, while employment for older workers in the same occupation did not fall. This is the paper's raw descriptive series for one occupation; its headline regression result — a 16% relative decline for ages 22–25 in AI-exposed occupations, controlling for firm-level shocks — is a different figure and should not be conflated with it.
+
+- Brynjolfsson, E., Chandar, B., & Chen, R. (2025). Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence. Stanford Digital Economy Lab, 13 November 2025.
+- https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf

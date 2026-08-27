@@ -1,0 +1,133 @@
+---
+/**
+ * Eras: the funnel's other axis.
+ *
+ * Everything else on this site describes hiring as it is. This page describes
+ * the conditions that produced it — where the money came from, what that money
+ * did to hiring, and why the way in that worked under one set of conditions
+ * stops working under the next. Every figure carries the evidence record it
+ * came from, because an argument about money with no numbers in it is an
+ * opinion.
+ */
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import EntityRow from '../../components/EntityRow.astro';
+import { getBundle } from '../../lib/registry';
+import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+const lang = localeFromParams(Astro.params);
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const bundle = getBundle(lang);
+
+const ROUTES: Record<string, string> = {
+  artifact: 'artifacts', barrier: 'barriers', mechanism: 'mechanisms',
+  pattern: 'patterns', loop: 'loops', intervention: 'interventions',
+};
+const nodes = new Map(
+  [...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [
+    n.id,
+    { title: n.title, href: `${prefix}/${ROUTES[n.type]}/${n.id}` },
+  ])
+);
+const evidence = new Map(bundle.evidence.map((e) => [e.id, e]));
+
+const eras = bundle.eras;
+// The strip is proportional to real time, so a long cheap-money decade looks
+// like a long cheap-money decade next to a two-year correction.
+const first = eras.length ? Math.min(...eras.map((e) => e.from)) : 0;
+const last = eras.length ? Math.max(...eras.map((e) => e.to)) : 0;
+const span = Math.max(1, last - first);
+const strip = eras.map((era) => ({
+  id: era.id,
+  title: era.title,
+  from: era.from,
+  to: era.to,
+  width: ((era.to - era.from + 1) / (span + 1)) * 100,
+}));
+
+const sections = [
+  { key: 'capital', label: t('era.capital') },
+  { key: 'hiring', label: t('era.hiring') },
+  { key: 'entry', label: t('era.entry') },
+  { key: 'ended_by', label: t('era.endedBy') },
+] as const;
+---
+<Layout lang={lang} title={t('era.title')} description={t('era.intro')} activeNav="eras">
+  <PageHeader kicker={t('era.kicker')} title={t('era.title')} lead={t('era.intro')} />
+
+  {eras.length === 0 && <p class="text-base text-hoba-muted">{t('era.empty')}</p>}
+
+  {eras.length > 0 && (
+    <nav class="era-strip" aria-label={t('era.timeline')}>
+      {strip.map((era) => (
+        <a href={`#${era.id}`} class="era-tab" style={`--w: ${era.width}%`}>
+          <span class="era-tab-years">{era.from}–{era.to}</span>
+          <span class="era-tab-title">{era.title}</span>
+        </a>
+      ))}
+    </nav>
+  )}
+
+  {eras.map((era) => (
+    <article class="section scroll-mt-24" id={era.id}>
+      <p class="kicker font-mono">{era.from}–{era.to}{era.ended_by ? '' : ` · ${t('era.running')}`}</p>
+      <h2 class="text-2xl font-semibold text-hoba-text mt-1">{era.title}</h2>
+      <p class="mt-2 text-lg text-hoba-muted max-w-3xl">{era.summary}</p>
+
+      <dl class="mt-6 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
+        {sections.map(({ key, label }) => (
+          era[key] && (
+            <div>
+              <dt class="text-base font-semibold text-hoba-text">{label}</dt>
+              <dd class="mt-1 text-base text-hoba-muted max-w-2xl">{era[key]}</dd>
+            </div>
+          )
+        ))}
+      </dl>
+
+      {era.indicators.length > 0 && (
+        <section class="mt-8">
+          <h3 class="section-title text-lg">{t('era.indicators')}</h3>
+          <ul class="row-list">
+            {era.indicators.map((indicator) => {
+              const record = evidence.get(indicator.evidence);
+              return (
+                <li class="row items-baseline">
+                  <span class="font-mono text-base text-hoba-accent tabular-nums shrink-0">{indicator.figure}</span>
+                  <span class="text-hoba-text">{indicator.label}</span>
+                  <span class="pill pill-muted ml-auto tabular-nums">{indicator.period}</span>
+                  <span class="w-full text-sm text-hoba-muted">
+                    {record?.url ? (
+                      <a href={record.url} class="hover:text-hoba-text underline underline-offset-2" rel="noopener">{record.title}</a>
+                    ) : (
+                      record?.title ?? indicator.evidence
+                    )}
+                    {record?.citation && <span> — {record.citation}</span>}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+
+      {era.entities.length > 0 && (
+        <section class="mt-8">
+          <h3 class="section-title text-lg">{t('era.entities')}</h3>
+          <ul class="row-list">
+            {era.entities.map((id) => (
+              <EntityRow id={id} title={nodes.get(id)?.title ?? id} href={nodes.get(id)?.href} />
+            ))}
+          </ul>
+        </section>
+      )}
+    </article>
+  ))}
+
+  {eras.length > 0 && <p class="section text-sm text-hoba-muted">{t('era.sources')}</p>}
+</Layout>

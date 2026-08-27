@@ -214,6 +214,93 @@
         }
       }
     },
+    "/eras/index.json": {
+      "get": {
+        "operationId": "listEras",
+        "summary": "List all Periods of the hiring economy, told as where the money came from",
+        "tags": [
+          "Era"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Era"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/eras/{id}.json": {
+      "get": {
+        "operationId": "getEra",
+        "summary": "Get Era by ID",
+        "tags": [
+          "Era"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Era ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Era"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
     "/artifacts/index.json": {
       "get": {
         "operationId": "listArtifacts",
@@ -863,6 +950,9 @@
       },
       "Workflow": {
         "$ref": "https://hoba.work/schemas/workflow.schema.json#/definitions/Workflow"
+      },
+      "Era": {
+        "$ref": "https://hoba.work/schemas/era.schema.json#/definitions/Era"
       },
       "Artifact": {
         "$ref": "https://hoba.work/schemas/artifact.schema.json#/definitions/Artifact"

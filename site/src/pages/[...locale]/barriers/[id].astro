@@ -5,6 +5,7 @@ import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
+import EraNote from '../../../components/EraNote.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { BarrierNode } from '@hoba/registry';
@@ -41,6 +42,7 @@ const targetedInterventions = bundle.interventions.filter((i) => i.targets.inclu
 
   <div>
     <IdealNote id={barrier.id} lang={lang} bundle={bundle} prefix={prefix} />
+    <EraNote id={barrier.id} lang={lang} bundle={bundle} prefix={prefix} />
 
     {barrier.specimens.length > 0 && (
       <section class="section">

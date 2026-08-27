@@ -1,0 +1,70 @@
+{
+  "registry_version": "2026.08.2",
+  "data": {
+    "title": "Rates up, payroll repriced",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-013",
+      "EVD-016",
+      "EVD-017",
+      "EVD-018",
+      "EVD-023"
+    ],
+    "content": "# Rates up, payroll repriced\n\nFour things moved at once and in the same direction: the cost of money, the\nvalue of the equity, the availability of new funding, and the tax treatment of\nthe payroll itself. None of them was a judgement about anybody's work.\n\nThe change worth carrying forward is not the size of the reduction. It is what\nhappened to what a job posting *is*. When hiring narrows to replacing specific\ndepartures, a posting stops describing a plan and starts describing a person who\nrecently left — and the evidence that satisfies it narrows to the same title, at\nsimilar scale, in the same stack. That is a different document to apply to, and\nmost of the atlas is about what applying to it does.",
+    "id": "E-003",
+    "type": "era",
+    "summary": "The policy rate reached its cycle peak, technology equities repriced, every stage of the private funding chain contracted at once, and software payroll became something to amortise rather than deduct. The correction ran through announced reductions rather than through attrition.",
+    "from": 2022,
+    "to": 2023,
+    "capital": "The federal funds target range reached a cycle peak of 5.25–5.50% effective 27 July 2023 and was held there for about fourteen months, and the technology-weighted NASDAQ Composite fell 36.4% from its November 2021 close to its December 2022 low. Every stage of the private chain contracted together: US venture deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023, exit value hit a decade low of $61.5 billion, and new fund commitments fell to a six-year low of $66.9 billion. From tax years beginning after 31 December 2021, software development costs were amortised over five years for domestic research and fifteen for foreign research instead of being deducted when paid.",
+    "hiring": "Payroll was now both harder to refinance and slower to deduct, so plans were cut to the capital already in hand. Reductions were announced rather than absorbed through attrition: a tracker of publicly reported technology layoffs records 165,269 employees in 2022 and 265,660 in 2023, its highest year. Open requisitions were closed as well as filled positions eliminated, and the recruiting capacity built for the previous era was itself reduced.",
+    "entry": "Hiring narrowed to the replacement of specific departures, which meant a posted role described work someone had recently been doing. The evidence employers would accept narrowed with it: recent experience in the same title, at similar scale, in the same stack. The routes that worked when employers hired for potential produced no offers, because the seats being filled were defined by an incumbent's job description rather than by a plan.",
+    "ended_by": "The financial conditions reversed without the reduction reversing. The target range came off its peak on 18 September 2024 and the immediate domestic deduction was restored by statute in July 2025, but the headcount removed during the correction was not restored — so the reduced level carried forward as the baseline rather than as a trough.",
+    "indicators": [
+      {
+        "label": "Peak US federal funds target range",
+        "figure": "5.25–5.50%",
+        "period": "27 Jul 2023 – 18 Sep 2024",
+        "evidence": "EVD-016"
+      },
+      {
+        "label": "NASDAQ Composite, record close to cycle low",
+        "figure": "−36.4%",
+        "period": "19 Nov 2021 – 28 Dec 2022",
+        "evidence": "EVD-017"
+      },
+      {
+        "label": "US venture deal value",
+        "figure": "$348.0B → $170.6B",
+        "period": "2021 → 2023",
+        "evidence": "EVD-018"
+      },
+      {
+        "label": "US venture exit value, a decade low",
+        "figure": "$61.5B",
+        "period": "2023",
+        "evidence": "EVD-018"
+      },
+      {
+        "label": "Software payroll amortised rather than deducted",
+        "figure": "5 years domestic, 15 foreign",
+        "period": "tax years from 2022",
+        "evidence": "EVD-013"
+      },
+      {
+        "label": "Tracked technology layoffs, not a census",
+        "figure": "165,269 → 265,660",
+        "period": "2022 → 2023",
+        "evidence": "EVD-023"
+      }
+    ],
+    "entities": [
+      "M-007",
+      "M-013",
+      "A-003",
+      "A-011",
+      "P-002"
+    ],
+    "specimens": []
+  }
+}

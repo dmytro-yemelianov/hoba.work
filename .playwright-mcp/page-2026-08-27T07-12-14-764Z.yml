@@ -1,0 +1,80 @@
+- generic [ref=f26e2]:
+  - link "Skip to content" [ref=f26e3] [cursor=pointer]:
+    - /url: "#content"
+  - banner [ref=f26e4]:
+    - generic [ref=f26e5]:
+      - paragraph [ref=f26e7]:
+        - link "Layoffs.fyi" [ref=f26e8] [cursor=pointer]:
+          - /url: https://layoffs.fyi/
+      - navigation [ref=f26e9]:
+        - text: 
+        - list [ref=f26e11]:
+          - listitem [ref=f26e12]:
+            - link [ref=f26e13] [cursor=pointer]:
+              - /url: https://layoffs.fyi/
+              - img "⏰" [ref=f26e14]
+              - text: Layoffs Tracker
+          - listitem [ref=f26e15]:
+            - link [ref=f26e16] [cursor=pointer]:
+              - /url: https://layoffs.fyi/ai-layoffs/
+              - img "🪄" [ref=f26e17]
+              - text: AI Layoffs
+          - listitem [ref=f26e18]:
+            - link [ref=f26e19] [cursor=pointer]:
+              - /url: https://layoffs.fyi/companies/
+              - img "🏢" [ref=f26e20]
+              - text: Companies
+          - listitem [ref=f26e21]:
+            - link [ref=f26e22] [cursor=pointer]:
+              - /url: https://layoffs.fyi/share-intel/
+              - img "🕵️‍♀️" [ref=f26e23]
+              - text: Have Info?
+          - listitem [ref=f26e24]:
+            - link [ref=f26e25] [cursor=pointer]:
+              - /url: https://layoffs.fyi/press/
+              - img "🗞️" [ref=f26e26]
+              - text: Press
+  - generic [ref=f26e27]:
+    - main [ref=f26e29]:
+      - article [ref=f26e30]:
+        - heading "Tech Layoffs by Year" [level=1] [ref=f26e32]
+        - generic [ref=f26e33]:
+          - paragraph [ref=f26e34]: Loading…
+          - paragraph
+    - complementary [ref=f26e35]:
+      - complementary [ref=f26e36]:
+        - heading "About" [level=3] [ref=f26e37]
+        - paragraph [ref=f26e39]:
+          - link "Layoffs.fyi" [ref=f26e40] [cursor=pointer]:
+            - /url: /
+          - text: is the most comprehensive public database of tech layoffs.
+      - complementary [ref=f26e41]:
+        - heading "Subscribe" [level=3] [ref=f26e42]
+        - paragraph [ref=f26e46]:
+          - text: "Join our newsletter: Get monthly updates about layoffs sent straight to your inbox."
+          - textbox "Your email address" [ref=f26e47]
+          - button "Subscribe" [ref=f26e48] [cursor=pointer]
+      - complementary [ref=f26e49]:
+        - heading "Have Info?" [level=3] [ref=f26e50]
+        - generic [ref=f26e51]:
+          - text: Seen a layoff list and want to help the affected people? Share with
+          - link "tips@layoffs.fyi" [ref=f26e53] [cursor=pointer]:
+            - /url: mailto:tips@layoffs.fyi
+          - text: or
+          - link "use this form" [ref=f26e54] [cursor=pointer]:
+            - /url: /share-intel
+          - text: .
+      - complementary [ref=f26e55]:
+        - search [ref=f26e56]:
+          - generic [ref=f26e57]:
+            - generic [ref=f26e58]: "Search for:"
+            - searchbox "Search for:" [ref=f26e59]
+  - contentinfo [ref=f26e60]:
+    - generic [ref=f26e62]:
+      - text: Created by
+      - link "Roger Lee" [ref=f26e63] [cursor=pointer]:
+        - /url: https://rogerlee.com
+      - text: (
+      - link "@roger_lee" [ref=f26e64] [cursor=pointer]:
+        - /url: https://twitter.com/roger_lee
+      - text: )

@@ -13,6 +13,7 @@ import type { ZodTypeAny } from 'zod';
 import {
   actorSchema,
   workflowSchema,
+  eraSchema,
   artifactSchema,
   barrierSchema,
   evidenceSchema,
@@ -75,6 +76,7 @@ interface EntityDef {
 const ENTITIES: EntityDef[] = [
   { collection: 'actors', name: 'Actor', schema: actorSchema, summary: 'Actors whose decisions the funnel is made of' },
   { collection: 'workflows', name: 'Workflow', schema: workflowSchema, summary: 'State machines the funnel runs as' },
+  { collection: 'eras', name: 'Era', schema: eraSchema, summary: 'Periods of the hiring economy, told as where the money came from' },
   { collection: 'artifacts', name: 'Artifact', schema: artifactSchema, summary: 'Observations / Artifacts' },
   { collection: 'barriers', name: 'Barrier', schema: barrierSchema, summary: 'Funnel Barriers (strictly acyclic DAG)' },
   { collection: 'mechanisms', name: 'Mechanism', schema: mechanismSchema, summary: 'Mechanisms with classification facets' },
