@@ -817,7 +817,7 @@
         {
           "id": "tell-them-when-a-search-stalls",
           "title": "Tell everyone still inside when a search stops moving",
-          "rationale": "Whether a candidate learns that a search has stalled is decided in this seat, and it is decidable from what is visible here: the date of the last scheduling activity on the requisition. The message states that date and no more, because whether the headcount returns this quarter is not visible from here. Silence at this point is read as a decision about the candidate.",
+          "rationale": "Whether a candidate learns that a search has stalled is decided in this seat, and it can be decided from what is visible here: the date of the last scheduling activity on the requisition. The message states that date and no more, because whether the headcount returns this quarter is not visible from here. Silence at this point is read as a decision about the candidate.",
           "cost": "medium",
           "costs": "Candidates who are told make other plans, and the message puts in writing that the internal client's search has stopped, against a seat measured on time-to-fill and on that relationship.",
           "targets": [
@@ -919,7 +919,7 @@
             "B-014",
             "M-006"
           ],
-          "visible_to_candidate": "The posting, and whatever the posting chose to disclose.",
+          "visible_to_candidate": "The posting, and whatever it states.",
           "deviations": []
         },
         {
@@ -956,13 +956,13 @@
           "title": "In the recruiter queue",
           "kind": "active",
           "owner": "recruiter",
-          "description": "Waiting to be read by a person, against an inbound queue that is usually larger than the week has hours for.",
+          "description": "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.",
           "entities": [
             "B-003",
             "M-009",
             "M-016"
           ],
-          "visible_to_candidate": "Silence, of an indeterminate length.",
+          "visible_to_candidate": "Silence of indeterminate length.",
           "deviations": []
         },
         {
@@ -977,7 +977,7 @@
             "M-004",
             "M-017"
           ],
-          "visible_to_candidate": "The call itself, and whichever parameters the recruiter chose to share.",
+          "visible_to_candidate": "The call itself, and whichever parameters the recruiter states.",
           "deviations": []
         },
         {
@@ -1247,7 +1247,7 @@
           "to": "rejected",
           "label": "assessment not passed",
           "owner": "hiring-manager",
-          "guard": "The score falls short, or the review was too shallow to find what was there.",
+          "guard": "The score falls short, or the review is too shallow to find what is there.",
           "entities": [
             "A-008",
             "M-001",
@@ -1397,7 +1397,7 @@
           "title": "Submitted",
           "kind": "initial",
           "owner": "candidate",
-          "description": "A form post has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
+          "description": "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
           "entities": [
             "B-001",
             "A-001"
@@ -1489,7 +1489,7 @@
           "title": "Rejected by a person",
           "kind": "terminal",
           "owner": "recruiter",
-          "description": "Someone read it and passed. What the message says about why is a separate decision, usually a template.",
+          "description": "Someone read it and did not take it forward. What the message says about why is a separate decision, usually a template.",
           "entities": [
             "A-002"
           ],
@@ -2164,7 +2164,7 @@
       "from": 2022,
       "to": 2023,
       "capital": "The federal funds target range reached a cycle peak of 5.25–5.50% effective 27 July 2023 and was held there for about fourteen months, and the technology-weighted NASDAQ Composite fell 36.4% from its November 2021 close to its December 2022 low. Every stage of the private chain contracted together: US venture deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023, exit value hit a decade low of $61.5 billion, and new fund commitments fell to a six-year low of $66.9 billion. From tax years beginning after 31 December 2021, software development costs were amortised over five years for domestic research and fifteen for foreign research instead of being deducted when paid.",
-      "hiring": "Payroll was now both harder to refinance and slower to deduct, so plans were cut to the capital already in hand. Reductions were announced rather than absorbed through attrition: a tracker of publicly reported technology layoffs records 165,269 employees in 2022 and 265,660 in 2023, its highest year. Open requisitions were closed as well as filled positions eliminated, and the recruiting capacity built for the previous era was itself reduced.",
+      "hiring": "Payroll was now both harder to refinance and slower to deduct, so plans were cut to the capital already in hand. Reductions were announced rather than absorbed through attrition: a tracker of publicly reported technology layoffs records 165,269 employees in 2022 and 265,660 in 2023, its highest year. Open requisitions were closed and filled positions eliminated, and the recruiting capacity built for the previous era was itself reduced.",
       "entry": "Hiring narrowed to the replacement of specific departures, which meant a posted role described work someone had recently been doing. The evidence employers would accept narrowed with it: recent experience in the same title, at similar scale, in the same stack. The routes that worked when employers hired for potential produced no offers, because the seats being filled were defined by an incumbent's job description rather than by a plan.",
       "ended_by": "The financial conditions reversed without the reduction reversing. The target range came off its peak on 18 September 2024 and the immediate domestic deduction was restored by statute in July 2025, but the headcount removed during the correction was not restored — so the reduced level carried forward as the baseline rather than as a trough.",
       "indicators": [
@@ -2238,7 +2238,7 @@
       "to": 2026,
       "capital": "The tax treatment that penalised payroll was undone: section 174A, added on 4 July 2025, allows domestic research expenditure to be deducted when paid for tax years beginning after 31 December 2024, balances capitalised under the 2022–2024 rules may be recovered in one year or over two, and smaller taxpayers may elect back to 2022. Policy rates came off their cycle peak in September 2024. The inputs that made hiring expensive were reversed. The number of positions was not.",
       "hiring": "The contraction runs through the hiring channel, not the separation channel. Official gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025 — down 28.9% — while official layoffs and discharges in the same series were roughly flat at 451,000, 399,000, 395,000 and 447,000. Openings averaged 224,000 a month in 2022 and 121,000 in 2025, and stood at 90,000 in June 2026. Sector payrolls fell from 3,115,000 in November 2022 to 2,780,000 in July 2026.",
-      "entry": "Incumbents vacate few seats: the information-sector quits rate was 1.1% in June 2026 against 1.9% in June 2022, and the total-private hires rate 3.7% against 4.7%. Applications per open role rose from 116 in 2022 to 244 in 2025 across one platform's benchmark. Software postings ran 69.3% senior and 4.5% entry-level in the first quarter of 2026, and payroll records show employment of developers aged 22–25 down close to 20% from its late-2022 peak while older ages in the same occupation did not fall. Entry now means succeeding a specific incumbent rather than being trained into a funded seat.",
+      "entry": "Incumbents vacate few seats: the information-sector quits rate was 1.1% in June 2026 against 1.9% in June 2022, and the total-private hires rate 3.7% against 4.7%. Applications per open role rose from 116 in 2022 to 244 in 2025 across one platform's benchmark. Software postings ran 69.3% senior and 4.5% entry-level in the first quarter of 2026, and payroll records show employment of developers aged 22–25 down close to 20% from its late-2022 peak while employment at older ages in the same occupation did not fall. Entry now means succeeding a specific incumbent rather than being trained into a funded seat.",
       "ended_by": "",
       "indicators": [
         {
@@ -2330,10 +2330,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Complete silence after submission\n\nNo automated receipt, acknowledgement, rejection, or recruiter outreach is received following application submission.\n\n### Diagnostic Non-Inferences\n- Does not prove the application was reviewed by a human.\n- Does not prove the role was cancelled or already filled.",
+      "content": "# Complete silence after submission\n\nAfter the application is submitted, nothing arrives: no automated receipt, no acknowledgement, no rejection, no message from a recruiter.\n\n### Diagnostic Non-Inferences\n- Does not prove the application was reviewed by a human.\n- Does not prove the role was cancelled or already filled.",
       "id": "A-001",
       "type": "artifact",
-      "summary": "No automated receipt, acknowledgement, rejection, or recruiter outreach is received following application submission.",
+      "summary": "After the application is submitted, nothing arrives: no automated receipt, no acknowledgement, no rejection, no message from a recruiter.",
       "stages": [
         "ingestion",
         "sourcing"
@@ -2342,8 +2342,8 @@
       "probes": [
         {
           "id": "PROBE-A-001-1",
-          "action": "Check email spam and security quarantine folders for ATS automated acknowledgement tokens.",
-          "expected_signal": "Confirms whether application was ingested and generated a confirmation ID.",
+          "action": "Check the email spam folder and the security quarantine for an automated acknowledgement from the ATS.",
+          "expected_signal": "Shows whether the application was ingested and generated a confirmation ID.",
           "cost": "low",
           "outcomes": [
             {
@@ -2454,10 +2454,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Generic \"closer alignment\" rejection template\n\nStandard automated email stating the team decided to proceed with candidates whose profiles more closely match role requirements.\n\n### Diagnostic Non-Inferences\n- Does not establish which specific skill was deemed insufficient.\n- Does not establish whether a human reviewer read the full resume.",
+      "content": "# Generic \"closer alignment\" rejection template\n\nA standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.\n\n### Diagnostic Non-Inferences\n- Does not establish which specific skill was deemed insufficient.\n- Does not establish whether a human reviewer read the full resume.",
       "id": "A-002",
       "type": "artifact",
-      "summary": "Standard automated email stating the team decided to proceed with candidates whose profiles more closely match role requirements.",
+      "summary": "A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.",
       "stages": [
         "screening",
         "recruiter",
@@ -2467,8 +2467,8 @@
       "probes": [
         {
           "id": "PROBE-A-002-1",
-          "action": "Compare CV keyword density with exact requirement phrases in the published job description.",
-          "expected_signal": "Reveals potential vocabulary mismatch between candidate phrasing and ATS rubric.",
+          "action": "Compare the wording of the CV with the exact requirement phrases in the published job description.",
+          "expected_signal": "Reveals a possible vocabulary mismatch between the candidate's wording and the ATS rubric.",
           "cost": "low",
           "outcomes": [
             {
@@ -2545,7 +2545,7 @@
           "actor": "candidate",
           "sees": "A message sent at 03:14 with no sentence specific to this candidate, this role or this conversation, and a follow-up that returns the same wording.",
           "reads": "The text is the standard wording for this outcome. Which requirement was the gap is not stated in it, and asking returned the template again.",
-          "does": "Records the date and the exact wording, and compares the CV phrasing against the requirement phrases as published, since the message names no gap to work from."
+          "does": "Records the date and the exact wording, and compares the wording of the CV against the requirements as they were published, since the message names no gap to work from."
         },
         {
           "actor": "recruiter",
@@ -2555,7 +2555,7 @@
         },
         {
           "actor": "employer-policy",
-          "sees": "One approved wording covering every rejection at every stage, and the disclosure rule that fixes what may be given as a reason.",
+          "sees": "One approved wording covering every rejection at every stage, and the disclosure rule that sets what may be given as a reason.",
           "reads": "Identical wording across all outcomes is what makes each of them consistent and defensible if any one is challenged.",
           "does": "Sets the template once for the whole funnel; the hours a candidate spends inferring a reason from it are not a figure this layer holds."
         }
@@ -2571,10 +2571,10 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Position closed after final interview without hire\n\nCandidate completes all interview rounds, but is informed that the requisition has been cancelled, frozen, or closed.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate failed technical or behavioral evaluations.\n- Does not prove the company lied about opening intention.",
+      "content": "# Position closed after final interview without hire\n\nThe candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.\n\n### Diagnostic Non-Inferences\n- Does not prove that the candidate failed the technical or behavioural evaluations.\n- Does not prove that the company misstated its intention in opening the role.",
       "id": "A-003",
       "type": "artifact",
-      "summary": "Candidate completes all interview rounds, but is informed that the requisition has been cancelled, frozen, or closed.",
+      "summary": "The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.",
       "stages": [
         "team",
         "offer"
@@ -2583,8 +2583,8 @@
       "probes": [
         {
           "id": "PROBE-A-003-1",
-          "action": "Politely inquire with recruiter if the position was closed due to business budget restructuring or team reallocation.",
-          "expected_signal": "Clarifies whether barrier was candidate-specific or macroeconomic/budgetary.",
+          "action": "Ask the recruiter whether the role was closed by a budget restructuring or by a reallocation of the work inside the team.",
+          "expected_signal": "Clarifies whether the barrier was specific to this candidate or budgetary.",
           "cost": "low",
           "outcomes": [
             {
@@ -2690,8 +2690,8 @@
         }
       ],
       "non_inferences": [
-        "Does not prove candidate failed technical or behavioral evaluations.",
-        "Does not prove the company lied about opening intention."
+        "Does not prove that the candidate failed the technical or behavioural evaluations.",
+        "Does not prove that the company misstated its intention in opening the role."
       ]
     },
     {
@@ -2700,10 +2700,10 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Materially similar role reposted shortly after rejection\n\nCandidate observes the same or near-identical job listing reposted or refreshed on job boards within 1–8 weeks of rejection.\n\n### Diagnostic Non-Inferences\n- Does not establish that the role was a \"fake\" or \"ghost\" posting.\n- Does not establish that the prior interview feedback was fraudulent.",
+      "content": "# Materially similar role reposted shortly after rejection\n\nThe same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.\n\n### Diagnostic Non-Inferences\n- Does not establish that the role was a \"fake\" or \"ghost\" posting.\n- Does not establish that the prior interview feedback was fraudulent.",
       "id": "A-004",
       "type": "artifact",
-      "summary": "Candidate observes the same or near-identical job listing reposted or refreshed on job boards within 1–8 weeks of rejection.",
+      "summary": "The same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.",
       "stages": [
         "sourcing",
         "screening",
@@ -2713,8 +2713,8 @@
       "probes": [
         {
           "id": "PROBE-A-004-1",
-          "action": "Check job listing requisition ID or ask recruiter whether the posting is an automated ATS refresh or a distinct headcount opening.",
-          "expected_signal": "Distinguishes between automated job board bot refreshes and genuine recurring hiring demand.",
+          "action": "Check the requisition ID on the listing, or ask the recruiter whether the posting is an automated ATS refresh or a separate headcount opening.",
+          "expected_signal": "Distinguishes an automated refresh on the job board from a genuinely recurring hiring need.",
           "cost": "low",
           "outcomes": [
             {
@@ -2816,10 +2816,10 @@
       "evidence_ids": [
         "EVD-005"
       ],
-      "content": "# Compensation band reduced or altered mid-process\n\nOffered or discussed compensation band is revised downward from previously agreed or advertised range.\n\n### Diagnostic Non-Inferences\n- Does not prove intentional bait-and-switch malice unless verified by company policy evidence.",
+      "content": "# Compensation band reduced or altered mid-process\n\nThe compensation band offered or discussed is revised downward from the range previously agreed or advertised.\n\n### Diagnostic Non-Inferences\n- Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.",
       "id": "A-005",
       "type": "artifact",
-      "summary": "Offered or discussed compensation band is revised downward from previously agreed or advertised range.",
+      "summary": "The compensation band offered or discussed is revised downward from the range previously agreed or advertised.",
       "stages": [
         "recruiter",
         "compensation",
@@ -2829,8 +2829,8 @@
       "probes": [
         {
           "id": "PROBE-A-005-1",
-          "action": "Request clarification on whether the revised band reflects a lower leveling grade or a company-wide budget adjustment.",
-          "expected_signal": "Separates leveling evaluation outcome from company financial constraints.",
+          "action": "Ask whether the revised band follows from a lower levelling grade or from a company-wide budget adjustment.",
+          "expected_signal": "Separates the outcome of the levelling assessment from the company's financial constraints.",
           "cost": "medium",
           "outcomes": [
             {
@@ -2884,7 +2884,7 @@
               "tell": true
             }
           ],
-          "reading": "The number moved after the candidate had already spent the process. Note the date the original band was stated and by whom."
+          "reading": "The number moved after the process had already taken five weeks of the candidate's time. Note the date the original band was stated and by whom."
         },
         {
           "kind": "transcript",
@@ -2930,7 +2930,7 @@
           "actor": "recruiter",
           "sees": "A revised grid for the level, arriving after the role opened, and a candidate holding the figure stated at the screen.",
           "reads": "The number changed above the recruiter's position; the earlier figure is the one the candidate is holding going into the offer call.",
-          "does": "States the current band and where it came from, and puts the posting correction in as a request, because the band itself is set a level above this function."
+          "does": "States the current band and where it came from, and files the posting correction as a request, because the band itself is set a level above this function."
         },
         {
           "actor": "employer-policy",
@@ -2946,7 +2946,7 @@
         }
       ],
       "non_inferences": [
-        "Does not prove intentional bait-and-switch malice unless verified by company policy evidence."
+        "Does not prove an intentional bait-and-switch unless evidence of company policy establishes one."
       ]
     },
     {
@@ -2955,10 +2955,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-home assignment exceeding reasonable stated scope\n\nTake-home assignment requires building complex production-grade features demanding 20+ hours instead of stated 2–4 hours.\n\n### Diagnostic Non-Inferences\n- Does not prove the company is harvesting free intellectual property for production use.",
+      "content": "# Take-home assignment exceeding reasonable stated scope\n\nThe take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.\n\n### Diagnostic Non-Inferences\n- Does not prove the company is harvesting free intellectual property for production use.",
       "id": "A-006",
       "type": "artifact",
-      "summary": "Take-home assignment requires building complex production-grade features demanding 20+ hours instead of stated 2–4 hours.",
+      "summary": "The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.",
       "stages": [
         "technical"
       ],
@@ -2966,7 +2966,7 @@
       "probes": [
         {
           "id": "PROBE-A-006-1",
-          "action": "Define explicit boundaries and trade-offs in submission README stating assumptions made to fit the agreed timebox.",
+          "action": "Write the boundaries and trade-offs into the submission's README, naming the assumptions made to fit the agreed timebox.",
           "expected_signal": "Tests whether evaluators value scope management and communication over unbounded free work.",
           "cost": "low",
           "outcomes": [
@@ -3036,7 +3036,7 @@
               "tell": true
             }
           ],
-          "reading": "The stated budget and the expected deliverable are not reconciled when asked directly. That is the observation; the reason for it is not visible from here."
+          "reading": "A direct question does not reconcile the stated budget with the expected deliverable. That is the observation; the reason for it is not visible from here."
         }
       ],
       "perspectives": [
@@ -3069,10 +3069,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Multiple interview reschedulings or interviewer no-show\n\nInterviews are repeatedly postponed, delayed at short notice, or interviewer fails to join scheduled call.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.",
+      "content": "# Multiple interview reschedulings or interviewer no-show\n\nInterviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.",
       "id": "A-007",
       "type": "artifact",
-      "summary": "Interviews are repeatedly postponed, delayed at short notice, or interviewer fails to join scheduled call.",
+      "summary": "Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.",
       "stages": [
         "recruiter",
         "technical",
@@ -3082,8 +3082,8 @@
       "probes": [
         {
           "id": "PROBE-A-007-1",
-          "action": "Offer clear flexible availability slots and confirm contact details 2 hours prior to the call.",
-          "expected_signal": "Minimizes scheduling friction and verifies recruiter responsiveness.",
+          "action": "Offer a set of concrete times you are free, and confirm the contact details 2 hours before the call.",
+          "expected_signal": "Minimises scheduling friction and shows how quickly the recruiter answers.",
           "cost": "low",
           "outcomes": [
             {
@@ -3144,7 +3144,7 @@
               "tell": true
             }
           ],
-          "reading": "Four movements, no interview. Record the dates: a pattern of postponement is evidence about the process, not about the candidate."
+          "reading": "Four moves, no interview. Record the dates: a pattern of postponement is evidence about the process, not about the candidate."
         },
         {
           "kind": "ats",
@@ -3204,7 +3204,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; reflects threshold for this specific role level.",
+      "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; it reflects the threshold for this specific role level.",
       "id": "A-008",
       "type": "artifact",
       "summary": "Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.",
@@ -3216,8 +3216,8 @@
       "probes": [
         {
           "id": "PROBE-A-008-1",
-          "action": "Review interview problem solution against industry standard patterns and identify edge cases missed.",
-          "expected_signal": "Verifies whether candidate code truly lacked required optimization or rigor.",
+          "action": "Review the interview solution against the standard patterns for that problem and identify the edge cases it misses.",
+          "expected_signal": "Verifies whether the code actually lacked the optimisation or rigour the notes name.",
           "cost": "medium",
           "outcomes": [
             {
@@ -3329,7 +3329,7 @@
         }
       ],
       "non_inferences": [
-        "Does not imply general incompetence; reflects threshold for this specific role level."
+        "Does not imply general incompetence; it reflects the threshold for this specific role level."
       ]
     },
     {
@@ -3338,10 +3338,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Rejection within minutes of application submission\n\nAutomated rejection email arrives within 2 to 30 minutes of form submission, outside human business hours.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate resume was judged as poor by human engineers.",
+      "content": "# Rejection within minutes of application submission\n\nAutomated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.\n\n### Diagnostic Non-Inferences\n- Does not mean a human engineer read the resume and judged it poor.",
       "id": "A-009",
       "type": "artifact",
-      "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside human business hours.",
+      "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.",
       "stages": [
         "ingestion"
       ],
@@ -3349,8 +3349,8 @@
       "probes": [
         {
           "id": "PROBE-A-009-1",
-          "action": "Audit application answers to mandatory knock-out questions (work permit, country of residence, minimum years experience).",
-          "expected_signal": "Identifies exact boolean filter rule triggered by ATS.",
+          "action": "Audit the application answers to the mandatory knock-out questions (work permit, country of residence, minimum years of experience).",
+          "expected_signal": "Identifies which boolean filter rule the ATS applied.",
           "cost": "low",
           "outcomes": [
             {
@@ -3443,11 +3443,11 @@
           "actor": "ats-vendor",
           "sees": "A submission, a rules evaluation two seconds later, a status transition and a queued notification. All four are events, and none of them is a reading of the profile.",
           "reads": "The configuration ran as configured. Whether the criterion it enforced is the one the customer meant is not a value the platform holds.",
-          "does": "Emits the templated notification, records the disposition, and reports the interval as throughput on the dashboard the buyer evaluates."
+          "does": "Sends the templated notification, records the disposition, and reports the interval as throughput on the dashboard the buyer evaluates."
         }
       ],
       "non_inferences": [
-        "Does not imply candidate resume was judged as poor by human engineers."
+        "Does not mean a human engineer read the resume and judged it poor."
       ]
     },
     {
@@ -3456,7 +3456,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Communication mismatch or tone friction in panel\n\nNoticeable divergence in communication style, pacing, or terminology during live panel discussions.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate lacks teamwork skills globally.",
+      "content": "# Communication mismatch or tone friction in panel\n\nNoticeable divergence in communication style, pacing, or terminology during live panel discussions.\n\n### Diagnostic Non-Inferences\n- Does not prove the candidate lacks teamwork skills in general.",
       "id": "A-010",
       "type": "artifact",
       "summary": "Noticeable divergence in communication style, pacing, or terminology during live panel discussions.",
@@ -3468,8 +3468,8 @@
       "probes": [
         {
           "id": "PROBE-A-010-1",
-          "action": "Request explicit feedback on collaborative dynamic from recruiter.",
-          "expected_signal": "Clarifies whether friction was perceived as attitude issue or stylistic preference.",
+          "action": "Ask the recruiter for explicit feedback on the collaborative dynamic.",
+          "expected_signal": "Clarifies whether the friction was taken as an attitude issue or as a difference in style.",
           "cost": "low",
           "outcomes": [
             {
@@ -3552,7 +3552,7 @@
               "tell": true
             }
           ],
-          "reading": "Read against the transcript this is one exchange generalised into a trait. Both readings fit the same recording, which is exactly why the observation is not a verdict."
+          "reading": "Read against the transcript, this is one exchange generalised into a trait. Both readings fit the same recording, which is exactly why the observation is not a verdict."
         }
       ],
       "perspectives": [
@@ -3576,7 +3576,7 @@
         }
       ],
       "non_inferences": [
-        "Does not prove candidate lacks teamwork skills globally."
+        "Does not prove the candidate lacks teamwork skills in general."
       ]
     },
     {
@@ -3585,10 +3585,10 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Offer rescinded or delayed due to internal freeze\n\nCandidate is verbally offered a role or receives written offer which is subsequently delayed or retracted before start date.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate failed reference checks unless explicitly stated.",
+      "content": "# Offer rescinded or delayed due to internal freeze\n\nCandidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.\n\n### Diagnostic Non-Inferences\n- Does not mean the candidate failed a reference check, unless the message says so.",
       "id": "A-011",
       "type": "artifact",
-      "summary": "Candidate is verbally offered a role or receives written offer which is subsequently delayed or retracted before start date.",
+      "summary": "Candidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.",
       "stages": [
         "offer",
         "post-offer"
@@ -3597,8 +3597,8 @@
       "probes": [
         {
           "id": "PROBE-A-011-1",
-          "action": "Request formal written notice regarding whether requisition is permanently cancelled or deferred to next fiscal quarter.",
-          "expected_signal": "Provides timeline clarity for candidate decision-making.",
+          "action": "Ask for written notice of whether the requisition is cancelled outright or deferred to the next fiscal quarter.",
+          "expected_signal": "Establishes whether there is a date to wait for.",
           "cost": "low",
           "outcomes": [
             {
@@ -3691,7 +3691,7 @@
         }
       ],
       "non_inferences": [
-        "Does not imply candidate failed reference checks unless explicitly stated."
+        "Does not mean the candidate failed a reference check, unless the message says so."
       ]
     },
     {
@@ -3700,10 +3700,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns.",
+      "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like.",
       "id": "A-012",
       "type": "artifact",
-      "summary": "Recruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.",
+      "summary": "Recruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.",
       "stages": [
         "sourcing",
         "recruiter"
@@ -3712,8 +3712,8 @@
       "probes": [
         {
           "id": "PROBE-A-012-1",
-          "action": "Send one single polite follow-up after 5 business days referencing original outreach thread.",
-          "expected_signal": "Recovers stalled conversation if recruiter was out-of-office or overwhelmed.",
+          "action": "Send one polite follow-up after five business days, on the original outreach thread.",
+          "expected_signal": "Recovers a stalled conversation if the recruiter was away or over capacity.",
           "cost": "low",
           "outcomes": [
             {
@@ -3817,7 +3817,7 @@
         }
       ],
       "non_inferences": [
-        "Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns."
+        "Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like."
       ]
     },
     {
@@ -3826,10 +3826,10 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns.",
+      "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch.",
       "id": "A-013",
       "type": "artifact",
-      "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.",
+      "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.",
       "stages": [
         "recruiter",
         "screening",
@@ -3839,8 +3839,8 @@
       "probes": [
         {
           "id": "PROBE-A-013-1",
-          "action": "Inquire whether the organization has higher-tier or staff-level requisitions open where broader scope is desired.",
-          "expected_signal": "Channels candidate into appropriate leveling track.",
+          "action": "Ask whether the organisation has requisitions open at a higher band or at staff level, where the wider scope is part of the role.",
+          "expected_signal": "Shows whether anything is open above this band.",
           "cost": "low",
           "outcomes": [
             {
@@ -3958,7 +3958,7 @@
         }
       ],
       "non_inferences": [
-        "Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns."
+        "Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch."
       ]
     },
     {
@@ -3967,7 +3967,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Conflicting feedback across different interviewers\n\nFeedback from one round praises architectural depth while another round claims insufficient technical background.\n\n### Diagnostic Non-Inferences\n- Does not prove bad faith; highlights lack of rubric calibration across the hiring committee.",
+      "content": "# Conflicting feedback across different interviewers\n\nFeedback from one round praises architectural depth while another round claims insufficient technical background.\n\n### Diagnostic Non-Inferences\n- Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee.",
       "id": "A-014",
       "type": "artifact",
       "summary": "Feedback from one round praises architectural depth while another round claims insufficient technical background.",
@@ -3979,8 +3979,8 @@
       "probes": [
         {
           "id": "PROBE-A-014-1",
-          "action": "Request aggregated hiring rubric summary from talent partner.",
-          "expected_signal": "Reveals whether team had misaligned internal evaluation criteria.",
+          "action": "Ask the talent partner for the consolidated rubric summary.",
+          "expected_signal": "Shows whether the two rounds were scoring against different criteria.",
           "cost": "low",
           "outcomes": [
             {
@@ -4073,7 +4073,7 @@
         }
       ],
       "non_inferences": [
-        "Does not prove bad faith; highlights lack of rubric calibration across the hiring committee."
+        "Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee."
       ]
     }
   ],
@@ -4084,7 +4084,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
+      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
       "id": "B-013",
       "type": "barrier",
       "stage": "pre-posting",
@@ -4093,7 +4093,7 @@
         "B-014",
         "B-001"
       ],
-      "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.",
+      "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
       "evidence_level": "established",
       "specimens": [
@@ -4214,7 +4214,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nApplication record is successfully received, validated for minimum schema, and linked to the active job requisition.",
+      "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nThe application record is received, validates against the minimum schema, and is linked to an active job requisition.",
       "id": "B-001",
       "type": "barrier",
       "stage": "ingestion",
@@ -4223,7 +4223,7 @@
         "B-002"
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
-      "pass_condition": "Application record is successfully received, validated for minimum schema, and linked to the active job requisition.",
+      "pass_condition": "The application record is received, validates against the minimum schema, and is linked to an active job requisition.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4282,7 +4282,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nCV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
+      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "id": "B-002",
       "type": "barrier",
       "stage": "ingestion",
@@ -4292,7 +4292,7 @@
         "B-004"
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.",
-      "pass_condition": "CV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
+      "pass_condition": "The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4361,7 +4361,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach.",
+      "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nThe recruiter adds the application to the active short-list for a first conversation.",
       "id": "B-003",
       "type": "barrier",
       "stage": "screening",
@@ -4370,7 +4370,7 @@
         "B-004"
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
-      "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
+      "pass_condition": "The recruiter adds the application to the active short-list for a first conversation.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4422,7 +4422,7 @@
         "EVD-001",
         "EVD-005"
       ],
-      "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nRecruiter and candidate align on core parameters and candidate is submitted to hiring team.",
+      "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nThe recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
       "id": "B-004",
       "type": "barrier",
       "stage": "recruiter",
@@ -4431,7 +4431,7 @@
         "B-005"
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
-      "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
+      "pass_condition": "The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4477,7 +4477,7 @@
         {
           "actor": "candidate",
           "sees": "A thirty-minute call in which four questions are logistics and one is about the work.",
-          "reads": "The compensation question arrives before the level, the rubric or the band are stated, so a number has to be given against an unknown.",
+          "reads": "The compensation question arrives before the level, the rubric or the band is stated, so a number has to be given against an unknown.",
           "does": "Names a figure or a range, and answers the timeline and location questions that can end the process at this gate."
         },
         {
@@ -4506,7 +4506,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nCandidate achieves passing score on technical evaluation rubric from the assessing engineer.",
+      "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nThe candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
       "id": "B-005",
       "type": "barrier",
       "stage": "technical",
@@ -4516,7 +4516,7 @@
         "B-007"
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
-      "pass_condition": "Candidate achieves passing score on technical evaluation rubric from the assessing engineer.",
+      "pass_condition": "The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4566,7 +4566,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nCode artifact satisfies architectural, functional, test coverage, and documentation requirements.",
+      "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nThe submitted code meets the architecture, functionality, test coverage and documentation requirements.",
       "id": "B-006",
       "type": "barrier",
       "stage": "technical",
@@ -4575,7 +4575,7 @@
         "B-007"
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
-      "pass_condition": "Code artifact satisfies architectural, functional, test coverage, and documentation requirements.",
+      "pass_condition": "The submitted code meets the architecture, functionality, test coverage and documentation requirements.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4629,7 +4629,7 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nHiring manager confirms candidate has required depth and approves progression to final panel.",
+      "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nThe hiring manager confirms the required depth and approves the candidate for the final panel.",
       "id": "B-007",
       "type": "barrier",
       "stage": "hiring-manager",
@@ -4638,7 +4638,7 @@
         "B-008"
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
-      "pass_condition": "Hiring manager confirms candidate has required depth and approves progression to final panel.",
+      "pass_condition": "The hiring manager confirms the required depth and approves the candidate for the final panel.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -4738,7 +4738,7 @@
               "tell": false
             }
           ],
-          "reading": "The gate is not an average, it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
+          "reading": "The gate is not an average; it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
         }
       ],
       "perspectives": [
@@ -4763,13 +4763,13 @@
       ]
     },
     {
-      "title": "Compensation & Leveling Reconciliation",
+      "title": "Compensation & Levelling Reconciliation",
       "status": "active",
       "evidence_ids": [
         "EVD-002",
         "EVD-005"
       ],
-      "content": "# Compensation & Leveling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / leveling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
+      "content": "# Compensation & Levelling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / levelling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
       "id": "B-009",
       "type": "barrier",
       "stage": "compensation",
@@ -4777,7 +4777,7 @@
       "precedes": [
         "B-010"
       ],
-      "description": "Internal alignment between candidate expected compensation/level and company pay bands / leveling grid.",
+      "description": "Internal alignment between candidate expected compensation/level and company pay bands / levelling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
       "evidence_level": "established",
       "specimens": [
@@ -4806,13 +4806,13 @@
           "actor": "candidate",
           "sees": "A number stated at the screen, and later a message that it does not fit. The level it was compared against is named afterwards, if at all.",
           "reads": "It reads as a negotiation over the number they named, rather than as the meeting of two decisions taken separately.",
-          "does": "Can restate the number or withdraw. Which of the two — the level or the band — produced the gap decides whether restating it changes anything, and that is not in the message."
+          "does": "Can restate the number or withdraw. Whether restating it changes anything turns on which of the two produced the gap — the level or the band — and that is not in the message."
         },
         {
           "actor": "hiring-manager",
           "sees": "The level the panel assessed at, and the band that level carries. Their input to this gate closed when the level was set.",
           "reads": "The gap reads as a levelling question: the same candidate one level up sits inside a band, and moving the level needs a signature above them.",
-          "does": "Requests the level up, or holds the level and lets the process close. The gap on the team stays with them either way."
+          "does": "Requests the level up, or holds the level and lets the process close. The unfilled seat on the team stays with them either way."
         },
         {
           "actor": "employer-policy",
@@ -4889,7 +4889,7 @@
         {
           "actor": "candidate",
           "sees": "A panel that went well, then an interval with no scheduled next step, then either an offer or a note about the role's direction.",
-          "reads": "Silence after a round that went well reads as a verdict on them, since the approval chain has never been shown to them.",
+          "reads": "Silence after a round that went well reads as a verdict on the candidate, since the approval chain has never been shown to them.",
           "does": "Keeps the other processes running and sets a date past which they stop waiting. That date is the only part of this gate they set."
         },
         {
@@ -4939,7 +4939,7 @@
               "tell": false
             }
           ],
-          "reading": "The gate is checking a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
+          "reading": "The gate checks a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
         }
       ],
       "perspectives": [
@@ -4965,7 +4965,7 @@
           "actor": "public-policy",
           "sees": "Which categories of check are run, and in which jurisdiction. Nothing about the individual file.",
           "reads": "Verification is the point where an eligibility rule — a licence, a right to work, a limit on what may be asked — becomes a pass or a fail.",
-          "does": "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled inside that bound is not set here."
+          "does": "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled within those bounds is not set here."
         }
       ]
     },
@@ -5010,7 +5010,7 @@
               "tell": false
             }
           ],
-          "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, which is where a late freeze can reach it."
+          "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, and an open requisition is what a late freeze can still reach."
         }
       ],
       "perspectives": [
@@ -5197,7 +5197,7 @@
           "actor": "candidate",
           "sees": "A decline that arrives after every round has been cleared, with no account of who else was in the final group.",
           "reads": "From outside, a bar unmet and a comparison lost arrive in the same envelope. The cohort is not a field the candidate can see.",
-          "does": "Goes back over own rounds, because they are the only variable available: the ranking that decided it comes back in answer to no question."
+          "does": "Goes back over their own rounds, because they are the only variable available: the ranking that decided it comes back in answer to no question."
         },
         {
           "actor": "hiring-manager",
@@ -5295,7 +5295,7 @@
           "actor": "candidate",
           "sees": "A document that opens correctly in a reader, and either a rejection soon after submission or no reply at all.",
           "reads": "The stored profile is not shown back, so this is inferable from the timing and from nothing else.",
-          "does": "Resubmits in a single-column form with a text layer where the same file can be reapplied. This is the branch the candidate can act on without anyone's cooperation."
+          "does": "Resubmits in a single-column form with a text layer, wherever a second application is accepted. This is the branch the candidate can act on without anyone's cooperation."
         },
         {
           "actor": "recruiter",
@@ -5400,7 +5400,7 @@
           "actor": "recruiter",
           "sees": "The approved maximum in the requisition, and the candidate's stated expectation from the screen.",
           "reads": "A gap here decides the outcome whatever the panel returns.",
-          "does": "Chooses when the number is said, which is the point where this can still be closed early. Saying it early ends a pipeline on a metric that is measured, and saves rounds on one that is not."
+          "does": "Chooses when the number is stated, which is the point where this can still be closed early. Saying it early ends a pipeline on a metric that is measured, and saves rounds on one that is not."
         },
         {
           "actor": "candidate",
@@ -5509,7 +5509,7 @@
         {
           "actor": "hiring-manager",
           "sees": "Someone already covering part of the scope, and a slate of external candidates each assessed inside the hours the loop allows.",
-          "reads": "Work already observed and work inferred from an interview are not the same evidence. Only one person on the slate has been watched doing the scope.",
+          "reads": "Work already observed and work inferred from an interview are not the same evidence. Only one person on the slate has been watched doing the work itself.",
           "does": "Runs the external loop as posted and assesses each candidate against a bar the internal work already meets."
         },
         {
@@ -5601,7 +5601,7 @@
           "actor": "ats-vendor",
           "sees": "A posting record in an active state, and applications arriving against it.",
           "reads": "The state of the record is a customer-owned field. Nothing distinguishes a running search from a record no one has closed.",
-          "does": "Keeps rendering and syndicating the posting and accepting applications, and closes the unreviewed ones when the expiry default reaches its threshold."
+          "does": "Keeps rendering and syndicating the posting and accepting applications, and closes the unreviewed ones when the default expiry period runs out."
         },
         {
           "actor": "recruiter",
@@ -5698,7 +5698,7 @@
         },
         {
           "actor": "recruiter",
-          "sees": "The requisition changes state in the system on a date, with the instruction that arrives with it. The forecast behind it is not something the recruiter is shown.",
+          "sees": "A date on which the requisition changes state in the system, and the instruction that arrives with it. The forecast behind it is not something the recruiter is shown.",
           "reads": "The pipeline is intact and has nowhere to arrive. Time-to-fill on this requisition stops being a number anyone can move.",
           "does": "Cancels the scheduled rounds and writes the message. The wording is the recruiter's; what may be disclosed is not."
         },
@@ -5822,10 +5822,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Recruiter Volume & Quota Incentive Distortion\n\nRecruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not mean recruiter is individually negligent; reflects structural capacity mismatch.",
+      "content": "# Recruiter Volume & Quota Incentive Distortion\n\nApplicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not mean the recruiter is individually negligent; the capacity mismatch is structural.",
       "id": "M-009",
       "type": "mechanism",
-      "summary": "Recruiters optimize for pipeline velocity and superficial pattern-matching due to overwhelming applicant volume (500+ per req).",
+      "summary": "Applicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.",
       "operates_at": [
         "B-003",
         "B-004"
@@ -5912,7 +5912,7 @@
         }
       ],
       "non_inferences": [
-        "Does not mean recruiter is individually negligent; reflects structural capacity mismatch."
+        "Does not mean the recruiter is individually negligent; the capacity mismatch is structural."
       ]
     },
     {
@@ -5921,10 +5921,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-022` — Hiring Manager Consensus Impasse\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Failure to guess unstated preferences is not equivalent to lack of core competence.",
+      "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-022` — Hiring Manager Consensus Impasse\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Not guessing an unstated preference is not a shortfall in core competence.",
       "id": "M-010",
       "type": "mechanism",
-      "summary": "The interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.",
+      "summary": "The panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.",
       "operates_at": [
         "B-005",
         "B-007",
@@ -5993,7 +5993,7 @@
               "tell": false
             }
           ],
-          "reading": "A house preference was applied as a grading criterion without being stated as one. The candidate could not have designed to a rule they were not told."
+          "reading": "A house preference was applied as a grading criterion without being stated as one. The candidate could not have designed to a rule they were not given."
         }
       ],
       "perspectives": [
@@ -6011,7 +6011,7 @@
         }
       ],
       "non_inferences": [
-        "Failure to guess unstated preferences is not equivalent to lack of core competence."
+        "Not guessing an unstated preference is not a shortfall in core competence."
       ]
     },
     {
@@ -6020,7 +6020,7 @@
       "evidence_ids": [
         "EVD-003"
       ],
-      "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline.",
+      "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- An employment gap does not correlate with a decline in technical ability.",
       "id": "M-011",
       "type": "mechanism",
       "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
@@ -6087,7 +6087,7 @@
         {
           "actor": "ats-vendor",
           "sees": "The date ranges the parser extracts from the history, and the continuity feature that reads them. Work done inside a gap is not among the fields that feature reads.",
-          "reads": "The penalty is a weight in an arithmetic that produces one number. A rank below the advance threshold reads the same whether it came from the match or from the deduction.",
+          "reads": "The penalty is a weight in the arithmetic that produces one number. A rank below the advance threshold reads the same whether it came from the match or from the deduction.",
           "does": "Returns the rank and places the profile below the threshold. The setting ships enabled and stays on until a customer changes it."
         },
         {
@@ -6100,11 +6100,11 @@
           "actor": "candidate",
           "sees": "Their own history with the interval in it, and afterwards either silence or template wording.",
           "reads": "The interval and the outcome coincide, and nothing in the message separates a deduction on a date range from a judgement of the work.",
-          "does": "Describes the interval and the work done inside it in the history itself. The date range is a fact of record, and it is what the ranking reads."
+          "does": "Puts the interval and the work done inside it into the history itself. The date range is a fact of record, and it is what the ranking reads."
         }
       ],
       "non_inferences": [
-        "Employment gap does not correlate with underlying technical decline."
+        "An employment gap does not correlate with a decline in technical ability."
       ]
     },
     {
@@ -6113,10 +6113,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-019` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational issue and does not indicate negative evaluation.",
+      "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-019` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational fact and does not indicate a negative evaluation.",
       "id": "M-012",
       "type": "mechanism",
-      "summary": "Engineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.",
+      "summary": "Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.",
       "operates_at": [
         "B-005",
         "B-007",
@@ -6189,7 +6189,7 @@
         {
           "actor": "candidate",
           "sees": "Rounds moved, gaps between them, and an interviewer opening the submitted work during the call.",
-          "reads": "The changes are visible only as their own calendar, where a scheduling constraint and a decline in interest look alike.",
+          "reads": "The changes are visible only through their own calendar, where a scheduling constraint and a decline in interest look alike.",
           "does": "Records each date and each change, asks what remains in the loop and by when, and keeps other processes live."
         },
         {
@@ -6200,7 +6200,7 @@
         }
       ],
       "non_inferences": [
-        "Rescheduling is an operational issue and does not indicate negative evaluation."
+        "Rescheduling is an operational fact and does not indicate a negative evaluation."
       ]
     },
     {
@@ -6209,10 +6209,10 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Mid-Process Role Requirement Redefinition\n\nTeam changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Amplifies `M-024` — Inflated Requisition Requirements vs Actual Team Needs — each redefinition re-inflates the requisition with new must-haves instead of trimming it; see loop L-003\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Candidate rejection was driven by shifting team mandate, not prior interview answers.",
+      "content": "# Mid-Process Role Requirement Redefinition\n\nThe team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Amplifies `M-024` — Inflated Requisition Requirements vs Actual Team Needs — each redefinition re-inflates the requisition with new must-haves instead of trimming it; see loop L-003\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers.",
       "id": "M-013",
       "type": "mechanism",
-      "summary": "Team changes tech stack, seniority requirements, or project scope mid-funnel, invalidating previous interview assessments.",
+      "summary": "The team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.",
       "operates_at": [
         "B-007",
         "B-008",
@@ -6269,7 +6269,7 @@
               "tell": false
             }
           ],
-          "reading": "The assessments were not re-run, they were re-scored against a target that moved after they were taken."
+          "reading": "The assessments were not re-run; they were re-scored against a target that moved after they were taken."
         }
       ],
       "perspectives": [
@@ -6299,7 +6299,7 @@
         }
       ],
       "non_inferences": [
-        "Candidate rejection was driven by shifting team mandate, not prior interview answers."
+        "The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers."
       ]
     },
     {
@@ -6308,10 +6308,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Location or Timezone Compliance Constraint\n\nCompany legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Legal geography barrier is completely independent of candidate technical competence.",
+      "content": "# Location or Timezone Compliance Constraint\n\nThe company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- The jurisdictional barrier is entirely independent of the candidate's technical competence.",
       "id": "M-014",
       "type": "mechanism",
-      "summary": "Company legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.",
+      "summary": "The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.",
       "operates_at": [
         "B-002",
         "B-004"
@@ -6398,7 +6398,7 @@
         }
       ],
       "non_inferences": [
-        "Legal geography barrier is completely independent of candidate technical competence."
+        "The jurisdictional barrier is entirely independent of the candidate's technical competence."
       ]
     },
     {
@@ -6407,10 +6407,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Communication or Working Style Friction\n\nCandidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction during high-stress interview is not a permanent personality defect.",
+      "content": "# Communication or Working Style Friction\n\nDuring a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction in a high-pressure interview is not a permanent personality defect.",
       "id": "M-015",
       "type": "mechanism",
-      "summary": "Candidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.",
+      "summary": "During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.",
       "operates_at": [
         "B-004",
         "B-008"
@@ -6498,7 +6498,7 @@
         }
       ],
       "non_inferences": [
-        "Style friction during high-stress interview is not a permanent personality defect."
+        "Style friction in a high-pressure interview is not a permanent personality defect."
       ]
     },
     {
@@ -6507,10 +6507,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-009` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after outbound message indicates absence of immediate opening, not profile rejection.",
+      "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters open conversations and build candidate pools against headcount that has not been approved or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-009` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.",
       "id": "M-016",
       "type": "mechanism",
-      "summary": "Recruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.",
+      "summary": "Recruiters open conversations and build candidate pools against headcount that has not been approved or funded.",
       "operates_at": [
         "B-013",
         "B-014",
@@ -6601,7 +6601,7 @@
         }
       ],
       "non_inferences": [
-        "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
+        "Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile."
       ]
     },
     {
@@ -6610,10 +6610,10 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Experience-Age Grading Mismatch\n\nCandidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency.",
+      "content": "# Experience-Age Grading Mismatch\n\nA candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency.",
       "id": "M-017",
       "type": "mechanism",
-      "summary": "Candidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.",
+      "summary": "A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.",
       "operates_at": [
         "B-003",
         "B-004",
@@ -6702,10 +6702,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Domain Specificity Over-Weighting\n\nInterviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-010` — Hidden Evaluation Rubric or Undisclosed Priority\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
+      "content": "# Domain Specificity Over-Weighting\n\nThe interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-010` — Hidden Evaluation Rubric or Undisclosed Priority\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
       "id": "M-018",
       "type": "mechanism",
-      "summary": "Interviewer requires exact vertical experience (e.g. adtech, crypto, specific payment processor) over deep transferable systems fundamentals.",
+      "summary": "The interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.",
       "operates_at": [
         "B-004",
         "B-007"
@@ -6806,10 +6806,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.",
+      "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nA 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- A take-home rejection made under evaluation fatigue does not measure the engineering in the submission.",
       "id": "M-019",
       "type": "mechanism",
-      "summary": "Reviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.",
+      "summary": "A 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.",
       "operates_at": [
         "B-006"
       ],
@@ -6887,7 +6887,7 @@
         }
       ],
       "non_inferences": [
-        "Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship."
+        "A take-home rejection made under evaluation fatigue does not measure the engineering in the submission."
       ]
     },
     {
@@ -6896,10 +6896,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Application Expiration Timeout\n\nATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-006` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- Bulk timeout rejection contains zero qualitative assessment of candidate profile.",
+      "content": "# Automated Application Expiration Timeout\n\nThe ATS is configured to reject in bulk every application still pending after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-006` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- A bulk timeout rejection carries no assessment of the profile at all.",
       "id": "M-020",
       "type": "mechanism",
-      "summary": "ATS configuration automatically issues bulk rejections to all pending unreviewed applications after 45 or 60 days.",
+      "summary": "The ATS is configured to reject in bulk every application still pending after 45 or 60 days.",
       "operates_at": [
         "B-001",
         "B-003"
@@ -6991,7 +6991,7 @@
         }
       ],
       "non_inferences": [
-        "Bulk timeout rejection contains zero qualitative assessment of candidate profile."
+        "A bulk timeout rejection carries no assessment of the profile at all."
       ]
     },
     {
@@ -7000,10 +7000,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nThird-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Administrative mismatch in dates is distinct from fraudulent resume misrepresentation.",
+      "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nA third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV.",
       "id": "M-021",
       "type": "mechanism",
-      "summary": "Third-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.",
+      "summary": "A third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.",
       "operates_at": [
         "B-011"
       ],
@@ -7073,7 +7073,7 @@
         }
       ],
       "non_inferences": [
-        "Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
+        "An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV."
       ]
     },
     {
@@ -7082,10 +7082,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Hiring Manager Consensus Impasse\n\nThe interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Split panel reflects lack of calibrated internal standards rather than candidate failure.",
+      "content": "# Hiring Manager Consensus Impasse\n\nThe panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-002` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate.",
       "id": "M-022",
       "type": "mechanism",
-      "summary": "The interview panel splits 50/50 without an executive tiebreaker, defaulting conservatively to a \"no-hire\" decision.",
+      "summary": "The panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.",
       "operates_at": [
         "B-008"
       ],
@@ -7161,7 +7161,7 @@
         }
       ],
       "non_inferences": [
-        "Split panel reflects lack of calibrated internal standards rather than candidate failure."
+        "A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate."
       ]
     },
     {
@@ -7170,10 +7170,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Portfolio / Work Artifact Misinterpretation\n\nScreeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
+      "content": "# Portfolio / Work Artifact Misinterpretation\n\nThe surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organization.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
       "id": "M-023",
       "type": "mechanism",
-      "summary": "Screeners overlook candidate role architecture due to non-standard repository layout or unindexed open-source contributions.",
+      "summary": "The surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organization.",
       "operates_at": [
         "B-003",
         "B-005"
@@ -7255,10 +7255,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nJob description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks.",
+      "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nThe posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not establish anything about how the candidate would do the team's actual work.",
       "id": "M-024",
       "type": "mechanism",
-      "summary": "Job description demands 10+ niche technologies and Staff-level qualifications for a straightforward feature engineering role.",
+      "summary": "The posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.",
       "operates_at": [
         "B-013",
         "B-002",
@@ -7343,7 +7343,7 @@
         }
       ],
       "non_inferences": [
-        "Failing to meet an inflated \"wishlist\" does not mean candidate cannot excel at the team’s actual core tasks."
+        "Failing to meet an inflated \"wishlist\" does not establish anything about how the candidate would do the team's actual work."
       ]
     }
   ],
@@ -7354,10 +7354,10 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
+      "content": "# Seniority Double Bind\n\nThe same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.\n\n### Trigger Rule\nThe candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.\n\n### What this Establishes\n- The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
       "id": "P-001",
       "type": "pattern",
-      "summary": "Candidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.",
+      "summary": "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.",
       "required_artifacts": [
         "A-002",
         "A-013"
@@ -7367,9 +7367,9 @@
         "M-004",
         "M-017"
       ],
-      "trigger_rule": "Candidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.",
+      "trigger_rule": "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.",
       "establishes": [
-        "Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers."
+        "The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier."
       ],
       "non_inferences": [
         "Does not establish that the candidate lacks market value.",
@@ -7450,7 +7450,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nCandidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.\n\n### What this Establishes\n- The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that candidate was intentionally misled.",
+      "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
       "id": "P-002",
       "type": "pattern",
       "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
@@ -7464,13 +7464,13 @@
         "M-010",
         "M-013"
       ],
-      "trigger_rule": "Candidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.",
+      "trigger_rule": "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.",
       "establishes": [
-        "The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process."
+        "The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process."
       ],
       "non_inferences": [
         "Does not establish that the original job listing was fake or a ghost job.",
-        "Does not establish that candidate was intentionally misled."
+        "Does not establish that the candidate was intentionally misled."
       ],
       "interventions": [
         "I-001",
@@ -7569,10 +7569,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Experience-Age Impossibility\n\nRequisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- Job description was authored without technical review, using copy-paste templates with automated gating rules.\n\n### What this Does NOT Establish\n- Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation.",
+      "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
       "id": "P-003",
       "type": "pattern",
-      "summary": "Requisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.",
+      "summary": "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.",
       "required_artifacts": [
         "A-002",
         "A-009"
@@ -7583,10 +7583,10 @@
       ],
       "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
       "establishes": [
-        "Job description was authored without technical review, using copy-paste templates with automated gating rules."
+        "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."
       ],
       "non_inferences": [
-        "Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation."
+        "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
       ],
       "interventions": [
         "I-005"
@@ -7663,10 +7663,10 @@
       "evidence_ids": [
         "EVD-005"
       ],
-      "content": "# Compensation Double Bind\n\nCandidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.\n\n### Trigger Rule\nAsymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.\n\n### What this Establishes\n- Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated.\n\n### What this Does NOT Establish\n- Does not mean employer has unlimited budget or malice.",
+      "content": "# Compensation Double Bind\n\nThe candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.\n\n### Trigger Rule\nThe candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.\n\n### What this Establishes\n- An information asymmetry works as an uncalibrated filter before technical merit is assessed.\n\n### What this Does NOT Establish\n- Does not establish that the employer has an unlimited budget, or that any of this is malicious.",
       "id": "P-004",
       "type": "pattern",
-      "summary": "Candidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.",
+      "summary": "The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.",
       "required_artifacts": [
         "A-002",
         "A-005"
@@ -7675,12 +7675,12 @@
         "M-004",
         "M-017"
       ],
-      "trigger_rule": "Asymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.",
+      "trigger_rule": "The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.",
       "establishes": [
-        "Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated."
+        "An information asymmetry works as an uncalibrated filter before technical merit is assessed."
       ],
       "non_inferences": [
-        "Does not mean employer has unlimited budget or malice."
+        "Does not establish that the employer has an unlimited budget, or that any of this is malicious."
       ],
       "interventions": [
         "I-002"
@@ -7859,7 +7859,7 @@
           "actor": "ats-vendor",
           "sees": "A continuity feature computed from the dates in the parsed work history, shipping enabled by default.",
           "reads": "It is one input among several in a ranking the buyer evaluates on throughput; whether a low-scored profile was unreadable rather than unqualified is not something the score records.",
-          "does": "Applies the penalty on every scoring pass and offers it as a setting the customer can switch off, which no default prompts anyone to do."
+          "does": "Applies the penalty on every scoring pass and offers it as a setting the customer can switch off, which nothing in the default configuration prompts anyone to do."
         }
       ]
     },
@@ -7869,10 +7869,10 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`",
+      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`",
       "id": "L-002",
       "type": "loop",
-      "summary": "Candidates invest heavy hours into unbounded take-home assignments, reducing bandwidth for applications, while reviewers suffer evaluation fatigue.",
+      "summary": "Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.",
       "mechanisms": [
         "M-012",
         "M-019"
@@ -7964,10 +7964,10 @@
         "EVD-001",
         "EVD-004"
       ],
-      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`",
+      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`",
       "id": "L-003",
       "type": "loop",
-      "summary": "Teams write inflated requirements, filtering out strong generalists, prolonging open search, causing recruiter fatigue and mid-process role redefinitions.",
+      "summary": "Teams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.",
       "mechanisms": [
         "M-024",
         "M-008",
@@ -8279,7 +8279,7 @@
         {
           "actor": "recruiter",
           "sees": "A panel recommendation, and a taxonomy that asks for a category, a round and a scope the recommendation does not contain.",
-          "reads": "The wording is theirs to write but the content is not: a category can only be sent where the panel recorded one.",
+          "reads": "The wording is theirs to write, but the content is not: a category can only be sent where the panel recorded one.",
           "does": "Sends the structured note where the rubric was filled in, and the template where it was not."
         },
         {
@@ -8428,7 +8428,7 @@
               "tell": false
             }
           ],
-          "reading": "This is the one mechanism on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
+          "reading": "This is the one intervention on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
         }
       ],
       "perspectives": [

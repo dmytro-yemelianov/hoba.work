@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; reflects threshold for this specific role level.",
+    "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; it reflects the threshold for this specific role level.",
     "id": "A-008",
     "type": "artifact",
     "summary": "Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.",
@@ -18,8 +18,8 @@
     "probes": [
       {
         "id": "PROBE-A-008-1",
-        "action": "Review interview problem solution against industry standard patterns and identify edge cases missed.",
-        "expected_signal": "Verifies whether candidate code truly lacked required optimization or rigor.",
+        "action": "Review the interview solution against the standard patterns for that problem and identify the edge cases it misses.",
+        "expected_signal": "Verifies whether the code actually lacked the optimisation or rigour the notes name.",
         "cost": "medium",
         "outcomes": [
           {
@@ -131,7 +131,7 @@
       }
     ],
     "non_inferences": [
-      "Does not imply general incompetence; reflects threshold for this specific role level."
+      "Does not imply general incompetence; it reflects the threshold for this specific role level."
     ]
   }
 }

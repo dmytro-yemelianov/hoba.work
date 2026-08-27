@@ -78,7 +78,7 @@
         "actor": "ats-vendor",
         "sees": "A posting record in an active state, and applications arriving against it.",
         "reads": "The state of the record is a customer-owned field. Nothing distinguishes a running search from a record no one has closed.",
-        "does": "Keeps rendering and syndicating the posting and accepting applications, and closes the unreviewed ones when the expiry default reaches its threshold."
+        "does": "Keeps rendering and syndicating the posting and accepting applications, and closes the unreviewed ones when the default expiry period runs out."
       },
       {
         "actor": "recruiter",

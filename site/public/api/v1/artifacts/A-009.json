@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Rejection within minutes of application submission\n\nAutomated rejection email arrives within 2 to 30 minutes of form submission, outside human business hours.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate resume was judged as poor by human engineers.",
+    "content": "# Rejection within minutes of application submission\n\nAutomated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.\n\n### Diagnostic Non-Inferences\n- Does not mean a human engineer read the resume and judged it poor.",
     "id": "A-009",
     "type": "artifact",
-    "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside human business hours.",
+    "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.",
     "stages": [
       "ingestion"
     ],
@@ -17,8 +17,8 @@
     "probes": [
       {
         "id": "PROBE-A-009-1",
-        "action": "Audit application answers to mandatory knock-out questions (work permit, country of residence, minimum years experience).",
-        "expected_signal": "Identifies exact boolean filter rule triggered by ATS.",
+        "action": "Audit the application answers to the mandatory knock-out questions (work permit, country of residence, minimum years of experience).",
+        "expected_signal": "Identifies which boolean filter rule the ATS applied.",
         "cost": "low",
         "outcomes": [
           {
@@ -111,11 +111,11 @@
         "actor": "ats-vendor",
         "sees": "A submission, a rules evaluation two seconds later, a status transition and a queued notification. All four are events, and none of them is a reading of the profile.",
         "reads": "The configuration ran as configured. Whether the criterion it enforced is the one the customer meant is not a value the platform holds.",
-        "does": "Emits the templated notification, records the disposition, and reports the interval as throughput on the dashboard the buyer evaluates."
+        "does": "Sends the templated notification, records the disposition, and reports the interval as throughput on the dashboard the buyer evaluates."
       }
     ],
     "non_inferences": [
-      "Does not imply candidate resume was judged as poor by human engineers."
+      "Does not mean a human engineer read the resume and judged it poor."
     ]
   }
 }

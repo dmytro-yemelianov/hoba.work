@@ -61,7 +61,7 @@
       {
         "actor": "candidate",
         "sees": "A panel that went well, then an interval with no scheduled next step, then either an offer or a note about the role's direction.",
-        "reads": "Silence after a round that went well reads as a verdict on them, since the approval chain has never been shown to them.",
+        "reads": "Silence after a round that went well reads as a verdict on the candidate, since the approval chain has never been shown to them.",
         "does": "Keeps the other processes running and sets a date past which they stop waiting. That date is the only part of this gate they set."
       },
       {

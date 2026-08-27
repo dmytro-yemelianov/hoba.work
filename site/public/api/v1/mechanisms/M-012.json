@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-019` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational issue and does not indicate negative evaluation.",
+    "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-019` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational fact and does not indicate a negative evaluation.",
     "id": "M-012",
     "type": "mechanism",
-    "summary": "Engineering interviewers are overwhelmed with sprint commitments, leading to calendar fragmentation, rush reviews, or dropped loops.",
+    "summary": "Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.",
     "operates_at": [
       "B-005",
       "B-007",
@@ -82,7 +82,7 @@
       {
         "actor": "candidate",
         "sees": "Rounds moved, gaps between them, and an interviewer opening the submitted work during the call.",
-        "reads": "The changes are visible only as their own calendar, where a scheduling constraint and a decline in interest look alike.",
+        "reads": "The changes are visible only through their own calendar, where a scheduling constraint and a decline in interest look alike.",
         "does": "Records each date and each change, asks what remains in the loop and by when, and keeps other processes live."
       },
       {
@@ -93,7 +93,7 @@
       }
     ],
     "non_inferences": [
-      "Rescheduling is an operational issue and does not indicate negative evaluation."
+      "Rescheduling is an operational fact and does not indicate a negative evaluation."
     ]
   }
 }

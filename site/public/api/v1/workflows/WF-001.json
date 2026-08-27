@@ -46,7 +46,7 @@
           "B-014",
           "M-006"
         ],
-        "visible_to_candidate": "The posting, and whatever the posting chose to disclose.",
+        "visible_to_candidate": "The posting, and whatever it states.",
         "deviations": []
       },
       {
@@ -83,13 +83,13 @@
         "title": "In the recruiter queue",
         "kind": "active",
         "owner": "recruiter",
-        "description": "Waiting to be read by a person, against an inbound queue that is usually larger than the week has hours for.",
+        "description": "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.",
         "entities": [
           "B-003",
           "M-009",
           "M-016"
         ],
-        "visible_to_candidate": "Silence, of an indeterminate length.",
+        "visible_to_candidate": "Silence of indeterminate length.",
         "deviations": []
       },
       {
@@ -104,7 +104,7 @@
           "M-004",
           "M-017"
         ],
-        "visible_to_candidate": "The call itself, and whichever parameters the recruiter chose to share.",
+        "visible_to_candidate": "The call itself, and whichever parameters the recruiter states.",
         "deviations": []
       },
       {
@@ -374,7 +374,7 @@
         "to": "rejected",
         "label": "assessment not passed",
         "owner": "hiring-manager",
-        "guard": "The score falls short, or the review was too shallow to find what was there.",
+        "guard": "The score falls short, or the review is too shallow to find what is there.",
         "entities": [
           "A-008",
           "M-001",

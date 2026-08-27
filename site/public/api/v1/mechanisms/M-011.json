@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-003"
     ],
-    "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Employment gap does not correlate with underlying technical decline.",
+    "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- An employment gap does not correlate with a decline in technical ability.",
     "id": "M-011",
     "type": "mechanism",
     "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
@@ -73,7 +73,7 @@
       {
         "actor": "ats-vendor",
         "sees": "The date ranges the parser extracts from the history, and the continuity feature that reads them. Work done inside a gap is not among the fields that feature reads.",
-        "reads": "The penalty is a weight in an arithmetic that produces one number. A rank below the advance threshold reads the same whether it came from the match or from the deduction.",
+        "reads": "The penalty is a weight in the arithmetic that produces one number. A rank below the advance threshold reads the same whether it came from the match or from the deduction.",
         "does": "Returns the rank and places the profile below the threshold. The setting ships enabled and stays on until a customer changes it."
       },
       {
@@ -86,11 +86,11 @@
         "actor": "candidate",
         "sees": "Their own history with the interval in it, and afterwards either silence or template wording.",
         "reads": "The interval and the outcome coincide, and nothing in the message separates a deduction on a date range from a judgement of the work.",
-        "does": "Describes the interval and the work done inside it in the history itself. The date range is a fact of record, and it is what the ranking reads."
+        "does": "Puts the interval and the work done inside it into the history itself. The date range is a fact of record, and it is what the ranking reads."
       }
     ],
     "non_inferences": [
-      "Employment gap does not correlate with underlying technical decline."
+      "An employment gap does not correlate with a decline in technical ability."
     ]
   }
 }

@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Generic \"closer alignment\" rejection template\n\nStandard automated email stating the team decided to proceed with candidates whose profiles more closely match role requirements.\n\n### Diagnostic Non-Inferences\n- Does not establish which specific skill was deemed insufficient.\n- Does not establish whether a human reviewer read the full resume.",
+    "content": "# Generic \"closer alignment\" rejection template\n\nA standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.\n\n### Diagnostic Non-Inferences\n- Does not establish which specific skill was deemed insufficient.\n- Does not establish whether a human reviewer read the full resume.",
     "id": "A-002",
     "type": "artifact",
-    "summary": "Standard automated email stating the team decided to proceed with candidates whose profiles more closely match role requirements.",
+    "summary": "A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.",
     "stages": [
       "screening",
       "recruiter",
@@ -19,8 +19,8 @@
     "probes": [
       {
         "id": "PROBE-A-002-1",
-        "action": "Compare CV keyword density with exact requirement phrases in the published job description.",
-        "expected_signal": "Reveals potential vocabulary mismatch between candidate phrasing and ATS rubric.",
+        "action": "Compare the wording of the CV with the exact requirement phrases in the published job description.",
+        "expected_signal": "Reveals a possible vocabulary mismatch between the candidate's wording and the ATS rubric.",
         "cost": "low",
         "outcomes": [
           {
@@ -97,7 +97,7 @@
         "actor": "candidate",
         "sees": "A message sent at 03:14 with no sentence specific to this candidate, this role or this conversation, and a follow-up that returns the same wording.",
         "reads": "The text is the standard wording for this outcome. Which requirement was the gap is not stated in it, and asking returned the template again.",
-        "does": "Records the date and the exact wording, and compares the CV phrasing against the requirement phrases as published, since the message names no gap to work from."
+        "does": "Records the date and the exact wording, and compares the wording of the CV against the requirements as they were published, since the message names no gap to work from."
       },
       {
         "actor": "recruiter",
@@ -107,7 +107,7 @@
       },
       {
         "actor": "employer-policy",
-        "sees": "One approved wording covering every rejection at every stage, and the disclosure rule that fixes what may be given as a reason.",
+        "sees": "One approved wording covering every rejection at every stage, and the disclosure rule that sets what may be given as a reason.",
         "reads": "Identical wording across all outcomes is what makes each of them consistent and defensible if any one is challenged.",
         "does": "Sets the template once for the whole funnel; the hours a candidate spends inferring a reason from it are not a figure this layer holds."
       }

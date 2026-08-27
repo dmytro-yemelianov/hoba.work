@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-002"
     ],
-    "content": "# Experience-Age Grading Mismatch\n\nCandidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency.",
+    "content": "# Experience-Age Grading Mismatch\n\nA candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency.",
     "id": "M-017",
     "type": "mechanism",
-    "summary": "Candidate with 10+ years applied for mid/senior role, triggering fears of boredom, rapid churn, or salary dissatisfaction.",
+    "summary": "A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.",
     "operates_at": [
       "B-003",
       "B-004",

@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Communication mismatch or tone friction in panel\n\nNoticeable divergence in communication style, pacing, or terminology during live panel discussions.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate lacks teamwork skills globally.",
+    "content": "# Communication mismatch or tone friction in panel\n\nNoticeable divergence in communication style, pacing, or terminology during live panel discussions.\n\n### Diagnostic Non-Inferences\n- Does not prove the candidate lacks teamwork skills in general.",
     "id": "A-010",
     "type": "artifact",
     "summary": "Noticeable divergence in communication style, pacing, or terminology during live panel discussions.",
@@ -18,8 +18,8 @@
     "probes": [
       {
         "id": "PROBE-A-010-1",
-        "action": "Request explicit feedback on collaborative dynamic from recruiter.",
-        "expected_signal": "Clarifies whether friction was perceived as attitude issue or stylistic preference.",
+        "action": "Ask the recruiter for explicit feedback on the collaborative dynamic.",
+        "expected_signal": "Clarifies whether the friction was taken as an attitude issue or as a difference in style.",
         "cost": "low",
         "outcomes": [
           {
@@ -102,7 +102,7 @@
             "tell": true
           }
         ],
-        "reading": "Read against the transcript this is one exchange generalised into a trait. Both readings fit the same recording, which is exactly why the observation is not a verdict."
+        "reading": "Read against the transcript, this is one exchange generalised into a trait. Both readings fit the same recording, which is exactly why the observation is not a verdict."
       }
     ],
     "perspectives": [
@@ -126,7 +126,7 @@
       }
     ],
     "non_inferences": [
-      "Does not prove candidate lacks teamwork skills globally."
+      "Does not prove the candidate lacks teamwork skills in general."
     ]
   }
 }

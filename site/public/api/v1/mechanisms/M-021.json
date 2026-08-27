@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nThird-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Administrative mismatch in dates is distinct from fraudulent resume misrepresentation.",
+    "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nA third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV.",
     "id": "M-021",
     "type": "mechanism",
-    "summary": "Third-party check reveals unverified employment dates, unconfirmed degrees, or direct conflict of interest.",
+    "summary": "A third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.",
     "operates_at": [
       "B-011"
     ],
@@ -79,7 +79,7 @@
       }
     ],
     "non_inferences": [
-      "Administrative mismatch in dates is distinct from fraudulent resume misrepresentation."
+      "An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV."
     ]
   }
 }

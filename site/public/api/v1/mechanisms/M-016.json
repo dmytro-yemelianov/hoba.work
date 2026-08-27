@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-009` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after outbound message indicates absence of immediate opening, not profile rejection.",
+    "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters open conversations and build candidate pools against headcount that has not been approved or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-009` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.",
     "id": "M-016",
     "type": "mechanism",
-    "summary": "Recruiters proactively gather candidate pools for future anticipated headcount that is not yet authorized or funded.",
+    "summary": "Recruiters open conversations and build candidate pools against headcount that has not been approved or funded.",
     "operates_at": [
       "B-013",
       "B-014",
@@ -100,7 +100,7 @@
       }
     ],
     "non_inferences": [
-      "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
+      "Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile."
     ]
   }
 }

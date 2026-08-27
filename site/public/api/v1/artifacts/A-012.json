@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns.",
+    "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like.",
     "id": "A-012",
     "type": "artifact",
-    "summary": "Recruiter initiates direct outreach expressing strong interest, but ceases communication after candidate responds with availability.",
+    "summary": "Recruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.",
     "stages": [
       "sourcing",
       "recruiter"
@@ -18,8 +18,8 @@
     "probes": [
       {
         "id": "PROBE-A-012-1",
-        "action": "Send one single polite follow-up after 5 business days referencing original outreach thread.",
-        "expected_signal": "Recovers stalled conversation if recruiter was out-of-office or overwhelmed.",
+        "action": "Send one polite follow-up after five business days, on the original outreach thread.",
+        "expected_signal": "Recovers a stalled conversation if the recruiter was away or over capacity.",
         "cost": "low",
         "outcomes": [
           {
@@ -123,7 +123,7 @@
       }
     ],
     "non_inferences": [
-      "Does not prove candidate profile was rejected; often indicates batch automated sourcing campaigns."
+      "Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like."
     ]
   }
 }

@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Take-home assignment exceeding reasonable stated scope\n\nTake-home assignment requires building complex production-grade features demanding 20+ hours instead of stated 2–4 hours.\n\n### Diagnostic Non-Inferences\n- Does not prove the company is harvesting free intellectual property for production use.",
+    "content": "# Take-home assignment exceeding reasonable stated scope\n\nThe take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.\n\n### Diagnostic Non-Inferences\n- Does not prove the company is harvesting free intellectual property for production use.",
     "id": "A-006",
     "type": "artifact",
-    "summary": "Take-home assignment requires building complex production-grade features demanding 20+ hours instead of stated 2–4 hours.",
+    "summary": "The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.",
     "stages": [
       "technical"
     ],
@@ -17,7 +17,7 @@
     "probes": [
       {
         "id": "PROBE-A-006-1",
-        "action": "Define explicit boundaries and trade-offs in submission README stating assumptions made to fit the agreed timebox.",
+        "action": "Write the boundaries and trade-offs into the submission's README, naming the assumptions made to fit the agreed timebox.",
         "expected_signal": "Tests whether evaluators value scope management and communication over unbounded free work.",
         "cost": "low",
         "outcomes": [
@@ -87,7 +87,7 @@
             "tell": true
           }
         ],
-        "reading": "The stated budget and the expected deliverable are not reconciled when asked directly. That is the observation; the reason for it is not visible from here."
+        "reading": "A direct question does not reconcile the stated budget with the expected deliverable. That is the observation; the reason for it is not visible from here."
       }
     ],
     "perspectives": [

@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Offer rescinded or delayed due to internal freeze\n\nCandidate is verbally offered a role or receives written offer which is subsequently delayed or retracted before start date.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate failed reference checks unless explicitly stated.",
+    "content": "# Offer rescinded or delayed due to internal freeze\n\nCandidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.\n\n### Diagnostic Non-Inferences\n- Does not mean the candidate failed a reference check, unless the message says so.",
     "id": "A-011",
     "type": "artifact",
-    "summary": "Candidate is verbally offered a role or receives written offer which is subsequently delayed or retracted before start date.",
+    "summary": "Candidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.",
     "stages": [
       "offer",
       "post-offer"
@@ -18,8 +18,8 @@
     "probes": [
       {
         "id": "PROBE-A-011-1",
-        "action": "Request formal written notice regarding whether requisition is permanently cancelled or deferred to next fiscal quarter.",
-        "expected_signal": "Provides timeline clarity for candidate decision-making.",
+        "action": "Ask for written notice of whether the requisition is cancelled outright or deferred to the next fiscal quarter.",
+        "expected_signal": "Establishes whether there is a date to wait for.",
         "cost": "low",
         "outcomes": [
           {
@@ -112,7 +112,7 @@
       }
     ],
     "non_inferences": [
-      "Does not imply candidate failed reference checks unless explicitly stated."
+      "Does not mean the candidate failed a reference check, unless the message says so."
     ]
   }
 }

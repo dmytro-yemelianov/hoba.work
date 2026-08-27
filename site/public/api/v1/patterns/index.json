@@ -8,10 +8,10 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Seniority Double Bind\n\nCandidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.\n\n### Trigger Rule\nCandidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.\n\n### What this Establishes\n- Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
+      "content": "# Seniority Double Bind\n\nThe same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.\n\n### Trigger Rule\nThe candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.\n\n### What this Establishes\n- The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
       "id": "P-001",
       "type": "pattern",
-      "summary": "Candidate is simultaneously rejected as overqualified for junior/mid roles and underqualified (or insufficiently specialized) for staff/leadership roles.",
+      "summary": "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.",
       "required_artifacts": [
         "A-002",
         "A-013"
@@ -21,9 +21,9 @@
         "M-004",
         "M-017"
       ],
-      "trigger_rule": "Candidate observes rejection for overqualification at level N and skill-depth shortfall at level N+1 within the same market cycle.",
+      "trigger_rule": "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.",
       "establishes": [
-        "Candidate falls into an evaluation boundary gap where compensation/experience expectations mismatch standard job tiers."
+        "The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier."
       ],
       "non_inferences": [
         "Does not establish that the candidate lacks market value.",
@@ -104,7 +104,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nCandidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.\n\n### What this Establishes\n- The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that candidate was intentionally misled.",
+      "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
       "id": "P-002",
       "type": "pattern",
       "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
@@ -118,13 +118,13 @@
         "M-010",
         "M-013"
       ],
-      "trigger_rule": "Candidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.",
+      "trigger_rule": "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.",
       "establishes": [
-        "The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process."
+        "The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process."
       ],
       "non_inferences": [
         "Does not establish that the original job listing was fake or a ghost job.",
-        "Does not establish that candidate was intentionally misled."
+        "Does not establish that the candidate was intentionally misled."
       ],
       "interventions": [
         "I-001",
@@ -223,10 +223,10 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Experience-Age Impossibility\n\nRequisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- Job description was authored without technical review, using copy-paste templates with automated gating rules.\n\n### What this Does NOT Establish\n- Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation.",
+      "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
       "id": "P-003",
       "type": "pattern",
-      "summary": "Requisition requires more years of hands-on experience in a specific framework or tool than that technology has existed in the open-source ecosystem.",
+      "summary": "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.",
       "required_artifacts": [
         "A-002",
         "A-009"
@@ -237,10 +237,10 @@
       ],
       "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
       "establishes": [
-        "Job description was authored without technical review, using copy-paste templates with automated gating rules."
+        "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."
       ],
       "non_inferences": [
-        "Does not imply technical team is incompetent, only that HR screening pipeline lacks technical validation."
+        "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
       ],
       "interventions": [
         "I-005"
@@ -317,10 +317,10 @@
       "evidence_ids": [
         "EVD-005"
       ],
-      "content": "# Compensation Double Bind\n\nCandidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.\n\n### Trigger Rule\nAsymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.\n\n### What this Establishes\n- Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated.\n\n### What this Does NOT Establish\n- Does not mean employer has unlimited budget or malice.",
+      "content": "# Compensation Double Bind\n\nThe candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.\n\n### Trigger Rule\nThe candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.\n\n### What this Establishes\n- An information asymmetry works as an uncalibrated filter before technical merit is assessed.\n\n### What this Does NOT Establish\n- Does not establish that the employer has an unlimited budget, or that any of this is malicious.",
       "id": "P-004",
       "type": "pattern",
-      "summary": "Candidate is required to state salary expectation first; quoting high triggers immediate rejection, while quoting low triggers leveling downranking.",
+      "summary": "The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.",
       "required_artifacts": [
         "A-002",
         "A-005"
@@ -329,12 +329,12 @@
         "M-004",
         "M-017"
       ],
-      "trigger_rule": "Asymmetric salary inquiry where employer refuses band disclosure prior to candidate submitting binding number.",
+      "trigger_rule": "The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.",
       "establishes": [
-        "Information asymmetry is utilized as an uncalibrated gatekeeper before technical merit is evaluated."
+        "An information asymmetry works as an uncalibrated filter before technical merit is assessed."
       ],
       "non_inferences": [
-        "Does not mean employer has unlimited budget or malice."
+        "Does not establish that the employer has an unlimited budget, or that any of this is malicious."
       ],
       "interventions": [
         "I-002"

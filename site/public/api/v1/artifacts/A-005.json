@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-005"
     ],
-    "content": "# Compensation band reduced or altered mid-process\n\nOffered or discussed compensation band is revised downward from previously agreed or advertised range.\n\n### Diagnostic Non-Inferences\n- Does not prove intentional bait-and-switch malice unless verified by company policy evidence.",
+    "content": "# Compensation band reduced or altered mid-process\n\nThe compensation band offered or discussed is revised downward from the range previously agreed or advertised.\n\n### Diagnostic Non-Inferences\n- Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.",
     "id": "A-005",
     "type": "artifact",
-    "summary": "Offered or discussed compensation band is revised downward from previously agreed or advertised range.",
+    "summary": "The compensation band offered or discussed is revised downward from the range previously agreed or advertised.",
     "stages": [
       "recruiter",
       "compensation",
@@ -19,8 +19,8 @@
     "probes": [
       {
         "id": "PROBE-A-005-1",
-        "action": "Request clarification on whether the revised band reflects a lower leveling grade or a company-wide budget adjustment.",
-        "expected_signal": "Separates leveling evaluation outcome from company financial constraints.",
+        "action": "Ask whether the revised band follows from a lower levelling grade or from a company-wide budget adjustment.",
+        "expected_signal": "Separates the outcome of the levelling assessment from the company's financial constraints.",
         "cost": "medium",
         "outcomes": [
           {
@@ -74,7 +74,7 @@
             "tell": true
           }
         ],
-        "reading": "The number moved after the candidate had already spent the process. Note the date the original band was stated and by whom."
+        "reading": "The number moved after the process had already taken five weeks of the candidate's time. Note the date the original band was stated and by whom."
       },
       {
         "kind": "transcript",
@@ -120,7 +120,7 @@
         "actor": "recruiter",
         "sees": "A revised grid for the level, arriving after the role opened, and a candidate holding the figure stated at the screen.",
         "reads": "The number changed above the recruiter's position; the earlier figure is the one the candidate is holding going into the offer call.",
-        "does": "States the current band and where it came from, and puts the posting correction in as a request, because the band itself is set a level above this function."
+        "does": "States the current band and where it came from, and files the posting correction as a request, because the band itself is set a level above this function."
       },
       {
         "actor": "employer-policy",
@@ -136,7 +136,7 @@
       }
     ],
     "non_inferences": [
-      "Does not prove intentional bait-and-switch malice unless verified by company policy evidence."
+      "Does not prove an intentional bait-and-switch unless evidence of company policy establishes one."
     ]
   }
 }

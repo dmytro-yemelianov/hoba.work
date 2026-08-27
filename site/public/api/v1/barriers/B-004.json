@@ -7,7 +7,7 @@
       "EVD-001",
       "EVD-005"
     ],
-    "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nRecruiter and candidate align on core parameters and candidate is submitted to hiring team.",
+    "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nThe recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
     "id": "B-004",
     "type": "barrier",
     "stage": "recruiter",
@@ -16,7 +16,7 @@
       "B-005"
     ],
     "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
-    "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
+    "pass_condition": "The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
     "evidence_level": "established",
     "specimens": [
       {
@@ -62,7 +62,7 @@
       {
         "actor": "candidate",
         "sees": "A thirty-minute call in which four questions are logistics and one is about the work.",
-        "reads": "The compensation question arrives before the level, the rubric or the band are stated, so a number has to be given against an unknown.",
+        "reads": "The compensation question arrives before the level, the rubric or the band is stated, so a number has to be given against an unknown.",
         "does": "Names a figure or a range, and answers the timeline and location questions that can end the process at this gate."
       },
       {

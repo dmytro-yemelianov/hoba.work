@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Communication or Working Style Friction\n\nCandidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction during high-stress interview is not a permanent personality defect.",
+    "content": "# Communication or Working Style Friction\n\nDuring a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction in a high-pressure interview is not a permanent personality defect.",
     "id": "M-015",
     "type": "mechanism",
-    "summary": "Candidate demonstrated abrasive tone, defensive reactions to critique, or inability to listen during collaborative interview problem solving.",
+    "summary": "During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.",
     "operates_at": [
       "B-004",
       "B-008"
@@ -97,7 +97,7 @@
       }
     ],
     "non_inferences": [
-      "Style friction during high-stress interview is not a permanent personality defect."
+      "Style friction in a high-pressure interview is not a permanent personality defect."
     ]
   }
 }

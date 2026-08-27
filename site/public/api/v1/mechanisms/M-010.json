@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-022` — Hiring Manager Consensus Impasse\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Failure to guess unstated preferences is not equivalent to lack of core competence.",
+    "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `M-022` — Hiring Manager Consensus Impasse\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Not guessing an unstated preference is not a shortfall in core competence.",
     "id": "M-010",
     "type": "mechanism",
-    "summary": "The interview team grades candidate against specific undisclosed architectural dogmas, internal frameworks, or unwritten biases.",
+    "summary": "The panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.",
     "operates_at": [
       "B-005",
       "B-007",
@@ -78,7 +78,7 @@
             "tell": false
           }
         ],
-        "reading": "A house preference was applied as a grading criterion without being stated as one. The candidate could not have designed to a rule they were not told."
+        "reading": "A house preference was applied as a grading criterion without being stated as one. The candidate could not have designed to a rule they were not given."
       }
     ],
     "perspectives": [
@@ -96,7 +96,7 @@
       }
     ],
     "non_inferences": [
-      "Failure to guess unstated preferences is not equivalent to lack of core competence."
+      "Not guessing an unstated preference is not a shortfall in core competence."
     ]
   }
 }

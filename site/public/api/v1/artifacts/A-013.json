@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-002"
     ],
-    "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns.",
+    "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch.",
     "id": "A-013",
     "type": "artifact",
-    "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope exceeds the open position tier.",
+    "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.",
     "stages": [
       "recruiter",
       "screening",
@@ -19,8 +19,8 @@
     "probes": [
       {
         "id": "PROBE-A-013-1",
-        "action": "Inquire whether the organization has higher-tier or staff-level requisitions open where broader scope is desired.",
-        "expected_signal": "Channels candidate into appropriate leveling track.",
+        "action": "Ask whether the organisation has requisitions open at a higher band or at staff level, where the wider scope is part of the role.",
+        "expected_signal": "Shows whether anything is open above this band.",
         "cost": "low",
         "outcomes": [
           {
@@ -138,7 +138,7 @@
       }
     ],
     "non_inferences": [
-      "Does not imply the candidate is undesirable, but signals retention/flight-risk and compensation mismatch concerns."
+      "Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch."
     ]
   }
 }

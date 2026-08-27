@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Multiple interview reschedulings or interviewer no-show\n\nInterviews are repeatedly postponed, delayed at short notice, or interviewer fails to join scheduled call.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.",
+    "content": "# Multiple interview reschedulings or interviewer no-show\n\nInterviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.",
     "id": "A-007",
     "type": "artifact",
-    "summary": "Interviews are repeatedly postponed, delayed at short notice, or interviewer fails to join scheduled call.",
+    "summary": "Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.",
     "stages": [
       "recruiter",
       "technical",
@@ -19,8 +19,8 @@
     "probes": [
       {
         "id": "PROBE-A-007-1",
-        "action": "Offer clear flexible availability slots and confirm contact details 2 hours prior to the call.",
-        "expected_signal": "Minimizes scheduling friction and verifies recruiter responsiveness.",
+        "action": "Offer a set of concrete times you are free, and confirm the contact details 2 hours before the call.",
+        "expected_signal": "Minimises scheduling friction and shows how quickly the recruiter answers.",
         "cost": "low",
         "outcomes": [
           {
@@ -81,7 +81,7 @@
             "tell": true
           }
         ],
-        "reading": "Four movements, no interview. Record the dates: a pattern of postponement is evidence about the process, not about the candidate."
+        "reading": "Four moves, no interview. Record the dates: a pattern of postponement is evidence about the process, not about the candidate."
       },
       {
         "kind": "ats",

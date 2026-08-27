@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nCandidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.\n\n### What this Establishes\n- The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that candidate was intentionally misled.",
+    "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
     "id": "P-002",
     "type": "pattern",
     "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
@@ -20,13 +20,13 @@
       "M-010",
       "M-013"
     ],
-    "trigger_rule": "Candidate observes role closure/rejection followed by public reopening of materially similar role listing within 60 days.",
+    "trigger_rule": "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.",
     "establishes": [
-      "The requisition requirements or target profile were not satisfied by the interviewed pool, or search criteria changed mid-process."
+      "The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process."
     ],
     "non_inferences": [
       "Does not establish that the original job listing was fake or a ghost job.",
-      "Does not establish that candidate was intentionally misled."
+      "Does not establish that the candidate was intentionally misled."
     ],
     "interventions": [
       "I-001",

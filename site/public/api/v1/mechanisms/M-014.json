@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Location or Timezone Compliance Constraint\n\nCompany legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Legal geography barrier is completely independent of candidate technical competence.",
+    "content": "# Location or Timezone Compliance Constraint\n\nThe company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- The jurisdictional barrier is entirely independent of the candidate's technical competence.",
     "id": "M-014",
     "type": "mechanism",
-    "summary": "Company legal or tax entity cannot support remote employment contracts in candidate physical residency jurisdiction.",
+    "summary": "The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.",
     "operates_at": [
       "B-002",
       "B-004"
@@ -96,7 +96,7 @@
       }
     ],
     "non_inferences": [
-      "Legal geography barrier is completely independent of candidate technical competence."
+      "The jurisdictional barrier is entirely independent of the candidate's technical competence."
     ]
   }
 }

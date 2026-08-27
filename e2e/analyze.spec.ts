@@ -1,4 +1,11 @@
 import { says } from './says';
+import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
+
+/** What A-001's one probe actually says, in a given language. */
+const probe = (lang: 'en' | 'uk'): string => {
+  const bundle = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, lang);
+  return bundle.artifacts.find((a) => a.id === 'A-001')!.probes[0]!.action;
+};
 import { expect, test } from '@playwright/test';
 
 test.describe('analysis wizard', () => {
@@ -25,8 +32,11 @@ test.describe('analysis wizard', () => {
       await page.locator('input[name="artifacts_selected"][value="A-001"]').check();
       await page.locator('#tab-a').click();
       await expect(page.locator('#verdict-banner')).toContainText(says('uk', 'wiz.verdict'));
-      await expect(page.locator('#probes-output')).toContainText('Перевірте папки');
-      await expect(page.locator('#probes-output')).not.toContainText('Check email spam');
+      // The probe text comes from the registry, so assert against the registry:
+      // pinning the sentence here only breaks when someone improves it.
+      const probes = page.locator('#probes-output');
+      await expect(probes).toContainText(probe('uk'));
+      await expect(probes).not.toContainText(probe('en'));
     });
   });
 

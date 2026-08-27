@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-004"
     ],
-    "content": "# Position closed after final interview without hire\n\nCandidate completes all interview rounds, but is informed that the requisition has been cancelled, frozen, or closed.\n\n### Diagnostic Non-Inferences\n- Does not prove candidate failed technical or behavioral evaluations.\n- Does not prove the company lied about opening intention.",
+    "content": "# Position closed after final interview without hire\n\nThe candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.\n\n### Diagnostic Non-Inferences\n- Does not prove that the candidate failed the technical or behavioural evaluations.\n- Does not prove that the company misstated its intention in opening the role.",
     "id": "A-003",
     "type": "artifact",
-    "summary": "Candidate completes all interview rounds, but is informed that the requisition has been cancelled, frozen, or closed.",
+    "summary": "The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.",
     "stages": [
       "team",
       "offer"
@@ -18,8 +18,8 @@
     "probes": [
       {
         "id": "PROBE-A-003-1",
-        "action": "Politely inquire with recruiter if the position was closed due to business budget restructuring or team reallocation.",
-        "expected_signal": "Clarifies whether barrier was candidate-specific or macroeconomic/budgetary.",
+        "action": "Ask the recruiter whether the role was closed by a budget restructuring or by a reallocation of the work inside the team.",
+        "expected_signal": "Clarifies whether the barrier was specific to this candidate or budgetary.",
         "cost": "low",
         "outcomes": [
           {
@@ -125,8 +125,8 @@
       }
     ],
     "non_inferences": [
-      "Does not prove candidate failed technical or behavioral evaluations.",
-      "Does not prove the company lied about opening intention."
+      "Does not prove that the candidate failed the technical or behavioural evaluations.",
+      "Does not prove that the company misstated its intention in opening the role."
     ]
   }
 }

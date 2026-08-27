@@ -8,7 +8,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
+      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
       "id": "B-013",
       "type": "barrier",
       "stage": "pre-posting",
@@ -17,7 +17,7 @@
         "B-014",
         "B-001"
       ],
-      "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or quietly kept open) on careers pages and job boards.",
+      "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
       "evidence_level": "established",
       "specimens": [
@@ -138,7 +138,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nApplication record is successfully received, validated for minimum schema, and linked to the active job requisition.",
+      "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nThe application record is received, validates against the minimum schema, and is linked to an active job requisition.",
       "id": "B-001",
       "type": "barrier",
       "stage": "ingestion",
@@ -147,7 +147,7 @@
         "B-002"
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
-      "pass_condition": "Application record is successfully received, validated for minimum schema, and linked to the active job requisition.",
+      "pass_condition": "The application record is received, validates against the minimum schema, and is linked to an active job requisition.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -206,7 +206,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nCV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
+      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "id": "B-002",
       "type": "barrier",
       "stage": "ingestion",
@@ -216,7 +216,7 @@
         "B-004"
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.",
-      "pass_condition": "CV parsing achieves sufficient extraction score and candidate passes all mandatory algorithmic gating rules.",
+      "pass_condition": "The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -285,7 +285,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nRecruiter assigns application to the active short-list for initial conversational outreach.",
+      "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nThe recruiter adds the application to the active short-list for a first conversation.",
       "id": "B-003",
       "type": "barrier",
       "stage": "screening",
@@ -294,7 +294,7 @@
         "B-004"
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
-      "pass_condition": "Recruiter assigns application to the active short-list for initial conversational outreach.",
+      "pass_condition": "The recruiter adds the application to the active short-list for a first conversation.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -346,7 +346,7 @@
         "EVD-001",
         "EVD-005"
       ],
-      "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nRecruiter and candidate align on core parameters and candidate is submitted to hiring team.",
+      "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nThe recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
       "id": "B-004",
       "type": "barrier",
       "stage": "recruiter",
@@ -355,7 +355,7 @@
         "B-005"
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
-      "pass_condition": "Recruiter and candidate align on core parameters and candidate is submitted to hiring team.",
+      "pass_condition": "The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -401,7 +401,7 @@
         {
           "actor": "candidate",
           "sees": "A thirty-minute call in which four questions are logistics and one is about the work.",
-          "reads": "The compensation question arrives before the level, the rubric or the band are stated, so a number has to be given against an unknown.",
+          "reads": "The compensation question arrives before the level, the rubric or the band is stated, so a number has to be given against an unknown.",
           "does": "Names a figure or a range, and answers the timeline and location questions that can end the process at this gate."
         },
         {
@@ -430,7 +430,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nCandidate achieves passing score on technical evaluation rubric from the assessing engineer.",
+      "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nThe candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
       "id": "B-005",
       "type": "barrier",
       "stage": "technical",
@@ -440,7 +440,7 @@
         "B-007"
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
-      "pass_condition": "Candidate achieves passing score on technical evaluation rubric from the assessing engineer.",
+      "pass_condition": "The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -490,7 +490,7 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nCode artifact satisfies architectural, functional, test coverage, and documentation requirements.",
+      "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nThe submitted code meets the architecture, functionality, test coverage and documentation requirements.",
       "id": "B-006",
       "type": "barrier",
       "stage": "technical",
@@ -499,7 +499,7 @@
         "B-007"
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
-      "pass_condition": "Code artifact satisfies architectural, functional, test coverage, and documentation requirements.",
+      "pass_condition": "The submitted code meets the architecture, functionality, test coverage and documentation requirements.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -553,7 +553,7 @@
       "evidence_ids": [
         "EVD-002"
       ],
-      "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nHiring manager confirms candidate has required depth and approves progression to final panel.",
+      "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nThe hiring manager confirms the required depth and approves the candidate for the final panel.",
       "id": "B-007",
       "type": "barrier",
       "stage": "hiring-manager",
@@ -562,7 +562,7 @@
         "B-008"
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
-      "pass_condition": "Hiring manager confirms candidate has required depth and approves progression to final panel.",
+      "pass_condition": "The hiring manager confirms the required depth and approves the candidate for the final panel.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -662,7 +662,7 @@
               "tell": false
             }
           ],
-          "reading": "The gate is not an average, it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
+          "reading": "The gate is not an average; it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
         }
       ],
       "perspectives": [
@@ -687,13 +687,13 @@
       ]
     },
     {
-      "title": "Compensation & Leveling Reconciliation",
+      "title": "Compensation & Levelling Reconciliation",
       "status": "active",
       "evidence_ids": [
         "EVD-002",
         "EVD-005"
       ],
-      "content": "# Compensation & Leveling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / leveling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
+      "content": "# Compensation & Levelling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / levelling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
       "id": "B-009",
       "type": "barrier",
       "stage": "compensation",
@@ -701,7 +701,7 @@
       "precedes": [
         "B-010"
       ],
-      "description": "Internal alignment between candidate expected compensation/level and company pay bands / leveling grid.",
+      "description": "Internal alignment between candidate expected compensation/level and company pay bands / levelling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
       "evidence_level": "established",
       "specimens": [
@@ -730,13 +730,13 @@
           "actor": "candidate",
           "sees": "A number stated at the screen, and later a message that it does not fit. The level it was compared against is named afterwards, if at all.",
           "reads": "It reads as a negotiation over the number they named, rather than as the meeting of two decisions taken separately.",
-          "does": "Can restate the number or withdraw. Which of the two — the level or the band — produced the gap decides whether restating it changes anything, and that is not in the message."
+          "does": "Can restate the number or withdraw. Whether restating it changes anything turns on which of the two produced the gap — the level or the band — and that is not in the message."
         },
         {
           "actor": "hiring-manager",
           "sees": "The level the panel assessed at, and the band that level carries. Their input to this gate closed when the level was set.",
           "reads": "The gap reads as a levelling question: the same candidate one level up sits inside a band, and moving the level needs a signature above them.",
-          "does": "Requests the level up, or holds the level and lets the process close. The gap on the team stays with them either way."
+          "does": "Requests the level up, or holds the level and lets the process close. The unfilled seat on the team stays with them either way."
         },
         {
           "actor": "employer-policy",
@@ -813,7 +813,7 @@
         {
           "actor": "candidate",
           "sees": "A panel that went well, then an interval with no scheduled next step, then either an offer or a note about the role's direction.",
-          "reads": "Silence after a round that went well reads as a verdict on them, since the approval chain has never been shown to them.",
+          "reads": "Silence after a round that went well reads as a verdict on the candidate, since the approval chain has never been shown to them.",
           "does": "Keeps the other processes running and sets a date past which they stop waiting. That date is the only part of this gate they set."
         },
         {
@@ -863,7 +863,7 @@
               "tell": false
             }
           ],
-          "reading": "The gate is checking a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
+          "reading": "The gate checks a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
         }
       ],
       "perspectives": [
@@ -889,7 +889,7 @@
           "actor": "public-policy",
           "sees": "Which categories of check are run, and in which jurisdiction. Nothing about the individual file.",
           "reads": "Verification is the point where an eligibility rule — a licence, a right to work, a limit on what may be asked — becomes a pass or a fail.",
-          "does": "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled inside that bound is not set here."
+          "does": "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled within those bounds is not set here."
         }
       ]
     },
@@ -934,7 +934,7 @@
               "tell": false
             }
           ],
-          "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, which is where a late freeze can reach it."
+          "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, and an open requisition is what a late freeze can still reach."
         }
       ],
       "perspectives": [

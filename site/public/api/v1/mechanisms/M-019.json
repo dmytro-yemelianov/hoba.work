@@ -6,10 +6,10 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nReviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship.",
+    "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nA 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-012` — Interview Resource & Scheduling Saturation\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- A take-home rejection made under evaluation fatigue does not measure the engineering in the submission.",
     "id": "M-019",
     "type": "mechanism",
-    "summary": "Reviewers perform hurried 5-minute scans of complex 15-hour take-home projects, missing subtle architectural patterns and tests.",
+    "summary": "A 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.",
     "operates_at": [
       "B-006"
     ],
@@ -87,7 +87,7 @@
       }
     ],
     "non_inferences": [
-      "Take-home rejection under evaluation fatigue does not measure true software engineering craftsmanship."
+      "A take-home rejection made under evaluation fatigue does not measure the engineering in the submission."
     ]
   }
 }
