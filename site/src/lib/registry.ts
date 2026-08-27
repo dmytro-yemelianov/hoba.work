@@ -196,3 +196,41 @@ export function countRoutes(workflow: WorkflowNode): RouteCount {
   const byTerminal = walk(start.id, new Set([start.id]));
   return { total: Object.values(byTerminal).reduce((a, b) => a + b, 0), byTerminal };
 }
+
+
+export interface Coverage {
+  /** Gates with no proposed change attached to them. */
+  gatesWithoutIntervention: string[];
+  /** Causes with no proposed change attached to them. */
+  mechanismsWithoutIntervention: string[];
+  /** Entries that cite no published source. */
+  entriesWithoutEvidence: string[];
+  /** Funnel stages at which a candidate can observe nothing at all. */
+  stagesWithoutObservation: string[];
+  totals: { gates: number; mechanisms: number; entries: number };
+}
+
+/**
+ * What the atlas does not cover, computed rather than claimed.
+ *
+ * A reader deciding how far to trust a registry is entitled to know where it is
+ * thin, and the numbers are derivable from the registry itself — so they are
+ * derived, on every build, instead of being a paragraph someone remembers to
+ * update.
+ */
+export function coverage(bundle: RegistryBundle): Coverage {
+  const targeted = new Set(bundle.interventions.flatMap((i) => i.targets));
+  const entries = [
+    ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+    ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+  ];
+  const observedStages = new Set(bundle.artifacts.flatMap((a) => a.stages));
+
+  return {
+    gatesWithoutIntervention: bundle.barriers.filter((b) => !targeted.has(b.id)).map((b) => b.id),
+    mechanismsWithoutIntervention: bundle.mechanisms.filter((m) => !targeted.has(m.id)).map((m) => m.id),
+    entriesWithoutEvidence: entries.filter((e) => e.evidence_ids.length === 0).map((e) => e.id),
+    stagesWithoutObservation: [...new Set(bundle.barriers.map((b) => b.stage))].filter((s) => !observedStages.has(s)),
+    totals: { gates: bundle.barriers.length, mechanisms: bundle.mechanisms.length, entries: entries.length },
+  };
+}

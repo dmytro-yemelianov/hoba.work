@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { getBundle, STAGES } from '../../lib/registry';
-import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { coverage, getBundle, STAGES } from '../../lib/registry';
+import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -11,6 +11,19 @@ export function getStaticPaths() {
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const bundle = getBundle(lang);
+const gaps = coverage(bundle);
+const prefix = localePrefix(lang);
+
+// Where an id can be clicked, it is; the point of publishing a gap is that a
+// reader can go and look at what is missing a change.
+const ROUTES: Record<string, string> = { B: 'barriers', M: 'mechanisms', A: 'artifacts', P: 'patterns', L: 'loops', I: 'interventions' };
+const href = (id: string) => `${prefix}/${ROUTES[id[0]!]}/${id}`;
+
+const gapRows = [
+  { title: t('gap.gates'), text: t('gap.gatesText', { n: gaps.gatesWithoutIntervention.length, total: gaps.totals.gates }), ids: gaps.gatesWithoutIntervention },
+  { title: t('gap.mechanisms'), text: t('gap.mechanismsText', { n: gaps.mechanismsWithoutIntervention.length, total: gaps.totals.mechanisms }), ids: gaps.mechanismsWithoutIntervention },
+  { title: t('gap.evidence'), text: t('gap.evidenceText', { n: gaps.entriesWithoutEvidence.length, total: gaps.totals.entries }), ids: gaps.entriesWithoutEvidence },
+];
 
 const byRemovability = (r: 'candidate' | 'intermediary' | 'none') => bundle.mechanisms.filter((m) => m.facets.removability === r).length;
 const honestBaselineCount = bundle.mechanisms.filter((m) => m.honest_baseline).length;
@@ -88,5 +101,39 @@ const bars = [
         </tbody>
       </table>
     </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">{t('gap.title')}</h2>
+    <p class="text-base text-hoba-muted max-w-3xl">{t('gap.intro')}</p>
+
+    <ul class="row-list mt-5">
+      {gapRows.map((row) => (
+        <li class="py-4">
+          <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span class="text-base font-medium text-hoba-text">{row.title}</span>
+            <span class="pill pill-muted ml-auto font-mono tabular-nums">{row.ids.length}</span>
+          </p>
+          <p class="mt-1 text-base text-hoba-muted max-w-2xl">{row.text}</p>
+          {row.ids.length > 0 ? (
+            <ul class="mt-2 flex flex-wrap gap-1.5">
+              {row.ids.map((id) => <li><a href={href(id)} class="pill pill-muted font-mono">{id}</a></li>)}
+            </ul>
+          ) : (
+            <p class="mt-2 text-sm text-hoba-muted">{t('gap.none')}</p>
+          )}
+        </li>
+      ))}
+
+      <li class="py-4">
+        <p class="text-base font-medium text-hoba-text">{t('gap.stages')}</p>
+        <p class="mt-1 text-base text-hoba-muted max-w-2xl">{t('gap.stagesText')}</p>
+        <ul class="mt-2 flex flex-wrap gap-1.5">
+          {gaps.stagesWithoutObservation.map((stage) => <li><span class="pill pill-muted">{t(`stage.${stage}`)}</span></li>)}
+        </ul>
+      </li>
+    </ul>
+
+    <p class="mt-6 text-base text-hoba-muted max-w-3xl">{t('gap.limits')}</p>
   </section>
 </Layout>
