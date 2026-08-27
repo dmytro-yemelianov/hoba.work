@@ -1,0 +1,220 @@
+---
+/**
+ * The conformance check.
+ *
+ * A deliberately small tool: it reports the gates where the answer is
+ * arithmetic and says "cannot be determined" everywhere else. It does not
+ * rewrite anything, it does not score anyone, and it will not produce a
+ * probability — see ROADMAP.md, where that refusal is recorded as permanent.
+ *
+ * Everything runs in the page. The employer side is whatever the reader types,
+ * and nothing is stored or sent, which is what lets the page ask for a salary
+ * expectation at all.
+ */
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { getBundle } from '../../lib/registry';
+import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+const lang = localeFromParams(Astro.params);
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const bundle = getBundle(lang);
+
+const REASON_CODES = [
+  'years.impossible', 'years.possible', 'years.unknown', 'years.short', 'years.met',
+  'authorisation.unknown', 'authorisation.present', 'authorisation.absent',
+  'location.unknown', 'location.inside', 'location.outside',
+  'skills.missing', 'skills.present',
+  'band.above', 'band.under', 'band.inside', 'band.unpublished',
+] as const;
+
+const KEYS = [
+  'check.result', 'check.empty', 'check.stops', 'check.noStop', 'check.undetermined',
+  'check.v.passes', 'check.v.fails', 'check.v.undetermined', 'check.v.unsatisfiable',
+  ...REASON_CODES.map((c) => `check.r.${c}` as const),
+] as const;
+
+// State titles and mechanism titles are resolved here so the client ships names
+// rather than a second copy of the registry.
+const ideal = bundle.workflows.find((w) => w.id === 'WF-003');
+const payload = JSON.stringify({
+  prefix,
+  ...clientDictionary(lang, KEYS),
+  states: Object.fromEntries((ideal?.states ?? []).map((s) => [s.id, s.title])),
+  gates: Object.fromEntries(bundle.barriers.map((b) => [b.id, b.title])),
+  mechanisms: Object.fromEntries(bundle.mechanisms.map((m) => [m.id, m.title])),
+}).replace(/</g, '\\u003c');
+
+const you = [
+  { id: 'years', label: t('check.years'), type: 'number' },
+  { id: 'skills', label: t('check.skills'), type: 'text' },
+  { id: 'authorised', label: t('check.authorised'), type: 'text' },
+  { id: 'located', label: t('check.located'), type: 'text' },
+  { id: 'expectation', label: t('check.expectation'), type: 'number' },
+] as const;
+
+const posting = [
+  { id: 'requiredYears', label: t('check.requiredYears'), type: 'number' },
+  { id: 'requiredSkills', label: t('check.requiredSkills'), type: 'text' },
+  { id: 'requiresAuth', label: t('check.requiresAuth'), type: 'text' },
+  { id: 'hiringLocations', label: t('check.hiringLocations'), type: 'text' },
+  { id: 'bandMin', label: t('check.bandMin'), type: 'number' },
+  { id: 'bandMax', label: t('check.bandMax'), type: 'number' },
+  { id: 'technologyAge', label: t('check.technologyAge'), type: 'number', hint: t('check.technologyHint') },
+] as const;
+---
+<Layout lang={lang} title={t('check.title')} description={t('check.intro')} activeNav="check">
+  <PageHeader kicker={t('check.kicker')} title={t('check.title')} lead={t('check.intro')}>
+    <p slot="actions" class="flex items-center gap-2 text-sm text-hoba-muted">
+      <span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('check.privacy')}
+    </p>
+  </PageHeader>
+
+  <div class="callout border-l-hoba-accent">
+    <p class="text-base text-hoba-muted max-w-3xl">{t('check.notAboutYou')}</p>
+    <p class="mt-2 text-sm text-hoba-muted max-w-3xl">{t('check.noCompany')}</p>
+  </div>
+
+  <form id="check-form" class="section grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2" autocomplete="off">
+    <fieldset>
+      <legend class="section-title">{t('check.you')}</legend>
+      {you.map((field) => (
+        <p class="mt-3">
+          <label for={field.id} class="block text-sm text-hoba-muted">{field.label}</label>
+          <input id={field.id} name={field.id} type={field.type} inputmode={field.type === 'number' ? 'numeric' : undefined} class="check-input" />
+        </p>
+      ))}
+    </fieldset>
+
+    <fieldset>
+      <legend class="section-title">{t('check.posting')}</legend>
+      {posting.map((field) => (
+        <p class="mt-3">
+          <label for={field.id} class="block text-sm text-hoba-muted">{field.label}</label>
+          <input id={field.id} name={field.id} type={field.type} inputmode={field.type === 'number' ? 'numeric' : undefined} class="check-input" />
+          {'hint' in field && field.hint && <span class="mt-1 block text-xs text-hoba-muted">{field.hint}</span>}
+        </p>
+      ))}
+    </fieldset>
+  </form>
+
+  <section class="section">
+    <h2 class="section-title">{t('check.result')}</h2>
+    <div id="check-verdict" aria-live="polite"></div>
+    <ul id="check-gates" class="row-list mt-4"></ul>
+  </section>
+
+  <script type="application/json" id="check-data" set:html={payload} />
+  <script>
+    import { checkConformance, type CandidateProfile, type PostingFacets } from '@hoba/registry/core';
+
+    const raw = document.getElementById('check-data')?.textContent;
+    const form = document.getElementById('check-form') as HTMLFormElement | null;
+    if (raw && form) {
+      const data = JSON.parse(raw) as Record<string, any>;
+      const t = (key: string, vars: Record<string, string | number> = {}) =>
+        String(data[key] ?? key).replace(/\{(\w+)\}/g, (_, name: string) => (name in vars ? String(vars[name]) : `{${name}}`));
+      const esc = (value: string) =>
+        value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+
+      const value = (id: string) => (form.elements.namedItem(id) as HTMLInputElement | null)?.value.trim() ?? '';
+      const number = (id: string) => {
+        const v = value(id);
+        if (v === '') return undefined;
+        const n = Number(v);
+        return Number.isFinite(n) ? n : undefined;
+      };
+      const list = (id: string) =>
+        value(id)
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean);
+
+      const TONE: Record<string, string> = {
+        passes: 'border-l-hoba-barrier',
+        fails: 'border-l-hoba-exogenous',
+        undetermined: 'border-l-hoba-intermediary',
+        unsatisfiable: 'border-l-hoba-loop',
+      };
+
+      function render() {
+        const profile: CandidateProfile = {
+          years: number('years'),
+          skills: list('skills'),
+          authorised_for: list('authorised'),
+          located_in: value('located') || undefined,
+          expectation: number('expectation'),
+        };
+        const facets: PostingFacets = {
+          required_years: number('requiredYears'),
+          required_skills: list('requiredSkills'),
+          requires_authorisation_in: value('requiresAuth') || undefined,
+          hiring_locations: list('hiringLocations'),
+          band_min: number('bandMin'),
+          band_max: number('bandMax'),
+          technology_age: number('technologyAge'),
+        };
+
+        const report = checkConformance(profile, facets);
+        const verdict = document.getElementById('check-verdict')!;
+        const gates = document.getElementById('check-gates')!;
+
+        if (report.gates.length === 0) {
+          verdict.innerHTML = `<p class="text-base text-hoba-muted">${esc(t('check.empty'))}</p>`;
+          gates.innerHTML = '';
+          return;
+        }
+
+        const lines: string[] = [];
+        if (report.stops_at) {
+          lines.push(
+            `<p class="callout border-l-hoba-exogenous text-base text-hoba-text">${esc(
+              t('check.stops', {
+                gate: `${report.stops_at.gate} — ${data.gates[report.stops_at.gate] ?? report.stops_at.gate}`,
+                state: data.states[report.stops_at.state] ?? report.stops_at.state,
+              })
+            )}</p>`
+          );
+        } else {
+          lines.push(`<p class="text-base text-hoba-muted max-w-3xl">${esc(t('check.noStop'))}</p>`);
+        }
+        if (report.undetermined > 0) {
+          lines.push(`<p class="mt-2 text-sm text-hoba-muted">${esc(t('check.undetermined', { n: report.undetermined }))}</p>`);
+        }
+        verdict.innerHTML = lines.join('');
+
+        gates.innerHTML = report.gates
+          .map((gate) => `
+            <li class="py-3">
+              <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <a href="${data.prefix}/barriers/${gate.gate}" class="font-mono text-sm text-hoba-accent">${esc(gate.gate)}</a>
+                <span class="text-hoba-text">${esc(data.gates[gate.gate] ?? gate.gate)}</span>
+                <span class="pill pill-muted ml-auto">${esc(t(`check.v.${gate.verdict}`))}</span>
+              </p>
+              <p class="callout ${TONE[gate.verdict]} my-2 text-base text-hoba-muted">${esc(
+                t(`check.r.${gate.reason.code}`, gate.reason.params)
+              )}</p>
+              <ul class="flex flex-wrap gap-1.5">
+                ${gate.mechanisms
+                  .map(
+                    (m) =>
+                      `<li><a href="${data.prefix}/mechanisms/${m}" class="pill pill-muted font-mono" title="${esc(
+                        data.mechanisms[m] ?? m
+                      )}">${esc(m)}</a></li>`
+                  )
+                  .join('')}
+              </ul>
+            </li>`)
+          .join('');
+      }
+
+      form.addEventListener('input', render);
+      render();
+    }
+  </script>
+</Layout>

@@ -205,6 +205,12 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .lens-option { @apply flex w-full items-baseline gap-2 rounded px-2 py-1.5 text-sm text-hoba-muted hover:bg-hoba-hover hover:text-hoba-text; }
   .lens-option[aria-pressed="true"] { @apply bg-hoba-hover text-hoba-text; }
 
+  /* Conformance check: one column of plain inputs, no card around them. */
+  .check-input {
+    @apply mt-1 w-full rounded-md border border-hoba-border bg-hoba-bg px-3 py-2 text-base text-hoba-text;
+    @apply focus:outline-none focus:ring-2 focus:ring-hoba-accent focus:border-transparent;
+  }
+
   /* Era timeline: a strip proportional to real time, then the chapters. */
   .era-strip { @apply flex w-full gap-1 overflow-x-auto pb-1; }
   .era-tab {

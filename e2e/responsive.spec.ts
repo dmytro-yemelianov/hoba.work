@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/data', '/analyze', '/methodology', '/mechanisms/M-001'];
+const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze', '/methodology', '/mechanisms/M-001'];
 const WIDTHS = [360, 768, 1280];
 
 /** Anything wider than the viewport means a layout leak, not a design choice. */
@@ -22,7 +22,7 @@ test.describe('responsive layout', () => {
   test('every page sits in the same frame as the navbar and the footer', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     const FRAMED = [
-      '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/data', '/analyze',
+      '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
       '/mechanisms/M-001', '/barriers/B-001', '/artifacts/A-001',
       '/patterns/P-001', '/loops/L-001', '/interventions/I-001', '/404',

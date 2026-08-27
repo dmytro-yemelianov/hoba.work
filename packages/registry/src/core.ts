@@ -4,6 +4,8 @@
  * the very same diagnostic engine that powers the CLI and the MCP server.
  */
 export * from './types.js';
+export * from './conformance.js';
 export * from './graph.js';
 export * from './diagnostics.js';
 export * from './search.js';
+export * from './separation.js';

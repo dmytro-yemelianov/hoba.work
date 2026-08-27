@@ -30,7 +30,7 @@ The order is driven by what unblocks what, not by size.
 8. **Formal core** (#18 → #19 → #20) — the registry's structural claims proved
    rather than sampled (*#18 done*), then the diagnostic protocol turned into
    the set algebra it is usually assumed to already be (*#19 done*), then the
-   compatibility report. See
+   compatibility report (*#20 done*). See
    *What is worth formalising* below for what each of these is and, more
    usefully, what two of them are not.
 
@@ -202,7 +202,7 @@ Route counting landed with it: 10 distinct routes run through WF-003, of which
 1 ends in a hire, 6 in a decline and 3 in a closed search. A cardinality, never
 a likelihood.
 
-### A compatibility report, not a resume compiler (#20) — yes, in that form
+### A compatibility report, not a resume compiler (#20) — done
 
 `Resume × Facets → which gates fire` is right, and the refusal that goes with it
 is right: nothing that rewrites a document to pass a filter. That would turn the
@@ -214,6 +214,27 @@ The employer side must be a **facet vector**, never a database: an employer with
 a knockout filter configured, a unanimity panel rule, an unpublished band. The
 methodology forbids naming a company and the tests enforce it, so the user
 supplies the parameters.
+
+**What landed.** `/check` — the reader gives what a posting states as mandatory
+and what they can evidence, and it reports the gates where the answer is
+arithmetic: a stated minimum against a dated history, a place against a list,
+an expectation against a published ceiling. Everything else says *cannot be
+determined*, and it anchors each verdict to a barrier, a mechanism to go and
+read, and the state of the canonical path where the commitment stops being kept.
+
+Three refusals are load-bearing and asserted in `e2e/check.spec.ts` rather than
+merely intended. A **missing keyword is never a failure** — whether a phrase is
+a knockout rule or one input to a ranking model is not visible from outside, so
+the verdict is undetermined, which is #19's finding applied one layer up. There
+is **no file input**, because a page that accepted a CV would be one change away
+from rewriting it. And the page states in words that it will not say how likely
+anyone is to be hired; the test greps for the sentence and for the phrases that
+would contradict it.
+
+One check runs the other way and reports on the posting rather than the person:
+a requirement for more years than the thing has existed is `unsatisfiable`,
+which is P-003 computed rather than asserted. Nothing leaves the page — also
+asserted, by failing if any non-GET request is made.
 
 ### Success probabilities — no, and this is permanent
 

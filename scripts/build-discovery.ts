@@ -19,7 +19,7 @@ const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-discovery: registry root not found');
 const PUBLIC = path.join(root, 'site', 'public');
 
-const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/data', '/methodology', '/developers', '/contribute', '/about'];
+const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data', '/methodology', '/developers', '/contribute', '/about'];
 
 const entityRoutes = (bundle: RegistryBundle): string[] => [
   ...bundle.actors.map((a) => `/actors/${a.id}`),
