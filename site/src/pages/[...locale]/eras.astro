@@ -97,7 +97,7 @@ const sections = [
             {era.indicators.map((indicator) => {
               const record = evidence.get(indicator.evidence);
               return (
-                <li class="row items-baseline">
+                <li class="era-indicator row items-baseline">
                   <span class="font-mono text-base text-hoba-accent tabular-nums shrink-0">{indicator.figure}</span>
                   <span class="text-hoba-text">{indicator.label}</span>
                   <span class="pill pill-muted ml-auto tabular-nums">{indicator.period}</span>
