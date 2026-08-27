@@ -1,3 +1,4 @@
+import { entryCount } from './says';
 import { expect, test } from '@playwright/test';
 
 const visibleCount = (page: import('@playwright/test').Page, sel: string) =>
@@ -9,7 +10,7 @@ test.describe('registry data views', () => {
     await expect(page.locator('[data-view-root] > [data-view="table"]')).toBeVisible();
     await expect(page.locator('[data-view-root] > [data-view="cards"]')).toBeHidden();
     await expect(page.locator('[data-view-choice="table"]')).toHaveAttribute('aria-pressed', 'true');
-    expect(await page.locator('[data-view="table"] tr.node-item').count()).toBe(65);
+    expect(await page.locator('[data-view="table"] tr.node-item').count()).toBe(entryCount());
 
     await page.locator('[data-view-choice="list"]').click();
     await expect(page.locator('[data-view-root] > [data-view="list"]')).toBeVisible();

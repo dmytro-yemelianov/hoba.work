@@ -333,6 +333,61 @@
       <data key="d_type">intervention</data>
       <data key="d_evidence">supported</data>
     </node>
+    <node id="I-007">
+      <data key="d_label">Requirements Drawn From the Team&apos;s Own Backlog</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-008">
+      <data key="d_label">Internal Candidacy Stated in the Posting</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="I-009">
+      <data key="d_label">Outreach States the Requisition Behind It</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-010">
+      <data key="d_label">Distinct Closure Status for Unreviewed Applications</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-011">
+      <data key="d_label">Screening Note Bound to Observations and Disposition Codes</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-012">
+      <data key="d_label">Candidate Work Index Submitted With the Application</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-013">
+      <data key="d_label">Publish the Technical Screen&apos;s Columns and Threshold Before the Round</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="I-014">
+      <data key="d_label">Interview Seats Booked With Prep Time and a Second Name on the Rota</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-015">
+      <data key="d_label">Dated Funding Certification Before the Final Round</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="I-016">
+      <data key="d_label">Verification Discrepancy Disclosure and Reconciliation Window</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="I-017">
+      <data key="d_label">Recorded Finalist Standing With a Dated Re-Entry Route</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
     <edge id="B-013-&gt;precedes-&gt;B-014" source="B-013" target="B-014">
       <data key="d_edge_type">precedes</data>
     </edge>
@@ -929,6 +984,90 @@
     </edge>
     <edge id="I-006-&gt;targets-&gt;B-006" source="I-006" target="B-006">
       <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-007-&gt;targets-&gt;M-024" source="I-007" target="M-024">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-007-&gt;targets-&gt;B-013" source="I-007" target="B-013">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-007-&gt;mitigates-&gt;L-003" source="I-007" target="L-003">
+      <data key="d_edge_type">mitigates</data>
+    </edge>
+    <edge id="I-008-&gt;targets-&gt;M-005" source="I-008" target="M-005">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-008-&gt;targets-&gt;B-013" source="I-008" target="B-013">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-009-&gt;targets-&gt;B-014" source="I-009" target="B-014">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-009-&gt;targets-&gt;M-016" source="I-009" target="M-016">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-010-&gt;targets-&gt;B-003" source="I-010" target="B-003">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-010-&gt;targets-&gt;M-009" source="I-010" target="M-009">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-010-&gt;targets-&gt;M-020" source="I-010" target="M-020">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-011-&gt;targets-&gt;B-003" source="I-011" target="B-003">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-011-&gt;targets-&gt;M-017" source="I-011" target="M-017">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-011-&gt;targets-&gt;M-023" source="I-011" target="M-023">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-012-&gt;targets-&gt;M-023" source="I-012" target="M-023">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-012-&gt;targets-&gt;B-005" source="I-012" target="B-005">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-012-&gt;targets-&gt;B-003" source="I-012" target="B-003">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-013-&gt;targets-&gt;B-005" source="I-013" target="B-005">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-013-&gt;targets-&gt;M-012" source="I-013" target="M-012">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-014-&gt;targets-&gt;M-012" source="I-014" target="M-012">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-014-&gt;targets-&gt;B-005" source="I-014" target="B-005">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-015-&gt;targets-&gt;B-010" source="I-015" target="B-010">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-015-&gt;targets-&gt;B-012" source="I-015" target="B-012">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-015-&gt;targets-&gt;M-007" source="I-015" target="M-007">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-016-&gt;targets-&gt;B-011" source="I-016" target="B-011">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-016-&gt;targets-&gt;M-021" source="I-016" target="M-021">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-017-&gt;targets-&gt;M-002" source="I-017" target="M-002">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-017-&gt;targets-&gt;B-010" source="I-017" target="B-010">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-017-&gt;mitigates-&gt;P-002" source="I-017" target="P-002">
+      <data key="d_edge_type">mitigates</data>
     </edge>
   </graph>
 </graphml>

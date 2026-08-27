@@ -315,6 +315,11 @@ describe('intervention effects', () => {
         for (const effect of intervention.expected_effects) {
           expect(FEELINGS.test(effect), `${intervention.id}: ${effect}`).toBe(false);
         }
+        // A metric is a claim about what can be counted, so the same rule holds:
+        // `candidate_pipeline_satisfaction` was one an employer cannot compute.
+        for (const metric of intervention.measurements) {
+          expect(FEELINGS.test(metric), `${intervention.id}: ${metric}`).toBe(false);
+        }
       }
     }
   });

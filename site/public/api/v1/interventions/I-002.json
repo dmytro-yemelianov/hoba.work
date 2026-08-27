@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-005"
     ],
-    "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- B-009 becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `candidate_pipeline_satisfaction`",
+    "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- B-009 becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
     "id": "I-002",
     "type": "intervention",
     "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
@@ -27,7 +27,7 @@
     ],
     "measurements": [
       "late_stage_compensation_drop_rate",
-      "candidate_pipeline_satisfaction"
+      "screen_to_offer_band_agreement_rate"
     ],
     "specimens": [
       {

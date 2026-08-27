@@ -1,7 +1,7 @@
 {
   "registry_version": "2026.08.2",
-  "nodes_count": 94,
-  "edges_count": 199,
+  "nodes_count": 105,
+  "edges_count": 227,
   "elements": {
     "nodes": [
       {
@@ -805,6 +805,127 @@
           "actor": "hiring-manager",
           "cost": "medium",
           "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-007",
+          "label": "Requirements Drawn From the Team's Own Backlog",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-008",
+          "label": "Internal Candidacy Stated in the Posting",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "medium",
+          "evidence_level": "hypothesis"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-009",
+          "label": "Outreach States the Requisition Behind It",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-010",
+          "label": "Distinct Closure Status for Unreviewed Applications",
+          "type": "intervention",
+          "actor": "ats-vendor",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-011",
+          "label": "Screening Note Bound to Observations and Disposition Codes",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-012",
+          "label": "Candidate Work Index Submitted With the Application",
+          "type": "intervention",
+          "actor": "candidate-action",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-013",
+          "label": "Publish the Technical Screen's Columns and Threshold Before the Round",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "medium",
+          "evidence_level": "hypothesis"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-014",
+          "label": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-015",
+          "label": "Dated Funding Certification Before the Final Round",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "medium",
+          "evidence_level": "hypothesis"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-016",
+          "label": "Verification Discrepancy Disclosure and Reconciliation Window",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "I-017",
+          "label": "Recorded Finalist Standing With a Dated Re-Entry Route",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "low",
+          "evidence_level": "hypothesis"
         },
         "classes": "node-intervention"
       }
@@ -2698,6 +2819,258 @@
           "type": "targets"
         },
         "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-007->targets->M-024",
+          "source": "I-007",
+          "target": "M-024",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-007->targets->B-013",
+          "source": "I-007",
+          "target": "B-013",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-007->mitigates->L-003",
+          "source": "I-007",
+          "target": "L-003",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "I-008->targets->M-005",
+          "source": "I-008",
+          "target": "M-005",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-008->targets->B-013",
+          "source": "I-008",
+          "target": "B-013",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-009->targets->B-014",
+          "source": "I-009",
+          "target": "B-014",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-009->targets->M-016",
+          "source": "I-009",
+          "target": "M-016",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-010->targets->B-003",
+          "source": "I-010",
+          "target": "B-003",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-010->targets->M-009",
+          "source": "I-010",
+          "target": "M-009",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-010->targets->M-020",
+          "source": "I-010",
+          "target": "M-020",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-011->targets->B-003",
+          "source": "I-011",
+          "target": "B-003",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-011->targets->M-017",
+          "source": "I-011",
+          "target": "M-017",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-011->targets->M-023",
+          "source": "I-011",
+          "target": "M-023",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-012->targets->M-023",
+          "source": "I-012",
+          "target": "M-023",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-012->targets->B-005",
+          "source": "I-012",
+          "target": "B-005",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-012->targets->B-003",
+          "source": "I-012",
+          "target": "B-003",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-013->targets->B-005",
+          "source": "I-013",
+          "target": "B-005",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-013->targets->M-012",
+          "source": "I-013",
+          "target": "M-012",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-014->targets->M-012",
+          "source": "I-014",
+          "target": "M-012",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-014->targets->B-005",
+          "source": "I-014",
+          "target": "B-005",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-015->targets->B-010",
+          "source": "I-015",
+          "target": "B-010",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-015->targets->B-012",
+          "source": "I-015",
+          "target": "B-012",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-015->targets->M-007",
+          "source": "I-015",
+          "target": "M-007",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-016->targets->B-011",
+          "source": "I-016",
+          "target": "B-011",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-016->targets->M-021",
+          "source": "I-016",
+          "target": "M-021",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-017->targets->M-002",
+          "source": "I-017",
+          "target": "M-002",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-017->targets->B-010",
+          "source": "I-017",
+          "target": "B-010",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-017->mitigates->P-002",
+          "source": "I-017",
+          "target": "P-002",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
       }
     ]
   }

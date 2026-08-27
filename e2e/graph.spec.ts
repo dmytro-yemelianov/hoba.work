@@ -1,4 +1,4 @@
-import { says } from './says';
+import { says, entryCount } from './says';
 import { expect, test, type Page } from '@playwright/test';
 
 /** Walk the canvas until the pointer lands on a node (the tooltip is the tell). */
@@ -32,12 +32,12 @@ test.describe('knowledge graph explorer', () => {
     await expect(canvas).toBeVisible();
     // A real drawing surface, not a DOM node per vertex.
     expect(await canvas.evaluate((c) => (c as HTMLCanvasElement).width)).toBeGreaterThan(300);
-    await expect(page.locator('#graph-count')).toHaveText(/65/);
+    await expect(page.locator('#graph-count')).toHaveText(new RegExp(String(entryCount())));
 
     await page.locator('#select-removability').selectOption('candidate');
     await toggleLayer(page, 'artifact');
     await expect(page.locator('.type-toggle[data-type="artifact"]')).not.toBeChecked();
-    await expect(page.locator('#graph-count')).not.toHaveText(/^65 /);
+    await expect(page.locator('#graph-count')).not.toHaveText(new RegExp(`^${entryCount()} `));
 
     await page.locator('#theme-toggle').click(); // forces a palette re-read + redraw
     expect(errors).toEqual([]);

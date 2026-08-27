@@ -14,3 +14,18 @@ export const says = (lang: 'en' | 'uk', key: keyof typeof ui.en): RegExp =>
       .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
       .replace(/\\\{\w+\\\}/g, '.+')
   );
+
+import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
+
+/**
+ * How many entries the registry actually holds.
+ *
+ * Pinning the number meant every entry added broke two tests that had nothing
+ * to do with the registry's size. What those tests are for is that the page
+ * shows all of them.
+ */
+export const entryCount = (): number => {
+  const b = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, 'en');
+  return b.artifacts.length + b.barriers.length + b.mechanisms.length +
+    b.patterns.length + b.loops.length + b.interventions.length;
+};

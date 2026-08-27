@@ -742,7 +742,9 @@
           "kind": "initial",
           "owner": "hiring-manager",
           "description": "The requisition describes work that exists now, at a level the team actually needs, inside a band the budget already covers. Nothing here is aspirational: the list of requirements is what the job uses, not what the last four candidates happened to have.",
-          "entities": [],
+          "entities": [
+            "I-007"
+          ],
           "visible_to_candidate": "Nothing yet. Everything downstream inherits whatever is decided here.",
           "deviations": [
             "M-024",
@@ -757,7 +759,9 @@
           "description": "The posting states the compensation band, the location rules, the stages the process has and roughly how long each takes. It comes down when the search ends.",
           "entities": [
             "I-002",
-            "I-001"
+            "I-001",
+            "I-008",
+            "I-009"
           ],
           "visible_to_candidate": "The role, the band, the stages, and a date by which the first answer should arrive.",
           "deviations": [
@@ -790,7 +794,8 @@
           "description": "Automation deduplicates, extracts and orders. It does not decide. Where a rule does end an application, the rule is stated and it is one a person would defend out loud.",
           "entities": [
             "I-005",
-            "I-004"
+            "I-004",
+            "I-010"
           ],
           "visible_to_candidate": "If a rule ends it here, which rule.",
           "deviations": [
@@ -807,7 +812,8 @@
           "owner": "recruiter",
           "description": "Every application that clears the mechanical stage is read by someone, and read before the window the posting promised runs out.",
           "entities": [
-            "I-001"
+            "I-001",
+            "I-011"
           ],
           "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
           "deviations": [
@@ -839,7 +845,9 @@
           "owner": "hiring-manager",
           "description": "One timeboxed exercise that resembles the job. The candidate is given the criteria before starting, the timebox is enforced against the evaluator as well, and the same rubric scores everyone.",
           "entities": [
-            "I-006"
+            "I-006",
+            "I-012",
+            "I-013"
           ],
           "visible_to_candidate": "The exercise, the timebox and the criteria — before starting, not after.",
           "deviations": [
@@ -857,7 +865,9 @@
           "kind": "active",
           "owner": "hiring-manager",
           "description": "Every interviewer knows what they are measuring and that nobody else is measuring it. The rule that turns their scores into a decision is agreed before the first conversation, and no round is added after the process has started.",
-          "entities": [],
+          "entities": [
+            "I-014"
+          ],
           "visible_to_candidate": "Who they will meet, what each conversation is for, and how many there are.",
           "deviations": [
             "B-007",
@@ -892,7 +902,8 @@
           "owner": "employer-policy",
           "description": "Headcount was signed before the role was published, so this step is a countersignature rather than a second decision. If the budget goes, the search closes and everyone inside it is told.",
           "entities": [
-            "I-001"
+            "I-001",
+            "I-015"
           ],
           "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
           "deviations": [
@@ -919,7 +930,9 @@
           "kind": "active",
           "owner": "employer-policy",
           "description": "Only the checks the role actually requires. Where a third-party record disagrees with what the candidate said, the discrepancy is put to the candidate before it decides anything.",
-          "entities": [],
+          "entities": [
+            "I-016"
+          ],
           "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
           "deviations": [
             "B-011",
@@ -943,7 +956,8 @@
           "owner": "recruiter",
           "description": "Not every candidate is hired, and a decline is not a deviation. What makes it part of this path is that it arrives, it names the stage it happened at and the criterion that decided it, and it says whether applying again is worth anything.",
           "entities": [
-            "I-003"
+            "I-003",
+            "I-017"
           ],
           "visible_to_candidate": "Which stage, which criterion, and whether to apply again.",
           "deviations": [
