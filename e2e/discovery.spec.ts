@@ -42,3 +42,14 @@ test.describe('discovery surface', () => {
     expect(body.length).toBeGreaterThan(20_000);
   });
 });
+
+test('the sitemap is reproducible from the manifest, not from file mtimes', async ({ request }) => {
+  const body = await (await request.get('/sitemap.xml')).text();
+  const stamps = [...new Set([...body.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]))];
+  // One date for the whole file, and it is the registry's own updated_at —
+  // a checkout-dependent mtime would make every CI run a diff.
+  expect(stamps).toHaveLength(1);
+  expect(stamps[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  const manifest = await (await request.get('/data/latest/manifest.json')).json();
+  expect(stamps[0]).toBe(String(manifest.updated_at).slice(0, 10));
+});

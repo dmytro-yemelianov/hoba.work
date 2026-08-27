@@ -173,7 +173,10 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
 const bundle = loadRegistryFromRoot(root, 'en' as ContentLang);
 const graph = new HOBAKnowledgeGraph(bundle);
 const routes = [...STATIC_ROUTES, ...entityRoutes(bundle)];
-const lastmod = new Date(fs.statSync(path.join(root, 'registry.yaml')).mtime).toISOString().slice(0, 10);
+// From the manifest, never from a file mtime: a fresh checkout has different
+// mtimes, which would make the build non-deterministic and fail CI's
+// exports-are-up-to-date check on every run.
+const lastmod = bundle.updated_at.slice(0, 10);
 
 fs.writeFileSync(path.join(PUBLIC, 'robots.txt'), robots());
 fs.writeFileSync(path.join(PUBLIC, 'sitemap.xml'), sitemap(routes, lastmod));
