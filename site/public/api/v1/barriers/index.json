@@ -8,7 +8,7 @@
       "evidence_ids": [
         "EVD-004"
       ],
-      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
+      "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
       "id": "B-013",
       "type": "barrier",
       "stage": "pre-posting",
@@ -17,7 +17,7 @@
         "B-014",
         "B-001"
       ],
-      "description": "The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
+      "description": "The gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
       "evidence_level": "established",
       "specimens": [
@@ -72,7 +72,7 @@
       "title": "Outbound Sourcing & Talent Pool Contact",
       "status": "active",
       "evidence_ids": [],
-      "content": "# Outbound Sourcing & Talent Pool Contact\n\nRecruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.\n\n### Pass Condition\nThe candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.",
+      "content": "# Outbound Sourcing & Talent Pool Contact\n\nRecruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.\n\n### Pass Condition\nThe candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
       "id": "B-014",
       "type": "barrier",
       "stage": "sourcing",
@@ -82,7 +82,7 @@
         "B-004"
       ],
       "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
-      "pass_condition": "The candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.",
+      "pass_condition": "The candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
       "evidence_level": "established",
       "specimens": [
         {
@@ -206,7 +206,7 @@
       "evidence_ids": [
         "EVD-001"
       ],
-      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
+      "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "id": "B-002",
       "type": "barrier",
       "stage": "ingestion",
@@ -215,7 +215,7 @@
         "B-003",
         "B-004"
       ],
-      "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.",
+      "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.",
       "pass_condition": "The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "evidence_level": "established",
       "specimens": [

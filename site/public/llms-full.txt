@@ -161,7 +161,7 @@ Feedback from one round praises architectural depth while another round claims i
 
 ### B-013 — Requisition Approval & Public Posting
 
-The gate that exists before any candidate does: headcount is authorized, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.
+The gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.
 
 - Stage: pre-posting · Order: 1 · Passes when: An approved requisition with a written job description is published against real, funded headcount.
 - Precedes: B-014, B-001
@@ -170,7 +170,7 @@ The gate that exists before any candidate does: headcount is authorized, the job
 
 Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.
 
-- Stage: sourcing · Order: 2 · Passes when: The candidate responds to outreach and is attached to an active, authorized requisition rather than a speculative pool.
+- Stage: sourcing · Order: 2 · Passes when: The candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.
 - Precedes: B-001, B-004
 
 ### B-001 — Application Ingestion
@@ -182,7 +182,7 @@ The initial ingestion gate where candidate CV and structured application fields 
 
 ### B-002 — Automated Filter & Parser Threshold
 
-Algorithmic text extraction, keyword scoring, compliance screening (location/work authorization), and knockout question evaluations.
+Algorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.
 
 - Stage: ingestion · Order: 4 · Passes when: The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.
 - Precedes: B-003, B-004
@@ -409,7 +409,7 @@ A candidate with 10+ years applies for a role graded at mid or senior, and the s
 - Actor: recruiter · Nature: bias · Visibility: inferable · Removability: none
 - Operates at: B-003, B-004, B-007
 - Emits: A-013 (direct), A-002 (euphemism)
-- Does NOT establish: Being rejected as "overqualified" is an organizational tier mismatch, not a candidate deficiency.
+- Does NOT establish: Being rejected as "overqualified" is an organisational tier mismatch, not a candidate deficiency.
 
 ### M-018 — Domain Specificity Over-Weighting
 
@@ -458,7 +458,7 @@ The panel splits evenly, no one holds a tiebreaking vote, and the rule for the a
 
 ### M-023 — Portfolio / Work Artifact Misinterpretation
 
-The surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organization.
+The surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organisation.
 
 - Actor: candidate · Nature: noise · Visibility: inferable · Removability: candidate
 - Operates at: B-003, B-005
@@ -542,7 +542,7 @@ Teams write inflated requirements that filter out strong generalists; the search
 
 ### I-001 — Auto-Close Stale Job Requisitions
 
-Implement automated ATS policy to expire public listings when headcount authorization lapses or no interview activity occurs within 60 days.
+Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
 
 - Actor: employer-policy · Scope: organizational · Cost: low
 - Targets: M-006, B-001, P-002, L-003

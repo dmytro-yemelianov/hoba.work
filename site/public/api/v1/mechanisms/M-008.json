@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-011` — Employment Gap Downranking Bias\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition — over-filtering strong generalists prolongs the search until the team redefines the role mid-process; see loop L-003\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
+    "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `M-011` — Employment Gap Downranking Bias\n- Amplifies `M-013` — Mid-Process Role Requirement Redefinition\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
     "id": "M-008",
     "type": "mechanism",
     "summary": "Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.",

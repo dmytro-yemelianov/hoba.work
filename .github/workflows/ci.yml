@@ -43,7 +43,10 @@ jobs:
         run: pnpm build
 
       - name: Verify committed registry exports are up to date
-        run: git diff --exit-code --stat -- schemas site/public
+        # `content` is in here because entry bodies are generated from their own
+        # frontmatter: a body edited by hand, or left behind by a frontmatter
+        # edit, shows up as a diff instead of drifting quietly.
+        run: git diff --exit-code --stat -- schemas site/public content content-uk
 
       - name: Install Lean
         uses: leanprover/lean-action@v1
