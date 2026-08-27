@@ -45,6 +45,23 @@ jobs:
       - name: Verify committed registry exports are up to date
         run: git diff --exit-code --stat -- schemas site/public
 
+      - name: Install Lean
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-mathlib-cache: false
+          build: false
+          lake-package-directory: formal
+
+      - name: Prove the registry's structural claims
+        run: pnpm lean
+
+      - name: Verify the generated Lean data is up to date
+        # The proofs are only about the registry if the terms they run on were
+        # generated from it. A stale Data.lean would prove something true about
+        # a registry nobody has.
+        run: git diff --exit-code --stat -- formal
+
       - name: Upload site build
         uses: actions/upload-artifact@v7
         with:

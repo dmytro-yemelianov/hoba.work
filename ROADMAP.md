@@ -28,8 +28,9 @@ The order is driven by what unblocks what, not by size.
 7. **Lens** (#9, #10 → #11) — per-actor recommendations and perspectives, then
    the selector. Depends on actors existing. *Done.*
 8. **Formal core** (#18 → #19 → #20) — the registry's structural claims proved
-   rather than sampled, then the diagnostic protocol turned into the set algebra
-   it is usually assumed to already be, then the compatibility report. See
+   rather than sampled (*#18 done*), then the diagnostic protocol turned into
+   the set algebra it is usually assumed to already be, then the compatibility
+   report. See
    *What is worth formalising* below for what each of these is and, more
    usefully, what two of them are not.
 
@@ -99,7 +100,7 @@ compiler, success probabilities, and set algebra over the diagnostic protocol �
 checked against the code rather than against the description of the code. Two
 survive as stated, one survives in a different form, one is refused.
 
-### Lean4 over WF-003 and the barrier DAG (#18) — yes, largest return
+### Lean4 over WF-003 and the barrier DAG (#18) — done
 
 WF-003 is already close to a formal object: a finite state set, transitions with
 guards, `deviations` on every state. Four of its properties are currently
@@ -124,11 +125,26 @@ And the proposed headline theorem — that a deviation-free path ends in `hired`
 terminal states WF-003 has. The sharper theorem is **termination**, and it is
 worth stating because it is not currently asserted anywhere: WF-003 has fifteen
 states, twenty-one transitions and **zero back edges**, so every walk from
-`real-need` reaches a terminal in at most thirteen steps. WF-001 — the funnel as
+`real-need` reaches a terminal in at most twelve steps. WF-001 — the funnel as
 observed — has exactly one back edge, `rejected → published`, which is P-002,
 the closed-then-reposted motif. So: *the ideal path terminates and the observed
 funnel need not*, and the single edge that separates them is a named pattern in
 the registry. That is the atlas's central claim as a theorem about its own data.
+
+**What landed.** `formal/` — 200 lines of hand-written Lean and a generator that
+turns the registry into terms. Three general theorems (a forward machine has no
+cycles; a chain climbs; a route is no longer than the rank it ends on) and
+twelve `decide` facts about the actual data, all discharged **in the kernel**:
+`#print axioms` on every one returns nothing beyond `propext` and `Quot.sound`,
+so there is no `native_decide`, no compiler in the trusted base and no mathlib.
+The whole thing builds in about a second.
+
+Two things the proofs corrected. The bound is **twelve** steps, not thirteen —
+the estimate was states-minus-two, the proof is the depth of the rank, and it
+now tightens or breaks with the data rather than quietly staying true. And the
+exhibited cycle in WF-001 is four edges, not eleven: `published → received →
+machine-screened → rejected → published`, found breadth-first because the tight
+one says what the long one says with fewer states.
 
 ### Set algebra over the diagnostic protocol (#19) — yes, but it is not half there
 

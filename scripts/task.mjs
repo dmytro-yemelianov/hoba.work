@@ -39,19 +39,35 @@ function run(command, args, { quiet = false } = {}) {
 
 // ---- check ---------------------------------------------------------------
 
+/**
+ * `skip` returns a reason to stand down, or null to run. Only the proofs use
+ * it: Lean is a real dependency of the repository but not of every machine that
+ * clones it, and a check that silently does nothing is worse than one that says
+ * it was skipped.
+ */
 const CHECKS = [
   ['registry', 'pnpm', ['validate:strict']],
   ['types', 'pnpm', ['typecheck']],
   ['unit', 'pnpm', ['test']],
   ['build', 'pnpm', ['build']],
+  ['proofs', 'pnpm', ['lean'], { skip: () => (hasLake() ? null : 'no Lean toolchain — install elan to check the proofs') }],
   ['browser', 'pnpm', ['e2e']],
 ];
+
+function hasLake() {
+  return spawnSync('lake', ['--version'], { stdio: 'ignore' }).status === 0;
+}
 
 function check(only) {
   const steps = only ? CHECKS.filter(([name]) => name === only) : CHECKS;
   if (!steps.length) throw new Error(`unknown check "${only}" — one of ${CHECKS.map(([n]) => n).join(', ')}`);
-  for (const [name, command, args] of steps) {
+  for (const [name, command, args, options] of steps) {
     const started = Date.now();
+    const reason = options?.skip?.();
+    if (reason) {
+      process.stdout.write(c.bold(`\n▸ ${name}\n`) + c.dim(`— skipped: ${reason}\n`));
+      continue;
+    }
     process.stdout.write(c.bold(`\n▸ ${name}\n`));
     run(command, args);
     process.stdout.write(c.green(`✓ ${name} ${c.dim(`${((Date.now() - started) / 1000).toFixed(1)}s`)}\n`));

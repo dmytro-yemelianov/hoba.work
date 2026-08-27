@@ -1,0 +1,8 @@
+name = "hoba"
+defaultTargets = ["Hoba"]
+
+# No mathlib on purpose. Every theorem here is about a finite structure with
+# natural-number indices, so core Lean is enough and CI needs no cache.
+
+[[lean_lib]]
+name = "Hoba"
