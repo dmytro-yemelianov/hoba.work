@@ -38,6 +38,12 @@ The order is driven by what unblocks what, not by size.
    a typed graph with proved structural claims before asking it what it cannot
    answer was worth doing. See *What the atlas can say about itself*. *Done, and
    it corrected two things this file previously asserted.*
+10. **Substrate** — the four-primitive model of SPEC-MODEL.md implemented
+    underneath the ten reader-facing types, plus the content it unlocked:
+    the client account, financial chains as shapes, the epilogue past the
+    signature. Sequencing, gates and risks in PLAN-SUBSTRATE.md; the
+    equivalence gate (lift → project → byte-equal, both mirrors) is the
+    invariant every stage answers to.
 
 ## Decided
 
