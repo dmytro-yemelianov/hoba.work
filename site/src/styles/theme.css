@@ -158,6 +158,18 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .wf-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
   .wf-transport { @apply flex flex-wrap items-center gap-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }
   .wf-stage { @apply h-[min(42vh,380px)] min-h-[260px]; }
+  /* Choose mode: the fork belongs to the reader, so the auto-walk controls go. */
+  .wf-shell.is-choosing .wf-play,
+  .wf-shell.is-choosing .wf-next,
+  .wf-shell.is-choosing .wf-scrub { @apply hidden; }
+  .wf-branches { @apply hidden border-t border-hoba-border px-4 py-3 sm:px-5; }
+  .wf-shell.is-choosing .wf-branches { @apply block; }
+  .wf-branch { @apply flex w-full flex-col items-start gap-0.5 rounded-md border border-hoba-border px-3 py-2 text-left transition-colors hover:bg-hoba-hover hover:border-hoba-text/25; }
+  .wf-branch-label { @apply text-base text-hoba-text; }
+  .wf-branch-guard { @apply text-sm text-hoba-muted; }
+  .wf-modes { @apply inline-flex items-center gap-0.5 rounded-md border border-hoba-border bg-hoba-bg p-0.5 text-xs; }
+  .wf-mode { @apply rounded px-2 py-1 text-hoba-muted hover:text-hoba-text; }
+  .wf-mode[aria-pressed="true"] { @apply bg-hoba-border text-hoba-text; }
   .wf-canvas { @apply block w-full h-full outline-none; }
   .wf-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
   .wf-scrub { @apply flex-1 min-w-[8rem] accent-hoba-accent; }

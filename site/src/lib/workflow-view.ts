@@ -46,10 +46,35 @@ export interface WorkflowData {
   transitions: ViewTransition[];
 }
 
+/**
+ * Two ways to move through a machine.
+ *
+ * `play` walks a route the renderer chose, which is what you want when the
+ * question is "what does this process do". `choose` hands the branch back to
+ * the reader at every state that has more than one exit, which is what you want
+ * when the question is "which of these happened to me". Same canvas, same
+ * transport, same detail panel — the decision tree is not a second interaction
+ * model, it is this one with the fork given away.
+ */
+export type WorkflowMode = 'play' | 'choose';
+
+export interface WorkflowStep {
+  index: number;
+  total: number;
+  state: ViewState;
+  transition?: ViewTransition;
+  /** In `choose` mode: the exits from this state, for the reader to pick from. */
+  branches: ViewTransition[];
+  /** In `choose` mode: the walk so far, oldest first. */
+  trace: ViewState[];
+  mode: WorkflowMode;
+}
+
 export interface WorkflowViewOptions {
   onSelect?: (state: ViewState | null) => void;
-  onStep?: (step: { index: number; total: number; state: ViewState; transition?: ViewTransition }) => void;
+  onStep?: (step: WorkflowStep) => void;
   onPlaying?: (playing: boolean) => void;
+  onMode?: (mode: WorkflowMode) => void;
 }
 
 type RGB = [number, number, number];
@@ -100,6 +125,12 @@ export class WorkflowView {
   private timer = 0;
   private playing = false;
 
+  /** `choose` mode state: the walk the reader has made, and the edges they took. */
+  private mode: WorkflowMode = 'play';
+  private trace: Placed[] = [];
+  private traceEdges: (ViewTransition | undefined)[] = [];
+  private readonly outgoing = new Map<string, ViewTransition[]>();
+
   private palette!: { text: RGB; muted: RGB; border: RGB; bg: RGB; accent: RGB; kind: Record<ViewState['kind'], RGB> };
   private scale = 1;
   private panX = 0;
@@ -122,8 +153,12 @@ export class WorkflowView {
     this.options = options;
     this.transitions = data.transitions;
 
+    for (const t of data.transitions) this.outgoing.set(t.from, [...(this.outgoing.get(t.from) ?? []), t]);
     this.layout(data);
     this.buildPath();
+    const start = this.states.find((s) => s.kind === 'initial') ?? this.states[0]!;
+    this.trace = [start];
+    this.traceEdges = [undefined];
     this.refreshTheme();
     this.measure();
     this.frame(true);
@@ -259,7 +294,7 @@ export class WorkflowView {
 
     const spanX = (maxX - minX) * this.scale;
     const spanY = (maxY - minY) * this.scale;
-    const focus = this.path[this.cursor]?.state;
+    const focus = this.current()?.state;
 
     if (spanX <= this.width - PAD * 2 || !focus) {
       this.wantX = this.width / 2 - ((minX + maxX) / 2) * this.scale;
@@ -313,29 +348,77 @@ export class WorkflowView {
   // ---- playback ----------------------------------------------------------
 
   get step() {
-    return { index: this.cursor, total: this.path.length };
+    return { index: this.cursor, total: this.length };
   }
 
   get isPlaying() {
     return this.playing;
   }
 
+  get walkMode(): WorkflowMode {
+    return this.mode;
+  }
+
+  /** How many positions the current mode has. */
+  private get length(): number {
+    return this.mode === 'play' ? this.path.length : this.trace.length;
+  }
+
+  /** Where the reader is now, in whichever mode is running. */
+  private current(): { state: Placed; transition?: ViewTransition } | undefined {
+    if (this.mode === 'play') return this.path[this.cursor];
+    const state = this.trace[this.cursor];
+    return state ? { state, transition: this.traceEdges[this.cursor] } : undefined;
+  }
+
+  /** The states walked so far — what the canvas draws as already visited. */
+  private walked(): Set<string> {
+    const source = this.mode === 'play' ? this.path.slice(0, this.cursor + 1).map((p) => p.state) : this.trace.slice(0, this.cursor + 1);
+    return new Set(source.map((s) => s.id));
+  }
+
+  private branches(): ViewTransition[] {
+    if (this.mode !== 'choose') return [];
+    const at = this.trace[this.cursor];
+    return at ? (this.outgoing.get(at.id) ?? []) : [];
+  }
+
   private announce() {
-    const at = this.path[this.cursor];
+    const at = this.current();
     if (!at) return;
-    this.options.onStep?.({ index: this.cursor, total: this.path.length, state: at.state, transition: at.transition });
+    this.options.onStep?.({
+      index: this.cursor,
+      total: this.length,
+      state: at.state,
+      transition: at.transition,
+      branches: this.branches(),
+      trace: this.trace.slice(0, this.cursor + 1),
+      mode: this.mode,
+    });
     this.options.onSelect?.(at.state);
     this.frame();
     this.draw();
   }
 
+  /**
+   * Switching modes resets the position, because a cursor into a chosen route
+   * means nothing in a route the renderer picked, and the reverse.
+   */
+  setMode(mode: WorkflowMode) {
+    if (mode === this.mode) return;
+    this.pause();
+    this.mode = mode;
+    this.reset();
+    this.options.onMode?.(mode);
+  }
+
   seek(index: number) {
-    this.cursor = clamp(index, 0, this.path.length - 1);
+    this.cursor = clamp(index, 0, Math.max(0, this.length - 1));
     this.announce();
   }
 
   next() {
-    if (this.cursor >= this.path.length - 1) {
+    if (this.cursor >= this.length - 1) {
       this.pause();
       return;
     }
@@ -346,8 +429,42 @@ export class WorkflowView {
     this.seek(this.cursor - 1);
   }
 
+  /**
+   * Take one exit from the current state. Choosing again from a state you have
+   * stepped back to discards the rest of the old walk, which is the behaviour
+   * that makes back-and-try-the-other-branch work.
+   */
+  choose(transitionIndex: number) {
+    if (this.mode !== 'choose') return;
+    const exits = this.branches();
+    const transition = exits[transitionIndex];
+    const target = transition && this.byId.get(transition.to);
+    if (!transition || !target) return;
+    this.trace = [...this.trace.slice(0, this.cursor + 1), target];
+    this.traceEdges = [...this.traceEdges.slice(0, this.cursor + 1), transition];
+    this.cursor = this.trace.length - 1;
+    this.announce();
+  }
+
+  /** Replay a walk from a shared link. Unreachable steps stop the replay. */
+  restore(stateIds: string[]) {
+    if (this.mode !== 'choose' || !stateIds.length) return;
+    this.reset();
+    for (const id of stateIds) {
+      const index = this.branches().findIndex((t) => t.to === id);
+      if (index < 0) break;
+      this.choose(index);
+    }
+  }
+
+  /** The walk so far as state ids — what a shared link carries. */
+  get walk(): string[] {
+    return this.trace.slice(1, this.cursor + 1).map((s) => s.id);
+  }
+
   play(intervalMs = 1600) {
-    if (this.playing) return;
+    // Nothing to auto-play when the fork belongs to the reader.
+    if (this.playing || this.mode === 'choose') return;
     // A reader who asked for less motion gets the controls, not the animation.
     if (this.reducedMotion()) {
       this.next();
@@ -372,11 +489,20 @@ export class WorkflowView {
 
   reset() {
     this.pause();
-    this.seek(0);
+    if (this.mode === 'choose') {
+      const start = this.states.find((s) => s.kind === 'initial') ?? this.states[0]!;
+      this.trace = [start];
+      this.traceEdges = [undefined];
+    }
+    this.cursor = 0;
+    this.announce();
   }
 
   selectState(id: string) {
-    const index = this.path.findIndex((p) => p.state.id === id);
+    // In `choose` mode the position is the reader's walk, not an index into a
+    // route, so clicking a state jumps only if they have already been there.
+    const source = this.mode === 'play' ? this.path.map((p) => p.state.id) : this.trace.map((s) => s.id);
+    const index = source.indexOf(id);
     if (index >= 0) this.seek(index);
   }
 
@@ -392,10 +518,10 @@ export class WorkflowView {
       state.sy = state.y * this.scale + this.panY;
     }
 
-    const at = this.path[this.cursor];
+    const at = this.current();
     const activeState = at?.state;
     const activeTransition = at?.transition;
-    const visited = new Set(this.path.slice(0, this.cursor + 1).map((p) => p.state.id));
+    const visited = this.walked();
 
     for (const transition of this.transitions) {
       const from = this.byId.get(transition.from);
@@ -650,7 +776,7 @@ export class WorkflowView {
         Home: () => this.reset(),
         End: () => {
           this.pause();
-          this.seek(this.path.length - 1);
+          this.seek(this.length - 1);
         },
       };
       const action = actions[event.key];

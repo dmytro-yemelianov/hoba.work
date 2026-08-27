@@ -20,15 +20,16 @@ The order is driven by what unblocks what, not by size.
    scheme decided in step 3.
 5. **Cards** (#7 → #8) — the verbacorpus card worker ported over, then
    per-entity `og:image` and the share control.
-6. **Model** (#3 → #4 → #5 → #16 → #17, then #6 later) — actors, then workflows
-   as data, then the player, then the canonical path, then the eras. The
-   decision tree waits for the player deliberately, so it reuses one interaction
-   model instead of inventing a second. *Done through #17.*
+6. **Model** (#3 → #4 → #5 → #16 → #17 → #6) — actors, then workflows as data,
+   then the player, then the canonical path, then the eras, then the decision
+   tree. The tree waited for the player deliberately and the wait paid: it is
+   the same canvas, transport and detail panel with the fork handed to the
+   reader, not a second interaction model. *Done.*
 7. **Lens** (#9, #10 → #11) — per-actor recommendations and perspectives, then
    the selector. Depends on actors existing. *Done.*
-8. **Formal core** (#18 → #19 → #20, and #6 alongside) — the registry's
-   structural claims proved rather than sampled, then the diagnostic protocol
-   as the set algebra it already half is, then the compatibility report. See
+8. **Formal core** (#18 → #19 → #20) — the registry's structural claims proved
+   rather than sampled, then the diagnostic protocol turned into the set algebra
+   it is usually assumed to already be, then the compatibility report. See
    *What is worth formalising* below for what each of these is and, more
    usefully, what two of them are not.
 
@@ -201,7 +202,6 @@ The difference between "this configuration will filter you out" and "you have a
 
 ## Not scheduled yet
 
-- Decision tree (#6) — waits for the player.
 - Anything that would put a real company or person into the registry. The
   methodology forbids it and the tests enforce it.
 - Any per-person probability of being hired. See *Success probabilities* above:

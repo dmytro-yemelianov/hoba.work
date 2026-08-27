@@ -106,3 +106,57 @@ test.describe('eras', () => {
     await expect(page.locator('article[id^="E-"]').last()).toContainText(/still running/i);
   });
 });
+
+/**
+ * The decision tree is the player with the fork given away: same canvas, same
+ * transport, same detail panel, but at every state with more than one exit the
+ * reader picks. The walk it produces has to be sendable, or it is a toy.
+ */
+test.describe('walking it yourself', () => {
+  test('hands the branch to the reader and accounts for the route at the end', async ({ page }) => {
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    await page.goto('/process?lang=en');
+
+    await page.locator('.wf-mode[data-index="0"][data-mode="choose"]').click();
+    await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute('aria-pressed', 'true');
+    // Nothing to auto-play when the fork belongs to the reader.
+    await expect(page.locator('.wf-play[data-index="0"]')).toBeHidden();
+    await expect(page.locator('.wf-scrub[data-index="0"]')).toBeHidden();
+
+    const branches = page.locator('.wf-branches[data-index="0"] .wf-branch');
+    const panel = page.locator('.wf-branches[data-index="0"]');
+    await expect(branches).toHaveCount(1); // real-need has one exit
+
+    // Walk until a terminal: the panel stops offering branches and accounts.
+    for (let i = 0; i < 15 && (await branches.count()) > 0; i++) {
+      await branches.nth((await branches.count()) > 1 ? 1 : 0).click();
+    }
+    await expect(branches).toHaveCount(0);
+    await expect(panel).toContainText(/where this walk ended/i);
+    await expect(panel).toContainText(/walked in \d+ steps/i);
+    // The route's documented failure modes, not a claim that they happened.
+    await expect(panel).toContainText(/documented to break on this route/i);
+    expect(errors).toEqual([]);
+  });
+
+  test('a walk is a link, and the link replays it', async ({ page }) => {
+    await page.goto('/process?lang=en&walk=WF-003:published,closed');
+    const panel = page.locator('.wf-branches[data-index="0"]');
+    await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(panel).toContainText(/where this walk ended/i);
+    await expect(panel).toContainText('Search closed');
+    await expect(page.locator('.wf-detail[data-index="0"]')).toContainText('closed');
+  });
+
+  test('stepping back and choosing again discards the rest of the old walk', async ({ page }) => {
+    await page.goto('/process?lang=en&walk=WF-003:published,closed');
+    const panel = page.locator('.wf-branches[data-index="0"]');
+    await page.locator('.wf-prev[data-index="0"]').click();
+    // Back at `published`, which forks: applied, or the search closes.
+    const branches = page.locator('.wf-branches[data-index="0"] .wf-branch');
+    await expect(branches).toHaveCount(2);
+    await branches.nth(0).click();
+    await expect(panel).not.toContainText('Search closed');
+  });
+});

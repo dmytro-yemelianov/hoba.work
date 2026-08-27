@@ -40,6 +40,8 @@ const payload = JSON.stringify({
     play: t('wf.play'), pause: t('wf.pause'), step: t('wf.step'),
     owner: t('wf.owner'), visible: t('wf.visible'), entities: t('wf.entities'),
     deviations: t('wf.deviations'), transition: t('wf.transition'), leaves: t('wf.leaves'),
+    branches: t('wf.branches'), ended: t('wf.ended'), broken: t('wf.broken'), clean: t('wf.clean'),
+    share: t('wf.share'), copied: t('wf.copied'), walked: t('wf.walked'), arrived: t('wf.arrived'),
     terminal: t('wf.terminal'), initial: t('wf.initial'),
   },
 }).replace(/</g, '\\u003c');
@@ -61,6 +63,10 @@ const payload = JSON.stringify({
 
       <div class="wf-shell mt-5">
         <div class="wf-transport">
+          <div class="wf-modes" role="group" aria-label={t('wf.states')}>
+            <button type="button" class="wf-mode" data-index={index} data-mode="play" aria-pressed="true">{t('wf.mode.play')}</button>
+            <button type="button" class="wf-mode" data-index={index} data-mode="choose" aria-pressed="false">{t('wf.mode.choose')}</button>
+          </div>
           <button type="button" class="wf-play btn btn-secondary" data-index={index} aria-label={t('wf.play')}>{t('wf.play')}</button>
           <button type="button" class="wf-prev icon-btn" data-index={index} aria-label={t('wf.prev')} title={t('wf.prev')}>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -78,6 +84,7 @@ const payload = JSON.stringify({
           <canvas class="wf-canvas h-full" data-index={index} tabindex="0" role="img" aria-label={t('wf.canvasLabel')}></canvas>
         </div>
         <div class="wf-detail border-t border-hoba-border px-4 py-3 sm:px-5" data-index={index}></div>
+        <div class="wf-branches" data-index={index} aria-live="polite"></div>
       </div>
 
       <details class="section">
@@ -133,7 +140,7 @@ const payload = JSON.stringify({
 
   <script type="application/json" id="wf-data" set:html={payload} />
   <script>
-    import { WorkflowView, type ViewState, type ViewTransition, type WorkflowData } from '../../lib/workflow-view';
+    import { WorkflowView, type ViewState, type WorkflowData, type WorkflowMode, type WorkflowStep } from '../../lib/workflow-view';
 
     interface Payload {
       workflows: WorkflowData[];
@@ -174,8 +181,44 @@ const payload = JSON.stringify({
           return `<p class="mt-2 text-sm text-hoba-muted">${heading}</p><ul class="mt-1 flex flex-wrap gap-1.5">${items}</ul>`;
         };
 
+        const branchPanel = pick<HTMLElement>('.wf-branches', index);
+        const shell = canvas.closest('.wf-shell');
+
+        // In `choose` mode the panel is either the fork or, at a terminal, the
+        // account of the walk: which commitments it broke on the way through.
+        const renderBranches = ({ branches, trace }: WorkflowStep) => {
+          if (!branchPanel) return;
+          if (branches.length) {
+            branchPanel.innerHTML = [
+              `<p class="text-sm text-hoba-muted">${data.strings.branches}</p>`,
+              `<div class="mt-2 grid gap-2 sm:grid-cols-2">`,
+              ...branches.map(
+                (b, i) =>
+                  `<button type="button" class="wf-branch" data-branch="${i}">` +
+                  `<span class="wf-branch-label">${b.label}</span>` +
+                  `<span class="wf-branch-guard">${b.guard}</span>` +
+                  `</button>`
+              ),
+              `</div>`,
+            ].join('');
+            return;
+          }
+          const broken = [...new Set(trace.flatMap((s) => (s as ViewState).deviations ?? []))];
+          branchPanel.innerHTML = [
+            `<p class="text-sm text-hoba-muted">${data.strings.ended}</p>`,
+            `<p class="mt-1 text-base font-medium text-hoba-text">${trace[trace.length - 1]?.title ?? ''}</p>`,
+            `<p class="mt-1 text-sm text-hoba-muted">${fill(data.strings.walked, { n: trace.length - 1 })}</p>`,
+            broken.length
+              ? list(data.strings.broken, broken)
+              : `<p class="mt-3 text-base text-hoba-muted max-w-2xl">${data.strings.clean}</p>`,
+            `<p class="mt-3"><button type="button" class="wf-share btn btn-secondary">${data.strings.share}</button></p>`,
+          ].join('');
+        };
+
         const view = new WorkflowView(canvas, workflow, {
-          onStep: ({ index: at, total, state, transition }) => {
+          onStep: (step) => {
+            const { index: at, total, state, transition } = step;
+            if (step.mode === 'choose') renderBranches(step);
             scrub.max = String(total - 1);
             scrub.value = String(at);
             stepLabel.textContent = fill(data.strings.step, { n: at + 1, total });
@@ -192,7 +235,7 @@ const payload = JSON.stringify({
                 ? `<p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">${data.strings.visible}:</span> ${state.visible_to_candidate}</p>`
                 : '',
               transition
-                ? `<p class="mt-2 text-sm text-hoba-muted"><span class="text-hoba-text">${data.strings.leaves}:</span> ${transition.label}</p>`
+                ? `<p class="mt-2 text-sm text-hoba-muted"><span class="text-hoba-text">${step.mode === 'choose' ? data.strings.arrived : data.strings.leaves}:</span> ${transition.label}</p>`
                 : '',
               transition
                 ? `<p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">${data.strings.transition}:</span> ${transition.guard}</p>`
@@ -217,7 +260,43 @@ const payload = JSON.stringify({
         pick<HTMLButtonElement>('.wf-prev', index)?.addEventListener('click', () => { view.pause(); view.previous(); });
         pick<HTMLButtonElement>('.wf-reset', index)?.addEventListener('click', () => view.reset());
         scrub.addEventListener('input', () => { view.pause(); view.seek(Number(scrub.value)); });
+
+        const modeButtons = document.querySelectorAll<HTMLButtonElement>(`.wf-mode[data-index="${index}"]`);
+        const setMode = (mode: WorkflowMode) => {
+          view.setMode(mode);
+          shell?.classList.toggle('is-choosing', mode === 'choose');
+          modeButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+        };
+        modeButtons.forEach((b) =>
+          b.addEventListener('click', () => setMode(b.dataset.mode === 'choose' ? 'choose' : 'play'))
+        );
+
+        branchPanel?.addEventListener('click', (event) => {
+          const target = event.target instanceof Element ? event.target : null;
+          const branch = target?.closest('[data-branch]');
+          if (branch) {
+            view.choose(Number(branch.getAttribute('data-branch')));
+            return;
+          }
+          const share = target?.closest('.wf-share');
+          if (!share) return;
+          // The walk is the argument, so it has to be sendable.
+          const url = new URL(location.href);
+          url.searchParams.set('walk', `${workflow.id}:${view.walk.join(',')}`);
+          url.hash = '';
+          navigator.clipboard
+            ?.writeText(url.toString())
+            .then(() => { share.textContent = data.strings.copied; })
+            .catch(() => {});
+        });
+
         view.seek(0);
+
+        const asked = new URLSearchParams(location.search).get('walk');
+        if (asked && asked.startsWith(`${workflow.id}:`)) {
+          setMode('choose');
+          view.restore(asked.slice(workflow.id.length + 1).split(',').filter(Boolean));
+        }
       });
 
       // A link from a barrier page names one state of one machine. Open the
