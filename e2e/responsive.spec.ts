@@ -10,13 +10,20 @@ async function overflow(page: Page): Promise<number> {
 
 test.describe('responsive layout', () => {
   for (const width of WIDTHS) {
-    test(`no horizontal overflow at ${width}px`, async ({ page }) => {
-      await page.setViewportSize({ width, height: 900 });
-      for (const path of PAGES) {
-        await page.goto(path);
-        expect(await overflow(page), `${path} @ ${width}`).toBeLessThanOrEqual(1);
-      }
-    });
+    // Both languages, because Ukrainian is systematically longer and that is
+    // where a fixed-width element first pushes the page off a phone. A figure
+    // that read "69.3% senior-level" in English and «69,3% для досвідчених» in
+    // Ukrainian overflowed only in the second, and an English-only sweep
+    // reported the site clean.
+    for (const lang of ['en', 'uk'] as const) {
+      test(`no horizontal overflow at ${width}px (${lang})`, async ({ page }) => {
+        await page.setViewportSize({ width, height: 900 });
+        for (const path of PAGES) {
+          await page.goto(`${path}?lang=${lang}`);
+          expect(await overflow(page), `${path} @ ${width} ${lang}`).toBeLessThanOrEqual(1);
+        }
+      });
+    }
   }
 
   test('every page sits in the same frame as the navbar and the footer', async ({ page }) => {
