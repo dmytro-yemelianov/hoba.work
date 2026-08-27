@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { classifyAgencyZone, HOBADiagnosticEngine } from '@hoba/registry';
-import { artifact, makeBundle, mechanism } from './helpers';
+import { artifact, barrier, makeBundle, mechanism } from './helpers';
 
 describe('HOBADiagnosticEngine', () => {
   const engine = new HOBADiagnosticEngine(makeBundle());
@@ -64,5 +64,65 @@ describe('classifyAgencyZone', () => {
     expect(classifyAgencyZone(0, 1, 0)).toBe('exogenous');
     expect(classifyAgencyZone(0, 0, 3)).toBe('exogenous');
     expect(classifyAgencyZone(1, 1, 0)).toBe('mixed');
+  });
+});
+
+describe('a recorded emission stage sharpens attribution and nothing else', () => {
+  /** One observation, two mechanisms: one places its trace here, one elsewhere. */
+  const bundle = makeBundle({
+    artifacts: [artifact({ id: 'A-001', stages: ['screening', 'technical'] })],
+    barriers: [
+      barrier({ id: 'B-001', order: 1, stage: 'screening' }),
+      barrier({ id: 'B-002', order: 2, stage: 'technical' }),
+    ],
+    mechanisms: [
+      mechanism({
+        id: 'M-001',
+        operates_at: ['B-001'],
+        emissions: [{ artifact: 'A-001', evidence: [], observed_at: ['screening'] }],
+      }),
+      mechanism({
+        id: 'M-002',
+        operates_at: ['B-001'],
+        emissions: [{ artifact: 'A-001', evidence: [], observed_at: ['technical'] }],
+      }),
+      mechanism({
+        id: 'M-003',
+        operates_at: ['B-001'],
+        emissions: [{ artifact: 'A-001', evidence: [], observed_at: [] }],
+      }),
+    ],
+    patterns: [],
+    loops: [],
+    interventions: [],
+  });
+  const engine = new HOBADiagnosticEngine(bundle);
+
+  it('never removes a mechanism because of where its trace is placed', () => {
+    // The guarantee this whole feature was built under. Naming a stage must
+    // widen or hold the compatible set, never shrink it: the atlas does not
+    // yet know enough about where traces are read to rule anything out.
+    const withoutStage = engine.analyze({ artifacts: ['A-001'] });
+    const withStage = engine.analyze({ artifacts: ['A-001'], stage: 'screening' });
+    const ids = (r: ReturnType<typeof engine.analyze>) =>
+      r.behind.compatible_mechanisms.map((c) => c.mechanism.id).sort();
+
+    expect(ids(withStage)).toEqual(['M-001', 'M-002', 'M-003']);
+    expect(ids(withStage)).toEqual(ids(withoutStage));
+  });
+
+  it('credits only the mechanism whose trace is read at the named stage', () => {
+    const res = engine.analyze({ artifacts: ['A-001'], stage: 'screening' });
+    const byId = Object.fromEntries(res.behind.compatible_mechanisms.map((c) => [c.mechanism.id, c]));
+
+    expect(byId['M-001']!.emitted_by_evidence).toBe(true);
+    expect(byId['M-002']!.emitted_by_evidence).toBe(false);
+    // No recorded stage is not a claim about stages, so it still counts.
+    expect(byId['M-003']!.emitted_by_evidence).toBe(true);
+  });
+
+  it('credits every emitter when no stage is named', () => {
+    const res = engine.analyze({ artifacts: ['A-001'] });
+    expect(res.behind.compatible_mechanisms.every((c) => c.emitted_by_evidence)).toBe(true);
   });
 });

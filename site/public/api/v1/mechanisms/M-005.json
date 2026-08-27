@@ -21,7 +21,8 @@
         "artifact": "A-016",
         "fidelity": "direct",
         "likelihood": "medium",
-        "evidence": []
+        "evidence": [],
+        "observed_at": []
       },
       {
         "artifact": "A-002",
@@ -29,6 +30,9 @@
         "likelihood": "high",
         "evidence": [
           "EVD-004"
+        ],
+        "observed_at": [
+          "screening"
         ]
       },
       {
@@ -37,7 +41,8 @@
         "likelihood": "medium",
         "evidence": [
           "EVD-004"
-        ]
+        ],
+        "observed_at": []
       }
     ],
     "facets": {

@@ -74,6 +74,19 @@ export interface Identifiability {
   neverAlone: NeverAlone[];
 }
 
+/** An emission whose trace the atlas cannot place at a stage. */
+export interface UnplacedEmission {
+  mechanism: string;
+  artifact: string;
+  /**
+   * `ambiguous` where the mechanism's stages and the observation's overlap in
+   * more than one place; `conflicting` where they do not overlap at all, which
+   * is the sharper case: it proves the trace is seen somewhere the mechanism
+   * does not operate, so no intersection could ever have stood in for this.
+   */
+  reason: 'ambiguous' | 'conflicting';
+}
+
 export interface GapReport {
   indistinguishable: Indistinguishable[];
   /** Mechanism pairs no observation separates, as a share of all pairs. */
@@ -86,6 +99,8 @@ export interface GapReport {
   /** Observations that co-occur in no single mechanism's emissions. */
   unexplainedPairs: [string, string][];
   identifiability: Identifiability;
+  /** Emissions with no recorded stage, and why one could not be entailed. */
+  unplacedEmissions: UnplacedEmission[];
 }
 
 const emissionsOf = (m: { emissions: { artifact: string }[] }): Set<string> =>
@@ -200,6 +215,30 @@ export function identifiability(bundle: RegistryBundle): Identifiability {
   return { identifying, neverAlone };
 }
 
+/**
+ * Emissions whose stage is not recorded and cannot be entailed.
+ *
+ * Where a mechanism operates and where its trace is read are different
+ * questions, and the registry answers only the first. This reports the
+ * emissions where the second is still open.
+ */
+export function unplacedEmissions(bundle: RegistryBundle): UnplacedEmission[] {
+  const stageOfGate = new Map(bundle.barriers.map((b) => [b.id, b.stage] as const));
+  const stagesOfArtifact = new Map(bundle.artifacts.map((a) => [a.id, new Set(a.stages)] as const));
+  const out: UnplacedEmission[] = [];
+
+  for (const m of bundle.mechanisms) {
+    const operates = new Set(m.operates_at.map((g) => stageOfGate.get(g)).filter(Boolean));
+    for (const e of m.emissions) {
+      if (e.observed_at.length > 0) continue;
+      const seen = stagesOfArtifact.get(e.artifact) ?? new Set();
+      const overlap = [...operates].filter((stage) => seen.has(stage!));
+      out.push({ mechanism: m.id, artifact: e.artifact, reason: overlap.length ? 'ambiguous' : 'conflicting' });
+    }
+  }
+  return out;
+}
+
 /** Everything above, computed over one bundle. */
 export function gaps(bundle: RegistryBundle): GapReport {
   const { mechanisms, artifacts, barriers, interventions } = bundle;
@@ -258,5 +297,6 @@ export function gaps(bundle: RegistryBundle): GapReport {
     gatesWithoutLever: barriers.filter((b) => !reached.has(b.id)).map((b) => b.id),
     unexplainedPairs,
     identifiability: identifiability(bundle),
+    unplacedEmissions: unplacedEmissions(bundle),
   };
 }

@@ -95,6 +95,26 @@
                   "$ref": "#/definitions/Mechanism/properties/evidence_ids/items"
                 },
                 "default": []
+              },
+              "observed_at": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "pre-posting",
+                    "sourcing",
+                    "ingestion",
+                    "screening",
+                    "recruiter",
+                    "technical",
+                    "hiring-manager",
+                    "team",
+                    "compensation",
+                    "offer",
+                    "post-offer"
+                  ]
+                },
+                "default": []
               }
             },
             "required": [

@@ -13,7 +13,7 @@ describe('validateRegistryBundle', () => {
   it('flags dangling references for every relation type', () => {
     const bundle = makeBundle({
       mechanisms: [
-        mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-999'], emissions: [{ artifact: 'A-999', evidence: ['EVD-999'] }], amplifies: ['M-999'], masks: ['M-998'] }),
+        mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-999'], emissions: [{ artifact: 'A-999', evidence: ['EVD-999'], observed_at: [] }], amplifies: ['M-999'], masks: ['M-998'] }),
       ],
       patterns: [pattern({ id: 'P-001', required_artifacts: ['A-999'], compatible_mechanisms: ['M-999'], interventions: ['I-999'] })],
       loops: [loop({ id: 'L-001', mechanisms: ['M-001', 'M-999'] })],
@@ -87,7 +87,7 @@ describe('validateRegistryBundle', () => {
   it('rejects duplicate probe IDs and duplicate emissions', () => {
     const bundle = makeBundle();
     bundle.artifacts.push({ ...bundle.artifacts[0], id: 'A-002' }); // same probe id
-    bundle.mechanisms[0] = { ...bundle.mechanisms[0], emissions: [{ artifact: 'A-001', evidence: [] }, { artifact: 'A-001', evidence: [] }] };
+    bundle.mechanisms[0] = { ...bundle.mechanisms[0], emissions: [{ artifact: 'A-001', evidence: [], observed_at: [] }, { artifact: 'A-001', evidence: [], observed_at: [] }] };
     const found = rules(bundle);
     expect(found).toContain('error:duplicate-id');
     expect(found).toContain('error:duplicate-edge');

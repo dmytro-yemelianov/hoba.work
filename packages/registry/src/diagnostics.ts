@@ -57,8 +57,19 @@ export class HOBADiagnosticEngine {
     for (const m of this.bundle.mechanisms) {
       if (m.status !== 'active') continue;
       const operatesAtIdentifiedBarrier = m.operates_at.some((bid) => barrierSet.has(bid));
-      const directlyEmitsArtifact = m.emissions.some((e) => selectedArtifactIds.has(e.artifact));
-      if (!operatesAtIdentifiedBarrier && !directlyEmitsArtifact) continue;
+      const emitsSelectedArtifact = m.emissions.some((e) => selectedArtifactIds.has(e.artifact));
+      if (!operatesAtIdentifiedBarrier && !emitsSelectedArtifact) continue;
+
+      // Attribution, never exclusion. Where an emission records the stages its
+      // trace is seen at and the reader named a stage, an emission placed
+      // elsewhere stops counting as a direct account of what was observed —
+      // but the mechanism stays compatible, because a stage the atlas cannot
+      // place is not the same as a stage it rules out.
+      const directlyEmitsArtifact = m.emissions.some(
+        (e) =>
+          selectedArtifactIds.has(e.artifact) &&
+          (!selectedStage || e.observed_at.length === 0 || e.observed_at.includes(selectedStage))
+      );
 
       compatibleMechanisms.push({
         mechanism: m,

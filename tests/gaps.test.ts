@@ -5,7 +5,7 @@ import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 
 const emits = (...ids: string[]) =>
-  ids.map((artifactId) => ({ artifact: artifactId, evidence: [], fidelity: 'direct' as const, likelihood: 'high' as const }));
+  ids.map((artifactId) => ({ artifact: artifactId, evidence: [], observed_at: [], fidelity: 'direct' as const, likelihood: 'high' as const }));
 
 describe('closure', () => {
   it('is transitive through the gate order', () => {

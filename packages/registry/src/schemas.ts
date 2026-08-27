@@ -137,6 +137,15 @@ export const emissionEdgeSchema = z.object({
   fidelity: emissionFidelitySchema.nullable().optional(),
   likelihood: emissionLikelihoodSchema.nullable().optional(),
   evidence: z.array(evidenceId).default([]),
+  /**
+   * The stages at which this mechanism's trace is *seen*, which is not the same
+   * as where the mechanism operates: a rule that fires at intake produces a
+   * message the candidate reads much later. Authored and correctable from
+   * cases; left empty where the atlas cannot say. It never rules a mechanism
+   * out — it only sharpens which mechanisms directly account for what was
+   * observed.
+   */
+  observed_at: z.array(stageIdSchema).default([]),
 });
 
 /**

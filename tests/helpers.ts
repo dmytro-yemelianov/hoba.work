@@ -141,7 +141,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
       mechanism({
         id: 'M-001',
         operates_at: ['B-001'],
-        emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [] }],
+        emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }],
         facets: { actor: 'candidate', nature: 'rule', visibility: 'inferable', removability: 'candidate' },
         honest_baseline: true,
         amplifies: ['M-002'],

@@ -891,6 +891,13 @@
                         "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
                       },
                       "default": []
+                    },
+                    "observed_at": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/stages/items"
+                      },
+                      "default": []
                     }
                   },
                   "required": [
