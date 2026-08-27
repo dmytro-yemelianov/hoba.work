@@ -78,6 +78,9 @@ test.describe('responsive layout', () => {
         const bodies = [main, ...Array.from(main.children).filter((el) => /^(ARTICLE|DIV)$/.test(el.tagName))];
         const offenders: string[] = [];
         for (const body of bodies) {
+          // A container that declares columns has columns; its children are not
+          // the page body and are not expected to span it. Everything else is.
+          if (/^(grid|flex)$/.test(getComputedStyle(body).display)) continue;
           for (const block of Array.from(body.children)) {
             if (!/^(ARTICLE|SECTION|HEADER)$/.test(block.tagName)) continue;
             const width = Math.round(block.getBoundingClientRect().width);

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { countGraphNodes, getBundle, siteVersion } from '../../lib/registry';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -9,22 +10,58 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
+const bundle = getBundle(lang);
+
+// The page is three paragraphs and a licence. Left as one narrow column it sat
+// in the top third of the frame with the footer marooned below, so the facts a
+// reader comes here for get their own column instead of a tail.
+const facts = [
+  { label: t('about.fact.entries'), value: String(countGraphNodes(bundle)) },
+  { label: t('about.fact.languages'), value: 'EN · UA' },
+  { label: t('about.fact.registry'), value: bundle.version },
+  { label: t('about.fact.site'), value: `v${siteVersion}` },
+];
 ---
 <Layout lang={lang} title={t('about.title')} activeNav="about">
   <PageHeader kicker={t('about.kicker')} title={t('about.heading')}>
   <p slot="meta" class="text-lg text-hoba-muted">{t('about.sub.before')}<strong class="text-hoba-text">hoba.work</strong></p>
   </PageHeader>
 
-  <article class="prose-hoba">
-    <p>{t('about.p1.before')}<b class="wordmark">{t('about.p1.strong')}</b>{t('about.p1.after')}</p>
-    <p><span set:html={branded(t('about.p2.before'))} /><strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
-    <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>
+  <div class="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+    <article class="prose-hoba">
+      <p>{t('about.p1.before')}<b class="wordmark">{t('about.p1.strong')}</b>{t('about.p1.after')}</p>
+      <p><span set:html={branded(t('about.p2.before'))} /><strong class="text-hoba-text">{t('about.p2.strong')}</strong>{t('about.p2.after')}</p>
+      <p>{t('about.p3.before')}<strong class="text-hoba-text">hoba.work</strong>{t('about.p3.after')}</p>
+    </article>
 
-    <h2 id="license">{t('about.author.title')}</h2>
-    <p>{t('about.author.text.before')}<a href="https://github.com/dmytro-yemelianov">Dmytro Yemelianov</a>{t('about.author.text.after')}</p>
-    <ul>
-      <li>{t('about.license.content')} <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a></li>
-      <li>{t('about.license.code')} <a href="https://opensource.org/licenses/MIT">MIT License</a></li>
-    </ul>
-  </article>
+    <aside class="lg:border-l lg:border-hoba-border lg:pl-12">
+      <dl class="grid grid-cols-2 gap-x-8 gap-y-5">
+        {facts.map((fact) => (
+          <div>
+            <dt class="meta">{fact.label}</dt>
+            <dd class="mt-1 text-lg font-semibold font-mono text-hoba-text tabular-nums">{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <h2 id="license" class="section-title text-lg mt-10">{t('about.author.title')}</h2>
+      <p class="text-base text-hoba-muted">
+        {t('about.author.text.before')}<a href="https://github.com/dmytro-yemelianov" class="text-hoba-accent underline underline-offset-2">Dmytro Yemelianov</a>{t('about.author.text.after')}
+      </p>
+      <ul class="row-list mt-4">
+        <li class="row text-base text-hoba-muted">
+          <span>{t('about.license.content')}</span>
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-hoba-accent underline underline-offset-2">CC BY-SA 4.0</a>
+        </li>
+        <li class="row text-base text-hoba-muted">
+          <span>{t('about.license.code')}</span>
+          <a href="https://opensource.org/licenses/MIT" class="text-hoba-accent underline underline-offset-2">MIT</a>
+        </li>
+        <li class="row text-base text-hoba-muted">
+          <span>{t('about.fact.source')}</span>
+          <a href="https://github.com/dmytro-yemelianov/hoba.work" class="text-hoba-accent underline underline-offset-2 font-mono">github</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
 </Layout>
