@@ -60,10 +60,10 @@ const KIND_VAR: Record<ViewState['kind'], string> = {
   terminal: '--g-loop',
 };
 
-const COLUMN = 248;
-const ROW = 112;
-const NODE_W = 196;
-const NODE_H = 68;
+const COLUMN = 272;
+const ROW = 122;
+const NODE_W = 224;
+const NODE_H = 80;
 const PAD = 36;
 
 /** Below this the titles stop being readable, so the camera pans instead. */
@@ -236,6 +236,16 @@ export class WorkflowView {
       minY: Math.min(...ys) - NODE_H / 2,
       maxY: Math.max(...ys) + NODE_H / 2,
     };
+  }
+
+  /**
+   * The height at which this machine needs no vertical scaling — a two-row
+   * machine should not be given the same box as a five-row one and half of it
+   * left empty. The page clamps this into something reasonable.
+   */
+  preferredHeight(): number {
+    const { minY, maxY } = this.bounds();
+    return Math.round(maxY - minY + PAD * 2);
   }
 
   /**
@@ -509,13 +519,13 @@ export class WorkflowView {
       ctx.fillText(String(marks), x + w - 12 * this.scale, y + 12.5 * this.scale);
     }
 
-    const size = Math.max(10, Math.min(13.5, 13 * this.scale));
+    const size = Math.max(10.5, Math.min(14, 13.5 * this.scale));
     ctx.font = `${active ? 600 : 500} ${size}px Inter, system-ui, sans-serif`;
     ctx.fillStyle = rgba(this.palette.text, dim);
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    const lines = this.wrap(state.title, marks ? inner - 14 * this.scale : inner, 2);
-    const lead = size * 1.28;
+    const lines = this.wrap(state.title, marks ? inner - 14 * this.scale : inner, 3);
+    const lead = size * 1.3;
     const top = state.sy - ((lines.length - 1) * lead) / 2;
     lines.forEach((line, i) => ctx.fillText(line, x + padX, top + i * lead));
     ctx.restore();

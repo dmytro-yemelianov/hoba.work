@@ -157,7 +157,8 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   /* Workflow player */
   .wf-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
   .wf-transport { @apply flex flex-wrap items-center gap-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }
-  .wf-canvas { @apply block w-full flex-1 outline-none; }
+  .wf-stage { @apply h-[min(42vh,380px)] min-h-[260px]; }
+  .wf-canvas { @apply block w-full h-full outline-none; }
   .wf-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
   .wf-scrub { @apply flex-1 min-w-[8rem] accent-hoba-accent; }
 

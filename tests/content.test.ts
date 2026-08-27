@@ -228,4 +228,56 @@ describe('workflows', () => {
       b.workflows.map((w) => `${w.id}:${w.states.map((s) => s.id).join('|')}:${w.transitions.map((t) => `${t.from}>${t.to}`).join('|')}`);
     expect(shape(uk)).toEqual(shape(bundle));
   });
+
+  it('names a real entity in every deviation', () => {
+    for (const wf of bundle.workflows) {
+      for (const s of wf.states) {
+        expect(s.deviations.filter((e) => !ids.has(e)), `${wf.id}/${s.id}`).toEqual([]);
+      }
+    }
+  });
+});
+
+/**
+ * WF-003 is the path the rest of the registry is measured against, so the
+ * relationship has to hold both ways: no barrier may be missing from it, and
+ * none may claim two different commitments as the one it breaks.
+ */
+describe('the canonical path', () => {
+  const ideal = bundle.workflows.find((w) => w.id === 'WF-003')!;
+  const homes = (id: string) => ideal.states.filter((s) => s.deviations.includes(id)).map((s) => s.id);
+
+  it('exists, and is the one workflow written as commitments', () => {
+    expect(ideal, 'WF-003 is missing').toBeDefined();
+    expect(ideal.states.some((s) => s.deviations.length > 0)).toBe(true);
+  });
+
+  it('gives every barrier exactly one commitment it breaks', () => {
+    const misplaced = bundle.barriers.map((b) => [b.id, homes(b.id)] as const).filter(([, at]) => at.length !== 1);
+    expect(misplaced).toEqual([]);
+  });
+
+  it('places every mechanism somewhere on the path', () => {
+    const orphans = bundle.mechanisms.filter((m) => homes(m.id).length === 0).map((m) => m.id);
+    expect(orphans).toEqual([]);
+  });
+
+  it('treats a decline and a closed search as endings, not deviations', () => {
+    // The point of the path: most candidates are declined and some searches
+    // stop. What makes those part of it is that they are communicated.
+    const terminal = ideal.states.filter((s) => s.kind === 'terminal').map((s) => s.id);
+    expect(terminal).toContain('declined');
+    expect(terminal).toContain('closed');
+    expect(terminal).toContain('hired');
+    for (const id of ['declined', 'closed']) {
+      const state = ideal.states.find((s) => s.id === id)!;
+      expect(state.visible_to_candidate, id).toBeTruthy();
+    }
+  });
+
+  it('mirrors every deviation list into Ukrainian unchanged', () => {
+    const ukIdeal = uk.workflows.find((w) => w.id === 'WF-003')!;
+    const shape = (w: typeof ideal) => w.states.map((s) => `${s.id}:${s.deviations.join(',')}:${s.entities.join(',')}`);
+    expect(shape(ukIdeal)).toEqual(shape(ideal));
+  });
 });

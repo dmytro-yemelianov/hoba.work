@@ -50,6 +50,29 @@ export function idLink(id: string, bundle: RegistryBundle): string {
   return `[${id}](${SITE}/${ROUTES[node.type]}/${id}) — ${node.title}`;
 }
 
+/**
+ * Where the entity sits on the canonical path (WF-003), as one blockquote.
+ * The Markdown carries it for the same reason the page does: without it the
+ * entry reads as a complaint, and with it it reads as a measured departure
+ * from a stated commitment.
+ */
+function idealNote(id: string, bundle: RegistryBundle, t: Translate): string[] {
+  const ideal = bundle.workflows.find((w) => w.id === 'WF-003');
+  if (!ideal) return [];
+  const broken = ideal.states.find((s) => s.deviations.includes(id));
+  const held = broken ? undefined : ideal.states.find((s) => s.entities.includes(id));
+  const state = broken ?? held;
+  if (!state) return [];
+  return [
+    `> **${t('ideal.title')}** — [${state.title}](${SITE}/process#${ideal.id}-${state.id})`,
+    '>',
+    `> ${state.description}`,
+    '>',
+    `> ${broken ? t('ideal.deviation') : t('ideal.support')}`,
+    '',
+  ];
+}
+
 function frontmatter(entity: Entity, lang: Lang, bundle: RegistryBundle): string[] {
   return [
     '---',
@@ -92,6 +115,7 @@ export function entityMarkdown(entity: Entity, lang: Lang, t: Translate, bundle:
 
   const summary = 'summary' in entity ? entity.summary : 'description' in entity ? entity.description : '';
   if (summary) out.push(summary, '');
+  out.push(...idealNote(entity.id, bundle, t));
 
   const facts: string[] = [];
   if ('stages' in entity) facts.push(`${asHeading(t('common.stage'))}: ${entity.stages.map((s) => t(`stage.${s}`)).join(', ')}`);

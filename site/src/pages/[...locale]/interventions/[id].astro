@@ -4,6 +4,7 @@ import PageHeader from '../../../components/PageHeader.astro';
 import EntityBadge from '../../../components/EntityBadge.astro';
 import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
+import IdealNote from '../../../components/IdealNote.astro';
 import { getGraph } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { InterventionNode } from '@hoba/registry';
@@ -42,6 +43,8 @@ const targets = intervention.targets.map((id) => {
     </PageHeader>
 
   <div>
+    <IdealNote id={intervention.id} lang={lang} bundle={graph.bundle} prefix={prefix} />
+
     {intervention.specimens.length > 0 && (
       <section class="section">
         <h2 class="section-title">{t('specimen.sectionFixed')}</h2>

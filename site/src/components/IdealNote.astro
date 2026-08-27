@@ -1,0 +1,42 @@
+---
+/**
+ * Where this entry sits on the canonical path.
+ *
+ * WF-003 is the process written as the commitments it is supposed to keep, so
+ * every other entry has one honest thing to say about itself: it is either a
+ * place where one of those commitments stops being kept, or one of the things
+ * that holds one up. This is that sentence, with a link into the player at the
+ * exact state.
+ */
+import { idealDeviation, idealSupport, stateAnchor } from '../lib/registry';
+import { useTranslations, type Lang } from '../i18n/utils';
+import type { RegistryBundle } from '@hoba/registry';
+
+interface Props {
+  id: string;
+  lang: Lang;
+  bundle: RegistryBundle;
+  prefix: string;
+}
+
+const { id, lang, bundle, prefix } = Astro.props;
+const t = useTranslations(lang);
+const deviation = idealDeviation(bundle, id);
+const supports = deviation ? [] : idealSupport(bundle, id);
+const placements = deviation ? [deviation] : supports;
+const note = deviation ? t('ideal.deviation') : t('ideal.support');
+---
+{placements.length > 0 && (
+  <section class="callout border-l-hoba-accent" aria-label={t('ideal.title')}>
+    <p class="kicker">{t('ideal.title')}</p>
+    {placements.map(({ workflow, state }) => (
+      <p class="mt-1 text-base">
+        <a href={`${prefix}/process#${stateAnchor(workflow.id, state.id)}`} class="text-hoba-text font-medium hover:text-hoba-accent">
+          {state.title}
+        </a>
+        <span class="text-hoba-muted"> — {state.description}</span>
+      </p>
+    ))}
+    <p class="mt-1 text-base text-hoba-muted">{note}</p>
+  </section>
+)}

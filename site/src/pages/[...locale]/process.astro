@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import EntityRow from '../../components/EntityRow.astro';
-import { getBundle } from '../../lib/registry';
+import { getBundle, IDEAL_PATH_ID, stateAnchor } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -26,10 +26,14 @@ const nodes = new Map(
 );
 const actors = new Map(bundle.actors.map((a) => [a.id, a.title]));
 
+// The canonical path leads, because everything else on this page is a
+// description of what actually happens instead of it.
+const workflows = [...bundle.workflows].sort((a, b) => Number(b.id === IDEAL_PATH_ID) - Number(a.id === IDEAL_PATH_ID));
+
 // The player needs the machine and the names it will print; both are resolved
 // here so the client ships data rather than a second copy of the dictionary.
 const payload = JSON.stringify({
-  workflows: bundle.workflows.map((w) => ({ id: w.id, title: w.title, subject: w.subject, states: w.states, transitions: w.transitions })),
+  workflows: workflows.map((w) => ({ id: w.id, title: w.title, subject: w.subject, states: w.states, transitions: w.transitions })),
   nodes: Object.fromEntries(nodes),
   actors: Object.fromEntries(actors),
   strings: {
@@ -43,13 +47,19 @@ const payload = JSON.stringify({
 <Layout lang={lang} title={t('wf.title')} activeNav="process">
   <PageHeader kicker={t('wf.kicker')} title={t('wf.title')} lead={t('wf.intro')} wide />
 
-  {bundle.workflows.map((workflow, index) => (
+  {workflows.map((workflow, index) => (
     <section class="section" data-workflow={workflow.id}>
-      <h2 class="section-title">{workflow.id} · {workflow.title}</h2>
+      <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span>{workflow.id} · {workflow.title}</span>
+        {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted">{t('ideal.badge')}</span>}
+      </h2>
       <p class="text-base text-hoba-muted max-w-3xl">{workflow.summary}</p>
+      {workflow.id === IDEAL_PATH_ID && (
+        <p class="mt-1 text-sm text-hoba-muted max-w-3xl">{t('ideal.construct')}</p>
+      )}
       <p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">{t('wf.subject')}:</span> {workflow.subject}</p>
 
-      <div class="wf-shell mt-5 h-[min(48vh,460px)] min-h-[360px]">
+      <div class="wf-shell mt-5">
         <div class="wf-transport">
           <button type="button" class="wf-play btn btn-secondary" data-index={index} aria-label={t('wf.play')}>{t('wf.play')}</button>
           <button type="button" class="wf-prev icon-btn" data-index={index} aria-label={t('wf.prev')} title={t('wf.prev')}>
@@ -64,7 +74,7 @@ const payload = JSON.stringify({
           <input type="range" class="wf-scrub" data-index={index} min="0" value="0" aria-label={t('wf.states')} />
           <span class="wf-step text-sm text-hoba-muted tabular-nums" data-index={index} aria-live="polite"></span>
         </div>
-        <div class="relative flex-1 min-h-0">
+        <div class="wf-stage relative" data-index={index}>
           <canvas class="wf-canvas h-full" data-index={index} tabindex="0" role="img" aria-label={t('wf.canvasLabel')}></canvas>
         </div>
         <div class="wf-detail border-t border-hoba-border px-4 py-3 sm:px-5" data-index={index}></div>
@@ -74,7 +84,7 @@ const payload = JSON.stringify({
         <summary class="section-title cursor-pointer">{t('wf.fallback')}</summary>
         <ol class="row-list mt-3">
           {workflow.states.map((state) => (
-            <li class="py-3">
+            <li class="py-3 scroll-mt-24" id={stateAnchor(workflow.id, state.id)}>
               <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <span class="font-mono text-sm text-hoba-accent">{state.id}</span>
                 <span class="text-hoba-text font-medium">{state.title}</span>
@@ -86,8 +96,21 @@ const payload = JSON.stringify({
                 <p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">{t('wf.visible')}:</span> {state.visible_to_candidate}</p>
               )}
               {state.entities.length > 0 && (
+                <p class="mt-2 text-sm text-hoba-muted">{workflow.id === IDEAL_PATH_ID ? t('ideal.holdsHere') : t('wf.entities')}</p>
+              )}
+              {state.entities.length > 0 && (
                 <ul class="mt-1 flex flex-wrap gap-1.5">
                   {state.entities.map((id) => (
+                    <li><a href={nodes.get(id)?.href ?? '#'} class="pill pill-muted font-mono">{id}</a></li>
+                  ))}
+                </ul>
+              )}
+              {state.deviations.length > 0 && (
+                <p class="mt-2 text-sm text-hoba-muted">{workflow.id === IDEAL_PATH_ID ? t('ideal.deviationsHere') : t('wf.deviations')}</p>
+              )}
+              {state.deviations.length > 0 && (
+                <ul class="mt-1 flex flex-wrap gap-1.5">
+                  {state.deviations.map((id) => (
                     <li><a href={nodes.get(id)?.href ?? '#'} class="pill pill-muted font-mono">{id}</a></li>
                   ))}
                 </ul>
@@ -128,7 +151,7 @@ const payload = JSON.stringify({
       const pick = <T extends Element>(selector: string, index: number) =>
         document.querySelector<T>(`${selector}[data-index="${index}"]`);
 
-      const views: WorkflowView[] = [];
+      const views = new Map<string, WorkflowView>();
 
       data.workflows.forEach((workflow, index) => {
         const canvas = pick<HTMLCanvasElement>('canvas.wf-canvas', index);
@@ -184,7 +207,11 @@ const payload = JSON.stringify({
           },
         });
 
-        views.push(view);
+        views.set(workflow.id, view);
+        // Give the machine the height it actually needs, rather than one box
+        // for every machine with the short ones half empty.
+        const stage = pick<HTMLElement>('.wf-stage', index);
+        if (stage) stage.style.height = `${Math.min(440, Math.max(240, view.preferredHeight()))}px`;
         playButton.addEventListener('click', () => view.toggle());
         pick<HTMLButtonElement>('.wf-next', index)?.addEventListener('click', () => { view.pause(); view.next(); });
         pick<HTMLButtonElement>('.wf-prev', index)?.addEventListener('click', () => { view.pause(); view.previous(); });
@@ -192,6 +219,26 @@ const payload = JSON.stringify({
         scrub.addEventListener('input', () => { view.pause(); view.seek(Number(scrub.value)); });
         view.seek(0);
       });
+
+      // A link from a barrier page names one state of one machine. Open the
+      // machine it belongs to, put the player on that state, and scroll to it.
+      const openAnchor = () => {
+        const anchor = decodeURIComponent(location.hash.slice(1));
+        const match = /^(WF-\d+)-(.+)$/.exec(anchor);
+        if (!match) return;
+        const [, workflowId, stateId] = match;
+        const view = views.get(workflowId!);
+        if (!view) return;
+        document.getElementById(anchor)?.closest('details')?.setAttribute('open', '');
+        view.selectState(stateId!);
+        // The native hash jump lands on the list entry; what the reader asked
+        // for is the player, already standing on that state.
+        requestAnimationFrame(() =>
+          document.querySelector(`[data-workflow="${workflowId}"] .wf-shell`)?.scrollIntoView({ block: 'center' })
+        );
+      };
+      openAnchor();
+      window.addEventListener('hashchange', openAnchor);
 
       window.addEventListener('hoba:theme', () => views.forEach((v) => v.refreshTheme()));
     }

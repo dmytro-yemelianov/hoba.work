@@ -11,6 +11,8 @@ import {
   stageIdSchema,
   type ContentLang,
   type RegistryBundle,
+  type WorkflowNode,
+  type WorkflowState,
 } from '@hoba/registry';
 import pkg from '../../package.json';
 
@@ -72,3 +74,42 @@ export function slimBundle(bundle: RegistryBundle): RegistryBundle {
     interventions: strip(bundle.interventions),
   };
 }
+
+
+/**
+ * The canonical path.
+ *
+ * WF-003 is the process written as the commitments it is supposed to keep, and
+ * every other entry in the registry is positioned against it: a barrier is the
+ * point where one of those commitments stops being kept, an intervention is
+ * something that holds one of them up. These two lookups are what let a
+ * detail page say which it is without the page knowing anything about
+ * workflows.
+ */
+export const IDEAL_PATH_ID = 'WF-003';
+
+export interface IdealPlacement {
+  workflow: WorkflowNode;
+  state: WorkflowState;
+}
+
+function idealPath(bundle: RegistryBundle): WorkflowNode | undefined {
+  return bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
+}
+
+/** The commitment this entity is a departure from, if it is one. */
+export function idealDeviation(bundle: RegistryBundle, id: string): IdealPlacement | undefined {
+  const workflow = idealPath(bundle);
+  const state = workflow?.states.find((s) => s.deviations.includes(id));
+  return workflow && state ? { workflow, state } : undefined;
+}
+
+/** The commitments this entity helps hold, if it is an intervention or a signal. */
+export function idealSupport(bundle: RegistryBundle, id: string): IdealPlacement[] {
+  const workflow = idealPath(bundle);
+  if (!workflow) return [];
+  return workflow.states.filter((s) => s.entities.includes(id)).map((state) => ({ workflow, state }));
+}
+
+/** Anchor for one state of one workflow on /process. */
+export const stateAnchor = (workflowId: string, stateId: string): string => `${workflowId}-${stateId}`;

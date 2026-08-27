@@ -1058,6 +1058,450 @@
         }
       ],
       "specimens": []
+    },
+    {
+      "title": "The path as it is supposed to run",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# The path as it is supposed to run\n\nThis is the canonical path: one opening, from a real need to a decision the\ncandidate can act on. It is written as a machine because that is how the rest of\nthe registry is written, and because a commitment that cannot be expressed as a\nstate and a guard is usually not a commitment.\n\n**It is a construct, not a description of anybody.** No employer runs exactly\nthis. It is assembled from the things employers already say they do — bands on\npostings, rubrics agreed before interviews, decisions inside a stated window,\npostings taken down when a search ends — and put in one order so that the rest\nof the atlas has something to be measured against.\n\nThat is the whole point of it. A barrier is not simply a gate: a gate is normal\nand this path has fourteen of them. A barrier is the point at which one of these\ncommitments stops being kept. `deviations` on each state names which ones, which\nis why every barrier in the registry appears on exactly one state of this path\nand every mechanism on at least one.\n\nTwo things this path deliberately does **not** treat as deviations. A decline is\nnot a deviation — most candidates are declined, and a path that could only end\nin a hire would be a fantasy rather than a standard. A closed search is not a\ndeviation either; needs change and budgets go. What makes both of them part of\nthe path rather than departures from it is that they arrive, they say what\nhappened, and they arrive in time to be useful.",
+      "id": "WF-003",
+      "type": "workflow",
+      "summary": "One opening, from a real need to a decision the candidate can act on, with each step written as the commitment it is supposed to keep. Every barrier in the registry is a place where one of these commitments stops being kept.",
+      "subject": "one opening, and one candidate moving through it",
+      "states": [
+        {
+          "id": "real-need",
+          "title": "A real opening, described honestly",
+          "kind": "initial",
+          "owner": "hiring-manager",
+          "description": "The requisition describes work that exists now, at a level the team actually needs, inside a band the budget already covers. Nothing here is aspirational: the list of requirements is what the job uses, not what the last four candidates happened to have.",
+          "entities": [],
+          "visible_to_candidate": "Nothing yet. Everything downstream inherits whatever is decided here.",
+          "deviations": [
+            "M-024",
+            "M-005"
+          ]
+        },
+        {
+          "id": "published",
+          "title": "Published with its terms on the page",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "The posting states the compensation band, the location rules, the stages the process has and roughly how long each takes. It comes down when the search ends.",
+          "entities": [
+            "I-002",
+            "I-001"
+          ],
+          "visible_to_candidate": "The role, the band, the stages, and a date by which the first answer should arrive.",
+          "deviations": [
+            "B-013",
+            "B-014",
+            "M-006",
+            "M-016"
+          ]
+        },
+        {
+          "id": "applied",
+          "title": "Applied, and told so",
+          "kind": "active",
+          "owner": "candidate",
+          "description": "The application is submitted and acknowledged. The record holds what the candidate actually wrote, and the candidate can tell that it arrived.",
+          "entities": [
+            "I-005"
+          ],
+          "visible_to_candidate": "A confirmation that names the role and says what happens next.",
+          "deviations": [
+            "B-001",
+            "M-003"
+          ]
+        },
+        {
+          "id": "machine-check",
+          "title": "Machine work stays mechanical",
+          "kind": "active",
+          "owner": "ats-vendor",
+          "description": "Automation deduplicates, extracts and orders. It does not decide. Where a rule does end an application, the rule is stated and it is one a person would defend out loud.",
+          "entities": [
+            "I-005",
+            "I-004"
+          ],
+          "visible_to_candidate": "If a rule ends it here, which rule.",
+          "deviations": [
+            "B-002",
+            "M-008",
+            "M-011",
+            "M-020"
+          ]
+        },
+        {
+          "id": "human-read",
+          "title": "Read by a person, inside the stated window",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Every application that clears the mechanical stage is read by someone, and read before the window the posting promised runs out.",
+          "entities": [
+            "I-001"
+          ],
+          "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
+          "deviations": [
+            "B-003",
+            "M-009"
+          ]
+        },
+        {
+          "id": "terms-check",
+          "title": "Terms compared before anyone spends time",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Band, level, location, notice period and start date are put side by side in the first conversation, before any assessment is scheduled. Either side can stop here at no cost to the other.",
+          "entities": [
+            "I-002"
+          ],
+          "visible_to_candidate": "The numbers and the constraints, from both sides, in the first call.",
+          "deviations": [
+            "B-004",
+            "M-004",
+            "M-014",
+            "M-017"
+          ]
+        },
+        {
+          "id": "work-sample",
+          "title": "Assessed on the work, against a rubric that is shared",
+          "kind": "active",
+          "owner": "hiring-manager",
+          "description": "One timeboxed exercise that resembles the job. The candidate is given the criteria before starting, the timebox is enforced against the evaluator as well, and the same rubric scores everyone.",
+          "entities": [
+            "I-006"
+          ],
+          "visible_to_candidate": "The exercise, the timebox and the criteria — before starting, not after.",
+          "deviations": [
+            "B-005",
+            "B-006",
+            "M-001",
+            "M-010",
+            "M-019",
+            "M-023"
+          ]
+        },
+        {
+          "id": "panel",
+          "title": "One panel, one question each, one decision rule",
+          "kind": "active",
+          "owner": "hiring-manager",
+          "description": "Every interviewer knows what they are measuring and that nobody else is measuring it. The rule that turns their scores into a decision is agreed before the first conversation, and no round is added after the process has started.",
+          "entities": [],
+          "visible_to_candidate": "Who they will meet, what each conversation is for, and how many there are.",
+          "deviations": [
+            "B-007",
+            "B-008",
+            "M-002",
+            "M-012",
+            "M-013",
+            "M-015",
+            "M-018",
+            "M-022"
+          ]
+        },
+        {
+          "id": "level-and-band",
+          "title": "The level meets the band that was published",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "The level follows from the evidence the panel gathered, and the band was public from the first day. Reconciling them is arithmetic, not a negotiation about whether the band exists.",
+          "entities": [
+            "I-002"
+          ],
+          "visible_to_candidate": "The same band the posting stated, and which point in it the offer sits at.",
+          "deviations": [
+            "B-009",
+            "M-004"
+          ]
+        },
+        {
+          "id": "approval",
+          "title": "Approval already exists",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "Headcount was signed before the role was published, so this step is a countersignature rather than a second decision. If the budget goes, the search closes and everyone inside it is told.",
+          "entities": [
+            "I-001"
+          ],
+          "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
+          "deviations": [
+            "B-010",
+            "M-007"
+          ]
+        },
+        {
+          "id": "offer",
+          "title": "A written offer with everything in it",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Salary, level, title, location terms, start date and anything conditional, in writing, with a decision window the candidate agreed to. Nothing in it changes after acceptance.",
+          "entities": [],
+          "visible_to_candidate": "The complete offer document, and how long they have to answer.",
+          "deviations": [
+            "B-012",
+            "M-007"
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Checks that are proportionate and answerable",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "Only the checks the role actually requires. Where a third-party record disagrees with what the candidate said, the discrepancy is put to the candidate before it decides anything.",
+          "entities": [],
+          "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
+          "deviations": [
+            "B-011",
+            "M-021"
+          ]
+        },
+        {
+          "id": "hired",
+          "title": "Hired on the terms that were published",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "Contract executed both ways on the terms that were on the page from the beginning, with a start date both sides chose.",
+          "entities": [],
+          "visible_to_candidate": "A signed contract that matches the posting.",
+          "deviations": []
+        },
+        {
+          "id": "declined",
+          "title": "Declined, with a reason that can be acted on",
+          "kind": "terminal",
+          "owner": "recruiter",
+          "description": "Not every candidate is hired, and a decline is not a deviation. What makes it part of this path is that it arrives, it names the stage it happened at and the criterion that decided it, and it says whether applying again is worth anything.",
+          "entities": [
+            "I-003"
+          ],
+          "visible_to_candidate": "Which stage, which criterion, and whether to apply again.",
+          "deviations": [
+            "A-002",
+            "A-008",
+            "A-013",
+            "A-014"
+          ]
+        },
+        {
+          "id": "closed",
+          "title": "Search closed, and everyone told",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "A search can legitimately stop: the need changes, the budget goes, someone internal turns out to be right for it. What this path requires is that the posting comes down and every candidate still inside the process is told within days.",
+          "entities": [
+            "I-001"
+          ],
+          "visible_to_candidate": "A message saying the search ended, and when.",
+          "deviations": [
+            "A-001",
+            "A-003",
+            "A-011",
+            "A-012",
+            "M-006",
+            "M-020"
+          ]
+        }
+      ],
+      "transitions": [
+        {
+          "from": "real-need",
+          "to": "published",
+          "label": "posted with its terms",
+          "owner": "recruiter",
+          "guard": "An approved requisition, a band and a described process go live together.",
+          "entities": [
+            "I-002"
+          ]
+        },
+        {
+          "from": "published",
+          "to": "applied",
+          "label": "application submitted",
+          "owner": "candidate",
+          "guard": "The candidate applies against terms they could read beforehand.",
+          "entities": []
+        },
+        {
+          "from": "applied",
+          "to": "machine-check",
+          "label": "record processed",
+          "owner": "ats-vendor",
+          "guard": "The submission is parsed and acknowledged.",
+          "entities": [
+            "I-005"
+          ]
+        },
+        {
+          "from": "machine-check",
+          "to": "human-read",
+          "label": "passed to a person",
+          "owner": "ats-vendor",
+          "guard": "No automated rule ended it, so a person now has it.",
+          "entities": [
+            "I-004"
+          ]
+        },
+        {
+          "from": "human-read",
+          "to": "terms-check",
+          "label": "worth a conversation",
+          "owner": "recruiter",
+          "guard": "A person read the profile and wants to talk.",
+          "entities": []
+        },
+        {
+          "from": "terms-check",
+          "to": "work-sample",
+          "label": "terms are compatible",
+          "owner": "recruiter",
+          "guard": "Band, level, location and timing work for both sides, said out loud.",
+          "entities": [
+            "I-002"
+          ]
+        },
+        {
+          "from": "work-sample",
+          "to": "panel",
+          "label": "work meets the rubric",
+          "owner": "hiring-manager",
+          "guard": "The exercise was scored against the criteria the candidate was given.",
+          "entities": [
+            "I-006"
+          ]
+        },
+        {
+          "from": "panel",
+          "to": "level-and-band",
+          "label": "panel decides by its rule",
+          "owner": "hiring-manager",
+          "guard": "The agreed decision rule returns a hire.",
+          "entities": []
+        },
+        {
+          "from": "level-and-band",
+          "to": "approval",
+          "label": "level lands inside the band",
+          "owner": "employer-policy",
+          "guard": "The evidence-assigned level maps to a point in the published band.",
+          "entities": []
+        },
+        {
+          "from": "approval",
+          "to": "offer",
+          "label": "countersigned",
+          "owner": "employer-policy",
+          "guard": "The approval that existed before publication is confirmed.",
+          "entities": []
+        },
+        {
+          "from": "offer",
+          "to": "verification",
+          "label": "offer accepted",
+          "owner": "candidate",
+          "guard": "The candidate accepts a complete written offer inside the agreed window.",
+          "entities": []
+        },
+        {
+          "from": "verification",
+          "to": "hired",
+          "label": "checks clear",
+          "owner": "employer-policy",
+          "guard": "Nothing proportionate to the role is unresolved.",
+          "entities": []
+        },
+        {
+          "from": "human-read",
+          "to": "declined",
+          "label": "declined after reading",
+          "owner": "recruiter",
+          "guard": "A person decided no, and said at which stage and on what criterion.",
+          "entities": [
+            "I-003"
+          ]
+        },
+        {
+          "from": "terms-check",
+          "to": "declined",
+          "label": "terms are incompatible",
+          "owner": "recruiter",
+          "guard": "The gap is named in the same conversation, before any assessment is booked.",
+          "entities": [
+            "I-002"
+          ]
+        },
+        {
+          "from": "work-sample",
+          "to": "declined",
+          "label": "work did not meet the rubric",
+          "owner": "hiring-manager",
+          "guard": "The score is below the shared criteria, and the criterion is named.",
+          "entities": [
+            "I-003",
+            "I-006"
+          ]
+        },
+        {
+          "from": "panel",
+          "to": "declined",
+          "label": "decision rule returns no hire",
+          "owner": "hiring-manager",
+          "guard": "The rule agreed beforehand returns no hire, and which dimension decided it is stated.",
+          "entities": [
+            "I-003"
+          ]
+        },
+        {
+          "from": "level-and-band",
+          "to": "declined",
+          "label": "level and expectation do not meet",
+          "owner": "employer-policy",
+          "guard": "The published band and the candidate's stated expectation do not overlap, which both sides already knew.",
+          "entities": [
+            "I-002"
+          ]
+        },
+        {
+          "from": "verification",
+          "to": "declined",
+          "label": "discrepancy stands",
+          "owner": "employer-policy",
+          "guard": "The candidate was shown the discrepancy and it remains unresolved.",
+          "entities": []
+        },
+        {
+          "from": "published",
+          "to": "closed",
+          "label": "need changed",
+          "owner": "employer-policy",
+          "guard": "The work no longer exists, and the posting comes down the same week.",
+          "entities": [
+            "I-001"
+          ]
+        },
+        {
+          "from": "approval",
+          "to": "closed",
+          "label": "budget withdrawn",
+          "owner": "employer-policy",
+          "guard": "Headcount is pulled, and every candidate in the process is told within days.",
+          "entities": [
+            "I-001"
+          ]
+        },
+        {
+          "from": "offer",
+          "to": "closed",
+          "label": "offer withdrawn and explained",
+          "owner": "employer-policy",
+          "guard": "An outstanding offer cannot stand, and the candidate is told why, in writing, immediately.",
+          "entities": []
+        }
+      ],
+      "specimens": []
     }
   ],
   "artifacts": [
