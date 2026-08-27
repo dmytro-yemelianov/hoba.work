@@ -3,7 +3,9 @@
   "data": {
     "title": "Verification Discrepancy Disclosure and Reconciliation Window",
     "status": "active",
-    "evidence_ids": [],
+    "evidence_ids": [
+      "EVD-032"
+    ],
     "content": "# Verification Discrepancy Disclosure and Reconciliation Window\n\nClassify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.\n\n### Expected Effects\n- M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause\n- B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns\n- Which findings a document can close and which end the process is a published classification rather than a per-file decision\n\n### Measurements\n- `verification_hold_duration_days`\n- `discrepancy_reconciliation_rate`\n- `disclosed_finding_ratio`",
     "id": "I-016",
     "type": "intervention",

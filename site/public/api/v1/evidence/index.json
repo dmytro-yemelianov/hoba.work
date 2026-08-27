@@ -1,6 +1,6 @@
 {
   "registry_version": "2026.08.2",
-  "count": 31,
+  "count": 35,
   "items": [
     {
       "id": "EVD-001",
@@ -311,6 +311,46 @@
       "citation": "Більше пошуку, менше оптимізму: як змінився ІТ-ринок праці — результати опитування DOU, 2026.",
       "url": "https://dou.ua/lenta/articles/job-market-2026-part-1/",
       "period": "2026"
+    },
+    {
+      "id": "EVD-032",
+      "type": "evidence",
+      "title": "Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))",
+      "kind": "primary",
+      "summary": "Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A separate route applies where the candidate applied remotely: notice may instead follow within three business days of the action, naming the reporting agency, stating that the agency did not make the decision, and telling the candidate they may request a free copy and dispute its accuracy. The statute therefore already requires disclosure of the record, but only the first route places it before the decision is final, and neither fixes how long an offer stays open while a disputed field is reconciled.",
+      "citation": "15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes.",
+      "url": "https://www.law.cornell.edu/uscode/text/15/1681b",
+      "period": "current"
+    },
+    {
+      "id": "EVD-033",
+      "type": "evidence",
+      "title": "Corrected validity estimates place structured interviews above general mental ability",
+      "kind": "research",
+      "summary": "Sackett et al. (2022) found that the standard corrections for range restriction had systematically overstated the criterion-related validity of several selection methods, and re-estimated them. As reported in this paper's side-by-side table, the earlier Roth et al. (2011) values for biodata, general mental ability tests, conscientiousness tests, structured interviews and integrity tests were .32, .52, .22, .48 and .42; the corrected values are .38, .31, .19, .42 and .31. Structured interviews therefore become the strongest single predictor of job performance in that set, ahead of general mental ability. These are validity coefficients for predicting performance once hired; nothing here measures whether a scoring scheme is applied consistently or published in advance.",
+      "citation": "Berry, C. M., Lievens, F., Zhang, C., & Sackett, P. R. Insights from an Updated Personnel Selection Meta-analytic Matrix: Revisiting General Mental Ability Tests' Role in the Validity-Diversity Tradeoff. Reporting corrected estimates from Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2022), Journal of Applied Psychology.",
+      "url": "https://filiplievens.squarespace.com/s/APL-2022-4078_R3.pdf",
+      "period": "2011–2022"
+    },
+    {
+      "id": "EVD-034",
+      "type": "evidence",
+      "title": "Postings without a fillable requisition, measured on one ATS platform (Greenhouse)",
+      "kind": "survey",
+      "summary": "A hiring platform reports that in any given quarter 18–22% of the roles posted through it are classified by the vendor as postings not attached to a search that can be filled, and pairs this with a survey of 2,500 workers in the US, UK and Germany in which 61% said they had heard nothing after an interview. The first figure is the vendor's own classification of its own customers' postings and is not independently auditable; the second is a self-reported recollection, not a matched record. Together they establish that a posting's existence does not imply a live requisition behind it — not any proportion for the market as a whole.",
+      "citation": "Greenhouse 2024 State of Job Hunting report. Platform classification of ghost jobs and survey of 2,500 workers across the US, UK and Germany.",
+      "url": "https://www.greenhouse.com/blog/greenhouse-2024-state-of-job-hunting-report",
+      "period": "2024"
+    },
+    {
+      "id": "EVD-035",
+      "type": "evidence",
+      "title": "Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)",
+      "kind": "research",
+      "summary": "Across 26 million job postings, 67% of postings for production supervisor asked for a college degree while 16% of the people then doing that job held one — a gap of 51 percentage points between what the posting required and what the role demonstrably ran on. The study covers middle-skill occupations in the United States, not software roles, so it evidences the mechanism — a requirement list assembled from something other than the work being done — rather than any figure for technical hiring. The report also surveyed 600 business and HR leaders.",
+      "citation": "Fuller, J. B., & Raman, M. (2017). Dismissed by Degrees: How degree inflation is undermining U.S. competitiveness and hurting America's middle class. Harvard Business School, Accenture and Grads of Life, October 2017.",
+      "url": "https://www.hbs.edu/news/releases/degree-inflation-us-competetiveness",
+      "period": "2017"
     }
   ]
 }

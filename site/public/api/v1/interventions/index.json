@@ -460,7 +460,10 @@
     {
       "title": "Requirements Drawn From the Team's Own Backlog",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-035",
+        "EVD-001"
+      ],
       "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- M-024 is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- B-013 fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
       "id": "I-007",
       "type": "intervention",
@@ -602,7 +605,9 @@
     {
       "title": "Outreach States the Requisition Behind It",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-034"
+      ],
       "content": "# Outreach States the Requisition Behind It\n\nEvery outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.\n\n### Expected Effects\n- B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent\n- M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on\n- The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast\n\n### Measurements\n- `unattached_outreach_rate`\n- `pool_record_age_days`\n- `planning_decision_notice_rate`",
       "id": "I-009",
       "type": "intervention",
@@ -761,7 +766,9 @@
     {
       "title": "Screening Note Bound to Observations and Disposition Codes",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-033"
+      ],
       "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves B-003 with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
       "id": "I-011",
       "type": "intervention",
@@ -922,7 +929,9 @@
     {
       "title": "Publish the Technical Screen's Columns and Threshold Before the Round",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-033"
+      ],
       "content": "# Publish the Technical Screen's Columns and Threshold Before the Round\n\nPublish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.\n\n### Expected Effects\n- B-005's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel\n- A total one point under the threshold at B-005 is locatable, because the number it is compared with is published\n- A round read cold under M-012 is scored on the published columns rather than on what the hour left as an impression\n\n### Measurements\n- `rubric_completion_rate`\n- `borderline_outcome_rate`",
       "id": "I-013",
       "type": "intervention",
@@ -1160,7 +1169,9 @@
     {
       "title": "Verification Discrepancy Disclosure and Reconciliation Window",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-032"
+      ],
       "content": "# Verification Discrepancy Disclosure and Reconciliation Window\n\nClassify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.\n\n### Expected Effects\n- M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause\n- B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns\n- Which findings a document can close and which end the process is a published classification rather than a per-file decision\n\n### Measurements\n- `verification_hold_duration_days`\n- `discrepancy_reconciliation_rate`\n- `disclosed_finding_ratio`",
       "id": "I-016",
       "type": "intervention",
