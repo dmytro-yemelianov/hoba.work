@@ -1,4 +1,7 @@
+import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
 import { expect, test } from '@playwright/test';
+
+const actorCount = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, 'en').actors.length;
 
 /**
  * The lens.
@@ -61,7 +64,8 @@ test.describe('actors', () => {
   test('every seat says what it decides, cannot see, and could do', async ({ page }) => {
     await page.goto('/actors?lang=en');
     const rows = page.locator('.row-list > li');
-    await expect(rows).toHaveCount(6);
+    // One row per actor in the registry — pinned to the source, not to a number.
+    await expect(rows).toHaveCount(actorCount);
 
     await page.goto('/actors/recruiter?lang=en');
     await expect(page.getByRole('heading', { name: /decides/i })).toBeVisible();

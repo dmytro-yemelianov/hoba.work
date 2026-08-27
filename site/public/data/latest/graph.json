@@ -743,6 +743,34 @@
       },
       {
         "data": {
+          "id": "M-025",
+          "label": "Bid-Conditional Talent Pool",
+          "type": "mechanism",
+          "actor": "recruiter",
+          "nature": "incentive",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "hypothesis"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "M-026",
+          "label": "Bench-Priority Fill",
+          "type": "mechanism",
+          "actor": "policy",
+          "nature": "incentive",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": true,
+          "evidence_level": "hypothesis"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
           "id": "P-001",
           "label": "Seniority Double Bind",
           "type": "pattern",
@@ -2552,6 +2580,88 @@
       },
       {
         "data": {
+          "id": "M-025->operates_at->B-014",
+          "source": "M-025",
+          "target": "B-014",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-025->emits->A-001",
+          "source": "M-025",
+          "target": "A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-025->emits->A-012",
+          "source": "M-025",
+          "target": "A-012",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-026->operates_at->B-013",
+          "source": "M-026",
+          "target": "B-013",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-026->operates_at->B-003",
+          "source": "M-026",
+          "target": "B-003",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-026->emits->A-002",
+          "source": "M-026",
+          "target": "A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-026->emits->A-003",
+          "source": "M-026",
+          "target": "A-003",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-026->emits->A-016",
+          "source": "M-026",
+          "target": "A-016",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "A-002->instantiates->P-001",
           "source": "A-002",
           "target": "P-001",
@@ -2996,6 +3106,15 @@
           "id": "I-009->targets->M-016",
           "source": "I-009",
           "target": "M-016",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-009->targets->M-025",
+          "source": "I-009",
+          "target": "M-025",
           "type": "targets"
         },
         "classes": "edge-targets"

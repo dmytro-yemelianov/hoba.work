@@ -200,10 +200,17 @@ describe('the published registry', () => {
   });
 
   it('cannot separate every mechanism by observation, and says which', () => {
-    // One class left: M-009 and M-016 differ in whether a requisition exists
-    // behind the outreach, and nothing found so far reports that from the
-    // candidate's side, so no observation has been invented to split them.
-    expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([['M-009', 'M-016']]);
+    // The client account added two members deliberately. M-025 joins the
+    // outreach class: bid-conditional pooling differs from M-009 and M-016 in
+    // whether a bid record exists, which is structural and invisible from
+    // outside — exactly what SPEC-MODEL 2a says. M-026 ties M-005: whether the
+    // internal person was earmarked before the search or became available
+    // during it sits in a staffing record no message describes. Both ties are
+    // published findings, not accidents.
+    expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([
+      ['M-005', 'M-026'],
+      ['M-009', 'M-016', 'M-025'],
+    ]);
   });
 
   it('names every cause no observation can pin down', () => {
@@ -212,8 +219,11 @@ describe('the published registry', () => {
     // either — so adding an observation can make one side of a pair
     // identifiable while leaving the other subsumed, and that is not progress
     // this list will let us overstate.
+    // A-016 stopped identifying M-005 when M-026 arrived — an honest loss:
+    // "an internal hire was named" genuinely does not say which structure
+    // produced it.
     expect(report.identifiability.neverAlone.map((n) => n.mechanism)).toEqual([
-      'M-001', 'M-002', 'M-008', 'M-009', 'M-011', 'M-016', 'M-017',
+      'M-001', 'M-002', 'M-005', 'M-008', 'M-009', 'M-011', 'M-016', 'M-017', 'M-025', 'M-026',
     ]);
   });
 });

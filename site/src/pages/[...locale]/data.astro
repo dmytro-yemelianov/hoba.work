@@ -29,9 +29,11 @@ const ROUTES: Record<string, string> = { B: 'barriers', M: 'mechanisms', A: 'art
 const href = (id: string) => `${prefix}/${ROUTES[id[0]!]}/${id}`;
 
 const gapRows = [
-  { title: t('gap.gates'), text: t('gap.gatesText', { n: gaps.gatesWithoutIntervention.length, total: gaps.totals.gates }), ids: gaps.gatesWithoutIntervention },
-  { title: t('gap.mechanisms'), text: t('gap.mechanismsText', { n: gaps.mechanismsWithoutIntervention.length, total: gaps.totals.mechanisms }), ids: gaps.mechanismsWithoutIntervention },
-  { title: t('gap.evidence'), text: t('gap.evidenceText', { n: gaps.entriesWithoutEvidence.length, total: gaps.totals.entries }), ids: gaps.entriesWithoutEvidence },
+  { title: t('gap.gates'), text: t('gap.gatesText', { n: gaps.gatesWithoutIntervention.length, total: gaps.totals.gates }), ids: gaps.gatesWithoutIntervention, reachBadge: false },
+  // The out-of-reach badge belongs to this row alone: it qualifies the absence
+  // of an intervention, not the absence of a citation.
+  { title: t('gap.mechanisms'), text: t('gap.mechanismsText', { n: gaps.mechanismsWithoutIntervention.length, total: gaps.totals.mechanisms }), ids: gaps.mechanismsWithoutIntervention, reachBadge: true },
+  { title: t('gap.evidence'), text: t('gap.evidenceText', { n: gaps.entriesWithoutEvidence.length, total: gaps.totals.entries }), ids: gaps.entriesWithoutEvidence, reachBadge: false },
 ];
 
 const byRemovability = (r: 'candidate' | 'intermediary' | 'none') => bundle.mechanisms.filter((m) => m.facets.removability === r).length;
@@ -199,9 +201,9 @@ const bars = [
           {row.ids.length > 0 ? (
             <ul class="mt-2 flex flex-wrap gap-1.5">
               {row.ids.map((id) => (
-                <li data-gap-id={id}>
+                <li data-gap-id={row.reachBadge ? id : undefined}>
                   <a href={href(id)} class="pill pill-muted font-mono">{id}</a>
-                  {outOfReach.has(id) && <span class="pill pill-muted ml-1">{t('gap.outOfReach')}</span>}
+                  {row.reachBadge && outOfReach.has(id) && <span class="pill pill-muted ml-1">{t('gap.outOfReach')}</span>}
                 </li>
               ))}
             </ul>

@@ -188,13 +188,13 @@ export const loopEdgeSchema = z.object({
 });
 
 // Fields shared by every graph node.
-export const actorId = z.enum(['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy']);
+export const actorId = z.enum(['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy', 'client']);
 
 /**
  * One actor's view of one entry.
  *
  * The atlas describes the funnel from outside. A perspective describes the same
- * thing from inside one of the six heads that make it: what reaches them, what
+ * thing from inside one of the heads that make it: what reaches them, what
  * it means from where they sit, and what they do next given what they are
  * measured on. No intent is attributed — an actor who cannot see something is
  * not concealing it.

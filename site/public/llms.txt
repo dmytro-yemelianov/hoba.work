@@ -8,15 +8,15 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 
 - **Observations** (`A-*`, 19) — signals a candidate can actually witness.
 - **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
-- **Mechanisms** (`M-*`, 24) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
+- **Mechanisms** (`M-*`, 26) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
 - **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
-- **Actors** (6) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
+- **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 39) — the published sources behind the claims.
 
-The graph has 81 nodes and 232 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 83 nodes and 241 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 

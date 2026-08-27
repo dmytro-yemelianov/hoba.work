@@ -150,7 +150,7 @@ describe('actors', () => {
   });
 
   it('states what each actor controls, cannot see, and is optimising for', () => {
-    expect(bundle.actors.length).toBe(6);
+    expect(bundle.actors.length).toBe(7);
     for (const actor of bundle.actors) {
       expect(actor.controls.length, actor.id).toBeGreaterThan(0);
       expect(actor.blind_to.length, actor.id).toBeGreaterThan(0);

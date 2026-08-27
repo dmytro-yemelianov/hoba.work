@@ -1,6 +1,6 @@
 {
   "registry_version": "2026.08.2",
-  "count": 24,
+  "count": 26,
   "items": [
     {
       "title": "Genuine Technical Skill Shortfall",
@@ -2455,6 +2455,204 @@
       ],
       "non_inferences": [
         "Failing to meet an inflated \"wishlist\" does not establish anything about how the candidate would do the team's actual work."
+      ]
+    },
+    {
+      "title": "Bid-Conditional Talent Pool",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Bid-Conditional Talent Pool\n\nRecruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.\n- Does not establish that the recruiter was free to disclose the bid's existence.",
+      "id": "M-025",
+      "type": "mechanism",
+      "summary": "Recruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.",
+      "operates_at": [
+        "B-014"
+      ],
+      "emissions": [
+        {
+          "artifact": "A-001",
+          "fidelity": "void",
+          "likelihood": "high",
+          "evidence": [],
+          "observed_at": [
+            "sourcing"
+          ]
+        },
+        {
+          "artifact": "A-012",
+          "fidelity": "void",
+          "likelihood": "high",
+          "evidence": [],
+          "observed_at": [
+            "sourcing"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "recruiter",
+        "nature": "incentive",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [],
+      "evidence_level": "hypothesis",
+      "honest_baseline": false,
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "Outreach against a bid",
+          "lines": [
+            {
+              "speaker": "Recruiter",
+              "text": "We are growing the team on a large fintech engagement and your profile is a strong match. Could we talk this week?",
+              "tell": false
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 2",
+              "text": "Happy to. Is this for an open role I can read somewhere?",
+              "tell": false
+            },
+            {
+              "speaker": "Recruiter",
+              "text": "The details are under wraps for now — I can share more on the call.",
+              "tell": true
+            },
+            {
+              "speaker": "Candidate",
+              "at": "day 19",
+              "text": "Following up on our call — is there any update?",
+              "tell": false
+            }
+          ],
+          "reading": "Everything said is true. The engagement is real, the match may be real, and the role does not exist yet: it exists if a contract signs. The one fact that would let the candidate price the wait is the one fact the conversation is structured not to state."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A concrete-sounding approach about a role that cannot be found posted anywhere, then a call that goes well, then a silence with no stated end.",
+          "reads": "Nothing distinguishes this from an approach against a funded seat. The difference is a record — a signed contract — that no message references and no search of the postings can reveal.",
+          "does": "Asks what the conversation is attached to: an approved requisition, or a pipeline for something expected. The answer, or its absence, is the only observable this structure leaks."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A staffing plan owed against a proposal, with named profiles required in it, and a deadline set by the client's procurement, not by any funnel.",
+          "reads": "The bid cannot be won without the CVs, and the people behind the CVs cannot be promised anything until it is won. Both halves are true at once, and the brief usually forbids stating the second.",
+          "does": "Builds the pool the proposal needs, keeps the conversations warm for as long as the decision takes, and closes them without a verdict when the decision goes the other way — because there is no verdict to send about a role that never came to exist."
+        },
+        {
+          "actor": "client",
+          "sees": "A vendor's proposal with named, available profiles in it — evidence the vendor can actually staff what it is bidding to deliver.",
+          "reads": "The profiles are part of the bid's credibility. Whether the people behind them know what stage the engagement is at is the vendor's affair, and nothing in procurement asks.",
+          "does": "Evaluates the bid on rate, profiles and risk, on procurement's calendar — unaware that the calendar is experienced, somewhere, as an unexplained silence."
+        }
+      ],
+      "non_inferences": [
+        "Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.",
+        "Does not establish that the recruiter was free to disclose the bid's existence."
+      ]
+    },
+    {
+      "title": "Bench-Priority Fill",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Bench-Priority Fill\n\nAn engineer already employed and between projects becomes available mid-search, and the seat the external candidate is interviewing for is filled from the bench.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.\n- Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment.",
+      "id": "M-026",
+      "type": "mechanism",
+      "summary": "An engineer already employed and between projects becomes available mid-search, and the seat the external candidate is interviewing for is filled from the bench.",
+      "operates_at": [
+        "B-013",
+        "B-003"
+      ],
+      "emissions": [
+        {
+          "artifact": "A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [],
+          "observed_at": [
+            "screening"
+          ]
+        },
+        {
+          "artifact": "A-003",
+          "fidelity": "void",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": []
+        },
+        {
+          "artifact": "A-016",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": []
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "incentive",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [],
+      "evidence_level": "hypothesis",
+      "honest_baseline": true,
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Requisition timeline",
+          "lines": [
+            {
+              "at": "05 May",
+              "text": "Requisition opened — client seat, external search approved",
+              "tell": false
+            },
+            {
+              "at": "26 May",
+              "text": "External candidate at panel stage",
+              "tell": false
+            },
+            {
+              "at": "28 May",
+              "text": "Internal availability: engineer rolling off project end of month",
+              "tell": true
+            },
+            {
+              "at": "02 Jun",
+              "text": "Requisition closed — filled internally",
+              "tell": false
+            }
+          ],
+          "reading": "Nothing in the record was decided against the external candidate. A person the company already pays became free, and an employed engineer on the bench costs the margin every idle week. The search ended because its reason did."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A process that was moving, then a closure — sometimes naming an internal hire, sometimes just the search ending.",
+          "reads": "Indistinguishable from a role that was promised internally before it was posted. The difference — whether the internal person was available when the search began or became available during it — sits in a staffing record no message describes.",
+          "does": "Notes the interval between the last positive signal and the closure; a short one is the only outside trace of an availability that changed mid-search."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A bench that costs salary against no billing, and an open seat that fits someone on it.",
+          "reads": "Filling the seat from the bench converts an idle cost into billed work in one move; continuing an external search past that point pays twice for the same seat.",
+          "does": "Fills from the bench as soon as the dates line up, and closes the external search that the bench has made redundant."
+        },
+        {
+          "actor": "client",
+          "sees": "A seat filled on schedule with a profile the vendor vouches for, often faster than an external start date could have landed.",
+          "reads": "Whether the person came from a search or from the bench is invisible in the deliverable, and the contract does not ask.",
+          "does": "Accepts the staffing, unaware an external process ended somewhere so that this one could close on time."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.",
+        "Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment."
       ]
     }
   ]

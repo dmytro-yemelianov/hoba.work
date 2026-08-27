@@ -293,6 +293,16 @@
       <data key="d_type">mechanism</data>
       <data key="d_evidence">supported</data>
     </node>
+    <node id="M-025">
+      <data key="d_label">Bid-Conditional Talent Pool</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="M-026">
+      <data key="d_label">Bench-Priority Fill</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
     <node id="P-001">
       <data key="d_label">Seniority Double Bind</data>
       <data key="d_type">pattern</data>
@@ -896,6 +906,30 @@
     <edge id="M-024-&gt;amplifies-&gt;M-004" source="M-024" target="M-004">
       <data key="d_edge_type">amplifies</data>
     </edge>
+    <edge id="M-025-&gt;operates_at-&gt;B-014" source="M-025" target="B-014">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-025-&gt;emits-&gt;A-001" source="M-025" target="A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-025-&gt;emits-&gt;A-012" source="M-025" target="A-012">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-026-&gt;operates_at-&gt;B-013" source="M-026" target="B-013">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-026-&gt;operates_at-&gt;B-003" source="M-026" target="B-003">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-026-&gt;emits-&gt;A-002" source="M-026" target="A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-026-&gt;emits-&gt;A-003" source="M-026" target="A-003">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-026-&gt;emits-&gt;A-016" source="M-026" target="A-016">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="A-002-&gt;instantiates-&gt;P-001" source="A-002" target="P-001">
       <data key="d_edge_type">instantiates</data>
     </edge>
@@ -1044,6 +1078,9 @@
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="I-009-&gt;targets-&gt;M-016" source="I-009" target="M-016">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-009-&gt;targets-&gt;M-025" source="I-009" target="M-025">
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="I-010-&gt;targets-&gt;B-003" source="I-010" target="B-003">

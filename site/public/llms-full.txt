@@ -8,15 +8,15 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 
 - **Observations** (`A-*`, 19) — signals a candidate can actually witness.
 - **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
-- **Mechanisms** (`M-*`, 24) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
+- **Mechanisms** (`M-*`, 26) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
 - **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
-- **Actors** (6) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
+- **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 39) — the published sources behind the claims.
 
-The graph has 81 nodes and 232 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 83 nodes and 241 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -519,6 +519,26 @@ The posting lists 10+ named technologies and a Staff-level bar for a role whose 
 - Emits: A-002 (euphemism), A-004 (noise)
 - Does NOT establish: Failing to meet an inflated "wishlist" does not establish anything about how the candidate would do the team's actual work.
 
+### M-025 — Bid-Conditional Talent Pool
+
+Recruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.
+
+- Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
+- Operates at: B-014
+- Emits: A-001 (void), A-012 (void)
+- Does NOT establish: Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.
+- Does NOT establish: Does not establish that the recruiter was free to disclose the bid's existence.
+
+### M-026 — Bench-Priority Fill
+
+An engineer already employed and between projects becomes available mid-search, and the seat the external candidate is interviewing for is filled from the bench.
+
+- Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
+- Operates at: B-013, B-003 · honest baseline
+- Emits: A-002 (euphemism), A-003 (void), A-016 (direct)
+- Does NOT establish: Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.
+- Does NOT establish: Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment.
+
 ## Patterns
 
 ### P-001 — Seniority Double Bind
@@ -663,7 +683,7 @@ Where a formal internal candidacy exists against a requisition at the moment it 
 Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.
 
 - Actor: recruiter-process · Scope: organizational · Cost: low
-- Targets: B-014, M-016
+- Targets: B-014, M-016, M-025
 - Expected: B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent
 - Expected: M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on
 - Expected: The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast
@@ -792,6 +812,26 @@ The person applying. The only party in the funnel who sees the whole of their ow
 - Could do (low): Keep a dated record of every message — Dates, wording and who said it are the one part of the process the candidate holds in full. Kept as they arrive, they separate what a process established from what it did not: a rejection timed minutes after submission, a requisition back on the board, two rounds whose feedback disagrees. Costs: It is unpaid administrative time in the period when time is scarcest, and a complete record of a process that ends in silence is still a record of silence.
 - Could do (medium): Submit at the stated timebox and name the cuts — The hours a work sample takes come out of the same budget as the search itself, and the minutes it is read for are set on the other side of the gate. Stopping at the stated timebox and writing down what was cut to fit it keeps the exercise inside the scope that was agreed and leaves the trade-offs on the page. Costs: A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets.
 - Could do (medium): Set a date when a silent process closes — Silence after submission covers a listing nobody took down, a batch expiry job and a queue that was never reached, and none of the three is visible from outside. Choosing the closing date in advance turns an open question into a finished one and returns the hours to the searches that answered. Costs: An answer that arrives after the chosen date is treated as no answer, and the time already spent is written off rather than waited out.
+
+### client — Client
+
+The party paying for the seat when the company is not its own customer. Signs the contract the requisition depends on, and often holds a gate the candidate never sees named.
+
+- Decides: Whether the contract that funds the seat is signed, extended or cancelled
+- Decides: The rate the seat bills at, which the band is derived from
+- Decides: Approval of the profiles submitted against the contract, where the contract gives them that right
+- Decides: Their own interview round, after the employer's loop has already said yes
+- Decides: How many seats the engagement needs, and by when
+- Cannot see: What the employer's own funnel did to reach the profiles they are shown
+- Cannot see: What the candidate was told about who is deciding, and when
+- Cannot see: The margin between the rate they pay and the salary the candidate is offered
+- Cannot see: What declining a profile without a reason costs the person behind it
+- Measured on: Fill the seats the engagement needs without carrying employment obligations
+- Measured on: Keep the option to end the engagement without ending anyone's employment — that is what the vendor is for
+- Measured on: Pay for delivery, not for the search that produced it
+- Could do (low): Let your round be named in the process the candidate is told — Where the contract gives the client a profile approval or an interview, the candidate ends up waiting on a party no message has named. Allowing the vendor to state that stage — one client review, expected turnaround — costs no confidentiality and converts an unexplained silence into a stated step. Costs: A named stage invites questions when it overruns; an unnamed one never has to answer for itself.
+- Could do (low): State in the brief whether the seat is funded or bid-conditional — A search run against an unsigned bid is a real search for a conditional seat. The vendor's recruiters can only disclose what the brief states, so the one sentence that makes outreach honest — this role opens when the contract signs — has to originate here. Costs: A bid the market can see is a bid competitors can see; some clients treat the existence of the search as confidential.
+- Could do (low): Return profile decisions on a stated clock, with a category — The employer cannot tell the candidate what it was never told. A decline that arrives as one of three categories — profile, rate, timing — on a stated turnaround lets the vendor close records with a reason instead of a template, without exposing anything commercially sensitive. Costs: A category is a commitment; 'no' with no category can no longer be sent.
 
 ### employer-policy — Employer policy
 
