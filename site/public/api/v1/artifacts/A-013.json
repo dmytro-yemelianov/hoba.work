@@ -21,7 +21,33 @@
         "id": "PROBE-A-013-1",
         "action": "Inquire whether the organization has higher-tier or staff-level requisitions open where broader scope is desired.",
         "expected_signal": "Channels candidate into appropriate leveling track.",
-        "cost": "low"
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "higher-req-named",
+            "label": "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "answered-on-level-none-named",
+            "label": "A reply answers about level and names no requisition: nothing is open above this band, or the profile stays on file, or a pointer to the careers page — no requisition id, no date.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "answered-as-budget",
+            "label": "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-reply",
+            "label": "No reply arrives, and the thread ends on the rejection already received.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

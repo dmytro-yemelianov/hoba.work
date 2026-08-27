@@ -20,7 +20,33 @@
         "id": "PROBE-A-010-1",
         "action": "Request explicit feedback on collaborative dynamic from recruiter.",
         "expected_signal": "Clarifies whether friction was perceived as attitude issue or stylistic preference.",
-        "cost": "low"
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "nothing-added",
+            "label": "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "moment-named",
+            "label": "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "reception-framing",
+            "label": "The answer moves from pacing to reception: the concern is put as how critique was taken, not as which level the answers sat at.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-reply",
+            "label": "No reply arrives at all: the request sits unanswered on the thread, and the written note remains the whole record of the round.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

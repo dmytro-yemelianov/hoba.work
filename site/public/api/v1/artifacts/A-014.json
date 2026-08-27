@@ -20,7 +20,33 @@
         "id": "PROBE-A-014-1",
         "action": "Request aggregated hiring rubric summary from talent partner.",
         "expected_signal": "Reveals whether team had misaligned internal evaluation criteria.",
-        "cost": "low"
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "criteria-differ-by-round",
+            "label": "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "same-criterion-opposite-scores",
+            "label": "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "reply-adds-nothing",
+            "label": "A reply arrives that adds nothing to the decision already sent: the two verdicts restated, or the scoring described as internal and not shared with candidates.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-reply",
+            "label": "No reply arrives, and no summary is produced.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

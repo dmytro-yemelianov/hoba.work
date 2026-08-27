@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import EntityRow from '../../components/EntityRow.astro';
-import { getBundle, IDEAL_PATH_ID, stateAnchor } from '../../lib/registry';
+import { countRoutes, getBundle, IDEAL_PATH_ID, stateAnchor } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -59,6 +59,18 @@ const payload = JSON.stringify({
       {workflow.id === IDEAL_PATH_ID && (
         <p class="mt-1 text-sm text-hoba-muted max-w-3xl">{t('ideal.construct')}</p>
       )}
+      {workflow.id === IDEAL_PATH_ID && (() => {
+        const routes = countRoutes(workflow);
+        const named = workflow.states.filter((s) => s.kind === 'terminal');
+        return (
+          <p class="mt-1 text-sm text-hoba-muted max-w-3xl">
+            {t('wf.routes', { n: routes.total })}{' '}
+            {named
+              .map((s) => t('wf.routesEnd', { n: routes.byTerminal[s.id] ?? 0, title: s.title.toLocaleLowerCase(lang) }))
+              .join('; ')}. {t('wf.routesNote')}
+          </p>
+        );
+      })()}
       <p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">{t('wf.subject')}:</span> {workflow.subject}</p>
 
       <div class="wf-shell mt-5">

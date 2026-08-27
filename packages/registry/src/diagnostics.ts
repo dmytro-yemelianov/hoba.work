@@ -1,4 +1,5 @@
 import { HOBAKnowledgeGraph } from './graph.js';
+import { narrow, separation } from './separation.js';
 import type {
   AgencyZone,
   ArtifactNode,
@@ -89,11 +90,28 @@ export class HOBADiagnosticEngine {
     for (const { mechanism } of compatibleMechanisms) for (const ni of mechanism.non_inferences) nonInferenceSet.add(ni);
     for (const p of relatedPatterns) for (const ni of p.non_inferences) nonInferenceSet.add(ni);
 
-    // 4. Step A: Agency partitioning & probes.
+    // 4. Probes are attached to observations; de-duplicate by probe ID (IDs are
+    // validated to be unique).
+    const probeMap = new Map<string, DiagnosticProbe>();
+    for (const a of selectedArtifacts) for (const p of a.probes) probeMap.set(p.id, p);
+    const diagnosticProbes = Array.from(probeMap.values());
+
+    // 5. Narrowing. A probe result can only remove a mechanism, and only where
+    // the outcome is logically incompatible with it — so the reported set is
+    // still "what is compatible", never "what happened". Everything downstream
+    // reads the narrowed set, or the agency partition would keep offering
+    // actions against causes the reader has already ruled out.
+    const compatibleBeforeProbes = compatibleMechanisms.map((c) => c.mechanism.id);
+    const narrowing = narrow(compatibleBeforeProbes, diagnosticProbes, input.probe_results ?? []);
+    const survives = new Set(narrowing.remaining);
+    const narrowed = compatibleMechanisms.filter((c) => survives.has(c.mechanism.id));
+    const separationReport = separation(narrowing.remaining, diagnosticProbes);
+
+    // 6. Step A: agency partitioning over what is left.
     const candidateRemovable: MechanismNode[] = [];
     const intermediaryDependent: MechanismNode[] = [];
     const exogenousNoAgency: MechanismNode[] = [];
-    for (const { mechanism } of compatibleMechanisms) {
+    for (const { mechanism } of narrowed) {
       switch (mechanism.facets.removability) {
         case 'candidate':
           candidateRemovable.push(mechanism);
@@ -105,11 +123,6 @@ export class HOBADiagnosticEngine {
           exogenousNoAgency.push(mechanism);
       }
     }
-
-    // Probes are attached to observations; de-duplicate by probe ID (IDs are validated to be unique).
-    const probeMap = new Map<string, DiagnosticProbe>();
-    for (const a of selectedArtifacts) for (const p of a.probes) probeMap.set(p.id, p);
-    const diagnosticProbes = Array.from(probeMap.values());
 
     const agencyZone = classifyAgencyZone(candidateRemovable.length, intermediaryDependent.length, exogenousNoAgency.length);
 
@@ -145,10 +158,13 @@ export class HOBADiagnosticEngine {
         primary_stage: selectedStage ?? identifiedBarriers[0]?.stage,
       },
       behind: {
-        compatible_mechanisms: compatibleMechanisms,
+        compatible_mechanisms: narrowed,
         related_patterns: relatedPatterns,
         related_loops: relatedLoops,
         non_inferences: Array.from(nonInferenceSet),
+        compatible_before_probes: compatibleBeforeProbes,
+        narrowing,
+        separation: separationReport,
       },
       agency: {
         candidate_removable: candidateRemovable,
@@ -159,7 +175,7 @@ export class HOBADiagnosticEngine {
         agency_zone: agencyZone,
       },
       counts: {
-        compatible_mechanisms: compatibleMechanisms.length,
+        compatible_mechanisms: narrowed.length,
         candidate_removable: candidateRemovable.length,
         intermediary: intermediaryDependent.length,
         no_agency: exogenousNoAgency.length,

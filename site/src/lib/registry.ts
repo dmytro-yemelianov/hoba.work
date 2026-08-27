@@ -154,3 +154,45 @@ export function entriesSeenBy(bundle: RegistryBundle, actor: ActorNode['id'], pr
       href: `${prefix}/${PERSPECTIVE_ROUTES[node.type]}/${node.id}`,
     }));
 }
+
+
+export interface RouteCount {
+  total: number;
+  /** How many distinct routes end at each terminal state, by state id. */
+  byTerminal: Record<string, number>;
+}
+
+/**
+ * How many distinct routes run through a workflow, and where they end.
+ *
+ * A cardinality, never a probability: the atlas has no basis for saying which
+ * route a person takes, and counting them is the honest thing it can do
+ * instead. Only meaningful for an acyclic machine — WF-003 is one, and
+ * `formal/` proves it.
+ */
+export function countRoutes(workflow: WorkflowNode): RouteCount {
+  const exits = new Map<string, string[]>();
+  for (const t of workflow.transitions) exits.set(t.from, [...(exits.get(t.from) ?? []), t.to]);
+  const start = workflow.states.find((s) => s.kind === 'initial') ?? workflow.states[0];
+  if (!start) return { total: 0, byTerminal: {} };
+
+  const memo = new Map<string, Record<string, number>>();
+  const walk = (id: string, seen: Set<string>): Record<string, number> => {
+    const cached = memo.get(id);
+    if (cached) return cached;
+    const out = exits.get(id) ?? [];
+    if (out.length === 0) return { [id]: 1 };
+    const totals: Record<string, number> = {};
+    for (const next of out) {
+      if (seen.has(next)) continue; // a cycle: not counted, and not counted twice
+      for (const [terminal, n] of Object.entries(walk(next, new Set(seen).add(next)))) {
+        totals[terminal] = (totals[terminal] ?? 0) + n;
+      }
+    }
+    memo.set(id, totals);
+    return totals;
+  };
+
+  const byTerminal = walk(start.id, new Set([start.id]));
+  return { total: Object.values(byTerminal).reduce((a, b) => a + b, 0), byTerminal };
+}

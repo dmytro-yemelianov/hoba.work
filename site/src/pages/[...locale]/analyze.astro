@@ -18,6 +18,8 @@ const stagesWithBarriers = STAGES.filter((st) => bundle.barriers.some((b) => b.s
 const WIZ_KEYS = [
   'wiz.noSelection', 'wiz.noGate', 'wiz.passCondition', 'wiz.gate', 'wiz.noMechanisms', 'wiz.honestBaseline', 'wiz.emitsSignal', 'wiz.emitsTitle',
   'wiz.noPatterns', 'wiz.noLoops', 'wiz.noNonInf', 'wiz.noneIdentified', 'wiz.probe', 'wiz.cost', 'wiz.action', 'wiz.expectedSignal', 'wiz.noProbes',
+  'wiz.ranIt', 'wiz.clearProbe', 'wiz.narrowing', 'wiz.narrowingFrom', 'wiz.remaining', 'wiz.ruledOut', 'wiz.ruledNothing',
+  'wiz.limits', 'wiz.minimalProbes', 'wiz.cannotSeparate', 'wiz.settlesNothing',
   'wiz.stop', 'wiz.stopTail', 'wiz.verdict', 'wiz.verdictTail', 'wiz.summaryNoObs', 'wiz.summaryLow', 'wiz.summary', 'wiz.copied', 'wiz.clipboardDenied',
   'wiz.md.title', 'wiz.md.generatedBy', 'wiz.md.registry', 'wiz.md.mode', 'wiz.md.verdict', 'wiz.md.zone', 'wiz.md.h', 'wiz.md.stage', 'wiz.md.o', 'wiz.md.b',
   'wiz.md.patterns', 'wiz.md.nonInf', 'wiz.md.a', 'wiz.md.candidate', 'wiz.md.intermediary', 'wiz.md.none', 'wiz.md.probes', 'wiz.md.noneJustified', 'wiz.md.noneWord',
@@ -162,6 +164,9 @@ const zones = [
         <ul id="probes-output" class="row-list"></ul>
       </div>
 
+      <div id="narrowing-output"></div>
+      <div id="separation-output"></div>
+
       <div id="verdict-banner" class="callout" aria-live="polite"></div>
 
       <div class="pt-4 border-t border-hoba-border flex flex-wrap items-center justify-between gap-4">
@@ -179,7 +184,7 @@ const zones = [
   <script type="application/json" id="hoba-i18n" set:html={i18n} />
   <script>
     // The wizard runs the very same HOBADiagnosticEngine as the CLI and the MCP server.
-    import { HOBADiagnosticEngine, type DiagnosticResult, type RegistryBundle, type StageId } from '@hoba/registry/core';
+    import { HOBADiagnosticEngine, type DiagnosticResult, type ProbeResult, type RegistryBundle, type StageId } from '@hoba/registry/core';
 
     type Step = 'h' | 'o' | 'b' | 'a';
     const STEPS: Step[] = ['h', 'o', 'b', 'a'];
@@ -207,12 +212,34 @@ const zones = [
       `<span class="pill pill-muted"${title ? ` title="${esc(title)}"` : ''}>${esc(text)}</span>`;
     const empty = (text: string) => `<p class="text-base text-hoba-muted">${esc(text)}</p>`;
 
-    function collectInputs(): { artifacts: string[]; stage?: StageId } {
+    // Probe results the reader has recorded. Kept here rather than in the DOM
+    // because a result outlives the markup that collected it: changing the
+    // observations re-renders the probe list, and an answer already given about
+    // a probe that is still in scope should survive that.
+    const probeResults = new Map<string, string>();
+
+    function collectInputs(): { artifacts: string[]; stage?: StageId; probe_results: ProbeResult[] } {
       const artifacts = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]:checked')).map((el) => el.value);
       const stage = document.querySelector<HTMLInputElement>('input[name="stage_select"]:checked')?.value as StageId | undefined;
-      return { artifacts, stage };
+      return {
+        artifacts,
+        stage,
+        probe_results: [...probeResults].map(([probe, outcome]) => ({ probe, outcome })),
+      };
     }
     const analyze = (): DiagnosticResult => engine.analyze(collectInputs());
+
+    // Recording an outcome is an input, so it re-runs the analysis the same way
+    // ticking an observation does.
+    document.addEventListener('click', (event) => {
+      const button = event.target instanceof Element ? event.target.closest<HTMLButtonElement>('.probe-outcome') : null;
+      if (!button) return;
+      const probe = button.dataset.probe ?? '';
+      const outcome = button.dataset.outcome ?? '';
+      if (!outcome || probeResults.get(probe) === outcome) probeResults.delete(probe);
+      else probeResults.set(probe, outcome);
+      renderStepA();
+    });
 
     function setStep(step: Step) {
       for (const s of STEPS) {
@@ -314,9 +341,62 @@ const zones = [
                 </div>
                 <p class="mt-1 text-base text-hoba-text"><span class="text-hoba-muted">${esc(t('wiz.action'))}</span> ${esc(p.action)}</p>
                 <p class="mt-0.5 text-base text-hoba-muted"><span class="text-hoba-text">${esc(t('wiz.expectedSignal'))}</span> ${esc(p.expected_signal)}</p>
+                ${p.outcomes.length === 0 ? '' : `
+                <p class="mt-2 text-sm text-hoba-muted">${esc(t('wiz.ranIt'))}</p>
+                <div class="mt-1 flex flex-wrap gap-1.5">
+                  ${p.outcomes
+                    .map((o) => `
+                      <button type="button" class="pill probe-outcome" data-probe="${esc(p.id)}" data-outcome="${esc(o.id)}"
+                        aria-pressed="${probeResults.get(p.id) === o.id}">${esc(o.label)}</button>`)
+                    .join('')}
+                  ${probeResults.has(p.id) ? `<button type="button" class="pill probe-outcome" data-probe="${esc(p.id)}" data-outcome="" aria-pressed="false">${esc(t('wiz.clearProbe'))}</button>` : ''}
+                </div>`}
               </li>`)
             .join('')
         : `<li class="row text-hoba-muted text-sm">${esc(t('wiz.noProbes'))}</li>`;
+
+      const { narrowing, separation } = res.behind;
+      $('narrowing-output').innerHTML = narrowing.steps.length === 0
+        ? ''
+        : [
+            `<h3 class="section-title mt-8">${esc(t('wiz.narrowing'))}</h3>`,
+            `<p class="text-base text-hoba-muted">${esc(t('wiz.narrowingFrom', { n: res.behind.compatible_before_probes.length }))}</p>`,
+            '<ol class="row-list mt-2">',
+            ...narrowing.steps.map((step) => `
+              <li class="py-3">
+                <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span class="font-mono text-sm text-hoba-accent">${esc(step.probe)}</span>
+                  <span class="text-hoba-text">${esc(step.label)}</span>
+                  <span class="ml-auto">${pill(t('wiz.remaining', { n: step.remaining }))}</span>
+                </p>
+                <p class="mt-1 text-base text-hoba-muted">${
+                  step.eliminated.length
+                    ? esc(t('wiz.ruledOut', { ids: step.eliminated.join(', ') }))
+                    : esc(t('wiz.ruledNothing'))
+                }</p>
+                ${step.because ? `<p class="mt-0.5 text-sm text-hoba-muted">${esc(step.because)}</p>` : ''}
+              </li>`),
+            '</ol>',
+          ].join('');
+
+      // The honest half: what running everything available would still not decide.
+      $('separation-output').innerHTML = separation.indistinguishable_groups.length === 0 && separation.minimal_probes.length === 0
+        ? ''
+        : [
+            `<h3 class="section-title mt-8">${esc(t('wiz.limits'))}</h3>`,
+            separation.minimal_probes.length
+              ? `<p class="text-base text-hoba-muted">${esc(t('wiz.minimalProbes', { ids: separation.minimal_probes.join(', ') }))}</p>`
+              : res.agency.diagnostic_probes.length
+                ? `<p class="text-base text-hoba-muted max-w-3xl">${esc(t('wiz.settlesNothing'))}</p>`
+                : '',
+            separation.indistinguishable_groups.length
+              ? `<p class="mt-2 text-base text-hoba-muted">${esc(t('wiz.cannotSeparate'))}</p><ul class="row-list mt-1">` +
+                separation.indistinguishable_groups
+                  .map((g) => `<li class="row text-base"><span class="font-mono text-sm text-hoba-accent">${esc(g.join(' / '))}</span></li>`)
+                  .join('') +
+                '</ul>'
+              : '',
+          ].join('');
 
       const banner = $('verdict-banner');
       const zone = zoneLabel(res.agency.agency_zone);

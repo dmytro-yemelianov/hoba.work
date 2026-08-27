@@ -21,7 +21,33 @@
         "id": "PROBE-A-005-1",
         "action": "Request clarification on whether the revised band reflects a lower leveling grade or a company-wide budget adjustment.",
         "expected_signal": "Separates leveling evaluation outcome from company financial constraints.",
-        "cost": "medium"
+        "cost": "medium",
+        "outcomes": [
+          {
+            "id": "grade-wide-revision",
+            "label": "The recruiter attributes the change to a revision of the band for the grade, names the date it was revised, and says the figure stated at the screen was the requisition's approved band until that date.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "levelled-lower",
+            "label": "The recruiter says the change is to your assessed level: the panel placed you a grade below the one the role was posted at, and the lower band belongs to that grade.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "figure-restated",
+            "label": "A reply comes back that restates the new figure without saying whether it follows from the grade or from your assessment, and does not address the earlier band.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-answer",
+            "label": "The question is not answered before the offer decision is due; the figure named on the call is the last statement of the band you have.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

@@ -239,6 +239,48 @@ describe('workflows', () => {
 });
 
 /**
+ * Probes are the only thing in the atlas that claims to *settle* anything, so
+ * the bar is the highest in the repository: an outcome may rule a mechanism out
+ * only when the two cannot both be true, and it has to say why.
+ */
+describe('probe outcomes', () => {
+  const probes = bundle.artifacts.flatMap((a) => a.probes);
+  const ukProbes = uk.artifacts.flatMap((a) => a.probes);
+  const mechanismIds = new Set(bundle.mechanisms.map((m) => m.id));
+
+  it('gives every probe outcomes a candidate could tell apart', () => {
+    for (const probe of probes) {
+      expect(probe.outcomes.length, probe.id).toBeGreaterThan(1);
+      const slugs = probe.outcomes.map((o) => o.id);
+      expect(new Set(slugs).size, probe.id).toBe(slugs.length);
+      for (const o of probe.outcomes) expect(o.label.length, `${probe.id}/${o.id}`).toBeGreaterThan(20);
+    }
+  });
+
+  it('never rules out something that is not a mechanism, and never without a reason', () => {
+    for (const probe of probes) {
+      for (const o of probe.outcomes) {
+        expect(o.excludes.filter((m) => !mechanismIds.has(m)), `${probe.id}/${o.id}`).toEqual([]);
+        if (o.excludes.length > 0) expect(o.because.trim().length, `${probe.id}/${o.id}`).toBeGreaterThan(19);
+      }
+    }
+  });
+
+  it('mirrors the same outcomes into Ukrainian, and translates them', () => {
+    const shape = (list: typeof probes) =>
+      list.map((p) => `${p.id}:${p.outcomes.map((o) => `${o.id}[${o.excludes.join('|')}]`).join(',')}`);
+    expect(shape(ukProbes)).toEqual(shape(probes));
+
+    const byId = new Map(ukProbes.map((p) => [p.id, p]));
+    for (const probe of probes) {
+      probe.outcomes.forEach((o, i) => {
+        expect(byId.get(probe.id)!.outcomes[i]!.label, `${probe.id}/${o.id} was not translated`).not.toBe(o.label);
+      });
+    }
+  });
+});
+
+/**
  * The lens is only worth having if every seat it offers is honest: a
  * perspective attributed to an actor who cannot see the entry would be an
  * invention, and a recommendation aimed at an actor who does not control the

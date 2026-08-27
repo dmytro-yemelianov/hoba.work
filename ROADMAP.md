@@ -29,8 +29,8 @@ The order is driven by what unblocks what, not by size.
    the selector. Depends on actors existing. *Done.*
 8. **Formal core** (#18 → #19 → #20) — the registry's structural claims proved
    rather than sampled (*#18 done*), then the diagnostic protocol turned into
-   the set algebra it is usually assumed to already be, then the compatibility
-   report. See
+   the set algebra it is usually assumed to already be (*#19 done*), then the
+   compatibility report. See
    *What is worth formalising* below for what each of these is and, more
    usefully, what two of them are not.
 
@@ -146,7 +146,7 @@ exhibited cycle in WF-001 is four edges, not eleven: `published → received →
 machine-screened → rejected → published`, found breadth-first because the tight
 one says what the long one says with fewer states.
 
-### Set algebra over the diagnostic protocol (#19) — yes, but it is not half there
+### Set algebra over the diagnostic protocol (#19) — done, and the answer is uncomfortable
 
 This was described as already half-implemented. It is not, and the gap is
 specific enough to be the first task.
@@ -176,6 +176,31 @@ is defined by a prose `trigger_rule`, `required_artifacts` and
 non-emptiness would first require modelling requirements as a lattice, which the
 registry does not have and which would be a larger change than the proof is
 worth. Either that model gets built deliberately, or the claim is dropped.
+
+**What landed, and the finding nobody was looking for.** `outcomes` on every
+probe, the narrowing chain in the engine (`M0 ⊇ M1 ⊇ M2 …`, shared by the site
+wizard, the CLI and the MCP server), and exact minimal probe cover by exhaustive
+search. Then the content was written under the strict rule — an outcome may
+rule a mechanism out only when the two cannot both be true — and put to a second
+pass told to refute every exclusion by constructing a case where both hold.
+
+Across **14 probes and 56 outcomes, not one exclusion survived.** The drafters
+proposed a single one; the refutation pass broke it. Spot-checked by hand on
+A-001 and the result stands: an automated acknowledgement in the spam folder
+proves a record was created, and every mechanism compatible with silence is
+compatible with a record having been created.
+
+So the honest output of the whole feature is a sentence the site now prints:
+*no probe in this registry narrows the cause.* They are worth running for the
+record they produce — a date, a document, a written answer — and not for what
+they settle. That is a finding about the limits of candidate-side inference
+rather than a defect, and it is exactly what the strict rule was chosen to be
+able to say. A loose rule would have produced a satisfying narrowing and it
+would have been fiction.
+
+Route counting landed with it: 10 distinct routes run through WF-003, of which
+1 ends in a hire, 6 in a decline and 3 in a closed search. A cardinality, never
+a likelihood.
 
 ### A compatibility report, not a resume compiler (#20) — yes, in that form
 

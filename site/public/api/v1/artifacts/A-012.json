@@ -20,7 +20,33 @@
         "id": "PROBE-A-012-1",
         "action": "Send one single polite follow-up after 5 business days referencing original outreach thread.",
         "expected_signal": "Recovers stalled conversation if recruiter was out-of-office or overwhelmed.",
-        "cost": "low"
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "no-reply",
+            "label": "Neither the follow-up nor the earlier answer is replied to, and the thread stays as it was: an outreach message, a same-day answer, and silence.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "automated-reply-only",
+            "label": "The only thing that arrives is automated: an absence notice with a return date, or a notice that the address is no longer monitored. Nothing follows it from a person.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "thread-resumes",
+            "label": "A person replies and the conversation continues: a call is booked, or the role is described in more detail.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "reply-without-next-step",
+            "label": "A reply arrives with no next step in it: the search is paused, the role is already filled, or there is no open requisition behind the outreach yet.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

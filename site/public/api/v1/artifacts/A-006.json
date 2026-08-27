@@ -19,7 +19,33 @@
         "id": "PROBE-A-006-1",
         "action": "Define explicit boundaries and trade-offs in submission README stating assumptions made to fit the agreed timebox.",
         "expected_signal": "Tests whether evaluators value scope management and communication over unbounded free work.",
-        "cost": "low"
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "readme-cited",
+            "label": "Written feedback, or the next conversation, refers to the timebox note and the cuts you named, and treats them as part of what was submitted.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "cuts-read-as-gaps",
+            "label": "The reply lists the stubbed items as missing work, with no reference to the note that names them as deliberate.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "template-rejection",
+            "label": "A rejection in standard wording arrives with nothing in it specific to the submission.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-reply",
+            "label": "No reply arrives at all; the brief and the submission date are the only dated records you keep.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

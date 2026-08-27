@@ -10,6 +10,7 @@ import {
   stageIdSchema,
   validateRegistry,
   type ContentLang,
+  type ProbeResult,
   type RegistryBundle,
   type SearchableType,
   type StageId,
@@ -161,10 +162,25 @@ export function cmdShow(id: string, options: GlobalOptions) {
   console.log();
 }
 
-export function cmdExplain(artifactIds: string[], options: GlobalOptions & { stage?: string }) {
+/** `PROBE-A-001-1:found` — the id and the outcome the probe came back with. */
+function parseProbeResults(values: string[] | undefined): ProbeResult[] {
+  return (values ?? []).map((value) => {
+    const at = value.lastIndexOf(':');
+    if (at <= 0 || at === value.length - 1) {
+      throw new CliError(`Bad --probe "${value}" (expected PROBE-ID:outcome)`);
+    }
+    return { probe: value.slice(0, at), outcome: value.slice(at + 1) };
+  });
+}
+
+export function cmdExplain(artifactIds: string[], options: GlobalOptions & { stage?: string; probe?: string[] }) {
   const { bundle } = loadBundle(options);
   const engine = new HOBADiagnosticEngine(bundle);
-  const res = engine.analyze({ artifacts: artifactIds, stage: parseStage(options.stage) });
+  const res = engine.analyze({
+    artifacts: artifactIds,
+    stage: parseStage(options.stage),
+    probe_results: parseProbeResults(options.probe),
+  });
 
   if (options.json) {
     printJson({ registry_version: bundle.version, analysis: res });
@@ -216,6 +232,42 @@ export function cmdExplain(artifactIds: string[], options: GlobalOptions & { sta
   for (const p of res.agency.diagnostic_probes) {
     console.log(`  - [${p.id}] ${p.action}`);
     console.log(`    Expected Signal: ${pc.dim(p.expected_signal)} (Cost: ${p.cost})`);
+    for (const o of p.outcomes) {
+      const effect = o.excludes.length > 0 ? pc.green(`rules out ${o.excludes.join(', ')}`) : pc.dim('rules nothing out');
+      console.log(`      · ${o.id}: ${o.label} — ${effect}`);
+    }
+  }
+
+  const { narrowing, separation } = res.behind;
+  if (narrowing.steps.length > 0) {
+    console.log(pc.bold('\n  Narrowing (probe results applied in order):'));
+    console.log(`  ${res.behind.compatible_before_probes.length} compatible before any probe`);
+    for (const step of narrowing.steps) {
+      const removed = step.eliminated.length > 0 ? `−${step.eliminated.join(', ')}` : pc.dim('nothing ruled out');
+      console.log(`  - [${step.probe}/${step.outcome}] ${removed} → ${step.remaining} remaining`);
+      if (step.because) console.log(`    ${pc.dim(step.because)}`);
+    }
+  }
+  for (const u of narrowing.unknown) console.log(pc.yellow(`  ! unknown probe result: ${u.probe}/${u.outcome}`));
+
+  // The useful half: what no probe here can settle.
+  if (separation.minimal_probes.length > 0) {
+    console.log(
+      pc.bold('\n  Smallest probe set that settles everything settleable: ') +
+        separation.minimal_probes.join(', ') +
+        (separation.exact ? '' : pc.dim(' (approximate: too many probes to search exactly)'))
+    );
+  }
+  if (separation.minimal_probes.length === 0 && res.agency.diagnostic_probes.length > 0) {
+    console.log(
+      pc.bold('\n  No probe here narrows the cause.') +
+        ' They are worth running for the record they produce — a date, a document, a written answer.'
+    );
+  }
+  if (separation.indistinguishable_groups.length > 0) {
+    console.log(pc.bold('\n  No available probe can tell these apart:'));
+    for (const g of separation.indistinguishable_groups) console.log(`  - ${g.join(' / ')}`);
+    console.log(pc.dim('  Running every probe here would not decide between them.'));
   }
 
   console.log(pc.dim(`\nDisclaimer: ${res.epistemic_disclaimer}\n`));

@@ -122,6 +122,40 @@
                   "intermediary",
                   "none"
                 ]
+              },
+              "outcomes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9-]+$"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 5
+                    },
+                    "excludes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^M-\\d{3}$"
+                      },
+                      "default": []
+                    },
+                    "because": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                },
+                "default": []
               }
             },
             "required": [

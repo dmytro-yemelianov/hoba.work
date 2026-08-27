@@ -130,7 +130,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
       artifact({
         id: 'A-001',
         stages: ['screening'],
-        probes: [{ id: 'PROBE-A-001-1', action: 'Check the spam folder.', expected_signal: 'An acknowledgement.', cost: 'low' }],
+        probes: [{ id: 'PROBE-A-001-1', action: 'Check the spam folder.', expected_signal: 'An acknowledgement.', cost: 'low', outcomes: [] }],
       }),
     ],
     barriers: [

@@ -7,6 +7,7 @@
  * browser without pulling in zod.
  */
 import type { z } from 'zod';
+import type { Narrowing, ProbeResult, SeparationReport } from './separation.js';
 import type {
   actorId,
   actorSchema,
@@ -33,6 +34,7 @@ import type {
   natureTypeSchema,
   nodeStatusSchema,
   patternSchema,
+  probeOutcomeSchema,
   perspectiveSchema,
   recommendationSchema,
   workflowSchema,
@@ -67,6 +69,7 @@ export type CostBand = z.infer<typeof costBandSchema>;
 export type ScopeType = z.infer<typeof scopeTypeSchema>;
 
 export type DiagnosticProbe = z.infer<typeof diagnosticProbeSchema>;
+export type ProbeOutcome = z.infer<typeof probeOutcomeSchema>;
 export type SpecimenKind = z.infer<typeof specimenKindSchema>;
 export type SpecimenLine = z.infer<typeof specimenLineSchema>;
 export type Specimen = z.infer<typeof specimenSchema>;
@@ -131,6 +134,14 @@ export interface GraphEdge {
 // Diagnostic Engine Types (HOBA Analysis)
 export interface DiagnosticInput {
   artifacts: string[]; // Artifact IDs
+  /**
+   * Probes already run, and what they came back with.
+   *
+   * This is what turns the protocol from a single union into a narrowing:
+   * every result can only remove mechanisms from the compatible set, never add
+   * one, and only where the outcome is logically incompatible with them.
+   */
+  probe_results?: ProbeResult[];
   stage?: StageId;
   role_family?: string;
   seniority_band?: string;
@@ -171,6 +182,12 @@ export interface DiagnosticResult {
     related_patterns: PatternNode[];
     related_loops: LoopNode[];
     non_inferences: string[];
+    /** The set as it was before any probe result was applied. */
+    compatible_before_probes: string[];
+    /** Each probe result, what it removed, and what was left. */
+    narrowing: Narrowing;
+    /** What the available probes could still settle, and what none of them can. */
+    separation: SeparationReport;
   };
   agency: {
     candidate_removable: MechanismNode[];

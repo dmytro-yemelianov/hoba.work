@@ -20,7 +20,33 @@
         "id": "PROBE-A-003-1",
         "action": "Politely inquire with recruiter if the position was closed due to business budget restructuring or team reallocation.",
         "expected_signal": "Clarifies whether barrier was candidate-specific or macroeconomic/budgetary.",
-        "cost": "low"
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "cause-named-in-writing",
+            "label": "The recruiter answers and names a funding decision and its scope in writing: the requisition unfunded for the quarter, or a hold covering more than this one role.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "work-absorbed-internally",
+            "label": "The recruiter answers that the work was reallocated — taken on by the existing team or covered by someone already inside — and that no external hire is being made.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "search-continues-changed",
+            "label": "The recruiter answers that the search did not stop: the requisition has been re-scoped or re-levelled and is now being worked against a different profile.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-characterisation",
+            "label": "No reply arrives, or the reply repeats the wording of the closing email and adds nothing that separates a budget decision from a team one.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
       }
     ],
     "specimens": [

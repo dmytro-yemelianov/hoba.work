@@ -97,12 +97,39 @@ export const entityTypeSchema = z.enum([
   'evidence',
 ]);
 
+/**
+ * One thing a probe can come back with, and what that rules out.
+ *
+ * Strict: `excludes` may name a mechanism only when the outcome is logically
+ * incompatible with that mechanism's definition — not when it makes it feel
+ * unlikely. `because` has to state the incompatibility, which is what makes the
+ * claim reviewable. Most outcomes exclude nothing, and that is the honest
+ * result: it is what turns the minimal-probe answer into a statement about the
+ * limits of what a candidate can determine rather than a promise of certainty.
+ */
+export const probeOutcomeSchema = z
+  .object({
+    id: z.string().regex(/^[a-z0-9-]+$/, 'outcome ids are lowercase slugs'),
+    /** What the candidate actually observes when this is the answer. */
+    label: z.string().min(5),
+    /** Mechanisms this outcome is logically incompatible with. Often empty. */
+    excludes: z.array(mechanismId).default([]),
+    /** Why each exclusion is forced, not merely likely. Required if anything is excluded. */
+    because: z.string().default(''),
+  })
+  .refine((o) => o.excludes.length === 0 || o.because.trim().length >= 20, {
+    message: 'an outcome that excludes a mechanism must say why the exclusion is forced',
+    path: ['because'],
+  });
+
 export const diagnosticProbeSchema = z.object({
   id: z.string().regex(ID_PATTERNS.probe),
   action: z.string().min(5),
   expected_signal: z.string().min(5),
   cost: costBandSchema,
   removability_target: removabilityTypeSchema.optional(),
+  /** What this probe can come back with. Two or more, or it separates nothing. */
+  outcomes: z.array(probeOutcomeSchema).default([]),
 });
 
 export const emissionEdgeSchema = z.object({

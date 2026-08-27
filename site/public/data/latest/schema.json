@@ -633,6 +633,40 @@
                         "intermediary",
                         "none"
                       ]
+                    },
+                    "outcomes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9-]+$"
+                          },
+                          "label": {
+                            "type": "string",
+                            "minLength": 5
+                          },
+                          "excludes": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "pattern": "^M-\\d{3}$"
+                            },
+                            "default": []
+                          },
+                          "because": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "label"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "default": []
                     }
                   },
                   "required": [
@@ -801,8 +835,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
-                "type": "string",
-                "pattern": "^M-\\d{3}$"
+                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
               },
               "type": {
                 "type": "string",
@@ -906,19 +939,19 @@
               "amplifies": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "default": []
               },
               "masks": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "default": []
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
               },
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
@@ -1001,7 +1034,7 @@
               "compatible_mechanisms": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "minItems": 1
               },
@@ -1098,7 +1131,7 @@
               "mechanisms": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "minItems": 2
               },
@@ -1108,10 +1141,10 @@
                   "type": "object",
                   "properties": {
                     "from": {
-                      "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                      "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                     },
                     "to": {
-                      "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                      "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                     },
                     "relation": {
                       "type": "string",
@@ -1133,7 +1166,7 @@
               "entry_points": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/id"
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "minItems": 1
               },
