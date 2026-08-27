@@ -17,7 +17,7 @@ test.describe('the landing page', () => {
     // What it actually is, in the first paragraph, with a number in it.
     const lead = await page.locator('h1 + p').innerText();
     expect(lead.toLowerCase()).toContain('atlas');
-    expect(lead).toMatch(/\d+ documented entries/i);
+    expect(lead).toMatch(/\d+ entries/i);
 
     // The problem, under its own heading.
     const body = (await page.locator('main').innerText()).toLowerCase();

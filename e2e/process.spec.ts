@@ -1,3 +1,4 @@
+import { says } from './says';
 import { expect, test } from '@playwright/test';
 
 /**
@@ -136,7 +137,7 @@ test.describe('walking it yourself', () => {
     await expect(panel).toContainText(/where this walk ended/i);
     await expect(panel).toContainText(/walked in \d+ steps/i);
     // The route's documented failure modes, not a claim that they happened.
-    await expect(panel).toContainText(/documented to break on this route/i);
+    await expect(panel).toContainText(says('en', 'wf.broken'));
     expect(errors).toEqual([]);
   });
 

@@ -1,3 +1,4 @@
+import { says } from './says';
 import { expect, test, type Page } from '@playwright/test';
 
 /** Walk the canvas until the pointer lands on a node (the tooltip is the tell). */
@@ -40,7 +41,7 @@ test.describe('knowledge graph explorer', () => {
 
     await page.locator('#theme-toggle').click(); // forces a palette re-read + redraw
     expect(errors).toEqual([]);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Провідник графа знань');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(says('uk', 'graph.title'));
   });
 
   test('hiding every layer shows the empty state', async ({ page }) => {
@@ -60,7 +61,7 @@ test.describe('knowledge graph explorer', () => {
     await expect(tooltip).toBeVisible();
     await expect(tooltip.locator('#tip-id')).toHaveText(/^[ABMPLI]-\d{3}$/);
     await expect(tooltip.locator('#tip-title')).not.toBeEmpty();
-    await expect(tooltip).toContainText('Клік — деталі');
+    await expect(tooltip).toContainText(says('uk', 'graph.tooltipHint'));
   });
 
   test('selecting a node opens details with connections that navigate the graph', async ({ page }) => {

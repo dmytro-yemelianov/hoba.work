@@ -27,7 +27,10 @@ describe('ui dictionary', () => {
   it('interpolates and falls back to English for unknown keys', () => {
     const t = useTranslations('uk');
     expect(t('home.cta.registry', { n: 72 })).toContain('72');
-    expect(t('bar.order', { n: 3 })).toBe('Порядок у воронці: №3');
+    // Assert the interpolation, not the copy: the prose is edited, the
+    // placeholder contract is not.
+    expect(t('bar.order', { n: 3 })).toMatch(/\b3\b/);
+    expect(t('bar.order', { n: 3 })).not.toContain('{n}');
   });
 });
 

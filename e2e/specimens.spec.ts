@@ -1,3 +1,4 @@
+import { says } from './says';
 import { expect, test } from '@playwright/test';
 
 test.describe('a shared entity page stands on its own', () => {
@@ -16,7 +17,7 @@ test.describe('a shared entity page stands on its own', () => {
     await expect(first.locator('.specimen-reading')).toContainText('На що звернути увагу');
 
     // The standing note above the section, so the framing is never only in a badge.
-    await expect(page.locator('main')).toContainText('Це не копії конкретного листа');
+    await expect(page.locator('main')).toContainText(says('uk', 'specimen.disclaimer'));
 
     // And the page still carries the reasoning around the document.
     await expect(page.getByRole('heading', { level: 2 })).toContainText(['Як це виглядає']);
@@ -38,7 +39,7 @@ test.describe('a shared entity page stands on its own', () => {
 
   test('an intervention shows the document as it looks once applied', async ({ page }) => {
     await page.goto('/interventions/I-002');
-    await expect(page.locator('main')).toContainText('Як це виглядає, коли це впроваджено');
+    await expect(page.locator('main')).toContainText(says('uk', 'specimen.sectionFixed'));
     await expect(page.locator('.specimen')).toContainText('68 000–79 000');
   });
 

@@ -1,3 +1,4 @@
+import { says } from './says';
 import { expect, test } from '@playwright/test';
 
 /**
@@ -32,16 +33,16 @@ test.describe('language without a URL', () => {
   });
 
   test('Accept-Language decides when nothing else does', async ({ browser }) => {
-    for (const [locale, expected, heading] of [
-      ['uk-UA', 'uk', 'Каталог реєстру'],
-      ['en-US', 'en', 'Registry Directory'],
+    for (const [locale, expected] of [
+      ['uk-UA', 'uk'],
+      ['en-US', 'en'],
     ] as const) {
       const context = await browser.newContext({ locale });
       const page = await context.newPage();
       const response = await page.goto('/registry');
       expect(response!.headers()['content-language'], locale).toBe(expected);
       await expect(page.locator('html')).toHaveAttribute('lang', expected);
-      await expect(page.getByRole('heading', { level: 1 })).toHaveText(heading);
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(says(expected, 'registry.title'));
       await context.close();
     }
   });
