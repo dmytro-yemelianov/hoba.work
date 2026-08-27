@@ -12,9 +12,11 @@ changes until it is agreed.
 **Settled so far:** the four primitives sit *underneath* the ten reader-facing
 types rather than replacing them; the cohort is explicit; time is an ordering
 plus an optional elapsed field; concurrent processes are in; visibility is
-authored per class with overrides. Sections 2a–2b and questions 6–7 are the
-part still open, and both arrived from a reader's objection rather than from
-the model.
+authored per class with overrides; the client account becomes first-class
+content; funding chains are authored as shapes now, amounts only with evidence.
+Section 2c is the current stress round — seven gaps found by walking the
+registry against reality, none needing a fifth primitive — and question 8 is
+the one still open.
 
 ---
 
@@ -30,6 +32,10 @@ The model is **sufficient** if it can express, without new primitives:
 | dialogue | recruiter screen, technical round, panel, negotiation, reference call, silence |
 | internal | requisition drafting, headcount approval, levelling, committee sign-off, freeze, reorganisation |
 | cohort | the other applicants on the same requisition, and their effect on this one |
+| statements | what a party *says* about a record, diverging from the record: a euphemism, a stale posting, an inflated CV, a parser mangling in transit |
+| memory | records outliving the process: talent pools, re-entry standing, do-not-rehire flags, rankers trained on past decisions |
+| epilogue | start-date shifts, probation, and the correction cost after signature that sets how heavy selection is before it |
+| both sides | the applicant's own conditions, rankings and runway — the same machinery pointed the other way |
 | exterior | rates, layoffs, applicant volume per opening, a change in law |
 | plurality | one applicant running several processes, and competing offers |
 
@@ -213,6 +219,109 @@ fifth primitive**, again — but one more computed view, and one policy:
 
 ---
 
+## 2c. Seven things reality still forces in
+
+Found by walking the registry against the model, entry by entry. None needs a
+fifth primitive — the four held — but three of these are load-bearing, and one
+adds a refusal.
+
+### 1. Statements are not visibility
+
+The visibility relation says how much of a field a party can see. It has no way
+to say the party is shown something *false*. Yet the registry's own emission
+vocabulary — `direct / euphemism / distortion / void / noise` — is entirely
+about that divergence, and whole entries live on it: M-006 is a posting whose
+public face says *open* while no search exists behind it; the "closer
+alignment" template is a euphemism by definition; an inflated CV is the same
+divergence pointed the other way; and M-003 is the third source — **the channel
+itself distorts**, a parser mangling a two-column CV with nobody lying anywhere.
+
+So: a communication event carries a **statement record** — claimed values for
+fields of some other record. Where both sides are in the model, fidelity is
+*computed* by comparison; where they are not, it is authored, with the existing
+enum. Two existing gates turn out to be fidelity machinery and nothing else:
+B-011 (verification) checks the applicant's statements against third-party
+records, and the machine screen checks a channel-distorted statement against a
+rule. The model did not have the concept its own gates are made of.
+
+### 2. Silence is an observation
+
+A-001 is *complete silence*, and the model as drafted could not express it: an
+observation was defined as an event the applicant can see, and silence is the
+absence of one. The fix is a clarification of 3.4, not a new part: a party's
+projection includes the positions of the order itself, so *no event of class C
+by position p* is part of what they observe. A-012 — outreach, then nothing —
+is a statement followed by an observable absence.
+
+### 3. The model is side-symmetric; the atlas's asymmetry is derived
+
+As drafted, the machinery ran one way: the company holds conditions, the
+applicant is tested by them. Reality runs it both ways. The applicant holds
+knockouts (minimum salary, remote-only), runs comparative conditions over
+competing offers, issues statements of varying fidelity, ghosts an employer,
+reneges after acceptance. The employer-side complaint literature is full of
+exactly this. The model therefore hard-codes **no** candidate-centricity:
+every primitive is usable in either direction, and the atlas's asymmetry is a
+*theorem*, not an axiom — it falls out of where visibility is lossy. The
+applicant's projection of the company is far lossier than the company's
+projection of the applicant, and that asymmetry of projections, not any
+asymmetry of machinery, is what the atlas documents.
+
+### 4. The applicant has a funding chain too
+
+Section 2b modelled the seat's money and forgot the person's. Savings → runway
+→ reservation wage is a chain with the same arithmetic: each month of search
+consumes an edge, and the reservation wage is a condition parameter that moves
+as the chain drains. This is expressible without motive — no field says the
+applicant *feels* pressure; a record says the runway shortened, and a condition
+parameter depends on it. The evidence side already exists: DOU's 2026 survey
+has 44% of searchers lowering their salary expectations, which is this chain
+observed at population scale. Who can wait longer is a fact about two chains,
+and the model can now say it.
+
+### 5. Records outlive processes
+
+A talent pool, a do-not-rehire flag, finalist standing with a re-entry date
+(I-017 is exactly this), a ranking model trained on last year's decisions — all
+are records written in one process and read as condition parameters in a later
+one. This was always expressible, since records are primitives, but the
+adequacy test never asked for it, and it is load-bearing: reapplication,
+pooling (M-016) and cross-process feedback loops are all made of it. Named now.
+
+### 6. The scope extends to the end of probation
+
+The funnel's terminal state was *hired*, and reality continues: start dates
+shift, people no-show on day one — in both directions — and probation is where
+the information asymmetry finally resolves, because the employer at last
+observes the actual work and the applicant at last observes the actual job.
+More importantly for the atlas: **the cost of correcting a hire after
+signature is a parameter that shapes the whole funnel before it.** Where
+probation termination is cheap, a light funnel is rational; where it is hard,
+B-005's five-round loop is what you get. That parameter comes from a law
+record, differs by jurisdiction, and explains cross-country funnel depth
+without attributing a single motive.
+
+### 7. Knowability, never knowledge
+
+A refusal, discovered by asking what the diagnostic protocol computes. The
+model can say what a party *could* know — the projection visibility grants
+them. It must never assert what a party *does* know or believe. Attributed
+belief is intent attribution's next-door neighbour: "the recruiter knew the
+role was frozen" is exactly the sentence the methodology exists to refuse.
+The protocol stays what it is — a computation over the applicant's own
+projection — and the model computes upper bounds on knowledge, nothing else.
+
+### What this buys
+
+With statements, absences and symmetry in place, the site's existing machinery
+becomes three instances of one query family over the substrate: the diagnostic
+protocol is *which hidden assignments are consistent with my projection*;
+patterns are *is the joint satisfying set empty*; the indistinguishability
+ceiling is *which assignments no projection separates*. Three codebases today;
+one query engine underneath, eventually.
+
+---
+
 ## 3. Primitives
 
 Four. Everything else is a view.
@@ -274,6 +383,13 @@ A relation from (party, record field, position in the order) to one of
 > Visibility cannot be derived from events, because it is precisely the map from
 > events to the subset one party gets to see. The applicant reasons over a
 > projection; the whole atlas exists because that projection is lossy.
+
+Two clarifications from section 2c. The projection includes the positions of
+the order itself, so an *absence* — no event of class C by position p — is
+observable, which is what A-001 is. And visibility bounds what can be seen,
+never what is claimed: divergence between a statement and the record it
+describes is carried by statement records and the fidelity vocabulary, not by
+a fourth visibility value.
 
 ---
 
@@ -387,6 +503,9 @@ is not one of its six actors.
 - **Not a simulator.** The model must express a run that happened or could have.
   It must not be used to forecast one. The line: given a full assignment it can
   say which events were permitted; it can never say which will occur.
+- **Knowability, never knowledge.** The model computes what a party could know
+  from their projection — an upper bound. It must not carry, and no view may
+  imply, an assertion about what any party actually knew or believed.
 
 ---
 
@@ -433,6 +552,7 @@ that stops being true when you compute it was never a finding.
    Recommendation: yes, and it is the largest single content gap the atlas has,
    larger than the ten unsourced entries. The registry currently describes one
    organisational shape while presenting itself as describing hiring.
+   **Settled: yes.**
 7. **Money: shapes now, amounts when?** The chain's shape — what funds a seat,
    who is paid along the way — can be authored for every entry class today, and
    the distribution edges give the agency, the boards and the vendor their
@@ -440,4 +560,11 @@ that stops being true when you compute it was never a finding.
    ever with an openable source, or the atlas manufactures the precision it
    forbids. Recommendation: author shapes as first-class content, keep amounts
    evidence-gated, and let the eras remain the source-side macro record they
-   already are.
+   already are. **Settled: yes.**
+8. **Does the scope extend past signature to the end of probation?** Section
+   2c-6 argues it must: the post-signature correction cost is the parameter
+   that explains funnel depth before signature, and it comes from law records
+   the atlas can cite. The content cost is real — new states after `hired`,
+   both-direction no-shows, probation-end outcomes — and it moves the funnel's
+   terminal boundary for every workflow. Recommendation: yes, as model scope
+   now and content later, in the same shapes-first discipline as the money.
