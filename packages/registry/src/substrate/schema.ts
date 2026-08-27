@@ -118,6 +118,17 @@ export const conditionSchema = z
     title: z.string().min(1),
     /** The event classes this condition gates. */
     gates: z.array(eventClassId).min(1),
+    /**
+     * The event classes this condition causes when it fires — the other half
+     * of the spec's view of a mechanism: "a condition, its owner, and the
+     * events it causes". Gating blocks a forward event; causing emits a trace.
+     */
+    causes: z.array(eventClassId).default([]),
+    /**
+     * The gate conditions this one is an account of — a mechanism's answer to
+     * "why did that gate not pass". Empty for the gates themselves.
+     */
+    accounts_for: z.array(conditionId).default([]),
     owner: z.object({
       position: ownerPositionSchema,
       /** The party holding it — required unless ownerless. */

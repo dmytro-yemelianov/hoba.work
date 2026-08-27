@@ -54,6 +54,11 @@ export function validateSubstrate(sub: Substrate): SubstrateProblem[] {
 
   for (const c of sub.conditions) {
     for (const g of c.gates) need(c.id, eventClasses.has(g), `gated event class ${g} does not exist`);
+    for (const e of c.causes) need(c.id, eventClasses.has(e), `caused event class ${e} does not exist`);
+    for (const a of c.accounts_for) {
+      need(c.id, conditions.has(a), `accounted condition ${a} does not exist`);
+      need(c.id, a !== c.id, `a condition cannot account for itself`);
+    }
     if (c.owner.party) need(c.id, records.has(c.owner.party), `owning party ${c.owner.party} does not exist`);
     if (c.cohort) need(c.id, cohorts.has(c.cohort), `cohort ${c.cohort} does not exist`);
     for (const read of c.reads) {
