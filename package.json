@@ -2,7 +2,7 @@
   "name": "hoba-monorepo",
   "version": "0.4.1",
   "private": true,
-  "description": "Hiring Obstacles & Barriers Atlas — canonical repo for hoba.work",
+  "description": "Hiring Obstacles & Barriers Atlas \u2014 canonical repo for hoba.work",
   "license": "MIT",
   "author": "Dmytro Yemelianov <dmytro@hoba.work>",
   "homepage": "https://hoba.work",
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/dmytro-yemelianov/hoba.work.git"
   },
   "scripts": {
-    "build": "pnpm build:packages && pnpm build:registry && pnpm build:discovery && pnpm --filter hoba-site build",
+    "build": "pnpm build:packages && pnpm build:registry && pnpm build:discovery && pnpm --filter hoba-site build && pnpm build:cards",
     "build:packages": "tsc -b packages/registry packages/cli packages/mcp && chmod +x packages/cli/dist/cli.js packages/mcp/dist/index.js",
     "build:registry": "tsx scripts/build-registry.ts",
     "dev": "pnpm --filter hoba-site dev",
@@ -26,14 +26,18 @@
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
     "task": "node scripts/task.mjs",
-    "build:discovery": "tsx scripts/build-discovery.ts"
+    "build:discovery": "tsx scripts/build-discovery.ts",
+    "build:cards": "tsx scripts/build-cards.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
+    "@fontsource/inter": "^5.3.0",
     "@hoba/registry": "workspace:*",
     "@playwright/test": "^1.62.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.13.4",
     "rimraf": "^6.0.1",
+    "satori": "^0.33.4",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3",
     "vitest": "^3.0.6",

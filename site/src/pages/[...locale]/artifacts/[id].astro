@@ -21,7 +21,7 @@ const bundle = getBundle(lang);
 const compatibleMechanisms = bundle.mechanisms.filter((m) => m.emissions.some((e) => e.artifact === artifact.id));
 const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.includes(artifact.id));
 ---
-<Layout lang={lang} title={`${artifact.id} — ${artifact.title}`} description={artifact.summary} activeNav="registry">
+<Layout lang={lang} title={`${artifact.id} — ${artifact.title}`} description={artifact.summary} activeNav="registry" image={`/cards/${lang}/${artifact.id}.png`}>
   <PageHeader title={artifact.title} lead={artifact.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
@@ -103,6 +103,10 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
     )}
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('share.card')}</span>
+      <a href={`/cards/${lang}/${artifact.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
+      <a href={`/cards/${lang}/${artifact.id}-postcard.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">{t('share.postcard')}</a>
+      <span class="text-hoba-border" aria-hidden="true">|</span>
       <span>{t('md.view')}</span>
       <a href={`/artifacts/${artifact.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
       <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>

@@ -89,6 +89,7 @@ jobs:
           test -s site/dist/_i/uk/index.html
           test -s site/dist/_worker.js
           test -d site/dist/_astro
+          test -s site/dist/cards/uk/A-013.png
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
@@ -135,6 +136,7 @@ jobs:
           test -s site/dist/_i/uk/index.html
           test -s site/dist/_worker.js
           test -d site/dist/_astro
+          test -s site/dist/cards/uk/A-013.png
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6

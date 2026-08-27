@@ -23,7 +23,7 @@ const precedingBarriers = bundle.barriers.filter((b) => b.precedes.includes(barr
 const succeedingBarriers = bundle.barriers.filter((b) => barrier.precedes.includes(b.id));
 const targetedInterventions = bundle.interventions.filter((i) => i.targets.includes(barrier.id));
 ---
-<Layout lang={lang} title={`${barrier.id} — ${barrier.title}`} description={barrier.description} activeNav="registry">
+<Layout lang={lang} title={`${barrier.id} — ${barrier.title}`} description={barrier.description} activeNav="registry" image={`/cards/${lang}/${barrier.id}.png`}>
   <PageHeader title={barrier.title} lead={barrier.description}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
@@ -98,6 +98,9 @@ const targetedInterventions = bundle.interventions.filter((i) => i.targets.inclu
     )}
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('share.card')}</span>
+      <a href={`/cards/${lang}/${barrier.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
+      <span class="text-hoba-border" aria-hidden="true">|</span>
       <span>{t('md.view')}</span>
       <a href={`/barriers/${barrier.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
       <a href={`/api/v1/barriers/${barrier.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>

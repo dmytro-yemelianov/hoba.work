@@ -9,9 +9,11 @@ interface Props {
   description?: string;
   lang?: Lang;
   activeNav?: string;
+  /** Absolute path to this page's share card, if it has one. */
+  image?: string;
 }
 
-const { title, lang = 'en', activeNav = '' } = Astro.props;
+const { title, lang = 'en', activeNav = '', image } = Astro.props;
 const t = useTranslations(lang);
 const description = Astro.props.description ?? t('meta.description');
 
@@ -39,6 +41,11 @@ const canonicalURL = new URL(publicPath(Astro.url.pathname), site);
     <meta property="og:title" content={`${title} | hoba`} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={OG_LOCALES[lang]} />
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    {image && <meta property="og:image" content={new URL(image, site)} />}
+    {image && <meta property="og:image:width" content="1200" />}
+    {image && <meta property="og:image:height" content="630" />}
+    {image && <meta name="twitter:image" content={new URL(image, site)} />}
 
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f9fc" />

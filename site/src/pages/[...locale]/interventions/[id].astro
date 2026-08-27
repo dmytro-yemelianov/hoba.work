@@ -25,7 +25,7 @@ const targets = intervention.targets.map((id) => {
   return { id, title: node?.title ?? id, type: node?.type, href: route ? `${prefix}/${route}/${id}` : undefined };
 });
 ---
-<Layout lang={lang} title={`${intervention.id} — ${intervention.title}`} description={intervention.summary} activeNav="registry">
+<Layout lang={lang} title={`${intervention.id} — ${intervention.title}`} description={intervention.summary} activeNav="registry" image={`/cards/${lang}/${intervention.id}.png`}>
   <PageHeader title={intervention.title} lead={intervention.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
@@ -71,6 +71,9 @@ const targets = intervention.targets.map((id) => {
     </section>
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('share.card')}</span>
+      <a href={`/cards/${lang}/${intervention.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
+      <span class="text-hoba-border" aria-hidden="true">|</span>
       <span>{t('md.view')}</span>
       <a href={`/interventions/${intervention.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
       <a href={`/api/v1/interventions/${intervention.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>

@@ -32,7 +32,7 @@ const facets = [
   { label: asHeading(t('common.evidence')), value: t(`level.${mechanism.evidence_level}`) },
 ];
 ---
-<Layout lang={lang} title={`${mechanism.id} — ${mechanism.title}`} description={mechanism.summary} activeNav="registry">
+<Layout lang={lang} title={`${mechanism.id} — ${mechanism.title}`} description={mechanism.summary} activeNav="registry" image={`/cards/${lang}/${mechanism.id}.png`}>
   <PageHeader title={mechanism.title} lead={mechanism.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
@@ -117,6 +117,9 @@ const facets = [
     )}
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('share.card')}</span>
+      <a href={`/cards/${lang}/${mechanism.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
+      <span class="text-hoba-border" aria-hidden="true">|</span>
       <span>{t('md.view')}</span>
       <a href={`/mechanisms/${mechanism.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
       <a href={`/api/v1/mechanisms/${mechanism.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>

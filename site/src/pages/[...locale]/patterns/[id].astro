@@ -22,7 +22,7 @@ const requiredArtifacts = bundle.artifacts.filter((a) => pattern.required_artifa
 const compatibleMechanisms = bundle.mechanisms.filter((m) => pattern.compatible_mechanisms.includes(m.id));
 const relevantInterventions = bundle.interventions.filter((i) => pattern.interventions.includes(i.id));
 ---
-<Layout lang={lang} title={`${pattern.id} — ${pattern.title}`} description={pattern.summary} activeNav="patterns">
+<Layout lang={lang} title={`${pattern.id} — ${pattern.title}`} description={pattern.summary} activeNav="patterns" image={`/cards/${lang}/${pattern.id}.png`}>
   <PageHeader title={pattern.title} lead={pattern.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/patterns`} class="hover:text-hoba-text">{t('entity.plural.pattern')}</a><span>/</span>
@@ -95,6 +95,10 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
     )}
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('share.card')}</span>
+      <a href={`/cards/${lang}/${pattern.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
+      <a href={`/cards/${lang}/${pattern.id}-postcard.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">{t('share.postcard')}</a>
+      <span class="text-hoba-border" aria-hidden="true">|</span>
       <span>{t('md.view')}</span>
       <a href={`/patterns/${pattern.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
       <a href={`/api/v1/patterns/${pattern.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>

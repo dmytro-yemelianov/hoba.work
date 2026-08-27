@@ -22,7 +22,7 @@ const memberMechanisms = bundle.mechanisms.filter((m) => loop.mechanisms.include
 const breakingInterventions = bundle.interventions.filter((i) => loop.interventions.includes(i.id));
 const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.title ?? id;
 ---
-<Layout lang={lang} title={`${loop.id} — ${loop.title}`} description={loop.summary} activeNav="registry">
+<Layout lang={lang} title={`${loop.id} — ${loop.title}`} description={loop.summary} activeNav="registry" image={`/cards/${lang}/${loop.id}.png`}>
   <PageHeader title={loop.title} lead={loop.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
@@ -89,6 +89,9 @@ const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.titl
     )}
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span>{t('share.card')}</span>
+      <a href={`/cards/${lang}/${loop.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
+      <span class="text-hoba-border" aria-hidden="true">|</span>
       <span>{t('md.view')}</span>
       <a href={`/loops/${loop.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
       <a href={`/api/v1/loops/${loop.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>
