@@ -77,6 +77,26 @@
         ],
         "reading": "Each step is a reasonable rule on its own. Together they form a cycle whose input is its own output."
       }
+    ],
+    "perspectives": [
+      {
+        "actor": "candidate",
+        "sees": "Applications that return no reply at all, or a generic rejection, with the same CV and the same market as the cycle before.",
+        "reads": "Something in the profile moved between cycles, and the only thing that did move is the length of the break itself.",
+        "does": "Keeps applying, since applications are the only input available, and each month without an interview adds to the break the next application carries."
+      },
+      {
+        "actor": "recruiter",
+        "sees": "A ranked queue of several hundred applications against capacity to read a few dozen, on a requisition where time-to-fill is measured.",
+        "reads": "The order is a triage of a list that cannot be read end to end, not a judgement about anyone in it.",
+        "does": "Reads from the top down until the week's capacity is used, which is where the ranking becomes the decision."
+      },
+      {
+        "actor": "ats-vendor",
+        "sees": "A continuity feature computed from the dates in the parsed work history, shipping enabled by default.",
+        "reads": "It is one input among several in a ranking the buyer evaluates on throughput; whether a low-scored profile was unreadable rather than unqualified is not something the score records.",
+        "does": "Applies the penalty on every scoring pass and offers it as a setting the customer can switch off, which no default prompts anyone to do."
+      }
     ]
   }
 }

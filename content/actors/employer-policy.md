@@ -36,6 +36,72 @@ specimens:
       -
         text: "The candidate only ever meets the last two rows."
     reading: "Several observations in this registry are the visible end of a decision taken in a row the candidate never sees."
+recommendations:
+  -
+    id: "publish-the-band-on-the-posting"
+    title: "Publish the band on the posting itself"
+    rationale: "The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at B-009 into arithmetic rather than a conversation that happens for the first time after the panel."
+    cost: "medium"
+    costs: "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level."
+    targets:
+      - "M-004"
+      - "B-004"
+      - "B-009"
+      - "P-004"
+    interventions:
+      - "I-002"
+  -
+    id: "fund-before-publication"
+    title: "Sign the headcount before the role is published"
+    rationale: "This layer decides whether a requisition is funded, and B-010 is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists."
+    cost: "high"
+    costs: "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end."
+    targets:
+      - "B-010"
+      - "B-013"
+      - "M-007"
+      - "A-003"
+    interventions: []
+  -
+    id: "expire-listing-when-authorisation-lapses"
+    title: "Expire the listing when its authorisation lapses"
+    rationale: "Whether a requisition stays funded is decided here, and that fact reaches no configuration screen on its own. A rule that withdraws the listing when authorisation lapses, and notifies everyone still inside the process, closes the gap between the decision and what the page shows."
+    cost: "medium"
+    costs: "A paused search cannot be kept warm: reopening means another trip through the approval chain and a posting that restarts from zero applicants, which is a direct charge on this layer's optionality."
+    targets:
+      - "M-006"
+      - "M-007"
+      - "B-001"
+      - "P-002"
+      - "L-003"
+      - "A-001"
+      - "A-003"
+      - "A-011"
+    interventions:
+      - "I-001"
+  -
+    id: "declare-internal-candidacy-on-the-posting"
+    title: "State on the posting that an internal candidacy exists"
+    rationale: "The rule that a role is published externally regardless of an internal candidate sits in this layer, and so does what the posting may say. One line stating that an internal candidacy is in process gives an external applicant, at the point of applying, the fact the panel already has."
+    cost: "medium"
+    costs: "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded."
+    targets:
+      - "M-005"
+      - "B-013"
+      - "A-002"
+      - "A-003"
+    interventions: []
+  -
+    id: "scope-checks-and-show-discrepancies"
+    title: "Narrow the checks and show the candidate any discrepancy"
+    rationale: "Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At B-011 a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision."
+    cost: "medium"
+    costs: "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire."
+    targets:
+      - "B-011"
+      - "B-012"
+      - "M-021"
+    interventions: []
 status: "active"
 evidence_level: "supported"
 evidence_ids: []

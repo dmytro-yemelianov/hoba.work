@@ -40,6 +40,32 @@
           ],
           "reading": "This gate closes before the first candidate exists, and it fixes the level, the band and the requirements that everyone downstream will be measured against."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A headcount request, a budget line, a level and a band. No candidate exists at this gate, so none is in the file.",
+          "reads": "A funded requisition is an option rather than a spend: it can be published, paused or carried into the next quarter without a new approval.",
+          "does": "Fixes the band, the level and whether the role must be posted externally at all, and hands the requisition down as fields the rest of the funnel treats as given."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "The requisition form: a title, a level the grid allows, and a requirements list that can be carried over from the last search for this team.",
+          "reads": "The description is the one step where the bar is set in advance; everything after it is judging arrivals against a list already published.",
+          "does": "Writes the requirements into the fields the form has; what the form has no field for stays unwritten."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A published posting with a date on it. Whether the headcount behind it is funded, and at what level the assessment will run, are not part of what is published.",
+          "reads": "A live posting reads as a live search, and the requirements list reads as the bar.",
+          "does": "Applies against the list as published, and calibrates the ask to a level that was fixed before the posting went up."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "The published posting, which is the only artefact of this gate that exists outside the company.",
+          "reads": "The posting is the enforceable surface: what it must state is reachable by rule, what stands behind it is not.",
+          "does": "Requires the band in the posting where transparency rules apply, and leaves the approved level and the funding status outside what any disclosure rule reaches."
+        }
       ]
     },
     {
@@ -83,6 +109,26 @@
             }
           ],
           "reading": "This gate passes only when outreach is attached to a real, funded requisition. Attached to a forecast, it is a pipeline entry with no gate behind it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "recruiter",
+          "sees": "A profile that matches a role, and the role's current state: approved, or expected to be approved. Whether the second becomes the first is not in the recruiter's fields.",
+          "reads": "Contact made before approval is time not spent after it; the time-to-fill clock starts at the opening, not at the first message.",
+          "does": "Sends the outreach and attaches the reply to whichever record exists — an open requisition, or a pool with no gate behind it."
+        },
+        {
+          "actor": "candidate",
+          "sees": "An approach that names their work and a role described as opening. The state of the requisition behind it is knowable only by asking.",
+          "reads": "Outreach reads as demand: the search found them, which places them ahead of the queue an application would have joined.",
+          "does": "Answers, and asks whether an approved requisition sits behind it — the question that separates a live process from an entry in a pool."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Headcount requests in the approval queue and forecasts for the next cycle. Outreach already sent against an unapproved forecast is a line in neither.",
+          "reads": "A warm pipeline before approval shortens the fill after it, at no cost on any budget line the approval cycle tracks.",
+          "does": "Sets the approval cycle that decides when a forecast becomes a requisition, and does not gate the contact that happens before it."
         }
       ]
     },
@@ -131,6 +177,26 @@
             }
           ],
           "reading": "Passing this gate means a row exists and is attached to a live requisition. It says nothing about whether anyone will read it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A confirmation that the form was accepted and a status that reads as under review. Nothing about which queue the record entered or who it is assigned to.",
+          "reads": "The application is in the process, and the word review implies a reader.",
+          "does": "Records the date and the wording, and keeps other processes running while the status stays unchanged."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "A request that validated against the schema and a record linked to a live requisition. The CV arrives here as fields, not as a reading.",
+          "reads": "The transaction succeeded. This is throughput, which is what the buyer of the platform evaluates.",
+          "does": "Creates the record, applies the default status, and starts the expiry clock that ships enabled."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A counter on a requisition rising against a screening capacity that does not rise with it.",
+          "reads": "Passing this gate carries no signal about the candidate. Until triage reaches the record, it is volume.",
+          "does": "Nothing at this gate. The queue is worked at the next one, in an order set there."
         }
       ]
     },
@@ -185,6 +251,32 @@
           ],
           "reading": "Everything at this gate is a threshold on a number. A person who clears it and a person who misses by one term are separated by arithmetic, not by judgement."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A rejection with no reason attached, or a status that does not change. The extraction score, the thresholds and which rule ran are in none of it.",
+          "reads": "An outcome that cannot be told apart from never having been read.",
+          "does": "Rewrites the CV toward the wording of the posting, because the wording is the only visible part of the rule."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "An extraction score and a set of rule evaluations on each record, against thresholds the customer configured.",
+          "reads": "A pass or a fail on every rule. A low extraction score is a number and does not separate an unreadable file from an unqualified candidate.",
+          "does": "Applies the rules in order and routes the record. A rule that is on by default is applied the same way as one a customer selected."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The queue that cleared the thresholds, and the count of what arrived in it.",
+          "reads": "What reaches the queue is the pipeline for this requisition. The records that missed a threshold are not a list anyone is shown.",
+          "does": "Works the queue that arrived. Changing a threshold would require knowing which one removed whom, and that is not in the fields the queue displays."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A shortlist, and the requirements as they were written down.",
+          "reads": "The bar is being applied. A requirement written as a minimum is executed as a minimum, on whatever the parser extracted.",
+          "does": "Adjusts the written requirement when the shortlist looks wrong, which is the only point at which the rule becomes visible from here."
+        }
       ]
     },
     {
@@ -224,6 +316,26 @@
             }
           ],
           "reading": "Inbound and outbound applications compete at this gate, and they do not arrive on equal footing. Position in the queue is part of the outcome."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "recruiter",
+          "sees": "A queue of inbound records, a screening capacity smaller than it, and an outbound list running against the same requisition.",
+          "reads": "Position and source are part of the outcome here. Time-to-fill is measured; time-to-clarity is not.",
+          "does": "Works the outbound list first and skims inbound in queue order. The records below where the day ends stay unreviewed."
+        },
+        {
+          "actor": "candidate",
+          "sees": "The same status as on the day of applying, and a gap that lengthens.",
+          "reads": "Nothing here separates a record that has not been reached from one that was read and passed over.",
+          "does": "Sends a follow-up, then treats the process as closed while it remains formally open."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Requisition-level figures: applications received, time-to-fill, cost per hire. The queue and the hours held in it are not among them.",
+          "reads": "Volume received reads as reach. The figures show arrivals, not what happened to them.",
+          "does": "Keeps the external posting requirement and sets the recruiting headcount that fixes review capacity, on a cycle measured in quarters."
         }
       ]
     },
@@ -284,6 +396,32 @@
           ],
           "reading": "Four of the five questions are logistics and one is technical. This gate mostly filters on parameters, which is why it can end a process before any engineering is discussed."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A thirty-minute call in which four questions are logistics and one is about the work.",
+          "reads": "The compensation question arrives before the level, the rubric or the band are stated, so a number has to be given against an unknown.",
+          "does": "Names a figure or a range, and answers the timeline and location questions that can end the process at this gate."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The parameters this gate is scored on: expectations, notice period, location and authorisation, and one account of recent work.",
+          "reads": "A figure outside the approved band ends the process here, whether or not the band is among the fields available at the call.",
+          "does": "Asks the parameter questions first and submits the candidates who align. What may be said about the band at this call is set elsewhere."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "The band, the levelling grid, and the rule for what may be said about either. Not the call.",
+          "reads": "A conversation held inside the band produces a hire that stays consistent and defensible alongside every other hire.",
+          "does": "Fixes the band and the disclosure rule. Both reach the call as constraints on the recruiter rather than as information the candidate receives."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "The posting and the text of the disclosure rule. The screening call is not a record that reaches it.",
+          "reads": "Where a band must be published, the question at this gate is asked against a number both sides can name.",
+          "does": "Requires the band in the posting and leaves the level a candidate is assessed at outside the rule, because rules are written where they can be measured and enforced."
+        }
       ]
     },
     {
@@ -323,6 +461,26 @@
             }
           ],
           "reading": "The gate is a sum against a line. A weak yes and a strong no differ by two points in one column, and the candidate never sees the columns."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "An exercise, a conversation about it, and an outcome. Not the columns, not their weights, not the line the total is compared with.",
+          "reads": "The hour resolves into a single number that is never shown, so a miss by one point and a clear fail arrive in the same wording.",
+          "does": "Reconstructs the session from memory and guesses which part of it cost the points, with nothing in the outcome to check the guess against."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "Four column scores, a total, and the assessing engineer's recommendation. Not what the same candidate showed in rounds they did not attend.",
+          "reads": "A total on the line is an advance with doubt attached. A bad hire is visible for a year and carries a name; a missed hire carries none.",
+          "does": "Holds the threshold where it is and passes the doubt into the next round rather than settling it here."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The recommendation and, at most, the total. The columns and what was said in the room are not part of what is handed over.",
+          "reads": "The outcome is settled, and the reason for it stays with the panel.",
+          "does": "Writes the message from the recommendation, which is the level of detail available to write from."
         }
       ]
     },
@@ -366,6 +524,26 @@
             }
           ],
           "reading": "This gate compares hours of work against minutes of review. It can pass or fail on what a reader happened to open."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "A repository and a scoring form, opened between the team's own delivery work. The hours the submission took are not a field on the form.",
+          "reads": "A score against the rubric reads as the work this candidate would produce on the team.",
+          "does": "Advances or declines on the returned scores. A second read is scheduled where the two reviewers disagree, and not otherwise."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A brief, a deadline, and a scope the candidate sets inside it. After submission, a verdict with no reference to any particular file.",
+          "reads": "The hours spent read as the unit this gate measures, and a decline reads as a judgement on the code.",
+          "does": "Builds to the upper bound of the brief, because the brief states a scope and not a review depth. What is left afterwards is the dates and the wording of the verdict."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The date the assignment went out, the date it came back, and a line of recommendation. The submission itself is not in the fields the recruiter works from.",
+          "reads": "The gate reads as an interval in the pipeline: days between dispatch and a decision that can be acted on.",
+          "does": "Follows up with the reviewers as the interval grows, and writes the outcome from the recommendation, since the notes behind it do not reach the recruiter."
         }
       ]
     },
@@ -419,6 +597,26 @@
           ],
           "reading": "This gate is testing ownership and trade-off reasoning, not knowledge. It is also the gate where an undisclosed house preference does the most damage."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "An hour with the candidate, plus what the earlier rounds recorded. The rounds they did not attend arrive as scores rather than as what was said.",
+          "reads": "An answer about a past trade-off reads as evidence of ownership at the level the role is scoped to.",
+          "does": "Assesses against the requirements as written and the ones that were never written down. A bad hire is attributed and a missed one is not, so an unresolved doubt closes the loop rather than extends it."
+        },
+        {
+          "actor": "candidate",
+          "sees": "Questions about past decisions, and no statement of which answers are scored or at what level.",
+          "reads": "A conversational round reads as rapport rather than as an assessment against a written bar.",
+          "does": "Chooses which projects to describe and in what depth, without knowing the house preference the answer is compared against. The available lever is to ask what the level and the rubric are before answering."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A recommendation and a date. The reasoning behind it arrives as a summary line, not as the manager's notes.",
+          "reads": "An advance is a pipeline step cleared; a decline here is a rejection to be worded without the reasoning that produced it.",
+          "does": "Moves the candidate to the panel, or sends the decline in standard wording, since the requirement behind it is not in what reached them."
+        }
       ]
     },
     {
@@ -466,6 +664,26 @@
           ],
           "reading": "The gate is not an average, it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "The panel's score sheets and, in the split case, one dissent with a comment. What that panelist saw arrives second-hand.",
+          "reads": "Under a unanimity threshold, one no-hire and three no-hires read the same. The dissent reads as a risk that would be carried alone.",
+          "does": "Overrides or closes. The override carries their signature, and so would the hire it produces."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A sequence of separate conversations, each with a person whose weight in the decision is not stated. Then one outcome.",
+          "reads": "The round reads as an average of impressions, and the wording of the decline does not distinguish a split panel from a unanimous one.",
+          "does": "Cannot tell which conversation the decision turned on, so records who was on the panel and what each of them asked — the only part of this gate still available afterwards."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "The threshold as a configured rule, and the outcome it produced. The individual sheets stay with the team.",
+          "reads": "A unanimity requirement reads as consistency across hires and as a defensible record for each one.",
+          "does": "Keeps the threshold uniform across teams. The hours a re-run of the loop consumes are not a line in the cycle this layer reports on."
+        }
       ]
     },
     {
@@ -505,6 +723,32 @@
             }
           ],
           "reading": "Two independent decisions — a level and a band — meet here for the first time. Neither was visible to the candidate while they were being made."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A number stated at the screen, and later a message that it does not fit. The level it was compared against is named afterwards, if at all.",
+          "reads": "It reads as a negotiation over the number they named, rather than as the meeting of two decisions taken separately.",
+          "does": "Can restate the number or withdraw. Which of the two — the level or the band — produced the gap decides whether restating it changes anything, and that is not in the message."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "The level the panel assessed at, and the band that level carries. Their input to this gate closed when the level was set.",
+          "reads": "The gap reads as a levelling question: the same candidate one level up sits inside a band, and moving the level needs a signature above them.",
+          "does": "Requests the level up, or holds the level and lets the process close. The gap on the team stays with them either way."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A request to place a candidate outside an approved band, with the level and the number attached. The rounds behind that number are not in the request.",
+          "reads": "An exception at one level reads against everyone already placed inside that band.",
+          "does": "Approves the exception or holds the grid. The grid is what makes each existing placement defensible, and it is revised on a quarterly cycle rather than per candidate."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "The posting, and whether the band is in it. What happens between a level and a band inside a company is not filed anywhere.",
+          "reads": "A published band reads as the disclosure the rule required.",
+          "does": "The rule reaches the band and stops. The level a candidate is assessed at is not a disclosable field, so the half of this gate that moves sits outside what the rule reaches."
         }
       ]
     },
@@ -558,6 +802,26 @@
           ],
           "reading": "Everyone the candidate met has already said yes. This gate is the reason a process can stop after a unanimous panel."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A requisition in a quarterly review, alongside every other one. The rounds already run against it are not a field in that review.",
+          "reads": "An approved requisition that can be held costs less than one that cannot, and pending is the state in which the option stays open.",
+          "does": "Issues the certification on the cycle rather than on the loop already running. Nothing in that cycle is timed to a candidate's calendar."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A panel that went well, then an interval with no scheduled next step, then either an offer or a note about the role's direction.",
+          "reads": "Silence after a round that went well reads as a verdict on them, since the approval chain has never been shown to them.",
+          "does": "Keeps the other processes running and sets a date past which they stop waiting. That date is the only part of this gate they set."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The approval chain with one row pending, and no date on that row.",
+          "reads": "The pipeline is stopped at a step outside their authority, and whether finance clears it this quarter is not among the things that reach them.",
+          "does": "Cannot give a date, and is measured on time-to-fill rather than on time-to-clarity, so the candidate hears again when the row moves."
+        }
       ]
     },
     {
@@ -600,6 +864,32 @@
             }
           ],
           "reading": "The gate is checking a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "The list of mandatory checks, which of them cleared, and which line came back unresolved. The report arrives as a status, not as a person.",
+          "reads": "An unresolved line is an open item on a record that has to be defensible: while the file disagrees with itself, the offer cannot complete.",
+          "does": "Holds the offer at the gate until the record reconciles, and sets in advance which checks are mandatory and what evidence closes each one."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A vendor report of cleared and uncleared lines, and an offer flagged as held. The records the vendor queried are not in the recruiter's view.",
+          "reads": "A date mismatch is an item to reconcile before the start date, and the time-to-fill clock is already running against it.",
+          "does": "Writes to the candidate naming the mismatch and the document that would close it, and keeps the start date provisional until it does."
+        },
+        {
+          "actor": "candidate",
+          "sees": "An offer already accepted and now marked as held, plus whatever part of the finding is passed on: which record disagrees, and by how much.",
+          "reads": "The offer now turns on paperwork the candidate does not hold — a former employer's payroll dates against their own memory of the same months.",
+          "does": "Retrieves whatever documentation covers the disputed months, and postpones resigning or closing other processes while the hold stands."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "Which categories of check are run, and in which jurisdiction. Nothing about the individual file.",
+          "reads": "Verification is the point where an eligibility rule — a licence, a right to work, a limit on what may be asked — becomes a pass or a fail.",
+          "does": "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled inside that bound is not set here."
         }
       ]
     },
@@ -645,6 +935,26 @@
             }
           ],
           "reading": "A signature from one side is not the gate. Until the countersignature lands the requisition is still open, which is where a late freeze can reach it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A requisition still open, a contract issued, and one signature returned. The countersignature is a step in an approval queue alongside the quarter's other commitments.",
+          "reads": "Until the second signature lands, the headcount is a commitment that can still be paused; after it lands, it is a cost that cannot.",
+          "does": "Countersigns and releases the start date, or holds the file while the quarter's funding is reconfirmed."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The candidate's signature returned on day one and the countersignature line still empty. Whether the delay is a queue or a funding question is not in the recruiter's fields.",
+          "reads": "The requisition is not closed and the fill is not counted; days of silence here are indistinguishable from a signature waiting its turn.",
+          "does": "Chases the countersignature internally and calls the start date provisional in every message until the contract is executed by both sides."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A contract signed and sent back, an unconfirmed start date, and days passing with no countersignature.",
+          "reads": "From here the process reads as finished, though nothing takes effect until the second signature, and that step is not visible from outside.",
+          "does": "Holds off on resigning or closing other processes until the countersigned copy arrives, and records the dates and the wording of what was promised."
         }
       ]
     }

@@ -191,6 +191,62 @@
                   "additionalProperties": false
                 },
                 "default": []
+              },
+              "recommendations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9-]+$"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 5
+                    },
+                    "rationale": {
+                      "type": "string",
+                      "minLength": 20
+                    },
+                    "cost": {
+                      "type": "string",
+                      "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                      ]
+                    },
+                    "costs": {
+                      "type": "string",
+                      "minLength": 10
+                    },
+                    "targets": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "default": []
+                    },
+                    "interventions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^I-\\d{3}$"
+                      },
+                      "default": []
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "rationale",
+                    "cost",
+                    "costs"
+                  ],
+                  "additionalProperties": false
+                },
+                "default": []
               }
             },
             "required": [
@@ -568,12 +624,7 @@
                       "minLength": 5
                     },
                     "cost": {
-                      "type": "string",
-                      "enum": [
-                        "low",
-                        "medium",
-                        "high"
-                      ]
+                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/cost"
                     },
                     "removability_target": {
                       "type": "string",
@@ -598,6 +649,37 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              },
+              "perspectives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "actor": {
+                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
+                    },
+                    "sees": {
+                      "type": "string",
+                      "minLength": 20
+                    },
+                    "reads": {
+                      "type": "string",
+                      "minLength": 20
+                    },
+                    "does": {
+                      "type": "string",
+                      "minLength": 20
+                    }
+                  },
+                  "required": [
+                    "actor",
+                    "sees",
+                    "reads",
+                    "does"
+                  ],
+                  "additionalProperties": false
                 },
                 "default": []
               },
@@ -678,6 +760,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              },
+              "perspectives": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -846,6 +935,13 @@
                 },
                 "default": []
               },
+              "perspectives": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
+                },
+                "default": []
+              },
               "non_inferences": {
                 "type": "array",
                 "items": {
@@ -930,8 +1026,7 @@
               "interventions": {
                 "type": "array",
                 "items": {
-                  "type": "string",
-                  "pattern": "^I-\\d{3}$"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
                 },
                 "default": []
               },
@@ -946,6 +1041,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              },
+              "perspectives": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -1038,7 +1140,7 @@
               "interventions": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/interventions/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
                 },
                 "default": []
               },
@@ -1053,6 +1155,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              },
+              "perspectives": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -1087,7 +1196,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
-                "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/interventions/items"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
               },
               "type": {
                 "type": "string",
@@ -1119,10 +1228,10 @@
                 ]
               },
               "cost": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/cost"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/cost"
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/interventions/items"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
               },
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
@@ -1146,6 +1255,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
+                },
+                "default": []
+              },
+              "perspectives": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
                 },
                 "default": []
               }

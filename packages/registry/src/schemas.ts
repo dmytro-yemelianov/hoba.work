@@ -152,6 +152,27 @@ export const loopEdgeSchema = z.object({
 });
 
 // Fields shared by every graph node.
+export const actorId = z.enum(['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy']);
+
+/**
+ * One actor's view of one entry.
+ *
+ * The atlas describes the funnel from outside. A perspective describes the same
+ * thing from inside one of the six heads that make it: what reaches them, what
+ * it means from where they sit, and what they do next given what they are
+ * measured on. No intent is attributed — an actor who cannot see something is
+ * not concealing it.
+ */
+export const perspectiveSchema = z.object({
+  actor: actorId,
+  /** What actually reaches this actor when this happens. */
+  sees: z.string().min(20),
+  /** What it means from there — the reading, not the truth. */
+  reads: z.string().min(20),
+  /** What happens next, given what this actor controls and is measured on. */
+  does: z.string().min(20),
+});
+
 const nodeBase = {
   title: z.string().min(3),
   status: nodeStatusSchema.default('active'),
@@ -171,6 +192,8 @@ export const artifactSchema = z.object({
   evidence_level: evidenceLevelSchema.default('supported'),
   probes: z.array(diagnosticProbeSchema).default([]),
   specimens: z.array(specimenSchema).default([]),
+  /** The same entry seen from inside each actor that meets it. */
+  perspectives: z.array(perspectiveSchema).default([]),
   non_inferences: z.array(z.string()).min(1),
 });
 
@@ -187,6 +210,8 @@ export const barrierSchema = z.object({
   superseded_by: barrierId.optional(),
   evidence_level: evidenceLevelSchema.default('established'),
   specimens: z.array(specimenSchema).default([]),
+  /** The same entry seen from inside each actor that meets it. */
+  perspectives: z.array(perspectiveSchema).default([]),
 });
 
 // Mechanism frontmatter schema
@@ -211,6 +236,8 @@ export const mechanismSchema = z.object({
   evidence_level: evidenceLevelSchema.default('supported'),
   honest_baseline: z.boolean().default(false),
   specimens: z.array(specimenSchema).default([]),
+  /** The same entry seen from inside each actor that meets it. */
+  perspectives: z.array(perspectiveSchema).default([]),
   non_inferences: z.array(z.string()).min(1),
 });
 
@@ -229,6 +256,8 @@ export const patternSchema = z.object({
   superseded_by: patternId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   specimens: z.array(specimenSchema).default([]),
+  /** The same entry seen from inside each actor that meets it. */
+  perspectives: z.array(perspectiveSchema).default([]),
 });
 
 // Loop frontmatter schema
@@ -244,6 +273,8 @@ export const loopSchema = z.object({
   superseded_by: loopId.optional(),
   evidence_level: evidenceLevelSchema.default('supported'),
   specimens: z.array(specimenSchema).default([]),
+  /** The same entry seen from inside each actor that meets it. */
+  perspectives: z.array(perspectiveSchema).default([]),
 });
 
 // Intervention frontmatter schema.
@@ -263,6 +294,8 @@ export const interventionSchema = z.object({
   expected_effects: z.array(z.string()).min(1),
   measurements: z.array(z.string()).min(1),
   specimens: z.array(specimenSchema).default([]),
+  /** The same entry seen from inside each actor that meets it. */
+  perspectives: z.array(perspectiveSchema).default([]),
 });
 
 /**
@@ -273,7 +306,28 @@ export const interventionSchema = z.object({
  * enum values that resolve to it, so the graph can join them and both existing
  * vocabularies keep working.
  */
-export const actorId = z.enum(['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy']);
+
+/**
+ * Something one actor could do, addressed to the one who can actually do it.
+ *
+ * A recommendation that names no actor is a wish. Each of these is attached to
+ * the party that controls the decision, cites the entries it addresses, and
+ * states its cost honestly — including when the honest cost is "this makes the
+ * process slower".
+ */
+export const recommendationSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/, 'recommendation ids are lowercase slugs'),
+  title: z.string().min(5),
+  /** Why this actor in particular, tied to what they control. */
+  rationale: z.string().min(20),
+  /** What it costs the actor who does it, stated without softening. */
+  cost: costBandSchema,
+  costs: z.string().min(10),
+  /** Registry entries this addresses. */
+  targets: z.array(z.string()).default([]),
+  /** Interventions that already describe this change, where one exists. */
+  interventions: z.array(interventionId).default([]),
+});
 
 export const actorSchema = z.object({
   ...nodeBase,
@@ -294,6 +348,8 @@ export const actorSchema = z.object({
     })
     .default({ facet: [], intervention: [] }),
   specimens: z.array(specimenSchema).default([]),
+  /** What this actor should do, addressed to the party that can do it. */
+  recommendations: z.array(recommendationSchema).default([]),
 });
 
 /**

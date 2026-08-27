@@ -239,6 +239,119 @@ describe('workflows', () => {
 });
 
 /**
+ * The lens is only worth having if every seat it offers is honest: a
+ * perspective attributed to an actor who cannot see the entry would be an
+ * invention, and a recommendation aimed at an actor who does not control the
+ * decision would be a wish.
+ */
+describe('perspectives', () => {
+  const actorIds = new Set(bundle.actors.map((a) => a.id));
+  const readerFacingEntities = [
+    ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+    ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+  ];
+  const ukEntities = [
+    ...uk.artifacts, ...uk.barriers, ...uk.mechanisms,
+    ...uk.patterns, ...uk.loops, ...uk.interventions,
+  ];
+
+  it('names a real actor, once each', () => {
+    for (const node of readerFacingEntities) {
+      const actors = node.perspectives.map((p) => p.actor);
+      expect(actors.filter((a) => !actorIds.has(a)), node.id).toEqual([]);
+      expect(new Set(actors).size, `${node.id} gives one actor two perspectives`).toBe(actors.length);
+    }
+  });
+
+  it('gives every barrier and mechanism at least two points of view', () => {
+    // These are the entries a reader arrives at from a search result, and the
+    // ones where "it looked reasonable from here" is the whole argument.
+    const thin = [...bundle.barriers, ...bundle.mechanisms]
+      .filter((n) => n.perspectives.length < 2)
+      .map((n) => `${n.id} (${n.perspectives.length})`);
+    expect(thin).toEqual([]);
+  });
+
+  it('never puts a perspective in a seat the actor cannot see from', () => {
+    // A perspective whose actor is the entry's own facet actor is always fair.
+    // What this catches is the reverse: a perspective and no actor at all.
+    for (const node of readerFacingEntities) {
+      for (const p of node.perspectives) {
+        expect(p.sees.length, `${node.id}/${p.actor}`).toBeGreaterThan(19);
+        expect(p.reads.length, `${node.id}/${p.actor}`).toBeGreaterThan(19);
+        expect(p.does.length, `${node.id}/${p.actor}`).toBeGreaterThan(19);
+      }
+    }
+  });
+
+  it('mirrors the same seats into Ukrainian, and translates them', () => {
+    const shape = (nodes: typeof readerFacingEntities) =>
+      nodes.map((n) => `${n.id}:${n.perspectives.map((p) => p.actor).join(',')}`);
+    expect(shape(ukEntities)).toEqual(shape(readerFacingEntities));
+
+    // A mirror that copied the English through would pass the shape check.
+    const byId = new Map(ukEntities.map((n) => [n.id, n]));
+    for (const node of readerFacingEntities) {
+      const mirrored = byId.get(node.id)!;
+      node.perspectives.forEach((p, i) => {
+        expect(mirrored.perspectives[i]!.sees, `${node.id}/${p.actor} was not translated`).not.toBe(p.sees);
+      });
+    }
+  });
+});
+
+describe('recommendations', () => {
+  const ids = new Set([
+    ...bundle.artifacts.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
+    ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
+    ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
+  ]);
+  const interventionIds = new Set(bundle.interventions.map((i) => i.id));
+
+  it('gives every actor something it can actually do', () => {
+    for (const actor of bundle.actors) {
+      expect(actor.recommendations.length, actor.id).toBeGreaterThan(2);
+    }
+  });
+
+  it('keeps recommendation ids unique inside an actor', () => {
+    for (const actor of bundle.actors) {
+      const slugs = actor.recommendations.map((r) => r.id);
+      expect(new Set(slugs).size, actor.id).toBe(slugs.length);
+    }
+  });
+
+  it('resolves every entry and intervention it cites', () => {
+    for (const actor of bundle.actors) {
+      for (const rec of actor.recommendations) {
+        expect(rec.targets.filter((t) => !ids.has(t)), `${actor.id}/${rec.id}`).toEqual([]);
+        expect(rec.interventions.filter((i) => !interventionIds.has(i)), `${actor.id}/${rec.id}`).toEqual([]);
+      }
+    }
+  });
+
+  it('states what each one costs the actor who does it', () => {
+    // A recommendation with no stated cost reads as free, and none are free.
+    for (const actor of bundle.actors) {
+      for (const rec of actor.recommendations) {
+        expect(rec.costs.length, `${actor.id}/${rec.id}`).toBeGreaterThan(9);
+      }
+    }
+  });
+
+  it('mirrors the same set into Ukrainian, and translates it', () => {
+    const shape = (b: typeof bundle) => b.actors.map((a) => `${a.id}:${a.recommendations.map((r) => r.id).join(',')}`);
+    expect(shape(uk)).toEqual(shape(bundle));
+    const byId = new Map(uk.actors.map((a) => [a.id, a]));
+    for (const actor of bundle.actors) {
+      actor.recommendations.forEach((rec, i) => {
+        expect(byId.get(actor.id)!.recommendations[i]!.title, `${actor.id}/${rec.id} was not translated`).not.toBe(rec.title);
+      });
+    }
+  });
+});
+
+/**
  * Eras are the atlas's only claims about the world outside the funnel, so they
  * carry the strictest rule in the repository: no figure without a source.
  */

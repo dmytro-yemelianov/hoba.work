@@ -103,10 +103,10 @@ test.describe('every page reaches the worker', () => {
   // A route-exclusion pattern that swallows a page is invisible until someone
   // opens it: the page 404s while every other test stays green.
   const PAGES = [
-    '/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/data',
+    '/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/data',
     '/methodology', '/developers', '/contribute', '/about',
     '/artifacts/A-013', '/barriers/B-010', '/mechanisms/M-001',
-    '/patterns/P-001', '/loops/L-001', '/interventions/I-002',
+    '/patterns/P-001', '/loops/L-001', '/interventions/I-002', '/actors/recruiter',
   ];
 
   for (const path of PAGES) {

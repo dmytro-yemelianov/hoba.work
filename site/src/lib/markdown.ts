@@ -153,6 +153,22 @@ export function entityMarkdown(entity: Entity, lang: Lang, t: Translate, bundle:
     for (const specimen of entity.specimens) out.push(...renderSpecimen(specimen, t));
   }
 
+  // Every seat that meets this entry, in the same order the page shows them.
+  if ('perspectives' in entity && entity.perspectives.length) {
+    out.push(`## ${t('persp.title')}`, '', t('persp.intro'), '');
+    for (const p of entity.perspectives) {
+      const actor = bundle.actors.find((a) => a.id === p.actor);
+      out.push(
+        `### ${actor?.title ?? p.actor}`,
+        '',
+        `- **${asHeading(t('persp.sees'))}:** ${p.sees}`,
+        `- **${asHeading(t('persp.reads'))}:** ${p.reads}`,
+        `- **${asHeading(t('persp.does'))}:** ${p.does}`,
+        ''
+      );
+    }
+  }
+
   if ('establishes' in entity) out.push(...bullets(asHeading(t('pat.establishes')), entity.establishes));
   if ('non_inferences' in entity) out.push(...bullets(asHeading(t('art.nonInf')), entity.non_inferences));
   if ('expected_effects' in entity) out.push(...bullets(asHeading(t('int.effects')), entity.expected_effects));

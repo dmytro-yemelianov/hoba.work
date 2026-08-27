@@ -73,6 +73,32 @@
         "reading": "A straight answer converts a mystery into a schedule. The same silence three months later means something entirely different once this line exists."
       }
     ],
+    "perspectives": [
+      {
+        "actor": "recruiter",
+        "sees": "Planning signals about headcount that is not yet approved, and a market where the profiles worth contacting are contacted early.",
+        "reads": "A pipeline built now converts if the requisition lands; a pipeline built after approval starts from zero, and time-to-fill is measured either way.",
+        "does": "Opens conversations ahead of approval and holds them with no stage to move them into until the headcount is decided."
+      },
+      {
+        "actor": "candidate",
+        "sees": "Direct outreach describing a specific role, then a conversation, then no reply — and no posting to check the role against.",
+        "reads": "Silence after a specific conversation reads as an assessment of the profile. Nothing in the exchange separates that from a requisition that was never opened.",
+        "does": "Asks whether a requisition exists and is funded before spending rounds on it, and treats the answer as the date the process actually starts."
+      },
+      {
+        "actor": "employer-policy",
+        "sees": "Headcount requests arriving at planning with named candidates already attached to them.",
+        "reads": "A team ready to move quickly if the role is approved. The conversations that produced the names are not part of the approval record.",
+        "does": "Decides funding on the quarterly cycle, and an approval or a deferral closes conversations this layer never saw."
+      },
+      {
+        "actor": "ats-vendor",
+        "sees": "Contact records held in a talent pool with no requisition attached, and nurture sequences configured against them.",
+        "reads": "A supported workflow behaving normally. The platform does not require a requisition to exist before outreach is sent from it.",
+        "does": "Ships the pool, the sequences and the expiry defaults; whether a record is attached to an open requisition stays a field the customer fills or leaves blank."
+      }
+    ],
     "non_inferences": [
       "Ghosting after outbound message indicates absence of immediate opening, not profile rejection."
     ]

@@ -6,6 +6,7 @@ import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
+import Perspectives from '../../../components/Perspectives.astro';
 import { getGraph } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { InterventionNode } from '@hoba/registry';
@@ -74,6 +75,8 @@ const targets = intervention.targets.map((id) => {
         <ul class="list-disc pl-5 space-y-1 text-base text-hoba-muted">{intervention.measurements.map((m) => <li><code class="text-sm">{m}</code></li>)}</ul>
       </div>
     </section>
+
+    <Perspectives perspectives={intervention.perspectives} actors={graph.bundle.actors} lang={lang} prefix={prefix} />
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
       <span>{t('share.card')}</span>

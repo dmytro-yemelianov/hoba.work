@@ -1,0 +1,65 @@
+---
+/**
+ * The same entry from inside each seat that meets it.
+ *
+ * Two things this section does that a description cannot. It shows why a
+ * decision that looks careless from one side was reasonable from the other —
+ * which is the difference between an atlas and a complaint. And where an actor
+ * has no view of the entry at all, it says so, because a decision made where
+ * nobody in that seat can see it is the finding, not a gap in the writing.
+ *
+ * With no lens chosen every voice is on the page. Choosing one collapses to it;
+ * the CSS in theme.css does that, so this renders every block unconditionally.
+ */
+import { useTranslations, type Lang } from '../i18n/utils';
+import type { ActorNode, Perspective } from '@hoba/registry';
+
+interface Props {
+  perspectives: Perspective[];
+  actors: ActorNode[];
+  lang: Lang;
+  prefix: string;
+}
+
+const { perspectives, actors, lang, prefix } = Astro.props;
+const t = useTranslations(lang);
+const byId = new Map(actors.map((a) => [a.id, a]));
+const held = new Set(perspectives.map((p) => p.actor));
+const blind = actors.filter((a) => !held.has(a.id));
+---
+{perspectives.length > 0 && (
+  <section class="section">
+    <h2 class="section-title">{t('persp.title')}</h2>
+    <p class="text-base text-hoba-muted max-w-3xl">{t('persp.intro')}</p>
+
+    <div class="mt-5">
+      {perspectives.map((p) => (
+        <article class="perspective lens-block" data-actor={p.actor}>
+          <p class="perspective-who">
+            <a href={`${prefix}/actors/${p.actor}`} class="text-base font-medium text-hoba-text hover:text-hoba-accent">
+              {byId.get(p.actor)?.title ?? p.actor}
+            </a>
+          </p>
+          <dl>
+            <dt>{t('persp.sees')}</dt>
+            <dd>{p.sees}</dd>
+            <dt>{t('persp.reads')}</dt>
+            <dd>{p.reads}</dd>
+            <dt>{t('persp.does')}</dt>
+            <dd>{p.does}</dd>
+          </dl>
+        </article>
+      ))}
+
+      {blind.map((actor) => (
+        <article class="perspective lens-block is-blind" data-actor={actor.id}>
+          <p class="perspective-who">
+            <a href={`${prefix}/actors/${actor.id}`} class="text-base font-medium text-hoba-text hover:text-hoba-accent">{actor.title}</a>
+            <span class="pill pill-muted">{t('persp.blind')}</span>
+          </p>
+          <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('persp.blindNote')}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

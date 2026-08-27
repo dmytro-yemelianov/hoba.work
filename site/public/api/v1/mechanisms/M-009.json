@@ -75,6 +75,26 @@
         "reading": "Seven seconds is not a judgement of a career. It is what a queue of 640 does to attention, whoever is holding it."
       }
     ],
+    "perspectives": [
+      {
+        "actor": "recruiter",
+        "sees": "The count of open requisitions, the inbound volume against them, and the screening hours available this week. The three numbers do not reconcile.",
+        "reads": "The time a profile receives is set by the length of the queue rather than by the profile. Throughput and conversion are measured; time-to-clarity is not a field in the report.",
+        "does": "Advances the profiles that match the pattern the requisition was described with, and the rest of the queue stays unopened. Nothing is sent about a profile that was never opened."
+      },
+      {
+        "actor": "candidate",
+        "sees": "Nothing after submission, or an outreach that opens a conversation and then stops.",
+        "reads": "Silence has no field to read. An application that was never opened and one that was read and declined produce the same inbox.",
+        "does": "Records the submission date and the date of the last message, and keeps other processes running rather than waiting on the queue."
+      },
+      {
+        "actor": "ats-vendor",
+        "sees": "Records that are created and never opened, and the age of each one against an expiry threshold that ships enabled.",
+        "reads": "An unreviewed application at the threshold is a housekeeping state, not a decision. Whether the queue was longer than the hours available is not a value in the record.",
+        "does": "Closes the record at the configured age and sends whatever the customer's template sends at that event."
+      }
+    ],
     "non_inferences": [
       "Does not mean recruiter is individually negligent; reflects structural capacity mismatch."
     ]

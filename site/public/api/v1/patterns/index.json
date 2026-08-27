@@ -70,6 +70,32 @@
           ],
           "reading": "The pattern is worth naming precisely because each half is defensible. The trap is structural, which is also why no single conversation can argue it away."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "Two rejections inside one market cycle: one saying the experience sits above the band scoped for the role, one saying the depth is not yet at the next level's scope.",
+          "reads": "Together the two messages describe a person who is above one rung and below the next, with nothing open in between.",
+          "does": "Applies at both levels at once and shifts what the CV emphasises depending on which rung the posting names."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A profile whose years and previous scope sit above the band approved for the requisition being screened.",
+          "reads": "An expectation above the band reads as an offer that will not close, and the level of the requisition is fixed before the screen begins.",
+          "does": "Closes the application against this requisition and writes the rejection in terms of fit with the level it was opened at."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A candidate in a staff-level round, assessed against the scope the panel has agreed for that level: ownership across an organisation rather than a team.",
+          "reads": "A track record that has not yet run at that scope is a risk that lands on the person who makes the hire.",
+          "does": "Records a not-at-this-level decision and leaves the requisition open: a bad hire carries a name and a search still running does not."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A levelling grid in which every level has a band and the bands are contiguous, and requisitions that are each opened at a single level.",
+          "reads": "A candidate above one band and below the next is a mismatch between a person and a particular requisition, not a gap in the grid; the grid is what makes offers consistent across every hire.",
+          "does": "Holds the grid steady through the cycle and approves requisitions at one level, because the level is the unit finance funds."
+        }
       ]
     },
     {
@@ -163,6 +189,32 @@
           ],
           "reading": "A revised profile, an automated refresh and a genuinely new headcount are three different mechanisms with one appearance. This is the question that tells them apart."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A generic rejection after a final round, and the same requisition number back on the careers page weeks later with the text unchanged.",
+          "reads": "Either the profile was revised, or the platform refreshed the listing, or the headcount is new — and the sequence on its own does not separate them.",
+          "does": "Asks whether the listing is the same requisition, and records the dates and the answer before deciding whether to reapply."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The requisition record moving from closed back to open with a revised profile, and a rejection template that is the same for every candidate at that stage.",
+          "reads": "This is one continuous search that changed shape, not two openings.",
+          "does": "Sends the standard wording, since a specific reason given at the close of one round can be quoted back at the next, and states the restart when a candidate asks directly."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "Two finalists at the end of a loop, and the work the role exists to absorb still uncovered.",
+          "reads": "A loop that ended without a hire is information about the profile, and the profile is the part of this the manager controls.",
+          "does": "Rewrites the requirements and restarts the search on the same requisition, because a new requisition would go back through funding."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "A requisition whose status returned to open, and a scheduled refresh that pushes open listings back out to aggregators with a current date.",
+          "reads": "An open requisition is a listing to distribute; the refresh reads the status field and not the history behind it.",
+          "does": "Republishes under the original identifier and stamps the posting with today's date, which is the default behaviour for any open requisition."
+        }
       ]
     },
     {
@@ -236,6 +288,26 @@
             }
           ],
           "reading": "No one decided anything about this candidate. An impossible threshold was copied into a rule and the rule ran."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A posting requiring more years with a framework than the framework has existed, and a rejection minutes after submitting, outside working hours.",
+          "reads": "The threshold is checkable against a release date, which makes this one of the few claims in a posting that can be false rather than arguable.",
+          "does": "Keeps the posting text and the time of the rejection, which can be set against the release date; the requirement itself reaches nobody who could rewrite it."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A draft posting assembled from the template of a previous requisition, reviewed for the part that describes the team's work.",
+          "reads": "Years of experience is a shorthand for depth, and in the draft that figure carries less weight than the description of the role.",
+          "does": "Approves the draft and returns to the delivery the requisition exists to cover; the number reaches a screening rule without passing a technical review."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "A configured knockout rule comparing a parsed year count against a threshold the customer entered.",
+          "reads": "A value below the threshold is a fail; whether the threshold is reachable at all is not a property the rule can evaluate.",
+          "does": "Rejects at submission and emits the standard does-not-meet-minimum-criteria notice, in seconds, at whatever hour it arrives."
         }
       ]
     },
@@ -315,6 +387,32 @@
             }
           ],
           "reading": "A high number ends the process and a low one moves the level. There is no answer that leaves both the process and the grade untouched — which is what makes it a bind rather than a negotiation."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A request for a compensation expectation at the screen, and a band that is not stated in return.",
+          "reads": "The number is collected before the level is fixed, so it is an input to the level rather than an answer to it.",
+          "does": "Names a range without the band, without the level, and without knowing how many others in the pipeline have already named one."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A screening form with an expectations field that has to be filled before the candidate moves to the panel, and disclosure rules for the band that are set elsewhere.",
+          "reads": "The number is the cheapest available check on whether the process is viable, before panel time is spent on it.",
+          "does": "Asks for the number first and records it in the field, and says about the band exactly what is permitted at this stage."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A band per level and a rule about what may be said about it, both reviewed on a cycle measured in quarters.",
+          "reads": "A stated expectation is the input that places a candidate on the grid; a band stated first becomes the floor of every negotiation that follows.",
+          "does": "Publishes the band where a disclosure rule requires it and not elsewhere, and keeps levelling a decision separate from the number."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "Postings in covered jurisdictions, which either carry a band or do not.",
+          "reads": "A published band is measurable and enforceable; the level a candidate will be assessed at is neither.",
+          "does": "Requires the band in the posting, which closes one branch of the bind and leaves the levelling branch untouched."
         }
       ]
     }

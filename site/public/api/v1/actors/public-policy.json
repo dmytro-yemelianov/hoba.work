@@ -50,6 +50,103 @@
         ],
         "reading": "The strongest external lever in this registry closes one branch of the compensation bind and leaves the levelling branch entirely open."
       }
+    ],
+    "recommendations": [
+      {
+        "id": "disclose-level-with-band",
+        "title": "Extend disclosure from the band to the level",
+        "rationale": "A disclosure rule that reaches the band leaves unstated the level the band attaches to, and the level decides where inside the band an offer lands. Requiring the posting to name the level being hired at, and the band for that level, closes the branch of the compensation bind that a band alone leaves open.",
+        "cost": "medium",
+        "costs": "A band is a number on a page and a level is a claim about an internal grid, so each complaint needs records the regulator has to ask for separately. It also fixes at publication a level that is currently settled after the panel.",
+        "targets": [
+          "B-013",
+          "B-009",
+          "M-004",
+          "P-004",
+          "P-001"
+        ],
+        "interventions": [
+          "I-002"
+        ]
+      },
+      {
+        "id": "state-contractable-jurisdictions",
+        "title": "Require postings to name where employment is possible",
+        "rationale": "Which employment relationships are possible in which jurisdiction is settled before anyone applies, and it is one of the few facts here that this actor defines rather than regulates at a distance. Requiring the posting to list the jurisdictions the role can actually be contracted in moves that fact to publication day instead of the screening call.",
+        "cost": "medium",
+        "costs": "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.",
+        "targets": [
+          "M-014",
+          "B-004",
+          "B-013"
+        ],
+        "interventions": []
+      },
+      {
+        "id": "dated-postings-withdrawn-on-closure",
+        "title": "Require postings to be dated and withdrawn on closure",
+        "rationale": "What a public posting is — an advertisement, or a statement that funded work exists — is a disclosure question, and that is the question this actor reaches. A rule that a posting carries its publication date and comes down when the search ends makes the difference between an open search and a talent pool observable from outside.",
+        "cost": "medium",
+        "costs": "Two dates are cheap to check, but the fact that decides a breach — whether the search had ended — sits in records only the employer holds, so every complaint starts with disclosure. The rule also reaches sourcing that is legal and ordinary, which widens the perimeter it has to defend.",
+        "targets": [
+          "M-006",
+          "M-016",
+          "B-013",
+          "A-004",
+          "P-002"
+        ],
+        "interventions": [
+          "I-001"
+        ]
+      },
+      {
+        "id": "name-the-automated-rule",
+        "title": "Require every automated rejection to name its rule",
+        "rationale": "Where an application is ended by a threshold rather than by a reader, whether that decision must be explainable already sits inside this actor's bounds. Attaching the duty to the ending rather than to the message means a rule that closes an application — a missing term, an unmet threshold, an elapsed review window — produces a statement the applicant can check instead of nothing.",
+        "cost": "high",
+        "costs": "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.",
+        "targets": [
+          "B-002",
+          "M-008",
+          "M-020",
+          "M-003",
+          "A-009",
+          "A-001"
+        ],
+        "interventions": []
+      },
+      {
+        "id": "document-continuity-features",
+        "title": "Require continuity-based ranking features to be documented and justified",
+        "rationale": "A feature that scores the length of a break sits inside the automated decision-making whose bounds this actor sets, and it is the input that closes the gap-penalty loop. Requiring any ranking input derived from employment continuity to be documented and justified makes its presence checkable, which a prohibition on its own does not.",
+        "cost": "medium",
+        "costs": "The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.",
+        "targets": [
+          "M-011",
+          "L-001",
+          "B-002"
+        ],
+        "interventions": [
+          "I-004"
+        ]
+      },
+      {
+        "id": "common-disclosure-schema",
+        "title": "Publish a common schema for posting terms and outcomes",
+        "rationale": "The market copies conventions from itself faster than it absorbs rules, and this actor writes conventions as well as rules. A published schema — band, level, stages, jurisdictions, and a decline that names its stage and its criterion — gives the disclosure duties a shape that can be filled in once and read by machine.",
+        "cost": "low",
+        "costs": "A schema carries no obligation, so it is adopted where it is cheaper than what it replaces and nowhere else. The categories fixed in the first version become the ceiling on what is disclosed later, and the body that publishes it owns the revisions for as long as anyone uses it.",
+        "targets": [
+          "A-002",
+          "A-014",
+          "M-010",
+          "B-013"
+        ],
+        "interventions": [
+          "I-003",
+          "I-002"
+        ]
+      }
     ]
   }
 }

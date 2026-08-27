@@ -11,6 +11,7 @@ import {
   stageIdSchema,
   type ContentLang,
   type RegistryBundle,
+  type ActorNode,
   type EraNode,
   type WorkflowNode,
   type WorkflowState,
@@ -119,4 +120,37 @@ export const stateAnchor = (workflowId: string, stateId: string): string => `${w
 /** The eras that name this entity as one of the things they made ordinary. */
 export function erasNaming(bundle: RegistryBundle, id: string): EraNode[] {
   return bundle.eras.filter((era) => era.entities.includes(id));
+}
+
+
+const PERSPECTIVE_ROUTES: Record<string, string> = {
+  artifact: 'artifacts',
+  barrier: 'barriers',
+  mechanism: 'mechanisms',
+  pattern: 'patterns',
+  loop: 'loops',
+  intervention: 'interventions',
+};
+
+export interface SeenEntry {
+  id: string;
+  title: string;
+  type: string;
+  href: string;
+}
+
+/** Every entry this actor has a recorded view of — the actor page's index. */
+export function entriesSeenBy(bundle: RegistryBundle, actor: ActorNode['id'], prefix: string): SeenEntry[] {
+  const all = [
+    ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+    ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+  ];
+  return all
+    .filter((node) => node.perspectives.some((p) => p.actor === actor))
+    .map((node) => ({
+      id: node.id,
+      title: node.title,
+      type: node.type,
+      href: `${prefix}/${PERSPECTIVE_ROUTES[node.type]}/${node.id}`,
+    }));
 }

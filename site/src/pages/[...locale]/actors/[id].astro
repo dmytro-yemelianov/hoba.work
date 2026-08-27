@@ -1,0 +1,121 @@
+---
+/**
+ * One seat: what it decides, what it cannot see, what it is measured on, and
+ * what it could do differently.
+ *
+ * The recommendations are the point of the page. Each one is something this
+ * actor actually controls — a recommendation to the recruiter that needs
+ * finance's approval is not a recommendation to the recruiter — and each states
+ * what it costs the person who does it, because none of them are free.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import EntityRow from '../../../components/EntityRow.astro';
+import Specimen from '../../../components/Specimen.astro';
+import { entriesSeenBy, getBundle } from '../../../lib/registry';
+import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
+import type { ActorNode } from '@hoba/registry';
+
+export async function getStaticPaths() {
+  return LANGS.flatMap((lang) =>
+    getBundle(lang).actors.map((actor) => ({ params: { ...localeParams(lang), id: actor.id }, props: { lang, actor } }))
+  );
+}
+
+const { lang, actor } = Astro.props as { lang: Lang; actor: ActorNode };
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const bundle = getBundle(lang);
+const seen = entriesSeenBy(bundle, actor.id, prefix);
+const interventions = new Map(bundle.interventions.map((i) => [i.id, i]));
+const titles = new Map(
+  [...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [n.id, n.title])
+);
+
+const facts = [
+  { key: 'controls', label: t('actors.controls'), items: actor.controls },
+  { key: 'blind', label: t('actors.blind'), items: actor.blind_to },
+  { key: 'incentives', label: t('actors.incentives'), items: actor.incentives },
+] as const;
+---
+<Layout lang={lang} title={actor.title} description={actor.summary} activeNav="actors" image={`/cards/${lang}/${actor.id}.png`}>
+  <PageHeader title={actor.title} lead={actor.summary}>
+    <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
+      <a href={`${prefix}/actors`} class="hover:text-hoba-text">{t('actors.kicker')}</a><span>/</span>
+      <span class="text-hoba-accent font-mono">{actor.id}</span>
+    </nav>
+    <p slot="actions">
+      <a href={`?lens=${actor.id}`} class="btn btn-secondary">{t('actors.readAs')}</a>
+    </p>
+  </PageHeader>
+
+  <div>
+    <section class="section grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
+      {facts.map(({ label, items }) => (
+        <div>
+          <h2 class="section-title text-lg">{label}</h2>
+          <ul class="space-y-2">
+            {items.map((item) => <li class="text-base text-hoba-muted">{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    {actor.specimens.length > 0 && (
+      <section class="section">
+        <h2 class="section-title">{t('specimen.section')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('specimen.disclaimer')}</p>
+        {actor.specimens.map((specimen) => <Specimen specimen={specimen} lang={lang} />)}
+      </section>
+    )}
+
+    <section class="section">
+      <h2 class="section-title">{t('actors.recommendations')}</h2>
+      {actor.recommendations.length === 0 ? (
+        <p class="text-base text-hoba-muted">{t('actors.noRecs')}</p>
+      ) : (
+        <>
+          <p class="text-base text-hoba-muted max-w-3xl">{t('actors.recIntro')}</p>
+          <ol class="row-list mt-4">
+            {actor.recommendations.map((rec) => (
+              <li class="py-5" id={rec.id}>
+                <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span class="text-base font-medium text-hoba-text">{rec.title}</span>
+                  <span class="pill pill-muted">{asHeading(t('int.cost'))}: <span class="text-hoba-text">{t(`cost.${rec.cost}`)}</span></span>
+                </p>
+                <p class="mt-1 text-base text-hoba-muted max-w-2xl">{rec.rationale}</p>
+                <p class="mt-2 text-sm text-hoba-muted max-w-2xl">
+                  <span class="text-hoba-text">{t('actors.costs')}:</span> {rec.costs}
+                </p>
+                {rec.targets.length > 0 && (
+                  <p class="mt-2 flex flex-wrap items-baseline gap-1.5 text-sm text-hoba-muted">
+                    <span>{t('actors.addresses')}</span>
+                    {rec.targets.map((id) => (
+                      <a href={`${prefix}/registry?q=${id}`} class="pill pill-muted font-mono" title={titles.get(id) ?? id}>{id}</a>
+                    ))}
+                  </p>
+                )}
+                {rec.interventions.length > 0 && (
+                  <ul class="row-list mt-3">
+                    {rec.interventions.map((id) => (
+                      <EntityRow id={id} title={interventions.get(id)?.title ?? id} href={`${prefix}/interventions/${id}`} pill={t('actors.alsoSee')} />
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+    </section>
+
+    {seen.length > 0 && (
+      <section class="section">
+        <h2 class="section-title">{t('actors.views')}</h2>
+        <ul class="row-list">
+          {seen.map((entry) => <EntityRow id={entry.id} title={entry.title} href={`${entry.href}?lens=${actor.id}`} />)}
+        </ul>
+      </section>
+    )}
+  </div>
+</Layout>

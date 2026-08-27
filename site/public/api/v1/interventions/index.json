@@ -53,6 +53,32 @@
           ],
           "reading": "The same batch job that produces silent bulk rejections can be pointed at the listing instead of the candidate. The cost is a configuration line."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A configuration line, and the count of open requisitions it would withdraw this quarter, on the same cycle where headcount is reviewed.",
+          "reads": "What is being spent is optionality: a listing that closes on a timer cannot be held open while funding is decided, and reopening it runs the approval chain again.",
+          "does": "Sets the interval and what counts as activity, and decides whether a lapsed authorisation withdraws the listing or only flags it for review."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "Listings dropping off the careers page overnight, and the batch notification going to every application still in flight against them.",
+          "reads": "A requisition closed on a timer is counted as closed rather than filled, and the pipeline built against it is gone if the search restarts.",
+          "does": "Sends the closure notice with the date on it, and asks for the requisition to be reopened where the manager still intends to hire."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A message naming the requisition, the date the search closed, and the reason the listing came down.",
+          "reads": "The process ended for a reason that has nothing to do with the application; there is nothing further to wait for and nothing left to infer.",
+          "does": "Closes the file, stops holding capacity for a possible next round, and reapplies if the role is posted again."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "A customer enabling an expiry rule pointed at the listing, on the same scheduler that already expires unreviewed applications.",
+          "reads": "This is an existing batch capability with a different target rather than new machinery; whether it runs is a customer setting.",
+          "does": "Ships the rule as a configurable option, and its default value decides how many customers ever run it."
+        }
       ]
     },
     {
@@ -104,6 +130,32 @@
             }
           ],
           "reading": "Every branch of the compensation bind needs the candidate to speak first. Publishing the number removes the asymmetry the bind is built on."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A posting draft with a band in it, and the same band readable by everyone already employed at that level.",
+          "reads": "Publishing fixes a number that was previously settled per candidate, and makes internal pay spread visible in a document anyone can open.",
+          "does": "Requires the band to be verified by finance before the posting goes live, which adds an approval step to publishing a role."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The band as a published line in the requisition, available before the screening call rather than after the panel.",
+          "reads": "The expectation question is no longer the filter: a candidate above the band says so at the screen, where the process has cost nobody five rounds.",
+          "does": "Opens the screen with the number, and routes a mismatch into the levelling question instead of carrying it to the offer stage."
+        },
+        {
+          "actor": "candidate",
+          "sees": "The band and the level in the posting, dated and attributed, before any unpaid hours are committed.",
+          "reads": "The one number the whole process is arranged around is available before entering it, so applying becomes a decision about a known range.",
+          "does": "Applies or does not, and where the expectation sits above the band, raises it at the screen instead of at the offer."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "Postings carrying a band in covered jurisdictions, and postings carrying one elsewhere because the practice spread.",
+          "reads": "Compliance is checkable against the text of the posting; the level a candidate is actually assessed at sits outside what any current disclosure rule reaches.",
+          "does": "Sets the requirement on the posting, the one artefact an inspection can check; the levelling decision has no comparable artefact for a rule to attach to."
         }
       ]
     },
@@ -163,6 +215,32 @@
           ],
           "reading": "The same decision, expressed as a category with a scope. Note the second line: saying what was not assessed is what stops a single round becoming a verdict on the person."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "recruiter",
+          "sees": "A panel recommendation, and a taxonomy that asks for a category, a round and a scope the recommendation does not contain.",
+          "reads": "The wording is theirs to write but the content is not: a category can only be sent where the panel recorded one.",
+          "does": "Sends the structured note where the rubric was filled in, and the template where it was not."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A rubric field per round that has to be completed before the outcome is recorded, and the same fields from the other interviewers.",
+          "reads": "The cost is interviewer minutes booked before an outcome can be recorded; in return, two interviewers scoring one round differently becomes a number.",
+          "does": "Records the category and what the round did not assess, and calibrates where the panel's entries disagree."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A category, the round it came from, an explicit list of what was not assessed, and a re-application window.",
+          "reads": "One round stays a scored round rather than a verdict on the person, and the part of the process that was positive is stated rather than inferred.",
+          "does": "Works on the named category, and reapplies inside the stated window instead of treating the door as closed."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A proposed change to what is sent to rejected candidates: from a template that says nothing to a note that names a category.",
+          "reads": "Written feedback is consistent across every hire, which is what defensibility asks for, and is also a record that exists after the process ends.",
+          "does": "Defines which categories may be sent and which may not, and that definition is the boundary the recruiter writes inside."
+        }
       ]
     },
     {
@@ -214,6 +292,26 @@
             }
           ],
           "reading": "The arithmetic is the whole intervention. The same person, the same work, above the threshold instead of below it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "ats-vendor",
+          "sees": "A feature column in the training set, and the ranked order that shifts for every customer once it is removed.",
+          "reads": "The removal itself is one line in a feature list and a re-scoring run; the effect it is made for happens outside the platform, where there is no telemetry.",
+          "does": "Ships the change with the model card updated, and carries the support load from customers whose thresholds were tuned against the old distribution."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "Profiles in the queue that the previous ranking placed below the review threshold.",
+          "reads": "The queue is longer and the screening capacity is the same; ranking decides reading order, not how many get read.",
+          "does": "Reads down the new order until capacity runs out, and the profiles below that line stay unread — for a reason that is no longer the gap."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "A published model card naming the feature that was removed, in a market where the same feature ships enabled by default elsewhere.",
+          "reads": "One vendor removing it changes one vendor's ranking; what would hold it across the market is a rule about what an automated screen may read at all.",
+          "does": "Writes the requirement against what a vendor must publish and explain; what a customer switches on inside a configuration screen sits outside what any disclosure rule inspects."
         }
       ]
     },
@@ -273,6 +371,20 @@
           ],
           "reading": "This is the one mechanism on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
         }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "An extraction report against their own file: how many work entries and skills a parser recovers, and which layout choice dropped them.",
+          "reads": "The failure was in the document rather than in the record, and it is fixable before submission rather than inferable afterwards.",
+          "does": "Re-exports single-column with text headings, re-checks, and submits the version that survives extraction."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A complete profile in the queue: work history in fields, skills in fields, orderable against the rest.",
+          "reads": "A profile with nothing in the experience field and a profile whose experience did not extract read identically from here; this removes one of the two before it arrives.",
+          "does": "Screens on the content, and in the applications that still arrive empty, an unreadable file and a thin record remain indistinguishable."
+        }
       ]
     },
     {
@@ -322,6 +434,26 @@
             }
           ],
           "reading": "Both halves of the asymmetry are addressed at once: the candidate hours are capped and the reviewer minutes have a floor. Capping only one side moves the problem rather than closing it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "A brief with a hard cap, submissions with the names stripped, and two review slots per submission on the team's calendar.",
+          "reads": "Reviewer minutes acquire a floor where they had none, and the loop is scheduled in advance rather than fitted around the week as it comes.",
+          "does": "Sets the scope so that three hours produces something gradable, and accepts the smaller sample as the evidence the hire is decided on."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A stated scope, a hard timebox, a rate for anything beyond it, and a published rubric the submission is graded against.",
+          "reads": "The hours are knowable before starting, and the grade is a scored artefact rather than an impression formed in a five-minute scan.",
+          "does": "Submits what exists at the three-hour mark instead of competing on hours, and weighs the task against the other processes in flight."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A request to pay a non-employee for an extended work sample, at a rate, on a contracting route.",
+          "reads": "Paying for a sample is a procurement and classification question before it is a hiring one; an unpaid task raises neither.",
+          "does": "Defines the rate and the route, or does not — and where it does not, only the timebox half of the intervention ships."
         }
       ]
     }

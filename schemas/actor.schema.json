@@ -175,6 +175,62 @@
             "additionalProperties": false
           },
           "default": []
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 5
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 20
+              },
+              "cost": {
+                "type": "string",
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              },
+              "costs": {
+                "type": "string",
+                "minLength": 10
+              },
+              "targets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "interventions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^I-\\d{3}$"
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "rationale",
+              "cost",
+              "costs"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
         }
       },
       "required": [

@@ -19,9 +19,10 @@ const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-discovery: registry root not found');
 const PUBLIC = path.join(root, 'site', 'public');
 
-const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/data', '/methodology', '/developers', '/contribute', '/about'];
+const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/data', '/methodology', '/developers', '/contribute', '/about'];
 
 const entityRoutes = (bundle: RegistryBundle): string[] => [
+  ...bundle.actors.map((a) => `/actors/${a.id}`),
   ...bundle.artifacts.map((a) => `/artifacts/${a.id}`),
   ...bundle.barriers.map((b) => `/barriers/${b.id}`),
   ...bundle.mechanisms.map((m) => `/mechanisms/${m.id}`),
@@ -82,6 +83,7 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     `- **Patterns** (\`P-*\`, ${bundle.patterns.length}) — named motifs where several defensible decisions combine into a bind.`,
     `- **Loops** (\`L-*\`, ${bundle.loops.length}) — reinforcing cycles, detected as strongly connected components.`,
     `- **Interventions** (\`I-*\`, ${bundle.interventions.length}) — concrete changes, each attributed to the actor who can make it.`,
+    `- **Actors** (${bundle.actors.length}) — the positions the funnel is made of. Every entry carries a per-actor perspective; ${SITE}/actors, and \`?lens=<actor>\` on any page reads the whole atlas from one of them.`,
     `- **Eras** (\`E-*\`, ${bundle.eras.length}) — periods of the hiring economy, told as where the money came from and how a person got in.`,
     `- **Evidence** (\`EVD-*\`, ${bundle.evidence.length}) — the published sources behind the claims.`,
     '',
@@ -166,6 +168,15 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     `- Actor: ${i.actor} · Scope: ${i.scope} · Cost: ${i.cost}`,
     `- Targets: ${i.targets.join(', ')}`,
     ...i.expected_effects.map((e) => `- Expected: ${e}`),
+  ]);
+
+  section('Actors', bundle.actors, (a) => [
+    a.summary,
+    '',
+    ...a.controls.map((c) => `- Decides: ${c}`),
+    ...a.blind_to.map((b) => `- Cannot see: ${b}`),
+    ...a.incentives.map((i) => `- Measured on: ${i}`),
+    ...a.recommendations.map((r) => `- Could do (${r.cost}): ${r.title} — ${r.rationale} Costs: ${r.costs}`),
   ]);
 
   section('Eras', bundle.eras, (e) => [

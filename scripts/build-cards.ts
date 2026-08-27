@@ -30,6 +30,8 @@ const OUT = path.join(root, 'site', 'dist', 'cards');
 
 // Layer hues, matching --g-* in the site's dark theme.
 const HUE: Record<string, string> = {
+  actor: '#8b949e',
+  era: '#d29922',
   artifact: '#a371f7',
   barrier: '#3fb950',
   mechanism: '#58a6ff',
@@ -64,8 +66,8 @@ const FONTS = SUBSETS.flatMap((subset) =>
 );
 
 const LABELS: Record<ContentLang, Record<string, string>> = {
-  en: { artifact: 'Observation', barrier: 'Barrier', mechanism: 'Mechanism', pattern: 'Pattern', loop: 'Loop', intervention: 'Intervention', badge: 'reconstruction' },
-  uk: { artifact: 'Спостереження', barrier: 'Барʼєр', mechanism: 'Механізм', pattern: 'Патерн', loop: 'Цикл', intervention: 'Інтервенція', badge: 'реконструкція' },
+  en: { actor: 'Actor', era: 'Era', artifact: 'Observation', barrier: 'Barrier', mechanism: 'Mechanism', pattern: 'Pattern', loop: 'Loop', intervention: 'Intervention', badge: 'reconstruction' },
+  uk: { actor: 'Актор', era: 'Епоха', artifact: 'Спостереження', barrier: 'Барʼєр', mechanism: 'Механізм', pattern: 'Патерн', loop: 'Цикл', intervention: 'Інтервенція', badge: 'реконструкція' },
 };
 
 type Node = { type: string; props: Record<string, unknown> };
@@ -160,6 +162,8 @@ async function render(entity: Entity, lang: ContentLang, bundle: RegistryBundle,
 }
 
 const collections = (bundle: RegistryBundle): Entity[] => [
+  ...bundle.actors,
+  ...bundle.eras,
   ...bundle.artifacts,
   ...bundle.barriers,
   ...bundle.mechanisms,

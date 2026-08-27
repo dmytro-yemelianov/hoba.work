@@ -33,6 +33,8 @@ import type {
   natureTypeSchema,
   nodeStatusSchema,
   patternSchema,
+  perspectiveSchema,
+  recommendationSchema,
   workflowSchema,
   workflowStateSchema,
   workflowTransitionSchema,
@@ -72,6 +74,8 @@ export type EmissionEdge = z.infer<typeof emissionEdgeSchema>;
 export type LoopEdge = z.infer<typeof loopEdgeSchema>;
 export type MechanismFacets = z.infer<typeof mechanismFacetsSchema>;
 
+export type Perspective = z.infer<typeof perspectiveSchema>;
+export type Recommendation = z.infer<typeof recommendationSchema>;
 export type ActorNode = z.infer<typeof actorSchema>;
 export type WorkflowState = z.infer<typeof workflowStateSchema>;
 export type WorkflowTransition = z.infer<typeof workflowTransitionSchema>;

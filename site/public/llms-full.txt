@@ -12,6 +12,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
 - **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
 - **Interventions** (`I-*`, 6) — concrete changes, each attributed to the actor who can make it.
+- **Actors** (6) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 29) — the published sources behind the claims.
 
@@ -592,6 +593,131 @@ Enforce strict 3-hour scope limits on take-homes, compensate candidates for exte
 - Targets: M-019, L-002, B-006
 - Expected: Prevent reviewer fatigue and asymmetric code evaluation
 - Expected: Respect candidate time investment and eliminate IP exploitation concerns
+
+## Actors
+
+### ats-vendor — ATS vendor
+
+The platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.
+
+- Decides: What the parser can extract, and what it silently drops
+- Decides: Which knockout rules a customer can configure, and which are on by default
+- Decides: What the ranking model reads as a feature
+- Decides: When an unreviewed application expires, and what it emails when it does
+- Cannot see: Whether a rule its customer configured is lawful, reasonable or even intended
+- Cannot see: What happened to a candidate outside the platform
+- Cannot see: Whether the profile it scored 12/100 was unreadable rather than unqualified
+- Measured on: Throughput and customer-visible efficiency, which are what the buyer evaluates
+- Measured on: Feature parity with competitors, including features with known disparate effects
+- Measured on: Defaults that reduce customer support load, not candidate confusion
+- Could do (medium): Remove employment continuity from the ranking feature set — The feature set of the ranking model is written by the vendor, not configured per customer, so continuity is one of the few inputs here that no buyer has to agree to remove. While it stays in the set, a break in employment lowers the rank, a lower rank returns fewer interviews, and the next application carries a longer break. Costs: Every threshold customers tuned against the old score distribution shifts, and the field stays on competitors' feature lists after it leaves this one.
+- Could do (medium): Stop scoring files the parser could not read — A file whose work history was lost in extraction and a file with no relevant work history reach the ranker as the same low number, and nothing downstream separates them. The extraction score is already computed, so routing anything below its threshold into a hold state rather than into the ranking is a change inside the pipeline the vendor owns. Costs: The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls.
+- Could do (medium): Show the applicant the record the parser stored — The parsed record, not the uploaded file, is the version of the candidate every later stage reads, and it lives inside the platform rather than on the customer's careers page. Putting it into the submission confirmation with a way to correct it is the one point where the person who can tell that half the work history is missing is still able to say so. Costs: It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform.
+- Could do (medium): Hold the unreviewed queue instead of declining it — When the inactivity timeout fires, what it does and what it emails are the vendor's, and the same batch job can hold the applications and raise the requisition to the customer as having had no interview activity since a stated date. Whether the listing then comes down is a decision about funding, which is not visible from inside the platform. Holding rather than declining leaves that decision with the party who can make it, and leaves the applicants a state rather than a verdict. Costs: Every held queue becomes a customer decision the current default takes off their desk, and support load is exactly what these defaults are tuned to keep down.
+- Could do (low): Show what a knockout rule removes before saving — Which knockout rules can be expressed, and what the configuration screen shows while one is being written, are both the vendor's. Whether a rule is reasonable is not visible from here; what it would have done to the applications already stored is, and running the draft against them puts that in front of the person who does hold the judgement. Costs: The dry run reads the customer's stored applications on the configuration path, and the screen now states a number the vendor stands behind — including when a draft rule would have ended the entire stored pool.
+- Could do (medium): Name the rule and threshold in automated declines — The message an automated rule sends is the vendor's template, and the rule that fired, its threshold and the value it read are already in the log line behind it. Carrying those three items into the message is what separates a decline that names a criterion from one that arrives as a verdict on the person. Costs: The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not.
+
+### candidate — Candidate
+
+The person applying. The only party in the funnel who sees the whole of their own process and almost none of anyone else's.
+
+- Decides: What is submitted, and in what machine-readable shape
+- Decides: Which processes to enter and when to withdraw
+- Decides: Which questions to ask, and when to ask them
+- Decides: What is recorded: dates, wording, who said it
+- Cannot see: Whether a requisition is funded, frozen or already promised internally
+- Cannot see: The band, the level, and the rubric being scored against
+- Cannot see: How many others are in the pipeline and where they came from
+- Cannot see: Whether a rejection was written by a person or emitted by a rule
+- Measured on: Reach a decision quickly enough to keep options open
+- Measured on: Avoid spending unpaid hours on processes that were never live
+- Measured on: Preserve the ability to reapply without having burned the relationship
+- Could do (low): Check what the parser extracted before you submit — The shape of the file is on the candidate's side of the line; what a reader decides after it is not. A layout a person reads without difficulty can arrive in the record as zero work-history entries, and the score that follows is arithmetic on what was extracted. Running the file through a parser first turns an invisible failure into an edit. Costs: A single-column text export gives up the layout, and every later edit to the document has to be checked again.
+- Could do (low): Ask what the conversation is attached to — Whether an approved requisition sits behind the outreach, and whether an internal candidacy is already running, are not in any field the candidate can see. Asking at the first exchange is the only route to either, and the answer arrives before the unpaid hours do. Costs: A logistics question in the first reply comes before any discussion of the work, and the answer cannot be checked against anything.
+- Could do (medium): Ask for the band before any assessment is scheduled — The band, the level and the rubric are the second of the candidate's two lists, and the compensation bind runs on the candidate naming a number first. Asking for the band before an assessment is booked puts the mismatch at the screen rather than at week four, when the hours are already spent. Costs: The question can end a process at the screen, and stating an expectation early fixes a number before the level is fixed.
+- Could do (low): Keep a dated record of every message — Dates, wording and who said it are the one part of the process the candidate holds in full. Kept as they arrive, they separate what a process established from what it did not: a rejection timed minutes after submission, a requisition back on the board, two rounds whose feedback disagrees. Costs: It is unpaid administrative time in the period when time is scarcest, and a complete record of a process that ends in silence is still a record of silence.
+- Could do (medium): Submit at the stated timebox and name the cuts — The hours a work sample takes come out of the same budget as the search itself, and the minutes it is read for are set on the other side of the gate. Stopping at the stated timebox and writing down what was cut to fit it keeps the exercise inside the scope that was agreed and leaves the trade-offs on the page. Costs: A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets.
+- Could do (medium): Set a date when a silent process closes — Silence after submission covers a listing nobody took down, a batch expiry job and a queue that was never reached, and none of the three is visible from outside. Choosing the closing date in advance turns an open question into a finished one and returns the hours to the searches that answered. Costs: An answer that arrives after the chosen date is treated as no answer, and the time already spent is written off rather than waited out.
+
+### employer-policy — Employer policy
+
+Finance, leadership and the people function: the layer that authorises headcount, fixes bands and writes the rules the funnel executes. Never meets a candidate.
+
+- Decides: Whether a requisition is funded, and whether it stays funded
+- Decides: The band and the levelling grid
+- Decides: Whether postings must be published externally regardless of internal candidates
+- Decides: What may be disclosed, and what must not be
+- Cannot see: What a freeze looks like from the far end of a five-round process
+- Cannot see: How a compliance posting reads to someone who spent six weeks on it
+- Cannot see: The cumulative candidate hours a policy consumes
+- Measured on: Optionality: an approved requisition that can be paused costs less than one that cannot
+- Measured on: Consistency and legal defensibility across every hire
+- Measured on: Cost control, on a cycle measured in quarters rather than in conversations
+- Could do (medium): Publish the band on the posting itself — The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at B-009 into arithmetic rather than a conversation that happens for the first time after the panel. Costs: The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.
+- Could do (high): Sign the headcount before the role is published — This layer decides whether a requisition is funded, and B-010 is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists. Costs: Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.
+- Could do (medium): Expire the listing when its authorisation lapses — Whether a requisition stays funded is decided here, and that fact reaches no configuration screen on its own. A rule that withdraws the listing when authorisation lapses, and notifies everyone still inside the process, closes the gap between the decision and what the page shows. Costs: A paused search cannot be kept warm: reopening means another trip through the approval chain and a posting that restarts from zero applicants, which is a direct charge on this layer's optionality.
+- Could do (medium): State on the posting that an internal candidacy exists — The rule that a role is published externally regardless of an internal candidate sits in this layer, and so does what the posting may say. One line stating that an internal candidacy is in process gives an external applicant, at the point of applying, the fact the panel already has. Costs: The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.
+- Could do (medium): Narrow the checks and show the candidate any discrepancy — Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At B-011 a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision. Costs: Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.
+
+### hiring-manager — Hiring manager
+
+The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb.
+
+- Decides: The requirements as written, and the ones only they know about
+- Decides: Who interviews and what they ask
+- Decides: The level a candidate is assessed at
+- Decides: Whether a split panel becomes a hire
+- Cannot see: What the same candidate showed in rounds they did not attend
+- Cannot see: How the requirements read to someone outside the team
+- Cannot see: What the search is costing the people covering the gap
+- Measured on: Avoid a bad hire, which is visible and attributed, more than a missed hire, which is neither
+- Measured on: Fill the gap without the ramp-up cost of someone who needs teaching
+- Measured on: Keep the team's own delivery on track while running the loop
+- Could do (medium): Write the requirement list from last quarter's work — The requirements as written belong to this actor, and the list is what the keyword filter and the recruiter's screen are both built from. Checking each line against what the team delivered last quarter separates what the job uses from what a previous strong candidate happened to have. A year count larger than the age of the technology is checkable before the posting goes up. Costs: A shorter list brings more applications into a funnel this actor's own team staffs, and it gives up the requirement page as the argument for a higher level and a wider band.
+- Could do (low): Put the house preferences into the interview brief — This actor sets what each interviewer asks, and holds the requirements only they know about. A preference about architecture or about vertical experience that is not in the brief is still scored in the room, and the candidate cannot design against a criterion they were not given. Costs: A preference in writing is open to challenge from the panel and from the recruiter, and one that cannot be put into a sentence does not make it into the brief.
+- Could do (medium): Cap the take-home and floor the review time — The exercise and who reviews it are both this actor's to set. Work built over hours and read in minutes is scored on whatever the reader happened to open, and the note that comes out of it describes the review rather than the submission. Capping the candidate's hours without a floor under the reviewer's minutes moves the asymmetry rather than closing it. Costs: A three-hour sample carries less to go on, so more of the decision falls to the panel, and twenty minutes from each of two reviewers comes out of a sprint the team is already behind on.
+- Could do (medium): Agree the decision rule before the first conversation — Whether a split panel becomes a hire is this actor's decision, and a unanimity requirement settles it in advance: one dissent and three produce the same outcome. Writing the rule down before the loop starts, including who breaks a tie, keeps an even split from being written up as a finding about the candidate. Costs: Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name.
+- Could do (high): Freeze the requirements once the loop opens — The requirements as written are this actor's; whether a requisition closes is not. Assessments taken against one description do not carry over to another, so a change of stack or scope that arrives mid-loop belongs in the next posting rather than in the scoring of work already done. Everyone already inside is then measured against the description they were given. Costs: The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting.
+- Could do (medium): Fix the assessed level before the loop opens — The level a candidate is assessed at is this actor's to set, and it is set at the in-depth review whether or not it was written down first. Naming the level, and what evidence meets it, before the loop opens means experience above the band is measured against the requirements rather than against a forecast about how long someone stays. Costs: A level fixed in advance removes the move of recovering a strong candidate at the level below, and where the level was set wrong the search runs again from the posting.
+
+### public-policy — Public policy and industry standards
+
+Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for.
+
+- Decides: What must be disclosed — pay transparency rules being the clearest current example
+- Decides: What automated decision-making is permitted, and what must be explainable
+- Decides: Which employment relationships are possible in which jurisdiction
+- Cannot see: How a rule is implemented once it reaches a configuration screen
+- Cannot see: Practices that are legal, ordinary, and still produce the effects catalogued here
+- Measured on: Rules that are enforceable and measurable, which is a narrower set than rules that would help
+- Measured on: Not disrupting labour markets faster than they can absorb the change
+- Could do (medium): Extend disclosure from the band to the level — A disclosure rule that reaches the band leaves unstated the level the band attaches to, and the level decides where inside the band an offer lands. Requiring the posting to name the level being hired at, and the band for that level, closes the branch of the compensation bind that a band alone leaves open. Costs: A band is a number on a page and a level is a claim about an internal grid, so each complaint needs records the regulator has to ask for separately. It also fixes at publication a level that is currently settled after the panel.
+- Could do (medium): Require postings to name where employment is possible — Which employment relationships are possible in which jurisdiction is settled before anyone applies, and it is one of the few facts here that this actor defines rather than regulates at a distance. Requiring the posting to list the jurisdictions the role can actually be contracted in moves that fact to publication day instead of the screening call. Costs: The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.
+- Could do (medium): Require postings to be dated and withdrawn on closure — What a public posting is — an advertisement, or a statement that funded work exists — is a disclosure question, and that is the question this actor reaches. A rule that a posting carries its publication date and comes down when the search ends makes the difference between an open search and a talent pool observable from outside. Costs: Two dates are cheap to check, but the fact that decides a breach — whether the search had ended — sits in records only the employer holds, so every complaint starts with disclosure. The rule also reaches sourcing that is legal and ordinary, which widens the perimeter it has to defend.
+- Could do (high): Require every automated rejection to name its rule — Where an application is ended by a threshold rather than by a reader, whether that decision must be explainable already sits inside this actor's bounds. Attaching the duty to the ending rather than to the message means a rule that closes an application — a missing term, an unmet threshold, an elapsed review window — produces a statement the applicant can check instead of nothing. Costs: The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.
+- Could do (medium): Require continuity-based ranking features to be documented and justified — A feature that scores the length of a break sits inside the automated decision-making whose bounds this actor sets, and it is the input that closes the gap-penalty loop. Requiring any ranking input derived from employment continuity to be documented and justified makes its presence checkable, which a prohibition on its own does not. Costs: The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.
+- Could do (low): Publish a common schema for posting terms and outcomes — The market copies conventions from itself faster than it absorbs rules, and this actor writes conventions as well as rules. A published schema — band, level, stages, jurisdictions, and a decline that names its stage and its criterion — gives the disclosure duties a shape that can be filled in once and read by machine. Costs: A schema carries no obligation, so it is adopted where it is cheaper than what it replaces and nowhere else. The categories fixed in the first version become the ceiling on what is disclosed later, and the body that publishes it owns the revisions for as long as anyone uses it.
+
+### recruiter — Recruiter
+
+The function that moves people through the funnel. Holds the most information about the process and the least authority over its outcome.
+
+- Decides: Which applications are read and in what order
+- Decides: What is disclosed at the screen, and when
+- Decides: The wording of the rejection
+- Decides: Whether a candidate is told a search has stalled
+- Cannot see: What the panel actually scored, beyond the recommendation
+- Cannot see: Whether finance will approve the headcount this quarter
+- Cannot see: What the hiring manager privately requires but has not written down
+- Measured on: Move the pipeline; time-to-fill is measured, time-to-clarity is not
+- Measured on: Protect the relationship with the hiring manager, who is the internal client
+- Measured on: Avoid saying anything that could be quoted back as a commitment
+- Could do (medium): State the band before asking for a number — The screen is where compensation first comes up, and the order of the two questions is the recruiter's to set. Saying the band that is on the requisition, before asking what the candidate expects, removes the asymmetry that both branches of the compensation bind run on. Where no band has been set, saying that is also an answer the candidate can act on. Costs: It spends the flexibility of hearing the candidate's figure first, and it puts a number into the conversation that can be quoted back later as a commitment.
+- Could do (medium): Name the stage and the criterion that ended it — The wording of the rejection belongs to this seat, and the same message can carry the stage the process ended at, the criterion that was named to the recruiter, and what the process never reached. Where the panel returned a recommendation without a criterion, the message records that no criterion was given, rather than a template sentence standing in its place. What can be written is bounded by what the recruiter was handed. Costs: Each message is written rather than selected, against a clock measured as time-to-fill, and asking the panel for a criterion spends standing with the hiring manager, who is the internal client.
+- Could do (medium): Tell everyone still inside when a search stops moving — Whether a candidate learns that a search has stalled is decided in this seat, and it is decidable from what is visible here: the date of the last scheduling activity on the requisition. The message states that date and no more, because whether the headcount returns this quarter is not visible from here. Silence at this point is read as a decision about the candidate. Costs: Candidates who are told make other plans, and the message puts in writing that the internal client's search has stopped, against a seat measured on time-to-fill and on that relationship.
+- Could do (medium): Name every stage and its date at the screen — What the process contains, how many conversations it has and when the first decision is due are disclosed at the screen or nowhere, and that disclosure sits in this seat. A candidate holding the list can tell a delay from an ending. When a round is added or a date moves, the same channel carries that within days to everyone already inside. Costs: A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written.
+- Could do (medium): Say whether an approved requisition sits behind the call — Outreach and the first conversation are where the recruiter states what the contact is for. Whether a requisition is open and approved, or whether this is a pool for headcount that does not exist yet, is a fact available at the moment of contact. Without it, the silence that follows such a conversation is read as a decision about the candidate. Costs: It costs replies: outreach that states there is no open requisition gives less reason to answer, and reply volume is what the sourcing side of the pipeline is counted in.
+- Could do (high): Set the reading order in advance and in writing — Which applications are read and in what order is decided in this seat, and the order can be fixed before the week's queue exists: a stated share of screening capacity for inbound, order of arrival within each source, and no sort on how recently someone was last employed. The rule adds no screening capacity; it decides once where the capacity goes, instead of deciding it profile by profile against the length of the queue. Costs: Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones.
 
 ## Eras
 

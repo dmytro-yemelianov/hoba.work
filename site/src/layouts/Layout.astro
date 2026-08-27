@@ -69,6 +69,15 @@ const canonicalURL = new URL(publicPath(Astro.url.pathname), site);
           var view = localStorage.getItem('hoba_view');
           if (view === 'table' || view === 'list' || view === 'cards') document.documentElement.dataset.view = view;
         } catch (e) {}
+        // The lens: ?lens= is the shareable override, the stored choice is the
+        // standing one. Set before paint so a page never flashes every point of
+        // view before collapsing to the chosen one.
+        try {
+          var LENSES = ['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy'];
+          var asked = new URLSearchParams(location.search).get('lens');
+          var lens = asked || localStorage.getItem('hoba_lens');
+          if (LENSES.indexOf(lens) >= 0) document.documentElement.dataset.lens = lens;
+        } catch (e) {}
       })();
     </script>
 

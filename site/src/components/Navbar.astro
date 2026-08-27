@@ -1,6 +1,8 @@
 ---
 import Logo from './Logo.astro';
+import LensSwitch from './LensSwitch.astro';
 import { LANGS, LANG_LABELS, LANG_COOKIE, localePrefix, withLang, useTranslations, type Lang } from '../i18n/utils';
+import { getBundle } from '../lib/registry';
 
 interface Props {
   lang?: Lang;
@@ -23,12 +25,14 @@ const primary = [
   { name: t('nav.data'), href: `${prefix}/data`, key: 'data' },
 ];
 const secondary = [
+  { name: t('nav.actors'), href: `${prefix}/actors`, key: 'actors' },
   { name: t('nav.methodology'), href: `${prefix}/methodology`, key: 'methodology' },
   { name: t('nav.developers'), href: `${prefix}/developers`, key: 'developers' },
   { name: t('nav.contribute'), href: `${prefix}/contribute`, key: 'contribute' },
   { name: t('nav.about'), href: `${prefix}/about`, key: 'about' },
 ];
 const inSecondary = secondary.some((item) => item.key === active);
+const actors = getBundle(lang).actors;
 
 // One URL per page: switching language is a query on the page you are already
 // on, never a different address. `?lang=` is the explicit, shareable override;
@@ -79,6 +83,8 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
         ))}
       </div>
 
+      <div class="hidden lg:block"><LensSwitch lang={lang} actors={actors} /></div>
+
       <button id="theme-toggle" type="button" class="icon-btn" aria-label={t('nav.theme')} title={t('nav.theme')}>
         <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
@@ -109,6 +115,15 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
             <div class="mt-1 flex flex-col">
               {secondary.map((item) => (
                 <a href={item.href} class={`nav-link-mobile ${active === item.key ? 'nav-link-active' : ''}`} aria-current={active === item.key ? 'page' : undefined}>{item.name}</a>
+              ))}
+            </div>
+            <p class="kicker px-3 mt-5">{t('lens.label')}</p>
+            <div class="mt-1 flex flex-col gap-0.5 px-1">
+              <button type="button" class="lens-option" data-lens="" aria-pressed="true">{t('lens.none')}</button>
+              {actors.map((actor) => (
+                <button type="button" class="lens-option" data-lens={actor.id} aria-pressed="false">
+                  <span class="text-hoba-text">{actor.title}</span>
+                </button>
               ))}
             </div>
             <a href="https://github.com/dmytro-yemelianov/hoba.work" target="_blank" rel="noopener noreferrer" class="nav-link-mobile mt-5 sm:hidden">{t('nav.github')}</a>

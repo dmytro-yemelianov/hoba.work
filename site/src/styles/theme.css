@@ -162,6 +162,37 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .wf-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
   .wf-scrub { @apply flex-1 min-w-[8rem] accent-hoba-accent; }
 
+  /* The lens.
+     With no lens chosen every point of view is on the page and the
+     "not visible from here" blocks are hidden, because absence is only
+     interesting once you have asked from where. Choosing one inverts that:
+     one voice, and — if this entry has no view from that seat — the statement
+     that it does not. */
+  .lens-block.is-blind { display: none; }
+  html[data-lens] .lens-block { display: none; }
+  html[data-lens="candidate"] .lens-block[data-actor="candidate"],
+  html[data-lens="recruiter"] .lens-block[data-actor="recruiter"],
+  html[data-lens="hiring-manager"] .lens-block[data-actor="hiring-manager"],
+  html[data-lens="ats-vendor"] .lens-block[data-actor="ats-vendor"],
+  html[data-lens="employer-policy"] .lens-block[data-actor="employer-policy"],
+  html[data-lens="public-policy"] .lens-block[data-actor="public-policy"] { display: block; }
+
+  /* A perspective is a voice, so it reads as a quoted passage rather than a
+     card: a rule in the actor's gutter and the three questions as a definition
+     list. */
+  .perspective { @apply border-l-2 border-hoba-border pl-4 py-1; }
+  .perspective + .perspective { @apply mt-6; }
+  .perspective-who { @apply flex flex-wrap items-baseline gap-x-3 gap-y-1; }
+  .perspective dl { @apply mt-2 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-[max-content_1fr] sm:gap-y-1.5; }
+  .perspective dt { @apply text-sm text-hoba-muted; }
+  .perspective dd { @apply text-base text-hoba-text max-w-2xl; }
+
+  /* Lens picker in the header */
+  .lens-menu > summary::-webkit-details-marker { display: none; }
+  .lens-menu > summary { @apply list-none; }
+  .lens-option { @apply flex w-full items-baseline gap-2 rounded px-2 py-1.5 text-sm text-hoba-muted hover:bg-hoba-hover hover:text-hoba-text; }
+  .lens-option[aria-pressed="true"] { @apply bg-hoba-hover text-hoba-text; }
+
   /* Era timeline: a strip proportional to real time, then the chapters. */
   .era-strip { @apply flex w-full gap-1 overflow-x-auto pb-1; }
   .era-tab {

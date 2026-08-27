@@ -68,6 +68,26 @@
         "reading": "Every line is a forecast about the future, none is an observation about the work. This is why the rejection can arrive before any technical signal exists."
       }
     ],
+    "perspectives": [
+      {
+        "actor": "recruiter",
+        "sees": "A CV with years and scope above the level the requisition is graded and funded at, and a screening queue larger than the week's capacity.",
+        "reads": "A forecast about retention and salary expectation, formed before any technical signal exists. The band is fixed and the level is not the recruiter's to change.",
+        "does": "Passes at screening, or asks the hiring manager whether they want the profile at the level above — which is a different requisition."
+      },
+      {
+        "actor": "candidate",
+        "sees": "A rejection naming seniority or overqualification, arriving before any technical stage, for a role whose posted band was acceptable.",
+        "reads": "A decision about a future they were not asked about. Nothing in it separates a levelling grid from a judgement about the work.",
+        "does": "Records the stage the rejection arrived at, and names a salary expectation at the screen of the next process rather than after it."
+      },
+      {
+        "actor": "employer-policy",
+        "sees": "A levelling grid mapping years and scope to a band, and requisitions approved at one level at a time.",
+        "reads": "Consistency across every hire, which is what the grid exists for. The applications the grid excludes do not reach this layer.",
+        "does": "Holds the grid and the band, and any exception moves through the levelling committee on its own cycle rather than through the process in progress."
+      }
+    ],
     "non_inferences": [
       "Being rejected as \"overqualified\" is an organizational tier mismatch, not a candidate deficiency."
     ]

@@ -54,6 +54,97 @@
           ],
           "reading": "Two lines of default configuration account for several mechanisms in this registry and one of its three reinforcing loops."
         }
+      ],
+      "recommendations": [
+        {
+          "id": "drop-continuity-from-the-ranking-model",
+          "title": "Remove employment continuity from the ranking feature set",
+          "rationale": "The feature set of the ranking model is written by the vendor, not configured per customer, so continuity is one of the few inputs here that no buyer has to agree to remove. While it stays in the set, a break in employment lowers the rank, a lower rank returns fewer interviews, and the next application carries a longer break.",
+          "cost": "medium",
+          "costs": "Every threshold customers tuned against the old score distribution shifts, and the field stays on competitors' feature lists after it leaves this one.",
+          "targets": [
+            "M-011",
+            "L-001",
+            "B-002"
+          ],
+          "interventions": [
+            "I-004"
+          ]
+        },
+        {
+          "id": "stop-scoring-unreadable-files",
+          "title": "Stop scoring files the parser could not read",
+          "rationale": "A file whose work history was lost in extraction and a file with no relevant work history reach the ranker as the same low number, and nothing downstream separates them. The extraction score is already computed, so routing anything below its threshold into a hold state rather than into the ranking is a change inside the pipeline the vendor owns.",
+          "cost": "medium",
+          "costs": "The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls.",
+          "targets": [
+            "M-003",
+            "B-002",
+            "A-009"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "show-the-parsed-record-to-the-applicant",
+          "title": "Show the applicant the record the parser stored",
+          "rationale": "The parsed record, not the uploaded file, is the version of the candidate every later stage reads, and it lives inside the platform rather than on the customer's careers page. Putting it into the submission confirmation with a way to correct it is the one point where the person who can tell that half the work history is missing is still able to say so.",
+          "cost": "medium",
+          "costs": "It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform.",
+          "targets": [
+            "M-003",
+            "B-001",
+            "B-002"
+          ],
+          "interventions": [
+            "I-005"
+          ]
+        },
+        {
+          "id": "hold-the-queue-rather-than-declining-it",
+          "title": "Hold the unreviewed queue instead of declining it",
+          "rationale": "When the inactivity timeout fires, what it does and what it emails are the vendor's, and the same batch job can hold the applications and raise the requisition to the customer as having had no interview activity since a stated date. Whether the listing then comes down is a decision about funding, which is not visible from inside the platform. Holding rather than declining leaves that decision with the party who can make it, and leaves the applicants a state rather than a verdict.",
+          "cost": "medium",
+          "costs": "Every held queue becomes a customer decision the current default takes off their desk, and support load is exactly what these defaults are tuned to keep down.",
+          "targets": [
+            "M-020",
+            "M-006",
+            "A-001",
+            "A-002",
+            "P-002"
+          ],
+          "interventions": [
+            "I-001"
+          ]
+        },
+        {
+          "id": "preview-what-a-knockout-rule-removes",
+          "title": "Show what a knockout rule removes before saving",
+          "rationale": "Which knockout rules can be expressed, and what the configuration screen shows while one is being written, are both the vendor's. Whether a rule is reasonable is not visible from here; what it would have done to the applications already stored is, and running the draft against them puts that in front of the person who does hold the judgement.",
+          "cost": "low",
+          "costs": "The dry run reads the customer's stored applications on the configuration path, and the screen now states a number the vendor stands behind — including when a draft rule would have ended the entire stored pool.",
+          "targets": [
+            "M-008",
+            "M-024",
+            "P-003",
+            "B-002",
+            "L-003"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "name-the-rule-in-the-automated-decline",
+          "title": "Name the rule and threshold in automated declines",
+          "rationale": "The message an automated rule sends is the vendor's template, and the rule that fired, its threshold and the value it read are already in the log line behind it. Carrying those three items into the message is what separates a decline that names a criterion from one that arrives as a verdict on the person.",
+          "cost": "medium",
+          "costs": "The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not.",
+          "targets": [
+            "M-008",
+            "B-002",
+            "A-009",
+            "A-002"
+          ],
+          "interventions": []
+        }
       ]
     },
     {
@@ -108,6 +199,104 @@
             }
           ],
           "reading": "This asymmetry is the reason the registry exists. It does not remove it — it makes the boundary between the two lists explicit."
+        }
+      ],
+      "recommendations": [
+        {
+          "id": "check-parser-output-before-submitting",
+          "title": "Check what the parser extracted before you submit",
+          "rationale": "The shape of the file is on the candidate's side of the line; what a reader decides after it is not. A layout a person reads without difficulty can arrive in the record as zero work-history entries, and the score that follows is arithmetic on what was extracted. Running the file through a parser first turns an invisible failure into an edit.",
+          "cost": "low",
+          "costs": "A single-column text export gives up the layout, and every later edit to the document has to be checked again.",
+          "targets": [
+            "M-003",
+            "B-001",
+            "B-002",
+            "A-009"
+          ],
+          "interventions": [
+            "I-005"
+          ]
+        },
+        {
+          "id": "ask-what-the-conversation-is-attached-to",
+          "title": "Ask what the conversation is attached to",
+          "rationale": "Whether an approved requisition sits behind the outreach, and whether an internal candidacy is already running, are not in any field the candidate can see. Asking at the first exchange is the only route to either, and the answer arrives before the unpaid hours do.",
+          "cost": "low",
+          "costs": "A logistics question in the first reply comes before any discussion of the work, and the answer cannot be checked against anything.",
+          "targets": [
+            "M-016",
+            "M-005",
+            "M-006",
+            "B-014",
+            "A-012"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "ask-for-the-band-before-assessment",
+          "title": "Ask for the band before any assessment is scheduled",
+          "rationale": "The band, the level and the rubric are the second of the candidate's two lists, and the compensation bind runs on the candidate naming a number first. Asking for the band before an assessment is booked puts the mismatch at the screen rather than at week four, when the hours are already spent.",
+          "cost": "medium",
+          "costs": "The question can end a process at the screen, and stating an expectation early fixes a number before the level is fixed.",
+          "targets": [
+            "M-004",
+            "B-004",
+            "B-009",
+            "P-004",
+            "A-005"
+          ],
+          "interventions": [
+            "I-002"
+          ]
+        },
+        {
+          "id": "keep-a-dated-record",
+          "title": "Keep a dated record of every message",
+          "rationale": "Dates, wording and who said it are the one part of the process the candidate holds in full. Kept as they arrive, they separate what a process established from what it did not: a rejection timed minutes after submission, a requisition back on the board, two rounds whose feedback disagrees.",
+          "cost": "low",
+          "costs": "It is unpaid administrative time in the period when time is scarcest, and a complete record of a process that ends in silence is still a record of silence.",
+          "targets": [
+            "P-002",
+            "A-004",
+            "A-014",
+            "A-007",
+            "M-013"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "submit-at-the-stated-timebox",
+          "title": "Submit at the stated timebox and name the cuts",
+          "rationale": "The hours a work sample takes come out of the same budget as the search itself, and the minutes it is read for are set on the other side of the gate. Stopping at the stated timebox and writing down what was cut to fit it keeps the exercise inside the scope that was agreed and leaves the trade-offs on the page.",
+          "cost": "medium",
+          "costs": "A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets.",
+          "targets": [
+            "L-002",
+            "M-019",
+            "B-006",
+            "A-006"
+          ],
+          "interventions": [
+            "I-006"
+          ]
+        },
+        {
+          "id": "set-a-closing-date-for-silence",
+          "title": "Set a date when a silent process closes",
+          "rationale": "Silence after submission covers a listing nobody took down, a batch expiry job and a queue that was never reached, and none of the three is visible from outside. Choosing the closing date in advance turns an open question into a finished one and returns the hours to the searches that answered.",
+          "cost": "medium",
+          "costs": "An answer that arrives after the chosen date is treated as no answer, and the time already spent is written off rather than waited out.",
+          "targets": [
+            "M-020",
+            "M-006",
+            "M-009",
+            "B-003",
+            "A-001"
+          ],
+          "interventions": [
+            "I-001"
+          ]
         }
       ]
     },
@@ -167,6 +356,85 @@
           ],
           "reading": "Several observations in this registry are the visible end of a decision taken in a row the candidate never sees."
         }
+      ],
+      "recommendations": [
+        {
+          "id": "publish-the-band-on-the-posting",
+          "title": "Publish the band on the posting itself",
+          "rationale": "The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at B-009 into arithmetic rather than a conversation that happens for the first time after the panel.",
+          "cost": "medium",
+          "costs": "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.",
+          "targets": [
+            "M-004",
+            "B-004",
+            "B-009",
+            "P-004"
+          ],
+          "interventions": [
+            "I-002"
+          ]
+        },
+        {
+          "id": "fund-before-publication",
+          "title": "Sign the headcount before the role is published",
+          "rationale": "This layer decides whether a requisition is funded, and B-010 is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists.",
+          "cost": "high",
+          "costs": "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.",
+          "targets": [
+            "B-010",
+            "B-013",
+            "M-007",
+            "A-003"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "expire-listing-when-authorisation-lapses",
+          "title": "Expire the listing when its authorisation lapses",
+          "rationale": "Whether a requisition stays funded is decided here, and that fact reaches no configuration screen on its own. A rule that withdraws the listing when authorisation lapses, and notifies everyone still inside the process, closes the gap between the decision and what the page shows.",
+          "cost": "medium",
+          "costs": "A paused search cannot be kept warm: reopening means another trip through the approval chain and a posting that restarts from zero applicants, which is a direct charge on this layer's optionality.",
+          "targets": [
+            "M-006",
+            "M-007",
+            "B-001",
+            "P-002",
+            "L-003",
+            "A-001",
+            "A-003",
+            "A-011"
+          ],
+          "interventions": [
+            "I-001"
+          ]
+        },
+        {
+          "id": "declare-internal-candidacy-on-the-posting",
+          "title": "State on the posting that an internal candidacy exists",
+          "rationale": "The rule that a role is published externally regardless of an internal candidate sits in this layer, and so does what the posting may say. One line stating that an internal candidacy is in process gives an external applicant, at the point of applying, the fact the panel already has.",
+          "cost": "medium",
+          "costs": "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.",
+          "targets": [
+            "M-005",
+            "B-013",
+            "A-002",
+            "A-003"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "scope-checks-and-show-discrepancies",
+          "title": "Narrow the checks and show the candidate any discrepancy",
+          "rationale": "Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At B-011 a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision.",
+          "cost": "medium",
+          "costs": "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.",
+          "targets": [
+            "B-011",
+            "B-012",
+            "M-021"
+          ],
+          "interventions": []
+        }
       ]
     },
     {
@@ -221,6 +489,92 @@
           ],
           "reading": "This is not a bias to be scolded out of anyone; it is an incentive with a shape. Several conservative-default mechanisms follow from it directly."
         }
+      ],
+      "recommendations": [
+        {
+          "id": "requirements-from-the-quarter",
+          "title": "Write the requirement list from last quarter's work",
+          "rationale": "The requirements as written belong to this actor, and the list is what the keyword filter and the recruiter's screen are both built from. Checking each line against what the team delivered last quarter separates what the job uses from what a previous strong candidate happened to have. A year count larger than the age of the technology is checkable before the posting goes up.",
+          "cost": "medium",
+          "costs": "A shorter list brings more applications into a funnel this actor's own team staffs, and it gives up the requirement page as the argument for a higher level and a wider band.",
+          "targets": [
+            "M-024",
+            "P-003",
+            "M-008",
+            "L-003"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "house-preferences-in-the-brief",
+          "title": "Put the house preferences into the interview brief",
+          "rationale": "This actor sets what each interviewer asks, and holds the requirements only they know about. A preference about architecture or about vertical experience that is not in the brief is still scored in the room, and the candidate cannot design against a criterion they were not given.",
+          "cost": "low",
+          "costs": "A preference in writing is open to challenge from the panel and from the recruiter, and one that cannot be put into a sentence does not make it into the brief.",
+          "targets": [
+            "M-010",
+            "M-018",
+            "B-005",
+            "B-007",
+            "A-014"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "timebox-and-review-floor",
+          "title": "Cap the take-home and floor the review time",
+          "rationale": "The exercise and who reviews it are both this actor's to set. Work built over hours and read in minutes is scored on whatever the reader happened to open, and the note that comes out of it describes the review rather than the submission. Capping the candidate's hours without a floor under the reviewer's minutes moves the asymmetry rather than closing it.",
+          "cost": "medium",
+          "costs": "A three-hour sample carries less to go on, so more of the decision falls to the panel, and twenty minutes from each of two reviewers comes out of a sprint the team is already behind on.",
+          "targets": [
+            "M-019",
+            "M-012",
+            "B-006",
+            "L-002"
+          ],
+          "interventions": [
+            "I-006"
+          ]
+        },
+        {
+          "id": "decision-rule-before-the-panel",
+          "title": "Agree the decision rule before the first conversation",
+          "rationale": "Whether a split panel becomes a hire is this actor's decision, and a unanimity requirement settles it in advance: one dissent and three produce the same outcome. Writing the rule down before the loop starts, including who breaks a tie, keeps an even split from being written up as a finding about the candidate.",
+          "cost": "medium",
+          "costs": "Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name.",
+          "targets": [
+            "M-022",
+            "B-008",
+            "A-014"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "freeze-requirements-once-the-loop-opens",
+          "title": "Freeze the requirements once the loop opens",
+          "rationale": "The requirements as written are this actor's; whether a requisition closes is not. Assessments taken against one description do not carry over to another, so a change of stack or scope that arrives mid-loop belongs in the next posting rather than in the scoring of work already done. Everyone already inside is then measured against the description they were given.",
+          "cost": "high",
+          "costs": "The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting.",
+          "targets": [
+            "M-013",
+            "L-003"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "level-fixed-before-the-loop",
+          "title": "Fix the assessed level before the loop opens",
+          "rationale": "The level a candidate is assessed at is this actor's to set, and it is set at the in-depth review whether or not it was written down first. Naming the level, and what evidence meets it, before the loop opens means experience above the band is measured against the requirements rather than against a forecast about how long someone stays.",
+          "cost": "medium",
+          "costs": "A level fixed in advance removes the move of recovering a strong candidate at the level below, and where the level was set wrong the search runs again from the posting.",
+          "targets": [
+            "P-001",
+            "A-013",
+            "M-017",
+            "B-007"
+          ],
+          "interventions": []
+        }
       ]
     },
     {
@@ -272,6 +626,103 @@
             }
           ],
           "reading": "The strongest external lever in this registry closes one branch of the compensation bind and leaves the levelling branch entirely open."
+        }
+      ],
+      "recommendations": [
+        {
+          "id": "disclose-level-with-band",
+          "title": "Extend disclosure from the band to the level",
+          "rationale": "A disclosure rule that reaches the band leaves unstated the level the band attaches to, and the level decides where inside the band an offer lands. Requiring the posting to name the level being hired at, and the band for that level, closes the branch of the compensation bind that a band alone leaves open.",
+          "cost": "medium",
+          "costs": "A band is a number on a page and a level is a claim about an internal grid, so each complaint needs records the regulator has to ask for separately. It also fixes at publication a level that is currently settled after the panel.",
+          "targets": [
+            "B-013",
+            "B-009",
+            "M-004",
+            "P-004",
+            "P-001"
+          ],
+          "interventions": [
+            "I-002"
+          ]
+        },
+        {
+          "id": "state-contractable-jurisdictions",
+          "title": "Require postings to name where employment is possible",
+          "rationale": "Which employment relationships are possible in which jurisdiction is settled before anyone applies, and it is one of the few facts here that this actor defines rather than regulates at a distance. Requiring the posting to list the jurisdictions the role can actually be contracted in moves that fact to publication day instead of the screening call.",
+          "cost": "medium",
+          "costs": "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.",
+          "targets": [
+            "M-014",
+            "B-004",
+            "B-013"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "dated-postings-withdrawn-on-closure",
+          "title": "Require postings to be dated and withdrawn on closure",
+          "rationale": "What a public posting is — an advertisement, or a statement that funded work exists — is a disclosure question, and that is the question this actor reaches. A rule that a posting carries its publication date and comes down when the search ends makes the difference between an open search and a talent pool observable from outside.",
+          "cost": "medium",
+          "costs": "Two dates are cheap to check, but the fact that decides a breach — whether the search had ended — sits in records only the employer holds, so every complaint starts with disclosure. The rule also reaches sourcing that is legal and ordinary, which widens the perimeter it has to defend.",
+          "targets": [
+            "M-006",
+            "M-016",
+            "B-013",
+            "A-004",
+            "P-002"
+          ],
+          "interventions": [
+            "I-001"
+          ]
+        },
+        {
+          "id": "name-the-automated-rule",
+          "title": "Require every automated rejection to name its rule",
+          "rationale": "Where an application is ended by a threshold rather than by a reader, whether that decision must be explainable already sits inside this actor's bounds. Attaching the duty to the ending rather than to the message means a rule that closes an application — a missing term, an unmet threshold, an elapsed review window — produces a statement the applicant can check instead of nothing.",
+          "cost": "high",
+          "costs": "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.",
+          "targets": [
+            "B-002",
+            "M-008",
+            "M-020",
+            "M-003",
+            "A-009",
+            "A-001"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "document-continuity-features",
+          "title": "Require continuity-based ranking features to be documented and justified",
+          "rationale": "A feature that scores the length of a break sits inside the automated decision-making whose bounds this actor sets, and it is the input that closes the gap-penalty loop. Requiring any ranking input derived from employment continuity to be documented and justified makes its presence checkable, which a prohibition on its own does not.",
+          "cost": "medium",
+          "costs": "The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.",
+          "targets": [
+            "M-011",
+            "L-001",
+            "B-002"
+          ],
+          "interventions": [
+            "I-004"
+          ]
+        },
+        {
+          "id": "common-disclosure-schema",
+          "title": "Publish a common schema for posting terms and outcomes",
+          "rationale": "The market copies conventions from itself faster than it absorbs rules, and this actor writes conventions as well as rules. A published schema — band, level, stages, jurisdictions, and a decline that names its stage and its criterion — gives the disclosure duties a shape that can be filled in once and read by machine.",
+          "cost": "low",
+          "costs": "A schema carries no obligation, so it is adopted where it is cheaper than what it replaces and nowhere else. The categories fixed in the first version become the ceiling on what is disclosed later, and the body that publishes it owns the revisions for as long as anyone uses it.",
+          "targets": [
+            "A-002",
+            "A-014",
+            "M-010",
+            "B-013"
+          ],
+          "interventions": [
+            "I-003",
+            "I-002"
+          ]
         }
       ]
     },
@@ -329,6 +780,93 @@
             }
           ],
           "reading": "Several mechanisms in this registry are the shape of this table rather than of any decision anyone made."
+        }
+      ],
+      "recommendations": [
+        {
+          "id": "state-the-band-first",
+          "title": "State the band before asking for a number",
+          "rationale": "The screen is where compensation first comes up, and the order of the two questions is the recruiter's to set. Saying the band that is on the requisition, before asking what the candidate expects, removes the asymmetry that both branches of the compensation bind run on. Where no band has been set, saying that is also an answer the candidate can act on.",
+          "cost": "medium",
+          "costs": "It spends the flexibility of hearing the candidate's figure first, and it puts a number into the conversation that can be quoted back later as a commitment.",
+          "targets": [
+            "B-004",
+            "M-004",
+            "P-004"
+          ],
+          "interventions": [
+            "I-002"
+          ]
+        },
+        {
+          "id": "name-the-stage-and-criterion",
+          "title": "Name the stage and the criterion that ended it",
+          "rationale": "The wording of the rejection belongs to this seat, and the same message can carry the stage the process ended at, the criterion that was named to the recruiter, and what the process never reached. Where the panel returned a recommendation without a criterion, the message records that no criterion was given, rather than a template sentence standing in its place. What can be written is bounded by what the recruiter was handed.",
+          "cost": "medium",
+          "costs": "Each message is written rather than selected, against a clock measured as time-to-fill, and asking the panel for a criterion spends standing with the hiring manager, who is the internal client.",
+          "targets": [
+            "A-002",
+            "M-010",
+            "B-008"
+          ],
+          "interventions": [
+            "I-003"
+          ]
+        },
+        {
+          "id": "tell-them-when-a-search-stalls",
+          "title": "Tell everyone still inside when a search stops moving",
+          "rationale": "Whether a candidate learns that a search has stalled is decided in this seat, and it is decidable from what is visible here: the date of the last scheduling activity on the requisition. The message states that date and no more, because whether the headcount returns this quarter is not visible from here. Silence at this point is read as a decision about the candidate.",
+          "cost": "medium",
+          "costs": "Candidates who are told make other plans, and the message puts in writing that the internal client's search has stopped, against a seat measured on time-to-fill and on that relationship.",
+          "targets": [
+            "A-001",
+            "A-003",
+            "M-006"
+          ],
+          "interventions": [
+            "I-001"
+          ]
+        },
+        {
+          "id": "name-the-stages-and-dates",
+          "title": "Name every stage and its date at the screen",
+          "rationale": "What the process contains, how many conversations it has and when the first decision is due are disclosed at the screen or nowhere, and that disclosure sits in this seat. A candidate holding the list can tell a delay from an ending. When a round is added or a date moves, the same channel carries that within days to everyone already inside.",
+          "cost": "medium",
+          "costs": "A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written.",
+          "targets": [
+            "B-004",
+            "A-007",
+            "M-013"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "say-if-a-requisition-exists",
+          "title": "Say whether an approved requisition sits behind the call",
+          "rationale": "Outreach and the first conversation are where the recruiter states what the contact is for. Whether a requisition is open and approved, or whether this is a pool for headcount that does not exist yet, is a fact available at the moment of contact. Without it, the silence that follows such a conversation is read as a decision about the candidate.",
+          "cost": "medium",
+          "costs": "It costs replies: outreach that states there is no open requisition gives less reason to answer, and reply volume is what the sourcing side of the pipeline is counted in.",
+          "targets": [
+            "M-016",
+            "A-012",
+            "B-014"
+          ],
+          "interventions": []
+        },
+        {
+          "id": "fix-the-reading-order",
+          "title": "Set the reading order in advance and in writing",
+          "rationale": "Which applications are read and in what order is decided in this seat, and the order can be fixed before the week's queue exists: a stated share of screening capacity for inbound, order of arrival within each source, and no sort on how recently someone was last employed. The rule adds no screening capacity; it decides once where the capacity goes, instead of deciding it profile by profile against the length of the queue.",
+          "cost": "high",
+          "costs": "Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones.",
+          "targets": [
+            "B-003",
+            "M-009",
+            "M-011",
+            "L-001"
+          ],
+          "interventions": []
         }
       ]
     }

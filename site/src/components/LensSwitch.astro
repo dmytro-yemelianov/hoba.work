@@ -1,0 +1,82 @@
+---
+/**
+ * The lens.
+ *
+ * Six seats make this funnel, and every entry in the atlas looks different from
+ * each of them. Choosing one collapses every page to that point of view — and,
+ * where an entry cannot be seen from that seat at all, says so, which is the
+ * more useful half.
+ *
+ * The choice is a query parameter first (so a link carries it) and a stored
+ * preference second (so it survives the next page). Applied to <html> before
+ * paint in Layout.astro; this control only writes it.
+ */
+import { useTranslations, type Lang } from '../i18n/utils';
+import type { ActorNode } from '@hoba/registry';
+
+interface Props {
+  lang: Lang;
+  actors: ActorNode[];
+}
+
+const { lang, actors } = Astro.props;
+const t = useTranslations(lang);
+const names = JSON.stringify(Object.fromEntries(actors.map((a) => [a.id, a.title])));
+---
+<details class="lens-menu relative">
+  <summary
+    class="nav-link inline-flex items-center gap-1.5 cursor-pointer"
+    aria-label={t('lens.label')}
+    title={t('lens.label')}
+  >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="7" cy="14" r="3.5" /><circle cx="17" cy="14" r="3.5" />
+      <path stroke-linecap="round" d="M10.5 13.5c.9-.7 2.1-.7 3 0M3.5 12l1.5-2.5M20.5 12L19 9.5" />
+    </svg>
+    <span class="lens-name hidden sm:inline max-w-[9rem] truncate">{t('lens.none')}</span>
+  </summary>
+  <div class="absolute right-0 mt-2 w-64 rounded-md border border-hoba-border bg-hoba-card shadow-lg p-1.5 flex flex-col gap-0.5">
+    <p class="px-2 pt-1 pb-2 text-xs text-hoba-muted">{t('lens.hint')}</p>
+    <button type="button" class="lens-option" data-lens="" aria-pressed="true">{t('lens.none')}</button>
+    {actors.map((actor) => (
+      <button type="button" class="lens-option" data-lens={actor.id} aria-pressed="false">
+        <span class="text-hoba-text">{actor.title}</span>
+      </button>
+    ))}
+  </div>
+</details>
+
+<script define:vars={{ names }}>
+  const LABELS = JSON.parse(names);
+  const html = document.documentElement;
+
+  function apply(lens, persist) {
+    if (lens && LABELS[lens]) html.dataset.lens = lens;
+    else delete html.dataset.lens;
+    document.querySelectorAll('[data-lens][aria-pressed]').forEach((b) => {
+      b.setAttribute('aria-pressed', String((b.dataset.lens || '') === (html.dataset.lens || '')));
+    });
+    document.querySelectorAll('.lens-name').forEach((el) => {
+      el.textContent = html.dataset.lens ? LABELS[html.dataset.lens] : el.dataset.none ?? el.textContent;
+    });
+    if (persist) {
+      try {
+        lens ? localStorage.setItem('hoba_lens', lens) : localStorage.removeItem('hoba_lens');
+      } catch {}
+    }
+    window.dispatchEvent(new CustomEvent('hoba:lens', { detail: { lens: html.dataset.lens ?? '' } }));
+  }
+
+  // Remember the neutral label before the first swap overwrites it.
+  document.querySelectorAll('.lens-name').forEach((el) => { el.dataset.none = el.textContent ?? ''; });
+  apply(html.dataset.lens ?? '', false);
+  // A ?lens= link is an explicit choice, so it becomes the standing one.
+  if (new URLSearchParams(location.search).get('lens')) apply(html.dataset.lens ?? '', true);
+
+  document.addEventListener('click', (event) => {
+    const button = event.target instanceof Element ? event.target.closest('.lens-option') : null;
+    if (!button) return;
+    apply(button.dataset.lens ?? '', true);
+    button.closest('details')?.removeAttribute('open');
+  });
+</script>

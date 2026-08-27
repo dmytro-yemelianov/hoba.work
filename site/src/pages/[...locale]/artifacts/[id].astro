@@ -6,6 +6,7 @@ import EntityRow from '../../../components/EntityRow.astro';
 import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
+import Perspectives from '../../../components/Perspectives.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { ArtifactNode } from '@hoba/registry';
@@ -106,6 +107,8 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
         </ul>
       </section>
     )}
+
+    <Perspectives perspectives={artifact.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 
     <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
       <span>{t('share.card')}</span>
