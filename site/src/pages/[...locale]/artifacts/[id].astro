@@ -7,6 +7,7 @@ import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
+import Reach from '../../../components/Reach.astro';
 import { getBundle } from '../../../lib/registry';
 import { branded, asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { ArtifactNode } from '@hoba/registry';
@@ -107,6 +108,8 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
         </ul>
       </section>
     )}
+
+    <Reach id={artifact.id} bundle={bundle} lang={lang} prefix={prefix} />
 
     <Perspectives perspectives={artifact.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 

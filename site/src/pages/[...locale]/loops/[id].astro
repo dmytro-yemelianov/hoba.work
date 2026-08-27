@@ -7,6 +7,7 @@ import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
+import Reach from '../../../components/Reach.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { LoopNode } from '@hoba/registry';
@@ -93,6 +94,8 @@ const titleOf = (id: string) => bundle.mechanisms.find((m) => m.id === id)?.titl
         </ul>
       </section>
     )}
+
+    <Reach id={loop.id} bundle={bundle} lang={lang} prefix={prefix} />
 
     <Perspectives perspectives={loop.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 

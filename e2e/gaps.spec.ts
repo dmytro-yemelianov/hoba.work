@@ -1,8 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { findRegistryRoot, gaps, loadRegistryFromRoot } from '@hoba/registry';
+import { closure, findRegistryRoot, gaps, loadRegistryFromRoot } from '@hoba/registry';
 import { says } from './says';
 
-const report = gaps(loadRegistryFromRoot(findRegistryRoot(process.cwd())!, 'en'));
+const bundle = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, 'en');
+const report = gaps(bundle);
 
 /**
  * What the atlas publishes about its own limits.
@@ -50,5 +51,18 @@ test.describe('the atlas reports its own limits', () => {
       await expect(row).toBeVisible();
       for (const id of entry.coveredBy) await expect(row.getByRole('link', { name: id, exact: true })).toBeVisible();
     }
+  });
+  test('an entry states what it reaches past its own links, and counts it right', async ({ page }) => {
+    await page.goto('/mechanisms/M-001?lang=en');
+    const section = page.locator('section', { has: page.getByRole('heading', { name: says('en', 'reach.title') }) });
+    await expect(section).toBeVisible();
+
+    // The published number is the transitive reach minus what the relation
+    // sections above already name, so a page that simply repeated its own
+    // links would fail here.
+    const reach = closure(bundle, 'M-001');
+    const indirect = reach.affects.filter((id) => !reach.directAffects.includes(id));
+    expect(indirect.length, 'M-001 must reach something past its own edges for this to test anything').toBeGreaterThan(0);
+    await expect(section).toContainText(String(indirect.length));
   });
 });

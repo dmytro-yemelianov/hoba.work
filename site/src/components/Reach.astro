@@ -1,0 +1,69 @@
+---
+/**
+ * What an entry reaches without being linked to it.
+ *
+ * The relation sections above already name every one-step neighbour, so those
+ * are removed here: what is left is reachable only by walking through
+ * something else. In a registry this densely cross-referenced that set runs to
+ * dozens of entries, and listing them reads as noise, so it is reported as a
+ * shape — how many, of what kind — and the graph is where it is walked.
+ */
+import { closure } from '@hoba/registry';
+import type { RegistryBundle } from '@hoba/registry';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  id: string;
+  bundle: RegistryBundle;
+  lang: 'en' | 'uk';
+  prefix: string;
+}
+
+const { id, bundle, lang, prefix } = Astro.props;
+const t = useTranslations(lang);
+
+const KINDS = [
+  ['A', 'entity.artifact'], ['B', 'entity.barrier'], ['M', 'entity.mechanism'],
+  ['P', 'entity.pattern'], ['L', 'entity.loop'], ['I', 'entity.intervention'],
+] as const;
+
+const reach = closure(bundle, id);
+const shape = (all: string[], direct: string[]) => {
+  const indirect = all.filter((entry) => !direct.includes(entry));
+  return KINDS
+    .map(([letter, key]) => ({ label: t(key), n: indirect.filter((entry) => entry.startsWith(`${letter}-`)).length }))
+    .filter((part) => part.n > 0);
+};
+
+const rows = [
+  { label: t('reach.affects'), parts: shape(reach.affects, reach.directAffects) },
+  { label: t('reach.affectedBy'), parts: shape(reach.affectedBy, reach.directAffectedBy) },
+].filter((row) => row.parts.length > 0);
+
+const total = (parts: { n: number }[]) => parts.reduce((sum, part) => sum + part.n, 0);
+---
+{rows.length > 0 && (
+  <section class="section">
+    <h2 class="section-title">{t('reach.title')}</h2>
+    <p class="text-base text-hoba-muted max-w-3xl">{t('reach.intro')}</p>
+    <dl class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5">
+      {rows.map((row) => (
+        <div>
+          <dt class="flex items-baseline justify-between gap-3">
+            <span class="meta">{row.label}</span>
+            <span class="font-mono text-lg font-semibold text-hoba-text tabular-nums">{total(row.parts)}</span>
+          </dt>
+          <dd class="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-base text-hoba-muted">
+            {row.parts.map((part) => (
+              <span class="inline-flex items-baseline gap-1.5">
+                <span>{part.label}</span>
+                <span class="font-mono tabular-nums text-hoba-text">{part.n}</span>
+              </span>
+            ))}
+          </dd>
+        </div>
+      ))}
+    </dl>
+    <a href={`${prefix}/graph`} class="mt-5 inline-block text-sm text-hoba-accent underline underline-offset-2">{t('reach.explore')} →</a>
+  </section>
+)}

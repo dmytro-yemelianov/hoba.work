@@ -25,6 +25,25 @@ describe('closure', () => {
     expect(closure(bundle, 'M-001').affects).toEqual(['A-001', 'B-001', 'B-002', 'B-003']);
   });
 
+it('separates the one-step neighbours from what is only reached through them', () => {
+    const bundle = makeBundle({
+      barriers: [
+        barrier({ id: 'B-001', order: 1, precedes: ['B-002'] }),
+        barrier({ id: 'B-002', order: 2, precedes: ['B-003'] }),
+        barrier({ id: 'B-003', order: 3 }),
+      ],
+      mechanisms: [mechanism({ id: 'M-001', operates_at: ['B-001'], emissions: emits('A-001') })],
+      loops: [],
+      patterns: [],
+      interventions: [],
+    });
+
+    const out = closure(bundle, 'M-001');
+    expect(out.directAffects).toEqual(['A-001', 'B-001']);
+    // B-002 and B-003 are downstream of the gate, not of the mechanism.
+    expect(out.affects.filter((id) => !out.directAffects.includes(id))).toEqual(['B-002', 'B-003']);
+  });
+
   it('reports the inverse direction and excludes the entry itself', () => {
     const bundle = makeBundle({
       barriers: [barrier({ id: 'B-001', order: 1 })],

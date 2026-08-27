@@ -7,6 +7,7 @@ import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
+import Reach from '../../../components/Reach.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { PatternNode } from '@hoba/registry';
@@ -99,6 +100,8 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
         </ul>
       </section>
     )}
+
+    <Reach id={pattern.id} bundle={bundle} lang={lang} prefix={prefix} />
 
     <Perspectives perspectives={pattern.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 

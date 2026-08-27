@@ -20,6 +20,14 @@ export interface Closure {
   affects: string[];
   /** Reached by following edges inward: what bears on this entry. */
   affectedBy: string[];
+  /**
+   * The one-step neighbours, a subset of each list above.
+   *
+   * Entity pages already name these, so the reading worth publishing is the
+   * difference: what an entry reaches without being linked to it.
+   */
+  directAffects: string[];
+  directAffectedBy: string[];
 }
 
 /**
@@ -133,7 +141,16 @@ export function closure(bundle: RegistryBundle, id: string): Closure {
     return [...seen].sort();
   };
 
-  return { id, affects: walk(out), affectedBy: walk(inn) };
+  const direct = (edges: Map<string, string[]>): string[] =>
+    [...new Set(edges.get(id) ?? [])].filter((next) => next !== id).sort();
+
+  return {
+    id,
+    affects: walk(out),
+    affectedBy: walk(inn),
+    directAffects: direct(out),
+    directAffectedBy: direct(inn),
+  };
 }
 
 /**

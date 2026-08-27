@@ -7,6 +7,7 @@ import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
+import Reach from '../../../components/Reach.astro';
 import RemovabilityBadge from '../../../components/RemovabilityBadge.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
@@ -121,6 +122,8 @@ const facets = [
         </ul>
       </section>
     )}
+
+    <Reach id={mechanism.id} bundle={bundle} lang={lang} prefix={prefix} />
 
     <Perspectives perspectives={mechanism.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 

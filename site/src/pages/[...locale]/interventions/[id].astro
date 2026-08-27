@@ -7,6 +7,7 @@ import Specimen from '../../../components/Specimen.astro';
 import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
+import Reach from '../../../components/Reach.astro';
 import { getGraph } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { InterventionNode } from '@hoba/registry';
@@ -75,6 +76,8 @@ const targets = intervention.targets.map((id) => {
         <ul class="list-disc pl-5 space-y-1 text-base text-hoba-muted">{intervention.measurements.map((m) => <li><code class="text-sm">{m}</code></li>)}</ul>
       </div>
     </section>
+
+    <Reach id={intervention.id} bundle={graph.bundle} lang={lang} prefix={prefix} />
 
     <Perspectives perspectives={intervention.perspectives} actors={graph.bundle.actors} lang={lang} prefix={prefix} />
 
