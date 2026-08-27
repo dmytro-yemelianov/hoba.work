@@ -334,11 +334,18 @@ statistics and surveys are citable. The `anecdote` and `illustrative` evidence
 kinds exist in the schema and are deliberately held at zero records, so the bar
 stays FRED, US Code, QJE.
 
-Six entries were sourced this way (B-014, I-007, I-009, I-011, I-013, I-016) and
-each summary states what its source does *not* establish. Ten still cite nothing.
-Four are the forum-derived observations, which were never going to be citable.
-The rest need sources, not code — as do the twenty-six unplaced traces and the
-last merged pair.
+Seven entries were sourced this way (B-014, I-007, I-009, I-010, I-011, I-013,
+I-016) and each summary states what its source does *not* establish. Law turned
+out to be the richest seam, because a statute opens reliably and does not rot:
+FCRA §1681b(b)(3) for I-016, and 41 CFR 60-1.3 for I-010, which defines an
+applicant partly by whether the contractor assessed the submission at all and
+says outright that volume reduction "by data management techniques that do not
+depend on assessment of qualifications" is not consideration. The distinction
+I-010 asks an ATS to record is one the law already draws.
+
+Ten entries still cite nothing. Five are the forum-derived observations, which
+were never going to be citable. The rest need sources, not code — as do the
+twenty-six unplaced traces and the last merged pair.
 
 ## Not scheduled yet
 
