@@ -3,6 +3,7 @@ import path from 'node:path';
 import yaml from 'js-yaml';
 import type { ZodError, ZodTypeAny, z } from 'zod';
 import {
+  actorSchema,
   artifactSchema,
   barrierSchema,
   evidenceSchema,
@@ -128,6 +129,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
 
   const byId = <T extends { id: string }>(a: T, b: T) => a.id.localeCompare(b.id);
 
+  const actors = loadEntityDir(path.join(baseDir, 'actors'), actorSchema).sort(byId);
   const artifacts = loadEntityDir(path.join(baseDir, 'artifacts'), artifactSchema).sort(byId);
   const barriers = loadEntityDir(path.join(baseDir, 'barriers'), barrierSchema).sort(
     (a, b) => a.order - b.order || a.id.localeCompare(b.id)
@@ -140,6 +142,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
 
   return {
     ...manifest,
+    actors,
     artifacts,
     barriers,
     mechanisms,

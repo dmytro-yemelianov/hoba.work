@@ -40,6 +40,93 @@
         }
       }
     },
+    "/actors/index.json": {
+      "get": {
+        "operationId": "listActors",
+        "summary": "List all Actors whose decisions the funnel is made of",
+        "tags": [
+          "Actor"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Actor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actors/{id}.json": {
+      "get": {
+        "operationId": "getActor",
+        "summary": "Get Actor by ID",
+        "tags": [
+          "Actor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Actor ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Actor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
     "/artifacts/index.json": {
       "get": {
         "operationId": "listArtifacts",
@@ -684,6 +771,9 @@
   },
   "components": {
     "schemas": {
+      "Actor": {
+        "$ref": "https://hoba.work/schemas/actor.schema.json#/definitions/Actor"
+      },
       "Artifact": {
         "$ref": "https://hoba.work/schemas/artifact.schema.json#/definitions/Artifact"
       },

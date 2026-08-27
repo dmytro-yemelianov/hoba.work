@@ -126,3 +126,40 @@ describe('specimens', () => {
     }
   });
 });
+
+describe('actors', () => {
+  it('resolves both actor vocabularies without gaps or collisions', () => {
+    // `mechanism.facets.actor` and `intervention.actor` are separate enums that
+    // both gesture at the same six parties. Actors declare which values resolve
+    // to them; every value must be claimed exactly once or the join silently
+    // drops entities.
+    const facetOwners = new Map<string, string[]>();
+    const interventionOwners = new Map<string, string[]>();
+    for (const actor of bundle.actors) {
+      for (const value of actor.aliases.facet) facetOwners.set(value, [...(facetOwners.get(value) ?? []), actor.id]);
+      for (const value of actor.aliases.intervention) interventionOwners.set(value, [...(interventionOwners.get(value) ?? []), actor.id]);
+    }
+
+    const usedFacets = new Set(bundle.mechanisms.map((m) => m.facets.actor));
+    const usedInterventions = new Set(bundle.interventions.map((i) => i.actor));
+
+    expect([...usedFacets].filter((v) => !facetOwners.has(v))).toEqual([]);
+    expect([...usedInterventions].filter((v) => !interventionOwners.has(v))).toEqual([]);
+    expect([...facetOwners].filter(([, owners]) => owners.length > 1)).toEqual([]);
+    expect([...interventionOwners].filter(([, owners]) => owners.length > 1)).toEqual([]);
+  });
+
+  it('states what each actor controls, cannot see, and is optimising for', () => {
+    expect(bundle.actors.length).toBe(6);
+    for (const actor of bundle.actors) {
+      expect(actor.controls.length, actor.id).toBeGreaterThan(0);
+      expect(actor.blind_to.length, actor.id).toBeGreaterThan(0);
+      expect(actor.incentives.length, actor.id).toBeGreaterThan(0);
+      expect(actor.specimens.length, actor.id).toBeGreaterThan(0);
+    }
+  });
+
+  it('mirrors the actor set across both languages', () => {
+    expect(uk.actors.map((a) => a.id)).toEqual(bundle.actors.map((a) => a.id));
+  });
+});

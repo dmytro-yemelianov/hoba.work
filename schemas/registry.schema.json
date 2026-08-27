@@ -17,7 +17,7 @@
           "type": "string",
           "format": "date-time"
         },
-        "artifacts": {
+        "actors": {
           "type": "array",
           "items": {
             "type": "object",
@@ -44,6 +44,184 @@
               },
               "content": {
                 "type": "string"
+              },
+              "id": {
+                "type": "string",
+                "enum": [
+                  "candidate",
+                  "recruiter",
+                  "hiring-manager",
+                  "ats-vendor",
+                  "employer-policy",
+                  "public-policy"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "const": "actor"
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 10
+              },
+              "controls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "blind_to": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "incentives": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "aliases": {
+                "type": "object",
+                "properties": {
+                  "facet": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "system",
+                        "recruiter",
+                        "hiring-manager",
+                        "policy",
+                        "external",
+                        "candidate"
+                      ]
+                    },
+                    "default": []
+                  },
+                  "intervention": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "employer-policy",
+                        "recruiter-process",
+                        "ats-vendor",
+                        "hiring-manager",
+                        "candidate-action",
+                        "industry-standard",
+                        "policy"
+                      ]
+                    },
+                    "default": []
+                  }
+                },
+                "additionalProperties": false,
+                "default": {
+                  "facet": [],
+                  "intervention": []
+                }
+              },
+              "specimens": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "email",
+                        "chat",
+                        "ats",
+                        "transcript",
+                        "posting",
+                        "note"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 3
+                    },
+                    "subject": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "string"
+                    },
+                    "lines": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "speaker": {
+                            "type": "string"
+                          },
+                          "at": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "tell": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "required": [
+                          "text"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1
+                    },
+                    "reading": {
+                      "type": "string",
+                      "minLength": 10
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "label",
+                    "lines"
+                  ],
+                  "additionalProperties": false
+                },
+                "default": []
+              }
+            },
+            "required": [
+              "title",
+              "id",
+              "type",
+              "summary",
+              "controls",
+              "blind_to",
+              "incentives"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+              },
+              "status": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+              },
+              "evidence_ids": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+              },
+              "content": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
                 "type": "string",
@@ -154,67 +332,7 @@
               "specimens": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "email",
-                        "chat",
-                        "ats",
-                        "transcript",
-                        "posting",
-                        "note"
-                      ]
-                    },
-                    "label": {
-                      "type": "string",
-                      "minLength": 3
-                    },
-                    "subject": {
-                      "type": "string"
-                    },
-                    "context": {
-                      "type": "string"
-                    },
-                    "lines": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "speaker": {
-                            "type": "string"
-                          },
-                          "at": {
-                            "type": "string"
-                          },
-                          "text": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "tell": {
-                            "type": "boolean",
-                            "default": false
-                          }
-                        },
-                        "required": [
-                          "text"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "minItems": 1
-                    },
-                    "reading": {
-                      "type": "string",
-                      "minLength": 10
-                    }
-                  },
-                  "required": [
-                    "kind",
-                    "label",
-                    "lines"
-                  ],
-                  "additionalProperties": false
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
                 },
                 "default": []
               },
@@ -243,16 +361,16 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/title"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/status"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/content"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
                 "type": "string",
@@ -294,7 +412,7 @@
               "specimens": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
                 },
                 "default": []
               }
@@ -317,16 +435,16 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/title"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/status"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/content"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
                 "type": "string",
@@ -383,7 +501,7 @@
                     "evidence": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids/items"
+                        "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
                       },
                       "default": []
                     }
@@ -399,15 +517,7 @@
                 "type": "object",
                 "properties": {
                   "actor": {
-                    "type": "string",
-                    "enum": [
-                      "system",
-                      "recruiter",
-                      "hiring-manager",
-                      "policy",
-                      "external",
-                      "candidate"
-                    ]
+                    "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/aliases/properties/facet/items"
                   },
                   "nature": {
                     "type": "string",
@@ -467,7 +577,7 @@
               "specimens": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
                 },
                 "default": []
               },
@@ -497,16 +607,16 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/title"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/status"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/content"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
                 "type": "string",
@@ -570,7 +680,7 @@
               "specimens": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
                 },
                 "default": []
               }
@@ -595,16 +705,16 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/title"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/status"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/content"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
                 "type": "string",
@@ -677,7 +787,7 @@
               "specimens": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
                 },
                 "default": []
               }
@@ -700,16 +810,16 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/title"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/status"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/content"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "id": {
                 "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/interventions/items"
@@ -731,16 +841,7 @@
                 "minItems": 1
               },
               "actor": {
-                "type": "string",
-                "enum": [
-                  "employer-policy",
-                  "recruiter-process",
-                  "ats-vendor",
-                  "hiring-manager",
-                  "candidate-action",
-                  "industry-standard",
-                  "policy"
-                ]
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/aliases/properties/intervention/items"
               },
               "scope": {
                 "type": "string",
@@ -779,7 +880,7 @@
               "specimens": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/specimens/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
                 },
                 "default": []
               }
@@ -805,7 +906,7 @@
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_ids/items"
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
               },
               "type": {
                 "type": "string",
@@ -856,6 +957,7 @@
         "version",
         "schema_version",
         "updated_at",
+        "actors",
         "artifacts",
         "barriers",
         "mechanisms",

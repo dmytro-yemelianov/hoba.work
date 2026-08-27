@@ -262,6 +262,37 @@ export const interventionSchema = z.object({
   specimens: z.array(specimenSchema).default([]),
 });
 
+/**
+ * Actors are the parties whose decisions the funnel is made of. They were
+ * implicit until now — `mechanism.facets.actor` and `intervention.actor` are
+ * two separate vocabularies that both gesture at the same six parties. Rather
+ * than rewriting thirty content files to unify them, an actor declares the
+ * enum values that resolve to it, so the graph can join them and both existing
+ * vocabularies keep working.
+ */
+export const actorId = z.enum(['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy']);
+
+export const actorSchema = z.object({
+  ...nodeBase,
+  id: actorId,
+  type: z.literal('actor'),
+  summary: z.string().min(10),
+  /** Decisions this actor actually makes. */
+  controls: z.array(z.string()).min(1),
+  /** What is structurally invisible from where this actor sits. */
+  blind_to: z.array(z.string()).min(1),
+  /** What this actor is optimising for, stated without moralising. */
+  incentives: z.array(z.string()).min(1),
+  /** Enum values in other collections that resolve to this actor. */
+  aliases: z
+    .object({
+      facet: z.array(actorTypeSchema).default([]),
+      intervention: z.array(interventionActorSchema).default([]),
+    })
+    .default({ facet: [], intervention: [] }),
+  specimens: z.array(specimenSchema).default([]),
+});
+
 // Evidence record schema
 export const evidenceSchema = z.object({
   id: evidenceId,
@@ -283,6 +314,7 @@ export const registryManifestSchema = z.object({
 });
 
 export const registryBundleSchema = registryManifestSchema.extend({
+  actors: z.array(actorSchema),
   artifacts: z.array(artifactSchema),
   barriers: z.array(barrierSchema),
   mechanisms: z.array(mechanismSchema),

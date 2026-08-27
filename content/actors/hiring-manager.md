@@ -1,0 +1,44 @@
+---
+id: "hiring-manager"
+type: "actor"
+title: "Hiring manager"
+summary: "The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb."
+controls:
+  - "The requirements as written, and the ones only they know about"
+  - "Who interviews and what they ask"
+  - "The level a candidate is assessed at"
+  - "Whether a split panel becomes a hire"
+blind_to:
+  - "What the same candidate showed in rounds they did not attend"
+  - "How the requirements read to someone outside the team"
+  - "What the search is costing the people covering the gap"
+incentives:
+  - "Avoid a bad hire, which is visible and attributed, more than a missed hire, which is neither"
+  - "Fill the gap without the ramp-up cost of someone who needs teaching"
+  - "Keep the team's own delivery on track while running the loop"
+aliases:
+  facet:
+    - "hiring-manager"
+  intervention:
+    - "hiring-manager"
+specimens:
+  -
+    kind: "note"
+    label: "The asymmetry that sets the bar"
+    lines:
+      -
+        text: "A bad hire is visible for a year and attributed to the person who made it."
+      -
+        text: "A missed hire is invisible and attributed to nobody."
+        tell: true
+      -
+        text: "Both are costly. Only one has a name on it."
+    reading: "This is not a bias to be scolded out of anyone; it is an incentive with a shape. Several conservative-default mechanisms follow from it directly."
+status: "active"
+evidence_level: "supported"
+evidence_ids: []
+---
+
+# Hiring manager
+
+The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb.

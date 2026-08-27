@@ -1,0 +1,193 @@
+{
+  "$id": "https://hoba.work/schemas/actor.schema.json",
+  "$ref": "#/definitions/Actor",
+  "definitions": {
+    "Actor": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "deprecated"
+          ],
+          "default": "active"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^EVD-\\d{3}$"
+          },
+          "default": []
+        },
+        "content": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "recruiter",
+            "hiring-manager",
+            "ats-vendor",
+            "employer-policy",
+            "public-policy"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "actor"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "blind_to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "incentives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "aliases": {
+          "type": "object",
+          "properties": {
+            "facet": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "system",
+                  "recruiter",
+                  "hiring-manager",
+                  "policy",
+                  "external",
+                  "candidate"
+                ]
+              },
+              "default": []
+            },
+            "intervention": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "employer-policy",
+                  "recruiter-process",
+                  "ats-vendor",
+                  "hiring-manager",
+                  "candidate-action",
+                  "industry-standard",
+                  "policy"
+                ]
+              },
+              "default": []
+            }
+          },
+          "additionalProperties": false,
+          "default": {
+            "facet": [],
+            "intervention": []
+          }
+        },
+        "specimens": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "email",
+                  "chat",
+                  "ats",
+                  "transcript",
+                  "posting",
+                  "note"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 3
+              },
+              "subject": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string"
+              },
+              "lines": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "speaker": {
+                      "type": "string"
+                    },
+                    "at": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "tell": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              },
+              "reading": {
+                "type": "string",
+                "minLength": 10
+              }
+            },
+            "required": [
+              "kind",
+              "label",
+              "lines"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "title",
+        "id",
+        "type",
+        "summary",
+        "controls",
+        "blind_to",
+        "incentives"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

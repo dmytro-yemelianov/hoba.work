@@ -8,6 +8,8 @@
  */
 import type { z } from 'zod';
 import type {
+  actorId,
+  actorSchema,
   actorTypeSchema,
   artifactSchema,
   barrierSchema,
@@ -43,6 +45,7 @@ import type {
 export type EntityType = z.infer<typeof entityTypeSchema>;
 export type StageId = z.infer<typeof stageIdSchema>;
 export type ActorType = z.infer<typeof actorTypeSchema>;
+export type ActorId = z.infer<typeof actorId>;
 export type NatureType = z.infer<typeof natureTypeSchema>;
 export type VisibilityType = z.infer<typeof visibilityTypeSchema>;
 export type RemovabilityType = z.infer<typeof removabilityTypeSchema>;
@@ -63,6 +66,7 @@ export type EmissionEdge = z.infer<typeof emissionEdgeSchema>;
 export type LoopEdge = z.infer<typeof loopEdgeSchema>;
 export type MechanismFacets = z.infer<typeof mechanismFacetsSchema>;
 
+export type ActorNode = z.infer<typeof actorSchema>;
 export type ArtifactNode = z.infer<typeof artifactSchema>;
 export type BarrierNode = z.infer<typeof barrierSchema>;
 export type MechanismNode = z.infer<typeof mechanismSchema>;

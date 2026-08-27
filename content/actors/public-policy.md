@@ -1,0 +1,42 @@
+---
+id: "public-policy"
+type: "actor"
+title: "Public policy and industry standards"
+summary: "Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for."
+controls:
+  - "What must be disclosed — pay transparency rules being the clearest current example"
+  - "What automated decision-making is permitted, and what must be explainable"
+  - "Which employment relationships are possible in which jurisdiction"
+blind_to:
+  - "How a rule is implemented once it reaches a configuration screen"
+  - "Practices that are legal, ordinary, and still produce the effects catalogued here"
+incentives:
+  - "Rules that are enforceable and measurable, which is a narrower set than rules that would help"
+  - "Not disrupting labour markets faster than they can absorb the change"
+aliases:
+  facet:
+    - "external"
+  intervention:
+    - "industry-standard"
+    - "policy"
+specimens:
+  -
+    kind: "posting"
+    label: "What a disclosure rule reaches, and what it does not"
+    lines:
+      -
+        text: "Covered by pay transparency rules: the band must appear in the posting."
+        tell: true
+      -
+        text: "Not covered: at which level the candidate will actually be assessed."
+      -
+        text: "Not covered: whether the requisition is funded, or already promised internally."
+    reading: "The strongest external lever in this registry closes one branch of the compensation bind and leaves the levelling branch entirely open."
+status: "active"
+evidence_level: "supported"
+evidence_ids: []
+---
+
+# Public policy and industry standards
+
+Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for.
