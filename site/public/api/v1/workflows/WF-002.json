@@ -1,0 +1,209 @@
+{
+  "registry_version": "2026.08.2",
+  "data": {
+    "title": "An application inside the ATS",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# An application inside the ATS\n\nThe machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
+    "id": "WF-002",
+    "type": "workflow",
+    "summary": "The machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
+    "subject": "one application record",
+    "states": [
+      {
+        "id": "submitted",
+        "title": "Submitted",
+        "kind": "initial",
+        "owner": "candidate",
+        "description": "A form post has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
+        "entities": [
+          "B-001",
+          "A-001"
+        ],
+        "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email."
+      },
+      {
+        "id": "parsing",
+        "title": "Parsing",
+        "kind": "active",
+        "owner": "ats-vendor",
+        "description": "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.",
+        "entities": [
+          "M-003"
+        ],
+        "visible_to_candidate": "Nothing."
+      },
+      {
+        "id": "scoring",
+        "title": "Rule evaluation",
+        "kind": "active",
+        "owner": "ats-vendor",
+        "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
+        "entities": [
+          "B-002",
+          "M-008",
+          "M-011"
+        ],
+        "visible_to_candidate": "Nothing, for a second or two."
+      },
+      {
+        "id": "queued",
+        "title": "Queued for human review",
+        "kind": "active",
+        "owner": "ats-vendor",
+        "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
+        "entities": [
+          "B-003",
+          "M-009",
+          "M-016"
+        ],
+        "visible_to_candidate": "Silence. This is where most of the waiting happens."
+      },
+      {
+        "id": "reviewed",
+        "title": "Read by a person",
+        "kind": "active",
+        "owner": "recruiter",
+        "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
+        "entities": [
+          "B-003",
+          "M-009"
+        ],
+        "visible_to_candidate": "Nothing yet."
+      },
+      {
+        "id": "advanced",
+        "title": "Advanced to the funnel",
+        "kind": "terminal",
+        "owner": "recruiter",
+        "description": "The record leaves this machine and enters WF-001 at the recruiter screen.",
+        "entities": [
+          "B-004"
+        ],
+        "visible_to_candidate": "An invitation to talk."
+      },
+      {
+        "id": "auto-rejected",
+        "title": "Rejected by rule",
+        "kind": "terminal",
+        "owner": "ats-vendor",
+        "description": "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.",
+        "entities": [
+          "A-009",
+          "M-008",
+          "M-011"
+        ],
+        "visible_to_candidate": "A rejection email, minutes after applying."
+      },
+      {
+        "id": "human-rejected",
+        "title": "Rejected by a person",
+        "kind": "terminal",
+        "owner": "recruiter",
+        "description": "Someone read it and passed. What the message says about why is a separate decision, usually a template.",
+        "entities": [
+          "A-002"
+        ],
+        "visible_to_candidate": "A rejection message, generic unless a feedback policy exists."
+      },
+      {
+        "id": "expired",
+        "title": "Expired unreviewed",
+        "kind": "terminal",
+        "owner": "ats-vendor",
+        "description": "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.",
+        "entities": [
+          "M-020",
+          "A-001"
+        ],
+        "visible_to_candidate": "A bulk rejection, or nothing at all."
+      }
+    ],
+    "transitions": [
+      {
+        "from": "submitted",
+        "to": "parsing",
+        "label": "document accepted",
+        "owner": "ats-vendor",
+        "guard": "Required fields validate and the file is a supported type.",
+        "entities": [
+          "B-001"
+        ]
+      },
+      {
+        "from": "parsing",
+        "to": "scoring",
+        "label": "fields extracted",
+        "owner": "ats-vendor",
+        "guard": "Extraction completes, whether or not it recovered the work history.",
+        "entities": [
+          "M-003"
+        ]
+      },
+      {
+        "from": "scoring",
+        "to": "queued",
+        "label": "all rules pass",
+        "owner": "ats-vendor",
+        "guard": "Every knockout rule passes and the rank clears the advance threshold.",
+        "entities": [
+          "B-002"
+        ]
+      },
+      {
+        "from": "scoring",
+        "to": "auto-rejected",
+        "label": "a rule fails",
+        "owner": "ats-vendor",
+        "guard": "Any knockout rule fails, or the ranking falls below the threshold.",
+        "entities": [
+          "M-008",
+          "M-011",
+          "A-009"
+        ]
+      },
+      {
+        "from": "queued",
+        "to": "reviewed",
+        "label": "a recruiter opens it",
+        "owner": "recruiter",
+        "guard": "Capacity reaches this position in the queue before the expiry threshold.",
+        "entities": [
+          "B-003"
+        ]
+      },
+      {
+        "from": "queued",
+        "to": "expired",
+        "label": "threshold reached first",
+        "owner": "ats-vendor",
+        "guard": "The record ages past the configured limit with no review recorded.",
+        "entities": [
+          "M-020"
+        ]
+      },
+      {
+        "from": "reviewed",
+        "to": "advanced",
+        "label": "short-listed",
+        "owner": "recruiter",
+        "guard": "The profile is put on the active list for outreach.",
+        "entities": [
+          "B-003"
+        ]
+      },
+      {
+        "from": "reviewed",
+        "to": "human-rejected",
+        "label": "passed over",
+        "owner": "recruiter",
+        "guard": "The recruiter decides not to advance it.",
+        "entities": [
+          "A-002",
+          "M-009"
+        ]
+      }
+    ],
+    "specimens": []
+  }
+}
