@@ -28,6 +28,13 @@
         "content": {
           "type": "string"
         },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
         "id": {
           "type": "string",
           "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"

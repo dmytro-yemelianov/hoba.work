@@ -28,6 +28,13 @@
         "content": {
           "type": "string"
         },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
         "id": {
           "type": "string",
           "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"

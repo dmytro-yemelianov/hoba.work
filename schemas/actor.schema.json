@@ -28,47 +28,6 @@
         "content": {
           "type": "string"
         },
-        "id": {
-          "type": "string",
-          "enum": [
-            "candidate",
-            "recruiter",
-            "hiring-manager",
-            "ats-vendor",
-            "employer-policy",
-            "public-policy",
-            "client"
-          ]
-        },
-        "type": {
-          "type": "string",
-          "const": "actor"
-        },
-        "summary": {
-          "type": "string",
-          "minLength": 10
-        },
-        "controls": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1
-        },
-        "blind_to": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1
-        },
-        "incentives": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1
-        },
         "aliases": {
           "type": "object",
           "properties": {
@@ -109,6 +68,47 @@
             "facet": [],
             "intervention": []
           }
+        },
+        "id": {
+          "type": "string",
+          "enum": [
+            "candidate",
+            "recruiter",
+            "hiring-manager",
+            "ats-vendor",
+            "employer-policy",
+            "public-policy",
+            "client"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "actor"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "blind_to": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "incentives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
         },
         "specimens": {
           "type": "array",

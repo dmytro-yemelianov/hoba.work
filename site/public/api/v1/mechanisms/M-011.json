@@ -7,6 +7,7 @@
       "EVD-003"
     ],
     "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-008` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- An employment gap does not correlate with a decline in technical ability.",
+    "aliases": [],
     "id": "M-011",
     "type": "mechanism",
     "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",

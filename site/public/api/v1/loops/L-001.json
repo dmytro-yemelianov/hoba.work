@@ -7,6 +7,7 @@
       "EVD-003"
     ],
     "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-011`",
+    "aliases": [],
     "id": "L-001",
     "type": "loop",
     "summary": "An employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",

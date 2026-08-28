@@ -7,6 +7,7 @@
       "EVD-004"
     ],
     "content": "# Mid-Process Role Requirement Redefinition\n\nThe team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `M-004` — Unstated Compensation Band Discrepancy\n- Amplifies `M-024` — Inflated Requisition Requirements vs Actual Team Needs\n- Masks `M-001` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers.",
+    "aliases": [],
     "id": "M-013",
     "type": "mechanism",
     "summary": "The team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.",

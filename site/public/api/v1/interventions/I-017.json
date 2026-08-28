@@ -6,7 +6,8 @@
     "evidence_ids": [
       "EVD-045"
     ],
-    "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- P-002: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
+    "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
+    "aliases": [],
     "id": "I-017",
     "type": "intervention",
     "summary": "Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.",
@@ -22,7 +23,7 @@
     "expected_effects": [
       "M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group",
       "B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing",
-      "P-002: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated"
+      "pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated"
     ],
     "measurements": [
       "finalist_standing_record_rate",

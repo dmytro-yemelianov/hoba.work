@@ -7,6 +7,7 @@
       "EVD-033"
     ],
     "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves B-003 with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
+    "aliases": [],
     "id": "I-011",
     "type": "intervention",
     "summary": "Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.",

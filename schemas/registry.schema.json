@@ -45,47 +45,6 @@
               "content": {
                 "type": "string"
               },
-              "id": {
-                "type": "string",
-                "enum": [
-                  "candidate",
-                  "recruiter",
-                  "hiring-manager",
-                  "ats-vendor",
-                  "employer-policy",
-                  "public-policy",
-                  "client"
-                ]
-              },
-              "type": {
-                "type": "string",
-                "const": "actor"
-              },
-              "summary": {
-                "type": "string",
-                "minLength": 10
-              },
-              "controls": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "minItems": 1
-              },
-              "blind_to": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "minItems": 1
-              },
-              "incentives": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "minItems": 1
-              },
               "aliases": {
                 "type": "object",
                 "properties": {
@@ -126,6 +85,47 @@
                   "facet": [],
                   "intervention": []
                 }
+              },
+              "id": {
+                "type": "string",
+                "enum": [
+                  "candidate",
+                  "recruiter",
+                  "hiring-manager",
+                  "ats-vendor",
+                  "employer-policy",
+                  "public-policy",
+                  "client"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "const": "actor"
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 10
+              },
+              "controls": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "blind_to": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "incentives": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
               },
               "specimens": {
                 "type": "array",
@@ -279,6 +279,13 @@
               },
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
               },
               "id": {
                 "type": "string",
@@ -443,6 +450,9 @@
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+              },
               "id": {
                 "type": "string",
                 "pattern": "^(E-\\d{3}|era\\.[a-z0-9_]+)$"
@@ -557,6 +567,9 @@
               },
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -768,6 +781,9 @@
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+              },
               "id": {
                 "type": "string",
                 "pattern": "^(B-\\d{3}|bar\\.[a-z0-9_]+)$"
@@ -848,6 +864,9 @@
               },
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
               },
               "id": {
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
@@ -1034,6 +1053,9 @@
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+              },
               "id": {
                 "type": "string",
                 "pattern": "^(P-\\d{3}|pat\\.[a-z0-9_]+)$"
@@ -1137,6 +1159,9 @@
               },
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -1249,6 +1274,9 @@
               },
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
               },
               "id": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
@@ -1409,6 +1437,9 @@
               },
               "content": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "aliases": {
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
               },
               "id": {
                 "type": "string",

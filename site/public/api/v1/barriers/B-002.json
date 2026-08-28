@@ -9,6 +9,7 @@
       "EVD-047"
     ],
     "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
+    "aliases": [],
     "id": "B-002",
     "type": "barrier",
     "stage": "ingestion",

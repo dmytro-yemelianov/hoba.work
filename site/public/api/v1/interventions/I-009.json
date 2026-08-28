@@ -7,6 +7,7 @@
       "EVD-034"
     ],
     "content": "# Outreach States the Requisition Behind It\n\nEvery outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.\n\n### Expected Effects\n- B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent\n- M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on\n- The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast\n\n### Measurements\n- `unattached_outreach_rate`\n- `pool_record_age_days`\n- `planning_decision_notice_rate`",
+    "aliases": [],
     "id": "I-009",
     "type": "intervention",
     "summary": "Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.",

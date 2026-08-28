@@ -218,6 +218,8 @@ const nodeBase = {
   status: nodeStatusSchema.default('active'),
   evidence_ids: z.array(evidenceId).default([]),
   content: z.string().optional(),
+  /** Prior IDs this entity was known by, so a rename doesn't erase the old code. */
+  aliases: z.array(z.string()).default([]),
 };
 
 // Artifact frontmatter schema

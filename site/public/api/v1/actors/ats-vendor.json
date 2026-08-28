@@ -5,6 +5,14 @@
     "status": "active",
     "evidence_ids": [],
     "content": "# ATS vendor\n\nThe platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.",
+    "aliases": {
+      "facet": [
+        "system"
+      ],
+      "intervention": [
+        "ats-vendor"
+      ]
+    },
     "id": "ats-vendor",
     "type": "actor",
     "summary": "The platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.",
@@ -24,14 +32,6 @@
       "Feature parity with competitors, including features with known disparate effects",
       "Defaults that reduce customer support load, not candidate confusion"
     ],
-    "aliases": {
-      "facet": [
-        "system"
-      ],
-      "intervention": [
-        "ats-vendor"
-      ]
-    },
     "specimens": [
       {
         "kind": "ats",

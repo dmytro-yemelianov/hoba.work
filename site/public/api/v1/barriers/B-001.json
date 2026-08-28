@@ -7,6 +7,7 @@
       "EVD-001"
     ],
     "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nThe application record is received, validates against the minimum schema, and is linked to an active job requisition.",
+    "aliases": [],
     "id": "B-001",
     "type": "barrier",
     "stage": "ingestion",

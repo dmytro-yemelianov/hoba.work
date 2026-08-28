@@ -159,3 +159,13 @@ describe('the actual renamed pattern content validates', () => {
     expect(bundle.patterns.some((p) => p.id.startsWith('pat.'))).toBe(true);
   });
 });
+
+describe('aliases survive Zod parsing', () => {
+  it('loads a renamed pattern entity with its aliases field intact, not stripped', () => {
+    const root = resolveRegistryRoot();
+    const bundle = loadRegistryFromRoot(root, 'en');
+    const renamed = bundle.patterns.find((p) => p.id === 'pat.seniority_double_bind');
+    expect(renamed).toBeDefined();
+    expect(renamed!.aliases).toEqual(['P-001']);
+  });
+});

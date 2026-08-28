@@ -7,6 +7,7 @@
       "EVD-001"
     ],
     "content": "# Automated Application Expiration Timeout\n\nThe ATS is configured to reject in bulk every application still pending after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `M-006` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- A bulk timeout rejection carries no assessment of the profile at all.",
+    "aliases": [],
     "id": "M-020",
     "type": "mechanism",
     "summary": "The ATS is configured to reject in bulk every application still pending after 45 or 60 days.",

@@ -21,6 +21,7 @@ export const artifact = (over: Partial<ArtifactNode> & { id: string }): Artifact
   status: 'active',
   evidence_level: 'supported',
   evidence_ids: [],
+  aliases: [],
   probes: [],
   specimens: [],
   perspectives: [],
@@ -40,6 +41,7 @@ export const barrier = (over: Partial<BarrierNode> & { id: string; order: number
   status: 'active',
   evidence_level: 'established',
   evidence_ids: [],
+  aliases: [],
   ...over,
 });
 
@@ -56,6 +58,7 @@ export const mechanism = (over: Partial<MechanismNode> & { id: string }): Mechan
   evidence_level: 'supported',
   honest_baseline: false,
   evidence_ids: [],
+  aliases: [],
   specimens: [],
   perspectives: [],
   non_inferences: ['Does not establish intent.'],
@@ -77,6 +80,7 @@ export const pattern = (over: Partial<PatternNode> & { id: string }): PatternNod
   status: 'active',
   evidence_level: 'supported',
   evidence_ids: [],
+  aliases: [],
   ...over,
 });
 
@@ -96,6 +100,7 @@ export const loop = (over: Partial<LoopNode> & { id: string }): LoopNode => ({
   status: 'active',
   evidence_level: 'supported',
   evidence_ids: [],
+  aliases: [],
   ...over,
 });
 
@@ -114,6 +119,7 @@ export const intervention = (over: Partial<InterventionNode> & { id: string }): 
   expected_effects: ['Less noise.'],
   measurements: ['noise_rate'],
   evidence_ids: [],
+  aliases: [],
   ...over,
 });
 

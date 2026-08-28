@@ -9,6 +9,7 @@
         "EVD-001"
       ],
       "content": "# Complete silence after submission\n\nAfter the application is submitted, nothing arrives: no automated receipt, no acknowledgement, no rejection, no message from a recruiter.\n\n### Diagnostic Non-Inferences\n- Does not prove the application was reviewed by a human.\n- Does not prove the role was cancelled or already filled.",
+      "aliases": [],
       "id": "A-001",
       "type": "artifact",
       "summary": "After the application is submitted, nothing arrives: no automated receipt, no acknowledgement, no rejection, no message from a recruiter.",
@@ -134,6 +135,7 @@
         "EVD-048"
       ],
       "content": "# Generic \"closer alignment\" rejection template\n\nA standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.\n\n### Diagnostic Non-Inferences\n- Does not establish which specific skill was deemed insufficient.\n- Does not establish whether a human reviewer read the full resume.",
+      "aliases": [],
       "id": "A-002",
       "type": "artifact",
       "summary": "A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.",
@@ -251,6 +253,7 @@
         "EVD-004"
       ],
       "content": "# Position closed after final interview without hire\n\nThe candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.\n\n### Diagnostic Non-Inferences\n- Does not prove that the candidate failed the technical or behavioural evaluations.\n- Does not prove that the company misstated its intention in opening the role.",
+      "aliases": [],
       "id": "A-003",
       "type": "artifact",
       "summary": "The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.",
@@ -380,6 +383,7 @@
         "EVD-004"
       ],
       "content": "# Materially similar role reposted shortly after rejection\n\nThe same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.\n\n### Diagnostic Non-Inferences\n- Does not establish that the role was a \"fake\" or \"ghost\" posting.\n- Does not establish that the prior interview feedback was fraudulent.",
+      "aliases": [],
       "id": "A-004",
       "type": "artifact",
       "summary": "The same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.",
@@ -497,6 +501,7 @@
         "EVD-038"
       ],
       "content": "# Compensation band reduced or altered mid-process\n\nThe compensation band offered or discussed is revised downward from the range previously agreed or advertised.\n\n### Diagnostic Non-Inferences\n- Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.",
+      "aliases": [],
       "id": "A-005",
       "type": "artifact",
       "summary": "The compensation band offered or discussed is revised downward from the range previously agreed or advertised.",
@@ -636,6 +641,7 @@
         "EVD-006"
       ],
       "content": "# Take-home assignment exceeding reasonable stated scope\n\nThe take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.\n\n### Diagnostic Non-Inferences\n- Does not prove the company is harvesting free intellectual property for production use.",
+      "aliases": [],
       "id": "A-006",
       "type": "artifact",
       "summary": "The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.",
@@ -750,6 +756,7 @@
         "EVD-001"
       ],
       "content": "# Multiple interview reschedulings or interviewer no-show\n\nInterviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.\n\n### Diagnostic Non-Inferences\n- Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.",
+      "aliases": [],
       "id": "A-007",
       "type": "artifact",
       "summary": "Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.",
@@ -885,6 +892,7 @@
         "EVD-006"
       ],
       "content": "# Explicit feedback citing skill-depth shortfall\n\nInterviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.\n\n### Diagnostic Non-Inferences\n- Does not imply general incompetence; it reflects the threshold for this specific role level.",
+      "aliases": [],
       "id": "A-008",
       "type": "artifact",
       "summary": "Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.",
@@ -1019,6 +1027,7 @@
         "EVD-001"
       ],
       "content": "# Rejection within minutes of application submission\n\nAutomated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.\n\n### Diagnostic Non-Inferences\n- Does not mean a human engineer read the resume and judged it poor.",
+      "aliases": [],
       "id": "A-009",
       "type": "artifact",
       "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.",
@@ -1137,6 +1146,7 @@
         "EVD-006"
       ],
       "content": "# Communication mismatch or tone friction in panel\n\nNoticeable divergence in communication style, pacing, or terminology during live panel discussions.\n\n### Diagnostic Non-Inferences\n- Does not prove the candidate lacks teamwork skills in general.",
+      "aliases": [],
       "id": "A-010",
       "type": "artifact",
       "summary": "Noticeable divergence in communication style, pacing, or terminology during live panel discussions.",
@@ -1270,6 +1280,7 @@
         "EVD-004"
       ],
       "content": "# Offer rescinded or delayed due to internal freeze\n\nCandidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.\n\n### Diagnostic Non-Inferences\n- Does not mean the candidate failed a reference check, unless the message says so.",
+      "aliases": [],
       "id": "A-011",
       "type": "artifact",
       "summary": "Candidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.",
@@ -1392,6 +1403,7 @@
         "EVD-001"
       ],
       "content": "# Unsolicited recruiter outreach followed by ghosting\n\nRecruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.\n\n### Diagnostic Non-Inferences\n- Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like.",
+      "aliases": [],
       "id": "A-012",
       "type": "artifact",
       "summary": "Recruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.",
@@ -1525,6 +1537,7 @@
         "EVD-002"
       ],
       "content": "# Feedback stating candidate is overqualified for the grade\n\nCandidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.\n\n### Diagnostic Non-Inferences\n- Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch.",
+      "aliases": [],
       "id": "A-013",
       "type": "artifact",
       "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.",
@@ -1670,6 +1683,7 @@
         "EVD-006"
       ],
       "content": "# Conflicting feedback across different interviewers\n\nFeedback from one round praises architectural depth while another round claims insufficient technical background.\n\n### Diagnostic Non-Inferences\n- Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee.",
+      "aliases": [],
       "id": "A-014",
       "type": "artifact",
       "summary": "Feedback from one round praises architectural depth while another round claims insufficient technical background.",
@@ -1787,6 +1801,7 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Rejection after the application sat pending for months\n\nA rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.\n\n### Diagnostic Non-Inferences\n- Does not mean the application was read at any point during the interval.\n- Does not mean a decision on the merits was taken at the end of it.",
+      "aliases": [],
       "id": "A-015",
       "type": "artifact",
       "summary": "A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.",
@@ -1913,6 +1928,7 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Rejection naming an internal hire as the outcome\n\nThe closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.\n\n### Diagnostic Non-Inferences\n- Does not establish that the internal candidate was identified before the search was published.\n- Does not establish that the external rounds were run without a decision available to them.",
+      "aliases": [],
       "id": "A-016",
       "type": "artifact",
       "summary": "The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.",
@@ -2014,6 +2030,7 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Rejection naming a jurisdiction or work-eligibility ground\n\nThe stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.\n\n### Diagnostic Non-Inferences\n- Does not establish that no route to employment existed, only that none was used here.\n- Does not establish that the constraint was the first ground on which the application was set aside.",
+      "aliases": [],
       "id": "A-017",
       "type": "artifact",
       "summary": "The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.",
@@ -2115,6 +2132,7 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Rejection naming a specific industry sector as required\n\nThe stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.\n\n### Diagnostic Non-Inferences\n- Does not establish that the sector was irrelevant to the work.\n- Does not establish that the assessed work fell short in any respect.",
+      "aliases": [],
       "id": "A-018",
       "type": "artifact",
       "summary": "The stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.",
@@ -2213,6 +2231,7 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Feedback naming as absent something the submitted work contains\n\nThe stated shortfall is the absence of work that is present in what the candidate submitted, at the path they gave.\n\n### Diagnostic Non-Inferences\n- Does not establish that the work was never opened, only that the claim and the submission disagree.\n- Does not establish that the work would have met the bar had it been read.",
+      "aliases": [],
       "id": "A-019",
       "type": "artifact",
       "summary": "The stated shortfall is the absence of work that is present in what the candidate submitted, at the path they gave.",
@@ -2315,6 +2334,7 @@
         "EVD-041"
       ],
       "content": "# Offer accepted followed by delayed start date or post-signing revocation\n\nA signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.\n\n### Diagnostic Non-Inferences\n- Does not establish that the candidate's performance or background check caused the delay.\n- Does not establish that the role was fraudulent when the offer was originally issued.",
+      "aliases": [],
       "id": "A-020",
       "type": "artifact",
       "summary": "A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.",
@@ -2415,6 +2435,7 @@
         "EVD-039"
       ],
       "content": "# Republished job posting with refreshed date and identical requirement body\n\nAn opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.\n\n### Diagnostic Non-Inferences\n- Does not establish that previous applicants were rejected on qualification grounds.\n- Does not establish that a confirmed budget line exists for immediate onboarding.",
+      "aliases": [],
       "id": "A-021",
       "type": "artifact",
       "summary": "An opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.",

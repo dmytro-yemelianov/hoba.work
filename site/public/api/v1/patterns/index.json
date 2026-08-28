@@ -9,6 +9,9 @@
         "EVD-004"
       ],
       "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
+      "aliases": [
+        "P-002"
+      ],
       "id": "pat.closed_then_reposted_requisition_motif",
       "type": "pattern",
       "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
@@ -129,6 +132,9 @@
         "EVD-005"
       ],
       "content": "# Compensation Double Bind\n\nThe candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.\n\n### Trigger Rule\nThe candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.\n\n### What this Establishes\n- An information asymmetry works as an uncalibrated filter before technical merit is assessed.\n\n### What this Does NOT Establish\n- Does not establish that the employer has an unlimited budget, or that any of this is malicious.",
+      "aliases": [
+        "P-004"
+      ],
       "id": "pat.compensation_double_bind",
       "type": "pattern",
       "summary": "The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.",
@@ -234,6 +240,9 @@
         "EVD-001"
       ],
       "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
+      "aliases": [
+        "P-003"
+      ],
       "id": "pat.experience_age_impossibility",
       "type": "pattern",
       "summary": "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.",
@@ -328,6 +337,9 @@
         "EVD-002"
       ],
       "content": "# Seniority Double Bind\n\nThe same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.\n\n### Trigger Rule\nThe candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.\n\n### What this Establishes\n- The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
+      "aliases": [
+        "P-001"
+      ],
       "id": "pat.seniority_double_bind",
       "type": "pattern",
       "summary": "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.",

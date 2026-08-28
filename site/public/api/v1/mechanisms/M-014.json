@@ -7,6 +7,7 @@
       "EVD-001"
     ],
     "content": "# Location or Timezone Compliance Constraint\n\nThe company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- The jurisdictional barrier is entirely independent of the candidate's technical competence.",
+    "aliases": [],
     "id": "M-014",
     "type": "mechanism",
     "summary": "The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.",

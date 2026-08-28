@@ -28,6 +28,13 @@
         "content": {
           "type": "string"
         },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
         "id": {
           "type": "string",
           "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"

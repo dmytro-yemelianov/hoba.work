@@ -7,6 +7,14 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# ATS vendor\n\nThe platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.",
+      "aliases": {
+        "facet": [
+          "system"
+        ],
+        "intervention": [
+          "ats-vendor"
+        ]
+      },
       "id": "ats-vendor",
       "type": "actor",
       "summary": "The platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.",
@@ -26,14 +34,6 @@
         "Feature parity with competitors, including features with known disparate effects",
         "Defaults that reduce customer support load, not candidate confusion"
       ],
-      "aliases": {
-        "facet": [
-          "system"
-        ],
-        "intervention": [
-          "ats-vendor"
-        ]
-      },
       "specimens": [
         {
           "kind": "ats",
@@ -152,6 +152,14 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Candidate\n\nThe person applying. The only party in the funnel who sees the whole of their own process and almost none of anyone else's.",
+      "aliases": {
+        "facet": [
+          "candidate"
+        ],
+        "intervention": [
+          "candidate-action"
+        ]
+      },
       "id": "candidate",
       "type": "actor",
       "summary": "The person applying. The only party in the funnel who sees the whole of their own process and almost none of anyone else's.",
@@ -172,14 +180,6 @@
         "Avoid spending unpaid hours on processes that were never live",
         "Preserve the ability to reapply without having burned the relationship"
       ],
-      "aliases": {
-        "facet": [
-          "candidate"
-        ],
-        "intervention": [
-          "candidate-action"
-        ]
-      },
       "specimens": [
         {
           "kind": "note",
@@ -305,6 +305,10 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Client\n\nThe party paying for the seat when the company is not its own customer. Signs the contract the requisition depends on, and often holds a gate the candidate never sees named.",
+      "aliases": {
+        "facet": [],
+        "intervention": []
+      },
       "id": "client",
       "type": "actor",
       "summary": "The party paying for the seat when the company is not its own customer. Signs the contract the requisition depends on, and often holds a gate the candidate never sees named.",
@@ -326,10 +330,6 @@
         "Keep the option to end the engagement without ending anyone's employment — that is what the vendor is for",
         "Pay for delivery, not for the search that produced it"
       ],
-      "aliases": {
-        "facet": [],
-        "intervention": []
-      },
       "specimens": [
         {
           "kind": "note",
@@ -401,6 +401,14 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Employer policy\n\nFinance, leadership and the people function: the layer that authorises headcount, fixes bands and writes the rules the funnel executes. Never meets a candidate.",
+      "aliases": {
+        "facet": [
+          "policy"
+        ],
+        "intervention": [
+          "employer-policy"
+        ]
+      },
       "id": "employer-policy",
       "type": "actor",
       "summary": "Finance, leadership and the people function: the layer that authorises headcount, fixes bands and writes the rules the funnel executes. Never meets a candidate.",
@@ -420,14 +428,6 @@
         "Consistency and legal defensibility across every hire",
         "Cost control, on a cycle measured in quarters rather than in conversations"
       ],
-      "aliases": {
-        "facet": [
-          "policy"
-        ],
-        "intervention": [
-          "employer-policy"
-        ]
-      },
       "specimens": [
         {
           "kind": "note",
@@ -538,6 +538,14 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Hiring manager\n\nThe person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb.",
+      "aliases": {
+        "facet": [
+          "hiring-manager"
+        ],
+        "intervention": [
+          "hiring-manager"
+        ]
+      },
       "id": "hiring-manager",
       "type": "actor",
       "summary": "The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb.",
@@ -557,14 +565,6 @@
         "Fill the gap without the ramp-up cost of someone who needs teaching",
         "Keep the team's own delivery on track while running the loop"
       ],
-      "aliases": {
-        "facet": [
-          "hiring-manager"
-        ],
-        "intervention": [
-          "hiring-manager"
-        ]
-      },
       "specimens": [
         {
           "kind": "note",
@@ -678,6 +678,15 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Public policy and industry standards\n\nRegulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for.",
+      "aliases": {
+        "facet": [
+          "external"
+        ],
+        "intervention": [
+          "industry-standard",
+          "policy"
+        ]
+      },
       "id": "public-policy",
       "type": "actor",
       "summary": "Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for.",
@@ -694,15 +703,6 @@
         "Rules that are enforceable and measurable, which is a narrower set than rules that would help",
         "Not disrupting labour markets faster than they can absorb the change"
       ],
-      "aliases": {
-        "facet": [
-          "external"
-        ],
-        "intervention": [
-          "industry-standard",
-          "policy"
-        ]
-      },
       "specimens": [
         {
           "kind": "posting",
@@ -827,6 +827,14 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Recruiter\n\nThe function that moves people through the funnel. Holds the most information about the process and the least authority over its outcome.",
+      "aliases": {
+        "facet": [
+          "recruiter"
+        ],
+        "intervention": [
+          "recruiter-process"
+        ]
+      },
       "id": "recruiter",
       "type": "actor",
       "summary": "The function that moves people through the funnel. Holds the most information about the process and the least authority over its outcome.",
@@ -846,14 +854,6 @@
         "Protect the relationship with the hiring manager, who is the internal client",
         "Avoid saying anything that could be quoted back as a commitment"
       ],
-      "aliases": {
-        "facet": [
-          "recruiter"
-        ],
-        "intervention": [
-          "recruiter-process"
-        ]
-      },
       "specimens": [
         {
           "kind": "ats",
