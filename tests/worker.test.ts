@@ -124,3 +124,22 @@ describe('fetch handler', () => {
     expect(await posted.text()).toBe('asset:/');
   });
 });
+
+describe('legacy entity-ID redirects', () => {
+  it('redirects an old pattern short code to its new dotted-namespace path', () => {
+    expect(legacyRedirect('/patterns/P-001')).toBe('/patterns/pat.seniority_double_bind');
+  });
+
+  it('leaves an already-canonical path alone', () => {
+    expect(legacyRedirect('/patterns/pat.seniority_double_bind')).toBeNull();
+  });
+
+  it('leaves an unrelated, non-aliased path alone', () => {
+    expect(legacyRedirect('/patterns/P-999')).toBeNull();
+  });
+
+  it('still redirects /uk/* and /_i/* exactly as before (unchanged behavior)', () => {
+    expect(legacyRedirect('/uk/patterns')).toBe('/patterns');
+    expect(legacyRedirect('/_i/en/patterns')).toBe('/patterns');
+  });
+});

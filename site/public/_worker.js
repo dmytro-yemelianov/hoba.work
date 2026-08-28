@@ -32,6 +32,16 @@ const INTERNAL = '/_i';
 const NON_HTML = /\.[a-z0-9]+$/i;
 const STATIC_PREFIXES = ['/api/', '/data/', '/schemas/', '/_astro/', '/icons/'];
 
+// GENERATED — do not edit by hand. Run `pnpm generate:redirects` to refresh
+// from every entity's `aliases` field. See scripts/generate-redirects.ts.
+const LEGACY_ALIASES = {
+  "P-001": "/patterns/pat.seniority_double_bind",
+  "P-002": "/patterns/pat.closed_then_reposted_requisition_motif",
+  "P-003": "/patterns/pat.experience_age_impossibility",
+  "P-004": "/patterns/pat.compensation_double_bind",
+};
+// END GENERATED
+
 export function readCookie(cookieHeader, name) {
   if (!cookieHeader) return undefined;
   for (const part of cookieHeader.split(';')) {
@@ -104,6 +114,10 @@ export function legacyRedirect(pathname) {
   if (pathname === INTERNAL || pathname.startsWith(`${INTERNAL}/`)) {
     const stripped = pathname.replace(new RegExp(`^${INTERNAL}/(?:${LANGS.join('|')})(?=/|$)`), '');
     return stripped || '/';
+  }
+  const lastSegment = pathname.slice(pathname.lastIndexOf('/') + 1);
+  if (Object.prototype.hasOwnProperty.call(LEGACY_ALIASES, lastSegment)) {
+    return LEGACY_ALIASES[lastSegment];
   }
   return null;
 }
