@@ -17,7 +17,7 @@ import type {
   NeckAccessory,
   PropItem,
   BackdropTheme,
-} from './types';
+} from './types.js';
 
 /** SFC32 (Small Fast Chaotic 32-bit PRNG) */
 export function createRng(seedStr: string): () => number {

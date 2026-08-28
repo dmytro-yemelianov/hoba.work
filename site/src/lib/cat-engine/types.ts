@@ -164,9 +164,12 @@ export interface CatColors {
   primary: string;
   secondary: string;
   tertiary?: string;
+  shading?: string;
   belly: string;
   innerEar: string;
+  innerEarShadow?: string;
   nose: string;
+  noseLeather?: string;
   tongue: string;
   eyeLeft: string;
   eyeRight: string;
@@ -175,4 +178,5 @@ export interface CatColors {
   accent: string;
   shadow: string;
   highlight: string;
+  whiskerPad?: string;
 }

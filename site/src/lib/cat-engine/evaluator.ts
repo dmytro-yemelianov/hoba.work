@@ -3,10 +3,10 @@
  * Scores procedural vector cats and visual assets across 4 core dimensions (100 pts total).
  */
 
-import { generateDNA } from './prng';
-import { renderCatSVG } from './render';
-import { resolveColors } from './colors';
-import type { CatDNA } from './types';
+import { generateDNA } from './prng.js';
+import { renderCatSVG } from './render.js';
+import { resolveColors } from './colors.js';
+import type { CatDNA } from './types.js';
 
 export interface QualityScore {
   total: number;

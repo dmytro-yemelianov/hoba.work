@@ -2,9 +2,9 @@
  * Vector Cat Engine — Public Barrel Export
  */
 
-export * from './types';
-export * from './prng';
-export * from './colors';
-export * from './render';
-export * from './presets';
-export * from './evaluator';
+export * from './types.js';
+export * from './prng.js';
+export * from './colors.js';
+export * from './render.js';
+export * from './presets.js';
+export * from './evaluator.js';

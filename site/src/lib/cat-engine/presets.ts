@@ -2,7 +2,7 @@
  * Vector Cat Engine — Curated Presets & Gallery Hall of Fame
  */
 
-import type { CatDNA } from './types';
+import type { CatDNA } from './types.js';
 
 export interface CatPreset {
   id: string;

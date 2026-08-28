@@ -7,10 +7,8 @@ import {
   CAT_PRESETS,
   POSES,
   COAT_STYLES,
-  EYE_SHAPES,
-  MOUTH_EMOTIONS,
   type CatDNA,
-} from '../site/src/lib/cat-engine';
+} from '../site/src/lib/cat-engine/index.js';
 
 describe('Vector Cat Engine', () => {
   it('generates deterministic DNA and identical SVG for the same seed', () => {

@@ -2,7 +2,7 @@
  * Ralph Quality Loop — Automated Visual Evaluation & Optimization Runner
  */
 
-import { CAT_PRESETS, evaluateCatQuality, auditPopulation, randomSeed } from '../site/src/lib/cat-engine';
+import { CAT_PRESETS, evaluateCatQuality, auditPopulation, randomSeed } from '../site/src/lib/cat-engine/index.js';
 
 async function runRalphLoop() {
   process.stdout.write('\n🎨 --- RALPH VISUAL QUALITY LOOP ---\n\n');
