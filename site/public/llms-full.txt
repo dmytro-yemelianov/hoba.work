@@ -14,7 +14,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 45) — the published sources behind the claims.
+- **Evidence** (`EVD-*`, 48) — the published sources behind the claims.
 
 The graph has 89 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -1343,3 +1343,24 @@ Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/
 
 - Regulation (EU) 2016/679 (GDPR), Article 5(1)(e) ('kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed').
 - https://eur-lex.europa.eu/eli/reg/2016/679/oj
+
+### EVD-046 — The Algorithmic Barrier: Quantifying Frictional Unemployment in Automated Recruitment (Fofanah, 2026)
+
+Benchmarks a legacy keyword-based ATS parser against a proposed semantic matching system on the same applicant pool. The legacy system's recall is 0.45 (vs. 0.92 for the semantic system) — meaning most qualified candidates in the pool are never surfaced to a reviewer. The paper's error-mode analysis attributes over 40% of the legacy system's false negatives to pure lexical variation: a candidate's CV describing work in different wording from the posting's exact required terms (e.g. "client engagement" where the rubric expects "customer success"), not a genuine skills gap.
+
+- Fofanah, I. D. (2026). The Algorithmic Barrier: Quantifying Artificial Frictional Unemployment and Information Asymmetry in Automated Recruitment Systems. arXiv:2601.14534.
+- https://arxiv.org/abs/2601.14534
+
+### EVD-047 — Algorithmic Bias In Recruitment: Evaluating Resume Screeners & Video Analysis (Yadav & Ahirwar, 2026)
+
+Reports that unaudited AI resume/video screeners produce a Disparate Impact Ratio below 0.72 for protected groups (improving to 0.88 once mitigation is applied), and documents proxy discrimination through indirect semantic associations with zip code, university tier, and employment-gap language. Caveat: published in the International Journal for Novel Research in Economics, Finance and Management, a venue not indexed in Scopus, Web of Science, or Google Scholar at the time this record was added — treat the underlying methodology as unverified even though the document itself states these figures verbatim.
+
+- Yadav, K., & Ahirwar, K. (2026). Algorithmic Bias In Recruitment: Evaluating the Fairness and Diversity Impact of AI-Driven Resume Screeners and Video Interview Analysis. International Journal for Novel Research in Economics, Finance and Management.
+- https://ijnrefm.com/algorithmic-bias-in-recruitment-evaluating-the-fairness-and-diversity-impact-of-ai-driven-resume-screeners-and-video-interview-analysis/
+
+### EVD-048 — Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions (Norton Rose Fulbright, 2026)
+
+Legal analysis of a May 28, 2026 discovery order in Mobley v. Workday (N.D. Cal.), the pending federal case alleging that Workday's applicant screening tool produces disparate impact against candidates by age, race and disability. The order held that AI bias-testing analyses can be shielded by attorney-client privilege where outside counsel meaningfully directed the testing for legal-advice purposes — quoting the court's finding that "Workday has shown more than mere direction by its attorneys" — while the underlying raw factual data and any regulator-facing reports remain discoverable. Note: this record covers only the privilege ruling; Mobley v. Workday's substantive disparate-impact and "agent of the employer" theories remain contested litigation, not adjudicated fact — an earlier July 2024 order only denied a motion to dismiss those theories on plausibility grounds, and a nationwide ADEA collective was preliminarily certified in May 2025.
+
+- Norton Rose Fulbright, Inside Tech Law (2026, June). Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions.
+- https://www.insidetechlaw.com/blog/2026/06/behind-the-privilege-shield-safeguarding-ai-bias-testing-data-in-employment-decisions
