@@ -91,9 +91,10 @@ describe('schema/scenario.schema.json', () => {
     expect(schema.required).toEqual(['id', 'title', 'observations']);
   });
 
-  it('has no field that an ontology entity could reciprocally reference', () => {
-    // Scenarios reference the ontology one-directionally; this is a schema
-    // for the scenario side of that relationship only.
+  it('uses a scenario.* ID namespace disjoint from every ontology type prefix', () => {
+    // The complementary check — that no ontology entity schema has a field
+    // capable of referencing a scenario ID — lives in the entity.schema.json
+    // describe block earlier in this file.
     expect(schema.properties.id.pattern).toBe('^scenario\\.[a-z0-9_]+$');
   });
 
