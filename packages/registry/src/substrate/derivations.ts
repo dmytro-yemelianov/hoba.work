@@ -895,7 +895,7 @@ export function substrateCalculateRunway(savings: number, monthlyBurn: number): 
 
   if (runwayMonths < 3) {
     riskStatus = 'acute_exhaustion_vulnerability';
-    vulnerabilityNote = 'Acute vulnerability: search duration approaches reserve depletion; high exposure to M-017 (structural down-levelling) and P-004.';
+    vulnerabilityNote = 'Acute vulnerability: search duration approaches reserve depletion; high exposure to M-017 (structural down-levelling) and pat.compensation_double_bind.';
   } else if (runwayMonths < 6) {
     riskStatus = 'moderate_runway_stress';
     vulnerabilityNote = 'Moderate stress: search duration may exceed average multi-stage latency (3-6 months).';
