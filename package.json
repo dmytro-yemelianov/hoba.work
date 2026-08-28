@@ -27,6 +27,7 @@
     "generate:id-mapping": "tsx scripts/generate-id-mapping.ts",
     "lean": "pnpm build:lean && cd formal && lake build",
     "ralph:eval": "tsx scripts/ralph-loop.ts",
+    "rename-entities": "tsx scripts/rename-entities.ts",
     "task": "node scripts/task.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
