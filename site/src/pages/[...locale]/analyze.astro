@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { getBundle, slimBundle, STAGES } from '../../lib/registry';
+import { EMPIRICAL_SCENARIOS, getBundle, slimBundle, STAGES } from '../../lib/registry';
 import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -60,6 +60,25 @@ const zones = [
       <div>
         <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.h.title')}</h2>
         <p class="mt-1 text-base text-hoba-muted">{t('analyze.h.sub')}</p>
+      </div>
+
+      <div class="space-y-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-hoba-muted">{t('analyze.scenarios.label')}</span>
+        <div class="flex flex-wrap gap-2">
+          {EMPIRICAL_SCENARIOS.map((sc) => (
+            <button
+              type="button"
+              class="scenario-preset pill pill-muted whitespace-normal break-words max-w-full text-left font-sans text-xs cursor-pointer hover:border-hoba-accent hover:text-hoba-accent transition-colors"
+              data-scenario-id={sc.id}
+              data-stage={sc.stage ?? ''}
+              data-artifacts={JSON.stringify(sc.artifacts)}
+              title={sc.summary}
+            >
+              <span class="dot bg-hoba-accent shrink-0" aria-hidden="true"></span>
+              <span>{t(`analyze.scenarios.${sc.id}`)}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <fieldset>
@@ -454,8 +473,27 @@ const zones = [
     });
 
     $('btn-reset').addEventListener('click', () => {
+      probeResults.clear();
       document.querySelectorAll<HTMLInputElement>('input[type="checkbox"], input[type="radio"]').forEach((el) => (el.checked = false));
       setStep('h');
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('.scenario-preset').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        probeResults.clear();
+        const targetStage = btn.dataset.stage ?? '';
+        const targetArtifacts: string[] = JSON.parse(btn.dataset.artifacts ?? '[]');
+
+        document.querySelectorAll<HTMLInputElement>('input[name="stage_select"]').forEach((el) => {
+          el.checked = el.value === targetStage;
+        });
+
+        document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]').forEach((el) => {
+          el.checked = targetArtifacts.includes(el.value);
+        });
+
+        setStep('h');
+      });
     });
 
     setStep('h');

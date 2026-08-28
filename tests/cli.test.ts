@@ -81,6 +81,18 @@ describe('hoba CLI', () => {
     expect(json.violations).toEqual([]);
   });
 
+  it('executes analysis for empirical scenarios', () => {
+    const json = JSON.parse(hoba(['explain', '--scenario', 'ghost-refresh', '--json']).stdout);
+    expect(json.scenario).toBe('ghost-refresh');
+    expect(json.analysis.hard_facts.selected_artifacts.map((a: { id: string }) => a.id)).toEqual(['A-001', 'A-004', 'A-021']);
+    expect(json.analysis.hard_facts.stage).toBe('sourcing');
+    expect(json.analysis.counts.compatible_mechanisms).toBeGreaterThan(0);
+
+    const txt = hoba(['explain', '--scenario', 'ats-knockout']).stdout;
+    expect(txt).toContain('Automated Parsing Knockout');
+    expect(txt).toContain('A-008');
+  });
+
   it('validates both mirrors strictly with no warnings', () => {
     const out = hoba(['validate', '--strict']);
     expect(out.stdout).toContain('0 error(s), 0 warning(s)');

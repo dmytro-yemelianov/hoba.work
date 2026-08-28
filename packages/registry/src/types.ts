@@ -215,3 +215,11 @@ export interface DiagnosticResult {
   };
   epistemic_disclaimer: string;
 }
+
+export interface EmpiricalScenario {
+  id: string;
+  title: string;
+  summary: string;
+  stage?: StageId;
+  artifacts: string[];
+}

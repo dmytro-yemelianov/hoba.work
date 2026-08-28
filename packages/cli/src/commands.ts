@@ -1,6 +1,7 @@
 import pc from 'picocolors';
 import {
   compareBundleStructure,
+  EMPIRICAL_SCENARIOS,
   evaluatePatternEmptiness,
   formatValidationIssue,
   HOBADiagnosticEngine,
@@ -179,21 +180,54 @@ function parseProbeResults(values: string[] | undefined): ProbeResult[] {
   });
 }
 
-export function cmdExplain(artifactIds: string[], options: GlobalOptions & { stage?: string; probe?: string[] }) {
+export function cmdExplain(
+  artifactIds: string[],
+  options: GlobalOptions & { stage?: string; scenario?: string; probe?: string[] }
+) {
+  let effectiveArtifacts = [...artifactIds];
+  let effectiveStage = options.stage;
+
+  if (options.scenario) {
+    const found = EMPIRICAL_SCENARIOS.find((s) => s.id === options.scenario);
+    if (!found) {
+      const valid = EMPIRICAL_SCENARIOS.map((s) => s.id).join(', ');
+      throw new CliError(`Unknown scenario "${options.scenario}". Available scenarios: ${valid}`);
+    }
+    if (effectiveArtifacts.length === 0) {
+      effectiveArtifacts = [...found.artifacts];
+    }
+    if (!effectiveStage && found.stage) {
+      effectiveStage = found.stage;
+    }
+  }
+
+  if (effectiveArtifacts.length === 0) {
+    const list = EMPIRICAL_SCENARIOS.map((s) => `  - ${s.id}: ${s.title} (${s.artifacts.join(', ')})`).join('\n');
+    throw new CliError(`No artifact IDs or scenario provided. Specify artifact IDs (e.g. A-001 A-004) or a scenario (--scenario <name>).\n\nAvailable empirical scenarios:\n${list}`);
+  }
+
   const { bundle } = loadBundle(options);
   const engine = new HOBADiagnosticEngine(bundle);
   const res = engine.analyze({
-    artifacts: artifactIds,
-    stage: parseStage(options.stage),
+    artifacts: effectiveArtifacts,
+    stage: parseStage(effectiveStage),
     probe_results: parseProbeResults(options.probe),
   });
 
   if (options.json) {
-    printJson({ registry_version: bundle.version, analysis: res });
+    printJson({
+      registry_version: bundle.version,
+      scenario: options.scenario ?? null,
+      analysis: res,
+    });
     return;
   }
 
   console.log(pc.bold(pc.cyan('\n=== hoba Forensic Diagnostic Analysis ===\n')));
+  if (options.scenario) {
+    const sc = EMPIRICAL_SCENARIOS.find((s) => s.id === options.scenario);
+    if (sc) console.log(pc.magenta(`Empirical Scenario: ${sc.title} (${sc.id})\n`));
+  }
   if (res.hard_facts.unknown_artifact_ids.length > 0) {
     console.log(pc.yellow(`Warning: unknown or inactive artifact ID(s) ignored: ${res.hard_facts.unknown_artifact_ids.join(', ')}\n`));
   }

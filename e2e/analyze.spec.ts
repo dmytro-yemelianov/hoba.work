@@ -46,4 +46,17 @@ test.describe('analysis wizard', () => {
     await expect(page.locator('#verdict-banner')).toContainText(says('en', 'wiz.stop'));
     await expect(page.locator('#count-candidate')).toHaveText('0');
   });
+
+  test('scenario presets populate inputs and evaluate diagnostics', async ({ page }) => {
+    await page.goto('/analyze');
+    await page.locator('button[data-scenario-id="ghost-refresh"]').click();
+    await expect(page.locator('input[name="stage_select"][value="sourcing"]')).toBeChecked();
+    await expect(page.locator('input[name="artifacts_selected"][value="A-001"]')).toBeChecked();
+    await expect(page.locator('input[name="artifacts_selected"][value="A-004"]')).toBeChecked();
+    await expect(page.locator('input[name="artifacts_selected"][value="A-021"]')).toBeChecked();
+
+    await page.locator('#tab-b').click();
+    await expect(page.locator('#mechanisms-output')).toContainText('M-006');
+    await expect(page.locator('#patterns-output')).toContainText('P-002');
+  });
 });

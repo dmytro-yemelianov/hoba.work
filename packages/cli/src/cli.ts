@@ -54,14 +54,15 @@ program
   });
 
 program
-  .command('explain <artifact_ids...>')
-  .description('Execute the hoba forensic analysis protocol for one or more observed artifacts')
+  .command('explain [artifact_ids...]')
+  .description('Execute the hoba forensic analysis protocol for one or more observed artifacts or named empirical scenario')
   .option('-s, --stage <stage>', 'Hiring funnel stage the process reached')
+  .option('--scenario <name>', 'Pre-configured empirical diagnostic scenario (ghost-refresh, ats-knockout, post-panel-freeze, downlevelling-trap)')
   .option(
     '-p, --probe <result...>',
     'Probe results already gathered, as PROBE-ID:outcome — each one can only narrow the compatible set'
   )
-  .action((artifactIds: string[], opts: { stage?: string; probe?: string[] }, cmd: Command) => {
+  .action((artifactIds: string[], opts: { stage?: string; scenario?: string; probe?: string[] }, cmd: Command) => {
     run(() => cmdExplain(artifactIds, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
   });
 

@@ -7,6 +7,7 @@ import type {
   DiagnosticInput,
   DiagnosticProbe,
   DiagnosticResult,
+  EmpiricalScenario,
   MechanismNode,
   RegistryBundle,
   StageId,
@@ -14,6 +15,37 @@ import type {
 
 export const EPISTEMIC_DISCLAIMER =
   'Topological / Uncalibrated Analysis: Compatible mechanisms reflect logical compatibility with observed facts and structural gates, not probabilistic certainty. An observation is not a cause; a rejection message is not necessarily a reason.';
+
+export const EMPIRICAL_SCENARIOS: EmpiricalScenario[] = [
+  {
+    id: 'ghost-refresh',
+    title: 'Ghost Requisition & Pipeline Refresh',
+    summary: 'Stale posting refreshed with identical body while active applicants experience silence.',
+    stage: 'sourcing',
+    artifacts: ['A-001', 'A-004', 'A-021'],
+  },
+  {
+    id: 'ats-knockout',
+    title: 'Automated Parsing Knockout',
+    summary: 'Instant rejection outside business hours combined with rigid uncontextualized filters.',
+    stage: 'screening',
+    artifacts: ['A-002', 'A-008', 'A-012'],
+  },
+  {
+    id: 'post-panel-freeze',
+    title: 'Post-Panel Freeze & Silence',
+    summary: 'Strong verbal engagement followed by multi-week offer hold and sudden ghosting.',
+    stage: 'technical',
+    artifacts: ['A-001', 'A-007', 'A-016'],
+  },
+  {
+    id: 'downlevelling-trap',
+    title: 'Down-Levelling & Delayed Start',
+    summary: 'Scope expansion, sub-band compensation offer, and post-acceptance start date slippage.',
+    stage: 'post-offer',
+    artifacts: ['A-017', 'A-018', 'A-020'],
+  },
+];
 
 /**
  * The hoba protocol (H → O → B → A) over a loaded registry.

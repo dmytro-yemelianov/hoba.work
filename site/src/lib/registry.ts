@@ -5,11 +5,13 @@
  * page used to re-read and re-validate all content files on its own.
  */
 import {
+  EMPIRICAL_SCENARIOS,
   findRegistryRoot,
   HOBAKnowledgeGraph,
   loadRegistryFromRoot,
   stageIdSchema,
   type ContentLang,
+  type EmpiricalScenario,
   type RegistryBundle,
   type ActorNode,
   type EraNode,
@@ -234,3 +236,5 @@ export function coverage(bundle: RegistryBundle): Coverage {
     totals: { gates: bundle.barriers.length, mechanisms: bundle.mechanisms.length, entries: entries.length },
   };
 }
+
+export { EMPIRICAL_SCENARIOS, type EmpiricalScenario };
