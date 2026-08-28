@@ -207,6 +207,26 @@ function catPortraitDataUri(presetId: string, px: number): string {
   return `data:image/png;base64,${new Resvg(svg, { fitTo: { mode: 'width', value: px } }).render().asPng().toString('base64')}`;
 }
 
+const MASCOT_CACHE = new Map<string, string>();
+const MASCOT_RASTER_PX = 160;
+
+/**
+ * A small brand-mark cat, one per shared page — its own random cat rolled
+ * from the page's id, not a repeated mascot. Cached by seed so an entity
+ * shown at both og and postcard size (and in both languages) reuses one
+ * render instead of paying for it twice.
+ */
+function catMascotDataUri(seed: string): string {
+  let dataUri = MASCOT_CACHE.get(seed);
+  if (!dataUri) {
+    const svg = renderCatSVG(generateDNA(seed), { width: MASCOT_RASTER_PX, height: MASCOT_RASTER_PX });
+    const png = new Resvg(svg, { fitTo: { mode: 'width', value: MASCOT_RASTER_PX } }).render().asPng();
+    dataUri = `data:image/png;base64,${png.toString('base64')}`;
+    MASCOT_CACHE.set(seed, dataUri);
+  }
+  return dataUri;
+}
+
 /** Deterministic PRNG seeded by string (SFC32) */
 function createRng(seedStr: string) {
   let h1 = 1779033703, h2 = 3144134277, h3 = 1013904242, h4 = 2773480762;
@@ -522,7 +542,8 @@ function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: '
           letterSpacing: '0.12em',
         }),
       ]),
-      el('div', { alignItems: 'center', gap: 8 }, [
+      el('div', { alignItems: 'center', gap: size === 'og' ? 10 : 12 }, [
+        img(catMascotDataUri(entity.id), size === 'og' ? 34 : 42, size === 'og' ? 34 : 42),
         text('hoba', {
           fontSize: size === 'og' ? 26 : 34,
           color: TEXT,
@@ -842,7 +863,8 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
           letterSpacing: '0.12em',
         }),
       ]),
-      el('div', { alignItems: 'center', gap: 8 }, [
+      el('div', { alignItems: 'center', gap: 10 }, [
+        ...(sec.id === 'og-cats' ? [] : [img(catMascotDataUri(sec.id), 34, 34)]),
         text('hoba', {
           fontSize: 26,
           color: '#ffffff',
