@@ -21,7 +21,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^EVD-\\d{3}$"
+            "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
           },
           "default": []
         },
@@ -30,7 +30,7 @@
         },
         "id": {
           "type": "string",
-          "pattern": "^L-\\d{3}$"
+          "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"
         },
         "type": {
           "type": "string",
@@ -44,7 +44,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^M-\\d{3}$"
+            "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
           },
           "minItems": 2
         },
@@ -87,7 +87,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^I-\\d{3}$"
+            "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"
           },
           "default": []
         },

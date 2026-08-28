@@ -1,6 +1,8 @@
 ---
-id: "P-002"
+id: "pat.closed_then_reposted_requisition_motif"
 type: "pattern"
+aliases:
+  - "P-002"
 title: "Closed-Then-Reposted Requisition Motif"
 summary: "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later."
 required_artifacts:

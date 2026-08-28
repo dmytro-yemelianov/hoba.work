@@ -1,6 +1,8 @@
 ---
-id: "P-003"
+id: "pat.experience_age_impossibility"
 type: "pattern"
+aliases:
+  - "P-003"
 title: "Experience-Age Impossibility"
 summary: "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem."
 required_artifacts:

@@ -557,28 +557,28 @@ export interface PatternEmptinessReport {
  *
  * SPEC-MODEL.md §5:
  * A pattern is a set of conditions whose joint satisfying set is empty for some party.
- * - P-001 (Seniority Double Bind):
+ * - pat.seniority_double_bind (Seniority Double Bind):
  *   Candidate evaluated at level N and N+1.
  *   Condition 1: level(C) > N (overqualification filter).
  *   Condition 2: level(C) < N+1 (depth filter).
  *   Joint satisfying set over discrete integers Z: { l in Z | N < l < N+1 } = empty.
  *   -> computed_empty.
  *
- * - P-002 (Closed-Then-Reposted Motif):
+ * - pat.closed_then_reposted_requisition_motif (Closed-Then-Reposted Motif):
  *   Generic rejection followed by reopening within 60 days with identical profile.
  *   Under static observable conditions, disqualification conflicts with identical reopening,
  *   but unobserved hidden variables (M-002 cohort variance, M-006 ghost req, M-013 recalibration)
  *   are opaque to candidate.
  *   -> prose_asserted.
  *
- * - P-003 (Experience-Age Impossibility):
+ * - pat.experience_age_impossibility (Experience-Age Impossibility):
  *   Knockout rule requires years Y_req > Age(tool).
  *   Condition 1: exp(C) >= Y_req.
  *   Condition 2: exp(C) <= Age(tool).
  *   Joint satisfying set over R+: [Y_req, inf) intersect [0, Age(tool)] = empty since Y_req > Age(tool).
  *   -> computed_empty.
  *
- * - P-004 (Compensation Double Bind):
+ * - pat.compensation_double_bind (Compensation Double Bind):
  *   Opaque salary band [B_min, B_max]. Candidate asked for expectation S before band is disclosed.
  *   S > B_max -> rejected; S < B_min -> down-levelled.
  *   The band [B_min, B_max] is non-empty, but 0-bit visibility renders candidate selection blind.
@@ -597,7 +597,7 @@ export function evaluatePatternEmptiness(lifted: Lifted): PatternEmptinessReport
     const requiredArtifacts = (ent.required_artifacts as string[]) ?? [];
     const compatibleMechanisms = (ent.compatible_mechanisms as string[]) ?? [];
 
-    if (pId === 'P-001') {
+    if (pId === 'pat.seniority_double_bind') {
       evaluations.push({
         id: pId,
         title,
@@ -610,7 +610,7 @@ export function evaluatePatternEmptiness(lifted: Lifted): PatternEmptinessReport
         requiredArtifacts,
         compatibleMechanisms,
       });
-    } else if (pId === 'P-002') {
+    } else if (pId === 'pat.closed_then_reposted_requisition_motif') {
       evaluations.push({
         id: pId,
         title,
@@ -624,7 +624,7 @@ export function evaluatePatternEmptiness(lifted: Lifted): PatternEmptinessReport
         requiredArtifacts,
         compatibleMechanisms,
       });
-    } else if (pId === 'P-003') {
+    } else if (pId === 'pat.experience_age_impossibility') {
       evaluations.push({
         id: pId,
         title,
@@ -638,7 +638,7 @@ export function evaluatePatternEmptiness(lifted: Lifted): PatternEmptinessReport
         requiredArtifacts,
         compatibleMechanisms,
       });
-    } else if (pId === 'P-004') {
+    } else if (pId === 'pat.compensation_double_bind') {
       evaluations.push({
         id: pId,
         title,

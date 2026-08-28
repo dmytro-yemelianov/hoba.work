@@ -155,7 +155,7 @@ describe('hoba MCP server', () => {
     expect(all.filter_applied).toBe(false);
     const some = payload(await client.request('tools/call', { name: 'find_patterns', arguments: { artifact_ids: ['A-013'] } }));
     expect(some.filter_applied).toBe(true);
-    expect(some.patterns.map((p: { id: string }) => p.id)).toEqual(['P-001']);
+    expect(some.patterns.map((p: { id: string }) => p.id)).toEqual(['pat.seniority_double_bind']);
 
     const trav = payload(await client.request('tools/call', { name: 'traverse_graph', arguments: { start_id: 'M-001', depth: 1, relations: ['operates_at'] } }));
     expect(trav.nodes.map((n: { id: string }) => n.id).sort()).toEqual(['B-005', 'B-006', 'B-007', 'M-001']);

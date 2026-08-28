@@ -1,6 +1,8 @@
 ---
-id: "P-004"
+id: "pat.compensation_double_bind"
 type: "pattern"
+aliases:
+  - "P-004"
 title: "Зарплатний глухий кут"
 summary: "Кандидат мусить першим назвати очікування: висока цифра одразу веде до відмови, низька — до нижчого грейду."
 required_artifacts:

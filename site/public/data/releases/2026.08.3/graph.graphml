@@ -333,23 +333,23 @@
       <data key="d_type">mechanism</data>
       <data key="d_evidence">established</data>
     </node>
-    <node id="P-001">
-      <data key="d_label">Seniority Double Bind</data>
-      <data key="d_type">pattern</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="P-002">
+    <node id="pat.closed_then_reposted_requisition_motif">
       <data key="d_label">Closed-Then-Reposted Requisition Motif</data>
       <data key="d_type">pattern</data>
       <data key="d_evidence">supported</data>
     </node>
-    <node id="P-003">
+    <node id="pat.compensation_double_bind">
+      <data key="d_label">Compensation Double Bind</data>
+      <data key="d_type">pattern</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="pat.experience_age_impossibility">
       <data key="d_label">Experience-Age Impossibility</data>
       <data key="d_type">pattern</data>
       <data key="d_evidence">supported</data>
     </node>
-    <node id="P-004">
-      <data key="d_label">Compensation Double Bind</data>
+    <node id="pat.seniority_double_bind">
+      <data key="d_label">Seniority Double Bind</data>
       <data key="d_type">pattern</data>
       <data key="d_evidence">supported</data>
     </node>
@@ -987,61 +987,61 @@
     <edge id="M-028-&gt;emits-&gt;A-016" source="M-028" target="A-016">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="A-002-&gt;instantiates-&gt;P-001" source="A-002" target="P-001">
+    <edge id="A-003-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="A-003" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-013-&gt;instantiates-&gt;P-001" source="A-013" target="P-001">
+    <edge id="A-004-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="A-004" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-001-&gt;instantiates-&gt;P-001" source="M-001" target="P-001">
+    <edge id="M-002-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="M-002" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-004-&gt;instantiates-&gt;P-001" source="M-004" target="P-001">
+    <edge id="M-006-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="M-006" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-017-&gt;instantiates-&gt;P-001" source="M-017" target="P-001">
+    <edge id="M-010-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="M-010" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-003-&gt;instantiates-&gt;P-002" source="A-003" target="P-002">
+    <edge id="M-013-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="M-013" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-004-&gt;instantiates-&gt;P-002" source="A-004" target="P-002">
+    <edge id="A-002-&gt;instantiates-&gt;pat.compensation_double_bind" source="A-002" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-002-&gt;instantiates-&gt;P-002" source="M-002" target="P-002">
+    <edge id="A-005-&gt;instantiates-&gt;pat.compensation_double_bind" source="A-005" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-006-&gt;instantiates-&gt;P-002" source="M-006" target="P-002">
+    <edge id="M-004-&gt;instantiates-&gt;pat.compensation_double_bind" source="M-004" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-010-&gt;instantiates-&gt;P-002" source="M-010" target="P-002">
+    <edge id="M-017-&gt;instantiates-&gt;pat.compensation_double_bind" source="M-017" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-013-&gt;instantiates-&gt;P-002" source="M-013" target="P-002">
+    <edge id="A-002-&gt;instantiates-&gt;pat.experience_age_impossibility" source="A-002" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-002-&gt;instantiates-&gt;P-003" source="A-002" target="P-003">
+    <edge id="A-009-&gt;instantiates-&gt;pat.experience_age_impossibility" source="A-009" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-009-&gt;instantiates-&gt;P-003" source="A-009" target="P-003">
+    <edge id="M-008-&gt;instantiates-&gt;pat.experience_age_impossibility" source="M-008" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-008-&gt;instantiates-&gt;P-003" source="M-008" target="P-003">
+    <edge id="M-024-&gt;instantiates-&gt;pat.experience_age_impossibility" source="M-024" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-024-&gt;instantiates-&gt;P-003" source="M-024" target="P-003">
+    <edge id="A-002-&gt;instantiates-&gt;pat.seniority_double_bind" source="A-002" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-002-&gt;instantiates-&gt;P-004" source="A-002" target="P-004">
+    <edge id="A-013-&gt;instantiates-&gt;pat.seniority_double_bind" source="A-013" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-005-&gt;instantiates-&gt;P-004" source="A-005" target="P-004">
+    <edge id="M-001-&gt;instantiates-&gt;pat.seniority_double_bind" source="M-001" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-004-&gt;instantiates-&gt;P-004" source="M-004" target="P-004">
+    <edge id="M-004-&gt;instantiates-&gt;pat.seniority_double_bind" source="M-004" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="M-017-&gt;instantiates-&gt;P-004" source="M-017" target="P-004">
+    <edge id="M-017-&gt;instantiates-&gt;pat.seniority_double_bind" source="M-017" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
     <edge id="I-001-&gt;targets-&gt;M-006" source="I-001" target="M-006">
@@ -1050,7 +1050,7 @@
     <edge id="I-001-&gt;targets-&gt;B-001" source="I-001" target="B-001">
       <data key="d_edge_type">targets</data>
     </edge>
-    <edge id="I-001-&gt;mitigates-&gt;P-002" source="I-001" target="P-002">
+    <edge id="I-001-&gt;mitigates-&gt;pat.closed_then_reposted_requisition_motif" source="I-001" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">mitigates</data>
     </edge>
     <edge id="I-001-&gt;mitigates-&gt;L-003" source="I-001" target="L-003">
@@ -1065,10 +1065,10 @@
     <edge id="I-002-&gt;targets-&gt;B-009" source="I-002" target="B-009">
       <data key="d_edge_type">targets</data>
     </edge>
-    <edge id="I-002-&gt;mitigates-&gt;P-001" source="I-002" target="P-001">
+    <edge id="I-002-&gt;mitigates-&gt;pat.seniority_double_bind" source="I-002" target="pat.seniority_double_bind">
       <data key="d_edge_type">mitigates</data>
     </edge>
-    <edge id="I-002-&gt;mitigates-&gt;P-004" source="I-002" target="P-004">
+    <edge id="I-002-&gt;mitigates-&gt;pat.compensation_double_bind" source="I-002" target="pat.compensation_double_bind">
       <data key="d_edge_type">mitigates</data>
     </edge>
     <edge id="I-003-&gt;targets-&gt;M-001" source="I-003" target="M-001">
@@ -1086,10 +1086,10 @@
     <edge id="I-003-&gt;targets-&gt;B-015" source="I-003" target="B-015">
       <data key="d_edge_type">targets</data>
     </edge>
-    <edge id="I-003-&gt;mitigates-&gt;P-001" source="I-003" target="P-001">
+    <edge id="I-003-&gt;mitigates-&gt;pat.seniority_double_bind" source="I-003" target="pat.seniority_double_bind">
       <data key="d_edge_type">mitigates</data>
     </edge>
-    <edge id="I-003-&gt;mitigates-&gt;P-002" source="I-003" target="P-002">
+    <edge id="I-003-&gt;mitigates-&gt;pat.closed_then_reposted_requisition_motif" source="I-003" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">mitigates</data>
     </edge>
     <edge id="I-003-&gt;mitigates-&gt;L-003" source="I-003" target="L-003">
@@ -1107,7 +1107,7 @@
     <edge id="I-005-&gt;targets-&gt;B-002" source="I-005" target="B-002">
       <data key="d_edge_type">targets</data>
     </edge>
-    <edge id="I-005-&gt;mitigates-&gt;P-003" source="I-005" target="P-003">
+    <edge id="I-005-&gt;mitigates-&gt;pat.experience_age_impossibility" source="I-005" target="pat.experience_age_impossibility">
       <data key="d_edge_type">mitigates</data>
     </edge>
     <edge id="I-006-&gt;targets-&gt;M-019" source="I-006" target="M-019">
@@ -1212,7 +1212,7 @@
     <edge id="I-017-&gt;targets-&gt;B-010" source="I-017" target="B-010">
       <data key="d_edge_type">targets</data>
     </edge>
-    <edge id="I-017-&gt;mitigates-&gt;P-002" source="I-017" target="P-002">
+    <edge id="I-017-&gt;mitigates-&gt;pat.closed_then_reposted_requisition_motif" source="I-017" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">mitigates</data>
     </edge>
   </graph>

@@ -1,6 +1,8 @@
 ---
-id: "P-002"
+id: "pat.closed_then_reposted_requisition_motif"
 type: "pattern"
+aliases:
+  - "P-002"
 title: "Мотив «Закрито та відкрито знову»"
 summary: "Кандидат проходить кілька пізніх етапів інтервʼю, отримує шаблонну відмову й за кілька тижнів бачить ту саму вакансію опублікованою знову."
 required_artifacts:

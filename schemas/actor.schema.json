@@ -21,7 +21,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^EVD-\\d{3}$"
+            "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
           },
           "default": []
         },
@@ -217,7 +217,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "pattern": "^I-\\d{3}$"
+                  "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"
                 },
                 "default": []
               }

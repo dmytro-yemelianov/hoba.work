@@ -47,7 +47,7 @@ recommendations:
       - "M-004"
       - "B-004"
       - "B-009"
-      - "P-004"
+      - "pat.compensation_double_bind"
     interventions:
       - "I-002"
   -
@@ -72,7 +72,7 @@ recommendations:
       - "M-006"
       - "M-007"
       - "B-001"
-      - "P-002"
+      - "pat.closed_then_reposted_requisition_motif"
       - "L-003"
       - "A-001"
       - "A-003"

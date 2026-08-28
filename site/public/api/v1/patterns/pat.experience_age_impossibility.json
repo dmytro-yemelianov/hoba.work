@@ -7,7 +7,7 @@
       "EVD-001"
     ],
     "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
-    "id": "P-003",
+    "id": "pat.experience_age_impossibility",
     "type": "pattern",
     "summary": "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.",
     "required_artifacts": [

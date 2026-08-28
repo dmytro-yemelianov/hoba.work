@@ -110,7 +110,7 @@
             "M-006",
             "A-001",
             "A-002",
-            "P-002"
+            "pat.closed_then_reposted_requisition_motif"
           ],
           "interventions": [
             "I-001"
@@ -125,7 +125,7 @@
           "targets": [
             "M-008",
             "M-024",
-            "P-003",
+            "pat.experience_age_impossibility",
             "B-002",
             "L-003"
           ],
@@ -243,7 +243,7 @@
             "M-004",
             "B-004",
             "B-009",
-            "P-004",
+            "pat.compensation_double_bind",
             "A-005"
           ],
           "interventions": [
@@ -257,7 +257,7 @@
           "cost": "low",
           "costs": "It is unpaid administrative time in the period when time is scarcest, and a complete record of a process that ends in silence is still a record of silence.",
           "targets": [
-            "P-002",
+            "pat.closed_then_reposted_requisition_motif",
             "A-004",
             "A-014",
             "A-007",
@@ -464,7 +464,7 @@
             "M-004",
             "B-004",
             "B-009",
-            "P-004"
+            "pat.compensation_double_bind"
           ],
           "interventions": [
             "I-002"
@@ -494,7 +494,7 @@
             "M-006",
             "M-007",
             "B-001",
-            "P-002",
+            "pat.closed_then_reposted_requisition_motif",
             "L-003",
             "A-001",
             "A-003",
@@ -595,7 +595,7 @@
           "costs": "A shorter list brings more applications into a funnel this actor's own team staffs, and it gives up the requirement page as the argument for a higher level and a wider band.",
           "targets": [
             "M-024",
-            "P-003",
+            "pat.experience_age_impossibility",
             "M-008",
             "L-003"
           ],
@@ -664,7 +664,7 @@
           "cost": "medium",
           "costs": "A level fixed in advance removes the move of recovering a strong candidate at the level below, and where the level was set wrong the search runs again from the posting.",
           "targets": [
-            "P-001",
+            "pat.seniority_double_bind",
             "A-013",
             "M-017",
             "B-007"
@@ -735,8 +735,8 @@
             "B-013",
             "B-009",
             "M-004",
-            "P-004",
-            "P-001"
+            "pat.compensation_double_bind",
+            "pat.seniority_double_bind"
           ],
           "interventions": [
             "I-002"
@@ -766,7 +766,7 @@
             "M-016",
             "B-013",
             "A-004",
-            "P-002"
+            "pat.closed_then_reposted_requisition_motif"
           ],
           "interventions": [
             "I-001"
@@ -888,7 +888,7 @@
           "targets": [
             "B-004",
             "M-004",
-            "P-004"
+            "pat.compensation_double_bind"
           ],
           "interventions": [
             "I-002"

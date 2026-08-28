@@ -7,7 +7,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^EVD-\\d{3}$"
+          "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
         },
         "type": {
           "type": "string",

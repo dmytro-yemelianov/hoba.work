@@ -3,109 +3,13 @@
   "count": 4,
   "items": [
     {
-      "title": "Seniority Double Bind",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-002"
-      ],
-      "content": "# Seniority Double Bind\n\nThe same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.\n\n### Trigger Rule\nThe candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.\n\n### What this Establishes\n- The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
-      "id": "P-001",
-      "type": "pattern",
-      "summary": "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.",
-      "required_artifacts": [
-        "A-002",
-        "A-013"
-      ],
-      "compatible_mechanisms": [
-        "M-001",
-        "M-004",
-        "M-017"
-      ],
-      "trigger_rule": "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.",
-      "establishes": [
-        "The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier."
-      ],
-      "non_inferences": [
-        "Does not establish that the candidate lacks market value.",
-        "Does not establish malice or coordinated collusion between employers."
-      ],
-      "interventions": [
-        "I-002",
-        "I-003"
-      ],
-      "evidence_level": "supported",
-      "specimens": [
-        {
-          "kind": "email",
-          "label": "Two rejections, six weeks apart",
-          "context": "same candidate, same market, adjacent levels",
-          "lines": [
-            {
-              "text": "12 Feb — Senior Backend Engineer (level 4). Your experience sits above the band scoped for this role and we were concerned it would not hold your interest.",
-              "tell": true
-            },
-            {
-              "text": "26 Mar — Staff Engineer (level 5). The panel felt the depth of platform ownership was not yet at staff scope; we would look for a broader track record of org-wide impact.",
-              "tell": true
-            },
-            {
-              "text": "Both roles: same city, same domain, same six-week window.",
-              "tell": false
-            }
-          ],
-          "reading": "Neither message is unreasonable on its own. Put next to each other they describe a candidate who is above one level and below the next, with nothing in between open."
-        },
-        {
-          "kind": "note",
-          "label": "What the pair does and does not establish",
-          "lines": [
-            {
-              "text": "Established: two rejections, two stated grounds, two adjacent levels, one market cycle.",
-              "tell": false
-            },
-            {
-              "text": "Not established: that either judgement was wrong, that the two employers coordinated, or that the candidate is unhireable. The motif is a property of the level grid, not of the person moving through it.",
-              "tell": true
-            }
-          ],
-          "reading": "The pattern is worth naming precisely because each half is defensible. The trap is structural, which is also why no single conversation can argue it away."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "candidate",
-          "sees": "Two rejections inside one market cycle: one saying the experience sits above the band scoped for the role, one saying the depth is not yet at the next level's scope.",
-          "reads": "Together the two messages describe a person who is above one rung and below the next, with nothing open in between.",
-          "does": "Applies at both levels at once and shifts what the CV emphasises depending on which rung the posting names."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "A profile whose years and previous scope sit above the band approved for the requisition being screened.",
-          "reads": "An expectation above the band reads as an offer that will not close, and the level of the requisition is fixed before the screen begins.",
-          "does": "Closes the application against this requisition and writes the rejection in terms of fit with the level it was opened at."
-        },
-        {
-          "actor": "hiring-manager",
-          "sees": "A candidate in a staff-level round, assessed against the scope the panel has agreed for that level: ownership across an organisation rather than a team.",
-          "reads": "A track record that has not yet run at that scope is a risk that lands on the person who makes the hire.",
-          "does": "Records a not-at-this-level decision and leaves the requisition open: a bad hire carries a name and a search still running does not."
-        },
-        {
-          "actor": "employer-policy",
-          "sees": "A levelling grid in which every level has a band and the bands are contiguous, and requisitions that are each opened at a single level.",
-          "reads": "A candidate above one band and below the next is a mismatch between a person and a particular requisition, not a gap in the grid; the grid is what makes offers consistent across every hire.",
-          "does": "Holds the grid steady through the cycle and approves requisitions at one level, because the level is the unit finance funds."
-        }
-      ]
-    },
-    {
       "title": "Closed-Then-Reposted Requisition Motif",
       "status": "active",
       "evidence_ids": [
         "EVD-004"
       ],
       "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
-      "id": "P-002",
+      "id": "pat.closed_then_reposted_requisition_motif",
       "type": "pattern",
       "summary": "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.",
       "required_artifacts": [
@@ -219,107 +123,13 @@
       ]
     },
     {
-      "title": "Experience-Age Impossibility",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-001"
-      ],
-      "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
-      "id": "P-003",
-      "type": "pattern",
-      "summary": "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.",
-      "required_artifacts": [
-        "A-002",
-        "A-009"
-      ],
-      "compatible_mechanisms": [
-        "M-008",
-        "M-024"
-      ],
-      "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
-      "establishes": [
-        "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."
-      ],
-      "non_inferences": [
-        "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
-      ],
-      "interventions": [
-        "I-005"
-      ],
-      "evidence_level": "supported",
-      "specimens": [
-        {
-          "kind": "posting",
-          "label": "The requirement, as published",
-          "subject": "Senior Platform Engineer — requirements",
-          "lines": [
-            {
-              "text": "7+ years of production experience with Kubernetes.",
-              "tell": false
-            },
-            {
-              "text": "5+ years with a framework first released three years ago.",
-              "tell": true
-            },
-            {
-              "text": "Screening is automated: applications below the stated year counts are filtered before human review.",
-              "tell": false
-            }
-          ],
-          "reading": "This is checkable against a release date, which makes it one of the few claims in hiring that can simply be false rather than debatable."
-        },
-        {
-          "kind": "ats",
-          "label": "What the filter did with it",
-          "lines": [
-            {
-              "at": "00:00:04",
-              "text": "Application submitted",
-              "tell": false
-            },
-            {
-              "at": "00:00:05",
-              "text": "Rule: years_with_framework >= 5 — candidate value 3 — FAIL",
-              "tell": true
-            },
-            {
-              "at": "00:00:05",
-              "text": "Status: Rejected — does not meet minimum criteria",
-              "tell": false
-            }
-          ],
-          "reading": "No one decided anything about this candidate. An impossible threshold was copied into a rule and the rule ran."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "candidate",
-          "sees": "A posting requiring more years with a framework than the framework has existed, and a rejection minutes after submitting, outside working hours.",
-          "reads": "The threshold is checkable against a release date, which makes this one of the few claims in a posting that can be false rather than arguable.",
-          "does": "Keeps the posting text and the time of the rejection, which can be set against the release date; the requirement itself reaches nobody who could rewrite it."
-        },
-        {
-          "actor": "hiring-manager",
-          "sees": "A draft posting assembled from the template of a previous requisition, reviewed for the part that describes the team's work.",
-          "reads": "Years of experience is a shorthand for depth, and in the draft that figure carries less weight than the description of the role.",
-          "does": "Approves the draft and returns to the delivery the requisition exists to cover; the number reaches a screening rule without passing a technical review."
-        },
-        {
-          "actor": "ats-vendor",
-          "sees": "A configured knockout rule comparing a parsed year count against a threshold the customer entered.",
-          "reads": "A value below the threshold is a fail; whether the threshold is reachable at all is not a property the rule can evaluate.",
-          "does": "Rejects at submission and emits the standard does-not-meet-minimum-criteria notice, in seconds, at whatever hour it arrives."
-        }
-      ]
-    },
-    {
       "title": "Compensation Double Bind",
       "status": "active",
       "evidence_ids": [
         "EVD-005"
       ],
       "content": "# Compensation Double Bind\n\nThe candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.\n\n### Trigger Rule\nThe candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.\n\n### What this Establishes\n- An information asymmetry works as an uncalibrated filter before technical merit is assessed.\n\n### What this Does NOT Establish\n- Does not establish that the employer has an unlimited budget, or that any of this is malicious.",
-      "id": "P-004",
+      "id": "pat.compensation_double_bind",
       "type": "pattern",
       "summary": "The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.",
       "required_artifacts": [
@@ -414,6 +224,196 @@
           "sees": "Postings in covered jurisdictions, which either carry a band or do not.",
           "reads": "A published band is measurable and enforceable; the level a candidate will be assessed at is neither.",
           "does": "Requires the band in the posting, which closes one branch of the bind and leaves the levelling branch untouched."
+        }
+      ]
+    },
+    {
+      "title": "Experience-Age Impossibility",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-001"
+      ],
+      "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
+      "id": "pat.experience_age_impossibility",
+      "type": "pattern",
+      "summary": "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.",
+      "required_artifacts": [
+        "A-002",
+        "A-009"
+      ],
+      "compatible_mechanisms": [
+        "M-008",
+        "M-024"
+      ],
+      "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
+      "establishes": [
+        "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."
+      ],
+      "non_inferences": [
+        "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
+      ],
+      "interventions": [
+        "I-005"
+      ],
+      "evidence_level": "supported",
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The requirement, as published",
+          "subject": "Senior Platform Engineer — requirements",
+          "lines": [
+            {
+              "text": "7+ years of production experience with Kubernetes.",
+              "tell": false
+            },
+            {
+              "text": "5+ years with a framework first released three years ago.",
+              "tell": true
+            },
+            {
+              "text": "Screening is automated: applications below the stated year counts are filtered before human review.",
+              "tell": false
+            }
+          ],
+          "reading": "This is checkable against a release date, which makes it one of the few claims in hiring that can simply be false rather than debatable."
+        },
+        {
+          "kind": "ats",
+          "label": "What the filter did with it",
+          "lines": [
+            {
+              "at": "00:00:04",
+              "text": "Application submitted",
+              "tell": false
+            },
+            {
+              "at": "00:00:05",
+              "text": "Rule: years_with_framework >= 5 — candidate value 3 — FAIL",
+              "tell": true
+            },
+            {
+              "at": "00:00:05",
+              "text": "Status: Rejected — does not meet minimum criteria",
+              "tell": false
+            }
+          ],
+          "reading": "No one decided anything about this candidate. An impossible threshold was copied into a rule and the rule ran."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A posting requiring more years with a framework than the framework has existed, and a rejection minutes after submitting, outside working hours.",
+          "reads": "The threshold is checkable against a release date, which makes this one of the few claims in a posting that can be false rather than arguable.",
+          "does": "Keeps the posting text and the time of the rejection, which can be set against the release date; the requirement itself reaches nobody who could rewrite it."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A draft posting assembled from the template of a previous requisition, reviewed for the part that describes the team's work.",
+          "reads": "Years of experience is a shorthand for depth, and in the draft that figure carries less weight than the description of the role.",
+          "does": "Approves the draft and returns to the delivery the requisition exists to cover; the number reaches a screening rule without passing a technical review."
+        },
+        {
+          "actor": "ats-vendor",
+          "sees": "A configured knockout rule comparing a parsed year count against a threshold the customer entered.",
+          "reads": "A value below the threshold is a fail; whether the threshold is reachable at all is not a property the rule can evaluate.",
+          "does": "Rejects at submission and emits the standard does-not-meet-minimum-criteria notice, in seconds, at whatever hour it arrives."
+        }
+      ]
+    },
+    {
+      "title": "Seniority Double Bind",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-002"
+      ],
+      "content": "# Seniority Double Bind\n\nThe same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.\n\n### Trigger Rule\nThe candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.\n\n### What this Establishes\n- The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.\n\n### What this Does NOT Establish\n- Does not establish that the candidate lacks market value.\n- Does not establish malice or coordinated collusion between employers.",
+      "id": "pat.seniority_double_bind",
+      "type": "pattern",
+      "summary": "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.",
+      "required_artifacts": [
+        "A-002",
+        "A-013"
+      ],
+      "compatible_mechanisms": [
+        "M-001",
+        "M-004",
+        "M-017"
+      ],
+      "trigger_rule": "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.",
+      "establishes": [
+        "The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier."
+      ],
+      "non_inferences": [
+        "Does not establish that the candidate lacks market value.",
+        "Does not establish malice or coordinated collusion between employers."
+      ],
+      "interventions": [
+        "I-002",
+        "I-003"
+      ],
+      "evidence_level": "supported",
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Two rejections, six weeks apart",
+          "context": "same candidate, same market, adjacent levels",
+          "lines": [
+            {
+              "text": "12 Feb — Senior Backend Engineer (level 4). Your experience sits above the band scoped for this role and we were concerned it would not hold your interest.",
+              "tell": true
+            },
+            {
+              "text": "26 Mar — Staff Engineer (level 5). The panel felt the depth of platform ownership was not yet at staff scope; we would look for a broader track record of org-wide impact.",
+              "tell": true
+            },
+            {
+              "text": "Both roles: same city, same domain, same six-week window.",
+              "tell": false
+            }
+          ],
+          "reading": "Neither message is unreasonable on its own. Put next to each other they describe a candidate who is above one level and below the next, with nothing in between open."
+        },
+        {
+          "kind": "note",
+          "label": "What the pair does and does not establish",
+          "lines": [
+            {
+              "text": "Established: two rejections, two stated grounds, two adjacent levels, one market cycle.",
+              "tell": false
+            },
+            {
+              "text": "Not established: that either judgement was wrong, that the two employers coordinated, or that the candidate is unhireable. The motif is a property of the level grid, not of the person moving through it.",
+              "tell": true
+            }
+          ],
+          "reading": "The pattern is worth naming precisely because each half is defensible. The trap is structural, which is also why no single conversation can argue it away."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "Two rejections inside one market cycle: one saying the experience sits above the band scoped for the role, one saying the depth is not yet at the next level's scope.",
+          "reads": "Together the two messages describe a person who is above one rung and below the next, with nothing open in between.",
+          "does": "Applies at both levels at once and shifts what the CV emphasises depending on which rung the posting names."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A profile whose years and previous scope sit above the band approved for the requisition being screened.",
+          "reads": "An expectation above the band reads as an offer that will not close, and the level of the requisition is fixed before the screen begins.",
+          "does": "Closes the application against this requisition and writes the rejection in terms of fit with the level it was opened at."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A candidate in a staff-level round, assessed against the scope the panel has agreed for that level: ownership across an organisation rather than a team.",
+          "reads": "A track record that has not yet run at that scope is a risk that lands on the person who makes the hire.",
+          "does": "Records a not-at-this-level decision and leaves the requisition open: a bad hire carries a name and a search still running does not."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A levelling grid in which every level has a band and the bands are contiguous, and requisitions that are each opened at a single level.",
+          "reads": "A candidate above one band and below the next is a mismatch between a person and a particular requisition, not a gap in the grid; the grid is what makes offers consistent across every hire.",
+          "does": "Holds the grid steady through the cycle and approves requisitions at one level, because the level is the unit finance funds."
         }
       ]
     }

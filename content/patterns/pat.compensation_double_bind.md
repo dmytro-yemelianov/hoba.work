@@ -1,6 +1,8 @@
 ---
-id: "P-004"
+id: "pat.compensation_double_bind"
 type: "pattern"
+aliases:
+  - "P-004"
 title: "Compensation Double Bind"
 summary: "The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at."
 required_artifacts:

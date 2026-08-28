@@ -1,6 +1,8 @@
 ---
-id: "P-001"
+id: "pat.seniority_double_bind"
 type: "pattern"
+aliases:
+  - "P-001"
 title: "Seniority Double Bind"
 summary: "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles."
 required_artifacts:

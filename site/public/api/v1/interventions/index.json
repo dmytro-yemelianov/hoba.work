@@ -15,7 +15,7 @@
       "targets": [
         "M-006",
         "B-001",
-        "P-002",
+        "pat.closed_then_reposted_requisition_motif",
         "L-003"
       ],
       "actor": "employer-policy",
@@ -96,8 +96,8 @@
         "M-004",
         "B-004",
         "B-009",
-        "P-001",
-        "P-004"
+        "pat.seniority_double_bind",
+        "pat.compensation_double_bind"
       ],
       "actor": "employer-policy",
       "scope": "industry",
@@ -176,8 +176,8 @@
         "B-007",
         "B-008",
         "B-015",
-        "P-001",
-        "P-002",
+        "pat.seniority_double_bind",
+        "pat.closed_then_reposted_requisition_motif",
         "L-003"
       ],
       "actor": "recruiter-process",
@@ -330,7 +330,7 @@
       "targets": [
         "M-003",
         "B-002",
-        "P-003"
+        "pat.experience_age_impossibility"
       ],
       "actor": "candidate-action",
       "scope": "individual",
@@ -1278,7 +1278,7 @@
       "targets": [
         "M-002",
         "B-010",
-        "P-002"
+        "pat.closed_then_reposted_requisition_motif"
       ],
       "actor": "recruiter-process",
       "scope": "organizational",

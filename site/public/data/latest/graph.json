@@ -846,16 +846,7 @@
       },
       {
         "data": {
-          "id": "P-001",
-          "label": "Seniority Double Bind",
-          "type": "pattern",
-          "evidence_level": "supported"
-        },
-        "classes": "node-pattern"
-      },
-      {
-        "data": {
-          "id": "P-002",
+          "id": "pat.closed_then_reposted_requisition_motif",
           "label": "Closed-Then-Reposted Requisition Motif",
           "type": "pattern",
           "evidence_level": "supported"
@@ -864,7 +855,16 @@
       },
       {
         "data": {
-          "id": "P-003",
+          "id": "pat.compensation_double_bind",
+          "label": "Compensation Double Bind",
+          "type": "pattern",
+          "evidence_level": "supported"
+        },
+        "classes": "node-pattern"
+      },
+      {
+        "data": {
+          "id": "pat.experience_age_impossibility",
           "label": "Experience-Age Impossibility",
           "type": "pattern",
           "evidence_level": "supported"
@@ -873,8 +873,8 @@
       },
       {
         "data": {
-          "id": "P-004",
-          "label": "Compensation Double Bind",
+          "id": "pat.seniority_double_bind",
+          "label": "Seniority Double Bind",
           "type": "pattern",
           "evidence_level": "supported"
         },
@@ -2830,171 +2830,171 @@
       },
       {
         "data": {
-          "id": "A-002->instantiates->P-001",
-          "source": "A-002",
-          "target": "P-001",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "A-013->instantiates->P-001",
-          "source": "A-013",
-          "target": "P-001",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "M-001->instantiates->P-001",
-          "source": "M-001",
-          "target": "P-001",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "M-004->instantiates->P-001",
-          "source": "M-004",
-          "target": "P-001",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "M-017->instantiates->P-001",
-          "source": "M-017",
-          "target": "P-001",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "A-003->instantiates->P-002",
+          "id": "A-003->instantiates->pat.closed_then_reposted_requisition_motif",
           "source": "A-003",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "A-004->instantiates->P-002",
+          "id": "A-004->instantiates->pat.closed_then_reposted_requisition_motif",
           "source": "A-004",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "M-002->instantiates->P-002",
+          "id": "M-002->instantiates->pat.closed_then_reposted_requisition_motif",
           "source": "M-002",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "M-006->instantiates->P-002",
+          "id": "M-006->instantiates->pat.closed_then_reposted_requisition_motif",
           "source": "M-006",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "M-010->instantiates->P-002",
+          "id": "M-010->instantiates->pat.closed_then_reposted_requisition_motif",
           "source": "M-010",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "M-013->instantiates->P-002",
+          "id": "M-013->instantiates->pat.closed_then_reposted_requisition_motif",
           "source": "M-013",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "A-002->instantiates->P-003",
+          "id": "A-002->instantiates->pat.compensation_double_bind",
           "source": "A-002",
-          "target": "P-003",
+          "target": "pat.compensation_double_bind",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "A-009->instantiates->P-003",
-          "source": "A-009",
-          "target": "P-003",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "M-008->instantiates->P-003",
-          "source": "M-008",
-          "target": "P-003",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "M-024->instantiates->P-003",
-          "source": "M-024",
-          "target": "P-003",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "A-002->instantiates->P-004",
-          "source": "A-002",
-          "target": "P-004",
-          "type": "instantiates"
-        },
-        "classes": "edge-instantiates"
-      },
-      {
-        "data": {
-          "id": "A-005->instantiates->P-004",
+          "id": "A-005->instantiates->pat.compensation_double_bind",
           "source": "A-005",
-          "target": "P-004",
+          "target": "pat.compensation_double_bind",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "M-004->instantiates->P-004",
+          "id": "M-004->instantiates->pat.compensation_double_bind",
           "source": "M-004",
-          "target": "P-004",
+          "target": "pat.compensation_double_bind",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
       },
       {
         "data": {
-          "id": "M-017->instantiates->P-004",
+          "id": "M-017->instantiates->pat.compensation_double_bind",
           "source": "M-017",
-          "target": "P-004",
+          "target": "pat.compensation_double_bind",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "A-002->instantiates->pat.experience_age_impossibility",
+          "source": "A-002",
+          "target": "pat.experience_age_impossibility",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "A-009->instantiates->pat.experience_age_impossibility",
+          "source": "A-009",
+          "target": "pat.experience_age_impossibility",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "M-008->instantiates->pat.experience_age_impossibility",
+          "source": "M-008",
+          "target": "pat.experience_age_impossibility",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "M-024->instantiates->pat.experience_age_impossibility",
+          "source": "M-024",
+          "target": "pat.experience_age_impossibility",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "A-002->instantiates->pat.seniority_double_bind",
+          "source": "A-002",
+          "target": "pat.seniority_double_bind",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "A-013->instantiates->pat.seniority_double_bind",
+          "source": "A-013",
+          "target": "pat.seniority_double_bind",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "M-001->instantiates->pat.seniority_double_bind",
+          "source": "M-001",
+          "target": "pat.seniority_double_bind",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "M-004->instantiates->pat.seniority_double_bind",
+          "source": "M-004",
+          "target": "pat.seniority_double_bind",
+          "type": "instantiates"
+        },
+        "classes": "edge-instantiates"
+      },
+      {
+        "data": {
+          "id": "M-017->instantiates->pat.seniority_double_bind",
+          "source": "M-017",
+          "target": "pat.seniority_double_bind",
           "type": "instantiates"
         },
         "classes": "edge-instantiates"
@@ -3019,9 +3019,9 @@
       },
       {
         "data": {
-          "id": "I-001->mitigates->P-002",
+          "id": "I-001->mitigates->pat.closed_then_reposted_requisition_motif",
           "source": "I-001",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3064,18 +3064,18 @@
       },
       {
         "data": {
-          "id": "I-002->mitigates->P-001",
+          "id": "I-002->mitigates->pat.seniority_double_bind",
           "source": "I-002",
-          "target": "P-001",
+          "target": "pat.seniority_double_bind",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
       },
       {
         "data": {
-          "id": "I-002->mitigates->P-004",
+          "id": "I-002->mitigates->pat.compensation_double_bind",
           "source": "I-002",
-          "target": "P-004",
+          "target": "pat.compensation_double_bind",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3127,18 +3127,18 @@
       },
       {
         "data": {
-          "id": "I-003->mitigates->P-001",
+          "id": "I-003->mitigates->pat.seniority_double_bind",
           "source": "I-003",
-          "target": "P-001",
+          "target": "pat.seniority_double_bind",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
       },
       {
         "data": {
-          "id": "I-003->mitigates->P-002",
+          "id": "I-003->mitigates->pat.closed_then_reposted_requisition_motif",
           "source": "I-003",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3190,9 +3190,9 @@
       },
       {
         "data": {
-          "id": "I-005->mitigates->P-003",
+          "id": "I-005->mitigates->pat.experience_age_impossibility",
           "source": "I-005",
-          "target": "P-003",
+          "target": "pat.experience_age_impossibility",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3505,9 +3505,9 @@
       },
       {
         "data": {
-          "id": "I-017->mitigates->P-002",
+          "id": "I-017->mitigates->pat.closed_then_reposted_requisition_motif",
           "source": "I-017",
-          "target": "P-002",
+          "target": "pat.closed_then_reposted_requisition_motif",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"

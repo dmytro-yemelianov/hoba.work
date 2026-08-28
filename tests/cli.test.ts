@@ -72,7 +72,7 @@ describe('hoba CLI', { timeout: 20000 }, () => {
 
     const txt = hoba(['patterns']).stdout;
     expect(txt).toContain('COMPUTED EMPTY');
-    expect(txt).toContain('P-001');
+    expect(txt).toContain('pat.seniority_double_bind');
   });
 
   it('audits flow conservation across financial records', () => {

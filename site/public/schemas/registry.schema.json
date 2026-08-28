@@ -38,7 +38,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "pattern": "^EVD-\\d{3}$"
+                  "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
                 },
                 "default": []
               },
@@ -234,7 +234,7 @@
                       "type": "array",
                       "items": {
                         "type": "string",
-                        "pattern": "^I-\\d{3}$"
+                        "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"
                       },
                       "default": []
                     }
@@ -282,7 +282,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^WF-\\d{3}$"
+                "pattern": "^(WF-\\d{3}|proc\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -445,7 +445,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^E-\\d{3}$"
+                "pattern": "^(E-\\d{3}|era\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -560,7 +560,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^A-\\d{3}$"
+                "pattern": "^(A-\\d{3}|obs\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -666,7 +666,7 @@
                             "type": "array",
                             "items": {
                               "type": "string",
-                              "pattern": "^M-\\d{3}$"
+                              "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
                             },
                             "default": []
                           },
@@ -770,7 +770,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^B-\\d{3}$"
+                "pattern": "^(B-\\d{3}|bar\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -1036,7 +1036,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^P-\\d{3}$"
+                "pattern": "^(P-\\d{3}|pat\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -1140,7 +1140,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^L-\\d{3}$"
+                "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -1265,7 +1265,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "pattern": "^[MBPL]-\\d{3}$"
+                  "pattern": "^([MBPL]-\\d{3}|(mech|bar|pat|loop)\\.[a-z0-9_]+)$"
                 },
                 "minItems": 1
               },
@@ -1403,7 +1403,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "pattern": "^EVD-\\d{3}$"
+                  "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
                 },
                 "default": []
               },
@@ -1412,7 +1412,7 @@
               },
               "id": {
                 "type": "string",
-                "pattern": "^R-\\d{3}$"
+                "pattern": "^(R-\\d{3}|record\\.[a-z0-9_]+)$"
               },
               "type": {
                 "type": "string",
@@ -1453,7 +1453,7 @@
                   "properties": {
                     "to": {
                       "type": "string",
-                      "pattern": "^R-\\d{3}$"
+                      "pattern": "^(R-\\d{3}|record\\.[a-z0-9_]+)$"
                     },
                     "label": {
                       "type": "string",
@@ -1494,7 +1494,7 @@
                           "type": "array",
                           "items": {
                             "type": "string",
-                            "pattern": "^EVD-\\d{3}$"
+                            "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
                           },
                           "minItems": 1
                         }

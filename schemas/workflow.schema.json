@@ -21,7 +21,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^EVD-\\d{3}$"
+            "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
           },
           "default": []
         },
@@ -30,7 +30,7 @@
         },
         "id": {
           "type": "string",
-          "pattern": "^WF-\\d{3}$"
+          "pattern": "^(WF-\\d{3}|proc\\.[a-z0-9_]+)$"
         },
         "type": {
           "type": "string",

@@ -589,17 +589,7 @@ Managers lower late-stage interview thresholds, treating the statutory probation
 
 ## Patterns
 
-### P-001 — Seniority Double Bind
-
-The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.
-
-- Triggers when: The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.
-- Requires: A-002, A-013 · Mechanisms: M-001, M-004, M-017
-- Establishes: The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.
-- Does NOT establish: Does not establish that the candidate lacks market value.
-- Does NOT establish: Does not establish malice or coordinated collusion between employers.
-
-### P-002 — Closed-Then-Reposted Requisition Motif
+### pat.closed_then_reposted_requisition_motif — Closed-Then-Reposted Requisition Motif
 
 A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.
 
@@ -609,7 +599,16 @@ A candidate completes multiple late-stage interviews, is rejected with a generic
 - Does NOT establish: Does not establish that the original job listing was fake or a ghost job.
 - Does NOT establish: Does not establish that the candidate was intentionally misled.
 
-### P-003 — Experience-Age Impossibility
+### pat.compensation_double_bind — Compensation Double Bind
+
+The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.
+
+- Triggers when: The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.
+- Requires: A-002, A-005 · Mechanisms: M-004, M-017
+- Establishes: An information asymmetry works as an uncalibrated filter before technical merit is assessed.
+- Does NOT establish: Does not establish that the employer has an unlimited budget, or that any of this is malicious.
+
+### pat.experience_age_impossibility — Experience-Age Impossibility
 
 A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.
 
@@ -618,14 +617,15 @@ A requisition requires more years of hands-on experience with a specific framewo
 - Establishes: The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.
 - Does NOT establish: Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.
 
-### P-004 — Compensation Double Bind
+### pat.seniority_double_bind — Seniority Double Bind
 
-The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.
+The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.
 
-- Triggers when: The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.
-- Requires: A-002, A-005 · Mechanisms: M-004, M-017
-- Establishes: An information asymmetry works as an uncalibrated filter before technical merit is assessed.
-- Does NOT establish: Does not establish that the employer has an unlimited budget, or that any of this is malicious.
+- Triggers when: The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.
+- Requires: A-002, A-013 · Mechanisms: M-001, M-004, M-017
+- Establishes: The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.
+- Does NOT establish: Does not establish that the candidate lacks market value.
+- Does NOT establish: Does not establish malice or coordinated collusion between employers.
 
 ## Loops
 
@@ -658,7 +658,7 @@ Teams write inflated requirements that filter out strong generalists; the search
 Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
 
 - Actor: employer-policy · Scope: organizational · Cost: low
-- Targets: M-006, B-001, P-002, L-003
+- Targets: M-006, B-001, pat.closed_then_reposted_requisition_motif, L-003
 - Expected: M-006 stops operating: a listing cannot outlive the authorisation that funded it
 - Expected: Silence after applying acquires a bound — the record is closed and the closure is sent
 
@@ -667,7 +667,7 @@ Implement automated ATS policy to expire public listings when headcount authoris
 Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.
 
 - Actor: employer-policy · Scope: industry · Cost: low
-- Targets: M-004, B-004, B-009, P-001, P-004
+- Targets: M-004, B-004, B-009, pat.seniority_double_bind, pat.compensation_double_bind
 - Expected: M-004 has nothing to operate on: the band is stated before the candidate is asked for a number
 - Expected: B-009 becomes arithmetic rather than a negotiation about whether a band exists
 
@@ -676,7 +676,7 @@ Publish verified salary and equity bands directly in job descriptions or disclos
 Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
 
 - Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: M-001, M-010, B-007, B-008, B-015, P-001, P-002, L-003
+- Targets: M-001, M-010, B-007, B-008, B-015, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, L-003
 - Expected: The stage and the criterion behind a late rejection become part of what is sent
 - Expected: M-010 becomes checkable: a rubric that is reported has to exist before the round
 
@@ -694,7 +694,7 @@ Disable employment duration gap penalties in recruitment AI algorithms and scree
 Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.
 
 - Actor: candidate-action · Scope: individual · Cost: low
-- Targets: M-003, B-002, P-003
+- Targets: M-003, B-002, pat.experience_age_impossibility
 - Expected: The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one
 - Expected: M-003 moves from invisible to checkable on the candidate's side of the line
 
@@ -811,7 +811,7 @@ Classify every mandatory check in advance as reconcilable by document or disqual
 Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.
 
 - Actor: recruiter-process · Scope: organizational · Cost: low
-- Targets: M-002, B-010, P-002
+- Targets: M-002, B-010, pat.closed_then_reposted_requisition_motif
 - Expected: M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group
 - Expected: B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing
 - Expected: P-002: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated

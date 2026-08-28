@@ -126,19 +126,19 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
     expect(report.computedEmptyCount).toBe(4);
     expect(report.proseAssertedCount).toBe(0);
 
-    const p1 = report.patterns.find((p) => p.id === 'P-001')!;
+    const p1 = report.patterns.find((p) => p.id === 'pat.seniority_double_bind')!;
     expect(p1.status).toBe('computed_empty');
     expect(p1.contradictionDetails).toContain('Candidate experience simultaneously satisfies');
 
-    const p2 = report.patterns.find((p) => p.id === 'P-002')!;
+    const p2 = report.patterns.find((p) => p.id === 'pat.closed_then_reposted_requisition_motif')!;
     expect(p2.status).toBe('computed_empty');
     expect(p2.satisfyingSetDescription).toContain('empty set');
 
-    const p3 = report.patterns.find((p) => p.id === 'P-003')!;
+    const p3 = report.patterns.find((p) => p.id === 'pat.experience_age_impossibility')!;
     expect(p3.status).toBe('computed_empty');
     expect(p3.satisfyingSetDescription).toContain('empty set');
 
-    const p4 = report.patterns.find((p) => p.id === 'P-004')!;
+    const p4 = report.patterns.find((p) => p.id === 'pat.compensation_double_bind')!;
     expect(p4.status).toBe('computed_empty');
     expect(p4.satisfyingSetDescription).toContain('empty set');
   });

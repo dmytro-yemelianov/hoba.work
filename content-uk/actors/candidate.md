@@ -72,7 +72,7 @@ recommendations:
       - "M-004"
       - "B-004"
       - "B-009"
-      - "P-004"
+      - "pat.compensation_double_bind"
       - "A-005"
     interventions:
       - "I-002"
@@ -83,7 +83,7 @@ recommendations:
     cost: "low"
     costs: "Це неоплачуваний адміністративний час саме тоді, коли часу найменше, а повний запис процесу, що закінчився мовчанням, лишається записом мовчання."
     targets:
-      - "P-002"
+      - "pat.closed_then_reposted_requisition_motif"
       - "A-004"
       - "A-014"
       - "A-007"

@@ -43,8 +43,8 @@ recommendations:
       - "B-013"
       - "B-009"
       - "M-004"
-      - "P-004"
-      - "P-001"
+      - "pat.compensation_double_bind"
+      - "pat.seniority_double_bind"
     interventions:
       - "I-002"
   -
@@ -69,7 +69,7 @@ recommendations:
       - "M-016"
       - "B-013"
       - "A-004"
-      - "P-002"
+      - "pat.closed_then_reposted_requisition_motif"
     interventions:
       - "I-001"
   -

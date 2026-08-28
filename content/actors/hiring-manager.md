@@ -43,7 +43,7 @@ recommendations:
     costs: "A shorter list brings more applications into a funnel this actor's own team staffs, and it gives up the requirement page as the argument for a higher level and a wider band."
     targets:
       - "M-024"
-      - "P-003"
+      - "pat.experience_age_impossibility"
       - "M-008"
       - "L-003"
     interventions: []
@@ -101,7 +101,7 @@ recommendations:
     cost: "medium"
     costs: "A level fixed in advance removes the move of recovering a strong candidate at the level below, and where the level was set wrong the search runs again from the posting."
     targets:
-      - "P-001"
+      - "pat.seniority_double_bind"
       - "A-013"
       - "M-017"
       - "B-007"

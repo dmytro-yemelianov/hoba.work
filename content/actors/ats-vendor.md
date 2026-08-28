@@ -81,7 +81,7 @@ recommendations:
       - "M-006"
       - "A-001"
       - "A-002"
-      - "P-002"
+      - "pat.closed_then_reposted_requisition_motif"
     interventions:
       - "I-001"
   -
@@ -93,7 +93,7 @@ recommendations:
     targets:
       - "M-008"
       - "M-024"
-      - "P-003"
+      - "pat.experience_age_impossibility"
       - "B-002"
       - "L-003"
     interventions: []

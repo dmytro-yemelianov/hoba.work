@@ -47,7 +47,7 @@ recommendations:
     targets:
       - "B-004"
       - "M-004"
-      - "P-004"
+      - "pat.compensation_double_bind"
     interventions:
       - "I-002"
   -
