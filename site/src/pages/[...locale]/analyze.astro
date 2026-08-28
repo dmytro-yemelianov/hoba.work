@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import ShareBar from '../../components/ShareBar.astro';
 import { EMPIRICAL_SCENARIOS, getBundle, slimBundle, STAGES } from '../../lib/registry';
 import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
@@ -292,6 +293,14 @@ const zones = [
         </div>
       </div>
     </section>
+
+    <ShareBar
+      id="og-analyze"
+      title={t('analyze.title')}
+      lang={lang}
+      hasPostcard={false}
+      type="tool"
+    />
   </div>
 
   <script type="application/json" id="hoba-bundle" set:html={bundleJSON} />

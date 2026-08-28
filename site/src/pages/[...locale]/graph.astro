@@ -118,8 +118,26 @@ const nodes: GraphNodeInput[] = [
 const edges = graph.edges.map((e) => ({ source: e.source, target: e.target, relation: e.type }));
 const relationTypes: GraphRelationType[] = ['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates'];
 
+const idealWorkflow = bundle.workflows.find((w) => w.id === 'WF-003');
+const idealSteps = idealWorkflow
+  ? idealWorkflow.states.map((s, idx) => ({
+      index: idx + 1,
+      id: s.id,
+      title: s.title,
+      owner: t(`actor.${s.owner}` as Parameters<typeof t>[0]) ?? s.owner,
+      description: s.description,
+      entities: s.entities,
+    }))
+  : [];
+
 const json = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
-const graphData = json({ nodes, edges, lanes: STAGES.map((stage) => ({ label: t(`stage.${stage}`) })) });
+const graphData = json({
+  nodes,
+  edges,
+  lanes: STAGES.map((stage) => ({ label: t(`stage.${stage}`) })),
+  idealSteps,
+  lang,
+});
 const strings = json({
   relations: Object.fromEntries(relationTypes.map((r) => [r, t(`relation.${r}`)])),
   outgoing: t('graph.outgoing'),
@@ -158,33 +176,43 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
         ))}
       </fieldset>
 
-      <div class="flex w-full sm:w-auto sm:ml-auto items-center gap-2">
-      <label class="flex flex-1 sm:flex-none items-center gap-2 text-sm text-hoba-muted min-w-0">
-        <span class="hidden lg:inline">{t('graph.removabilityFilter')}</span>
-        <select id="select-removability" class="w-full sm:w-auto rounded-md border border-hoba-border bg-hoba-card px-2 py-1 text-sm text-hoba-text">
-          <option value="all">{t('graph.rem.all')}</option>
-          <option value="candidate">{t('graph.rem.candidate')}</option>
-          <option value="intermediary">{t('graph.rem.intermediary')}</option>
-          <option value="none">{t('graph.rem.none')}</option>
-        </select>
-      </label>
+      <div class="flex flex-wrap w-full sm:w-auto sm:ml-auto items-center gap-2">
+        <button
+          type="button"
+          id="graph-ideal-toggle"
+          class="btn btn-secondary text-xs px-2.5 py-1.5 flex items-center gap-1.5 cursor-pointer font-medium hover:border-hoba-accent transition-colors"
+          title={lang === 'uk' ? 'Підсвітити ідеальний канонічний маршрут (WF-003)' : 'Highlight canonical workflow (WF-003)'}
+        >
+          <span class="text-amber-400">✨</span>
+          <span>{lang === 'uk' ? 'Ідеальний маршрут (WF-003)' : 'Canonical path (WF-003)'}</span>
+        </button>
 
-      <div class="flex items-center gap-1">
-        <span id="graph-count" class="hidden md:inline text-sm text-hoba-muted tabular-nums mr-1"></span>
-        <button type="button" id="graph-zoom-out" class="icon-btn" aria-label={t('graph.zoomOut')} title={t('graph.zoomOut')}>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.6-3.6M8 11h6"/></svg>
-        </button>
-        <button type="button" id="graph-zoom-in" class="icon-btn" aria-label={t('graph.zoomIn')} title={t('graph.zoomIn')}>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.6-3.6M8 11h6M11 8v6"/></svg>
-        </button>
-        <button type="button" id="graph-fit" class="icon-btn" aria-label={t('graph.fit')} title={t('graph.fit')}>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path stroke-linecap="round" d="M12 2.5v3m0 13v3M2.5 12h3m13 0h3"/></svg>
-        </button>
-        <button type="button" id="graph-fullscreen" class="icon-btn" aria-label={t('graph.fullscreen')} title={t('graph.fullscreen')}>
-          <svg class="w-4 h-4 fs-open" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3"/></svg>
-          <svg class="w-4 h-4 fs-close hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3M3 16h3a2 2 0 012 2v3m8 0v-3a2 2 0 012-2h3"/></svg>
-        </button>
-      </div>
+        <label class="flex flex-1 sm:flex-none items-center gap-2 text-sm text-hoba-muted min-w-0">
+          <span class="hidden lg:inline">{t('graph.removabilityFilter')}</span>
+          <select id="select-removability" class="w-full sm:w-auto rounded-md border border-hoba-border bg-hoba-card px-2 py-1 text-sm text-hoba-text">
+            <option value="all">{t('graph.rem.all')}</option>
+            <option value="candidate">{t('graph.rem.candidate')}</option>
+            <option value="intermediary">{t('graph.rem.intermediary')}</option>
+            <option value="none">{t('graph.rem.none')}</option>
+          </select>
+        </label>
+
+        <div class="flex items-center gap-1">
+          <span id="graph-count" class="hidden md:inline text-sm text-hoba-muted tabular-nums mr-1"></span>
+          <button type="button" id="graph-zoom-out" class="icon-btn" aria-label={t('graph.zoomOut')} title={t('graph.zoomOut')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.6-3.6M8 11h6"/></svg>
+          </button>
+          <button type="button" id="graph-zoom-in" class="icon-btn" aria-label={t('graph.zoomIn')} title={t('graph.zoomIn')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.6-3.6M8 11h6M11 8v6"/></svg>
+          </button>
+          <button type="button" id="graph-fit" class="icon-btn" aria-label={t('graph.fit')} title={t('graph.fit')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path stroke-linecap="round" d="M12 2.5v3m0 13v3M2.5 12h3m13 0h3"/></svg>
+          </button>
+          <button type="button" id="graph-fullscreen" class="icon-btn" aria-label={t('graph.fullscreen')} title={t('graph.fullscreen')}>
+            <svg class="w-4 h-4 fs-open" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3"/></svg>
+            <svg class="w-4 h-4 fs-close hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3M3 16h3a2 2 0 012 2v3m8 0v-3a2 2 0 012-2h3"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -193,6 +221,40 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 
       <p id="graph-empty" class="absolute inset-0 hidden place-content-center text-center px-6 text-base text-hoba-muted">{t('graph.emptyLayers')}</p>
       <p class="absolute bottom-2 left-3 text-xs text-hoba-muted pointer-events-none select-none">{t('graph.controls')}</p>
+
+      <!-- Floating Ideal Path Walkthrough HUD -->
+      <div
+        id="ideal-hud"
+        class="hidden absolute bottom-4 left-3 right-3 sm:left-auto sm:right-4 sm:w-96 z-30 rounded-xl border border-hoba-border bg-hoba-card/95 backdrop-blur-md shadow-2xl p-4 flex flex-col gap-3"
+      >
+        <div class="flex items-center justify-between">
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold text-hoba-accent uppercase font-mono tracking-wider">
+            <span>✨</span> {lang === 'uk' ? 'Канонічний шлях WF-003' : 'Canonical Path WF-003'}
+          </span>
+          <button id="ideal-close" type="button" class="icon-btn -mr-1 -mt-1" aria-label={t('graph.close')}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between text-xs text-hoba-muted font-mono">
+            <span>{lang === 'uk' ? 'Крок' : 'Step'} <span id="ideal-step-num" class="font-bold text-hoba-text">1</span> / <span id="ideal-total-steps">{idealSteps.length}</span></span>
+            <span id="ideal-step-owner" class="pill pill-muted text-[11px]"></span>
+          </div>
+          <h3 id="ideal-step-title" class="text-sm font-semibold text-hoba-text mt-1 leading-snug"></h3>
+          <p id="ideal-step-desc" class="text-xs text-hoba-muted mt-1 leading-relaxed"></p>
+          <div id="ideal-step-entities" class="flex flex-wrap gap-1 mt-2"></div>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 pt-2 border-t border-hoba-border">
+          <div class="flex items-center gap-1">
+            <button id="ideal-prev" type="button" class="btn btn-secondary text-xs px-2.5 py-1" title={lang === 'uk' ? 'Попередній крок' : 'Previous step'}>◀</button>
+            <button id="ideal-play" type="button" class="btn btn-secondary text-xs px-2.5 py-1 font-mono" title={lang === 'uk' ? 'Автопрогравання' : 'Play walkthrough'}>▶</button>
+            <button id="ideal-next" type="button" class="btn btn-secondary text-xs px-2.5 py-1" title={lang === 'uk' ? 'Наступний крок' : 'Next step'}>▶</button>
+          </div>
+          <button id="ideal-all" type="button" class="pill pill-muted text-xs cursor-pointer hover:border-hoba-accent">{lang === 'uk' ? 'Огляд усього шляху' : 'Show full path'}</button>
+        </div>
+      </div>
 
       <div id="graph-tooltip" class="pointer-events-none absolute z-20 hidden max-w-[16rem] rounded-md border border-hoba-border bg-hoba-card px-3 py-2 shadow-lg">
         <p class="flex items-center gap-1.5 text-xs text-hoba-muted"><span id="tip-dot" class="dot"></span><span id="tip-type"></span><span id="tip-id" class="font-mono"></span></p>
@@ -382,6 +444,122 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
       }
 
       el('panel-close')!.addEventListener('click', () => view.select(null));
+
+      // ---- ideal path controls --------------------------------------------
+
+      const idealToggle = el<HTMLButtonElement>('graph-ideal-toggle');
+      const idealHud = el('ideal-hud');
+      const idealClose = el('ideal-close');
+      const idealPrev = el<HTMLButtonElement>('ideal-prev');
+      const idealNext = el<HTMLButtonElement>('ideal-next');
+      const idealPlay = el<HTMLButtonElement>('ideal-play');
+      const idealAll = el<HTMLButtonElement>('ideal-all');
+      const idealStepNum = el('ideal-step-num');
+      const idealStepOwner = el('ideal-step-owner');
+      const idealStepTitle = el('ideal-step-title');
+      const idealStepDesc = el('ideal-step-desc');
+      const idealStepEntities = el('ideal-step-entities');
+
+      const idealSteps = data.idealSteps ?? [];
+      let currentIdealStep = -1;
+      let idealPlayTimer: number | null = null;
+
+      function renderIdealStep(stepIdx: number) {
+        currentIdealStep = stepIdx;
+        if (stepIdx < 0 || stepIdx >= idealSteps.length) {
+          // All steps mode
+          if (idealStepNum) idealStepNum.textContent = '★';
+          if (idealStepOwner) idealStepOwner.textContent = 'WF-003';
+          if (idealStepTitle) idealStepTitle.textContent = data.lang === 'uk' ? 'Огляд усього канонічного шляху' : 'Full Canonical Route Overview';
+          if (idealStepDesc) idealStepDesc.textContent = data.lang === 'uk' ? 'Усі 9 послідовних етапів та їх інтервенції підсвічено одночасно.' : 'All 9 sequential stages and interventions are highlighted.';
+          if (idealStepEntities) idealStepEntities.innerHTML = '';
+          view.setIdealPathActive(true, -1);
+          return;
+        }
+
+        const step = idealSteps[stepIdx]!;
+        if (idealStepNum) idealStepNum.textContent = String(stepIdx + 1);
+        if (idealStepOwner) idealStepOwner.textContent = step.owner;
+        if (idealStepTitle) idealStepTitle.textContent = step.title;
+        if (idealStepDesc) idealStepDesc.textContent = step.description;
+
+        if (idealStepEntities) {
+          idealStepEntities.innerHTML = '';
+          step.entities.forEach((eid) => {
+            const badge = document.createElement('span');
+            badge.className = 'pill pill-active font-mono text-[11px] cursor-pointer';
+            badge.textContent = eid;
+            badge.addEventListener('click', () => {
+              view.select(eid);
+              view.centerOn(eid);
+            });
+            idealStepEntities.appendChild(badge);
+          });
+        }
+
+        view.setIdealPathActive(true, stepIdx);
+      }
+
+      function stopIdealPlay() {
+        if (idealPlayTimer) {
+          clearInterval(idealPlayTimer);
+          idealPlayTimer = null;
+          if (idealPlay) idealPlay.textContent = '▶';
+        }
+      }
+
+      function toggleIdealPlay() {
+        if (idealPlayTimer) {
+          stopIdealPlay();
+        } else {
+          if (idealPlay) idealPlay.textContent = '⏸';
+          if (currentIdealStep < 0) currentIdealStep = 0;
+          renderIdealStep(currentIdealStep);
+          idealPlayTimer = window.setInterval(() => {
+            currentIdealStep = (currentIdealStep + 1) % idealSteps.length;
+            renderIdealStep(currentIdealStep);
+          }, 2600);
+        }
+      }
+
+      idealToggle?.addEventListener('click', () => {
+        const isHidden = idealHud?.classList.contains('hidden');
+        if (isHidden) {
+          idealHud?.classList.remove('hidden');
+          idealToggle.classList.add('pill-active');
+          renderIdealStep(0);
+        } else {
+          idealHud?.classList.add('hidden');
+          idealToggle.classList.remove('pill-active');
+          stopIdealPlay();
+          view.setIdealPathActive(false);
+        }
+      });
+
+      idealClose?.addEventListener('click', () => {
+        idealHud?.classList.add('hidden');
+        idealToggle?.classList.remove('pill-active');
+        stopIdealPlay();
+        view.setIdealPathActive(false);
+      });
+
+      idealPrev?.addEventListener('click', () => {
+        stopIdealPlay();
+        const next = currentIdealStep <= 0 ? idealSteps.length - 1 : currentIdealStep - 1;
+        renderIdealStep(next);
+      });
+
+      idealNext?.addEventListener('click', () => {
+        stopIdealPlay();
+        const next = currentIdealStep >= idealSteps.length - 1 ? 0 : currentIdealStep + 1;
+        renderIdealStep(next);
+      });
+
+      idealPlay?.addEventListener('click', toggleIdealPlay);
+      idealAll?.addEventListener('click', () => {
+        stopIdealPlay();
+        renderIdealStep(-1);
+      });
 
       // ---- filters ---------------------------------------------------------
 

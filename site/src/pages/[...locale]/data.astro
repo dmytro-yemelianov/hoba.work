@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { coverage, getBundle, STAGES } from '../../lib/registry';
 import { evaluatePatternEmptiness, gaps as derived, lift, substrateVerifyFlowConservation } from '@hoba/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
@@ -60,269 +61,291 @@ const bars = [
   { label: t('data.rem.intermediary'), n: byRemovability('intermediary'), dot: 'bg-amber-500' },
   { label: t('data.rem.none'), n: byRemovability('none'), dot: 'bg-rose-500' },
 ];
+
+const tocItems = [
+  { id: 'data-overview', label: t('data.metric.barriers'), icon: '📊' },
+  { id: 'data-removability', label: t('data.removability.title'), icon: '🎯' },
+  { id: 'data-by-stage', label: t('data.byStage.title'), icon: '📋' },
+  { id: 'data-unplaced', label: t('gap.unplaced'), icon: '⚠️' },
+  { id: 'data-ceiling', label: t('gap.ceiling'), icon: '🔭' },
+  { id: 'data-merged', label: t('gap.merged'), icon: '🔀' },
+  { id: 'data-gaps', label: t('gap.title'), icon: '🚧' },
+  { id: 'data-patterns', label: 'Pattern Emptiness', icon: '📐' },
+  { id: 'data-latency', label: 'Turnaround Bounds', icon: '⏱️' },
+  { id: 'data-flows', label: 'Flow Conservation', icon: '🔒' },
+];
 ---
 <Layout lang={lang} title={t('data.title')} activeNav="data">
   <PageHeader kicker={t('data.kicker')} title={t('data.heading')} lead={t('data.intro')} wide>
     <a slot="actions" href="/data/latest/nodes.csv" target="_blank" class="btn btn-secondary font-mono">{t('data.downloadNodes')}</a>
   </PageHeader>
 
-  <aside class="callout border-l-amber-500">
-    <p class="text-base font-medium text-hoba-text">{t('data.guard.title')}</p>
-    <p class="mt-1 text-base text-hoba-muted">{t('data.guard.text')}</p>
-  </aside>
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-6">
+    <div class="space-y-12 min-w-0">
+      <aside class="callout border-l-amber-500">
+        <p class="text-base font-medium text-hoba-text">{t('data.guard.title')}</p>
+        <p class="mt-1 text-base text-hoba-muted">{t('data.guard.text')}</p>
+      </aside>
 
-  <dl class="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 py-8 border-y border-hoba-border">
-    {stats.map((s) => (
-      <div>
-        <dt class="meta">{s.label}</dt>
-        <dd class="mt-1 text-2xl font-semibold font-mono text-hoba-text">{s.n}</dd>
-        <dd class="text-sm text-hoba-muted">{s.sub}</dd>
-      </div>
-    ))}
-  </dl>
-
-  <section class="section">
-    <h2 class="section-title">{t('data.removability.title')}</h2>
-    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-5">
-      {bars.map((b) => (
-        <li>
-          <div class="flex items-baseline justify-between gap-3 text-base">
-            <span class="flex items-center gap-2"><span class={`dot ${b.dot}`}></span>{b.label}</span>
-            <span class="font-mono text-sm text-hoba-muted tabular-nums">{b.n} · {pct(b.n)}%</span>
-          </div>
-          <div class="mt-2 h-1.5 rounded-full bg-hoba-hover overflow-hidden" role="img" aria-label={`${b.label} ${pct(b.n)}%`}>
-            <div class={`h-full rounded-full ${b.dot}`} style={`width: ${pct(b.n)}%`}></div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">{t('data.byStage.title')}</h2>
-    <div class="overflow-x-auto" tabindex="0">
-      <table class="table">
-        <thead><tr><th scope="col">{t('common.stage')}</th><th scope="col" class="text-right">{t('data.byStage.barriers')}</th><th scope="col" class="text-right">{t('data.byStage.mechanisms')}</th><th scope="col" class="text-right">{t('data.byStage.signals')}</th></tr></thead>
-        <tbody>
-          {byStage.map((st) => (
-            <tr>
-              <td>{t(`stage.${st.stage}`)}</td>
-              <td class="text-right font-mono text-sm">{st.barriers}</td>
-              <td class="text-right font-mono text-sm">{st.mechanisms}</td>
-              <td class="text-right font-mono text-sm">{st.artifacts}</td>
-            </tr>
+      <section id="data-overview" class="scroll-mt-24">
+        <dl class="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 py-6 border-y border-hoba-border">
+          {stats.map((s) => (
+            <div>
+              <dt class="meta">{s.label}</dt>
+              <dd class="mt-1 text-2xl font-semibold font-mono text-hoba-text">{s.n}</dd>
+              <dd class="text-sm text-hoba-muted">{s.sub}</dd>
+            </div>
           ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
+        </dl>
+      </section>
 
-  <section class="section">
-    <h2 class="section-title">{t('gap.unplaced')}</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">{t('gap.unplacedText', { n: report.unplacedEmissions.length, total: totalEmissions, c: conflicting.length })}</p>
-    {conflicting.length > 0 && (
-      <ul class="row-list mt-5">
-        {conflicting.map((e) => (
-          <li class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <a href={href(e.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{e.mechanism}</a>
-            <span class="text-hoba-border" aria-hidden="true">→</span>
-            <a href={href(e.artifact)} class="font-mono text-sm text-hoba-accent shrink-0">{e.artifact}</a>
-            <span class="text-base text-hoba-muted min-w-0 break-words">{titleOf(e.mechanism)}</span>
-          </li>
-        ))}
-      </ul>
-    )}
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">{t('gap.ceiling')}</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">{t('gap.ceilingText', { n: report.identifiability.neverAlone.length, total: bundle.mechanisms.length })}</p>
-
-    {report.identifiability.neverAlone.length === 0 ? (
-      <p class="mt-5 text-base text-hoba-muted">{t('gap.ceilingNone')}</p>
-    ) : (
-      <ul class="row-list mt-5">
-        {report.identifiability.neverAlone.map((n) => (
-          <li data-ceiling-id={n.mechanism} class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <a href={href(n.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{n.mechanism}</a>
-            <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(n.mechanism)}</span>
-            <span class="meta ml-auto shrink-0">{t('gap.ceilingCovered')}</span>
-            <span class="flex flex-wrap gap-1.5">
-              {n.coveredBy.map((id) => <a href={href(id)} class="pill pill-muted font-mono">{id}</a>)}
-            </span>
-          </li>
-        ))}
-      </ul>
-    )}
-
-    <p class="mt-6 text-base text-hoba-muted max-w-3xl">{t('gap.identifyingText', { n: report.identifiability.identifying.length, total: bundle.artifacts.length })}</p>
-    <ul class="mt-3 flex flex-wrap gap-1.5">
-      {report.identifiability.identifying.map((i) => <li><a href={href(i.artifact)} class="pill pill-muted font-mono">{i.artifact}</a></li>)}
-    </ul>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">{t('gap.merged')}</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">{t('gap.mergedText', { n: report.indistinguishable.length, m: mergedCount, total: bundle.mechanisms.length })}</p>
-
-    {report.indistinguishable.length === 0 ? (
-      <p class="mt-5 text-base text-hoba-muted">{t('gap.mergedNone')}</p>
-    ) : (
-      <ul class="row-list mt-5">
-        {report.indistinguishable.map((group) => (
-          <li class="py-4">
-            <ul class="flex flex-col gap-1.5">
-              {group.mechanisms.map((id) => (
-                <li class="flex flex-wrap items-baseline gap-x-3">
-                  <a href={href(id)} class="font-mono text-sm text-hoba-accent shrink-0">{id}</a>
-                  <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(id)}</span>
-                </li>
-              ))}
-            </ul>
-            <p class="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-              <span class="meta">{t('gap.mergedTrace')}</span>
-              {group.signature.map((id) => <a href={href(id)} class="pill pill-muted font-mono">{id}</a>)}
-            </p>
-          </li>
-        ))}
-      </ul>
-    )}
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">{t('gap.title')}</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">{t('gap.intro')}</p>
-
-    <ul class="row-list mt-5">
-      {gapRows.map((row) => (
-        <li class="py-4">
-          <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span class="text-base font-medium text-hoba-text">{row.title}</span>
-            <span class="pill pill-muted ml-auto font-mono tabular-nums">{row.ids.length}</span>
-          </p>
-          <p class="mt-1 text-base text-hoba-muted max-w-2xl">{row.text}</p>
-          {row.ids.length > 0 ? (
-            <ul class="mt-2 flex flex-wrap gap-1.5">
-              {row.ids.map((id) => (
-                <li data-gap-id={row.reachBadge ? id : undefined}>
-                  <a href={href(id)} class="pill pill-muted font-mono">{id}</a>
-                  {row.reachBadge && outOfReach.has(id) && <span class="pill pill-muted ml-1">{t('gap.outOfReach')}</span>}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p class="mt-2 text-sm text-hoba-muted">{t('gap.none')}</p>
-          )}
-        </li>
-      ))}
-
-      <li class="py-4">
-        <p class="text-base font-medium text-hoba-text">{t('gap.stages')}</p>
-        <p class="mt-1 text-base text-hoba-muted max-w-2xl">{t('gap.stagesText')}</p>
-        <ul class="mt-2 flex flex-wrap gap-1.5">
-          {gaps.stagesWithoutObservation.map((stage) => <li><span class="pill pill-muted">{t(`stage.${stage}`)}</span></li>)}
+      <section id="data-removability" class="section scroll-mt-24">
+        <h2 class="section-title">{t('data.removability.title')}</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-5">
+          {bars.map((b) => (
+            <li>
+              <div class="flex items-baseline justify-between gap-3 text-base">
+                <span class="flex items-center gap-2"><span class={`dot ${b.dot}`}></span>{b.label}</span>
+                <span class="font-mono text-sm text-hoba-muted tabular-nums">{b.n} · {pct(b.n)}%</span>
+              </div>
+              <div class="mt-2 h-1.5 rounded-full bg-hoba-hover overflow-hidden" role="img" aria-label={`${b.label} ${pct(b.n)}%`}>
+                <div class={`h-full rounded-full ${b.dot}`} style={`width: ${pct(b.n)}%`}></div>
+              </div>
+            </li>
+          ))}
         </ul>
-      </li>
-    </ul>
+      </section>
 
-    <p class="mt-6 text-base text-hoba-muted max-w-3xl">{t('gap.limits')}</p>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Substrate Topology & Algebraic Pattern Emptiness (SPEC §5)</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">
-      Every contradiction pattern is formally evaluated over the substrate graph. A pattern is classified as <strong>computed_empty</strong> if its joint condition set is provably unsatisfiable under monotonic evaluation, and <strong>prose_asserted</strong> if its satisfying set depends on unobserved hidden state.
-    </p>
-
-    <div class="mt-5 overflow-x-auto" tabindex="0">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Pattern</th>
-            <th scope="col">Status</th>
-            <th scope="col">Satisfying Set Formulation</th>
-            <th scope="col">Algebraic Contradiction</th>
-          </tr>
-        </thead>
-        <tbody>
-          {patternReport.patterns.map((p) => (
-            <tr>
-              <td class="font-mono text-sm">
-                <a href={href(p.id)} class="text-hoba-accent">{p.id}</a>
-                <div class="text-xs text-hoba-muted">{p.title}</div>
-              </td>
-              <td>
-                <span class="pill pill-muted font-mono text-xs">
-                  <span class={`dot ${p.status === 'computed_empty' ? 'bg-emerald-500' : 'bg-amber-500'}`} aria-hidden="true"></span>
-                  {p.status === 'computed_empty' ? 'computed_empty (provably empty)' : 'prose_asserted'}
-                </span>
-              </td>
-              <td class="text-xs font-mono text-hoba-muted max-w-xs">{p.satisfyingSetDescription}</td>
-              <td class="text-xs text-hoba-muted max-w-sm">{p.contradictionDetails || 'Asserted by domain specification'}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Workflow Latency Bounds & Dwell Turnaround Matrix</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">
-      Turnaround bounds defined across all canonical workflows ({bundle.workflows.length} state machines). Dwell exceeding the maximum bound signals a stalled state driven by hidden queue eviction, ghost postings, or batching.
-    </p>
-
-    <div class="mt-5 space-y-6">
-      {bundle.workflows.map((wf) => (
-        <div class="border border-hoba-border rounded-lg p-4 bg-hoba-card/30">
-          <div class="flex items-baseline justify-between mb-3">
-            <h3 class="font-medium text-base text-hoba-text">
-              <span class="font-mono text-hoba-accent mr-2">{wf.id}</span>
-              {wf.title}
-            </h3>
-            <span class="text-xs text-hoba-muted font-mono">{wf.states.length} states · {wf.transitions.length} transitions</span>
-          </div>
-          <div class="overflow-x-auto" tabindex="0">
-            <table class="table text-xs">
-              <thead>
+      <section id="data-by-stage" class="section scroll-mt-24">
+        <h2 class="section-title">{t('data.byStage.title')}</h2>
+        <div class="overflow-x-auto" tabindex="0">
+          <table class="table">
+            <thead><tr><th scope="col">{t('common.stage')}</th><th scope="col" class="text-right">{t('data.byStage.barriers')}</th><th scope="col" class="text-right">{t('data.byStage.mechanisms')}</th><th scope="col" class="text-right">{t('data.byStage.signals')}</th></tr></thead>
+            <tbody>
+              {byStage.map((st) => (
                 <tr>
-                  <th scope="col">Transition</th>
-                  <th scope="col">Owner</th>
-                  <th scope="col" class="text-right">Expected (days)</th>
-                  <th scope="col" class="text-right">Max Bound (days)</th>
+                  <td>{t(`stage.${st.stage}`)}</td>
+                  <td class="text-right font-mono text-sm">{st.barriers}</td>
+                  <td class="text-right font-mono text-sm">{st.mechanisms}</td>
+                  <td class="text-right font-mono text-sm">{st.artifacts}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {wf.transitions.map((tr) => (
-                  <tr>
-                    <td class="font-mono">
-                      {tr.from} <span class="text-hoba-border">→</span> {tr.to}
-                    </td>
-                    <td class="text-hoba-muted">{tr.owner}</td>
-                    <td class="text-right font-mono tabular-nums">{tr.latency_expected_days ?? '—'}</td>
-                    <td class="text-right font-mono tabular-nums">{tr.latency_max_days ?? '—'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
-      ))}
-    </div>
-  </section>
+      </section>
 
-  <section class="section">
-    <h2 class="section-title">Financial Flow Conservation & Solvency Verification</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">
-      Parametric resource flows across all {lifted.substrate.records.length} financial records (R-001..R-013) and {lifted.substrate.flows.length} flows.
-    </p>
-    <div class="mt-4 callout border-l-emerald-500">
-      <p class="text-sm font-medium text-hoba-text">
-        {flowReport.isConserved ? '✓ 100% Flow Conservation Verified' : '! Conservation Violations Detected'}
-      </p>
-      <p class="mt-1 text-xs text-hoba-muted">
-        Every outward split sums to ≤ 100.0% with zero negative allocations. Verified in Lean 4 kernel theorems and automated TypeScript derivations.
-      </p>
+      <section id="data-unplaced" class="section scroll-mt-24">
+        <h2 class="section-title">{t('gap.unplaced')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('gap.unplacedText', { n: report.unplacedEmissions.length, total: totalEmissions, c: conflicting.length })}</p>
+        {conflicting.length > 0 && (
+          <ul class="row-list mt-5">
+            {conflicting.map((e) => (
+              <li class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <a href={href(e.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{e.mechanism}</a>
+                <span class="text-hoba-border" aria-hidden="true">→</span>
+                <a href={href(e.artifact)} class="font-mono text-sm text-hoba-accent shrink-0">{e.artifact}</a>
+                <span class="text-base text-hoba-muted min-w-0 break-words">{titleOf(e.mechanism)}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section id="data-ceiling" class="section scroll-mt-24">
+        <h2 class="section-title">{t('gap.ceiling')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('gap.ceilingText', { n: report.identifiability.neverAlone.length, total: bundle.mechanisms.length })}</p>
+
+        {report.identifiability.neverAlone.length === 0 ? (
+          <p class="mt-5 text-base text-hoba-muted">{t('gap.ceilingNone')}</p>
+        ) : (
+          <ul class="row-list mt-5">
+            {report.identifiability.neverAlone.map((n) => (
+              <li data-ceiling-id={n.mechanism} class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <a href={href(n.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{n.mechanism}</a>
+                <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(n.mechanism)}</span>
+                <span class="meta ml-auto shrink-0">{t('gap.ceilingCovered')}</span>
+                <span class="flex flex-wrap gap-1.5">
+                  {n.coveredBy.map((id) => <a href={href(id)} class="pill pill-muted font-mono">{id}</a>)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <p class="mt-6 text-base text-hoba-muted max-w-3xl">{t('gap.identifyingText', { n: report.identifiability.identifying.length, total: bundle.artifacts.length })}</p>
+        <ul class="mt-3 flex flex-wrap gap-1.5">
+          {report.identifiability.identifying.map((i) => <li><a href={href(i.artifact)} class="pill pill-muted font-mono">{i.artifact}</a></li>)}
+        </ul>
+      </section>
+
+      <section id="data-merged" class="section scroll-mt-24">
+        <h2 class="section-title">{t('gap.merged')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('gap.mergedText', { n: report.indistinguishable.length, m: mergedCount, total: bundle.mechanisms.length })}</p>
+
+        {report.indistinguishable.length === 0 ? (
+          <p class="mt-5 text-base text-hoba-muted">{t('gap.mergedNone')}</p>
+        ) : (
+          <ul class="row-list mt-5">
+            {report.indistinguishable.map((group) => (
+              <li class="py-4">
+                <ul class="flex flex-col gap-1.5">
+                  {group.mechanisms.map((id) => (
+                    <li class="flex flex-wrap items-baseline gap-x-3">
+                      <a href={href(id)} class="font-mono text-sm text-hoba-accent shrink-0">{id}</a>
+                      <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(id)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p class="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span class="meta">{t('gap.mergedTrace')}</span>
+                  {group.signature.map((id) => <a href={href(id)} class="pill pill-muted font-mono">{id}</a>)}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section id="data-gaps" class="section scroll-mt-24">
+        <h2 class="section-title">{t('gap.title')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('gap.intro')}</p>
+
+        <ul class="row-list mt-5">
+          {gapRows.map((row) => (
+            <li class="py-4">
+              <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span class="text-base font-medium text-hoba-text">{row.title}</span>
+                <span class="pill pill-muted ml-auto font-mono tabular-nums">{row.ids.length}</span>
+              </p>
+              <p class="mt-1 text-base text-hoba-muted max-w-2xl">{row.text}</p>
+              {row.ids.length > 0 ? (
+                <ul class="mt-2 flex flex-wrap gap-1.5">
+                  {row.ids.map((id) => (
+                    <li data-gap-id={row.reachBadge ? id : undefined}>
+                      <a href={href(id)} class="pill pill-muted font-mono">{id}</a>
+                      {row.reachBadge && outOfReach.has(id) && <span class="pill pill-muted ml-1">{t('gap.outOfReach')}</span>}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="mt-2 text-sm text-hoba-muted">{t('gap.none')}</p>
+              )}
+            </li>
+          ))}
+
+          <li class="py-4">
+            <p class="text-base font-medium text-hoba-text">{t('gap.stages')}</p>
+            <p class="mt-1 text-base text-hoba-muted max-w-2xl">{t('gap.stagesText')}</p>
+            <ul class="mt-2 flex flex-wrap gap-1.5">
+              {gaps.stagesWithoutObservation.map((stage) => <li><span class="pill pill-muted">{t(`stage.${stage}`)}</span></li>)}
+            </ul>
+          </li>
+        </ul>
+
+        <p class="mt-6 text-base text-hoba-muted max-w-3xl">{t('gap.limits')}</p>
+      </section>
+
+      <section id="data-patterns" class="section scroll-mt-24">
+        <h2 class="section-title">Substrate Topology & Algebraic Pattern Emptiness (SPEC §5)</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">
+          Every contradiction pattern is formally evaluated over the substrate graph. A pattern is classified as <strong>computed_empty</strong> if its joint condition set is provably unsatisfiable under monotonic evaluation, and <strong>prose_asserted</strong> if its satisfying set depends on unobserved hidden state.
+        </p>
+
+        <div class="mt-5 overflow-x-auto" tabindex="0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Pattern</th>
+                <th scope="col">Status</th>
+                <th scope="col">Satisfying Set Formulation</th>
+                <th scope="col">Algebraic Contradiction</th>
+              </tr>
+            </thead>
+            <tbody>
+              {patternReport.patterns.map((p) => (
+                <tr>
+                  <td class="font-mono text-sm">
+                    <a href={href(p.id)} class="text-hoba-accent">{p.id}</a>
+                    <div class="text-xs text-hoba-muted">{p.title}</div>
+                  </td>
+                  <td>
+                    <span class="pill pill-muted font-mono text-xs">
+                      <span class={`dot ${p.status === 'computed_empty' ? 'bg-emerald-500' : 'bg-amber-500'}`} aria-hidden="true"></span>
+                      {p.status === 'computed_empty' ? 'computed_empty (provably empty)' : 'prose_asserted'}
+                    </span>
+                  </td>
+                  <td class="text-xs font-mono text-hoba-muted max-w-xs">{p.satisfyingSetDescription}</td>
+                  <td class="text-xs text-hoba-muted max-w-sm">{p.contradictionDetails || 'Asserted by domain specification'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="data-latency" class="section scroll-mt-24">
+        <h2 class="section-title">Workflow Latency Bounds & Dwell Turnaround Matrix</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">
+          Turnaround bounds defined across all canonical workflows ({bundle.workflows.length} state machines). Dwell exceeding the maximum bound signals a stalled state driven by hidden queue eviction, ghost postings, or batching.
+        </p>
+
+        <div class="mt-5 space-y-6">
+          {bundle.workflows.map((wf) => (
+            <div class="border border-hoba-border rounded-lg p-4 bg-hoba-card/30">
+              <div class="flex items-baseline justify-between mb-3">
+                <h3 class="font-medium text-base text-hoba-text">
+                  <span class="font-mono text-hoba-accent mr-2">{wf.id}</span>
+                  {wf.title}
+                </h3>
+                <span class="text-xs text-hoba-muted font-mono">{wf.states.length} states · {wf.transitions.length} transitions</span>
+              </div>
+              <div class="overflow-x-auto" tabindex="0">
+                <table class="table text-xs">
+                  <thead>
+                    <tr>
+                      <th scope="col">Transition</th>
+                      <th scope="col">Owner</th>
+                      <th scope="col" class="text-right">Expected (days)</th>
+                      <th scope="col" class="text-right">Max Bound (days)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {wf.transitions.map((tr) => (
+                      <tr>
+                        <td class="font-mono">
+                          {tr.from} <span class="text-hoba-border">→</span> {tr.to}
+                        </td>
+                        <td class="text-hoba-muted">{tr.owner}</td>
+                        <td class="text-right font-mono tabular-nums">{tr.latency_expected_days ?? '—'}</td>
+                        <td class="text-right font-mono tabular-nums">{tr.latency_max_days ?? '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="data-flows" class="section scroll-mt-24">
+        <h2 class="section-title">Financial Flow Conservation & Solvency Verification</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">
+          Parametric resource flows across all {lifted.substrate.records.length} financial records (R-001..R-013) and {lifted.substrate.flows.length} flows.
+        </p>
+        <div class="mt-4 callout border-l-emerald-500">
+          <p class="text-sm font-medium text-hoba-text">
+            {flowReport.isConserved ? '✓ 100% Flow Conservation Verified' : '! Conservation Violations Detected'}
+          </p>
+          <p class="mt-1 text-xs text-hoba-muted">
+            Every outward split sums to ≤ 100.0% with zero negative allocations. Verified in Lean 4 kernel theorems and automated TypeScript derivations.
+          </p>
+        </div>
+      </section>
     </div>
-  </section>
+
+    <!-- Sticky Side Navigation -->
+    <TableOfContents items={tocItems} lang={lang} />
+  </div>
 </Layout>

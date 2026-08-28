@@ -12,6 +12,8 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import EntityRow from '../../components/EntityRow.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import ShareBar from '../../components/ShareBar.astro';
 import { getBundle } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
@@ -56,6 +58,13 @@ const sections = [
   { key: 'entry', label: t('era.entry') },
   { key: 'ended_by', label: t('era.endedBy') },
 ] as const;
+
+const tocItems = eras.map((e) => ({
+  id: e.id,
+  label: e.title,
+  badge: `${e.from}–${e.to}`,
+  icon: '📅',
+}));
 ---
 <Layout lang={lang} title={t('era.title')} description={t('era.intro')} activeNav="eras" image={`/cards/${lang}/${eras[0]?.id ?? "E-001"}.png`}>
   <PageHeader kicker={t('era.kicker')} title={t('era.title')} lead={t('era.intro')} tourPageKey="eras" lang={lang} />
@@ -63,7 +72,7 @@ const sections = [
   {eras.length === 0 && <p class="text-base text-hoba-muted">{t('era.empty')}</p>}
 
   {eras.length > 0 && (
-    <nav class="era-strip" aria-label={t('era.timeline')}>
+    <nav class="era-strip" id="eras-timeline" aria-label={t('era.timeline')}>
       {strip.map((era) => (
         <a href={`#${era.id}`} class="era-tab" style={`--w: ${era.width}%`}>
           <span class="era-tab-years">{era.from}–{era.to}</span>
@@ -72,6 +81,9 @@ const sections = [
       ))}
     </nav>
   )}
+
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-6">
+    <div class="space-y-12 min-w-0">
 
   {eras.map((era) => (
     <article class="section scroll-mt-24" id={era.id}>
@@ -133,4 +145,17 @@ const sections = [
   ))}
 
   {eras.length > 0 && <p class="section text-sm text-hoba-muted">{t('era.sources')}</p>}
+
+      <ShareBar
+        id={eras[0]?.id ?? 'E-001'}
+        title={t('era.title')}
+        lang={lang}
+        hasPostcard={false}
+        type="era"
+      />
+    </div>
+
+    <!-- Sticky Side Navigation -->
+    <TableOfContents items={tocItems} lang={lang} />
+  </div>
 </Layout>

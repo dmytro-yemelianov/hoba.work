@@ -8,6 +8,7 @@ import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
 import Reach from '../../../components/Reach.astro';
+import ShareBar from '../../../components/ShareBar.astro';
 import { getGraph } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { InterventionNode } from '@hoba/registry';
@@ -81,13 +82,14 @@ const targets = intervention.targets.map((id) => {
 
     <Perspectives perspectives={intervention.perspectives} actors={graph.bundle.actors} lang={lang} prefix={prefix} />
 
-    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
-      <span>{t('share.card')}</span>
-      <a href={`/cards/${lang}/${intervention.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
-      <span class="text-hoba-border" aria-hidden="true">|</span>
-      <span>{t('md.view')}</span>
-      <a href={`/interventions/${intervention.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
-      <a href={`/api/v1/interventions/${intervention.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>
-    </p>
+    <ShareBar
+      id={intervention.id}
+      title={intervention.title}
+      lang={lang}
+      hasPostcard={false}
+      type="intervention"
+      markdownUrl={`/interventions/${intervention.id}.md`}
+      jsonUrl={`/api/v1/interventions/${intervention.id}.json`}
+    />
   </div>
 </Layout>

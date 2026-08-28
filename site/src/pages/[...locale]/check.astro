@@ -230,9 +230,9 @@ const presets = [
     </div>
   </div>
 
-  <form id="check-form" class="section grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2" autocomplete="off">
+  <form id="check-form" class="section grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 scroll-mt-24" autocomplete="off">
     <!-- Column 1: Candidate Side -->
-    <fieldset class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+    <fieldset id="evidenced-facts-col" class="rounded-xl border border-hoba-border bg-hoba-card p-5 scroll-mt-24">
       <legend class="text-base font-semibold text-hoba-text px-2">{t('check.you')}</legend>
       <div class="space-y-4 mt-2">
         {you.map((field) => (
@@ -252,7 +252,7 @@ const presets = [
     </fieldset>
 
     <!-- Column 2: Employer Posting Side -->
-    <fieldset class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+    <fieldset id="stated-specs-col" class="rounded-xl border border-hoba-border bg-hoba-card p-5 scroll-mt-24">
       <legend class="text-base font-semibold text-hoba-text px-2">{t('check.posting')}</legend>
       <div class="space-y-4 mt-2">
         {posting.map((field) => (
@@ -274,7 +274,7 @@ const presets = [
   </form>
 
   <!-- Section 1: Arithmetic Conformance Results -->
-  <section class="section">
+  <section id="arithmetic-verdict" class="section scroll-mt-24">
     <div class="border-b border-hoba-border pb-3 mb-6">
       <h2 class="text-xl font-semibold text-hoba-text">{t('check.result')}</h2>
     </div>
@@ -283,7 +283,7 @@ const presets = [
   </section>
 
   <!-- Section 2: Temporal Latency & Dwell Anomaly Diagnoser -->
-  <section class="section border-t border-hoba-border pt-12">
+  <section id="turnaround-section" class="section border-t border-hoba-border pt-12 scroll-mt-24">
     <div class="max-w-3xl mb-6">
       <h2 class="text-xl font-semibold text-hoba-text">{t('check.turnaround.title')}</h2>
       <p class="text-sm text-hoba-muted mt-1 leading-relaxed">
@@ -314,7 +314,7 @@ const presets = [
   </section>
 
   <!-- Section 3: Candidate Runway & Solvency Calculator -->
-  <section class="section border-t border-hoba-border pt-12">
+  <section id="runway-section" class="section border-t border-hoba-border pt-12 scroll-mt-24">
     <div class="max-w-3xl mb-6">
       <h2 class="text-xl font-semibold text-hoba-text">{t('check.runway.title')}</h2>
       <p class="text-sm text-hoba-muted mt-1 leading-relaxed">

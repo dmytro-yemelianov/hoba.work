@@ -8,6 +8,7 @@ import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
 import Reach from '../../../components/Reach.astro';
+import ShareBar from '../../../components/ShareBar.astro';
 import { getBundle } from '../../../lib/registry';
 import { branded, asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
 import type { ArtifactNode } from '@hoba/registry';
@@ -113,14 +114,14 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
 
     <Perspectives perspectives={artifact.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 
-    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
-      <span>{t('share.card')}</span>
-      <a href={`/cards/${lang}/${artifact.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
-      <a href={`/cards/${lang}/${artifact.id}-postcard.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">{t('share.postcard')}</a>
-      <span class="text-hoba-border" aria-hidden="true">|</span>
-      <span>{t('md.view')}</span>
-      <a href={`/artifacts/${artifact.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
-      <a href={`/api/v1/artifacts/${artifact.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>
-    </p>
+    <ShareBar
+      id={artifact.id}
+      title={artifact.title}
+      lang={lang}
+      hasPostcard={true}
+      type="artifact"
+      markdownUrl={`/artifacts/${artifact.id}.md`}
+      jsonUrl={`/api/v1/artifacts/${artifact.id}.json`}
+    />
   </div>
 </Layout>

@@ -1,0 +1,118 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+export interface TocItem {
+  id: string;
+  label: string;
+  icon?: string;
+  badge?: string;
+}
+
+interface Props {
+  items: TocItem[];
+  title?: string;
+  lang: Lang;
+  className?: string;
+}
+
+const { items, title, lang, className = '' } = Astro.props;
+const t = useTranslations(lang);
+const heading = title ?? (lang === 'uk' ? 'Зміст сторінки' : 'On this page');
+---
+<nav class={`table-of-contents toc-container ${className}`} aria-label={heading}>
+  <!-- Desktop Sticky Sidebar -->
+  <div class="hidden lg:block w-64 shrink-0 sticky top-24 self-start rounded-2xl border border-hoba-border bg-hoba-card/60 backdrop-blur-md p-4 text-xs shadow-sm">
+    <div class="flex items-center gap-2 font-mono font-bold text-hoba-text uppercase tracking-wider text-[11px] pb-2.5 mb-2 border-b border-hoba-border">
+      <span class="w-1.5 h-1.5 rounded-full bg-hoba-accent animate-pulse"></span>
+      <span>{heading}</span>
+    </div>
+    <ul class="space-y-1 toc-list" id="desktop-toc-list">
+      {items.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="toc-item toc-link group flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-lg text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-all leading-snug no-underline"
+            data-target={item.id}
+          >
+            <span class="flex items-center gap-1.5 truncate">
+              {item.icon && <span class="text-xs shrink-0">{item.icon}</span>}
+              <span class="truncate">{item.label}</span>
+            </span>
+            {item.badge && (
+              <span class="pill pill-muted text-[10px] py-0 px-1 font-mono shrink-0">{item.badge}</span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Mobile / Tablet Collapsible Top Bar -->
+  <details class="lg:hidden mb-6 rounded-xl border border-hoba-border bg-hoba-card/75 backdrop-blur p-3 text-xs group">
+    <summary class="flex items-center justify-between font-mono font-semibold text-hoba-text cursor-pointer select-none">
+      <span class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-hoba-accent"></span>
+        <span>{heading}</span>
+      </span>
+      <span class="text-hoba-muted group-open:rotate-180 transition-transform">▼</span>
+    </summary>
+    <ul class="mt-3 pt-3 border-t border-hoba-border space-y-1">
+      {items.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="flex items-center justify-between gap-2 px-2 py-1.5 rounded text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover no-underline"
+          >
+            <span class="flex items-center gap-1.5 truncate">
+              {item.icon && <span class="text-xs shrink-0">{item.icon}</span>}
+              <span class="truncate">{item.label}</span>
+            </span>
+            {item.badge && (
+              <span class="pill pill-muted text-[10px] py-0 px-1 font-mono">{item.badge}</span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+</nav>
+
+<script>
+  function setupTocScrollspy() {
+    const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
+    if (!links.length) return;
+
+    const targets = Array.from(links)
+      .map((l) => {
+        const id = l.dataset.target;
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (!targets.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            links.forEach((l) => {
+              const active = l.dataset.target === id;
+              l.classList.toggle('text-hoba-accent', active);
+              l.classList.toggle('font-semibold', active);
+              l.classList.toggle('bg-hoba-accent/10', active);
+              l.classList.toggle('border-l-2', active);
+              l.classList.toggle('border-hoba-accent', active);
+            });
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0.1 }
+    );
+
+    targets.forEach((t) => observer.observe(t));
+  }
+
+  setupTocScrollspy();
+  document.addEventListener('astro:page-load', setupTocScrollspy);
+</script>

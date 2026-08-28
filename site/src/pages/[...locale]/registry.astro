@@ -215,56 +215,84 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
     const groupSelect = document.getElementById('group-select');
     const noResults = document.getElementById('no-results');
 
+    const ORDERED_GROUPS = {
+      type: ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'],
+      stage: ['pre-posting', 'sourcing', 'ingestion', 'screening', 'recruiter', 'technical', 'hiring-manager', 'team', 'client', 'compensation', 'offer', 'post-offer', ''],
+      removability: ['candidate', 'intermediary', 'none', ''],
+    };
+
+    // Store initial natural order of elements in each view container
+    document.querySelectorAll('[data-view]').forEach((v) => {
+      v.querySelectorAll('.node-item').forEach((item, idx) => {
+        item.dataset.initialIndex = String(idx);
+      });
+    });
+
     function updateGrouping() {
-      // Remove existing group headers
+      // 1. Remove all old group headers
       document.querySelectorAll('.registry-group-header').forEach((el) => el.remove());
-      if (activeGroup === 'none') return;
 
-      const labels = groupLabels[activeGroup] || {};
       const views = document.querySelectorAll('[data-view]');
-
       views.forEach((viewContainer) => {
         const viewType = viewContainer.getAttribute('data-view');
-        const viewItems = Array.from(viewContainer.querySelectorAll('.node-item'));
-        
-        // Group items in this view
-        const groups = new Map();
-        viewItems.forEach((item) => {
+        let parent = viewContainer;
+        if (viewType === 'table') parent = viewContainer.querySelector('tbody') || viewContainer;
+        else if (viewType === 'cards') parent = viewContainer.querySelector('.grid') || viewContainer;
+        else if (viewType === 'list') parent = viewContainer.querySelector('.row-list') || viewContainer;
+
+        const allItems = Array.from(parent.querySelectorAll('.node-item'));
+
+        if (activeGroup === 'none') {
+          // Restore pristine initial order
+          allItems.sort((a, b) => Number(a.dataset.initialIndex || 0) - Number(b.dataset.initialIndex || 0));
+          allItems.forEach((item) => parent.appendChild(item));
+          return;
+        }
+
+        const labels = groupLabels[activeGroup] || {};
+        const orderedKeys = ORDERED_GROUPS[activeGroup] || [];
+
+        // Partition visible items by group key
+        const groupMap = new Map();
+        orderedKeys.forEach((k) => groupMap.set(k, []));
+        if (!groupMap.has('')) groupMap.set('', []);
+
+        allItems.forEach((item) => {
           if (item.classList.contains('hidden')) return;
           let key = '';
           if (activeGroup === 'type') key = item.dataset.type || '';
           else if (activeGroup === 'stage') key = item.dataset.stage || '';
           else if (activeGroup === 'removability') key = item.dataset.removability || '';
-          
-          if (!groups.has(key)) groups.set(key, []);
-          groups.get(key).push(item);
+
+          if (!groupMap.has(key)) groupMap.set(key, []);
+          groupMap.get(key).push(item);
         });
 
-        // Insert group headers before the first item of each group
-        groups.forEach((groupItems, key) => {
+        // Re-append items in grouped order with a single header per group
+        groupMap.forEach((groupItems, key) => {
           if (!groupItems.length) return;
-          const firstItem = groupItems[0];
-          const groupTitle = labels[key] || key || 'Other';
+          const groupTitle = labels[key] || (key ? key.toUpperCase() : 'General / Other');
           const count = groupItems.length;
 
+          let headerEl;
           if (viewType === 'table') {
-            const tr = document.createElement('tr');
-            tr.className = 'registry-group-header';
-            tr.innerHTML = `<td colspan="5" class="py-2.5 px-3 bg-hoba-card/90 font-mono text-xs font-bold text-hoba-accent border-y border-hoba-border">
+            headerEl = document.createElement('tr');
+            headerEl.className = 'registry-group-header';
+            headerEl.innerHTML = `<td colspan="5" class="py-2.5 px-3 bg-hoba-card/90 font-mono text-xs font-bold text-hoba-accent border-y border-hoba-border">
               <span class="inline-flex items-center gap-2">${groupTitle} <span class="font-normal text-hoba-muted">(${count})</span></span>
             </td>`;
-            firstItem.parentNode?.insertBefore(tr, firstItem);
           } else if (viewType === 'cards') {
-            const div = document.createElement('div');
-            div.className = 'registry-group-header col-span-full pt-4 pb-1 border-b border-hoba-border font-mono text-xs font-bold text-hoba-accent flex items-center justify-between';
-            div.innerHTML = `<span>${groupTitle}</span><span class="pill pill-muted font-mono text-xs">${count}</span>`;
-            firstItem.parentNode?.insertBefore(div, firstItem);
+            headerEl = document.createElement('div');
+            headerEl.className = 'registry-group-header col-span-full pt-4 pb-1 border-b border-hoba-border font-mono text-xs font-bold text-hoba-accent flex items-center justify-between';
+            headerEl.innerHTML = `<span>${groupTitle}</span><span class="pill pill-muted font-mono text-xs">${count}</span>`;
           } else if (viewType === 'list') {
-            const div = document.createElement('div');
-            div.className = 'registry-group-header pt-4 pb-1 border-b border-hoba-border font-mono text-xs font-bold text-hoba-accent flex items-center justify-between';
-            div.innerHTML = `<span>${groupTitle}</span><span class="pill pill-muted font-mono text-xs">${count}</span>`;
-            firstItem.parentNode?.insertBefore(div, firstItem);
+            headerEl = document.createElement('div');
+            headerEl.className = 'registry-group-header pt-4 pb-1 border-b border-hoba-border font-mono text-xs font-bold text-hoba-accent flex items-center justify-between';
+            headerEl.innerHTML = `<span>${groupTitle}</span><span class="pill pill-muted font-mono text-xs">${count}</span>`;
           }
+
+          if (headerEl) parent.appendChild(headerEl);
+          groupItems.forEach((item) => parent.appendChild(item));
         });
       });
     }

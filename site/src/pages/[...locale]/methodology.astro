@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -10,37 +11,60 @@ export function getStaticPaths() {
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const verbs = ['observed', 'compatible', 'supported', 'established'] as const;
+
+const tocItems = [
+  { id: 'method-core', label: t('method.core.title'), icon: '⚖️' },
+  { id: 'method-verbs', label: t('method.verbs.title'), icon: '🔤' },
+  { id: 'method-honest', label: t('method.honest.title'), icon: '🛡️' },
+  { id: 'method-evidence', label: t('method.evidence.title'), icon: '📑' },
+  { id: 'method-nongoals', label: t('method.nongoals.title'), icon: '🚫' },
+];
 ---
 <Layout lang={lang} title={t('method.title')} activeNav="methodology">
   <PageHeader kicker={t('method.kicker')} title={t('method.heading')} lead={t('method.intro')} />
 
-  <article class="prose-hoba">
-    <h2>{t('method.core.title')}</h2>
-    <blockquote set:html={branded(t('method.core.quote'))} />
-    <p>{t('method.core.text')}</p>
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-4">
+    <article class="prose-hoba min-w-0">
+      <section id="method-core" class="scroll-mt-24">
+        <h2>{t('method.core.title')}</h2>
+        <blockquote set:html={branded(t('method.core.quote'))} />
+        <p>{t('method.core.text')}</p>
+      </section>
 
-    <h2>{t('method.verbs.title')}</h2>
-    <p set:html={branded(t('method.verbs.sub'))} />
-    <dl>
-      {verbs.map((v) => (
-        <>
-          <dt class="font-mono text-hoba-text">{t(`method.verbs.${v}`)}</dt>
-          <dd class="text-hoba-muted">{t(`method.verbs.${v}.text`)}</dd>
-        </>
-      ))}
-    </dl>
+      <section id="method-verbs" class="scroll-mt-24 mt-10">
+        <h2>{t('method.verbs.title')}</h2>
+        <p set:html={branded(t('method.verbs.sub'))} />
+        <dl>
+          {verbs.map((v) => (
+            <>
+              <dt class="font-mono text-hoba-text">{t(`method.verbs.${v}`)}</dt>
+              <dd class="text-hoba-muted">{t(`method.verbs.${v}.text`)}</dd>
+            </>
+          ))}
+        </dl>
+      </section>
 
-    <h2>{t('method.honest.title')}</h2>
-    <p>{t('method.honest.text')}<code>honest_baseline: true</code>{t('method.honest.textAfter')}</p>
+      <section id="method-honest" class="scroll-mt-24 mt-10">
+        <h2>{t('method.honest.title')}</h2>
+        <p>{t('method.honest.text')}<code>honest_baseline: true</code>{t('method.honest.textAfter')}</p>
+      </section>
 
-    <h2 id="evidence">{t('method.evidence.title')}</h2>
-    <p>{t('method.evidence.text1.before')}<code>evidence_level</code>{t('method.evidence.text1.middle')}<code>EVD-xxx</code>{t('method.evidence.text1.after')}</p>
-    <p>{t('method.evidence.text2.before')}<code>hypothesis</code>{t('method.evidence.text2.after')}</p>
+      <section id="method-evidence" class="scroll-mt-24 mt-10">
+        <h2>{t('method.evidence.title')}</h2>
+        <p>{t('method.evidence.text1.before')}<code>evidence_level</code>{t('method.evidence.text1.middle')}<code>EVD-xxx</code>{t('method.evidence.text1.after')}</p>
+        <p>{t('method.evidence.text2.before')}<code>hypothesis</code>{t('method.evidence.text2.after')}</p>
+      </section>
 
-    <div class="callout border-l-hoba-exogenous">
-      <h2 class="mt-0">{t('method.nongoals.title')}</h2>
-      <p set:html={branded(t('method.nongoals.sub'))} />
-      <ul>{(['1', '2', '3', '4', '5'] as const).map((n) => <li>{t(`method.nongoals.${n}`)}</li>)}</ul>
-    </div>
-  </article>
+      <section id="method-nongoals" class="scroll-mt-24 mt-10">
+        <div class="callout border-l-hoba-exogenous">
+          <h2 class="mt-0">{t('method.nongoals.title')}</h2>
+          <p set:html={branded(t('method.nongoals.sub'))} />
+          <ul>{(['1', '2', '3', '4', '5'] as const).map((n) => <li>{t(`method.nongoals.${n}`)}</li>)}</ul>
+        </div>
+      </section>
+    </article>
+
+    <!-- Sticky Side Navigation -->
+    <TableOfContents items={tocItems} lang={lang} />
+  </div>
 </Layout>

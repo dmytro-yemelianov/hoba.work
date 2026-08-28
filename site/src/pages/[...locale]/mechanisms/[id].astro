@@ -8,6 +8,7 @@ import IdealNote from '../../../components/IdealNote.astro';
 import EraNote from '../../../components/EraNote.astro';
 import Perspectives from '../../../components/Perspectives.astro';
 import Reach from '../../../components/Reach.astro';
+import ShareBar from '../../../components/ShareBar.astro';
 import RemovabilityBadge from '../../../components/RemovabilityBadge.astro';
 import { getBundle } from '../../../lib/registry';
 import { asHeading, LANGS, localeParams, localePrefix, useTranslations, type Lang } from '../../../i18n/utils';
@@ -130,13 +131,14 @@ const facets = [
 
     <Perspectives perspectives={mechanism.perspectives} actors={bundle.actors} lang={lang} prefix={prefix} />
 
-    <p class="mt-12 pt-4 border-t border-hoba-border text-sm text-hoba-muted flex flex-wrap items-center gap-x-3 gap-y-1">
-      <span>{t('share.card')}</span>
-      <a href={`/cards/${lang}/${mechanism.id}.png`} download class="text-hoba-accent underline underline-offset-2 font-mono">png</a>
-      <span class="text-hoba-border" aria-hidden="true">|</span>
-      <span>{t('md.view')}</span>
-      <a href={`/mechanisms/${mechanism.id}.md`} class="text-hoba-accent underline underline-offset-2 font-mono">markdown</a>
-      <a href={`/api/v1/mechanisms/${mechanism.id}.json`} target="_blank" class="text-hoba-accent underline underline-offset-2 font-mono">json</a>
-    </p>
+    <ShareBar
+      id={mechanism.id}
+      title={mechanism.title}
+      lang={lang}
+      hasPostcard={false}
+      type="mechanism"
+      markdownUrl={`/mechanisms/${mechanism.id}.md`}
+      jsonUrl={`/api/v1/mechanisms/${mechanism.id}.json`}
+    />
   </div>
 </Layout>

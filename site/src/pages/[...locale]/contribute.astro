@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -16,20 +17,37 @@ const commands = [
   'pnpm test',
   'pnpm build',
 ];
+
+const tocItems = [
+  { id: 'contrib-workflow', label: t('contrib.workflow'), icon: '💻' },
+  { id: 'contrib-checks', label: t('contrib.checks.title'), icon: '✅' },
+  { id: 'contrib-mirror', label: t('contrib.mirror.title'), icon: '🌐' },
+];
 ---
 <Layout lang={lang} title={t('contrib.title')} activeNav="contribute">
   <PageHeader kicker={t('contrib.kicker')} title={t('contrib.heading')} lead={t('contrib.intro')} />
 
-  <article class="prose-hoba">
-    <h2>{t('contrib.workflow')}</h2>
-    <pre tabindex="0"><code>{commands.join('\n')}</code></pre>
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-4">
+    <article class="prose-hoba min-w-0">
+      <section id="contrib-workflow" class="scroll-mt-24">
+        <h2>{t('contrib.workflow')}</h2>
+        <pre tabindex="0"><code>{commands.join('\n')}</code></pre>
+      </section>
 
-    <h2>{t('contrib.checks.title')}</h2>
-    <ul>
-      {(['1', '2', '3', '4', '5', '6'] as const).map((n) => <li>{t(`contrib.checks.${n}`)}</li>)}
-    </ul>
+      <section id="contrib-checks" class="scroll-mt-24 mt-10">
+        <h2>{t('contrib.checks.title')}</h2>
+        <ul>
+          {(['1', '2', '3', '4', '5', '6'] as const).map((n) => <li>{t(`contrib.checks.${n}`)}</li>)}
+        </ul>
+      </section>
 
-    <h2>{t('contrib.mirror.title')}</h2>
-    <p>{t('contrib.mirror.text')}</p>
-  </article>
+      <section id="contrib-mirror" class="scroll-mt-24 mt-10">
+        <h2>{t('contrib.mirror.title')}</h2>
+        <p>{t('contrib.mirror.text')}</p>
+      </section>
+    </article>
+
+    <!-- Sticky Side Navigation -->
+    <TableOfContents items={tocItems} lang={lang} />
+  </div>
 </Layout>

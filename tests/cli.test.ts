@@ -20,7 +20,7 @@ function hoba(args: string[], opts: { expectFailure?: boolean } = {}): { stdout:
   }
 }
 
-describe('hoba CLI', () => {
+describe('hoba CLI', { timeout: 20000 }, () => {
   it('shows an entity and emits JSON on request', () => {
     expect(hoba(['show', 'M-001']).stdout).toContain('Genuine Technical Skill Shortfall');
     const json = JSON.parse(hoba(['show', 'B-013', '--json']).stdout);

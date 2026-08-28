@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -47,49 +48,69 @@ ${t('dev.mcp.configComment2')}
     }
   }
 }`;
+
+const tocItems = [
+  { id: 'dev-rest', label: t('dev.rest.title'), icon: '🌐' },
+  { id: 'mcp', label: t('dev.mcp.title'), icon: '🤖' },
+  { id: 'dev-cli', label: t('dev.cli.title'), icon: '💻' },
+  { id: 'dev-exports', label: t('dev.exports.title'), icon: '📦' },
+];
 ---
 <Layout lang={lang} title={t('dev.title')} activeNav="developers">
   <PageHeader kicker={t('dev.kicker')} title={t('dev.heading')} lead={t('dev.intro')} />
 
-  <article class="prose-hoba">
-    <h2>{t('dev.rest.title')}</h2>
-    <p>{t('dev.rest.text')} <a href="/openapi.json" target="_blank" class="font-mono">/openapi.json</a></p>
-    <ul class="row-list">
-      {endpoints.map((e) => (
-        <li>
-          <a href={`/api/v1/${e}/index.json`} target="_blank" class="row-link">
-            <code class="text-sm">GET /api/v1/{e}</code>
-            <span class="ml-auto text-sm text-hoba-accent">{t('dev.rest.view')} →</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-4">
+    <article class="prose-hoba min-w-0">
+      <section id="dev-rest" class="scroll-mt-24">
+        <h2>{t('dev.rest.title')}</h2>
+        <p>{t('dev.rest.text')} <a href="/openapi.json" target="_blank" class="font-mono">/openapi.json</a></p>
+        <ul class="row-list">
+          {endpoints.map((e) => (
+            <li>
+              <a href={`/api/v1/${e}/index.json`} target="_blank" class="row-link">
+                <code class="text-sm">GET /api/v1/{e}</code>
+                <span class="ml-auto text-sm text-hoba-accent">{t('dev.rest.view')} →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-    <h2 id="mcp">{t('dev.mcp.title')} <span class="pill pill-muted align-middle">{t('dev.mcp.badge')}</span></h2>
-    <p set:html={branded(t('dev.mcp.text'))} />
-    <pre tabindex="0"><code>{mcpConfig}</code></pre>
-    <p><strong class="text-hoba-text">{t('dev.mcp.tools')}</strong> {tools.map((tool, i) => <><code>{tool}</code>{i < tools.length - 1 ? ', ' : '.'}</>)}</p>
-    <p>{t('dev.mcp.npm')}</p>
+      <section id="mcp" class="scroll-mt-24 mt-10">
+        <h2>{t('dev.mcp.title')} <span class="pill pill-muted align-middle">{t('dev.mcp.badge')}</span></h2>
+        <p set:html={branded(t('dev.mcp.text'))} />
+        <pre tabindex="0"><code>{mcpConfig}</code></pre>
+        <p><strong class="text-hoba-text">{t('dev.mcp.tools')}</strong> {tools.map((tool, i) => <><code>{tool}</code>{i < tools.length - 1 ? ', ' : '.'}</>)}</p>
+        <p>{t('dev.mcp.npm')}</p>
+      </section>
 
-    <h2>{t('dev.cli.title')}</h2>
-    <pre tabindex="0"><code>pnpm build:packages && node packages/cli/dist/cli.js --help</code></pre>
-    <dl>
-      {cli.map((c) => (
-        <>
-          <dt><code>{c.command}</code></dt>
-          <dd>{c.text}</dd>
-        </>
-      ))}
-    </dl>
-    <p>{t('dev.cli.json')}</p>
+      <section id="dev-cli" class="scroll-mt-24 mt-10">
+        <h2>{t('dev.cli.title')}</h2>
+        <pre tabindex="0"><code>pnpm build:packages && node packages/cli/dist/cli.js --help</code></pre>
+        <dl>
+          {cli.map((c) => (
+            <>
+              <dt><code>{c.command}</code></dt>
+              <dd>{c.text}</dd>
+            </>
+          ))}
+        </dl>
+        <p>{t('dev.cli.json')}</p>
+      </section>
 
-    <h2>{t('dev.exports.title')}</h2>
-    <ul class="row-list">
-      {exports.map((f) => (
-        <li>
-          <a href={`/data/latest/${f}`} target="_blank" class="row-link"><span class="font-mono text-sm text-hoba-accent">{f}</span></a>
-        </li>
-      ))}
-    </ul>
-  </article>
+      <section id="dev-exports" class="scroll-mt-24 mt-10">
+        <h2>{t('dev.exports.title')}</h2>
+        <ul class="row-list">
+          {exports.map((f) => (
+            <li>
+              <a href={`/data/latest/${f}`} target="_blank" class="row-link"><span class="font-mono text-sm text-hoba-accent">{f}</span></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </article>
+
+    <!-- Sticky Side Navigation -->
+    <TableOfContents items={tocItems} lang={lang} />
+  </div>
 </Layout>

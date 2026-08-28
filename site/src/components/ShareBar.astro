@@ -1,0 +1,430 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  id: string;
+  title: string;
+  lang: Lang;
+  hasPostcard?: boolean;
+  type?: string;
+  markdownUrl?: string;
+  jsonUrl?: string;
+}
+
+const {
+  id,
+  title,
+  lang,
+  hasPostcard = false,
+  type = 'entity',
+  markdownUrl,
+  jsonUrl,
+} = Astro.props;
+
+const t = useTranslations(lang);
+const cardUrl = `/cards/${lang}/${id}.png`;
+const postcardUrl = `/cards/${lang}/${id}-postcard.png`;
+const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+---
+
+<div class="share-bar-container mt-12 pt-6 border-t border-hoba-border">
+  <div class="flex flex-col gap-4">
+    <!-- Header & Action Row -->
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2 text-sm font-semibold text-hoba-text">
+        <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse"></span>
+        <span>{t('share.card')}</span>
+      </div>
+
+      <!-- Live Share Controls -->
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Preview Modal Trigger -->
+        <button
+          type="button"
+          class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 font-medium js-open-share-dialog"
+          data-dialog={dialogId}
+        >
+          <span>🖼️</span>
+          <span>{t('share.preview')}</span>
+        </button>
+
+        <!-- Direct PNG Download -->
+        <a
+          href={cardUrl}
+          download={`hoba-${id}-${lang}.png`}
+          class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 font-mono"
+          title={t('share.downloadPng')}
+        >
+          <span>⬇️</span>
+          <span>png</span>
+        </a>
+
+        <!-- Postcard Download (if available) -->
+        {hasPostcard && (
+          <a
+            href={postcardUrl}
+            download={`hoba-${id}-postcard-${lang}.png`}
+            class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 font-mono"
+            title={t('share.downloadPostcard')}
+          >
+            <span>📱</span>
+            <span>{t('share.postcard')}</span>
+          </a>
+        )}
+
+        <!-- Copy Image to Clipboard -->
+        <button
+          type="button"
+          class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 js-copy-card-image"
+          data-image-url={cardUrl}
+          title={t('share.copyImage')}
+        >
+          <span class="btn-icon">📋</span>
+          <span class="btn-label">{t('share.copyImage')}</span>
+        </button>
+
+        <!-- Copy Link -->
+        <button
+          type="button"
+          class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 js-copy-page-link"
+          title={t('share.copyLink')}
+        >
+          <span class="btn-icon">🔗</span>
+          <span class="btn-label">{t('share.copyLink')}</span>
+        </button>
+
+        <!-- Native Share (Web Share API) -->
+        <button
+          type="button"
+          class="btn btn-primary text-xs py-1.5 px-3 hidden js-web-share-btn"
+          data-title={`${id} · ${title}`}
+          data-image-url={cardUrl}
+        >
+          <span>📤</span>
+          <span>{t('share.nativeShare')}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Social Shortcuts & Machine Data -->
+    <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-hoba-muted pt-2 border-t border-hoba-border/50">
+      <!-- Social Quick Share -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-hoba-muted font-medium">{t('share.nativeShare')}:</span>
+        <button
+          type="button"
+          class="hover:text-hoba-accent hover:underline flex items-center gap-1 js-share-social"
+          data-platform="telegram"
+          data-title={`${id} — ${title}`}
+        >
+          <span>✈️</span>
+          <span>Telegram</span>
+        </button>
+        <span class="text-hoba-border">·</span>
+        <button
+          type="button"
+          class="hover:text-hoba-accent hover:underline flex items-center gap-1 js-share-social"
+          data-platform="twitter"
+          data-title={`${id} — ${title}`}
+        >
+          <span>𝕏</span>
+          <span>X</span>
+        </button>
+        <span class="text-hoba-border">·</span>
+        <button
+          type="button"
+          class="hover:text-hoba-accent hover:underline flex items-center gap-1 js-share-social"
+          data-platform="linkedin"
+          data-title={`${id} — ${title}`}
+        >
+          <span>💼</span>
+          <span>LinkedIn</span>
+        </button>
+      </div>
+
+      <!-- Raw Machine-Readable Data Links -->
+      {(markdownUrl || jsonUrl) && (
+        <div class="flex items-center gap-2">
+          <span class="text-hoba-muted">{t('share.developerData')}:</span>
+          {markdownUrl && (
+            <a
+              href={markdownUrl}
+              download={`hoba-${id}-${lang}.md`}
+              class="pill pill-muted text-[11px] py-0.5 px-2 font-mono hover:text-hoba-text no-underline"
+              title="Download Markdown document"
+            >
+              📄 markdown
+            </a>
+          )}
+          {jsonUrl && (
+            <a
+              href={jsonUrl}
+              target="_blank"
+              class="pill pill-muted text-[11px] py-0.5 px-2 font-mono hover:text-hoba-text no-underline"
+              title="Open JSON REST API response"
+            >
+              ⚙️ json
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Share Card Preview Modal Dialog -->
+  <dialog
+    id={dialogId}
+    class="backdrop:bg-black/80 backdrop:backdrop-blur-md bg-hoba-card border border-hoba-border rounded-2xl p-0 shadow-2xl text-hoba-text max-w-3xl w-[92vw] overflow-hidden"
+    aria-labelledby={`${dialogId}-title`}
+  >
+    <div class="p-4 sm:p-6 flex flex-col gap-4">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between gap-4 pb-3 border-b border-hoba-border">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-hoba-accent"></span>
+          <h3 id={`${dialogId}-title`} class="text-base sm:text-lg font-bold text-hoba-text m-0">
+            {t('share.cardDialogTitle')}
+          </h3>
+          <span class="pill pill-muted text-xs font-mono">{id}</span>
+        </div>
+        <button
+          type="button"
+          class="text-hoba-muted hover:text-hoba-text p-1.5 rounded-lg hover:bg-hoba-hover transition-colors js-close-dialog"
+          aria-label={t('share.close')}
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Format Switcher (if Postcard exists) -->
+      {hasPostcard && (
+        <div class="flex items-center gap-2 p-1 bg-hoba-bg rounded-xl border border-hoba-border self-start text-xs font-mono">
+          <button
+            type="button"
+            class="px-3 py-1.5 rounded-lg bg-hoba-card text-hoba-text font-semibold shadow-sm js-tab-landscape active"
+            data-target="landscape"
+          >
+            🖼️ Landscape (1200×630)
+          </button>
+          <button
+            type="button"
+            class="px-3 py-1.5 rounded-lg text-hoba-muted hover:text-hoba-text js-tab-portrait"
+            data-target="portrait"
+          >
+            📱 Story / Postcard (9:16)
+          </button>
+        </div>
+      )}
+
+      <!-- Visual Card Preview Box -->
+      <div class="relative rounded-xl border border-hoba-border/80 bg-black/60 overflow-hidden flex items-center justify-center p-2 min-h-[220px] max-h-[500px]">
+        <img
+          src={cardUrl}
+          alt={`${id} — ${title}`}
+          class="js-preview-image max-w-full max-h-[460px] object-contain rounded-lg shadow-lg"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Modal Footer Action Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-hoba-border">
+        <div class="flex items-center gap-2 text-xs text-hoba-muted font-mono">
+          <span>{lang === 'uk' ? 'Формат' : 'Format'}: PNG</span>
+          <span>·</span>
+          <span>1200 × 630 px</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            class="btn btn-secondary text-xs py-2 px-3 flex items-center gap-1.5 js-copy-card-image"
+            data-image-url={cardUrl}
+          >
+            <span class="btn-icon">📋</span>
+            <span class="btn-label">{t('share.copyImage')}</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-primary text-xs py-2 px-4 flex items-center gap-1.5 font-medium js-download-active-btn"
+            data-card-url={cardUrl}
+            data-filename={`hoba-${id}-${lang}.png`}
+          >
+            <span>⬇️</span>
+            <span>{t('share.downloadPng')}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  function setupShareBars() {
+    // 1. Native Web Share API detection
+    if (typeof navigator !== 'undefined' && 'share' in navigator) {
+      document.querySelectorAll<HTMLButtonElement>('.js-web-share-btn').forEach((btn) => {
+        btn.classList.remove('hidden');
+        btn.addEventListener('click', async () => {
+          const title = btn.dataset.title ?? document.title;
+          const url = window.location.href;
+          try {
+            await navigator.share({ title, text: title, url });
+          } catch {
+            // User cancelled or share failed
+          }
+        });
+      });
+    }
+
+    // 2. Dialog open / close
+    document.querySelectorAll<HTMLButtonElement>('.js-open-share-dialog').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dialogId = btn.dataset.dialog;
+        if (!dialogId) return;
+        const dialog = document.getElementById(dialogId) as HTMLDialogElement | null;
+        if (dialog) {
+          dialog.showModal();
+        }
+      });
+    });
+
+    document.querySelectorAll<HTMLDialogElement>('dialog').forEach((dialog) => {
+      dialog.querySelectorAll('.js-close-dialog').forEach((btn) => {
+        btn.addEventListener('click', () => dialog.close());
+      });
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    });
+
+    // 3. Format Switcher inside dialog (Landscape vs Portrait)
+    document.querySelectorAll<HTMLDialogElement>('dialog').forEach((dialog) => {
+      const img = dialog.querySelector<HTMLImageElement>('.js-preview-image');
+      const downloadBtn = dialog.querySelector<HTMLButtonElement>('.js-download-active-btn');
+      const tabLandscape = dialog.querySelector<HTMLButtonElement>('.js-tab-landscape');
+      const tabPortrait = dialog.querySelector<HTMLButtonElement>('.js-tab-portrait');
+
+      if (!img || !downloadBtn) return;
+
+      downloadBtn.addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = downloadBtn.dataset.cardUrl || cardUrl;
+        a.download = downloadBtn.dataset.filename || `hoba-${id}-${lang}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+
+      if (!tabLandscape || !tabPortrait) return;
+
+      const baseLandscapeUrl = img.src.replace('-postcard.png', '.png');
+      const basePortraitUrl = baseLandscapeUrl.replace('.png', '-postcard.png');
+
+      tabLandscape.addEventListener('click', () => {
+        img.src = baseLandscapeUrl;
+        downloadBtn.dataset.cardUrl = baseLandscapeUrl;
+        downloadBtn.dataset.filename = `hoba-${id}-${lang}.png`;
+        tabLandscape.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabLandscape.classList.remove('text-hoba-muted');
+        tabPortrait.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabPortrait.classList.add('text-hoba-muted');
+      });
+
+      tabPortrait.addEventListener('click', () => {
+        img.src = basePortraitUrl;
+        downloadBtn.dataset.cardUrl = basePortraitUrl;
+        downloadBtn.dataset.filename = `hoba-${id}-postcard-${lang}.png`;
+        tabPortrait.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabPortrait.classList.remove('text-hoba-muted');
+        tabLandscape.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabLandscape.classList.add('text-hoba-muted');
+      });
+    });
+
+    // 4. Copy Image to Clipboard (with Blob / ClipboardItem & fallback)
+    document.querySelectorAll<HTMLButtonElement>('.js-copy-card-image').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const imageUrl = btn.dataset.imageUrl || window.location.origin + '/cards/en/og-home.png';
+        const label = btn.querySelector('.btn-label');
+        const originalText = label ? label.textContent : '';
+
+        try {
+          // Fetch PNG blob
+          const res = await fetch(imageUrl);
+          const blob = await res.blob();
+
+          if (navigator.clipboard && 'write' in navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+            if (label) label.textContent = '✓ ' + (document.documentElement.lang === 'uk' ? 'Зображення скопійовано!' : 'Image copied!');
+          } else {
+            // Fallback to copying image URL
+            const fullUrl = new URL(imageUrl, window.location.origin).toString();
+            await navigator.clipboard.writeText(fullUrl);
+            if (label) label.textContent = '✓ ' + (document.documentElement.lang === 'uk' ? 'URL скопійовано!' : 'URL copied!');
+          }
+        } catch {
+          // Fallback to copying URL
+          try {
+            const fullUrl = new URL(imageUrl, window.location.origin).toString();
+            await navigator.clipboard.writeText(fullUrl);
+            if (label) label.textContent = '✓ ' + (document.documentElement.lang === 'uk' ? 'URL скопійовано!' : 'URL copied!');
+          } catch {
+            if (label) label.textContent = '✗';
+          }
+        }
+
+        setTimeout(() => {
+          if (label && originalText) label.textContent = originalText;
+        }, 3000);
+      });
+    });
+
+    // 5. Copy Page Link
+    document.querySelectorAll<HTMLButtonElement>('.js-copy-page-link').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const label = btn.querySelector('.btn-label');
+        const originalText = label ? label.textContent : '';
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          if (label) label.textContent = '✓ ' + (document.documentElement.lang === 'uk' ? 'Скопійовано!' : 'Copied!');
+        } catch {
+          if (label) label.textContent = '✗';
+        }
+        setTimeout(() => {
+          if (label && originalText) label.textContent = originalText;
+        }, 3000);
+      });
+    });
+
+    // 6. Social Share Links (Telegram, X, LinkedIn)
+    document.querySelectorAll<HTMLButtonElement>('.js-share-social').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const platform = btn.dataset.platform;
+        const pageTitle = btn.dataset.title || document.title;
+        const pageUrl = window.location.href;
+
+        let shareUrl = '';
+        if (platform === 'telegram') {
+          shareUrl = `https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle + ' — hoba.work')}`;
+        } else if (platform === 'twitter') {
+          shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}&via=hoba_work`;
+        } else if (platform === 'linkedin') {
+          shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+        }
+
+        if (shareUrl) {
+          window.open(shareUrl, '_blank', 'noopener,noreferrer,width=600,height=500');
+        }
+      });
+    });
+  }
+
+  // Initialize on page load and view transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupShareBars);
+  } else {
+    setupShareBars();
+  }
+  document.addEventListener('astro:page-load', setupShareBars);
+</script>

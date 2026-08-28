@@ -10,29 +10,53 @@ const { pageKey, lang } = Astro.props;
 const t = useTranslations(lang);
 
 const STEP_ICONS: Record<string, string[]> = {
-  home: ['🧭', '⚡', '🎯', '🔒'],
-  analyze: ['📋', '🚧', '🔍', '🎯'],
-  check: ['👤', '📄', '⚖️', '⏳'],
-  process: ['🗺️', '▶️', '🔀', '🔬'],
-  graph: ['🌐', '🎛️', '🔎', '🖥️'],
-  registry: ['🔎', '📑', '🗂️', '💾'],
-  eras: ['📅', '📈', '📊'],
-  actors: ['👥', '👁️', '🔭'],
+  home: ['🧭', '⚡', '📄', '🎛️', '👥', '🔒'],
+  analyze: ['🎯', '📋', '🚧', '🔍', '⚖️'],
+  check: ['👤', '📄', '⚖️', '⏳', '💰'],
+  process: ['🗺️', '▶️', '🔍', '🔀', '🔬', '📅'],
+  graph: ['📊', '🧭', '✨', '🎯', '🎛️', '🖥️'],
+  registry: ['🔎', '🗂️', '📑', '💾', '🔗'],
+  eras: ['📅', '📈', '📊', '🔗'],
+  actors: ['👥', '👁️', '⚡', '🔭'],
 };
 
-const icons = STEP_ICONS[pageKey] ?? ['💡', '🔍', '🎯', '✨'];
-const stepsCount = pageKey === 'eras' || pageKey === 'actors' ? 3 : 4;
+const STEP_SELECTORS: Record<string, string[]> = {
+  home: ['#main', '#landing-funnel', '#landing-specimens', '#tools-grid', '#lens-nav', '#open-data-section'],
+  analyze: ['#step-h', '#categorized-artifacts', '#step-o', '#step-b', '#step-a'],
+  check: ['#evidenced-facts-col', '#stated-specs-col', '#arithmetic-verdict', '#turnaround-section', '#runway-section'],
+  process: ['.section[data-workflow="WF-003"]', '.wf-transport', '.wf-stage', '.wf-modes', '.wf-detail', '.wf-detail'],
+  graph: ['#graph-canvas', '#graph-canvas', '#graph-ideal-toggle', '#graph-canvas', '#graph-types-toolbar', '#graph-panel'],
+  registry: ['#search-input', '#group-select', '#view-mode-tabs', '#export-menu-btn', '#registry-table-view'],
+  eras: ['#eras-timeline', '.era-indicator', '.era-indicator', '.section:last-of-type'],
+  actors: ['#actors-grid', '#actors-grid li:nth-child(1)', '#actors-grid li:nth-child(2)', '#actors-grid'],
+};
 
-const steps = Array.from({ length: stepsCount }, (_, i) => ({
+const STEPS_COUNT_MAP: Record<string, number> = {
+  home: 6,
+  analyze: 5,
+  check: 5,
+  process: 6,
+  graph: 6,
+  registry: 5,
+  eras: 4,
+  actors: 4,
+};
+
+const count = STEPS_COUNT_MAP[pageKey] ?? 4;
+const icons = STEP_ICONS[pageKey] ?? ['💡', '🔍', '🎯', '✨', '⚙️', '🔒'];
+const selectors = STEP_SELECTORS[pageKey] ?? [];
+
+const steps = Array.from({ length: count }, (_, i) => ({
   number: i + 1,
   icon: icons[i] ?? '💡',
+  selector: selectors[i] ?? '',
   title: t(`tour.${pageKey}.step${i + 1}.title` as any),
   text: t(`tour.${pageKey}.step${i + 1}.text` as any),
 }));
 
 const tourTitle = t(`tour.${pageKey}.title` as any);
 ---
-<div class="onboarding-tour-wrapper inline-flex items-center">
+<div class="onboarding-tour-wrapper inline-flex items-center" data-lang={lang} data-page-key={pageKey}>
   <button
     type="button"
     id="open-tour-btn"
@@ -44,20 +68,39 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
     <span>{t('tour.button')}</span>
   </button>
 
-  <dialog id="tour-dialog" class="backdrop:bg-black/60 backdrop:backdrop-blur-sm bg-transparent p-4 sm:p-6 max-w-lg w-full rounded-2xl shadow-2xl open:animate-in open:fade-in open:zoom-in-95 outline-none border-0 text-hoba-text">
-    <div class="rounded-2xl border border-hoba-border bg-hoba-card p-6 shadow-2xl relative flex flex-col justify-between">
+  <!-- Floating Popover Dialog (Non-blocking smart card) -->
+  <dialog id="tour-dialog" class="backdrop:bg-black/55 backdrop:backdrop-blur-[2px] bg-transparent p-3 sm:p-4 max-w-lg w-full rounded-2xl shadow-2xl open:animate-in open:fade-in open:zoom-in-95 outline-none border-0 text-hoba-text fixed bottom-4 sm:bottom-6 right-4 sm:right-6 m-0 z-[1000]">
+    <div class="rounded-2xl border border-hoba-border bg-hoba-card/95 backdrop-blur-xl p-5 shadow-2xl relative flex flex-col justify-between">
       <!-- Header -->
-      <div class="flex items-center justify-between border-b border-hoba-border pb-3 mb-4">
+      <div class="flex items-center justify-between border-b border-hoba-border pb-3 mb-3">
         <div class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse"></span>
-          <h2 class="text-sm font-semibold font-mono uppercase tracking-wider text-hoba-accent">{tourTitle}</h2>
+          <h2 class="text-xs sm:text-sm font-semibold font-mono uppercase tracking-wider text-hoba-accent truncate max-w-[220px] sm:max-w-xs">{tourTitle}</h2>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <!-- Voice Narration Toggle Button -->
+          <button
+            type="button"
+            id="tour-voice-btn"
+            class="pill pill-muted text-xs py-0.5 px-2 flex items-center gap-1.5 hover:border-hoba-accent transition-all cursor-pointer"
+            aria-label={t('tour.voice.play')}
+            title={t('tour.voice.play')}
+          >
+            <span id="voice-icon" aria-hidden="true">🔊</span>
+            <span id="voice-label" class="hidden sm:inline text-[11px] font-mono">{t('tour.voice.play')}</span>
+            <!-- Equalizer wave bars -->
+            <span id="voice-wave" class="hidden items-center gap-0.5 h-3">
+              <span class="w-0.5 h-2 bg-hoba-accent animate-pulse"></span>
+              <span class="w-0.5 h-3 bg-hoba-accent animate-pulse delay-75"></span>
+              <span class="w-0.5 h-1.5 bg-hoba-accent animate-pulse delay-150"></span>
+            </span>
+          </button>
+
           <span id="tour-step-counter" class="text-xs font-mono text-hoba-muted tabular-nums"></span>
           <button
             type="button"
             id="close-tour-btn"
-            class="text-hoba-muted hover:text-hoba-text p-1 rounded-md hover:bg-hoba-hover transition-colors"
+            class="text-hoba-muted hover:text-hoba-text p-1 rounded-md hover:bg-hoba-hover transition-colors cursor-pointer"
             aria-label="Close guide"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -66,16 +109,20 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
       </div>
 
       <!-- Step Content Carousel -->
-      <div class="relative min-h-[140px] flex items-center">
+      <div class="relative min-h-[125px] flex items-center">
         {steps.map((s, idx) => (
-          <div class={`tour-step-card flex-1 transition-all ${idx === 0 ? 'block' : 'hidden'}`} data-step-index={idx}>
+          <div
+            class={`tour-step-card flex-1 transition-all ${idx === 0 ? 'block' : 'hidden'}`}
+            data-step-index={idx}
+            data-target-selector={s.selector}
+          >
             <div class="flex items-start gap-3.5">
               <div class="w-10 h-10 rounded-xl bg-hoba-accent/10 border border-hoba-accent/20 flex items-center justify-center text-xl shrink-0">
                 {s.icon}
               </div>
-              <div>
-                <h3 class="text-base font-bold text-hoba-text">{s.title}</h3>
-                <p class="mt-1.5 text-sm text-hoba-muted leading-relaxed">{s.text}</p>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm sm:text-base font-bold text-hoba-text tracking-tight">{s.title}</h3>
+                <p class="mt-1 text-xs sm:text-sm text-hoba-muted leading-relaxed">{s.text}</p>
               </div>
             </div>
           </div>
@@ -83,13 +130,13 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
       </div>
 
       <!-- Footer & Stepper Controls -->
-      <div class="mt-6 pt-4 border-t border-hoba-border flex items-center justify-between gap-3">
+      <div class="mt-4 pt-3 border-t border-hoba-border flex items-center justify-between gap-3">
         <!-- Dots -->
         <div class="flex items-center gap-1.5" aria-hidden="true">
           {steps.map((_, idx) => (
             <button
               type="button"
-              class={`tour-dot w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${idx === 0 ? 'bg-hoba-accent scale-110' : 'bg-hoba-border hover:bg-hoba-muted'}`}
+              class={`tour-dot w-2 h-2 rounded-full transition-all cursor-pointer ${idx === 0 ? 'bg-hoba-accent scale-125' : 'bg-hoba-border hover:bg-hoba-muted'}`}
               data-target-step={idx}
               aria-label={`Go to step ${idx + 1}`}
             />
@@ -98,10 +145,10 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
 
         <!-- Buttons -->
         <div class="flex items-center gap-2">
-          <button type="button" id="tour-prev-btn" class="btn btn-secondary text-xs px-3 py-1.5 hidden">
+          <button type="button" id="tour-prev-btn" class="btn btn-secondary text-xs px-2.5 py-1 hidden cursor-pointer">
             {t('tour.prev')}
           </button>
-          <button type="button" id="tour-next-btn" class="btn btn-primary text-xs px-3.5 py-1.5">
+          <button type="button" id="tour-next-btn" class="btn btn-primary text-xs px-3.5 py-1 cursor-pointer">
             {t('tour.next')}
           </button>
         </div>
@@ -110,18 +157,117 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
   </dialog>
 </div>
 
+<!-- Spotlight Highlight Box (Injected globally in document) -->
+<div
+  id="tour-spotlight-box"
+  class="fixed pointer-events-none transition-all duration-300 ease-out border-2 border-hoba-accent rounded-xl shadow-[0_0_0_9999px_rgba(0,0,0,0.65),0_0_25px_rgba(88,166,255,0.4)] z-[999] opacity-0 hidden"
+  aria-hidden="true"
+></div>
+
 <script>
+  const wrapper = document.querySelector<HTMLElement>('.onboarding-tour-wrapper');
+  const lang = wrapper?.dataset.lang ?? 'uk';
   const dialog = document.getElementById('tour-dialog') as HTMLDialogElement | null;
+  const spotlight = document.getElementById('tour-spotlight-box');
   const openBtn = document.getElementById('open-tour-btn');
   const closeBtn = document.getElementById('close-tour-btn');
   const prevBtn = document.getElementById('tour-prev-btn');
   const nextBtn = document.getElementById('tour-next-btn');
   const counter = document.getElementById('tour-step-counter');
+  const voiceBtn = document.getElementById('tour-voice-btn');
+  const voiceIcon = document.getElementById('voice-icon');
+  const voiceLabel = document.getElementById('voice-label');
+  const voiceWave = document.getElementById('voice-wave');
   const cards = document.querySelectorAll<HTMLElement>('.tour-step-card');
   const dots = document.querySelectorAll<HTMLElement>('.tour-dot');
 
   let currentStep = 0;
   const totalSteps = cards.length;
+  let voiceEnabled = localStorage.getItem('hoba-tour-voice') === 'true';
+  let synth: SpeechSynthesis | null = null;
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    synth = window.speechSynthesis;
+  }
+
+  function updateVoiceUI(speaking = false) {
+    if (voiceWave) voiceWave.classList.toggle('hidden', !speaking);
+    if (voiceWave) voiceWave.classList.toggle('inline-flex', speaking);
+    if (voiceIcon) voiceIcon.textContent = speaking ? '⏸' : voiceEnabled ? '🔊' : '🔈';
+    if (voiceLabel) {
+      voiceLabel.textContent = speaking
+        ? lang === 'uk' ? 'Озвучення...' : 'Speaking...'
+        : voiceEnabled
+        ? lang === 'uk' ? 'Голос увімк.' : 'Voice on'
+        : lang === 'uk' ? 'Озвучити' : 'Listen';
+    }
+  }
+
+  function speakCurrentStep() {
+    if (!synth) return;
+    synth.cancel();
+    updateVoiceUI(false);
+
+    const activeCard = cards[currentStep];
+    if (!activeCard) return;
+
+    const title = activeCard.querySelector('h3')?.textContent || '';
+    const text = activeCard.querySelector('p')?.textContent || '';
+    const fullText = `${title}. ${text}`;
+
+    const utterance = new SpeechSynthesisUtterance(fullText);
+    utterance.lang = lang === 'uk' ? 'uk-UA' : 'en-US';
+    utterance.rate = 0.96;
+    utterance.pitch = 1.0;
+
+    // Pick best available voice
+    const voices = synth.getVoices();
+    const targetLang = lang === 'uk' ? 'uk' : 'en';
+    const bestVoice = voices.find((v) => v.lang.toLowerCase().startsWith(targetLang));
+    if (bestVoice) utterance.voice = bestVoice;
+
+    utterance.onstart = () => updateVoiceUI(true);
+    utterance.onend = () => updateVoiceUI(false);
+    utterance.onerror = () => updateVoiceUI(false);
+
+    synth.speak(utterance);
+  }
+
+  function stopSpeaking() {
+    if (!synth) return;
+    synth.cancel();
+    updateVoiceUI(false);
+  }
+
+  function positionSpotlight(targetSelector: string) {
+    if (!spotlight) return;
+
+    if (!targetSelector) {
+      spotlight.classList.add('opacity-0');
+      setTimeout(() => spotlight.classList.add('hidden'), 200);
+      return;
+    }
+
+    const el = document.querySelector(targetSelector) as HTMLElement | null;
+    if (!el) {
+      spotlight.classList.add('opacity-0');
+      setTimeout(() => spotlight.classList.add('hidden'), 200);
+      return;
+    }
+
+    el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const pad = 6;
+      spotlight.style.top = `${Math.max(0, rect.top - pad)}px`;
+      spotlight.style.left = `${Math.max(0, rect.left - pad)}px`;
+      spotlight.style.width = `${rect.width + pad * 2}px`;
+      spotlight.style.height = `${rect.height + pad * 2}px`;
+
+      spotlight.classList.remove('hidden');
+      requestAnimationFrame(() => spotlight.classList.remove('opacity-0'));
+    }, 150);
+  }
 
   function updateStep(index: number) {
     currentStep = Math.max(0, Math.min(totalSteps - 1, index));
@@ -129,31 +275,53 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
     cards.forEach((c, idx) => c.classList.toggle('hidden', idx !== currentStep));
     dots.forEach((d, idx) => {
       d.classList.toggle('bg-hoba-accent', idx === currentStep);
-      d.classList.toggle('scale-110', idx === currentStep);
+      d.classList.toggle('scale-125', idx === currentStep);
       d.classList.toggle('bg-hoba-border', idx !== currentStep);
     });
 
     if (counter) counter.textContent = `${currentStep + 1} / ${totalSteps}`;
     if (prevBtn) prevBtn.classList.toggle('hidden', currentStep === 0);
     if (nextBtn) {
-      nextBtn.textContent = currentStep === totalSteps - 1 ? '✓ Готово' : 'Далі →';
+      nextBtn.textContent =
+        currentStep === totalSteps - 1
+          ? lang === 'uk' ? '✓ Готово' : '✓ Got it'
+          : lang === 'uk' ? 'Далі →' : 'Next →';
+    }
+
+    const currentCard = cards[currentStep];
+    const targetSelector = currentCard?.dataset.targetSelector || '';
+    positionSpotlight(targetSelector);
+
+    if (voiceEnabled) {
+      speakCurrentStep();
     }
   }
 
   openBtn?.addEventListener('click', () => {
     updateStep(0);
     dialog?.showModal();
+    if (voiceEnabled) speakCurrentStep();
   });
 
-  closeBtn?.addEventListener('click', () => dialog?.close());
+  closeBtn?.addEventListener('click', () => {
+    stopSpeaking();
+    positionSpotlight('');
+    dialog?.close();
+  });
 
   dialog?.addEventListener('click', (e) => {
-    if (e.target === dialog) dialog.close();
+    if (e.target === dialog) {
+      stopSpeaking();
+      positionSpotlight('');
+      dialog.close();
+    }
   });
 
   prevBtn?.addEventListener('click', () => updateStep(currentStep - 1));
   nextBtn?.addEventListener('click', () => {
     if (currentStep === totalSteps - 1) {
+      stopSpeaking();
+      positionSpotlight('');
       dialog?.close();
     } else {
       updateStep(currentStep + 1);
@@ -167,9 +335,36 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
     });
   });
 
+  voiceBtn?.addEventListener('click', () => {
+    if (synth?.speaking) {
+      stopSpeaking();
+      voiceEnabled = false;
+      localStorage.setItem('hoba-tour-voice', 'false');
+      updateVoiceUI(false);
+    } else {
+      voiceEnabled = true;
+      localStorage.setItem('hoba-tour-voice', 'true');
+      speakCurrentStep();
+    }
+  });
+
   document.addEventListener('keydown', (e) => {
     if (!dialog?.open) return;
     if (e.key === 'ArrowRight') updateStep(currentStep + 1);
     if (e.key === 'ArrowLeft') updateStep(currentStep - 1);
+    if (e.key === 'Escape') {
+      stopSpeaking();
+      positionSpotlight('');
+      dialog.close();
+    }
+  });
+
+  // Reposition spotlight on window resize or scroll
+  window.addEventListener('resize', () => {
+    if (dialog?.open) {
+      const currentCard = cards[currentStep];
+      const targetSelector = currentCard?.dataset.targetSelector || '';
+      positionSpotlight(targetSelector);
+    }
   });
 </script>

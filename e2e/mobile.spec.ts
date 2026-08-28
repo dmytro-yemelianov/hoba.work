@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 // Every destination the drawer must reach, whichever group it now sits in.
-const SECTIONS = ['Аналіз', 'Реєстр', 'Патерни', 'Граф', 'Актори', 'Епохи', 'Процес', 'Дані', 'Методологія', 'Розробникам', 'Долучитися', 'Про проєкт'];
+const SECTIONS = ['Аналіз', 'Реєстр', 'Патерни', 'Граф', 'Актори', 'Епохи', 'Процес', 'Дані', 'Методологія', 'Розробникам', 'Долучитися', 'Про проєкт', 'Котики'];
 
 test.describe('mobile navigation', () => {
   test.use({ locale: 'uk-UA' });

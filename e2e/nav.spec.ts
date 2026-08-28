@@ -19,7 +19,7 @@ test.describe('navigation', () => {
 
     // Every destination lives in exactly one group, and says what it is for.
     const entries = bar.locator('.nav-entry');
-    expect(await entries.count()).toBe(12);
+    expect(await entries.count()).toBe(13);
     const hrefs = await entries.evaluateAll((els) => els.map((e) => e.getAttribute('href')));
     expect(new Set(hrefs).size).toBe(hrefs.length);
     for (let i = 0; i < (await entries.count()); i++) {

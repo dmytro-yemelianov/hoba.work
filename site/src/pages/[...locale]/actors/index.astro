@@ -27,7 +27,7 @@ const actors = bundle.actors.map((actor) => ({
 <Layout lang={lang} title={t('actors.title')} description={t('actors.intro')} activeNav="actors">
   <PageHeader kicker={t('actors.kicker')} title={t('actors.title')} lead={t('actors.intro')} tourPageKey="actors" lang={lang} />
 
-  <ul class="row-list">
+  <ul id="actors-grid" class="row-list scroll-mt-24">
     {actors.map(({ actor, views }) => (
       <li class="py-5">
         <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">

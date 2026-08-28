@@ -155,4 +155,28 @@ test.describe('knowledge graph explorer', () => {
     expect(await links.count()).toBeGreaterThan(5);
     await expect(links.first()).toBeVisible();
   });
+
+  test('ideal canonical route toggle opens walkthrough HUD and steps through states', async ({ page }) => {
+    await page.goto('/graph');
+    const idealBtn = page.locator('#graph-ideal-toggle');
+    await expect(idealBtn).toBeVisible();
+    await idealBtn.click();
+
+    const hud = page.locator('#ideal-hud');
+    await expect(hud).toBeVisible();
+    await expect(page.locator('#ideal-step-num')).toHaveText('1');
+    await expect(page.locator('#ideal-step-title')).not.toBeEmpty();
+
+    // Step forward
+    await page.locator('#ideal-next').click();
+    await expect(page.locator('#ideal-step-num')).toHaveText('2');
+
+    // Show all steps
+    await page.locator('#ideal-all').click();
+    await expect(page.locator('#ideal-step-num')).toHaveText('★');
+
+    // Close HUD
+    await page.locator('#ideal-close').click();
+    await expect(hud).toBeHidden();
+  });
 });
