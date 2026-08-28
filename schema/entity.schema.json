@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hoba.work/schema/entity.schema.json",
+  "title": "HOBA Ontology Entity (common envelope)",
+  "description": "Fields shared by every ontology entity type. Per-type additional fields (a barrier's precedes, a mechanism's emissions, etc.) are owned by that type's own generated schema under /schemas — this file defines only the common contract every one of the 11 types must satisfy. 'scenario' and 'analysis' are deliberately absent from the type enum: they are separate layers over the ontology, never ontology entities themselves.",
+  "type": "object",
+  "required": ["id", "type", "title", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(obs|bar|mech|pat|loop|int|proc|actor|era|record|evidence)\\.[a-z0-9_]+$",
+      "description": "Dotted-namespace canonical ID: <type-prefix>.<snake_case_name>."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "observation", "barrier", "mechanism", "pattern", "loop",
+        "intervention", "process", "actor", "era", "record", "evidence"
+      ]
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "deprecated", "superseded", "removed"]
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Legacy short-code IDs this entity is reachable by (e.g. B-002). Populated by the ID-rename migration; never authored by hand for a newly created entity."
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": ["observed", "compatible", "supported", "strongly_supported", "proven", "contradicted", "unknown"]
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^evidence\\.[a-z0-9_]+$" },
+      "default": []
+    },
+    "agency_zones": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "enum": ["low", "medium", "high"] },
+      "description": "Per-actor-type impact level. Additive alongside mechanism.facets.removability — not a replacement for it."
+    },
+    "superseded_by": { "type": "string" },
+    "deprecated": {
+      "type": "object",
+      "required": ["reason"],
+      "properties": {
+        "reason": { "type": "string" },
+        "replaced_by": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
