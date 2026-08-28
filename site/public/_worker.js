@@ -115,9 +115,12 @@ export function legacyRedirect(pathname) {
     const stripped = pathname.replace(new RegExp(`^${INTERNAL}/(?:${LANGS.join('|')})(?=/|$)`), '');
     return stripped || '/';
   }
-  const lastSegment = pathname.slice(pathname.lastIndexOf('/') + 1);
-  if (Object.prototype.hasOwnProperty.call(LEGACY_ALIASES, lastSegment)) {
-    return LEGACY_ALIASES[lastSegment];
+  const trimmed = pathname !== '/' && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  const lastSegment = trimmed.slice(trimmed.lastIndexOf('/') + 1);
+  const isMarkdown = MARKDOWN.test(lastSegment);
+  const key = isMarkdown ? lastSegment.slice(0, -3) : lastSegment;
+  if (Object.prototype.hasOwnProperty.call(LEGACY_ALIASES, key)) {
+    return LEGACY_ALIASES[key] + (isMarkdown ? '.md' : '');
   }
   return null;
 }

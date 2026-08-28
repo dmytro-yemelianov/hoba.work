@@ -142,4 +142,16 @@ describe('legacy entity-ID redirects', () => {
     expect(legacyRedirect('/uk/patterns')).toBe('/patterns');
     expect(legacyRedirect('/_i/en/patterns')).toBe('/patterns');
   });
+
+  it('redirects an old pattern short code requesting its Markdown representation, preserving the extension', () => {
+    expect(legacyRedirect('/patterns/P-001.md')).toBe('/patterns/pat.seniority_double_bind.md');
+  });
+
+  it('redirects an old pattern short code with a trailing slash', () => {
+    expect(legacyRedirect('/patterns/P-001/')).toBe('/patterns/pat.seniority_double_bind');
+  });
+
+  it('leaves the root path alone', () => {
+    expect(legacyRedirect('/')).toBeNull();
+  });
 });
