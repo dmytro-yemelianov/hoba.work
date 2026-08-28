@@ -243,4 +243,18 @@ describe('insertAlias', () => {
     });
     expect(() => insertAlias(`${root}/content/patterns/broken.md`, 'P-001')).toThrow(/no "type:" line/);
   });
+
+  it('throws a clear error when the file already has an aliases: field', () => {
+    const root = writeTempRegistry({
+      'content/actors/hiring-manager.md':
+        '---\nid: "actor.hiring_manager"\ntype: "actor"\naliases:\n  facet:\n    - "hiring-manager"\n---\n\n# Body\n',
+    });
+    const filePath = `${root}/content/actors/hiring-manager.md`;
+    expect(() => insertAlias(filePath, 'H-001')).toThrow(/already has an "aliases:" field/);
+    // Verify the file was not modified
+    const text = fs.readFileSync(filePath, 'utf8');
+    expect(text).toBe(
+      '---\nid: "actor.hiring_manager"\ntype: "actor"\naliases:\n  facet:\n    - "hiring-manager"\n---\n\n# Body\n'
+    );
+  });
 });

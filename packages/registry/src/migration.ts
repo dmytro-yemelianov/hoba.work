@@ -170,12 +170,20 @@ export function planFileRename(root: string, typeDir: string, oldId: string, new
  * Call this AFTER applyIdRename has already rewritten the file's own `id:`
  * line to the new ID — this function only adds the new field, it does not
  * touch `id`.
+ *
+ * Throws if the file already has an `aliases:` field (e.g., from the actor schema
+ * for enum-resolution), to prevent creating a YAML document with duplicate mapping keys.
  */
 export function insertAlias(filePath: string, oldId: string): void {
   const text = fs.readFileSync(filePath, 'utf8');
   const marker = /^type: ".*"\n/m;
   if (!marker.test(text)) {
     throw new Error(`insertAlias: no "type:" line found in ${filePath}`);
+  }
+  if (/^aliases:/m.test(text)) {
+    throw new Error(
+      `insertAlias: "${filePath}" already has an "aliases:" field with a different shape (used by, e.g., the actor schema for enum-resolution, not migration history). This entity type needs a dedicated alias-insertion strategy before it can be renamed — do not proceed with the current insertAlias on this file.`
+    );
   }
   const updated = text.replace(marker, (line) => `${line}aliases:\n  - "${oldId}"\n`);
   fs.writeFileSync(filePath, updated);
