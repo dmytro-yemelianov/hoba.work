@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hoba.work/schema/relation.schema.json",
+  "title": "HOBA Ontology Relation",
+  "description": "An edge between two ontology entities. Endpoint-type pairs match packages/registry/src/graph.ts's buildEdges().",
+  "type": "object",
+  "required": ["from", "to", "relation"],
+  "properties": {
+    "from": { "type": "string" },
+    "to": { "type": "string" },
+    "relation": {
+      "type": "string",
+      "enum": ["operates_at", "emits", "amplifies", "masks", "precedes", "instantiates", "targets", "mitigates"]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "relation": { "const": "precedes" } } },
+      "then": {
+        "description": "barrier -> barrier",
+        "properties": { "from": { "pattern": "^bar\\." }, "to": { "pattern": "^bar\\." } }
+      }
+    },
+    {
+      "if": { "properties": { "relation": { "const": "operates_at" } } },
+      "then": {
+        "description": "mechanism -> barrier",
+        "properties": { "from": { "pattern": "^mech\\." }, "to": { "pattern": "^bar\\." } }
+      }
+    },
+    {
+      "if": { "properties": { "relation": { "const": "emits" } } },
+      "then": {
+        "description": "mechanism -> observation",
+        "properties": { "from": { "pattern": "^mech\\." }, "to": { "pattern": "^obs\\." } }
+      }
+    },
+    {
+      "if": { "properties": { "relation": { "enum": ["amplifies", "masks"] } } },
+      "then": {
+        "description": "mechanism -> mechanism",
+        "properties": { "from": { "pattern": "^mech\\." }, "to": { "pattern": "^mech\\." } }
+      }
+    },
+    {
+      "if": { "properties": { "relation": { "const": "instantiates" } } },
+      "then": {
+        "description": "(observation | mechanism) -> pattern",
+        "properties": { "from": { "pattern": "^(obs|mech)\\." }, "to": { "pattern": "^pat\\." } }
+      }
+    },
+    {
+      "if": { "properties": { "relation": { "const": "targets" } } },
+      "then": {
+        "description": "intervention -> (mechanism | barrier)",
+        "properties": { "from": { "pattern": "^int\\." }, "to": { "pattern": "^(mech|bar)\\." } }
+      }
+    },
+    {
+      "if": { "properties": { "relation": { "const": "mitigates" } } },
+      "then": {
+        "description": "intervention -> (pattern | loop)",
+        "properties": { "from": { "pattern": "^int\\." }, "to": { "pattern": "^(pat|loop)\\." } }
+      }
+    }
+  ]
+}

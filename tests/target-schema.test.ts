@@ -62,3 +62,21 @@ describe('schema/entity.schema.json', () => {
     expect(agencyZones.additionalProperties.enum).toEqual(['low', 'medium', 'high']);
   });
 });
+
+describe('schema/relation.schema.json', () => {
+  const schema = readSchema('relation.schema.json') as {
+    required: string[];
+    properties: { relation: { enum: string[] } };
+  };
+
+  it('requires from, to, and relation', () => {
+    expect(schema.required).toEqual(['from', 'to', 'relation']);
+  });
+
+  it('enumerates the 8 relation types used by the graph builder', () => {
+    expect(schema.properties.relation.enum).toEqual([
+      'operates_at', 'emits', 'amplifies', 'masks',
+      'precedes', 'instantiates', 'targets', 'mitigates',
+    ]);
+  });
+});
