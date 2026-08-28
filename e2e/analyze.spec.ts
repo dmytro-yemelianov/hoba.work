@@ -17,7 +17,7 @@ test.describe('analysis wizard', () => {
     await expect(page.locator('#barriers-output')).toContainText('B-005');
     await page.locator('#step-o [data-goto="b"]').click();
     await expect(page.locator('#mechanisms-output')).toContainText('M-001');
-    await expect(page.locator('#patterns-output')).toContainText('P-002');
+    await expect(page.locator('#patterns-output')).toContainText('pat.closed_then_reposted_requisition_motif');
     await page.locator('#step-b [data-goto="a"]').click();
     await expect(page.locator('#count-candidate')).toHaveText('2');
     await expect(page.locator('#probes-output')).toContainText('PROBE-A-004-1');
@@ -57,6 +57,6 @@ test.describe('analysis wizard', () => {
 
     await page.locator('#tab-b').click();
     await expect(page.locator('#mechanisms-output')).toContainText('M-006');
-    await expect(page.locator('#patterns-output')).toContainText('P-002');
+    await expect(page.locator('#patterns-output')).toContainText('pat.closed_then_reposted_requisition_motif');
   });
 });

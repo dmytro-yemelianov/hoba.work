@@ -5,7 +5,7 @@ test.describe('share cards', () => {
   test('every entity page declares its own card', async ({ page }) => {
     for (const [path, id] of [
       ['/artifacts/A-009', 'A-009'], ['/barriers/B-010', 'B-010'], ['/mechanisms/M-011', 'M-011'],
-      ['/patterns/P-004', 'P-004'], ['/loops/L-001', 'L-001'], ['/interventions/I-002', 'I-002'],
+      ['/patterns/pat.compensation_double_bind', 'pat.compensation_double_bind'], ['/loops/L-001', 'L-001'], ['/interventions/I-002', 'I-002'],
     ] as const) {
       const response = await page.goto(path);
       const lang = response!.headers()['content-language'];
@@ -25,7 +25,7 @@ test.describe('share cards', () => {
   });
 
   test('observations and patterns also have a postcard', async ({ request }) => {
-    for (const url of ['/cards/uk/A-013-postcard.png', '/cards/en/P-001-postcard.png']) {
+    for (const url of ['/cards/uk/A-013-postcard.png', '/cards/en/pat.seniority_double_bind-postcard.png']) {
       const response = await request.get(url);
       expect(response.status(), url).toBe(200);
       expect(response.headers()['content-type'], url).toContain('image/png');

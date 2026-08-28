@@ -61,7 +61,7 @@ test.describe('machine formats', () => {
     const body = await (await request.get('/registry.md?lang=en')).text();
     expect(body).toContain('canonical: https://hoba.work/registry');
     // Every entity listed, linked, with its summary.
-    expect((body.match(/^- \[[A-Z]-\d{3}\]/gm) ?? []).length).toBeGreaterThanOrEqual(entryCount());
+    expect((body.match(/^- \[(?:[A-Z]+-\d{3}|[a-z]+\.[a-z0-9_]+)\]/gm) ?? []).length).toBeGreaterThanOrEqual(entryCount());
   });
 
   test('the page offers both representations', async ({ page }) => {
