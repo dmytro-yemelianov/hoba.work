@@ -36,8 +36,8 @@ satisfying them.
   documents a gate the path never promises anything about.
 - **WF-001 returns.** No rank assignment makes it climb, and there is a closed
   walk of four edges out of `published` and back. The edge that closes it is
-  `rejected → published` — P-002, which the registry already documents as a
-  pattern.
+  `rejected → published` — `pat.closed_then_reposted_requisition_motif`, which
+  the registry already documents as a pattern.
 - **The barrier DAG is acyclic.**
 
 The pair worth reading together is `ideal_terminates_observed_need_not`: the

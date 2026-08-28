@@ -76,8 +76,9 @@ theorem observed_not_forward : Forward observed = false := by decide
 /--
 Because it returns: out of `published`, through the funnel, back to `published`.
 
-Four edges, and the one that closes them is `rejected → published` — P-002, the
-closed-then-reposted motif, which the registry already documents as a pattern.
+Four edges, and the one that closes them is `rejected → published` —
+`pat.closed_then_reposted_requisition_motif`, which the registry already
+documents as a pattern.
 -/
 theorem observed_has_cycle : IsCycle observed observedCycleStart observedCycleTail = true := by decide
 
