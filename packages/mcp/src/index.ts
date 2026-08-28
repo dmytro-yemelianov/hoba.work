@@ -3,6 +3,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import {
+  EMPIRICAL_SCENARIOS,
   evaluatePatternEmptiness,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
@@ -167,21 +168,55 @@ server.registerTool(
 );
 
 server.registerTool(
+  'get_empirical_scenarios',
+  {
+    description: 'Retrieve pre-configured empirical diagnostic scenarios (e.g. ghost-refresh, ats-knockout, post-panel-freeze, downlevelling-trap) with their default artifacts and stage.',
+    inputSchema: {},
+  },
+  async () =>
+    ok({
+      scenarios: EMPIRICAL_SCENARIOS,
+    })
+);
+
+server.registerTool(
   'explain_observation',
   {
     description:
-      'Execute the hoba forensic analysis protocol (H → O → B → A) for one or more observed artifacts at an optional funnel stage. Returns compatible mechanisms, agency partition, probes and explicit non-inferences. Never asserts a single hidden cause.',
+      'Execute the hoba forensic analysis protocol (H → O → B → A) for one or more observed artifacts or named empirical scenario at an optional funnel stage. Returns compatible mechanisms, agency partition, probes and explicit non-inferences. Never asserts a single hidden cause.',
     inputSchema: {
-      artifact_ids: z.array(z.string()).min(1).describe('Observed Artifact IDs (e.g. ["A-004"])'),
+      artifact_ids: z.array(z.string()).optional().describe('Observed Artifact IDs (e.g. ["A-004"])'),
       stage: stageArg,
+      scenario_id: z.string().optional().describe('Named empirical scenario ID (e.g. "ghost-refresh", "ats-knockout", "post-panel-freeze", "downlevelling-trap")'),
     },
   },
-  async ({ artifact_ids, stage }) => {
-    const analysis = engine.analyze({ artifacts: artifact_ids, stage });
-    if (analysis.hard_facts.selected_artifacts.length === 0) {
-      return fail(`None of the provided artifact IDs exist in the registry: ${artifact_ids.join(', ')}`);
+  async ({ artifact_ids, stage, scenario_id }) => {
+    let effectiveArtifacts = artifact_ids ?? [];
+    let effectiveStage = stage;
+
+    if (scenario_id) {
+      const sc = EMPIRICAL_SCENARIOS.find((s) => s.id === scenario_id);
+      if (!sc) {
+        const valid = EMPIRICAL_SCENARIOS.map((s) => s.id).join(', ');
+        return fail(`Unknown scenario_id "${scenario_id}". Available scenarios: ${valid}`);
+      }
+      if (effectiveArtifacts.length === 0) {
+        effectiveArtifacts = [...sc.artifacts];
+      }
+      if (!effectiveStage && sc.stage) {
+        effectiveStage = sc.stage;
+      }
     }
-    return ok({ analysis });
+
+    if (effectiveArtifacts.length === 0) {
+      return fail('Either artifact_ids or scenario_id must be provided.');
+    }
+
+    const analysis = engine.analyze({ artifacts: effectiveArtifacts, stage: effectiveStage });
+    if (analysis.hard_facts.selected_artifacts.length === 0) {
+      return fail(`None of the provided artifact IDs exist in the registry: ${effectiveArtifacts.join(', ')}`);
+    }
+    return ok({ scenario_id: scenario_id ?? null, analysis });
   }
 );
 

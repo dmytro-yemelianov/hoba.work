@@ -13,14 +13,22 @@
  *    would hand a reader the other one;
  *  - a redirected navigation response is never cached under the requested URL.
  */
-const VERSION = 'hoba-v2';
+const VERSION = 'hoba-v3';
 const SHELL = `${VERSION}-shell`;
 const PAGES = `${VERSION}-pages`;
 const ASSETS = `${VERSION}-assets`;
 const DATA = `${VERSION}-data`;
 // Only language-neutral assets are precached: '/' redirects per visitor, so
 // storing it here could answer an English request with the Ukrainian mirror.
-const PRECACHE = ['/favicon.svg', '/manifest.webmanifest'];
+const PRECACHE = [
+  '/favicon.svg',
+  '/manifest.webmanifest',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/icons/maskable-512.png',
+  '/icons/apple-touch-icon.png',
+  '/openapi.json',
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

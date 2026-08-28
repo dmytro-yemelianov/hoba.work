@@ -72,6 +72,7 @@ describe('hoba MCP server', () => {
         'find_compatible_mechanisms',
         'find_patterns',
         'get_diagnostic_probes',
+        'get_empirical_scenarios',
         'get_interventions',
         'get_methodology',
         'get_node',
@@ -102,6 +103,15 @@ describe('hoba MCP server', () => {
 
     const unknown = await client.request('tools/call', { name: 'explain_observation', arguments: { artifact_ids: ['A-999'] } });
     expect(unknown.result.isError).toBe(true);
+
+    const scenarios = payload(await client.request('tools/call', { name: 'get_empirical_scenarios', arguments: {} }));
+    expect(scenarios.scenarios.length).toBeGreaterThanOrEqual(4);
+    expect(scenarios.scenarios.map((s: { id: string }) => s.id)).toContain('ghost-refresh');
+
+    const scExplain = payload(await client.request('tools/call', { name: 'explain_observation', arguments: { scenario_id: 'ats-knockout' } }));
+    expect(scExplain.scenario_id).toBe('ats-knockout');
+    expect(scExplain.analysis.hard_facts.selected_artifacts.map((a: { id: string }) => a.id)).toEqual(['A-002', 'A-008', 'A-012']);
+    expect(scExplain.analysis.counts.compatible_mechanisms).toBeGreaterThan(0);
   });
 
   it('evaluates temporal anomalies, runway, flow conservation, and pattern emptiness over MCP', async () => {
