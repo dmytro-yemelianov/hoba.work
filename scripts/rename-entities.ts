@@ -41,6 +41,16 @@ for (const { oldId, newId } of entries) {
   console.log(`  ${oldId} -> ${newId}: rewrote ${filesChanged.length} file(s)`);
 
   const renames = planFileRename(root, dirArg, oldId, newId);
+  if (renames.length === 0) {
+    console.error(
+      `\nERROR: no file found for "${oldId}" under content/${dirArg}/ or content-uk/${dirArg}/ — ` +
+      `is --dir "${dirArg}" correct for type "${typeArg}"? ` +
+      `Content for this entity has already been rewritten in place by applyIdRename above; ` +
+      `review "git diff" before re-running.`
+    );
+    process.exit(1);
+  }
+
   for (const { oldPath, newPath } of renames) {
     execSync(`git mv "${oldPath}" "${newPath}"`, { cwd: root, stdio: 'inherit' });
     insertAlias(newPath, oldId);
