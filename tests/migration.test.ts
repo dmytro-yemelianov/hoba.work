@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildIdMapping, slugifyTitle, TYPE_ID_PREFIX } from '@hoba/registry';
+import { buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
 
 describe('slugifyTitle', () => {
@@ -103,5 +103,44 @@ describe('buildIdMapping', () => {
     });
     const result = buildIdMapping(bundle);
     expect(result.collisions).toEqual([]);
+  });
+});
+
+describe('buildIdMapping against the real registry', () => {
+  it('produces zero collisions across all current content', () => {
+    const root = resolveRegistryRoot();
+    const bundle = loadRegistryFromRoot(root, 'en');
+    const result = buildIdMapping(bundle);
+
+    if (result.collisions.length > 0) {
+      const report = result.collisions
+        .map((c) => `  [${c.type}] "${c.slug}" shared by: ${c.entities.join(', ')}`)
+        .join('\n');
+      throw new Error(`${result.collisions.length} title collision(s) found:\n${report}`);
+    }
+
+    expect(result.collisions).toEqual([]);
+  });
+
+  it('maps every entity in the real registry exactly once', () => {
+    const root = resolveRegistryRoot();
+    const bundle = loadRegistryFromRoot(root, 'en');
+    const result = buildIdMapping(bundle);
+
+    const expectedCount =
+      bundle.artifacts.length +
+      bundle.barriers.length +
+      bundle.mechanisms.length +
+      bundle.patterns.length +
+      bundle.loops.length +
+      bundle.interventions.length +
+      bundle.workflows.length +
+      bundle.actors.length +
+      bundle.eras.length +
+      bundle.records.length +
+      bundle.evidence.length;
+
+    expect(result.mappings).toHaveLength(expectedCount);
+    expect(new Set(result.mappings.map((m) => m.newId)).size).toBe(expectedCount);
   });
 });
