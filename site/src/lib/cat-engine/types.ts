@@ -179,4 +179,11 @@ export interface CatColors {
   shadow: string;
   highlight: string;
   whiskerPad?: string;
+  /** Optional explicit top/bottom stops for the shared fur gradient (e.g. neon coats). */
+  furTop?: string;
+  furBottom?: string;
+  /** Whisker stroke; defaults to lineStroke. Dark coats need a lighter tone to stay visible. */
+  whisker?: string;
+  /** Pointed coats (siamese): ears, tail and muzzle use the point color. */
+  pointed?: boolean;
 }

@@ -71,6 +71,18 @@ export const EYE_COLOR_VALUES: Record<EyeColor, EyeVisualSpec> = {
   },
 };
 
+/** Shift a #rrggbb color's lightness by `amt` (-255..255). */
+export function shiftTone(hex: string, amt: number): string {
+  const m = /^#([0-9a-f]{6})$/i.exec(hex);
+  if (!m) return hex;
+  const n = parseInt(m[1], 16);
+  const clamp = (v: number) => Math.max(0, Math.min(255, Math.round(v)));
+  const r = clamp((n >> 16) + amt);
+  const g = clamp(((n >> 8) & 0xff) + amt);
+  const b = clamp((n & 0xff) + amt);
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
+}
+
 export function getEyeDetails(colorOrName: EyeColor | string): EyeVisualSpec {
   if (colorOrName in EYE_COLOR_VALUES) {
     return EYE_COLOR_VALUES[colorOrName as EyeColor];
@@ -106,24 +118,25 @@ export const COAT_PALETTES: Record<CoatStyle, CatColors> = {
     whiskerPad: '#fed7aa',
   },
   voidBlack: {
-    primary: '#090d16',
-    secondary: '#1e293b',
+    primary: '#151c2e',
+    secondary: '#232e47',
     tertiary: '#334155',
     shading: '#020617',
-    belly: '#0f172a',
-    innerEar: '#334155',
-    innerEarShadow: '#1e293b',
-    nose: '#64748b',
-    noseLeather: '#334155',
+    belly: '#1f2a42',
+    innerEar: '#3d4a66',
+    innerEarShadow: '#232e47',
+    nose: '#8b9cb8',
+    noseLeather: '#64748b',
     tongue: '#f43f5e',
     eyeLeft: '#f59e0b',
     eyeRight: '#f59e0b',
-    lineStroke: '#020617',
+    lineStroke: '#04070f',
     blush: '#ec4899',
     accent: '#818cf8',
     shadow: 'rgba(0, 0, 0, 0.45)',
     highlight: '#94a3b8',
     whiskerPad: '#1e293b',
+    whisker: '#8b9cb8',
   },
   snowWhite: {
     primary: '#f8fafc',
@@ -164,6 +177,7 @@ export const COAT_PALETTES: Record<CoatStyle, CatColors> = {
     shadow: 'rgba(15, 23, 42, 0.3)',
     highlight: '#cbd5e1',
     whiskerPad: '#64748b',
+    whisker: '#cbd5e1',
   },
   classicTabby: {
     primary: '#854d0e',
@@ -204,6 +218,7 @@ export const COAT_PALETTES: Record<CoatStyle, CatColors> = {
     shadow: 'rgba(0, 0, 0, 0.4)',
     highlight: '#ffffff',
     whiskerPad: '#ffffff',
+    whisker: '#cbd5e1',
   },
   calico: {
     primary: '#ffffff',
@@ -244,6 +259,7 @@ export const COAT_PALETTES: Record<CoatStyle, CatColors> = {
     shadow: 'rgba(30, 41, 59, 0.25)',
     highlight: '#ffffff',
     whiskerPad: '#334155',
+    pointed: true,
   },
   cyberNeon: {
     primary: '#4f46e5',
@@ -264,6 +280,9 @@ export const COAT_PALETTES: Record<CoatStyle, CatColors> = {
     shadow: 'rgba(6, 182, 212, 0.35)',
     highlight: '#a5f3fc',
     whiskerPad: '#818cf8',
+    furTop: '#6366f1',
+    furBottom: '#c026d3',
+    whisker: '#a5f3fc',
   },
   pastelMarshmallow: {
     primary: '#f472b6',

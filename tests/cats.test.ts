@@ -79,6 +79,24 @@ describe('Vector Cat Engine', () => {
     }
   });
 
+  it('keeps every anatomy layer present and the payload compact across a population', () => {
+    for (let i = 0; i < 40; i++) {
+      const dna = generateDNA(`population-${i * 331}`);
+      const svg = renderCatSVG(dna);
+      // Anatomy layers that the flat-sticker composition relies on.
+      expect(svg).toContain('cat-figure');
+      expect(svg).toContain('cat-tail');
+      expect(svg).toContain('cat-body');
+      expect(svg).toContain('cat-head-ears');
+      expect(svg).toContain('cat-face');
+      // The shared fur gradient keeps head and body reading as one object.
+      expect(svg).toContain('-fur');
+      expect(svg).not.toContain('NaN');
+      expect(svg).not.toContain('undefined');
+      expect(Buffer.byteLength(svg, 'utf8')).toBeLessThan(16_000);
+    }
+  });
+
   it('Ralph Quality Evaluator scores presets and population within S/A thresholds', () => {
     for (const preset of CAT_PRESETS) {
       const score = evaluateCatQuality({ ...preset.dna, seed: preset.dna.seed } as CatDNA);

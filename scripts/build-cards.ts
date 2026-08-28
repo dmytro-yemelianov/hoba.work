@@ -23,6 +23,7 @@ import {
   type RegistryBundle,
   type Specimen,
 } from '@hoba/registry';
+import { CAT_PRESETS, generateDNA, renderCatSVG, type CatDNA } from '../site/src/lib/cat-engine/index.js';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-cards: registry root not found');
@@ -39,10 +40,8 @@ const HUE: Record<string, string> = {
   loop: '#db61a2',
   intervention: '#22d3ee',
 };
-const BG = '#0a0c10';
 const TEXT = '#e6edf3';
 const MUTED = '#8b949e';
-const LINE = '#1f2633';
 
 const FONT_DIR = path.join(root, 'node_modules', '@fontsource', 'inter', 'files');
 const font = (name: string) => fs.readFileSync(path.join(FONT_DIR, name));
@@ -132,16 +131,18 @@ const REMOVABILITY_COLORS: Record<string, string> = {
   intermediary: '#fbbf24',
 };
 
-const EVIDENCE_LABELS: Record<ContentLang, Record<number, string>> = {
+const EVIDENCE_LABELS: Record<ContentLang, Record<string, string>> = {
   en: {
-    1: 'Evidence: L1 (Primary Records)',
-    2: 'Evidence: L2 (Verified Testimonies)',
-    3: 'Evidence: L3 (Empirical Correlations)',
+    established: 'Evidence: established',
+    supported: 'Evidence: supported',
+    hypothesis: 'Evidence: hypothesis',
+    illustrative: 'Evidence: illustrative',
   },
   uk: {
-    1: 'Доказовість: Рівень 1 (Первинні записи)',
-    2: 'Доказовість: Рівень 2 (Верифіковані свідоцтва)',
-    3: 'Доказовість: Рівень 3 (Емпіричні кореляції)',
+    established: 'Доказовість: встановлено',
+    supported: 'Доказовість: підтверджено',
+    hypothesis: 'Доказовість: гіпотеза',
+    illustrative: 'Доказовість: ілюстративно',
   },
 };
 
@@ -192,6 +193,19 @@ const rawSvg = (type: string, props: Record<string, unknown>, children?: unknown
   props: { ...props, children },
 });
 const text = (value: string, style: Record<string, unknown>): Node => el('div', style, value);
+const img = (src: string, width: number, height: number, style: Record<string, unknown> = {}): Node => ({
+  type: 'img',
+  props: { src, width, height, style },
+});
+
+/** Rasterizes a curated cat preset to a base64 PNG data URI for embedding in a satori tree. */
+function catPortraitDataUri(presetId: string, px: number): string {
+  const preset = CAT_PRESETS.find((p) => p.id === presetId);
+  if (!preset) throw new Error(`build-cards: unknown cat preset "${presetId}"`);
+  const dna = { ...generateDNA(preset.dna.seed), ...preset.dna } as CatDNA;
+  const svg = renderCatSVG(dna, { width: px, height: px });
+  return `data:image/png;base64,${new Resvg(svg, { fitTo: { mode: 'width', value: px } }).render().asPng().toString('base64')}`;
+}
 
 /** Deterministic PRNG seeded by string (SFC32) */
 function createRng(seedStr: string) {
@@ -419,10 +433,10 @@ interface Entity {
   stage?: string;
   stages?: string[];
   target_stage?: string;
-  operates_at?: string;
+  operates_at?: string | string[];
   facets?: { removability?: string };
   cost?: string;
-  evidence_level?: number;
+  evidence_level?: string;
 }
 
 function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: 'og' | 'postcard') {
@@ -438,7 +452,8 @@ function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: '
   const hookKicker = EMOTIONAL_HOOKS[lang][entity.type] ?? EMOTIONAL_HOOKS[lang].section;
 
   // Resolve Stage badge
-  const rawStage = entity.stage ?? entity.target_stage ?? entity.operates_at ?? (entity.stages && entity.stages[0]);
+  const operatesAt = Array.isArray(entity.operates_at) ? entity.operates_at[0] : entity.operates_at;
+  const rawStage = entity.stage ?? entity.target_stage ?? operatesAt ?? (entity.stages && entity.stages[0]);
   const stageLabel = rawStage && STAGE_LABELS[lang][rawStage];
 
   // Resolve Removability / Agency Zone badge
@@ -864,8 +879,10 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
     ]),
   ]);
 
+  const hasCatVisual = sec.id === 'og-cats';
+
   const title = text(truncate(sec.title[lang], 78), {
-    fontSize: 52,
+    fontSize: hasCatVisual ? 44 : 52,
     lineHeight: 1.15,
     color: '#ffffff',
     fontWeight: 800,
@@ -883,12 +900,33 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
     borderLeft: `6px solid ${hue}`,
   }, [
     text(truncate(sec.summary[lang], 240), {
-      fontSize: 26,
+      fontSize: hasCatVisual ? 22 : 26,
       lineHeight: 1.45,
       color: '#e6edf3',
       fontWeight: 500,
     }),
   ]);
+
+  const catVisual = hasCatVisual
+    ? el('div', {
+        width: 336,
+        height: 336,
+        flexShrink: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 28,
+        backgroundColor: 'rgba(255, 255, 255, 0.04)',
+        border: `1px solid ${hue}3d`,
+        boxShadow: `0 0 16px ${hue}30`,
+      }, [img(catPortraitDataUri('borys-loaf', 300), 300, 300)])
+    : null;
+
+  const body = catVisual
+    ? el('div', { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: 28 }, [
+        el('div', { flexDirection: 'column', width: 636 }, [title, middle]),
+        catVisual,
+      ])
+    : el('div', { flexDirection: 'column' }, [title, middle]);
 
   const footer = el('div', {
     alignItems: 'center',
@@ -932,7 +970,7 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
         justifyContent: 'space-between',
         position: 'relative',
       }, [
-        el('div', { flexDirection: 'column' }, [header, title, middle]),
+        el('div', { flexDirection: 'column' }, [header, body]),
         footer,
       ]),
     ]),
