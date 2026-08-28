@@ -13,7 +13,7 @@
  *    would hand a reader the other one;
  *  - a redirected navigation response is never cached under the requested URL.
  */
-const VERSION = 'hoba-v3';
+const VERSION = 'hoba-v4';
 const SHELL = `${VERSION}-shell`;
 const PAGES = `${VERSION}-pages`;
 const ASSETS = `${VERSION}-assets`;
