@@ -25,7 +25,7 @@ const actors = bundle.actors.map((actor) => ({
 }));
 ---
 <Layout lang={lang} title={t('actors.title')} description={t('actors.intro')} activeNav="actors">
-  <PageHeader kicker={t('actors.kicker')} title={t('actors.title')} lead={t('actors.intro')} />
+  <PageHeader kicker={t('actors.kicker')} title={t('actors.title')} lead={t('actors.intro')} tourPageKey="actors" lang={lang} />
 
   <ul class="row-list">
     {actors.map(({ actor, views }) => (

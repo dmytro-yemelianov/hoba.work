@@ -7,7 +7,8 @@
  * paragraph, optional meta pills, and right-aligned actions. Pages differ in
  * what they put in the slots, never in the rhythm.
  */
-import { branded } from '../i18n/utils';
+import { branded, type Lang } from '../i18n/utils';
+import OnboardingTour from './OnboardingTour.astro';
 
 interface Props {
   title: string;
@@ -15,15 +16,17 @@ interface Props {
   lead?: string | undefined;
   /** Narrower measure for reading pages; catalogs let the lead run wider. */
   wide?: boolean;
+  tourPageKey?: 'home' | 'analyze' | 'check' | 'process' | 'graph' | 'registry' | 'eras' | 'actors' | undefined;
+  lang?: Lang;
 }
 
-const { title, kicker, lead, wide = false } = Astro.props;
+const { title, kicker, lead, wide = false, tourPageKey, lang = 'en' } = Astro.props;
 const hasEyebrow = Astro.slots.has('eyebrow');
 const hasMeta = Astro.slots.has('meta');
-const hasActions = Astro.slots.has('actions');
+const hasActions = Astro.slots.has('actions') || Boolean(tourPageKey);
 ---
 <header class="pb-6 mb-8 border-b border-hoba-border">
-  <div class="flex flex-col gap-x-8 gap-y-4 md:flex-row md:items-end md:justify-between">
+  <div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row lg:items-end lg:justify-between">
     <div class="min-w-0">
       {hasEyebrow && <div class="mb-3"><slot name="eyebrow" /></div>}
       {kicker && <p class="text-xs font-semibold font-mono uppercase tracking-wider text-hoba-accent">{kicker}</p>}
@@ -32,8 +35,9 @@ const hasActions = Astro.slots.has('actions');
       {hasMeta && <div class="mt-4"><slot name="meta" /></div>}
     </div>
     {hasActions && (
-      <div class="flex flex-wrap items-center gap-2.5 md:justify-end md:shrink-0">
+      <div class="flex flex-wrap items-center gap-2.5 lg:justify-end lg:shrink-0">
         <slot name="actions" />
+        {tourPageKey && <OnboardingTour pageKey={tourPageKey} lang={lang} />}
       </div>
     )}
   </div>

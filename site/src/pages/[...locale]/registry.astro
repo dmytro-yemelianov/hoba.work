@@ -46,6 +46,7 @@ const dataAttrs = (node: Item) => ({
   'data-title': node.title.toLowerCase(),
   'data-text': `${node.text} ${stageLabels(node.stage).join(' ')}`.toLowerCase(),
   'data-removability': node.removability ?? '',
+  'data-stage': Array.isArray(node.stage) ? node.stage[0] ?? '' : node.stage ?? '',
 });
 const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
   { type: 'all', label: t('registry.all'), count: totalCount },
@@ -64,7 +65,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
 ];
 ---
 <Layout lang={lang} title={t('registry.title')} activeNav="registry">
-  <PageHeader kicker={t('registry.kicker', { version: bundle.version })} title={t('registry.title')} lead={t('registry.intro', { n: totalCount })} wide>
+  <PageHeader kicker={t('registry.kicker', { version: bundle.version })} title={t('registry.title')} lead={t('registry.intro', { n: totalCount })} wide tourPageKey="registry" lang={lang}>
     <Fragment slot="actions">
       <ViewSwitch lang={lang} />
       <a href="/openapi.json" target="_blank" class="text-sm font-mono text-hoba-accent underline underline-offset-2">openapi.json</a>
@@ -86,13 +87,24 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
         </button>
       ))}
     </div>
-    <div class="flex flex-wrap items-center gap-2">
-      <span class="meta mr-1">{t('registry.filterAgency')}</span>
-      {agency.map((a) => (
-        <button type="button" class={`removability-filter pill ${a.key === 'all' ? 'pill-active' : 'pill-muted hover:text-hoba-text'}`} data-removability={a.key} aria-pressed={a.key === 'all' ? 'true' : 'false'}>
-          {a.dot && <span class={`dot ${a.dot}`} aria-hidden="true"></span>}{a.label}
-        </button>
-      ))}
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pt-2 border-t border-hoba-border/40 min-w-0 max-w-full overflow-hidden">
+      <div class="flex flex-wrap items-center gap-1.5 min-w-0 max-w-full">
+        <span class="meta mr-1 shrink-0">{t('registry.filterAgency')}</span>
+        {agency.map((a) => (
+          <button type="button" class={`removability-filter pill ${a.key === 'all' ? 'pill-active' : 'pill-muted hover:text-hoba-text'}`} data-removability={a.key} aria-pressed={a.key === 'all' ? 'true' : 'false'}>
+            {a.dot && <span class={`dot ${a.dot}`} aria-hidden="true"></span>}{a.label}
+          </button>
+        ))}
+      </div>
+      <div class="flex items-center gap-2 min-w-0 max-w-full shrink-0">
+        <label for="group-select" class="text-xs font-mono text-hoba-muted shrink-0">{t('registry.group.label')}:</label>
+        <select id="group-select" class="rounded-lg border border-hoba-border bg-hoba-card px-2.5 py-1 text-xs text-hoba-text focus:outline-none focus:border-hoba-accent cursor-pointer max-w-[200px] truncate">
+          <option value="none">{t('registry.group.none')}</option>
+          <option value="type">{t('registry.group.type')}</option>
+          <option value="stage">{t('registry.group.stage')}</option>
+          <option value="removability">{t('registry.group.agency')}</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -156,9 +168,36 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
 
   <p id="no-results" class="hidden py-16 text-center text-hoba-muted text-base">{t('registry.noResults')}</p>
 
-  <script>
+  <script define:vars={{
+    groupLabels: {
+      type: {
+        artifact: lang === 'uk' ? '📋 Спостереження та документи (Artifacts)' : '📋 Artifacts & Observations',
+        barrier: lang === 'uk' ? '🚧 Структурні барʼєри (Barriers)' : '🚧 Structural Barriers',
+        mechanism: lang === 'uk' ? '⚙️ Приховані механізми (Mechanisms)' : '⚙️ Hidden Mechanisms',
+        pattern: lang === 'uk' ? '📐 Патерни та аномалії (Patterns)' : '📐 Causal Patterns',
+        loop: lang === 'uk' ? '🔄 Системні петлі зворотного звʼязку (Loops)' : '🔄 Systemic Feedback Loops',
+        intervention: lang === 'uk' ? '🛡️ Інтервенції та протидії (Interventions)' : '🛡️ Interventions & Countermeasures',
+      },
+      stage: {
+        'pre-posting': lang === 'uk' ? '01. До публікації (Pre-posting)' : '01. Pre-posting Stage',
+        'sourcing': lang === 'uk' ? '02. Сорсинг та залучення (Sourcing)' : '02. Sourcing Stage',
+        'ingestion': lang === 'uk' ? '03. Прийом та парсинг (Ingestion)' : '03. Ingestion Stage',
+        'screening': lang === 'uk' ? '04. Скринінг (Screening)' : '04. Screening Stage',
+        'assessment': lang === 'uk' ? '05. Оцінка та інтервʼю (Assessment)' : '05. Assessment Stage',
+        'review': lang === 'uk' ? '06. Фінальний розгляд (Review)' : '06. Review Stage',
+        'offer': lang === 'uk' ? '07. Офер та контракт (Offer)' : '07. Offer Stage',
+        '': lang === 'uk' ? '08. Загальносистемні вузли (Systemic)' : '08. Systemic / Cross-stage',
+      },
+      removability: {
+        candidate: lang === 'uk' ? '🟢 Зона контролю кандидата (Candidate agency)' : '🟢 Candidate Agency Zone',
+        intermediary: lang === 'uk' ? '🟡 Зона посередника / рекрутера (Intermediary agency)' : '🟡 Intermediary Agency Zone',
+        none: lang === 'uk' ? '🔴 Екзогенні фактори (No direct agency)' : '🔴 Exogenous Systemic Factors',
+        '': lang === 'uk' ? '⚪ Без специфікації зони (General)' : '⚪ General / Unspecified',
+      }
+    }
+  }}>
     const TYPES = ['all', 'artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
-    const setActive = (el: Element, on: boolean) => {
+    const setActive = (el, on) => {
       el.classList.toggle('pill-active', on);
       el.classList.toggle('pill-muted', !on);
       el.classList.toggle('hover:text-hoba-text', !on);
@@ -166,13 +205,69 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
 
     let activeType = 'all';
     let activeRemovability = 'all';
+    let activeGroup = 'none';
     let searchQuery = '';
 
-    const items = document.querySelectorAll<HTMLElement>('.node-item');
-    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
-    const typeTabs = document.querySelectorAll<HTMLButtonElement>('.type-tab');
-    const removabilityFilters = document.querySelectorAll<HTMLButtonElement>('.removability-filter');
+    const items = document.querySelectorAll('.node-item');
+    const searchInput = document.getElementById('search-input');
+    const typeTabs = document.querySelectorAll('.type-tab');
+    const removabilityFilters = document.querySelectorAll('.removability-filter');
+    const groupSelect = document.getElementById('group-select');
     const noResults = document.getElementById('no-results');
+
+    function updateGrouping() {
+      // Remove existing group headers
+      document.querySelectorAll('.registry-group-header').forEach((el) => el.remove());
+      if (activeGroup === 'none') return;
+
+      const labels = groupLabels[activeGroup] || {};
+      const views = document.querySelectorAll('[data-view]');
+
+      views.forEach((viewContainer) => {
+        const viewType = viewContainer.getAttribute('data-view');
+        const viewItems = Array.from(viewContainer.querySelectorAll('.node-item'));
+        
+        // Group items in this view
+        const groups = new Map();
+        viewItems.forEach((item) => {
+          if (item.classList.contains('hidden')) return;
+          let key = '';
+          if (activeGroup === 'type') key = item.dataset.type || '';
+          else if (activeGroup === 'stage') key = item.dataset.stage || '';
+          else if (activeGroup === 'removability') key = item.dataset.removability || '';
+          
+          if (!groups.has(key)) groups.set(key, []);
+          groups.get(key).push(item);
+        });
+
+        // Insert group headers before the first item of each group
+        groups.forEach((groupItems, key) => {
+          if (!groupItems.length) return;
+          const firstItem = groupItems[0];
+          const groupTitle = labels[key] || key || 'Other';
+          const count = groupItems.length;
+
+          if (viewType === 'table') {
+            const tr = document.createElement('tr');
+            tr.className = 'registry-group-header';
+            tr.innerHTML = `<td colspan="5" class="py-2.5 px-3 bg-hoba-card/90 font-mono text-xs font-bold text-hoba-accent border-y border-hoba-border">
+              <span class="inline-flex items-center gap-2">${groupTitle} <span class="font-normal text-hoba-muted">(${count})</span></span>
+            </td>`;
+            firstItem.parentNode?.insertBefore(tr, firstItem);
+          } else if (viewType === 'cards') {
+            const div = document.createElement('div');
+            div.className = 'registry-group-header col-span-full pt-4 pb-1 border-b border-hoba-border font-mono text-xs font-bold text-hoba-accent flex items-center justify-between';
+            div.innerHTML = `<span>${groupTitle}</span><span class="pill pill-muted font-mono text-xs">${count}</span>`;
+            firstItem.parentNode?.insertBefore(div, firstItem);
+          } else if (viewType === 'list') {
+            const div = document.createElement('div');
+            div.className = 'registry-group-header pt-4 pb-1 border-b border-hoba-border font-mono text-xs font-bold text-hoba-accent flex items-center justify-between';
+            div.innerHTML = `<span>${groupTitle}</span><span class="pill pill-muted font-mono text-xs">${count}</span>`;
+            firstItem.parentNode?.insertBefore(div, firstItem);
+          }
+        });
+      });
+    }
 
     function applyFilters() {
       let visibleCount = 0;
@@ -186,9 +281,10 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
         if (visible && item.closest('[data-view]')?.getAttribute('data-view') === activeView) visibleCount++;
       });
       noResults?.classList.toggle('hidden', visibleCount !== 0);
+      updateGrouping();
     }
 
-    function selectType(type: string) {
+    function selectType(type) {
       activeType = TYPES.includes(type) ? type : 'all';
       typeTabs.forEach((tab) => {
         const on = tab.dataset.type === activeType;
@@ -203,9 +299,18 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
     }
 
     searchInput?.addEventListener('input', (e) => {
-      searchQuery = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      searchQuery = e.target.value.toLowerCase().trim();
       applyFilters();
     });
+
+    groupSelect?.addEventListener('change', (e) => {
+      activeGroup = e.target.value;
+      try {
+        localStorage.setItem('hoba_registry_group', activeGroup);
+      } catch (_) {}
+      updateGrouping();
+    });
+
     typeTabs.forEach((tab) => tab.addEventListener('click', () => selectType(tab.dataset.type ?? 'all')));
     removabilityFilters.forEach((rf) => {
       rf.addEventListener('click', () => {
@@ -218,9 +323,21 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
         applyFilters();
       });
     });
-    window.addEventListener('hoba:view', applyFilters);
+
+    window.addEventListener('hoba:view', () => {
+      applyFilters();
+    });
+
+    try {
+      const storedGroup = localStorage.getItem('hoba_registry_group');
+      if (storedGroup && groupSelect) {
+        groupSelect.value = storedGroup;
+        activeGroup = storedGroup;
+      }
+    } catch (_) {}
 
     const initialType = new URLSearchParams(window.location.search).get('type');
     if (initialType) selectType(initialType);
+    else applyFilters();
   </script>
 </Layout>

@@ -47,16 +47,16 @@ const payload = JSON.stringify({
 }).replace(/</g, '\\u003c');
 ---
 <Layout lang={lang} title={t('wf.title')} activeNav="process">
-  <PageHeader kicker={t('wf.kicker')} title={t('wf.title')} lead={t('wf.intro')} wide />
+  <PageHeader kicker={t('wf.kicker')} title={t('wf.title')} lead={t('wf.intro')} wide tourPageKey="process" lang={lang} />
 
   {workflows.map((workflow, index) => (
     <section class="section" data-workflow={workflow.id}>
-      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-        <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2 min-w-0 max-w-full">
+        <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0 min-w-0 max-w-full break-words">
           <span>{workflow.id} · {workflow.title}</span>
-          {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted">{t('ideal.badge')}</span>}
+          {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted shrink-0">{t('ideal.badge')}</span>}
         </h2>
-        <span class="pill pill-muted text-xs font-mono"><span class="text-hoba-muted">{t('wf.subject')}:</span> {workflow.subject}</span>
+        <span class="pill pill-muted text-xs font-mono max-w-full truncate"><span class="text-hoba-muted">{t('wf.subject')}:</span> {workflow.subject}</span>
       </div>
 
       <p class="text-base text-hoba-muted max-w-3xl">{workflow.summary}</p>
@@ -65,43 +65,57 @@ const payload = JSON.stringify({
         const routes = countRoutes(workflow);
         const named = workflow.states.filter((s) => s.kind === 'terminal');
         return (
-          <details class="disclosure my-3">
-            <summary>
-              <span class="text-xs font-mono text-hoba-accent font-semibold">
-                📐 {t('wf.routes', { n: routes.total })} ({named.length} {lang === 'uk' ? 'термінальні стани' : 'terminal states'})
-              </span>
-              <svg class="disclosure-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </summary>
-            <div class="disclosure-body space-y-2 text-xs">
-              <p>{t('ideal.construct')}</p>
-              <p>
-                {named
-                  .map((s) => t('wf.routesEnd', { n: routes.byTerminal[s.id] ?? 0, title: s.title.toLocaleLowerCase(lang) }))
-                  .join('; ')}. {t('wf.routesNote')}
-              </p>
+          <div class="rounded-xl border border-hoba-border bg-hoba-card/60 p-3.5 my-3 text-xs leading-relaxed space-y-2">
+            <div class="flex items-center gap-2 font-mono text-hoba-accent font-semibold">
+              <span>📐 {t('wf.routes', { n: routes.total })} ({named.length} {lang === 'uk' ? 'термінальні стани' : 'terminal states'})</span>
             </div>
-          </details>
+            <p class="text-hoba-muted">{t('ideal.construct')}</p>
+            <p class="text-hoba-muted">
+              {named
+                .map((s) => t('wf.routesEnd', { n: routes.byTerminal[s.id] ?? 0, title: s.title.toLocaleLowerCase(lang) }))
+                .join('; ')}. {t('wf.routesNote')}
+            </p>
+          </div>
         );
       })()}
 
       <div class="wf-shell mt-5">
-        <div class="wf-transport">
-          <div class="wf-modes" role="group" aria-label={t('wf.states')}>
-            <button type="button" class="wf-mode" data-index={index} data-mode="play" aria-pressed="true">{t('wf.mode.play')}</button>
-            <button type="button" class="wf-mode" data-index={index} data-mode="choose" aria-pressed="false">{t('wf.mode.choose')}</button>
+        <div class="wf-transport flex flex-col items-stretch gap-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg overflow-hidden">
+          <div class="flex flex-wrap items-center gap-2 w-full justify-between">
+            <div class="flex flex-wrap items-center gap-1.5 min-w-0">
+              <div class="wf-modes inline-flex items-center gap-0.5 rounded-md border border-hoba-border bg-hoba-bg p-0.5 text-xs shrink-0" role="group" aria-label={t('wf.states')}>
+                <button type="button" class="wf-mode px-2 py-1 text-xs" data-index={index} data-mode="play" aria-pressed="true">{t('wf.mode.play')}</button>
+                <button type="button" class="wf-mode px-2 py-1 text-xs" data-index={index} data-mode="choose" aria-pressed="false">{t('wf.mode.choose')}</button>
+              </div>
+              <button type="button" class="wf-play btn btn-secondary text-xs px-2.5 py-1 shrink-0" data-index={index} aria-label={t('wf.play')}>{t('wf.play')}</button>
+              <button type="button" class="wf-prev icon-btn shrink-0" data-index={index} aria-label={t('wf.prev')} title={t('wf.prev')}>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button type="button" class="wf-next icon-btn shrink-0" data-index={index} aria-label={t('wf.next')} title={t('wf.next')}>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </button>
+              <button type="button" class="wf-reset icon-btn shrink-0" data-index={index} aria-label={t('wf.reset')} title={t('wf.reset')}>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7M20 19l-7-7 7-7"/></svg>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0">
+              <label class="sr-only" for={`wf-speed-${index}`}>{t('wf.speed')}</label>
+              <select id={`wf-speed-${index}`} class="wf-speed rounded-md border border-hoba-border bg-hoba-card px-2 py-1 text-xs text-hoba-text font-mono cursor-pointer" data-index={index} aria-label={t('wf.speed')}>
+                <option value="1">1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+              </select>
+              <button type="button" class="wf-autozoom pill pill-active text-xs cursor-pointer font-medium" data-index={index} aria-pressed="true" title={t('wf.autozoom')}>
+                🔍 {lang === 'uk' ? 'Авто-зум' : 'Auto-zoom'}
+              </button>
+            </div>
           </div>
-          <button type="button" class="wf-play btn btn-secondary" data-index={index} aria-label={t('wf.play')}>{t('wf.play')}</button>
-          <button type="button" class="wf-prev icon-btn" data-index={index} aria-label={t('wf.prev')} title={t('wf.prev')}>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          <button type="button" class="wf-next icon-btn" data-index={index} aria-label={t('wf.next')} title={t('wf.next')}>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          </button>
-          <button type="button" class="wf-reset icon-btn" data-index={index} aria-label={t('wf.reset')} title={t('wf.reset')}>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 19l-7-7 7-7M20 19l-7-7 7-7"/></svg>
-          </button>
-          <input type="range" class="wf-scrub" data-index={index} min="0" value="0" aria-label={t('wf.states')} />
-          <span class="wf-step text-sm text-hoba-muted tabular-nums" data-index={index} aria-live="polite"></span>
+
+          <div class="flex items-center gap-2 w-full pt-1.5 border-t border-hoba-border/40 min-w-0">
+            <input type="range" class="wf-scrub flex-1 min-w-0" data-index={index} min="0" value="0" aria-label={t('wf.states')} />
+            <span class="wf-step text-xs font-mono text-hoba-muted tabular-nums whitespace-nowrap shrink-0" data-index={index} aria-live="polite"></span>
+          </div>
         </div>
         <div class="wf-stage relative" data-index={index}>
           <canvas class="wf-canvas h-full" data-index={index} tabindex="0" role="img" aria-label={t('wf.canvasLabel')}></canvas>
@@ -294,6 +308,20 @@ const payload = JSON.stringify({
         pick<HTMLButtonElement>('.wf-prev', index)?.addEventListener('click', () => { view.pause(); view.previous(); });
         pick<HTMLButtonElement>('.wf-reset', index)?.addEventListener('click', () => view.reset());
         scrub.addEventListener('input', () => { view.pause(); view.seek(Number(scrub.value)); });
+
+        pick<HTMLSelectElement>('.wf-speed', index)?.addEventListener('change', (e) => {
+          view.setSpeed(Number((e.target as HTMLSelectElement).value));
+        });
+
+        const autozoomBtn = pick<HTMLButtonElement>('.wf-autozoom', index);
+        let autozoomActive = true;
+        autozoomBtn?.addEventListener('click', () => {
+          autozoomActive = !autozoomActive;
+          view.setAutoZoom(autozoomActive);
+          autozoomBtn.classList.toggle('pill-active', autozoomActive);
+          autozoomBtn.classList.toggle('pill-muted', !autozoomActive);
+          autozoomBtn.setAttribute('aria-pressed', String(autozoomActive));
+        });
 
         const modeButtons = document.querySelectorAll<HTMLButtonElement>(`.wf-mode[data-index="${index}"]`);
         const setMode = (mode: WorkflowMode) => {

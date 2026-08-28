@@ -58,7 +58,7 @@ const zones = [
 ] as const;
 ---
 <Layout lang={lang} title={t('analyze.title')} activeNav="analyze">
-  <PageHeader kicker={t('analyze.kicker', { version: bundle.version })} title={t('analyze.heading')} lead={t('analyze.intro')}>
+  <PageHeader kicker={t('analyze.kicker', { version: bundle.version })} title={t('analyze.heading')} lead={t('analyze.intro')} tourPageKey="analyze" lang={lang}>
     <p slot="actions" class="flex items-center gap-2 text-sm text-hoba-muted"><span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('analyze.privacy')}</p>
   </PageHeader>
 
@@ -165,7 +165,7 @@ const zones = [
             const catArtifacts = bundle.artifacts.filter((a) => (cat.ids as readonly string[]).includes(a.id));
             if (!catArtifacts.length) return null;
             return (
-              <details class="disclosure artifact-category-group" open={idx === 0}>
+              <details class="disclosure artifact-category-group" open>
                 <summary>
                   <span class="flex items-center gap-2 font-semibold text-sm text-hoba-text">
                     <span aria-hidden="true">{cat.icon}</span>

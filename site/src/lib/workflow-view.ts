@@ -286,6 +286,10 @@ export class WorkflowView {
     return Math.round(maxY - minY + PAD * 2);
   }
 
+  private speedMultiplier = 1;
+  private loopPlayback = true;
+  private autoZoom = true;
+
   /**
    * One camera rule: show the whole machine when it fits at a legible size,
    * otherwise keep the size and put the state being played in view.
@@ -293,26 +297,19 @@ export class WorkflowView {
   frame(immediate = false) {
     const { minX, maxX, minY, maxY } = this.bounds();
     const fit = Math.min((this.width - PAD * 2) / (maxX - minX), (this.height - PAD * 2) / (maxY - minY));
-    this.scale = clamp(fit, MIN_SCALE, MAX_SCALE);
-
-    const spanX = (maxX - minX) * this.scale;
-    const spanY = (maxY - minY) * this.scale;
     const focus = this.current()?.state;
 
-    if (spanX <= this.width - PAD * 2 || !focus) {
+    if (this.autoZoom && focus) {
+      // Dynamic auto pan-zoom: smoothly center and magnify active state
+      this.scale = clamp(Math.max(fit * 1.15, 0.88), MIN_SCALE, 1.05);
+      const wantX = this.width * 0.48 - focus.x * this.scale;
+      const wantY = this.height * 0.5 - focus.y * this.scale;
+      this.wantX = clamp(wantX, this.width - PAD - maxX * this.scale, PAD - minX * this.scale);
+      this.wantY = clamp(wantY, this.height - PAD - maxY * this.scale, PAD - minY * this.scale);
+    } else {
+      this.scale = clamp(fit, MIN_SCALE, MAX_SCALE);
       this.wantX = this.width / 2 - ((minX + maxX) / 2) * this.scale;
-    } else {
-      // Keep the active state a little left of centre: what comes next matters
-      // more than what has already been walked.
-      const want = this.width * 0.42 - focus.x * this.scale;
-      this.wantX = clamp(want, this.width - PAD - maxX * this.scale, PAD - minX * this.scale);
-    }
-
-    if (spanY <= this.height - PAD * 2 || !focus) {
       this.wantY = this.height / 2 - ((minY + maxY) / 2) * this.scale;
-    } else {
-      const want = this.height / 2 - focus.y * this.scale;
-      this.wantY = clamp(want, this.height - PAD - maxY * this.scale, PAD - minY * this.scale);
     }
 
     if (immediate || this.reducedMotion()) {
@@ -422,6 +419,10 @@ export class WorkflowView {
 
   next() {
     if (this.cursor >= this.length - 1) {
+      if (this.playing && this.loopPlayback) {
+        this.seek(0);
+        return;
+      }
       this.pause();
       return;
     }
@@ -465,7 +466,7 @@ export class WorkflowView {
     return this.trace.slice(1, this.cursor + 1).map((s) => s.id);
   }
 
-  play(intervalMs = 1600) {
+  play(intervalMs?: number) {
     // Nothing to auto-play when the fork belongs to the reader.
     if (this.playing || this.mode === 'choose') return;
     // A reader who asked for less motion gets the controls, not the animation.
@@ -475,7 +476,26 @@ export class WorkflowView {
     }
     this.playing = true;
     this.options.onPlaying?.(true);
-    this.timer = window.setInterval(() => this.next(), intervalMs);
+    const ms = intervalMs ?? Math.round(1800 / this.speedMultiplier);
+    window.clearInterval(this.timer);
+    this.timer = window.setInterval(() => this.next(), ms);
+  }
+
+  setSpeed(multiplier: number) {
+    this.speedMultiplier = Math.max(0.5, Math.min(3, multiplier));
+    if (this.playing) {
+      this.pause();
+      this.play();
+    }
+  }
+
+  setAutoZoom(enabled: boolean) {
+    this.autoZoom = enabled;
+    this.frame();
+  }
+
+  setLoop(enabled: boolean) {
+    this.loopPlayback = enabled;
   }
 
   pause() {

@@ -1,0 +1,175 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  pageKey: 'home' | 'analyze' | 'check' | 'process' | 'graph' | 'registry' | 'eras' | 'actors';
+  lang: Lang;
+}
+
+const { pageKey, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const STEP_ICONS: Record<string, string[]> = {
+  home: ['🧭', '⚡', '🎯', '🔒'],
+  analyze: ['📋', '🚧', '🔍', '🎯'],
+  check: ['👤', '📄', '⚖️', '⏳'],
+  process: ['🗺️', '▶️', '🔀', '🔬'],
+  graph: ['🌐', '🎛️', '🔎', '🖥️'],
+  registry: ['🔎', '📑', '🗂️', '💾'],
+  eras: ['📅', '📈', '📊'],
+  actors: ['👥', '👁️', '🔭'],
+};
+
+const icons = STEP_ICONS[pageKey] ?? ['💡', '🔍', '🎯', '✨'];
+const stepsCount = pageKey === 'eras' || pageKey === 'actors' ? 3 : 4;
+
+const steps = Array.from({ length: stepsCount }, (_, i) => ({
+  number: i + 1,
+  icon: icons[i] ?? '💡',
+  title: t(`tour.${pageKey}.step${i + 1}.title` as any),
+  text: t(`tour.${pageKey}.step${i + 1}.text` as any),
+}));
+
+const tourTitle = t(`tour.${pageKey}.title` as any);
+---
+<div class="onboarding-tour-wrapper inline-flex items-center">
+  <button
+    type="button"
+    id="open-tour-btn"
+    class="pill pill-muted hover:border-hoba-accent hover:text-hoba-text text-xs py-1 px-2.5 flex items-center gap-1.5 transition-all cursor-pointer font-medium"
+    aria-label={t('tour.button')}
+    title={tourTitle}
+  >
+    <span aria-hidden="true">💡</span>
+    <span>{t('tour.button')}</span>
+  </button>
+
+  <dialog id="tour-dialog" class="backdrop:bg-black/60 backdrop:backdrop-blur-sm bg-transparent p-4 sm:p-6 max-w-lg w-full rounded-2xl shadow-2xl open:animate-in open:fade-in open:zoom-in-95 outline-none border-0 text-hoba-text">
+    <div class="rounded-2xl border border-hoba-border bg-hoba-card p-6 shadow-2xl relative flex flex-col justify-between">
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-hoba-border pb-3 mb-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse"></span>
+          <h2 class="text-sm font-semibold font-mono uppercase tracking-wider text-hoba-accent">{tourTitle}</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="tour-step-counter" class="text-xs font-mono text-hoba-muted tabular-nums"></span>
+          <button
+            type="button"
+            id="close-tour-btn"
+            class="text-hoba-muted hover:text-hoba-text p-1 rounded-md hover:bg-hoba-hover transition-colors"
+            aria-label="Close guide"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step Content Carousel -->
+      <div class="relative min-h-[140px] flex items-center">
+        {steps.map((s, idx) => (
+          <div class={`tour-step-card flex-1 transition-all ${idx === 0 ? 'block' : 'hidden'}`} data-step-index={idx}>
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-hoba-accent/10 border border-hoba-accent/20 flex items-center justify-center text-xl shrink-0">
+                {s.icon}
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-hoba-text">{s.title}</h3>
+                <p class="mt-1.5 text-sm text-hoba-muted leading-relaxed">{s.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Footer & Stepper Controls -->
+      <div class="mt-6 pt-4 border-t border-hoba-border flex items-center justify-between gap-3">
+        <!-- Dots -->
+        <div class="flex items-center gap-1.5" aria-hidden="true">
+          {steps.map((_, idx) => (
+            <button
+              type="button"
+              class={`tour-dot w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${idx === 0 ? 'bg-hoba-accent scale-110' : 'bg-hoba-border hover:bg-hoba-muted'}`}
+              data-target-step={idx}
+              aria-label={`Go to step ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex items-center gap-2">
+          <button type="button" id="tour-prev-btn" class="btn btn-secondary text-xs px-3 py-1.5 hidden">
+            {t('tour.prev')}
+          </button>
+          <button type="button" id="tour-next-btn" class="btn btn-primary text-xs px-3.5 py-1.5">
+            {t('tour.next')}
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  const dialog = document.getElementById('tour-dialog') as HTMLDialogElement | null;
+  const openBtn = document.getElementById('open-tour-btn');
+  const closeBtn = document.getElementById('close-tour-btn');
+  const prevBtn = document.getElementById('tour-prev-btn');
+  const nextBtn = document.getElementById('tour-next-btn');
+  const counter = document.getElementById('tour-step-counter');
+  const cards = document.querySelectorAll<HTMLElement>('.tour-step-card');
+  const dots = document.querySelectorAll<HTMLElement>('.tour-dot');
+
+  let currentStep = 0;
+  const totalSteps = cards.length;
+
+  function updateStep(index: number) {
+    currentStep = Math.max(0, Math.min(totalSteps - 1, index));
+
+    cards.forEach((c, idx) => c.classList.toggle('hidden', idx !== currentStep));
+    dots.forEach((d, idx) => {
+      d.classList.toggle('bg-hoba-accent', idx === currentStep);
+      d.classList.toggle('scale-110', idx === currentStep);
+      d.classList.toggle('bg-hoba-border', idx !== currentStep);
+    });
+
+    if (counter) counter.textContent = `${currentStep + 1} / ${totalSteps}`;
+    if (prevBtn) prevBtn.classList.toggle('hidden', currentStep === 0);
+    if (nextBtn) {
+      nextBtn.textContent = currentStep === totalSteps - 1 ? '✓ Готово' : 'Далі →';
+    }
+  }
+
+  openBtn?.addEventListener('click', () => {
+    updateStep(0);
+    dialog?.showModal();
+  });
+
+  closeBtn?.addEventListener('click', () => dialog?.close());
+
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  prevBtn?.addEventListener('click', () => updateStep(currentStep - 1));
+  nextBtn?.addEventListener('click', () => {
+    if (currentStep === totalSteps - 1) {
+      dialog?.close();
+    } else {
+      updateStep(currentStep + 1);
+    }
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const target = Number(dot.dataset.targetStep);
+      if (!Number.isNaN(target)) updateStep(target);
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!dialog?.open) return;
+    if (e.key === 'ArrowRight') updateStep(currentStep + 1);
+    if (e.key === 'ArrowLeft') updateStep(currentStep - 1);
+  });
+</script>

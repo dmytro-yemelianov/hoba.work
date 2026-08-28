@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
 import Specimen from '../../components/Specimen.astro';
+import OnboardingTour from '../../components/OnboardingTour.astro';
 import { countGraphNodes, getBundle, getGraph, siteVersion } from '../../lib/registry';
 import { branded, asHeading, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
@@ -71,7 +72,10 @@ const caseMechanisms = bundle.mechanisms
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
       <!-- Left Column: Copy & Actions -->
       <div class="lg:col-span-7">
-        <p class="kicker">{lang === 'uk' ? 'Атлас перешкод і барʼєрів найму' : 'Hiring Obstacles & Barriers Atlas'}</p>
+        <div class="flex items-center justify-between gap-3 mb-1">
+          <p class="kicker">{lang === 'uk' ? 'Атлас перешкод і барʼєрів найму' : 'Hiring Obstacles & Barriers Atlas'}</p>
+          <OnboardingTour pageKey="home" lang={lang} />
+        </div>
 
         <h1 class="mt-2 text-2xl sm:text-4xl font-extrabold text-hoba-text tracking-tight leading-snug">
           {t('home.h1.before')}<span class="text-hoba-accent">{t('home.h1.accent')}</span>

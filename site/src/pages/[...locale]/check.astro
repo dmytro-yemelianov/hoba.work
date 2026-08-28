@@ -186,13 +186,13 @@ const presets = [
 ];
 ---
 <Layout lang={lang} title={t('check.title')} description={t('check.intro')} activeNav="check">
-  <PageHeader kicker={t('check.kicker')} title={t('check.title')} lead={t('check.intro')}>
+  <PageHeader kicker={t('check.kicker')} title={t('check.title')} lead={t('check.intro')} tourPageKey="check" lang={lang}>
     <p slot="actions" class="flex items-center gap-2 text-sm text-hoba-muted">
       <span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('check.privacy')}
     </p>
   </PageHeader>
 
-  <details class="disclosure mb-6">
+  <details class="disclosure mb-6" open>
     <summary>
       <span class="flex items-center gap-2">
         <span class="text-xs font-mono text-hoba-accent font-semibold">ℹ️ {lang === 'uk' ? 'Як працює ця перевірка' : 'How this check works'}</span>
