@@ -43,13 +43,13 @@
       "additionalProperties": { "type": "string", "enum": ["low", "medium", "high"] },
       "description": "Per-actor-type impact level. Additive alongside mechanism.facets.removability — not a replacement for it."
     },
-    "superseded_by": { "type": "string" },
+    "superseded_by": { "type": "string", "pattern": "^(obs|bar|mech|pat|loop|int|proc|actor|era|record|evidence)\\.[a-z0-9_]+$" },
     "deprecated": {
       "type": "object",
       "required": ["reason"],
       "properties": {
         "reason": { "type": "string" },
-        "replaced_by": { "type": "array", "items": { "type": "string" } }
+        "replaced_by": { "type": "array", "items": { "type": "string", "pattern": "^(obs|bar|mech|pat|loop|int|proc|actor|era|record|evidence)\\.[a-z0-9_]+$" } }
       }
     }
   }

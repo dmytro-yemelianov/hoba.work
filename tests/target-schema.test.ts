@@ -61,6 +61,19 @@ describe('schema/entity.schema.json', () => {
     };
     expect(agencyZones.additionalProperties.enum).toEqual(['low', 'medium', 'high']);
   });
+
+  it('constrains superseded_by and deprecated.replaced_by to ontology ID patterns, never a scenario ID', () => {
+    const ontologyIdPattern = new RegExp(schema.properties.superseded_by!.pattern!);
+    expect(ontologyIdPattern.test('bar.some_other_barrier')).toBe(true);
+    expect(ontologyIdPattern.test('scenario.application_silence')).toBe(false);
+
+    const deprecated = schema.properties.deprecated as unknown as {
+      properties: { replaced_by: { items: { pattern: string } } };
+    };
+    const replacedByPattern = new RegExp(deprecated.properties.replaced_by.items.pattern);
+    expect(replacedByPattern.test('mech.pipeline_refresh')).toBe(true);
+    expect(replacedByPattern.test('scenario.application_silence')).toBe(false);
+  });
 });
 
 describe('schema/relation.schema.json', () => {
