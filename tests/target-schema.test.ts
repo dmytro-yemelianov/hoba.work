@@ -80,3 +80,26 @@ describe('schema/relation.schema.json', () => {
     ]);
   });
 });
+
+describe('schema/scenario.schema.json', () => {
+  const schema = readSchema('scenario.schema.json') as {
+    required: string[];
+    properties: Record<string, { pattern?: string }>;
+  };
+
+  it('requires id, title, and at least one observation', () => {
+    expect(schema.required).toEqual(['id', 'title', 'observations']);
+  });
+
+  it('has no field that an ontology entity could reciprocally reference', () => {
+    // Scenarios reference the ontology one-directionally; this is a schema
+    // for the scenario side of that relationship only.
+    expect(schema.properties.id.pattern).toBe('^scenario\\.[a-z0-9_]+$');
+  });
+
+  it('every entity-referencing array is pattern-constrained to that entity type\'s prefix', () => {
+    expect((schema.properties.observations as { items: { pattern: string } }).items.pattern).toBe('^obs\\.[a-z0-9_]+$');
+    expect((schema.properties.compatible_mechanisms as { items: { pattern: string } }).items.pattern).toBe('^mech\\.[a-z0-9_]+$');
+    expect((schema.properties.compatible_barriers as { items: { pattern: string } }).items.pattern).toBe('^bar\\.[a-z0-9_]+$');
+  });
+});

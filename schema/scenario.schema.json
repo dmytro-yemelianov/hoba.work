@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hoba.work/schema/scenario.schema.json",
+  "title": "HOBA Scenario",
+  "description": "A validated composition of ontology entities describing a coherent situation. Not an ontology entity itself: 'scenario' never appears in entity.schema.json's type enum. References ontology IDs one-directionally — no ontology entity schema has a field capable of referencing a scenario ID.",
+  "type": "object",
+  "required": ["id", "title", "observations"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^scenario\\.[a-z0-9_]+$" },
+    "title": {
+      "type": "object",
+      "required": ["en", "uk"],
+      "properties": { "en": { "type": "string" }, "uk": { "type": "string" } }
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^obs\\.[a-z0-9_]+$" }
+    },
+    "compatible_mechanisms": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "pattern": "^mech\\.[a-z0-9_]+$" }
+    },
+    "compatible_barriers": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "pattern": "^bar\\.[a-z0-9_]+$" }
+    },
+    "process_states": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "pattern": "^proc\\.[a-z0-9_]+$" }
+    },
+    "evidence": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string", "pattern": "^evidence\\.[a-z0-9_]+$" }
+    },
+    "excluded_claims": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string" }
+    },
+    "agency": {
+      "type": "object",
+      "default": {},
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string", "pattern": "^int\\.[a-z0-9_]+$" }
+      }
+    }
+  }
+}
