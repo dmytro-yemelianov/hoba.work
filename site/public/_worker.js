@@ -38,7 +38,7 @@ const LEGACY_ALIASES = {
   "P-001": "/patterns/pat.seniority_double_bind",
   "P-002": "/patterns/pat.closed_then_reposted_requisition_motif",
   "P-003": "/patterns/pat.experience_age_impossibility",
-  "P-004": "/patterns/pat.compensation_double_bind",
+  "P-004": "/patterns/pat.compensation_double_bind"
 };
 // END GENERATED
 
