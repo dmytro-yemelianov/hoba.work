@@ -67,49 +67,147 @@ const caseMechanisms = bundle.mechanisms
 ---
 <Layout lang={lang} title={t('home.title')} activeNav="home">
   <!-- HERO SECTION -->
-  <section class="py-8 sm:py-14 border-b border-hoba-border overflow-hidden">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hoba-border bg-hoba-card text-xs font-mono text-hoba-muted mb-6 max-w-full flex-wrap">
-      <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse shrink-0"></span>
-      <span class="wordmark font-bold">hoba</span>
-      <span>·</span>
-      <span class="truncate">{t('home.badge', { registry: bundle.version, site: siteVersion })}</span>
-      <span>·</span>
-      <span class="text-hoba-text font-medium truncate">{t('home.canonical')}</span>
+  <section class="relative pt-6 pb-12 sm:pt-12 sm:pb-16 border-b border-hoba-border overflow-hidden">
+    <!-- Ambient Background Glow -->
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[280px] bg-gradient-to-b from-hoba-accent/15 via-hoba-accent/5 to-transparent blur-3xl pointer-events-none rounded-full" aria-hidden="true"></div>
+
+    <div class="relative max-w-4xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hoba-border bg-hoba-card/90 backdrop-blur text-xs font-mono text-hoba-muted mb-5 max-w-full flex-wrap">
+        <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse shrink-0"></span>
+        <span class="wordmark font-bold">hoba</span>
+        <span>·</span>
+        <span class="truncate">{t('home.badge', { registry: bundle.version, site: siteVersion })}</span>
+        <span>·</span>
+        <span class="text-hoba-text font-medium truncate">{t('home.canonical')}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-hoba-text tracking-tight leading-tight sm:leading-none text-balance break-words">
+        {t('home.h1.before')}<span class="bg-gradient-to-r from-hoba-accent via-blue-400 to-indigo-400 bg-clip-text text-transparent">{t('home.h1.accent')}</span>.
+      </h1>
+
+      <p class="mt-4 max-w-3xl text-base sm:text-lg text-hoba-muted leading-relaxed break-words" set:html={branded(t('home.what', { n: totalNodes }))} />
+
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href={`${prefix}/analyze`} class="btn btn-primary text-sm sm:text-base px-5 py-2.5 shadow-md shadow-hoba-accent/20 hover:shadow-lg hover:shadow-hoba-accent/30 font-semibold transition-all">{t('home.cta.primary')} →</a>
+        <a href={`${prefix}/registry`} class="btn btn-secondary text-sm sm:text-base px-5 py-2.5 font-medium">{t('home.cta.secondary', { n: totalNodes })}</a>
+      </div>
     </div>
 
-    <h1 class="max-w-4xl text-2xl sm:text-4xl lg:text-5xl font-bold text-hoba-text tracking-tight leading-tight text-balance break-words">
-      {t('home.h1.before')}<span class="text-hoba-accent">{t('home.h1.accent')}</span>.
-    </h1>
-
-    <p class="mt-6 max-w-3xl text-base sm:text-xl text-hoba-muted leading-relaxed break-words" set:html={branded(t('home.what', { n: totalNodes }))} />
-
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href={`${prefix}/analyze`} class="btn btn-primary text-sm sm:text-base px-4 sm:px-5 py-2.5 shadow-sm">{t('home.cta.primary')} →</a>
-      <a href={`${prefix}/registry`} class="btn btn-secondary text-sm sm:text-base px-4 py-2.5">{t('home.cta.secondary', { n: totalNodes })}</a>
-    </div>
-
-    <!-- Accessible 4-Metric Definition List -->
-    <dl class="mt-10 sm:mt-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+    <!-- 4-Metric Definition List Cards -->
+    <dl class="mt-10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
       {stats.map((s) => (
-        <div class="p-3 sm:p-4 rounded-xl border border-hoba-border bg-hoba-card min-w-0">
-          <dt class="text-[11px] sm:text-xs font-semibold uppercase tracking-normal sm:tracking-wider text-hoba-muted break-words">{s.label}</dt>
-          <dd class="mt-1.5 sm:mt-2 text-2xl sm:text-3xl font-bold font-mono text-hoba-text tabular-nums">{s.n}</dd>
+        <div class="p-3.5 sm:p-4 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/40 transition-all min-w-0 flex flex-col justify-between">
+          <dt class="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-hoba-muted break-words">{s.label}</dt>
+          <dd class="mt-1.5 text-2xl sm:text-3xl font-bold font-mono text-hoba-text tabular-nums">{s.n}</dd>
         </div>
       ))}
     </dl>
+  </section>
+
+  <!-- 4 INTERACTIVE ENGINES SHOWCASE -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <p class="kicker">{lang === 'uk' ? 'Інструменти атласу' : 'Atlas Engine Suite'}</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-hoba-text">
+          {lang === 'uk' ? 'Чотири способи дослідити систему' : 'Four Ways to Explore the System'}
+        </h2>
+      </div>
+      <p class="text-xs sm:text-sm text-hoba-muted max-w-md">
+        {lang === 'uk' ? 'Працює локально у вашому браузері без передачі персональних даних або запитів на сервер.' : 'Runs locally in your browser with zero telemetry or data extraction.'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a href={`${prefix}/analyze`} class="group p-5 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/60 hover:bg-hoba-hover/50 hover:shadow-lg transition-all flex flex-col justify-between no-underline">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-hoba-accent/10 text-hoba-accent font-mono text-sm font-bold">01</span>
+            <span class="pill pill-muted text-[11px] font-mono">{lang === 'uk' ? 'Діагностика' : 'Diagnostic'}</span>
+          </div>
+          <h3 class="text-base font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+            {lang === 'uk' ? 'Аналіз ситуації' : 'Situation Analyzer'}
+          </h3>
+          <p class="mt-1.5 text-xs text-hoba-muted leading-relaxed">
+            {lang === 'uk' ? 'Введіть спостережуваний факт (тишу, відмову чи тестове) та отримайте список логічно сумісних механізмів.' : 'Input your witnessed observations and derive compatible root causes without speculative self-blame.'}
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs font-medium text-hoba-accent flex items-center gap-1">
+          <span>{lang === 'uk' ? 'Запустити аналіз' : 'Run Analyzer'}</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href={`${prefix}/check`} class="group p-5 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/60 hover:bg-hoba-hover/50 hover:shadow-lg transition-all flex flex-col justify-between no-underline">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-hoba-hover border border-hoba-border text-hoba-text font-mono text-sm font-bold">02</span>
+            <span class="pill pill-muted text-[11px] font-mono">{lang === 'uk' ? 'Арифметика' : 'Arithmetic'}</span>
+          </div>
+          <h3 class="text-base font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+            {lang === 'uk' ? 'Перевірка відповідності' : 'Conformance Check'}
+          </h3>
+          <p class="mt-1.5 text-xs text-hoba-muted leading-relaxed">
+            {lang === 'uk' ? 'Звірте названі умови вакансії з фактами профілю: роки, обовʼязкові фрази, локація та зарплатна вилка.' : 'Audit posting hard requirements against your verified profile before investing preparation time.'}
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs font-medium text-hoba-accent flex items-center gap-1">
+          <span>{lang === 'uk' ? 'Перевірити профіль' : 'Check Posting'}</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href={`${prefix}/process`} class="group p-5 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/60 hover:bg-hoba-hover/50 hover:shadow-lg transition-all flex flex-col justify-between no-underline">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-hoba-hover border border-hoba-border text-hoba-text font-mono text-sm font-bold">03</span>
+            <span class="pill pill-muted text-[11px] font-mono">{lang === 'uk' ? 'Стейт-машина' : 'State Machine'}</span>
+          </div>
+          <h3 class="text-base font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+            {lang === 'uk' ? 'Симулятор процесу' : 'Pipeline State Machine'}
+          </h3>
+          <p class="mt-1.5 text-xs text-hoba-muted leading-relaxed">
+            {lang === 'uk' ? 'Інтерактивний покроковий плеєр 4 процесів найму (воронка, ATS, канонічний шлях, клієнтський найм).' : 'Step through sequenced pipeline state machines and verify where stage turnaround exceeds normal limits.'}
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs font-medium text-hoba-accent flex items-center gap-1">
+          <span>{lang === 'uk' ? 'Крокувати процесом' : 'Step Through'}</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href={`${prefix}/graph`} class="group p-5 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/60 hover:bg-hoba-hover/50 hover:shadow-lg transition-all flex flex-col justify-between no-underline">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-hoba-accent/10 text-hoba-accent font-mono text-sm font-bold">04</span>
+            <span class="pill pill-muted text-[11px] font-mono">{lang === 'uk' ? 'Топологія' : 'Topology'}</span>
+          </div>
+          <h3 class="text-base font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+            {lang === 'uk' ? 'Провідник графа' : 'Knowledge Graph'}
+          </h3>
+          <p class="mt-1.5 text-xs text-hoba-muted leading-relaxed">
+            {lang === 'uk' ? 'Повна мережа 89 вузлів та звʼязків: яруси сутностей, причинні петлі Тарʼяна та зони контролю.' : 'Explore 89 cross-referenced entities, stratified tiers, Tarjan cycles, and agency zone distributions.'}
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs font-medium text-hoba-accent flex items-center gap-1">
+          <span>{lang === 'uk' ? 'Відкрити граф' : 'Open Graph'}</span>
+          <span>→</span>
+        </div>
+      </a>
+    </div>
   </section>
 
   <!-- THE PROBLEM & WHAT HOBA GIVES -->
   <section class="py-12 sm:py-16 border-b border-hoba-border">
     <div class="max-w-3xl mb-8">
       <p class="kicker">{t('home.problem.title')}</p>
-      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text text-balance">
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-hoba-text text-balance">
         {t('home.problem.heading')}
       </h2>
       <p class="mt-3 text-base text-hoba-muted leading-relaxed">{t('home.problem')}</p>
     </div>
 
-    <ol class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <ol class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {(['1', '2', '3'] as const).map((n, i) => (
         <li class="p-6 rounded-xl border border-hoba-border bg-hoba-card flex flex-col justify-between">
           <div>
@@ -126,12 +224,12 @@ const caseMechanisms = bundle.mechanisms
   <section class="py-12 sm:py-16 border-b border-hoba-border">
     <div class="max-w-2xl mb-8">
       <p class="kicker">{t('home.gives.title')}</p>
-      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text text-balance break-words">
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-hoba-text text-balance break-words">
         {lang === 'uk' ? 'Маршрути для різних ролей' : 'Role-Specific Pathways'}
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {personas.map((p) => (
         <a href={p.href} class="group p-6 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent hover:shadow-md transition-all flex flex-col justify-between no-underline">
           <div>
@@ -154,50 +252,17 @@ const caseMechanisms = bundle.mechanisms
     </div>
   </section>
 
-  <!-- THE 4-STEP HOBA PROTOCOL -->
-  <section class="py-12 sm:py-16 border-b border-hoba-border">
-    <div class="max-w-3xl mb-10">
-      <p class="kicker">{t('home.protocol.kicker')}</p>
-      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text" set:html={branded(t('home.protocol.title'))} />
-      <p class="mt-2 text-base text-hoba-muted">{t('home.protocol.sub')}</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      {steps.map((s) => (
-        <div class="p-5 rounded-xl border border-hoba-border bg-hoba-card flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg font-mono text-sm font-bold bg-hoba-accent/10 text-hoba-accent">
-                {s.letter}
-              </span>
-              <span class="font-mono text-xs text-hoba-muted">{s.stepNum}</span>
-            </div>
-            <h3 class="mt-4 text-base font-semibold text-hoba-text">
-              {t(`home.step.${s.k}.title`)}
-            </h3>
-            <p class="mt-2 text-xs sm:text-sm text-hoba-muted leading-relaxed">
-              {t(`home.step.${s.k}.text`)}
-            </p>
-          </div>
-          <div class="mt-6 pt-3 border-t border-hoba-border/60">
-            <span class="font-mono text-[11px] text-hoba-accent font-medium">{t(`home.step.${s.k}.out`)}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
   <!-- FORENSIC CASE DEMONSTRATION -->
   <section class="py-12 sm:py-16 border-b border-hoba-border">
     <div class="max-w-3xl mb-8">
       <p class="kicker">{t('home.case.kicker')}</p>
-      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text text-balance">{t('home.case.title')}</h2>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-hoba-text text-balance">{t('home.case.title')}</h2>
       <p class="mt-2 text-base text-hoba-muted">{t('home.case.sub')}</p>
     </div>
 
     <div class="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.8fr)] items-start">
       <!-- Specimen card -->
-      <div class="rounded-xl border border-hoba-border bg-hoba-card overflow-hidden">
+      <div class="rounded-xl border border-hoba-border bg-hoba-card overflow-hidden shadow-sm">
         <div class="px-4 py-2.5 bg-hoba-bg border-b border-hoba-border flex items-center justify-between">
           <span class="font-mono text-xs text-hoba-accent font-semibold">{caseArtifact.id}</span>
           <span class="text-xs text-hoba-muted font-mono">{caseArtifact.stages.join(' · ')}</span>
@@ -208,10 +273,10 @@ const caseMechanisms = bundle.mechanisms
       </div>
 
       <!-- Epistemic breakdown -->
-      <div class="space-y-6">
+      <div class="space-y-5">
         <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
           <h3 class="text-base font-semibold text-hoba-text">{t('home.case.establishes')}</h3>
-          <p class="mt-1 text-sm text-hoba-muted leading-relaxed">{t('home.case.establishesText')}</p>
+          <p class="mt-1.5 text-sm text-hoba-muted leading-relaxed">{t('home.case.establishesText')}</p>
         </div>
 
         <div class="callout border-l-hoba-exogenous rounded-xl my-0">
@@ -251,74 +316,50 @@ const caseMechanisms = bundle.mechanisms
 
   <!-- NAMED CONTRADICTION PATTERNS -->
   <section class="py-12 sm:py-16 border-b border-hoba-border">
-    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
       <div>
         <p class="kicker">{t('home.patterns.kicker')}</p>
-        <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text">{t('home.patterns.title')}</h2>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-hoba-text text-balance">{t('home.patterns.title')}</h2>
         <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.patterns.sub')}</p>
       </div>
-      <a href={`${prefix}/patterns`} class="btn btn-secondary text-sm">{t('home.patterns.all')} →</a>
+      <a href={`${prefix}/patterns`} class="btn btn-secondary text-sm shrink-0 self-start sm:self-auto">{t('home.patterns.all')} →</a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {bundle.patterns.map((p) => (
-        <article class="p-5 rounded-xl border border-hoba-border bg-hoba-card flex flex-col justify-between hover:border-hoba-accent transition-colors">
+        <a href={`${prefix}/patterns/${p.id}`} class="group p-5 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent hover:shadow-md transition-all flex flex-col justify-between no-underline">
           <div>
-            <div class="flex items-baseline justify-between gap-2">
-              <span class="font-mono text-xs font-semibold text-hoba-accent">{p.id}</span>
-              <span class="pill pill-muted text-xs font-mono">{p.required_artifacts.length} {lang === 'uk' ? 'спостереження' : 'signals'}</span>
-            </div>
-            <h3 class="mt-2">
-              <a href={`${prefix}/patterns/${p.id}`} class="text-base font-semibold text-hoba-text hover:text-hoba-accent transition-colors">{p.title}</a>
-            </h3>
-            <p class="mt-2 text-xs sm:text-sm text-hoba-muted leading-relaxed">{p.summary}</p>
+            <span class="font-mono text-xs font-semibold text-hoba-accent">{p.id}</span>
+            <h3 class="mt-2 text-base font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">{p.title}</h3>
+            <p class="mt-2 text-xs sm:text-sm text-hoba-muted leading-relaxed line-clamp-3">{p.summary}</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs text-hoba-muted">
-            <span class="text-hoba-text font-medium">{asHeading(t('patterns.trigger'))}:</span> {p.trigger_rule}
+          <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs font-medium text-hoba-accent flex items-center gap-1">
+            <span>{t('home.case.cta')}</span>
+            <span>→</span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </section>
 
-  <!-- METHODOLOGICAL BOUNDARIES & DEVELOPERS -->
-  <section class="py-12 sm:py-16 border-b border-hoba-border grid gap-8 lg:grid-cols-2">
-    <div class="rounded-xl border border-hoba-border bg-hoba-card p-6">
-      <p class="kicker">{t('home.not.kicker')}</p>
-      <h2 class="mt-1 text-xl sm:text-2xl font-semibold text-hoba-text">{t('home.not.title')}</h2>
-      <ul class="mt-4 space-y-2.5">
-        {(['1', '2', '3', '4', '5'] as const).map((n) => (
-          <li class="flex items-start gap-2.5 text-sm text-hoba-muted">
-            <svg class="w-4 h-4 text-hoba-exogenous shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span>{t(`method.nongoals.${n}`)}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <div class="rounded-xl border border-hoba-border bg-hoba-card p-6 flex flex-col justify-between">
-      <div>
-        <span class="pill pill-muted text-xs font-mono">Open Infrastructure</span>
-        <h2 class="mt-3 text-xl sm:text-2xl font-semibold text-hoba-text">{t('home.dev.title')}</h2>
-        <p class="mt-2 text-sm text-hoba-muted leading-relaxed">{t('home.dev.text')}</p>
+  <!-- OPEN INFRASTRUCTURE & DEVELOPER BANNER -->
+  <section class="py-12 sm:py-16">
+    <div class="p-6 sm:p-10 rounded-2xl border border-hoba-border bg-gradient-to-br from-hoba-card via-hoba-card to-hoba-hover/50 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <div class="max-w-2xl">
+        <span class="pill pill-muted text-xs font-mono mb-3">Open Source · CC BY-SA 4.0 · MIT</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-hoba-text">{t('home.dev.title')}</h2>
+        <p class="mt-2 text-sm sm:text-base text-hoba-muted leading-relaxed">{t('home.dev.text')}</p>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono">
+          <a href="/data/latest/registry.json" target="_blank" class="pill hover:border-hoba-accent">registry.json</a>
+          <a href="/data/latest/graph.graphml" target="_blank" class="pill hover:border-hoba-accent">graph.graphml</a>
+          <a href="/openapi.json" target="_blank" class="pill hover:border-hoba-accent">openapi.json</a>
+          <a href={`${prefix}/developers#mcp`} class="pill hover:border-hoba-accent">MCP Server</a>
+        </div>
       </div>
-      <div class="mt-6 pt-4 border-t border-hoba-border flex flex-wrap gap-3">
-        <a href={`${prefix}/developers`} class="btn btn-secondary text-sm">{t('nav.developers')}</a>
-        <a href="/data/latest/registry.json" target="_blank" class="btn btn-ghost font-mono text-sm">registry.json</a>
-        <a href="/openapi.json" target="_blank" class="btn btn-ghost font-mono text-sm">openapi.json</a>
+      <div class="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+        <a href={`${prefix}/developers`} class="btn btn-primary text-sm px-5 py-2.5 text-center">{lang === 'uk' ? 'Документація для розробників' : 'Developer Docs'} →</a>
+        <a href="https://github.com/dmytro-yemelianov/hoba.work" target="_blank" rel="noopener noreferrer" class="btn btn-secondary text-sm px-5 py-2.5 text-center">GitHub Repository</a>
       </div>
-    </div>
-  </section>
-
-  <!-- BOTTOM CALL TO ACTION BANNER -->
-  <section class="py-12 sm:py-16 rounded-2xl border border-hoba-border bg-hoba-card/60 p-5 sm:p-10 my-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 overflow-hidden">
-    <div class="max-w-2xl min-w-0">
-      <h2 class="text-2xl sm:text-3xl font-bold text-hoba-text break-words">{t('home.cta2.title')}</h2>
-      <p class="mt-2 text-base text-hoba-muted break-words">{t('home.cta2.sub')}</p>
-    </div>
-    <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:shrink-0 max-w-full">
-      <a href={`${prefix}/analyze`} class="btn btn-primary text-sm sm:text-base px-4 sm:px-5 py-2.5 shadow-sm text-center break-words" set:html={branded(t('home.cta2.start'))} />
-      <a href={`${prefix}/methodology`} class="btn btn-secondary text-sm sm:text-base px-4 py-2.5 text-center">{t('home.cta2.method')}</a>
     </div>
   </section>
 </Layout>
