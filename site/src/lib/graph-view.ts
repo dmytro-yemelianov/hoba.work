@@ -156,37 +156,55 @@ function mulberry32(seed: number): () => number {
   };
 }
 
+export const TYPE_TIER_Y: Record<GraphNodeType, number> = {
+  artifact: -120,
+  barrier: -50,
+  mechanism: 20,
+  pattern: 90,
+  loop: 90,
+  intervention: 160,
+};
+
+export const TYPE_LABELS_EN: Record<GraphNodeType, string> = {
+  artifact: 'Observations (A)',
+  barrier: 'Funnel Barriers (B)',
+  mechanism: 'Mechanisms (M)',
+  pattern: 'Patterns & Loops (P/L)',
+  loop: 'Patterns & Loops (P/L)',
+  intervention: 'Interventions (I)',
+};
+
 export class GraphView {
-  private readonly canvas: HTMLCanvasElement;
-  private readonly ctx: CanvasRenderingContext2D;
-  private readonly options: GraphViewOptions;
-
-  readonly nodes: SimNode[] = [];
-  readonly edges: SimEdge[] = [];
-  private readonly byId = new Map<string, SimNode>();
-  private readonly neighbors = new Map<string, Set<string>>();
+  private canvas: HTMLCanvasElement;
+  private ctx: CanvasRenderingContext2D;
+  private options: GraphViewOptions;
+  private nodes: SimNode[] = [];
+  private edges: SimEdge[] = [];
   private lanes: GraphLane[] = [];
+  private byId = new Map<string, SimNode>();
+  private neighbors = new Map<string, Set<string>>();
 
-  private palette: Palette;
+  private palette!: Palette;
+  private width = 0;
+  private height = 0;
   private zoom = 1;
   private panX = 0;
   private panY = 0;
-  private width = 0;
-  private height = 0;
-
   private hovered: SimNode | null = null;
   private selected: SimNode | null = null;
   private dragging: SimNode | null = null;
   private panning = false;
   private pointerMoved = false;
-  private pointerStart = { x: 0, y: 0 };
-  private readonly pointers = new Map<number, { x: number; y: number }>();
+  private pointerStart: { x: number; y: number } | null = null;
+  private pointers = new Map<number, { x: number; y: number }>();
   private pinchDistance = 0;
-
+  private dragged = false;
+  private dragStartX = 0;
+  private dragStartY = 0;
   private alpha = 0;
   private frame = 0;
-  private observer: ResizeObserver | null = null;
   private destroyed = false;
+  private observer: ResizeObserver | null = null;
 
   constructor(canvas: HTMLCanvasElement, data: GraphData, options: GraphViewOptions = {}) {
     this.canvas = canvas;
@@ -194,40 +212,43 @@ export class GraphView {
     if (!ctx) throw new Error('graph-view: 2d canvas context unavailable');
     this.ctx = ctx;
     this.options = options;
-    this.palette = this.readPalette();
-
     this.lanes = data.lanes ?? [];
-    this.build(data);
+
+    this.initialisePositions(data);
     this.measure();
-    this.settle(600);
+    this.refreshTheme();
+    this.settle(300);
     this.fit(false);
     this.bind();
     this.draw();
   }
 
-  // ---- construction ------------------------------------------------------
+  // ---- layout & simulation -----------------------------------------------
 
-  private build(data: GraphData) {
+  /**
+   * Deterministic initial placement: x follows the funnel stage, y follows the
+   * vertical entity type tiers (Artifacts -> Barriers -> Mechanisms -> Loops/Patterns -> Interventions).
+   */
+  private initialisePositions(data: GraphData) {
+    const random = mulberry32(0x110ba);
     const degree = new Map<string, number>();
     for (const edge of data.edges) {
       degree.set(edge.source, (degree.get(edge.source) ?? 0) + 1);
       degree.set(edge.target, (degree.get(edge.target) ?? 0) + 1);
     }
 
-    // Seed every node in its funnel column, stacked by type: the simulation then
-    // only has to resolve overlaps instead of untangling a random cloud.
-    const random = mulberry32(0x110ba);
-    const types = Object.keys(TYPE_VAR) as GraphNodeType[];
+    const types: GraphNodeType[] = ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
     const stacked = new Map<number, number>();
     for (const input of data.nodes) {
       const deg = degree.get(input.id) ?? 0;
       const column = Math.round(input.lane ?? this.lanes.length / 2);
       const row = stacked.get(column) ?? 0;
       stacked.set(column, row + 1);
+      const typeIdx = types.indexOf(input.type);
       const node: SimNode = {
         ...input,
-        x: this.laneX(input.lane ?? this.lanes.length / 2) + (random() - 0.5) * 40,
-        y: (row - 4) * 56 + types.indexOf(input.type) * 9 + (random() - 0.5) * 30,
+        x: this.laneX(input.lane ?? this.lanes.length / 2) + (random() - 0.5) * 30,
+        y: (typeIdx - 2.5) * 32 + (row - 2) * 14 + (random() - 0.5) * 16,
         vx: 0,
         vy: 0,
         radius: 8 + Math.min(10, Math.sqrt(deg) * 2.4),
@@ -272,6 +293,7 @@ export class GraphView {
   /** Velocity-Verlet-ish relaxation: repulsion, springs, gravity, damping. */
   private tick(strength: number) {
     const active = this.nodes.filter((n) => !n.hidden);
+    const types: GraphNodeType[] = ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
 
     for (let i = 0; i < active.length; i++) {
       const a = active[i]!;
@@ -323,12 +345,15 @@ export class GraphView {
         continue;
       }
       if (this.lanes.length && node.lane !== undefined) {
-        // Anchor to the funnel stage on x; y stays free for the force layout.
+        // Anchor to the funnel stage on x
         node.vx += (this.laneX(node.lane) - node.x) * 0.085 * strength;
       } else {
         node.vx -= node.x * 0.014 * strength;
       }
-      node.vy -= node.y * 0.006 * strength;
+      // Anchor to the entity type tier on y for vertical stratification
+      const typeIdx = types.indexOf(node.type);
+      const targetTierY = (typeIdx - 2.5) * 28;
+      node.vy += (targetTierY - node.y) * 0.035 * strength;
       node.vx *= 0.82;
       node.vy *= 0.82;
       const speed = Math.hypot(node.vx, node.vy);
@@ -663,7 +688,8 @@ export class GraphView {
     for (const node of this.nodes) {
       if (node.hidden) continue;
       const distance = Math.hypot(node.sx - x, node.sy - y);
-      if (distance <= node.sr + 6 && distance < bestDistance) {
+      const threshold = Math.max(node.sr + 6, 14);
+      if (distance <= threshold && distance < bestDistance) {
         best = node;
         bestDistance = distance;
       }
@@ -726,7 +752,9 @@ export class GraphView {
         return;
       }
 
-      if (Math.hypot(point.x - this.pointerStart.x, point.y - this.pointerStart.y) > 4) this.pointerMoved = true;
+      if (this.pointerStart && Math.hypot(point.x - this.pointerStart.x, point.y - this.pointerStart.y) > 4) {
+        this.pointerMoved = true;
+      }
 
       if (this.dragging) {
         const world = this.toWorld(point.x, point.y);
@@ -738,9 +766,11 @@ export class GraphView {
         return;
       }
       if (this.panning) {
-        this.panX += event.movementX || point.x - this.pointerStart.x;
-        this.panY += event.movementY || point.y - this.pointerStart.y;
-        this.pointerStart = point;
+        if (this.pointerStart) {
+          this.panX += event.movementX || point.x - this.pointerStart.x;
+          this.panY += event.movementY || point.y - this.pointerStart.y;
+          this.pointerStart = point;
+        }
         this.draw();
         return;
       }
@@ -806,8 +836,12 @@ export class GraphView {
     this.observer = new ResizeObserver(() => {
       const before = { w: this.width, h: this.height };
       this.measure();
-      this.panX += (this.width - before.w) / 2;
-      this.panY += (this.height - before.h) / 2;
+      if (before.w < 10 || before.h < 10) {
+        this.fit(false);
+      } else {
+        this.panX += (this.width - before.w) / 2;
+        this.panY += (this.height - before.h) / 2;
+      }
       this.draw();
     });
     this.observer.observe(this.canvas);

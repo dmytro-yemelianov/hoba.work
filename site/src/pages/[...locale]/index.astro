@@ -16,184 +16,309 @@ const bundle = getBundle(lang);
 const totalNodes = countGraphNodes(bundle);
 
 const steps = [
-  { k: 'h', letter: 'H' },
-  { k: 'o', letter: 'O' },
-  { k: 'b', letter: 'B' },
-  { k: 'a', letter: 'A' },
+  { k: 'h', letter: 'H', stepNum: '01' },
+  { k: 'o', letter: 'O', stepNum: '02' },
+  { k: 'b', letter: 'B', stepNum: '03' },
+  { k: 'a', letter: 'A', stepNum: '04' },
 ] as const;
 
-// The registry in four numbers, so the headline is not left against half a
-// screen of nothing.
 const stats = [
-  { n: totalNodes, label: t('home.stat.entities') },
-  { n: bundle.barriers.length, label: t('home.stat.barriers') },
-  { n: bundle.mechanisms.length, label: t('home.stat.mechanisms') },
-  { n: getGraph(lang).edges.length, label: t('home.stat.edges') },
+  { n: totalNodes, label: t('home.stat.entities'), desc: 'Formal ontology nodes' },
+  { n: bundle.barriers.length, label: t('home.stat.barriers'), desc: t('home.stat.barriersDesc') },
+  { n: bundle.mechanisms.length, label: t('home.stat.mechanisms'), desc: t('home.stat.mechanismsDesc') },
+  { n: bundle.patterns.length, label: t('home.stat.patternsDesc'), desc: t('home.stat.leanDesc') },
 ];
 
-// The landing argues by demonstration: the generic rejection everybody has
-// received, then the mechanisms that can each produce exactly that message.
+const personas = [
+  {
+    role: 'candidate',
+    icon: '🎯',
+    title: t('home.role.candidate.title'),
+    desc: t('home.role.candidate.desc'),
+    cta: `${t('analyze.heading')} →`,
+    href: `${prefix}/analyze`,
+    badge: 'Walkthrough',
+  },
+  {
+    role: 'recruiter',
+    icon: '⚙️',
+    title: t('home.role.recruiter.title'),
+    desc: t('home.role.recruiter.desc'),
+    cta: `${t('wf.kicker')} →`,
+    href: `${prefix}/process`,
+    badge: 'State Machines',
+  },
+  {
+    role: 'researcher',
+    icon: '🔬',
+    title: t('home.role.researcher.title'),
+    desc: t('home.role.researcher.desc'),
+    cta: `${t('graph.title')} →`,
+    href: `${prefix}/graph`,
+    badge: 'Graph Explorer',
+  },
+] as const;
+
 const caseArtifact = bundle.artifacts.find((a) => a.id === 'A-002')!;
 const caseSpecimen = caseArtifact.specimens[0];
 const caseMechanisms = bundle.mechanisms
   .filter((m) => m.emissions.some((e) => e.artifact === caseArtifact.id))
-  .slice(0, 5);
+  .slice(0, 4);
 ---
 <Layout lang={lang} title={t('home.title')} activeNav="home">
-  <section class="pb-12 border-b border-hoba-border">
-    <p class="meta font-mono">{t('home.badge', { registry: bundle.version, site: siteVersion })} · {t('home.canonical')}</p>
+  <!-- HERO SECTION -->
+  <section class="py-8 sm:py-14 border-b border-hoba-border overflow-hidden">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hoba-border bg-hoba-card text-xs font-mono text-hoba-muted mb-6 max-w-full flex-wrap">
+      <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse shrink-0"></span>
+      <span class="wordmark font-bold">hoba</span>
+      <span>·</span>
+      <span class="truncate">{t('home.badge', { registry: bundle.version, site: siteVersion })}</span>
+      <span>·</span>
+      <span class="text-hoba-text font-medium truncate">{t('home.canonical')}</span>
+    </div>
 
-    <h1 class="mt-4 max-w-4xl text-3xl font-semibold text-hoba-text text-balance">
+    <h1 class="max-w-4xl text-2xl sm:text-4xl lg:text-5xl font-bold text-hoba-text tracking-tight leading-tight text-balance break-words">
       {t('home.h1.before')}<span class="text-hoba-accent">{t('home.h1.accent')}</span>.
     </h1>
 
-    <p class="mt-6 max-w-3xl text-lg text-hoba-muted" set:html={branded(t('home.what', { n: totalNodes }))} />
+    <p class="mt-6 max-w-3xl text-base sm:text-xl text-hoba-muted leading-relaxed break-words" set:html={branded(t('home.what', { n: totalNodes }))} />
 
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href={`${prefix}/analyze`} class="btn btn-primary">{t('home.cta.primary')} →</a>
-      <a href={`${prefix}/registry`} class="btn btn-secondary">{t('home.cta.secondary', { n: totalNodes })}</a>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href={`${prefix}/analyze`} class="btn btn-primary text-sm sm:text-base px-4 sm:px-5 py-2.5 shadow-sm">{t('home.cta.primary')} →</a>
+      <a href={`${prefix}/registry`} class="btn btn-secondary text-sm sm:text-base px-4 py-2.5">{t('home.cta.secondary', { n: totalNodes })}</a>
     </div>
 
-    <dl class="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
+    <!-- Accessible 4-Metric Definition List -->
+    <dl class="mt-10 sm:mt-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
       {stats.map((s) => (
-        <div>
-          <dt class="meta">{s.label}</dt>
-          <dd class="mt-1 text-2xl font-semibold font-mono text-hoba-text tabular-nums">{s.n}</dd>
+        <div class="p-3 sm:p-4 rounded-xl border border-hoba-border bg-hoba-card min-w-0">
+          <dt class="text-[11px] sm:text-xs font-semibold uppercase tracking-normal sm:tracking-wider text-hoba-muted break-words">{s.label}</dt>
+          <dd class="mt-1.5 sm:mt-2 text-2xl sm:text-3xl font-bold font-mono text-hoba-text tabular-nums">{s.n}</dd>
         </div>
       ))}
     </dl>
   </section>
 
-  <section class="py-12 border-b border-hoba-border">
-    <p class="kicker">{t('home.problem.title')}</p>
-    <h2 class="mt-1 max-w-3xl text-2xl font-semibold text-hoba-text text-balance">{t('home.problem.heading')}</h2>
-    <p class="mt-4 max-w-3xl text-lg text-hoba-muted">{t('home.problem')}</p>
-  </section>
+  <!-- THE PROBLEM & WHAT HOBA GIVES -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border">
+    <div class="max-w-3xl mb-8">
+      <p class="kicker">{t('home.problem.title')}</p>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text text-balance">
+        {t('home.problem.heading')}
+      </h2>
+      <p class="mt-3 text-base text-hoba-muted leading-relaxed">{t('home.problem')}</p>
+    </div>
 
-  <section class="py-12 border-b border-hoba-border">
-    <h2 class="text-2xl font-semibold text-hoba-text text-balance">{t('home.gives.title')}</h2>
-    <ol class="mt-8 grid grid-cols-1 gap-x-12 gap-y-8 lg:grid-cols-3">
+    <ol class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {(['1', '2', '3'] as const).map((n, i) => (
-        <li>
-          <p class="font-mono text-sm text-hoba-accent" aria-hidden="true">{String(i + 1).padStart(2, '0')}</p>
-          <h3 class="mt-2 text-lg font-semibold text-hoba-text text-balance">{t(`home.gives.${n}.title`)}</h3>
-          <p class="mt-2 text-base text-hoba-muted">{t(`home.gives.${n}.text`)}</p>
+        <li class="p-6 rounded-xl border border-hoba-border bg-hoba-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-semibold text-hoba-accent">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-3 text-lg font-semibold text-hoba-text">{t(`home.gives.${n}.title`)}</h3>
+            <p class="mt-2 text-sm text-hoba-muted leading-relaxed">{t(`home.gives.${n}.text`)}</p>
+          </div>
         </li>
       ))}
     </ol>
   </section>
 
-  <section class="py-12 border-b border-hoba-border">
-    <p class="kicker">{t('home.case.kicker')}</p>
-    <h2 class="mt-1 text-2xl font-semibold text-hoba-text text-balance max-w-3xl">{t('home.case.title')}</h2>
-    <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.case.sub')}</p>
+  <!-- GUIDED PERSONA PATHWAYS -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border">
+    <div class="max-w-2xl mb-8">
+      <p class="kicker">{t('home.gives.title')}</p>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text text-balance break-words">
+        {lang === 'uk' ? 'Маршрути для різних ролей' : 'Role-Specific Pathways'}
+      </h2>
+    </div>
 
-    <div class="mt-8 grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
-      <Specimen specimen={caseSpecimen} lang={lang} />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {personas.map((p) => (
+        <a href={p.href} class="group p-6 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent hover:shadow-md transition-all flex flex-col justify-between no-underline">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl" aria-hidden="true">{p.icon}</span>
+              <span class="pill pill-muted text-xs font-mono">{p.badge}</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+              {p.title}
+            </h3>
+            <p class="mt-2 text-sm text-hoba-muted leading-relaxed">
+              {p.desc}
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-hoba-border/60 flex items-center text-sm font-medium text-hoba-accent">
+            <span>{p.cta}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 
-      <div class="lg:pt-6 space-y-6">
-        <div>
-          <h3 class="text-base font-semibold text-hoba-text">{t('home.case.establishes')}</h3>
-          <p class="mt-1 text-base text-hoba-muted">{t('home.case.establishesText')}</p>
+  <!-- THE 4-STEP HOBA PROTOCOL -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border">
+    <div class="max-w-3xl mb-10">
+      <p class="kicker">{t('home.protocol.kicker')}</p>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text" set:html={branded(t('home.protocol.title'))} />
+      <p class="mt-2 text-base text-hoba-muted">{t('home.protocol.sub')}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {steps.map((s) => (
+        <div class="p-5 rounded-xl border border-hoba-border bg-hoba-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg font-mono text-sm font-bold bg-hoba-accent/10 text-hoba-accent">
+                {s.letter}
+              </span>
+              <span class="font-mono text-xs text-hoba-muted">{s.stepNum}</span>
+            </div>
+            <h3 class="mt-4 text-base font-semibold text-hoba-text">
+              {t(`home.step.${s.k}.title`)}
+            </h3>
+            <p class="mt-2 text-xs sm:text-sm text-hoba-muted leading-relaxed">
+              {t(`home.step.${s.k}.text`)}
+            </p>
+          </div>
+          <div class="mt-6 pt-3 border-t border-hoba-border/60">
+            <span class="font-mono text-[11px] text-hoba-accent font-medium">{t(`home.step.${s.k}.out`)}</span>
+          </div>
         </div>
-        <div class="callout border-l-hoba-exogenous my-0">
+      ))}
+    </div>
+  </section>
+
+  <!-- FORENSIC CASE DEMONSTRATION -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border">
+    <div class="max-w-3xl mb-8">
+      <p class="kicker">{t('home.case.kicker')}</p>
+      <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text text-balance">{t('home.case.title')}</h2>
+      <p class="mt-2 text-base text-hoba-muted">{t('home.case.sub')}</p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.8fr)] items-start">
+      <!-- Specimen card -->
+      <div class="rounded-xl border border-hoba-border bg-hoba-card overflow-hidden">
+        <div class="px-4 py-2.5 bg-hoba-bg border-b border-hoba-border flex items-center justify-between">
+          <span class="font-mono text-xs text-hoba-accent font-semibold">{caseArtifact.id}</span>
+          <span class="text-xs text-hoba-muted font-mono">{caseArtifact.stages.join(' · ')}</span>
+        </div>
+        <div class="p-4 sm:p-5">
+          <Specimen specimen={caseSpecimen} lang={lang} />
+        </div>
+      </div>
+
+      <!-- Epistemic breakdown -->
+      <div class="space-y-6">
+        <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+          <h3 class="text-base font-semibold text-hoba-text">{t('home.case.establishes')}</h3>
+          <p class="mt-1 text-sm text-hoba-muted leading-relaxed">{t('home.case.establishesText')}</p>
+        </div>
+
+        <div class="callout border-l-hoba-exogenous rounded-xl my-0">
           <h3 class="text-base font-semibold text-hoba-text">{asHeading(t('art.nonInf'))}</h3>
-          <ul class="mt-2 list-disc pl-5 space-y-1 text-base text-hoba-muted">
+          <ul class="mt-2 list-disc pl-5 space-y-1 text-sm text-hoba-muted leading-relaxed">
             {caseArtifact.non_inferences.map((ni) => <li>{ni}</li>)}
           </ul>
         </div>
+
+        <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+          <h3 class="text-base font-semibold text-hoba-text">{t('home.case.behind')}</h3>
+          <p class="mt-1 text-xs text-hoba-muted">{t('home.case.behindText')}</p>
+          <ul class="row-list divide-y divide-hoba-border mt-3">
+            {caseMechanisms.map((m) => (
+              <li class="py-2.5">
+                <a href={`${prefix}/mechanisms/${m.id}`} class="group flex flex-col gap-1 hover:bg-hoba-hover -mx-2 p-2 rounded-md transition-colors no-underline">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 min-w-0">
+                      <span class="font-mono text-xs font-semibold text-hoba-accent shrink-0">{m.id}</span>
+                      <span class="text-sm text-hoba-text font-medium group-hover:text-hoba-accent transition-colors break-words">{m.title}</span>
+                    </div>
+                    <RemovabilityBadge removability={m.facets.removability} lang={lang} />
+                  </div>
+                  <span class="text-xs text-hoba-muted leading-relaxed break-words">{m.summary}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-4 pt-3 border-t border-hoba-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="text-xs text-hoba-muted break-words">{t('home.case.agencyText')}</p>
+            <a href={`${prefix}/artifacts/${caseArtifact.id}`} class="btn btn-secondary text-xs shrink-0 self-start sm:self-auto">{t('home.case.cta')} →</a>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="mt-10">
-      <h3 class="text-base font-semibold text-hoba-text">{t('home.case.behind')}</h3>
-      <p class="mt-1 text-base text-hoba-muted max-w-3xl">{t('home.case.behindText')}</p>
-      <ul class="row-list mt-3">
-        {caseMechanisms.map((m) => (
-          <li>
-            <a href={`${prefix}/mechanisms/${m.id}`} class="row-link">
-              <span class="font-mono text-sm text-hoba-accent shrink-0">{m.id}</span>
-              <span class="text-hoba-text">{m.title}</span>
-              <span class="ml-auto shrink-0"><RemovabilityBadge removability={m.facets.removability} lang={lang} /></span>
-              <span class="w-full text-sm text-hoba-muted">{m.summary}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <p class="mt-4 text-base text-hoba-muted max-w-3xl">{t('home.case.agencyText')}</p>
-      <a href={`${prefix}/artifacts/${caseArtifact.id}`} class="btn btn-secondary mt-5">{t('home.case.cta')} →</a>
-    </div>
   </section>
 
-  <section class="py-12 border-b border-hoba-border">
-    <p class="kicker">{t('home.protocol.kicker')}</p>
-    <h2 class="mt-1 text-2xl font-semibold text-hoba-text" set:html={branded(t('home.protocol.title'))} />
-    <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.protocol.sub')}</p>
-    <ol class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10">
-      {steps.map((s) => (
-        <li>
-          <h3 class="flex items-baseline gap-2 text-lg font-semibold text-hoba-text">
-            <span class="font-mono text-hoba-accent" aria-hidden="true">{s.letter}</span>
-            <span>{t(`home.step.${s.k}.title`)}</span>
-          </h3>
-          <p class="mt-2 text-base text-hoba-muted">{t(`home.step.${s.k}.text`)}</p>
-          <p class="mt-3 text-sm font-mono text-hoba-muted">{t(`home.step.${s.k}.out`)}</p>
-        </li>
-      ))}
-    </ol>
-  </section>
-
-  <section class="py-12 border-b border-hoba-border">
-    <div class="flex flex-wrap items-end justify-between gap-4">
+  <!-- NAMED CONTRADICTION PATTERNS -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
       <div>
         <p class="kicker">{t('home.patterns.kicker')}</p>
-        <h2 class="mt-1 text-2xl font-semibold text-hoba-text">{t('home.patterns.title')}</h2>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-semibold text-hoba-text">{t('home.patterns.title')}</h2>
         <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('home.patterns.sub')}</p>
       </div>
-      <a href={`${prefix}/patterns`} class="text-sm text-hoba-accent underline underline-offset-2">{t('home.patterns.all')} →</a>
+      <a href={`${prefix}/patterns`} class="btn btn-secondary text-sm">{t('home.patterns.all')} →</a>
     </div>
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {bundle.patterns.map((p) => (
-        <article>
-          <h3 class="flex flex-wrap items-baseline gap-x-3">
-            <span class="font-mono text-sm text-hoba-accent">{p.id}</span>
-            <a href={`${prefix}/patterns/${p.id}`} class="text-lg font-semibold text-hoba-text hover:text-hoba-accent transition-colors">{p.title}</a>
-          </h3>
-          <p class="mt-2 text-base text-hoba-muted">{p.summary}</p>
-          <p class="mt-2 text-sm text-hoba-muted"><span class="text-hoba-text">{asHeading(t('patterns.trigger'))}:</span> {p.trigger_rule}</p>
+        <article class="p-5 rounded-xl border border-hoba-border bg-hoba-card flex flex-col justify-between hover:border-hoba-accent transition-colors">
+          <div>
+            <div class="flex items-baseline justify-between gap-2">
+              <span class="font-mono text-xs font-semibold text-hoba-accent">{p.id}</span>
+              <span class="pill pill-muted text-xs font-mono">{p.required_artifacts.length} {lang === 'uk' ? 'спостереження' : 'signals'}</span>
+            </div>
+            <h3 class="mt-2">
+              <a href={`${prefix}/patterns/${p.id}`} class="text-base font-semibold text-hoba-text hover:text-hoba-accent transition-colors">{p.title}</a>
+            </h3>
+            <p class="mt-2 text-xs sm:text-sm text-hoba-muted leading-relaxed">{p.summary}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-hoba-border/60 text-xs text-hoba-muted">
+            <span class="text-hoba-text font-medium">{asHeading(t('patterns.trigger'))}:</span> {p.trigger_rule}
+          </div>
         </article>
       ))}
     </div>
   </section>
 
-  <section class="py-12 border-b border-hoba-border grid gap-x-12 gap-y-8 lg:grid-cols-2">
-    <div>
+  <!-- METHODOLOGICAL BOUNDARIES & DEVELOPERS -->
+  <section class="py-12 sm:py-16 border-b border-hoba-border grid gap-8 lg:grid-cols-2">
+    <div class="rounded-xl border border-hoba-border bg-hoba-card p-6">
       <p class="kicker">{t('home.not.kicker')}</p>
-      <h2 class="mt-1 text-2xl font-semibold text-hoba-text">{t('home.not.title')}</h2>
-      <ul class="mt-4 row-list">
+      <h2 class="mt-1 text-xl sm:text-2xl font-semibold text-hoba-text">{t('home.not.title')}</h2>
+      <ul class="mt-4 space-y-2.5">
         {(['1', '2', '3', '4', '5'] as const).map((n) => (
-          <li class="row text-base text-hoba-muted">{t(`method.nongoals.${n}`)}</li>
+          <li class="flex items-start gap-2.5 text-sm text-hoba-muted">
+            <svg class="w-4 h-4 text-hoba-exogenous shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            <span>{t(`method.nongoals.${n}`)}</span>
+          </li>
         ))}
       </ul>
     </div>
-    <div class="lg:pt-12">
-      <h2 class="text-2xl font-semibold text-hoba-text">{t('home.dev.title')}</h2>
-      <p class="mt-2 text-base text-hoba-muted">{t('home.dev.text')}</p>
-      <div class="mt-5 flex flex-wrap gap-3">
-        <a href={`${prefix}/developers`} class="btn btn-secondary">{t('nav.developers')}</a>
-        <a href="/data/latest/registry.json" target="_blank" class="btn btn-ghost font-mono">registry.json</a>
+
+    <div class="rounded-xl border border-hoba-border bg-hoba-card p-6 flex flex-col justify-between">
+      <div>
+        <span class="pill pill-muted text-xs font-mono">Open Infrastructure</span>
+        <h2 class="mt-3 text-xl sm:text-2xl font-semibold text-hoba-text">{t('home.dev.title')}</h2>
+        <p class="mt-2 text-sm text-hoba-muted leading-relaxed">{t('home.dev.text')}</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-hoba-border flex flex-wrap gap-3">
+        <a href={`${prefix}/developers`} class="btn btn-secondary text-sm">{t('nav.developers')}</a>
+        <a href="/data/latest/registry.json" target="_blank" class="btn btn-ghost font-mono text-sm">registry.json</a>
+        <a href="/openapi.json" target="_blank" class="btn btn-ghost font-mono text-sm">openapi.json</a>
       </div>
     </div>
   </section>
 
-  <section class="py-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-    <div>
-      <h2 class="text-2xl font-semibold text-hoba-text">{t('home.cta2.title')}</h2>
-      <p class="mt-2 text-base text-hoba-muted max-w-xl">{t('home.cta2.sub')}</p>
+  <!-- BOTTOM CALL TO ACTION BANNER -->
+  <section class="py-12 sm:py-16 rounded-2xl border border-hoba-border bg-hoba-card/60 p-5 sm:p-10 my-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 overflow-hidden">
+    <div class="max-w-2xl min-w-0">
+      <h2 class="text-2xl sm:text-3xl font-bold text-hoba-text break-words">{t('home.cta2.title')}</h2>
+      <p class="mt-2 text-base text-hoba-muted break-words">{t('home.cta2.sub')}</p>
     </div>
-    <div class="flex flex-wrap gap-3 md:shrink-0">
-      <a href={`${prefix}/analyze`} class="btn btn-primary" set:html={branded(t('home.cta2.start'))} />
-      <a href={`${prefix}/methodology`} class="btn btn-secondary">{t('home.cta2.method')}</a>
+    <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:shrink-0 max-w-full">
+      <a href={`${prefix}/analyze`} class="btn btn-primary text-sm sm:text-base px-4 sm:px-5 py-2.5 shadow-sm text-center break-words" set:html={branded(t('home.cta2.start'))} />
+      <a href={`${prefix}/methodology`} class="btn btn-secondary text-sm sm:text-base px-4 py-2.5 text-center">{t('home.cta2.method')}</a>
     </div>
   </section>
 </Layout>

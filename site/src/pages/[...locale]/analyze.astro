@@ -29,169 +29,263 @@ const WIZ_KEYS = [
 ] as const;
 const i18n = JSON.stringify({ prefix, lang, ...clientDictionary(lang, WIZ_KEYS) }).replace(/</g, '\\u003c');
 
-const tabs = [
-  { k: 'h', letter: 'H' },
-  { k: 'o', letter: 'O' },
-  { k: 'b', letter: 'B' },
-  { k: 'a', letter: 'A' },
+const ARTIFACT_CATEGORIES = [
+  { id: 'messages', key: 'analyze.cat.messages', icon: '📬', ids: ['A-002', 'A-008', 'A-010', 'A-020'] },
+  { id: 'delays', key: 'analyze.cat.delays', icon: '⏳', ids: ['A-001', 'A-005', 'A-007', 'A-016'] },
+  { id: 'listings', key: 'analyze.cat.listings', icon: '📋', ids: ['A-004', 'A-018', 'A-021'] },
+  { id: 'tasks', key: 'analyze.cat.tasks', icon: '📝', ids: ['A-003', 'A-009', 'A-012', 'A-019'] },
+  { id: 'offers', key: 'analyze.cat.offers', icon: '💰', ids: ['A-006', 'A-011', 'A-013', 'A-014', 'A-015', 'A-017'] },
 ] as const;
+
+const SCENARIO_ICONS: Record<string, string> = {
+  'ghost-refresh': '👻',
+  'ats-knockout': '🤖',
+  'post-panel-freeze': '🧊',
+  'downlevelling-trap': '📉',
+};
+
+const tabs = [
+  { k: 'h', letter: 'H', stepNum: '1', title: t('analyze.tab.h') },
+  { k: 'o', letter: 'O', stepNum: '2', title: t('analyze.tab.o') },
+  { k: 'b', letter: 'B', stepNum: '3', title: t('analyze.tab.b') },
+  { k: 'a', letter: 'A', stepNum: '4', title: t('analyze.tab.a') },
+] as const;
+
 const zones = [
-  { key: 'candidate', count: 'count-candidate', list: 'list-candidate', rule: 'border-l-hoba-candidate' },
-  { key: 'intermediary', count: 'count-intermediary', list: 'list-intermediary', rule: 'border-l-hoba-intermediary' },
-  { key: 'none', count: 'count-noagency', list: 'list-noagency', rule: 'border-l-hoba-exogenous' },
+  { key: 'candidate', count: 'count-candidate', list: 'list-candidate', rule: 'border-l-hoba-candidate', bg: 'bg-hoba-candidate/5' },
+  { key: 'intermediary', count: 'count-intermediary', list: 'list-intermediary', rule: 'border-l-hoba-intermediary', bg: 'bg-hoba-intermediary/5' },
+  { key: 'none', count: 'count-noagency', list: 'list-noagency', rule: 'border-l-hoba-exogenous', bg: 'bg-hoba-exogenous/5' },
 ] as const;
 ---
 <Layout lang={lang} title={t('analyze.title')} activeNav="analyze">
   <PageHeader kicker={t('analyze.kicker', { version: bundle.version })} title={t('analyze.heading')} lead={t('analyze.intro')}>
-      <p slot="actions" class="flex items-center gap-2 text-sm text-hoba-muted"><span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('analyze.privacy')}</p>
-    </PageHeader>
+    <p slot="actions" class="flex items-center gap-2 text-sm text-hoba-muted"><span class="dot bg-hoba-candidate" aria-hidden="true"></span>{t('analyze.privacy')}</p>
+  </PageHeader>
 
-  <div>
-    <div class="flex flex-wrap gap-2 mb-8" role="tablist">
+  <div class="mt-4">
+    <!-- Structured Wizard Navigation Stepper -->
+    <nav class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-8" aria-label="Wizard Steps" role="tablist">
       {tabs.map((tab) => (
-        <button id={`tab-${tab.k}`} data-step={tab.k} class="wizard-tab pill" role="tab">
-          <span class="font-mono">{tab.letter}</span>
-          <span>{t(`analyze.tab.${tab.k}`)}</span>
+        <button
+          id={`tab-${tab.k}`}
+          data-step={tab.k}
+          class="wizard-tab group relative flex flex-col items-start p-3 sm:p-4 rounded-lg border border-hoba-border bg-hoba-card text-left transition-all hover:border-hoba-accent/50 focus:outline-none focus:ring-2 focus:ring-hoba-accent cursor-pointer"
+          role="tab"
+          aria-selected={tab.k === 'h'}
+        >
+          <div class="flex items-center justify-between w-full">
+            <span class="step-badge inline-flex items-center justify-center w-6 h-6 rounded-full font-mono text-xs font-semibold bg-hoba-border text-hoba-muted group-hover:text-hoba-text transition-colors">
+              {tab.letter}
+            </span>
+            <span class="text-[11px] font-mono text-hoba-muted tabular-nums">0{tab.stepNum}</span>
+          </div>
+          <span class="mt-2 text-sm font-medium text-hoba-text truncate w-full">{tab.title}</span>
         </button>
       ))}
-    </div>
+    </nav>
 
+    <!-- STEP H: Hard Facts -->
     <section id="step-h" class="wizard-step space-y-8">
-      <div>
-        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.h.title')}</h2>
+      <div class="border-b border-hoba-border pb-4">
+        <h2 class="text-2xl font-semibold text-hoba-text">{t('analyze.h.title')}</h2>
         <p class="mt-1 text-base text-hoba-muted">{t('analyze.h.sub')}</p>
       </div>
 
-      <div class="space-y-2">
-        <span class="text-xs font-semibold uppercase tracking-wider text-hoba-muted">{t('analyze.scenarios.label')}</span>
-        <div class="flex flex-wrap gap-2">
+      <!-- Quick Preset Scenarios Grid -->
+      <div class="rounded-xl border border-hoba-border bg-hoba-card/60 p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="text-xs font-semibold uppercase tracking-wider text-hoba-accent flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            {t('analyze.scenarios.label')}
+          </span>
+          <span class="text-xs text-hoba-muted">{t('analyze.scenarios.badge')}</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {EMPIRICAL_SCENARIOS.map((sc) => (
             <button
               type="button"
-              class="scenario-preset pill pill-muted whitespace-normal break-words max-w-full text-left font-sans text-xs cursor-pointer hover:border-hoba-accent hover:text-hoba-accent transition-colors"
+              class="scenario-preset group flex flex-col p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card transition-all text-left cursor-pointer"
               data-scenario-id={sc.id}
               data-stage={sc.stage ?? ''}
               data-artifacts={JSON.stringify(sc.artifacts)}
               title={sc.summary}
             >
-              <span class="dot bg-hoba-accent shrink-0" aria-hidden="true"></span>
-              <span>{t(`analyze.scenarios.${sc.id}`)}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-lg" aria-hidden="true">{SCENARIO_ICONS[sc.id] ?? '📌'}</span>
+                <span class="text-sm font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors leading-tight">
+                  {t(`analyze.scenarios.${sc.id}`)}
+                </span>
+              </div>
+              <p class="mt-1.5 text-xs text-hoba-muted line-clamp-2 leading-relaxed">{sc.summary}</p>
+              <span class="mt-auto pt-2 text-[11px] font-mono text-hoba-accent font-medium">
+                {sc.artifacts.length} {lang === 'uk' ? 'спостережень' : 'signals'} {sc.stage ? `· ${t(`stage.${sc.stage}`)}` : ''}
+              </span>
             </button>
           ))}
         </div>
       </div>
 
-      <fieldset>
-        <legend class="text-sm font-medium text-hoba-muted mb-2">{t('analyze.h.stageLegend')}</legend>
+      <!-- Stage Selector -->
+      <fieldset class="rounded-xl border border-hoba-border bg-hoba-card/60 p-4 sm:p-5">
+        <legend class="text-xs font-semibold uppercase tracking-wider text-hoba-text px-1 mb-2">{t('analyze.h.stageLegend')}</legend>
         <div class="flex flex-wrap gap-1.5">
           {stagesWithBarriers.map((st) => (
-            <label class="pill-toggle">
+            <label class="pill-toggle cursor-pointer">
               <input type="radio" name="stage_select" value={st} />
-              <span class="pill-label">{t(`stage.${st}`)}</span>
+              <span class="pill-label text-xs sm:text-sm">{t(`stage.${st}`)}</span>
             </label>
           ))}
         </div>
-        <p class="mt-2 text-sm text-hoba-muted">{t('analyze.h.stageHint')}</p>
+        <p class="mt-2.5 text-xs text-hoba-muted">{t('analyze.h.stageHint')}</p>
       </fieldset>
 
-      <div>
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-2">
-          <label for="artifact-search-input" class="text-sm font-medium text-hoba-muted">{t('analyze.h.selectSignals')}</label>
-          <input type="text" id="artifact-search-input" placeholder={t('analyze.h.filter')} class="w-full sm:w-72 px-3 py-1.5 bg-hoba-card border border-hoba-border rounded-md text-sm text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
+      <!-- Observations Catalog & Filter Bar -->
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-hoba-card p-3 rounded-lg border border-hoba-border">
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-hoba-text">{t('analyze.h.selectSignals')}</span>
+            <span id="selected-counter" class="pill pill-muted text-xs font-mono">0</span>
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <input
+              type="text"
+              id="artifact-search-input"
+              placeholder={t('analyze.h.filter')}
+              class="w-full sm:w-64 px-3 py-1.5 bg-hoba-bg border border-hoba-border rounded-md text-sm text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent"
+            />
+            <button id="clear-selected-btn" type="button" class="btn btn-ghost text-xs hidden shrink-0 cursor-pointer">
+              {lang === 'uk' ? 'Скинути вибір' : 'Clear'}
+            </button>
+          </div>
         </div>
-        <ul id="artifacts-list" class="row-list">
-          {bundle.artifacts.map((art) => (
-            <li class="artifact-item" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
-              <label class="row cursor-pointer hover:bg-hoba-hover -mx-2 px-2 rounded-md">
-                <input type="checkbox" name="artifacts_selected" value={art.id} class="checkbox mt-1" />
-                <span class="font-mono text-sm text-hoba-accent">{art.id}</span>
-                <span class="text-hoba-text">{art.title}</span>
-                <span class="w-full text-sm text-hoba-muted">{art.summary}</span>
-              </label>
-            </li>
-          ))}
-        </ul>
+
+        <!-- Categorized Observation Accordion / Groups -->
+        <div class="space-y-6" id="categorized-artifacts">
+          {ARTIFACT_CATEGORIES.map((cat) => {
+            const catArtifacts = bundle.artifacts.filter((a) => (cat.ids as readonly string[]).includes(a.id));
+            if (!catArtifacts.length) return null;
+            return (
+              <div class="artifact-category-group rounded-xl border border-hoba-border bg-hoba-card overflow-hidden">
+                <div class="flex items-center justify-between px-4 py-3 bg-hoba-bg/60 border-b border-hoba-border">
+                  <h3 class="flex items-center gap-2 text-sm font-semibold text-hoba-text">
+                    <span aria-hidden="true">{cat.icon}</span>
+                    <span>{t(cat.key as any)}</span>
+                  </h3>
+                  <span class="text-xs font-mono text-hoba-muted">{catArtifacts.length}</span>
+                </div>
+                <div class="p-3 grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                  {catArtifacts.map((art) => (
+                    <div class="artifact-item" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
+                      <label class="group relative flex items-start gap-3 p-3 rounded-lg border border-hoba-border/70 bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card/80 transition-all cursor-pointer h-full">
+                        <input type="checkbox" name="artifacts_selected" value={art.id} class="checkbox mt-1 shrink-0" />
+                        <div class="flex flex-col flex-1 min-w-0">
+                          <div class="flex items-baseline justify-between gap-2">
+                            <span class="font-mono text-xs font-semibold text-hoba-accent">{art.id}</span>
+                            <span class="text-[11px] font-mono text-hoba-muted">{art.stages.map((s) => t(`stage.${s}`)).join(' · ')}</span>
+                          </div>
+                          <span class="mt-1 text-sm font-medium text-hoba-text group-hover:text-hoba-accent transition-colors leading-snug">{art.title}</span>
+                          <span class="mt-1 text-xs text-hoba-muted line-clamp-2 leading-relaxed">{art.summary}</span>
+                        </div>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      <div class="pt-4 border-t border-hoba-border flex justify-end">
+      <div class="pt-6 border-t border-hoba-border flex items-center justify-between">
+        <span id="step-h-summary" class="text-sm text-hoba-muted font-mono"></span>
         <button data-goto="o" class="btn btn-primary">{t('analyze.h.next')}</button>
       </div>
     </section>
 
+    <!-- STEP O: Funnel Obstacle -->
     <section id="step-o" class="wizard-step hidden space-y-8">
-      <div>
-        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.o.title')}</h2>
+      <div class="border-b border-hoba-border pb-4">
+        <h2 class="text-2xl font-semibold text-hoba-text">{t('analyze.o.title')}</h2>
         <p class="mt-1 text-base text-hoba-muted">{t('analyze.o.sub')}</p>
       </div>
-      <div id="barriers-output"></div>
-      <div class="pt-4 border-t border-hoba-border flex justify-between">
+      <div id="barriers-output" class="space-y-4"></div>
+      <div class="pt-6 border-t border-hoba-border flex justify-between">
         <button data-goto="h" class="btn btn-secondary">{t('analyze.o.back')}</button>
         <button data-goto="b" class="btn btn-primary">{t('analyze.o.next')}</button>
       </div>
     </section>
 
+    <!-- STEP B: Behind the Obstacle -->
     <section id="step-b" class="wizard-step hidden space-y-8">
-      <div>
-        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.b.title')}</h2>
+      <div class="border-b border-hoba-border pb-4">
+        <h2 class="text-2xl font-semibold text-hoba-text">{t('analyze.b.title')}</h2>
         <p class="mt-1 text-base text-hoba-muted">{t('analyze.b.sub')}</p>
       </div>
-      <div>
-        <h3 class="section-title">{t('analyze.b.mechanisms')}</h3>
+
+      <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+        <h3 class="text-base font-semibold text-hoba-text mb-3">{t('analyze.b.mechanisms')}</h3>
         <div id="mechanisms-output"></div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-        <div>
-          <h3 class="section-title">{t('analyze.b.patterns')}</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+          <h3 class="text-base font-semibold text-hoba-text mb-3">{t('analyze.b.patterns')}</h3>
           <div id="patterns-output"></div>
         </div>
-        <div>
-          <h3 class="section-title">{t('analyze.b.loops')}</h3>
+        <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+          <h3 class="text-base font-semibold text-hoba-text mb-3">{t('analyze.b.loops')}</h3>
           <div id="loops-output"></div>
         </div>
       </div>
-      <div class="callout border-l-hoba-exogenous">
+
+      <div class="callout border-l-hoba-exogenous rounded-xl">
         <h3 class="text-base font-semibold text-hoba-text">{t('analyze.b.nonInf')}</h3>
-        <ul id="noninferences-output" class="mt-2 list-disc pl-5 space-y-1 text-base text-hoba-muted"></ul>
+        <ul id="noninferences-output" class="mt-2 list-disc pl-5 space-y-1 text-sm text-hoba-muted"></ul>
       </div>
-      <div class="pt-4 border-t border-hoba-border flex justify-between">
+
+      <div class="pt-6 border-t border-hoba-border flex justify-between">
         <button data-goto="o" class="btn btn-secondary">{t('analyze.b.back')}</button>
         <button data-goto="a" class="btn btn-primary">{t('analyze.b.next')}</button>
       </div>
     </section>
 
+    <!-- STEP A: Agency and Probes -->
     <section id="step-a" class="wizard-step hidden space-y-8">
-      <div>
-        <h2 class="text-xl font-semibold text-hoba-text">{t('analyze.a.title')}</h2>
+      <div class="border-b border-hoba-border pb-4">
+        <h2 class="text-2xl font-semibold text-hoba-text">{t('analyze.a.title')}</h2>
         <p class="mt-1 text-base text-hoba-muted">{t('analyze.a.sub')}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Agency 3-Zone Partition Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         {zones.map((zone) => (
-          <div class={`pl-4 border-l-2 ${zone.rule}`}>
-            <h3 class="flex items-baseline gap-2 text-base font-semibold text-hoba-text">
-              {t(`analyze.a.zone.${zone.key}`)}
-              <span id={zone.count} class="pill pill-muted tabular-nums">0</span>
-            </h3>
-            <p class="mt-1 text-sm text-hoba-muted">{t(`analyze.a.zone.${zone.key}.desc`)}</p>
-            <ul id={zone.list} class="row-list mt-2"></ul>
+          <div class={`p-4 rounded-xl border border-hoba-border ${zone.bg} border-l-4 ${zone.rule} flex flex-col`}>
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-semibold text-hoba-text">{t(`analyze.a.zone.${zone.key}`)}</h3>
+              <span id={zone.count} class="pill pill-muted font-mono font-semibold text-xs tabular-nums">0</span>
+            </div>
+            <p class="mt-1 text-xs text-hoba-muted">{t(`analyze.a.zone.${zone.key}.desc`)}</p>
+            <ul id={zone.list} class="row-list mt-3 space-y-1 text-sm"></ul>
           </div>
         ))}
       </div>
 
-      <div>
-        <h3 class="section-title">{t('analyze.a.probes')}</h3>
-        <ul id="probes-output" class="row-list"></ul>
+      <!-- Diagnostic Probes Interactive Section -->
+      <div class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+        <h3 class="text-base font-semibold text-hoba-text mb-2">{t('analyze.a.probes')}</h3>
+        <ul id="probes-output" class="row-list divide-y divide-hoba-border"></ul>
       </div>
 
       <div id="narrowing-output"></div>
       <div id="separation-output"></div>
 
-      <div id="verdict-banner" class="callout" aria-live="polite"></div>
+      <!-- Final Verdict Banner -->
+      <div id="verdict-banner" class="callout rounded-xl" aria-live="polite"></div>
 
-      <div class="pt-4 border-t border-hoba-border flex flex-wrap items-center justify-between gap-4">
+      <div class="pt-6 border-t border-hoba-border flex flex-wrap items-center justify-between gap-4">
         <button data-goto="b" class="btn btn-secondary">{t('analyze.a.back')}</button>
         <div class="flex items-center gap-3">
-          <span id="copy-status" class="text-sm text-hoba-muted" role="status"></span>
+          <span id="copy-status" class="text-sm text-hoba-muted font-mono" role="status"></span>
           <button id="btn-copy-report" class="btn btn-secondary">{t('analyze.a.copy')}</button>
           <button id="btn-reset" class="btn btn-ghost">{t('analyze.a.reset')}</button>
         </div>
@@ -233,8 +327,6 @@ const zones = [
 
     // Probe results the reader has recorded. Kept here rather than in the DOM
     // because a result outlives the markup that collected it: changing the
-    // observations re-renders the probe list, and an answer already given about
-    // a probe that is still in scope should survive that.
     const probeResults = new Map<string, string>();
 
     function collectInputs(): { artifacts: string[]; stage?: StageId; probe_results: ProbeResult[] } {
@@ -247,6 +339,19 @@ const zones = [
       };
     }
     const analyze = (): DiagnosticResult => engine.analyze(collectInputs());
+
+    function updateSelectionCounter() {
+      const inputs = collectInputs();
+      const count = inputs.artifacts.length;
+      const counter = $('selected-counter');
+      if (counter) counter.textContent = String(count);
+      const clearBtn = $('clear-selected-btn');
+      if (clearBtn) clearBtn.classList.toggle('hidden', count === 0);
+      const summary = $('step-h-summary');
+      if (summary) {
+        summary.textContent = count > 0 ? `${count} signals selected` : '';
+      }
+    }
 
     // Recording an outcome is an input, so it re-runs the analysis the same way
     // ticking an observation does.
@@ -264,21 +369,45 @@ const zones = [
       for (const s of STEPS) {
         $(`step-${s}`).classList.toggle('hidden', s !== step);
         const tab = $(`tab-${s}`);
-        tab.classList.toggle('pill-active', s === step);
-        tab.classList.toggle('pill-muted', s !== step);
-        tab.setAttribute('aria-selected', String(s === step));
+        const isActive = s === step;
+        tab.classList.toggle('border-hoba-accent', isActive);
+        tab.classList.toggle('bg-hoba-accent/10', isActive);
+        tab.setAttribute('aria-selected', String(isActive));
+        const badge = tab.querySelector('.step-badge');
+        if (badge) {
+          badge.classList.toggle('bg-hoba-accent', isActive);
+          badge.classList.toggle('text-white', isActive);
+          badge.classList.toggle('bg-hoba-border', !isActive);
+          badge.classList.toggle('text-hoba-muted', !isActive);
+        }
       }
       if (step === 'o') renderStepO();
       if (step === 'b') renderStepB();
       if (step === 'a') renderStepA();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     document.querySelectorAll<HTMLElement>('.wizard-tab').forEach((el) => el.addEventListener('click', () => setStep(el.dataset.step as Step)));
     document.querySelectorAll<HTMLElement>('[data-goto]').forEach((b) => b.addEventListener('click', () => setStep(b.dataset.goto as Step)));
 
-    $<HTMLInputElement>('artifact-search-input').addEventListener('input', (e) => {
+    $<HTMLInputElement>('artifact-search-input')?.addEventListener('input', (e) => {
       const q = (e.target as HTMLInputElement).value.toLowerCase().trim();
-      document.querySelectorAll<HTMLElement>('.artifact-item').forEach((el) => el.classList.toggle('hidden', Boolean(q) && !(el.dataset.search ?? '').includes(q)));
+      document.querySelectorAll<HTMLElement>('.artifact-item').forEach((el) => {
+        el.classList.toggle('hidden', Boolean(q) && !(el.dataset.search ?? '').includes(q));
+      });
+      document.querySelectorAll<HTMLElement>('.artifact-category-group').forEach((grp) => {
+        const visibleChildren = grp.querySelectorAll('.artifact-item:not(.hidden)');
+        grp.classList.toggle('hidden', Boolean(q) && visibleChildren.length === 0);
+      });
+    });
+
+    document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]').forEach((chk) => {
+      chk.addEventListener('change', updateSelectionCounter);
+    });
+
+    $('clear-selected-btn')?.addEventListener('click', () => {
+      document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]').forEach((chk) => (chk.checked = false));
+      updateSelectionCounter();
     });
 
     const stageLabel = (s: string) => t(`stage.${s}`);
@@ -295,7 +424,7 @@ const zones = [
         container.innerHTML = empty(t('wiz.noGate'));
         return;
       }
-      container.innerHTML = `<ul class="row-list">${res.obstacle.identified_barriers
+      container.innerHTML = `<ul class="row-list divide-y divide-hoba-border">${res.obstacle.identified_barriers
         .map((b) =>
           row(b.id, `${prefix}/barriers/${b.id}`, b.title, [pill(stageLabel(b.stage)), pill(t('wiz.gate', { n: b.order }))],
             `${b.description} — ${t('wiz.passCondition')} ${b.pass_condition}`)
@@ -306,7 +435,7 @@ const zones = [
     function renderStepB() {
       const res = analyze();
       $('mechanisms-output').innerHTML = res.behind.compatible_mechanisms.length
-        ? `<ul class="row-list">${res.behind.compatible_mechanisms
+        ? `<ul class="row-list divide-y divide-hoba-border">${res.behind.compatible_mechanisms
             .map((m) =>
               row(m.mechanism.id, `${prefix}/mechanisms/${m.mechanism.id}`, m.mechanism.title, [
                 ...(m.honest_baseline ? [pill(t('wiz.honestBaseline'))] : []),
@@ -318,11 +447,11 @@ const zones = [
         : empty(t('wiz.noMechanisms'));
 
       $('patterns-output').innerHTML = res.behind.related_patterns.length
-        ? `<ul class="row-list">${res.behind.related_patterns.map((p) => row(p.id, `${prefix}/patterns/${p.id}`, p.title, [], p.summary)).join('')}</ul>`
+        ? `<ul class="row-list divide-y divide-hoba-border">${res.behind.related_patterns.map((p) => row(p.id, `${prefix}/patterns/${p.id}`, p.title, [], p.summary)).join('')}</ul>`
         : empty(t('wiz.noPatterns'));
 
       $('loops-output').innerHTML = res.behind.related_loops.length
-        ? `<ul class="row-list">${res.behind.related_loops.map((l) => row(l.id, `${prefix}/loops/${l.id}`, l.title, [], l.summary)).join('')}</ul>`
+        ? `<ul class="row-list divide-y divide-hoba-border">${res.behind.related_loops.map((l) => row(l.id, `${prefix}/loops/${l.id}`, l.title, [], l.summary)).join('')}</ul>`
         : empty(t('wiz.noLoops'));
 
       $('noninferences-output').innerHTML = (res.behind.non_inferences.length ? res.behind.non_inferences : [t('wiz.noNonInf')])
@@ -333,7 +462,7 @@ const zones = [
     const agencyList = (items: DiagnosticResult['agency']['candidate_removable']) =>
       items.length
         ? items.map((m) => row(m.id, `${prefix}/mechanisms/${m.id}`, m.title, [])).join('')
-        : `<li class="row text-hoba-muted text-sm">${esc(t('wiz.noneIdentified'))}</li>`;
+        : `<li class="row text-hoba-muted text-xs">${esc(t('wiz.noneIdentified'))}</li>`;
 
     function summaryText(res: DiagnosticResult): string {
       if (res.hard_facts.selected_artifacts.length === 0) return t('wiz.summaryNoObs');
@@ -355,73 +484,75 @@ const zones = [
             .map((p) => `
               <li class="py-3">
                 <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span class="font-mono text-sm text-hoba-accent">${esc(t('wiz.probe', { id: p.id }))}</span>
+                  <span class="font-mono text-xs font-semibold text-hoba-accent">${esc(t('wiz.probe', { id: p.id }))}</span>
                   <span class="ml-auto">${pill(t('wiz.cost', { cost: t(`cost.${p.cost}`) }))}</span>
                 </div>
-                <p class="mt-1 text-base text-hoba-text"><span class="text-hoba-muted">${esc(t('wiz.action'))}</span> ${esc(p.action)}</p>
-                <p class="mt-0.5 text-base text-hoba-muted"><span class="text-hoba-text">${esc(t('wiz.expectedSignal'))}</span> ${esc(p.expected_signal)}</p>
+                <p class="mt-1 text-sm font-medium text-hoba-text"><span class="text-hoba-muted font-normal">${esc(t('wiz.action'))}</span> ${esc(p.action)}</p>
+                <p class="mt-0.5 text-xs text-hoba-muted"><span class="text-hoba-text font-medium">${esc(t('wiz.expectedSignal'))}</span> ${esc(p.expected_signal)}</p>
                 ${p.outcomes.length === 0 ? '' : `
-                <p class="mt-2 text-sm text-hoba-muted">${esc(t('wiz.ranIt'))}</p>
-                <div class="mt-1 flex flex-wrap gap-1.5">
+                <p class="mt-2 text-xs font-medium text-hoba-muted">${esc(t('wiz.ranIt'))}</p>
+                <div class="mt-1.5 flex flex-wrap gap-1.5">
                   ${p.outcomes
                     .map((o) => `
-                      <button type="button" class="pill probe-outcome" data-probe="${esc(p.id)}" data-outcome="${esc(o.id)}"
+                      <button type="button" class="pill probe-outcome text-xs font-medium ${probeResults.get(p.id) === o.id ? 'pill-active' : 'pill-muted'}" data-probe="${esc(p.id)}" data-outcome="${esc(o.id)}"
                         aria-pressed="${probeResults.get(p.id) === o.id}">${esc(o.label)}</button>`)
                     .join('')}
-                  ${probeResults.has(p.id) ? `<button type="button" class="pill probe-outcome" data-probe="${esc(p.id)}" data-outcome="" aria-pressed="false">${esc(t('wiz.clearProbe'))}</button>` : ''}
+                  ${probeResults.has(p.id) ? `<button type="button" class="pill probe-outcome text-xs pill-ghost" data-probe="${esc(p.id)}" data-outcome="" aria-pressed="false">${esc(t('wiz.clearProbe'))}</button>` : ''}
                 </div>`}
               </li>`)
             .join('')
-        : `<li class="row text-hoba-muted text-sm">${esc(t('wiz.noProbes'))}</li>`;
+        : `<li class="row text-hoba-muted text-xs">${esc(t('wiz.noProbes'))}</li>`;
 
       const { narrowing, separation } = res.behind;
       $('narrowing-output').innerHTML = narrowing.steps.length === 0
         ? ''
         : [
-            `<h3 class="section-title mt-8">${esc(t('wiz.narrowing'))}</h3>`,
-            `<p class="text-base text-hoba-muted">${esc(t('wiz.narrowingFrom', { n: res.behind.compatible_before_probes.length }))}</p>`,
-            '<ol class="row-list mt-2">',
+            `<div class="rounded-xl border border-hoba-border bg-hoba-card p-5 mt-6">`,
+            `<h3 class="text-base font-semibold text-hoba-text">${esc(t('wiz.narrowing'))}</h3>`,
+            `<p class="text-xs text-hoba-muted mt-1">${esc(t('wiz.narrowingFrom', { n: res.behind.compatible_before_probes.length }))}</p>`,
+            '<ol class="row-list divide-y divide-hoba-border mt-3">',
             ...narrowing.steps.map((step) => `
-              <li class="py-3">
+              <li class="py-2.5">
                 <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span class="font-mono text-sm text-hoba-accent">${esc(step.probe)}</span>
-                  <span class="text-hoba-text">${esc(step.label)}</span>
+                  <span class="font-mono text-xs font-semibold text-hoba-accent">${esc(step.probe)}</span>
+                  <span class="text-sm font-medium text-hoba-text">${esc(step.label)}</span>
                   <span class="ml-auto">${pill(t('wiz.remaining', { n: step.remaining }))}</span>
                 </p>
-                <p class="mt-1 text-base text-hoba-muted">${
+                <p class="mt-1 text-xs text-hoba-muted">${
                   step.eliminated.length
                     ? esc(t('wiz.ruledOut', { ids: step.eliminated.join(', ') }))
                     : esc(t('wiz.ruledNothing'))
                 }</p>
-                ${step.because ? `<p class="mt-0.5 text-sm text-hoba-muted">${esc(step.because)}</p>` : ''}
+                ${step.because ? `<p class="mt-0.5 text-xs text-hoba-muted italic">${esc(step.because)}</p>` : ''}
               </li>`),
-            '</ol>',
+            '</ol></div>',
           ].join('');
 
-      // The honest half: what running everything available would still not decide.
       $('separation-output').innerHTML = separation.indistinguishable_groups.length === 0 && separation.minimal_probes.length === 0
         ? ''
         : [
-            `<h3 class="section-title mt-8">${esc(t('wiz.limits'))}</h3>`,
+            `<div class="rounded-xl border border-hoba-border bg-hoba-card p-5 mt-6">`,
+            `<h3 class="text-base font-semibold text-hoba-text">${esc(t('wiz.limits'))}</h3>`,
             separation.minimal_probes.length
-              ? `<p class="text-base text-hoba-muted">${esc(t('wiz.minimalProbes', { ids: separation.minimal_probes.join(', ') }))}</p>`
+              ? `<p class="text-xs text-hoba-muted mt-1">${esc(t('wiz.minimalProbes', { ids: separation.minimal_probes.join(', ') }))}</p>`
               : res.agency.diagnostic_probes.length
-                ? `<p class="text-base text-hoba-muted max-w-3xl">${esc(t('wiz.settlesNothing'))}</p>`
+                ? `<p class="text-xs text-hoba-muted max-w-3xl mt-1">${esc(t('wiz.settlesNothing'))}</p>`
                 : '',
             separation.indistinguishable_groups.length
-              ? `<p class="mt-2 text-base text-hoba-muted">${esc(t('wiz.cannotSeparate'))}</p><ul class="row-list mt-1">` +
+              ? `<p class="mt-2 text-xs text-hoba-muted">${esc(t('wiz.cannotSeparate'))}</p><ul class="row-list mt-1">` +
                 separation.indistinguishable_groups
-                  .map((g) => `<li class="row text-base"><span class="font-mono text-sm text-hoba-accent">${esc(g.join(' / '))}</span></li>`)
+                  .map((g) => `<li class="row text-xs"><span class="font-mono text-hoba-accent">${esc(g.join(' / '))}</span></li>`)
                   .join('') +
                 '</ul>'
               : '',
+            '</div>',
           ].join('');
 
       const banner = $('verdict-banner');
       const zone = zoneLabel(res.agency.agency_zone);
       const low = res.verdict === 'low_signal_ambiguity';
-      banner.className = `callout ${low ? 'border-l-hoba-intermediary' : 'border-l-hoba-accent'}`;
-      banner.innerHTML = `<p class="text-base text-hoba-text"><strong>${esc(low ? t('wiz.stop', { zone }) : t('wiz.verdict', { zone }))}</strong> ${esc(summaryText(res))} ${esc(low ? t('wiz.stopTail') : t('wiz.verdictTail'))}</p>`;
+      banner.className = `callout rounded-xl ${low ? 'border-l-hoba-intermediary bg-hoba-intermediary/5' : 'border-l-hoba-accent bg-hoba-accent/5'}`;
+      banner.innerHTML = `<p class="text-sm text-hoba-text leading-relaxed"><strong>${esc(low ? t('wiz.stop', { zone }) : t('wiz.verdict', { zone }))}</strong> ${esc(summaryText(res))} ${esc(low ? t('wiz.stopTail') : t('wiz.verdictTail'))}</p>`;
     }
 
     $('btn-copy-report').addEventListener('click', async () => {
@@ -461,7 +592,7 @@ const zones = [
         `> ${t('wiz.disclaimer')}`,
         '',
       ].join('\n');
-      // A modal alert would freeze the page; the status line is announced instead.
+
       const status = $('copy-status');
       try {
         await navigator.clipboard.writeText(md);
@@ -475,6 +606,7 @@ const zones = [
     $('btn-reset').addEventListener('click', () => {
       probeResults.clear();
       document.querySelectorAll<HTMLInputElement>('input[type="checkbox"], input[type="radio"]').forEach((el) => (el.checked = false));
+      updateSelectionCounter();
       setStep('h');
     });
 
@@ -492,10 +624,12 @@ const zones = [
           el.checked = targetArtifacts.includes(el.value);
         });
 
+        updateSelectionCounter();
         setStep('h');
       });
     });
 
+    updateSelectionCounter();
     setStep('h');
   </script>
 </Layout>

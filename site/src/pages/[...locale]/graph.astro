@@ -297,6 +297,7 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
         },
         onSelect: (node) => renderPanel(node),
       });
+      (window as any).__graphView = view;
 
       // ---- details panel ---------------------------------------------------
 

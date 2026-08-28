@@ -3,8 +3,24 @@ import { expect, test, type Page } from '@playwright/test';
 
 /** Walk the canvas until the pointer lands on a node (the tooltip is the tell). */
 async function hoverANode(page: Page): Promise<void> {
-  const box = (await page.locator('#graph-canvas').boundingBox())!;
+  const canvas = page.locator('#graph-canvas');
+  await canvas.scrollIntoViewIfNeeded();
   const tooltip = page.locator('#graph-tooltip');
+
+  // Find a visible node coordinate from the graph view
+  const point = await page.evaluate(() => {
+    const view = (window as any).__graphView;
+    const node = view?.nodes?.find((n: any) => !n.hidden && n.sx > 50 && n.sy > 50);
+    return node ? { x: node.sx, y: node.sy } : null;
+  });
+
+  if (point) {
+    await canvas.hover({ position: { x: Math.round(point.x), y: Math.round(point.y) } });
+    await expect(tooltip).toBeVisible();
+    return;
+  }
+
+  const box = (await canvas.boundingBox())!;
   for (let gy = 0.15; gy < 0.9; gy += 0.03) {
     for (let gx = 0.05; gx < 0.95; gx += 0.02) {
       await page.mouse.move(box.x + box.width * gx, box.y + box.height * gy);
@@ -71,8 +87,18 @@ test.describe('knowledge graph explorer', () => {
 
     await hoverANode(page);
     const hoveredId = await page.locator('#tip-id').textContent();
-    await page.mouse.down();
-    await page.mouse.up();
+    const canvas = page.locator('#graph-canvas');
+    const point = await page.evaluate(() => {
+      const view = (window as any).__graphView;
+      const node = view?.nodes?.find((n: any) => !n.hidden && n.sx > 50 && n.sy > 50);
+      return node ? { x: node.sx, y: node.sy } : null;
+    });
+    if (point) {
+      await canvas.click({ position: { x: Math.round(point.x), y: Math.round(point.y) } });
+    } else {
+      await page.mouse.down();
+      await page.mouse.up();
+    }
 
     await expect(panel).not.toHaveAttribute('inert', '');
     await expect(panel.locator('#panel-id')).toHaveText(hoveredId!);

@@ -36,6 +36,13 @@ const REASON_CODES = [
 const KEYS = [
   'check.result', 'check.empty', 'check.stops', 'check.noStop', 'check.undetermined',
   'check.v.passes', 'check.v.fails', 'check.v.undetermined', 'check.v.unsatisfiable',
+  'check.preset.label', 'check.preset.perfect', 'check.preset.impossible', 'check.preset.salary',
+  'check.preset.auth', 'check.preset.missingSkills',
+  'check.turnaround.title', 'check.turnaround.desc', 'check.turnaround.wf', 'check.turnaround.state',
+  'check.turnaround.days', 'check.turnaround.nominal', 'check.turnaround.breach', 'check.turnaround.stalled',
+  'check.turnaround.normal', 'check.runway.title', 'check.runway.desc', 'check.runway.savings',
+  'check.runway.burn', 'check.runway.horizon', 'check.runway.risk.high', 'check.runway.risk.medium',
+  'check.runway.risk.safe', 'check.runway.infinite',
   ...REASON_CODES.map((c) => `check.r.${c}` as const),
 ] as const;
 
@@ -44,6 +51,7 @@ const KEYS = [
 const ideal = bundle.workflows.find((w) => w.id === 'WF-003');
 const payload = JSON.stringify({
   prefix,
+  lang,
   ...clientDictionary(lang, KEYS),
   states: Object.fromEntries((ideal?.states ?? []).map((s) => [s.id, s.title])),
   gates: Object.fromEntries(bundle.barriers.map((b) => [b.id, b.title])),
@@ -52,32 +60,130 @@ const payload = JSON.stringify({
     id: w.id,
     title: w.title,
     states: w.states.map((s) => ({ id: s.id, title: s.title })),
-    transitions: w.transitions.map((t) => ({
-      from: t.from,
-      to: t.to,
-      expected: t.latency_expected_days ?? 3,
-      max: t.latency_max_days ?? 14,
+    transitions: w.transitions.map((tr) => ({
+      from: tr.from,
+      to: tr.to,
+      expected: tr.latency_expected_days ?? 3,
+      max: tr.latency_max_days ?? 14,
     })),
   })),
 }).replace(/</g, '\\u003c');
 
 const you = [
-  { id: 'years', label: t('check.years'), type: 'number' },
-  { id: 'skills', label: t('check.skills'), type: 'text' },
-  { id: 'authorised', label: t('check.authorised'), type: 'text' },
-  { id: 'located', label: t('check.located'), type: 'text' },
-  { id: 'expectation', label: t('check.expectation'), type: 'number' },
+  { id: 'years', label: t('check.years'), placeholder: t('check.placeholders.years'), type: 'number' },
+  { id: 'skills', label: t('check.skills'), placeholder: t('check.placeholders.skills'), type: 'text' },
+  { id: 'authorised', label: t('check.authorised'), placeholder: t('check.placeholders.authorised'), type: 'text' },
+  { id: 'located', label: t('check.located'), placeholder: t('check.placeholders.located'), type: 'text' },
+  { id: 'expectation', label: t('check.expectation'), placeholder: t('check.placeholders.expectation'), type: 'number' },
 ] as const;
 
 const posting = [
-  { id: 'requiredYears', label: t('check.requiredYears'), type: 'number' },
-  { id: 'requiredSkills', label: t('check.requiredSkills'), type: 'text' },
-  { id: 'requiresAuth', label: t('check.requiresAuth'), type: 'text' },
-  { id: 'hiringLocations', label: t('check.hiringLocations'), type: 'text' },
-  { id: 'bandMin', label: t('check.bandMin'), type: 'number' },
-  { id: 'bandMax', label: t('check.bandMax'), type: 'number' },
-  { id: 'technologyAge', label: t('check.technologyAge'), type: 'number', hint: t('check.technologyHint') },
+  { id: 'requiredYears', label: t('check.requiredYears'), placeholder: t('check.placeholders.requiredYears'), type: 'number' },
+  { id: 'requiredSkills', label: t('check.requiredSkills'), placeholder: t('check.placeholders.requiredSkills'), type: 'text' },
+  { id: 'requiresAuth', label: t('check.requiresAuth'), placeholder: t('check.placeholders.requiresAuth'), type: 'text' },
+  { id: 'hiringLocations', label: t('check.hiringLocations'), placeholder: t('check.placeholders.hiringLocations'), type: 'text' },
+  { id: 'bandMin', label: t('check.bandMin'), placeholder: t('check.placeholders.bandMin'), type: 'number' },
+  { id: 'bandMax', label: t('check.bandMax'), placeholder: t('check.placeholders.bandMax'), type: 'number' },
+  { id: 'technologyAge', label: t('check.technologyAge'), placeholder: t('check.placeholders.technologyAge'), type: 'number', hint: t('check.technologyHint') },
 ] as const;
+
+const presets = [
+  {
+    id: 'perfect',
+    label: t('check.preset.perfect'),
+    icon: '🟢',
+    data: {
+      years: '7',
+      skills: 'TypeScript, React, Node.js, PostgreSQL, Docker',
+      authorised: 'US, EU, UK',
+      located: lang === 'uk' ? 'Київ, Україна' : 'London, UK',
+      expectation: '120000',
+      requiredYears: '5',
+      requiredSkills: 'TypeScript, React, PostgreSQL',
+      requiresAuth: lang === 'uk' ? 'EU' : 'UK',
+      hiringLocations: lang === 'uk' ? 'Remote, EU' : 'Remote, UK',
+      bandMin: '100000',
+      bandMax: '140000',
+      technologyAge: '12',
+    },
+  },
+  {
+    id: 'impossible',
+    label: t('check.preset.impossible'),
+    icon: '🔴',
+    data: {
+      years: '4',
+      skills: 'Next.js 15, Bun, Tailwind CSS',
+      authorised: 'US, EU',
+      located: 'Remote',
+      expectation: '95000',
+      requiredYears: '8',
+      requiredSkills: 'Next.js 15, Bun',
+      requiresAuth: '',
+      hiringLocations: 'Remote',
+      bandMin: '80000',
+      bandMax: '110000',
+      technologyAge: '3',
+    },
+  },
+  {
+    id: 'salary',
+    label: t('check.preset.salary'),
+    icon: '🟡',
+    data: {
+      years: '8',
+      skills: 'Go, Kubernetes, Distributed Systems',
+      authorised: 'US, EU',
+      located: 'Berlin',
+      expectation: '150000',
+      requiredYears: '6',
+      requiredSkills: 'Go, Kubernetes',
+      requiresAuth: 'EU',
+      hiringLocations: 'EU, Remote',
+      bandMin: '110000',
+      bandMax: '130000',
+      technologyAge: '10',
+    },
+  },
+  {
+    id: 'auth',
+    label: t('check.preset.auth'),
+    icon: '🚫',
+    data: {
+      years: '5',
+      skills: 'Python, AWS, FastAPI',
+      authorised: 'UA, EU',
+      located: lang === 'uk' ? 'Київ, Україна' : 'Kyiv, Ukraine',
+      expectation: '80000',
+      requiredYears: '4',
+      requiredSkills: 'Python, AWS',
+      requiresAuth: 'US',
+      hiringLocations: 'US (On-site NYC)',
+      bandMin: '90000',
+      bandMax: '120000',
+      technologyAge: '6',
+    },
+  },
+  {
+    id: 'missingSkills',
+    label: t('check.preset.missingSkills'),
+    icon: '📋',
+    data: {
+      years: '6',
+      skills: 'Python, Django, PostgreSQL',
+      authorised: 'US, EU',
+      located: 'Remote',
+      expectation: '100000',
+      requiredYears: '5',
+      requiredSkills: 'Python, Django, GraphQL, Kubernetes, Apache Kafka',
+      requiresAuth: '',
+      hiringLocations: 'Remote',
+      bandMin: '95000',
+      bandMax: '125000',
+      technologyAge: '10',
+    },
+  },
+];
 ---
 <Layout lang={lang} title={t('check.title')} description={t('check.intro')} activeNav="check">
   <PageHeader kicker={t('check.kicker')} title={t('check.title')} lead={t('check.intro')}>
@@ -86,82 +192,135 @@ const posting = [
     </p>
   </PageHeader>
 
-  <div class="callout border-l-hoba-accent">
-    <p class="text-base text-hoba-muted max-w-3xl">{t('check.notAboutYou')}</p>
-    <p class="mt-2 text-sm text-hoba-muted max-w-3xl">{t('check.noCompany')}</p>
+  <div class="callout border-l-hoba-accent rounded-xl">
+    <p class="text-sm sm:text-base text-hoba-muted max-w-3xl">{t('check.notAboutYou')}</p>
+    <p class="mt-2 text-xs sm:text-sm text-hoba-muted max-w-3xl">{t('check.noCompany')}</p>
+  </div>
+
+  <!-- Interactive Preset Templates Bar -->
+  <div class="my-8 p-5 rounded-2xl border border-hoba-border bg-hoba-card/80">
+    <div class="flex items-center justify-between gap-3 mb-3">
+      <span class="text-xs font-semibold uppercase tracking-wider text-hoba-muted font-mono">
+        {t('check.preset.label')}
+      </span>
+      <button type="button" id="btn-clear-check" class="text-xs text-hoba-muted hover:text-hoba-accent underline underline-offset-2 transition-colors">
+        {lang === 'uk' ? 'Очистити форму' : 'Clear Form'}
+      </button>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {presets.map((preset) => (
+        <button
+          type="button"
+          class="btn-preset pill pill-muted hover:border-hoba-accent hover:text-hoba-text text-xs py-1.5 px-3 flex items-center gap-1.5 transition-all"
+          data-preset={JSON.stringify(preset.data)}
+        >
+          <span>{preset.icon}</span>
+          <span class="font-medium">{preset.label}</span>
+        </button>
+      ))}
+    </div>
   </div>
 
   <form id="check-form" class="section grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2" autocomplete="off">
-    <fieldset>
-      <legend class="section-title">{t('check.you')}</legend>
-      {you.map((field) => (
-        <p class="mt-3">
-          <label for={field.id} class="block text-sm text-hoba-muted">{field.label}</label>
-          <input id={field.id} name={field.id} type={field.type} inputmode={field.type === 'number' ? 'numeric' : undefined} class="check-input" />
-        </p>
-      ))}
+    <!-- Column 1: Candidate Side -->
+    <fieldset class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+      <legend class="text-base font-semibold text-hoba-text px-2">{t('check.you')}</legend>
+      <div class="space-y-4 mt-2">
+        {you.map((field) => (
+          <div>
+            <label for={field.id} class="block text-xs font-medium text-hoba-muted mb-1">{field.label}</label>
+            <input
+              id={field.id}
+              name={field.id}
+              type={field.type}
+              inputmode={field.type === 'number' ? 'numeric' : undefined}
+              placeholder={field.placeholder}
+              class="check-input w-full"
+            />
+          </div>
+        ))}
+      </div>
     </fieldset>
 
-    <fieldset>
-      <legend class="section-title">{t('check.posting')}</legend>
-      {posting.map((field) => (
-        <p class="mt-3">
-          <label for={field.id} class="block text-sm text-hoba-muted">{field.label}</label>
-          <input id={field.id} name={field.id} type={field.type} inputmode={field.type === 'number' ? 'numeric' : undefined} class="check-input" />
-          {'hint' in field && field.hint && <span class="mt-1 block text-xs text-hoba-muted">{field.hint}</span>}
-        </p>
-      ))}
+    <!-- Column 2: Employer Posting Side -->
+    <fieldset class="rounded-xl border border-hoba-border bg-hoba-card p-5">
+      <legend class="text-base font-semibold text-hoba-text px-2">{t('check.posting')}</legend>
+      <div class="space-y-4 mt-2">
+        {posting.map((field) => (
+          <div>
+            <label for={field.id} class="block text-xs font-medium text-hoba-muted mb-1">{field.label}</label>
+            <input
+              id={field.id}
+              name={field.id}
+              type={field.type}
+              inputmode={field.type === 'number' ? 'numeric' : undefined}
+              placeholder={field.placeholder}
+              class="check-input w-full"
+            />
+            {'hint' in field && field.hint && <span class="mt-1 block text-xs text-hoba-muted">{field.hint}</span>}
+          </div>
+        ))}
+      </div>
     </fieldset>
   </form>
 
+  <!-- Section 1: Arithmetic Conformance Results -->
   <section class="section">
-    <h2 class="section-title">{t('check.result')}</h2>
+    <div class="border-b border-hoba-border pb-3 mb-6">
+      <h2 class="text-xl font-semibold text-hoba-text">{t('check.result')}</h2>
+    </div>
     <div id="check-verdict" aria-live="polite"></div>
-    <ul id="check-gates" class="row-list mt-4"></ul>
+    <ul id="check-gates" class="row-list divide-y divide-hoba-border mt-4"></ul>
   </section>
 
-  <section class="section border-t border-hoba-border pt-10">
-    <h2 class="section-title">Stage Turnaround & Dwell Anomaly Diagnoser</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">
-      Evaluate whether elapsed waiting time in your current funnel stage exceeds nominal turnaround bounds, and identify hidden mechanisms operating during stalled delays.
-    </p>
+  <!-- Section 2: Temporal Latency & Dwell Anomaly Diagnoser -->
+  <section class="section border-t border-hoba-border pt-12">
+    <div class="max-w-3xl mb-6">
+      <h2 class="text-xl font-semibold text-hoba-text">{t('check.turnaround.title')}</h2>
+      <p class="text-sm text-hoba-muted mt-1 leading-relaxed">
+        {t('check.turnaround.desc')}
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-xl border border-hoba-border bg-hoba-card p-5">
       <div>
-        <label for="latency-wf" class="block text-sm text-hoba-muted">Workflow</label>
-        <select id="latency-wf" class="check-input bg-hoba-card">
+        <label for="latency-wf" class="block text-xs font-medium text-hoba-muted mb-1">{t('check.turnaround.wf')}</label>
+        <select id="latency-wf" class="check-input w-full bg-hoba-bg text-sm">
           {bundle.workflows.map((w) => (
             <option value={w.id}>{w.id} — {w.title}</option>
           ))}
         </select>
       </div>
       <div>
-        <label for="latency-state" class="block text-sm text-hoba-muted">Current State</label>
-        <select id="latency-state" class="check-input bg-hoba-card"></select>
+        <label for="latency-state" class="block text-xs font-medium text-hoba-muted mb-1">{t('check.turnaround.state')}</label>
+        <select id="latency-state" class="check-input w-full bg-hoba-bg text-sm"></select>
       </div>
       <div>
-        <label for="latency-days" class="block text-sm text-hoba-muted">Elapsed Days</label>
-        <input id="latency-days" type="number" min="0" value="7" class="check-input" />
+        <label for="latency-days" class="block text-xs font-medium text-hoba-muted mb-1">{t('check.turnaround.days')}</label>
+        <input id="latency-days" type="number" min="0" value="7" class="check-input w-full text-sm" />
       </div>
     </div>
 
     <div id="latency-result" class="mt-6" aria-live="polite"></div>
   </section>
 
-  <section class="section border-t border-hoba-border pt-10">
-    <h2 class="section-title">Candidate Runway & Solvency Calculator</h2>
-    <p class="text-base text-hoba-muted max-w-3xl">
-      Assess your search horizon and exposure to down-levelling pressure (M-017) and uncalibrated bets (P-004) under current baseline burn.
-    </p>
+  <!-- Section 3: Candidate Runway & Solvency Calculator -->
+  <section class="section border-t border-hoba-border pt-12">
+    <div class="max-w-3xl mb-6">
+      <h2 class="text-xl font-semibold text-hoba-text">{t('check.runway.title')}</h2>
+      <p class="text-sm text-hoba-muted mt-1 leading-relaxed">
+        {t('check.runway.desc')}
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl border border-hoba-border bg-hoba-card p-5">
       <div>
-        <label for="runway-savings" class="block text-sm text-hoba-muted">Liquid Savings ($ or €)</label>
-        <input id="runway-savings" type="number" min="0" value="24000" class="check-input" />
+        <label for="runway-savings" class="block text-xs font-medium text-hoba-muted mb-1">{t('check.runway.savings')}</label>
+        <input id="runway-savings" type="number" min="0" value="24000" class="check-input w-full text-sm" />
       </div>
       <div>
-        <label for="runway-burn" class="block text-sm text-hoba-muted">Monthly Baseline Burn ($ or €)</label>
-        <input id="runway-burn" type="number" min="1" value="3500" class="check-input" />
+        <label for="runway-burn" class="block text-xs font-medium text-hoba-muted mb-1">{t('check.runway.burn')}</label>
+        <input id="runway-burn" type="number" min="1" value="3500" class="check-input w-full text-sm" />
       </div>
     </div>
 
@@ -176,6 +335,7 @@ const posting = [
     const form = document.getElementById('check-form') as HTMLFormElement | null;
     if (raw && form) {
       const data = JSON.parse(raw) as Record<string, any>;
+      const lang = data.lang ?? 'en';
       const t = (key: string, vars: Record<string, string | number> = {}) =>
         String(data[key] ?? key).replace(/\{(\w+)\}/g, (_, name: string) => (name in vars ? String(vars[name]) : `{${name}}`));
       const esc = (value: string) =>
@@ -195,10 +355,10 @@ const posting = [
           .filter(Boolean);
 
       const TONE: Record<string, string> = {
-        passes: 'border-l-hoba-barrier',
-        fails: 'border-l-hoba-exogenous',
-        undetermined: 'border-l-hoba-intermediary',
-        unsatisfiable: 'border-l-hoba-loop',
+        passes: 'border-l-hoba-barrier bg-hoba-barrier/5',
+        fails: 'border-l-hoba-exogenous bg-hoba-exogenous/5',
+        undetermined: 'border-l-hoba-intermediary bg-hoba-intermediary/5',
+        unsatisfiable: 'border-l-hoba-loop bg-hoba-loop/5',
       };
 
       function render() {
@@ -224,7 +384,7 @@ const posting = [
         const gates = document.getElementById('check-gates')!;
 
         if (report.gates.length === 0) {
-          verdict.innerHTML = `<p class="text-base text-hoba-muted">${esc(t('check.empty'))}</p>`;
+          verdict.innerHTML = `<p class="text-sm sm:text-base text-hoba-muted">${esc(t('check.empty'))}</p>`;
           gates.innerHTML = '';
           return;
         }
@@ -232,7 +392,7 @@ const posting = [
         const lines: string[] = [];
         if (report.stops_at) {
           lines.push(
-            `<p class="callout border-l-hoba-exogenous text-base text-hoba-text">${esc(
+            `<p class="callout rounded-xl border-l-hoba-exogenous bg-hoba-exogenous/5 text-sm sm:text-base text-hoba-text">${esc(
               t('check.stops', {
                 gate: `${report.stops_at.gate} — ${data.gates[report.stops_at.gate] ?? report.stops_at.gate}`,
                 state: data.states[report.stops_at.state] ?? report.stops_at.state,
@@ -240,29 +400,29 @@ const posting = [
             )}</p>`
           );
         } else {
-          lines.push(`<p class="text-base text-hoba-muted max-w-3xl">${esc(t('check.noStop'))}</p>`);
+          lines.push(`<p class="text-sm sm:text-base text-hoba-muted max-w-3xl">${esc(t('check.noStop'))}</p>`);
         }
         if (report.undetermined > 0) {
-          lines.push(`<p class="mt-2 text-sm text-hoba-muted">${esc(t('check.undetermined', { n: report.undetermined }))}</p>`);
+          lines.push(`<p class="mt-2 text-xs sm:text-sm text-hoba-muted">${esc(t('check.undetermined', { n: report.undetermined }))}</p>`);
         }
         verdict.innerHTML = lines.join('');
 
         gates.innerHTML = report.gates
           .map((gate) => `
-            <li class="py-3">
-              <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <a href="${data.prefix}/barriers/${gate.gate}" class="font-mono text-sm text-hoba-accent">${esc(gate.gate)}</a>
-                <span class="text-hoba-text">${esc(data.gates[gate.gate] ?? gate.gate)}</span>
-                <span class="pill pill-muted ml-auto">${esc(t(`check.v.${gate.verdict}`))}</span>
-              </p>
-              <p class="callout ${TONE[gate.verdict]} my-2 text-base text-hoba-muted">${esc(
+            <li class="py-3.5">
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <a href="${data.prefix}/barriers/${gate.gate}" class="font-mono text-xs font-semibold text-hoba-accent">${esc(gate.gate)}</a>
+                <span class="text-sm font-medium text-hoba-text">${esc(data.gates[gate.gate] ?? gate.gate)}</span>
+                <span class="pill pill-muted ml-auto text-xs">${esc(t(`check.v.${gate.verdict}`))}</span>
+              </div>
+              <p class="callout ${TONE[gate.verdict]} rounded-lg my-2 text-xs sm:text-sm text-hoba-text">${esc(
                 t(`check.r.${gate.reason.code}`, gate.reason.params)
               )}</p>
-              <ul class="flex flex-wrap gap-1.5">
+              <ul class="flex flex-wrap gap-1.5 mt-2">
                 ${gate.mechanisms
                   .map(
                     (m) =>
-                      `<li><a href="${data.prefix}/mechanisms/${m}" class="pill pill-muted font-mono" title="${esc(
+                      `<li><a href="${data.prefix}/mechanisms/${m}" class="pill pill-muted font-mono text-xs hover:border-hoba-accent transition-colors" title="${esc(
                         data.mechanisms[m] ?? m
                       )}">${esc(m)}</a></li>`
                   )
@@ -273,6 +433,27 @@ const posting = [
       }
 
       form.addEventListener('input', render);
+
+      // Preset click handlers
+      document.querySelectorAll<HTMLButtonElement>('.btn-preset').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const rawPreset = btn.dataset.preset;
+          if (!rawPreset) return;
+          const values = JSON.parse(rawPreset) as Record<string, string>;
+          for (const [key, val] of Object.entries(values)) {
+            const input = form.elements.namedItem(key) as HTMLInputElement | null;
+            if (input) input.value = val;
+          }
+          render();
+        });
+      });
+
+      document.getElementById('btn-clear-check')?.addEventListener('click', () => {
+        form.reset();
+        document.querySelectorAll<HTMLInputElement>('#check-form input').forEach((inp) => (inp.value = ''));
+        render();
+      });
+
       render();
 
       // Temporal Latency Calculator
@@ -298,51 +479,60 @@ const posting = [
         const stateId = stateSelect.value;
         const days = Number(daysInput.value) || 0;
 
-        const transitions = currentWf.transitions.filter((t: any) => t.from === stateId);
+        const transitions = currentWf.transitions.filter((tr: any) => tr.from === stateId);
         if (transitions.length === 0) {
-          latencyResult.innerHTML = `<p class="text-sm text-hoba-muted">Terminal state or no outgoing transitions from ${esc(stateId)}.</p>`;
+          const terminalMsg = lang === 'uk'
+            ? `Кінцевий стан або відсутні вихідні переходи з ${esc(stateId)}.`
+            : `Terminal state or no outgoing transitions from ${esc(stateId)}.`;
+          latencyResult.innerHTML = `<p class="text-xs sm:text-sm text-hoba-muted">${terminalMsg}</p>`;
           return;
         }
 
-        const cards = transitions.map((t: any) => {
-          let severity = 'nominal';
-          let badge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-emerald-500" aria-hidden="true"></span>Nominal Turnaround</span>';
-          let calloutTone = 'border-l-emerald-500';
-          let note = 'Dwell is within expected operational turnaround.';
+        const cards = transitions.map((tr: any) => {
+          let badge = `<span class="pill pill-muted font-mono text-xs"><span class="dot bg-emerald-500" aria-hidden="true"></span>${esc(t('check.turnaround.nominal'))}</span>`;
+          let calloutTone = 'border-l-emerald-500 bg-emerald-500/5';
+          let note = t('check.turnaround.normal', { expected: tr.expected });
           let implicated: string[] = [];
 
-          if (days > t.max) {
-            severity = 'stalled_anomalous';
-            badge = '<span class="pill pill-muted font-mono text-xs font-semibold"><span class="dot bg-rose-500" aria-hidden="true"></span>Stalled / Anomalous Delay</span>';
-            calloutTone = 'border-l-rose-500';
-            note = `Dwell (${days}d) strictly exceeds nominal max bound (${t.max}d). Hidden frictional mechanisms likely operating.`;
-            if (t.from.includes('queue') || t.from.includes('publish') || t.from.includes('received')) {
+          if (days > tr.max) {
+            badge = `<span class="pill pill-muted font-mono text-xs font-semibold text-rose-400"><span class="dot bg-rose-500" aria-hidden="true"></span>${esc(t('check.turnaround.breach'))}</span>`;
+            calloutTone = 'border-l-rose-500 bg-rose-500/5';
+            note = t('check.turnaround.stalled', { max: tr.max });
+            if (tr.from.includes('queue') || tr.from.includes('publish') || tr.from.includes('received')) {
               implicated = ['M-006', 'M-020', 'M-025'];
-            } else if (t.from.includes('screen') || t.from.includes('technical') || t.from.includes('panel')) {
+            } else if (tr.from.includes('screen') || tr.from.includes('technical') || tr.from.includes('panel')) {
               implicated = ['M-009', 'M-019', 'M-022'];
-            } else if (t.from.includes('offer') || t.from.includes('verification')) {
+            } else if (tr.from.includes('offer') || tr.from.includes('verification')) {
               implicated = ['M-007', 'M-027'];
             }
-          } else if (days > t.expected) {
-            severity = 'delayed';
-            badge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-amber-500" aria-hidden="true"></span>Delayed Beyond Expected</span>';
-            calloutTone = 'border-l-amber-500';
-            note = `Turnaround exceeds expected average (${t.expected}d), approaching max bound (${t.max}d).`;
+          } else if (days > tr.expected) {
+            const delayLabel = lang === 'uk' ? 'Перевищення очікуваного часу' : 'Delayed Beyond Expected';
+            const delayMsg = lang === 'uk'
+              ? `Час очікування перевищує середній (${tr.expected} дн.), наближаючись до максимального порогу (${tr.max} дн.).`
+              : `Turnaround exceeds expected average (${tr.expected}d), approaching max bound (${tr.max}d).`;
+            badge = `<span class="pill pill-muted font-mono text-xs text-amber-400"><span class="dot bg-amber-500" aria-hidden="true"></span>${delayLabel}</span>`;
+            calloutTone = 'border-l-amber-500 bg-amber-500/5';
+            note = delayMsg;
           }
 
+          const statsLine = lang === 'uk'
+            ? `Очікувано: ${tr.expected} дн. · Макс. поріг: ${tr.max} дн. · Минуло: ${days} дн.`
+            : `Expected: ${tr.expected} days · Max bound: ${tr.max} days · Elapsed: ${days} days`;
+          const implicatedLabel = lang === 'uk' ? 'Причетні механізми:' : 'Implicated Mechanisms:';
+
           return `
-            <div class="callout ${calloutTone} my-3">
+            <div class="callout ${calloutTone} rounded-xl my-3 p-4">
               <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <span class="font-mono text-sm font-medium text-hoba-text">${esc(t.from)} → ${esc(t.to)}</span>
+                <span class="font-mono text-xs sm:text-sm font-semibold text-hoba-text">${esc(tr.from)} → ${esc(tr.to)}</span>
                 ${badge}
               </div>
-              <p class="text-xs text-hoba-muted mt-1">Expected: ${t.expected} days · Max bound: ${t.max} days · Elapsed: ${days} days</p>
-              <p class="text-sm text-hoba-text mt-2">${esc(note)}</p>
+              <p class="text-xs text-hoba-muted mt-1 font-mono">${statsLine}</p>
+              <p class="text-xs sm:text-sm text-hoba-text mt-2 leading-relaxed">${esc(note)}</p>
               ${implicated.length > 0 ? `
-                <div class="mt-3">
-                  <span class="text-xs text-hoba-muted uppercase tracking-wider font-semibold">Implicated Mechanisms:</span>
+                <div class="mt-3 pt-2 border-t border-hoba-border/40">
+                  <span class="text-[11px] text-hoba-muted uppercase tracking-wider font-semibold">${implicatedLabel}</span>
                   <div class="flex flex-wrap gap-1.5 mt-1">
-                    ${implicated.map((m) => `<a href="${data.prefix}/mechanisms/${m}" class="pill pill-muted font-mono text-xs">${esc(m)}</a>`).join('')}
+                    ${implicated.map((m) => `<a href="${data.prefix}/mechanisms/${m}" class="pill pill-muted font-mono text-xs hover:border-hoba-accent transition-colors">${esc(m)}</a>`).join('')}
                   </div>
                 </div>
               ` : ''}
@@ -369,27 +559,27 @@ const posting = [
         const burn = Number(burnInput.value) || 1;
         const months = savings / burn;
 
-        let statusBadge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-emerald-500" aria-hidden="true"></span>Solvent (6+ Months)</span>';
-        let tone = 'border-l-emerald-500';
-        let assessment = 'Runway exceeds nominal multi-stage search horizon. Strong bargaining autonomy.';
+        let statusBadge = `<span class="pill pill-muted font-mono text-xs"><span class="dot bg-emerald-500" aria-hidden="true"></span>${lang === 'uk' ? 'Стабільний запас (6+ міс.)' : 'Solvent (6+ Months)'}</span>`;
+        let tone = 'border-l-emerald-500 bg-emerald-500/5';
+        let assessment = t('check.runway.risk.safe');
 
         if (months < 3) {
-          statusBadge = '<span class="pill pill-muted font-mono text-xs font-semibold"><span class="dot bg-rose-500" aria-hidden="true"></span>Acute Exhaustion Vulnerability</span>';
-          tone = 'border-l-rose-500';
-          assessment = 'Acute vulnerability: search duration approaches reserve depletion. High susceptibility to down-levelling pressure (M-017) and 0-bit gambles (P-004).';
+          statusBadge = `<span class="pill pill-muted font-mono text-xs font-semibold text-rose-400"><span class="dot bg-rose-500" aria-hidden="true"></span>${lang === 'uk' ? 'Критичний фінансовий ризик' : 'Acute Vulnerability'}</span>`;
+          tone = 'border-l-rose-500 bg-rose-500/5';
+          assessment = t('check.runway.risk.high');
         } else if (months < 6) {
-          statusBadge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-amber-500" aria-hidden="true"></span>Moderate Runway Stress</span>';
-          tone = 'border-l-amber-500';
-          assessment = 'Moderate search stress: pipeline duration (average 3-6 months) may intersect liquid reserves.';
+          statusBadge = `<span class="pill pill-muted font-mono text-xs text-amber-400"><span class="dot bg-amber-500" aria-hidden="true"></span>${lang === 'uk' ? 'Помірне навантаження' : 'Moderate Stress'}</span>`;
+          tone = 'border-l-amber-500 bg-amber-500/5';
+          assessment = t('check.runway.risk.medium');
         }
 
         runwayResult.innerHTML = `
-          <div class="callout ${tone}">
+          <div class="callout ${tone} rounded-xl p-4">
             <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <span class="text-base font-semibold text-hoba-text">Runway Horizon: ${months.toFixed(1)} Months</span>
+              <span class="text-sm sm:text-base font-semibold text-hoba-text">${esc(t('check.runway.horizon', { months: months.toFixed(1) }))}</span>
               ${statusBadge}
             </div>
-            <p class="text-sm text-hoba-muted mt-2">${esc(assessment)}</p>
+            <p class="text-xs sm:text-sm text-hoba-muted mt-2 leading-relaxed">${esc(assessment)}</p>
           </div>
         `;
       }

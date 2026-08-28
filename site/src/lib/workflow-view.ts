@@ -191,22 +191,23 @@ export class WorkflowView {
     walk(start.id, 0, new Set());
     for (const s of data.states) if (!depth.has(s.id)) depth.set(s.id, 0);
 
-    const rows = new Map<number, number>();
+    // Responsive wrapped pipeline layout: 4 columns per row
+    const MAX_COLS = data.states.length > 5 ? 4 : Math.min(4, Math.max(2, data.states.length));
+    const gridOccupancy = new Map<string, number>();
+
     for (const state of data.states) {
-      const column = depth.get(state.id)!;
-      const row = rows.get(column) ?? 0;
-      rows.set(column, row + 1);
-      const placed: Placed = { ...state, x: column * COLUMN, y: row * ROW, sx: 0, sy: 0 };
+      const d = depth.get(state.id)!;
+      const tier = Math.floor(d / MAX_COLS);
+      const col = d % MAX_COLS;
+      const cellKey = `${tier}:${col}`;
+      const branchIndex = gridOccupancy.get(cellKey) ?? 0;
+      gridOccupancy.set(cellKey, branchIndex + 1);
+
+      const x = (col - (MAX_COLS - 1) / 2) * COLUMN;
+      const y = (tier * 1.5 + branchIndex * 0.95) * ROW;
+      const placed: Placed = { ...state, x, y, sx: 0, sy: 0 };
       this.states.push(placed);
       this.byId.set(placed.id, placed);
-    }
-
-    // Centre each column vertically so the machine reads as one band.
-    const tallest = Math.max(...rows.values());
-    for (const state of this.states) {
-      const column = depth.get(state.id)!;
-      const count = rows.get(column)!;
-      state.y += ((tallest - count) * ROW) / 2;
     }
   }
 
@@ -567,33 +568,83 @@ export class WorkflowView {
   private drawEdge(from: Placed, to: Placed, live: boolean, walked: boolean) {
     const ctx = this.ctx;
     const w = (NODE_W / 2) * this.scale;
-    const back = to.x < from.x;
-    const x1 = from.sx + (back ? -w : w);
-    const x2 = to.sx + (back ? w : -w);
-    const bend = back ? Math.max(28, Math.abs(x2 - x1) * 0.18) : 0;
-    const c1x = x1 + (back ? -bend : bend);
-    const c2x = x2 + (back ? bend : -bend);
+    const h = (NODE_H / 2) * this.scale;
+    const dx = to.x - from.x;
+    const dy = to.y - from.y;
+
+    let x1 = from.sx;
+    let y1 = from.sy;
+    let x2 = to.sx;
+    let y2 = to.sy;
+    let c1x = x1;
+    let c1y = y1;
+    let c2x = x2;
+    let c2y = y2;
+    let isBack = false;
+
+    if (Math.abs(dy) < 30) {
+      // Same row
+      const back = dx < 0;
+      isBack = back;
+      x1 = from.sx + (back ? -w : w);
+      x2 = to.sx + (back ? w : -w);
+      const bend = back ? Math.max(28, Math.abs(x2 - x1) * 0.18) : 0;
+      c1x = x1 + (back ? -bend : bend);
+      c1y = from.sy - bend;
+      c2x = x2 + (back ? bend : -bend);
+      c2y = to.sy - bend;
+    } else if (Math.abs(dx) < 60) {
+      // Direct vertical connection
+      const down = dy > 0;
+      y1 = from.sy + (down ? h : -h);
+      y2 = to.sy + (down ? -h : h);
+      c1x = x1;
+      c1y = y1 + (down ? 24 : -24);
+      c2x = x2;
+      c2y = y2 + (down ? -24 : 24);
+    } else if (dy > 0 && dx < 0) {
+      // Row wrap (e.g. end of row 0 to start of row 1)
+      x1 = from.sx + w;
+      y1 = from.sy;
+      x2 = to.sx - w;
+      y2 = to.sy;
+      c1x = x1 + 45 * this.scale;
+      c1y = from.sy + 35 * this.scale;
+      c2x = x2 - 45 * this.scale;
+      c2y = to.sy - 35 * this.scale;
+    } else {
+      // General diagonal connection
+      const back = dx < 0;
+      isBack = back;
+      x1 = from.sx + (back ? -w : w);
+      y1 = from.sy;
+      x2 = to.sx + (back ? w : -w);
+      y2 = to.sy;
+      c1x = (x1 + x2) / 2;
+      c1y = y1;
+      c2x = (x1 + x2) / 2;
+      c2y = y2;
+    }
 
     ctx.save();
     ctx.strokeStyle = live ? rgba(this.palette.accent, 1) : rgba(this.palette.border, walked ? 1 : 0.55);
     ctx.lineWidth = live ? 2.5 : 1.4;
-    if (back) ctx.setLineDash([5, 4]);
+    if (isBack) ctx.setLineDash([5, 4]);
     ctx.beginPath();
-    ctx.moveTo(x1, from.sy);
-    ctx.bezierCurveTo(c1x, from.sy - bend, c2x, to.sy - bend, x2, to.sy);
+    ctx.moveTo(x1, y1);
+    ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x2, y2);
     ctx.stroke();
     ctx.setLineDash([]);
 
-    const angle = Math.atan2(to.sy - from.sy, x2 - x1);
+    const angle = Math.atan2(y2 - c2y, x2 - c2x);
     const size = live ? 9 : 6;
     ctx.fillStyle = live ? rgba(this.palette.accent, 1) : rgba(this.palette.border, walked ? 1 : 0.55);
     ctx.beginPath();
-    ctx.moveTo(x2, to.sy);
-    ctx.lineTo(x2 - Math.cos(angle - 0.4) * size, to.sy - Math.sin(angle - 0.4) * size);
-    ctx.lineTo(x2 - Math.cos(angle + 0.4) * size, to.sy - Math.sin(angle + 0.4) * size);
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - Math.cos(angle - 0.4) * size, y2 - Math.sin(angle - 0.4) * size);
+    ctx.lineTo(x2 - Math.cos(angle + 0.4) * size, y2 - Math.sin(angle + 0.4) * size);
     ctx.closePath();
     ctx.fill();
-
     ctx.restore();
   }
 
