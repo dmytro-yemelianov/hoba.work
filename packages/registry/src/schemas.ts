@@ -510,6 +510,7 @@ export const evidenceSchema = z.object({
   citation: z.string().optional(),
   url: z.string().url().optional(),
   period: z.string().optional(),
+  aliases: z.array(z.string()).default([]),
 });
 
 export const recordClassEnumSchema = z.enum([

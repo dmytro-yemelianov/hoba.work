@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ID_PATTERNS, compareBundleStructure, loadRegistryFromRoot, resolveRegistryRoot, validateRegistry, validateRegistryBundle } from '@hoba/registry';
+import { ID_PATTERNS, compareBundleStructure, loadRegistryFromRoot, resolveRegistryRoot, validateRegistry, validateRegistryBundle, evidenceSchema } from '@hoba/registry';
 import { barrier, intervention, loop, makeBundle, mechanism, pattern } from './helpers';
 
 const rules = (bundle: ReturnType<typeof makeBundle>) => validateRegistryBundle(bundle).map((i) => `${i.severity}:${i.rule}`);
@@ -167,5 +167,30 @@ describe('aliases survive Zod parsing', () => {
     const renamed = bundle.patterns.find((p) => p.id === 'pat.seniority_double_bind');
     expect(renamed).toBeDefined();
     expect(renamed!.aliases).toEqual(['P-001']);
+  });
+});
+
+describe('evidence aliases survive Zod parsing', () => {
+  it('accepts and preserves an aliases field on an evidence record without stripping it', () => {
+    const parsed = evidenceSchema.parse({
+      id: 'evidence.test_fixture',
+      type: 'evidence',
+      title: 'Test evidence fixture for alias round-trip',
+      kind: 'research',
+      summary: 'A synthetic fixture used only to verify aliases is not stripped.',
+      aliases: ['EVD-999'],
+    });
+    expect(parsed.aliases).toEqual(['EVD-999']);
+  });
+
+  it('defaults aliases to an empty array when the field is absent', () => {
+    const parsed = evidenceSchema.parse({
+      id: 'evidence.test_fixture_2',
+      type: 'evidence',
+      title: 'Test evidence fixture with no aliases field',
+      kind: 'research',
+      summary: 'A synthetic fixture used only to verify the default value.',
+    });
+    expect(parsed.aliases).toEqual([]);
   });
 });

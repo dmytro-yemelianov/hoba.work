@@ -158,7 +158,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     loops: [loop({ id: 'L-001' })],
     interventions: [intervention({ id: 'I-001', targets: ['M-001', 'P-001'] })],
     evidence: [
-      { id: 'EVD-001', type: 'evidence', title: 'Fixture evidence', kind: 'research', summary: 'A fixture evidence record.' },
+      { id: 'EVD-001', type: 'evidence', title: 'Fixture evidence', kind: 'research', summary: 'A fixture evidence record.', aliases: [] },
     ],
     records: [],
     ...over,
