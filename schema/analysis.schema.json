@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://hoba.work/schema/analysis.schema.json",
+  "title": "HOBA Structured Analysis Object",
+  "description": "Not canonical ontology data. The portable output shape for an interpretation of a concrete input (a social post, a rejection sequence, etc.) against the registry. Produced by the analyzer, CLI, and MCP; validated on the way out by validate_analysis; never stored under /data.",
+  "type": "object",
+  "required": [
+    "input_type", "source_text", "observations", "interpretations",
+    "compatible_entities", "unknowns", "agency", "prohibited_conclusions", "registry_version"
+  ],
+  "properties": {
+    "input_type": {
+      "type": "string",
+      "enum": ["social_post", "candidate_story", "funnel_metrics", "recruiter_report", "job_description", "rejection_sequence"]
+    },
+    "source_text": { "type": "string" },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "registry_refs", "confidence"],
+        "properties": {
+          "text": { "type": "string" },
+          "registry_refs": { "type": "array", "items": { "type": "string", "pattern": "^obs\\.[a-z0-9_]+$" } },
+          "confidence": {
+            "type": "string",
+            "enum": ["observed", "compatible", "supported", "strongly_supported", "proven", "contradicted", "unknown"]
+          }
+        }
+      }
+    },
+    "interpretations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "classification"],
+        "properties": {
+          "text": { "type": "string" },
+          "classification": { "type": "string", "enum": ["author_interpretation", "analyzer_interpretation"] }
+        }
+      }
+    },
+    "compatible_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "claim_level", "reason"],
+        "properties": {
+          "id": { "type": "string" },
+          "claim_level": {
+            "type": "string",
+            "enum": ["observed", "compatible", "supported", "strongly_supported", "proven", "contradicted", "unknown"]
+          },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "agency": {
+      "type": "object",
+      "additionalProperties": { "type": "array", "items": { "type": "string", "pattern": "^int\\.[a-z0-9_]+$" } }
+    },
+    "prohibited_conclusions": { "type": "array", "items": { "type": "string" } },
+    "registry_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  }
+}

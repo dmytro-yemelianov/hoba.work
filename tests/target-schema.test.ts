@@ -104,3 +104,31 @@ describe('schema/scenario.schema.json', () => {
     expect((schema.properties.compatible_barriers as { items: { pattern: string } }).items.pattern).toBe('^bar\\.[a-z0-9_]+$');
   });
 });
+
+describe('schema/analysis.schema.json', () => {
+  const schema = readSchema('analysis.schema.json') as {
+    required: string[];
+    description: string;
+    properties: Record<string, unknown>;
+  };
+
+  it('requires the full structured-analysis shape from the design doc', () => {
+    expect(schema.required).toEqual([
+      'input_type', 'source_text', 'observations', 'interpretations',
+      'compatible_entities', 'unknowns', 'agency', 'prohibited_conclusions', 'registry_version',
+    ]);
+  });
+
+  it('documents that this is not canonical ontology data', () => {
+    expect(schema.description).toMatch(/not canonical/i);
+  });
+
+  it('confidence and claim_level use the same 7-state epistemic enum as entity.schema.json', () => {
+    const entitySchema = readSchema('entity.schema.json') as { properties: { evidence_level: { enum: string[] } } };
+    const observationItem = (schema.properties.observations as { items: { properties: { confidence: { enum: string[] } } } }).items;
+    const compatibleItem = (schema.properties.compatible_entities as { items: { properties: { claim_level: { enum: string[] } } } }).items;
+
+    expect(observationItem.properties.confidence.enum).toEqual(entitySchema.properties.evidence_level.enum);
+    expect(compatibleItem.properties.claim_level.enum).toEqual(entitySchema.properties.evidence_level.enum);
+  });
+});
