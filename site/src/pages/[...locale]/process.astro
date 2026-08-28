@@ -51,27 +51,38 @@ const payload = JSON.stringify({
 
   {workflows.map((workflow, index) => (
     <section class="section" data-workflow={workflow.id}>
-      <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <span>{workflow.id} · {workflow.title}</span>
-        {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted">{t('ideal.badge')}</span>}
-      </h2>
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0">
+          <span>{workflow.id} · {workflow.title}</span>
+          {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted">{t('ideal.badge')}</span>}
+        </h2>
+        <span class="pill pill-muted text-xs font-mono"><span class="text-hoba-muted">{t('wf.subject')}:</span> {workflow.subject}</span>
+      </div>
+
       <p class="text-base text-hoba-muted max-w-3xl">{workflow.summary}</p>
-      {workflow.id === IDEAL_PATH_ID && (
-        <p class="mt-1 text-sm text-hoba-muted max-w-3xl">{t('ideal.construct')}</p>
-      )}
+
       {workflow.id === IDEAL_PATH_ID && (() => {
         const routes = countRoutes(workflow);
         const named = workflow.states.filter((s) => s.kind === 'terminal');
         return (
-          <p class="mt-1 text-sm text-hoba-muted max-w-3xl">
-            {t('wf.routes', { n: routes.total })}{' '}
-            {named
-              .map((s) => t('wf.routesEnd', { n: routes.byTerminal[s.id] ?? 0, title: s.title.toLocaleLowerCase(lang) }))
-              .join('; ')}. {t('wf.routesNote')}
-          </p>
+          <details class="disclosure my-3">
+            <summary>
+              <span class="text-xs font-mono text-hoba-accent font-semibold">
+                📐 {t('wf.routes', { n: routes.total })} ({named.length} {lang === 'uk' ? 'термінальні стани' : 'terminal states'})
+              </span>
+              <svg class="disclosure-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="disclosure-body space-y-2 text-xs">
+              <p>{t('ideal.construct')}</p>
+              <p>
+                {named
+                  .map((s) => t('wf.routesEnd', { n: routes.byTerminal[s.id] ?? 0, title: s.title.toLocaleLowerCase(lang) }))
+                  .join('; ')}. {t('wf.routesNote')}
+              </p>
+            </div>
+          </details>
         );
       })()}
-      <p class="mt-1 text-sm text-hoba-muted"><span class="text-hoba-text">{t('wf.subject')}:</span> {workflow.subject}</p>
 
       <div class="wf-shell mt-5">
         <div class="wf-transport">

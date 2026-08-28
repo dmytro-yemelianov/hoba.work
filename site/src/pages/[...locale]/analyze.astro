@@ -160,20 +160,21 @@ const zones = [
         </div>
 
         <!-- Categorized Observation Accordion / Groups -->
-        <div class="space-y-6" id="categorized-artifacts">
-          {ARTIFACT_CATEGORIES.map((cat) => {
+        <div class="space-y-3" id="categorized-artifacts">
+          {ARTIFACT_CATEGORIES.map((cat, idx) => {
             const catArtifacts = bundle.artifacts.filter((a) => (cat.ids as readonly string[]).includes(a.id));
             if (!catArtifacts.length) return null;
             return (
-              <div class="artifact-category-group rounded-xl border border-hoba-border bg-hoba-card overflow-hidden">
-                <div class="flex items-center justify-between px-4 py-3 bg-hoba-bg/60 border-b border-hoba-border">
-                  <h3 class="flex items-center gap-2 text-sm font-semibold text-hoba-text">
+              <details class="disclosure artifact-category-group" open={idx === 0}>
+                <summary>
+                  <span class="flex items-center gap-2 font-semibold text-sm text-hoba-text">
                     <span aria-hidden="true">{cat.icon}</span>
                     <span>{t(cat.key as any)}</span>
-                  </h3>
-                  <span class="text-xs font-mono text-hoba-muted">{catArtifacts.length}</span>
-                </div>
-                <div class="p-3 grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                    <span class="pill pill-muted text-[11px] font-mono">{catArtifacts.length}</span>
+                  </span>
+                  <svg class="disclosure-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="disclosure-body grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
                   {catArtifacts.map((art) => (
                     <div class="artifact-item" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
                       <label class="group relative flex items-start gap-3 p-3 rounded-lg border border-hoba-border/70 bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card/80 transition-all cursor-pointer h-full">
@@ -190,7 +191,7 @@ const zones = [
                     </div>
                   ))}
                 </div>
-              </div>
+              </details>
             );
           })}
         </div>
@@ -395,9 +396,10 @@ const zones = [
       document.querySelectorAll<HTMLElement>('.artifact-item').forEach((el) => {
         el.classList.toggle('hidden', Boolean(q) && !(el.dataset.search ?? '').includes(q));
       });
-      document.querySelectorAll<HTMLElement>('.artifact-category-group').forEach((grp) => {
+      document.querySelectorAll<HTMLDetailsElement>('.artifact-category-group').forEach((grp) => {
         const visibleChildren = grp.querySelectorAll('.artifact-item:not(.hidden)');
         grp.classList.toggle('hidden', Boolean(q) && visibleChildren.length === 0);
+        if (q && visibleChildren.length > 0) grp.open = true;
       });
     });
 

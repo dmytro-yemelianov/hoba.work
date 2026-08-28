@@ -27,16 +27,18 @@ const placements = deviation ? [deviation] : supports;
 const note = deviation ? t('ideal.deviation') : t('ideal.support');
 ---
 {placements.length > 0 && (
-  <section class="callout border-l-hoba-accent" aria-label={t('ideal.title')}>
-    <p class="kicker">{t('ideal.title')}</p>
+  <section class="my-5 p-3.5 rounded-xl border border-hoba-border bg-hoba-card/50 text-sm" aria-label={t('ideal.title')}>
+    <div class="flex items-center gap-2 font-mono text-xs font-semibold text-hoba-accent">
+      <span>📐 {t('ideal.title')}</span>
+    </div>
     {placements.map(({ workflow, state }) => (
-      <p class="mt-1 text-base">
-        <a href={`${prefix}/process#${stateAnchor(workflow.id, state.id)}`} class="text-hoba-text font-medium hover:text-hoba-accent">
+      <p class="mt-1.5 text-sm text-hoba-text">
+        <a href={`${prefix}/process#${stateAnchor(workflow.id, state.id)}`} class="font-medium text-hoba-accent hover:underline">
           {state.title}
         </a>
         <span class="text-hoba-muted"> — {state.description}</span>
       </p>
     ))}
-    <p class="mt-1 text-base text-hoba-muted">{note}</p>
+    <p class="mt-1 text-xs text-hoba-muted">{note}</p>
   </section>
 )}

@@ -192,10 +192,19 @@ const presets = [
     </p>
   </PageHeader>
 
-  <div class="callout border-l-hoba-accent rounded-xl">
-    <p class="text-sm sm:text-base text-hoba-muted max-w-3xl">{t('check.notAboutYou')}</p>
-    <p class="mt-2 text-xs sm:text-sm text-hoba-muted max-w-3xl">{t('check.noCompany')}</p>
-  </div>
+  <details class="disclosure mb-6">
+    <summary>
+      <span class="flex items-center gap-2">
+        <span class="text-xs font-mono text-hoba-accent font-semibold">ℹ️ {lang === 'uk' ? 'Як працює ця перевірка' : 'How this check works'}</span>
+        <span class="text-xs text-hoba-muted">({lang === 'uk' ? '100% клієнтський розрахунок, без оцінок та скорингу' : 'Client-side only, no score or probabilities'})</span>
+      </span>
+      <svg class="disclosure-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="disclosure-body space-y-2">
+      <p>{t('check.notAboutYou')}</p>
+      <p>{t('check.noCompany')}</p>
+    </div>
+  </details>
 
   <!-- Interactive Preset Templates Bar -->
   <div class="my-8 p-5 rounded-2xl border border-hoba-border bg-hoba-card/80">
