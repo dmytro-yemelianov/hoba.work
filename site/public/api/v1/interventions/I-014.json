@@ -1,9 +1,11 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
     "status": "active",
-    "evidence_ids": [],
+    "evidence_ids": [
+      "EVD-043"
+    ],
     "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at B-005 is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
     "id": "I-014",
     "type": "intervention",

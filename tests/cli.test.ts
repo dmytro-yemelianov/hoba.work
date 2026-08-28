@@ -48,6 +48,39 @@ describe('hoba CLI', () => {
     expect(json.results.map((r: { id: string }) => r.id)).toContain('A-004');
   });
 
+  it('diagnoses temporal latency and dwell anomalies', () => {
+    const json = JSON.parse(hoba(['latency', 'WF-001', 'recruiter-queue', '45', '--json']).stdout);
+    expect(json.anomalies.length).toBeGreaterThan(0);
+    const queued = json.anomalies.find((a: { toState: string }) => a.toState === 'recruiter-screen');
+    expect(queued.severity).toBe('stalled_anomalous');
+    expect(queued.implicatedMechanisms).toContain('M-006');
+  });
+
+  it('computes financial runway and solvency risk profiles', () => {
+    const json = JSON.parse(hoba(['runway', '25000', '3500', '--json']).stdout);
+    expect(json.runwayMonths).toBeCloseTo(7.14, 1);
+    expect(json.riskStatus).toBe('solvent');
+
+    const vulnerable = JSON.parse(hoba(['runway', '4000', '2500', '--json']).stdout);
+    expect(vulnerable.riskStatus).toBe('acute_exhaustion_vulnerability');
+  });
+
+  it('evaluates pattern emptiness in JSON and formatted text', () => {
+    const json = JSON.parse(hoba(['patterns', '--json']).stdout);
+    expect(json.computedEmptyCount).toBe(4);
+    expect(json.proseAssertedCount).toBe(0);
+
+    const txt = hoba(['patterns']).stdout;
+    expect(txt).toContain('COMPUTED EMPTY');
+    expect(txt).toContain('P-001');
+  });
+
+  it('audits flow conservation across financial records', () => {
+    const json = JSON.parse(hoba(['conservation', '--json']).stdout);
+    expect(json.isConserved).toBe(true);
+    expect(json.violations).toEqual([]);
+  });
+
   it('validates both mirrors strictly with no warnings', () => {
     const out = hoba(['validate', '--strict']);
     expect(out.stdout).toContain('0 error(s), 0 warning(s)');

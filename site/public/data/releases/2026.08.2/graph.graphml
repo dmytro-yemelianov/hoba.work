@@ -103,6 +103,16 @@
       <data key="d_type">artifact</data>
       <data key="d_evidence">hypothesis</data>
     </node>
+    <node id="A-020">
+      <data key="d_label">Offer accepted followed by delayed start date or post-signing revocation</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="A-021">
+      <data key="d_label">Republished job posting with refreshed date and identical requirement body</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">established</data>
+    </node>
     <node id="B-013">
       <data key="d_label">Requisition Approval &amp; Public Posting</data>
       <data key="d_type">barrier</data>
@@ -170,6 +180,16 @@
     </node>
     <node id="B-012">
       <data key="d_label">Offer Closing &amp; Contract Execution</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="B-015">
+      <data key="d_label">Client Profile Approval and Client Interview</data>
+      <data key="d_type">barrier</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="B-016">
+      <data key="d_label">Probation Period &amp; Post-Start Confirmation</data>
       <data key="d_type">barrier</data>
       <data key="d_evidence">established</data>
     </node>
@@ -302,6 +322,16 @@
       <data key="d_label">Bench-Priority Fill</data>
       <data key="d_type">mechanism</data>
       <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="M-027">
+      <data key="d_label">Start-Date Slippage and Post-Acceptance Revocation</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
+    </node>
+    <node id="M-028">
+      <data key="d_label">Probation Used as Extended De-Facto Interview</data>
+      <data key="d_type">mechanism</data>
+      <data key="d_evidence">established</data>
     </node>
     <node id="P-001">
       <data key="d_label">Seniority Double Bind</data>
@@ -930,6 +960,33 @@
     <edge id="M-026-&gt;emits-&gt;A-016" source="M-026" target="A-016">
       <data key="d_edge_type">emits</data>
     </edge>
+    <edge id="M-027-&gt;operates_at-&gt;B-012" source="M-027" target="B-012">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-027-&gt;operates_at-&gt;B-016" source="M-027" target="B-016">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-027-&gt;emits-&gt;A-020" source="M-027" target="A-020">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-027-&gt;emits-&gt;A-001" source="M-027" target="A-001">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-027-&gt;emits-&gt;A-011" source="M-027" target="A-011">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-028-&gt;operates_at-&gt;B-016" source="M-028" target="B-016">
+      <data key="d_edge_type">operates_at</data>
+    </edge>
+    <edge id="M-028-&gt;emits-&gt;A-020" source="M-028" target="A-020">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-028-&gt;emits-&gt;A-002" source="M-028" target="A-002">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="M-028-&gt;emits-&gt;A-016" source="M-028" target="A-016">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="A-002-&gt;instantiates-&gt;P-001" source="A-002" target="P-001">
       <data key="d_edge_type">instantiates</data>
     </edge>
@@ -1024,6 +1081,9 @@
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="I-003-&gt;targets-&gt;B-008" source="I-003" target="B-008">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-003-&gt;targets-&gt;B-015" source="I-003" target="B-015">
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="I-003-&gt;mitigates-&gt;P-001" source="I-003" target="P-001">
@@ -1134,7 +1194,16 @@
     <edge id="I-016-&gt;targets-&gt;B-011" source="I-016" target="B-011">
       <data key="d_edge_type">targets</data>
     </edge>
+    <edge id="I-016-&gt;targets-&gt;B-016" source="I-016" target="B-016">
+      <data key="d_edge_type">targets</data>
+    </edge>
     <edge id="I-016-&gt;targets-&gt;M-021" source="I-016" target="M-021">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-016-&gt;targets-&gt;M-027" source="I-016" target="M-027">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="I-016-&gt;targets-&gt;M-028" source="I-016" target="M-028">
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="I-017-&gt;targets-&gt;M-002" source="I-017" target="M-002">

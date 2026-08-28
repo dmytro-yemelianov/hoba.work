@@ -36,6 +36,17 @@ structure Machine where
   rank : List Nat
   deriving Repr
 
+/-- Summary of lifted substrate topology for formal invariant verification. -/
+structure SubstrateSummary where
+  conditionCount : Nat
+  processCount : Nat
+  recordCount : Nat
+  flowCount : Nat
+  barrierConditionCount : Nat
+  mechanismConditionCount : Nat
+  eventClassCount : Nat
+  deriving Repr
+
 namespace Machine
 
 def rankOf (m : Machine) (s : Nat) : Nat := m.rank.getD s 0

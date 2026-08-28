@@ -3,7 +3,7 @@ import { findRegistryRoot, lift, loadRegistryFromRoot, project, validateSubstrat
 import { REPO_ROOT } from './helpers';
 
 /**
- * The equivalence gate (PLAN-SUBSTRATE A2).
+ * The equivalence gate (PLAN-SUBSTRATE A2 & A4).
  *
  * The substrate provably subsumes the authored model: lifting the bundle and
  * projecting it back reproduces the loader's output exactly, for both
@@ -55,6 +55,51 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
       if (c.accounts_for.length > 0)
         for (const anchor of c.accounts_for)
           expect(lifted.substrate.conditions.some((x) => x.id === anchor), `${c.id} -> ${anchor}`).toBe(true);
+    }
+  });
+
+  it('assigns comparative arity and cohorts to the three comparative mechanisms (A4)', () => {
+    const comparativeIds = ['cnd:m-002', 'cnd:m-009', 'cnd:m-018'];
+    for (const c of lifted.substrate.conditions) {
+      if (comparativeIds.includes(c.id)) {
+        expect(c.arity, c.id).toBe('comparative');
+        expect(c.cohort, c.id).toBe('coh:requisition.pool');
+        expect(lifted.substrate.cohorts.some((coh) => coh.id === c.cohort)).toBe(true);
+      } else {
+        expect(c.arity, c.id).toBe('absolute');
+        expect(c.cohort, c.id).toBeUndefined();
+      }
+    }
+  });
+
+  it('distinguishes absences (A-001) from communicative statement observations (A4)', () => {
+    const silence = lifted.substrate.eventClasses.find((e) => e.id === 'evc:a-001')!;
+    expect(silence.communicates).toBe(false);
+    expect(lifted.substrate.statements.some((s) => s.id === 'sta:a-001')).toBe(false);
+
+    const rejection = lifted.substrate.eventClasses.find((e) => e.id === 'evc:a-002')!;
+    expect(rejection.communicates).toBe(true);
+    expect(lifted.substrate.statements.some((s) => s.id === 'sta:a-002')).toBe(true);
+  });
+
+  it('declares visibility rules across candidate audience and subject classes (A4)', () => {
+    expect(lifted.substrate.visibilityRules.length).toBeGreaterThan(0);
+    const audienceClasses = new Set(lifted.substrate.visibilityRules.map((v) => v.audience));
+    expect(audienceClasses.has('cls:actor')).toBe(true);
+  });
+
+  it('lifts authored records into substrate records and flows with exact projection (A5)', () => {
+    expect(bundle.records.length).toBe(13);
+    expect(lifted.substrate.flows.length).toBeGreaterThan(0);
+    for (const r of bundle.records) {
+      expect(lifted.substrate.records.some((rec) => rec.id === `rec:${r.id.toLowerCase()}`)).toBe(true);
+      for (const f of r.flows) {
+        expect(
+          lifted.substrate.flows.some(
+            (flow) => flow.from === `rec:${r.id.toLowerCase()}` && flow.to === `rec:${f.to.toLowerCase()}`
+          )
+        ).toBe(true);
+      }
     }
   });
 });

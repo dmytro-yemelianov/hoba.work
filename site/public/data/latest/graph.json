@@ -253,6 +253,31 @@
       },
       {
         "data": {
+          "id": "A-020",
+          "label": "Offer accepted followed by delayed start date or post-signing revocation",
+          "type": "artifact",
+          "evidence_level": "established",
+          "stages": [
+            "post-offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "A-021",
+          "label": "Republished job posting with refreshed date and identical requirement body",
+          "type": "artifact",
+          "evidence_level": "established",
+          "stages": [
+            "pre-posting",
+            "sourcing"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
           "id": "B-013",
           "label": "Requisition Approval & Public Posting",
           "type": "barrier",
@@ -401,6 +426,28 @@
           "type": "barrier",
           "stage": "post-offer",
           "order": 14,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "B-015",
+          "label": "Client Profile Approval and Client Interview",
+          "type": "barrier",
+          "stage": "client",
+          "order": 15,
+          "evidence_level": "established"
+        },
+        "classes": "node-barrier"
+      },
+      {
+        "data": {
+          "id": "B-016",
+          "label": "Probation Period & Post-Start Confirmation",
+          "type": "barrier",
+          "stage": "post-offer",
+          "order": 16,
           "evidence_level": "established"
         },
         "classes": "node-barrier"
@@ -771,6 +818,34 @@
       },
       {
         "data": {
+          "id": "M-027",
+          "label": "Start-Date Slippage and Post-Acceptance Revocation",
+          "type": "mechanism",
+          "actor": "policy",
+          "nature": "incentive",
+          "visibility": "opaque",
+          "removability": "none",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-none"
+      },
+      {
+        "data": {
+          "id": "M-028",
+          "label": "Probation Used as Extended De-Facto Interview",
+          "type": "mechanism",
+          "actor": "hiring-manager",
+          "nature": "incentive",
+          "visibility": "inferable",
+          "removability": "intermediary",
+          "honest_baseline": false,
+          "evidence_level": "established"
+        },
+        "classes": "node-mechanism removability-intermediary"
+      },
+      {
+        "data": {
           "id": "P-001",
           "label": "Seniority Double Bind",
           "type": "pattern",
@@ -916,7 +991,7 @@
           "type": "intervention",
           "actor": "employer-policy",
           "cost": "medium",
-          "evidence_level": "hypothesis"
+          "evidence_level": "supported"
         },
         "classes": "node-intervention"
       },
@@ -993,7 +1068,7 @@
           "type": "intervention",
           "actor": "employer-policy",
           "cost": "medium",
-          "evidence_level": "hypothesis"
+          "evidence_level": "supported"
         },
         "classes": "node-intervention"
       },
@@ -1015,7 +1090,7 @@
           "type": "intervention",
           "actor": "recruiter-process",
           "cost": "low",
-          "evidence_level": "hypothesis"
+          "evidence_level": "supported"
         },
         "classes": "node-intervention"
       }
@@ -2662,6 +2737,99 @@
       },
       {
         "data": {
+          "id": "M-027->operates_at->B-012",
+          "source": "M-027",
+          "target": "B-012",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-027->operates_at->B-016",
+          "source": "M-027",
+          "target": "B-016",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-027->emits->A-020",
+          "source": "M-027",
+          "target": "A-020",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-027->emits->A-001",
+          "source": "M-027",
+          "target": "A-001",
+          "type": "emits",
+          "fidelity": "void",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-027->emits->A-011",
+          "source": "M-027",
+          "target": "A-011",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-028->operates_at->B-016",
+          "source": "M-028",
+          "target": "B-016",
+          "type": "operates_at"
+        },
+        "classes": "edge-operates_at"
+      },
+      {
+        "data": {
+          "id": "M-028->emits->A-020",
+          "source": "M-028",
+          "target": "A-020",
+          "type": "emits",
+          "fidelity": "direct",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-028->emits->A-002",
+          "source": "M-028",
+          "target": "A-002",
+          "type": "emits",
+          "fidelity": "euphemism",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "M-028->emits->A-016",
+          "source": "M-028",
+          "target": "A-016",
+          "type": "emits",
+          "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "A-002->instantiates->P-001",
           "source": "A-002",
           "target": "P-001",
@@ -2944,6 +3112,15 @@
           "id": "I-003->targets->B-008",
           "source": "I-003",
           "target": "B-008",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-003->targets->B-015",
+          "source": "I-003",
+          "target": "B-015",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3274,9 +3451,36 @@
       },
       {
         "data": {
+          "id": "I-016->targets->B-016",
+          "source": "I-016",
+          "target": "B-016",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
           "id": "I-016->targets->M-021",
           "source": "I-016",
           "target": "M-021",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-016->targets->M-027",
+          "source": "I-016",
+          "target": "M-027",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "I-016->targets->M-028",
+          "source": "I-016",
+          "target": "M-028",
           "type": "targets"
         },
         "classes": "edge-targets"

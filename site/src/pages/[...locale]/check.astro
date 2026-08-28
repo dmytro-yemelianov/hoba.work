@@ -48,6 +48,17 @@ const payload = JSON.stringify({
   states: Object.fromEntries((ideal?.states ?? []).map((s) => [s.id, s.title])),
   gates: Object.fromEntries(bundle.barriers.map((b) => [b.id, b.title])),
   mechanisms: Object.fromEntries(bundle.mechanisms.map((m) => [m.id, m.title])),
+  workflows: bundle.workflows.map((w) => ({
+    id: w.id,
+    title: w.title,
+    states: w.states.map((s) => ({ id: s.id, title: s.title })),
+    transitions: w.transitions.map((t) => ({
+      from: t.from,
+      to: t.to,
+      expected: t.latency_expected_days ?? 3,
+      max: t.latency_max_days ?? 14,
+    })),
+  })),
 }).replace(/</g, '\\u003c');
 
 const you = [
@@ -107,6 +118,54 @@ const posting = [
     <h2 class="section-title">{t('check.result')}</h2>
     <div id="check-verdict" aria-live="polite"></div>
     <ul id="check-gates" class="row-list mt-4"></ul>
+  </section>
+
+  <section class="section border-t border-hoba-border pt-10">
+    <h2 class="section-title">Stage Turnaround & Dwell Anomaly Diagnoser</h2>
+    <p class="text-base text-hoba-muted max-w-3xl">
+      Evaluate whether elapsed waiting time in your current funnel stage exceeds nominal turnaround bounds, and identify hidden mechanisms operating during stalled delays.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+      <div>
+        <label for="latency-wf" class="block text-sm text-hoba-muted">Workflow</label>
+        <select id="latency-wf" class="check-input bg-hoba-card">
+          {bundle.workflows.map((w) => (
+            <option value={w.id}>{w.id} — {w.title}</option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label for="latency-state" class="block text-sm text-hoba-muted">Current State</label>
+        <select id="latency-state" class="check-input bg-hoba-card"></select>
+      </div>
+      <div>
+        <label for="latency-days" class="block text-sm text-hoba-muted">Elapsed Days</label>
+        <input id="latency-days" type="number" min="0" value="7" class="check-input" />
+      </div>
+    </div>
+
+    <div id="latency-result" class="mt-6" aria-live="polite"></div>
+  </section>
+
+  <section class="section border-t border-hoba-border pt-10">
+    <h2 class="section-title">Candidate Runway & Solvency Calculator</h2>
+    <p class="text-base text-hoba-muted max-w-3xl">
+      Assess your search horizon and exposure to down-levelling pressure (M-017) and uncalibrated bets (P-004) under current baseline burn.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+      <div>
+        <label for="runway-savings" class="block text-sm text-hoba-muted">Liquid Savings ($ or €)</label>
+        <input id="runway-savings" type="number" min="0" value="24000" class="check-input" />
+      </div>
+      <div>
+        <label for="runway-burn" class="block text-sm text-hoba-muted">Monthly Baseline Burn ($ or €)</label>
+        <input id="runway-burn" type="number" min="1" value="3500" class="check-input" />
+      </div>
+    </div>
+
+    <div id="runway-result" class="mt-6" aria-live="polite"></div>
   </section>
 
   <script type="application/json" id="check-data" set:html={payload} />
@@ -215,6 +274,129 @@ const posting = [
 
       form.addEventListener('input', render);
       render();
+
+      // Temporal Latency Calculator
+      const wfSelect = document.getElementById('latency-wf') as HTMLSelectElement | null;
+      const stateSelect = document.getElementById('latency-state') as HTMLSelectElement | null;
+      const daysInput = document.getElementById('latency-days') as HTMLInputElement | null;
+      const latencyResult = document.getElementById('latency-result');
+
+      function updateStates() {
+        if (!wfSelect || !stateSelect) return;
+        const currentWf = data.workflows.find((w: any) => w.id === wfSelect.value);
+        if (!currentWf) return;
+        stateSelect.innerHTML = currentWf.states
+          .map((s: any) => `<option value="${s.id}">${s.id} — ${s.title}</option>`)
+          .join('');
+        renderLatency();
+      }
+
+      function renderLatency() {
+        if (!wfSelect || !stateSelect || !daysInput || !latencyResult) return;
+        const currentWf = data.workflows.find((w: any) => w.id === wfSelect.value);
+        if (!currentWf) return;
+        const stateId = stateSelect.value;
+        const days = Number(daysInput.value) || 0;
+
+        const transitions = currentWf.transitions.filter((t: any) => t.from === stateId);
+        if (transitions.length === 0) {
+          latencyResult.innerHTML = `<p class="text-sm text-hoba-muted">Terminal state or no outgoing transitions from ${esc(stateId)}.</p>`;
+          return;
+        }
+
+        const cards = transitions.map((t: any) => {
+          let severity = 'nominal';
+          let badge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-emerald-500" aria-hidden="true"></span>Nominal Turnaround</span>';
+          let calloutTone = 'border-l-emerald-500';
+          let note = 'Dwell is within expected operational turnaround.';
+          let implicated: string[] = [];
+
+          if (days > t.max) {
+            severity = 'stalled_anomalous';
+            badge = '<span class="pill pill-muted font-mono text-xs font-semibold"><span class="dot bg-rose-500" aria-hidden="true"></span>Stalled / Anomalous Delay</span>';
+            calloutTone = 'border-l-rose-500';
+            note = `Dwell (${days}d) strictly exceeds nominal max bound (${t.max}d). Hidden frictional mechanisms likely operating.`;
+            if (t.from.includes('queue') || t.from.includes('publish') || t.from.includes('received')) {
+              implicated = ['M-006', 'M-020', 'M-025'];
+            } else if (t.from.includes('screen') || t.from.includes('technical') || t.from.includes('panel')) {
+              implicated = ['M-009', 'M-019', 'M-022'];
+            } else if (t.from.includes('offer') || t.from.includes('verification')) {
+              implicated = ['M-007', 'M-027'];
+            }
+          } else if (days > t.expected) {
+            severity = 'delayed';
+            badge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-amber-500" aria-hidden="true"></span>Delayed Beyond Expected</span>';
+            calloutTone = 'border-l-amber-500';
+            note = `Turnaround exceeds expected average (${t.expected}d), approaching max bound (${t.max}d).`;
+          }
+
+          return `
+            <div class="callout ${calloutTone} my-3">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <span class="font-mono text-sm font-medium text-hoba-text">${esc(t.from)} → ${esc(t.to)}</span>
+                ${badge}
+              </div>
+              <p class="text-xs text-hoba-muted mt-1">Expected: ${t.expected} days · Max bound: ${t.max} days · Elapsed: ${days} days</p>
+              <p class="text-sm text-hoba-text mt-2">${esc(note)}</p>
+              ${implicated.length > 0 ? `
+                <div class="mt-3">
+                  <span class="text-xs text-hoba-muted uppercase tracking-wider font-semibold">Implicated Mechanisms:</span>
+                  <div class="flex flex-wrap gap-1.5 mt-1">
+                    ${implicated.map((m) => `<a href="${data.prefix}/mechanisms/${m}" class="pill pill-muted font-mono text-xs">${esc(m)}</a>`).join('')}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        });
+
+        latencyResult.innerHTML = cards.join('');
+      }
+
+      wfSelect?.addEventListener('change', updateStates);
+      stateSelect?.addEventListener('change', renderLatency);
+      daysInput?.addEventListener('input', renderLatency);
+      updateStates();
+
+      // Runway Calculator
+      const savingsInput = document.getElementById('runway-savings') as HTMLInputElement | null;
+      const burnInput = document.getElementById('runway-burn') as HTMLInputElement | null;
+      const runwayResult = document.getElementById('runway-result');
+
+      function renderRunway() {
+        if (!savingsInput || !burnInput || !runwayResult) return;
+        const savings = Number(savingsInput.value) || 0;
+        const burn = Number(burnInput.value) || 1;
+        const months = savings / burn;
+
+        let statusBadge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-emerald-500" aria-hidden="true"></span>Solvent (6+ Months)</span>';
+        let tone = 'border-l-emerald-500';
+        let assessment = 'Runway exceeds nominal multi-stage search horizon. Strong bargaining autonomy.';
+
+        if (months < 3) {
+          statusBadge = '<span class="pill pill-muted font-mono text-xs font-semibold"><span class="dot bg-rose-500" aria-hidden="true"></span>Acute Exhaustion Vulnerability</span>';
+          tone = 'border-l-rose-500';
+          assessment = 'Acute vulnerability: search duration approaches reserve depletion. High susceptibility to down-levelling pressure (M-017) and 0-bit gambles (P-004).';
+        } else if (months < 6) {
+          statusBadge = '<span class="pill pill-muted font-mono text-xs"><span class="dot bg-amber-500" aria-hidden="true"></span>Moderate Runway Stress</span>';
+          tone = 'border-l-amber-500';
+          assessment = 'Moderate search stress: pipeline duration (average 3-6 months) may intersect liquid reserves.';
+        }
+
+        runwayResult.innerHTML = `
+          <div class="callout ${tone}">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <span class="text-base font-semibold text-hoba-text">Runway Horizon: ${months.toFixed(1)} Months</span>
+              ${statusBadge}
+            </div>
+            <p class="text-sm text-hoba-muted mt-2">${esc(assessment)}</p>
+          </div>
+        `;
+      }
+
+      savingsInput?.addEventListener('input', renderRunway);
+      burnInput?.addEventListener('input', renderRunway);
+      renderRunway();
     }
   </script>
 </Layout>

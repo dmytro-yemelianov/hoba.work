@@ -2,7 +2,18 @@
 import { Command } from 'commander';
 import pc from 'picocolors';
 import { readPackageVersion, RegistryLoadError } from '@hoba/registry';
-import { CliError, cmdExplain, cmdSearch, cmdShow, cmdValidate, type GlobalOptions } from './commands.js';
+import {
+  CliError,
+  cmdConservation,
+  cmdExplain,
+  cmdLatency,
+  cmdPatterns,
+  cmdRunway,
+  cmdSearch,
+  cmdShow,
+  cmdValidate,
+  type GlobalOptions,
+} from './commands.js';
 
 const program = new Command();
 
@@ -52,6 +63,34 @@ program
   )
   .action((artifactIds: string[], opts: { stage?: string; probe?: string[] }, cmd: Command) => {
     run(() => cmdExplain(artifactIds, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
+  });
+
+program
+  .command('latency <workflow_id> <state_id> <days>')
+  .description('Diagnose temporal dwell anomalies and identify stalled or implicated mechanisms')
+  .action((workflowId: string, stateId: string, days: string, _opts: unknown, cmd: Command) => {
+    run(() => cmdLatency(workflowId, stateId, days, cmd.optsWithGlobals() as GlobalOptions));
+  });
+
+program
+  .command('runway <savings> <monthly_burn>')
+  .description('Compute candidate financial runway horizon, exhaustion risk profile, and vulnerability notes')
+  .action((savings: string, monthlyBurn: string, _opts: unknown, cmd: Command) => {
+    run(() => cmdRunway(savings, monthlyBurn, cmd.optsWithGlobals() as GlobalOptions));
+  });
+
+program
+  .command('patterns')
+  .description('Display formal algebraic emptiness evaluation and contradiction proofs across all patterns')
+  .action((_opts: unknown, cmd: Command) => {
+    run(() => cmdPatterns(cmd.optsWithGlobals() as GlobalOptions));
+  });
+
+program
+  .command('conservation')
+  .description('Audit financial flow conservation and verify non-divergence of funding splits')
+  .action((_opts: unknown, cmd: Command) => {
+    run(() => cmdConservation(cmd.optsWithGlobals() as GlobalOptions));
   });
 
 program

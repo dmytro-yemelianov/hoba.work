@@ -1,6 +1,6 @@
 {
-  "registry_version": "2026.08.2",
-  "count": 14,
+  "registry_version": "2026.08.3",
+  "count": 16,
   "items": [
     {
       "title": "Requisition Approval & Public Posting",
@@ -957,6 +957,130 @@
           "sees": "A contract signed and sent back, an unconfirmed start date, and days passing with no countersignature.",
           "reads": "From here the process reads as finished, though nothing takes effect until the second signature, and that step is not visible from outside.",
           "does": "Holds off on resigning or closing other processes until the countersigned copy arrives, and records the dates and the wording of what was promised."
+        }
+      ]
+    },
+    {
+      "title": "Client Profile Approval and Client Interview",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-034"
+      ],
+      "content": "# Client Profile Approval and Client Interview\n\nThe candidate profile is submitted to the end client for review, followed by a client-side interview round.\n\n### Pass Condition\nThe client approves the profile submission and signs off on the technical and culture match after the interview.",
+      "id": "B-015",
+      "type": "barrier",
+      "stage": "client",
+      "order": 15,
+      "precedes": [],
+      "description": "The candidate profile is submitted to the end client for review, followed by a client-side interview round.",
+      "pass_condition": "The client approves the profile submission and signs off on the technical and culture match after the interview.",
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Client review status",
+          "lines": [
+            {
+              "at": "day 14",
+              "text": "Vendor screen & tech assessment: passed",
+              "tell": false
+            },
+            {
+              "at": "day 16",
+              "text": "Profile submitted to client for approval",
+              "tell": false
+            },
+            {
+              "at": "day 28",
+              "text": "Client interview scheduled",
+              "tell": true
+            }
+          ],
+          "reading": "The candidate remains in an external waiting state where decision authority sits with a party not named on the requisition."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "client",
+          "sees": "A curated batch of candidate profiles forwarded by vendors, evaluated against internal delivery timelines.",
+          "reads": "Profiles are supplier proposals; reviewing them carries no direct employment commitment.",
+          "does": "Selects preferred profiles for a client interview or rejects without detailed feedback."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A candidate who passed vendor screening, awaiting feedback from the client account manager.",
+          "reads": "Time-to-feedback is dictated by the client; the vendor cannot advance the candidate unilaterally.",
+          "does": "Follows up with the client contact while keeping the candidate warm with generic holding updates."
+        },
+        {
+          "actor": "candidate",
+          "sees": "An extended delay after vendor interviews, followed by an additional external round.",
+          "reads": "The interview process includes an unannounced external decision gate.",
+          "does": "Prepares for a client interview whose evaluation criteria and contractual context are opaque."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Commercial margin targets dependent on placing candidate billable hours on the client contract.",
+          "reads": "Candidate placement directly realizes project revenue once client sign-off is secured.",
+          "does": "Monitors client approval rates and manages bench fallback options."
+        }
+      ]
+    },
+    {
+      "title": "Probation Period & Post-Start Confirmation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
+      "id": "B-016",
+      "type": "barrier",
+      "stage": "post-offer",
+      "order": 16,
+      "precedes": [],
+      "description": "The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.",
+      "pass_condition": "The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Probation review milestone",
+          "lines": [
+            {
+              "text": "Day 1–60: Objectives assigned, delivery metrics tracked",
+              "tell": false
+            },
+            {
+              "text": "Day 90: Formal probation sign-off review by engineering manager",
+              "tell": true
+            },
+            {
+              "text": "Status: Full permanent standing confirmed",
+              "tell": false
+            }
+          ],
+          "reading": "The transition from conditional probation to permanent standing requires explicit managerial evaluation or statutory lapse."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "Direct on-the-job execution during the first three months, assessing delivery speed, architecture decisions, and team communication.",
+          "reads": "Probation provides a low-friction termination window if the hire demonstrates unexpected capability gaps.",
+          "does": "Conducts regular 1-on-1 reviews and files the final probation confirmation report."
+        },
+        {
+          "actor": "candidate",
+          "sees": "Initial project onboarding, ramp-up expectations, and milestone checkpoints toward passing probation.",
+          "reads": "Employment remains contingent on early performance until the probation gate is officially cleared.",
+          "does": "Delivers against sprint goals and seeks written confirmation upon completion of the probation interval."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Legal compliance boundaries (statutory 3-month caps under EVD-040 or contractual notice rules under EVD-041).",
+          "reads": "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect.",
+          "does": "Enforces notice requirements and confirms payroll status transition upon probation completion."
         }
       ]
     }

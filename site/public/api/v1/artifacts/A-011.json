@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Offer rescinded or delayed due to internal freeze",
     "status": "active",
@@ -25,20 +25,27 @@
           {
             "id": "deferred-with-date",
             "label": "A written reply states that the requisition is paused rather than closed, names the quarter or the date on which the freeze is reviewed, and says the offer is revisited if headcount returns.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001",
+              "M-006"
+            ],
+            "because": "A formal written pause date confirms a genuine headcount freeze (M-007) rather than an honest hire or an evergreen ghost posting."
           },
           {
             "id": "cancelled-in-writing",
             "label": "A written reply states that the requisition is closed and the headcount withdrawn, and names no date to return to.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Definitive written headcount cancellation after offer issuance directly confirms retraction."
           },
           {
             "id": "scope-without-date",
             "label": "A written reply confirms the freeze and its scope — every open requisition, other offers in the same position — and states that whether the role is cancelled or deferred is not known from inside the hiring process.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Company-wide freeze confirmation confirms systemic budget suspension."
           },
           {
             "id": "no-written-answer",

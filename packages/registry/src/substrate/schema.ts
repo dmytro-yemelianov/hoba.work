@@ -188,6 +188,12 @@ export const flowSchema = z.object({
   title: z.string().min(1),
   from: recordId,
   to: recordId,
+  /** Parametric split percentage (0..100). */
+  percentage: z.number().min(0).max(100).optional(),
+  /** Parametric flow fraction (0..1.0). */
+  fraction: z.number().min(0).max(1).optional(),
+  /** The economic nature of the flow split. */
+  split_type: z.enum(['margin', 'payroll', 'settlement', 'burn', 'allocation', 'fee']).optional(),
   /**
    * Present only when evidenced. The shape of a chain is content; its numbers
    * are claims, and claims carry sources here or they do not exist.
@@ -204,19 +210,19 @@ export const flowSchema = z.object({
 // ---------------------------------------------------------------------------
 // Processes and cohorts.
 
+export const processTransitionSchema = z.object({
+  from: eventClassId.optional(),
+  to: eventClassId,
+  conditions: z.array(conditionId).default([]),
+  latency_expected_days: z.number().positive().optional(),
+  latency_max_days: z.number().positive().optional(),
+});
+
 export const processSchema = z.object({
   id: processId,
   title: z.string().min(1),
   /** The graph of event classes, conditions on the edges. */
-  transitions: z
-    .array(
-      z.object({
-        from: eventClassId.optional(),
-        to: eventClassId,
-        conditions: z.array(conditionId).default([]),
-      })
-    )
-    .min(1),
+  transitions: z.array(processTransitionSchema).min(1),
 });
 
 export const cohortSchema = z.object({

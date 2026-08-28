@@ -1229,7 +1229,9 @@
           "guard": "Finance commits headcount against the requisition.",
           "entities": [
             "B-010"
-          ]
+          ],
+          "latency_expected_days": 7,
+          "latency_max_days": 21
         },
         {
           "from": "authorised",
@@ -1239,7 +1241,9 @@
           "guard": "An approved requisition with a written description is published.",
           "entities": [
             "B-013"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 7
         },
         {
           "from": "published",
@@ -1250,7 +1254,9 @@
           "entities": [
             "B-001",
             "B-014"
-          ]
+          ],
+          "latency_expected_days": 7,
+          "latency_max_days": 30
         },
         {
           "from": "received",
@@ -1260,7 +1266,9 @@
           "guard": "The record is complete enough for the configured rules to run.",
           "entities": [
             "B-002"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 3
         },
         {
           "from": "machine-screened",
@@ -1270,7 +1278,9 @@
           "guard": "Extraction score and every knockout rule pass.",
           "entities": [
             "B-002"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 3
         },
         {
           "from": "machine-screened",
@@ -1282,7 +1292,9 @@
             "A-009",
             "M-008",
             "M-011"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 7
         },
         {
           "from": "recruiter-queue",
@@ -1292,7 +1304,9 @@
           "guard": "A person reads the profile and puts it on the list.",
           "entities": [
             "B-003"
-          ]
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
         },
         {
           "from": "recruiter-queue",
@@ -1302,7 +1316,9 @@
           "guard": "No review happened before the expiry threshold.",
           "entities": [
             "M-020"
-          ]
+          ],
+          "latency_expected_days": 30,
+          "latency_max_days": 60
         },
         {
           "from": "recruiter-screen",
@@ -1312,7 +1328,9 @@
           "guard": "Expectations, timeline and location are compatible, and the profile is submitted to the team.",
           "entities": [
             "B-004"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "recruiter-screen",
@@ -1325,7 +1343,9 @@
             "M-004",
             "M-014",
             "M-017"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         },
         {
           "from": "technical",
@@ -1336,7 +1356,9 @@
           "entities": [
             "B-005",
             "B-006"
-          ]
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 12
         },
         {
           "from": "technical",
@@ -1348,7 +1370,9 @@
             "A-008",
             "M-001",
             "M-019"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "panel",
@@ -1359,7 +1383,9 @@
           "entities": [
             "B-007",
             "B-008"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "panel",
@@ -1370,7 +1396,9 @@
           "entities": [
             "A-014",
             "M-022"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "levelling",
@@ -1380,7 +1408,9 @@
           "guard": "The assigned level and the approved band overlap.",
           "entities": [
             "B-009"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         },
         {
           "from": "levelling",
@@ -1391,7 +1421,9 @@
           "entities": [
             "A-005",
             "M-004"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         },
         {
           "from": "approval",
@@ -1401,7 +1433,9 @@
           "guard": "Every approver in the chain has cleared it.",
           "entities": [
             "B-010"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "approval",
@@ -1411,7 +1445,9 @@
           "guard": "Budget is pulled or a freeze is announced before the offer is issued.",
           "entities": [
             "M-007"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 14
         },
         {
           "from": "offer",
@@ -1421,7 +1457,9 @@
           "guard": "The candidate signs and the checks begin.",
           "entities": [
             "B-011"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "offer",
@@ -1432,7 +1470,9 @@
           "entities": [
             "A-011",
             "M-007"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 7
         },
         {
           "from": "verification",
@@ -1441,8 +1481,11 @@
           "owner": "employer-policy",
           "guard": "No unresolved discrepancy in the third-party record.",
           "entities": [
-            "B-012"
-          ]
+            "B-012",
+            "B-016"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
         },
         {
           "from": "verification",
@@ -1452,7 +1495,9 @@
           "guard": "A record mismatch or an eligibility bar is not reconciled.",
           "entities": [
             "M-021"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "published",
@@ -1462,7 +1507,9 @@
           "guard": "Hiring stops but the listing is never withdrawn.",
           "entities": [
             "M-006"
-          ]
+          ],
+          "latency_expected_days": 60,
+          "latency_max_days": 120
         },
         {
           "from": "rejected",
@@ -1473,7 +1520,9 @@
           "entities": [
             "A-004",
             "P-002"
-          ]
+          ],
+          "latency_expected_days": 14,
+          "latency_max_days": 60
         }
       ],
       "specimens": []
@@ -1615,7 +1664,9 @@
           "guard": "Required fields validate and the file is a supported type.",
           "entities": [
             "B-001"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 1
         },
         {
           "from": "parsing",
@@ -1625,7 +1676,9 @@
           "guard": "Extraction completes, whether or not it recovered the work history.",
           "entities": [
             "M-003"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 1
         },
         {
           "from": "scoring",
@@ -1635,7 +1688,9 @@
           "guard": "Every knockout rule passes and the rank clears the advance threshold.",
           "entities": [
             "B-002"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 2
         },
         {
           "from": "scoring",
@@ -1647,7 +1702,9 @@
             "M-008",
             "M-011",
             "A-009"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 3
         },
         {
           "from": "queued",
@@ -1657,7 +1714,9 @@
           "guard": "Capacity reaches this position in the queue before the expiry threshold.",
           "entities": [
             "B-003"
-          ]
+          ],
+          "latency_expected_days": 4,
+          "latency_max_days": 14
         },
         {
           "from": "queued",
@@ -1667,7 +1726,9 @@
           "guard": "The record ages past the configured limit with no review recorded.",
           "entities": [
             "M-020"
-          ]
+          ],
+          "latency_expected_days": 30,
+          "latency_max_days": 60
         },
         {
           "from": "reviewed",
@@ -1677,7 +1738,9 @@
           "guard": "The profile is put on the active list for outreach.",
           "entities": [
             "B-003"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         },
         {
           "from": "reviewed",
@@ -1688,7 +1751,9 @@
           "entities": [
             "A-002",
             "M-009"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         }
       ],
       "specimens": []
@@ -1737,7 +1802,8 @@
             "B-014",
             "M-006",
             "M-016",
-            "M-025"
+            "M-025",
+            "A-021"
           ]
         },
         {
@@ -1841,6 +1907,7 @@
           "deviations": [
             "B-007",
             "B-008",
+            "B-015",
             "M-002",
             "M-012",
             "M-013",
@@ -1905,7 +1972,11 @@
           "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
           "deviations": [
             "B-011",
-            "M-021"
+            "B-016",
+            "M-021",
+            "M-027",
+            "M-028",
+            "A-020"
           ]
         },
         {
@@ -1965,7 +2036,9 @@
           "guard": "An approved requisition, a band and a described process go live together.",
           "entities": [
             "I-002"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 7
         },
         {
           "from": "published",
@@ -1973,7 +2046,9 @@
           "label": "application submitted",
           "owner": "candidate",
           "guard": "The candidate applies against terms they could read beforehand.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 7,
+          "latency_max_days": 30
         },
         {
           "from": "applied",
@@ -1983,7 +2058,9 @@
           "guard": "The submission is parsed and acknowledged.",
           "entities": [
             "I-005"
-          ]
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 2
         },
         {
           "from": "machine-check",
@@ -1993,7 +2070,9 @@
           "guard": "No automated rule ended it, so a person now has it.",
           "entities": [
             "I-004"
-          ]
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         },
         {
           "from": "human-read",
@@ -2001,7 +2080,9 @@
           "label": "worth a conversation",
           "owner": "recruiter",
           "guard": "A person read the profile and wants to talk.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "terms-check",
@@ -2011,7 +2092,9 @@
           "guard": "Band, level, location and timing work for both sides, said out loud.",
           "entities": [
             "I-002"
-          ]
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "work-sample",
@@ -2021,7 +2104,9 @@
           "guard": "The exercise was scored against the criteria the candidate was given.",
           "entities": [
             "I-006"
-          ]
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 10
         },
         {
           "from": "panel",
@@ -2029,7 +2114,9 @@
           "label": "panel decides by its rule",
           "owner": "hiring-manager",
           "guard": "The agreed decision rule returns a hire.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 5
         },
         {
           "from": "level-and-band",
@@ -2037,7 +2124,9 @@
           "label": "level lands inside the band",
           "owner": "employer-policy",
           "guard": "The evidence-assigned level maps to a point in the published band.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 2,
+          "latency_max_days": 4
         },
         {
           "from": "approval",
@@ -2045,7 +2134,9 @@
           "label": "countersigned",
           "owner": "employer-policy",
           "guard": "The approval that existed before publication is confirmed.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
         },
         {
           "from": "offer",
@@ -2053,7 +2144,9 @@
           "label": "offer accepted",
           "owner": "candidate",
           "guard": "The candidate accepts a complete written offer inside the agreed window.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
         },
         {
           "from": "verification",
@@ -2061,7 +2154,9 @@
           "label": "checks clear",
           "owner": "employer-policy",
           "guard": "Nothing proportionate to the role is unresolved.",
-          "entities": []
+          "entities": [],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
         },
         {
           "from": "human-read",
@@ -2149,6 +2244,368 @@
           "owner": "employer-policy",
           "guard": "An outstanding offer cannot stand, and the candidate is told why, in writing, immediately.",
           "entities": []
+        }
+      ],
+      "specimens": []
+    },
+    {
+      "title": "Client account hiring funnel",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Client account hiring funnel\n\nFrom client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
+      "id": "WF-004",
+      "type": "workflow",
+      "summary": "From client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
+      "subject": "a seat funded by a client contract and the candidate moving towards it",
+      "states": [
+        {
+          "id": "demand",
+          "title": "Client demand & contract scope",
+          "kind": "initial",
+          "owner": "client",
+          "description": "The end client identifies project headcount demand or issues a vendor tender. Budget exists if the contract is signed or is contingent on winning the bid.",
+          "entities": [],
+          "visible_to_candidate": "Nothing. The search is not visible publicly.",
+          "deviations": []
+        },
+        {
+          "id": "search-open",
+          "title": "Vendor search opened",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
+          "entities": [
+            "B-014",
+            "M-016"
+          ],
+          "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
+          "deviations": []
+        },
+        {
+          "id": "vendor-screen",
+          "title": "Vendor recruiter screen",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
+          "entities": [
+            "B-004",
+            "M-004"
+          ],
+          "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
+          "deviations": []
+        },
+        {
+          "id": "vendor-technical",
+          "title": "Vendor technical evaluation",
+          "kind": "active",
+          "owner": "hiring-manager",
+          "description": "Technical interview or test task scored against the vendor assessment of the client technical threshold.",
+          "entities": [
+            "B-005",
+            "B-006"
+          ],
+          "visible_to_candidate": "A technical evaluation round with vendor engineering staff.",
+          "deviations": []
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted to client",
+          "kind": "active",
+          "owner": "client",
+          "description": "The candidate CV is submitted to the client account team for profile review and interview selection.",
+          "entities": [
+            "B-015",
+            "A-001",
+            "A-015"
+          ],
+          "visible_to_candidate": "An extended waiting interval while the client reviews candidate batches.",
+          "deviations": []
+        },
+        {
+          "id": "client-interview",
+          "title": "Client interview round",
+          "kind": "active",
+          "owner": "client",
+          "description": "Interview conducted directly by client engineering or project management leadership.",
+          "entities": [
+            "B-015",
+            "A-002"
+          ],
+          "visible_to_candidate": "An external interview round evaluating project and culture fit.",
+          "deviations": []
+        },
+        {
+          "id": "offer",
+          "title": "Offer formulation",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Compensation package calculated from client billing rate minus required gross margin.",
+          "entities": [
+            "B-009"
+          ],
+          "visible_to_candidate": "An offer package structured around vendor compensation models.",
+          "deviations": []
+        },
+        {
+          "id": "verification",
+          "title": "Pre-placement verification",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "Client-mandated background checks, certifications, and compliance paperwork.",
+          "entities": [
+            "B-011"
+          ],
+          "visible_to_candidate": "Document requests and compliance background screening.",
+          "deviations": []
+        },
+        {
+          "id": "placed",
+          "title": "Contract signed & project start",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "Contract executed and candidate onboarded onto active client delivery.",
+          "entities": [
+            "B-012"
+          ],
+          "visible_to_candidate": "Confirmed start date and client team onboarding.",
+          "deviations": []
+        },
+        {
+          "id": "vendor-declined",
+          "title": "Vendor-level rejection",
+          "kind": "terminal",
+          "owner": "recruiter",
+          "description": "The search terminates at vendor screening or technical evaluation before client submission.",
+          "entities": [
+            "A-002"
+          ],
+          "visible_to_candidate": "Standard rejection message from the vendor recruitment team.",
+          "deviations": []
+        },
+        {
+          "id": "declined-by-client",
+          "title": "Declined by client",
+          "kind": "terminal",
+          "owner": "client",
+          "description": "The client declines the CV submission or rejects the candidate after the client interview.",
+          "entities": [
+            "A-002",
+            "A-016"
+          ],
+          "visible_to_candidate": "A generic rejection relayed by the vendor without client feedback details.",
+          "deviations": []
+        },
+        {
+          "id": "closed-unfunded",
+          "title": "Search closed unfunded / tender lost",
+          "kind": "terminal",
+          "owner": "client",
+          "description": "The search closes because the client tender was lost, project budget was cancelled, or the commercial contract was paused.",
+          "entities": [
+            "A-001",
+            "A-011",
+            "A-012"
+          ],
+          "visible_to_candidate": "Unannounced silence or a notification that project requirements changed.",
+          "deviations": []
+        },
+        {
+          "id": "bench-filled",
+          "title": "Requisition filled from internal bench",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "The position is allocated to an existing internal specialist released from another account, closing the external process.",
+          "entities": [
+            "A-003",
+            "A-016"
+          ],
+          "visible_to_candidate": "A sudden search closure notification after advancing through interview rounds.",
+          "deviations": []
+        }
+      ],
+      "transitions": [
+        {
+          "from": "demand",
+          "to": "search-open",
+          "label": "Contract signed or tender profiles required",
+          "owner": "client",
+          "guard": "Commercial contract signed or tender requires candidate CVs",
+          "entities": [
+            "B-014"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 10
+        },
+        {
+          "from": "search-open",
+          "to": "vendor-screen",
+          "label": "Candidate responds to vendor outreach",
+          "owner": "recruiter",
+          "guard": "Outreach accepted and screen booked",
+          "entities": [
+            "B-014"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        },
+        {
+          "from": "search-open",
+          "to": "closed-unfunded",
+          "label": "Tender lost or client contract cancelled early",
+          "owner": "client",
+          "guard": "Commercial opportunity discontinued before screening",
+          "entities": [],
+          "latency_expected_days": 7,
+          "latency_max_days": 30
+        },
+        {
+          "from": "vendor-screen",
+          "to": "vendor-technical",
+          "label": "Vendor recruiter screen passed",
+          "owner": "recruiter",
+          "guard": "Expectations aligned with client billing margin",
+          "entities": [
+            "B-004"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "vendor-screen",
+          "to": "vendor-declined",
+          "label": "Screening mismatch or rate misalignment",
+          "owner": "recruiter",
+          "guard": "Candidate rate exceeds allowable vendor margin or skills misfit",
+          "entities": [],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
+        },
+        {
+          "from": "vendor-technical",
+          "to": "submitted",
+          "label": "Vendor assessment passed",
+          "owner": "hiring-manager",
+          "guard": "Technical bar meets vendor expectation of client threshold",
+          "entities": [
+            "B-005",
+            "B-006"
+          ],
+          "latency_expected_days": 4,
+          "latency_max_days": 10
+        },
+        {
+          "from": "vendor-technical",
+          "to": "vendor-declined",
+          "label": "Vendor assessment not met",
+          "owner": "hiring-manager",
+          "guard": "Profile does not meet vendor internal quality bar",
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "submitted",
+          "to": "client-interview",
+          "label": "Client approves CV submission",
+          "owner": "client",
+          "guard": "Client manager accepts profile and requests interview",
+          "entities": [
+            "B-015"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        },
+        {
+          "from": "submitted",
+          "to": "declined-by-client",
+          "label": "Client rejects CV submission",
+          "owner": "client",
+          "guard": "Client manager rejects profile on CV review",
+          "entities": [
+            "B-015"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        },
+        {
+          "from": "submitted",
+          "to": "bench-filled",
+          "label": "Vendor assigns internal bench specialist",
+          "owner": "employer-policy",
+          "guard": "Bench consultant becomes available mid-search",
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 10
+        },
+        {
+          "from": "submitted",
+          "to": "closed-unfunded",
+          "label": "Client cancels requisition or loses project funding",
+          "owner": "client",
+          "guard": "Client withdraws demand during profile review",
+          "entities": [],
+          "latency_expected_days": 7,
+          "latency_max_days": 30
+        },
+        {
+          "from": "client-interview",
+          "to": "offer",
+          "label": "Client approves interview",
+          "owner": "client",
+          "guard": "Client confirms candidate meets project requirements",
+          "entities": [
+            "B-015"
+          ],
+          "latency_expected_days": 4,
+          "latency_max_days": 10
+        },
+        {
+          "from": "client-interview",
+          "to": "declined-by-client",
+          "label": "Client declines after interview",
+          "owner": "client",
+          "guard": "Client decides against candidate after meeting",
+          "entities": [
+            "B-015"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "offer",
+          "to": "verification",
+          "label": "Offer agreed and contract drafted",
+          "owner": "recruiter",
+          "guard": "Candidate accepts offer parameters",
+          "entities": [
+            "B-009"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "offer",
+          "to": "closed-unfunded",
+          "label": "Client pulls project before signing",
+          "owner": "client",
+          "guard": "Client cancels funding after offer extended",
+          "entities": [],
+          "latency_expected_days": 4,
+          "latency_max_days": 14
+        },
+        {
+          "from": "verification",
+          "to": "placed",
+          "label": "Background check passed and start date confirmed",
+          "owner": "employer-policy",
+          "guard": "Verification complete and project onboarding commences",
+          "entities": [
+            "B-011",
+            "B-012",
+            "B-016"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
         }
       ],
       "specimens": []
@@ -3588,14 +4045,18 @@
             {
               "id": "nothing-added",
               "label": "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Inability to provide a single grounded communicative exchange points to non-calibrated impression scoring rather than an evidence-based panel."
             },
             {
               "id": "moment-named",
               "label": "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-018"
+              ],
+              "because": "A concrete communicative exchange demonstrates individualized panel recall, ruling out arbitrary non-specific impression bias."
             },
             {
               "id": "reception-framing",
@@ -3717,20 +4178,27 @@
             {
               "id": "deferred-with-date",
               "label": "A written reply states that the requisition is paused rather than closed, names the quarter or the date on which the freeze is reviewed, and says the offer is revisited if headcount returns.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001",
+                "M-006"
+              ],
+              "because": "A formal written pause date confirms a genuine headcount freeze (M-007) rather than an honest hire or an evergreen ghost posting."
             },
             {
               "id": "cancelled-in-writing",
               "label": "A written reply states that the requisition is closed and the headcount withdrawn, and names no date to return to.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Definitive written headcount cancellation after offer issuance directly confirms retraction."
             },
             {
               "id": "scope-without-date",
               "label": "A written reply confirms the freeze and its scope — every open requisition, other offers in the same position — and states that whether the role is cancelled or deferred is not known from inside the hiring process.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Company-wide freeze confirmation confirms systemic budget suspension."
             },
             {
               "id": "no-written-answer",
@@ -3832,8 +4300,10 @@
             {
               "id": "no-reply",
               "label": "Neither the follow-up nor the earlier answer is replied to, and the thread stays as it was: an outreach message, a same-day answer, and silence.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (M-005/M-025)."
             },
             {
               "id": "automated-reply-only",
@@ -3844,14 +4314,19 @@
             {
               "id": "thread-resumes",
               "label": "A person replies and the conversation continues: a call is booked, or the role is described in more detail.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-005",
+                "M-025"
+              ],
+              "because": "Active conversational resumption and call scheduling rule out speculative ghost sourcing and bench pooling."
             },
             {
               "id": "reply-without-next-step",
               "label": "A reply arrives with no next step in it: the search is paused, the role is already filled, or there is no open requisition behind the outreach yet.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Outreach without an active requisition behind it contradicts an immediate honest search."
             }
           ]
         }
@@ -3959,8 +4434,10 @@
             {
               "id": "higher-req-named",
               "label": "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-017"
+              ],
+              "because": "Active referral to an unblocked higher level band rules out structural down-levelling with a hard ceiling."
             },
             {
               "id": "answered-on-level-none-named",
@@ -3971,8 +4448,10 @@
             {
               "id": "answered-as-budget",
               "label": "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Stating rigid departmental budget ceilings rather than technical qualification gaps confirms pay band constraints rather than skill deficiencies."
             },
             {
               "id": "no-reply",
@@ -4099,14 +4578,18 @@
             {
               "id": "criteria-differ-by-round",
               "label": "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-019"
+              ],
+              "because": "Different criteria across distinct rounds establish separate evaluation dimensions rather than noisy evaluator disagreement."
             },
             {
               "id": "same-criterion-opposite-scores",
               "label": "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (M-019) rather than an honest calibrated verdict."
             },
             {
               "id": "reply-adds-nothing",
@@ -4218,14 +4701,18 @@
             {
               "id": "message-on-a-round-interval",
               "label": "The message arrived a round number of days after submission — thirty, forty-five, sixty — and the posting's state did not change around it.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "A rejection arriving on a round calendar interval (e.g. 30/60 days) demonstrates an automated ATS queue expiry rule (M-011) rather than an active reviewer decision."
             },
             {
               "id": "posting-still-live",
               "label": "The posting was still accepting applications when the rejection arrived.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "A rejection arriving while the role remains active and seeking candidates indicates an automated knockout filter or ghost listing (M-006/M-008)."
             },
             {
               "id": "history-unavailable",
@@ -4334,20 +4821,26 @@
             {
               "id": "withdrawn-and-not-reposted",
               "label": "The posting came down and no materially similar role appeared afterwards.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-006"
+              ],
+              "because": "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
             },
             {
               "id": "reposted-same-scope",
               "label": "A role with the same level and scope was published again within weeks.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Immediate reposting of the identical role contradicts honest closure via internal transfer."
             },
             {
               "id": "still-live",
               "label": "The posting continued to accept applications after the message arrived.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
             },
             {
               "id": "cannot-establish",
@@ -4429,20 +4922,27 @@
             {
               "id": "stated-in-the-posting",
               "label": "The posting stated the same constraint, in the same terms, before the application was made.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-003",
+                "M-022"
+              ],
+              "because": "An upfront explicit location constraint rules out post-hoc constraint injection and location bait-and-switch."
             },
             {
               "id": "absent-from-the-posting",
               "label": "The posting said nothing about the constraint, or stated a wider one.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Rejecting on an unstated location constraint contradicts an honest baseline evaluation against published terms."
             },
             {
               "id": "posting-edited",
               "label": "The posting now carries the constraint, and the saved copy shows it did not.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Retroactively editing criteria after applications arrive contradicts honest process standards."
             },
             {
               "id": "no-saved-copy",
@@ -4523,8 +5023,10 @@
             {
               "id": "listed-as-required",
               "label": "The posting named the sector among the requirements.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-016"
+              ],
+              "because": "An explicit mandatory requirement stated up front rules out covert post-hoc goalpost shifting."
             },
             {
               "id": "listed-as-preferred",
@@ -4535,8 +5037,10 @@
             {
               "id": "absent-from-the-posting",
               "label": "The posting did not mention the sector at all.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Disqualifying a candidate over an unmentioned sector criterion contradicts an honest evaluation against published standards."
             },
             {
               "id": "no-saved-copy",
@@ -4617,8 +5121,10 @@
             {
               "id": "named-work-on-first-screen",
               "label": "The work named as absent is visible on the first screen, without navigating.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Overlooking prominent first-screen evidence indicates superficial keyword/automated parsing or neglected review rather than an honest thorough evaluation."
             },
             {
               "id": "reachable-but-buried",
@@ -4629,8 +5135,11 @@
             {
               "id": "not-reachable",
               "label": "The path does not resolve, or resolves to something private.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-008",
+                "M-013"
+              ],
+              "because": "An unreachable or private submission link confirms candidate omission rather than evaluator negligence or automated screening error."
             },
             {
               "id": "no-path-was-given",
@@ -4686,6 +5195,197 @@
       "non_inferences": [
         "Does not establish that the work was never opened, only that the claim and the submission disagree.",
         "Does not establish that the work would have met the bar had it been read."
+      ]
+    },
+    {
+      "title": "Offer accepted followed by delayed start date or post-signing revocation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Offer accepted followed by delayed start date or post-signing revocation\n\nA signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.\n\n### Diagnostic Non-Inferences\n- Does not establish that the candidate's performance or background check caused the delay.\n- Does not establish that the role was fraudulent when the offer was originally issued.",
+      "id": "A-020",
+      "type": "artifact",
+      "summary": "A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.",
+      "stages": [
+        "post-offer"
+      ],
+      "evidence_level": "established",
+      "probes": [
+        {
+          "id": "PROBE-A-020-1",
+          "action": "Request written confirmation of the revised start date alongside written clarification of whether hardware shipment and payroll registration remain active.",
+          "expected_signal": "Separates an administrative IT delay from a structural hiring freeze or pre-start headcount cancellation.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "written-confirmation-received",
+              "label": "The employer confirms the date with tracking details for onboarding equipment.",
+              "excludes": [
+                "M-007",
+                "M-027"
+              ],
+              "because": "Active equipment dispatch and confirmed start date rule out pre-start headcount freeze and offer revocation."
+            },
+            {
+              "id": "evasive-delay-notice",
+              "label": "The employer provides vague holding notices without committing to a fixed onboarding date.",
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Evasive holding notices without confirmed dates contradict an honest post-offer onboarding path."
+            },
+            {
+              "id": "revocation-or-freeze-confirmed",
+              "label": "The employer confirms headcount revocation or indefinite pause prior to start date.",
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Confirmed headcount cancellation prior to day one directly contradicts an honest hire."
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Post-acceptance start date slippage",
+          "subject": "Update on your upcoming start date",
+          "lines": [
+            {
+              "at": "day -7",
+              "text": "We are excited to welcome you next Monday!",
+              "tell": false
+            },
+            {
+              "at": "day -2",
+              "text": "Due to internal team restructuring, we need to push your start date by three weeks.",
+              "tell": true
+            },
+            {
+              "at": "day +15",
+              "text": "We are still finalizing leadership approvals for the revised onboarding date.",
+              "tell": true
+            }
+          ],
+          "reading": "The delay occurs after the candidate has resigned from previous employment, shifting contractual risk entirely onto the worker."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A confirmed start date deferred after notice was given to a prior employer, leaving their career runway exposed.",
+          "reads": "Start-date slippage signals unbudgeted headcount risk or an unannounced internal hiring pause.",
+          "does": "Requests clear written documentation of employment status and assesses legal and search alternatives."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "An onboarding ticket blocked by finance or department leadership pending quarterly budget reconciliation.",
+          "reads": "The offer was extended under previous headcount assumptions that changed before start day.",
+          "does": "Relays holding messages while awaiting confirmation on whether the placement can proceed."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Quarterly headcount adjustments or project scope revisions occurring between offer acceptance and payroll commencement.",
+          "reads": "Pushing start dates preserves budget flexibility before formal employment liability attaches.",
+          "does": "Enforces hiring pauses across pending pipeline offers where commercial conditions shift."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the candidate's performance or background check caused the delay.",
+        "Does not establish that the role was fraudulent when the offer was originally issued."
+      ]
+    },
+    {
+      "title": "Republished job posting with refreshed date and identical requirement body",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-034",
+        "EVD-039"
+      ],
+      "content": "# Republished job posting with refreshed date and identical requirement body\n\nAn opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.\n\n### Diagnostic Non-Inferences\n- Does not establish that previous applicants were rejected on qualification grounds.\n- Does not establish that a confirmed budget line exists for immediate onboarding.",
+      "id": "A-021",
+      "type": "artifact",
+      "summary": "An opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.",
+      "stages": [
+        "pre-posting",
+        "sourcing"
+      ],
+      "evidence_level": "established",
+      "probes": [
+        {
+          "id": "PROBE-A-021-1",
+          "action": "Compare the requirement text hash against prior archive snapshots and ask the recruiter if active interviewing has commenced.",
+          "expected_signal": "Separates an active newly funded replacement hire from an evergreen talent pool or stale posting refresh.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "active-funded-search-confirmed",
+              "label": "The recruiter confirms an active search with initial screening calls scheduled within the week.",
+              "excludes": [
+                "M-006"
+              ],
+              "because": "An active screening schedule is incompatible with a ghost requisition maintained without hiring intent."
+            },
+            {
+              "id": "evergreen-pipeline-confirmed",
+              "label": "The recruiter confirms the listing is maintained continuously for future project demand.",
+              "excludes": [
+                "M-001"
+              ],
+              "because": "An evergreen pipeline posting is incompatible with an honest baseline search for an immediate single opening."
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "Job board repost notification",
+          "lines": [
+            {
+              "at": "month 1",
+              "text": "Senior Systems Engineer · Posted 45 days ago · 120 applicants",
+              "tell": false
+            },
+            {
+              "at": "month 2",
+              "text": "Senior Systems Engineer · Posted 2 hours ago · 3 applicants",
+              "tell": true
+            },
+            {
+              "at": "month 2",
+              "text": "Job description, tech stack, and experience criteria: 100% identical",
+              "tell": false
+            }
+          ],
+          "reading": "The refreshed publication date simulates immediate demand while resetting algorithmic visibility and applicant counters."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A newly posted opening matching their skillset, suggesting an urgent active search.",
+          "reads": "The position has just opened and early applications will receive prompt review.",
+          "does": "Customizes resume and submits application within the initial 24-hour window."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "An automated posting refresh scheduled in the ATS to keep the requisition at the top of candidate search feeds.",
+          "reads": "Refreshing the date restores organic applicant volume after the initial post decays.",
+          "does": "Monitors incoming CV volume while sorting matches into long-term talent communities."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Continuous talent brand presence and pipeline generation across core engineering disciplines.",
+          "reads": "Sustained posting visibility minimizes time-to-hire when client or departmental headcount unlocks.",
+          "does": "Authorizes ongoing job board listings across foundational roles."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that previous applicants were rejected on qualification grounds.",
+        "Does not establish that a confirmed budget line exists for immediate onboarding."
       ]
     }
   ],
@@ -5645,6 +6345,130 @@
           "sees": "A contract signed and sent back, an unconfirmed start date, and days passing with no countersignature.",
           "reads": "From here the process reads as finished, though nothing takes effect until the second signature, and that step is not visible from outside.",
           "does": "Holds off on resigning or closing other processes until the countersigned copy arrives, and records the dates and the wording of what was promised."
+        }
+      ]
+    },
+    {
+      "title": "Client Profile Approval and Client Interview",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-034"
+      ],
+      "content": "# Client Profile Approval and Client Interview\n\nThe candidate profile is submitted to the end client for review, followed by a client-side interview round.\n\n### Pass Condition\nThe client approves the profile submission and signs off on the technical and culture match after the interview.",
+      "id": "B-015",
+      "type": "barrier",
+      "stage": "client",
+      "order": 15,
+      "precedes": [],
+      "description": "The candidate profile is submitted to the end client for review, followed by a client-side interview round.",
+      "pass_condition": "The client approves the profile submission and signs off on the technical and culture match after the interview.",
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "Client review status",
+          "lines": [
+            {
+              "at": "day 14",
+              "text": "Vendor screen & tech assessment: passed",
+              "tell": false
+            },
+            {
+              "at": "day 16",
+              "text": "Profile submitted to client for approval",
+              "tell": false
+            },
+            {
+              "at": "day 28",
+              "text": "Client interview scheduled",
+              "tell": true
+            }
+          ],
+          "reading": "The candidate remains in an external waiting state where decision authority sits with a party not named on the requisition."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "client",
+          "sees": "A curated batch of candidate profiles forwarded by vendors, evaluated against internal delivery timelines.",
+          "reads": "Profiles are supplier proposals; reviewing them carries no direct employment commitment.",
+          "does": "Selects preferred profiles for a client interview or rejects without detailed feedback."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A candidate who passed vendor screening, awaiting feedback from the client account manager.",
+          "reads": "Time-to-feedback is dictated by the client; the vendor cannot advance the candidate unilaterally.",
+          "does": "Follows up with the client contact while keeping the candidate warm with generic holding updates."
+        },
+        {
+          "actor": "candidate",
+          "sees": "An extended delay after vendor interviews, followed by an additional external round.",
+          "reads": "The interview process includes an unannounced external decision gate.",
+          "does": "Prepares for a client interview whose evaluation criteria and contractual context are opaque."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Commercial margin targets dependent on placing candidate billable hours on the client contract.",
+          "reads": "Candidate placement directly realizes project revenue once client sign-off is secured.",
+          "does": "Monitors client approval rates and manages bench fallback options."
+        }
+      ]
+    },
+    {
+      "title": "Probation Period & Post-Start Confirmation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
+      "id": "B-016",
+      "type": "barrier",
+      "stage": "post-offer",
+      "order": 16,
+      "precedes": [],
+      "description": "The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.",
+      "pass_condition": "The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
+      "evidence_level": "established",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Probation review milestone",
+          "lines": [
+            {
+              "text": "Day 1–60: Objectives assigned, delivery metrics tracked",
+              "tell": false
+            },
+            {
+              "text": "Day 90: Formal probation sign-off review by engineering manager",
+              "tell": true
+            },
+            {
+              "text": "Status: Full permanent standing confirmed",
+              "tell": false
+            }
+          ],
+          "reading": "The transition from conditional probation to permanent standing requires explicit managerial evaluation or statutory lapse."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "Direct on-the-job execution during the first three months, assessing delivery speed, architecture decisions, and team communication.",
+          "reads": "Probation provides a low-friction termination window if the hire demonstrates unexpected capability gaps.",
+          "does": "Conducts regular 1-on-1 reviews and files the final probation confirmation report."
+        },
+        {
+          "actor": "candidate",
+          "sees": "Initial project onboarding, ramp-up expectations, and milestone checkpoints toward passing probation.",
+          "reads": "Employment remains contingent on early performance until the probation gate is officially cleared.",
+          "does": "Delivers against sprint goals and seeks written confirmation upon completion of the probation interval."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Legal compliance boundaries (statutory 3-month caps under EVD-040 or contractual notice rules under EVD-041).",
+          "reads": "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect.",
+          "does": "Enforces notice requirements and confirms payroll status transition upon probation completion."
         }
       ]
     }
@@ -8302,6 +9126,205 @@
         "Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.",
         "Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment."
       ]
+    },
+    {
+      "title": "Start-Date Slippage and Post-Acceptance Revocation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Start-Date Slippage and Post-Acceptance Revocation\n\nEmployers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not establish that candidate credentials or references failed validation.",
+      "id": "M-027",
+      "type": "mechanism",
+      "summary": "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.",
+      "operates_at": [
+        "B-012",
+        "B-016"
+      ],
+      "emissions": [
+        {
+          "artifact": "A-020",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-040",
+            "EVD-041"
+          ],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-001",
+          "fidelity": "void",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-011",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "incentive",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [],
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Start-date deferral notice",
+          "lines": [
+            {
+              "text": "We are finalizing internal team allocations and will be confirming the revised start date shortly.",
+              "tell": true
+            },
+            {
+              "text": "Please do not report to the office until the updated equipment schedule is issued.",
+              "tell": false
+            }
+          ],
+          "reading": "The delay manages company cash flow and headcount quotas by deferring payroll liability onto the candidate."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A hiring freeze or executive budget revision taking effect across pending hires before day-one employment commencement.",
+          "reads": "Deferring start dates avoids immediate payroll commitments during headcount transitions.",
+          "does": "Freezes onboarding queues and issues holding notifications."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A signed offer with an indefinite or pushed start date after resigning from previous employment.",
+          "reads": "Contractual commitment was asymmetrical: candidate resignation is irreversible while company start date is deferred.",
+          "does": "Assesses legal notice entitlements (EVD-041) and evaluates reopening active job search."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A closed search reopened administratively because the approved start date cannot be scheduled.",
+          "reads": "Hiring quotas shifted after offer signature, leaving recruiter metrics and candidate stranded.",
+          "does": "Attempts to maintain contact while leadership resolves headcount funding."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that candidate credentials or references failed validation."
+      ]
+    },
+    {
+      "title": "Probation Used as Extended De-Facto Interview",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Probation Used as Extended De-Facto Interview\n\nManagers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Does not establish that the employee committed gross misconduct.",
+      "id": "M-028",
+      "type": "mechanism",
+      "summary": "Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.",
+      "operates_at": [
+        "B-016"
+      ],
+      "emissions": [
+        {
+          "artifact": "A-020",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-040",
+            "EVD-041"
+          ],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-016",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "incentive",
+        "visibility": "inferable",
+        "removability": "intermediary"
+      },
+      "amplifies": [],
+      "masks": [],
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Probation exit note",
+          "lines": [
+            {
+              "text": "Candidate onboarding evaluated over 60 days.",
+              "tell": false
+            },
+            {
+              "text": "Delivery pace did not ramp to senior independent output within month two.",
+              "tell": true
+            },
+            {
+              "text": "Notice issued under statutory probation clause (EVD-040).",
+              "tell": false
+            }
+          ],
+          "reading": "The interview process was truncated under the assumption that probation serves as the true filtering phase."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "Direct on-the-job output under real sprint pressure, treating probation as a higher-fidelity filter than multi-round panel interviews.",
+          "reads": "Hiring fast and pruning early during probation reduces upfront interview coordination costs.",
+          "does": "Replaces extensive technical testing with early probationary evaluation."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A full employment offer that operates in practice as a temporary contract with heightened termination exposure.",
+          "reads": "The real hiring threshold was shifted post-start without explicit pre-acceptance disclosure.",
+          "does": "Delivers aggressively during initial months while maintaining external professional networks."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Probation turnover rates and dismissal compliance documentation under labour statute constraints (EVD-040).",
+          "reads": "High probation turnover increases team onboarding costs while preserving statutory compliance.",
+          "does": "Monitors probation pass rates and reviews termination justifications."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the employee committed gross misconduct."
+      ]
     }
   ],
   "patterns": [
@@ -9194,6 +10217,7 @@
         "M-010",
         "B-007",
         "B-008",
+        "B-015",
         "P-001",
         "P-002",
         "L-003"
@@ -10204,7 +11228,10 @@
       "summary": "Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.",
       "targets": [
         "B-011",
-        "M-021"
+        "B-016",
+        "M-021",
+        "M-027",
+        "M-028"
       ],
       "actor": "employer-policy",
       "scope": "organizational",
@@ -10745,6 +11772,295 @@
       "citation": "Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).",
       "url": "https://zakon.rada.gov.ua/laws/show/889-19",
       "period": "current"
+    },
+    {
+      "id": "EVD-040",
+      "type": "evidence",
+      "title": "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)",
+      "kind": "primary",
+      "summary": "Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.",
+      "citation": "Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).",
+      "url": "https://zakon.rada.gov.ua/laws/show/322-08",
+      "period": "current"
+    },
+    {
+      "id": "EVD-041",
+      "type": "evidence",
+      "title": "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)",
+      "kind": "primary",
+      "summary": "The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.",
+      "citation": "UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).",
+      "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/86",
+      "period": "current"
+    }
+  ],
+  "records": [
+    {
+      "title": "Annual Engineering Department Budget",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Annual Engineering Department Budget\n\nAnnual operating budget allocation assigned to engineering department headcount.",
+      "id": "R-001",
+      "type": "record",
+      "record_class": "budget-line",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Annual operating budget allocation assigned to engineering department headcount.",
+      "flows": [
+        {
+          "to": "R-002",
+          "label": "requisition headcount allocation",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "allocation"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Approved Requisition Funding",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Approved Requisition Funding\n\nHeadcount allocation and salary band approved for the active requisition.",
+      "id": "R-002",
+      "type": "record",
+      "record_class": "requisition-funding",
+      "owner": "inside",
+      "owner_actor": "hiring-manager",
+      "summary": "Headcount allocation and salary band approved for the active requisition.",
+      "flows": [
+        {
+          "to": "R-003",
+          "label": "hired candidate compensation",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "payroll"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Direct Engineering Payroll",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Direct Engineering Payroll\n\nDirect recurring payroll compensation paid to the employed engineer.",
+      "id": "R-003",
+      "type": "record",
+      "record_class": "payroll",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Direct recurring payroll compensation paid to the employed engineer.",
+      "flows": [],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Client Project Budget",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Client Project Budget\n\nClient total budget line earmarked for third-party engineering services.",
+      "id": "R-004",
+      "type": "record",
+      "record_class": "budget-line",
+      "owner": "outside-party",
+      "owner_actor": "client",
+      "summary": "Client total budget line earmarked for third-party engineering services.",
+      "flows": [
+        {
+          "to": "R-005",
+          "label": "master services contract",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "settlement"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Client Services Agreement",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Client Services Agreement\n\nCommercial contract defining billing rate and seat scope.",
+      "id": "R-005",
+      "type": "record",
+      "record_class": "contract",
+      "owner": "outside-party",
+      "owner_actor": "client",
+      "summary": "Commercial contract defining billing rate and seat scope.",
+      "flows": [
+        {
+          "to": "R-006",
+          "label": "vendor margin split",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "margin"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Vendor Margin and Headcount Allocation",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Vendor Margin and Headcount Allocation\n\nInternal vendor allocation splitting client billing into gross margin and candidate cost.",
+      "id": "R-006",
+      "type": "record",
+      "record_class": "requisition-funding",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Internal vendor allocation splitting client billing into gross margin and candidate cost.",
+      "flows": [
+        {
+          "to": "R-007",
+          "label": "contractor payroll allocation",
+          "percentage": 75,
+          "fraction": 0.75,
+          "split_type": "payroll"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Subcontractor Compensation",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Subcontractor Compensation\n\nNet compensation disbursed to the engineer delivering client services.",
+      "id": "R-007",
+      "type": "record",
+      "record_class": "payroll",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Net compensation disbursed to the engineer delivering client services.",
+      "flows": [],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Employer Hiring and Sourcing Budget",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Employer Hiring and Sourcing Budget\n\nOperational recruiting budget covering external agency fees and search costs.",
+      "id": "R-008",
+      "type": "record",
+      "record_class": "budget-line",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Operational recruiting budget covering external agency fees and search costs.",
+      "flows": [
+        {
+          "to": "R-009",
+          "label": "success fee commitment",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "allocation"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Contingency Placement Fee Commitment",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Contingency Placement Fee Commitment\n\nPlacement commission contingent upon candidate starting and passing warranty period.",
+      "id": "R-009",
+      "type": "record",
+      "record_class": "placement-fee",
+      "owner": "inside",
+      "owner_actor": "recruiter",
+      "summary": "Placement commission contingent upon candidate starting and passing warranty period.",
+      "flows": [
+        {
+          "to": "R-010",
+          "label": "agency invoice disbursement",
+          "percentage": 20,
+          "fraction": 0.2,
+          "split_type": "fee"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "External Agency Settlement",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# External Agency Settlement\n\nCommercial fee settlement received by the external recruitment agency.",
+      "id": "R-010",
+      "type": "record",
+      "record_class": "contract",
+      "owner": "outside-party",
+      "owner_actor": "client",
+      "summary": "Commercial fee settlement received by the external recruitment agency.",
+      "flows": [],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Candidate Liquid Savings",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Candidate Liquid Savings\n\nTotal liquid personal savings allocated to sustain the job search interval.",
+      "id": "R-011",
+      "type": "record",
+      "record_class": "runway",
+      "owner": "inside",
+      "owner_actor": "candidate",
+      "summary": "Total liquid personal savings allocated to sustain the job search interval.",
+      "flows": [
+        {
+          "to": "R-012",
+          "label": "search runway allocation",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "burn"
+        }
+      ],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Candidate Search Runway",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Candidate Search Runway\n\nAvailable runway in months derived from personal savings and monthly burn rate.",
+      "id": "R-012",
+      "type": "record",
+      "record_class": "runway",
+      "owner": "inside",
+      "owner_actor": "candidate",
+      "summary": "Available runway in months derived from personal savings and monthly burn rate.",
+      "flows": [
+        {
+          "to": "R-013",
+          "label": "monthly living expenditure",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "burn"
+        }
+      ],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Search-Month Burn Allocation",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Search-Month Burn Allocation\n\nLiving and tooling expenses incurred per month of active job search.",
+      "id": "R-013",
+      "type": "record",
+      "record_class": "payroll",
+      "owner": "inside",
+      "owner_actor": "candidate",
+      "summary": "Living and tooling expenses incurred per month of active job search.",
+      "flows": [],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
     }
   ]
 }

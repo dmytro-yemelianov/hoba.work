@@ -3,13 +3,18 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import {
+  evaluatePatternEmptiness,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
+  lift,
   loadRegistryFromRoot,
   readPackageVersion,
   resolveRegistryRoot,
   searchBundle,
   stageIdSchema,
+  substrateCalculateRunway,
+  substrateDetectTemporalAnomalies,
+  substrateVerifyFlowConservation,
   type GraphRelation,
 } from '@hoba/registry';
 
@@ -285,6 +290,75 @@ server.registerTool(
     inputSchema: { topic: z.enum(methodologyTopics as [MethodologyTopic, ...MethodologyTopic[]]).optional() },
   },
   async ({ topic }) => ok(topic ? { topic, [topic]: METHODOLOGY[topic] } : { ...METHODOLOGY })
+);
+
+const lifted = lift(bundle);
+
+server.registerTool(
+  'detect_temporal_anomalies',
+  {
+    description:
+      'Diagnose temporal dwell anomalies and identify stalled or implicated mechanisms across hiring funnel stages.',
+    inputSchema: {
+      process_id: z.string().describe('Workflow ID (e.g. "WF-001", "WF-003", "WF-004")'),
+      from_state: z.string().describe('Starting state ID where candidate is currently dwelling (e.g. "recruiter-queue")'),
+      actual_days: z.number().nonnegative().describe('Number of elapsed calendar days in this state'),
+    },
+  },
+  async ({ process_id, from_state, actual_days }) => {
+    const anomalies = substrateDetectTemporalAnomalies(lifted.substrate, process_id, from_state, actual_days);
+    return ok({
+      process: process_id,
+      from_state,
+      actual_days,
+      count: anomalies.length,
+      anomalies,
+    });
+  }
+);
+
+server.registerTool(
+  'calculate_runway',
+  {
+    description:
+      'Compute candidate financial runway horizon, exhaustion risk profile, and vulnerability notes under monthly burn rate.',
+    inputSchema: {
+      savings: z.number().nonnegative().describe('Liquid savings in account currency'),
+      monthly_burn: z.number().positive().describe('Monthly baseline living cost / burn rate'),
+    },
+  },
+  async ({ savings, monthly_burn }) => {
+    const calculus = substrateCalculateRunway(savings, monthly_burn);
+    return ok({ ...calculus });
+  }
+);
+
+server.registerTool(
+  'verify_flow_conservation',
+  {
+    description: 'Audit financial flow conservation across all records in the registry knowledge graph.',
+    inputSchema: {},
+  },
+  async () => {
+    const report = substrateVerifyFlowConservation(lifted.substrate);
+    return ok({
+      record_count: lifted.substrate.records.length,
+      flow_count: lifted.substrate.flows.length,
+      ...report,
+    });
+  }
+);
+
+server.registerTool(
+  'evaluate_pattern_emptiness',
+  {
+    description: 'Evaluate formal algebraic emptiness and contradiction proofs for all patterns in the registry.',
+    inputSchema: {},
+  },
+  async () => {
+    const report = evaluatePatternEmptiness(lifted);
+    return ok({ ...report });
+  }
 );
 
 async function main() {

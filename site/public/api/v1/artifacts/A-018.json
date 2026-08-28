@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Rejection naming a specific industry sector as required",
     "status": "active",
@@ -23,8 +23,10 @@
           {
             "id": "listed-as-required",
             "label": "The posting named the sector among the requirements.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-016"
+            ],
+            "because": "An explicit mandatory requirement stated up front rules out covert post-hoc goalpost shifting."
           },
           {
             "id": "listed-as-preferred",
@@ -35,8 +37,10 @@
           {
             "id": "absent-from-the-posting",
             "label": "The posting did not mention the sector at all.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Disqualifying a candidate over an unmentioned sector criterion contradicts an honest evaluation against published standards."
           },
           {
             "id": "no-saved-copy",

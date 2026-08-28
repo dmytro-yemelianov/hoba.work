@@ -14,6 +14,7 @@ import {
   mechanismSchema,
   patternSchema,
   registryManifestSchema,
+  authoredRecordSchema,
 } from './schemas.js';
 import type { ContentLang, RegistryBundle, RegistryManifest } from './types.js';
 import { contentDirFor, evidenceDirFor, manifestPathFor } from './paths.js';
@@ -144,6 +145,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
   const loops = loadEntityDir(path.join(baseDir, 'loops'), loopSchema).sort(byId);
   const interventions = loadEntityDir(path.join(baseDir, 'interventions'), interventionSchema).sort(byId);
   const evidence = loadEntityDir(evidenceDir, evidenceSchema).sort(byId);
+  const records = loadEntityDir(path.join(baseDir, 'records'), authoredRecordSchema).sort(byId);
 
   return {
     ...manifest,
@@ -157,6 +159,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
     loops,
     interventions,
     evidence,
+    records,
   };
 }
 

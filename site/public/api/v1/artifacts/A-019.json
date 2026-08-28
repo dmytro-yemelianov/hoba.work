@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Feedback naming as absent something the submitted work contains",
     "status": "active",
@@ -23,8 +23,10 @@
           {
             "id": "named-work-on-first-screen",
             "label": "The work named as absent is visible on the first screen, without navigating.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Overlooking prominent first-screen evidence indicates superficial keyword/automated parsing or neglected review rather than an honest thorough evaluation."
           },
           {
             "id": "reachable-but-buried",
@@ -35,8 +37,11 @@
           {
             "id": "not-reachable",
             "label": "The path does not resolve, or resolves to something private.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-008",
+              "M-013"
+            ],
+            "because": "An unreachable or private submission link confirms candidate omission rather than evaluator negligence or automated screening error."
           },
           {
             "id": "no-path-was-given",

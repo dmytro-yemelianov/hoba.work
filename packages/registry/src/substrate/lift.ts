@@ -3,7 +3,7 @@
  *
  * The rule of the gate (PLAN-SUBSTRATE A2): the substrate is authoritative for
  * structure, the sidecar carries prose, and `project()` must rebuild the exact
- * bundle from the pair. What counts as structure in this first cut:
+ * bundle from the pair. What counts as structure:
  *
  *  - every entity's TITLE lives on its substrate object, never in the sidecar;
  *  - each barrier is one condition; its `gates` are the workflow events its
@@ -14,17 +14,27 @@
  *  - each mechanism is one condition; `accounts_for` carries operates_at,
  *    `causes` carries the emission targets in order, and the per-emission
  *    metadata rides the sidecar keyed by position;
+ *  - comparative mechanisms (M-002, M-009, M-018) carry arity='comparative'
+ *    and name their cohort object; all others are arity='absolute' (A4);
+ *  - statements are linked on communicative observations (A-002, etc.), while
+ *    absences (A-001) carry communicates=false (A4);
+ *  - visibility classes define party-to-record visibility in the substrate (A4);
  *  - workflows are processes over per-state event classes, conditions on the
- *    edges being exactly the B-* entities of the authored transition — the
- *    projection re-derives nothing from this yet, but a consistency assert in
- *    the tests keeps the two representations from drifting.
- *
- * Determinacy and ownership are mapped by fixed, documented rules (below), and
- * the original facets ride the sidecar so the projection is exact regardless.
- * A4 refines the mapping; A2 only has to not lie.
+ *    edges being exactly the B-* entities of the authored transition.
  */
 import type { AnyRecord, RegistryBundle } from '../types.js';
-import type { Condition, EventClass, Process, RecordClass, Substrate, SubstrateRecord } from './schema.js';
+import type {
+  Cohort,
+  Condition,
+  EventClass,
+  Flow,
+  Process,
+  RecordClass,
+  Statement,
+  Substrate,
+  SubstrateRecord,
+  VisibilityRule,
+} from './schema.js';
 
 export interface Sidecar {
   bundle: { version: string; schema_version: string; updated_at: string };
@@ -43,7 +53,7 @@ export interface Lifted {
 
 const low = (id: string) => id.toLowerCase();
 
-/** nature → determinacy. Fixed and reviewable; refined in A4, not here. */
+/** nature → determinacy. Fixed and reviewable. */
 const DETERMINACY: Record<string, Condition['determinacy']> = {
   rule: 'deterministic',
   void: 'deterministic',
@@ -51,6 +61,8 @@ const DETERMINACY: Record<string, Condition['determinacy']> = {
   bias: 'judgement',
   noise: 'stochastic',
 };
+
+const COMPARATIVE_MECHANISMS = new Set(['M-002', 'M-009', 'M-018']);
 
 export function lift(bundle: RegistryBundle): Lifted {
   const recordClasses: RecordClass[] = [
@@ -60,12 +72,38 @@ export function lift(bundle: RegistryBundle): Lifted {
     { id: 'cls:intervention', title: 'Proposed change', fields: {}, party: false },
     { id: 'cls:pattern', title: 'Pattern', fields: {}, party: false },
     { id: 'cls:loop', title: 'Loop', fields: {}, party: false },
+    { id: 'cls:requisition', title: 'Requisition', fields: {}, party: false },
+    { id: 'cls:application', title: 'Application', fields: {}, party: false },
+    { id: 'cls:record', title: 'Financial Record', fields: {}, party: false },
   ];
 
-  const records: SubstrateRecord[] = [];
+  const records: SubstrateRecord[] = [
+    { id: 'rec:requisition.context', class: 'cls:requisition', title: 'Active Requisition Context', fields: {} },
+  ];
   const eventClasses: EventClass[] = [];
+  const statements: Statement[] = [];
   const conditions: Condition[] = [];
   const processes: Process[] = [];
+  const cohorts: Cohort[] = [
+    {
+      id: 'coh:requisition.pool',
+      title: 'Requisition candidate cohort',
+      of: 'cls:application',
+      within: 'rec:requisition.context',
+    },
+  ];
+
+  const visibilityRules: VisibilityRule[] = [
+    { audience: 'cls:actor', subject: 'cls:actor', level: 'observable' },
+    { audience: 'cls:actor', subject: 'cls:evidence', level: 'inferable' },
+    { audience: 'cls:actor', subject: 'cls:intervention', level: 'observable' },
+    { audience: 'cls:actor', subject: 'cls:pattern', level: 'inferable' },
+    { audience: 'cls:actor', subject: 'cls:loop', level: 'inferable' },
+    { audience: 'cls:actor', subject: 'cls:era', level: 'observable' },
+    { audience: 'cls:actor', subject: 'cls:requisition', level: 'opaque' },
+    { audience: 'cls:actor', subject: 'cls:application', level: 'inferable' },
+  ];
+
   const sidecar: Sidecar = {
     bundle: { version: bundle.version, schema_version: bundle.schema_version, updated_at: bundle.updated_at },
     entities: {},
@@ -97,10 +135,25 @@ export function lift(bundle: RegistryBundle): Lifted {
     }
   }
 
-  // Observations are event classes.
+  // Observations are event classes; statements attach to communicative observations (A4).
   sidecar.order['artifacts'] = bundle.artifacts.map((a) => a.id);
   for (const a of bundle.artifacts) {
-    eventClasses.push({ id: `evc:${low(a.id)}`, title: a.title, emitters: [], communicates: false });
+    const isAbsence = a.id === 'A-001';
+    const communicates = !isAbsence;
+    eventClasses.push({
+      id: `evc:${low(a.id)}`,
+      title: a.title,
+      emitters: ['cls:actor'],
+      communicates,
+    });
+    if (communicates) {
+      statements.push({
+        id: `sta:${low(a.id)}`,
+        about: 'rec:actor.candidate',
+        claims: {},
+        fidelity: 'direct',
+      });
+    }
     sidecar.entities[a.id] = keep(a, ['title']);
   }
 
@@ -116,6 +169,8 @@ export function lift(bundle: RegistryBundle): Lifted {
         from: `evc:${low(w.id)}.${t.from}`,
         to: `evc:${low(w.id)}.${t.to}`,
         conditions: (t.entities ?? []).filter((e) => e.startsWith('B-')).map((e) => `cnd:${low(e)}`),
+        latency_expected_days: t.latency_expected_days,
+        latency_max_days: t.latency_max_days,
       })),
     });
     sidecar.entities[w.id] = keep(w as unknown as AnyRecord, ['title', 'states', 'transitions']);
@@ -148,10 +203,10 @@ export function lift(bundle: RegistryBundle): Lifted {
     conditions.push({
       id: `cnd:${low(b.id)}`,
       title: b.title,
-      gates: gateOf.get(b.id)!,
+      gates: gateOf.get(b.id) ?? [],
       causes: [],
       accounts_for: [],
-      owner: { position: 'inside', party: partyOfActor(ownerOf.get(b.id)!) },
+      owner: { position: 'inside', party: partyOfActor(ownerOf.get(b.id) ?? 'employer-policy') },
       determinacy: 'judgement',
       arity: 'absolute',
       reads: [],
@@ -160,28 +215,57 @@ export function lift(bundle: RegistryBundle): Lifted {
     sidecar.entities[b.id] = keep(b, ['title', 'pass_condition']);
   }
 
-  // One condition per mechanism: accounts_for its gates, causes its traces.
+  // One condition per mechanism: accounts for its barriers, causes its emissions.
   const facetParty = new Map<string, string>();
   for (const a of bundle.actors) for (const f of a.aliases?.facet ?? []) facetParty.set(f, partyOfActor(a.id));
 
   sidecar.order['mechanisms'] = bundle.mechanisms.map((m) => m.id);
+  sidecar.emissionMeta = {};
   for (const m of bundle.mechanisms) {
     const anchors = m.operates_at.map((b) => `cnd:${low(b)}`);
     const gates = [...new Set(m.operates_at.flatMap((b) => gateOf.get(b) ?? []))];
+    const isComparative = COMPARATIVE_MECHANISMS.has(m.id);
+
     conditions.push({
       id: `cnd:${low(m.id)}`,
       title: m.title,
       gates,
       causes: m.emissions.map((e) => `evc:${low(e.artifact)}`),
       accounts_for: anchors,
-      owner: { position: 'inside', party: facetParty.get(m.facets.actor)! },
+      owner: { position: 'inside', party: facetParty.get(m.facets.actor) ?? partyOfActor(m.facets.actor) },
       determinacy: DETERMINACY[m.facets.nature] ?? 'judgement',
-      arity: 'absolute',
+      arity: isComparative ? 'comparative' : 'absolute',
+      cohort: isComparative ? 'coh:requisition.pool' : undefined,
       reads: [],
       text: m.summary,
     });
     sidecar.emissionMeta[m.id] = m.emissions.map((e) => keep(e as unknown as Record<string, unknown>, ['artifact']));
     sidecar.entities[m.id] = keep(m, ['title', 'operates_at', 'emissions']);
+  }
+
+  // Authored records and flows (A5).
+  const flows: Flow[] = [];
+  sidecar.order['records'] = (bundle.records ?? []).map((r) => r.id);
+  for (const r of bundle.records ?? []) {
+    records.push({
+      id: `rec:${low(r.id)}`,
+      class: 'cls:record',
+      title: r.title,
+      fields: {},
+    });
+    sidecar.entities[r.id] = keep(r, ['title']);
+    for (const f of r.flows) {
+      flows.push({
+        id: `flw:${low(r.id)}.${low(f.to)}`,
+        title: f.label,
+        from: `rec:${low(r.id)}`,
+        to: `rec:${low(f.to)}`,
+        percentage: f.percentage,
+        fraction: f.fraction,
+        split_type: f.split_type,
+        amount: f.amount,
+      });
+    }
   }
 
   return {
@@ -190,13 +274,13 @@ export function lift(bundle: RegistryBundle): Lifted {
       records,
       eventClasses,
       events: [],
-      statements: [],
+      statements,
       conditions,
-      visibilityRules: [],
+      visibilityRules,
       visibilityOverrides: [],
-      flows: [],
+      flows,
       processes,
-      cohorts: [],
+      cohorts,
     },
     sidecar,
   };

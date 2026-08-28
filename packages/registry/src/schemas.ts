@@ -11,6 +11,7 @@ export const ID_PATTERNS = {
   loop: /^L-\d{3}$/,
   intervention: /^I-\d{3}$/,
   evidence: /^EVD-\d{3}$/,
+  record: /^R-\d{3}$/,
   probe: /^PROBE-[A-Z0-9-]+$/,
   era: /^E-\d{3}$/,
 } as const;
@@ -22,6 +23,7 @@ const patternId = z.string().regex(ID_PATTERNS.pattern);
 const loopId = z.string().regex(ID_PATTERNS.loop);
 const interventionId = z.string().regex(ID_PATTERNS.intervention);
 const evidenceId = z.string().regex(ID_PATTERNS.evidence);
+const recordId = z.string().regex(ID_PATTERNS.record);
 const workflowId = z.string().regex(/^WF-\d{3}$/, 'workflow id must look like WF-001');
 const eraId = z.string().regex(ID_PATTERNS.era, 'era id must look like E-001');
 
@@ -36,6 +38,7 @@ export const stageIdSchema = z.enum([
   'technical',
   'hiring-manager',
   'team',
+  'client',
   'compensation',
   'offer',
   'post-offer',
@@ -95,6 +98,7 @@ export const entityTypeSchema = z.enum([
   'loop',
   'intervention',
   'evidence',
+  'record',
 ]);
 
 /**
@@ -417,6 +421,8 @@ export const workflowStateSchema = z.object({
    * the point at which a documented ideal stops being followed.
    */
   deviations: z.array(z.string()).default([]),
+  /** Maximum expected dwell time in this state under nominal operation (days). */
+  max_dwell_days: z.number().positive().optional(),
 });
 
 export const workflowTransitionSchema = z.object({
@@ -426,6 +432,10 @@ export const workflowTransitionSchema = z.object({
   owner: actorId,
   guard: z.string().min(5),
   entities: z.array(z.string()).default([]),
+  /** Nominal expected turnaround time for this transition (days). */
+  latency_expected_days: z.number().positive().optional(),
+  /** Maximum threshold beyond which latency indicates queue stalling or ghosting (days). */
+  latency_max_days: z.number().positive().optional(),
 });
 
 export const workflowSchema = z.object({
@@ -500,6 +510,65 @@ export const evidenceSchema = z.object({
   period: z.string().optional(),
 });
 
+export const recordClassEnumSchema = z.enum([
+  'budget-line',
+  'contract',
+  'bid',
+  'requisition-funding',
+  'payroll',
+  'placement-fee',
+  'subscription',
+  'runway',
+]);
+
+export const recordFlowSchema = z.object({
+  to: z.string().regex(ID_PATTERNS.record),
+  label: z.string().min(1),
+  /** Parametric split percentage (0..100). */
+  percentage: z.number().min(0).max(100).optional(),
+  /** Parametric flow fraction (0..1.0). */
+  fraction: z.number().min(0).max(1).optional(),
+  /** The economic nature of the flow split. */
+  split_type: z.enum(['margin', 'payroll', 'settlement', 'burn', 'allocation', 'fee']).optional(),
+  amount: z
+    .object({
+      value: z.number(),
+      unit: z.string().min(1),
+      evidence: z.array(z.string().regex(ID_PATTERNS.evidence)).min(1),
+    })
+    .optional(),
+});
+
+export const authoredRecordSchema = z
+  .object({
+    ...nodeBase,
+    id: recordId,
+    type: z.literal('record'),
+    record_class: recordClassEnumSchema,
+    owner: z.enum(['inside', 'outside-party', 'ownerless']),
+    owner_actor: actorId.optional(),
+    summary: z.string().min(10),
+    flows: z.array(recordFlowSchema).default([]),
+    visibility_default: visibilityTypeSchema.default('opaque'),
+    evidence_ids: z.array(z.string().regex(ID_PATTERNS.evidence)).default([]),
+    evidence_level: evidenceLevelSchema.default('supported'),
+    superseded_by: recordId.optional(),
+  })
+  .superRefine((r, ctx) => {
+    if (r.owner !== 'ownerless' && !r.owner_actor) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'an owned record must specify owner_actor',
+      });
+    }
+    if (r.owner === 'ownerless' && r.owner_actor) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'an ownerless record cannot have owner_actor',
+      });
+    }
+  });
+
 // Registry release manifest (`registry.yaml` at the repository root).
 // Keeps the three version axes required by spec §17 in one place.
 export const registryManifestSchema = z.object({
@@ -519,4 +588,5 @@ export const registryBundleSchema = registryManifestSchema.extend({
   loops: z.array(loopSchema),
   interventions: z.array(interventionSchema),
   evidence: z.array(evidenceSchema),
+  records: z.array(authoredRecordSchema).default([]),
 });

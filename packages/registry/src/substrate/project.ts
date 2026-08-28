@@ -69,6 +69,11 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
     return substrate.processes.find((p) => p.id === `prc:${workflowId.toLowerCase()}`)!.title;
   }
 
+  const records = collect('records', (id) => ({
+    ...sidecar.entities[id]!,
+    title: flatTitle(`rec:${id.toLowerCase()}`),
+  }));
+
   return {
     version: sidecar.bundle.version,
     schema_version: sidecar.bundle.schema_version,
@@ -83,5 +88,6 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
     loops,
     interventions,
     evidence,
+    records,
   } as unknown as RegistryBundle;
 }

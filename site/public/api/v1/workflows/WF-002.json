@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "An application inside the ATS",
     "status": "active",
@@ -137,7 +137,9 @@
         "guard": "Required fields validate and the file is a supported type.",
         "entities": [
           "B-001"
-        ]
+        ],
+        "latency_expected_days": 1,
+        "latency_max_days": 1
       },
       {
         "from": "parsing",
@@ -147,7 +149,9 @@
         "guard": "Extraction completes, whether or not it recovered the work history.",
         "entities": [
           "M-003"
-        ]
+        ],
+        "latency_expected_days": 1,
+        "latency_max_days": 1
       },
       {
         "from": "scoring",
@@ -157,7 +161,9 @@
         "guard": "Every knockout rule passes and the rank clears the advance threshold.",
         "entities": [
           "B-002"
-        ]
+        ],
+        "latency_expected_days": 1,
+        "latency_max_days": 2
       },
       {
         "from": "scoring",
@@ -169,7 +175,9 @@
           "M-008",
           "M-011",
           "A-009"
-        ]
+        ],
+        "latency_expected_days": 1,
+        "latency_max_days": 3
       },
       {
         "from": "queued",
@@ -179,7 +187,9 @@
         "guard": "Capacity reaches this position in the queue before the expiry threshold.",
         "entities": [
           "B-003"
-        ]
+        ],
+        "latency_expected_days": 4,
+        "latency_max_days": 14
       },
       {
         "from": "queued",
@@ -189,7 +199,9 @@
         "guard": "The record ages past the configured limit with no review recorded.",
         "entities": [
           "M-020"
-        ]
+        ],
+        "latency_expected_days": 30,
+        "latency_max_days": 60
       },
       {
         "from": "reviewed",
@@ -199,7 +211,9 @@
         "guard": "The profile is put on the active list for outreach.",
         "entities": [
           "B-003"
-        ]
+        ],
+        "latency_expected_days": 2,
+        "latency_max_days": 5
       },
       {
         "from": "reviewed",
@@ -210,7 +224,9 @@
         "entities": [
           "A-002",
           "M-009"
-        ]
+        ],
+        "latency_expected_days": 2,
+        "latency_max_days": 5
       }
     ],
     "specimens": []

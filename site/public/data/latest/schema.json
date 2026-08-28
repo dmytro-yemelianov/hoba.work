@@ -340,6 +340,10 @@
                         "type": "string"
                       },
                       "default": []
+                    },
+                    "max_dwell_days": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
                     }
                   },
                   "required": [
@@ -380,6 +384,14 @@
                         "type": "string"
                       },
                       "default": []
+                    },
+                    "latency_expected_days": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "latency_max_days": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
                     }
                   },
                   "required": [
@@ -570,6 +582,7 @@
                     "technical",
                     "hiring-manager",
                     "team",
+                    "client",
                     "compensation",
                     "offer",
                     "post-offer"
@@ -1373,6 +1386,157 @@
             ],
             "additionalProperties": false
           }
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+              },
+              "status": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^EVD-\\d{3}$"
+                },
+                "default": []
+              },
+              "content": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^R-\\d{3}$"
+              },
+              "type": {
+                "type": "string",
+                "const": "record"
+              },
+              "record_class": {
+                "type": "string",
+                "enum": [
+                  "budget-line",
+                  "contract",
+                  "bid",
+                  "requisition-funding",
+                  "payroll",
+                  "placement-fee",
+                  "subscription",
+                  "runway"
+                ]
+              },
+              "owner": {
+                "type": "string",
+                "enum": [
+                  "inside",
+                  "outside-party",
+                  "ownerless"
+                ]
+              },
+              "owner_actor": {
+                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 10
+              },
+              "flows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "to": {
+                      "type": "string",
+                      "pattern": "^R-\\d{3}$"
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "percentage": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    },
+                    "fraction": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "split_type": {
+                      "type": "string",
+                      "enum": [
+                        "margin",
+                        "payroll",
+                        "settlement",
+                        "burn",
+                        "allocation",
+                        "fee"
+                      ]
+                    },
+                    "amount": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "number"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "evidence": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^EVD-\\d{3}$"
+                          },
+                          "minItems": 1
+                        }
+                      },
+                      "required": [
+                        "value",
+                        "unit",
+                        "evidence"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "to",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                },
+                "default": []
+              },
+              "visibility_default": {
+                "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/facets/properties/visibility",
+                "default": "opaque"
+              },
+              "evidence_level": {
+                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "default": "supported"
+              },
+              "superseded_by": {
+                "$ref": "#/definitions/RegistryBundle/properties/records/items/properties/id"
+              }
+            },
+            "required": [
+              "title",
+              "id",
+              "type",
+              "record_class",
+              "owner",
+              "summary"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
         }
       },
       "required": [

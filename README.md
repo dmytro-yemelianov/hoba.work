@@ -142,7 +142,7 @@ npm**; run the server from a local checkout (`pnpm install && pnpm build:package
 ```json
 {
   "mcpServers": {
-    "**hoba**": {
+    "hoba": {
       "command": "node",
       "args": ["/path/to/hoba.work/packages/mcp/dist/index.js", "--dir", "/path/to/hoba.work"]
     }
@@ -151,25 +151,51 @@ npm**; run the server from a local checkout (`pnpm install && pnpm build:package
 ```
 The registry root is resolved from `--dir`, then `$HOBA_ROOT`, then by walking up from the working directory.
 Tools: `get_registry_info`, `search_registry`, `get_node`, `explain_observation`, `find_compatible_mechanisms`,
-`get_diagnostic_probes`, `find_patterns`, `get_interventions`, `traverse_graph`, `get_methodology`.
+`get_diagnostic_probes`, `find_patterns`, `get_interventions`, `traverse_graph`, `get_methodology`,
+`detect_temporal_anomalies`, `calculate_runway`, `verify_flow_conservation`, `evaluate_pattern_emptiness`.
 
 ### CLI Tool
 ```bash
-alias **hoba**="node $PWD/packages/cli/dist/cli.js"
+alias hoba="node $PWD/packages/cli/dist/cli.js"
 
 # Run forensic hoba analysis on one or more observations
-**hoba** explain A-004 --stage technical
-**hoba** explain A-001 A-004 --json
+hoba explain A-004 --stage technical
+hoba explain A-001 A-004 --json
+
+# Diagnose stage dwell anomalies and identify stalled mechanisms
+hoba latency WF-001 recruiter-queue 45 --json
+
+# Calculate candidate runway horizon, exhaustion risk, and vulnerability notes
+hoba runway 24000 3500
+
+# Evaluate formal algebraic emptiness and contradiction proofs across all patterns
+hoba patterns
+
+# Audit financial flow conservation across records
+hoba conservation
 
 # Search across the knowledge graph
-**hoba** search "reposted" --types artifact,pattern
+hoba search "reposted" --types artifact,pattern
 
 # Inspect detailed entity specification
-**hoba** show M-001
+hoba show M-001
 
 # Validate content (schemas, references, DAG, loop declarations, EN/UK parity)
-**hoba** validate --strict
+hoba validate --strict
 ```
+
+### Formal Verification (Lean 4)
+All canonical workflows (`WF-001`..`WF-004`), barrier dependency DAGs, cycle properties, and flow conservation invariants are formalized and proved directly in the **Lean 4** kernel:
+```bash
+# Build formal Lean data and discharge kernel theorems
+pnpm lean
+```
+Key kernel-proved theorems include:
+- `ideal_acyclic` & `ideal_route_bounded`: Canonical hiring path `WF-003` terminates in $\le 12$ ranks.
+- `observed_has_cycle`: Observed funnel `WF-001` contains the closed-then-reposted cycle `P-002`.
+- `substrate_gates_acyclic`: Structural barrier lattice is strictly acyclic.
+- `substrate_condition_partition`: Exact partition of substrate conditions into barriers and mechanisms.
+- `substrate_flows_positive`: Conservation and validity of all financial resource flows.
 
 ### Raw Graph Exports
 - JSON bundle: [`/data/latest/registry.json`](https://hoba.work/data/latest/registry.json)

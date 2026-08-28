@@ -25,6 +25,7 @@ const allNodes = (bundle: RegistryBundle): RegistryNode[] => [
   ...bundle.patterns,
   ...bundle.loops,
   ...bundle.interventions,
+  ...(bundle.records ?? []),
 ];
 
 /**
@@ -77,6 +78,19 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
       }
       if (n.status !== 'deprecated') {
         error('lifecycle', `Node declares superseded_by but status is "${n.status}" (expected "deprecated")`, n.id);
+      }
+    }
+  }
+
+  // 2b. Authored records.
+  const recordIds = new Set((bundle.records ?? []).map((r) => r.id));
+  const actorIds = new Set(bundle.actors.map((a) => a.id));
+  for (const r of bundle.records ?? []) {
+    if (r.owner_actor) requireRef(r.id, 'owner_actor', r.owner_actor, actorIds, 'actor');
+    for (const f of r.flows) {
+      requireRef(r.id, 'flows.to', f.to, recordIds, 'record');
+      if (f.amount) {
+        for (const ev of f.amount.evidence) requireRef(r.id, 'flows.amount.evidence', ev, evidenceIds, 'evidence record');
       }
     }
   }

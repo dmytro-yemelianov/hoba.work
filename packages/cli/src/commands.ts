@@ -1,13 +1,18 @@
 import pc from 'picocolors';
 import {
   compareBundleStructure,
+  evaluatePatternEmptiness,
   formatValidationIssue,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
+  lift,
   loadRegistryFromRoot,
   resolveRegistryRoot,
   searchBundle,
   stageIdSchema,
+  substrateCalculateRunway,
+  substrateDetectTemporalAnomalies,
+  substrateVerifyFlowConservation,
   validateRegistry,
   type ContentLang,
   type ProbeResult,
@@ -47,6 +52,7 @@ const TYPE_LABELS: Record<SearchableType, string> = {
   pattern: 'Pattern (P)',
   loop: 'Loop (L)',
   intervention: 'Intervention (I)',
+  record: 'Financial Record (R)',
 };
 
 export function cmdSearch(query: string, options: GlobalOptions & { types?: string }) {
@@ -304,4 +310,170 @@ export function cmdValidate(options: GlobalOptions & { strict?: boolean; lang?: 
     return 1;
   }
   return 0;
+}
+
+export function cmdLatency(
+  processId: string,
+  stateId: string,
+  daysStr: string,
+  options: GlobalOptions
+) {
+  const days = Number(daysStr);
+  if (isNaN(days) || days < 0) {
+    throw new CliError(`Invalid days parameter "${daysStr}". Expected a non-negative number.`);
+  }
+
+  const { bundle } = loadBundle(options);
+  const lifted = lift(bundle);
+  const anomalies = substrateDetectTemporalAnomalies(lifted.substrate, processId, stateId, days);
+
+  if (options.json) {
+    printJson({
+      registry_version: bundle.version,
+      process: processId,
+      state: stateId,
+      actual_days: days,
+      anomalies,
+    });
+    return;
+  }
+
+  console.log(pc.bold(pc.cyan(`\n=== hoba Temporal Dwell & Latency Analysis ===\n`)));
+  console.log(`Workflow: ${pc.bold(processId.toUpperCase())} | State: ${pc.bold(stateId)} | Current Dwell: ${pc.bold(`${days} days`)}\n`);
+
+  if (anomalies.length === 0) {
+    console.log(pc.yellow(`No transitions found exiting from state "${stateId}" in workflow "${processId}".`));
+    return;
+  }
+
+  for (const a of anomalies) {
+    const statusColor =
+      a.severity === 'stalled_anomalous'
+        ? pc.red('[STALLED / ANOMALOUS]')
+        : a.severity === 'delayed'
+          ? pc.yellow('[DELAYED]')
+          : pc.green('[NOMINAL]');
+
+    console.log(`Transition: ${pc.bold(a.fromState)} → ${pc.bold(a.toState)} ${statusColor}`);
+    console.log(`  Expected Latency: ${a.expectedDays} days | Max Bound: ${a.maxDays} days`);
+
+    if (a.severity === 'stalled_anomalous') {
+      console.log(
+        pc.red(`  ! Dwell (${days}d) strictly exceeds nominal maximum bound (${a.maxDays}d).`)
+      );
+      if (a.implicatedMechanisms.length > 0) {
+        console.log(
+          `  Implicated Hidden Mechanisms: ${pc.magenta(a.implicatedMechanisms.join(', '))}`
+        );
+      }
+    } else if (a.severity === 'delayed') {
+      console.log(pc.yellow(`  * Dwell exceeds expected turnaround (${a.expectedDays}d) but sits within max bound.`));
+    } else {
+      console.log(pc.green(`  ✓ Dwell is well within nominal turnaround window.`));
+    }
+    console.log();
+  }
+}
+
+export function cmdRunway(
+  savingsStr: string,
+  burnStr: string,
+  options: GlobalOptions
+) {
+  const savings = Number(savingsStr);
+  const burn = Number(burnStr);
+  if (isNaN(savings) || isNaN(burn) || savings < 0 || burn <= 0) {
+    throw new CliError('Invalid savings or monthly burn rate. Expected non-negative savings and positive burn.');
+  }
+
+  const calculus = substrateCalculateRunway(savings, burn);
+  const { bundle } = loadBundle(options);
+
+  if (options.json) {
+    printJson({
+      registry_version: bundle.version,
+      ...calculus,
+    });
+    return;
+  }
+
+  console.log(pc.bold(pc.cyan(`\n=== hoba Candidate Economic Solvency & Runway Calculus ===\n`)));
+  console.log(`Liquid Savings: ${savings.toLocaleString()} | Monthly Burn: ${burn.toLocaleString()}`);
+  console.log(`Calculated Runway: ${pc.bold(`${calculus.runwayMonths.toFixed(1)} months`)}`);
+
+  const statusLabel =
+    calculus.riskStatus === 'solvent'
+      ? pc.green('[SOLVENT]')
+      : calculus.riskStatus === 'moderate_runway_stress'
+        ? pc.yellow('[MODERATE RUNWAY STRESS]')
+        : pc.red('[ACUTE EXHAUSTION VULNERABILITY]');
+
+  console.log(`Solvency Status: ${statusLabel}\n`);
+  console.log(pc.bold('Assessment:'));
+  console.log(`  ${calculus.vulnerabilityNote}\n`);
+}
+
+export function cmdPatterns(options: GlobalOptions) {
+  const { bundle } = loadBundle(options);
+  const lifted = lift(bundle);
+  const report = evaluatePatternEmptiness(lifted);
+
+  if (options.json) {
+    printJson({
+      registry_version: bundle.version,
+      ...report,
+    });
+    return;
+  }
+
+  console.log(pc.bold(pc.cyan(`\n=== hoba Formal Pattern Emptiness Evaluation (SPEC §5) ===\n`)));
+  console.log(
+    `Computed Empty Contradictions: ${pc.green(report.computedEmptyCount)} / ${report.patterns.length} (${pc.dim('Algebraically proven unsatisfiable')})\n`
+  );
+
+  for (const p of report.patterns) {
+    const badge =
+      p.status === 'computed_empty'
+        ? pc.green('[COMPUTED EMPTY — PROVABLY UNSATISFIABLE]')
+        : pc.yellow('[PROSE ASSERTED]');
+
+    console.log(`[${pc.magenta(p.id)}] ${pc.bold(p.title)} ${badge}`);
+    console.log(`  Trigger Rule: ${pc.dim(p.triggerRule)}`);
+    console.log(`  Satisfying Set: ${pc.cyan(p.satisfyingSetDescription)}`);
+    if (p.contradictionDetails) {
+      console.log(`  Contradiction Proof: ${pc.dim(p.contradictionDetails)}`);
+    }
+    console.log(`  Compatible Mechanisms: ${p.compatibleMechanisms.join(', ') || 'none'}`);
+    console.log();
+  }
+}
+
+export function cmdConservation(options: GlobalOptions) {
+  const { bundle } = loadBundle(options);
+  const lifted = lift(bundle);
+  const report = substrateVerifyFlowConservation(lifted.substrate);
+
+  if (options.json) {
+    printJson({
+      registry_version: bundle.version,
+      flow_count: lifted.substrate.flows.length,
+      record_count: lifted.substrate.records.length,
+      ...report,
+    });
+    return;
+  }
+
+  console.log(pc.bold(pc.cyan(`\n=== hoba Financial Flow Conservation Audit ===\n`)));
+  console.log(`Total Records: ${lifted.substrate.records.length} | Total Flows: ${lifted.substrate.flows.length}`);
+
+  if (report.isConserved) {
+    console.log(pc.green('\n✓ 100% of authored financial flows satisfy non-divergent conservation.'));
+    console.log(pc.dim('  No source record outward allocation exceeds 100.0%.'));
+  } else {
+    console.log(pc.red(`\n! Conservation violations detected (${report.violations.length}):`));
+    for (const v of report.violations) {
+      console.log(pc.red(`  - [${v.recordId}] ${v.reason}`));
+    }
+  }
+  console.log();
 }

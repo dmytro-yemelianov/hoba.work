@@ -36,6 +36,8 @@ export interface ViewTransition {
   owner: string;
   guard: string;
   entities: string[];
+  latency_expected_days?: number;
+  latency_max_days?: number;
 }
 
 export interface WorkflowData {

@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Communication mismatch or tone friction in panel",
     "status": "active",
@@ -25,14 +25,18 @@
           {
             "id": "nothing-added",
             "label": "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Inability to provide a single grounded communicative exchange points to non-calibrated impression scoring rather than an evidence-based panel."
           },
           {
             "id": "moment-named",
             "label": "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-018"
+            ],
+            "because": "A concrete communicative exchange demonstrates individualized panel recall, ruling out arbitrary non-specific impression bias."
           },
           {
             "id": "reception-framing",

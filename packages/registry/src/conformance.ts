@@ -83,8 +83,7 @@ export interface ConformanceReport {
   undetermined: number;
 }
 
-const norm = (value: string) => value.trim().toLowerCase();
-const has = (list: string[] | undefined, value: string) => (list ?? []).some((v) => norm(v) === norm(value));
+import { substrateCheckConformance } from './substrate/derivations.js';
 
 /**
  * Run the check.
@@ -93,124 +92,5 @@ const has = (list: string[] | undefined, value: string) => (list ?? []).some((v)
  * the first place a run would actually halt, not the worst-sounding one.
  */
 export function checkConformance(profile: CandidateProfile, posting: PostingFacets): ConformanceReport {
-  const gates: GateOutcome[] = [];
-
-  // The requirement itself, before anyone is measured against it.
-  if (posting.required_years !== undefined && posting.technology_age !== undefined) {
-    const impossible = posting.required_years > posting.technology_age;
-    gates.push({
-      gate: 'B-013',
-      stage: 'pre-posting',
-      state: 'real-need',
-      verdict: impossible ? 'unsatisfiable' : 'passes',
-      reason: impossible
-        ? { code: 'years.impossible', params: { required: posting.required_years, existed: posting.technology_age } }
-        : { code: 'years.possible', params: { required: posting.required_years, existed: posting.technology_age } },
-      mechanisms: ['M-024', 'M-017'],
-    });
-  }
-
-  // A stated minimum against a dated history is arithmetic.
-  if (posting.required_years !== undefined) {
-    const known = profile.years !== undefined;
-    const short = known && profile.years! < posting.required_years;
-    gates.push({
-      gate: 'B-002',
-      stage: 'ingestion',
-      state: 'machine-check',
-      verdict: !known ? 'undetermined' : short ? 'fails' : 'passes',
-      reason: !known
-        ? { code: 'years.unknown', params: { required: posting.required_years } }
-        : short
-          ? { code: 'years.short', params: { required: posting.required_years, have: profile.years! } }
-          : { code: 'years.met', params: { required: posting.required_years, have: profile.years! } },
-      mechanisms: ['M-008', 'M-011'],
-    });
-  }
-
-  // Authorisation is a yes or a no, and the system treats it as one.
-  if (posting.requires_authorisation_in) {
-    const known = (profile.authorised_for ?? []).length > 0;
-    const authorised = has(profile.authorised_for, posting.requires_authorisation_in);
-    gates.push({
-      gate: 'B-002',
-      stage: 'ingestion',
-      state: 'machine-check',
-      verdict: !known ? 'undetermined' : authorised ? 'passes' : 'fails',
-      reason: !known
-        ? { code: 'authorisation.unknown', params: { where: posting.requires_authorisation_in } }
-        : authorised
-          ? { code: 'authorisation.present', params: { where: posting.requires_authorisation_in } }
-          : { code: 'authorisation.absent', params: { where: posting.requires_authorisation_in } },
-      mechanisms: ['M-014'],
-    });
-  }
-
-  if ((posting.hiring_locations ?? []).length > 0) {
-    const known = Boolean(profile.located_in);
-    const inside = known && has(posting.hiring_locations, profile.located_in!);
-    gates.push({
-      gate: 'B-002',
-      stage: 'ingestion',
-      state: 'machine-check',
-      verdict: !known ? 'undetermined' : inside ? 'passes' : 'fails',
-      reason: !known
-        ? { code: 'location.unknown', params: { places: (posting.hiring_locations ?? []).join(', ') } }
-        : inside
-          ? { code: 'location.inside', params: { where: profile.located_in! } }
-          : { code: 'location.outside', params: { where: profile.located_in!, places: (posting.hiring_locations ?? []).join(', ') } },
-      mechanisms: ['M-014'],
-    });
-  }
-
-  // A missing phrase decides nothing on its own, and saying otherwise would be
-  // the fiction this whole file exists to avoid.
-  if ((posting.required_skills ?? []).length > 0) {
-    const missing = (posting.required_skills ?? []).filter((s) => !has(profile.skills, s));
-    gates.push({
-      gate: 'B-002',
-      stage: 'ingestion',
-      state: 'machine-check',
-      verdict: 'undetermined',
-      reason:
-        missing.length > 0
-          ? { code: 'skills.missing', params: { missing: missing.join(', '), n: missing.length } }
-          : { code: 'skills.present', params: { n: (posting.required_skills ?? []).length } },
-      mechanisms: ['M-003', 'M-008', 'M-011'],
-    });
-  }
-
-  // The band is the other place the answer is a number.
-  if (profile.expectation !== undefined && (posting.band_min !== undefined || posting.band_max !== undefined)) {
-    const above = posting.band_max !== undefined && profile.expectation > posting.band_max;
-    const below = posting.band_min !== undefined && profile.expectation < posting.band_min;
-    gates.push({
-      gate: 'B-009',
-      stage: 'compensation',
-      state: 'level-and-band',
-      verdict: above ? 'fails' : 'passes',
-      reason: above
-        ? { code: 'band.above', params: { expectation: profile.expectation, max: posting.band_max! } }
-        : below
-          ? { code: 'band.under', params: { expectation: profile.expectation, min: posting.band_min! } }
-          : { code: 'band.inside', params: { expectation: profile.expectation } },
-      mechanisms: ['M-004'],
-    });
-  } else if (posting.band_min === undefined && posting.band_max === undefined && profile.expectation !== undefined) {
-    gates.push({
-      gate: 'B-009',
-      stage: 'compensation',
-      state: 'level-and-band',
-      verdict: 'undetermined',
-      reason: { code: 'band.unpublished', params: {} },
-      mechanisms: ['M-004'],
-    });
-  }
-
-  return {
-    gates,
-    stops_at: gates.find((g) => g.verdict === 'fails'),
-    unsatisfiable: gates.filter((g) => g.verdict === 'unsatisfiable'),
-    undetermined: gates.filter((g) => g.verdict === 'undetermined').length,
-  };
+  return substrateCheckConformance(profile, posting);
 }

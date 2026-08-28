@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Rejection naming a jurisdiction or work-eligibility ground",
     "status": "active",
@@ -23,20 +23,27 @@
           {
             "id": "stated-in-the-posting",
             "label": "The posting stated the same constraint, in the same terms, before the application was made.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-003",
+              "M-022"
+            ],
+            "because": "An upfront explicit location constraint rules out post-hoc constraint injection and location bait-and-switch."
           },
           {
             "id": "absent-from-the-posting",
             "label": "The posting said nothing about the constraint, or stated a wider one.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Rejecting on an unstated location constraint contradicts an honest baseline evaluation against published terms."
           },
           {
             "id": "posting-edited",
             "label": "The posting now carries the constraint, and the saved copy shows it did not.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Retroactively editing criteria after applications arrive contradicts honest process standards."
           },
           {
             "id": "no-saved-copy",

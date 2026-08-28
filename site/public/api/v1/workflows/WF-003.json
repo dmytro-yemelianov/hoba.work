@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "The path as it is supposed to run",
     "status": "active",
@@ -44,7 +44,8 @@
           "B-014",
           "M-006",
           "M-016",
-          "M-025"
+          "M-025",
+          "A-021"
         ]
       },
       {
@@ -148,6 +149,7 @@
         "deviations": [
           "B-007",
           "B-008",
+          "B-015",
           "M-002",
           "M-012",
           "M-013",
@@ -212,7 +214,11 @@
         "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
         "deviations": [
           "B-011",
-          "M-021"
+          "B-016",
+          "M-021",
+          "M-027",
+          "M-028",
+          "A-020"
         ]
       },
       {
@@ -272,7 +278,9 @@
         "guard": "An approved requisition, a band and a described process go live together.",
         "entities": [
           "I-002"
-        ]
+        ],
+        "latency_expected_days": 2,
+        "latency_max_days": 7
       },
       {
         "from": "published",
@@ -280,7 +288,9 @@
         "label": "application submitted",
         "owner": "candidate",
         "guard": "The candidate applies against terms they could read beforehand.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 7,
+        "latency_max_days": 30
       },
       {
         "from": "applied",
@@ -290,7 +300,9 @@
         "guard": "The submission is parsed and acknowledged.",
         "entities": [
           "I-005"
-        ]
+        ],
+        "latency_expected_days": 1,
+        "latency_max_days": 2
       },
       {
         "from": "machine-check",
@@ -300,7 +312,9 @@
         "guard": "No automated rule ended it, so a person now has it.",
         "entities": [
           "I-004"
-        ]
+        ],
+        "latency_expected_days": 2,
+        "latency_max_days": 5
       },
       {
         "from": "human-read",
@@ -308,7 +322,9 @@
         "label": "worth a conversation",
         "owner": "recruiter",
         "guard": "A person read the profile and wants to talk.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 3,
+        "latency_max_days": 7
       },
       {
         "from": "terms-check",
@@ -318,7 +334,9 @@
         "guard": "Band, level, location and timing work for both sides, said out loud.",
         "entities": [
           "I-002"
-        ]
+        ],
+        "latency_expected_days": 3,
+        "latency_max_days": 7
       },
       {
         "from": "work-sample",
@@ -328,7 +346,9 @@
         "guard": "The exercise was scored against the criteria the candidate was given.",
         "entities": [
           "I-006"
-        ]
+        ],
+        "latency_expected_days": 5,
+        "latency_max_days": 10
       },
       {
         "from": "panel",
@@ -336,7 +356,9 @@
         "label": "panel decides by its rule",
         "owner": "hiring-manager",
         "guard": "The agreed decision rule returns a hire.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 3,
+        "latency_max_days": 5
       },
       {
         "from": "level-and-band",
@@ -344,7 +366,9 @@
         "label": "level lands inside the band",
         "owner": "employer-policy",
         "guard": "The evidence-assigned level maps to a point in the published band.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 2,
+        "latency_max_days": 4
       },
       {
         "from": "approval",
@@ -352,7 +376,9 @@
         "label": "countersigned",
         "owner": "employer-policy",
         "guard": "The approval that existed before publication is confirmed.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 2,
+        "latency_max_days": 5
       },
       {
         "from": "offer",
@@ -360,7 +386,9 @@
         "label": "offer accepted",
         "owner": "candidate",
         "guard": "The candidate accepts a complete written offer inside the agreed window.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 3,
+        "latency_max_days": 7
       },
       {
         "from": "verification",
@@ -368,7 +396,9 @@
         "label": "checks clear",
         "owner": "employer-policy",
         "guard": "Nothing proportionate to the role is unresolved.",
-        "entities": []
+        "entities": [],
+        "latency_expected_days": 5,
+        "latency_max_days": 14
       },
       {
         "from": "human-read",

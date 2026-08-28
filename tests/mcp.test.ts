@@ -64,7 +64,22 @@ describe('hoba MCP server', () => {
     const res = await client.request('tools/list');
     const names = res.result.tools.map((t: { name: string }) => t.name).sort();
     expect(names).toEqual(
-      ['explain_observation', 'find_compatible_mechanisms', 'find_patterns', 'get_diagnostic_probes', 'get_interventions', 'get_methodology', 'get_node', 'get_registry_info', 'search_registry', 'traverse_graph'].sort()
+      [
+        'calculate_runway',
+        'detect_temporal_anomalies',
+        'evaluate_pattern_emptiness',
+        'explain_observation',
+        'find_compatible_mechanisms',
+        'find_patterns',
+        'get_diagnostic_probes',
+        'get_interventions',
+        'get_methodology',
+        'get_node',
+        'get_registry_info',
+        'search_registry',
+        'traverse_graph',
+        'verify_flow_conservation',
+      ].sort()
     );
   });
 
@@ -87,6 +102,42 @@ describe('hoba MCP server', () => {
 
     const unknown = await client.request('tools/call', { name: 'explain_observation', arguments: { artifact_ids: ['A-999'] } });
     expect(unknown.result.isError).toBe(true);
+  });
+
+  it('evaluates temporal anomalies, runway, flow conservation, and pattern emptiness over MCP', async () => {
+    const latency = payload(
+      await client.request('tools/call', {
+        name: 'detect_temporal_anomalies',
+        arguments: { process_id: 'WF-001', from_state: 'recruiter-queue', actual_days: 45 },
+      })
+    );
+    expect(latency.anomalies.length).toBeGreaterThan(0);
+    expect(latency.anomalies[0].severity).toBe('stalled_anomalous');
+
+    const runway = payload(
+      await client.request('tools/call', {
+        name: 'calculate_runway',
+        arguments: { savings: 20000, monthly_burn: 4000 },
+      })
+    );
+    expect(runway.runwayMonths).toBe(5);
+    expect(runway.riskStatus).toBe('moderate_runway_stress');
+
+    const conservation = payload(
+      await client.request('tools/call', {
+        name: 'verify_flow_conservation',
+        arguments: {},
+      })
+    );
+    expect(conservation.isConserved).toBe(true);
+
+    const emptiness = payload(
+      await client.request('tools/call', {
+        name: 'evaluate_pattern_emptiness',
+        arguments: {},
+      })
+    );
+    expect(emptiness.computedEmptyCount).toBe(4);
   });
 
   it('find_patterns is honest about filtering and traverse_graph honours relation filters', async () => {

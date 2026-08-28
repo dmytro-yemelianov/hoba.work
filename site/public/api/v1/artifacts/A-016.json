@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Rejection naming an internal hire as the outcome",
     "status": "active",
@@ -23,20 +23,26 @@
           {
             "id": "withdrawn-and-not-reposted",
             "label": "The posting came down and no materially similar role appeared afterwards.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-006"
+            ],
+            "because": "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
           },
           {
             "id": "reposted-same-scope",
             "label": "A role with the same level and scope was published again within weeks.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Immediate reposting of the identical role contradicts honest closure via internal transfer."
           },
           {
             "id": "still-live",
             "label": "The posting continued to accept applications after the message arrived.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
           },
           {
             "id": "cannot-establish",

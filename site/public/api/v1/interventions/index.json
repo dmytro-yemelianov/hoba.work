@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "count": 17,
   "items": [
     {
@@ -175,6 +175,7 @@
         "M-010",
         "B-007",
         "B-008",
+        "B-015",
         "P-001",
         "P-002",
         "L-003"
@@ -538,7 +539,9 @@
     {
       "title": "Internal Candidacy Stated in the Posting",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-042"
+      ],
       "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
       "id": "I-008",
       "type": "intervention",
@@ -550,7 +553,7 @@
       "actor": "employer-policy",
       "scope": "organizational",
       "cost": "medium",
-      "evidence_level": "hypothesis",
+      "evidence_level": "supported",
       "expected_effects": [
         "M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round",
         "B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration"
@@ -1014,7 +1017,9 @@
     {
       "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-043"
+      ],
       "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at B-005 is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
       "id": "I-014",
       "type": "intervention",
@@ -1095,7 +1100,9 @@
     {
       "title": "Dated Funding Certification Before the Final Round",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-044"
+      ],
       "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- B-010 is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- B-012 stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
       "id": "I-015",
       "type": "intervention",
@@ -1108,7 +1115,7 @@
       "actor": "employer-policy",
       "scope": "organizational",
       "cost": "medium",
-      "evidence_level": "hypothesis",
+      "evidence_level": "supported",
       "expected_effects": [
         "B-010 is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends",
         "M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date",
@@ -1185,7 +1192,10 @@
       "summary": "Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.",
       "targets": [
         "B-011",
-        "M-021"
+        "B-016",
+        "M-021",
+        "M-027",
+        "M-028"
       ],
       "actor": "employer-policy",
       "scope": "organizational",
@@ -1258,7 +1268,9 @@
     {
       "title": "Recorded Finalist Standing With a Dated Re-Entry Route",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "EVD-045"
+      ],
       "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- P-002: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
       "id": "I-017",
       "type": "intervention",
@@ -1271,7 +1283,7 @@
       "actor": "recruiter-process",
       "scope": "organizational",
       "cost": "low",
-      "evidence_level": "hypothesis",
+      "evidence_level": "supported",
       "expected_effects": [
         "M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group",
         "B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing",

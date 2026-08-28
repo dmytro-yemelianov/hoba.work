@@ -46,6 +46,9 @@ import type {
   specimenLineSchema,
   registryBundleSchema,
   registryManifestSchema,
+  authoredRecordSchema,
+  recordClassEnumSchema,
+  recordFlowSchema,
   removabilityTypeSchema,
   scopeTypeSchema,
   stageIdSchema,
@@ -93,6 +96,9 @@ export type PatternNode = z.infer<typeof patternSchema>;
 export type LoopNode = z.infer<typeof loopSchema>;
 export type InterventionNode = z.infer<typeof interventionSchema>;
 export type EvidenceRecord = z.infer<typeof evidenceSchema>;
+export type AuthoredRecordNode = z.infer<typeof authoredRecordSchema>;
+export type RecordFlow = z.infer<typeof recordFlowSchema>;
+export type RecordClassType = z.infer<typeof recordClassEnumSchema>;
 
 /** Graph nodes that participate in the hoba ontology (evidence is a leaf record, not a graph node). */
 export type RegistryNode =
@@ -101,7 +107,8 @@ export type RegistryNode =
   | MechanismNode
   | PatternNode
   | LoopNode
-  | InterventionNode;
+  | InterventionNode
+  | AuthoredRecordNode;
 
 /** Anything addressable by canonical ID, including evidence records. */
 export type AnyRecord = RegistryNode | EvidenceRecord;

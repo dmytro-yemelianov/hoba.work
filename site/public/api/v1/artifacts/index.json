@@ -1,6 +1,6 @@
 {
-  "registry_version": "2026.08.2",
-  "count": 19,
+  "registry_version": "2026.08.3",
+  "count": 21,
   "items": [
     {
       "title": "Complete silence after submission",
@@ -1154,14 +1154,18 @@
             {
               "id": "nothing-added",
               "label": "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Inability to provide a single grounded communicative exchange points to non-calibrated impression scoring rather than an evidence-based panel."
             },
             {
               "id": "moment-named",
               "label": "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-018"
+              ],
+              "because": "A concrete communicative exchange demonstrates individualized panel recall, ruling out arbitrary non-specific impression bias."
             },
             {
               "id": "reception-framing",
@@ -1283,20 +1287,27 @@
             {
               "id": "deferred-with-date",
               "label": "A written reply states that the requisition is paused rather than closed, names the quarter or the date on which the freeze is reviewed, and says the offer is revisited if headcount returns.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001",
+                "M-006"
+              ],
+              "because": "A formal written pause date confirms a genuine headcount freeze (M-007) rather than an honest hire or an evergreen ghost posting."
             },
             {
               "id": "cancelled-in-writing",
               "label": "A written reply states that the requisition is closed and the headcount withdrawn, and names no date to return to.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Definitive written headcount cancellation after offer issuance directly confirms retraction."
             },
             {
               "id": "scope-without-date",
               "label": "A written reply confirms the freeze and its scope — every open requisition, other offers in the same position — and states that whether the role is cancelled or deferred is not known from inside the hiring process.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Company-wide freeze confirmation confirms systemic budget suspension."
             },
             {
               "id": "no-written-answer",
@@ -1398,8 +1409,10 @@
             {
               "id": "no-reply",
               "label": "Neither the follow-up nor the earlier answer is replied to, and the thread stays as it was: an outreach message, a same-day answer, and silence.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (M-005/M-025)."
             },
             {
               "id": "automated-reply-only",
@@ -1410,14 +1423,19 @@
             {
               "id": "thread-resumes",
               "label": "A person replies and the conversation continues: a call is booked, or the role is described in more detail.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-005",
+                "M-025"
+              ],
+              "because": "Active conversational resumption and call scheduling rule out speculative ghost sourcing and bench pooling."
             },
             {
               "id": "reply-without-next-step",
               "label": "A reply arrives with no next step in it: the search is paused, the role is already filled, or there is no open requisition behind the outreach yet.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Outreach without an active requisition behind it contradicts an immediate honest search."
             }
           ]
         }
@@ -1525,8 +1543,10 @@
             {
               "id": "higher-req-named",
               "label": "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-017"
+              ],
+              "because": "Active referral to an unblocked higher level band rules out structural down-levelling with a hard ceiling."
             },
             {
               "id": "answered-on-level-none-named",
@@ -1537,8 +1557,10 @@
             {
               "id": "answered-as-budget",
               "label": "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Stating rigid departmental budget ceilings rather than technical qualification gaps confirms pay band constraints rather than skill deficiencies."
             },
             {
               "id": "no-reply",
@@ -1665,14 +1687,18 @@
             {
               "id": "criteria-differ-by-round",
               "label": "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-019"
+              ],
+              "because": "Different criteria across distinct rounds establish separate evaluation dimensions rather than noisy evaluator disagreement."
             },
             {
               "id": "same-criterion-opposite-scores",
               "label": "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (M-019) rather than an honest calibrated verdict."
             },
             {
               "id": "reply-adds-nothing",
@@ -1784,14 +1810,18 @@
             {
               "id": "message-on-a-round-interval",
               "label": "The message arrived a round number of days after submission — thirty, forty-five, sixty — and the posting's state did not change around it.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "A rejection arriving on a round calendar interval (e.g. 30/60 days) demonstrates an automated ATS queue expiry rule (M-011) rather than an active reviewer decision."
             },
             {
               "id": "posting-still-live",
               "label": "The posting was still accepting applications when the rejection arrived.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "A rejection arriving while the role remains active and seeking candidates indicates an automated knockout filter or ghost listing (M-006/M-008)."
             },
             {
               "id": "history-unavailable",
@@ -1900,20 +1930,26 @@
             {
               "id": "withdrawn-and-not-reposted",
               "label": "The posting came down and no materially similar role appeared afterwards.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-006"
+              ],
+              "because": "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
             },
             {
               "id": "reposted-same-scope",
               "label": "A role with the same level and scope was published again within weeks.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Immediate reposting of the identical role contradicts honest closure via internal transfer."
             },
             {
               "id": "still-live",
               "label": "The posting continued to accept applications after the message arrived.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
             },
             {
               "id": "cannot-establish",
@@ -1995,20 +2031,27 @@
             {
               "id": "stated-in-the-posting",
               "label": "The posting stated the same constraint, in the same terms, before the application was made.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-003",
+                "M-022"
+              ],
+              "because": "An upfront explicit location constraint rules out post-hoc constraint injection and location bait-and-switch."
             },
             {
               "id": "absent-from-the-posting",
               "label": "The posting said nothing about the constraint, or stated a wider one.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Rejecting on an unstated location constraint contradicts an honest baseline evaluation against published terms."
             },
             {
               "id": "posting-edited",
               "label": "The posting now carries the constraint, and the saved copy shows it did not.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Retroactively editing criteria after applications arrive contradicts honest process standards."
             },
             {
               "id": "no-saved-copy",
@@ -2089,8 +2132,10 @@
             {
               "id": "listed-as-required",
               "label": "The posting named the sector among the requirements.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-016"
+              ],
+              "because": "An explicit mandatory requirement stated up front rules out covert post-hoc goalpost shifting."
             },
             {
               "id": "listed-as-preferred",
@@ -2101,8 +2146,10 @@
             {
               "id": "absent-from-the-posting",
               "label": "The posting did not mention the sector at all.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Disqualifying a candidate over an unmentioned sector criterion contradicts an honest evaluation against published standards."
             },
             {
               "id": "no-saved-copy",
@@ -2183,8 +2230,10 @@
             {
               "id": "named-work-on-first-screen",
               "label": "The work named as absent is visible on the first screen, without navigating.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Overlooking prominent first-screen evidence indicates superficial keyword/automated parsing or neglected review rather than an honest thorough evaluation."
             },
             {
               "id": "reachable-but-buried",
@@ -2195,8 +2244,11 @@
             {
               "id": "not-reachable",
               "label": "The path does not resolve, or resolves to something private.",
-              "excludes": [],
-              "because": ""
+              "excludes": [
+                "M-008",
+                "M-013"
+              ],
+              "because": "An unreachable or private submission link confirms candidate omission rather than evaluator negligence or automated screening error."
             },
             {
               "id": "no-path-was-given",
@@ -2252,6 +2304,197 @@
       "non_inferences": [
         "Does not establish that the work was never opened, only that the claim and the submission disagree.",
         "Does not establish that the work would have met the bar had it been read."
+      ]
+    },
+    {
+      "title": "Offer accepted followed by delayed start date or post-signing revocation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Offer accepted followed by delayed start date or post-signing revocation\n\nA signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.\n\n### Diagnostic Non-Inferences\n- Does not establish that the candidate's performance or background check caused the delay.\n- Does not establish that the role was fraudulent when the offer was originally issued.",
+      "id": "A-020",
+      "type": "artifact",
+      "summary": "A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.",
+      "stages": [
+        "post-offer"
+      ],
+      "evidence_level": "established",
+      "probes": [
+        {
+          "id": "PROBE-A-020-1",
+          "action": "Request written confirmation of the revised start date alongside written clarification of whether hardware shipment and payroll registration remain active.",
+          "expected_signal": "Separates an administrative IT delay from a structural hiring freeze or pre-start headcount cancellation.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "written-confirmation-received",
+              "label": "The employer confirms the date with tracking details for onboarding equipment.",
+              "excludes": [
+                "M-007",
+                "M-027"
+              ],
+              "because": "Active equipment dispatch and confirmed start date rule out pre-start headcount freeze and offer revocation."
+            },
+            {
+              "id": "evasive-delay-notice",
+              "label": "The employer provides vague holding notices without committing to a fixed onboarding date.",
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Evasive holding notices without confirmed dates contradict an honest post-offer onboarding path."
+            },
+            {
+              "id": "revocation-or-freeze-confirmed",
+              "label": "The employer confirms headcount revocation or indefinite pause prior to start date.",
+              "excludes": [
+                "M-001"
+              ],
+              "because": "Confirmed headcount cancellation prior to day one directly contradicts an honest hire."
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Post-acceptance start date slippage",
+          "subject": "Update on your upcoming start date",
+          "lines": [
+            {
+              "at": "day -7",
+              "text": "We are excited to welcome you next Monday!",
+              "tell": false
+            },
+            {
+              "at": "day -2",
+              "text": "Due to internal team restructuring, we need to push your start date by three weeks.",
+              "tell": true
+            },
+            {
+              "at": "day +15",
+              "text": "We are still finalizing leadership approvals for the revised onboarding date.",
+              "tell": true
+            }
+          ],
+          "reading": "The delay occurs after the candidate has resigned from previous employment, shifting contractual risk entirely onto the worker."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A confirmed start date deferred after notice was given to a prior employer, leaving their career runway exposed.",
+          "reads": "Start-date slippage signals unbudgeted headcount risk or an unannounced internal hiring pause.",
+          "does": "Requests clear written documentation of employment status and assesses legal and search alternatives."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "An onboarding ticket blocked by finance or department leadership pending quarterly budget reconciliation.",
+          "reads": "The offer was extended under previous headcount assumptions that changed before start day.",
+          "does": "Relays holding messages while awaiting confirmation on whether the placement can proceed."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Quarterly headcount adjustments or project scope revisions occurring between offer acceptance and payroll commencement.",
+          "reads": "Pushing start dates preserves budget flexibility before formal employment liability attaches.",
+          "does": "Enforces hiring pauses across pending pipeline offers where commercial conditions shift."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the candidate's performance or background check caused the delay.",
+        "Does not establish that the role was fraudulent when the offer was originally issued."
+      ]
+    },
+    {
+      "title": "Republished job posting with refreshed date and identical requirement body",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-034",
+        "EVD-039"
+      ],
+      "content": "# Republished job posting with refreshed date and identical requirement body\n\nAn opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.\n\n### Diagnostic Non-Inferences\n- Does not establish that previous applicants were rejected on qualification grounds.\n- Does not establish that a confirmed budget line exists for immediate onboarding.",
+      "id": "A-021",
+      "type": "artifact",
+      "summary": "An opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.",
+      "stages": [
+        "pre-posting",
+        "sourcing"
+      ],
+      "evidence_level": "established",
+      "probes": [
+        {
+          "id": "PROBE-A-021-1",
+          "action": "Compare the requirement text hash against prior archive snapshots and ask the recruiter if active interviewing has commenced.",
+          "expected_signal": "Separates an active newly funded replacement hire from an evergreen talent pool or stale posting refresh.",
+          "cost": "low",
+          "outcomes": [
+            {
+              "id": "active-funded-search-confirmed",
+              "label": "The recruiter confirms an active search with initial screening calls scheduled within the week.",
+              "excludes": [
+                "M-006"
+              ],
+              "because": "An active screening schedule is incompatible with a ghost requisition maintained without hiring intent."
+            },
+            {
+              "id": "evergreen-pipeline-confirmed",
+              "label": "The recruiter confirms the listing is maintained continuously for future project demand.",
+              "excludes": [
+                "M-001"
+              ],
+              "because": "An evergreen pipeline posting is incompatible with an honest baseline search for an immediate single opening."
+            }
+          ]
+        }
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "Job board repost notification",
+          "lines": [
+            {
+              "at": "month 1",
+              "text": "Senior Systems Engineer · Posted 45 days ago · 120 applicants",
+              "tell": false
+            },
+            {
+              "at": "month 2",
+              "text": "Senior Systems Engineer · Posted 2 hours ago · 3 applicants",
+              "tell": true
+            },
+            {
+              "at": "month 2",
+              "text": "Job description, tech stack, and experience criteria: 100% identical",
+              "tell": false
+            }
+          ],
+          "reading": "The refreshed publication date simulates immediate demand while resetting algorithmic visibility and applicant counters."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A newly posted opening matching their skillset, suggesting an urgent active search.",
+          "reads": "The position has just opened and early applications will receive prompt review.",
+          "does": "Customizes resume and submits application within the initial 24-hour window."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "An automated posting refresh scheduled in the ATS to keep the requisition at the top of candidate search feeds.",
+          "reads": "Refreshing the date restores organic applicant volume after the initial post decays.",
+          "does": "Monitors incoming CV volume while sorting matches into long-term talent communities."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Continuous talent brand presence and pipeline generation across core engineering disciplines.",
+          "reads": "Sustained posting visibility minimizes time-to-hire when client or departmental headcount unlocks.",
+          "does": "Authorizes ongoing job board listings across foundational roles."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that previous applicants were rejected on qualification grounds.",
+        "Does not establish that a confirmed budget line exists for immediate onboarding."
       ]
     }
   ]

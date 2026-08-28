@@ -1,22 +1,22 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 2026.08.2, schema 1.1.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 2026.08.3, schema 1.2.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
 ## Ontology
 
-- **Observations** (`A-*`, 19) — signals a candidate can actually witness.
-- **Barriers** (`B-*`, 14) — the funnel gates, a strict DAG ordered by stage.
-- **Mechanisms** (`M-*`, 26) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
+- **Observations** (`A-*`, 21) — signals a candidate can actually witness.
+- **Barriers** (`B-*`, 16) — the funnel gates, a strict DAG ordered by stage.
+- **Mechanisms** (`M-*`, 28) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
 - **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 39) — the published sources behind the claims.
+- **Evidence** (`EVD-*`, 45) — the published sources behind the claims.
 
-The graph has 83 nodes and 241 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 89 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -202,6 +202,24 @@ The stated shortfall is the absence of work that is present in what the candidat
 - Does NOT establish: Does not establish that the work would have met the bar had it been read.
 - Probe [PROBE-A-019-1] (low): Open the submitted path in a private window with no session, and note what the first screen shows before any navigation. → Establishes what a reader with no context and no time actually lands on.
 
+### A-020 — Offer accepted followed by delayed start date or post-signing revocation
+
+A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.
+
+- Stages: post-offer · Evidence: established
+- Does NOT establish: Does not establish that the candidate's performance or background check caused the delay.
+- Does NOT establish: Does not establish that the role was fraudulent when the offer was originally issued.
+- Probe [PROBE-A-020-1] (low): Request written confirmation of the revised start date alongside written clarification of whether hardware shipment and payroll registration remain active. → Separates an administrative IT delay from a structural hiring freeze or pre-start headcount cancellation.
+
+### A-021 — Republished job posting with refreshed date and identical requirement body
+
+An opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.
+
+- Stages: pre-posting, sourcing · Evidence: established
+- Does NOT establish: Does not establish that previous applicants were rejected on qualification grounds.
+- Does NOT establish: Does not establish that a confirmed budget line exists for immediate onboarding.
+- Probe [PROBE-A-021-1] (low): Compare the requirement text hash against prior archive snapshots and ask the recruiter if active interviewing has commenced. → Separates an active newly funded replacement hire from an evergreen talent pool or stale posting refresh.
+
 ## Barriers
 
 ### B-013 — Requisition Approval & Public Posting
@@ -300,6 +318,18 @@ Third-party or internal verification of past employment records, academic degree
 Final mutual execution of the formal employment agreement and start-date confirmation.
 
 - Stage: post-offer · Order: 14 · Passes when: Both parties sign offer contract and onboarding workflow is triggered.
+
+### B-015 — Client Profile Approval and Client Interview
+
+The candidate profile is submitted to the end client for review, followed by a client-side interview round.
+
+- Stage: client · Order: 15 · Passes when: The client approves the profile submission and signs off on the technical and culture match after the interview.
+
+### B-016 — Probation Period & Post-Start Confirmation
+
+The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.
+
+- Stage: post-offer · Order: 16 · Passes when: The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.
 
 ## Mechanisms
 
@@ -539,6 +569,24 @@ An engineer already employed and between projects becomes available mid-search, 
 - Does NOT establish: Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.
 - Does NOT establish: Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment.
 
+### M-027 — Start-Date Slippage and Post-Acceptance Revocation
+
+Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.
+
+- Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
+- Operates at: B-012, B-016
+- Emits: A-020 (direct), A-001 (void), A-011 (euphemism)
+- Does NOT establish: Does not establish that candidate credentials or references failed validation.
+
+### M-028 — Probation Used as Extended De-Facto Interview
+
+Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.
+
+- Actor: hiring-manager · Nature: incentive · Visibility: inferable · Removability: intermediary
+- Operates at: B-016
+- Emits: A-020 (direct), A-002 (euphemism), A-016 (noise)
+- Does NOT establish: Does not establish that the employee committed gross misconduct.
+
 ## Patterns
 
 ### P-001 — Seniority Double Bind
@@ -628,7 +676,7 @@ Publish verified salary and equity bands directly in job descriptions or disclos
 Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
 
 - Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: M-001, M-010, B-007, B-008, P-001, P-002, L-003
+- Targets: M-001, M-010, B-007, B-008, B-015, P-001, P-002, L-003
 - Expected: The stage and the criterion behind a late rejection become part of what is sent
 - Expected: M-010 becomes checkable: a rubric that is reported has to exist before the round
 
@@ -753,7 +801,7 @@ Carry a funding-certified-through date on every requisition, refuse to schedule 
 Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.
 
 - Actor: employer-policy · Scope: organizational · Cost: low
-- Targets: B-011, M-021
+- Targets: B-011, B-016, M-021, M-027, M-028
 - Expected: M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause
 - Expected: B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns
 - Expected: Which findings a document can close and which end the process is a published classification rather than a per-file decision
@@ -1253,3 +1301,45 @@ Ukrainian law requires a competition to fill a civil service post: "З мето�
 
 - Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).
 - https://zakon.rada.gov.ua/laws/show/889-19
+
+### EVD-040 — Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)
+
+Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.
+
+- Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).
+- https://zakon.rada.gov.ua/laws/show/322-08
+
+### EVD-041 — Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)
+
+The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.
+
+- UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).
+- https://www.legislation.gov.uk/ukpga/1996/18/section/86
+
+### EVD-042 — Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)
+
+5 U.S.C. § 2301 (Merit system principles) and the UK Civil Service Management Code (Section 1.1 on fair and open competition) require transparent declaration of whether positions are open exclusively to internal promotion slates or contested in open public competition. Open competitions running parallel to pre-identified incumbent candidacies must state evaluation rules explicitly to prevent deceptive solicitation of external applicant labor.
+
+- 5 U.S.C. § 2301(b)(1) ('Recruitment should be from qualified individuals from appropriate sources in an endeavor to achieve a work force from all segments of society, and selection and advancement should be determined solely on the basis of relative ability, knowledge, and skills, after fair and open competition which assures that all receive equal opportunity.').
+- https://www.law.cornell.edu/uscode/text/5/2301
+
+### EVD-043 — Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)
+
+The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4) and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a)) mandate structured assessment mechanisms and verified evaluator competency in employment screening. Rushed, unreviewed interview panels operating without dedicated preparation time increase inter-rater noise and introduce arbitrary disqualification factors inconsistent with job-related qualification metrics.
+
+- EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. § 1607.4 (Information on impact) & Regulation (EU) 2024/1689 Annex III, Item 4(a) (High-risk AI systems in recruitment and selection).
+- https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607
+
+### EVD-044 — Promissory Estoppel and Pre-Employment Good Faith (Restatement of Employment Law § 2.02)
+
+Section 2.02 of the Restatement of Employment Law (American Law Institute, 2015) and prevailing common-law promissory estoppel doctrines establish actionable employer liability when an employer makes representations of an existing, funded position to induce a prospective employee to incur detrimental reliance (e.g. resigning from prior employment, incurring moving costs) while knowing the underlying headcount authorization or budgetary certification had not been secured or had lapsed.
+
+- Restatement of Employment Law § 2.02 (Promise of Employment: Reliance and Revocation) (American Law Institute, 2015).
+- https://www.ali.org/publications/show/employment-law/
+
+### EVD-045 — Candidate Dossier Retention and Talent Pool Transparency (GDPR Art. 5(1)(e) & EDPB Guidelines 3/2019)
+
+Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/679) and European Data Protection Board Guidelines 3/2019 establish strict storage limitation principles for recruitment candidate data: holding candidate evaluation records in 'talent pool' pools beyond the initial hiring process requires explicit consent or legitimate interest bounded by stated expiration dates and transparent re-entry criteria.
+
+- Regulation (EU) 2016/679 (GDPR), Article 5(1)(e) ('kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed').
+- https://eur-lex.europa.eu/eli/reg/2016/679/oj

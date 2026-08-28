@@ -154,6 +154,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     evidence: [
       { id: 'EVD-001', type: 'evidence', title: 'Fixture evidence', kind: 'research', summary: 'A fixture evidence record.' },
     ],
+    records: [],
     ...over,
   };
 }

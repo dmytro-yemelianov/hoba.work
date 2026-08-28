@@ -142,7 +142,14 @@ const payload = JSON.stringify({
             <li class="row text-base">
               <span class="font-mono text-sm text-hoba-accent">{transition.from} → {transition.to}</span>
               <span class="text-hoba-text">{transition.label}</span>
-              <span class="w-full text-sm text-hoba-muted">{t('wf.transition')}: {transition.guard}</span>
+              <span class="w-full text-sm text-hoba-muted">
+                {t('wf.transition')}: {transition.guard}
+                {transition.latency_expected_days !== undefined && (
+                  <span class="ml-2 font-mono text-xs text-hoba-accent">
+                    (turnaround: {transition.latency_expected_days}d / max: {transition.latency_max_days}d)
+                  </span>
+                )}
+              </span>
             </li>
           ))}
         </ol>
@@ -208,7 +215,11 @@ const payload = JSON.stringify({
                 (b, i) =>
                   `<button type="button" class="wf-branch" data-branch="${i}">` +
                   `<span class="wf-branch-label">${b.label}</span>` +
-                  `<span class="wf-branch-guard">${b.guard}</span>` +
+                  `<span class="wf-branch-guard">${b.guard}` +
+                  (b.latency_expected_days !== undefined
+                    ? ` · <span class="font-mono text-xs text-hoba-accent">${b.latency_expected_days}d-${b.latency_max_days}d</span>`
+                    : '') +
+                  `</span>` +
                   `</button>`
               ),
               `</div>`,

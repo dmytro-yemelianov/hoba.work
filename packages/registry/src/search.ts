@@ -30,7 +30,7 @@ export function searchBundle(bundle: RegistryBundle, query: string, options: Sea
   if (!q) return [];
 
   const wanted = new Set<SearchableType>(
-    options.types ?? ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention']
+    options.types ?? ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention', 'record']
   );
 
   const pools: RegistryNode[] = [
@@ -40,6 +40,7 @@ export function searchBundle(bundle: RegistryBundle, query: string, options: Sea
     ...bundle.patterns,
     ...bundle.loops,
     ...bundle.interventions,
+    ...(bundle.records ?? []),
   ];
 
   const hits: SearchHit[] = [];

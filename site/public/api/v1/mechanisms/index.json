@@ -1,6 +1,6 @@
 {
-  "registry_version": "2026.08.2",
-  "count": 26,
+  "registry_version": "2026.08.3",
+  "count": 28,
   "items": [
     {
       "title": "Genuine Technical Skill Shortfall",
@@ -2653,6 +2653,205 @@
       "non_inferences": [
         "Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.",
         "Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment."
+      ]
+    },
+    {
+      "title": "Start-Date Slippage and Post-Acceptance Revocation",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Start-Date Slippage and Post-Acceptance Revocation\n\nEmployers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not establish that candidate credentials or references failed validation.",
+      "id": "M-027",
+      "type": "mechanism",
+      "summary": "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.",
+      "operates_at": [
+        "B-012",
+        "B-016"
+      ],
+      "emissions": [
+        {
+          "artifact": "A-020",
+          "fidelity": "direct",
+          "likelihood": "high",
+          "evidence": [
+            "EVD-040",
+            "EVD-041"
+          ],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-001",
+          "fidelity": "void",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-011",
+          "fidelity": "euphemism",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "policy",
+        "nature": "incentive",
+        "visibility": "opaque",
+        "removability": "none"
+      },
+      "amplifies": [],
+      "masks": [],
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "Start-date deferral notice",
+          "lines": [
+            {
+              "text": "We are finalizing internal team allocations and will be confirming the revised start date shortly.",
+              "tell": true
+            },
+            {
+              "text": "Please do not report to the office until the updated equipment schedule is issued.",
+              "tell": false
+            }
+          ],
+          "reading": "The delay manages company cash flow and headcount quotas by deferring payroll liability onto the candidate."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A hiring freeze or executive budget revision taking effect across pending hires before day-one employment commencement.",
+          "reads": "Deferring start dates avoids immediate payroll commitments during headcount transitions.",
+          "does": "Freezes onboarding queues and issues holding notifications."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A signed offer with an indefinite or pushed start date after resigning from previous employment.",
+          "reads": "Contractual commitment was asymmetrical: candidate resignation is irreversible while company start date is deferred.",
+          "does": "Assesses legal notice entitlements (EVD-041) and evaluates reopening active job search."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A closed search reopened administratively because the approved start date cannot be scheduled.",
+          "reads": "Hiring quotas shifted after offer signature, leaving recruiter metrics and candidate stranded.",
+          "does": "Attempts to maintain contact while leadership resolves headcount funding."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that candidate credentials or references failed validation."
+      ]
+    },
+    {
+      "title": "Probation Used as Extended De-Facto Interview",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-040",
+        "EVD-041"
+      ],
+      "content": "# Probation Used as Extended De-Facto Interview\n\nManagers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Does not establish that the employee committed gross misconduct.",
+      "id": "M-028",
+      "type": "mechanism",
+      "summary": "Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.",
+      "operates_at": [
+        "B-016"
+      ],
+      "emissions": [
+        {
+          "artifact": "A-020",
+          "fidelity": "direct",
+          "likelihood": "medium",
+          "evidence": [
+            "EVD-040",
+            "EVD-041"
+          ],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-002",
+          "fidelity": "euphemism",
+          "likelihood": "high",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        },
+        {
+          "artifact": "A-016",
+          "fidelity": "noise",
+          "likelihood": "medium",
+          "evidence": [],
+          "observed_at": [
+            "post-offer"
+          ]
+        }
+      ],
+      "facets": {
+        "actor": "hiring-manager",
+        "nature": "incentive",
+        "visibility": "inferable",
+        "removability": "intermediary"
+      },
+      "amplifies": [],
+      "masks": [],
+      "evidence_level": "established",
+      "honest_baseline": false,
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "Probation exit note",
+          "lines": [
+            {
+              "text": "Candidate onboarding evaluated over 60 days.",
+              "tell": false
+            },
+            {
+              "text": "Delivery pace did not ramp to senior independent output within month two.",
+              "tell": true
+            },
+            {
+              "text": "Notice issued under statutory probation clause (EVD-040).",
+              "tell": false
+            }
+          ],
+          "reading": "The interview process was truncated under the assumption that probation serves as the true filtering phase."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "Direct on-the-job output under real sprint pressure, treating probation as a higher-fidelity filter than multi-round panel interviews.",
+          "reads": "Hiring fast and pruning early during probation reduces upfront interview coordination costs.",
+          "does": "Replaces extensive technical testing with early probationary evaluation."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A full employment offer that operates in practice as a temporary contract with heightened termination exposure.",
+          "reads": "The real hiring threshold was shifted post-start without explicit pre-acceptance disclosure.",
+          "does": "Delivers aggressively during initial months while maintaining external professional networks."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "Probation turnover rates and dismissal compliance documentation under labour statute constraints (EVD-040).",
+          "reads": "High probation turnover increases team onboarding costs while preserving statutory compliance.",
+          "does": "Monitors probation pass rates and reviews termination justifications."
+        }
+      ],
+      "non_inferences": [
+        "Does not establish that the employee committed gross misconduct."
       ]
     }
   ]

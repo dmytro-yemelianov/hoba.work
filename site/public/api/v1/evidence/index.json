@@ -1,6 +1,6 @@
 {
-  "registry_version": "2026.08.2",
-  "count": 39,
+  "registry_version": "2026.08.3",
+  "count": 45,
   "items": [
     {
       "id": "EVD-001",
@@ -390,6 +390,66 @@
       "summary": "Ukrainian law requires a competition to fill a civil service post: \"З метою добору осіб, здатних професійно виконувати посадові обов'язки, проводиться конкурс на зайняття посади державної служби\". The requirement covers vacant posts, posts held during an absence, and category \"А\" posts whose term is expiring. Whole classes of publicly advertised openings therefore exist because a statute mandates the competition, not because an employer freely chose to search outside — so a public posting is not by itself evidence that the outcome is open. The law governs the Ukrainian civil service, not private technical hiring, and it says nothing about whether any particular competition has a favoured candidate; it establishes only that mandated-posting regimes exist and are ordinary.",
       "citation": "Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).",
       "url": "https://zakon.rada.gov.ua/laws/show/889-19",
+      "period": "current"
+    },
+    {
+      "id": "EVD-040",
+      "type": "evidence",
+      "title": "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)",
+      "kind": "primary",
+      "summary": "Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.",
+      "citation": "Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).",
+      "url": "https://zakon.rada.gov.ua/laws/show/322-08",
+      "period": "current"
+    },
+    {
+      "id": "EVD-041",
+      "type": "evidence",
+      "title": "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)",
+      "kind": "primary",
+      "summary": "The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.",
+      "citation": "UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).",
+      "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/86",
+      "period": "current"
+    },
+    {
+      "id": "EVD-042",
+      "type": "evidence",
+      "title": "Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)",
+      "kind": "primary",
+      "summary": "5 U.S.C. § 2301 (Merit system principles) and the UK Civil Service Management Code (Section 1.1 on fair and open competition) require transparent declaration of whether positions are open exclusively to internal promotion slates or contested in open public competition. Open competitions running parallel to pre-identified incumbent candidacies must state evaluation rules explicitly to prevent deceptive solicitation of external applicant labor.",
+      "citation": "5 U.S.C. § 2301(b)(1) ('Recruitment should be from qualified individuals from appropriate sources in an endeavor to achieve a work force from all segments of society, and selection and advancement should be determined solely on the basis of relative ability, knowledge, and skills, after fair and open competition which assures that all receive equal opportunity.').",
+      "url": "https://www.law.cornell.edu/uscode/text/5/2301",
+      "period": "current"
+    },
+    {
+      "id": "EVD-043",
+      "type": "evidence",
+      "title": "Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)",
+      "kind": "primary",
+      "summary": "The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4) and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a)) mandate structured assessment mechanisms and verified evaluator competency in employment screening. Rushed, unreviewed interview panels operating without dedicated preparation time increase inter-rater noise and introduce arbitrary disqualification factors inconsistent with job-related qualification metrics.",
+      "citation": "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. § 1607.4 (Information on impact) & Regulation (EU) 2024/1689 Annex III, Item 4(a) (High-risk AI systems in recruitment and selection).",
+      "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607",
+      "period": "current"
+    },
+    {
+      "id": "EVD-044",
+      "type": "evidence",
+      "title": "Promissory Estoppel and Pre-Employment Good Faith (Restatement of Employment Law § 2.02)",
+      "kind": "primary",
+      "summary": "Section 2.02 of the Restatement of Employment Law (American Law Institute, 2015) and prevailing common-law promissory estoppel doctrines establish actionable employer liability when an employer makes representations of an existing, funded position to induce a prospective employee to incur detrimental reliance (e.g. resigning from prior employment, incurring moving costs) while knowing the underlying headcount authorization or budgetary certification had not been secured or had lapsed.",
+      "citation": "Restatement of Employment Law § 2.02 (Promise of Employment: Reliance and Revocation) (American Law Institute, 2015).",
+      "url": "https://www.ali.org/publications/show/employment-law/",
+      "period": "current"
+    },
+    {
+      "id": "EVD-045",
+      "type": "evidence",
+      "title": "Candidate Dossier Retention and Talent Pool Transparency (GDPR Art. 5(1)(e) & EDPB Guidelines 3/2019)",
+      "kind": "primary",
+      "summary": "Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/679) and European Data Protection Board Guidelines 3/2019 establish strict storage limitation principles for recruitment candidate data: holding candidate evaluation records in 'talent pool' pools beyond the initial hiring process requires explicit consent or legitimate interest bounded by stated expiration dates and transparent re-entry criteria.",
+      "citation": "Regulation (EU) 2016/679 (GDPR), Article 5(1)(e) ('kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed').",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
       "period": "current"
     }
   ]

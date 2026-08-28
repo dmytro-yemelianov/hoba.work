@@ -1,9 +1,11 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Internal Candidacy Stated in the Posting",
     "status": "active",
-    "evidence_ids": [],
+    "evidence_ids": [
+      "EVD-042"
+    ],
     "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
     "id": "I-008",
     "type": "intervention",
@@ -15,7 +17,7 @@
     "actor": "employer-policy",
     "scope": "organizational",
     "cost": "medium",
-    "evidence_level": "hypothesis",
+    "evidence_level": "supported",
     "expected_effects": [
       "M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round",
       "B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration"

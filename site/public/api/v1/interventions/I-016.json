@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Verification Discrepancy Disclosure and Reconciliation Window",
     "status": "active",
@@ -12,7 +12,10 @@
     "summary": "Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.",
     "targets": [
       "B-011",
-      "M-021"
+      "B-016",
+      "M-021",
+      "M-027",
+      "M-028"
     ],
     "actor": "employer-policy",
     "scope": "organizational",

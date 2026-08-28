@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026.08.2",
+  "registry_version": "2026.08.3",
   "data": {
     "title": "Feedback stating candidate is overqualified for the grade",
     "status": "active",
@@ -26,8 +26,10 @@
           {
             "id": "higher-req-named",
             "label": "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-017"
+            ],
+            "because": "Active referral to an unblocked higher level band rules out structural down-levelling with a hard ceiling."
           },
           {
             "id": "answered-on-level-none-named",
@@ -38,8 +40,10 @@
           {
             "id": "answered-as-budget",
             "label": "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it.",
-            "excludes": [],
-            "because": ""
+            "excludes": [
+              "M-001"
+            ],
+            "because": "Stating rigid departmental budget ceilings rather than technical qualification gaps confirms pay band constraints rather than skill deficiencies."
           },
           {
             "id": "no-reply",
