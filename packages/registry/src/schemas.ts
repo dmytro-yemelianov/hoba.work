@@ -4,16 +4,16 @@ import { z } from 'zod';
 // Canonical ID patterns (single source of truth for every ID regex)
 // ---------------------------------------------------------------------------
 export const ID_PATTERNS = {
-  artifact: /^A-\d{3}$/,
-  barrier: /^B-\d{3}$/,
-  mechanism: /^M-\d{3}$/,
-  pattern: /^P-\d{3}$/,
-  loop: /^L-\d{3}$/,
-  intervention: /^I-\d{3}$/,
-  evidence: /^EVD-\d{3}$/,
-  record: /^R-\d{3}$/,
+  artifact: /^(A-\d{3}|obs\.[a-z0-9_]+)$/,
+  barrier: /^(B-\d{3}|bar\.[a-z0-9_]+)$/,
+  mechanism: /^(M-\d{3}|mech\.[a-z0-9_]+)$/,
+  pattern: /^(P-\d{3}|pat\.[a-z0-9_]+)$/,
+  loop: /^(L-\d{3}|loop\.[a-z0-9_]+)$/,
+  intervention: /^(I-\d{3}|int\.[a-z0-9_]+)$/,
+  evidence: /^(EVD-\d{3}|evidence\.[a-z0-9_]+)$/,
+  record: /^(R-\d{3}|record\.[a-z0-9_]+)$/,
   probe: /^PROBE-[A-Z0-9-]+$/,
-  era: /^E-\d{3}$/,
+  era: /^(E-\d{3}|era\.[a-z0-9_]+)$/,
 } as const;
 
 const artifactId = z.string().regex(ID_PATTERNS.artifact);
@@ -24,7 +24,7 @@ const loopId = z.string().regex(ID_PATTERNS.loop);
 const interventionId = z.string().regex(ID_PATTERNS.intervention);
 const evidenceId = z.string().regex(ID_PATTERNS.evidence);
 const recordId = z.string().regex(ID_PATTERNS.record);
-const workflowId = z.string().regex(/^WF-\d{3}$/, 'workflow id must look like WF-001');
+const workflowId = z.string().regex(/^(WF-\d{3}|proc\.[a-z0-9_]+)$/, 'workflow id must look like WF-001 or proc.<name>');
 const eraId = z.string().regex(ID_PATTERNS.era, 'era id must look like E-001');
 
 // Ordered by funnel progression. The order of this list is meaningful and is
@@ -325,7 +325,7 @@ export const interventionSchema = z.object({
   id: interventionId,
   type: z.literal('intervention'),
   summary: z.string().min(10),
-  targets: z.array(z.string().regex(/^[MBPL]-\d{3}$/)).min(1),
+  targets: z.array(z.string().regex(/^([MBPL]-\d{3}|(mech|bar|pat|loop)\.[a-z0-9_]+)$/)).min(1),
   actor: interventionActorSchema,
   scope: scopeTypeSchema,
   cost: costBandSchema,

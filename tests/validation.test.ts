@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { compareBundleStructure, validateRegistry, validateRegistryBundle } from '@hoba/registry';
+import { ID_PATTERNS, compareBundleStructure, loadRegistryFromRoot, resolveRegistryRoot, validateRegistry, validateRegistryBundle } from '@hoba/registry';
 import { barrier, intervention, loop, makeBundle, mechanism, pattern } from './helpers';
 
 const rules = (bundle: ReturnType<typeof makeBundle>) => validateRegistryBundle(bundle).map((i) => `${i.severity}:${i.rule}`);
@@ -108,5 +108,54 @@ describe('compareBundleStructure', () => {
     expect(rulesFound).toContain('mirror-drift:M-001');
     expect(rulesFound).toContain('mirror-missing:I-001');
     expect(rulesFound).toContain('mirror-extra:P-002');
+  });
+});
+
+describe('ID_PATTERNS accepts both the legacy short code and the new dotted-namespace format', () => {
+  it('still accepts every legacy short code (backward compatibility during the phased rename)', () => {
+    expect(ID_PATTERNS.artifact.test('A-002')).toBe(true);
+    expect(ID_PATTERNS.barrier.test('B-002')).toBe(true);
+    expect(ID_PATTERNS.mechanism.test('M-001')).toBe(true);
+    expect(ID_PATTERNS.pattern.test('P-001')).toBe(true);
+    expect(ID_PATTERNS.loop.test('L-001')).toBe(true);
+    expect(ID_PATTERNS.intervention.test('I-002')).toBe(true);
+    expect(ID_PATTERNS.evidence.test('EVD-046')).toBe(true);
+    expect(ID_PATTERNS.record.test('R-001')).toBe(true);
+    expect(ID_PATTERNS.era.test('E-004')).toBe(true);
+  });
+
+  it('now also accepts the new dotted-namespace format for every type', () => {
+    expect(ID_PATTERNS.artifact.test('obs.generic_closer_alignment_rejection_template')).toBe(true);
+    expect(ID_PATTERNS.barrier.test('bar.automated_filter_parser_threshold')).toBe(true);
+    expect(ID_PATTERNS.mechanism.test('mech.pipeline_refresh')).toBe(true);
+    expect(ID_PATTERNS.pattern.test('pat.seniority_double_bind')).toBe(true);
+    expect(ID_PATTERNS.loop.test('loop.some_cycle')).toBe(true);
+    expect(ID_PATTERNS.intervention.test('int.some_change')).toBe(true);
+    expect(ID_PATTERNS.evidence.test('evidence.hidden_workers')).toBe(true);
+    expect(ID_PATTERNS.record.test('record.some_budget')).toBe(true);
+    expect(ID_PATTERNS.era.test('era.zero_rates')).toBe(true);
+  });
+
+  it('still rejects garbage that matches neither format', () => {
+    expect(ID_PATTERNS.pattern.test('not-a-real-id')).toBe(false);
+    expect(ID_PATTERNS.pattern.test('P-1')).toBe(false); // wrong digit count for the legacy format
+    expect(ID_PATTERNS.pattern.test('pat.')).toBe(false); // empty name after the dotted prefix
+    expect(ID_PATTERNS.pattern.test('scenario.application_silence')).toBe(false); // wrong prefix entirely
+  });
+});
+
+describe('the actual renamed pattern content validates', () => {
+  it('loads and validates the real registry with pattern entities already migrated to dotted IDs', () => {
+    const root = resolveRegistryRoot();
+    const bundle = loadRegistryFromRoot(root, 'en');
+    const issues = validateRegistry(bundle).issues;
+    const errors = issues.filter((i) => i.severity === 'error');
+    if (errors.length > 0) {
+      throw new Error(`Validation errors:\n${errors.map((e) => `  ${e.rule}: ${e.message}`).join('\n')}`);
+    }
+    expect(errors).toEqual([]);
+    // Confirm at least one pattern is actually in the new format, proving this
+    // isn't a vacuous pass because the rename hasn't happened yet.
+    expect(bundle.patterns.some((p) => p.id.startsWith('pat.'))).toBe(true);
   });
 });
