@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import type { RegistryBundle } from './types.js';
 
 export interface IdMappingEntry {
@@ -96,4 +98,53 @@ export function buildIdMapping(bundle: RegistryBundle): IdMappingResult {
   }
 
   return { mappings, collisions };
+}
+
+export interface RenameApplication {
+  oldId: string;
+  newId: string;
+  /** Paths relative to `root`, in the order they were found. */
+  filesChanged: string[];
+}
+
+const RENAME_TREES = ['content', 'content-uk', 'evidence'];
+
+/**
+ * Replaces every double-quoted occurrence of `oldId` with `newId` across
+ * content/, content-uk/, and evidence/. Anchored on the surrounding quote
+ * characters so "P-0010" is never matched while renaming "P-001" — and
+ * because every ID reference in this codebase's content is written as a
+ * quoted YAML string, this single substitution simultaneously updates the
+ * entity's own `id:` line and every external cross-reference to it,
+ * including fields not explicitly modeled by the schema (era's `entities`,
+ * actor's nested `recommendations[].targets`). No YAML parse/reserialize
+ * round trip — every other byte of every touched file is preserved as-is.
+ */
+export function applyIdRename(root: string, oldId: string, newId: string): RenameApplication {
+  const token = `"${oldId}"`;
+  const replacement = `"${newId}"`;
+  const filesChanged: string[] = [];
+
+  for (const tree of RENAME_TREES) {
+    const dir = path.join(root, tree);
+    if (!fs.existsSync(dir)) continue;
+    for (const file of walkMarkdownFiles(dir)) {
+      const text = fs.readFileSync(file, 'utf8');
+      if (!text.includes(token)) continue;
+      fs.writeFileSync(file, text.split(token).join(replacement));
+      filesChanged.push(path.relative(root, file));
+    }
+  }
+
+  return { oldId, newId, filesChanged };
+}
+
+function walkMarkdownFiles(dir: string): string[] {
+  const out: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...walkMarkdownFiles(full));
+    else if (entry.name.endsWith('.md')) out.push(full);
+  }
+  return out;
 }

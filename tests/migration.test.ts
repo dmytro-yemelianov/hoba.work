@@ -1,6 +1,8 @@
+import fs from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
+import { applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
+import { writeTempRegistry } from './helpers';
 
 describe('slugifyTitle', () => {
   it('lowercases and joins words with underscores', () => {
@@ -142,5 +144,59 @@ describe('buildIdMapping against the real registry', () => {
 
     expect(result.mappings).toHaveLength(expectedCount);
     expect(new Set(result.mappings.map((m) => m.newId)).size).toBe(expectedCount);
+  });
+});
+
+describe('applyIdRename', () => {
+  it('replaces the quoted old ID with the quoted new ID in every file that contains it', () => {
+    const root = writeTempRegistry({
+      'content/patterns/P-001.md': '---\nid: "P-001"\ntype: "pattern"\nrequired_artifacts:\n  - "A-002"\n---\n\n# Body\n',
+      'content/interventions/I-002.md': '---\nid: "I-002"\ntype: "intervention"\ntargets:\n  - "P-001"\n  - "B-002"\n---\n',
+      'content-uk/patterns/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n\n# Тіло\n',
+      'evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
+    });
+
+    const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
+
+    expect(result).toEqual({
+      oldId: 'P-001',
+      newId: 'pat.seniority_double_bind',
+      filesChanged: expect.arrayContaining([
+        'content/patterns/P-001.md',
+        'content/interventions/I-002.md',
+        'content-uk/patterns/P-001.md',
+      ]),
+    });
+    expect(result.filesChanged).toHaveLength(3);
+
+    const pattern = fs.readFileSync(`${root}/content/patterns/P-001.md`, 'utf8');
+    expect(pattern).toContain('id: "pat.seniority_double_bind"');
+    expect(pattern).not.toContain('"P-001"');
+
+    const intervention = fs.readFileSync(`${root}/content/interventions/I-002.md`, 'utf8');
+    expect(intervention).toContain('- "pat.seniority_double_bind"');
+    expect(intervention).toContain('- "B-002"'); // untouched, different ID
+
+    const uk = fs.readFileSync(`${root}/content-uk/patterns/P-001.md`, 'utf8');
+    expect(uk).toContain('id: "pat.seniority_double_bind"');
+  });
+
+  it('does not touch a file that only contains an unrelated ID', () => {
+    const root = writeTempRegistry({
+      'content/patterns/P-002.md': '---\nid: "P-002"\ntype: "pattern"\n---\n',
+    });
+    const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
+    expect(result.filesChanged).toEqual([]);
+    expect(fs.readFileSync(`${root}/content/patterns/P-002.md`, 'utf8')).toContain('"P-002"');
+  });
+
+  it('does not match a substring of a longer ID', () => {
+    const root = writeTempRegistry({
+      'content/patterns/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n',
+      'content/patterns/P-0010.md': '---\nid: "P-0010"\ntype: "pattern"\n---\n',
+    });
+    const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
+    expect(result.filesChanged).toEqual(['content/patterns/P-001.md']);
+    expect(fs.readFileSync(`${root}/content/patterns/P-0010.md`, 'utf8')).toContain('"P-0010"');
   });
 });
