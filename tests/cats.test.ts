@@ -3,6 +3,7 @@ import {
   generateDNA,
   renderCatSVG,
   resolveColors,
+  evaluateCatQuality,
   CAT_PRESETS,
   POSES,
   COAT_STYLES,
@@ -77,6 +78,18 @@ describe('Vector Cat Engine', () => {
         const svg = renderCatSVG(dna);
         expect(svg).toContain('<svg');
       }
+    }
+  });
+
+  it('Ralph Quality Evaluator scores presets and population within S/A thresholds', () => {
+    for (const preset of CAT_PRESETS) {
+      const score = evaluateCatQuality({ ...preset.dna, seed: preset.dna.seed } as CatDNA);
+      expect(score.total).toBeGreaterThanOrEqual(80);
+      expect(['S', 'A']).toContain(score.grade);
+      expect(score.breakdown.emotionalSoul.score).toBeGreaterThan(0);
+      expect(score.breakdown.colorHarmony.score).toBeGreaterThan(0);
+      expect(score.breakdown.geometryPrecision.score).toBeGreaterThan(0);
+      expect(score.breakdown.vectorCleanliness.score).toBeGreaterThan(0);
     }
   });
 });

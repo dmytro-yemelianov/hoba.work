@@ -7,3 +7,4 @@ export * from './prng';
 export * from './colors';
 export * from './render';
 export * from './presets';
+export * from './evaluator';
