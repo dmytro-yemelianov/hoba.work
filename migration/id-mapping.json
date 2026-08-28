@@ -1,0 +1,995 @@
+{
+  "mappings": [
+    {
+      "oldId": "A-001",
+      "newId": "obs.complete_silence_after_submission",
+      "type": "artifact",
+      "title": "Complete silence after submission"
+    },
+    {
+      "oldId": "A-002",
+      "newId": "obs.generic_closer_alignment_rejection_template",
+      "type": "artifact",
+      "title": "Generic \"closer alignment\" rejection template"
+    },
+    {
+      "oldId": "A-003",
+      "newId": "obs.position_closed_after_final_interview_without_hire",
+      "type": "artifact",
+      "title": "Position closed after final interview without hire"
+    },
+    {
+      "oldId": "A-004",
+      "newId": "obs.materially_similar_role_reposted_shortly_after_rejection",
+      "type": "artifact",
+      "title": "Materially similar role reposted shortly after rejection"
+    },
+    {
+      "oldId": "A-005",
+      "newId": "obs.compensation_band_reduced_or_altered_mid_process",
+      "type": "artifact",
+      "title": "Compensation band reduced or altered mid-process"
+    },
+    {
+      "oldId": "A-006",
+      "newId": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
+      "type": "artifact",
+      "title": "Take-home assignment exceeding reasonable stated scope"
+    },
+    {
+      "oldId": "A-007",
+      "newId": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
+      "type": "artifact",
+      "title": "Multiple interview reschedulings or interviewer no-show"
+    },
+    {
+      "oldId": "A-008",
+      "newId": "obs.explicit_feedback_citing_skill_depth_shortfall",
+      "type": "artifact",
+      "title": "Explicit feedback citing skill-depth shortfall"
+    },
+    {
+      "oldId": "A-009",
+      "newId": "obs.rejection_within_minutes_of_application_submission",
+      "type": "artifact",
+      "title": "Rejection within minutes of application submission"
+    },
+    {
+      "oldId": "A-010",
+      "newId": "obs.communication_mismatch_or_tone_friction_in_panel",
+      "type": "artifact",
+      "title": "Communication mismatch or tone friction in panel"
+    },
+    {
+      "oldId": "A-011",
+      "newId": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
+      "type": "artifact",
+      "title": "Offer rescinded or delayed due to internal freeze"
+    },
+    {
+      "oldId": "A-012",
+      "newId": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
+      "type": "artifact",
+      "title": "Unsolicited recruiter outreach followed by ghosting"
+    },
+    {
+      "oldId": "A-013",
+      "newId": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
+      "type": "artifact",
+      "title": "Feedback stating candidate is overqualified for the grade"
+    },
+    {
+      "oldId": "A-014",
+      "newId": "obs.conflicting_feedback_across_different_interviewers",
+      "type": "artifact",
+      "title": "Conflicting feedback across different interviewers"
+    },
+    {
+      "oldId": "A-015",
+      "newId": "obs.rejection_after_the_application_sat_pending_for_months",
+      "type": "artifact",
+      "title": "Rejection after the application sat pending for months"
+    },
+    {
+      "oldId": "A-016",
+      "newId": "obs.rejection_naming_an_internal_hire_as_the_outcome",
+      "type": "artifact",
+      "title": "Rejection naming an internal hire as the outcome"
+    },
+    {
+      "oldId": "A-017",
+      "newId": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
+      "type": "artifact",
+      "title": "Rejection naming a jurisdiction or work-eligibility ground"
+    },
+    {
+      "oldId": "A-018",
+      "newId": "obs.rejection_naming_a_specific_industry_sector_as_required",
+      "type": "artifact",
+      "title": "Rejection naming a specific industry sector as required"
+    },
+    {
+      "oldId": "A-019",
+      "newId": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
+      "type": "artifact",
+      "title": "Feedback naming as absent something the submitted work contains"
+    },
+    {
+      "oldId": "A-020",
+      "newId": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+      "type": "artifact",
+      "title": "Offer accepted followed by delayed start date or post-signing revocation"
+    },
+    {
+      "oldId": "A-021",
+      "newId": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+      "type": "artifact",
+      "title": "Republished job posting with refreshed date and identical requirement body"
+    },
+    {
+      "oldId": "B-013",
+      "newId": "bar.requisition_approval_public_posting",
+      "type": "barrier",
+      "title": "Requisition Approval & Public Posting"
+    },
+    {
+      "oldId": "B-014",
+      "newId": "bar.outbound_sourcing_talent_pool_contact",
+      "type": "barrier",
+      "title": "Outbound Sourcing & Talent Pool Contact"
+    },
+    {
+      "oldId": "B-001",
+      "newId": "bar.application_ingestion",
+      "type": "barrier",
+      "title": "Application Ingestion"
+    },
+    {
+      "oldId": "B-002",
+      "newId": "bar.automated_filter_parser_threshold",
+      "type": "barrier",
+      "title": "Automated Filter & Parser Threshold"
+    },
+    {
+      "oldId": "B-003",
+      "newId": "bar.inbound_screening_triage",
+      "type": "barrier",
+      "title": "Inbound Screening & Triage"
+    },
+    {
+      "oldId": "B-004",
+      "newId": "bar.recruiter_screening_call",
+      "type": "barrier",
+      "title": "Recruiter Screening Call"
+    },
+    {
+      "oldId": "B-005",
+      "newId": "bar.technical_screen_live_assessment",
+      "type": "barrier",
+      "title": "Technical Screen / Live Assessment"
+    },
+    {
+      "oldId": "B-006",
+      "newId": "bar.take_home_work_sample_evaluation",
+      "type": "barrier",
+      "title": "Take-Home / Work Sample Evaluation"
+    },
+    {
+      "oldId": "B-007",
+      "newId": "bar.hiring_manager_in_depth_review",
+      "type": "barrier",
+      "title": "Hiring Manager In-Depth Review"
+    },
+    {
+      "oldId": "B-008",
+      "newId": "bar.team_cross_functional_panel",
+      "type": "barrier",
+      "title": "Team & Cross-Functional Panel"
+    },
+    {
+      "oldId": "B-009",
+      "newId": "bar.compensation_levelling_reconciliation",
+      "type": "barrier",
+      "title": "Compensation & Levelling Reconciliation"
+    },
+    {
+      "oldId": "B-010",
+      "newId": "bar.headcount_executive_budget_approval",
+      "type": "barrier",
+      "title": "Headcount & Executive Budget Approval"
+    },
+    {
+      "oldId": "B-011",
+      "newId": "bar.reference_background_verification",
+      "type": "barrier",
+      "title": "Reference & Background Verification"
+    },
+    {
+      "oldId": "B-012",
+      "newId": "bar.offer_closing_contract_execution",
+      "type": "barrier",
+      "title": "Offer Closing & Contract Execution"
+    },
+    {
+      "oldId": "B-015",
+      "newId": "bar.client_profile_approval_and_client_interview",
+      "type": "barrier",
+      "title": "Client Profile Approval and Client Interview"
+    },
+    {
+      "oldId": "B-016",
+      "newId": "bar.probation_period_post_start_confirmation",
+      "type": "barrier",
+      "title": "Probation Period & Post-Start Confirmation"
+    },
+    {
+      "oldId": "M-001",
+      "newId": "mech.genuine_technical_skill_shortfall",
+      "type": "mechanism",
+      "title": "Genuine Technical Skill Shortfall"
+    },
+    {
+      "oldId": "M-002",
+      "newId": "mech.stronger_competing_candidate_in_final_cohort",
+      "type": "mechanism",
+      "title": "Stronger Competing Candidate in Final Cohort"
+    },
+    {
+      "oldId": "M-003",
+      "newId": "mech.ats_parser_extraction_failure",
+      "type": "mechanism",
+      "title": "ATS Parser Extraction Failure"
+    },
+    {
+      "oldId": "M-004",
+      "newId": "mech.unstated_compensation_band_discrepancy",
+      "type": "mechanism",
+      "title": "Unstated Compensation Band Discrepancy"
+    },
+    {
+      "oldId": "M-005",
+      "newId": "mech.pre_selected_internal_candidate",
+      "type": "mechanism",
+      "title": "Pre-Selected Internal Candidate"
+    },
+    {
+      "oldId": "M-006",
+      "newId": "mech.stale_or_orphaned_job_requisition",
+      "type": "mechanism",
+      "title": "Stale or Orphaned Job Requisition"
+    },
+    {
+      "oldId": "M-007",
+      "newId": "mech.headcount_freeze_or_budget_cancellation",
+      "type": "mechanism",
+      "title": "Headcount Freeze or Budget Cancellation"
+    },
+    {
+      "oldId": "M-008",
+      "newId": "mech.automated_keyword_qualification_filter",
+      "type": "mechanism",
+      "title": "Automated Keyword / Qualification Filter"
+    },
+    {
+      "oldId": "M-009",
+      "newId": "mech.recruiter_volume_quota_incentive_distortion",
+      "type": "mechanism",
+      "title": "Recruiter Volume & Quota Incentive Distortion"
+    },
+    {
+      "oldId": "M-010",
+      "newId": "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+      "type": "mechanism",
+      "title": "Hidden Evaluation Rubric or Undisclosed Priority"
+    },
+    {
+      "oldId": "M-011",
+      "newId": "mech.employment_gap_downranking_bias",
+      "type": "mechanism",
+      "title": "Employment Gap Downranking Bias"
+    },
+    {
+      "oldId": "M-012",
+      "newId": "mech.interview_resource_scheduling_saturation",
+      "type": "mechanism",
+      "title": "Interview Resource & Scheduling Saturation"
+    },
+    {
+      "oldId": "M-013",
+      "newId": "mech.mid_process_role_requirement_redefinition",
+      "type": "mechanism",
+      "title": "Mid-Process Role Requirement Redefinition"
+    },
+    {
+      "oldId": "M-014",
+      "newId": "mech.location_or_timezone_compliance_constraint",
+      "type": "mechanism",
+      "title": "Location or Timezone Compliance Constraint"
+    },
+    {
+      "oldId": "M-015",
+      "newId": "mech.communication_or_working_style_friction",
+      "type": "mechanism",
+      "title": "Communication or Working Style Friction"
+    },
+    {
+      "oldId": "M-016",
+      "newId": "mech.speculative_sourcing_talent_pooling_without_opening",
+      "type": "mechanism",
+      "title": "Speculative Sourcing / Talent Pooling Without Opening"
+    },
+    {
+      "oldId": "M-017",
+      "newId": "mech.experience_age_grading_mismatch",
+      "type": "mechanism",
+      "title": "Experience-Age Grading Mismatch"
+    },
+    {
+      "oldId": "M-018",
+      "newId": "mech.domain_specificity_over_weighting",
+      "type": "mechanism",
+      "title": "Domain Specificity Over-Weighting"
+    },
+    {
+      "oldId": "M-019",
+      "newId": "mech.take_home_evaluation_fatigue_asymmetry",
+      "type": "mechanism",
+      "title": "Take-Home Evaluation Fatigue & Asymmetry"
+    },
+    {
+      "oldId": "M-020",
+      "newId": "mech.automated_application_expiration_timeout",
+      "type": "mechanism",
+      "title": "Automated Application Expiration Timeout"
+    },
+    {
+      "oldId": "M-021",
+      "newId": "mech.reference_check_discrepancy_or_regulatory_ineligibility",
+      "type": "mechanism",
+      "title": "Reference Check Discrepancy or Regulatory Ineligibility"
+    },
+    {
+      "oldId": "M-022",
+      "newId": "mech.hiring_manager_consensus_impasse",
+      "type": "mechanism",
+      "title": "Hiring Manager Consensus Impasse"
+    },
+    {
+      "oldId": "M-023",
+      "newId": "mech.portfolio_work_artifact_misinterpretation",
+      "type": "mechanism",
+      "title": "Portfolio / Work Artifact Misinterpretation"
+    },
+    {
+      "oldId": "M-024",
+      "newId": "mech.inflated_requisition_requirements_vs_actual_team_needs",
+      "type": "mechanism",
+      "title": "Inflated Requisition Requirements vs Actual Team Needs"
+    },
+    {
+      "oldId": "M-025",
+      "newId": "mech.bid_conditional_talent_pool",
+      "type": "mechanism",
+      "title": "Bid-Conditional Talent Pool"
+    },
+    {
+      "oldId": "M-026",
+      "newId": "mech.bench_priority_fill",
+      "type": "mechanism",
+      "title": "Bench-Priority Fill"
+    },
+    {
+      "oldId": "M-027",
+      "newId": "mech.start_date_slippage_and_post_acceptance_revocation",
+      "type": "mechanism",
+      "title": "Start-Date Slippage and Post-Acceptance Revocation"
+    },
+    {
+      "oldId": "M-028",
+      "newId": "mech.probation_used_as_extended_de_facto_interview",
+      "type": "mechanism",
+      "title": "Probation Used as Extended De-Facto Interview"
+    },
+    {
+      "oldId": "P-001",
+      "newId": "pat.seniority_double_bind",
+      "type": "pattern",
+      "title": "Seniority Double Bind"
+    },
+    {
+      "oldId": "P-002",
+      "newId": "pat.closed_then_reposted_requisition_motif",
+      "type": "pattern",
+      "title": "Closed-Then-Reposted Requisition Motif"
+    },
+    {
+      "oldId": "P-003",
+      "newId": "pat.experience_age_impossibility",
+      "type": "pattern",
+      "title": "Experience-Age Impossibility"
+    },
+    {
+      "oldId": "P-004",
+      "newId": "pat.compensation_double_bind",
+      "type": "pattern",
+      "title": "Compensation Double Bind"
+    },
+    {
+      "oldId": "L-001",
+      "newId": "loop.employment_gap_penalty_loop",
+      "type": "loop",
+      "title": "Employment Gap Penalty Loop"
+    },
+    {
+      "oldId": "L-002",
+      "newId": "loop.take_home_opportunity_cost_saturation_loop",
+      "type": "loop",
+      "title": "Take-Home Opportunity-Cost Saturation Loop"
+    },
+    {
+      "oldId": "L-003",
+      "newId": "loop.inflated_requirements_search_saturation_loop",
+      "type": "loop",
+      "title": "Inflated-Requirements Search Saturation Loop"
+    },
+    {
+      "oldId": "I-001",
+      "newId": "int.auto_close_stale_job_requisitions",
+      "type": "intervention",
+      "title": "Auto-Close Stale Job Requisitions"
+    },
+    {
+      "oldId": "I-002",
+      "newId": "int.upfront_compensation_band_disclosure",
+      "type": "intervention",
+      "title": "Upfront Compensation Band Disclosure"
+    },
+    {
+      "oldId": "I-003",
+      "newId": "int.standardized_late_stage_rejection_feedback_taxonomy",
+      "type": "intervention",
+      "title": "Standardized Late-Stage Rejection Feedback Taxonomy"
+    },
+    {
+      "oldId": "I-004",
+      "newId": "int.remove_career_gap_feature_from_automated_ranking_models",
+      "type": "intervention",
+      "title": "Remove Career Gap Feature from Automated Ranking Models"
+    },
+    {
+      "oldId": "I-005",
+      "newId": "int.candidate_ats_parser_conformance_test_utility",
+      "type": "intervention",
+      "title": "Candidate ATS Parser Conformance Test Utility"
+    },
+    {
+      "oldId": "I-006",
+      "newId": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+      "type": "intervention",
+      "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric"
+    },
+    {
+      "oldId": "I-007",
+      "newId": "int.requirements_drawn_from_the_team_s_own_backlog",
+      "type": "intervention",
+      "title": "Requirements Drawn From the Team's Own Backlog"
+    },
+    {
+      "oldId": "I-008",
+      "newId": "int.internal_candidacy_stated_in_the_posting",
+      "type": "intervention",
+      "title": "Internal Candidacy Stated in the Posting"
+    },
+    {
+      "oldId": "I-009",
+      "newId": "int.outreach_states_the_requisition_behind_it",
+      "type": "intervention",
+      "title": "Outreach States the Requisition Behind It"
+    },
+    {
+      "oldId": "I-010",
+      "newId": "int.distinct_closure_status_for_unreviewed_applications",
+      "type": "intervention",
+      "title": "Distinct Closure Status for Unreviewed Applications"
+    },
+    {
+      "oldId": "I-011",
+      "newId": "int.screening_note_bound_to_observations_and_disposition_codes",
+      "type": "intervention",
+      "title": "Screening Note Bound to Observations and Disposition Codes"
+    },
+    {
+      "oldId": "I-012",
+      "newId": "int.candidate_work_index_submitted_with_the_application",
+      "type": "intervention",
+      "title": "Candidate Work Index Submitted With the Application"
+    },
+    {
+      "oldId": "I-013",
+      "newId": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round",
+      "type": "intervention",
+      "title": "Publish the Technical Screen's Columns and Threshold Before the Round"
+    },
+    {
+      "oldId": "I-014",
+      "newId": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+      "type": "intervention",
+      "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota"
+    },
+    {
+      "oldId": "I-015",
+      "newId": "int.dated_funding_certification_before_the_final_round",
+      "type": "intervention",
+      "title": "Dated Funding Certification Before the Final Round"
+    },
+    {
+      "oldId": "I-016",
+      "newId": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+      "type": "intervention",
+      "title": "Verification Discrepancy Disclosure and Reconciliation Window"
+    },
+    {
+      "oldId": "I-017",
+      "newId": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
+      "type": "intervention",
+      "title": "Recorded Finalist Standing With a Dated Re-Entry Route"
+    },
+    {
+      "oldId": "WF-001",
+      "newId": "proc.the_hiring_funnel_end_to_end",
+      "type": "workflow",
+      "title": "The hiring funnel, end to end"
+    },
+    {
+      "oldId": "WF-002",
+      "newId": "proc.an_application_inside_the_ats",
+      "type": "workflow",
+      "title": "An application inside the ATS"
+    },
+    {
+      "oldId": "WF-003",
+      "newId": "proc.the_path_as_it_is_supposed_to_run",
+      "type": "workflow",
+      "title": "The path as it is supposed to run"
+    },
+    {
+      "oldId": "WF-004",
+      "newId": "proc.client_account_hiring_funnel",
+      "type": "workflow",
+      "title": "Client account hiring funnel"
+    },
+    {
+      "oldId": "ats-vendor",
+      "newId": "actor.ats_vendor",
+      "type": "actor",
+      "title": "ATS vendor"
+    },
+    {
+      "oldId": "candidate",
+      "newId": "actor.candidate",
+      "type": "actor",
+      "title": "Candidate"
+    },
+    {
+      "oldId": "client",
+      "newId": "actor.client",
+      "type": "actor",
+      "title": "Client"
+    },
+    {
+      "oldId": "employer-policy",
+      "newId": "actor.employer_policy",
+      "type": "actor",
+      "title": "Employer policy"
+    },
+    {
+      "oldId": "hiring-manager",
+      "newId": "actor.hiring_manager",
+      "type": "actor",
+      "title": "Hiring manager"
+    },
+    {
+      "oldId": "public-policy",
+      "newId": "actor.public_policy_and_industry_standards",
+      "type": "actor",
+      "title": "Public policy and industry standards"
+    },
+    {
+      "oldId": "recruiter",
+      "newId": "actor.recruiter",
+      "type": "actor",
+      "title": "Recruiter"
+    },
+    {
+      "oldId": "E-001",
+      "newId": "era.zero_rates_and_a_same_year_deduction",
+      "type": "era",
+      "title": "Zero rates and a same-year deduction"
+    },
+    {
+      "oldId": "E-002",
+      "newId": "era.the_record_funding_years",
+      "type": "era",
+      "title": "The record funding years"
+    },
+    {
+      "oldId": "E-003",
+      "newId": "era.rates_up_payroll_repriced",
+      "type": "era",
+      "title": "Rates up, payroll repriced"
+    },
+    {
+      "oldId": "E-004",
+      "newId": "era.a_fixed_number_of_seats",
+      "type": "era",
+      "title": "A fixed number of seats"
+    },
+    {
+      "oldId": "R-001",
+      "newId": "record.annual_engineering_department_budget",
+      "type": "record",
+      "title": "Annual Engineering Department Budget"
+    },
+    {
+      "oldId": "R-002",
+      "newId": "record.approved_requisition_funding",
+      "type": "record",
+      "title": "Approved Requisition Funding"
+    },
+    {
+      "oldId": "R-003",
+      "newId": "record.direct_engineering_payroll",
+      "type": "record",
+      "title": "Direct Engineering Payroll"
+    },
+    {
+      "oldId": "R-004",
+      "newId": "record.client_project_budget",
+      "type": "record",
+      "title": "Client Project Budget"
+    },
+    {
+      "oldId": "R-005",
+      "newId": "record.client_services_agreement",
+      "type": "record",
+      "title": "Client Services Agreement"
+    },
+    {
+      "oldId": "R-006",
+      "newId": "record.vendor_margin_and_headcount_allocation",
+      "type": "record",
+      "title": "Vendor Margin and Headcount Allocation"
+    },
+    {
+      "oldId": "R-007",
+      "newId": "record.subcontractor_compensation",
+      "type": "record",
+      "title": "Subcontractor Compensation"
+    },
+    {
+      "oldId": "R-008",
+      "newId": "record.employer_hiring_and_sourcing_budget",
+      "type": "record",
+      "title": "Employer Hiring and Sourcing Budget"
+    },
+    {
+      "oldId": "R-009",
+      "newId": "record.contingency_placement_fee_commitment",
+      "type": "record",
+      "title": "Contingency Placement Fee Commitment"
+    },
+    {
+      "oldId": "R-010",
+      "newId": "record.external_agency_settlement",
+      "type": "record",
+      "title": "External Agency Settlement"
+    },
+    {
+      "oldId": "R-011",
+      "newId": "record.candidate_liquid_savings",
+      "type": "record",
+      "title": "Candidate Liquid Savings"
+    },
+    {
+      "oldId": "R-012",
+      "newId": "record.candidate_search_runway",
+      "type": "record",
+      "title": "Candidate Search Runway"
+    },
+    {
+      "oldId": "R-013",
+      "newId": "record.search_month_burn_allocation",
+      "type": "record",
+      "title": "Search-Month Burn Allocation"
+    },
+    {
+      "oldId": "EVD-001",
+      "newId": "evidence.hidden_workers_untapped_talent_hbs_accenture",
+      "type": "evidence",
+      "title": "Hidden Workers: Untapped Talent (HBS / Accenture)"
+    },
+    {
+      "oldId": "EVD-002",
+      "newId": "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets",
+      "type": "evidence",
+      "title": "Too Good to Hire? Capability and Inferences about Commitment in Labor Markets"
+    },
+    {
+      "oldId": "EVD-003",
+      "newId": "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment",
+      "type": "evidence",
+      "title": "Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment"
+    },
+    {
+      "oldId": "EVD-004",
+      "newId": "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers",
+      "type": "evidence",
+      "title": "Job Seekers Beware of Ghost Jobs (Clarify Capital survey of hiring managers)"
+    },
+    {
+      "oldId": "EVD-005",
+      "newId": "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab",
+      "type": "evidence",
+      "title": "Salary Transparency: Growth Slows, but Momentum Continues (Indeed Hiring Lab)"
+    },
+    {
+      "oldId": "EVD-006",
+      "newId": "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format",
+      "type": "evidence",
+      "title": "Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format"
+    },
+    {
+      "oldId": "EVD-007",
+      "newId": "evidence.federal_funds_target_range_and_effective_rate_fred",
+      "type": "evidence",
+      "title": "Federal funds target range and effective rate (FRED)"
+    },
+    {
+      "oldId": "EVD-008",
+      "newId": "evidence.ecb_deposit_facility_rate_fred",
+      "type": "evidence",
+      "title": "ECB deposit facility rate (FRED)"
+    },
+    {
+      "oldId": "EVD-009",
+      "newId": "evidence.pitchbook_nvca_venture_monitor_q4_2021",
+      "type": "evidence",
+      "title": "PitchBook-NVCA Venture Monitor, Q4 2021"
+    },
+    {
+      "oldId": "EVD-010",
+      "newId": "evidence.kpmg_venture_pulse_q4_2021",
+      "type": "evidence",
+      "title": "KPMG Venture Pulse, Q4 2021"
+    },
+    {
+      "oldId": "EVD-011",
+      "newId": "evidence.technology_ipo_profitability_1980_2025_ritter",
+      "type": "evidence",
+      "title": "Technology IPO profitability, 1980–2025 (Ritter)"
+    },
+    {
+      "oldId": "EVD-012",
+      "newId": "evidence.26_u_s_c_174_as_it_stood_before_2022",
+      "type": "evidence",
+      "title": "26 U.S.C. §174 as it stood before 2022"
+    },
+    {
+      "oldId": "EVD-013",
+      "newId": "evidence.26_u_s_c_174_after_the_2017_amendment",
+      "type": "evidence",
+      "title": "26 U.S.C. §174 after the 2017 amendment"
+    },
+    {
+      "oldId": "EVD-014",
+      "newId": "evidence.rev_proc_2025_28_irs",
+      "type": "evidence",
+      "title": "Rev. Proc. 2025-28 (IRS)"
+    },
+    {
+      "oldId": "EVD-015",
+      "newId": "evidence.26_u_s_c_174a_domestic_research_expenditures",
+      "type": "evidence",
+      "title": "26 U.S.C. §174A — domestic research expenditures"
+    },
+    {
+      "oldId": "EVD-016",
+      "newId": "evidence.fomc_policy_rate_decisions_open_market_operations",
+      "type": "evidence",
+      "title": "FOMC policy rate decisions (Open Market Operations)"
+    },
+    {
+      "oldId": "EVD-017",
+      "newId": "evidence.nasdaq_composite_index_fred",
+      "type": "evidence",
+      "title": "NASDAQ Composite Index (FRED)"
+    },
+    {
+      "oldId": "EVD-018",
+      "newId": "evidence.pitchbook_nvca_venture_monitor_q4_2023",
+      "type": "evidence",
+      "title": "PitchBook-NVCA Venture Monitor, Q4 2023"
+    },
+    {
+      "oldId": "EVD-019",
+      "newId": "evidence.us_information_sector_employment_bls_ces",
+      "type": "evidence",
+      "title": "US information-sector employment (BLS CES)"
+    },
+    {
+      "oldId": "EVD-020",
+      "newId": "evidence.job_openings_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Job openings, information sector (BLS JOLTS)"
+    },
+    {
+      "oldId": "EVD-021",
+      "newId": "evidence.layoffs_and_discharges_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Layoffs and discharges, information sector (BLS JOLTS)"
+    },
+    {
+      "oldId": "EVD-022",
+      "newId": "evidence.hires_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Hires, information sector (BLS JOLTS)"
+    },
+    {
+      "oldId": "EVD-023",
+      "newId": "evidence.tracked_technology_layoffs_layoffs_fyi",
+      "type": "evidence",
+      "title": "Tracked technology layoffs (Layoffs.fyi)"
+    },
+    {
+      "oldId": "EVD-024",
+      "newId": "evidence.announced_job_cuts_technology_sector_challenger_gray_christmas",
+      "type": "evidence",
+      "title": "Announced job cuts, technology sector (Challenger, Gray & Christmas)"
+    },
+    {
+      "oldId": "EVD-025",
+      "newId": "evidence.hires_rate_total_private_bls_jolts",
+      "type": "evidence",
+      "title": "Hires rate, total private (BLS JOLTS)"
+    },
+    {
+      "oldId": "EVD-026",
+      "newId": "evidence.quits_rate_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Quits rate, information sector (BLS JOLTS)"
+    },
+    {
+      "oldId": "EVD-027",
+      "newId": "evidence.applications_per_opening_greenhouse_hiring_benchmarks",
+      "type": "evidence",
+      "title": "Applications per opening (Greenhouse hiring benchmarks)"
+    },
+    {
+      "oldId": "EVD-028",
+      "newId": "evidence.seniority_mix_of_software_postings_indeed_hiring_lab",
+      "type": "evidence",
+      "title": "Seniority mix of software postings (Indeed Hiring Lab)"
+    },
+    {
+      "oldId": "EVD-029",
+      "newId": "evidence.employment_of_young_software_developers_stanford_digital_economy_lab",
+      "type": "evidence",
+      "title": "Employment of young software developers (Stanford Digital Economy Lab)"
+    },
+    {
+      "oldId": "EVD-030",
+      "newId": "evidence.applications_per_opening_on_a_national_it_job_board_dou",
+      "type": "evidence",
+      "title": "Applications per opening on a national IT job board (DOU)"
+    },
+    {
+      "oldId": "EVD-031",
+      "newId": "evidence.self_selected_survey_of_it_job_seekers_in_one_national_market_dou",
+      "type": "evidence",
+      "title": "Self-selected survey of IT job seekers in one national market (DOU)"
+    },
+    {
+      "oldId": "EVD-032",
+      "newId": "evidence.pre_adverse_action_disclosure_in_employment_background_checks_15_u_s_c_1681b_b_3",
+      "type": "evidence",
+      "title": "Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))"
+    },
+    {
+      "oldId": "EVD-033",
+      "newId": "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest",
+      "type": "evidence",
+      "title": "Corrected validity estimates reorder the selection methods, and work samples fall furthest"
+    },
+    {
+      "oldId": "EVD-034",
+      "newId": "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse",
+      "type": "evidence",
+      "title": "Postings without a fillable requisition, measured on one ATS platform (Greenhouse)"
+    },
+    {
+      "oldId": "EVD-035",
+      "newId": "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees",
+      "type": "evidence",
+      "title": "Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)"
+    },
+    {
+      "oldId": "EVD-036",
+      "newId": "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3",
+      "type": "evidence",
+      "title": "Whether an application was assessed at all is defined in regulation (41 CFR 60-1.3)"
+    },
+    {
+      "oldId": "EVD-037",
+      "newId": "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22",
+      "type": "evidence",
+      "title": "A rejection issued without human involvement is regulated in the EU (GDPR Art. 22)"
+    },
+    {
+      "oldId": "EVD-038",
+      "newId": "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5",
+      "type": "evidence",
+      "title": "Publishing the band before the interview becomes a duty in the EU (Directive 2023/970, Art. 5)"
+    },
+    {
+      "oldId": "EVD-039",
+      "newId": "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions",
+      "type": "evidence",
+      "title": "Openings that exist because a rule requires them (Ukraine, civil service competitions)"
+    },
+    {
+      "oldId": "EVD-040",
+      "newId": "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+      "type": "evidence",
+      "title": "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)"
+    },
+    {
+      "oldId": "EVD-041",
+      "newId": "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996",
+      "type": "evidence",
+      "title": "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)"
+    },
+    {
+      "oldId": "EVD-042",
+      "newId": "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code",
+      "type": "evidence",
+      "title": "Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)"
+    },
+    {
+      "oldId": "EVD-043",
+      "newId": "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii",
+      "type": "evidence",
+      "title": "Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)"
+    },
+    {
+      "oldId": "EVD-044",
+      "newId": "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02",
+      "type": "evidence",
+      "title": "Promissory Estoppel and Pre-Employment Good Faith (Restatement of Employment Law § 2.02)"
+    },
+    {
+      "oldId": "EVD-045",
+      "newId": "evidence.candidate_dossier_retention_and_talent_pool_transparency_gdpr_art_5_1_e_edpb_guidelines_3_2019",
+      "type": "evidence",
+      "title": "Candidate Dossier Retention and Talent Pool Transparency (GDPR Art. 5(1)(e) & EDPB Guidelines 3/2019)"
+    },
+    {
+      "oldId": "EVD-046",
+      "newId": "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026",
+      "type": "evidence",
+      "title": "The Algorithmic Barrier: Quantifying Frictional Unemployment in Automated Recruitment (Fofanah, 2026)"
+    },
+    {
+      "oldId": "EVD-047",
+      "newId": "evidence.algorithmic_bias_in_recruitment_evaluating_resume_screeners_video_analysis_yadav_ahirwar_2026",
+      "type": "evidence",
+      "title": "Algorithmic Bias In Recruitment: Evaluating Resume Screeners & Video Analysis (Yadav & Ahirwar, 2026)"
+    },
+    {
+      "oldId": "EVD-048",
+      "newId": "evidence.behind_the_privilege_shield_safeguarding_ai_bias_testing_data_in_employment_decisions_norton_rose_fulbright_2026",
+      "type": "evidence",
+      "title": "Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions (Norton Rose Fulbright, 2026)"
+    }
+  ],
+  "collisions": []
+}

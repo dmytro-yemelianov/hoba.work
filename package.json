@@ -24,6 +24,7 @@
     "dev": "pnpm --filter hoba-site dev",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
+    "generate:id-mapping": "tsx scripts/generate-id-mapping.ts",
     "lean": "pnpm build:lean && cd formal && lake build",
     "ralph:eval": "tsx scripts/ralph-loop.ts",
     "task": "node scripts/task.mjs",
