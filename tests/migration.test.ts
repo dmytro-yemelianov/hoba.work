@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
+import { applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot, insertAlias, planFileRename } from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
 import { writeTempRegistry } from './helpers';
 
@@ -198,5 +198,49 @@ describe('applyIdRename', () => {
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
     expect(result.filesChanged).toEqual(['content/patterns/P-001.md']);
     expect(fs.readFileSync(`${root}/content/patterns/P-0010.md`, 'utf8')).toContain('"P-0010"');
+  });
+});
+
+describe('planFileRename', () => {
+  it('plans a rename for every language tree where the old file exists', () => {
+    const root = writeTempRegistry({
+      'content/patterns/P-001.md': '---\nid: "P-001"\n---\n',
+      'content-uk/patterns/P-001.md': '---\nid: "P-001"\n---\n',
+    });
+    const plans = planFileRename(root, 'patterns', 'P-001', 'pat.seniority_double_bind');
+    expect(plans).toEqual([
+      { oldPath: `${root}/content/patterns/P-001.md`, newPath: `${root}/content/patterns/pat.seniority_double_bind.md` },
+      { oldPath: `${root}/content-uk/patterns/P-001.md`, newPath: `${root}/content-uk/patterns/pat.seniority_double_bind.md` },
+    ]);
+  });
+
+  it('skips a language tree where the old file does not exist', () => {
+    const root = writeTempRegistry({
+      'content/actors/candidate.md': '---\nid: "candidate"\n---\n',
+    });
+    const plans = planFileRename(root, 'actors', 'candidate', 'actor.candidate');
+    expect(plans).toHaveLength(1);
+    expect(plans[0].oldPath).toBe(`${root}/content/actors/candidate.md`);
+  });
+});
+
+describe('insertAlias', () => {
+  it('inserts an aliases block immediately after the type: line', () => {
+    const root = writeTempRegistry({
+      'content/patterns/pat.seniority_double_bind.md': '---\nid: "pat.seniority_double_bind"\ntype: "pattern"\nsummary: "..."\n---\n\n# Body\n',
+    });
+    const filePath = `${root}/content/patterns/pat.seniority_double_bind.md`;
+    insertAlias(filePath, 'P-001');
+    const text = fs.readFileSync(filePath, 'utf8');
+    expect(text).toBe(
+      '---\nid: "pat.seniority_double_bind"\ntype: "pattern"\naliases:\n  - "P-001"\nsummary: "..."\n---\n\n# Body\n'
+    );
+  });
+
+  it('throws a clear error when the file has no type: line to anchor on', () => {
+    const root = writeTempRegistry({
+      'content/patterns/broken.md': '---\nid: "x"\n---\n',
+    });
+    expect(() => insertAlias(`${root}/content/patterns/broken.md`, 'P-001')).toThrow(/no "type:" line/);
   });
 });

@@ -148,3 +148,35 @@ function walkMarkdownFiles(dir: string): string[] {
   }
   return out;
 }
+
+export interface FileRenamePlan {
+  oldPath: string;
+  newPath: string;
+}
+
+/** Computes git-mv source/destination pairs for one entity across every language tree it exists in. */
+export function planFileRename(root: string, typeDir: string, oldId: string, newId: string): FileRenamePlan[] {
+  const plans: FileRenamePlan[] = [];
+  for (const tree of ['content', 'content-uk']) {
+    const oldPath = path.join(root, tree, typeDir, `${oldId}.md`);
+    if (!fs.existsSync(oldPath)) continue;
+    plans.push({ oldPath, newPath: path.join(root, tree, typeDir, `${newId}.md`) });
+  }
+  return plans;
+}
+
+/**
+ * Inserts `aliases:\n  - "<oldId>"` immediately after the file's `type:` line.
+ * Call this AFTER applyIdRename has already rewritten the file's own `id:`
+ * line to the new ID — this function only adds the new field, it does not
+ * touch `id`.
+ */
+export function insertAlias(filePath: string, oldId: string): void {
+  const text = fs.readFileSync(filePath, 'utf8');
+  const marker = /^type: ".*"\n/m;
+  if (!marker.test(text)) {
+    throw new Error(`insertAlias: no "type:" line found in ${filePath}`);
+  }
+  const updated = text.replace(marker, (line) => `${line}aliases:\n  - "${oldId}"\n`);
+  fs.writeFileSync(filePath, updated);
+}
