@@ -67,38 +67,31 @@ const caseMechanisms = bundle.mechanisms
 ---
 <Layout lang={lang} title={t('home.title')} activeNav="home">
   <!-- HERO SECTION -->
-  <section class="relative pt-6 pb-12 sm:pt-12 sm:pb-16 border-b border-hoba-border overflow-hidden">
-    <!-- Ambient Background Glow -->
-    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[280px] bg-gradient-to-b from-hoba-accent/15 via-hoba-accent/5 to-transparent blur-3xl pointer-events-none rounded-full" aria-hidden="true"></div>
+  <section class="py-8 sm:py-12 border-b border-hoba-border">
+    <div class="max-w-3xl">
+      <p class="kicker">{lang === 'uk' ? 'Атлас перешкод і барʼєрів найму' : 'Hiring Obstacles & Barriers Atlas'}</p>
 
-    <div class="relative max-w-4xl">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hoba-border bg-hoba-card/90 backdrop-blur text-xs font-mono text-hoba-muted mb-5 max-w-full flex-wrap">
-        <span class="w-2 h-2 rounded-full bg-hoba-accent animate-pulse shrink-0"></span>
-        <span class="wordmark font-bold">hoba</span>
-        <span>·</span>
-        <span class="truncate">{t('home.badge', { registry: bundle.version, site: siteVersion })}</span>
-        <span>·</span>
-        <span class="text-hoba-text font-medium truncate">{t('home.canonical')}</span>
-      </div>
-
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-hoba-text tracking-tight leading-tight sm:leading-none text-balance break-words">
-        {t('home.h1.before')}<span class="bg-gradient-to-r from-hoba-accent via-blue-400 to-indigo-400 bg-clip-text text-transparent">{t('home.h1.accent')}</span>.
+      <h1 class="mt-2 text-2xl sm:text-4xl font-extrabold text-hoba-text tracking-tight leading-snug">
+        {t('home.h1.before')}<span class="text-hoba-accent">{t('home.h1.accent')}</span>
       </h1>
 
-      <p class="mt-4 max-w-3xl text-base sm:text-lg text-hoba-muted leading-relaxed break-words" set:html={branded(t('home.what', { n: totalNodes }))} />
+      <p class="mt-3 text-base sm:text-lg text-hoba-muted leading-relaxed" set:html={branded(t('home.what', { n: totalNodes }))} />
 
-      <div class="mt-7 flex flex-wrap items-center gap-3">
-        <a href={`${prefix}/analyze`} class="btn btn-primary text-sm sm:text-base px-5 py-2.5 shadow-md shadow-hoba-accent/20 hover:shadow-lg hover:shadow-hoba-accent/30 font-semibold transition-all">{t('home.cta.primary')} →</a>
-        <a href={`${prefix}/registry`} class="btn btn-secondary text-sm sm:text-base px-5 py-2.5 font-medium">{t('home.cta.secondary', { n: totalNodes })}</a>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a href={`${prefix}/analyze`} class="btn btn-primary">{t('home.cta.primary')} →</a>
+        <a href={`${prefix}/registry`} class="btn btn-secondary">{t('home.cta.secondary', { n: totalNodes })}</a>
       </div>
     </div>
 
     <!-- 4-Metric Definition List Cards -->
-    <dl class="mt-10 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+    <dl class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
       {stats.map((s) => (
-        <div class="p-3.5 sm:p-4 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/40 transition-all min-w-0 flex flex-col justify-between">
-          <dt class="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-hoba-muted break-words">{s.label}</dt>
-          <dd class="mt-1.5 text-2xl sm:text-3xl font-bold font-mono text-hoba-text tabular-nums">{s.n}</dd>
+        <div class="p-4 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent/40 transition-all flex flex-col justify-between">
+          <dt class="text-xs font-semibold uppercase tracking-wider text-hoba-muted">{s.label}</dt>
+          <dd class="mt-1">
+            <span class="text-2xl sm:text-3xl font-bold font-mono text-hoba-text tabular-nums">{s.n}</span>
+            <span class="block mt-0.5 text-xs text-hoba-muted font-normal">{s.desc}</span>
+          </dd>
         </div>
       ))}
     </dl>

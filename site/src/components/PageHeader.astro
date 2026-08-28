@@ -23,16 +23,16 @@ const hasMeta = Astro.slots.has('meta');
 const hasActions = Astro.slots.has('actions');
 ---
 <header class="pb-6 mb-8 border-b border-hoba-border">
-  <div class="flex flex-col gap-x-8 gap-y-5 md:flex-row md:items-end md:justify-between">
+  <div class="flex flex-col gap-x-8 gap-y-4 md:flex-row md:items-end md:justify-between">
     <div class="min-w-0">
-      {hasEyebrow && <div class="mb-4"><slot name="eyebrow" /></div>}
-      {kicker && <p class="kicker">{kicker}</p>}
-      <h1 class="mt-1 text-2xl font-semibold text-hoba-text text-balance" set:html={branded(title)} />
-      {lead && <p class={`mt-3 text-lg text-hoba-muted ${wide ? 'max-w-3xl' : 'max-w-2xl'}`} set:html={branded(lead)} />}
-      {hasMeta && <div class="mt-5"><slot name="meta" /></div>}
+      {hasEyebrow && <div class="mb-3"><slot name="eyebrow" /></div>}
+      {kicker && <p class="text-xs font-semibold font-mono uppercase tracking-wider text-hoba-accent">{kicker}</p>}
+      <h1 class="mt-1 text-2xl sm:text-3xl font-extrabold text-hoba-text text-balance tracking-tight" set:html={branded(title)} />
+      {lead && <p class={`mt-2 text-base sm:text-lg text-hoba-muted leading-relaxed ${wide ? 'max-w-3xl' : 'max-w-2xl'}`} set:html={branded(lead)} />}
+      {hasMeta && <div class="mt-4"><slot name="meta" /></div>}
     </div>
     {hasActions && (
-      <div class="flex flex-wrap items-center gap-3 md:justify-end md:shrink-0">
+      <div class="flex flex-wrap items-center gap-2.5 md:justify-end md:shrink-0">
         <slot name="actions" />
       </div>
     )}
