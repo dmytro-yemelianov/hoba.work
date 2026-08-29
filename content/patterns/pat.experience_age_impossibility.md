@@ -46,7 +46,7 @@ specimens:
 non_inferences:
   - "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
 interventions:
-  - "I-005"
+  - "int.candidate_ats_parser_conformance_test_utility"
 perspectives:
   -
     actor: "candidate"

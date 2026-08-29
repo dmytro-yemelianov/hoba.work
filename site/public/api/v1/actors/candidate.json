@@ -68,7 +68,7 @@
           "obs.rejection_within_minutes_of_application_submission"
         ],
         "interventions": [
-          "I-005"
+          "int.candidate_ats_parser_conformance_test_utility"
         ]
       },
       {
@@ -100,7 +100,7 @@
           "obs.compensation_band_reduced_or_altered_mid_process"
         ],
         "interventions": [
-          "I-002"
+          "int.upfront_compensation_band_disclosure"
         ]
       },
       {
@@ -131,7 +131,7 @@
           "obs.take_home_assignment_exceeding_reasonable_stated_scope"
         ],
         "interventions": [
-          "I-006"
+          "int.strict_take_home_timebox_blinded_evaluation_rubric"
         ]
       },
       {
@@ -148,7 +148,7 @@
           "obs.complete_silence_after_submission"
         ],
         "interventions": [
-          "I-001"
+          "int.auto_close_stale_job_requisitions"
         ]
       }
     ]

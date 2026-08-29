@@ -44,8 +44,8 @@ non_inferences:
   - "Не доводить, що кандидат не має цінності на ринку."
   - "Не доводить ані злого наміру, ані змови між роботодавцями."
 interventions:
-  - "I-002"
-  - "I-003"
+  - "int.upfront_compensation_band_disclosure"
+  - "int.standardized_late_stage_rejection_feedback_taxonomy"
 perspectives:
   -
     actor: "candidate"

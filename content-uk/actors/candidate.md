@@ -48,7 +48,7 @@ recommendations:
       - "bar.automated_filter_parser_threshold"
       - "obs.rejection_within_minutes_of_application_submission"
     interventions:
-      - "I-005"
+      - "int.candidate_ats_parser_conformance_test_utility"
   -
     id: "ask-what-the-conversation-is-attached-to"
     title: "Питайте, до чого привʼязана ця розмова"
@@ -75,7 +75,7 @@ recommendations:
       - "pat.compensation_double_bind"
       - "obs.compensation_band_reduced_or_altered_mid_process"
     interventions:
-      - "I-002"
+      - "int.upfront_compensation_band_disclosure"
   -
     id: "keep-a-dated-record"
     title: "Ведіть датований запис кожного повідомлення"
@@ -101,7 +101,7 @@ recommendations:
       - "bar.take_home_work_sample_evaluation"
       - "obs.take_home_assignment_exceeding_reasonable_stated_scope"
     interventions:
-      - "I-006"
+      - "int.strict_take_home_timebox_blinded_evaluation_rubric"
   -
     id: "set-a-closing-date-for-silence"
     title: "Призначайте дату, коли ви закриваєте мовчазний процес"
@@ -115,7 +115,7 @@ recommendations:
       - "bar.inbound_screening_triage"
       - "obs.complete_silence_after_submission"
     interventions:
-      - "I-001"
+      - "int.auto_close_stale_job_requisitions"
 status: "active"
 evidence_level: "supported"
 evidence_ids: []

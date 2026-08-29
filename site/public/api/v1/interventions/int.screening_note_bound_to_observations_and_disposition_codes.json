@@ -1,0 +1,91 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Screening Note Bound to Observations and Disposition Codes",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-033"
+    ],
+    "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast mech.experience_age_grading_mismatch is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- mech.portfolio_work_artifact_misinterpretation becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
+    "aliases": [
+      "I-011"
+    ],
+    "id": "int.screening_note_bound_to_observations_and_disposition_codes",
+    "type": "intervention",
+    "summary": "Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.",
+    "targets": [
+      "bar.inbound_screening_triage",
+      "mech.experience_age_grading_mismatch",
+      "mech.portfolio_work_artifact_misinterpretation"
+    ],
+    "actor": "recruiter-process",
+    "scope": "organizational",
+    "cost": "medium",
+    "evidence_level": "supported",
+    "expected_effects": [
+      "The forecast mech.experience_age_grading_mismatch is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code",
+      "mech.portfolio_work_artifact_misinterpretation becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be",
+      "A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen"
+    ],
+    "measurements": [
+      "screening_note_field_completeness",
+      "above_grid_referral_rate",
+      "artifact_surface_recorded_rate"
+    ],
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "The screening note, under the template",
+        "subject": "Screen — Senior Payments Engineer, requisition R-2214",
+        "lines": [
+          {
+            "at": "requirement",
+            "text": "Payments domain, service ownership. Graded L4, scoped 4–6 years.",
+            "tell": false
+          },
+          {
+            "at": "record shows",
+            "text": "Twelve years; three payment systems owned end to end. Above the graded band.",
+            "tell": false
+          },
+          {
+            "at": "surface opened",
+            "text": "Profile page linked in the CV — three pinned forks. Artifact link from the application form — 40 commits to an upstream storage layer under another organisation, candidate named as owner of the rewrite.",
+            "tell": true
+          },
+          {
+            "at": "disposition",
+            "text": "above_grid — referred to levelling 2 April. Not closed at screen.",
+            "tell": true
+          },
+          {
+            "at": "fields not present",
+            "text": "The template has no field for expected tenure, likely boredom or salary expectation.",
+            "tell": false
+          }
+        ],
+        "reading": "Two fields carry it. The surface actually opened is written next to the note written from it, and a profile above the band leaves a routing code rather than a pass."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "recruiter",
+        "sees": "A screening note with three fields — the requirement, what the record shows, the surface opened — and a fixed list of disposition codes to close it with.",
+        "reads": "The wording stays theirs; what may go into the note does not. A forecast about tenure has no field, and a profile above the band closes as a referral rather than as a pass.",
+        "does": "Records the surface actually opened next to the note written from it, and sends an above-band profile to levelling instead of closing it at the screen."
+      },
+      {
+        "actor": "candidate",
+        "sees": "Two fields on the application form: the link where the work sits, and what their part in it is.",
+        "reads": "Which surface a screener opens is set on the form rather than discovered, so a profile page that does not show the work is no longer the only surface available.",
+        "does": "Links the commits and the repository rather than the account, and states the ownership in the field instead of leaving it in a CV line."
+      },
+      {
+        "actor": "employer-policy",
+        "sees": "A referral route from screening into the levelling committee, and the volume that arrives on it once above-band stops being a pass.",
+        "reads": "The grid itself is unchanged; what changes is that the applications it excludes now reach the layer that maintains it.",
+        "does": "Sets the cadence the committee runs at and what it may decide, or does not — and where it does not, the referral is a code with nothing behind it."
+      }
+    ]
+  }
+}

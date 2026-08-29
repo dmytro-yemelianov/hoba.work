@@ -46,7 +46,7 @@ specimens:
 non_inferences:
   - "Не доводить, що технічна команда некомпетентна, — лише те, що в HR-скринінгу немає технічної перевірки."
 interventions:
-  - "I-005"
+  - "int.candidate_ats_parser_conformance_test_utility"
 perspectives:
   -
     actor: "candidate"

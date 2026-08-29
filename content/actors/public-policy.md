@@ -46,7 +46,7 @@ recommendations:
       - "pat.compensation_double_bind"
       - "pat.seniority_double_bind"
     interventions:
-      - "I-002"
+      - "int.upfront_compensation_band_disclosure"
   -
     id: "state-contractable-jurisdictions"
     title: "Require postings to name where employment is possible"
@@ -71,7 +71,7 @@ recommendations:
       - "obs.materially_similar_role_reposted_shortly_after_rejection"
       - "pat.closed_then_reposted_requisition_motif"
     interventions:
-      - "I-001"
+      - "int.auto_close_stale_job_requisitions"
   -
     id: "name-the-automated-rule"
     title: "Require every automated rejection to name its rule"
@@ -97,7 +97,7 @@ recommendations:
       - "L-001"
       - "bar.automated_filter_parser_threshold"
     interventions:
-      - "I-004"
+      - "int.remove_career_gap_feature_from_automated_ranking_models"
   -
     id: "common-disclosure-schema"
     title: "Publish a common schema for posting terms and outcomes"
@@ -110,8 +110,8 @@ recommendations:
       - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.requisition_approval_public_posting"
     interventions:
-      - "I-003"
-      - "I-002"
+      - "int.standardized_late_stage_rejection_feedback_taxonomy"
+      - "int.upfront_compensation_band_disclosure"
 status: "active"
 evidence_level: "supported"
 evidence_ids: []

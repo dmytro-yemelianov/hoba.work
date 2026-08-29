@@ -23,15 +23,22 @@ const { id, bundle, lang, prefix } = Astro.props;
 const t = useTranslations(lang);
 
 const KINDS = [
-  ['A', 'entity.artifact'], ['B', 'entity.barrier'], ['M', 'entity.mechanism'],
-  ['P', 'entity.pattern'], ['L', 'entity.loop'], ['I', 'entity.intervention'],
+  ['A', 'entity.artifact', 'obs.'],
+  ['B', 'entity.barrier', 'bar.'],
+  ['M', 'entity.mechanism', 'mech.'],
+  ['P', 'entity.pattern', 'pat.'],
+  ['L', 'entity.loop', 'loop.'],
+  ['I', 'entity.intervention', 'int.'],
 ] as const;
 
 const reach = closure(bundle, id);
 const shape = (all: string[], direct: string[]) => {
   const indirect = all.filter((entry) => !direct.includes(entry));
   return KINDS
-    .map(([letter, key]) => ({ label: t(key), n: indirect.filter((entry) => entry.startsWith(`${letter}-`)).length }))
+    .map(([letter, key, prefix]) => ({
+      label: t(key),
+      n: indirect.filter((entry) => entry.startsWith(`${letter}-`) || entry.startsWith(prefix)).length,
+    }))
     .filter((part) => part.n > 0);
 };
 

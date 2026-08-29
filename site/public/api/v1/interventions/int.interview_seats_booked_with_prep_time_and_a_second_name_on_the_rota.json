@@ -1,0 +1,89 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-043"
+    ],
+    "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
+    "aliases": [
+      "I-014"
+    ],
+    "id": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+    "type": "intervention",
+    "summary": "Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.",
+    "targets": [
+      "mech.interview_resource_scheduling_saturation",
+      "bar.technical_screen_live_assessment"
+    ],
+    "actor": "hiring-manager",
+    "scope": "team",
+    "cost": "medium",
+    "evidence_level": "supported",
+    "expected_effects": [
+      "mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date",
+      "A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name",
+      "Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot"
+    ],
+    "measurements": [
+      "interview_reschedule_rate",
+      "panel_seat_backfill_rate",
+      "rounds_per_interviewer_month"
+    ],
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "The same Wednesday, with a second name already on the round",
+        "subject": "Technical screen — Thursday",
+        "lines": [
+          {
+            "speaker": "Engineering manager",
+            "at": "Wed 17:40",
+            "text": "Thursday's screen needs a seat. You are on the rota this sprint, and the board is already two points lighter for it.",
+            "tell": false
+          },
+          {
+            "speaker": "Interviewer",
+            "at": "Wed 17:52",
+            "text": "I am on release duty. If I take it, it is a cold read.",
+            "tell": false
+          },
+          {
+            "speaker": "Engineering manager",
+            "at": "Wed 17:55",
+            "text": "Then it goes to the second name on the rota — the prep block is on that calendar at 09:00 and the material is already there.",
+            "tell": true
+          },
+          {
+            "speaker": "Coordinator",
+            "at": "Wed 18:10",
+            "text": "Candidate told the same day: same slot, different interviewer, date unchanged.",
+            "tell": false
+          }
+        ],
+        "reading": "The release duty is still there. What changes is that the round carries a second name before the week starts, so an unavailable interviewer passes the seat instead of moving the date."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "hiring-manager",
+        "sees": "A rota with two names against each round of the sprint, and a sprint board with those hours already taken out of it.",
+        "reads": "Interview capacity is planned before the week rather than found inside it, and the cost is visible on the board where it was previously absorbed by whoever had the slot.",
+        "does": "Takes the points off the sprint for the rota week, and passes the seat to the second name when the first is on release duty."
+      },
+      {
+        "actor": "candidate",
+        "sees": "A round that keeps its date, and an interviewer who opens the submitted work before the call rather than during it.",
+        "reads": "A change of interviewer arrives with the date unchanged, which is a different event from a round being moved.",
+        "does": "Keeps the slot and prepares once, instead of replanning the week around a moved round."
+      },
+      {
+        "actor": "recruiter",
+        "sees": "Panel seats coming back filled from the rota, and a reschedule request only where both names are unavailable.",
+        "reads": "A date that moves becomes the exception the process reports rather than the ordinary way a seat gets filled.",
+        "does": "Sends the invitation with the interviewer's name and the prep block already accepted, and names a new date only when both rota names are out."
+      }
+    ]
+  }
+}

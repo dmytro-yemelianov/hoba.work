@@ -1,0 +1,75 @@
+---
+id: "int.requirements_drawn_from_the_team_s_own_backlog"
+type: "intervention"
+aliases:
+  - "I-007"
+title: "Requirements Drawn From the Team's Own Backlog"
+summary: "Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on."
+targets:
+  - "mech.inflated_requisition_requirements_vs_actual_team_needs"
+  - "bar.requisition_approval_public_posting"
+  - "L-003"
+actor: "hiring-manager"
+scope: "team"
+cost: "low"
+evidence_level: "supported"
+expected_effects:
+  - "mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on"
+  - "bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid"
+  - "L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
+measurements:
+  - "screened_requirement_count"
+  - "mid_search_requirement_edits"
+  - "screen_to_onsite_rate"
+specimens:
+  -
+    kind: "posting"
+    label: "The requisition, with the list split"
+    subject: "Backend Engineer · Billing — requirements"
+    lines:
+      -
+        text: "Screened on — Go, three years or more: billing endpoints and the report export, 40 of last quarter's 52 merged changes."
+        tell: true
+      -
+        text: "Screened on — SQL schema changes under load: the two migrations scheduled this quarter."
+      -
+        text: "Not screened on, useful — Kubernetes, Terraform, Rust: no task in the last two quarters; the cluster is owned by the platform team."
+        tell: true
+      -
+        text: "Level: L4. The list was written from the backlog rather than carried over from the L5 search for this team."
+    reading: "The same manager, the same worry about the ceiling. What changed is that a requirement now has to name a task, and the ones that cannot are still published — in the list nobody is screened against."
+perspectives:
+  -
+    actor: "hiring-manager"
+    sees: "The requisition draft next to the last two quarters of merged work, and the requirements carried over from the previous search that now have to be matched to a task or moved."
+    reads: "The ceiling can still be written down, but it is written in a section the screen does not read; what is screened on is what the backlog can account for."
+    does: "Moves each unmatched line into the second section, and carries the risk that a requirement not screened on brings someone who has to learn it on the job."
+  -
+    actor: "recruiter"
+    sees: "Two lists in the requisition instead of one, and only the first is the screening standard."
+    reads: "What is movable is written down before the pipeline thins, rather than found by going back to the manager in week six."
+    does: "Screens against the first list, and passes the second one to candidates as a description of the work rather than as a bar."
+  -
+    actor: "candidate"
+    sees: "A posting where each screened requirement names the work it is for, and a separate list marked as not screened on."
+    reads: "The bar is stated as the work rather than as a stack, so which lines the assessment runs against is readable before applying."
+    does: "Applies against the screened list, and reads the second section as description rather than as a threshold to clear."
+status: "active"
+evidence_ids:
+  - "EVD-035"
+  - "EVD-001"
+---
+
+# Requirements Drawn From the Team's Own Backlog
+
+Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.
+
+### Expected Effects
+- mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
+- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
+- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
+
+### Measurements
+- `screened_requirement_count`
+- `mid_search_requirement_edits`
+- `screen_to_onsite_rate`

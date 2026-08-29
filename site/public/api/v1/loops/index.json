@@ -33,7 +33,7 @@
         "mech.employment_gap_downranking_bias"
       ],
       "interventions": [
-        "I-004"
+        "int.remove_career_gap_feature_from_automated_ranking_models"
       ],
       "evidence_level": "supported",
       "specimens": [
@@ -133,7 +133,7 @@
         "mech.interview_resource_scheduling_saturation"
       ],
       "interventions": [
-        "I-006"
+        "int.strict_take_home_timebox_blinded_evaluation_rubric"
       ],
       "evidence_level": "supported",
       "specimens": [
@@ -236,9 +236,9 @@
         "mech.inflated_requisition_requirements_vs_actual_team_needs"
       ],
       "interventions": [
-        "I-001",
-        "I-003",
-        "I-007"
+        "int.auto_close_stale_job_requisitions",
+        "int.standardized_late_stage_rejection_feedback_taxonomy",
+        "int.requirements_drawn_from_the_team_s_own_backlog"
       ],
       "evidence_level": "hypothesis",
       "specimens": [

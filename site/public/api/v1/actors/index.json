@@ -68,7 +68,7 @@
             "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
-            "I-004"
+            "int.remove_career_gap_feature_from_automated_ranking_models"
           ]
         },
         {
@@ -96,7 +96,7 @@
             "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
-            "I-005"
+            "int.candidate_ats_parser_conformance_test_utility"
           ]
         },
         {
@@ -113,7 +113,7 @@
             "pat.closed_then_reposted_requisition_motif"
           ],
           "interventions": [
-            "I-001"
+            "int.auto_close_stale_job_requisitions"
           ]
         },
         {
@@ -215,7 +215,7 @@
             "obs.rejection_within_minutes_of_application_submission"
           ],
           "interventions": [
-            "I-005"
+            "int.candidate_ats_parser_conformance_test_utility"
           ]
         },
         {
@@ -247,7 +247,7 @@
             "obs.compensation_band_reduced_or_altered_mid_process"
           ],
           "interventions": [
-            "I-002"
+            "int.upfront_compensation_band_disclosure"
           ]
         },
         {
@@ -278,7 +278,7 @@
             "obs.take_home_assignment_exceeding_reasonable_stated_scope"
           ],
           "interventions": [
-            "I-006"
+            "int.strict_take_home_timebox_blinded_evaluation_rubric"
           ]
         },
         {
@@ -295,7 +295,7 @@
             "obs.complete_silence_after_submission"
           ],
           "interventions": [
-            "I-001"
+            "int.auto_close_stale_job_requisitions"
           ]
         }
       ]
@@ -377,7 +377,7 @@
             "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": [
-            "I-009"
+            "int.outreach_states_the_requisition_behind_it"
           ]
         },
         {
@@ -391,7 +391,7 @@
             "obs.rejection_after_the_application_sat_pending_for_months"
           ],
           "interventions": [
-            "I-003"
+            "int.standardized_late_stage_rejection_feedback_taxonomy"
           ]
         }
       ]
@@ -467,7 +467,7 @@
             "pat.compensation_double_bind"
           ],
           "interventions": [
-            "I-002"
+            "int.upfront_compensation_band_disclosure"
           ]
         },
         {
@@ -501,7 +501,7 @@
             "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
           ],
           "interventions": [
-            "I-001"
+            "int.auto_close_stale_job_requisitions"
           ]
         },
         {
@@ -629,7 +629,7 @@
             "L-002"
           ],
           "interventions": [
-            "I-006"
+            "int.strict_take_home_timebox_blinded_evaluation_rubric"
           ]
         },
         {
@@ -739,7 +739,7 @@
             "pat.seniority_double_bind"
           ],
           "interventions": [
-            "I-002"
+            "int.upfront_compensation_band_disclosure"
           ]
         },
         {
@@ -769,7 +769,7 @@
             "pat.closed_then_reposted_requisition_motif"
           ],
           "interventions": [
-            "I-001"
+            "int.auto_close_stale_job_requisitions"
           ]
         },
         {
@@ -800,7 +800,7 @@
             "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
-            "I-004"
+            "int.remove_career_gap_feature_from_automated_ranking_models"
           ]
         },
         {
@@ -816,8 +816,8 @@
             "bar.requisition_approval_public_posting"
           ],
           "interventions": [
-            "I-003",
-            "I-002"
+            "int.standardized_late_stage_rejection_feedback_taxonomy",
+            "int.upfront_compensation_band_disclosure"
           ]
         }
       ]
@@ -891,7 +891,7 @@
             "pat.compensation_double_bind"
           ],
           "interventions": [
-            "I-002"
+            "int.upfront_compensation_band_disclosure"
           ]
         },
         {
@@ -906,7 +906,7 @@
             "bar.team_cross_functional_panel"
           ],
           "interventions": [
-            "I-003"
+            "int.standardized_late_stage_rejection_feedback_taxonomy"
           ]
         },
         {
@@ -921,7 +921,7 @@
             "mech.stale_or_orphaned_job_requisition"
           ],
           "interventions": [
-            "I-001"
+            "int.auto_close_stale_job_requisitions"
           ]
         },
         {

@@ -61,9 +61,9 @@ non_inferences:
   - "Does not establish that the original job listing was fake or a ghost job."
   - "Does not establish that the candidate was intentionally misled."
 interventions:
-  - "I-001"
-  - "I-003"
-  - "I-017"
+  - "int.auto_close_stale_job_requisitions"
+  - "int.standardized_late_stage_rejection_feedback_taxonomy"
+  - "int.recorded_finalist_standing_with_a_dated_re_entry_route"
 perspectives:
   -
     actor: "candidate"

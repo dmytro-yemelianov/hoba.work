@@ -909,7 +909,7 @@
       },
       {
         "data": {
-          "id": "I-001",
+          "id": "int.auto_close_stale_job_requisitions",
           "label": "Auto-Close Stale Job Requisitions",
           "type": "intervention",
           "actor": "employer-policy",
@@ -920,40 +920,7 @@
       },
       {
         "data": {
-          "id": "I-002",
-          "label": "Upfront Compensation Band Disclosure",
-          "type": "intervention",
-          "actor": "employer-policy",
-          "cost": "low",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-003",
-          "label": "Standardized Late-Stage Rejection Feedback Taxonomy",
-          "type": "intervention",
-          "actor": "recruiter-process",
-          "cost": "medium",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-004",
-          "label": "Remove Career Gap Feature from Automated Ranking Models",
-          "type": "intervention",
-          "actor": "ats-vendor",
-          "cost": "low",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-005",
+          "id": "int.candidate_ats_parser_conformance_test_utility",
           "label": "Candidate ATS Parser Conformance Test Utility",
           "type": "intervention",
           "actor": "candidate-action",
@@ -964,73 +931,7 @@
       },
       {
         "data": {
-          "id": "I-006",
-          "label": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
-          "type": "intervention",
-          "actor": "hiring-manager",
-          "cost": "medium",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-007",
-          "label": "Requirements Drawn From the Team's Own Backlog",
-          "type": "intervention",
-          "actor": "hiring-manager",
-          "cost": "low",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-008",
-          "label": "Internal Candidacy Stated in the Posting",
-          "type": "intervention",
-          "actor": "employer-policy",
-          "cost": "medium",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-009",
-          "label": "Outreach States the Requisition Behind It",
-          "type": "intervention",
-          "actor": "recruiter-process",
-          "cost": "low",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-010",
-          "label": "Distinct Closure Status for Unreviewed Applications",
-          "type": "intervention",
-          "actor": "ats-vendor",
-          "cost": "medium",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-011",
-          "label": "Screening Note Bound to Observations and Disposition Codes",
-          "type": "intervention",
-          "actor": "recruiter-process",
-          "cost": "medium",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-012",
+          "id": "int.candidate_work_index_submitted_with_the_application",
           "label": "Candidate Work Index Submitted With the Application",
           "type": "intervention",
           "actor": "candidate-action",
@@ -1041,29 +942,7 @@
       },
       {
         "data": {
-          "id": "I-013",
-          "label": "Publish the Technical Screen's Columns and Threshold Before the Round",
-          "type": "intervention",
-          "actor": "employer-policy",
-          "cost": "medium",
-          "evidence_level": "hypothesis"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-014",
-          "label": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
-          "type": "intervention",
-          "actor": "hiring-manager",
-          "cost": "medium",
-          "evidence_level": "supported"
-        },
-        "classes": "node-intervention"
-      },
-      {
-        "data": {
-          "id": "I-015",
+          "id": "int.dated_funding_certification_before_the_final_round",
           "label": "Dated Funding Certification Before the Final Round",
           "type": "intervention",
           "actor": "employer-policy",
@@ -1074,8 +953,129 @@
       },
       {
         "data": {
-          "id": "I-016",
-          "label": "Verification Discrepancy Disclosure and Reconciliation Window",
+          "id": "int.distinct_closure_status_for_unreviewed_applications",
+          "label": "Distinct Closure Status for Unreviewed Applications",
+          "type": "intervention",
+          "actor": "ats-vendor",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.internal_candidacy_stated_in_the_posting",
+          "label": "Internal Candidacy Stated in the Posting",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+          "label": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.outreach_states_the_requisition_behind_it",
+          "label": "Outreach States the Requisition Behind It",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round",
+          "label": "Publish the Technical Screen's Columns and Threshold Before the Round",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "medium",
+          "evidence_level": "hypothesis"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
+          "label": "Recorded Finalist Standing With a Dated Re-Entry Route",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.remove_career_gap_feature_from_automated_ranking_models",
+          "label": "Remove Career Gap Feature from Automated Ranking Models",
+          "type": "intervention",
+          "actor": "ats-vendor",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.requirements_drawn_from_the_team_s_own_backlog",
+          "label": "Requirements Drawn From the Team's Own Backlog",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.screening_note_bound_to_observations_and_disposition_codes",
+          "label": "Screening Note Bound to Observations and Disposition Codes",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "label": "Standardized Late-Stage Rejection Feedback Taxonomy",
+          "type": "intervention",
+          "actor": "recruiter-process",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+          "label": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.upfront_compensation_band_disclosure",
+          "label": "Upfront Compensation Band Disclosure",
           "type": "intervention",
           "actor": "employer-policy",
           "cost": "low",
@@ -1085,10 +1085,10 @@
       },
       {
         "data": {
-          "id": "I-017",
-          "label": "Recorded Finalist Standing With a Dated Re-Entry Route",
+          "id": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+          "label": "Verification Discrepancy Disclosure and Reconciliation Window",
           "type": "intervention",
-          "actor": "recruiter-process",
+          "actor": "employer-policy",
           "cost": "low",
           "evidence_level": "supported"
         },
@@ -3001,8 +3001,8 @@
       },
       {
         "data": {
-          "id": "I-001->targets->mech.stale_or_orphaned_job_requisition",
-          "source": "I-001",
+          "id": "int.auto_close_stale_job_requisitions->targets->mech.stale_or_orphaned_job_requisition",
+          "source": "int.auto_close_stale_job_requisitions",
           "target": "mech.stale_or_orphaned_job_requisition",
           "type": "targets"
         },
@@ -3010,8 +3010,8 @@
       },
       {
         "data": {
-          "id": "I-001->targets->bar.application_ingestion",
-          "source": "I-001",
+          "id": "int.auto_close_stale_job_requisitions->targets->bar.application_ingestion",
+          "source": "int.auto_close_stale_job_requisitions",
           "target": "bar.application_ingestion",
           "type": "targets"
         },
@@ -3019,8 +3019,8 @@
       },
       {
         "data": {
-          "id": "I-001->mitigates->pat.closed_then_reposted_requisition_motif",
-          "source": "I-001",
+          "id": "int.auto_close_stale_job_requisitions->mitigates->pat.closed_then_reposted_requisition_motif",
+          "source": "int.auto_close_stale_job_requisitions",
           "target": "pat.closed_then_reposted_requisition_motif",
           "type": "mitigates"
         },
@@ -3028,8 +3028,8 @@
       },
       {
         "data": {
-          "id": "I-001->mitigates->L-003",
-          "source": "I-001",
+          "id": "int.auto_close_stale_job_requisitions->mitigates->L-003",
+          "source": "int.auto_close_stale_job_requisitions",
           "target": "L-003",
           "type": "mitigates"
         },
@@ -3037,143 +3037,8 @@
       },
       {
         "data": {
-          "id": "I-002->targets->mech.unstated_compensation_band_discrepancy",
-          "source": "I-002",
-          "target": "mech.unstated_compensation_band_discrepancy",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-002->targets->bar.recruiter_screening_call",
-          "source": "I-002",
-          "target": "bar.recruiter_screening_call",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-002->targets->bar.compensation_levelling_reconciliation",
-          "source": "I-002",
-          "target": "bar.compensation_levelling_reconciliation",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-002->mitigates->pat.seniority_double_bind",
-          "source": "I-002",
-          "target": "pat.seniority_double_bind",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-002->mitigates->pat.compensation_double_bind",
-          "source": "I-002",
-          "target": "pat.compensation_double_bind",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-003->targets->mech.genuine_technical_skill_shortfall",
-          "source": "I-003",
-          "target": "mech.genuine_technical_skill_shortfall",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-003->targets->mech.hidden_evaluation_rubric_or_undisclosed_priority",
-          "source": "I-003",
-          "target": "mech.hidden_evaluation_rubric_or_undisclosed_priority",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-003->targets->bar.hiring_manager_in_depth_review",
-          "source": "I-003",
-          "target": "bar.hiring_manager_in_depth_review",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-003->targets->bar.team_cross_functional_panel",
-          "source": "I-003",
-          "target": "bar.team_cross_functional_panel",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-003->targets->bar.client_profile_approval_and_client_interview",
-          "source": "I-003",
-          "target": "bar.client_profile_approval_and_client_interview",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-003->mitigates->pat.seniority_double_bind",
-          "source": "I-003",
-          "target": "pat.seniority_double_bind",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-003->mitigates->pat.closed_then_reposted_requisition_motif",
-          "source": "I-003",
-          "target": "pat.closed_then_reposted_requisition_motif",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-003->mitigates->L-003",
-          "source": "I-003",
-          "target": "L-003",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-004->targets->mech.employment_gap_downranking_bias",
-          "source": "I-004",
-          "target": "mech.employment_gap_downranking_bias",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-004->mitigates->L-001",
-          "source": "I-004",
-          "target": "L-001",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-005->targets->mech.ats_parser_extraction_failure",
-          "source": "I-005",
+          "id": "int.candidate_ats_parser_conformance_test_utility->targets->mech.ats_parser_extraction_failure",
+          "source": "int.candidate_ats_parser_conformance_test_utility",
           "target": "mech.ats_parser_extraction_failure",
           "type": "targets"
         },
@@ -3181,8 +3046,8 @@
       },
       {
         "data": {
-          "id": "I-005->targets->bar.automated_filter_parser_threshold",
-          "source": "I-005",
+          "id": "int.candidate_ats_parser_conformance_test_utility->targets->bar.automated_filter_parser_threshold",
+          "source": "int.candidate_ats_parser_conformance_test_utility",
           "target": "bar.automated_filter_parser_threshold",
           "type": "targets"
         },
@@ -3190,8 +3055,8 @@
       },
       {
         "data": {
-          "id": "I-005->mitigates->pat.experience_age_impossibility",
-          "source": "I-005",
+          "id": "int.candidate_ats_parser_conformance_test_utility->mitigates->pat.experience_age_impossibility",
+          "source": "int.candidate_ats_parser_conformance_test_utility",
           "target": "pat.experience_age_impossibility",
           "type": "mitigates"
         },
@@ -3199,152 +3064,8 @@
       },
       {
         "data": {
-          "id": "I-006->targets->mech.take_home_evaluation_fatigue_asymmetry",
-          "source": "I-006",
-          "target": "mech.take_home_evaluation_fatigue_asymmetry",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-006->mitigates->L-002",
-          "source": "I-006",
-          "target": "L-002",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-006->targets->bar.take_home_work_sample_evaluation",
-          "source": "I-006",
-          "target": "bar.take_home_work_sample_evaluation",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-007->targets->mech.inflated_requisition_requirements_vs_actual_team_needs",
-          "source": "I-007",
-          "target": "mech.inflated_requisition_requirements_vs_actual_team_needs",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-007->targets->bar.requisition_approval_public_posting",
-          "source": "I-007",
-          "target": "bar.requisition_approval_public_posting",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-007->mitigates->L-003",
-          "source": "I-007",
-          "target": "L-003",
-          "type": "mitigates"
-        },
-        "classes": "edge-mitigates"
-      },
-      {
-        "data": {
-          "id": "I-008->targets->mech.pre_selected_internal_candidate",
-          "source": "I-008",
-          "target": "mech.pre_selected_internal_candidate",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-008->targets->bar.requisition_approval_public_posting",
-          "source": "I-008",
-          "target": "bar.requisition_approval_public_posting",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-009->targets->bar.outbound_sourcing_talent_pool_contact",
-          "source": "I-009",
-          "target": "bar.outbound_sourcing_talent_pool_contact",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-009->targets->mech.speculative_sourcing_talent_pooling_without_opening",
-          "source": "I-009",
-          "target": "mech.speculative_sourcing_talent_pooling_without_opening",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-009->targets->mech.bid_conditional_talent_pool",
-          "source": "I-009",
-          "target": "mech.bid_conditional_talent_pool",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-010->targets->bar.inbound_screening_triage",
-          "source": "I-010",
-          "target": "bar.inbound_screening_triage",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-010->targets->mech.recruiter_volume_quota_incentive_distortion",
-          "source": "I-010",
-          "target": "mech.recruiter_volume_quota_incentive_distortion",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-010->targets->mech.automated_application_expiration_timeout",
-          "source": "I-010",
-          "target": "mech.automated_application_expiration_timeout",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-011->targets->bar.inbound_screening_triage",
-          "source": "I-011",
-          "target": "bar.inbound_screening_triage",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-011->targets->mech.experience_age_grading_mismatch",
-          "source": "I-011",
-          "target": "mech.experience_age_grading_mismatch",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-011->targets->mech.portfolio_work_artifact_misinterpretation",
-          "source": "I-011",
+          "id": "int.candidate_work_index_submitted_with_the_application->targets->mech.portfolio_work_artifact_misinterpretation",
+          "source": "int.candidate_work_index_submitted_with_the_application",
           "target": "mech.portfolio_work_artifact_misinterpretation",
           "type": "targets"
         },
@@ -3352,17 +3073,8 @@
       },
       {
         "data": {
-          "id": "I-012->targets->mech.portfolio_work_artifact_misinterpretation",
-          "source": "I-012",
-          "target": "mech.portfolio_work_artifact_misinterpretation",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-012->targets->bar.technical_screen_live_assessment",
-          "source": "I-012",
+          "id": "int.candidate_work_index_submitted_with_the_application->targets->bar.technical_screen_live_assessment",
+          "source": "int.candidate_work_index_submitted_with_the_application",
           "target": "bar.technical_screen_live_assessment",
           "type": "targets"
         },
@@ -3370,8 +3082,8 @@
       },
       {
         "data": {
-          "id": "I-012->targets->bar.inbound_screening_triage",
-          "source": "I-012",
+          "id": "int.candidate_work_index_submitted_with_the_application->targets->bar.inbound_screening_triage",
+          "source": "int.candidate_work_index_submitted_with_the_application",
           "target": "bar.inbound_screening_triage",
           "type": "targets"
         },
@@ -3379,44 +3091,8 @@
       },
       {
         "data": {
-          "id": "I-013->targets->bar.technical_screen_live_assessment",
-          "source": "I-013",
-          "target": "bar.technical_screen_live_assessment",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-013->targets->mech.interview_resource_scheduling_saturation",
-          "source": "I-013",
-          "target": "mech.interview_resource_scheduling_saturation",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-014->targets->mech.interview_resource_scheduling_saturation",
-          "source": "I-014",
-          "target": "mech.interview_resource_scheduling_saturation",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-014->targets->bar.technical_screen_live_assessment",
-          "source": "I-014",
-          "target": "bar.technical_screen_live_assessment",
-          "type": "targets"
-        },
-        "classes": "edge-targets"
-      },
-      {
-        "data": {
-          "id": "I-015->targets->bar.headcount_executive_budget_approval",
-          "source": "I-015",
+          "id": "int.dated_funding_certification_before_the_final_round->targets->bar.headcount_executive_budget_approval",
+          "source": "int.dated_funding_certification_before_the_final_round",
           "target": "bar.headcount_executive_budget_approval",
           "type": "targets"
         },
@@ -3424,8 +3100,8 @@
       },
       {
         "data": {
-          "id": "I-015->targets->bar.offer_closing_contract_execution",
-          "source": "I-015",
+          "id": "int.dated_funding_certification_before_the_final_round->targets->bar.offer_closing_contract_execution",
+          "source": "int.dated_funding_certification_before_the_final_round",
           "target": "bar.offer_closing_contract_execution",
           "type": "targets"
         },
@@ -3433,8 +3109,8 @@
       },
       {
         "data": {
-          "id": "I-015->targets->mech.headcount_freeze_or_budget_cancellation",
-          "source": "I-015",
+          "id": "int.dated_funding_certification_before_the_final_round->targets->mech.headcount_freeze_or_budget_cancellation",
+          "source": "int.dated_funding_certification_before_the_final_round",
           "target": "mech.headcount_freeze_or_budget_cancellation",
           "type": "targets"
         },
@@ -3442,53 +3118,116 @@
       },
       {
         "data": {
-          "id": "I-016->targets->bar.reference_background_verification",
-          "source": "I-016",
-          "target": "bar.reference_background_verification",
+          "id": "int.distinct_closure_status_for_unreviewed_applications->targets->bar.inbound_screening_triage",
+          "source": "int.distinct_closure_status_for_unreviewed_applications",
+          "target": "bar.inbound_screening_triage",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-016->targets->bar.probation_period_post_start_confirmation",
-          "source": "I-016",
-          "target": "bar.probation_period_post_start_confirmation",
+          "id": "int.distinct_closure_status_for_unreviewed_applications->targets->mech.recruiter_volume_quota_incentive_distortion",
+          "source": "int.distinct_closure_status_for_unreviewed_applications",
+          "target": "mech.recruiter_volume_quota_incentive_distortion",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-016->targets->mech.reference_check_discrepancy_or_regulatory_ineligibility",
-          "source": "I-016",
-          "target": "mech.reference_check_discrepancy_or_regulatory_ineligibility",
+          "id": "int.distinct_closure_status_for_unreviewed_applications->targets->mech.automated_application_expiration_timeout",
+          "source": "int.distinct_closure_status_for_unreviewed_applications",
+          "target": "mech.automated_application_expiration_timeout",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-016->targets->mech.start_date_slippage_and_post_acceptance_revocation",
-          "source": "I-016",
-          "target": "mech.start_date_slippage_and_post_acceptance_revocation",
+          "id": "int.internal_candidacy_stated_in_the_posting->targets->mech.pre_selected_internal_candidate",
+          "source": "int.internal_candidacy_stated_in_the_posting",
+          "target": "mech.pre_selected_internal_candidate",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-016->targets->mech.probation_used_as_extended_de_facto_interview",
-          "source": "I-016",
-          "target": "mech.probation_used_as_extended_de_facto_interview",
+          "id": "int.internal_candidacy_stated_in_the_posting->targets->bar.requisition_approval_public_posting",
+          "source": "int.internal_candidacy_stated_in_the_posting",
+          "target": "bar.requisition_approval_public_posting",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-017->targets->mech.stronger_competing_candidate_in_final_cohort",
-          "source": "I-017",
+          "id": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota->targets->mech.interview_resource_scheduling_saturation",
+          "source": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+          "target": "mech.interview_resource_scheduling_saturation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota->targets->bar.technical_screen_live_assessment",
+          "source": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+          "target": "bar.technical_screen_live_assessment",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.outreach_states_the_requisition_behind_it->targets->bar.outbound_sourcing_talent_pool_contact",
+          "source": "int.outreach_states_the_requisition_behind_it",
+          "target": "bar.outbound_sourcing_talent_pool_contact",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.outreach_states_the_requisition_behind_it->targets->mech.speculative_sourcing_talent_pooling_without_opening",
+          "source": "int.outreach_states_the_requisition_behind_it",
+          "target": "mech.speculative_sourcing_talent_pooling_without_opening",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.outreach_states_the_requisition_behind_it->targets->mech.bid_conditional_talent_pool",
+          "source": "int.outreach_states_the_requisition_behind_it",
+          "target": "mech.bid_conditional_talent_pool",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round->targets->bar.technical_screen_live_assessment",
+          "source": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round",
+          "target": "bar.technical_screen_live_assessment",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round->targets->mech.interview_resource_scheduling_saturation",
+          "source": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round",
+          "target": "mech.interview_resource_scheduling_saturation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.recorded_finalist_standing_with_a_dated_re_entry_route->targets->mech.stronger_competing_candidate_in_final_cohort",
+          "source": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
           "target": "mech.stronger_competing_candidate_in_final_cohort",
           "type": "targets"
         },
@@ -3496,8 +3235,8 @@
       },
       {
         "data": {
-          "id": "I-017->targets->bar.headcount_executive_budget_approval",
-          "source": "I-017",
+          "id": "int.recorded_finalist_standing_with_a_dated_re_entry_route->targets->bar.headcount_executive_budget_approval",
+          "source": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
           "target": "bar.headcount_executive_budget_approval",
           "type": "targets"
         },
@@ -3505,12 +3244,273 @@
       },
       {
         "data": {
-          "id": "I-017->mitigates->pat.closed_then_reposted_requisition_motif",
-          "source": "I-017",
+          "id": "int.recorded_finalist_standing_with_a_dated_re_entry_route->mitigates->pat.closed_then_reposted_requisition_motif",
+          "source": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
           "target": "pat.closed_then_reposted_requisition_motif",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.remove_career_gap_feature_from_automated_ranking_models->targets->mech.employment_gap_downranking_bias",
+          "source": "int.remove_career_gap_feature_from_automated_ranking_models",
+          "target": "mech.employment_gap_downranking_bias",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.remove_career_gap_feature_from_automated_ranking_models->mitigates->L-001",
+          "source": "int.remove_career_gap_feature_from_automated_ranking_models",
+          "target": "L-001",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.requirements_drawn_from_the_team_s_own_backlog->targets->mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "source": "int.requirements_drawn_from_the_team_s_own_backlog",
+          "target": "mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.requirements_drawn_from_the_team_s_own_backlog->targets->bar.requisition_approval_public_posting",
+          "source": "int.requirements_drawn_from_the_team_s_own_backlog",
+          "target": "bar.requisition_approval_public_posting",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.requirements_drawn_from_the_team_s_own_backlog->mitigates->L-003",
+          "source": "int.requirements_drawn_from_the_team_s_own_backlog",
+          "target": "L-003",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.screening_note_bound_to_observations_and_disposition_codes->targets->bar.inbound_screening_triage",
+          "source": "int.screening_note_bound_to_observations_and_disposition_codes",
+          "target": "bar.inbound_screening_triage",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.screening_note_bound_to_observations_and_disposition_codes->targets->mech.experience_age_grading_mismatch",
+          "source": "int.screening_note_bound_to_observations_and_disposition_codes",
+          "target": "mech.experience_age_grading_mismatch",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.screening_note_bound_to_observations_and_disposition_codes->targets->mech.portfolio_work_artifact_misinterpretation",
+          "source": "int.screening_note_bound_to_observations_and_disposition_codes",
+          "target": "mech.portfolio_work_artifact_misinterpretation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->targets->mech.genuine_technical_skill_shortfall",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "mech.genuine_technical_skill_shortfall",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->targets->mech.hidden_evaluation_rubric_or_undisclosed_priority",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->targets->bar.hiring_manager_in_depth_review",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "bar.hiring_manager_in_depth_review",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->targets->bar.team_cross_functional_panel",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "bar.team_cross_functional_panel",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->targets->bar.client_profile_approval_and_client_interview",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "bar.client_profile_approval_and_client_interview",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->mitigates->pat.seniority_double_bind",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "pat.seniority_double_bind",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->mitigates->pat.closed_then_reposted_requisition_motif",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "pat.closed_then_reposted_requisition_motif",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->mitigates->L-003",
+          "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "target": "L-003",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.strict_take_home_timebox_blinded_evaluation_rubric->targets->mech.take_home_evaluation_fatigue_asymmetry",
+          "source": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+          "target": "mech.take_home_evaluation_fatigue_asymmetry",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.strict_take_home_timebox_blinded_evaluation_rubric->mitigates->L-002",
+          "source": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+          "target": "L-002",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.strict_take_home_timebox_blinded_evaluation_rubric->targets->bar.take_home_work_sample_evaluation",
+          "source": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+          "target": "bar.take_home_work_sample_evaluation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.upfront_compensation_band_disclosure->targets->mech.unstated_compensation_band_discrepancy",
+          "source": "int.upfront_compensation_band_disclosure",
+          "target": "mech.unstated_compensation_band_discrepancy",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.upfront_compensation_band_disclosure->targets->bar.recruiter_screening_call",
+          "source": "int.upfront_compensation_band_disclosure",
+          "target": "bar.recruiter_screening_call",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.upfront_compensation_band_disclosure->targets->bar.compensation_levelling_reconciliation",
+          "source": "int.upfront_compensation_band_disclosure",
+          "target": "bar.compensation_levelling_reconciliation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.upfront_compensation_band_disclosure->mitigates->pat.seniority_double_bind",
+          "source": "int.upfront_compensation_band_disclosure",
+          "target": "pat.seniority_double_bind",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.upfront_compensation_band_disclosure->mitigates->pat.compensation_double_bind",
+          "source": "int.upfront_compensation_band_disclosure",
+          "target": "pat.compensation_double_bind",
+          "type": "mitigates"
+        },
+        "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.verification_discrepancy_disclosure_and_reconciliation_window->targets->bar.reference_background_verification",
+          "source": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+          "target": "bar.reference_background_verification",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.verification_discrepancy_disclosure_and_reconciliation_window->targets->bar.probation_period_post_start_confirmation",
+          "source": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+          "target": "bar.probation_period_post_start_confirmation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.verification_discrepancy_disclosure_and_reconciliation_window->targets->mech.reference_check_discrepancy_or_regulatory_ineligibility",
+          "source": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+          "target": "mech.reference_check_discrepancy_or_regulatory_ineligibility",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.verification_discrepancy_disclosure_and_reconciliation_window->targets->mech.start_date_slippage_and_post_acceptance_revocation",
+          "source": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+          "target": "mech.start_date_slippage_and_post_acceptance_revocation",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.verification_discrepancy_disclosure_and_reconciliation_window->targets->mech.probation_used_as_extended_de_facto_interview",
+          "source": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+          "target": "mech.probation_used_as_extended_de_facto_interview",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
       }
     ]
   }

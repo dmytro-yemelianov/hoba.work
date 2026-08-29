@@ -46,7 +46,7 @@ recommendations:
       - "L-001"
       - "bar.automated_filter_parser_threshold"
     interventions:
-      - "I-004"
+      - "int.remove_career_gap_feature_from_automated_ranking_models"
   -
     id: "stop-scoring-unreadable-files"
     title: "Не оцінюйте файли, які парсер не зміг прочитати"
@@ -69,7 +69,7 @@ recommendations:
       - "bar.application_ingestion"
       - "bar.automated_filter_parser_threshold"
     interventions:
-      - "I-005"
+      - "int.candidate_ats_parser_conformance_test_utility"
   -
     id: "hold-the-queue-rather-than-declining-it"
     title: "Тримайте нерозглянуту чергу, а не відхиляйте її"
@@ -83,7 +83,7 @@ recommendations:
       - "obs.generic_closer_alignment_rejection_template"
       - "pat.closed_then_reposted_requisition_motif"
     interventions:
-      - "I-001"
+      - "int.auto_close_stale_job_requisitions"
   -
     id: "preview-what-a-knockout-rule-removes"
     title: "Показуйте, кого відсіє нокаут-правило, ще до збереження"

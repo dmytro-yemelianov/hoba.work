@@ -9,8 +9,10 @@
         "EVD-004"
       ],
       "content": "# Auto-Close Stale Job Requisitions\n\nImplement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.\n\n### Expected Effects\n- mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it\n- Silence after applying acquires a bound — the record is closed and the closure is sent\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`",
-      "aliases": [],
-      "id": "I-001",
+      "aliases": [
+        "I-001"
+      ],
+      "id": "int.auto_close_stale_job_requisitions",
       "type": "intervention",
       "summary": "Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.",
       "targets": [
@@ -83,253 +85,16 @@
       ]
     },
     {
-      "title": "Upfront Compensation Band Disclosure",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-005",
-        "EVD-038"
-      ],
-      "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number\n- bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
-      "aliases": [],
-      "id": "I-002",
-      "type": "intervention",
-      "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
-      "targets": [
-        "mech.unstated_compensation_band_discrepancy",
-        "bar.recruiter_screening_call",
-        "bar.compensation_levelling_reconciliation",
-        "pat.seniority_double_bind",
-        "pat.compensation_double_bind"
-      ],
-      "actor": "employer-policy",
-      "scope": "industry",
-      "cost": "low",
-      "evidence_level": "supported",
-      "expected_effects": [
-        "mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number",
-        "bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists"
-      ],
-      "measurements": [
-        "late_stage_compensation_drop_rate",
-        "screen_to_offer_band_agreement_rate"
-      ],
-      "specimens": [
-        {
-          "kind": "posting",
-          "label": "The posting with the band in it",
-          "subject": "Senior Backend Engineer · Payments",
-          "lines": [
-            {
-              "text": "Level: L4 · Base band: 68,000–79,000 · Equity: 0.02–0.04% · Band verified by finance on 3 March.",
-              "tell": true
-            },
-            {
-              "text": "We will not ask for your expectations before showing you this number.",
-              "tell": false
-            },
-            {
-              "text": "If your expectation sits above the band, tell us at the screen and we will say honestly whether the level can move.",
-              "tell": false
-            }
-          ],
-          "reading": "Every branch of the compensation bind needs the candidate to speak first. Publishing the number removes the asymmetry the bind is built on."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "employer-policy",
-          "sees": "A posting draft with a band in it, and the same band readable by everyone already employed at that level.",
-          "reads": "Publishing fixes a number that was previously settled per candidate, and makes internal pay spread visible in a document anyone can open.",
-          "does": "Requires the band to be verified by finance before the posting goes live, which adds an approval step to publishing a role."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "The band as a published line in the requisition, available before the screening call rather than after the panel.",
-          "reads": "The expectation question is no longer the filter: a candidate above the band says so at the screen, where the process has cost nobody five rounds.",
-          "does": "Opens the screen with the number, and routes a mismatch into the levelling question instead of carrying it to the offer stage."
-        },
-        {
-          "actor": "candidate",
-          "sees": "The band and the level in the posting, dated and attributed, before any unpaid hours are committed.",
-          "reads": "The one number the whole process is arranged around is available before entering it, so applying becomes a decision about a known range.",
-          "does": "Applies or does not, and where the expectation sits above the band, raises it at the screen instead of at the offer."
-        },
-        {
-          "actor": "public-policy",
-          "sees": "Postings carrying a band in covered jurisdictions, and postings carrying one elsewhere because the practice spread.",
-          "reads": "Compliance is checkable against the text of the posting; the level a candidate is actually assessed at sits outside what any current disclosure rule reaches.",
-          "does": "Sets the requirement on the posting, the one artefact an inspection can check; the levelling decision has no comparable artefact for a rule to attach to."
-        }
-      ]
-    },
-    {
-      "title": "Standardized Late-Stage Rejection Feedback Taxonomy",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-006"
-      ],
-      "content": "# Standardized Late-Stage Rejection Feedback Taxonomy\n\nProvide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.\n\n### Expected Effects\n- The stage and the criterion behind a late rejection become part of what is sent\n- mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round\n\n### Measurements\n- `informative_feedback_ratio`\n- `interviewer_calibration_variance`",
-      "aliases": [],
-      "id": "I-003",
-      "type": "intervention",
-      "summary": "Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.",
-      "targets": [
-        "mech.genuine_technical_skill_shortfall",
-        "mech.hidden_evaluation_rubric_or_undisclosed_priority",
-        "bar.hiring_manager_in_depth_review",
-        "bar.team_cross_functional_panel",
-        "bar.client_profile_approval_and_client_interview",
-        "pat.seniority_double_bind",
-        "pat.closed_then_reposted_requisition_motif",
-        "L-003"
-      ],
-      "actor": "recruiter-process",
-      "scope": "organizational",
-      "cost": "medium",
-      "evidence_level": "supported",
-      "expected_effects": [
-        "The stage and the criterion behind a late rejection become part of what is sent",
-        "mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round"
-      ],
-      "measurements": [
-        "informative_feedback_ratio",
-        "interviewer_calibration_variance"
-      ],
-      "specimens": [
-        {
-          "kind": "email",
-          "label": "The rejection, rewritten to the taxonomy",
-          "subject": "Outcome — technical panel",
-          "lines": [
-            {
-              "text": "Category: technical depth · Sub-category: complexity reasoning · Round: technical panel, exercise 2",
-              "tell": true
-            },
-            {
-              "text": "What we saw: a correct quadratic solution where the panel was looking for the linear approach, reached without prompting.",
-              "tell": false
-            },
-            {
-              "text": "What we did not assess: system design, collaboration, or domain knowledge — those rounds were positive or not reached.",
-              "tell": false
-            },
-            {
-              "text": "Re-application window: six months, straight to the technical panel.",
-              "tell": false
-            }
-          ],
-          "reading": "The same decision, expressed as a category with a scope. Note the second line: saying what was not assessed is what stops a single round becoming a verdict on the person."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "recruiter",
-          "sees": "A panel recommendation, and a taxonomy that asks for a category, a round and a scope the recommendation does not contain.",
-          "reads": "The wording is theirs to write, but the content is not: a category can only be sent where the panel recorded one.",
-          "does": "Sends the structured note where the rubric was filled in, and the template where it was not."
-        },
-        {
-          "actor": "hiring-manager",
-          "sees": "A rubric field per round that has to be completed before the outcome is recorded, and the same fields from the other interviewers.",
-          "reads": "The cost is interviewer minutes booked before an outcome can be recorded; in return, two interviewers scoring one round differently becomes a number.",
-          "does": "Records the category and what the round did not assess, and calibrates where the panel's entries disagree."
-        },
-        {
-          "actor": "candidate",
-          "sees": "A category, the round it came from, an explicit list of what was not assessed, and a re-application window.",
-          "reads": "One round stays a scored round rather than a verdict on the person, and the part of the process that was positive is stated rather than inferred.",
-          "does": "Works on the named category, and reapplies inside the stated window instead of treating the door as closed."
-        },
-        {
-          "actor": "employer-policy",
-          "sees": "A proposed change to what is sent to rejected candidates: from a template that says nothing to a note that names a category.",
-          "reads": "Written feedback is consistent across every hire, which is what defensibility asks for, and is also a record that exists after the process ends.",
-          "does": "Defines which categories may be sent and which may not, and that definition is the boundary the recruiter writes inside."
-        }
-      ]
-    },
-    {
-      "title": "Remove Career Gap Feature from Automated Ranking Models",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-003"
-      ],
-      "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- L-001 loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
-      "aliases": [],
-      "id": "I-004",
-      "type": "intervention",
-      "summary": "Disable employment duration gap penalties in recruitment AI algorithms and screening models.",
-      "targets": [
-        "mech.employment_gap_downranking_bias",
-        "L-001"
-      ],
-      "actor": "ats-vendor",
-      "scope": "ecosystem",
-      "cost": "low",
-      "evidence_level": "supported",
-      "expected_effects": [
-        "mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input",
-        "L-001 loses the edge that closed it, because a gap can no longer widen the next gap"
-      ],
-      "measurements": [
-        "gap_candidate_screen_rate",
-        "long_term_placement_success"
-      ],
-      "specimens": [
-        {
-          "kind": "ats",
-          "label": "The same profile, with the feature removed",
-          "lines": [
-            {
-              "text": "Skills match: 91/100 · Domain match: 88/100",
-              "tell": false
-            },
-            {
-              "text": "Continuity penalty: feature disabled",
-              "tell": true
-            },
-            {
-              "text": "Final rank: 89/100 — advanced to recruiter queue",
-              "tell": false
-            },
-            {
-              "text": "Model card updated: employment_gap removed from feature set, 14 March.",
-              "tell": false
-            }
-          ],
-          "reading": "The arithmetic is the whole intervention. The same person, the same work, above the threshold instead of below it."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "ats-vendor",
-          "sees": "A feature column in the training set, and the ranked order that shifts for every customer once it is removed.",
-          "reads": "The removal itself is one line in a feature list and a re-scoring run; the effect it is made for happens outside the platform, where there is no telemetry.",
-          "does": "Ships the change with the model card updated, and carries the support load from customers whose thresholds were tuned against the old distribution."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "Profiles in the queue that the previous ranking placed below the review threshold.",
-          "reads": "The queue is longer and the screening capacity is the same; ranking decides reading order, not how many get read.",
-          "does": "Reads down the new order until capacity runs out, and the profiles below that line stay unread — for a reason that is no longer the gap."
-        },
-        {
-          "actor": "public-policy",
-          "sees": "A published model card naming the feature that was removed, in a market where the same feature ships enabled by default elsewhere.",
-          "reads": "One vendor removing it changes one vendor's ranking; what would hold it across the market is a rule about what an automated screen may read at all.",
-          "does": "Writes the requirement against what a vendor must publish and explain; what a customer switches on inside a configuration screen sits outside what any disclosure rule inspects."
-        }
-      ]
-    },
-    {
       "title": "Candidate ATS Parser Conformance Test Utility",
       "status": "active",
       "evidence_ids": [
         "EVD-001"
       ],
       "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one\n- mech.ats_parser_extraction_failure moves from invisible to checkable on the candidate's side of the line\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
-      "aliases": [],
-      "id": "I-005",
+      "aliases": [
+        "I-005"
+      ],
+      "id": "int.candidate_ats_parser_conformance_test_utility",
       "type": "intervention",
       "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
       "targets": [
@@ -395,151 +160,255 @@
       ]
     },
     {
-      "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
+      "title": "Candidate Work Index Submitted With the Application",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "EVD-033"
       ],
-      "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate\n- Who wrote a submission stops being an input to how it is scored\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`",
-      "aliases": [],
-      "id": "I-006",
+      "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- mech.portfolio_work_artifact_misinterpretation loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
+      "aliases": [
+        "I-012"
+      ],
+      "id": "int.candidate_work_index_submitted_with_the_application",
       "type": "intervention",
-      "summary": "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.",
+      "summary": "Submit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.",
       "targets": [
-        "mech.take_home_evaluation_fatigue_asymmetry",
-        "L-002",
-        "bar.take_home_work_sample_evaluation"
+        "mech.portfolio_work_artifact_misinterpretation",
+        "bar.technical_screen_live_assessment",
+        "bar.inbound_screening_triage"
       ],
-      "actor": "hiring-manager",
-      "scope": "organizational",
-      "cost": "medium",
+      "actor": "candidate-action",
+      "scope": "individual",
+      "cost": "low",
       "evidence_level": "supported",
       "expected_effects": [
-        "mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate",
-        "Who wrote a submission stops being an input to how it is scored"
+        "mech.portfolio_work_artifact_misinterpretation loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it",
+        "A contribution held under another organisation arrives as a commit range rather than as something to be discovered",
+        "The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first"
       ],
       "measurements": [
-        "take_home_completion_rate",
-        "inter_rater_rubric_correlation"
+        "work_index_attachment_rate",
+        "named_artifact_citation_rate",
+        "technical_screen_advance_rate"
       ],
       "specimens": [
         {
           "kind": "note",
-          "label": "The brief and the review record, both bounded",
-          "subject": "Take-home — Senior Backend Engineer",
+          "label": "The one-page index, submitted with the application",
+          "subject": "Work index — backend: storage and ingest",
           "lines": [
             {
-              "text": "Scope: one endpoint with persistence and tests. Hard timebox: 3 hours. Submit whatever you have at the three-hour mark.",
+              "at": "1",
+              "text": "Ingest library, upstream project under a different organisation. Mine: the storage layer rewrite — 40 commits, March to November. The link goes to the commit range, not to the account.",
               "tell": true
             },
             {
-              "text": "Anything beyond three hours is paid at our contractor rate; tell us in advance if you want that option.",
+              "at": "2",
+              "text": "Internal service, not public. What can be shown: the design note with the employer's name removed, and a walkthrough on request.",
               "tell": false
             },
             {
-              "text": "Review: submissions are anonymised before grading and scored against the published rubric by two reviewers, minimum 20 minutes each.",
-              "tell": true
+              "at": "3",
+              "text": "Five-minute read path: the migration note in /docs, then the fourth commit in the range.",
+              "tell": false
+            },
+            {
+              "at": "cv line",
+              "text": "The CV line reads 'storage layer rewrite, upstream ingest library, contributor', so the claim and the path to it sit in one sentence.",
+              "tell": false
             }
           ],
-          "reading": "Both halves of the asymmetry are addressed at once: the candidate hours are capped and the reviewer minutes have a floor. Capping only one side moves the problem rather than closing it."
+          "reading": "The surface a screener opens is a choice, and the default is a profile page in date order. The index makes that choice, and names which part of each artefact is the candidate's."
         }
       ],
       "perspectives": [
         {
-          "actor": "hiring-manager",
-          "sees": "A brief with a hard cap, submissions with the names stripped, and two review slots per submission on the team's calendar.",
-          "reads": "Reviewer minutes acquire a floor where they had none, and the loop is scheduled in advance rather than fitted around the week as it comes.",
-          "does": "Sets the scope so that three hours produces something gradable, and accepts the smaller sample as the evidence the hire is decided on."
-        },
-        {
           "actor": "candidate",
-          "sees": "A stated scope, a hard timebox, a rate for anything beyond it, and a published rubric the submission is graded against.",
-          "reads": "The hours are knowable before starting, and the grade is a scored artefact rather than an impression formed in a five-minute scan.",
-          "does": "Submits what exists at the three-hour mark instead of competing on hours, and weighs the task against the other processes in flight."
+          "sees": "The surface an application opens on by default — a profile page, a list of repositories in date order — and their own work spread across it in a shape that page does not show.",
+          "reads": "Which surface is opened is decided by what the application carries, and the index is the part of that the candidate writes.",
+          "does": "Names each artefact, the part of it that is theirs and the direct path to it, and opens the index in the first minutes of the live screen instead of leaving the choice of surface to the hour."
         },
         {
-          "actor": "employer-policy",
-          "sees": "A request to pay a non-employee for an extended work sample, at a rate, on a contracting route.",
-          "reads": "Paying for a sample is a procurement and classification question before it is a hiring one; an unpaid task raises neither.",
-          "does": "Defines the rate and the route, or does not — and where it does not, only the timebox half of the intervention ships."
+          "actor": "recruiter",
+          "sees": "An index in the application with named artefacts and direct links, alongside the profile link.",
+          "reads": "The minutes available per application go to something already located, and a line in the CV has a path attached that opens in one click.",
+          "does": "Records the note from the named artefact where the index points to one, and from the profile page where the application carries no index."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "The index in the material the panel receives, with the ownership line and the read path in it.",
+          "reads": "The exercise hour and the evidence of past work stop competing for the same minutes: what to open is stated, so the round is spent on the exercise.",
+          "does": "Reads the named artefact before the session where it is short enough, and asks about that work in the round rather than about the profile."
         }
       ]
     },
     {
-      "title": "Requirements Drawn From the Team's Own Backlog",
+      "title": "Dated Funding Certification Before the Final Round",
       "status": "active",
       "evidence_ids": [
-        "EVD-035",
-        "EVD-001"
+        "EVD-044"
       ],
-      "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
-      "aliases": [],
-      "id": "I-007",
+      "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
+      "aliases": [
+        "I-015"
+      ],
+      "id": "int.dated_funding_certification_before_the_final_round",
       "type": "intervention",
-      "summary": "Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.",
+      "summary": "Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.",
       "targets": [
-        "mech.inflated_requisition_requirements_vs_actual_team_needs",
-        "bar.requisition_approval_public_posting",
-        "L-003"
+        "bar.headcount_executive_budget_approval",
+        "bar.offer_closing_contract_execution",
+        "mech.headcount_freeze_or_budget_cancellation"
       ],
-      "actor": "hiring-manager",
-      "scope": "team",
-      "cost": "low",
+      "actor": "employer-policy",
+      "scope": "organizational",
+      "cost": "medium",
       "evidence_level": "supported",
       "expected_effects": [
-        "mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on",
-        "bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid",
-        "L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
+        "bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends",
+        "mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date",
+        "bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live"
       ],
       "measurements": [
-        "screened_requirement_count",
-        "mid_search_requirement_edits",
-        "screen_to_onsite_rate"
+        "panel_to_offer_latency_days",
+        "requisition_funding_lapse_rate",
+        "countersignature_latency_days"
       ],
       "specimens": [
         {
-          "kind": "posting",
-          "label": "The requisition, with the list split",
-          "subject": "Backend Engineer · Billing — requirements",
+          "kind": "ats",
+          "label": "The requisition, with the funding date in it",
+          "subject": "req #5120 · Senior Backend Engineer",
           "lines": [
             {
-              "text": "Screened on — Go, three years or more: billing endpoints and the report export, 40 of last quarter's 52 merged changes.",
+              "text": "funding_certified_through: 30 November · certified by finance 12 August",
               "tell": true
             },
             {
-              "text": "Screened on — SQL schema changes under load: the two migrations scheduled this quarter.",
+              "at": "d0",
+              "text": "Final round requested — the scheduler reads the field: the certified date covers the expected start date. Round booked.",
               "tell": false
             },
             {
-              "text": "Not screened on, useful — Kubernetes, Terraform, Rust: no task in the last two quarters; the cluster is owned by the platform team.",
+              "at": "d0",
+              "text": "Scheduling message to the candidate: this requisition is funded through 30 November, and that is the date the approval behind it expires.",
               "tell": true
             },
             {
-              "text": "Level: L4. The list was written from the backlog rather than carried over from the L5 search for this team.",
+              "at": "d21",
+              "text": "Contract issued · countersignature released on a live certification, with no second approval step.",
+              "tell": false
+            },
+            {
+              "text": "Where a division freeze revokes the certification: req #5120 flips to a dated paused state and every candidate in flight is written to on that date.",
               "tell": false
             }
           ],
-          "reading": "The same manager, the same worry about the ceiling. What changed is that a requirement now has to name a task, and the ones that cannot are still published — in the list nobody is screened against."
+          "reading": "The date is one field. What it does is move the approval from after the panel to before the scheduler, and give the recruiter a date to quote where the pending row had none."
         }
       ],
       "perspectives": [
         {
-          "actor": "hiring-manager",
-          "sees": "The requisition draft next to the last two quarters of merged work, and the requirements carried over from the previous search that now have to be matched to a task or moved.",
-          "reads": "The ceiling can still be written down, but it is written in a section the screen does not read; what is screened on is what the backlog can account for.",
-          "does": "Moves each unmatched line into the second section, and carries the risk that a requirement not screened on brings someone who has to learn it on the job."
+          "actor": "employer-policy",
+          "sees": "A certification with an expiry on every requisition, and a quarterly review in which each line already carries the date it runs out.",
+          "reads": "Optionality narrows: a requisition can no longer sit in pending while the quarter is decided, because pending now blocks the scheduler rather than the offer.",
+          "does": "Sets the certification horizon and who may re-certify, and decides whether a lapsed date pauses the requisition or closes it."
         },
         {
           "actor": "recruiter",
-          "sees": "Two lists in the requisition instead of one, and only the first is the screening standard.",
-          "reads": "What is movable is written down before the pipeline thins, rather than found by going back to the manager in week six.",
-          "does": "Screens against the first list, and passes the second one to candidates as a description of the work rather than as a bar."
+          "sees": "The funded-through date as a field in the requisition, and a scheduler that refuses a final round when the date does not cover the expected start.",
+          "reads": "A date exists to quote where the pending row had none; the cost is that some final rounds cannot be booked at all.",
+          "does": "Quotes the date when scheduling, and where the certification lapses mid-loop, sends the dated notice instead of waiting for the row to move."
         },
         {
           "actor": "candidate",
-          "sees": "A posting where each screened requirement names the work it is for, and a separate list marked as not screened on.",
-          "reads": "The bar is stated as the work rather than as a stack, so which lines the assessment runs against is readable before applying.",
-          "does": "Applies against the screened list, and reads the second section as description rather than as a threshold to clear."
+          "sees": "A scheduling message naming the date the funding behind the requisition expires, and, where it lapses, a dated notice saying paused or closed.",
+          "reads": "The interval after a panel that went well has a stated cause and a boundary: the wait turns on a certification date rather than on the rounds already completed.",
+          "does": "Weighs that date against the other processes in flight, and stops holding capacity for this one once the notice says closed."
+        }
+      ]
+    },
+    {
+      "title": "Distinct Closure Status for Unreviewed Applications",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-036",
+        "EVD-037"
+      ],
+      "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
+      "aliases": [
+        "I-010"
+      ],
+      "id": "int.distinct_closure_status_for_unreviewed_applications",
+      "type": "intervention",
+      "summary": "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.",
+      "targets": [
+        "bar.inbound_screening_triage",
+        "mech.recruiter_volume_quota_incentive_distortion",
+        "mech.automated_application_expiration_timeout"
+      ],
+      "actor": "ats-vendor",
+      "scope": "ecosystem",
+      "cost": "medium",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status",
+        "The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are",
+        "bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search"
+      ],
+      "measurements": [
+        "unreviewed_at_close_rate",
+        "time_to_first_human_open_days",
+        "closure_status_coverage"
+      ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The status the batch writes, and where the count lands",
+          "subject": "Requisition #4471 — queue closure",
+          "lines": [
+            {
+              "at": "config",
+              "text": "Terminal statuses: reviewed_advanced · reviewed_declined · closed_unreviewed · closed_with_requisition. A record does not leave the queue without one of them.",
+              "tell": false
+            },
+            {
+              "at": "02:00",
+              "text": "Scheduled job expire_stale_applications — 312 matched; human_open recorded on 0 → status closed_unreviewed",
+              "tell": true
+            },
+            {
+              "at": "02:01",
+              "text": "Notice sent, status bound into the template: \"Your application was not reviewed before this search closed. No assessment of your profile was made.\"",
+              "tell": false
+            },
+            {
+              "at": "requisition dashboard",
+              "text": "Requisition #4471 — received 640 · opened 219 · closed unreviewed 421",
+              "tell": true
+            }
+          ],
+          "reading": "The batch is the same batch. What changed is that the status it writes separates a record nobody opened from one that was declined, and the count of the first sits on the same dashboard as applications received."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "ats-vendor",
+          "sees": "A status vocabulary in which every way a record leaves the queue has its own terminal value, and the migration that splits the existing Rejected in two.",
+          "reads": "The split is a schema change and a template variable; what it exposes — how much of the queue was never opened — becomes a figure in every customer's dashboard.",
+          "does": "Ships the statuses and the counter, makes the terminal status a required variable in the notification template, and carries the customers whose reporting was built on a single Rejected value."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "The requisition dashboard carrying received, opened and closed-unreviewed side by side, and the expiry batch landing in the third column.",
+          "reads": "How far the queue ran past the week is a published figure on the requisition rather than a condition of the job. Time-to-fill is still what the report is read for.",
+          "does": "Works the current inbound with the count standing next to it; where the count is argued about, it is argued about against the recruiting headcount that fixes review capacity."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A notice naming the status the record ended in, and whether a person opened it.",
+          "reads": "A record nobody reached and a record that was assessed and declined no longer arrive in the same words; only one of the two says anything about the profile.",
+          "does": "Reads the message for the status rather than for an assessment it states is not there, and decides about reapplying on that."
         }
       ]
     },
@@ -550,8 +419,10 @@
         "EVD-042"
       ],
       "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- mech.pre_selected_internal_candidate stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
-      "aliases": [],
-      "id": "I-008",
+      "aliases": [
+        "I-008"
+      ],
+      "id": "int.internal_candidacy_stated_in_the_posting",
       "type": "intervention",
       "summary": "Where a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.",
       "targets": [
@@ -615,14 +486,102 @@
       ]
     },
     {
+      "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-043"
+      ],
+      "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
+      "aliases": [
+        "I-014"
+      ],
+      "id": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+      "type": "intervention",
+      "summary": "Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.",
+      "targets": [
+        "mech.interview_resource_scheduling_saturation",
+        "bar.technical_screen_live_assessment"
+      ],
+      "actor": "hiring-manager",
+      "scope": "team",
+      "cost": "medium",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date",
+        "A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name",
+        "Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot"
+      ],
+      "measurements": [
+        "interview_reschedule_rate",
+        "panel_seat_backfill_rate",
+        "rounds_per_interviewer_month"
+      ],
+      "specimens": [
+        {
+          "kind": "chat",
+          "label": "The same Wednesday, with a second name already on the round",
+          "subject": "Technical screen — Thursday",
+          "lines": [
+            {
+              "speaker": "Engineering manager",
+              "at": "Wed 17:40",
+              "text": "Thursday's screen needs a seat. You are on the rota this sprint, and the board is already two points lighter for it.",
+              "tell": false
+            },
+            {
+              "speaker": "Interviewer",
+              "at": "Wed 17:52",
+              "text": "I am on release duty. If I take it, it is a cold read.",
+              "tell": false
+            },
+            {
+              "speaker": "Engineering manager",
+              "at": "Wed 17:55",
+              "text": "Then it goes to the second name on the rota — the prep block is on that calendar at 09:00 and the material is already there.",
+              "tell": true
+            },
+            {
+              "speaker": "Coordinator",
+              "at": "Wed 18:10",
+              "text": "Candidate told the same day: same slot, different interviewer, date unchanged.",
+              "tell": false
+            }
+          ],
+          "reading": "The release duty is still there. What changes is that the round carries a second name before the week starts, so an unavailable interviewer passes the seat instead of moving the date."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "A rota with two names against each round of the sprint, and a sprint board with those hours already taken out of it.",
+          "reads": "Interview capacity is planned before the week rather than found inside it, and the cost is visible on the board where it was previously absorbed by whoever had the slot.",
+          "does": "Takes the points off the sprint for the rota week, and passes the seat to the second name when the first is on release duty."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A round that keeps its date, and an interviewer who opens the submitted work before the call rather than during it.",
+          "reads": "A change of interviewer arrives with the date unchanged, which is a different event from a round being moved.",
+          "does": "Keeps the slot and prepares once, instead of replanning the week around a moved round."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "Panel seats coming back filled from the rota, and a reschedule request only where both names are unavailable.",
+          "reads": "A date that moves becomes the exception the process reports rather than the ordinary way a seat gets filled.",
+          "does": "Sends the invitation with the interviewer's name and the prep block already accepted, and names a new date only when both rota names are out."
+        }
+      ]
+    },
+    {
       "title": "Outreach States the Requisition Behind It",
       "status": "active",
       "evidence_ids": [
         "EVD-034"
       ],
       "content": "# Outreach States the Requisition Behind It\n\nEvery outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.\n\n### Expected Effects\n- bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent\n- mech.speculative_sourcing_talent_pooling_without_opening becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on\n- The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast\n\n### Measurements\n- `unattached_outreach_rate`\n- `pool_record_age_days`\n- `planning_decision_notice_rate`",
-      "aliases": [],
-      "id": "I-009",
+      "aliases": [
+        "I-009"
+      ],
+      "id": "int.outreach_states_the_requisition_behind_it",
       "type": "intervention",
       "summary": "Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.",
       "targets": [
@@ -700,84 +659,323 @@
       ]
     },
     {
-      "title": "Distinct Closure Status for Unreviewed Applications",
+      "title": "Publish the Technical Screen's Columns and Threshold Before the Round",
       "status": "active",
       "evidence_ids": [
-        "EVD-036",
-        "EVD-037"
+        "EVD-033"
       ],
-      "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
-      "aliases": [],
-      "id": "I-010",
+      "content": "# Publish the Technical Screen's Columns and Threshold Before the Round\n\nPublish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.\n\n### Expected Effects\n- bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel\n- A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published\n- A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression\n\n### Measurements\n- `rubric_completion_rate`\n- `borderline_outcome_rate`",
+      "aliases": [
+        "I-013"
+      ],
+      "id": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round",
       "type": "intervention",
-      "summary": "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.",
+      "summary": "Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.",
       "targets": [
-        "bar.inbound_screening_triage",
-        "mech.recruiter_volume_quota_incentive_distortion",
-        "mech.automated_application_expiration_timeout"
+        "bar.technical_screen_live_assessment",
+        "mech.interview_resource_scheduling_saturation"
       ],
-      "actor": "ats-vendor",
-      "scope": "ecosystem",
+      "actor": "employer-policy",
+      "scope": "organizational",
       "cost": "medium",
-      "evidence_level": "supported",
+      "evidence_level": "hypothesis",
       "expected_effects": [
-        "mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status",
-        "The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are",
-        "bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search"
+        "bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel",
+        "A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published",
+        "A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression"
       ],
       "measurements": [
-        "unreviewed_at_close_rate",
-        "time_to_first_human_open_days",
-        "closure_status_coverage"
+        "rubric_completion_rate",
+        "borderline_outcome_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The scoring instrument, published with the role",
+          "subject": "Technical screen — how this hour is scored",
+          "lines": [
+            {
+              "at": "columns",
+              "text": "Correctness · complexity reasoning · communication · testing instinct. Each 0–5, equal weight.",
+              "tell": false
+            },
+            {
+              "at": "threshold",
+              "text": "14 of 20 advances. The columns and the line are fixed before the round and dated on this page.",
+              "tell": true
+            },
+            {
+              "at": "format",
+              "text": "One implementation task in a shared editor, 45 minutes, run by an engineer from the team the role sits in.",
+              "tell": false
+            },
+            {
+              "at": "outcome",
+              "text": "The four column scores are sent with the outcome, whichever way it goes.",
+              "tell": false
+            }
+          ],
+          "reading": "The gate was already a sum against a line. Publishing does not move the line; it puts the columns and the line on the side of the table where the hour is spent."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "employer-policy",
+          "sees": "A page attached to every technical posting carrying four columns, their weights and the number a total is compared with.",
+          "reads": "A published instrument is one every panel has to score against and one the organisation is answerable to; the columns can no longer be settled after the round.",
+          "does": "Defines which instruments may be published and how a change to one is dated, and holds the publication back for roles where no rubric has been written."
+        },
+        {
+          "actor": "candidate",
+          "sees": "The columns, the weights and the threshold before booking the hour, and the column scores with the outcome.",
+          "reads": "The hour is scored on four named things, so preparation has a target, and a total a point under the line reads as that rather than as a verdict on the person.",
+          "does": "Prepares against the named columns, and where the exercise format does not match what the role does, decides that before spending the hour."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "The team's rubric as an external document with a date on it, and every panel entry now recorded against those columns.",
+          "reads": "The instrument is fixed before the round, so two interviewers disagreeing becomes a difference in a named column rather than a difference in what was being looked for.",
+          "does": "Writes the columns and the threshold down before the role opens, and takes a change to them through the same publication step rather than mid-search."
+        }
+      ]
+    },
+    {
+      "title": "Recorded Finalist Standing With a Dated Re-Entry Route",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-045"
+      ],
+      "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- mech.stronger_competing_candidate_in_final_cohort becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
+      "aliases": [
+        "I-017"
+      ],
+      "id": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
+      "type": "intervention",
+      "summary": "Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.",
+      "targets": [
+        "mech.stronger_competing_candidate_in_final_cohort",
+        "bar.headcount_executive_budget_approval",
+        "pat.closed_then_reposted_requisition_motif"
+      ],
+      "actor": "recruiter-process",
+      "scope": "organizational",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.stronger_competing_candidate_in_final_cohort becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group",
+        "bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing",
+        "pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated"
+      ],
+      "measurements": [
+        "finalist_standing_record_rate",
+        "finalist_reentry_rate",
+        "reposted_requisition_match_rate"
       ],
       "specimens": [
         {
           "kind": "ats",
-          "label": "The status the batch writes, and where the count lands",
-          "subject": "Requisition #4471 — queue closure",
+          "label": "The closing record, and what it leaves behind",
+          "subject": "req #4471 · closing record",
           "lines": [
             {
-              "at": "config",
-              "text": "Terminal statuses: reviewed_advanced · reviewed_declined · closed_unreviewed · closed_with_requisition. A record does not leave the queue without one of them.",
-              "tell": false
-            },
-            {
-              "at": "02:00",
-              "text": "Scheduled job expire_stale_applications — 312 matched; human_open recorded on 0 → status closed_unreviewed",
+              "text": "Outcome: cleared every round · not selected · cohort: 4 finalists, 1 offer · reason class: cohort ranking — domain overlap",
               "tell": true
             },
             {
-              "at": "02:01",
-              "text": "Notice sent, status bound into the template: \"Your application was not reviewed before this search closed. No assessment of your profile was made.\"",
+              "text": "Standing: finalist · re-entry at the technical panel until 14 March · applies to any L4 requisition in Engineering",
               "tell": false
             },
             {
-              "at": "requisition dashboard",
-              "text": "Requisition #4471 — received 640 · opened 219 · closed unreviewed 421",
+              "at": "d0",
+              "text": "Sent with the decline: the cohort size, the class of reason, the re-entry stage and the date it runs to.",
               "tell": true
+            },
+            {
+              "at": "w11",
+              "text": "req #4471 reposted → 2 standings matched → both records enter the recruiter queue at the panel stage",
+              "tell": false
+            },
+            {
+              "text": "Where the requisition closed unfunded rather than filled, the reason class reads funding withdrawn and the standing is recorded on the same terms.",
+              "tell": false
             }
           ],
-          "reading": "The batch is the same batch. What changed is that the status it writes separates a record nobody opened from one that was declined, and the count of the first sits on the same dashboard as applications received."
+          "reading": "A ranking cannot be turned into a fault, and this does not try. It records what the ranking was and what the record is entitled to afterwards, so the outcome leaves something behind it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "A decline naming the cohort size, the class of reason, and the stage and date the record re-enters at.",
+          "reads": "The outcome was a ranking in a group of a stated size rather than a fault found in the rounds, and the record has a stated life after the decision.",
+          "does": "Applies again inside that date and enters at the stated stage, instead of starting the loop from the screen."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "A required reason class and a cohort count on the closing record, and a queue where matched standings sit alongside new applications.",
+          "reads": "The outcome has to be classified before the requisition can be closed, and a comparison is one of the classes the taxonomy contains.",
+          "does": "Records the class, sends the cohort size and the re-entry date with the decline, and works the matched standings when a requisition at that level opens."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "Two records arriving at the panel stage on a reposted requisition, each with the previous panel's scores attached.",
+          "reads": "The evidence the earlier loop produced is reusable up to the date on the standing; after that the record re-enters at the screen like any other.",
+          "does": "Runs the panel on the standing rather than the full loop, or lets the standing lapse where the level or the profile has moved."
+        }
+      ]
+    },
+    {
+      "title": "Remove Career Gap Feature from Automated Ranking Models",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-003"
+      ],
+      "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- L-001 loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
+      "aliases": [
+        "I-004"
+      ],
+      "id": "int.remove_career_gap_feature_from_automated_ranking_models",
+      "type": "intervention",
+      "summary": "Disable employment duration gap penalties in recruitment AI algorithms and screening models.",
+      "targets": [
+        "mech.employment_gap_downranking_bias",
+        "L-001"
+      ],
+      "actor": "ats-vendor",
+      "scope": "ecosystem",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input",
+        "L-001 loses the edge that closed it, because a gap can no longer widen the next gap"
+      ],
+      "measurements": [
+        "gap_candidate_screen_rate",
+        "long_term_placement_success"
+      ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The same profile, with the feature removed",
+          "lines": [
+            {
+              "text": "Skills match: 91/100 · Domain match: 88/100",
+              "tell": false
+            },
+            {
+              "text": "Continuity penalty: feature disabled",
+              "tell": true
+            },
+            {
+              "text": "Final rank: 89/100 — advanced to recruiter queue",
+              "tell": false
+            },
+            {
+              "text": "Model card updated: employment_gap removed from feature set, 14 March.",
+              "tell": false
+            }
+          ],
+          "reading": "The arithmetic is the whole intervention. The same person, the same work, above the threshold instead of below it."
         }
       ],
       "perspectives": [
         {
           "actor": "ats-vendor",
-          "sees": "A status vocabulary in which every way a record leaves the queue has its own terminal value, and the migration that splits the existing Rejected in two.",
-          "reads": "The split is a schema change and a template variable; what it exposes — how much of the queue was never opened — becomes a figure in every customer's dashboard.",
-          "does": "Ships the statuses and the counter, makes the terminal status a required variable in the notification template, and carries the customers whose reporting was built on a single Rejected value."
+          "sees": "A feature column in the training set, and the ranked order that shifts for every customer once it is removed.",
+          "reads": "The removal itself is one line in a feature list and a re-scoring run; the effect it is made for happens outside the platform, where there is no telemetry.",
+          "does": "Ships the change with the model card updated, and carries the support load from customers whose thresholds were tuned against the old distribution."
         },
         {
           "actor": "recruiter",
-          "sees": "The requisition dashboard carrying received, opened and closed-unreviewed side by side, and the expiry batch landing in the third column.",
-          "reads": "How far the queue ran past the week is a published figure on the requisition rather than a condition of the job. Time-to-fill is still what the report is read for.",
-          "does": "Works the current inbound with the count standing next to it; where the count is argued about, it is argued about against the recruiting headcount that fixes review capacity."
+          "sees": "Profiles in the queue that the previous ranking placed below the review threshold.",
+          "reads": "The queue is longer and the screening capacity is the same; ranking decides reading order, not how many get read.",
+          "does": "Reads down the new order until capacity runs out, and the profiles below that line stay unread — for a reason that is no longer the gap."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "A published model card naming the feature that was removed, in a market where the same feature ships enabled by default elsewhere.",
+          "reads": "One vendor removing it changes one vendor's ranking; what would hold it across the market is a rule about what an automated screen may read at all.",
+          "does": "Writes the requirement against what a vendor must publish and explain; what a customer switches on inside a configuration screen sits outside what any disclosure rule inspects."
+        }
+      ]
+    },
+    {
+      "title": "Requirements Drawn From the Team's Own Backlog",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-035",
+        "EVD-001"
+      ],
+      "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
+      "aliases": [
+        "I-007"
+      ],
+      "id": "int.requirements_drawn_from_the_team_s_own_backlog",
+      "type": "intervention",
+      "summary": "Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.",
+      "targets": [
+        "mech.inflated_requisition_requirements_vs_actual_team_needs",
+        "bar.requisition_approval_public_posting",
+        "L-003"
+      ],
+      "actor": "hiring-manager",
+      "scope": "team",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on",
+        "bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid",
+        "L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
+      ],
+      "measurements": [
+        "screened_requirement_count",
+        "mid_search_requirement_edits",
+        "screen_to_onsite_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The requisition, with the list split",
+          "subject": "Backend Engineer · Billing — requirements",
+          "lines": [
+            {
+              "text": "Screened on — Go, three years or more: billing endpoints and the report export, 40 of last quarter's 52 merged changes.",
+              "tell": true
+            },
+            {
+              "text": "Screened on — SQL schema changes under load: the two migrations scheduled this quarter.",
+              "tell": false
+            },
+            {
+              "text": "Not screened on, useful — Kubernetes, Terraform, Rust: no task in the last two quarters; the cluster is owned by the platform team.",
+              "tell": true
+            },
+            {
+              "text": "Level: L4. The list was written from the backlog rather than carried over from the L5 search for this team.",
+              "tell": false
+            }
+          ],
+          "reading": "The same manager, the same worry about the ceiling. What changed is that a requirement now has to name a task, and the ones that cannot are still published — in the list nobody is screened against."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "hiring-manager",
+          "sees": "The requisition draft next to the last two quarters of merged work, and the requirements carried over from the previous search that now have to be matched to a task or moved.",
+          "reads": "The ceiling can still be written down, but it is written in a section the screen does not read; what is screened on is what the backlog can account for.",
+          "does": "Moves each unmatched line into the second section, and carries the risk that a requirement not screened on brings someone who has to learn it on the job."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "Two lists in the requisition instead of one, and only the first is the screening standard.",
+          "reads": "What is movable is written down before the pipeline thins, rather than found by going back to the manager in week six.",
+          "does": "Screens against the first list, and passes the second one to candidates as a description of the work rather than as a bar."
         },
         {
           "actor": "candidate",
-          "sees": "A notice naming the status the record ended in, and whether a person opened it.",
-          "reads": "A record nobody reached and a record that was assessed and declined no longer arrive in the same words; only one of the two says anything about the profile.",
-          "does": "Reads the message for the status rather than for an assessment it states is not there, and decides about reapplying on that."
+          "sees": "A posting where each screened requirement names the work it is for, and a separate list marked as not screened on.",
+          "reads": "The bar is stated as the work rather than as a stack, so which lines the assessment runs against is readable before applying.",
+          "does": "Applies against the screened list, and reads the second section as description rather than as a threshold to clear."
         }
       ]
     },
@@ -788,8 +986,10 @@
         "EVD-033"
       ],
       "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast mech.experience_age_grading_mismatch is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- mech.portfolio_work_artifact_misinterpretation becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
-      "aliases": [],
-      "id": "I-011",
+      "aliases": [
+        "I-011"
+      ],
+      "id": "int.screening_note_bound_to_observations_and_disposition_codes",
       "type": "intervention",
       "summary": "Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.",
       "targets": [
@@ -868,330 +1068,245 @@
       ]
     },
     {
-      "title": "Candidate Work Index Submitted With the Application",
+      "title": "Standardized Late-Stage Rejection Feedback Taxonomy",
       "status": "active",
       "evidence_ids": [
-        "EVD-033"
+        "EVD-006"
       ],
-      "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- mech.portfolio_work_artifact_misinterpretation loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
-      "aliases": [],
-      "id": "I-012",
+      "content": "# Standardized Late-Stage Rejection Feedback Taxonomy\n\nProvide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.\n\n### Expected Effects\n- The stage and the criterion behind a late rejection become part of what is sent\n- mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round\n\n### Measurements\n- `informative_feedback_ratio`\n- `interviewer_calibration_variance`",
+      "aliases": [
+        "I-003"
+      ],
+      "id": "int.standardized_late_stage_rejection_feedback_taxonomy",
       "type": "intervention",
-      "summary": "Submit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.",
+      "summary": "Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.",
       "targets": [
-        "mech.portfolio_work_artifact_misinterpretation",
-        "bar.technical_screen_live_assessment",
-        "bar.inbound_screening_triage"
+        "mech.genuine_technical_skill_shortfall",
+        "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.client_profile_approval_and_client_interview",
+        "pat.seniority_double_bind",
+        "pat.closed_then_reposted_requisition_motif",
+        "L-003"
       ],
-      "actor": "candidate-action",
-      "scope": "individual",
-      "cost": "low",
+      "actor": "recruiter-process",
+      "scope": "organizational",
+      "cost": "medium",
       "evidence_level": "supported",
       "expected_effects": [
-        "mech.portfolio_work_artifact_misinterpretation loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it",
-        "A contribution held under another organisation arrives as a commit range rather than as something to be discovered",
-        "The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first"
+        "The stage and the criterion behind a late rejection become part of what is sent",
+        "mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round"
       ],
       "measurements": [
-        "work_index_attachment_rate",
-        "named_artifact_citation_rate",
-        "technical_screen_advance_rate"
+        "informative_feedback_ratio",
+        "interviewer_calibration_variance"
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "The rejection, rewritten to the taxonomy",
+          "subject": "Outcome — technical panel",
+          "lines": [
+            {
+              "text": "Category: technical depth · Sub-category: complexity reasoning · Round: technical panel, exercise 2",
+              "tell": true
+            },
+            {
+              "text": "What we saw: a correct quadratic solution where the panel was looking for the linear approach, reached without prompting.",
+              "tell": false
+            },
+            {
+              "text": "What we did not assess: system design, collaboration, or domain knowledge — those rounds were positive or not reached.",
+              "tell": false
+            },
+            {
+              "text": "Re-application window: six months, straight to the technical panel.",
+              "tell": false
+            }
+          ],
+          "reading": "The same decision, expressed as a category with a scope. Note the second line: saying what was not assessed is what stops a single round becoming a verdict on the person."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "recruiter",
+          "sees": "A panel recommendation, and a taxonomy that asks for a category, a round and a scope the recommendation does not contain.",
+          "reads": "The wording is theirs to write, but the content is not: a category can only be sent where the panel recorded one.",
+          "does": "Sends the structured note where the rubric was filled in, and the template where it was not."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A rubric field per round that has to be completed before the outcome is recorded, and the same fields from the other interviewers.",
+          "reads": "The cost is interviewer minutes booked before an outcome can be recorded; in return, two interviewers scoring one round differently becomes a number.",
+          "does": "Records the category and what the round did not assess, and calibrates where the panel's entries disagree."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A category, the round it came from, an explicit list of what was not assessed, and a re-application window.",
+          "reads": "One round stays a scored round rather than a verdict on the person, and the part of the process that was positive is stated rather than inferred.",
+          "does": "Works on the named category, and reapplies inside the stated window instead of treating the door as closed."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A proposed change to what is sent to rejected candidates: from a template that says nothing to a note that names a category.",
+          "reads": "Written feedback is consistent across every hire, which is what defensibility asks for, and is also a record that exists after the process ends.",
+          "does": "Defines which categories may be sent and which may not, and that definition is the boundary the recruiter writes inside."
+        }
+      ]
+    },
+    {
+      "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate\n- Who wrote a submission stops being an input to how it is scored\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`",
+      "aliases": [
+        "I-006"
+      ],
+      "id": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+      "type": "intervention",
+      "summary": "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.",
+      "targets": [
+        "mech.take_home_evaluation_fatigue_asymmetry",
+        "L-002",
+        "bar.take_home_work_sample_evaluation"
+      ],
+      "actor": "hiring-manager",
+      "scope": "organizational",
+      "cost": "medium",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate",
+        "Who wrote a submission stops being an input to how it is scored"
+      ],
+      "measurements": [
+        "take_home_completion_rate",
+        "inter_rater_rubric_correlation"
       ],
       "specimens": [
         {
           "kind": "note",
-          "label": "The one-page index, submitted with the application",
-          "subject": "Work index — backend: storage and ingest",
+          "label": "The brief and the review record, both bounded",
+          "subject": "Take-home — Senior Backend Engineer",
           "lines": [
             {
-              "at": "1",
-              "text": "Ingest library, upstream project under a different organisation. Mine: the storage layer rewrite — 40 commits, March to November. The link goes to the commit range, not to the account.",
+              "text": "Scope: one endpoint with persistence and tests. Hard timebox: 3 hours. Submit whatever you have at the three-hour mark.",
               "tell": true
             },
             {
-              "at": "2",
-              "text": "Internal service, not public. What can be shown: the design note with the employer's name removed, and a walkthrough on request.",
+              "text": "Anything beyond three hours is paid at our contractor rate; tell us in advance if you want that option.",
               "tell": false
             },
             {
-              "at": "3",
-              "text": "Five-minute read path: the migration note in /docs, then the fourth commit in the range.",
-              "tell": false
-            },
-            {
-              "at": "cv line",
-              "text": "The CV line reads 'storage layer rewrite, upstream ingest library, contributor', so the claim and the path to it sit in one sentence.",
-              "tell": false
+              "text": "Review: submissions are anonymised before grading and scored against the published rubric by two reviewers, minimum 20 minutes each.",
+              "tell": true
             }
           ],
-          "reading": "The surface a screener opens is a choice, and the default is a profile page in date order. The index makes that choice, and names which part of each artefact is the candidate's."
+          "reading": "Both halves of the asymmetry are addressed at once: the candidate hours are capped and the reviewer minutes have a floor. Capping only one side moves the problem rather than closing it."
         }
       ],
       "perspectives": [
         {
-          "actor": "candidate",
-          "sees": "The surface an application opens on by default — a profile page, a list of repositories in date order — and their own work spread across it in a shape that page does not show.",
-          "reads": "Which surface is opened is decided by what the application carries, and the index is the part of that the candidate writes.",
-          "does": "Names each artefact, the part of it that is theirs and the direct path to it, and opens the index in the first minutes of the live screen instead of leaving the choice of surface to the hour."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "An index in the application with named artefacts and direct links, alongside the profile link.",
-          "reads": "The minutes available per application go to something already located, and a line in the CV has a path attached that opens in one click.",
-          "does": "Records the note from the named artefact where the index points to one, and from the profile page where the application carries no index."
-        },
-        {
           "actor": "hiring-manager",
-          "sees": "The index in the material the panel receives, with the ownership line and the read path in it.",
-          "reads": "The exercise hour and the evidence of past work stop competing for the same minutes: what to open is stated, so the round is spent on the exercise.",
-          "does": "Reads the named artefact before the session where it is short enough, and asks about that work in the round rather than about the profile."
+          "sees": "A brief with a hard cap, submissions with the names stripped, and two review slots per submission on the team's calendar.",
+          "reads": "Reviewer minutes acquire a floor where they had none, and the loop is scheduled in advance rather than fitted around the week as it comes.",
+          "does": "Sets the scope so that three hours produces something gradable, and accepts the smaller sample as the evidence the hire is decided on."
+        },
+        {
+          "actor": "candidate",
+          "sees": "A stated scope, a hard timebox, a rate for anything beyond it, and a published rubric the submission is graded against.",
+          "reads": "The hours are knowable before starting, and the grade is a scored artefact rather than an impression formed in a five-minute scan.",
+          "does": "Submits what exists at the three-hour mark instead of competing on hours, and weighs the task against the other processes in flight."
+        },
+        {
+          "actor": "employer-policy",
+          "sees": "A request to pay a non-employee for an extended work sample, at a rate, on a contracting route.",
+          "reads": "Paying for a sample is a procurement and classification question before it is a hiring one; an unpaid task raises neither.",
+          "does": "Defines the rate and the route, or does not — and where it does not, only the timebox half of the intervention ships."
         }
       ]
     },
     {
-      "title": "Publish the Technical Screen's Columns and Threshold Before the Round",
+      "title": "Upfront Compensation Band Disclosure",
       "status": "active",
       "evidence_ids": [
-        "EVD-033"
+        "EVD-005",
+        "EVD-038"
       ],
-      "content": "# Publish the Technical Screen's Columns and Threshold Before the Round\n\nPublish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.\n\n### Expected Effects\n- bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel\n- A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published\n- A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression\n\n### Measurements\n- `rubric_completion_rate`\n- `borderline_outcome_rate`",
-      "aliases": [],
-      "id": "I-013",
+      "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number\n- bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
+      "aliases": [
+        "I-002"
+      ],
+      "id": "int.upfront_compensation_band_disclosure",
       "type": "intervention",
-      "summary": "Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.",
+      "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
       "targets": [
-        "bar.technical_screen_live_assessment",
-        "mech.interview_resource_scheduling_saturation"
+        "mech.unstated_compensation_band_discrepancy",
+        "bar.recruiter_screening_call",
+        "bar.compensation_levelling_reconciliation",
+        "pat.seniority_double_bind",
+        "pat.compensation_double_bind"
       ],
       "actor": "employer-policy",
-      "scope": "organizational",
-      "cost": "medium",
-      "evidence_level": "hypothesis",
+      "scope": "industry",
+      "cost": "low",
+      "evidence_level": "supported",
       "expected_effects": [
-        "bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel",
-        "A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published",
-        "A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression"
+        "mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number",
+        "bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists"
       ],
       "measurements": [
-        "rubric_completion_rate",
-        "borderline_outcome_rate"
+        "late_stage_compensation_drop_rate",
+        "screen_to_offer_band_agreement_rate"
       ],
       "specimens": [
         {
           "kind": "posting",
-          "label": "The scoring instrument, published with the role",
-          "subject": "Technical screen — how this hour is scored",
+          "label": "The posting with the band in it",
+          "subject": "Senior Backend Engineer · Payments",
           "lines": [
             {
-              "at": "columns",
-              "text": "Correctness · complexity reasoning · communication · testing instinct. Each 0–5, equal weight.",
-              "tell": false
-            },
-            {
-              "at": "threshold",
-              "text": "14 of 20 advances. The columns and the line are fixed before the round and dated on this page.",
+              "text": "Level: L4 · Base band: 68,000–79,000 · Equity: 0.02–0.04% · Band verified by finance on 3 March.",
               "tell": true
             },
             {
-              "at": "format",
-              "text": "One implementation task in a shared editor, 45 minutes, run by an engineer from the team the role sits in.",
+              "text": "We will not ask for your expectations before showing you this number.",
               "tell": false
             },
             {
-              "at": "outcome",
-              "text": "The four column scores are sent with the outcome, whichever way it goes.",
+              "text": "If your expectation sits above the band, tell us at the screen and we will say honestly whether the level can move.",
               "tell": false
             }
           ],
-          "reading": "The gate was already a sum against a line. Publishing does not move the line; it puts the columns and the line on the side of the table where the hour is spent."
+          "reading": "Every branch of the compensation bind needs the candidate to speak first. Publishing the number removes the asymmetry the bind is built on."
         }
       ],
       "perspectives": [
         {
           "actor": "employer-policy",
-          "sees": "A page attached to every technical posting carrying four columns, their weights and the number a total is compared with.",
-          "reads": "A published instrument is one every panel has to score against and one the organisation is answerable to; the columns can no longer be settled after the round.",
-          "does": "Defines which instruments may be published and how a change to one is dated, and holds the publication back for roles where no rubric has been written."
-        },
-        {
-          "actor": "candidate",
-          "sees": "The columns, the weights and the threshold before booking the hour, and the column scores with the outcome.",
-          "reads": "The hour is scored on four named things, so preparation has a target, and a total a point under the line reads as that rather than as a verdict on the person.",
-          "does": "Prepares against the named columns, and where the exercise format does not match what the role does, decides that before spending the hour."
-        },
-        {
-          "actor": "hiring-manager",
-          "sees": "The team's rubric as an external document with a date on it, and every panel entry now recorded against those columns.",
-          "reads": "The instrument is fixed before the round, so two interviewers disagreeing becomes a difference in a named column rather than a difference in what was being looked for.",
-          "does": "Writes the columns and the threshold down before the role opens, and takes a change to them through the same publication step rather than mid-search."
-        }
-      ]
-    },
-    {
-      "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-043"
-      ],
-      "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
-      "aliases": [],
-      "id": "I-014",
-      "type": "intervention",
-      "summary": "Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.",
-      "targets": [
-        "mech.interview_resource_scheduling_saturation",
-        "bar.technical_screen_live_assessment"
-      ],
-      "actor": "hiring-manager",
-      "scope": "team",
-      "cost": "medium",
-      "evidence_level": "supported",
-      "expected_effects": [
-        "mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date",
-        "A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name",
-        "Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot"
-      ],
-      "measurements": [
-        "interview_reschedule_rate",
-        "panel_seat_backfill_rate",
-        "rounds_per_interviewer_month"
-      ],
-      "specimens": [
-        {
-          "kind": "chat",
-          "label": "The same Wednesday, with a second name already on the round",
-          "subject": "Technical screen — Thursday",
-          "lines": [
-            {
-              "speaker": "Engineering manager",
-              "at": "Wed 17:40",
-              "text": "Thursday's screen needs a seat. You are on the rota this sprint, and the board is already two points lighter for it.",
-              "tell": false
-            },
-            {
-              "speaker": "Interviewer",
-              "at": "Wed 17:52",
-              "text": "I am on release duty. If I take it, it is a cold read.",
-              "tell": false
-            },
-            {
-              "speaker": "Engineering manager",
-              "at": "Wed 17:55",
-              "text": "Then it goes to the second name on the rota — the prep block is on that calendar at 09:00 and the material is already there.",
-              "tell": true
-            },
-            {
-              "speaker": "Coordinator",
-              "at": "Wed 18:10",
-              "text": "Candidate told the same day: same slot, different interviewer, date unchanged.",
-              "tell": false
-            }
-          ],
-          "reading": "The release duty is still there. What changes is that the round carries a second name before the week starts, so an unavailable interviewer passes the seat instead of moving the date."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "hiring-manager",
-          "sees": "A rota with two names against each round of the sprint, and a sprint board with those hours already taken out of it.",
-          "reads": "Interview capacity is planned before the week rather than found inside it, and the cost is visible on the board where it was previously absorbed by whoever had the slot.",
-          "does": "Takes the points off the sprint for the rota week, and passes the seat to the second name when the first is on release duty."
-        },
-        {
-          "actor": "candidate",
-          "sees": "A round that keeps its date, and an interviewer who opens the submitted work before the call rather than during it.",
-          "reads": "A change of interviewer arrives with the date unchanged, which is a different event from a round being moved.",
-          "does": "Keeps the slot and prepares once, instead of replanning the week around a moved round."
+          "sees": "A posting draft with a band in it, and the same band readable by everyone already employed at that level.",
+          "reads": "Publishing fixes a number that was previously settled per candidate, and makes internal pay spread visible in a document anyone can open.",
+          "does": "Requires the band to be verified by finance before the posting goes live, which adds an approval step to publishing a role."
         },
         {
           "actor": "recruiter",
-          "sees": "Panel seats coming back filled from the rota, and a reschedule request only where both names are unavailable.",
-          "reads": "A date that moves becomes the exception the process reports rather than the ordinary way a seat gets filled.",
-          "does": "Sends the invitation with the interviewer's name and the prep block already accepted, and names a new date only when both rota names are out."
-        }
-      ]
-    },
-    {
-      "title": "Dated Funding Certification Before the Final Round",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-044"
-      ],
-      "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
-      "aliases": [],
-      "id": "I-015",
-      "type": "intervention",
-      "summary": "Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.",
-      "targets": [
-        "bar.headcount_executive_budget_approval",
-        "bar.offer_closing_contract_execution",
-        "mech.headcount_freeze_or_budget_cancellation"
-      ],
-      "actor": "employer-policy",
-      "scope": "organizational",
-      "cost": "medium",
-      "evidence_level": "supported",
-      "expected_effects": [
-        "bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends",
-        "mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date",
-        "bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live"
-      ],
-      "measurements": [
-        "panel_to_offer_latency_days",
-        "requisition_funding_lapse_rate",
-        "countersignature_latency_days"
-      ],
-      "specimens": [
-        {
-          "kind": "ats",
-          "label": "The requisition, with the funding date in it",
-          "subject": "req #5120 · Senior Backend Engineer",
-          "lines": [
-            {
-              "text": "funding_certified_through: 30 November · certified by finance 12 August",
-              "tell": true
-            },
-            {
-              "at": "d0",
-              "text": "Final round requested — the scheduler reads the field: the certified date covers the expected start date. Round booked.",
-              "tell": false
-            },
-            {
-              "at": "d0",
-              "text": "Scheduling message to the candidate: this requisition is funded through 30 November, and that is the date the approval behind it expires.",
-              "tell": true
-            },
-            {
-              "at": "d21",
-              "text": "Contract issued · countersignature released on a live certification, with no second approval step.",
-              "tell": false
-            },
-            {
-              "text": "Where a division freeze revokes the certification: req #5120 flips to a dated paused state and every candidate in flight is written to on that date.",
-              "tell": false
-            }
-          ],
-          "reading": "The date is one field. What it does is move the approval from after the panel to before the scheduler, and give the recruiter a date to quote where the pending row had none."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "employer-policy",
-          "sees": "A certification with an expiry on every requisition, and a quarterly review in which each line already carries the date it runs out.",
-          "reads": "Optionality narrows: a requisition can no longer sit in pending while the quarter is decided, because pending now blocks the scheduler rather than the offer.",
-          "does": "Sets the certification horizon and who may re-certify, and decides whether a lapsed date pauses the requisition or closes it."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "The funded-through date as a field in the requisition, and a scheduler that refuses a final round when the date does not cover the expected start.",
-          "reads": "A date exists to quote where the pending row had none; the cost is that some final rounds cannot be booked at all.",
-          "does": "Quotes the date when scheduling, and where the certification lapses mid-loop, sends the dated notice instead of waiting for the row to move."
+          "sees": "The band as a published line in the requisition, available before the screening call rather than after the panel.",
+          "reads": "The expectation question is no longer the filter: a candidate above the band says so at the screen, where the process has cost nobody five rounds.",
+          "does": "Opens the screen with the number, and routes a mismatch into the levelling question instead of carrying it to the offer stage."
         },
         {
           "actor": "candidate",
-          "sees": "A scheduling message naming the date the funding behind the requisition expires, and, where it lapses, a dated notice saying paused or closed.",
-          "reads": "The interval after a panel that went well has a stated cause and a boundary: the wait turns on a certification date rather than on the rounds already completed.",
-          "does": "Weighs that date against the other processes in flight, and stops holding capacity for this one once the notice says closed."
+          "sees": "The band and the level in the posting, dated and attributed, before any unpaid hours are committed.",
+          "reads": "The one number the whole process is arranged around is available before entering it, so applying becomes a decision about a known range.",
+          "does": "Applies or does not, and where the expectation sits above the band, raises it at the screen instead of at the offer."
+        },
+        {
+          "actor": "public-policy",
+          "sees": "Postings carrying a band in covered jurisdictions, and postings carrying one elsewhere because the practice spread.",
+          "reads": "Compliance is checkable against the text of the posting; the level a candidate is actually assessed at sits outside what any current disclosure rule reaches.",
+          "does": "Sets the requirement on the posting, the one artefact an inspection can check; the levelling decision has no comparable artefact for a rule to attach to."
         }
       ]
     },
@@ -1202,8 +1317,10 @@
         "EVD-032"
       ],
       "content": "# Verification Discrepancy Disclosure and Reconciliation Window\n\nClassify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.\n\n### Expected Effects\n- mech.reference_check_discrepancy_or_regulatory_ineligibility arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause\n- bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns\n- Which findings a document can close and which end the process is a published classification rather than a per-file decision\n\n### Measurements\n- `verification_hold_duration_days`\n- `discrepancy_reconciliation_rate`\n- `disclosed_finding_ratio`",
-      "aliases": [],
-      "id": "I-016",
+      "aliases": [
+        "I-016"
+      ],
+      "id": "int.verification_discrepancy_disclosure_and_reconciliation_window",
       "type": "intervention",
       "summary": "Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.",
       "targets": [
@@ -1278,89 +1395,6 @@
           "sees": "The disputed field, both values, the document that closes it and the date the window ends — on the day the check returns.",
           "reads": "The hold is a paperwork task with a named remedy and an end date, rather than an unexplained pause after an offer already accepted.",
           "does": "Retrieves the payslips or contract covering the disputed months, and keeps the resignation date behind the revised start date until the field closes."
-        }
-      ]
-    },
-    {
-      "title": "Recorded Finalist Standing With a Dated Re-Entry Route",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-045"
-      ],
-      "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- mech.stronger_competing_candidate_in_final_cohort becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
-      "aliases": [],
-      "id": "I-017",
-      "type": "intervention",
-      "summary": "Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.",
-      "targets": [
-        "mech.stronger_competing_candidate_in_final_cohort",
-        "bar.headcount_executive_budget_approval",
-        "pat.closed_then_reposted_requisition_motif"
-      ],
-      "actor": "recruiter-process",
-      "scope": "organizational",
-      "cost": "low",
-      "evidence_level": "supported",
-      "expected_effects": [
-        "mech.stronger_competing_candidate_in_final_cohort becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group",
-        "bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing",
-        "pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated"
-      ],
-      "measurements": [
-        "finalist_standing_record_rate",
-        "finalist_reentry_rate",
-        "reposted_requisition_match_rate"
-      ],
-      "specimens": [
-        {
-          "kind": "ats",
-          "label": "The closing record, and what it leaves behind",
-          "subject": "req #4471 · closing record",
-          "lines": [
-            {
-              "text": "Outcome: cleared every round · not selected · cohort: 4 finalists, 1 offer · reason class: cohort ranking — domain overlap",
-              "tell": true
-            },
-            {
-              "text": "Standing: finalist · re-entry at the technical panel until 14 March · applies to any L4 requisition in Engineering",
-              "tell": false
-            },
-            {
-              "at": "d0",
-              "text": "Sent with the decline: the cohort size, the class of reason, the re-entry stage and the date it runs to.",
-              "tell": true
-            },
-            {
-              "at": "w11",
-              "text": "req #4471 reposted → 2 standings matched → both records enter the recruiter queue at the panel stage",
-              "tell": false
-            },
-            {
-              "text": "Where the requisition closed unfunded rather than filled, the reason class reads funding withdrawn and the standing is recorded on the same terms.",
-              "tell": false
-            }
-          ],
-          "reading": "A ranking cannot be turned into a fault, and this does not try. It records what the ranking was and what the record is entitled to afterwards, so the outcome leaves something behind it."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "candidate",
-          "sees": "A decline naming the cohort size, the class of reason, and the stage and date the record re-enters at.",
-          "reads": "The outcome was a ranking in a group of a stated size rather than a fault found in the rounds, and the record has a stated life after the decision.",
-          "does": "Applies again inside that date and enters at the stated stage, instead of starting the loop from the screen."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "A required reason class and a cohort count on the closing record, and a queue where matched standings sit alongside new applications.",
-          "reads": "The outcome has to be classified before the requisition can be closed, and a comparison is one of the classes the taxonomy contains.",
-          "does": "Records the class, sends the cohort size and the re-entry date with the decline, and works the matched standings when a requisition at that level opens."
-        },
-        {
-          "actor": "hiring-manager",
-          "sees": "Two records arriving at the panel stage on a reposted requisition, each with the previous panel's scores attached.",
-          "reads": "The evidence the earlier loop produced is reusable up to the date on the standing; after that the record re-enters at the screen like any other.",
-          "does": "Runs the panel on the standing rather than the full loop, or lets the standing lapse where the level or the profile has moved."
         }
       ]
     }

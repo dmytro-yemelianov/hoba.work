@@ -52,7 +52,7 @@ specimens:
 non_inferences:
   - "Не доводить, що роботодавець має необмежений бюджет або діє зі злим наміром."
 interventions:
-  - "I-002"
+  - "int.upfront_compensation_band_disclosure"
 perspectives:
   -
     actor: "candidate"

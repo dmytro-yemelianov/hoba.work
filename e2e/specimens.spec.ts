@@ -27,7 +27,7 @@ test.describe('a shared entity page stands on its own', () => {
   test('specimens render on every entity type', async ({ page }) => {
     const ONE_OF_EACH = [
       '/artifacts/obs.rejection_within_minutes_of_application_submission', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.automated_application_expiration_timeout',
-      '/patterns/pat.experience_age_impossibility', '/loops/L-001', '/interventions/I-004',
+      '/patterns/pat.experience_age_impossibility', '/loops/L-001', '/interventions/int.remove_career_gap_feature_from_automated_ranking_models',
     ];
     for (const path of ONE_OF_EACH) {
       await page.goto(path);
@@ -38,7 +38,7 @@ test.describe('a shared entity page stands on its own', () => {
   });
 
   test('an intervention shows the document as it looks once applied', async ({ page }) => {
-    await page.goto('/interventions/I-002');
+    await page.goto('/interventions/int.upfront_compensation_band_disclosure');
     await expect(page.locator('main')).toContainText(says('uk', 'specimen.sectionFixed'));
     await expect(page.locator('.specimen')).toContainText('68 000–79 000');
   });

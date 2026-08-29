@@ -44,8 +44,8 @@ non_inferences:
   - "Does not establish that the candidate lacks market value."
   - "Does not establish malice or coordinated collusion between employers."
 interventions:
-  - "I-002"
-  - "I-003"
+  - "int.upfront_compensation_band_disclosure"
+  - "int.standardized_late_stage_rejection_feedback_taxonomy"
 perspectives:
   -
     actor: "candidate"

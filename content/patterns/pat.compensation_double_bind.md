@@ -52,7 +52,7 @@ specimens:
 non_inferences:
   - "Does not establish that the employer has an unlimited budget, or that any of this is malicious."
 interventions:
-  - "I-002"
+  - "int.upfront_compensation_band_disclosure"
 perspectives:
   -
     actor: "candidate"

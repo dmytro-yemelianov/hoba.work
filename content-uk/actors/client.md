@@ -55,7 +55,7 @@ recommendations:
       - "mech.speculative_sourcing_talent_pooling_without_opening"
       - "bar.outbound_sourcing_talent_pool_contact"
     interventions:
-      - "I-009"
+      - "int.outreach_states_the_requisition_behind_it"
   -
     id: "return-profile-decisions-with-a-category"
     title: "Повертайте рішення за профілями у визначений строк і з категорією"
@@ -66,7 +66,7 @@ recommendations:
       - "obs.generic_closer_alignment_rejection_template"
       - "obs.rejection_after_the_application_sat_pending_for_months"
     interventions:
-      - "I-003"
+      - "int.standardized_late_stage_rejection_feedback_taxonomy"
 ---
 
 # Замовник

@@ -49,7 +49,7 @@ recommendations:
       - "mech.unstated_compensation_band_discrepancy"
       - "pat.compensation_double_bind"
     interventions:
-      - "I-002"
+      - "int.upfront_compensation_band_disclosure"
   -
     id: "name-the-stage-and-criterion"
     title: "Name the stage and the criterion that ended it"
@@ -61,7 +61,7 @@ recommendations:
       - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.team_cross_functional_panel"
     interventions:
-      - "I-003"
+      - "int.standardized_late_stage_rejection_feedback_taxonomy"
   -
     id: "tell-them-when-a-search-stalls"
     title: "Tell everyone still inside when a search stops moving"
@@ -73,7 +73,7 @@ recommendations:
       - "obs.position_closed_after_final_interview_without_hire"
       - "mech.stale_or_orphaned_job_requisition"
     interventions:
-      - "I-001"
+      - "int.auto_close_stale_job_requisitions"
   -
     id: "name-the-stages-and-dates"
     title: "Name every stage and its date at the screen"

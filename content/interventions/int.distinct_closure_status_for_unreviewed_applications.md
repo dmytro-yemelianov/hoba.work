@@ -1,0 +1,79 @@
+---
+id: "int.distinct_closure_status_for_unreviewed_applications"
+type: "intervention"
+aliases:
+  - "I-010"
+title: "Distinct Closure Status for Unreviewed Applications"
+summary: "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition."
+targets:
+  - "bar.inbound_screening_triage"
+  - "mech.recruiter_volume_quota_incentive_distortion"
+  - "mech.automated_application_expiration_timeout"
+actor: "ats-vendor"
+scope: "ecosystem"
+cost: "medium"
+evidence_level: "supported"
+expected_effects:
+  - "mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status"
+  - "The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are"
+  - "bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search"
+measurements:
+  - "unreviewed_at_close_rate"
+  - "time_to_first_human_open_days"
+  - "closure_status_coverage"
+specimens:
+  -
+    kind: "ats"
+    label: "The status the batch writes, and where the count lands"
+    subject: "Requisition #4471 — queue closure"
+    lines:
+      -
+        at: "config"
+        text: "Terminal statuses: reviewed_advanced · reviewed_declined · closed_unreviewed · closed_with_requisition. A record does not leave the queue without one of them."
+      -
+        at: "02:00"
+        text: "Scheduled job expire_stale_applications — 312 matched; human_open recorded on 0 → status closed_unreviewed"
+        tell: true
+      -
+        at: "02:01"
+        text: "Notice sent, status bound into the template: \"Your application was not reviewed before this search closed. No assessment of your profile was made.\""
+      -
+        at: "requisition dashboard"
+        text: "Requisition #4471 — received 640 · opened 219 · closed unreviewed 421"
+        tell: true
+    reading: "The batch is the same batch. What changed is that the status it writes separates a record nobody opened from one that was declined, and the count of the first sits on the same dashboard as applications received."
+perspectives:
+  -
+    actor: "ats-vendor"
+    sees: "A status vocabulary in which every way a record leaves the queue has its own terminal value, and the migration that splits the existing Rejected in two."
+    reads: "The split is a schema change and a template variable; what it exposes — how much of the queue was never opened — becomes a figure in every customer's dashboard."
+    does: "Ships the statuses and the counter, makes the terminal status a required variable in the notification template, and carries the customers whose reporting was built on a single Rejected value."
+  -
+    actor: "recruiter"
+    sees: "The requisition dashboard carrying received, opened and closed-unreviewed side by side, and the expiry batch landing in the third column."
+    reads: "How far the queue ran past the week is a published figure on the requisition rather than a condition of the job. Time-to-fill is still what the report is read for."
+    does: "Works the current inbound with the count standing next to it; where the count is argued about, it is argued about against the recruiting headcount that fixes review capacity."
+  -
+    actor: "candidate"
+    sees: "A notice naming the status the record ended in, and whether a person opened it."
+    reads: "A record nobody reached and a record that was assessed and declined no longer arrive in the same words; only one of the two says anything about the profile."
+    does: "Reads the message for the status rather than for an assessment it states is not there, and decides about reapplying on that."
+status: "active"
+evidence_ids:
+  - "EVD-036"
+  - "EVD-037"
+---
+
+# Distinct Closure Status for Unreviewed Applications
+
+Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.
+
+### Expected Effects
+- mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status
+- The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are
+- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
+
+### Measurements
+- `unreviewed_at_close_rate`
+- `time_to_first_human_open_days`
+- `closure_status_coverage`

@@ -175,6 +175,14 @@ describe('legacy entity-ID redirects', () => {
     expect(legacyRedirect('/artifacts/A-001.md')).toBe('/artifacts/obs.complete_silence_after_submission.md');
   });
 
+  it('redirects an old intervention short code to its new dotted-namespace path', () => {
+    expect(legacyRedirect('/interventions/I-001')).toBe('/interventions/int.auto_close_stale_job_requisitions');
+  });
+
+  it('redirects an old intervention short code requesting its Markdown representation', () => {
+    expect(legacyRedirect('/interventions/I-001.md')).toBe('/interventions/int.auto_close_stale_job_requisitions.md');
+  });
+
   it('leaves the root path alone', () => {
     expect(legacyRedirect('/')).toBeNull();
   });

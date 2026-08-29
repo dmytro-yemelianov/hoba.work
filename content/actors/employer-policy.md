@@ -49,7 +49,7 @@ recommendations:
       - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
     interventions:
-      - "I-002"
+      - "int.upfront_compensation_band_disclosure"
   -
     id: "fund-before-publication"
     title: "Sign the headcount before the role is published"
@@ -78,7 +78,7 @@ recommendations:
       - "obs.position_closed_after_final_interview_without_hire"
       - "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
     interventions:
-      - "I-001"
+      - "int.auto_close_stale_job_requisitions"
   -
     id: "declare-internal-candidacy-on-the-posting"
     title: "State on the posting that an internal candidacy exists"

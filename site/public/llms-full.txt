@@ -16,7 +16,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 48) — the published sources behind the claims.
 
-The graph has 158 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 175 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -653,7 +653,7 @@ Teams write inflated requirements that filter out strong generalists; the search
 
 ## Interventions
 
-### I-001 — Auto-Close Stale Job Requisitions
+### int.auto_close_stale_job_requisitions — Auto-Close Stale Job Requisitions
 
 Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
 
@@ -662,34 +662,7 @@ Implement automated ATS policy to expire public listings when headcount authoris
 - Expected: mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it
 - Expected: Silence after applying acquires a bound — the record is closed and the closure is sent
 
-### I-002 — Upfront Compensation Band Disclosure
-
-Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.
-
-- Actor: employer-policy · Scope: industry · Cost: low
-- Targets: mech.unstated_compensation_band_discrepancy, bar.recruiter_screening_call, bar.compensation_levelling_reconciliation, pat.seniority_double_bind, pat.compensation_double_bind
-- Expected: mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number
-- Expected: bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists
-
-### I-003 — Standardized Late-Stage Rejection Feedback Taxonomy
-
-Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
-
-- Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: mech.genuine_technical_skill_shortfall, mech.hidden_evaluation_rubric_or_undisclosed_priority, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.client_profile_approval_and_client_interview, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, L-003
-- Expected: The stage and the criterion behind a late rejection become part of what is sent
-- Expected: mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round
-
-### I-004 — Remove Career Gap Feature from Automated Ranking Models
-
-Disable employment duration gap penalties in recruitment AI algorithms and screening models.
-
-- Actor: ats-vendor · Scope: ecosystem · Cost: low
-- Targets: mech.employment_gap_downranking_bias, L-001
-- Expected: mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input
-- Expected: L-001 loses the edge that closed it, because a gap can no longer widen the next gap
-
-### I-005 — Candidate ATS Parser Conformance Test Utility
+### int.candidate_ats_parser_conformance_test_utility — Candidate ATS Parser Conformance Test Utility
 
 Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.
 
@@ -698,65 +671,7 @@ Provide candidates with an open-source parsing validation tool to verify CV mach
 - Expected: The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one
 - Expected: mech.ats_parser_extraction_failure moves from invisible to checkable on the candidate's side of the line
 
-### I-006 — Strict Take-Home Timebox & Blinded Evaluation Rubric
-
-Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.
-
-- Actor: hiring-manager · Scope: organizational · Cost: medium
-- Targets: mech.take_home_evaluation_fatigue_asymmetry, L-002, bar.take_home_work_sample_evaluation
-- Expected: mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate
-- Expected: Who wrote a submission stops being an input to how it is scored
-
-### I-007 — Requirements Drawn From the Team's Own Backlog
-
-Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.
-
-- Actor: hiring-manager · Scope: team · Cost: low
-- Targets: mech.inflated_requisition_requirements_vs_actual_team_needs, bar.requisition_approval_public_posting, L-003
-- Expected: mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
-- Expected: bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
-- Expected: L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
-
-### I-008 — Internal Candidacy Stated in the Posting
-
-Where a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.
-
-- Actor: employer-policy · Scope: organizational · Cost: medium
-- Targets: mech.pre_selected_internal_candidate, bar.requisition_approval_public_posting
-- Expected: mech.pre_selected_internal_candidate stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round
-- Expected: bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration
-
-### I-009 — Outreach States the Requisition Behind It
-
-Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.
-
-- Actor: recruiter-process · Scope: organizational · Cost: low
-- Targets: bar.outbound_sourcing_talent_pool_contact, mech.speculative_sourcing_talent_pooling_without_opening, mech.bid_conditional_talent_pool
-- Expected: bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent
-- Expected: mech.speculative_sourcing_talent_pooling_without_opening becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on
-- Expected: The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast
-
-### I-010 — Distinct Closure Status for Unreviewed Applications
-
-Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.
-
-- Actor: ats-vendor · Scope: ecosystem · Cost: medium
-- Targets: bar.inbound_screening_triage, mech.recruiter_volume_quota_incentive_distortion, mech.automated_application_expiration_timeout
-- Expected: mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status
-- Expected: The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are
-- Expected: bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
-
-### I-011 — Screening Note Bound to Observations and Disposition Codes
-
-Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.
-
-- Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: bar.inbound_screening_triage, mech.experience_age_grading_mismatch, mech.portfolio_work_artifact_misinterpretation
-- Expected: The forecast mech.experience_age_grading_mismatch is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code
-- Expected: mech.portfolio_work_artifact_misinterpretation becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be
-- Expected: A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen
-
-### I-012 — Candidate Work Index Submitted With the Application
+### int.candidate_work_index_submitted_with_the_application — Candidate Work Index Submitted With the Application
 
 Submit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.
 
@@ -766,27 +681,7 @@ Submit a one-page index naming each work artefact, the part of it that is the ca
 - Expected: A contribution held under another organisation arrives as a commit range rather than as something to be discovered
 - Expected: The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first
 
-### I-013 — Publish the Technical Screen's Columns and Threshold Before the Round
-
-Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.
-
-- Actor: employer-policy · Scope: organizational · Cost: medium
-- Targets: bar.technical_screen_live_assessment, mech.interview_resource_scheduling_saturation
-- Expected: bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel
-- Expected: A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published
-- Expected: A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression
-
-### I-014 — Interview Seats Booked With Prep Time and a Second Name on the Rota
-
-Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.
-
-- Actor: hiring-manager · Scope: team · Cost: medium
-- Targets: mech.interview_resource_scheduling_saturation, bar.technical_screen_live_assessment
-- Expected: mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date
-- Expected: A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name
-- Expected: Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot
-
-### I-015 — Dated Funding Certification Before the Final Round
+### int.dated_funding_certification_before_the_final_round — Dated Funding Certification Before the Final Round
 
 Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.
 
@@ -796,17 +691,56 @@ Carry a funding-certified-through date on every requisition, refuse to schedule 
 - Expected: mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date
 - Expected: bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live
 
-### I-016 — Verification Discrepancy Disclosure and Reconciliation Window
+### int.distinct_closure_status_for_unreviewed_applications — Distinct Closure Status for Unreviewed Applications
 
-Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.
+Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.
 
-- Actor: employer-policy · Scope: organizational · Cost: low
-- Targets: bar.reference_background_verification, bar.probation_period_post_start_confirmation, mech.reference_check_discrepancy_or_regulatory_ineligibility, mech.start_date_slippage_and_post_acceptance_revocation, mech.probation_used_as_extended_de_facto_interview
-- Expected: mech.reference_check_discrepancy_or_regulatory_ineligibility arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause
-- Expected: bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns
-- Expected: Which findings a document can close and which end the process is a published classification rather than a per-file decision
+- Actor: ats-vendor · Scope: ecosystem · Cost: medium
+- Targets: bar.inbound_screening_triage, mech.recruiter_volume_quota_incentive_distortion, mech.automated_application_expiration_timeout
+- Expected: mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status
+- Expected: The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are
+- Expected: bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
 
-### I-017 — Recorded Finalist Standing With a Dated Re-Entry Route
+### int.internal_candidacy_stated_in_the_posting — Internal Candidacy Stated in the Posting
+
+Where a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.
+
+- Actor: employer-policy · Scope: organizational · Cost: medium
+- Targets: mech.pre_selected_internal_candidate, bar.requisition_approval_public_posting
+- Expected: mech.pre_selected_internal_candidate stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round
+- Expected: bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration
+
+### int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota — Interview Seats Booked With Prep Time and a Second Name on the Rota
+
+Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.
+
+- Actor: hiring-manager · Scope: team · Cost: medium
+- Targets: mech.interview_resource_scheduling_saturation, bar.technical_screen_live_assessment
+- Expected: mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date
+- Expected: A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name
+- Expected: Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot
+
+### int.outreach_states_the_requisition_behind_it — Outreach States the Requisition Behind It
+
+Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.
+
+- Actor: recruiter-process · Scope: organizational · Cost: low
+- Targets: bar.outbound_sourcing_talent_pool_contact, mech.speculative_sourcing_talent_pooling_without_opening, mech.bid_conditional_talent_pool
+- Expected: bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent
+- Expected: mech.speculative_sourcing_talent_pooling_without_opening becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on
+- Expected: The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast
+
+### int.publish_the_technical_screen_s_columns_and_threshold_before_the_round — Publish the Technical Screen's Columns and Threshold Before the Round
+
+Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.
+
+- Actor: employer-policy · Scope: organizational · Cost: medium
+- Targets: bar.technical_screen_live_assessment, mech.interview_resource_scheduling_saturation
+- Expected: bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel
+- Expected: A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published
+- Expected: A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression
+
+### int.recorded_finalist_standing_with_a_dated_re_entry_route — Recorded Finalist Standing With a Dated Re-Entry Route
 
 Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.
 
@@ -815,6 +749,72 @@ Record, for every finalist who cleared the bar and received no offer, the cohort
 - Expected: mech.stronger_competing_candidate_in_final_cohort becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group
 - Expected: bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing
 - Expected: pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated
+
+### int.remove_career_gap_feature_from_automated_ranking_models — Remove Career Gap Feature from Automated Ranking Models
+
+Disable employment duration gap penalties in recruitment AI algorithms and screening models.
+
+- Actor: ats-vendor · Scope: ecosystem · Cost: low
+- Targets: mech.employment_gap_downranking_bias, L-001
+- Expected: mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input
+- Expected: L-001 loses the edge that closed it, because a gap can no longer widen the next gap
+
+### int.requirements_drawn_from_the_team_s_own_backlog — Requirements Drawn From the Team's Own Backlog
+
+Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.
+
+- Actor: hiring-manager · Scope: team · Cost: low
+- Targets: mech.inflated_requisition_requirements_vs_actual_team_needs, bar.requisition_approval_public_posting, L-003
+- Expected: mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
+- Expected: bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
+- Expected: L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
+
+### int.screening_note_bound_to_observations_and_disposition_codes — Screening Note Bound to Observations and Disposition Codes
+
+Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.
+
+- Actor: recruiter-process · Scope: organizational · Cost: medium
+- Targets: bar.inbound_screening_triage, mech.experience_age_grading_mismatch, mech.portfolio_work_artifact_misinterpretation
+- Expected: The forecast mech.experience_age_grading_mismatch is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code
+- Expected: mech.portfolio_work_artifact_misinterpretation becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be
+- Expected: A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen
+
+### int.standardized_late_stage_rejection_feedback_taxonomy — Standardized Late-Stage Rejection Feedback Taxonomy
+
+Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
+
+- Actor: recruiter-process · Scope: organizational · Cost: medium
+- Targets: mech.genuine_technical_skill_shortfall, mech.hidden_evaluation_rubric_or_undisclosed_priority, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.client_profile_approval_and_client_interview, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, L-003
+- Expected: The stage and the criterion behind a late rejection become part of what is sent
+- Expected: mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round
+
+### int.strict_take_home_timebox_blinded_evaluation_rubric — Strict Take-Home Timebox & Blinded Evaluation Rubric
+
+Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.
+
+- Actor: hiring-manager · Scope: organizational · Cost: medium
+- Targets: mech.take_home_evaluation_fatigue_asymmetry, L-002, bar.take_home_work_sample_evaluation
+- Expected: mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate
+- Expected: Who wrote a submission stops being an input to how it is scored
+
+### int.upfront_compensation_band_disclosure — Upfront Compensation Band Disclosure
+
+Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.
+
+- Actor: employer-policy · Scope: industry · Cost: low
+- Targets: mech.unstated_compensation_band_discrepancy, bar.recruiter_screening_call, bar.compensation_levelling_reconciliation, pat.seniority_double_bind, pat.compensation_double_bind
+- Expected: mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number
+- Expected: bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists
+
+### int.verification_discrepancy_disclosure_and_reconciliation_window — Verification Discrepancy Disclosure and Reconciliation Window
+
+Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.
+
+- Actor: employer-policy · Scope: organizational · Cost: low
+- Targets: bar.reference_background_verification, bar.probation_period_post_start_confirmation, mech.reference_check_discrepancy_or_regulatory_ineligibility, mech.start_date_slippage_and_post_acceptance_revocation, mech.probation_used_as_extended_de_facto_interview
+- Expected: mech.reference_check_discrepancy_or_regulatory_ineligibility arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause
+- Expected: bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns
+- Expected: Which findings a document can close and which end the process is a published classification rather than a per-file decision
 
 ## Actors
 

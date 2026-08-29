@@ -72,7 +72,7 @@ recommendations:
       - "bar.take_home_work_sample_evaluation"
       - "L-002"
     interventions:
-      - "I-006"
+      - "int.strict_take_home_timebox_blinded_evaluation_rubric"
   -
     id: "decision-rule-before-the-panel"
     title: "Узгодьте правило рішення до першої розмови"

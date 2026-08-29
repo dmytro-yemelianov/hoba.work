@@ -1,0 +1,79 @@
+---
+id: "int.dated_funding_certification_before_the_final_round"
+type: "intervention"
+aliases:
+  - "I-015"
+title: "Dated Funding Certification Before the Final Round"
+summary: "Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval."
+targets:
+  - "bar.headcount_executive_budget_approval"
+  - "bar.offer_closing_contract_execution"
+  - "mech.headcount_freeze_or_budget_cancellation"
+actor: "employer-policy"
+scope: "organizational"
+cost: "medium"
+evidence_level: "supported"
+expected_effects:
+  - "bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends"
+  - "mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date"
+  - "bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live"
+measurements:
+  - "panel_to_offer_latency_days"
+  - "requisition_funding_lapse_rate"
+  - "countersignature_latency_days"
+specimens:
+  -
+    kind: "ats"
+    label: "The requisition, with the funding date in it"
+    subject: "req #5120 · Senior Backend Engineer"
+    lines:
+      -
+        text: "funding_certified_through: 30 November · certified by finance 12 August"
+        tell: true
+      -
+        at: "d0"
+        text: "Final round requested — the scheduler reads the field: the certified date covers the expected start date. Round booked."
+      -
+        at: "d0"
+        text: "Scheduling message to the candidate: this requisition is funded through 30 November, and that is the date the approval behind it expires."
+        tell: true
+      -
+        at: "d21"
+        text: "Contract issued · countersignature released on a live certification, with no second approval step."
+      -
+        text: "Where a division freeze revokes the certification: req #5120 flips to a dated paused state and every candidate in flight is written to on that date."
+    reading: "The date is one field. What it does is move the approval from after the panel to before the scheduler, and give the recruiter a date to quote where the pending row had none."
+perspectives:
+  -
+    actor: "employer-policy"
+    sees: "A certification with an expiry on every requisition, and a quarterly review in which each line already carries the date it runs out."
+    reads: "Optionality narrows: a requisition can no longer sit in pending while the quarter is decided, because pending now blocks the scheduler rather than the offer."
+    does: "Sets the certification horizon and who may re-certify, and decides whether a lapsed date pauses the requisition or closes it."
+  -
+    actor: "recruiter"
+    sees: "The funded-through date as a field in the requisition, and a scheduler that refuses a final round when the date does not cover the expected start."
+    reads: "A date exists to quote where the pending row had none; the cost is that some final rounds cannot be booked at all."
+    does: "Quotes the date when scheduling, and where the certification lapses mid-loop, sends the dated notice instead of waiting for the row to move."
+  -
+    actor: "candidate"
+    sees: "A scheduling message naming the date the funding behind the requisition expires, and, where it lapses, a dated notice saying paused or closed."
+    reads: "The interval after a panel that went well has a stated cause and a boundary: the wait turns on a certification date rather than on the rounds already completed."
+    does: "Weighs that date against the other processes in flight, and stops holding capacity for this one once the notice says closed."
+status: "active"
+evidence_ids:
+  - "EVD-044"
+---
+
+# Dated Funding Certification Before the Final Round
+
+Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.
+
+### Expected Effects
+- bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends
+- mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date
+- bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live
+
+### Measurements
+- `panel_to_offer_latency_days`
+- `requisition_funding_lapse_rate`
+- `countersignature_latency_days`

@@ -66,7 +66,7 @@
           "pat.seniority_double_bind"
         ],
         "interventions": [
-          "I-002"
+          "int.upfront_compensation_band_disclosure"
         ]
       },
       {
@@ -96,7 +96,7 @@
           "pat.closed_then_reposted_requisition_motif"
         ],
         "interventions": [
-          "I-001"
+          "int.auto_close_stale_job_requisitions"
         ]
       },
       {
@@ -127,7 +127,7 @@
           "bar.automated_filter_parser_threshold"
         ],
         "interventions": [
-          "I-004"
+          "int.remove_career_gap_feature_from_automated_ranking_models"
         ]
       },
       {
@@ -143,8 +143,8 @@
           "bar.requisition_approval_public_posting"
         ],
         "interventions": [
-          "I-003",
-          "I-002"
+          "int.standardized_late_stage_rejection_feedback_taxonomy",
+          "int.upfront_compensation_band_disclosure"
         ]
       }
     ]
