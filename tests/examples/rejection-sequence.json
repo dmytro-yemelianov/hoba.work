@@ -1,0 +1,49 @@
+{
+  "input_type": "rejection_sequence",
+  "source_text": "Applied 3 Feb. No acknowledgement. Rejected 11 May, 'we decided to move forward with other candidates'. The same role went up again on 19 May with the same requirement list and a new date.",
+  "observations": [
+    {
+      "text": "No acknowledgement of the application at any point before the rejection.",
+      "registry_refs": ["obs.complete_silence_after_submission"],
+      "confidence": "observed"
+    },
+    {
+      "text": "The rejection arrived after the application had been open for over three months.",
+      "registry_refs": ["obs.rejection_after_the_application_sat_pending_for_months"],
+      "confidence": "observed"
+    },
+    {
+      "text": "A materially similar posting reappeared eight days after the rejection.",
+      "registry_refs": [
+        "obs.materially_similar_role_reposted_shortly_after_rejection",
+        "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
+      ],
+      "confidence": "observed"
+    }
+  ],
+  "interpretations": [
+    { "text": "They never actually had the headcount.", "classification": "author_interpretation" },
+    { "text": "The dwell time and the repost are both consistent with a requisition that outlived its funding decision, but the sequence alone does not separate that from three other mechanisms.", "classification": "analyzer_interpretation" }
+  ],
+  "compatible_entities": [
+    { "id": "mech.stale_or_orphaned_job_requisition", "claim_level": "compatible", "reason": "A requisition left open past its decision produces both the dwell and the refreshed repost." },
+    { "id": "mech.headcount_freeze_or_budget_cancellation", "claim_level": "compatible", "reason": "A withdrawn budget closes the search without a hire and reopens it when funding returns." },
+    { "id": "mech.automated_application_expiration_timeout", "claim_level": "compatible", "reason": "A timeout disposition explains a rejection with no human read in between." },
+    { "id": "bar.inbound_screening_triage", "claim_level": "compatible", "reason": "The application never demonstrably passed this gate." }
+  ],
+  "unknowns": [
+    "Whether the application was read by a person at any point.",
+    "Whether the reposted requisition is the same requisition or a new one.",
+    "Whether anyone was hired into the role in the interval."
+  ],
+  "agency": {
+    "candidate": ["int.candidate_ats_parser_conformance_test_utility"],
+    "employer-policy": ["int.auto_close_stale_job_requisitions", "int.distinct_closure_status_for_unreviewed_applications"]
+  },
+  "prohibited_conclusions": [
+    "The posting was never a real opening.",
+    "A specific hidden mechanism is proven.",
+    "The employer acted in bad faith."
+  ],
+  "registry_version": "2026.08.3"
+}
