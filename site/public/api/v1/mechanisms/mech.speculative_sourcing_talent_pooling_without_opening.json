@@ -108,6 +108,12 @@
     ],
     "non_inferences": [
       "Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile."
-    ]
+    ],
+    "agency_zones": {
+      "recruiter": "high",
+      "candidate": "low",
+      "employer-policy": "low",
+      "ats-vendor": "low"
+    }
   }
 }

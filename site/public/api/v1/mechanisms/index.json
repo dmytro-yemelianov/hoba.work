@@ -101,7 +101,12 @@
       ],
       "non_inferences": [
         "Does not imply human recruiter evaluated and disliked candidate experience."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "high",
+        "recruiter": "low",
+        "ats-vendor": "medium"
+      }
     },
     {
       "title": "Automated Application Expiration Timeout",
@@ -221,7 +226,13 @@
       ],
       "non_inferences": [
         "A bulk timeout rejection carries no assessment of the profile at all."
-      ]
+      ],
+      "agency_zones": {
+        "ats-vendor": "high",
+        "recruiter": "low",
+        "candidate": "low",
+        "public-policy": "low"
+      }
     },
     {
       "title": "Automated Keyword / Qualification Filter",
@@ -326,7 +337,12 @@
       ],
       "non_inferences": [
         "Passing keyword filters does not guarantee interview invitation."
-      ]
+      ],
+      "agency_zones": {
+        "ats-vendor": "medium",
+        "hiring-manager": "low",
+        "candidate": "medium"
+      }
     },
     {
       "title": "Bench-Priority Fill",
@@ -430,7 +446,12 @@
       "non_inferences": [
         "Does not establish that the internal candidate was earmarked before the search was published — that is mech.pre_selected_internal_candidate, and from the outside the two are the same.",
         "Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "low",
+        "employer-policy": "medium",
+        "client": "low"
+      }
     },
     {
       "title": "Bid-Conditional Talent Pool",
@@ -530,7 +551,12 @@
       "non_inferences": [
         "Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.",
         "Does not establish that the recruiter was free to disclose the bid's existence."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "low",
+        "recruiter": "high",
+        "client": "low"
+      }
     },
     {
       "title": "Communication or Working Style Friction",
@@ -637,7 +663,12 @@
       ],
       "non_inferences": [
         "Style friction in a high-pressure interview is not a permanent personality defect."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "medium",
+        "hiring-manager": "low",
+        "recruiter": "low"
+      }
     },
     {
       "title": "Domain Specificity Over-Weighting",
@@ -757,7 +788,13 @@
       ],
       "non_inferences": [
         "Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "medium",
+        "candidate": "low",
+        "recruiter": "low",
+        "ats-vendor": "low"
+      }
     },
     {
       "title": "Employment Gap Downranking Bias",
@@ -859,7 +896,12 @@
       ],
       "non_inferences": [
         "An employment gap does not correlate with a decline in technical ability."
-      ]
+      ],
+      "agency_zones": {
+        "ats-vendor": "high",
+        "recruiter": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Experience-Age Grading Mismatch",
@@ -956,7 +998,12 @@
       ],
       "non_inferences": [
         "Being rejected as \"overqualified\" is an organisational tier mismatch, not a candidate deficiency."
-      ]
+      ],
+      "agency_zones": {
+        "recruiter": "high",
+        "candidate": "low",
+        "employer-policy": "low"
+      }
     },
     {
       "title": "Genuine Technical Skill Shortfall",
@@ -1054,7 +1101,12 @@
       ],
       "non_inferences": [
         "Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "low",
+        "recruiter": "high",
+        "candidate": "medium"
+      }
     },
     {
       "title": "Headcount Freeze or Budget Cancellation",
@@ -1158,7 +1210,13 @@
       ],
       "non_inferences": [
         "Candidate performance in interview was not the causal trigger for process termination."
-      ]
+      ],
+      "agency_zones": {
+        "employer-policy": "high",
+        "recruiter": "low",
+        "hiring-manager": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Hidden Evaluation Rubric or Undisclosed Priority",
@@ -1262,7 +1320,12 @@
       ],
       "non_inferences": [
         "Not guessing an unstated preference is not a shortfall in core competence."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "medium",
+        "candidate": "low",
+        "recruiter": "high"
+      }
     },
     {
       "title": "Hiring Manager Consensus Impasse",
@@ -1357,7 +1420,12 @@
       ],
       "non_inferences": [
         "A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "medium",
+        "recruiter": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Inflated Requisition Requirements vs Actual Team Needs",
@@ -1461,7 +1529,13 @@
       ],
       "non_inferences": [
         "Failing to meet an inflated \"wishlist\" does not establish anything about how the candidate would do the team's actual work."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "high",
+        "recruiter": "low",
+        "ats-vendor": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Interview Resource & Scheduling Saturation",
@@ -1562,7 +1636,13 @@
       ],
       "non_inferences": [
         "Rescheduling is an operational fact and does not indicate a negative evaluation."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "high",
+        "candidate": "low",
+        "recruiter": "low",
+        "employer-policy": "high"
+      }
     },
     {
       "title": "Location or Timezone Compliance Constraint",
@@ -1677,7 +1757,13 @@
       ],
       "non_inferences": [
         "The jurisdictional barrier is entirely independent of the candidate's technical competence."
-      ]
+      ],
+      "agency_zones": {
+        "employer-policy": "medium",
+        "recruiter": "low",
+        "candidate": "low",
+        "public-policy": "low"
+      }
     },
     {
       "title": "Mid-Process Role Requirement Redefinition",
@@ -1783,7 +1869,13 @@
       ],
       "non_inferences": [
         "The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "medium",
+        "recruiter": "low",
+        "candidate": "low",
+        "employer-policy": "low"
+      }
     },
     {
       "title": "Portfolio / Work Artifact Misinterpretation",
@@ -1882,7 +1974,12 @@
       ],
       "non_inferences": [
         "Misinterpreted architecture can be corrected through structured documentation."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "high",
+        "recruiter": "high",
+        "hiring-manager": "low"
+      }
     },
     {
       "title": "Pre-Selected Internal Candidate",
@@ -2001,7 +2098,12 @@
       ],
       "non_inferences": [
         "Cannot be asserted as fact without internal hiring log confirmation."
-      ]
+      ],
+      "agency_zones": {
+        "employer-policy": "high",
+        "hiring-manager": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Probation Used as Extended De-Facto Interview",
@@ -2105,7 +2207,12 @@
       ],
       "non_inferences": [
         "Does not establish that the employee committed gross misconduct."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "medium",
+        "candidate": "low",
+        "employer-policy": "high"
+      }
     },
     {
       "title": "Recruiter Volume & Quota Incentive Distortion",
@@ -2213,7 +2320,12 @@
       ],
       "non_inferences": [
         "Does not mean the recruiter is individually negligent; the capacity mismatch is structural."
-      ]
+      ],
+      "agency_zones": {
+        "recruiter": "medium",
+        "candidate": "low",
+        "ats-vendor": "high"
+      }
     },
     {
       "title": "Reference Check Discrepancy or Regulatory Ineligibility",
@@ -2302,7 +2414,12 @@
       ],
       "non_inferences": [
         "An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "medium",
+        "recruiter": "low",
+        "employer-policy": "high"
+      }
     },
     {
       "title": "Speculative Sourcing / Talent Pooling Without Opening",
@@ -2412,7 +2529,13 @@
       ],
       "non_inferences": [
         "Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile."
-      ]
+      ],
+      "agency_zones": {
+        "recruiter": "high",
+        "candidate": "low",
+        "employer-policy": "low",
+        "ats-vendor": "low"
+      }
     },
     {
       "title": "Stale or Orphaned Job Requisition",
@@ -2518,7 +2641,13 @@
       ],
       "non_inferences": [
         "Application silence does not reflect candidate suitability."
-      ]
+      ],
+      "agency_zones": {
+        "employer-policy": "high",
+        "ats-vendor": "medium",
+        "recruiter": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Start-Date Slippage and Post-Acceptance Revocation",
@@ -2619,7 +2748,12 @@
       ],
       "non_inferences": [
         "Does not establish that candidate credentials or references failed validation."
-      ]
+      ],
+      "agency_zones": {
+        "employer-policy": "high",
+        "candidate": "low",
+        "recruiter": "low"
+      }
     },
     {
       "title": "Stronger Competing Candidate in Final Cohort",
@@ -2715,7 +2849,12 @@
       ],
       "non_inferences": [
         "Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control."
-      ]
+      ],
+      "agency_zones": {
+        "candidate": "medium",
+        "hiring-manager": "low",
+        "recruiter": "high"
+      }
     },
     {
       "title": "Take-Home Evaluation Fatigue & Asymmetry",
@@ -2814,7 +2953,12 @@
       ],
       "non_inferences": [
         "A take-home rejection made under evaluation fatigue does not measure the engineering in the submission."
-      ]
+      ],
+      "agency_zones": {
+        "hiring-manager": "high",
+        "recruiter": "low",
+        "candidate": "low"
+      }
     },
     {
       "title": "Unstated Compensation Band Discrepancy",
@@ -2936,7 +3080,13 @@
       ],
       "non_inferences": [
         "Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget."
-      ]
+      ],
+      "agency_zones": {
+        "employer-policy": "high",
+        "recruiter": "low",
+        "candidate": "low",
+        "public-policy": "low"
+      }
     }
   ]
 }

@@ -99,6 +99,11 @@
     ],
     "non_inferences": [
       "Does not establish that candidate credentials or references failed validation."
-    ]
+    ],
+    "agency_zones": {
+      "employer-policy": "high",
+      "candidate": "low",
+      "recruiter": "low"
+    }
   }
 }

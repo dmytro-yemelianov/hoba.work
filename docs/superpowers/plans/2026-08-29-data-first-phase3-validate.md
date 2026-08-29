@@ -77,7 +77,7 @@ live in `tests/examples/`.
 | 3.1 epistemic model | **done** — `0ae94e2`. Seven states live; 23 → `proven`, 10 → `strongly_supported`, 9 → `compatible`, 1 → `unknown`. The `unsupported-claim` rule refuses an unearned `proven`, verified against real content. |
 | 3.3 Scenario | **done** — `8239180`. Schema, loader, build-time resolution (error, not warning), two seed scenarios, and the one-directional guarantee tested structurally. |
 | 3.4 Analysis | **done** — `9ca2edd`. Schema, `validateAnalysis` with the overclaim invariant, worked example under `tests/examples/`. |
-| 3.2 `agency_zones` | **open — a design question, below.** |
+| 3.2 `agency_zones` | **done** — derived, not authored: option (1) below, taken on the owner's go-ahead. Published on every mechanism in the API projection, alongside `removability`, not replacing it. |
 
 With 3.1, 3.3 and 3.4 in, rollout step 3's stated deliverables ("extend the
 validator for new IDs/aliases/epistemic states; add the Scenario schema +
@@ -116,6 +116,16 @@ Three ways to settle it, for the owner:
    mechanisms genuinely disagree with the derivation.
 
 Recommendation: (1), and revisit (3) only if a real disagreement shows up.
+
+**Settled: (1).** `agencyZones(bundle, mechanismId)` reads the three declared
+signals — a targeting intervention the actor can enact (`high`), the mechanism
+being their own force or theirs to remove (`medium`), a stated perspective on it
+and nothing more (`low`) — and an actor with none of them is absent rather than
+scored, so the map says "no declared relationship" and not "no power". Over the
+real registry it yields 94 values across 28 mechanisms (55 low, 16 medium, 23
+high), with a lever found on 21 of 28. `build-registry.ts` publishes it as
+`agency_zones` on each mechanism, so a consumer gets the field §6 asks for while
+the single source of truth stays in the entities it summarises.
 
 ## Order and rationale
 

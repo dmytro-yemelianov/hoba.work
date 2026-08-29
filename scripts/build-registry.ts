@@ -12,6 +12,7 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 import type { ZodTypeAny } from 'zod';
 import {
   actorSchema,
+  agencyZones,
   workflowSchema,
   eraSchema,
   artifactSchema,
@@ -154,8 +155,18 @@ writeJson(path.join(apiDir, 'index.json'), {
   endpoints: [...ENTITIES.map((e) => `/api/v1/${e.collection}`), '/api/v1/graph'],
 });
 
+/**
+ * `agency_zones` is published on mechanisms but authored on none of them: it is
+ * derived from the levers, facets and perspectives each mechanism already
+ * declares (see `agencyZones`). Adding it here rather than to the frontmatter
+ * keeps the single source of truth in the entities it summarises — a consumer
+ * gets the field the design doc's §6 asks for, and it cannot drift from them.
+ */
+const withDerived = (collection: string, item: { id: string }) =>
+  collection === 'mechanisms' ? { ...item, agency_zones: agencyZones(bundle, item.id) } : item;
+
 for (const e of ENTITIES) {
-  const items = bundle[e.collection] as { id: string }[];
+  const items = (bundle[e.collection] as { id: string }[]).map((item) => withDerived(e.collection, item));
   writeJson(path.join(apiDir, e.collection, 'index.json'), { registry_version: bundle.version, count: items.length, items });
   for (const item of items) {
     writeJson(path.join(apiDir, e.collection, `${item.id}.json`), { registry_version: bundle.version, data: item });

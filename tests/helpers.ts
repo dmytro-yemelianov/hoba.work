@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import type {
+  ActorNode,
   ArtifactNode,
   BarrierNode,
   InterventionNode,
@@ -120,6 +121,23 @@ export const intervention = (over: Partial<InterventionNode> & { id: string }): 
   measurements: ['noise_rate'],
   evidence_ids: [],
   aliases: [],
+  ...over,
+});
+
+export const actor = (
+  over: Partial<ActorNode> & { id: ActorNode['id']; slug: string }
+): ActorNode => ({
+  type: 'actor',
+  title: `Actor ${over.slug}`,
+  summary: 'A sufficiently long summary for the fixture.',
+  controls: ['Something.'],
+  blind_to: ['Something else.'],
+  incentives: ['A third thing.'],
+  aliases: { facet: [], intervention: [] },
+  specimens: [],
+  recommendations: [],
+  status: 'active',
+  evidence_ids: [],
   ...over,
 });
 

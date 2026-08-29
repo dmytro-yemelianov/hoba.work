@@ -120,6 +120,12 @@
     ],
     "non_inferences": [
       "Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget."
-    ]
+    ],
+    "agency_zones": {
+      "employer-policy": "high",
+      "recruiter": "low",
+      "candidate": "low",
+      "public-policy": "low"
+    }
   }
 }
