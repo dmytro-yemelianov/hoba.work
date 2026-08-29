@@ -142,7 +142,7 @@ server.registerTool(
         patterns: bundle.patterns.length,
         loops: bundle.loops.length,
         interventions: bundle.interventions.length,
-        workflows: bundle.workflows.length,
+        workflows: bundle.processes.length,
         actors: bundle.actors.length,
         eras: bundle.eras.length,
         records: bundle.records.length,

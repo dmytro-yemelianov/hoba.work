@@ -166,8 +166,8 @@ export function lift(bundle: RegistryBundle): Lifted {
   }
 
   // Workflow states are event classes; workflows are processes.
-  sidecar.order['workflows'] = bundle.workflows.map((w) => w.id);
-  for (const w of bundle.workflows) {
+  sidecar.order['processes'] = bundle.processes.map((w) => w.id);
+  for (const w of bundle.processes) {
     for (const s of w.states)
       eventClasses.push({ id: `evc:${low(w.id)}.${s.id}`, title: s.title, emitters: [], communicates: false });
     processes.push({
@@ -193,7 +193,7 @@ export function lift(bundle: RegistryBundle): Lifted {
   // One condition per barrier: gates and owner read off the workflows.
   const gateOf = new Map<string, string[]>();
   const ownerOf = new Map<string, string>();
-  for (const w of bundle.workflows)
+  for (const w of bundle.processes)
     for (const t of w.transitions)
       for (const e of t.entities ?? [])
         if (e.startsWith('B-') || e.startsWith('bar.')) {

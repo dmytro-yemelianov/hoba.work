@@ -112,7 +112,7 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
 
   it('substrateProcessMetrics extracts metrics for all workflows', () => {
     const metrics = substrateProcessMetrics(lifted.substrate);
-    expect(metrics.length).toBe(bundle.workflows.length);
+    expect(metrics.length).toBe(bundle.processes.length);
     for (const m of metrics) {
       expect(m.stateCount).toBeGreaterThan(0);
       expect(m.transitionCount).toBeGreaterThan(0);

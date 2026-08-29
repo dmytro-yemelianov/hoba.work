@@ -14,7 +14,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { findRegistryRoot, loadRegistryFromRoot, lift, type RegistryBundle, type WorkflowNode } from '@hoba/registry';
+import { findRegistryRoot, loadRegistryFromRoot, lift, type RegistryBundle, type ProcessNode } from '@hoba/registry';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-lean: registry root not found');
@@ -58,7 +58,7 @@ function layer(n: number, edges: [number, number][]): number[] {
   return rank;
 }
 
-function machineFromWorkflow(workflow: WorkflowNode): Emitted {
+function machineFromWorkflow(workflow: ProcessNode): Emitted {
   // The initial state is index 0, so `AllReachable m 0` is the statement it
   // looks like: everything is reachable from where the machine starts.
   const states = [...workflow.states].sort(
@@ -150,8 +150,8 @@ function emit(name: string, m: Emitted, comment: string): string[] {
 const IDEAL_ID = 'proc.the_path_as_it_is_supposed_to_run';
 const OBSERVED_ID = 'proc.the_hiring_funnel_end_to_end';
 
-const ideal = bundle.workflows.find((w) => w.id === IDEAL_ID);
-const observed = bundle.workflows.find((w) => w.id === OBSERVED_ID);
+const ideal = bundle.processes.find((w) => w.id === IDEAL_ID);
+const observed = bundle.processes.find((w) => w.id === OBSERVED_ID);
 if (!ideal || !observed) throw new Error(`build-lean: ${IDEAL_ID} and ${OBSERVED_ID} are both required`);
 
 const idealM = machineFromWorkflow(ideal);

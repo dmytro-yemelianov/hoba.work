@@ -12,7 +12,7 @@ import {
   validateRegistry,
 } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
-import { observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, workflowSchema, eraSchema, actorSchema } from '@hoba/registry';
+import { observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, processSchema, eraSchema, actorSchema } from '@hoba/registry';
 
 /**
  * Zod strips unknown keys, so frontmatter naming a field its schema does not
@@ -30,7 +30,7 @@ describe('no frontmatter field is silently dropped', () => {
     patterns: patternSchema as never,
     loops: loopSchema as never,
     interventions: interventionSchema as never,
-    workflows: workflowSchema as never,
+    processes: processSchema as never,
     eras: eraSchema as never,
     actors: actorSchema as never,
   };
@@ -212,7 +212,7 @@ describe('actors', () => {
   });
 });
 
-describe('workflows', () => {
+describe('processes', () => {
   const ids = new Set([
     ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
     ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
@@ -221,14 +221,14 @@ describe('workflows', () => {
   const actorIds = new Set(bundle.actors.map((a) => a.id));
 
   it('has exactly one initial state and at least one terminal state', () => {
-    for (const wf of bundle.workflows) {
+    for (const wf of bundle.processes) {
       expect(wf.states.filter((s) => s.kind === 'initial').length, wf.id).toBe(1);
       expect(wf.states.filter((s) => s.kind === 'terminal').length, wf.id).toBeGreaterThan(0);
     }
   });
 
   it('never transitions to or from a state that does not exist', () => {
-    for (const wf of bundle.workflows) {
+    for (const wf of bundle.processes) {
       const states = new Set(wf.states.map((s) => s.id));
       for (const t of wf.transitions) {
         expect(states.has(t.from), `${wf.id}: ${t.from} -> ${t.to}`).toBe(true);
@@ -238,7 +238,7 @@ describe('workflows', () => {
   });
 
   it('reaches every state from the initial one, and every terminal state', () => {
-    for (const wf of bundle.workflows) {
+    for (const wf of bundle.processes) {
       const out = new Map<string, string[]>();
       for (const t of wf.transitions) out.set(t.from, [...(out.get(t.from) ?? []), t.to]);
       const start = wf.states.find((s) => s.kind === 'initial')!;
@@ -251,7 +251,7 @@ describe('workflows', () => {
   });
 
   it('leaves no active state without a way out', () => {
-    for (const wf of bundle.workflows) {
+    for (const wf of bundle.processes) {
       const hasExit = new Set(wf.transitions.map((t) => t.from));
       const stuck = wf.states.filter((s) => s.kind !== 'terminal' && !hasExit.has(s.id)).map((s) => s.id);
       expect(stuck, wf.id).toEqual([]);
@@ -259,7 +259,7 @@ describe('workflows', () => {
   });
 
   it('names a real actor and real entities everywhere', () => {
-    for (const wf of bundle.workflows) {
+    for (const wf of bundle.processes) {
       for (const s of wf.states) {
         expect(actorIds.has(s.owner), `${wf.id}/${s.id}`).toBe(true);
         expect(s.entities.filter((e) => !ids.has(e)), `${wf.id}/${s.id}`).toEqual([]);
@@ -273,12 +273,12 @@ describe('workflows', () => {
 
   it('keeps the two mirrors identical in shape', () => {
     const shape = (b: typeof bundle) =>
-      b.workflows.map((w) => `${w.id}:${w.states.map((s) => s.id).join('|')}:${w.transitions.map((t) => `${t.from}>${t.to}`).join('|')}`);
+      b.processes.map((w) => `${w.id}:${w.states.map((s) => s.id).join('|')}:${w.transitions.map((t) => `${t.from}>${t.to}`).join('|')}`);
     expect(shape(uk)).toEqual(shape(bundle));
   });
 
   it('names a real entity in every deviation', () => {
-    for (const wf of bundle.workflows) {
+    for (const wf of bundle.processes) {
       for (const s of wf.states) {
         expect(s.deviations.filter((e) => !ids.has(e)), `${wf.id}/${s.id}`).toEqual([]);
       }
@@ -600,7 +600,7 @@ describe('eras', () => {
  * none may claim two different commitments as the one it breaks.
  */
 describe('the canonical path', () => {
-  const ideal = bundle.workflows.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
+  const ideal = bundle.processes.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
   const homes = (id: string) => ideal.states.filter((s) => s.deviations.includes(id)).map((s) => s.id);
 
   it('exists, and is the one workflow written as commitments', () => {
@@ -632,7 +632,7 @@ describe('the canonical path', () => {
   });
 
   it('mirrors every deviation list into Ukrainian unchanged', () => {
-    const ukIdeal = uk.workflows.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
+    const ukIdeal = uk.processes.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
     const shape = (w: typeof ideal) => w.states.map((s) => `${s.id}:${s.deviations.join(',')}:${s.entities.join(',')}`);
     expect(shape(ukIdeal)).toEqual(shape(ideal));
   });

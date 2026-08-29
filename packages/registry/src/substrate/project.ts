@@ -58,7 +58,7 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
     };
   });
 
-  const workflows = collect('workflows', (id) => {
+  const processes = collect('processes', (id) => {
     const stateRest = (sidecar.entities[`${id}#states`]! as { states: Record<string, unknown>[] }).states;
     const transRest = (sidecar.entities[`${id}#transitions`]! as { transitions: Record<string, unknown>[] }).transitions;
     const states = stateRest.map((rest) => ({
@@ -82,7 +82,7 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
     schema_version: sidecar.bundle.schema_version,
     updated_at: sidecar.bundle.updated_at,
     actors,
-    workflows,
+    processes,
     eras,
     observations,
     barriers,

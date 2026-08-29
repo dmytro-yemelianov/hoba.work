@@ -268,7 +268,7 @@
             "additionalProperties": false
           }
         },
-        "workflows": {
+        "processes": {
           "type": "array",
           "items": {
             "type": "object",
@@ -298,7 +298,7 @@
               },
               "type": {
                 "type": "string",
-                "const": "workflow"
+                "const": "process"
               },
               "summary": {
                 "type": "string",
@@ -469,7 +469,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -587,7 +587,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -643,7 +643,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "supported"
               },
               "probes": {
@@ -794,7 +794,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -830,7 +830,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/barriers/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "strongly_supported"
               },
               "specimens": {
@@ -878,7 +878,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
@@ -1007,7 +1007,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "supported"
               },
               "honest_baseline": {
@@ -1066,7 +1066,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -1123,7 +1123,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "supported"
               },
               "specimens": {
@@ -1173,7 +1173,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -1240,7 +1240,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/loops/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "supported"
               },
               "specimens": {
@@ -1288,7 +1288,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
@@ -1329,7 +1329,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "supported"
               },
               "expected_effects": {
@@ -1458,7 +1458,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
               },
               "id": {
                 "type": "string",
@@ -1570,7 +1570,7 @@
                 "default": "opaque"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
                 "default": "supported"
               },
               "superseded_by": {
@@ -1595,7 +1595,7 @@
         "schema_version",
         "updated_at",
         "actors",
-        "workflows",
+        "processes",
         "eras",
         "observations",
         "barriers",

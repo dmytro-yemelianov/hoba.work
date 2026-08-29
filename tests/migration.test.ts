@@ -34,7 +34,7 @@ describe('TYPE_ID_PREFIX', () => {
       pattern: 'pat',
       loop: 'loop',
       intervention: 'int',
-      workflow: 'proc',
+      process: 'proc',
       actor: 'actor',
       era: 'era',
       record: 'record',
@@ -51,7 +51,7 @@ function fixtureBundle(overrides: Partial<RegistryBundle> = {}): RegistryBundle 
     patterns: [],
     loops: [],
     interventions: [],
-    workflows: [],
+    processes: [],
     actors: [],
     eras: [],
     records: [],
@@ -136,7 +136,7 @@ describe('buildIdMapping against the real registry', () => {
       bundle.patterns.length +
       bundle.loops.length +
       bundle.interventions.length +
-      bundle.workflows.length +
+      bundle.processes.length +
       bundle.actors.length +
       bundle.eras.length +
       bundle.records.length +
@@ -214,8 +214,8 @@ describe('applyActorIdRename', () => {
         '---\nid: "int.y"\ntype: "intervention"\nactor: "recruiter"\n' +
         'perspectives:\n  -\n    actor: "recruiter"\n---\n',
       // A workflow owner and a record owner_actor are both actorId.
-      'content/workflows/proc.z.md':
-        '---\nid: "proc.z"\ntype: "workflow"\nstates:\n  -\n    id: "s"\n    owner: "recruiter"\n---\n',
+      'content/processes/proc.z.md':
+        '---\nid: "proc.z"\ntype: "process"\nstates:\n  -\n    id: "s"\n    owner: "recruiter"\n---\n',
       'content/records/record.w.md':
         '---\nid: "record.w"\ntype: "record"\nowner_actor: "recruiter"\n---\n',
       // The actor itself: its own id renames, its alias vocabularies do not.
@@ -234,7 +234,7 @@ describe('applyActorIdRename', () => {
     expect(intervention).toContain('\nactor: "recruiter"'); // intervention vocabulary, untouched
     expect(intervention).toContain('    actor: "actor.recruiter"');
 
-    expect(fs.readFileSync(`${root}/content/workflows/proc.z.md`, 'utf8')).toContain('    owner: "actor.recruiter"');
+    expect(fs.readFileSync(`${root}/content/processes/proc.z.md`, 'utf8')).toContain('    owner: "actor.recruiter"');
     expect(fs.readFileSync(`${root}/content/records/record.w.md`, 'utf8')).toContain('owner_actor: "actor.recruiter"');
 
     const actor = fs.readFileSync(`${root}/content/actors/recruiter.md`, 'utf8');

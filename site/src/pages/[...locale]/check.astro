@@ -48,11 +48,11 @@ const KEYS = [
 
 // State titles and mechanism titles are resolved here so the client ships names
 // rather than a second copy of the registry.
-const ideal = bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
+const ideal = bundle.processes.find((w) => w.id === IDEAL_PATH_ID);
 // Same order as /process: the canonical path leads, because everything else
 // is a departure from it — and because a default that falls out of filename
 // sorting changes silently whenever an entity is renamed.
-const workflowsByRelevance = [...bundle.workflows].sort(
+const workflowsByRelevance = [...bundle.processes].sort(
   (a, b) => Number(b.id === IDEAL_PATH_ID) - Number(a.id === IDEAL_PATH_ID)
 );
 const payload = JSON.stringify({
@@ -62,7 +62,7 @@ const payload = JSON.stringify({
   states: Object.fromEntries((ideal?.states ?? []).map((s) => [s.id, s.title])),
   gates: Object.fromEntries(bundle.barriers.map((b) => [b.id, b.title])),
   mechanisms: Object.fromEntries(bundle.mechanisms.map((m) => [m.id, m.title])),
-  workflows: workflowsByRelevance.map((w) => ({
+  processes: workflowsByRelevance.map((w) => ({
     id: w.id,
     title: w.title,
     states: w.states.map((s) => ({ id: s.id, title: s.title })),
@@ -479,7 +479,7 @@ const presets = [
 
       function updateStates() {
         if (!wfSelect || !stateSelect) return;
-        const currentWf = data.workflows.find((w: any) => w.id === wfSelect.value);
+        const currentWf = data.processes.find((w: any) => w.id === wfSelect.value);
         if (!currentWf) return;
         stateSelect.innerHTML = currentWf.states
           .map((s: any) => `<option value="${s.id}">${s.id} — ${s.title}</option>`)
@@ -489,7 +489,7 @@ const presets = [
 
       function renderLatency() {
         if (!wfSelect || !stateSelect || !daysInput || !latencyResult) return;
-        const currentWf = data.workflows.find((w: any) => w.id === wfSelect.value);
+        const currentWf = data.processes.find((w: any) => w.id === wfSelect.value);
         if (!currentWf) return;
         const stateId = stateSelect.value;
         const days = Number(daysInput.value) || 0;

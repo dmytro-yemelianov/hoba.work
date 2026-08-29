@@ -85,7 +85,7 @@ export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle)
     ...bundle.observations.map((a) => a.id),
     ...bundle.mechanisms.map((m) => m.id),
     ...bundle.barriers.map((b) => b.id),
-    ...bundle.workflows.map((w) => w.id),
+    ...bundle.processes.map((w) => w.id),
     ...bundle.evidence.map((e) => e.id),
     ...bundle.interventions.map((i) => i.id),
   ]);

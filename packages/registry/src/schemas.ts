@@ -127,7 +127,7 @@ export const entityTypeSchema = z.enum([
   'intervention',
   'evidence',
   'record',
-  'workflow',
+  'process',
   'actor',
   'era',
 ]);
@@ -455,7 +455,7 @@ export const actorSchema = z.object({
  */
 export const workflowStateKindSchema = z.enum(['initial', 'active', 'terminal']);
 
-export const workflowStateSchema = z.object({
+export const processStateSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/, 'state ids are lowercase slugs'),
   title: z.string().min(3),
   kind: workflowStateKindSchema.default('active'),
@@ -476,7 +476,7 @@ export const workflowStateSchema = z.object({
   max_dwell_days: z.number().positive().optional(),
 });
 
-export const workflowTransitionSchema = z.object({
+export const processTransitionSchema = z.object({
   from: z.string(),
   to: z.string(),
   label: z.string().min(3),
@@ -489,15 +489,15 @@ export const workflowTransitionSchema = z.object({
   latency_max_days: z.number().positive().optional(),
 });
 
-export const workflowSchema = z.object({
+export const processSchema = z.object({
   ...nodeBase,
   id: workflowId,
-  type: z.literal('workflow'),
+  type: z.literal('process'),
   summary: z.string().min(10),
   /** What moves through this machine. */
   subject: z.string().min(3),
-  states: z.array(workflowStateSchema).min(2),
-  transitions: z.array(workflowTransitionSchema).min(1),
+  states: z.array(processStateSchema).min(2),
+  transitions: z.array(processTransitionSchema).min(1),
   /**
    * Defaults to `unknown` rather than `supported`: a state machine that says
    * nothing about its own standing is describing a process, not asserting that
@@ -638,7 +638,7 @@ export const registryManifestSchema = z.object({
 
 export const registryBundleSchema = registryManifestSchema.extend({
   actors: z.array(actorSchema),
-  workflows: z.array(workflowSchema),
+  processes: z.array(processSchema),
   eras: z.array(eraSchema),
   observations: z.array(observationSchema),
   barriers: z.array(barrierSchema),

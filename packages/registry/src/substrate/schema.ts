@@ -210,7 +210,7 @@ export const flowSchema = z.object({
 // ---------------------------------------------------------------------------
 // Processes and cohorts.
 
-export const processTransitionSchema = z.object({
+export const substrateProcessTransitionSchema = z.object({
   from: eventClassId.optional(),
   to: eventClassId,
   conditions: z.array(conditionId).default([]),
@@ -218,11 +218,11 @@ export const processTransitionSchema = z.object({
   latency_max_days: z.number().positive().optional(),
 });
 
-export const processSchema = z.object({
+export const substrateProcessSchema = z.object({
   id: processId,
   title: z.string().min(1),
   /** The graph of event classes, conditions on the edges. */
-  transitions: z.array(processTransitionSchema).min(1),
+  transitions: z.array(substrateProcessTransitionSchema).min(1),
 });
 
 export const cohortSchema = z.object({
@@ -248,7 +248,7 @@ export const substrateSchema = z.object({
   visibilityRules: z.array(visibilityRuleSchema).default([]),
   visibilityOverrides: z.array(visibilityOverrideSchema).default([]),
   flows: z.array(flowSchema).default([]),
-  processes: z.array(processSchema).default([]),
+  processes: z.array(substrateProcessSchema).default([]),
   cohorts: z.array(cohortSchema).default([]),
 });
 
@@ -261,6 +261,6 @@ export type Condition = z.infer<typeof conditionSchema>;
 export type VisibilityRule = z.infer<typeof visibilityRuleSchema>;
 export type VisibilityOverride = z.infer<typeof visibilityOverrideSchema>;
 export type Flow = z.infer<typeof flowSchema>;
-export type Process = z.infer<typeof processSchema>;
+export type Process = z.infer<typeof substrateProcessSchema>;
 export type Cohort = z.infer<typeof cohortSchema>;
 export type Substrate = z.infer<typeof substrateSchema>;

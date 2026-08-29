@@ -118,7 +118,7 @@ const nodes: GraphNodeInput[] = [
 const edges = graph.edges.map((e) => ({ source: e.source, target: e.target, relation: e.type }));
 const relationTypes: GraphRelationType[] = ['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates'];
 
-const idealWorkflow = bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
+const idealWorkflow = bundle.processes.find((w) => w.id === IDEAL_PATH_ID);
 const idealSteps = idealWorkflow
   ? idealWorkflow.states.map((s, idx) => ({
       index: idx + 1,

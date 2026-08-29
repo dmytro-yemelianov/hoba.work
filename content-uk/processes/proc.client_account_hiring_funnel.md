@@ -1,6 +1,6 @@
 ---
 id: "proc.client_account_hiring_funnel"
-type: "workflow"
+type: "process"
 aliases:
   - "WF-004"
 title: "Найм під клієнтський контракт"

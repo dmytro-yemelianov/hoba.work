@@ -14,7 +14,7 @@ import {
   actorSchema,
   agencyZones,
   registryContentHash,
-  workflowSchema,
+  processSchema,
   eraSchema,
   observationSchema,
   barrierSchema,
@@ -77,7 +77,7 @@ interface EntityDef {
 
 const ENTITIES: EntityDef[] = [
   { collection: 'actors', name: 'Actor', schema: actorSchema, summary: 'Actors whose decisions the funnel is made of' },
-  { collection: 'workflows', name: 'Workflow', schema: workflowSchema, summary: 'State machines the funnel runs as' },
+  { collection: 'processes', name: 'Process', schema: processSchema, summary: 'State machines the funnel runs as' },
   { collection: 'eras', name: 'Era', schema: eraSchema, summary: 'Periods of the hiring economy, told as where the money came from' },
   { collection: 'observations', name: 'Observation', schema: observationSchema, summary: 'Observations' },
   { collection: 'barriers', name: 'Barrier', schema: barrierSchema, summary: 'Funnel Barriers (strictly acyclic DAG)' },

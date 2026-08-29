@@ -15,8 +15,8 @@ import {
   type RegistryBundle,
   type ActorNode,
   type EraNode,
-  type WorkflowNode,
-  type WorkflowState,
+  type ProcessNode,
+  type ProcessState,
 } from '@hoba/registry';
 import pkg from '../../package.json';
 
@@ -93,12 +93,12 @@ export function slimBundle(bundle: RegistryBundle): RegistryBundle {
 export const IDEAL_PATH_ID = 'proc.the_path_as_it_is_supposed_to_run';
 
 export interface IdealPlacement {
-  workflow: WorkflowNode;
-  state: WorkflowState;
+  workflow: ProcessNode;
+  state: ProcessState;
 }
 
-function idealPath(bundle: RegistryBundle): WorkflowNode | undefined {
-  return bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
+function idealPath(bundle: RegistryBundle): ProcessNode | undefined {
+  return bundle.processes.find((w) => w.id === IDEAL_PATH_ID);
 }
 
 /** The commitment this entity is a departure from, if it is one. */
@@ -172,7 +172,7 @@ export interface RouteCount {
  * instead. Only meaningful for an acyclic machine — the canonical path is one, and
  * `formal/` proves it.
  */
-export function countRoutes(workflow: WorkflowNode): RouteCount {
+export function countRoutes(workflow: ProcessNode): RouteCount {
   const exits = new Map<string, string[]>();
   for (const t of workflow.transitions) exits.set(t.from, [...(exits.get(t.from) ?? []), t.to]);
   const start = workflow.states.find((s) => s.kind === 'initial') ?? workflow.states[0];

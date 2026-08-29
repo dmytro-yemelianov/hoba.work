@@ -21,7 +21,7 @@ import type {
   PatternNode,
   RegistryBundle,
   Specimen,
-  WorkflowNode,
+  ProcessNode,
 } from '@hoba/registry';
 import { IDEAL_PATH_ID } from './registry';
 import type { Lang, Translate } from '../i18n/utils';
@@ -29,7 +29,7 @@ import { asHeading } from '../i18n/utils';
 
 export const SITE = 'https://hoba.work';
 
-type Entity = ActorNode | ObservationNode | BarrierNode | InterventionNode | LoopNode | MechanismNode | PatternNode | WorkflowNode;
+type Entity = ActorNode | ObservationNode | BarrierNode | InterventionNode | LoopNode | MechanismNode | PatternNode | ProcessNode;
 
 const ROUTES: Record<string, string> = {
   actor: 'actors',
@@ -39,7 +39,7 @@ const ROUTES: Record<string, string> = {
   pattern: 'patterns',
   loop: 'loops',
   intervention: 'interventions',
-  workflow: 'workflows',
+  workflow: 'processes',
 };
 
 /** A registry ID as a link that works wherever the document is pasted. */
@@ -58,7 +58,7 @@ export function idLink(id: string, bundle: RegistryBundle): string {
  * from a stated commitment.
  */
 function idealNote(id: string, bundle: RegistryBundle, t: Translate): string[] {
-  const ideal = bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
+  const ideal = bundle.processes.find((w) => w.id === IDEAL_PATH_ID);
   if (!ideal) return [];
   const broken = ideal.states.find((s) => s.deviations.includes(id));
   const held = broken ? undefined : ideal.states.find((s) => s.entities.includes(id));

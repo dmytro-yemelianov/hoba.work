@@ -1,6 +1,6 @@
 ---
 id: "proc.the_hiring_funnel_end_to_end"
-type: "workflow"
+type: "process"
 aliases:
   - "WF-001"
 title: "Воронка найму від початку до кінця"

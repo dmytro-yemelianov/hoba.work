@@ -1,8 +1,8 @@
 {
-  "$id": "https://hoba.work/schemas/workflow.schema.json",
-  "$ref": "#/definitions/Workflow",
+  "$id": "https://hoba.work/schemas/process.schema.json",
+  "$ref": "#/definitions/Process",
   "definitions": {
-    "Workflow": {
+    "Process": {
       "type": "object",
       "properties": {
         "title": {
@@ -41,7 +41,7 @@
         },
         "type": {
           "type": "string",
-          "const": "workflow"
+          "const": "process"
         },
         "summary": {
           "type": "string",
@@ -137,7 +137,7 @@
                 "minLength": 3
               },
               "owner": {
-                "$ref": "#/definitions/Workflow/properties/states/items/properties/owner"
+                "$ref": "#/definitions/Process/properties/states/items/properties/owner"
               },
               "guard": {
                 "type": "string",

@@ -292,11 +292,11 @@ const tocItems = [
       <section id="data-latency" class="section scroll-mt-24">
         <h2 class="section-title">Workflow Latency Bounds & Dwell Turnaround Matrix</h2>
         <p class="text-base text-hoba-muted max-w-3xl">
-          Turnaround bounds defined across all canonical workflows ({bundle.workflows.length} state machines). Dwell exceeding the maximum bound signals a stalled state driven by hidden queue eviction, ghost postings, or batching.
+          Turnaround bounds defined across all canonical workflows ({bundle.processes.length} state machines). Dwell exceeding the maximum bound signals a stalled state driven by hidden queue eviction, ghost postings, or batching.
         </p>
 
         <div class="mt-5 space-y-6">
-          {bundle.workflows.map((wf) => (
+          {bundle.processes.map((wf) => (
             <div class="border border-hoba-border rounded-lg p-4 bg-hoba-card/30">
               <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-3 min-w-0">
                 <h3 class="font-medium text-base text-hoba-text min-w-0 break-words">

@@ -36,16 +36,13 @@ describe('schema/entity.schema.json', () => {
   });
 
   it('is matched by the live Zod enum, kind for kind — DoD 1', () => {
-    // `observation` now agrees on both sides. `process` is still pending the
-    // second half of the type rename, so the map carries exactly one entry.
+    // Both halves of the type rename are in, so the two agree name for name.
     const live = entityTypeSchema.options;
     expect(live).toHaveLength(11);
     expect(live).not.toContain('scenario');
     expect(new Set(live).size).toBe(live.length);
 
-    const RENAMED: Record<string, string> = { process: 'workflow' };
-    const target = (schema.properties.type.enum as string[]).map((k) => RENAMED[k] ?? k);
-    expect([...live].sort()).toEqual([...target].sort());
+    expect([...live].sort()).toEqual([...(schema.properties.type.enum as string[])].sort());
   });
 
   it('has no field capable of referencing a scenario or analysis ID', () => {

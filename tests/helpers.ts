@@ -148,7 +148,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     schema_version: '1.0.0',
     updated_at: '2026-01-01T00:00:00Z',
     actors: [],
-    workflows: [],
+    processes: [],
     eras: [],
     observations: [
       artifact({

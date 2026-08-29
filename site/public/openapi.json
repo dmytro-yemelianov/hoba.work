@@ -127,12 +127,12 @@
         }
       }
     },
-    "/workflows/index.json": {
+    "/processes/index.json": {
       "get": {
-        "operationId": "listWorkflows",
+        "operationId": "listProcesss",
         "summary": "List all State machines the funnel runs as",
         "tags": [
-          "Workflow"
+          "Process"
         ],
         "responses": {
           "200": {
@@ -156,7 +156,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Workflow"
+                        "$ref": "#/components/schemas/Process"
                       }
                     }
                   }
@@ -167,12 +167,12 @@
         }
       }
     },
-    "/workflows/{id}.json": {
+    "/processes/{id}.json": {
       "get": {
-        "operationId": "getWorkflow",
-        "summary": "Get Workflow by ID",
+        "operationId": "getProcess",
+        "summary": "Get Process by ID",
         "tags": [
-          "Workflow"
+          "Process"
         ],
         "parameters": [
           {
@@ -182,7 +182,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Canonical Workflow ID"
+            "description": "Canonical Process ID"
           }
         ],
         "responses": {
@@ -201,7 +201,7 @@
                       "type": "string"
                     },
                     "data": {
-                      "$ref": "#/components/schemas/Workflow"
+                      "$ref": "#/components/schemas/Process"
                     }
                   }
                 }
@@ -948,8 +948,8 @@
       "Actor": {
         "$ref": "https://hoba.work/schemas/actor.schema.json#/definitions/Actor"
       },
-      "Workflow": {
-        "$ref": "https://hoba.work/schemas/workflow.schema.json#/definitions/Workflow"
+      "Process": {
+        "$ref": "https://hoba.work/schemas/process.schema.json#/definitions/Process"
       },
       "Era": {
         "$ref": "https://hoba.work/schemas/era.schema.json#/definitions/Era"

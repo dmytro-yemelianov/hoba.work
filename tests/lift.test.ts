@@ -40,7 +40,7 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
     // Conditions-on-edges exist twice on purpose during the strangler phase:
     // structurally in the process, presentationally in the sidecar entity
     // lists. This is what stops the two from drifting apart.
-    for (const w of bundle.workflows) {
+    for (const w of bundle.processes) {
       const proc = lifted.substrate.processes.find((p) => p.id === `prc:${w.id.toLowerCase()}`)!;
       w.transitions.forEach((t, i) => {
         const fromEntities = (t.entities ?? []).filter((e) => e.startsWith('B-') || e.startsWith('bar.')).map((e) => `cnd:${e.toLowerCase()}`);

@@ -1,6 +1,6 @@
 ---
 id: "proc.the_path_as_it_is_supposed_to_run"
-type: "workflow"
+type: "process"
 aliases:
   - "WF-003"
 title: "Шлях, яким усе має відбуватись"

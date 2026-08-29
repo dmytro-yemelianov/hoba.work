@@ -4,7 +4,7 @@ import yaml from 'js-yaml';
 import type { ZodError, ZodTypeAny, z } from 'zod';
 import {
   actorSchema,
-  workflowSchema,
+  processSchema,
   eraSchema,
   observationSchema,
   barrierSchema,
@@ -133,7 +133,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
   const byId = <T extends { id: string }>(a: T, b: T) => a.id.localeCompare(b.id);
 
   const actors = loadEntityDir(path.join(baseDir, 'actors'), actorSchema).sort(byId);
-  const workflows = loadEntityDir(path.join(baseDir, 'workflows'), workflowSchema).sort(byId);
+  const processes = loadEntityDir(path.join(baseDir, 'processes'), processSchema).sort(byId);
   // Eras read forward in time, not by id, because the order is the argument.
   const eras = loadEntityDir(path.join(baseDir, 'eras'), eraSchema).sort((a, b) => a.from - b.from || a.id.localeCompare(b.id));
   const observations = loadEntityDir(path.join(baseDir, 'observations'), observationSchema).sort(byId);
@@ -150,7 +150,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
   return {
     ...manifest,
     actors,
-    workflows,
+    processes,
     eras,
     observations,
     barriers,

@@ -37,9 +37,9 @@ import type {
   probeOutcomeSchema,
   perspectiveSchema,
   recommendationSchema,
-  workflowSchema,
-  workflowStateSchema,
-  workflowTransitionSchema,
+  processSchema,
+  processStateSchema,
+  processTransitionSchema,
   workflowStateKindSchema,
   specimenSchema,
   specimenKindSchema,
@@ -83,10 +83,10 @@ export type MechanismFacets = z.infer<typeof mechanismFacetsSchema>;
 export type Perspective = z.infer<typeof perspectiveSchema>;
 export type Recommendation = z.infer<typeof recommendationSchema>;
 export type ActorNode = z.infer<typeof actorSchema>;
-export type WorkflowState = z.infer<typeof workflowStateSchema>;
-export type WorkflowTransition = z.infer<typeof workflowTransitionSchema>;
+export type ProcessState = z.infer<typeof processStateSchema>;
+export type ProcessTransition = z.infer<typeof processTransitionSchema>;
 export type WorkflowStateKind = z.infer<typeof workflowStateKindSchema>;
-export type WorkflowNode = z.infer<typeof workflowSchema>;
+export type ProcessNode = z.infer<typeof processSchema>;
 export type EraIndicator = z.infer<typeof eraIndicatorSchema>;
 export type EraNode = z.infer<typeof eraSchema>;
 export type ObservationNode = z.infer<typeof observationSchema>;

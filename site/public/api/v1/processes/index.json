@@ -11,7 +11,7 @@
         "WF-002"
       ],
       "id": "proc.an_application_inside_the_ats",
-      "type": "workflow",
+      "type": "process",
       "summary": "The machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
       "subject": "one application record",
       "states": [
@@ -246,7 +246,7 @@
         "WF-004"
       ],
       "id": "proc.client_account_hiring_funnel",
-      "type": "workflow",
+      "type": "process",
       "summary": "From client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
       "subject": "a seat funded by a client contract and the candidate moving towards it",
       "states": [
@@ -612,7 +612,7 @@
         "WF-001"
       ],
       "id": "proc.the_hiring_funnel_end_to_end",
-      "type": "workflow",
+      "type": "process",
       "summary": "From the moment headcount is authorised to a signed contract or a closed search, with the actor who owns each step and what the candidate can see from where they stand.",
       "subject": "a requisition and the candidate moving through it",
       "states": [
@@ -1174,7 +1174,7 @@
         "WF-003"
       ],
       "id": "proc.the_path_as_it_is_supposed_to_run",
-      "type": "workflow",
+      "type": "process",
       "summary": "One opening, from a real need to a decision the candidate can act on, with each step written as the commitment it is supposed to keep. Every barrier in the registry is a place where one of these commitments stops being kept.",
       "subject": "one opening, and one candidate moving through it",
       "states": [

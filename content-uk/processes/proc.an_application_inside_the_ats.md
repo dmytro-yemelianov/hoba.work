@@ -1,6 +1,6 @@
 ---
 id: "proc.an_application_inside_the_ats"
-type: "workflow"
+type: "process"
 aliases:
   - "WF-002"
 title: "Заявка всередині ATS"

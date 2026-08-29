@@ -28,12 +28,12 @@ const actors = new Map(bundle.actors.map((a) => [a.id, a.title]));
 
 // The canonical path leads, because everything else on this page is a
 // description of what actually happens instead of it.
-const workflows = [...bundle.workflows].sort((a, b) => Number(b.id === IDEAL_PATH_ID) - Number(a.id === IDEAL_PATH_ID));
+const processes = [...bundle.processes].sort((a, b) => Number(b.id === IDEAL_PATH_ID) - Number(a.id === IDEAL_PATH_ID));
 
 // The player needs the machine and the names it will print; both are resolved
 // here so the client ships data rather than a second copy of the dictionary.
 const payload = JSON.stringify({
-  workflows: workflows.map((w) => ({ id: w.id, title: w.title, subject: w.subject, states: w.states, transitions: w.transitions })),
+  processes: processes.map((w) => ({ id: w.id, title: w.title, subject: w.subject, states: w.states, transitions: w.transitions })),
   nodes: Object.fromEntries(nodes),
   actors: Object.fromEntries(actors),
   strings: {
@@ -49,7 +49,7 @@ const payload = JSON.stringify({
 <Layout lang={lang} title={t('wf.title')} activeNav="process">
   <PageHeader kicker={t('wf.kicker')} title={t('wf.title')} lead={t('wf.intro')} wide tourPageKey="process" lang={lang} />
 
-  {workflows.map((workflow, index) => (
+  {processes.map((workflow, index) => (
     <section class="section" data-workflow={workflow.id}>
       <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2 min-w-0 max-w-full">
         <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0 min-w-0 max-w-full break-words">
@@ -187,7 +187,7 @@ const payload = JSON.stringify({
     import { WorkflowView, type ViewState, type WorkflowData, type WorkflowMode, type WorkflowStep } from '../../lib/workflow-view';
 
     interface Payload {
-      workflows: WorkflowData[];
+      processes: WorkflowData[];
       nodes: Record<string, { id: string; title: string; href: string }>;
       actors: Record<string, string>;
       strings: Record<string, string>;
@@ -204,7 +204,7 @@ const payload = JSON.stringify({
 
       const views = new Map<string, WorkflowView>();
 
-      data.workflows.forEach((workflow, index) => {
+      data.processes.forEach((workflow, index) => {
         const canvas = pick<HTMLCanvasElement>('canvas.wf-canvas', index);
         const detail = pick<HTMLElement>('.wf-detail', index);
         const scrub = pick<HTMLInputElement>('.wf-scrub', index);
