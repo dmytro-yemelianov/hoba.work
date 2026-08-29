@@ -7,7 +7,7 @@
       "EVD-005",
       "EVD-038"
     ],
-    "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- B-009 becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
+    "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
     "aliases": [],
     "id": "I-002",
     "type": "intervention",
@@ -25,7 +25,7 @@
     "evidence_level": "supported",
     "expected_effects": [
       "M-004 has nothing to operate on: the band is stated before the candidate is asked for a number",
-      "B-009 becomes arithmetic rather than a negotiation about whether a band exists"
+      "bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists"
     ],
     "measurements": [
       "late_stage_compensation_drop_rate",

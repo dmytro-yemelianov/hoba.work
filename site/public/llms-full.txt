@@ -669,7 +669,7 @@ Publish verified salary and equity bands directly in job descriptions or disclos
 - Actor: employer-policy · Scope: industry · Cost: low
 - Targets: M-004, bar.recruiter_screening_call, bar.compensation_levelling_reconciliation, pat.seniority_double_bind, pat.compensation_double_bind
 - Expected: M-004 has nothing to operate on: the band is stated before the candidate is asked for a number
-- Expected: B-009 becomes arithmetic rather than a negotiation about whether a band exists
+- Expected: bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists
 
 ### I-003 — Standardized Late-Stage Rejection Feedback Taxonomy
 
@@ -714,7 +714,7 @@ Draft the requisition's requirement list from the last two quarters of the team'
 - Actor: hiring-manager · Scope: team · Cost: low
 - Targets: M-024, bar.requisition_approval_public_posting, L-003
 - Expected: M-024 is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
-- Expected: B-013 fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
+- Expected: bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
 - Expected: L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
 
 ### I-008 — Internal Candidacy Stated in the Posting
@@ -724,7 +724,7 @@ Where a formal internal candidacy exists against a requisition at the moment it 
 - Actor: employer-policy · Scope: organizational · Cost: medium
 - Targets: M-005, bar.requisition_approval_public_posting
 - Expected: M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round
-- Expected: B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration
+- Expected: bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration
 
 ### I-009 — Outreach States the Requisition Behind It
 
@@ -732,7 +732,7 @@ Every outbound message names the requisition it is sent against and its state �
 
 - Actor: recruiter-process · Scope: organizational · Cost: low
 - Targets: bar.outbound_sourcing_talent_pool_contact, M-016, M-025
-- Expected: B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent
+- Expected: bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent
 - Expected: M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on
 - Expected: The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast
 
@@ -744,7 +744,7 @@ Give the ATS a terminal status for an application closed without a human opening
 - Targets: bar.inbound_screening_triage, M-009, M-020
 - Expected: M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status
 - Expected: The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are
-- Expected: B-003 leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
+- Expected: bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
 
 ### I-011 — Screening Note Bound to Observations and Disposition Codes
 
@@ -754,7 +754,7 @@ Restrict the screening note to the requirement, what the record shows and the su
 - Targets: bar.inbound_screening_triage, M-017, M-023
 - Expected: The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code
 - Expected: M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be
-- Expected: A profile above the graded band leaves B-003 with a routing code rather than a pass at screen
+- Expected: A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen
 
 ### I-012 — Candidate Work Index Submitted With the Application
 
@@ -764,7 +764,7 @@ Submit a one-page index naming each work artefact, the part of it that is the ca
 - Targets: M-023, bar.technical_screen_live_assessment, bar.inbound_screening_triage
 - Expected: M-023 loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it
 - Expected: A contribution held under another organisation arrives as a commit range rather than as something to be discovered
-- Expected: The index travels with the application, so B-003 and B-005 open the same named artefacts instead of whatever a profile page shows first
+- Expected: The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first
 
 ### I-013 — Publish the Technical Screen's Columns and Threshold Before the Round
 
@@ -772,8 +772,8 @@ Publish the columns, their weights and the advancing threshold of the live techn
 
 - Actor: employer-policy · Scope: organizational · Cost: medium
 - Targets: bar.technical_screen_live_assessment, M-012
-- Expected: B-005's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel
-- Expected: A total one point under the threshold at B-005 is locatable, because the number it is compared with is published
+- Expected: bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel
+- Expected: A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published
 - Expected: A round read cold under M-012 is scored on the published columns rather than on what the hour left as an impression
 
 ### I-014 — Interview Seats Booked With Prep Time and a Second Name on the Rota
@@ -783,7 +783,7 @@ Book every interview seat as preparation plus session, take those hours off the 
 - Actor: hiring-manager · Scope: team · Cost: medium
 - Targets: M-012, bar.technical_screen_live_assessment
 - Expected: M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date
-- Expected: A round at B-005 is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name
+- Expected: A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name
 - Expected: Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot
 
 ### I-015 — Dated Funding Certification Before the Final Round
@@ -792,9 +792,9 @@ Carry a funding-certified-through date on every requisition, refuse to schedule 
 
 - Actor: employer-policy · Scope: organizational · Cost: medium
 - Targets: bar.headcount_executive_budget_approval, bar.offer_closing_contract_execution, M-007
-- Expected: B-010 is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends
+- Expected: bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends
 - Expected: M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date
-- Expected: B-012 stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live
+- Expected: bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live
 
 ### I-016 — Verification Discrepancy Disclosure and Reconciliation Window
 
@@ -803,7 +803,7 @@ Classify every mandatory check in advance as reconcilable by document or disqual
 - Actor: employer-policy · Scope: organizational · Cost: low
 - Targets: bar.reference_background_verification, bar.probation_period_post_start_confirmation, M-021, M-027, M-028
 - Expected: M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause
-- Expected: B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns
+- Expected: bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns
 - Expected: Which findings a document can close and which end the process is a published classification rather than a per-file decision
 
 ### I-017 — Recorded Finalist Standing With a Dated Re-Entry Route
@@ -813,7 +813,7 @@ Record, for every finalist who cleared the bar and received no offer, the cohort
 - Actor: recruiter-process · Scope: organizational · Cost: low
 - Targets: M-002, bar.headcount_executive_budget_approval, pat.closed_then_reposted_requisition_motif
 - Expected: M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group
-- Expected: B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing
+- Expected: bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing
 - Expected: pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated
 
 ## Actors
@@ -895,11 +895,11 @@ Finance, leadership and the people function: the layer that authorises headcount
 - Measured on: Optionality: an approved requisition that can be paused costs less than one that cannot
 - Measured on: Consistency and legal defensibility across every hire
 - Measured on: Cost control, on a cycle measured in quarters rather than in conversations
-- Could do (medium): Publish the band on the posting itself — The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at B-009 into arithmetic rather than a conversation that happens for the first time after the panel. Costs: The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.
-- Could do (high): Sign the headcount before the role is published — This layer decides whether a requisition is funded, and B-010 is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists. Costs: Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.
+- Could do (medium): Publish the band on the posting itself — The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at bar.compensation_levelling_reconciliation into arithmetic rather than a conversation that happens for the first time after the panel. Costs: The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.
+- Could do (high): Sign the headcount before the role is published — This layer decides whether a requisition is funded, and bar.headcount_executive_budget_approval is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists. Costs: Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.
 - Could do (medium): Expire the listing when its authorisation lapses — Whether a requisition stays funded is decided here, and that fact reaches no configuration screen on its own. A rule that withdraws the listing when authorisation lapses, and notifies everyone still inside the process, closes the gap between the decision and what the page shows. Costs: A paused search cannot be kept warm: reopening means another trip through the approval chain and a posting that restarts from zero applicants, which is a direct charge on this layer's optionality.
 - Could do (medium): State on the posting that an internal candidacy exists — The rule that a role is published externally regardless of an internal candidate sits in this layer, and so does what the posting may say. One line stating that an internal candidacy is in process gives an external applicant, at the point of applying, the fact the panel already has. Costs: The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.
-- Could do (medium): Narrow the checks and show the candidate any discrepancy — Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At B-011 a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision. Costs: Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.
+- Could do (medium): Narrow the checks and show the candidate any discrepancy — Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At bar.reference_background_verification a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision. Costs: Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.
 
 ### hiring-manager — Hiring manager
 

@@ -40,7 +40,7 @@ recommendations:
   -
     id: "publish-the-band-on-the-posting"
     title: "Publish the band on the posting itself"
-    rationale: "The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at B-009 into arithmetic rather than a conversation that happens for the first time after the panel."
+    rationale: "The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at bar.compensation_levelling_reconciliation into arithmetic rather than a conversation that happens for the first time after the panel."
     cost: "medium"
     costs: "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level."
     targets:
@@ -53,7 +53,7 @@ recommendations:
   -
     id: "fund-before-publication"
     title: "Sign the headcount before the role is published"
-    rationale: "This layer decides whether a requisition is funded, and B-010 is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists."
+    rationale: "This layer decides whether a requisition is funded, and bar.headcount_executive_budget_approval is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists."
     cost: "high"
     costs: "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end."
     targets:
@@ -94,7 +94,7 @@ recommendations:
   -
     id: "scope-checks-and-show-discrepancies"
     title: "Narrow the checks and show the candidate any discrepancy"
-    rationale: "Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At B-011 a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision."
+    rationale: "Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At bar.reference_background_verification a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision."
     cost: "medium"
     costs: "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire."
     targets:

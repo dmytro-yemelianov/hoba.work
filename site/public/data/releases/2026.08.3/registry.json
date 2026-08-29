@@ -458,7 +458,7 @@
         {
           "id": "publish-the-band-on-the-posting",
           "title": "Publish the band on the posting itself",
-          "rationale": "The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at B-009 into arithmetic rather than a conversation that happens for the first time after the panel.",
+          "rationale": "The band and the levelling grid are set in this layer, and nothing downstream can disclose a number this layer has not released. Publishing it turns the reconciliation at bar.compensation_levelling_reconciliation into arithmetic rather than a conversation that happens for the first time after the panel.",
           "cost": "medium",
           "costs": "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.",
           "targets": [
@@ -474,7 +474,7 @@
         {
           "id": "fund-before-publication",
           "title": "Sign the headcount before the role is published",
-          "rationale": "This layer decides whether a requisition is funded, and B-010 is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists.",
+          "rationale": "This layer decides whether a requisition is funded, and bar.headcount_executive_budget_approval is the only gate that stops a process after every person the candidate met has said yes. Moving the finance signature ahead of publication makes the later approval a countersignature, so a published role is one whose headcount already exists.",
           "cost": "high",
           "costs": "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.",
           "targets": [
@@ -522,7 +522,7 @@
         {
           "id": "scope-checks-and-show-discrepancies",
           "title": "Narrow the checks and show the candidate any discrepancy",
-          "rationale": "Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At B-011 a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision.",
+          "rationale": "Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At bar.reference_background_verification a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision.",
           "cost": "medium",
           "costs": "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.",
           "targets": [
@@ -10254,7 +10254,7 @@
         "EVD-005",
         "EVD-038"
       ],
-      "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- B-009 becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
+      "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- M-004 has nothing to operate on: the band is stated before the candidate is asked for a number\n- bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
       "aliases": [],
       "id": "I-002",
       "type": "intervention",
@@ -10272,7 +10272,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "M-004 has nothing to operate on: the band is stated before the candidate is asked for a number",
-        "B-009 becomes arithmetic rather than a negotiation about whether a band exists"
+        "bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists"
       ],
       "measurements": [
         "late_stage_compensation_drop_rate",
@@ -10637,7 +10637,7 @@
         "EVD-035",
         "EVD-001"
       ],
-      "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- M-024 is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- B-013 fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
+      "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- M-024 is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
       "aliases": [],
       "id": "I-007",
       "type": "intervention",
@@ -10653,7 +10653,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "M-024 is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on",
-        "B-013 fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid",
+        "bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid",
         "L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
       ],
       "measurements": [
@@ -10714,7 +10714,7 @@
       "evidence_ids": [
         "EVD-042"
       ],
-      "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
+      "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
       "aliases": [],
       "id": "I-008",
       "type": "intervention",
@@ -10729,7 +10729,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round",
-        "B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration"
+        "bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration"
       ],
       "measurements": [
         "slate_disclosure_rate",
@@ -10785,7 +10785,7 @@
       "evidence_ids": [
         "EVD-034"
       ],
-      "content": "# Outreach States the Requisition Behind It\n\nEvery outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.\n\n### Expected Effects\n- B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent\n- M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on\n- The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast\n\n### Measurements\n- `unattached_outreach_rate`\n- `pool_record_age_days`\n- `planning_decision_notice_rate`",
+      "content": "# Outreach States the Requisition Behind It\n\nEvery outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.\n\n### Expected Effects\n- bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent\n- M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on\n- The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast\n\n### Measurements\n- `unattached_outreach_rate`\n- `pool_record_age_days`\n- `planning_decision_notice_rate`",
       "aliases": [],
       "id": "I-009",
       "type": "intervention",
@@ -10800,7 +10800,7 @@
       "cost": "low",
       "evidence_level": "supported",
       "expected_effects": [
-        "B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent",
+        "bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent",
         "M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on",
         "The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast"
       ],
@@ -10871,7 +10871,7 @@
         "EVD-036",
         "EVD-037"
       ],
-      "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- B-003 leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
+      "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
       "aliases": [],
       "id": "I-010",
       "type": "intervention",
@@ -10888,7 +10888,7 @@
       "expected_effects": [
         "M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status",
         "The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are",
-        "B-003 leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search"
+        "bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search"
       ],
       "measurements": [
         "unreviewed_at_close_rate",
@@ -10952,7 +10952,7 @@
       "evidence_ids": [
         "EVD-033"
       ],
-      "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves B-003 with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
+      "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
       "aliases": [],
       "id": "I-011",
       "type": "intervention",
@@ -10969,7 +10969,7 @@
       "expected_effects": [
         "The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code",
         "M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be",
-        "A profile above the graded band leaves B-003 with a routing code rather than a pass at screen"
+        "A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen"
       ],
       "measurements": [
         "screening_note_field_completeness",
@@ -11038,7 +11038,7 @@
       "evidence_ids": [
         "EVD-033"
       ],
-      "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- M-023 loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so B-003 and B-005 open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
+      "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- M-023 loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
       "aliases": [],
       "id": "I-012",
       "type": "intervention",
@@ -11055,7 +11055,7 @@
       "expected_effects": [
         "M-023 loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it",
         "A contribution held under another organisation arrives as a commit range rather than as something to be discovered",
-        "The index travels with the application, so B-003 and B-005 open the same named artefacts instead of whatever a profile page shows first"
+        "The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first"
       ],
       "measurements": [
         "work_index_attachment_rate",
@@ -11119,7 +11119,7 @@
       "evidence_ids": [
         "EVD-033"
       ],
-      "content": "# Publish the Technical Screen's Columns and Threshold Before the Round\n\nPublish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.\n\n### Expected Effects\n- B-005's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel\n- A total one point under the threshold at B-005 is locatable, because the number it is compared with is published\n- A round read cold under M-012 is scored on the published columns rather than on what the hour left as an impression\n\n### Measurements\n- `rubric_completion_rate`\n- `borderline_outcome_rate`",
+      "content": "# Publish the Technical Screen's Columns and Threshold Before the Round\n\nPublish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.\n\n### Expected Effects\n- bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel\n- A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published\n- A round read cold under M-012 is scored on the published columns rather than on what the hour left as an impression\n\n### Measurements\n- `rubric_completion_rate`\n- `borderline_outcome_rate`",
       "aliases": [],
       "id": "I-013",
       "type": "intervention",
@@ -11133,8 +11133,8 @@
       "cost": "medium",
       "evidence_level": "hypothesis",
       "expected_effects": [
-        "B-005's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel",
-        "A total one point under the threshold at B-005 is locatable, because the number it is compared with is published",
+        "bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel",
+        "A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published",
         "A round read cold under M-012 is scored on the published columns rather than on what the hour left as an impression"
       ],
       "measurements": [
@@ -11198,7 +11198,7 @@
       "evidence_ids": [
         "EVD-043"
       ],
-      "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at B-005 is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
+      "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
       "aliases": [],
       "id": "I-014",
       "type": "intervention",
@@ -11213,7 +11213,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date",
-        "A round at B-005 is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name",
+        "A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name",
         "Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot"
       ],
       "measurements": [
@@ -11282,7 +11282,7 @@
       "evidence_ids": [
         "EVD-044"
       ],
-      "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- B-010 is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- B-012 stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
+      "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
       "aliases": [],
       "id": "I-015",
       "type": "intervention",
@@ -11297,9 +11297,9 @@
       "cost": "medium",
       "evidence_level": "supported",
       "expected_effects": [
-        "B-010 is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends",
+        "bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends",
         "M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date",
-        "B-012 stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live"
+        "bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live"
       ],
       "measurements": [
         "panel_to_offer_latency_days",
@@ -11366,7 +11366,7 @@
       "evidence_ids": [
         "EVD-032"
       ],
-      "content": "# Verification Discrepancy Disclosure and Reconciliation Window\n\nClassify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.\n\n### Expected Effects\n- M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause\n- B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns\n- Which findings a document can close and which end the process is a published classification rather than a per-file decision\n\n### Measurements\n- `verification_hold_duration_days`\n- `discrepancy_reconciliation_rate`\n- `disclosed_finding_ratio`",
+      "content": "# Verification Discrepancy Disclosure and Reconciliation Window\n\nClassify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.\n\n### Expected Effects\n- M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause\n- bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns\n- Which findings a document can close and which end the process is a published classification rather than a per-file decision\n\n### Measurements\n- `verification_hold_duration_days`\n- `discrepancy_reconciliation_rate`\n- `disclosed_finding_ratio`",
       "aliases": [],
       "id": "I-016",
       "type": "intervention",
@@ -11384,7 +11384,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause",
-        "B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns",
+        "bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns",
         "Which findings a document can close and which end the process is a published classification rather than a per-file decision"
       ],
       "measurements": [
@@ -11452,7 +11452,7 @@
       "evidence_ids": [
         "EVD-045"
       ],
-      "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
+      "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
       "aliases": [],
       "id": "I-017",
       "type": "intervention",
@@ -11468,7 +11468,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group",
-        "B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing",
+        "bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing",
         "pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated"
       ],
       "measurements": [

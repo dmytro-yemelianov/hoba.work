@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze', '/methodology', '/mechanisms/M-001'];
+const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze', '/methodology', '/mechanisms/M-001', '/patterns/pat.closed_then_reposted_requisition_motif', '/barriers/bar.client_profile_approval_and_client_interview'];
 const WIDTHS = [360, 768, 1280];
 
 /** Anything wider than the viewport means a layout leak, not a design choice. */
