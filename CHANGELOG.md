@@ -72,6 +72,26 @@ actor from any other, so it is gone: an actor is a position the funnel is made
 of, not a claim about the world. A test now fails on any frontmatter key its
 schema does not define, naming the key and the file.
 
+### Changed — the repository structure
+
+Everything the registry is made of moved under `data/`, per design doc §9:
+
+    data/en/entities/<type>/*.md     data/evidence/*.md
+    data/uk/entities/<type>/*.md     data/scenarios/*.yaml
+
+§9's tree does not say where the Ukrainian mirror goes — it shows one entity
+tree and no second one — so the language sits above the entities rather than
+beside them, which is the only shape of the three considered that stops
+treating English as the default location. Type directories are singular, named
+exactly what their entities are typed; API collections stay plural.
+
+`site/` became `apps/web/` and `formal/` became `formal/lean/`. Splitting
+`packages/registry` into core/validator/graph/search remains deferred: the
+design doc calls it "packaging, not a rewrite", and the modules already have
+the dependency shape it would formalise.
+
+All 282 entity files moved with `git mv`, so history follows each one.
+
 ### Changed — two kinds are now called what the contract calls them
 
 `schema/entity.schema.json` has enumerated `observation` and `process` since

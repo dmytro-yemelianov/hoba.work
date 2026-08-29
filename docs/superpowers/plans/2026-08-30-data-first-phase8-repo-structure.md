@@ -56,3 +56,26 @@ The root marker changes with the layout — `isRegistryRoot` looks for
 3. **Full gate**, then commit. Deferred to its own slices afterwards:
    `site/` → `apps/web/`, `formal/` → `formal/lean/`, and the
    `packages/registry` split into core/validator/graph/search.
+
+---
+
+## Where this stands (2026-08-30)
+
+Done: the entity trees under `data/` (`5b9fc11`), and `site/` → `apps/web/`
+plus `formal/` → `formal/lean/` (`f5c3838`).
+
+Deferred, and deliberately last: the `packages/registry` split into
+core/validator/graph/search. It churns every import in the repository for no
+capability — the design doc itself calls it "packaging, not a rewrite" — and
+`validation.ts`, `graph.ts` and `search.ts` already have the one-way dependency
+shape the split would formalise. Worth doing when someone needs the boundary
+enforced rather than merely described.
+
+Two things the move surfaced, both older than it:
+
+- `loadRegistryFromDirectory` found the manifest by counting `..` from the
+  entity directory, which is why two extra levels broke it. It walks up now.
+- `pnpm task new` had been broken since Phase 2 (deriving the next id by parsing
+  `A-00N` out of filenames that stopped being numeric) and invalid since
+  Phase 3 (templates authoring an `evidence_level` that left the enum). Nobody
+  had scaffolded an entity since.
