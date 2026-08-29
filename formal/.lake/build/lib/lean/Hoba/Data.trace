@@ -1,0 +1,33 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["a882378b28ac25d7.olean"],
+  "m": false,
+  "i": "389db0310c21a6b2.ilean",
+  "c": "d24cada802838670.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/Users/dmytro/.superset/projects/hoba.work/formal/.lake/build/lib/lean /Users/dmytro/.elan/toolchains/leanprover--lean4---v4.32.1/bin/lean /Users/dmytro/.superset/projects/hoba.work/formal/Hoba/Data.lean -o /Users/dmytro/.superset/projects/hoba.work/formal/.lake/build/lib/lean/Hoba/Data.olean -i /Users/dmytro/.superset/projects/hoba.work/formal/.lake/build/lib/lean/Hoba/Data.ilean -c /Users/dmytro/.superset/projects/hoba.work/formal/.lake/build/ir/Hoba/Data.c --setup /Users/dmytro/.superset/projects/hoba.work/formal/.lake/build/ir/Hoba/Data.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["Hoba.Data:deps",
+   [["deps",
+     [["hoba/Hoba:extraDep", [["@hoba:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["Hoba.Machine transitive imports (legacy)", "00000000000006bb"],
+        ["Hoba.Machine:importAllArts", "3ae85c327bb35d2e"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
+   "4ce1780d8d26fd00"],
+  ["/Users/dmytro/.superset/projects/hoba.work/formal/Hoba/Data.lean",
+   "a7a001b0443dbe94"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Hoba.Data", "43aa6a4c3ac2fcc3"],
+  ["Package.id?: (some hoba)", "3a743efffee1c342"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "c4f9f5b312a8d232"}

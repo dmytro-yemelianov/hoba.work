@@ -1,0 +1,9 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "paths": {
+      "@hoba/registry": ["../../packages/registry/src/index.ts"],
+      "@hoba/registry/core": ["../../packages/registry/src/core.ts"]
+    }
+  }
+}

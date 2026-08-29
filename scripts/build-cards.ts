@@ -23,11 +23,11 @@ import {
   type RegistryBundle,
   type Specimen,
 } from '@hoba/registry';
-import { CAT_PRESETS, generateDNA, renderCatSVG, type CatDNA } from '../site/src/lib/cat-engine/index.js';
+import { CAT_PRESETS, generateDNA, renderCatSVG, type CatDNA } from '../apps/web/src/lib/cat-engine/index.js';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-cards: registry root not found');
-const OUT = path.join(root, 'site', 'dist', 'cards');
+const OUT = path.join(root, 'apps', 'web', 'dist', 'cards');
 
 // Layer hues, matching --g-* in the site's dark theme.
 const HUE: Record<string, string> = {

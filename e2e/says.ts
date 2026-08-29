@@ -1,4 +1,4 @@
-import { ui } from '../site/src/i18n/ui';
+import { ui } from '../apps/web/src/i18n/ui';
 
 /**
  * A dictionary string as a matcher.

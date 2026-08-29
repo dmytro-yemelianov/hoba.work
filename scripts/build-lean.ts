@@ -1,7 +1,7 @@
 /**
  * The registry as Lean terms.
  *
- * Names become indices on the way out, so every proposition in `formal/` is
+ * Names become indices on the way out, so every proposition in `formal/lean/` is
  * arithmetic over finite lists and the kernel can discharge it with `decide` —
  * no `native_decide`, no compiler in the trusted base, no mathlib.
  *
@@ -18,7 +18,7 @@ import { findRegistryRoot, loadRegistryFromRoot, lift, type RegistryBundle, type
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-lean: registry root not found');
-const OUT = path.join(root, 'formal', 'Hoba', 'Data.lean');
+const OUT = path.join(root, 'formal', 'lean', 'Hoba', 'Data.lean');
 
 const bundle: RegistryBundle = loadRegistryFromRoot(root, 'en');
 

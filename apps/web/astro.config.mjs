@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const registrySrc = path.resolve(__dirname, '../packages/registry/src');
+const registrySrc = path.resolve(__dirname, '../../packages/registry/src');
 
 export default defineConfig({
   site: 'https://hoba.work',

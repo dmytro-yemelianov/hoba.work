@@ -59,7 +59,7 @@ describe('registryContentHash', () => {
 });
 
 describe('the release manifest', () => {
-  const manifest = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'site', 'public', 'data', 'latest', 'manifest.json'), 'utf-8'));
+  const manifest = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'apps', 'web', 'public', 'data', 'latest', 'manifest.json'), 'utf-8'));
 
   it('reports a semver registry version — DoD 8', () => {
     expect(manifest.registry_version).toMatch(/^\d+\.\d+\.\d+$/);

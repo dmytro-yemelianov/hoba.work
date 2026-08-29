@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 // @ts-expect-error plain JS worker without type declarations
-import worker, { parseAcceptLanguage, preferredLocale, legacyRedirect, internalPath, isStaticAsset } from '../site/public/_worker.js';
+import worker, { parseAcceptLanguage, preferredLocale, legacyRedirect, internalPath, isStaticAsset } from '../apps/web/public/_worker.js';
 
 /** A stand-in for the Pages ASSETS binding that echoes the path it was asked for. */
 const assets = { fetch: async (req: Request) => new Response(`asset:${new URL(req.url).pathname}`, { headers: { 'content-type': 'text/html' } }) };

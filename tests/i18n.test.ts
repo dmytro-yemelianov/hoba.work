@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { ui } from '../site/src/i18n/ui';
-import { branded, internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../site/src/i18n/utils';
+import { ui } from '../apps/web/src/i18n/ui';
+import { branded, internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../apps/web/src/i18n/utils';
 
 describe('ui dictionary', () => {
   it('has the same keys in every locale, with no empty Ukrainian strings', () => {

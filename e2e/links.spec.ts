@@ -10,7 +10,7 @@ import { expect, test } from '@playwright/test';
  * will find it at request time.
  */
 test('built site has no broken internal links', () => {
-  const dist = path.resolve(__dirname, '../site/dist');
+  const dist = path.resolve(__dirname, '../apps/web/dist');
   const pages: string[] = [];
   const walk = (dir: string) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

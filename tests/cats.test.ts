@@ -8,7 +8,7 @@ import {
   POSES,
   COAT_STYLES,
   type CatDNA,
-} from '../site/src/lib/cat-engine/index.js';
+} from '../apps/web/src/lib/cat-engine/index.js';
 
 describe('Vector Cat Engine', () => {
   it('generates deterministic DNA and identical SVG for the same seed', () => {

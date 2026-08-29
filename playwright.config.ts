@@ -11,7 +11,7 @@ const COMPAT_DATE = '2026-07-21';
  * End-to-end suite for the built site.
  *
  * The server is `wrangler pages dev`, not `astro preview`: public URLs carry no
- * language, so every HTML response comes from `site/public/_worker.js`
+ * language, so every HTML response comes from `apps/web/public/_worker.js`
  * resolving one. A static file server would serve the internal trees directly
  * and the suite would be testing a site nobody visits.
  *
@@ -36,7 +36,7 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] }, testMatch: /mobile\.spec\.ts/ },
   ],
   webServer: {
-    command: `pnpm exec wrangler pages dev site/dist --port ${PORT} --ip 127.0.0.1 --compatibility-date ${COMPAT_DATE} --log-level warn`,
+    command: `pnpm exec wrangler pages dev apps/web/dist --port ${PORT} --ip 127.0.0.1 --compatibility-date ${COMPAT_DATE} --log-level warn`,
     url: `${baseURL}/`,
     reuseExistingServer: !process.env.CI,
     // workerd takes appreciably longer to come up than a static file server.

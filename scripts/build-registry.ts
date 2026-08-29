@@ -36,7 +36,7 @@ import {
 const SITE_ORIGIN = 'https://hoba.work';
 
 const root = resolveRegistryRoot({ explicit: process.argv[2] });
-const sitePublicDir = path.join(root, 'site', 'public');
+const sitePublicDir = path.join(root, 'apps', 'web', 'public');
 const schemasDir = path.join(root, 'schemas');
 const siteVersion = readPackageVersion(path.join(root, 'package.json'));
 

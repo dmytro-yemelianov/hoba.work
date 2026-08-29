@@ -46,7 +46,7 @@ jobs:
         # `content` is in here because entry bodies are generated from their own
         # frontmatter: a body edited by hand, or left behind by a frontmatter
         # edit, shows up as a diff instead of drifting quietly.
-        run: git diff --exit-code --stat -- schemas site/public content content-uk
+        run: git diff --exit-code --stat -- schemas apps/web/public data
 
       - name: Install Lean
         uses: leanprover/lean-action@v1
@@ -54,7 +54,7 @@ jobs:
           auto-config: false
           use-mathlib-cache: false
           build: false
-          lake-package-directory: formal
+          lake-package-directory: formal/lean
 
       - name: Prove the registry's structural claims
         run: pnpm lean
@@ -63,13 +63,13 @@ jobs:
         # The proofs are only about the registry if the terms they run on were
         # generated from it. A stale Data.lean would prove something true about
         # a registry nobody has.
-        run: git diff --exit-code --stat -- formal
+        run: git diff --exit-code --stat -- formal/lean
 
       - name: Upload site build
         uses: actions/upload-artifact@v7
         with:
           name: site-dist
-          path: site/dist
+          path: apps/web/dist
           retention-days: 7
 
   e2e:
@@ -98,18 +98,18 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: site-dist
-          path: site/dist
+          path: apps/web/dist
 
       - name: Verify the downloaded build
         # Both language trees, the worker that serves them, and the hashed
         # assets. There is no root index.html: public URLs carry no language,
         # so every page lives inside a tree.
         run: |
-          test -s site/dist/_i/en/index.html
-          test -s site/dist/_i/uk/index.html
-          test -s site/dist/_worker.js
-          test -d site/dist/_astro
-          test -s site/dist/cards/uk/A-013.png
+          test -s apps/web/dist/_i/en/index.html
+          test -s apps/web/dist/_i/uk/index.html
+          test -s apps/web/dist/_worker.js
+          test -d apps/web/dist/_astro
+          test -s apps/web/dist/cards/uk/obs.feedback_stating_candidate_is_overqualified_for_the_grade.png
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
@@ -145,18 +145,18 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: site-dist
-          path: site/dist
+          path: apps/web/dist
 
       - name: Verify the downloaded build
         # Both language trees, the worker that serves them, and the hashed
         # assets. There is no root index.html: public URLs carry no language,
         # so every page lives inside a tree.
         run: |
-          test -s site/dist/_i/en/index.html
-          test -s site/dist/_i/uk/index.html
-          test -s site/dist/_worker.js
-          test -d site/dist/_astro
-          test -s site/dist/cards/uk/A-013.png
+          test -s apps/web/dist/_i/en/index.html
+          test -s apps/web/dist/_i/uk/index.html
+          test -s apps/web/dist/_worker.js
+          test -d apps/web/dist/_astro
+          test -s apps/web/dist/cards/uk/obs.feedback_stating_candidate_is_overqualified_for_the_grade.png
 
       - name: Install pnpm
         uses: pnpm/action-setup@v6
@@ -176,4 +176,4 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: pnpm exec wrangler pages deploy site/dist --project-name hoba-work --branch main --commit-dirty=true
+        run: pnpm exec wrangler pages deploy apps/web/dist --project-name hoba-work --branch main --commit-dirty=true

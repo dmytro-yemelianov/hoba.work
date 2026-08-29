@@ -17,7 +17,7 @@ import { findRegistryRoot, HOBAKnowledgeGraph, loadRegistryFromRoot, type Conten
 const SITE = 'https://hoba.work';
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-discovery: registry root not found');
-const PUBLIC = path.join(root, 'site', 'public');
+const PUBLIC = path.join(root, 'apps', 'web', 'public');
 
 const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data', '/methodology', '/developers', '/contribute', '/about'];
 
