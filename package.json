@@ -11,13 +11,14 @@
     "url": "git+https://github.com/dmytro-yemelianov/hoba.work.git"
   },
   "scripts": {
-    "build": "pnpm build:packages && pnpm build:bodies && pnpm build:registry && pnpm build:discovery && pnpm --filter hoba-site build && pnpm build:cards",
+    "build": "pnpm build:packages && pnpm build:bodies && pnpm build:registry && pnpm build:worker && pnpm build:discovery && pnpm --filter hoba-site build && pnpm build:cards",
     "build:bodies": "tsx scripts/build-bodies.ts",
     "build:cards": "tsx scripts/build-cards.ts",
     "build:discovery": "tsx scripts/build-discovery.ts",
     "build:lean": "tsx scripts/build-lean.ts",
     "build:packages": "tsc -b packages/registry packages/cli packages/mcp && chmod +x packages/cli/dist/cli.js packages/mcp/dist/index.js",
     "build:registry": "tsx scripts/build-registry.ts",
+    "build:worker": "tsx scripts/build-worker.ts",
     "clean": "rimraf node_modules packages/*/dist packages/*/node_modules packages/*/tsconfig.tsbuildinfo apps/web/.astro apps/web/dist apps/web/node_modules",
     "deploy:pages": "pnpm build && wrangler pages deploy apps/web/dist --project-name hoba-work --branch main --commit-dirty=true",
     "deploy:preview": "pnpm build && wrangler pages deploy apps/web/dist --project-name hoba-work --branch \"$(git branch --show-current)\" --commit-dirty=true",
@@ -43,6 +44,7 @@
     "@playwright/test": "^1.62.1",
     "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.13.4",
+    "esbuild": "^0.28.2",
     "rimraf": "^6.0.1",
     "satori": "^0.33.4",
     "tsx": "^4.19.3",

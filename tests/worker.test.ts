@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
+import { loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
 // @ts-expect-error plain JS worker without type declarations
-import worker, { parseAcceptLanguage, preferredLocale, legacyRedirect, internalPath, isStaticAsset } from '../apps/web/public/_worker.js';
+import { isValidateRoute } from '../apps/web/src/worker/validate.js';
+// @ts-expect-error plain JS worker without type declarations
+import worker, { parseAcceptLanguage, preferredLocale, legacyRedirect, internalPath, isStaticAsset } from '../apps/web/src/worker/index.js';
 
 /** A stand-in for the Pages ASSETS binding that echoes the path it was asked for. */
 const assets = { fetch: async (req: Request) => new Response(`asset:${new URL(req.url).pathname}`, { headers: { 'content-type': 'text/html' } }) };
@@ -193,5 +196,74 @@ describe('legacy entity-ID redirects', () => {
 
   it('leaves the root path alone', () => {
     expect(legacyRedirect('/')).toBeNull();
+  });
+});
+
+/**
+ * Design doc §13 deferred these until the validators existed as library
+ * functions. They call the same functions the build and the MCP server call,
+ * so what is tested here is the wiring — that a body reaches the right
+ * validator and its verdict comes back — not the rules, which are tested where
+ * they live.
+ */
+describe('POST /validate/*', () => {
+  const registryJson = JSON.stringify(loadRegistryFromRoot(resolveRegistryRoot(), 'en'));
+  const envWithRegistry = {
+    ASSETS: {
+      fetch: async (input: RequestInfo) => {
+        const url = typeof input === 'string' ? input : (input as Request).url;
+        if (url.includes('/data/latest/registry.json')) return new Response(registryJson);
+        return new Response('asset');
+      },
+    },
+  } as unknown as Parameters<typeof worker.fetch>[1];
+
+  const post = (path: string, body: unknown) =>
+    worker.fetch(
+      new Request(`https://hoba.work${path}`, { method: 'POST', body: JSON.stringify(body) }),
+      envWithRegistry
+    );
+
+  it('accepts a claim the registry carries, and refuses one it does not', async () => {
+    const within = await (await post('/validate/claim', { id: 'M-001', claim_level: 'observed' })).json();
+    expect(within.valid).toBe(true);
+    expect(within.registry_version).toBeDefined();
+
+    const over = await (await post('/validate/claim', { id: 'M-001', claim_level: 'proven' })).json();
+    expect(over.registry_level).toBeDefined();
+    if (!over.valid) expect(over.issues[0].rule).toBe('overclaim');
+  });
+
+  it('reports an unknown entity rather than pretending the claim is fine', async () => {
+    const res = await (await post('/validate/claim', { id: 'nope.nothing', claim_level: 'observed' })).json();
+    expect(res.valid).toBe(false);
+    expect(JSON.stringify(res.issues)).toContain('nope.nothing');
+  });
+
+  it('validates a scenario, and names the entity a broken one invents', async () => {
+    const good = { id: 'scenario.worker_fixture', title: { en: 'A', uk: 'Б' }, observations: ['obs.complete_silence_after_submission'] };
+    expect((await (await post('/validate/scenario', good)).json()).valid).toBe(true);
+
+    const bad = { ...good, observations: ['obs.no_such_observation'] };
+    const res = await (await post('/validate/scenario', bad)).json();
+    expect(res.valid).toBe(false);
+    expect(JSON.stringify(res.issues)).toContain('obs.no_such_observation');
+  });
+
+  it('refuses a GET, and refuses a body that is not JSON', async () => {
+    const got = await worker.fetch(new Request('https://hoba.work/validate/claim'), envWithRegistry);
+    expect(got.status).toBe(405);
+
+    const notJson = await worker.fetch(
+      new Request('https://hoba.work/validate/claim', { method: 'POST', body: 'not json' }),
+      envWithRegistry
+    );
+    expect(notJson.status).toBe(400);
+  });
+
+  it('leaves every other path to the routes that already handled it', async () => {
+    expect(isValidateRoute('/validate/analysis')).toBe(true);
+    expect(isValidateRoute('/validate/nothing')).toBe(false);
+    expect(isValidateRoute('/registry')).toBe(false);
   });
 });

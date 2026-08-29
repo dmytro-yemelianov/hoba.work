@@ -10,14 +10,14 @@
  * Scenarios are also the one place this migration keeps a standalone YAML file
  * per entity, since they carry no long-form rendered body the way the ten
  * authored types do.
+ *
+ * This module is the schema and the checks, and reaches no Node built-in, so an
+ * edge runtime can validate a scenario without a filesystem. Reading them off
+ * disk lives in `scenarios-store.ts`.
  */
-import fs from 'node:fs';
-import path from 'node:path';
-import yaml from 'js-yaml';
 import { z } from 'zod';
-import { SCENARIO_DIR } from './paths.js';
 import { stageIdSchema } from './schemas.js';
-import type { EmpiricalScenario, RegistryBundle } from './types.js';
+import type { RegistryBundle } from './types.js';
 import type { ValidationIssue } from './validation.js';
 
 const observationRef = z.string().regex(/^obs\.[a-z0-9_]+$/);
@@ -52,31 +52,6 @@ export const scenarioSchema = z.object({
 
 export type Scenario = z.infer<typeof scenarioSchema>;
 
-export function loadScenarios(root: string): Scenario[] {
-  const dir = path.join(root, SCENARIO_DIR);
-  if (!fs.existsSync(dir)) return [];
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith('.yaml') || f.endsWith('.yml'))
-    .sort()
-    .map((file) => {
-      const full = path.join(dir, file);
-      const parsed = scenarioSchema.safeParse(yaml.load(fs.readFileSync(full, 'utf-8')));
-      if (!parsed.success) {
-        throw new Error(`${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
-      }
-      return parsed.data;
-    })
-    .sort((a, b) => a.id.localeCompare(b.id));
-}
-
-/**
- * Every id in every array must resolve against the loaded ontology.
- *
- * Design doc §4 is explicit that an unresolvable id here is a build error and
- * never a warning: a scenario that names an entity the registry does not have
- * is not a weaker scenario, it is a broken one.
- */
 export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
   const known = new Set<string>([
@@ -116,29 +91,6 @@ export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle)
     }
   }
   return issues;
-}
-
-/**
- * The scenarios usable as diagnostic presets, in the shape the engine takes.
- *
- * These were four objects hardcoded in `diagnostics.ts`. They are authored
- * content now, so they live with the rest of it — but the engine stays pure and
- * browser-safe, which is why the mapping is here (this module already reads the
- * filesystem) and not there.
- *
- * A preset is any scenario carrying a `summary`; a scenario without one is a
- * composition to read, not a starting point to analyse from.
- */
-export function empiricalScenarios(root: string): EmpiricalScenario[] {
-  return loadScenarios(root)
-    .filter((s) => s.summary)
-    .map((s) => ({
-      id: s.id,
-      title: s.title.en,
-      summary: s.summary!,
-      stage: s.stage,
-      artifacts: s.observations,
-    }));
 }
 
 /**

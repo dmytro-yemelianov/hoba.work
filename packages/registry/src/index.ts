@@ -9,6 +9,7 @@ export * from './validation.js';
 export * from './paths.js';
 export * from './migration.js';
 export * from './scenarios.js';
+export * from './scenarios-store.js';
 export * from './analysis.js';
 export * from './agency.js';
 export * from './hash.js';

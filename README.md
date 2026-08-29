@@ -136,6 +136,17 @@ Hosted with zero database latency under `https://hoba.work/api/v1/`:
 - `GET /api/v1/graph` — Complete graph elements for visualization
 - OpenAPI 3.1 Contract: [`/openapi.json`](https://hoba.work/openapi.json)
 
+### Validation over HTTP
+`POST /validate/{analysis,scenario,claim}` check a submitted document against the
+deployed release. They call the same library functions the build and the MCP
+server call, so there is no second implementation of any rule:
+```bash
+curl -sX POST https://hoba.work/validate/claim \
+  -H 'content-type: application/json' \
+  -d '{"id":"mech.bench_priority_fill","claim_level":"proven"}'
+# -> valid:false, "which the registry itself carries only as \"compatible\""
+```
+
 ### Model Context Protocol (MCP) Server
 Equip AI agents and IDE assistants with direct access to **hoba** knowledge. The packages are **not yet published to
 npm**; run the server from a local checkout (`pnpm install && pnpm build:packages`):
