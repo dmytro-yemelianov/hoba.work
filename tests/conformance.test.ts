@@ -65,7 +65,7 @@ describe('conformance', () => {
     );
     // Three gates fail; the one reported is the earliest in the funnel.
     expect(report.gates.filter((g) => g.verdict === 'fails')).toHaveLength(3);
-    expect(report.stops_at!.gate).toBe('B-002');
+    expect(report.stops_at!.gate).toBe('bar.automated_filter_parser_threshold');
     expect(report.stops_at!.state).toBe('machine-check');
   });
 
@@ -89,7 +89,7 @@ describe('conformance', () => {
       }
     );
     for (const gate of report.gates) {
-      expect(gate.gate, gate.reason.code).toMatch(/^B-\d{3}$/);
+      expect(gate.gate, gate.reason.code).toMatch(/^bar\.[a-z0-9_]+$/);
       expect(gate.state.length, gate.reason.code).toBeGreaterThan(0);
       expect(gate.mechanisms.length, gate.reason.code).toBeGreaterThan(0);
       for (const m of gate.mechanisms) expect(m).toMatch(/^M-\d{3}$/);

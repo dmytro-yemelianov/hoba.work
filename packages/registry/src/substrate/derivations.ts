@@ -693,7 +693,7 @@ export function substrateCheckConformance(
   if (posting.required_years !== undefined && posting.technology_age !== undefined) {
     const impossible = posting.required_years > posting.technology_age;
     gates.push({
-      gate: 'B-013',
+      gate: 'bar.requisition_approval_public_posting',
       stage: 'pre-posting',
       state: 'real-need',
       verdict: impossible ? 'unsatisfiable' : 'passes',
@@ -709,7 +709,7 @@ export function substrateCheckConformance(
     const known = profile.years !== undefined;
     const short = known && profile.years! < posting.required_years;
     gates.push({
-      gate: 'B-002',
+      gate: 'bar.automated_filter_parser_threshold',
       stage: 'ingestion',
       state: 'machine-check',
       verdict: !known ? 'undetermined' : short ? 'fails' : 'passes',
@@ -727,7 +727,7 @@ export function substrateCheckConformance(
     const known = (profile.authorised_for ?? []).length > 0;
     const authorised = has(profile.authorised_for, posting.requires_authorisation_in);
     gates.push({
-      gate: 'B-002',
+      gate: 'bar.automated_filter_parser_threshold',
       stage: 'ingestion',
       state: 'machine-check',
       verdict: !known ? 'undetermined' : authorised ? 'passes' : 'fails',
@@ -744,7 +744,7 @@ export function substrateCheckConformance(
     const known = Boolean(profile.located_in);
     const inside = known && has(posting.hiring_locations, profile.located_in!);
     gates.push({
-      gate: 'B-002',
+      gate: 'bar.automated_filter_parser_threshold',
       stage: 'ingestion',
       state: 'machine-check',
       verdict: !known ? 'undetermined' : inside ? 'passes' : 'fails',
@@ -761,7 +761,7 @@ export function substrateCheckConformance(
   if ((posting.required_skills ?? []).length > 0) {
     const missing = (posting.required_skills ?? []).filter((s) => !has(profile.skills, s));
     gates.push({
-      gate: 'B-002',
+      gate: 'bar.automated_filter_parser_threshold',
       stage: 'ingestion',
       state: 'machine-check',
       verdict: 'undetermined',
@@ -778,7 +778,7 @@ export function substrateCheckConformance(
     const above = posting.band_max !== undefined && profile.expectation > posting.band_max;
     const below = posting.band_min !== undefined && profile.expectation < posting.band_min;
     gates.push({
-      gate: 'B-009',
+      gate: 'bar.compensation_levelling_reconciliation',
       stage: 'compensation',
       state: 'level-and-band',
       verdict: above ? 'fails' : 'passes',
@@ -791,7 +791,7 @@ export function substrateCheckConformance(
     });
   } else if (posting.band_min === undefined && posting.band_max === undefined && profile.expectation !== undefined) {
     gates.push({
-      gate: 'B-009',
+      gate: 'bar.compensation_levelling_reconciliation',
       stage: 'compensation',
       state: 'level-and-band',
       verdict: 'undetermined',
