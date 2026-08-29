@@ -1,0 +1,106 @@
+---
+id: "obs.communication_mismatch_or_tone_friction_in_panel"
+type: "observation"
+aliases:
+  - "A-010"
+title: "Communication mismatch or tone friction in panel"
+summary: "Noticeable divergence in communication style, pacing, or terminology during live panel discussions."
+stages:
+  - "recruiter"
+  - "team"
+perspectives:
+  -
+    actor: "actor.candidate"
+    sees: "An exchange where the question and the answer sat at different levels, reconciled in the room within half a minute. Then written feedback that states the mismatch as a property of the answers."
+    reads: "One exchange and a generalisation of it both fit the same recording; which of the two the panel worked from is not in the note."
+    does: "Asks which moment the note refers to, and keeps the wording, since the note is the only version of the round that leaves the room."
+  -
+    actor: "actor.hiring_manager"
+    sees: "Written impressions from each interviewer after the round. The recording is not what the panel reviews."
+    reads: "Wording that lines up across notes reads as a shared signal; a bad hire is visible for a year and has a name on it, a missed one has neither."
+    does: "Decides on the note as written, since it is the record of the round, and has no cheap way to test whether it describes one exchange or a pattern."
+  -
+    actor: "actor.recruiter"
+    sees: "A summary line for the round: technically solid, communication not calibrated. What was said at minute twenty-two is not in the recruiter's view."
+    reads: "A reason to relay, at the level of detail it was given at."
+    does: "Passes the summary on, and when the candidate asks which moment it refers to, has the same sentence to answer with and nothing behind it."
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+probes:
+  -
+    id: "PROBE-A-010-1"
+    action: "Ask the recruiter for explicit feedback on the collaborative dynamic."
+    expected_signal: "Clarifies whether the friction was taken as an attitude issue or as a difference in style."
+    cost: "low"
+    outcomes:
+      -
+        id: "nothing-added"
+        label: "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it."
+        excludes:
+          - "mech.genuine_technical_skill_shortfall"
+        because: "Inability to provide a single grounded communicative exchange points to non-calibrated impression scoring rather than an evidence-based panel."
+      -
+        id: "moment-named"
+        label: "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session."
+        excludes:
+          - "mech.domain_specificity_over_weighting"
+        because: "A concrete communicative exchange demonstrates individualized panel recall, ruling out arbitrary non-specific impression bias."
+      -
+        id: "reception-framing"
+        label: "The answer moves from pacing to reception: the concern is put as how critique was taken, not as which level the answers sat at."
+        excludes: []
+      -
+        id: "no-reply"
+        label: "No reply arrives at all: the request sits unanswered on the thread, and the written note remains the whole record of the round."
+        excludes: []
+specimens:
+  -
+    kind: "transcript"
+    label: "Panel discussion, transcript fragment"
+    context: "minute 22, architecture round"
+    lines:
+      -
+        speaker: "Interviewer A"
+        at: "22:05"
+        text: "So when you say the write path is eventually consistent, what does the client see?"
+      -
+        speaker: "Candidate"
+        at: "22:14"
+        text: "Depends on the read. If it goes through the cache it can be stale by up to the TTL; if it goes to the primary it is current."
+      -
+        speaker: "Interviewer A"
+        at: "22:26"
+        text: "Sorry, I think we are talking past each other. I meant from the user perspective."
+        tell: true
+      -
+        speaker: "Candidate"
+        at: "22:33"
+        text: "Ah — then: they may see their own write missing for a second or two."
+      -
+        speaker: "Interviewer A"
+        at: "22:38"
+        text: "That is what I was after."
+    reading: "The disagreement was about which layer the question lived in, not about the answer. The content was right at both levels."
+  -
+    kind: "email"
+    label: "Panel feedback"
+    subject: "Feedback — architecture round"
+    lines:
+      -
+        text: "Technically solid throughout."
+      -
+        text: "The panel felt communication was not always calibrated to the audience — answers went to implementation detail where a product-level framing was wanted."
+        tell: true
+    reading: "Read against the transcript, this is one exchange generalised into a trait. Both readings fit the same recording, which is exactly why the observation is not a verdict."
+non_inferences:
+  - "Does not prove the candidate lacks teamwork skills in general."
+---
+
+# Communication mismatch or tone friction in panel
+
+Noticeable divergence in communication style, pacing, or terminology during live panel discussions.
+
+### Diagnostic Non-Inferences
+- Does not prove the candidate lacks teamwork skills in general.

@@ -22,7 +22,7 @@ export interface IdMappingResult {
 
 /** Design doc §3's type → new-ID-prefix table. */
 export const TYPE_ID_PREFIX: Record<string, string> = {
-  artifact: 'obs',
+  observation: 'obs',
   barrier: 'bar',
   mechanism: 'mech',
   pattern: 'pat',
@@ -56,7 +56,7 @@ interface TitledId {
  */
 export function buildIdMapping(bundle: RegistryBundle): IdMappingResult {
   const collections: Array<{ type: string; items: TitledId[] }> = [
-    { type: 'artifact', items: bundle.artifacts as unknown as TitledId[] },
+    { type: 'observation', items: bundle.observations as unknown as TitledId[] },
     { type: 'barrier', items: bundle.barriers as unknown as TitledId[] },
     { type: 'mechanism', items: bundle.mechanisms as unknown as TitledId[] },
     { type: 'pattern', items: bundle.patterns as unknown as TitledId[] },

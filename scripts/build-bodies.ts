@@ -90,11 +90,11 @@ const bullets = (items: string[]): string[] => items.map((i) => `- ${i}`);
 
 function body(node: Record<string, any>, bundle: RegistryBundle, w: Words): string {
   const title = (id: string) =>
-    [...bundle.mechanisms, ...bundle.artifacts, ...bundle.barriers].find((n) => n.id === id)?.title ?? id;
+    [...bundle.mechanisms, ...bundle.observations, ...bundle.barriers].find((n) => n.id === id)?.title ?? id;
   const out: string[] = [`# ${node.title}`, '', node.summary ?? node.description, ''];
 
   switch (node.type) {
-    case 'artifact':
+    case 'observation':
       out.push(...section(w.nonInferences, ...bullets(node.non_inferences)));
       break;
     case 'barrier':
@@ -141,7 +141,7 @@ function body(node: Record<string, any>, bundle: RegistryBundle, w: Words): stri
   return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
 
-const COLLECTIONS = ['artifacts', 'barriers', 'mechanisms', 'patterns', 'loops', 'interventions'] as const;
+const COLLECTIONS = ['observations', 'barriers', 'mechanisms', 'patterns', 'loops', 'interventions'] as const;
 
 let written = 0;
 for (const lang of ['en', 'uk'] as const) {

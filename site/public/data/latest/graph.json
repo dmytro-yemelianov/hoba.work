@@ -5,7 +5,7 @@
         "data": {
           "id": "obs.communication_mismatch_or_tone_friction_in_panel",
           "label": "Communication mismatch or tone friction in panel",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "recruiter",
@@ -18,7 +18,7 @@
         "data": {
           "id": "obs.compensation_band_reduced_or_altered_mid_process",
           "label": "Compensation band reduced or altered mid-process",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "recruiter",
@@ -32,7 +32,7 @@
         "data": {
           "id": "obs.complete_silence_after_submission",
           "label": "Complete silence after submission",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "ingestion",
@@ -45,7 +45,7 @@
         "data": {
           "id": "obs.conflicting_feedback_across_different_interviewers",
           "label": "Conflicting feedback across different interviewers",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "technical",
@@ -58,7 +58,7 @@
         "data": {
           "id": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "label": "Explicit feedback citing skill-depth shortfall",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "technical",
@@ -71,7 +71,7 @@
         "data": {
           "id": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
           "label": "Feedback naming as absent something the submitted work contains",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "compatible",
           "stages": [
             "screening",
@@ -84,7 +84,7 @@
         "data": {
           "id": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "label": "Feedback stating candidate is overqualified for the grade",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "recruiter",
@@ -98,7 +98,7 @@
         "data": {
           "id": "obs.generic_closer_alignment_rejection_template",
           "label": "Generic \"closer alignment\" rejection template",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "screening",
@@ -112,7 +112,7 @@
         "data": {
           "id": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "label": "Materially similar role reposted shortly after rejection",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "sourcing",
@@ -126,7 +126,7 @@
         "data": {
           "id": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
           "label": "Multiple interview reschedulings or interviewer no-show",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "recruiter",
@@ -140,7 +140,7 @@
         "data": {
           "id": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "label": "Offer accepted followed by delayed start date or post-signing revocation",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "proven",
           "stages": [
             "post-offer"
@@ -152,7 +152,7 @@
         "data": {
           "id": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "label": "Offer rescinded or delayed due to internal freeze",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "offer",
@@ -165,7 +165,7 @@
         "data": {
           "id": "obs.position_closed_after_final_interview_without_hire",
           "label": "Position closed after final interview without hire",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "team",
@@ -178,7 +178,7 @@
         "data": {
           "id": "obs.rejection_after_the_application_sat_pending_for_months",
           "label": "Rejection after the application sat pending for months",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "compatible",
           "stages": [
             "ingestion",
@@ -191,7 +191,7 @@
         "data": {
           "id": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "label": "Rejection naming a jurisdiction or work-eligibility ground",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "compatible",
           "stages": [
             "ingestion",
@@ -204,7 +204,7 @@
         "data": {
           "id": "obs.rejection_naming_a_specific_industry_sector_as_required",
           "label": "Rejection naming a specific industry sector as required",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "compatible",
           "stages": [
             "recruiter",
@@ -217,7 +217,7 @@
         "data": {
           "id": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "label": "Rejection naming an internal hire as the outcome",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "compatible",
           "stages": [
             "team",
@@ -230,7 +230,7 @@
         "data": {
           "id": "obs.rejection_within_minutes_of_application_submission",
           "label": "Rejection within minutes of application submission",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "ingestion"
@@ -242,7 +242,7 @@
         "data": {
           "id": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
           "label": "Republished job posting with refreshed date and identical requirement body",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "proven",
           "stages": [
             "pre-posting",
@@ -255,7 +255,7 @@
         "data": {
           "id": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
           "label": "Take-home assignment exceeding reasonable stated scope",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "technical"
@@ -267,7 +267,7 @@
         "data": {
           "id": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "label": "Unsolicited recruiter outreach followed by ghosting",
-          "type": "artifact",
+          "type": "observation",
           "evidence_level": "supported",
           "stages": [
             "sourcing",

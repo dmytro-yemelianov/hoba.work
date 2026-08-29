@@ -14,7 +14,7 @@ test.describe('discovery surface', () => {
     const body = await (await request.get('/sitemap.xml')).text();
     const locs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     expect(locs.length).toBeGreaterThan(70);
-    for (const route of ['/', '/registry', '/graph', '/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade', '/mechanisms/mech.genuine_technical_skill_shortfall', '/interventions/int.upfront_compensation_band_disclosure']) {
+    for (const route of ['/', '/registry', '/graph', '/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade', '/mechanisms/mech.genuine_technical_skill_shortfall', '/interventions/int.upfront_compensation_band_disclosure']) {
       expect(locs, route).toContain(`https://hoba.work${route === '/' ? '/' : route}`);
     }
     // No language segment: shareable links carry no locale.

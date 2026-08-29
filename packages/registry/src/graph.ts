@@ -21,7 +21,7 @@ export class HOBAKnowledgeGraph {
 
   private indexNodes() {
     const collections = [
-      this.bundle.artifacts,
+      this.bundle.observations,
       this.bundle.barriers,
       this.bundle.mechanisms,
       this.bundle.patterns,
@@ -261,8 +261,8 @@ export class HOBAKnowledgeGraph {
 
   public toCytoscapeJSON(): { elements: { nodes: CytoscapeNode[]; edges: CytoscapeEdge[] } } {
     const nodes: CytoscapeNode[] = [
-      ...this.bundle.artifacts.map((a) => ({
-        data: { id: a.id, label: a.title, type: 'artifact', evidence_level: a.evidence_level, stages: a.stages },
+      ...this.bundle.observations.map((a) => ({
+        data: { id: a.id, label: a.title, type: 'observation', evidence_level: a.evidence_level, stages: a.stages },
         classes: 'node-artifact',
       })),
       ...this.bundle.barriers.map((b) => ({
@@ -341,7 +341,7 @@ export class HOBAKnowledgeGraph {
   public toCSV(): { nodesCSV: string; edgesCSV: string } {
     const nodeRows: (string | number | undefined)[][] = [
       ['id', 'type', 'title', 'evidence_level', 'stage', 'removability', 'nature', 'actor'],
-      ...this.bundle.artifacts.map((a) => [a.id, 'artifact', a.title, a.evidence_level, a.stages.join(';'), '', '', '']),
+      ...this.bundle.observations.map((a) => [a.id, 'observation', a.title, a.evidence_level, a.stages.join(';'), '', '', '']),
       ...this.bundle.barriers.map((b) => [b.id, 'barrier', b.title, b.evidence_level, b.stage, '', '', '']),
       ...this.bundle.mechanisms.map((m) => [
         m.id,

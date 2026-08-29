@@ -1,0 +1,112 @@
+---
+id: "obs.compensation_band_reduced_or_altered_mid_process"
+type: "observation"
+aliases:
+  - "A-005"
+title: "Compensation band reduced or altered mid-process"
+summary: "The compensation band offered or discussed is revised downward from the range previously agreed or advertised."
+stages:
+  - "recruiter"
+  - "compensation"
+  - "offer"
+perspectives:
+  -
+    actor: "actor.candidate"
+    sees: "A band stated in the posting and again at the screen, a lower band stated in week five, and the posting still showing the first figure."
+    reads: "An answer that applies to everyone at the grade describes a policy; an answer specific to this candidate would describe an assessment. The reply given was the first."
+    does: "Records the original band, the date it was stated and who stated it, and asks whether the revision is to the level or to this offer."
+  -
+    actor: "actor.recruiter"
+    sees: "A revised grid for the level, arriving after the role opened, and a candidate holding the figure stated at the screen."
+    reads: "The number changed above the recruiter's position; the earlier figure is the one the candidate is holding going into the offer call."
+    does: "States the current band and where it came from, and files the posting correction as a request, because the band itself is set a level above this function."
+  -
+    actor: "actor.employer_policy"
+    sees: "A levelling grid and a band per grade, revised on the cycle at which compensation is reviewed."
+    reads: "A band set at the grade applies to everyone entering at that grade, which is what makes the hires consistent with one another."
+    does: "Revises the grid and applies it from the date of the revision. Processes already running against the previous figure are not rows in that decision."
+  -
+    actor: "actor.public_policy_and_industry_standards"
+    sees: "Postings covered by a disclosure rule carry a range. A revision made mid-process reaches this layer only if the posting is checked against the offer."
+    reads: "The published range is a measurable object. The grade a candidate is assessed at, and the date a band was revised, are not covered by the same rule."
+    does: "Writes to what is enforceable: the presence of a range in the posting, and not the levelling decision that determines which range applies."
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
+  - "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
+probes:
+  -
+    id: "PROBE-A-005-1"
+    action: "Ask whether the revised band follows from a lower levelling grade or from a company-wide budget adjustment."
+    expected_signal: "Separates the outcome of the levelling assessment from the company's financial constraints."
+    cost: "medium"
+    outcomes:
+      -
+        id: "grade-wide-revision"
+        label: "The recruiter attributes the change to a revision of the band for the grade, names the date it was revised, and says the figure stated at the screen was the requisition's approved band until that date."
+        excludes: []
+      -
+        id: "levelled-lower"
+        label: "The recruiter says the change is to your assessed level: the panel placed you a grade below the one the role was posted at, and the lower band belongs to that grade."
+        excludes: []
+      -
+        id: "figure-restated"
+        label: "A reply comes back that restates the new figure without saying whether it follows from the grade or from your assessment, and does not address the earlier band."
+        excludes: []
+      -
+        id: "no-answer"
+        label: "The question is not answered before the offer decision is due; the figure named on the call is the last statement of the band you have."
+        excludes: []
+specimens:
+  -
+    kind: "chat"
+    label: "Recruiter message before the offer call"
+    lines:
+      -
+        speaker: "Recruiter"
+        at: "week 5"
+        text: "Quick heads-up before we talk numbers tomorrow — where did we land on expectations?"
+      -
+        speaker: "Candidate"
+        at: "week 5"
+        text: "Same as the range in the posting and what we agreed at the screen: 85–95k."
+      -
+        speaker: "Recruiter"
+        at: "week 5"
+        text: "Right. So finance has revised the band for this level since we opened the role. We are working with 72–78k now."
+        tell: true
+    reading: "The number moved after the process had already taken five weeks of the candidate's time. Note the date the original band was stated and by whom."
+  -
+    kind: "transcript"
+    label: "Offer call, transcript fragment"
+    context: "minute 6 of 20"
+    lines:
+      -
+        speaker: "Candidate"
+        at: "06:12"
+        text: "Was the change specific to me, or to the level?"
+      -
+        speaker: "Recruiter"
+        at: "06:19"
+        text: "To the level. Everyone coming in at this grade this quarter is on the new band."
+        tell: true
+      -
+        speaker: "Candidate"
+        at: "06:31"
+        text: "And the posting still shows the old range?"
+      -
+        speaker: "Recruiter"
+        at: "06:35"
+        text: "It does. I will get that updated."
+    reading: "An answer that generalises to the whole grade describes a policy. An answer that is specific to you would describe an assessment. They are different mechanisms."
+non_inferences:
+  - "Does not prove an intentional bait-and-switch unless evidence of company policy establishes one."
+---
+
+# Compensation band reduced or altered mid-process
+
+The compensation band offered or discussed is revised downward from the range previously agreed or advertised.
+
+### Diagnostic Non-Inferences
+- Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.

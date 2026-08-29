@@ -82,8 +82,8 @@ const facets = [
           {mechanism.emissions.map((em) => (
             <EntityRow
               id={em.artifact}
-              title={bundle.artifacts.find((a) => a.id === em.artifact)?.title ?? em.artifact}
-              href={`${prefix}/artifacts/${em.artifact}`}
+              title={bundle.observations.find((a) => a.id === em.artifact)?.title ?? em.artifact}
+              href={`${prefix}/observations/${em.artifact}`}
               pill={t('mech.fidelity', { f: t(`fidelity.${em.fidelity ?? 'unspecified'}`) })}
               note={em.observed_at.length > 0
                 ? t('mech.observedAt', { stages: em.observed_at.map((st) => t(`stage.${st}`)).join(', ') })

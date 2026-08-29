@@ -43,8 +43,8 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   });
 
   it('searches with type filters', () => {
-    const json = JSON.parse(hoba(['search', 'reposted', '--types', 'artifact', '--json']).stdout);
-    expect(json.results.every((r: { type: string }) => r.type === 'artifact')).toBe(true);
+    const json = JSON.parse(hoba(['search', 'reposted', '--types', 'observation', '--json']).stdout);
+    expect(json.results.every((r: { type: string }) => r.type === 'observation')).toBe(true);
     expect(json.results.map((r: { id: string }) => r.id)).toContain('obs.materially_similar_role_reposted_shortly_after_rejection');
   });
 

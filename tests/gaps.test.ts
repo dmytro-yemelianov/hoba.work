@@ -78,7 +78,7 @@ it('separates the one-step neighbours from what is only reached through them', (
 describe('indistinguishability', () => {
   it('groups mechanisms that emit the same observations, ignoring order', () => {
     const bundle = makeBundle({
-      artifacts: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
+      observations: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
       mechanisms: [
         mechanism({ id: 'M-001', emissions: emits('A-001', 'A-002') }),
         mechanism({ id: 'M-002', emissions: emits('A-002', 'A-001') }),
@@ -96,7 +96,7 @@ describe('indistinguishability', () => {
 
   it('says nothing when every signature is unique', () => {
     const bundle = makeBundle({
-      artifacts: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
+      observations: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
       mechanisms: [
         mechanism({ id: 'M-001', emissions: emits('A-001') }),
         mechanism({ id: 'M-002', emissions: emits('A-002') }),
@@ -146,7 +146,7 @@ describe('gaps', () => {
 describe('identifiability', () => {
   it('calls a mechanism never-alone when another emits everything it does', () => {
     const bundle = makeBundle({
-      artifacts: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
+      observations: [artifact({ id: 'A-001' }), artifact({ id: 'A-002' })],
       mechanisms: [
         mechanism({ id: 'M-001', emissions: emits('A-001') }),
         mechanism({ id: 'M-002', emissions: emits('A-001', 'A-002') }),
@@ -165,7 +165,7 @@ describe('identifiability', () => {
 
   it('treats an exact tie as subsumption in both directions', () => {
     const bundle = makeBundle({
-      artifacts: [artifact({ id: 'A-001' })],
+      observations: [artifact({ id: 'A-001' })],
       mechanisms: [
         mechanism({ id: 'M-001', emissions: emits('A-001') }),
         mechanism({ id: 'M-002', emissions: emits('A-001') }),

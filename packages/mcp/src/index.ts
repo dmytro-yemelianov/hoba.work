@@ -56,7 +56,7 @@ console.error(`[hoba-mcp] v${version} — registry ${bundle.version} loaded from
 // ---------------------------------------------------------------------------
 // Shared argument schemas
 // ---------------------------------------------------------------------------
-const searchableTypeSchema = z.enum(['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention']);
+const searchableTypeSchema = z.enum(['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention']);
 const relationSchema = z.enum(['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates']);
 const stageArg = stageIdSchema.optional().describe(`Hiring funnel stage. One of: ${stageIdSchema.options.join(', ')}`);
 
@@ -136,7 +136,7 @@ server.registerTool(
       updated_at: bundle.updated_at,
       mode: 'topological_uncalibrated',
       counts: {
-        artifacts: bundle.artifacts.length,
+        artifacts: bundle.observations.length,
         barriers: bundle.barriers.length,
         mechanisms: bundle.mechanisms.length,
         patterns: bundle.patterns.length,
@@ -288,7 +288,7 @@ server.registerTool(
   },
   async ({ artifact_id }) => {
     const node = graph.getNode(artifact_id);
-    if (!node || node.type !== 'artifact') return fail(`Artifact ${artifact_id} not found in hoba registry.`);
+    if (!node || node.type !== 'observation') return fail(`Artifact ${artifact_id} not found in hoba registry.`);
     return ok({ artifact_id, probes: node.probes, non_inferences: node.non_inferences });
   }
 );

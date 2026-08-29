@@ -28,7 +28,7 @@ describe('slugifyTitle', () => {
 describe('TYPE_ID_PREFIX', () => {
   it('covers all 11 ontology types with the prefixes from the design doc', () => {
     expect(TYPE_ID_PREFIX).toEqual({
-      artifact: 'obs',
+      observation: 'obs',
       barrier: 'bar',
       mechanism: 'mech',
       pattern: 'pat',
@@ -45,7 +45,7 @@ describe('TYPE_ID_PREFIX', () => {
 
 function fixtureBundle(overrides: Partial<RegistryBundle> = {}): RegistryBundle {
   return {
-    artifacts: [],
+    observations: [],
     barriers: [],
     mechanisms: [],
     patterns: [],
@@ -74,7 +74,7 @@ describe('buildIdMapping', () => {
 
   it('maps every collection using its own type prefix', () => {
     const bundle = fixtureBundle({
-      artifacts: [{ id: 'A-002', title: 'Generic rejection' } as never],
+      observations: [{ id: 'A-002', title: 'Generic rejection' } as never],
       mechanisms: [{ id: 'M-005', title: 'Pre-Selected Internal Candidate' } as never],
       evidence: [{ id: 'EVD-001', title: 'Hidden Workers' } as never],
     });
@@ -130,7 +130,7 @@ describe('buildIdMapping against the real registry', () => {
     const result = buildIdMapping(bundle);
 
     const expectedCount =
-      bundle.artifacts.length +
+      bundle.observations.length +
       bundle.barriers.length +
       bundle.mechanisms.length +
       bundle.patterns.length +

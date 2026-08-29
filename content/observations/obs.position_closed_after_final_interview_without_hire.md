@@ -1,0 +1,103 @@
+---
+id: "obs.position_closed_after_final_interview_without_hire"
+type: "observation"
+aliases:
+  - "A-003"
+title: "Position closed after final interview without hire"
+summary: "The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed."
+stages:
+  - "team"
+  - "offer"
+perspectives:
+  -
+    actor: "actor.candidate"
+    sees: "A final round described in its closing minutes as one week from a decision, and an email four days later naming a planning review as the cause."
+    reads: "The stated cause sits above the interview loop. What the panel concluded did not determine the outcome, and the six weeks are already spent."
+    does: "Records the dates, the panel's own stated position and the wording of the close, and asks whether the requisition was frozen or cancelled."
+  -
+    actor: "actor.hiring_manager"
+    sees: "A loop they ran to its end, a panel recommendation they can act on, and a requisition removed from the plan by a decision taken elsewhere."
+    reads: "The outcome of the loop no longer decides anything. The gap the role exists to absorb is still open and still covered by the team."
+    does: "Keeps the shortlist and returns to the same names if the requisition comes back, because funding it is not something this role controls."
+  -
+    actor: "actor.employer_policy"
+    sees: "Open requisitions as funded line items in a planning review held on a quarterly cycle."
+    reads: "An approved requisition that can be paused costs less than one that cannot; pausing is the instrument the approval was written to allow."
+    does: "Puts the requisition on hold. The stage each candidate had reached is not a field the review carries."
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
+probes:
+  -
+    id: "PROBE-A-003-1"
+    action: "Ask the recruiter whether the role was closed by a budget restructuring or by a reallocation of the work inside the team."
+    expected_signal: "Clarifies whether the barrier was specific to this candidate or budgetary."
+    cost: "low"
+    outcomes:
+      -
+        id: "cause-named-in-writing"
+        label: "The recruiter answers and names a funding decision and its scope in writing: the requisition unfunded for the quarter, or a hold covering more than this one role."
+        excludes: []
+      -
+        id: "work-absorbed-internally"
+        label: "The recruiter answers that the work was reallocated — taken on by the existing team or covered by someone already inside — and that no external hire is being made."
+        excludes: []
+      -
+        id: "search-continues-changed"
+        label: "The recruiter answers that the search did not stop: the requisition has been re-scoped or re-levelled and is now being worked against a different profile."
+        excludes: []
+      -
+        id: "no-characterisation"
+        label: "No reply arrives, or the reply repeats the wording of the closing email and adds nothing that separates a budget decision from a team one."
+        excludes: []
+specimens:
+  -
+    kind: "transcript"
+    label: "Final round, closing minutes"
+    context: "minute 47 of 50, four days before the email below"
+    lines:
+      -
+        speaker: "Hiring manager"
+        at: "47:10"
+        text: "That is everything from our side. Any questions for us?"
+      -
+        speaker: "Candidate"
+        at: "47:18"
+        text: "Only about timing — what happens next?"
+      -
+        speaker: "Hiring manager"
+        at: "47:24"
+        text: "We are wrapping up the loop this week. You are the last of three finalists, so expect to hear back by Friday at the latest."
+        tell: true
+      -
+        speaker: "Candidate"
+        at: "47:41"
+        text: "Understood. Thank you for the time."
+    reading: "The process was described as live and near a decision. Whatever happened next happened after this point, not before it."
+  -
+    kind: "email"
+    label: "Rejection email"
+    subject: "Regarding the Senior Backend Engineer search"
+    context: "day 4 after the final round"
+    lines:
+      -
+        text: "Thank you again for the conversations over the past six weeks — the panel was consistently positive about your work."
+      -
+        text: "I am writing with disappointing news: the requisition has been put on hold as part of a wider planning review, and we will not be filling the role this quarter."
+        tell: true
+      -
+        text: "This is not a reflection on your interviews. If the role reopens I would like to come back to you first."
+    reading: "The stated cause sits above the hiring loop entirely. A candidate cannot pass or fail a budget review."
+non_inferences:
+  - "Does not prove that the candidate failed the technical or behavioural evaluations."
+  - "Does not prove that the company misstated its intention in opening the role."
+---
+
+# Position closed after final interview without hire
+
+The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.
+
+### Diagnostic Non-Inferences
+- Does not prove that the candidate failed the technical or behavioural evaluations.
+- Does not prove that the company misstated its intention in opening the role.

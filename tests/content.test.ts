@@ -12,7 +12,7 @@ import {
   validateRegistry,
 } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
-import { artifactSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, workflowSchema, eraSchema, actorSchema } from '@hoba/registry';
+import { observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, workflowSchema, eraSchema, actorSchema } from '@hoba/registry';
 
 /**
  * Zod strips unknown keys, so frontmatter naming a field its schema does not
@@ -24,7 +24,7 @@ import { artifactSchema, barrierSchema, mechanismSchema, patternSchema, loopSche
  */
 describe('no frontmatter field is silently dropped', () => {
   const SCHEMAS: Record<string, { _def: { shape: () => Record<string, unknown> } }> = {
-    artifacts: artifactSchema as never,
+    observations: observationSchema as never,
     barriers: barrierSchema as never,
     mechanisms: mechanismSchema as never,
     patterns: patternSchema as never,
@@ -70,7 +70,7 @@ describe('registry content', () => {
     expect(report.errors).toEqual([]);
     expect(bundle.barriers.length).toBeGreaterThanOrEqual(10);
     expect(bundle.mechanisms.length).toBeGreaterThanOrEqual(22);
-    expect(bundle.artifacts.length).toBeGreaterThanOrEqual(12);
+    expect(bundle.observations.length).toBeGreaterThanOrEqual(12);
     expect(bundle.patterns.length).toBeGreaterThanOrEqual(4);
     expect(bundle.loops.length).toBeGreaterThanOrEqual(3);
     expect(bundle.interventions.length).toBeGreaterThanOrEqual(5);
@@ -134,7 +134,7 @@ describe('registry content', () => {
 
 describe('specimens', () => {
   const readerFacing = (b: typeof bundle) =>
-    [...b.artifacts, ...b.barriers, ...b.mechanisms, ...b.patterns, ...b.loops, ...b.interventions];
+    [...b.observations, ...b.barriers, ...b.mechanisms, ...b.patterns, ...b.loops, ...b.interventions];
 
   it('covers every entity in the registry, in both languages', () => {
     for (const b of [bundle, uk]) {
@@ -214,7 +214,7 @@ describe('actors', () => {
 
 describe('workflows', () => {
   const ids = new Set([
-    ...bundle.artifacts.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
+    ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
     ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
     ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
   ]);
@@ -295,7 +295,7 @@ describe('workflows', () => {
  */
 describe('body and frontmatter agree', () => {
   const everything = (b: typeof bundle) => [
-    ...b.artifacts, ...b.barriers, ...b.mechanisms,
+    ...b.observations, ...b.barriers, ...b.mechanisms,
     ...b.patterns, ...b.loops, ...b.interventions,
   ];
 
@@ -388,8 +388,8 @@ describe('intervention effects', () => {
  * only when the two cannot both be true, and it has to say why.
  */
 describe('probe outcomes', () => {
-  const probes = bundle.artifacts.flatMap((a) => a.probes);
-  const ukProbes = uk.artifacts.flatMap((a) => a.probes);
+  const probes = bundle.observations.flatMap((a) => a.probes);
+  const ukProbes = uk.observations.flatMap((a) => a.probes);
   const mechanismIds = new Set(bundle.mechanisms.map((m) => m.id));
 
   it('gives every probe outcomes a candidate could tell apart', () => {
@@ -433,11 +433,11 @@ describe('probe outcomes', () => {
 describe('perspectives', () => {
   const actorIds = new Set(bundle.actors.map((a) => a.id));
   const readerFacingEntities = [
-    ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+    ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
     ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
   ];
   const ukEntities = [
-    ...uk.artifacts, ...uk.barriers, ...uk.mechanisms,
+    ...uk.observations, ...uk.barriers, ...uk.mechanisms,
     ...uk.patterns, ...uk.loops, ...uk.interventions,
   ];
 
@@ -488,7 +488,7 @@ describe('perspectives', () => {
 
 describe('recommendations', () => {
   const ids = new Set([
-    ...bundle.artifacts.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
+    ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
     ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
     ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
   ]);
@@ -543,7 +543,7 @@ describe('recommendations', () => {
  */
 describe('eras', () => {
   const ids = new Set([
-    ...bundle.artifacts.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
+    ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
     ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
     ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
   ]);

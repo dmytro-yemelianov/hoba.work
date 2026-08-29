@@ -80,7 +80,7 @@ describe('validateRegistryBundle', () => {
 
   it('enforces superseded_by / status consistency', () => {
     const bundle = makeBundle();
-    bundle.artifacts[0] = { ...bundle.artifacts[0], superseded_by: 'A-001' };
+    bundle.observations[0] = { ...bundle.observations[0], superseded_by: 'A-001' };
     const found = rules(bundle);
     expect(found).toContain('error:lifecycle');
     expect(validateRegistryBundle(bundle).some((i) => i.message.includes('cannot supersede itself'))).toBe(true);
@@ -129,7 +129,7 @@ describe('validateRegistryBundle', () => {
 
   it('rejects duplicate probe IDs and duplicate emissions', () => {
     const bundle = makeBundle();
-    bundle.artifacts.push({ ...bundle.artifacts[0], id: 'A-002' }); // same probe id
+    bundle.observations.push({ ...bundle.observations[0], id: 'A-002' }); // same probe id
     bundle.mechanisms[0] = { ...bundle.mechanisms[0], emissions: [{ artifact: 'A-001', evidence: [], observed_at: [] }, { artifact: 'A-001', evidence: [], observed_at: [] }] };
     const found = rules(bundle);
     expect(found).toContain('error:duplicate-id');
@@ -141,7 +141,7 @@ describe('compareBundleStructure', () => {
   it('ignores translated prose but catches structural drift, missing and extra nodes', () => {
     const en = makeBundle();
     const uk = makeBundle();
-    uk.artifacts[0] = { ...uk.artifacts[0], title: 'Переклад', summary: 'Перекладений опис достатньої довжини.', non_inferences: ['Не доводить.'] };
+    uk.observations[0] = { ...uk.observations[0], title: 'Переклад', summary: 'Перекладений опис достатньої довжини.', non_inferences: ['Не доводить.'] };
     expect(compareBundleStructure(en, uk)).toEqual([]);
 
     uk.mechanisms[0] = { ...uk.mechanisms[0], operates_at: ['B-002'] };

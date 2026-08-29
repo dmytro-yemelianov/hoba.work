@@ -2,7 +2,7 @@ import { HOBAKnowledgeGraph } from './graph.js';
 import { narrow, separation } from './separation.js';
 import type {
   AgencyZone,
-  ArtifactNode,
+  ObservationNode,
   CompatibleMechanism,
   DiagnosticInput,
   DiagnosticProbe,
@@ -32,11 +32,11 @@ export class HOBADiagnosticEngine {
 
   public analyze(input: DiagnosticInput): DiagnosticResult {
     // 1. Step H: Hard Facts — resolve the observed artifacts (deprecated nodes are excluded from analysis).
-    const selectedArtifacts: ArtifactNode[] = [];
+    const selectedArtifacts: ObservationNode[] = [];
     const unknownArtifactIds: string[] = [];
     for (const id of input.artifacts) {
       const node = this.graph.getNode(id);
-      if (node?.type === 'artifact' && node.status === 'active') selectedArtifacts.push(node);
+      if (node?.type === 'observation' && node.status === 'active') selectedArtifacts.push(node);
       else unknownArtifactIds.push(id);
     }
     const selectedArtifactIds = new Set(selectedArtifacts.map((a) => a.id));

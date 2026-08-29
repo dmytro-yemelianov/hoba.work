@@ -12,7 +12,7 @@ import { loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
 
 const TYPE_ROUTE: Record<string, string> = {
   barrier: 'barriers',
-  artifact: 'artifacts',
+  observation: 'observations',
   mechanism: 'mechanisms',
   pattern: 'patterns',
   loop: 'loops',
@@ -25,7 +25,7 @@ const bundle = loadRegistryFromRoot(root, 'en');
 
 const collections: Array<{ type: string; items: Array<{ id: string; aliases?: string[] }> }> = [
   { type: 'barrier', items: bundle.barriers as never },
-  { type: 'artifact', items: bundle.artifacts as never },
+  { type: 'observation', items: bundle.observations as never },
   { type: 'mechanism', items: bundle.mechanisms as never },
   { type: 'pattern', items: bundle.patterns as never },
   { type: 'loop', items: bundle.loops as never },

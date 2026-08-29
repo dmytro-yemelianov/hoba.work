@@ -1,0 +1,115 @@
+---
+id: "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
+type: "observation"
+aliases:
+  - "A-013"
+title: "Feedback stating candidate is overqualified for the grade"
+summary: "Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at."
+stages:
+  - "recruiter"
+  - "screening"
+  - "team"
+perspectives:
+  -
+    actor: "actor.candidate"
+    sees: "A rejection naming experience above the band scoped for the role, and a retention concern raised at the screen, before any technical round."
+    reads: "The stated ground is fit with a band rather than the work shown. The message does not say whether a requisition at another level exists."
+    does: "Asks whether anything is open at a higher level, and records the stated reason and the date it was given."
+  -
+    actor: "actor.recruiter"
+    sees: "A profile whose last title sits above the role, against a requisition opened at one band that the screen cannot move."
+    reads: "The level question is answerable now, and the same mismatch found at offer stage costs the search weeks. What the hiring manager will accept at this level is not written down anywhere the recruiter can read it."
+    does: "Raises the concern on the call and passes the answer on. Changing the band is not theirs to do; the wording of the rejection is."
+  -
+    actor: "actor.hiring_manager"
+    sees: "A candidate who has previously held a wider scope than the role carries, assessed at the level the requisition was opened at."
+    reads: "A hire who leaves early is visible and attributed to the person who made it; a candidate declined on level leaves no record anyone reads later."
+    does: "Declines at this band, or asks for the level to be reconsidered, which means a different requisition funded elsewhere."
+  -
+    actor: "actor.employer_policy"
+    sees: "One requisition approved at one band, and a levelling grid that defines what sits above it. Individual candidates do not reach this layer."
+    reads: "One band per requisition is what keeps offers consistent and defensible across every hire. A person declined at the edge of the grid is not an event this layer records."
+    does: "Holds the requisition at the approved band. Opening one at a higher level is a separate funding decision on a quarterly cycle."
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
+probes:
+  -
+    id: "PROBE-A-013-1"
+    action: "Ask whether the organisation has requisitions open at a higher band or at staff level, where the wider scope is part of the role."
+    expected_signal: "Shows whether anything is open above this band."
+    cost: "low"
+    outcomes:
+      -
+        id: "higher-req-named"
+        label: "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral."
+        excludes:
+          - "mech.experience_age_grading_mismatch"
+        because: "Active referral to an unblocked higher level band rules out structural down-levelling with a hard ceiling."
+      -
+        id: "answered-on-level-none-named"
+        label: "A reply answers about level and names no requisition: nothing is open above this band, or the profile stays on file, or a pointer to the careers page — no requisition id, no date."
+        excludes: []
+      -
+        id: "answered-as-budget"
+        label: "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it."
+        excludes:
+          - "mech.genuine_technical_skill_shortfall"
+        because: "Stating rigid departmental budget ceilings rather than technical qualification gaps confirms pay band constraints rather than skill deficiencies."
+      -
+        id: "no-reply"
+        label: "No reply arrives, and the thread ends on the rejection already received."
+        excludes: []
+specimens:
+  -
+    kind: "email"
+    label: "Rejection email"
+    context: "day 6 after the final conversation"
+    subject: "Your application — Senior Backend Engineer"
+    lines:
+      -
+        text: "Thank you for the time you gave us over the past two weeks. The team enjoyed the conversation and rated your systems background highly."
+      -
+        text: "After discussion we have decided not to move forward. Your experience sits above the band we scoped for this role, and we were concerned the day-to-day would not stay interesting for you for very long."
+        tell: true
+      -
+        text: "We would be glad to keep your profile on file and reach out when something at the right level opens up."
+    reading: "The stated ground is fit with a band, not the quality of the work — and the risk named is retention, not capability."
+  -
+    kind: "transcript"
+    label: "Recruiter screen, transcript fragment"
+    context: "minute 14 of a 30-minute call"
+    lines:
+      -
+        speaker: "Recruiter"
+        at: "14:02"
+        text: "Your last role was a team lead position, is that right?"
+      -
+        speaker: "Candidate"
+        at: "14:09"
+        text: "Formally, yes. In practice about two thirds of my week was hands-on."
+      -
+        speaker: "Recruiter"
+        at: "14:21"
+        text: "Got it. I will be honest with you — my worry is that this role is a step down, and six months in you would be looking again."
+        tell: true
+      -
+        speaker: "Candidate"
+        at: "14:33"
+        text: "Right now I am optimising for depth rather than scope."
+      -
+        speaker: "Recruiter"
+        at: "14:38"
+        text: "Understood. I will pass that on either way."
+    reading: "The concern is raised before any technical assessment: the level question is being settled ahead of the skill question."
+non_inferences:
+  - "Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch."
+---
+
+# Feedback stating candidate is overqualified for the grade
+
+Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.
+
+### Diagnostic Non-Inferences
+- Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch.

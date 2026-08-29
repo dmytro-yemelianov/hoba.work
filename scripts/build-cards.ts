@@ -1016,7 +1016,7 @@ async function renderSectionCard(sec: SectionCard, lang: ContentLang, bundle: Re
 const collections = (bundle: RegistryBundle): Entity[] => [
   ...bundle.actors,
   ...bundle.eras,
-  ...bundle.artifacts,
+  ...bundle.observations,
   ...bundle.barriers,
   ...bundle.mechanisms,
   ...bundle.patterns,
@@ -1026,7 +1026,7 @@ const collections = (bundle: RegistryBundle): Entity[] => [
 
 // Postcards are the portrait, story-shaped variant; only the entries people
 // actually share get one, so the deploy does not carry 500 images.
-const POSTCARD_TYPES = new Set(['artifact', 'pattern']);
+const POSTCARD_TYPES = new Set(['observation', 'pattern']);
 
 async function main(): Promise<void> {
   const langs: ContentLang[] = ['en', 'uk'];

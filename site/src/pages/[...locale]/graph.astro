@@ -23,7 +23,7 @@ const mean = (values: (number | undefined)[]): number | undefined => {
   return known.length ? known.reduce((a, b) => a + b, 0) / known.length : undefined;
 };
 const barrierLane = new Map(bundle.barriers.map((b) => [b.id, stageIndex.get(b.stage)] as const));
-const artifactLane = new Map(bundle.artifacts.map((a) => [a.id, mean(a.stages.map((s) => stageIndex.get(s)))] as const));
+const artifactLane = new Map(bundle.observations.map((a) => [a.id, mean(a.stages.map((s) => stageIndex.get(s)))] as const));
 const mechanismLane = new Map(bundle.mechanisms.map((m) => [m.id, mean(m.operates_at.map((id) => barrierLane.get(id)))] as const));
 const patternLane = new Map(
   bundle.patterns.map((p) => [p.id, mean([...p.required_artifacts.map((id) => artifactLane.get(id)), ...p.compatible_mechanisms.map((id) => mechanismLane.get(id))])] as const)
@@ -40,12 +40,12 @@ const evidence = (level: string) => ({ label: label('common.evidence'), value: t
 // Everything the explorer shows is localized here, at build time: the client
 // ships a plain data file and never needs the dictionary for facet values.
 const nodes: GraphNodeInput[] = [
-  ...bundle.artifacts.map((a) => ({
+  ...bundle.observations.map((a) => ({
     id: a.id,
-    type: 'artifact' as const,
+    type: 'observation' as const,
     title: a.title,
     summary: a.summary,
-    href: `${prefix}/artifacts/${a.id}`,
+    href: `${prefix}/observations/${a.id}`,
     lane: artifactLane.get(a.id),
     facts: [
       { label: label('common.stage'), value: a.stages.map((s) => t(`stage.${s}`)).join(' · ') },
@@ -149,10 +149,10 @@ const strings = json({
   exitFullscreen: t('graph.exitFullscreen'),
   tooltipHint: t('graph.tooltipHint'),
   openDetail: t('graph.openDetail'),
-  types: Object.fromEntries(['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'].map((k) => [k, t(`entity.${k}` as Parameters<typeof t>[0])])),
+  types: Object.fromEntries(['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'].map((k) => [k, t(`entity.${k}` as Parameters<typeof t>[0])])),
 });
 
-const layers = ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
+const layers = ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
 const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 ---
 <Layout lang={lang} title={t('graph.title')} activeNav="graph">

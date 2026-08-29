@@ -4,7 +4,7 @@ import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
 /** What A-001's one probe actually says, in a given language. */
 const probe = (lang: 'en' | 'uk'): string => {
   const bundle = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, lang);
-  return bundle.artifacts.find((a) => a.id === 'obs.complete_silence_after_submission')!.probes[0]!.action;
+  return bundle.observations.find((a) => a.id === 'obs.complete_silence_after_submission')!.probes[0]!.action;
 };
 import { expect, test } from '@playwright/test';
 

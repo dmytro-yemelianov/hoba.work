@@ -23,7 +23,7 @@ const { lang, pattern } = Astro.props as { lang: Lang; pattern: PatternNode };
 const t = useTranslations(lang);
 const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
-const requiredArtifacts = bundle.artifacts.filter((a) => pattern.required_artifacts.includes(a.id));
+const requiredArtifacts = bundle.observations.filter((a) => pattern.required_artifacts.includes(a.id));
 const compatibleMechanisms = bundle.mechanisms.filter((m) => pattern.compatible_mechanisms.includes(m.id));
 const relevantInterventions = bundle.interventions.filter((i) => pattern.interventions.includes(i.id));
 ---
@@ -71,7 +71,7 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
       <h2 class="section-title">{t('pat.required')}</h2>
       <ul class="row-list">
         {requiredArtifacts.map((a) => (
-          <EntityRow id={a.id} title={a.title} href={`${prefix}/artifacts/${a.id}`} note={a.summary} />
+          <EntityRow id={a.id} title={a.title} href={`${prefix}/observations/${a.id}`} note={a.summary} />
         ))}
       </ul>
     </section>

@@ -6,7 +6,7 @@ import {
   actorSchema,
   workflowSchema,
   eraSchema,
-  artifactSchema,
+  observationSchema,
   barrierSchema,
   evidenceSchema,
   interventionSchema,
@@ -136,7 +136,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
   const workflows = loadEntityDir(path.join(baseDir, 'workflows'), workflowSchema).sort(byId);
   // Eras read forward in time, not by id, because the order is the argument.
   const eras = loadEntityDir(path.join(baseDir, 'eras'), eraSchema).sort((a, b) => a.from - b.from || a.id.localeCompare(b.id));
-  const artifacts = loadEntityDir(path.join(baseDir, 'artifacts'), artifactSchema).sort(byId);
+  const observations = loadEntityDir(path.join(baseDir, 'observations'), observationSchema).sort(byId);
   const barriers = loadEntityDir(path.join(baseDir, 'barriers'), barrierSchema).sort(
     (a, b) => a.order - b.order || a.id.localeCompare(b.id)
   );
@@ -152,7 +152,7 @@ export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistry
     actors,
     workflows,
     eras,
-    artifacts,
+    observations,
     barriers,
     mechanisms,
     patterns,

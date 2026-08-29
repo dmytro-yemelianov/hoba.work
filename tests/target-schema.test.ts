@@ -36,17 +36,14 @@ describe('schema/entity.schema.json', () => {
   });
 
   it('is matched by the live Zod enum, kind for kind — DoD 1', () => {
-    // The two disagree on what two of the kinds are *called*: the target
-    // contract says `observation` and `process` where the live model says
-    // `artifact` and `workflow`. That rename is a separate question from this
-    // one, which is only whether one enum covers all eleven kinds and excludes
-    // scenario. Both now do.
+    // `observation` now agrees on both sides. `process` is still pending the
+    // second half of the type rename, so the map carries exactly one entry.
     const live = entityTypeSchema.options;
     expect(live).toHaveLength(11);
     expect(live).not.toContain('scenario');
     expect(new Set(live).size).toBe(live.length);
 
-    const RENAMED: Record<string, string> = { observation: 'artifact', process: 'workflow' };
+    const RENAMED: Record<string, string> = { process: 'workflow' };
     const target = (schema.properties.type.enum as string[]).map((k) => RENAMED[k] ?? k);
     expect([...live].sort()).toEqual([...target].sort());
   });

@@ -82,7 +82,7 @@ export function loadScenarios(root: string): Scenario[] {
 export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
   const known = new Set<string>([
-    ...bundle.artifacts.map((a) => a.id),
+    ...bundle.observations.map((a) => a.id),
     ...bundle.mechanisms.map((m) => m.id),
     ...bundle.barriers.map((b) => b.id),
     ...bundle.workflows.map((w) => w.id),

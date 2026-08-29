@@ -222,7 +222,7 @@ const zones = [
         <!-- Categorized Observation Accordion / Groups -->
         <div class="space-y-3" id="categorized-artifacts">
           {ARTIFACT_CATEGORIES.map((cat, idx) => {
-            const catArtifacts = bundle.artifacts.filter((a) => (cat.ids as readonly string[]).includes(a.id));
+            const catArtifacts = bundle.observations.filter((a) => (cat.ids as readonly string[]).includes(a.id));
             if (!catArtifacts.length) return null;
             return (
               <details class="disclosure artifact-category-group" open>

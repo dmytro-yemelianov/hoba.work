@@ -199,7 +199,7 @@ export function identifiability(bundle: RegistryBundle): Identifiability {
   const signatures = bundle.mechanisms.map((m) => ({ id: m.id, emits: emissionsOf(m) }));
 
   const identifying: { artifact: string; mechanism: string }[] = [];
-  for (const a of bundle.artifacts) {
+  for (const a of bundle.observations) {
     const emitters = signatures.filter((s) => s.emits.has(a.id));
     if (emitters.length === 1) identifying.push({ artifact: a.id, mechanism: emitters[0]!.id });
   }
@@ -224,7 +224,7 @@ export function identifiability(bundle: RegistryBundle): Identifiability {
  */
 export function unplacedEmissions(bundle: RegistryBundle): UnplacedEmission[] {
   const stageOfGate = new Map(bundle.barriers.map((b) => [b.id, b.stage] as const));
-  const stagesOfArtifact = new Map(bundle.artifacts.map((a) => [a.id, new Set(a.stages)] as const));
+  const stagesOfArtifact = new Map(bundle.observations.map((a) => [a.id, new Set(a.stages)] as const));
   const out: UnplacedEmission[] = [];
 
   for (const m of bundle.mechanisms) {
@@ -241,7 +241,7 @@ export function unplacedEmissions(bundle: RegistryBundle): UnplacedEmission[] {
 
 /** Everything above, computed over one bundle. */
 export function gaps(bundle: RegistryBundle): GapReport {
-  const { mechanisms, artifacts, barriers, interventions } = bundle;
+  const { mechanisms, observations: artifacts, barriers, interventions } = bundle;
 
   let indistinguishablePairs = 0;
   let totalPairs = 0;

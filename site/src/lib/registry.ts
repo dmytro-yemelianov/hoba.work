@@ -55,7 +55,7 @@ export function getGraph(lang: ContentLang = 'en'): HOBAKnowledgeGraph {
 
 export function countGraphNodes(bundle: RegistryBundle): number {
   return (
-    bundle.artifacts.length +
+    bundle.observations.length +
     bundle.barriers.length +
     bundle.mechanisms.length +
     bundle.patterns.length +
@@ -70,7 +70,7 @@ export function slimBundle(bundle: RegistryBundle): RegistryBundle {
     items.map(({ content: _content, ...rest }) => rest as T);
   return {
     ...bundle,
-    artifacts: strip(bundle.artifacts),
+    observations: strip(bundle.observations),
     barriers: strip(bundle.barriers),
     mechanisms: strip(bundle.mechanisms),
     patterns: strip(bundle.patterns),
@@ -126,7 +126,7 @@ export function erasNaming(bundle: RegistryBundle, id: string): EraNode[] {
 
 
 const PERSPECTIVE_ROUTES: Record<string, string> = {
-  artifact: 'artifacts',
+  observation: 'observations',
   barrier: 'barriers',
   mechanism: 'mechanisms',
   pattern: 'patterns',
@@ -144,7 +144,7 @@ export interface SeenEntry {
 /** Every entry this actor has a recorded view of — the actor page's index. */
 export function entriesSeenBy(bundle: RegistryBundle, actor: ActorNode['id'], prefix: string): SeenEntry[] {
   const all = [
-    ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+    ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
     ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
   ];
   return all
@@ -223,10 +223,10 @@ export interface Coverage {
 export function coverage(bundle: RegistryBundle): Coverage {
   const targeted = new Set(bundle.interventions.flatMap((i) => i.targets));
   const entries = [
-    ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+    ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
     ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
   ];
-  const observedStages = new Set(bundle.artifacts.flatMap((a) => a.stages));
+  const observedStages = new Set(bundle.observations.flatMap((a) => a.stages));
 
   return {
     gatesWithoutIntervention: bundle.barriers.filter((b) => !targeted.has(b.id)).map((b) => b.id),

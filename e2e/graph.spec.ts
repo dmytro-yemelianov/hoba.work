@@ -51,8 +51,8 @@ test.describe('knowledge graph explorer', () => {
     await expect(page.locator('#graph-count')).toHaveText(new RegExp(String(entryCount())));
 
     await page.locator('#select-removability').selectOption('candidate');
-    await toggleLayer(page, 'artifact');
-    await expect(page.locator('.type-toggle[data-type="artifact"]')).not.toBeChecked();
+    await toggleLayer(page, 'observation');
+    await expect(page.locator('.type-toggle[data-type="observation"]')).not.toBeChecked();
     await expect(page.locator('#graph-count')).not.toHaveText(new RegExp(`^${entryCount()} `));
 
     await page.locator('#theme-toggle').click(); // forces a palette re-read + redraw
@@ -62,7 +62,7 @@ test.describe('knowledge graph explorer', () => {
 
   test('hiding every layer shows the empty state', async ({ page }) => {
     await page.goto('/graph');
-    for (const type of ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention']) {
+    for (const type of ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention']) {
       await toggleLayer(page, type);
     }
     await expect(page.locator('#graph-empty')).toBeVisible();

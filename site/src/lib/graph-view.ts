@@ -11,7 +11,7 @@
  * tooltip and the details panel as real DOM through the callbacks below.
  */
 
-export type GraphNodeType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
+export type GraphNodeType = 'observation' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
 
 export type GraphRelationType =
   | 'operates_at'
@@ -121,7 +121,7 @@ export interface GraphViewOptions {
 }
 
 const TYPE_VAR: Record<GraphNodeType, string> = {
-  artifact: '--g-artifact',
+  observation: '--g-artifact',
   barrier: '--g-barrier',
   mechanism: '--g-mechanism',
   pattern: '--g-pattern',
@@ -133,7 +133,7 @@ const TYPE_VAR: Record<GraphNodeType, string> = {
 const RELATION_TYPE: Record<GraphRelationType, GraphNodeType | 'muted'> = {
   precedes: 'barrier',
   operates_at: 'mechanism',
-  emits: 'artifact',
+  emits: 'observation',
   amplifies: 'loop',
   masks: 'muted',
   instantiates: 'pattern',
@@ -181,7 +181,7 @@ function mulberry32(seed: number): () => number {
 }
 
 export const TYPE_TIER_Y: Record<GraphNodeType, number> = {
-  artifact: -120,
+  observation: -120,
   barrier: -50,
   mechanism: 20,
   pattern: 90,
@@ -190,7 +190,7 @@ export const TYPE_TIER_Y: Record<GraphNodeType, number> = {
 };
 
 export const TYPE_LABELS_EN: Record<GraphNodeType, string> = {
-  artifact: 'Observations (A)',
+  observation: 'Observations',
   barrier: 'Funnel Barriers (B)',
   mechanism: 'Mechanisms (M)',
   pattern: 'Patterns & Loops (P/L)',
@@ -243,8 +243,8 @@ export class GraphView {
 
     this.swimlanes = [
       {
-        id: 'artifacts',
-        types: ['artifact'],
+        id: 'observations',
+        types: ['observation'],
         label: isUk ? 'Спостереження та документи (A)' : 'Observations & Artifacts (A)',
         icon: '📋',
         targetY: -210,
@@ -579,7 +579,7 @@ export class GraphView {
     const read = (name: string, fallback: RGB) => parseRGB(cs.getPropertyValue(name), fallback);
     return {
       type: {
-        artifact: read(TYPE_VAR.artifact, [163, 113, 247]),
+        observation: read(TYPE_VAR.observation, [163, 113, 247]),
         barrier: read(TYPE_VAR.barrier, [63, 185, 80]),
         mechanism: read(TYPE_VAR.mechanism, [88, 166, 255]),
         pattern: read(TYPE_VAR.pattern, [240, 136, 62]),

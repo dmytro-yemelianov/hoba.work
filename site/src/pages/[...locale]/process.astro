@@ -15,11 +15,11 @@ const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 
 const ROUTES: Record<string, string> = {
-  artifact: 'artifacts', barrier: 'barriers', mechanism: 'mechanisms',
+  observation: 'observations', barrier: 'barriers', mechanism: 'mechanisms',
   pattern: 'patterns', loop: 'loops', intervention: 'interventions',
 };
 const nodes = new Map(
-  [...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [
+  [...bundle.observations, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [
     n.id,
     { id: n.id, title: n.title, href: `${prefix}/${ROUTES[n.type]}/${n.id}` },
   ])

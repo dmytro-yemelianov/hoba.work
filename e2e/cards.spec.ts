@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 test.describe('share cards', () => {
   test('every entity page declares its own card', async ({ page }) => {
     for (const [path, id] of [
-      ['/artifacts/obs.rejection_within_minutes_of_application_submission', 'obs.rejection_within_minutes_of_application_submission'], ['/barriers/bar.headcount_executive_budget_approval', 'bar.headcount_executive_budget_approval'], ['/mechanisms/mech.employment_gap_downranking_bias', 'mech.employment_gap_downranking_bias'],
+      ['/observations/obs.rejection_within_minutes_of_application_submission', 'obs.rejection_within_minutes_of_application_submission'], ['/barriers/bar.headcount_executive_budget_approval', 'bar.headcount_executive_budget_approval'], ['/mechanisms/mech.employment_gap_downranking_bias', 'mech.employment_gap_downranking_bias'],
       ['/patterns/pat.compensation_double_bind', 'pat.compensation_double_bind'], ['/loops/loop.employment_gap_penalty_loop', 'loop.employment_gap_penalty_loop'], ['/interventions/int.upfront_compensation_band_disclosure', 'int.upfront_compensation_band_disclosure'],
     ] as const) {
       const response = await page.goto(path);
@@ -37,7 +37,7 @@ test.describe('share cards', () => {
   test('the page offers the card for download', async ({ page }) => {
     // The href follows the language the worker resolved, so read it rather than
     // assuming one — otherwise the test depends on where it runs.
-    const response = await page.goto('/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade');
+    const response = await page.goto('/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade');
     const lang = response!.headers()['content-language'];
     await expect(page.locator(`main a[href="/cards/${lang}/obs.feedback_stating_candidate_is_overqualified_for_the_grade.png"][download]`)).toBeVisible();
     await expect(page.locator(`main a[href="/cards/${lang}/obs.feedback_stating_candidate_is_overqualified_for_the_grade-postcard.png"][download]`)).toBeVisible();

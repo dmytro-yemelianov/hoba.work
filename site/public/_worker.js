@@ -35,27 +35,27 @@ const STATIC_PREFIXES = ['/api/', '/data/', '/schemas/', '/_astro/', '/icons/'];
 // GENERATED — do not edit by hand. Run `pnpm generate:redirects` to refresh
 // from every entity's `aliases` field. See scripts/generate-redirects.ts.
 const LEGACY_ALIASES = {
-  "A-001": "/artifacts/obs.complete_silence_after_submission",
-  "A-002": "/artifacts/obs.generic_closer_alignment_rejection_template",
-  "A-003": "/artifacts/obs.position_closed_after_final_interview_without_hire",
-  "A-004": "/artifacts/obs.materially_similar_role_reposted_shortly_after_rejection",
-  "A-005": "/artifacts/obs.compensation_band_reduced_or_altered_mid_process",
-  "A-006": "/artifacts/obs.take_home_assignment_exceeding_reasonable_stated_scope",
-  "A-007": "/artifacts/obs.multiple_interview_reschedulings_or_interviewer_no_show",
-  "A-008": "/artifacts/obs.explicit_feedback_citing_skill_depth_shortfall",
-  "A-009": "/artifacts/obs.rejection_within_minutes_of_application_submission",
-  "A-010": "/artifacts/obs.communication_mismatch_or_tone_friction_in_panel",
-  "A-011": "/artifacts/obs.offer_rescinded_or_delayed_due_to_internal_freeze",
-  "A-012": "/artifacts/obs.unsolicited_recruiter_outreach_followed_by_ghosting",
-  "A-013": "/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade",
-  "A-014": "/artifacts/obs.conflicting_feedback_across_different_interviewers",
-  "A-015": "/artifacts/obs.rejection_after_the_application_sat_pending_for_months",
-  "A-016": "/artifacts/obs.rejection_naming_an_internal_hire_as_the_outcome",
-  "A-017": "/artifacts/obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
-  "A-018": "/artifacts/obs.rejection_naming_a_specific_industry_sector_as_required",
-  "A-019": "/artifacts/obs.feedback_naming_as_absent_something_the_submitted_work_contains",
-  "A-020": "/artifacts/obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
-  "A-021": "/artifacts/obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+  "A-001": "/observations/obs.complete_silence_after_submission",
+  "A-002": "/observations/obs.generic_closer_alignment_rejection_template",
+  "A-003": "/observations/obs.position_closed_after_final_interview_without_hire",
+  "A-004": "/observations/obs.materially_similar_role_reposted_shortly_after_rejection",
+  "A-005": "/observations/obs.compensation_band_reduced_or_altered_mid_process",
+  "A-006": "/observations/obs.take_home_assignment_exceeding_reasonable_stated_scope",
+  "A-007": "/observations/obs.multiple_interview_reschedulings_or_interviewer_no_show",
+  "A-008": "/observations/obs.explicit_feedback_citing_skill_depth_shortfall",
+  "A-009": "/observations/obs.rejection_within_minutes_of_application_submission",
+  "A-010": "/observations/obs.communication_mismatch_or_tone_friction_in_panel",
+  "A-011": "/observations/obs.offer_rescinded_or_delayed_due_to_internal_freeze",
+  "A-012": "/observations/obs.unsolicited_recruiter_outreach_followed_by_ghosting",
+  "A-013": "/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade",
+  "A-014": "/observations/obs.conflicting_feedback_across_different_interviewers",
+  "A-015": "/observations/obs.rejection_after_the_application_sat_pending_for_months",
+  "A-016": "/observations/obs.rejection_naming_an_internal_hire_as_the_outcome",
+  "A-017": "/observations/obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
+  "A-018": "/observations/obs.rejection_naming_a_specific_industry_sector_as_required",
+  "A-019": "/observations/obs.feedback_naming_as_absent_something_the_submitted_work_contains",
+  "A-020": "/observations/obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+  "A-021": "/observations/obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
   "B-001": "/barriers/bar.application_ingestion",
   "B-002": "/barriers/bar.automated_filter_parser_threshold",
   "B-003": "/barriers/bar.inbound_screening_triage",
@@ -126,6 +126,15 @@ const LEGACY_ALIASES = {
   "P-004": "/patterns/pat.compensation_double_bind"
 };
 // END GENERATED
+
+/**
+ * Collections that changed name. Every URL under the old prefix moves to the
+ * new one, extension and all, so `/artifacts/obs.x.md` lands on
+ * `/observations/obs.x.md`.
+ */
+const RENAMED_ROUTES = {
+  '/artifacts': '/observations',
+};
 
 export function readCookie(cookieHeader, name) {
   if (!cookieHeader) return undefined;
@@ -201,12 +210,25 @@ export function legacyRedirect(pathname) {
     return stripped || '/';
   }
   const trimmed = pathname !== '/' && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+
   const lastSegment = trimmed.slice(trimmed.lastIndexOf('/') + 1);
   const isMarkdown = MARKDOWN.test(lastSegment);
   const key = isMarkdown ? lastSegment.slice(0, -3) : lastSegment;
+  // The alias table first, because its targets already carry the new
+  // collection name — so `/artifacts/A-001` lands on its canonical
+  // `/observations/obs.…` in one hop rather than two.
   if (Object.prototype.hasOwnProperty.call(LEGACY_ALIASES, key)) {
     return LEGACY_ALIASES[key] + (isMarkdown ? '.md' : '');
   }
+
+  // A renamed *collection*, not a renamed entity: `artifact` became
+  // `observation`. The alias table cannot express this — it maps one key to one
+  // path, and this rewrites the prefix of every observation URL at once.
+  for (const [from, to] of Object.entries(RENAMED_ROUTES)) {
+    if (trimmed === from) return to;
+    if (trimmed.startsWith(`${from}/`)) return to + trimmed.slice(from.length);
+  }
+
   return null;
 }
 

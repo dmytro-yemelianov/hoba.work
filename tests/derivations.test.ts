@@ -45,7 +45,7 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
     const sampleIds = [
       ...bundle.mechanisms.slice(0, 5).map((m) => m.id),
       ...bundle.barriers.slice(0, 5).map((b) => b.id),
-      ...bundle.artifacts.slice(0, 5).map((a) => a.id),
+      ...bundle.observations.slice(0, 5).map((a) => a.id),
       ...bundle.patterns.map((p) => p.id),
       ...bundle.interventions.slice(0, 3).map((i) => i.id),
     ];

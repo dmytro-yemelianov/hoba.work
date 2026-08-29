@@ -301,12 +301,12 @@
         }
       }
     },
-    "/artifacts/index.json": {
+    "/observations/index.json": {
       "get": {
-        "operationId": "listArtifacts",
-        "summary": "List all Observations / Artifacts",
+        "operationId": "listObservations",
+        "summary": "List all Observations",
         "tags": [
-          "Artifact"
+          "Observation"
         ],
         "responses": {
           "200": {
@@ -330,7 +330,7 @@
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Artifact"
+                        "$ref": "#/components/schemas/Observation"
                       }
                     }
                   }
@@ -341,12 +341,12 @@
         }
       }
     },
-    "/artifacts/{id}.json": {
+    "/observations/{id}.json": {
       "get": {
-        "operationId": "getArtifact",
-        "summary": "Get Artifact by ID",
+        "operationId": "getObservation",
+        "summary": "Get Observation by ID",
         "tags": [
-          "Artifact"
+          "Observation"
         ],
         "parameters": [
           {
@@ -356,7 +356,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Canonical Artifact ID"
+            "description": "Canonical Observation ID"
           }
         ],
         "responses": {
@@ -375,7 +375,7 @@
                       "type": "string"
                     },
                     "data": {
-                      "$ref": "#/components/schemas/Artifact"
+                      "$ref": "#/components/schemas/Observation"
                     }
                   }
                 }
@@ -954,8 +954,8 @@
       "Era": {
         "$ref": "https://hoba.work/schemas/era.schema.json#/definitions/Era"
       },
-      "Artifact": {
-        "$ref": "https://hoba.work/schemas/artifact.schema.json#/definitions/Artifact"
+      "Observation": {
+        "$ref": "https://hoba.work/schemas/observation.schema.json#/definitions/Observation"
       },
       "Barrier": {
         "$ref": "https://hoba.work/schemas/barrier.schema.json#/definitions/Barrier"

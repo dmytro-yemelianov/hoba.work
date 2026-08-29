@@ -13,7 +13,7 @@
  */
 import type {
   ActorNode,
-  ArtifactNode,
+  ObservationNode,
   BarrierNode,
   InterventionNode,
   LoopNode,
@@ -29,11 +29,11 @@ import { asHeading } from '../i18n/utils';
 
 export const SITE = 'https://hoba.work';
 
-type Entity = ActorNode | ArtifactNode | BarrierNode | InterventionNode | LoopNode | MechanismNode | PatternNode | WorkflowNode;
+type Entity = ActorNode | ObservationNode | BarrierNode | InterventionNode | LoopNode | MechanismNode | PatternNode | WorkflowNode;
 
 const ROUTES: Record<string, string> = {
   actor: 'actors',
-  artifact: 'artifacts',
+  observation: 'observations',
   barrier: 'barriers',
   mechanism: 'mechanisms',
   pattern: 'patterns',
@@ -44,7 +44,7 @@ const ROUTES: Record<string, string> = {
 
 /** A registry ID as a link that works wherever the document is pasted. */
 export function idLink(id: string, bundle: RegistryBundle): string {
-  const node = [...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].find(
+  const node = [...bundle.observations, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].find(
     (n) => n.id === id
   );
   if (!node) return `\`${id}\``;
@@ -218,12 +218,12 @@ export function catalogueMarkdown(bundle: RegistryBundle, lang: Lang, t: Transla
     '',
     `# ${t('registry.title')}`,
     '',
-    t('registry.intro', { n: bundle.artifacts.length + bundle.barriers.length + bundle.mechanisms.length + bundle.patterns.length + bundle.loops.length + bundle.interventions.length }),
+    t('registry.intro', { n: bundle.observations.length + bundle.barriers.length + bundle.mechanisms.length + bundle.patterns.length + bundle.loops.length + bundle.interventions.length }),
     '',
   ];
 
   const sections: [string, Entity[]][] = [
-    [t('entity.plural.artifact'), bundle.artifacts],
+    [t('entity.plural.artifact'), bundle.observations],
     [t('entity.plural.barrier'), bundle.barriers],
     [t('entity.plural.mechanism'), bundle.mechanisms],
     [t('entity.plural.pattern'), bundle.patterns],

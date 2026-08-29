@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import type {
   ActorNode,
-  ArtifactNode,
+  ObservationNode,
   BarrierNode,
   InterventionNode,
   LoopNode,
@@ -14,8 +14,8 @@ import type {
 
 export const REPO_ROOT = path.resolve(__dirname, '..');
 
-export const artifact = (over: Partial<ArtifactNode> & { id: string }): ArtifactNode => ({
-  type: 'artifact',
+export const artifact = (over: Partial<ObservationNode> & { id: string }): ObservationNode => ({
+  type: 'observation',
   title: `Artifact ${over.id}`,
   summary: 'A sufficiently long summary for the fixture.',
   stages: ['screening'],
@@ -150,7 +150,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     actors: [],
     workflows: [],
     eras: [],
-    artifacts: [
+    observations: [
       artifact({
         id: 'A-001',
         stages: ['screening'],

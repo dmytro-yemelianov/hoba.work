@@ -26,6 +26,6 @@ import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
  */
 export const entryCount = (): number => {
   const b = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, 'en');
-  return b.artifacts.length + b.barriers.length + b.mechanisms.length +
+  return b.observations.length + b.barriers.length + b.mechanisms.length +
     b.patterns.length + b.loops.length + b.interventions.length;
 };

@@ -59,7 +59,7 @@ const bundleUk = loadRegistryFromRoot(root, 'uk');
 report('Ukrainian mirror', [...validateRegistry(bundleUk).issues, ...compareBundleStructure(bundleEn, bundleUk)]);
 
 console.log(
-  `\n${bundleEn.artifacts.length} artifacts, ${bundleEn.barriers.length} barriers, ${bundleEn.mechanisms.length} mechanisms, ` +
+  `\n${bundleEn.observations.length} artifacts, ${bundleEn.barriers.length} barriers, ${bundleEn.mechanisms.length} mechanisms, ` +
     `${bundleEn.patterns.length} patterns, ${bundleEn.loops.length} loops, ${bundleEn.interventions.length} interventions, ` +
     `${bundleEn.evidence.length} evidence records, ${scenarios.length} scenarios`
 );

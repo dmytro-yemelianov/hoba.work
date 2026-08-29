@@ -39,7 +39,7 @@ const idLinks = (ids: string[], route: string) => ids.map((id) => ({ id, href: `
             <tr class="hover:bg-hoba-hover">
               <td class="font-mono text-sm whitespace-nowrap"><a href={`${prefix}/patterns/${p.id}`} class="text-hoba-accent hover:underline">{p.id}</a></td>
               <td><a href={`${prefix}/patterns/${p.id}`} class="font-medium text-hoba-text hover:underline">{p.title}</a><p class="text-sm text-hoba-muted line-clamp-2">{p.summary}</p></td>
-              <td class="font-mono text-sm">{idLinks(p.required_artifacts, 'artifacts').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.required_artifacts.length - 1 ? ', ' : ''}</>)}</td>
+              <td class="font-mono text-sm">{idLinks(p.required_artifacts, 'observations').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.required_artifacts.length - 1 ? ', ' : ''}</>)}</td>
               <td class="font-mono text-sm">{idLinks(p.compatible_mechanisms, 'mechanisms').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.compatible_mechanisms.length - 1 ? ', ' : ''}</>)}</td>
               <td class="font-mono text-sm">{p.interventions.length ? idLinks(p.interventions, 'interventions').map((l, i) => <><a href={l.href} class="text-hoba-accent hover:underline whitespace-nowrap">{l.id}</a>{i < p.interventions.length - 1 ? ', ' : ''}</>) : '—'}</td>
               <td class="whitespace-nowrap"><span class="pill pill-muted">{t(`level.${p.evidence_level}`)}</span></td>
@@ -85,7 +85,7 @@ const idLinks = (ids: string[], route: string) => ids.map((id) => ({ id, href: `
             </div>
             <div class="mt-6 flex flex-wrap items-center gap-2 text-sm text-hoba-muted">
               <span>{t('patterns.requiredSignals')}</span>
-              {idLinks(p.required_artifacts, 'artifacts').map((l) => <a href={l.href} class="pill font-mono">{l.id}</a>)}
+              {idLinks(p.required_artifacts, 'observations').map((l) => <a href={l.href} class="pill font-mono">{l.id}</a>)}
               <span class="ml-4">{t('patterns.interventions')}</span>
               {p.interventions.length ? idLinks(p.interventions, 'interventions').map((l) => <a href={l.href} class="pill font-mono">{l.id}</a>) : <span>—</span>}
             </div>

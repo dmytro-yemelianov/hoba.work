@@ -37,7 +37,7 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
   const patterns = collect('patterns', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
   const loops = collect('loops', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
 
-  const artifacts = collect('artifacts', (id) => ({
+  const observations = collect('observations', (id) => ({
     ...sidecar.entities[id]!,
     title: eventById.get(`evc:${id.toLowerCase()}`)!.title,
   }));
@@ -84,7 +84,7 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
     actors,
     workflows,
     eras,
-    artifacts,
+    observations,
     barriers,
     mechanisms,
     patterns,

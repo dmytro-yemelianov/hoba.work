@@ -99,7 +99,7 @@ export function validateAnalysis(input: unknown, bundle: RegistryBundle): Valida
   const issues: ValidationIssue[] = [];
 
   const levelById = new Map<string, string>();
-  for (const n of [...bundle.artifacts, ...bundle.mechanisms, ...bundle.barriers, ...bundle.patterns, ...bundle.loops, ...bundle.interventions]) {
+  for (const n of [...bundle.observations, ...bundle.mechanisms, ...bundle.barriers, ...bundle.patterns, ...bundle.loops, ...bundle.interventions]) {
     levelById.set(n.id, (n as { evidence_level?: string }).evidence_level ?? 'unknown');
   }
   const interventionIds = new Set(bundle.interventions.map((i) => i.id));

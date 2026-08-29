@@ -23,7 +23,7 @@ const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/pr
 
 const entityRoutes = (bundle: RegistryBundle): string[] => [
   ...bundle.actors.map((a) => `/actors/${a.slug}`),
-  ...bundle.artifacts.map((a) => `/artifacts/${a.id}`),
+  ...bundle.observations.map((a) => `/observations/${a.id}`),
   ...bundle.barriers.map((b) => `/barriers/${b.id}`),
   ...bundle.mechanisms.map((m) => `/mechanisms/${m.id}`),
   ...bundle.patterns.map((p) => `/patterns/${p.id}`),
@@ -77,7 +77,7 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     '',
     '## Ontology',
     '',
-    `- **Observations** (\`A-*\`, ${bundle.artifacts.length}) — signals a candidate can actually witness.`,
+    `- **Observations** (\`A-*\`, ${bundle.observations.length}) — signals a candidate can actually witness.`,
     `- **Barriers** (\`B-*\`, ${bundle.barriers.length}) — the funnel gates, a strict DAG ordered by stage.`,
     `- **Mechanisms** (\`M-*\`, ${bundle.mechanisms.length}) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.`,
     `- **Patterns** (\`P-*\`, ${bundle.patterns.length}) — named motifs where several defensible decisions combine into a bind.`,
@@ -123,7 +123,7 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     }
   }
 
-  section('Observations', bundle.artifacts, (a) => [
+  section('Observations', bundle.observations, (a) => [
     a.summary,
     '',
     `- Stages: ${a.stages.join(', ')} · Evidence: ${a.evidence_level}`,

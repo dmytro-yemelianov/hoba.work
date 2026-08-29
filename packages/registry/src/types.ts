@@ -12,7 +12,7 @@ import type {
   actorId,
   actorSchema,
   actorTypeSchema,
-  artifactSchema,
+  observationSchema,
   barrierSchema,
   costBandSchema,
   diagnosticProbeSchema,
@@ -89,7 +89,7 @@ export type WorkflowStateKind = z.infer<typeof workflowStateKindSchema>;
 export type WorkflowNode = z.infer<typeof workflowSchema>;
 export type EraIndicator = z.infer<typeof eraIndicatorSchema>;
 export type EraNode = z.infer<typeof eraSchema>;
-export type ArtifactNode = z.infer<typeof artifactSchema>;
+export type ObservationNode = z.infer<typeof observationSchema>;
 export type BarrierNode = z.infer<typeof barrierSchema>;
 export type MechanismNode = z.infer<typeof mechanismSchema>;
 export type PatternNode = z.infer<typeof patternSchema>;
@@ -102,7 +102,7 @@ export type RecordClassType = z.infer<typeof recordClassEnumSchema>;
 
 /** Graph nodes that participate in the hoba ontology (evidence is a leaf record, not a graph node). */
 export type RegistryNode =
-  | ArtifactNode
+  | ObservationNode
   | BarrierNode
   | MechanismNode
   | PatternNode
@@ -174,7 +174,7 @@ export interface DiagnosticResult {
   verdict: 'diagnostic' | 'low_signal_ambiguity';
   summary: string;
   hard_facts: {
-    selected_artifacts: ArtifactNode[];
+    selected_artifacts: ObservationNode[];
     /** IDs from the input that do not exist in the registry. */
     unknown_artifact_ids: string[];
     stage?: StageId;

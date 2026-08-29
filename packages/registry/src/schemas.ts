@@ -119,7 +119,7 @@ export const interventionActorSchema = z.enum([
  * reference one-directional by construction rather than by lint.
  */
 export const entityTypeSchema = z.enum([
-  'artifact',
+  'observation',
   'barrier',
   'mechanism',
   'pattern',
@@ -261,11 +261,11 @@ const nodeBase = {
   aliases: z.array(z.string()).default([]),
 };
 
-// Artifact frontmatter schema
-export const artifactSchema = z.object({
+// Observation frontmatter schema
+export const observationSchema = z.object({
   ...nodeBase,
   id: artifactId,
-  type: z.literal('artifact'),
+  type: z.literal('observation'),
   summary: z.string().min(10),
   stages: z.array(stageIdSchema).min(1),
   fidelity: emissionFidelitySchema.nullable().optional(),
@@ -640,7 +640,7 @@ export const registryBundleSchema = registryManifestSchema.extend({
   actors: z.array(actorSchema),
   workflows: z.array(workflowSchema),
   eras: z.array(eraSchema),
-  artifacts: z.array(artifactSchema),
+  observations: z.array(observationSchema),
   barriers: z.array(barrierSchema),
   mechanisms: z.array(mechanismSchema),
   patterns: z.array(patternSchema),

@@ -1,0 +1,85 @@
+---
+id: "obs.rejection_naming_an_internal_hire_as_the_outcome"
+type: "observation"
+aliases:
+  - "A-016"
+title: "Rejection naming an internal hire as the outcome"
+summary: "The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds."
+stages:
+  - "team"
+  - "offer"
+perspectives:
+  -
+    actor: "actor.candidate"
+    sees: "A message that names where the hire came from, arriving after several rounds that were scheduled, attended and prepared for."
+    reads: "The sentence establishes where the role landed. It does not establish when that became likely, and the difference between those two is the whole of what the candidate wants to know."
+    does: "Notes what was asked in the later rounds — whether the questions were about the work or about the team's existing plans — because that is the only record of what the process was doing while it ran."
+  -
+    actor: "actor.hiring_manager"
+    sees: "An internal transfer that resolves a headcount problem without a notice period, alongside an external shortlist that was assembled in case it did not."
+    reads: "Both routes were live. One closed first, and the requisition needed one person, not the better of two processes."
+    does: "Asks for the external rounds to be closed out, and writes a reason short enough to be sent unchanged to everyone still open."
+  -
+    actor: "actor.recruiter"
+    sees: "A requisition marked filled with an internal disposition code, and a shortlist of external candidates who now need messages."
+    reads: "The disposition is accurate and unusually specific — most closing reasons are not this legible from outside."
+    does: "Sends the stated reason rather than the generic template, because the internal outcome is the one closing reason that can be given without commenting on any candidate."
+status: "active"
+evidence_level: "compatible"
+evidence_ids: []
+probes:
+  -
+    id: "PROBE-A-016-1"
+    action: "Check whether the posting was withdrawn or remained live, and whether it was reposted with the same level and scope within the following weeks."
+    expected_signal: "Distinguishes a filled requisition from a search that continued after the message."
+    cost: "low"
+    outcomes:
+      -
+        id: "withdrawn-and-not-reposted"
+        label: "The posting came down and no materially similar role appeared afterwards."
+        excludes:
+          - "mech.stale_or_orphaned_job_requisition"
+        because: "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
+      -
+        id: "reposted-same-scope"
+        label: "A role with the same level and scope was published again within weeks."
+        excludes:
+          - "mech.genuine_technical_skill_shortfall"
+        because: "Immediate reposting of the identical role contradicts honest closure via internal transfer."
+      -
+        id: "still-live"
+        label: "The posting continued to accept applications after the message arrived."
+        excludes:
+          - "mech.genuine_technical_skill_shortfall"
+        because: "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
+      -
+        id: "cannot-establish"
+        label: "The posting's state after the message cannot be established."
+        excludes: []
+specimens:
+  -
+    kind: "email"
+    label: "Closing message"
+    subject: "Update following your final round"
+    context: "after four rounds"
+    lines:
+      -
+        text: "Thank you for the time you gave this process, and for the work you prepared for the final session."
+      -
+        text: "We have filled the role with a candidate from inside the company."
+        tell: true
+      -
+        text: "We would be glad to keep your details for future openings on the team."
+    reading: "The one specific sentence in the message is about where the hire came from, not about the candidate. That specificity is what separates this from a template, and it is also the limit of what it reports."
+non_inferences:
+  - "Does not establish that the internal candidate was identified before the search was published."
+  - "Does not establish that the external rounds were run without a decision available to them."
+---
+
+# Rejection naming an internal hire as the outcome
+
+The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.
+
+### Diagnostic Non-Inferences
+- Does not establish that the internal candidate was identified before the search was published.
+- Does not establish that the external rounds were run without a decision available to them.

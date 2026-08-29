@@ -17,7 +17,7 @@ const t = useTranslations(lang);
 const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 
-type EntityType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
+type EntityType = 'observation' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
 interface Item {
   id: string;
   type: EntityType;
@@ -30,7 +30,7 @@ interface Item {
 }
 
 const items: Item[] = [
-  ...bundle.artifacts.map<Item>((a) => ({ id: a.id, type: 'artifact', title: a.title, text: a.summary, link: `${prefix}/artifacts/${a.id}`, evidenceLevel: a.evidence_level, stage: a.stages })),
+  ...bundle.observations.map<Item>((a) => ({ id: a.id, type: 'observation', title: a.title, text: a.summary, link: `${prefix}/observations/${a.id}`, evidenceLevel: a.evidence_level, stage: a.stages })),
   ...bundle.barriers.map<Item>((b) => ({ id: b.id, type: 'barrier', title: b.title, text: b.description, link: `${prefix}/barriers/${b.id}`, evidenceLevel: b.evidence_level, stage: b.stage })),
   ...bundle.mechanisms.map<Item>((m) => ({ id: m.id, type: 'mechanism', title: m.title, text: m.summary, link: `${prefix}/mechanisms/${m.id}`, evidenceLevel: m.evidence_level, removability: m.facets.removability })),
   ...bundle.patterns.map<Item>((p) => ({ id: p.id, type: 'pattern', title: p.title, text: p.summary, link: `${prefix}/patterns/${p.id}`, evidenceLevel: p.evidence_level })),
@@ -50,7 +50,7 @@ const dataAttrs = (node: Item) => ({
 });
 const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
   { type: 'all', label: t('registry.all'), count: totalCount },
-  { type: 'artifact', label: t('entity.plural.artifact'), count: bundle.artifacts.length },
+  { type: 'observation', label: t('entity.plural.artifact'), count: bundle.observations.length },
   { type: 'barrier', label: t('entity.plural.barrier'), count: bundle.barriers.length },
   { type: 'mechanism', label: t('entity.plural.mechanism'), count: bundle.mechanisms.length },
   { type: 'pattern', label: t('entity.plural.pattern'), count: bundle.patterns.length },
@@ -196,7 +196,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
       }
     }
   }}>
-    const TYPES = ['all', 'artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
+    const TYPES = ['all', 'observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'];
     const setActive = (el, on) => {
       el.classList.toggle('pill-active', on);
       el.classList.toggle('pill-muted', !on);
@@ -216,7 +216,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
     const noResults = document.getElementById('no-results');
 
     const ORDERED_GROUPS = {
-      type: ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'],
+      type: ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'],
       stage: ['pre-posting', 'sourcing', 'ingestion', 'screening', 'recruiter', 'technical', 'hiring-manager', 'team', 'client', 'compensation', 'offer', 'post-offer', ''],
       removability: ['candidate', 'intermediary', 'none', ''],
     };

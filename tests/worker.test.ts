@@ -168,11 +168,11 @@ describe('legacy entity-ID redirects', () => {
   });
 
   it('redirects an old artifact short code to its new dotted-namespace path', () => {
-    expect(legacyRedirect('/artifacts/A-001')).toBe('/artifacts/obs.complete_silence_after_submission');
+    expect(legacyRedirect('/observations/A-001')).toBe('/observations/obs.complete_silence_after_submission');
   });
 
   it('redirects an old artifact short code requesting its Markdown representation', () => {
-    expect(legacyRedirect('/artifacts/A-001.md')).toBe('/artifacts/obs.complete_silence_after_submission.md');
+    expect(legacyRedirect('/observations/A-001.md')).toBe('/observations/obs.complete_silence_after_submission.md');
   });
 
   it('redirects an old intervention short code to its new dotted-namespace path', () => {

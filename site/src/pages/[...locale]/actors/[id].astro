@@ -30,7 +30,7 @@ const bundle = getBundle(lang);
 const seen = entriesSeenBy(bundle, actor.id, prefix);
 const interventions = new Map(bundle.interventions.map((i) => [i.id, i]));
 const titles = new Map(
-  [...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [n.id, n.title])
+  [...bundle.observations, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops, ...bundle.interventions].map((n) => [n.id, n.title])
 );
 
 const facts = [

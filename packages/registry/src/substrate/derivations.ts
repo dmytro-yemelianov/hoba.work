@@ -234,7 +234,7 @@ export function substrateGaps(lifted: Lifted): GapReport {
   }
 
   const barrierIds = (sidecar.order['barriers'] ?? []);
-  const artifactIds = (sidecar.order['artifacts'] ?? []);
+  const artifactIds = (sidecar.order['observations'] ?? []);
 
   const unexplainedPairs: [string, string][] = [];
   const emissions = mechs.map((m) => new Set(getCausesPublic(m)));

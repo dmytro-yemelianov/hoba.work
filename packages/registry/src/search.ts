@@ -7,7 +7,7 @@ import type { RegistryBundle, RegistryNode } from './types.js';
  * those two lists happened to agree. They no longer do: the type enum covers
  * all eleven ontology kinds, and search covers the seven with prose to search.
  */
-export type SearchableType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention' | 'record';
+export type SearchableType = 'observation' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention' | 'record';
 
 export interface SearchHit {
   type: SearchableType;
@@ -37,11 +37,11 @@ export function searchBundle(bundle: RegistryBundle, query: string, options: Sea
   if (!q) return [];
 
   const wanted = new Set<SearchableType>(
-    options.types ?? ['artifact', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention', 'record']
+    options.types ?? ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention', 'record']
   );
 
   const pools: RegistryNode[] = [
-    ...bundle.artifacts,
+    ...bundle.observations,
     ...bundle.barriers,
     ...bundle.mechanisms,
     ...bundle.patterns,

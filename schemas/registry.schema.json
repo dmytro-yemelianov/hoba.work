@@ -569,7 +569,7 @@
             "additionalProperties": false
           }
         },
-        "artifacts": {
+        "observations": {
           "type": "array",
           "items": {
             "type": "object",
@@ -595,7 +595,7 @@
               },
               "type": {
                 "type": "string",
-                "const": "artifact"
+                "const": "observation"
               },
               "summary": {
                 "type": "string",
@@ -640,7 +640,7 @@
                 ]
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/id"
+                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
               },
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
@@ -805,7 +805,7 @@
                 "const": "barrier"
               },
               "stage": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/stages/items"
+                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/stages/items"
               },
               "order": {
                 "type": "integer",
@@ -843,7 +843,7 @@
               "perspectives": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -881,7 +881,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/aliases"
               },
               "id": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
               },
               "type": {
                 "type": "string",
@@ -904,12 +904,12 @@
                   "type": "object",
                   "properties": {
                     "artifact": {
-                      "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/id"
+                      "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
                     },
                     "fidelity": {
                       "anyOf": [
                         {
-                          "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/fidelity/anyOf/0"
+                          "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/fidelity/anyOf/0"
                         },
                         {
                           "type": "null"
@@ -941,7 +941,7 @@
                     "observed_at": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/stages/items"
+                        "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/stages/items"
                       },
                       "default": []
                     }
@@ -978,7 +978,7 @@
                     ]
                   },
                   "removability": {
-                    "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/removability_target"
+                    "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/removability_target"
                   }
                 },
                 "required": [
@@ -992,19 +992,19 @@
               "amplifies": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "default": []
               },
               "masks": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "default": []
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
               },
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
@@ -1024,7 +1024,7 @@
               "perspectives": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
                 },
                 "default": []
               },
@@ -1083,14 +1083,14 @@
               "required_artifacts": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/id"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
                 },
                 "minItems": 1
               },
               "compatible_mechanisms": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "minItems": 1
               },
@@ -1136,7 +1136,7 @@
               "perspectives": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -1190,7 +1190,7 @@
               "mechanisms": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "minItems": 2
               },
@@ -1200,10 +1200,10 @@
                   "type": "object",
                   "properties": {
                     "from": {
-                      "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                      "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                     },
                     "to": {
-                      "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                      "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                     },
                     "relation": {
                       "type": "string",
@@ -1225,7 +1225,7 @@
               "entry_points": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
                 },
                 "minItems": 1
               },
@@ -1253,7 +1253,7 @@
               "perspectives": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -1356,7 +1356,7 @@
               "perspectives": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/perspectives/items"
+                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
                 },
                 "default": []
               }
@@ -1597,7 +1597,7 @@
         "actors",
         "workflows",
         "eras",
-        "artifacts",
+        "observations",
         "barriers",
         "mechanisms",
         "patterns",

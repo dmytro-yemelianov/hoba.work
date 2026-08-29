@@ -20,7 +20,7 @@ export interface ValidationReport {
 }
 
 const allNodes = (bundle: RegistryBundle): RegistryNode[] => [
-  ...bundle.artifacts,
+  ...bundle.observations,
   ...bundle.barriers,
   ...bundle.mechanisms,
   ...bundle.patterns,
@@ -57,7 +57,7 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
   }
 
   const barrierIds = new Set(bundle.barriers.map((b) => b.id));
-  const artifactIds = new Set(bundle.artifacts.map((a) => a.id));
+  const artifactIds = new Set(bundle.observations.map((a) => a.id));
   const mechanismIds = new Set(bundle.mechanisms.map((m) => m.id));
   const patternById = new Map(bundle.patterns.map((p) => [p.id, p]));
   const loopById = new Map(bundle.loops.map((l) => [l.id, l]));
@@ -120,7 +120,7 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
 
     const emitted = new Set<string>();
     for (const em of m.emissions) {
-      requireRef(m.id, 'emissions', em.artifact, artifactIds, 'artifact');
+      requireRef(m.id, 'emissions', em.artifact, artifactIds, 'observation');
       if (emitted.has(em.artifact)) error('duplicate-edge', `Artifact ${em.artifact} is listed twice in emissions`, m.id);
       emitted.add(em.artifact);
       for (const e of em.evidence) requireRef(m.id, `emissions[${em.artifact}].evidence`, e, evidenceIds, 'evidence record');
@@ -232,7 +232,7 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
 
   // 9. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
   const probeOwners = new Map<string, string>();
-  for (const a of bundle.artifacts) {
+  for (const a of bundle.observations) {
     for (const p of a.probes) {
       const owner = probeOwners.get(p.id);
       if (owner) error('duplicate-id', `Probe ${p.id} is also defined on ${owner}`, a.id);

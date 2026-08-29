@@ -193,7 +193,7 @@ async function preview() {
 }
 
 async function shots(paths) {
-  const targets = paths.length ? paths : ['/', '/registry', '/graph', '/artifacts/A-013'];
+  const targets = paths.length ? paths : ['/', '/registry', '/graph', '/observations/A-013'];
   if (!(await serverUp())) throw new Error(`nothing on :${PREVIEW_PORT} — run "pnpm task preview" in another shell first`);
   const out = join(ROOT, '.shots');
   mkdirSync(out, { recursive: true });

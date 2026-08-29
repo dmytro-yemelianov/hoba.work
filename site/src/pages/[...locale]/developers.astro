@@ -10,7 +10,7 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
-const endpoints = ['artifacts', 'barriers', 'mechanisms', 'patterns', 'loops', 'interventions', 'evidence', 'graph'];
+const endpoints = ['observations', 'barriers', 'mechanisms', 'patterns', 'loops', 'interventions', 'evidence', 'graph'];
 const tools = [
   'get_registry_info',
   'search_registry',

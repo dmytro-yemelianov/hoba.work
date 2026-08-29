@@ -1,0 +1,125 @@
+{
+  "registry_version": "1.0.0",
+  "data": {
+    "title": "Conflicting feedback across different interviewers",
+    "status": "active",
+    "evidence_ids": [
+      "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+    ],
+    "content": "# Conflicting feedback across different interviewers\n\nFeedback from one round praises architectural depth while another round claims insufficient technical background.\n\n### Diagnostic Non-Inferences\n- Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee.",
+    "aliases": [
+      "A-014"
+    ],
+    "id": "obs.conflicting_feedback_across_different_interviewers",
+    "type": "observation",
+    "summary": "Feedback from one round praises architectural depth while another round claims insufficient technical background.",
+    "stages": [
+      "technical",
+      "team"
+    ],
+    "evidence_level": "supported",
+    "probes": [
+      {
+        "id": "PROBE-A-014-1",
+        "action": "Ask the talent partner for the consolidated rubric summary.",
+        "expected_signal": "Shows whether the two rounds were scoring against different criteria.",
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "criteria-differ-by-round",
+            "label": "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises.",
+            "excludes": [
+              "mech.take_home_evaluation_fatigue_asymmetry"
+            ],
+            "because": "Different criteria across distinct rounds establish separate evaluation dimensions rather than noisy evaluator disagreement."
+          },
+          {
+            "id": "same-criterion-opposite-scores",
+            "label": "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results.",
+            "excludes": [
+              "mech.genuine_technical_skill_shortfall"
+            ],
+            "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (mech.take_home_evaluation_fatigue_asymmetry) rather than an honest calibrated verdict."
+          },
+          {
+            "id": "reply-adds-nothing",
+            "label": "A reply arrives that adds nothing to the decision already sent: the two verdicts restated, or the scoring described as internal and not shared with candidates.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "no-reply",
+            "label": "No reply arrives, and no summary is produced.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
+      }
+    ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Two rounds, two verdicts",
+        "subject": "Consolidated feedback",
+        "context": "same candidate, four days apart",
+        "lines": [
+          {
+            "text": "Round 2 (systems): Strong architectural depth. Reasoned clearly about consistency trade-offs and failure modes. Recommend proceed.",
+            "tell": false
+          },
+          {
+            "text": "Round 4 (technical): Insufficient depth for the level. Struggled to move past a first-pass solution. Recommend do not proceed.",
+            "tell": true
+          },
+          {
+            "text": "Final decision: do not proceed.",
+            "tell": false
+          }
+        ],
+        "reading": "Both notes are about the same person in the same week. At least one of them is measuring something other than the candidate."
+      },
+      {
+        "kind": "transcript",
+        "label": "What the two rounds actually asked",
+        "lines": [
+          {
+            "speaker": "Interviewer B",
+            "at": "08:30",
+            "text": "Round 2 — Walk me through how you would keep two regions in sync when the link between them drops.",
+            "tell": false
+          },
+          {
+            "speaker": "Interviewer D",
+            "at": "03:10",
+            "text": "Round 4 — Here is a string parsing problem. You have twenty-five minutes.",
+            "tell": true
+          }
+        ],
+        "reading": "The rounds did not disagree about the candidate; they measured different things and reported both as depth."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "actor.candidate",
+        "sees": "Two verdicts from the same week: one round rating architectural depth highly, another finding depth insufficient for the level, and one negative decision under them.",
+        "reads": "The rounds asked different questions and both reported the answer as depth. Which of the two the decision rests on is not stated.",
+        "does": "Asks for the consolidated rubric summary, and records what each round actually asked alongside what each concluded."
+      },
+      {
+        "actor": "actor.hiring_manager",
+        "sees": "Two written notes on the same candidate from rounds they did not sit in, each using the word depth for a different exercise.",
+        "reads": "Those notes are the whole of what is available about those rounds; nothing in them separates a disagreement about the candidate from a difference between the two exercises.",
+        "does": "Sets who interviews and what each round asks, and closes the split with a decision rather than a re-run. A hire made over a recorded negative note carries their name if it goes wrong."
+      },
+      {
+        "actor": "actor.recruiter",
+        "sees": "Two recommendations pointing opposite ways and a decision line under them. The scores behind each recommendation are not in the recruiter's view.",
+        "reads": "One reason has to be written to the candidate out of two notes that do not agree. Anything said beyond the recorded decision can be quoted back later.",
+        "does": "Sends the outcome in wording that stays inside what was written down, and moves the requisition on. Reopening a recorded decision sits with the hiring manager, not the recruiter."
+      }
+    ],
+    "non_inferences": [
+      "Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee."
+    ]
+  }
+}

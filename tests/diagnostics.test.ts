@@ -50,7 +50,7 @@ describe('HOBADiagnosticEngine', () => {
     bundle.mechanisms.push(
       mechanism({ id: 'M-003', operates_at: ['B-001'], status: 'deprecated', superseded_by: 'M-001' })
     );
-    bundle.artifacts.push(artifact({ id: 'A-002', status: 'deprecated', superseded_by: 'A-001' }));
+    bundle.observations.push(artifact({ id: 'A-002', status: 'deprecated', superseded_by: 'A-001' }));
     const res = new HOBADiagnosticEngine(bundle).analyze({ artifacts: ['A-001', 'A-002'] });
     expect(res.behind.compatible_mechanisms.map((c) => c.mechanism.id)).not.toContain('M-003');
     expect(res.hard_facts.unknown_artifact_ids).toEqual(['A-002']);
@@ -70,7 +70,7 @@ describe('classifyAgencyZone', () => {
 describe('a recorded emission stage sharpens attribution and nothing else', () => {
   /** One observation, two mechanisms: one places its trace here, one elsewhere. */
   const bundle = makeBundle({
-    artifacts: [artifact({ id: 'A-001', stages: ['screening', 'technical'] })],
+    observations: [artifact({ id: 'A-001', stages: ['screening', 'technical'] })],
     barriers: [
       barrier({ id: 'B-001', order: 1, stage: 'screening' }),
       barrier({ id: 'B-002', order: 2, stage: 'technical' }),

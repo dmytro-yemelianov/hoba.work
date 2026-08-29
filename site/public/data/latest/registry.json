@@ -2927,7 +2927,7 @@
       "specimens": []
     }
   ],
-  "artifacts": [
+  "observations": [
     {
       "title": "Communication mismatch or tone friction in panel",
       "status": "active",
@@ -2939,7 +2939,7 @@
         "A-010"
       ],
       "id": "obs.communication_mismatch_or_tone_friction_in_panel",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Noticeable divergence in communication style, pacing, or terminology during live panel discussions.",
       "stages": [
         "recruiter",
@@ -3076,7 +3076,7 @@
         "A-005"
       ],
       "id": "obs.compensation_band_reduced_or_altered_mid_process",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The compensation band offered or discussed is revised downward from the range previously agreed or advertised.",
       "stages": [
         "recruiter",
@@ -3218,7 +3218,7 @@
         "A-001"
       ],
       "id": "obs.complete_silence_after_submission",
-      "type": "artifact",
+      "type": "observation",
       "summary": "After the application is submitted, nothing arrives: no automated receipt, no acknowledgement, no rejection, no message from a recruiter.",
       "stages": [
         "ingestion",
@@ -3345,7 +3345,7 @@
         "A-014"
       ],
       "id": "obs.conflicting_feedback_across_different_interviewers",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Feedback from one round praises architectural depth while another round claims insufficient technical background.",
       "stages": [
         "technical",
@@ -3467,7 +3467,7 @@
         "A-008"
       ],
       "id": "obs.explicit_feedback_citing_skill_depth_shortfall",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.",
       "stages": [
         "technical",
@@ -3602,7 +3602,7 @@
         "A-019"
       ],
       "id": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The stated shortfall is the absence of work that is present in what the candidate submitted, at the path they gave.",
       "stages": [
         "screening",
@@ -3706,7 +3706,7 @@
         "A-013"
       ],
       "id": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.",
       "stages": [
         "recruiter",
@@ -3855,7 +3855,7 @@
         "A-002"
       ],
       "id": "obs.generic_closer_alignment_rejection_template",
-      "type": "artifact",
+      "type": "observation",
       "summary": "A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.",
       "stages": [
         "screening",
@@ -3975,7 +3975,7 @@
         "A-004"
       ],
       "id": "obs.materially_similar_role_reposted_shortly_after_rejection",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.",
       "stages": [
         "sourcing",
@@ -4094,7 +4094,7 @@
         "A-007"
       ],
       "id": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.",
       "stages": [
         "recruiter",
@@ -4233,7 +4233,7 @@
         "A-020"
       ],
       "id": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
-      "type": "artifact",
+      "type": "observation",
       "summary": "A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.",
       "stages": [
         "post-offer"
@@ -4335,7 +4335,7 @@
         "A-011"
       ],
       "id": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Candidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.",
       "stages": [
         "offer",
@@ -4460,7 +4460,7 @@
         "A-003"
       ],
       "id": "obs.position_closed_after_final_interview_without_hire",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.",
       "stages": [
         "team",
@@ -4590,7 +4590,7 @@
         "A-015"
       ],
       "id": "obs.rejection_after_the_application_sat_pending_for_months",
-      "type": "artifact",
+      "type": "observation",
       "summary": "A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.",
       "stages": [
         "ingestion",
@@ -4719,7 +4719,7 @@
         "A-017"
       ],
       "id": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.",
       "stages": [
         "ingestion",
@@ -4823,7 +4823,7 @@
         "A-018"
       ],
       "id": "obs.rejection_naming_a_specific_industry_sector_as_required",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.",
       "stages": [
         "recruiter",
@@ -4924,7 +4924,7 @@
         "A-016"
       ],
       "id": "obs.rejection_naming_an_internal_hire_as_the_outcome",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.",
       "stages": [
         "team",
@@ -5030,7 +5030,7 @@
         "A-009"
       ],
       "id": "obs.rejection_within_minutes_of_application_submission",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.",
       "stages": [
         "ingestion"
@@ -5152,7 +5152,7 @@
         "A-021"
       ],
       "id": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
-      "type": "artifact",
+      "type": "observation",
       "summary": "An opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.",
       "stages": [
         "pre-posting",
@@ -5245,7 +5245,7 @@
         "A-006"
       ],
       "id": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
-      "type": "artifact",
+      "type": "observation",
       "summary": "The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.",
       "stages": [
         "technical"
@@ -5362,7 +5362,7 @@
         "A-012"
       ],
       "id": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
-      "type": "artifact",
+      "type": "observation",
       "summary": "Recruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.",
       "stages": [
         "sourcing",

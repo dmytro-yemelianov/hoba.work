@@ -24,7 +24,7 @@ const bundle: RegistryBundle = loadRegistryFromRoot(root, 'en');
 
 /** One index space for every entity a state can point at. */
 const entityIds = [
-  ...bundle.artifacts, ...bundle.barriers, ...bundle.mechanisms,
+  ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
   ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
 ].map((n) => n.id).sort();
 const entityIndex = new Map(entityIds.map((id, i) => [id, i] as const));

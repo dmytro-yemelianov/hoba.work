@@ -50,7 +50,7 @@ export function parseStage(value: string | undefined): StageId | undefined {
 const printJson = (value: unknown) => console.log(JSON.stringify(value, null, 2));
 
 const TYPE_LABELS: Record<SearchableType, string> = {
-  artifact: 'Observation (A)',
+  observation: 'Observation',
   barrier: 'Barrier (B)',
   mechanism: 'Mechanism (M)',
   pattern: 'Pattern (P)',
@@ -137,7 +137,7 @@ export function cmdShow(id: string, options: GlobalOptions) {
       console.log(pc.yellow('Amplifies:'), node.amplifies.join(', ') || 'none');
       console.log(pc.yellow('Masks:'), node.masks.join(', ') || 'none');
       break;
-    case 'artifact':
+    case 'observation':
       console.log(pc.yellow('Stages:'), node.stages.join(', '));
       if (node.probes.length > 0) {
         console.log(pc.yellow('Diagnostic Probes:'));
@@ -640,7 +640,7 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
   if (sub !== 'stats') throw new CliError(`Unknown "registry" subcommand "${sub}". Expected "stats" or "version".`);
 
   const counts = {
-    artifacts: bundle.artifacts.length,
+    artifacts: bundle.observations.length,
     barriers: bundle.barriers.length,
     mechanisms: bundle.mechanisms.length,
     patterns: bundle.patterns.length,

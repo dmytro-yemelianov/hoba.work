@@ -17,7 +17,7 @@ describe('searchBundle', () => {
   });
 
   it('respects type filters and limits, and ignores blank queries', () => {
-    expect(searchBundle(bundle, 'a', { types: ['artifact'] }).every((h) => h.type === 'artifact')).toBe(true);
+    expect(searchBundle(bundle, 'a', { types: ['observation'] }).every((h) => h.type === 'observation')).toBe(true);
     expect(searchBundle(bundle, 'a', { limit: 2 })).toHaveLength(2);
     expect(searchBundle(bundle, '   ')).toEqual([]);
   });
