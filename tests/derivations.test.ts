@@ -144,7 +144,7 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
   });
 
   it('detects temporal anomalies when actual dwell exceeds max bound', () => {
-    const anomalies = substrateDetectTemporalAnomalies(lifted.substrate, 'WF-001', 'recruiter-queue', 45);
+    const anomalies = substrateDetectTemporalAnomalies(lifted.substrate, 'proc.the_hiring_funnel_end_to_end', 'recruiter-queue', 45);
     expect(anomalies.length).toBeGreaterThan(0);
     const queuedToScreen = anomalies.find((a) => a.toState === 'recruiter-screen')!;
     expect(queuedToScreen.severity).toBe('stalled_anomalous');

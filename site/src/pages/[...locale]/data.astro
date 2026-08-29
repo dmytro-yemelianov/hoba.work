@@ -298,9 +298,9 @@ const tocItems = [
         <div class="mt-5 space-y-6">
           {bundle.workflows.map((wf) => (
             <div class="border border-hoba-border rounded-lg p-4 bg-hoba-card/30">
-              <div class="flex items-baseline justify-between mb-3">
-                <h3 class="font-medium text-base text-hoba-text">
-                  <span class="font-mono text-hoba-accent mr-2">{wf.id}</span>
+              <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-3 min-w-0">
+                <h3 class="font-medium text-base text-hoba-text min-w-0 break-words">
+                  <span class="font-mono text-hoba-accent mr-2 break-all">{wf.id}</span>
                   {wf.title}
                 </h3>
                 <span class="text-xs text-hoba-muted font-mono">{wf.states.length} states · {wf.transitions.length} transitions</span>

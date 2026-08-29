@@ -23,6 +23,7 @@ import type {
   Specimen,
   WorkflowNode,
 } from '@hoba/registry';
+import { IDEAL_PATH_ID } from './registry';
 import type { Lang, Translate } from '../i18n/utils';
 import { asHeading } from '../i18n/utils';
 
@@ -51,13 +52,13 @@ export function idLink(id: string, bundle: RegistryBundle): string {
 }
 
 /**
- * Where the entity sits on the canonical path (WF-003), as one blockquote.
+ * Where the entity sits on the canonical path, as one blockquote.
  * The Markdown carries it for the same reason the page does: without it the
  * entry reads as a complaint, and with it it reads as a measured departure
  * from a stated commitment.
  */
 function idealNote(id: string, bundle: RegistryBundle, t: Translate): string[] {
-  const ideal = bundle.workflows.find((w) => w.id === 'WF-003');
+  const ideal = bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
   if (!ideal) return [];
   const broken = ideal.states.find((s) => s.deviations.includes(id));
   const held = broken ? undefined : ideal.states.find((s) => s.entities.includes(id));

@@ -24,7 +24,7 @@ const loopId = z.string().regex(ID_PATTERNS.loop);
 const interventionId = z.string().regex(ID_PATTERNS.intervention);
 const evidenceId = z.string().regex(ID_PATTERNS.evidence);
 const recordId = z.string().regex(ID_PATTERNS.record);
-const workflowId = z.string().regex(/^(WF-\d{3}|proc\.[a-z0-9_]+)$/, 'workflow id must look like WF-001 or proc.<name>');
+const workflowId = z.string().regex(/^(WF-\d{3}|proc\.[a-z0-9_]+)$/, 'workflow id must look like proc.<name> or the legacy WF-001');
 const eraId = z.string().regex(ID_PATTERNS.era, 'era id must look like E-001');
 
 // Ordered by funnel progression. The order of this list is meaningful and is

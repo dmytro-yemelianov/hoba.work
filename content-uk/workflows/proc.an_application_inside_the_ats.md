@@ -1,6 +1,8 @@
 ---
-id: "WF-002"
+id: "proc.an_application_inside_the_ats"
 type: "workflow"
+aliases:
+  - "WF-002"
 title: "Заявка всередині ATS"
 summary: "Машина, якої кандидат ніколи не бачить: що відбувається з поданою заявкою між формою і живою людиною — і чотири способи, якими це може закінчитися без жодного прочитання."
 subject: "один запис заявки"
@@ -61,7 +63,7 @@ states:
     title: "Просунуто у воронку"
     kind: "terminal"
     owner: "recruiter"
-    description: "Запис виходить із цієї машини й заходить у WF-001 на скринінг рекрутера."
+    description: "Запис виходить із цієї машини й заходить у proc.the_hiring_funnel_end_to_end на скринінг рекрутера."
     entities:
       - "bar.recruiter_screening_call"
     visible_to_candidate: "Запрошення поговорити."

@@ -9,7 +9,8 @@
  * which is what `Forward` asserts and what the acyclicity and route-length
  * theorems are proved from. For a machine with a cycle no such layering exists,
  * the generator emits its best attempt, and `Forward` is then provably false —
- * which is the point: WF-001 has a back edge and WF-003 does not.
+ * which is the point: the funnel as it runs has a back edge and the canonical
+ * path does not.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -145,15 +146,19 @@ function emit(name: string, m: Emitted, comment: string): string[] {
   ];
 }
 
-const ideal = bundle.workflows.find((w) => w.id === 'WF-003');
-const observed = bundle.workflows.find((w) => w.id === 'WF-001');
-if (!ideal || !observed) throw new Error('build-lean: WF-003 and WF-001 are both required');
+/** The two workflows the proofs are built from, named once. */
+const IDEAL_ID = 'proc.the_path_as_it_is_supposed_to_run';
+const OBSERVED_ID = 'proc.the_hiring_funnel_end_to_end';
+
+const ideal = bundle.workflows.find((w) => w.id === IDEAL_ID);
+const observed = bundle.workflows.find((w) => w.id === OBSERVED_ID);
+if (!ideal || !observed) throw new Error(`build-lean: ${IDEAL_ID} and ${OBSERVED_ID} are both required`);
 
 const idealM = machineFromWorkflow(ideal);
 const observedM = machineFromWorkflow(observed);
 const gatesM = machineFromBarriers();
 const cycle = findCycle(observedM);
-if (!cycle) throw new Error('build-lean: WF-001 is expected to contain a back edge; none was found');
+if (!cycle) throw new Error(`build-lean: ${OBSERVED_ID} is expected to contain a back edge; none was found`);
 
 const barrierIdx = bundle.barriers.map((b) => entityIndex.get(b.id)!).sort((a, b) => a - b);
 const mechanismIdx = bundle.mechanisms.map((m) => entityIndex.get(m.id)!).sort((a, b) => a - b);
@@ -172,8 +177,8 @@ const out: string[] = [
   '',
   'namespace Hoba',
   '',
-  ...emit('ideal', idealM, 'WF-003, the canonical path: the process as the commitments it is supposed to keep.'),
-  ...emit('observed', observedM, 'WF-001, the funnel as it actually runs.'),
+  ...emit('ideal', idealM, `${IDEAL_ID}, the canonical path: the process as the commitments it is supposed to keep.`),
+  ...emit('observed', observedM, `${OBSERVED_ID}, the funnel as it actually runs.`),
   ...emit('gates', gatesM, 'The barrier DAG, ordered by funnel position.'),
   '/-- Every entity a state can name, in index order. -/',
   `def entityNames : List String := ${list(entityIds.map((id) => JSON.stringify(id)))}`,

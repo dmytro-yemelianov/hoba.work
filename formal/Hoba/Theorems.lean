@@ -12,7 +12,7 @@ import Hoba.Data
 namespace Hoba
 open Machine
 
-/-! ## The canonical path (WF-003) -/
+/-! ## The canonical path (proc.the_path_as_it_is_supposed_to_run) -/
 
 theorem ideal_wellFormed : WellFormed ideal = true := by decide
 
@@ -68,7 +68,7 @@ theorem barrier_homes_exactly_one : barrierIds.all (fun b => homesFor ideal b ==
 /-- Every mechanism is a departure from at least one. -/
 theorem mechanism_homes_at_least_one : mechanismIds.all (fun m => 0 < homesFor ideal m) = true := by decide
 
-/-! ## The funnel as it runs (WF-001) -/
+/-! ## The funnel as it runs (proc.the_hiring_funnel_end_to_end) -/
 
 /-- No rank assignment makes the observed funnel climb. -/
 theorem observed_not_forward : Forward observed = false := by decide

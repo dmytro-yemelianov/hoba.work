@@ -547,16 +547,16 @@ describe('eras', () => {
 });
 
 /**
- * WF-003 is the path the rest of the registry is measured against, so the
+ * The canonical path is what the rest of the registry is measured against, so the
  * relationship has to hold both ways: no barrier may be missing from it, and
  * none may claim two different commitments as the one it breaks.
  */
 describe('the canonical path', () => {
-  const ideal = bundle.workflows.find((w) => w.id === 'WF-003')!;
+  const ideal = bundle.workflows.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
   const homes = (id: string) => ideal.states.filter((s) => s.deviations.includes(id)).map((s) => s.id);
 
   it('exists, and is the one workflow written as commitments', () => {
-    expect(ideal, 'WF-003 is missing').toBeDefined();
+    expect(ideal, 'proc.the_path_as_it_is_supposed_to_run is missing').toBeDefined();
     expect(ideal.states.some((s) => s.deviations.length > 0)).toBe(true);
   });
 
@@ -584,7 +584,7 @@ describe('the canonical path', () => {
   });
 
   it('mirrors every deviation list into Ukrainian unchanged', () => {
-    const ukIdeal = uk.workflows.find((w) => w.id === 'WF-003')!;
+    const ukIdeal = uk.workflows.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
     const shape = (w: typeof ideal) => w.states.map((s) => `${s.id}:${s.deviations.join(',')}:${s.entities.join(',')}`);
     expect(shape(ukIdeal)).toEqual(shape(ideal));
   });

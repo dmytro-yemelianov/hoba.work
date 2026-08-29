@@ -338,7 +338,7 @@ server.registerTool(
     description:
       'Diagnose temporal dwell anomalies and identify stalled or implicated mechanisms across hiring funnel stages.',
     inputSchema: {
-      process_id: z.string().describe('Workflow ID (e.g. "WF-001", "WF-003", "WF-004")'),
+      process_id: z.string().describe('Workflow ID (e.g. "proc.the_hiring_funnel_end_to_end", "proc.the_path_as_it_is_supposed_to_run", "proc.client_account_hiring_funnel"); legacy short codes resolve as aliases'),
       from_state: z.string().describe('Starting state ID where candidate is currently dwelling (e.g. "recruiter-queue")'),
       actual_days: z.number().nonnegative().describe('Number of elapsed calendar days in this state'),
     },

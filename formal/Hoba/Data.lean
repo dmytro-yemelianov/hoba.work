@@ -6,7 +6,7 @@ import Hoba.Machine
 
 namespace Hoba
 
-/-- WF-003, the canonical path: the process as the commitments it is supposed to keep. -/
+/-- proc.the_path_as_it_is_supposed_to_run, the canonical path: the process as the commitments it is supposed to keep. -/
 def ideal : Machine where
   n := 15
   kind := [Kind.initial, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.terminal, Kind.terminal, Kind.terminal]
@@ -17,7 +17,7 @@ def ideal : Machine where
 /-- State names for `ideal`, in index order. -/
 def idealNames : List String := ["real-need", "published", "applied", "machine-check", "human-read", "terms-check", "work-sample", "panel", "level-and-band", "approval", "offer", "verification", "hired", "declined", "closed"]
 
-/-- WF-001, the funnel as it actually runs. -/
+/-- proc.the_hiring_funnel_end_to_end, the funnel as it actually runs. -/
 def observed : Machine where
   n := 17
   kind := [Kind.initial, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.terminal, Kind.terminal, Kind.terminal, Kind.terminal]

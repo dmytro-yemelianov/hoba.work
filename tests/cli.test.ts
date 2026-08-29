@@ -49,7 +49,7 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   });
 
   it('diagnoses temporal latency and dwell anomalies', () => {
-    const json = JSON.parse(hoba(['latency', 'WF-001', 'recruiter-queue', '45', '--json']).stdout);
+    const json = JSON.parse(hoba(['latency', 'proc.the_hiring_funnel_end_to_end', 'recruiter-queue', '45', '--json']).stdout);
     expect(json.anomalies.length).toBeGreaterThan(0);
     const queued = json.anomalies.find((a: { toState: string }) => a.toState === 'recruiter-screen');
     expect(queued.severity).toBe('stalled_anomalous');

@@ -1,6 +1,8 @@
 ---
-id: "WF-002"
+id: "proc.an_application_inside_the_ats"
 type: "workflow"
+aliases:
+  - "WF-002"
 title: "An application inside the ATS"
 summary: "The machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it."
 subject: "one application record"
@@ -61,7 +63,7 @@ states:
     title: "Advanced to the funnel"
     kind: "terminal"
     owner: "recruiter"
-    description: "The record leaves this machine and enters WF-001 at the recruiter screen."
+    description: "The record leaves this machine and enters proc.the_hiring_funnel_end_to_end at the recruiter screen."
     entities:
       - "bar.recruiter_screening_call"
     visible_to_candidate: "An invitation to talk."

@@ -1,6 +1,8 @@
 ---
-id: "WF-003"
+id: "proc.the_path_as_it_is_supposed_to_run"
 type: "workflow"
+aliases:
+  - "WF-003"
 title: "The path as it is supposed to run"
 summary: "One opening, from a real need to a decision the candidate can act on, with each step written as the commitment it is supposed to keep. Every barrier in the registry is a place where one of these commitments stops being kept."
 subject: "one opening, and one candidate moving through it"

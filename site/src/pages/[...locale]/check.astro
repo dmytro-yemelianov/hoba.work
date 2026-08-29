@@ -13,7 +13,7 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { getBundle } from '../../lib/registry';
+import { getBundle, IDEAL_PATH_ID } from '../../lib/registry';
 import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -48,7 +48,13 @@ const KEYS = [
 
 // State titles and mechanism titles are resolved here so the client ships names
 // rather than a second copy of the registry.
-const ideal = bundle.workflows.find((w) => w.id === 'WF-003');
+const ideal = bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
+// Same order as /process: the canonical path leads, because everything else
+// is a departure from it — and because a default that falls out of filename
+// sorting changes silently whenever an entity is renamed.
+const workflowsByRelevance = [...bundle.workflows].sort(
+  (a, b) => Number(b.id === IDEAL_PATH_ID) - Number(a.id === IDEAL_PATH_ID)
+);
 const payload = JSON.stringify({
   prefix,
   lang,
@@ -56,7 +62,7 @@ const payload = JSON.stringify({
   states: Object.fromEntries((ideal?.states ?? []).map((s) => [s.id, s.title])),
   gates: Object.fromEntries(bundle.barriers.map((b) => [b.id, b.title])),
   mechanisms: Object.fromEntries(bundle.mechanisms.map((m) => [m.id, m.title])),
-  workflows: bundle.workflows.map((w) => ({
+  workflows: workflowsByRelevance.map((w) => ({
     id: w.id,
     title: w.title,
     states: w.states.map((s) => ({ id: s.id, title: s.title })),
@@ -295,8 +301,8 @@ const presets = [
       <div>
         <label for="latency-wf" class="block text-xs font-medium text-hoba-muted mb-1">{t('check.turnaround.wf')}</label>
         <select id="latency-wf" class="check-input w-full bg-hoba-bg text-sm">
-          {bundle.workflows.map((w) => (
-            <option value={w.id}>{w.id} — {w.title}</option>
+          {workflowsByRelevance.map((w) => (
+            <option value={w.id}>{w.title}</option>
           ))}
         </select>
       </div>
@@ -504,7 +510,7 @@ const presets = [
           let implicated: string[] = [];
 
           if (days > tr.max) {
-            badge = `<span class="pill pill-muted font-mono text-xs font-semibold text-rose-400"><span class="dot bg-rose-500" aria-hidden="true"></span>${esc(t('check.turnaround.breach'))}</span>`;
+            badge = `<span class="pill pill-muted font-mono text-xs font-semibold text-rose-700 dark:text-rose-400"><span class="dot bg-rose-500" aria-hidden="true"></span>${esc(t('check.turnaround.breach'))}</span>`;
             calloutTone = 'border-l-rose-500 bg-rose-500/5';
             note = t('check.turnaround.stalled', { max: tr.max });
             if (tr.from.includes('queue') || tr.from.includes('publish') || tr.from.includes('received')) {
@@ -519,7 +525,7 @@ const presets = [
             const delayMsg = lang === 'uk'
               ? `Час очікування перевищує середній (${tr.expected} дн.), наближаючись до максимального порогу (${tr.max} дн.).`
               : `Turnaround exceeds expected average (${tr.expected}d), approaching max bound (${tr.max}d).`;
-            badge = `<span class="pill pill-muted font-mono text-xs text-amber-400"><span class="dot bg-amber-500" aria-hidden="true"></span>${delayLabel}</span>`;
+            badge = `<span class="pill pill-muted font-mono text-xs text-amber-700 dark:text-amber-400"><span class="dot bg-amber-500" aria-hidden="true"></span>${delayLabel}</span>`;
             calloutTone = 'border-l-amber-500 bg-amber-500/5';
             note = delayMsg;
           }
@@ -573,11 +579,11 @@ const presets = [
         let assessment = t('check.runway.risk.safe');
 
         if (months < 3) {
-          statusBadge = `<span class="pill pill-muted font-mono text-xs font-semibold text-rose-400"><span class="dot bg-rose-500" aria-hidden="true"></span>${lang === 'uk' ? 'Критичний фінансовий ризик' : 'Acute Vulnerability'}</span>`;
+          statusBadge = `<span class="pill pill-muted font-mono text-xs font-semibold text-rose-700 dark:text-rose-400"><span class="dot bg-rose-500" aria-hidden="true"></span>${lang === 'uk' ? 'Критичний фінансовий ризик' : 'Acute Vulnerability'}</span>`;
           tone = 'border-l-rose-500 bg-rose-500/5';
           assessment = t('check.runway.risk.high');
         } else if (months < 6) {
-          statusBadge = `<span class="pill pill-muted font-mono text-xs text-amber-400"><span class="dot bg-amber-500" aria-hidden="true"></span>${lang === 'uk' ? 'Помірне навантаження' : 'Moderate Stress'}</span>`;
+          statusBadge = `<span class="pill pill-muted font-mono text-xs text-amber-700 dark:text-amber-400"><span class="dot bg-amber-500" aria-hidden="true"></span>${lang === 'uk' ? 'Помірне навантаження' : 'Moderate Stress'}</span>`;
           tone = 'border-l-amber-500 bg-amber-500/5';
           assessment = t('check.runway.risk.medium');
         }

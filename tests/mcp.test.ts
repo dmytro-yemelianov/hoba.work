@@ -122,7 +122,7 @@ describe('hoba MCP server', () => {
     const latency = payload(
       await client.request('tools/call', {
         name: 'detect_temporal_anomalies',
-        arguments: { process_id: 'WF-001', from_state: 'recruiter-queue', actual_days: 45 },
+        arguments: { process_id: 'proc.the_hiring_funnel_end_to_end', from_state: 'recruiter-queue', actual_days: 45 },
       })
     );
     expect(latency.anomalies.length).toBeGreaterThan(0);

@@ -1,6 +1,8 @@
 ---
-id: "WF-004"
+id: "proc.client_account_hiring_funnel"
 type: "workflow"
+aliases:
+  - "WF-004"
 title: "Client account hiring funnel"
 summary: "From client demand and commercial contract to profile submission, client interview, and placement or unannounced closure."
 subject: "a seat funded by a client contract and the candidate moving towards it"

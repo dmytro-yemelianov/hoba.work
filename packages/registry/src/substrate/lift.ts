@@ -9,7 +9,8 @@
  *  - each barrier is one condition; its `gates` are the workflow events its
  *    transitions guard, its owner is the owner of the first transition that
  *    carries it (one barrier is owned differently on different edges — B-001
- *    is the candidate's act in WF-001 and the vendor's record in WF-002 — and
+ *    is the candidate's act in the end-to-end funnel and the vendor's record in
+ *    the ATS pipeline — and
  *    the first workflow's reading wins, documented here);
  *  - each mechanism is one condition; `accounts_for` carries operates_at,
  *    `causes` carries the emission targets in order, and the per-emission

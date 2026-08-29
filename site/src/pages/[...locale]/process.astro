@@ -53,7 +53,7 @@ const payload = JSON.stringify({
     <section class="section" data-workflow={workflow.id}>
       <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2 min-w-0 max-w-full">
         <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0 min-w-0 max-w-full break-words">
-          <span>{workflow.id} · {workflow.title}</span>
+          <span class="min-w-0 break-words"><span class="break-all">{workflow.id}</span> · {workflow.title}</span>
           {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted shrink-0">{t('ideal.badge')}</span>}
         </h2>
         <span class="pill pill-muted text-xs font-mono max-w-full truncate"><span class="text-hoba-muted">{t('wf.subject')}:</span> {workflow.subject}</span>
@@ -365,10 +365,15 @@ const payload = JSON.stringify({
       // machine it belongs to, put the player on that state, and scroll to it.
       const openAnchor = () => {
         const anchor = decodeURIComponent(location.hash.slice(1));
-        const match = /^(WF-\d+)-(.+)$/.exec(anchor);
-        if (!match) return;
-        const [, workflowId, stateId] = match;
-        const view = views.get(workflowId!);
+        // A canonical workflow id carries dots and hyphens of its own, so the
+        // boundary between machine and state is found against the machines
+        // actually on the page rather than guessed with a pattern.
+        const workflowId = [...views.keys()]
+          .filter((id) => anchor.startsWith(`${id}-`))
+          .sort((a, b) => b.length - a.length)[0];
+        if (!workflowId) return;
+        const stateId = anchor.slice(workflowId.length + 1);
+        const view = views.get(workflowId);
         if (!view) return;
         document.getElementById(anchor)?.closest('details')?.setAttribute('open', '');
         view.selectState(stateId!);

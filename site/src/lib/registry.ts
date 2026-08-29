@@ -83,14 +83,14 @@ export function slimBundle(bundle: RegistryBundle): RegistryBundle {
 /**
  * The canonical path.
  *
- * WF-003 is the process written as the commitments it is supposed to keep, and
- * every other entry in the registry is positioned against it: a barrier is the
+ * The canonical path is the process written as the commitments it is supposed to
+ * keep, and every other entry is positioned against it: a barrier is the
  * point where one of those commitments stops being kept, an intervention is
  * something that holds one of them up. These two lookups are what let a
  * detail page say which it is without the page knowing anything about
  * workflows.
  */
-export const IDEAL_PATH_ID = 'WF-003';
+export const IDEAL_PATH_ID = 'proc.the_path_as_it_is_supposed_to_run';
 
 export interface IdealPlacement {
   workflow: WorkflowNode;
@@ -169,7 +169,7 @@ export interface RouteCount {
  *
  * A cardinality, never a probability: the atlas has no basis for saying which
  * route a person takes, and counting them is the honest thing it can do
- * instead. Only meaningful for an acyclic machine — WF-003 is one, and
+ * instead. Only meaningful for an acyclic machine — the canonical path is one, and
  * `formal/` proves it.
  */
 export function countRoutes(workflow: WorkflowNode): RouteCount {

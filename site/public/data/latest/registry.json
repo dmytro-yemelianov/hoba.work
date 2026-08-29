@@ -970,12 +970,613 @@
   ],
   "workflows": [
     {
+      "title": "An application inside the ATS",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# An application inside the ATS\n\nThe machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
+      "aliases": [
+        "WF-002"
+      ],
+      "id": "proc.an_application_inside_the_ats",
+      "type": "workflow",
+      "summary": "The machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
+      "subject": "one application record",
+      "states": [
+        {
+          "id": "submitted",
+          "title": "Submitted",
+          "kind": "initial",
+          "owner": "candidate",
+          "description": "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
+          "entities": [
+            "bar.application_ingestion",
+            "obs.complete_silence_after_submission"
+          ],
+          "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email.",
+          "deviations": []
+        },
+        {
+          "id": "parsing",
+          "title": "Parsing",
+          "kind": "active",
+          "owner": "ats-vendor",
+          "description": "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.",
+          "entities": [
+            "mech.ats_parser_extraction_failure"
+          ],
+          "visible_to_candidate": "Nothing.",
+          "deviations": []
+        },
+        {
+          "id": "scoring",
+          "title": "Rule evaluation",
+          "kind": "active",
+          "owner": "ats-vendor",
+          "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
+          "entities": [
+            "bar.automated_filter_parser_threshold",
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias"
+          ],
+          "visible_to_candidate": "Nothing, for a second or two.",
+          "deviations": []
+        },
+        {
+          "id": "queued",
+          "title": "Queued for human review",
+          "kind": "active",
+          "owner": "ats-vendor",
+          "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
+          "entities": [
+            "bar.inbound_screening_triage",
+            "mech.recruiter_volume_quota_incentive_distortion",
+            "mech.speculative_sourcing_talent_pooling_without_opening"
+          ],
+          "visible_to_candidate": "Silence. This is where most of the waiting happens.",
+          "deviations": []
+        },
+        {
+          "id": "reviewed",
+          "title": "Read by a person",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
+          "entities": [
+            "bar.inbound_screening_triage",
+            "mech.recruiter_volume_quota_incentive_distortion"
+          ],
+          "visible_to_candidate": "Nothing yet.",
+          "deviations": []
+        },
+        {
+          "id": "advanced",
+          "title": "Advanced to the funnel",
+          "kind": "terminal",
+          "owner": "recruiter",
+          "description": "The record leaves this machine and enters proc.the_hiring_funnel_end_to_end at the recruiter screen.",
+          "entities": [
+            "bar.recruiter_screening_call"
+          ],
+          "visible_to_candidate": "An invitation to talk.",
+          "deviations": []
+        },
+        {
+          "id": "auto-rejected",
+          "title": "Rejected by rule",
+          "kind": "terminal",
+          "owner": "ats-vendor",
+          "description": "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.",
+          "entities": [
+            "obs.rejection_within_minutes_of_application_submission",
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias"
+          ],
+          "visible_to_candidate": "A rejection email, minutes after applying.",
+          "deviations": []
+        },
+        {
+          "id": "human-rejected",
+          "title": "Rejected by a person",
+          "kind": "terminal",
+          "owner": "recruiter",
+          "description": "Someone read it and did not take it forward. What the message says about why is a separate decision, usually a template.",
+          "entities": [
+            "obs.generic_closer_alignment_rejection_template"
+          ],
+          "visible_to_candidate": "A rejection message, generic unless a feedback policy exists.",
+          "deviations": []
+        },
+        {
+          "id": "expired",
+          "title": "Expired unreviewed",
+          "kind": "terminal",
+          "owner": "ats-vendor",
+          "description": "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.",
+          "entities": [
+            "mech.automated_application_expiration_timeout",
+            "obs.complete_silence_after_submission"
+          ],
+          "visible_to_candidate": "A bulk rejection, or nothing at all.",
+          "deviations": []
+        }
+      ],
+      "transitions": [
+        {
+          "from": "submitted",
+          "to": "parsing",
+          "label": "document accepted",
+          "owner": "ats-vendor",
+          "guard": "Required fields validate and the file is a supported type.",
+          "entities": [
+            "bar.application_ingestion"
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 1
+        },
+        {
+          "from": "parsing",
+          "to": "scoring",
+          "label": "fields extracted",
+          "owner": "ats-vendor",
+          "guard": "Extraction completes, whether or not it recovered the work history.",
+          "entities": [
+            "mech.ats_parser_extraction_failure"
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 1
+        },
+        {
+          "from": "scoring",
+          "to": "queued",
+          "label": "all rules pass",
+          "owner": "ats-vendor",
+          "guard": "Every knockout rule passes and the rank clears the advance threshold.",
+          "entities": [
+            "bar.automated_filter_parser_threshold"
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 2
+        },
+        {
+          "from": "scoring",
+          "to": "auto-rejected",
+          "label": "a rule fails",
+          "owner": "ats-vendor",
+          "guard": "Any knockout rule fails, or the ranking falls below the threshold.",
+          "entities": [
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias",
+            "obs.rejection_within_minutes_of_application_submission"
+          ],
+          "latency_expected_days": 1,
+          "latency_max_days": 3
+        },
+        {
+          "from": "queued",
+          "to": "reviewed",
+          "label": "a recruiter opens it",
+          "owner": "recruiter",
+          "guard": "Capacity reaches this position in the queue before the expiry threshold.",
+          "entities": [
+            "bar.inbound_screening_triage"
+          ],
+          "latency_expected_days": 4,
+          "latency_max_days": 14
+        },
+        {
+          "from": "queued",
+          "to": "expired",
+          "label": "threshold reached first",
+          "owner": "ats-vendor",
+          "guard": "The record ages past the configured limit with no review recorded.",
+          "entities": [
+            "mech.automated_application_expiration_timeout"
+          ],
+          "latency_expected_days": 30,
+          "latency_max_days": 60
+        },
+        {
+          "from": "reviewed",
+          "to": "advanced",
+          "label": "short-listed",
+          "owner": "recruiter",
+          "guard": "The profile is put on the active list for outreach.",
+          "entities": [
+            "bar.inbound_screening_triage"
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
+        },
+        {
+          "from": "reviewed",
+          "to": "human-rejected",
+          "label": "passed over",
+          "owner": "recruiter",
+          "guard": "The recruiter decides not to advance it.",
+          "entities": [
+            "obs.generic_closer_alignment_rejection_template",
+            "mech.recruiter_volume_quota_incentive_distortion"
+          ],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
+        }
+      ],
+      "specimens": []
+    },
+    {
+      "title": "Client account hiring funnel",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Client account hiring funnel\n\nFrom client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
+      "aliases": [
+        "WF-004"
+      ],
+      "id": "proc.client_account_hiring_funnel",
+      "type": "workflow",
+      "summary": "From client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
+      "subject": "a seat funded by a client contract and the candidate moving towards it",
+      "states": [
+        {
+          "id": "demand",
+          "title": "Client demand & contract scope",
+          "kind": "initial",
+          "owner": "client",
+          "description": "The end client identifies project headcount demand or issues a vendor tender. Budget exists if the contract is signed or is contingent on winning the bid.",
+          "entities": [],
+          "visible_to_candidate": "Nothing. The search is not visible publicly.",
+          "deviations": []
+        },
+        {
+          "id": "search-open",
+          "title": "Vendor search opened",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
+          "entities": [
+            "bar.outbound_sourcing_talent_pool_contact",
+            "mech.speculative_sourcing_talent_pooling_without_opening"
+          ],
+          "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
+          "deviations": []
+        },
+        {
+          "id": "vendor-screen",
+          "title": "Vendor recruiter screen",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
+          "entities": [
+            "bar.recruiter_screening_call",
+            "mech.unstated_compensation_band_discrepancy"
+          ],
+          "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
+          "deviations": []
+        },
+        {
+          "id": "vendor-technical",
+          "title": "Vendor technical evaluation",
+          "kind": "active",
+          "owner": "hiring-manager",
+          "description": "Technical interview or test task scored against the vendor assessment of the client technical threshold.",
+          "entities": [
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
+          ],
+          "visible_to_candidate": "A technical evaluation round with vendor engineering staff.",
+          "deviations": []
+        },
+        {
+          "id": "submitted",
+          "title": "Submitted to client",
+          "kind": "active",
+          "owner": "client",
+          "description": "The candidate CV is submitted to the client account team for profile review and interview selection.",
+          "entities": [
+            "bar.client_profile_approval_and_client_interview",
+            "obs.complete_silence_after_submission",
+            "obs.rejection_after_the_application_sat_pending_for_months"
+          ],
+          "visible_to_candidate": "An extended waiting interval while the client reviews candidate batches.",
+          "deviations": []
+        },
+        {
+          "id": "client-interview",
+          "title": "Client interview round",
+          "kind": "active",
+          "owner": "client",
+          "description": "Interview conducted directly by client engineering or project management leadership.",
+          "entities": [
+            "bar.client_profile_approval_and_client_interview",
+            "obs.generic_closer_alignment_rejection_template"
+          ],
+          "visible_to_candidate": "An external interview round evaluating project and culture fit.",
+          "deviations": []
+        },
+        {
+          "id": "offer",
+          "title": "Offer formulation",
+          "kind": "active",
+          "owner": "recruiter",
+          "description": "Compensation package calculated from client billing rate minus required gross margin.",
+          "entities": [
+            "bar.compensation_levelling_reconciliation"
+          ],
+          "visible_to_candidate": "An offer package structured around vendor compensation models.",
+          "deviations": []
+        },
+        {
+          "id": "verification",
+          "title": "Pre-placement verification",
+          "kind": "active",
+          "owner": "employer-policy",
+          "description": "Client-mandated background checks, certifications, and compliance paperwork.",
+          "entities": [
+            "bar.reference_background_verification"
+          ],
+          "visible_to_candidate": "Document requests and compliance background screening.",
+          "deviations": []
+        },
+        {
+          "id": "placed",
+          "title": "Contract signed & project start",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "Contract executed and candidate onboarded onto active client delivery.",
+          "entities": [
+            "bar.offer_closing_contract_execution"
+          ],
+          "visible_to_candidate": "Confirmed start date and client team onboarding.",
+          "deviations": []
+        },
+        {
+          "id": "vendor-declined",
+          "title": "Vendor-level rejection",
+          "kind": "terminal",
+          "owner": "recruiter",
+          "description": "The search terminates at vendor screening or technical evaluation before client submission.",
+          "entities": [
+            "obs.generic_closer_alignment_rejection_template"
+          ],
+          "visible_to_candidate": "Standard rejection message from the vendor recruitment team.",
+          "deviations": []
+        },
+        {
+          "id": "declined-by-client",
+          "title": "Declined by client",
+          "kind": "terminal",
+          "owner": "client",
+          "description": "The client declines the CV submission or rejects the candidate after the client interview.",
+          "entities": [
+            "obs.generic_closer_alignment_rejection_template",
+            "obs.rejection_naming_an_internal_hire_as_the_outcome"
+          ],
+          "visible_to_candidate": "A generic rejection relayed by the vendor without client feedback details.",
+          "deviations": []
+        },
+        {
+          "id": "closed-unfunded",
+          "title": "Search closed unfunded / tender lost",
+          "kind": "terminal",
+          "owner": "client",
+          "description": "The search closes because the client tender was lost, project budget was cancelled, or the commercial contract was paused.",
+          "entities": [
+            "obs.complete_silence_after_submission",
+            "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
+            "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
+          ],
+          "visible_to_candidate": "Unannounced silence or a notification that project requirements changed.",
+          "deviations": []
+        },
+        {
+          "id": "bench-filled",
+          "title": "Requisition filled from internal bench",
+          "kind": "terminal",
+          "owner": "employer-policy",
+          "description": "The position is allocated to an existing internal specialist released from another account, closing the external process.",
+          "entities": [
+            "obs.position_closed_after_final_interview_without_hire",
+            "obs.rejection_naming_an_internal_hire_as_the_outcome"
+          ],
+          "visible_to_candidate": "A sudden search closure notification after advancing through interview rounds.",
+          "deviations": []
+        }
+      ],
+      "transitions": [
+        {
+          "from": "demand",
+          "to": "search-open",
+          "label": "Contract signed or tender profiles required",
+          "owner": "client",
+          "guard": "Commercial contract signed or tender requires candidate CVs",
+          "entities": [
+            "bar.outbound_sourcing_talent_pool_contact"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 10
+        },
+        {
+          "from": "search-open",
+          "to": "vendor-screen",
+          "label": "Candidate responds to vendor outreach",
+          "owner": "recruiter",
+          "guard": "Outreach accepted and screen booked",
+          "entities": [
+            "bar.outbound_sourcing_talent_pool_contact"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        },
+        {
+          "from": "search-open",
+          "to": "closed-unfunded",
+          "label": "Tender lost or client contract cancelled early",
+          "owner": "client",
+          "guard": "Commercial opportunity discontinued before screening",
+          "entities": [],
+          "latency_expected_days": 7,
+          "latency_max_days": 30
+        },
+        {
+          "from": "vendor-screen",
+          "to": "vendor-technical",
+          "label": "Vendor recruiter screen passed",
+          "owner": "recruiter",
+          "guard": "Expectations aligned with client billing margin",
+          "entities": [
+            "bar.recruiter_screening_call"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "vendor-screen",
+          "to": "vendor-declined",
+          "label": "Screening mismatch or rate misalignment",
+          "owner": "recruiter",
+          "guard": "Candidate rate exceeds allowable vendor margin or skills misfit",
+          "entities": [],
+          "latency_expected_days": 2,
+          "latency_max_days": 5
+        },
+        {
+          "from": "vendor-technical",
+          "to": "submitted",
+          "label": "Vendor assessment passed",
+          "owner": "hiring-manager",
+          "guard": "Technical bar meets vendor expectation of client threshold",
+          "entities": [
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
+          ],
+          "latency_expected_days": 4,
+          "latency_max_days": 10
+        },
+        {
+          "from": "vendor-technical",
+          "to": "vendor-declined",
+          "label": "Vendor assessment not met",
+          "owner": "hiring-manager",
+          "guard": "Profile does not meet vendor internal quality bar",
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "submitted",
+          "to": "client-interview",
+          "label": "Client approves CV submission",
+          "owner": "client",
+          "guard": "Client manager accepts profile and requests interview",
+          "entities": [
+            "bar.client_profile_approval_and_client_interview"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        },
+        {
+          "from": "submitted",
+          "to": "declined-by-client",
+          "label": "Client rejects CV submission",
+          "owner": "client",
+          "guard": "Client manager rejects profile on CV review",
+          "entities": [
+            "bar.client_profile_approval_and_client_interview"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        },
+        {
+          "from": "submitted",
+          "to": "bench-filled",
+          "label": "Vendor assigns internal bench specialist",
+          "owner": "employer-policy",
+          "guard": "Bench consultant becomes available mid-search",
+          "entities": [],
+          "latency_expected_days": 3,
+          "latency_max_days": 10
+        },
+        {
+          "from": "submitted",
+          "to": "closed-unfunded",
+          "label": "Client cancels requisition or loses project funding",
+          "owner": "client",
+          "guard": "Client withdraws demand during profile review",
+          "entities": [],
+          "latency_expected_days": 7,
+          "latency_max_days": 30
+        },
+        {
+          "from": "client-interview",
+          "to": "offer",
+          "label": "Client approves interview",
+          "owner": "client",
+          "guard": "Client confirms candidate meets project requirements",
+          "entities": [
+            "bar.client_profile_approval_and_client_interview"
+          ],
+          "latency_expected_days": 4,
+          "latency_max_days": 10
+        },
+        {
+          "from": "client-interview",
+          "to": "declined-by-client",
+          "label": "Client declines after interview",
+          "owner": "client",
+          "guard": "Client decides against candidate after meeting",
+          "entities": [
+            "bar.client_profile_approval_and_client_interview"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "offer",
+          "to": "verification",
+          "label": "Offer agreed and contract drafted",
+          "owner": "recruiter",
+          "guard": "Candidate accepts offer parameters",
+          "entities": [
+            "bar.compensation_levelling_reconciliation"
+          ],
+          "latency_expected_days": 3,
+          "latency_max_days": 7
+        },
+        {
+          "from": "offer",
+          "to": "closed-unfunded",
+          "label": "Client pulls project before signing",
+          "owner": "client",
+          "guard": "Client cancels funding after offer extended",
+          "entities": [],
+          "latency_expected_days": 4,
+          "latency_max_days": 14
+        },
+        {
+          "from": "verification",
+          "to": "placed",
+          "label": "Background check passed and start date confirmed",
+          "owner": "employer-policy",
+          "guard": "Verification complete and project onboarding commences",
+          "entities": [
+            "bar.reference_background_verification",
+            "bar.offer_closing_contract_execution",
+            "bar.probation_period_post_start_confirmation"
+          ],
+          "latency_expected_days": 5,
+          "latency_max_days": 14
+        }
+      ],
+      "specimens": []
+    },
+    {
       "title": "The hiring funnel, end to end",
       "status": "active",
       "evidence_ids": [],
       "content": "# The hiring funnel, end to end\n\nFrom the moment headcount is authorised to a signed contract or a closed search, with the actor who owns each step and what the candidate can see from where they stand.",
-      "aliases": [],
-      "id": "WF-001",
+      "aliases": [
+        "WF-001"
+      ],
+      "id": "proc.the_hiring_funnel_end_to_end",
       "type": "workflow",
       "summary": "From the moment headcount is authorised to a signed contract or a closed search, with the actor who owns each step and what the candidate can see from where they stand.",
       "subject": "a requisition and the candidate moving through it",
@@ -1529,244 +2130,14 @@
       "specimens": []
     },
     {
-      "title": "An application inside the ATS",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# An application inside the ATS\n\nThe machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
-      "aliases": [],
-      "id": "WF-002",
-      "type": "workflow",
-      "summary": "The machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.",
-      "subject": "one application record",
-      "states": [
-        {
-          "id": "submitted",
-          "title": "Submitted",
-          "kind": "initial",
-          "owner": "candidate",
-          "description": "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
-          "entities": [
-            "bar.application_ingestion",
-            "obs.complete_silence_after_submission"
-          ],
-          "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email.",
-          "deviations": []
-        },
-        {
-          "id": "parsing",
-          "title": "Parsing",
-          "kind": "active",
-          "owner": "ats-vendor",
-          "description": "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.",
-          "entities": [
-            "mech.ats_parser_extraction_failure"
-          ],
-          "visible_to_candidate": "Nothing.",
-          "deviations": []
-        },
-        {
-          "id": "scoring",
-          "title": "Rule evaluation",
-          "kind": "active",
-          "owner": "ats-vendor",
-          "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
-          "entities": [
-            "bar.automated_filter_parser_threshold",
-            "mech.automated_keyword_qualification_filter",
-            "mech.employment_gap_downranking_bias"
-          ],
-          "visible_to_candidate": "Nothing, for a second or two.",
-          "deviations": []
-        },
-        {
-          "id": "queued",
-          "title": "Queued for human review",
-          "kind": "active",
-          "owner": "ats-vendor",
-          "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
-          "entities": [
-            "bar.inbound_screening_triage",
-            "mech.recruiter_volume_quota_incentive_distortion",
-            "mech.speculative_sourcing_talent_pooling_without_opening"
-          ],
-          "visible_to_candidate": "Silence. This is where most of the waiting happens.",
-          "deviations": []
-        },
-        {
-          "id": "reviewed",
-          "title": "Read by a person",
-          "kind": "active",
-          "owner": "recruiter",
-          "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
-          "entities": [
-            "bar.inbound_screening_triage",
-            "mech.recruiter_volume_quota_incentive_distortion"
-          ],
-          "visible_to_candidate": "Nothing yet.",
-          "deviations": []
-        },
-        {
-          "id": "advanced",
-          "title": "Advanced to the funnel",
-          "kind": "terminal",
-          "owner": "recruiter",
-          "description": "The record leaves this machine and enters WF-001 at the recruiter screen.",
-          "entities": [
-            "bar.recruiter_screening_call"
-          ],
-          "visible_to_candidate": "An invitation to talk.",
-          "deviations": []
-        },
-        {
-          "id": "auto-rejected",
-          "title": "Rejected by rule",
-          "kind": "terminal",
-          "owner": "ats-vendor",
-          "description": "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.",
-          "entities": [
-            "obs.rejection_within_minutes_of_application_submission",
-            "mech.automated_keyword_qualification_filter",
-            "mech.employment_gap_downranking_bias"
-          ],
-          "visible_to_candidate": "A rejection email, minutes after applying.",
-          "deviations": []
-        },
-        {
-          "id": "human-rejected",
-          "title": "Rejected by a person",
-          "kind": "terminal",
-          "owner": "recruiter",
-          "description": "Someone read it and did not take it forward. What the message says about why is a separate decision, usually a template.",
-          "entities": [
-            "obs.generic_closer_alignment_rejection_template"
-          ],
-          "visible_to_candidate": "A rejection message, generic unless a feedback policy exists.",
-          "deviations": []
-        },
-        {
-          "id": "expired",
-          "title": "Expired unreviewed",
-          "kind": "terminal",
-          "owner": "ats-vendor",
-          "description": "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.",
-          "entities": [
-            "mech.automated_application_expiration_timeout",
-            "obs.complete_silence_after_submission"
-          ],
-          "visible_to_candidate": "A bulk rejection, or nothing at all.",
-          "deviations": []
-        }
-      ],
-      "transitions": [
-        {
-          "from": "submitted",
-          "to": "parsing",
-          "label": "document accepted",
-          "owner": "ats-vendor",
-          "guard": "Required fields validate and the file is a supported type.",
-          "entities": [
-            "bar.application_ingestion"
-          ],
-          "latency_expected_days": 1,
-          "latency_max_days": 1
-        },
-        {
-          "from": "parsing",
-          "to": "scoring",
-          "label": "fields extracted",
-          "owner": "ats-vendor",
-          "guard": "Extraction completes, whether or not it recovered the work history.",
-          "entities": [
-            "mech.ats_parser_extraction_failure"
-          ],
-          "latency_expected_days": 1,
-          "latency_max_days": 1
-        },
-        {
-          "from": "scoring",
-          "to": "queued",
-          "label": "all rules pass",
-          "owner": "ats-vendor",
-          "guard": "Every knockout rule passes and the rank clears the advance threshold.",
-          "entities": [
-            "bar.automated_filter_parser_threshold"
-          ],
-          "latency_expected_days": 1,
-          "latency_max_days": 2
-        },
-        {
-          "from": "scoring",
-          "to": "auto-rejected",
-          "label": "a rule fails",
-          "owner": "ats-vendor",
-          "guard": "Any knockout rule fails, or the ranking falls below the threshold.",
-          "entities": [
-            "mech.automated_keyword_qualification_filter",
-            "mech.employment_gap_downranking_bias",
-            "obs.rejection_within_minutes_of_application_submission"
-          ],
-          "latency_expected_days": 1,
-          "latency_max_days": 3
-        },
-        {
-          "from": "queued",
-          "to": "reviewed",
-          "label": "a recruiter opens it",
-          "owner": "recruiter",
-          "guard": "Capacity reaches this position in the queue before the expiry threshold.",
-          "entities": [
-            "bar.inbound_screening_triage"
-          ],
-          "latency_expected_days": 4,
-          "latency_max_days": 14
-        },
-        {
-          "from": "queued",
-          "to": "expired",
-          "label": "threshold reached first",
-          "owner": "ats-vendor",
-          "guard": "The record ages past the configured limit with no review recorded.",
-          "entities": [
-            "mech.automated_application_expiration_timeout"
-          ],
-          "latency_expected_days": 30,
-          "latency_max_days": 60
-        },
-        {
-          "from": "reviewed",
-          "to": "advanced",
-          "label": "short-listed",
-          "owner": "recruiter",
-          "guard": "The profile is put on the active list for outreach.",
-          "entities": [
-            "bar.inbound_screening_triage"
-          ],
-          "latency_expected_days": 2,
-          "latency_max_days": 5
-        },
-        {
-          "from": "reviewed",
-          "to": "human-rejected",
-          "label": "passed over",
-          "owner": "recruiter",
-          "guard": "The recruiter decides not to advance it.",
-          "entities": [
-            "obs.generic_closer_alignment_rejection_template",
-            "mech.recruiter_volume_quota_incentive_distortion"
-          ],
-          "latency_expected_days": 2,
-          "latency_max_days": 5
-        }
-      ],
-      "specimens": []
-    },
-    {
       "title": "The path as it is supposed to run",
       "status": "active",
       "evidence_ids": [],
       "content": "# The path as it is supposed to run\n\nThis is the canonical path: one opening, from a real need to a decision the\ncandidate can act on. It is written as a machine because that is how the rest of\nthe registry is written, and because a commitment that cannot be expressed as a\nstate and a guard is usually not a commitment.\n\n**It is a construct, not a description of anybody.** No employer runs exactly\nthis. It is assembled from the things employers already say they do — bands on\npostings, rubrics agreed before interviews, decisions inside a stated window,\npostings taken down when a search ends — and put in one order so that the rest\nof the atlas has something to be measured against.\n\nThat is the whole point of it. A barrier is not simply a gate: a gate is normal\nand this path has fourteen of them. A barrier is the point at which one of these\ncommitments stops being kept. `deviations` on each state names which ones, which\nis why every barrier in the registry appears on exactly one state of this path\nand every mechanism on at least one.\n\nTwo things this path deliberately does **not** treat as deviations. A decline is\nnot a deviation — most candidates are declined, and a path that could only end\nin a hire would be a fantasy rather than a standard. A closed search is not a\ndeviation either; needs change and budgets go. What makes both of them part of\nthe path rather than departures from it is that they arrive, they say what\nhappened, and they arrive in time to be useful.",
-      "aliases": [],
-      "id": "WF-003",
+      "aliases": [
+        "WF-003"
+      ],
+      "id": "proc.the_path_as_it_is_supposed_to_run",
       "type": "workflow",
       "summary": "One opening, from a real need to a decision the candidate can act on, with each step written as the commitment it is supposed to keep. Every barrier in the registry is a place where one of these commitments stops being kept.",
       "subject": "one opening, and one candidate moving through it",
@@ -2247,369 +2618,6 @@
           "owner": "employer-policy",
           "guard": "An outstanding offer cannot stand, and the candidate is told why, in writing, immediately.",
           "entities": []
-        }
-      ],
-      "specimens": []
-    },
-    {
-      "title": "Client account hiring funnel",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Client account hiring funnel\n\nFrom client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
-      "aliases": [],
-      "id": "WF-004",
-      "type": "workflow",
-      "summary": "From client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.",
-      "subject": "a seat funded by a client contract and the candidate moving towards it",
-      "states": [
-        {
-          "id": "demand",
-          "title": "Client demand & contract scope",
-          "kind": "initial",
-          "owner": "client",
-          "description": "The end client identifies project headcount demand or issues a vendor tender. Budget exists if the contract is signed or is contingent on winning the bid.",
-          "entities": [],
-          "visible_to_candidate": "Nothing. The search is not visible publicly.",
-          "deviations": []
-        },
-        {
-          "id": "search-open",
-          "title": "Vendor search opened",
-          "kind": "active",
-          "owner": "recruiter",
-          "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
-          "entities": [
-            "bar.outbound_sourcing_talent_pool_contact",
-            "mech.speculative_sourcing_talent_pooling_without_opening"
-          ],
-          "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
-          "deviations": []
-        },
-        {
-          "id": "vendor-screen",
-          "title": "Vendor recruiter screen",
-          "kind": "active",
-          "owner": "recruiter",
-          "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
-          "entities": [
-            "bar.recruiter_screening_call",
-            "mech.unstated_compensation_band_discrepancy"
-          ],
-          "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
-          "deviations": []
-        },
-        {
-          "id": "vendor-technical",
-          "title": "Vendor technical evaluation",
-          "kind": "active",
-          "owner": "hiring-manager",
-          "description": "Technical interview or test task scored against the vendor assessment of the client technical threshold.",
-          "entities": [
-            "bar.technical_screen_live_assessment",
-            "bar.take_home_work_sample_evaluation"
-          ],
-          "visible_to_candidate": "A technical evaluation round with vendor engineering staff.",
-          "deviations": []
-        },
-        {
-          "id": "submitted",
-          "title": "Submitted to client",
-          "kind": "active",
-          "owner": "client",
-          "description": "The candidate CV is submitted to the client account team for profile review and interview selection.",
-          "entities": [
-            "bar.client_profile_approval_and_client_interview",
-            "obs.complete_silence_after_submission",
-            "obs.rejection_after_the_application_sat_pending_for_months"
-          ],
-          "visible_to_candidate": "An extended waiting interval while the client reviews candidate batches.",
-          "deviations": []
-        },
-        {
-          "id": "client-interview",
-          "title": "Client interview round",
-          "kind": "active",
-          "owner": "client",
-          "description": "Interview conducted directly by client engineering or project management leadership.",
-          "entities": [
-            "bar.client_profile_approval_and_client_interview",
-            "obs.generic_closer_alignment_rejection_template"
-          ],
-          "visible_to_candidate": "An external interview round evaluating project and culture fit.",
-          "deviations": []
-        },
-        {
-          "id": "offer",
-          "title": "Offer formulation",
-          "kind": "active",
-          "owner": "recruiter",
-          "description": "Compensation package calculated from client billing rate minus required gross margin.",
-          "entities": [
-            "bar.compensation_levelling_reconciliation"
-          ],
-          "visible_to_candidate": "An offer package structured around vendor compensation models.",
-          "deviations": []
-        },
-        {
-          "id": "verification",
-          "title": "Pre-placement verification",
-          "kind": "active",
-          "owner": "employer-policy",
-          "description": "Client-mandated background checks, certifications, and compliance paperwork.",
-          "entities": [
-            "bar.reference_background_verification"
-          ],
-          "visible_to_candidate": "Document requests and compliance background screening.",
-          "deviations": []
-        },
-        {
-          "id": "placed",
-          "title": "Contract signed & project start",
-          "kind": "terminal",
-          "owner": "employer-policy",
-          "description": "Contract executed and candidate onboarded onto active client delivery.",
-          "entities": [
-            "bar.offer_closing_contract_execution"
-          ],
-          "visible_to_candidate": "Confirmed start date and client team onboarding.",
-          "deviations": []
-        },
-        {
-          "id": "vendor-declined",
-          "title": "Vendor-level rejection",
-          "kind": "terminal",
-          "owner": "recruiter",
-          "description": "The search terminates at vendor screening or technical evaluation before client submission.",
-          "entities": [
-            "obs.generic_closer_alignment_rejection_template"
-          ],
-          "visible_to_candidate": "Standard rejection message from the vendor recruitment team.",
-          "deviations": []
-        },
-        {
-          "id": "declined-by-client",
-          "title": "Declined by client",
-          "kind": "terminal",
-          "owner": "client",
-          "description": "The client declines the CV submission or rejects the candidate after the client interview.",
-          "entities": [
-            "obs.generic_closer_alignment_rejection_template",
-            "obs.rejection_naming_an_internal_hire_as_the_outcome"
-          ],
-          "visible_to_candidate": "A generic rejection relayed by the vendor without client feedback details.",
-          "deviations": []
-        },
-        {
-          "id": "closed-unfunded",
-          "title": "Search closed unfunded / tender lost",
-          "kind": "terminal",
-          "owner": "client",
-          "description": "The search closes because the client tender was lost, project budget was cancelled, or the commercial contract was paused.",
-          "entities": [
-            "obs.complete_silence_after_submission",
-            "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
-            "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
-          ],
-          "visible_to_candidate": "Unannounced silence or a notification that project requirements changed.",
-          "deviations": []
-        },
-        {
-          "id": "bench-filled",
-          "title": "Requisition filled from internal bench",
-          "kind": "terminal",
-          "owner": "employer-policy",
-          "description": "The position is allocated to an existing internal specialist released from another account, closing the external process.",
-          "entities": [
-            "obs.position_closed_after_final_interview_without_hire",
-            "obs.rejection_naming_an_internal_hire_as_the_outcome"
-          ],
-          "visible_to_candidate": "A sudden search closure notification after advancing through interview rounds.",
-          "deviations": []
-        }
-      ],
-      "transitions": [
-        {
-          "from": "demand",
-          "to": "search-open",
-          "label": "Contract signed or tender profiles required",
-          "owner": "client",
-          "guard": "Commercial contract signed or tender requires candidate CVs",
-          "entities": [
-            "bar.outbound_sourcing_talent_pool_contact"
-          ],
-          "latency_expected_days": 3,
-          "latency_max_days": 10
-        },
-        {
-          "from": "search-open",
-          "to": "vendor-screen",
-          "label": "Candidate responds to vendor outreach",
-          "owner": "recruiter",
-          "guard": "Outreach accepted and screen booked",
-          "entities": [
-            "bar.outbound_sourcing_talent_pool_contact"
-          ],
-          "latency_expected_days": 5,
-          "latency_max_days": 14
-        },
-        {
-          "from": "search-open",
-          "to": "closed-unfunded",
-          "label": "Tender lost or client contract cancelled early",
-          "owner": "client",
-          "guard": "Commercial opportunity discontinued before screening",
-          "entities": [],
-          "latency_expected_days": 7,
-          "latency_max_days": 30
-        },
-        {
-          "from": "vendor-screen",
-          "to": "vendor-technical",
-          "label": "Vendor recruiter screen passed",
-          "owner": "recruiter",
-          "guard": "Expectations aligned with client billing margin",
-          "entities": [
-            "bar.recruiter_screening_call"
-          ],
-          "latency_expected_days": 3,
-          "latency_max_days": 7
-        },
-        {
-          "from": "vendor-screen",
-          "to": "vendor-declined",
-          "label": "Screening mismatch or rate misalignment",
-          "owner": "recruiter",
-          "guard": "Candidate rate exceeds allowable vendor margin or skills misfit",
-          "entities": [],
-          "latency_expected_days": 2,
-          "latency_max_days": 5
-        },
-        {
-          "from": "vendor-technical",
-          "to": "submitted",
-          "label": "Vendor assessment passed",
-          "owner": "hiring-manager",
-          "guard": "Technical bar meets vendor expectation of client threshold",
-          "entities": [
-            "bar.technical_screen_live_assessment",
-            "bar.take_home_work_sample_evaluation"
-          ],
-          "latency_expected_days": 4,
-          "latency_max_days": 10
-        },
-        {
-          "from": "vendor-technical",
-          "to": "vendor-declined",
-          "label": "Vendor assessment not met",
-          "owner": "hiring-manager",
-          "guard": "Profile does not meet vendor internal quality bar",
-          "entities": [],
-          "latency_expected_days": 3,
-          "latency_max_days": 7
-        },
-        {
-          "from": "submitted",
-          "to": "client-interview",
-          "label": "Client approves CV submission",
-          "owner": "client",
-          "guard": "Client manager accepts profile and requests interview",
-          "entities": [
-            "bar.client_profile_approval_and_client_interview"
-          ],
-          "latency_expected_days": 5,
-          "latency_max_days": 14
-        },
-        {
-          "from": "submitted",
-          "to": "declined-by-client",
-          "label": "Client rejects CV submission",
-          "owner": "client",
-          "guard": "Client manager rejects profile on CV review",
-          "entities": [
-            "bar.client_profile_approval_and_client_interview"
-          ],
-          "latency_expected_days": 5,
-          "latency_max_days": 14
-        },
-        {
-          "from": "submitted",
-          "to": "bench-filled",
-          "label": "Vendor assigns internal bench specialist",
-          "owner": "employer-policy",
-          "guard": "Bench consultant becomes available mid-search",
-          "entities": [],
-          "latency_expected_days": 3,
-          "latency_max_days": 10
-        },
-        {
-          "from": "submitted",
-          "to": "closed-unfunded",
-          "label": "Client cancels requisition or loses project funding",
-          "owner": "client",
-          "guard": "Client withdraws demand during profile review",
-          "entities": [],
-          "latency_expected_days": 7,
-          "latency_max_days": 30
-        },
-        {
-          "from": "client-interview",
-          "to": "offer",
-          "label": "Client approves interview",
-          "owner": "client",
-          "guard": "Client confirms candidate meets project requirements",
-          "entities": [
-            "bar.client_profile_approval_and_client_interview"
-          ],
-          "latency_expected_days": 4,
-          "latency_max_days": 10
-        },
-        {
-          "from": "client-interview",
-          "to": "declined-by-client",
-          "label": "Client declines after interview",
-          "owner": "client",
-          "guard": "Client decides against candidate after meeting",
-          "entities": [
-            "bar.client_profile_approval_and_client_interview"
-          ],
-          "latency_expected_days": 3,
-          "latency_max_days": 7
-        },
-        {
-          "from": "offer",
-          "to": "verification",
-          "label": "Offer agreed and contract drafted",
-          "owner": "recruiter",
-          "guard": "Candidate accepts offer parameters",
-          "entities": [
-            "bar.compensation_levelling_reconciliation"
-          ],
-          "latency_expected_days": 3,
-          "latency_max_days": 7
-        },
-        {
-          "from": "offer",
-          "to": "closed-unfunded",
-          "label": "Client pulls project before signing",
-          "owner": "client",
-          "guard": "Client cancels funding after offer extended",
-          "entities": [],
-          "latency_expected_days": 4,
-          "latency_max_days": 14
-        },
-        {
-          "from": "verification",
-          "to": "placed",
-          "label": "Background check passed and start date confirmed",
-          "owner": "employer-policy",
-          "guard": "Verification complete and project onboarding commences",
-          "entities": [
-            "bar.reference_background_verification",
-            "bar.offer_closing_contract_execution",
-            "bar.probation_period_post_start_confirmation"
-          ],
-          "latency_expected_days": 5,
-          "latency_max_days": 14
         }
       ],
       "specimens": []

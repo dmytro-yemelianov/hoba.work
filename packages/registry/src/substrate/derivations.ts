@@ -833,18 +833,27 @@ export function substrateDetectTemporalAnomalies(
   const proc = substrate.processes.find((p) => p.id === `prc:${normProc}` || p.id === processId);
   if (!proc) return [];
 
-  const normTarget = fromState.replace(/^evc:[a-z0-9_-]+\./i, '').toLowerCase();
+  // Event classes are keyed `evc:<processId>.<state>`. A canonical process id
+  // carries dots of its own, so the prefix is taken from the process that was
+  // just resolved rather than guessed with a pattern — one that stops at the
+  // first dot silently strips `evc:proc.` and leaves the rest of the id glued
+  // to the state name.
+  const statePrefix = `${proc.id.replace(/^prc:/, 'evc:')}.`;
+  const bareState = (id: string): string =>
+    id.toLowerCase().startsWith(statePrefix.toLowerCase()) ? id.slice(statePrefix.length) : id;
+
+  const normTarget = bareState(fromState).toLowerCase();
   const transitions = proc.transitions.filter(
     (t): t is typeof t & { from: string; to: string } => {
       if (!t.from || !t.to) return false;
-      return t.from === fromState || t.from.replace(/^evc:[a-z0-9_-]+\./i, '').toLowerCase() === normTarget;
+      return t.from === fromState || bareState(t.from).toLowerCase() === normTarget;
     }
   );
   const anomalies: TemporalAnomaly[] = [];
 
   for (const t of transitions) {
-    const fromStr = t.from.replace(/^evc:[a-z0-9_-]+\./i, '');
-    const toStr = t.to.replace(/^evc:[a-z0-9_-]+\./i, '');
+    const fromStr = bareState(t.from);
+    const toStr = bareState(t.to);
     const expected = t.latency_expected_days ?? 3;
     const max = t.latency_max_days ?? 14;
     let severity: TemporalAnomaly['severity'] = 'nominal';

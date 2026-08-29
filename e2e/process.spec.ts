@@ -16,7 +16,7 @@ test.describe('the process player', () => {
 
     // The canonical path leads, because everything else is a departure from it.
     const first = page.locator('[data-workflow]').first();
-    await expect(first).toHaveAttribute('data-workflow', 'WF-003');
+    await expect(first).toHaveAttribute('data-workflow', 'proc.the_path_as_it_is_supposed_to_run');
 
     const canvas = page.locator('canvas.wf-canvas[data-index="0"]');
     await expect(canvas).toBeVisible();
@@ -56,10 +56,10 @@ test.describe('the process player', () => {
 
   test('the same machine is readable with the canvas ignored', async ({ page }) => {
     await page.goto('/process?lang=en');
-    const fallback = page.locator('[data-workflow="WF-003"] details');
+    const fallback = page.locator('[data-workflow="proc.the_path_as_it_is_supposed_to_run"] details');
     await fallback.locator('summary').click();
-    await expect(fallback.locator('li[id^="WF-003-"]')).toHaveCount(15);
-    await expect(fallback.locator('#WF-003-declined')).toContainText(/decline/i);
+    await expect(fallback.locator('li[id^="proc.the_path_as_it_is_supposed_to_run-"]')).toHaveCount(15);
+    await expect(fallback.locator('[id="proc.the_path_as_it_is_supposed_to_run-declined"]')).toContainText(/decline/i);
   });
 });
 
@@ -70,7 +70,7 @@ test.describe('the canonical path anchors the registry', () => {
     await expect(note).toContainText('Machine work stays mechanical');
 
     await note.getByRole('link').first().click();
-    await expect(page).toHaveURL(/\/process#WF-003-machine-check$/);
+    await expect(page).toHaveURL(/\/process#proc\.the_path_as_it_is_supposed_to_run-machine-check$/);
     await expect(page.locator('.wf-detail[data-index="0"]')).toContainText('machine-check');
   });
 
@@ -142,7 +142,7 @@ test.describe('walking it yourself', () => {
   });
 
   test('a walk is a link, and the link replays it', async ({ page }) => {
-    await page.goto('/process?lang=en&walk=WF-003:published,closed');
+    await page.goto('/process?lang=en&walk=proc.the_path_as_it_is_supposed_to_run:published,closed');
     const panel = page.locator('.wf-branches[data-index="0"]');
     await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute('aria-pressed', 'true');
     await expect(panel).toContainText(/where this walk ended/i);
@@ -151,7 +151,7 @@ test.describe('walking it yourself', () => {
   });
 
   test('stepping back and choosing again discards the rest of the old walk', async ({ page }) => {
-    await page.goto('/process?lang=en&walk=WF-003:published,closed');
+    await page.goto('/process?lang=en&walk=proc.the_path_as_it_is_supposed_to_run:published,closed');
     const panel = page.locator('.wf-branches[data-index="0"]');
     await page.locator('.wf-prev[data-index="0"]').click();
     // Back at `published`, which forks: applied, or the search closes.

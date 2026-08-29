@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { getGraph, STAGES } from '../../lib/registry';
+import { getGraph, IDEAL_PATH_ID, STAGES } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 import type { GraphNodeInput, GraphRelationType } from '../../lib/graph-view';
 
@@ -118,7 +118,7 @@ const nodes: GraphNodeInput[] = [
 const edges = graph.edges.map((e) => ({ source: e.source, target: e.target, relation: e.type }));
 const relationTypes: GraphRelationType[] = ['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates'];
 
-const idealWorkflow = bundle.workflows.find((w) => w.id === 'WF-003');
+const idealWorkflow = bundle.workflows.find((w) => w.id === IDEAL_PATH_ID);
 const idealSteps = idealWorkflow
   ? idealWorkflow.states.map((s, idx) => ({
       index: idx + 1,
@@ -181,10 +181,10 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
           type="button"
           id="graph-ideal-toggle"
           class="btn btn-secondary text-xs px-2.5 py-1.5 flex items-center gap-1.5 cursor-pointer font-medium hover:border-hoba-accent transition-colors"
-          title={lang === 'uk' ? 'Підсвітити ідеальний канонічний маршрут (WF-003)' : 'Highlight canonical workflow (WF-003)'}
+          title={lang === 'uk' ? `Підсвітити ідеальний канонічний маршрут (${IDEAL_PATH_ID})` : `Highlight canonical workflow (${IDEAL_PATH_ID})`}
         >
           <span class="text-amber-400">✨</span>
-          <span>{lang === 'uk' ? 'Ідеальний маршрут (WF-003)' : 'Canonical path (WF-003)'}</span>
+          <span>{lang === 'uk' ? 'Ідеальний маршрут' : 'Canonical path'}</span>
         </button>
 
         <label class="flex flex-1 sm:flex-none items-center gap-2 text-sm text-hoba-muted min-w-0">
@@ -229,7 +229,7 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
       >
         <div class="flex items-center justify-between">
           <span class="inline-flex items-center gap-1.5 text-xs font-bold text-hoba-accent uppercase font-mono tracking-wider">
-            <span>✨</span> {lang === 'uk' ? 'Канонічний шлях WF-003' : 'Canonical Path WF-003'}
+            <span>✨</span> {lang === 'uk' ? 'Канонічний шлях' : 'Canonical Path'}
           </span>
           <button id="ideal-close" type="button" class="icon-btn -mr-1 -mt-1" aria-label={t('graph.close')}>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
@@ -469,7 +469,7 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
         if (stepIdx < 0 || stepIdx >= idealSteps.length) {
           // All steps mode
           if (idealStepNum) idealStepNum.textContent = '★';
-          if (idealStepOwner) idealStepOwner.textContent = 'WF-003';
+          if (idealStepOwner) idealStepOwner.textContent = data.lang === 'uk' ? 'усі кроки' : 'all steps';
           if (idealStepTitle) idealStepTitle.textContent = data.lang === 'uk' ? 'Огляд усього канонічного шляху' : 'Full Canonical Route Overview';
           if (idealStepDesc) idealStepDesc.textContent = data.lang === 'uk' ? 'Усі 9 послідовних етапів та їх інтервенції підсвічено одночасно.' : 'All 9 sequential stages and interventions are highlighted.';
           if (idealStepEntities) idealStepEntities.innerHTML = '';
