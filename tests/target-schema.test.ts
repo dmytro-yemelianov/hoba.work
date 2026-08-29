@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { entityTypeSchema } from '@hoba/registry';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -32,6 +33,22 @@ describe('schema/entity.schema.json', () => {
     );
     expect(schema.properties.type.enum).toHaveLength(11);
     expect(schema.properties.type.enum).not.toContain('scenario');
+  });
+
+  it('is matched by the live Zod enum, kind for kind — DoD 1', () => {
+    // The two disagree on what two of the kinds are *called*: the target
+    // contract says `observation` and `process` where the live model says
+    // `artifact` and `workflow`. That rename is a separate question from this
+    // one, which is only whether one enum covers all eleven kinds and excludes
+    // scenario. Both now do.
+    const live = entityTypeSchema.options;
+    expect(live).toHaveLength(11);
+    expect(live).not.toContain('scenario');
+    expect(new Set(live).size).toBe(live.length);
+
+    const RENAMED: Record<string, string> = { observation: 'artifact', process: 'workflow' };
+    const target = (schema.properties.type.enum as string[]).map((k) => RENAMED[k] ?? k);
+    expect([...live].sort()).toEqual([...target].sort());
   });
 
   it('has no field capable of referencing a scenario or analysis ID', () => {

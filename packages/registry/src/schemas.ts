@@ -111,6 +111,13 @@ export const interventionActorSchema = z.enum([
   'policy',
 ]);
 
+/**
+ * The one canonical type enum, covering all eleven ontology kinds (DoD 1).
+ *
+ * `scenario` is deliberately absent and must stay absent: a scenario is a
+ * composition *over* the ontology, not a member of it, which is what makes the
+ * reference one-directional by construction rather than by lint.
+ */
 export const entityTypeSchema = z.enum([
   'artifact',
   'barrier',
@@ -120,6 +127,9 @@ export const entityTypeSchema = z.enum([
   'intervention',
   'evidence',
   'record',
+  'workflow',
+  'actor',
+  'era',
 ]);
 
 /**

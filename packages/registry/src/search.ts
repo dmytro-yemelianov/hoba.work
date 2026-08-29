@@ -1,6 +1,13 @@
-import type { EntityType, RegistryBundle, RegistryNode } from './types.js';
+import type { RegistryBundle, RegistryNode } from './types.js';
 
-export type SearchableType = Exclude<EntityType, 'evidence'>;
+/**
+ * What `searchBundle` actually indexes, stated rather than derived.
+ *
+ * It used to be `Exclude<EntityType, 'evidence'>`, which was only correct while
+ * those two lists happened to agree. They no longer do: the type enum covers
+ * all eleven ontology kinds, and search covers the seven with prose to search.
+ */
+export type SearchableType = 'artifact' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention' | 'record';
 
 export interface SearchHit {
   type: SearchableType;
