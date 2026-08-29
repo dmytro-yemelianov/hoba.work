@@ -73,7 +73,7 @@ recommendations:
       - "mech.headcount_freeze_or_budget_cancellation"
       - "bar.application_ingestion"
       - "pat.closed_then_reposted_requisition_motif"
-      - "L-003"
+      - "loop.inflated_requirements_search_saturation_loop"
       - "obs.complete_silence_after_submission"
       - "obs.position_closed_after_final_interview_without_hire"
       - "obs.offer_rescinded_or_delayed_due_to_internal_freeze"

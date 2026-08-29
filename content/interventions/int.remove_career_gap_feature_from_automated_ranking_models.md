@@ -7,7 +7,7 @@ title: "Remove Career Gap Feature from Automated Ranking Models"
 summary: "Disable employment duration gap penalties in recruitment AI algorithms and screening models."
 targets:
   - "mech.employment_gap_downranking_bias"
-  - "L-001"
+  - "loop.employment_gap_penalty_loop"
 actor: "ats-vendor"
 scope: "ecosystem"
 cost: "low"
@@ -46,7 +46,7 @@ status: "active"
 evidence_level: "supported"
 expected_effects:
   - "mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input"
-  - "L-001 loses the edge that closed it, because a gap can no longer widen the next gap"
+  - "loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap"
 measurements:
   - "gap_candidate_screen_rate"
   - "long_term_placement_success"
@@ -60,7 +60,7 @@ Disable employment duration gap penalties in recruitment AI algorithms and scree
 
 ### Expected Effects
 - mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input
-- L-001 loses the edge that closed it, because a gap can no longer widen the next gap
+- loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap
 
 ### Measurements
 - `gap_candidate_screen_rate`

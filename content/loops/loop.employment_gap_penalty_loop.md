@@ -1,6 +1,8 @@
 ---
-id: "L-001"
+id: "loop.employment_gap_penalty_loop"
 type: "loop"
+aliases:
+  - "L-001"
 title: "Employment Gap Penalty Loop"
 summary: "An employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking."
 mechanisms:

@@ -8,7 +8,7 @@ summary: "Draft the requisition's requirement list from the last two quarters of
 targets:
   - "mech.inflated_requisition_requirements_vs_actual_team_needs"
   - "bar.requisition_approval_public_posting"
-  - "L-003"
+  - "loop.inflated_requirements_search_saturation_loop"
 actor: "hiring-manager"
 scope: "team"
 cost: "low"
@@ -16,7 +16,7 @@ evidence_level: "supported"
 expected_effects:
   - "mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on"
   - "bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid"
-  - "L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
+  - "loop.inflated_requirements_search_saturation_loop's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
 measurements:
   - "screened_requirement_count"
   - "mid_search_requirement_edits"
@@ -67,7 +67,7 @@ Draft the requisition's requirement list from the last two quarters of the team'
 ### Expected Effects
 - mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
 - bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
-- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
+- loop.inflated_requirements_search_saturation_loop's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
 
 ### Measurements
 - `screened_requirement_count`

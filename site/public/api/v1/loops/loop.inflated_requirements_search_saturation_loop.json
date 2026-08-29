@@ -9,8 +9,10 @@
       "EVD-031"
     ],
     "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.inflated_requisition_requirements_vs_actual_team_needs` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.mid_process_role_requirement_redefinition`\n- `mech.mid_process_role_requirement_redefinition` amplifies `mech.inflated_requisition_requirements_vs_actual_team_needs`",
-    "aliases": [],
-    "id": "L-003",
+    "aliases": [
+      "L-003"
+    ],
+    "id": "loop.inflated_requirements_search_saturation_loop",
     "type": "loop",
     "summary": "Teams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.",
     "mechanisms": [

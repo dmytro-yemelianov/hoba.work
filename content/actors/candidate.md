@@ -96,7 +96,7 @@ recommendations:
     cost: "medium"
     costs: "A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets."
     targets:
-      - "L-002"
+      - "loop.take_home_opportunity_cost_saturation_loop"
       - "mech.take_home_evaluation_fatigue_asymmetry"
       - "bar.take_home_work_sample_evaluation"
       - "obs.take_home_assignment_exceeding_reasonable_stated_scope"

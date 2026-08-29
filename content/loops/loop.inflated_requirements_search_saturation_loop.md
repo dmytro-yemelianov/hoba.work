@@ -1,6 +1,8 @@
 ---
-id: "L-003"
+id: "loop.inflated_requirements_search_saturation_loop"
 type: "loop"
+aliases:
+  - "L-003"
 title: "Inflated-Requirements Search Saturation Loop"
 summary: "Teams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process."
 mechanisms:

@@ -32,7 +32,7 @@ test.describe('responsive layout', () => {
       '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
       '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/obs.complete_silence_after_submission',
-      '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/int.auto_close_stale_job_requisitions', '/404',
+      '/patterns/pat.seniority_double_bind', '/loops/loop.employment_gap_penalty_loop', '/interventions/int.auto_close_stale_job_requisitions', '/404',
     ];
     let reference: Record<string, number> | null = null;
 
@@ -73,7 +73,7 @@ test.describe('responsive layout', () => {
       '/', '/registry', '/patterns', '/graph', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
       '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/obs.complete_silence_after_submission',
-      '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/int.auto_close_stale_job_requisitions', '/404',
+      '/patterns/pat.seniority_double_bind', '/loops/loop.employment_gap_penalty_loop', '/interventions/int.auto_close_stale_job_requisitions', '/404',
     ];
     for (const path of PAGES) {
       await page.goto(path);

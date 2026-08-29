@@ -16,7 +16,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 48) — the published sources behind the claims.
 
-The graph has 175 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 178 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -629,27 +629,27 @@ The same candidate is rejected as overqualified for junior and mid-level roles a
 
 ## Loops
 
-### L-001 — Employment Gap Penalty Loop
+### loop.employment_gap_penalty_loop — Employment Gap Penalty Loop
 
 An employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.
 
 - mech.employment_gap_downranking_bias amplifies mech.automated_keyword_qualification_filter
 - mech.automated_keyword_qualification_filter amplifies mech.employment_gap_downranking_bias
 
-### L-002 — Take-Home Opportunity-Cost Saturation Loop
-
-Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.
-
-- mech.interview_resource_scheduling_saturation amplifies mech.take_home_evaluation_fatigue_asymmetry
-- mech.take_home_evaluation_fatigue_asymmetry amplifies mech.interview_resource_scheduling_saturation
-
-### L-003 — Inflated-Requirements Search Saturation Loop
+### loop.inflated_requirements_search_saturation_loop — Inflated-Requirements Search Saturation Loop
 
 Teams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.
 
 - mech.inflated_requisition_requirements_vs_actual_team_needs amplifies mech.automated_keyword_qualification_filter
 - mech.automated_keyword_qualification_filter amplifies mech.mid_process_role_requirement_redefinition
 - mech.mid_process_role_requirement_redefinition amplifies mech.inflated_requisition_requirements_vs_actual_team_needs
+
+### loop.take_home_opportunity_cost_saturation_loop — Take-Home Opportunity-Cost Saturation Loop
+
+Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.
+
+- mech.interview_resource_scheduling_saturation amplifies mech.take_home_evaluation_fatigue_asymmetry
+- mech.take_home_evaluation_fatigue_asymmetry amplifies mech.interview_resource_scheduling_saturation
 
 ## Interventions
 
@@ -658,7 +658,7 @@ Teams write inflated requirements that filter out strong generalists; the search
 Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
 
 - Actor: employer-policy · Scope: organizational · Cost: low
-- Targets: mech.stale_or_orphaned_job_requisition, bar.application_ingestion, pat.closed_then_reposted_requisition_motif, L-003
+- Targets: mech.stale_or_orphaned_job_requisition, bar.application_ingestion, pat.closed_then_reposted_requisition_motif, loop.inflated_requirements_search_saturation_loop
 - Expected: mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it
 - Expected: Silence after applying acquires a bound — the record is closed and the closure is sent
 
@@ -755,19 +755,19 @@ Record, for every finalist who cleared the bar and received no offer, the cohort
 Disable employment duration gap penalties in recruitment AI algorithms and screening models.
 
 - Actor: ats-vendor · Scope: ecosystem · Cost: low
-- Targets: mech.employment_gap_downranking_bias, L-001
+- Targets: mech.employment_gap_downranking_bias, loop.employment_gap_penalty_loop
 - Expected: mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input
-- Expected: L-001 loses the edge that closed it, because a gap can no longer widen the next gap
+- Expected: loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap
 
 ### int.requirements_drawn_from_the_team_s_own_backlog — Requirements Drawn From the Team's Own Backlog
 
 Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.
 
 - Actor: hiring-manager · Scope: team · Cost: low
-- Targets: mech.inflated_requisition_requirements_vs_actual_team_needs, bar.requisition_approval_public_posting, L-003
+- Targets: mech.inflated_requisition_requirements_vs_actual_team_needs, bar.requisition_approval_public_posting, loop.inflated_requirements_search_saturation_loop
 - Expected: mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
 - Expected: bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
-- Expected: L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
+- Expected: loop.inflated_requirements_search_saturation_loop's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
 
 ### int.screening_note_bound_to_observations_and_disposition_codes — Screening Note Bound to Observations and Disposition Codes
 
@@ -784,7 +784,7 @@ Restrict the screening note to the requirement, what the record shows and the su
 Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
 
 - Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: mech.genuine_technical_skill_shortfall, mech.hidden_evaluation_rubric_or_undisclosed_priority, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.client_profile_approval_and_client_interview, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, L-003
+- Targets: mech.genuine_technical_skill_shortfall, mech.hidden_evaluation_rubric_or_undisclosed_priority, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.client_profile_approval_and_client_interview, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, loop.inflated_requirements_search_saturation_loop
 - Expected: The stage and the criterion behind a late rejection become part of what is sent
 - Expected: mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round
 
@@ -793,7 +793,7 @@ Provide candidates reaching technical or panel stages with structured, rubric-ba
 Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.
 
 - Actor: hiring-manager · Scope: organizational · Cost: medium
-- Targets: mech.take_home_evaluation_fatigue_asymmetry, L-002, bar.take_home_work_sample_evaluation
+- Targets: mech.take_home_evaluation_fatigue_asymmetry, loop.take_home_opportunity_cost_saturation_loop, bar.take_home_work_sample_evaluation
 - Expected: mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate
 - Expected: Who wrote a submission stops being an input to how it is scored
 

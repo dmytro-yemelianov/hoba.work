@@ -45,7 +45,7 @@ recommendations:
       - "mech.inflated_requisition_requirements_vs_actual_team_needs"
       - "pat.experience_age_impossibility"
       - "mech.automated_keyword_qualification_filter"
-      - "L-003"
+      - "loop.inflated_requirements_search_saturation_loop"
     interventions: []
   -
     id: "house-preferences-in-the-brief"
@@ -70,7 +70,7 @@ recommendations:
       - "mech.take_home_evaluation_fatigue_asymmetry"
       - "mech.interview_resource_scheduling_saturation"
       - "bar.take_home_work_sample_evaluation"
-      - "L-002"
+      - "loop.take_home_opportunity_cost_saturation_loop"
     interventions:
       - "int.strict_take_home_timebox_blinded_evaluation_rubric"
   -
@@ -92,7 +92,7 @@ recommendations:
     costs: "The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting."
     targets:
       - "mech.mid_process_role_requirement_redefinition"
-      - "L-003"
+      - "loop.inflated_requirements_search_saturation_loop"
     interventions: []
   -
     id: "level-fixed-before-the-loop"

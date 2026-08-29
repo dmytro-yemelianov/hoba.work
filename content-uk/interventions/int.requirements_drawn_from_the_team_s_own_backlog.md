@@ -8,7 +8,7 @@ summary: "Список вимог у вакансії складають із р
 targets:
   - "mech.inflated_requisition_requirements_vs_actual_team_needs"
   - "bar.requisition_approval_public_posting"
-  - "L-003"
+  - "loop.inflated_requirements_search_saturation_loop"
 actor: "hiring-manager"
 scope: "team"
 cost: "low"
@@ -16,7 +16,7 @@ evidence_level: "supported"
 expected_effects:
   - "mech.inflated_requisition_requirements_vs_actual_team_needs розпадається на два опубліковані списки: у списку для скринінгу лишається тільки те, що називає задачу, а побажання йде в розділ, за яким не скринять"
   - "bar.requisition_approval_public_posting фіксує планку, у якій сказано, для чого потрібен кожен її пункт: список вимог звіряється з беклогом команди, а не з рівнем у сітці грейдів"
-  - "Вхід у L-003 стає правкою з датою — підняти вимогу посеред пошуку означає дописати рядок, за яким немає задачі"
+  - "Вхід у loop.inflated_requirements_search_saturation_loop стає правкою з датою — підняти вимогу посеред пошуку означає дописати рядок, за яким немає задачі"
 measurements:
   - "screened_requirement_count"
   - "mid_search_requirement_edits"
@@ -67,7 +67,7 @@ evidence_ids:
 ### Очікувані ефекти
 - mech.inflated_requisition_requirements_vs_actual_team_needs розпадається на два опубліковані списки: у списку для скринінгу лишається тільки те, що називає задачу, а побажання йде в розділ, за яким не скринять
 - bar.requisition_approval_public_posting фіксує планку, у якій сказано, для чого потрібен кожен її пункт: список вимог звіряється з беклогом команди, а не з рівнем у сітці грейдів
-- Вхід у L-003 стає правкою з датою — підняти вимогу посеред пошуку означає дописати рядок, за яким немає задачі
+- Вхід у loop.inflated_requirements_search_saturation_loop стає правкою з датою — підняти вимогу посеред пошуку означає дописати рядок, за яким немає задачі
 
 ### Вимірювання
 - `screened_requirement_count`

@@ -106,7 +106,7 @@ recommendations:
       - "bar.inbound_screening_triage"
       - "mech.recruiter_volume_quota_incentive_distortion"
       - "mech.employment_gap_downranking_bias"
-      - "L-001"
+      - "loop.employment_gap_penalty_loop"
     interventions: []
 status: "active"
 evidence_level: "supported"

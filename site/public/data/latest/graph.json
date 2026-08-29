@@ -882,7 +882,7 @@
       },
       {
         "data": {
-          "id": "L-001",
+          "id": "loop.employment_gap_penalty_loop",
           "label": "Employment Gap Penalty Loop",
           "type": "loop",
           "evidence_level": "supported"
@@ -891,19 +891,19 @@
       },
       {
         "data": {
-          "id": "L-002",
-          "label": "Take-Home Opportunity-Cost Saturation Loop",
+          "id": "loop.inflated_requirements_search_saturation_loop",
+          "label": "Inflated-Requirements Search Saturation Loop",
           "type": "loop",
-          "evidence_level": "supported"
+          "evidence_level": "hypothesis"
         },
         "classes": "node-loop"
       },
       {
         "data": {
-          "id": "L-003",
-          "label": "Inflated-Requirements Search Saturation Loop",
+          "id": "loop.take_home_opportunity_cost_saturation_loop",
+          "label": "Take-Home Opportunity-Cost Saturation Loop",
           "type": "loop",
-          "evidence_level": "hypothesis"
+          "evidence_level": "supported"
         },
         "classes": "node-loop"
       },
@@ -3028,9 +3028,9 @@
       },
       {
         "data": {
-          "id": "int.auto_close_stale_job_requisitions->mitigates->L-003",
+          "id": "int.auto_close_stale_job_requisitions->mitigates->loop.inflated_requirements_search_saturation_loop",
           "source": "int.auto_close_stale_job_requisitions",
-          "target": "L-003",
+          "target": "loop.inflated_requirements_search_saturation_loop",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3262,9 +3262,9 @@
       },
       {
         "data": {
-          "id": "int.remove_career_gap_feature_from_automated_ranking_models->mitigates->L-001",
+          "id": "int.remove_career_gap_feature_from_automated_ranking_models->mitigates->loop.employment_gap_penalty_loop",
           "source": "int.remove_career_gap_feature_from_automated_ranking_models",
-          "target": "L-001",
+          "target": "loop.employment_gap_penalty_loop",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3289,9 +3289,9 @@
       },
       {
         "data": {
-          "id": "int.requirements_drawn_from_the_team_s_own_backlog->mitigates->L-003",
+          "id": "int.requirements_drawn_from_the_team_s_own_backlog->mitigates->loop.inflated_requirements_search_saturation_loop",
           "source": "int.requirements_drawn_from_the_team_s_own_backlog",
-          "target": "L-003",
+          "target": "loop.inflated_requirements_search_saturation_loop",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3388,9 +3388,9 @@
       },
       {
         "data": {
-          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->mitigates->L-003",
+          "id": "int.standardized_late_stage_rejection_feedback_taxonomy->mitigates->loop.inflated_requirements_search_saturation_loop",
           "source": "int.standardized_late_stage_rejection_feedback_taxonomy",
-          "target": "L-003",
+          "target": "loop.inflated_requirements_search_saturation_loop",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
@@ -3406,9 +3406,9 @@
       },
       {
         "data": {
-          "id": "int.strict_take_home_timebox_blinded_evaluation_rubric->mitigates->L-002",
+          "id": "int.strict_take_home_timebox_blinded_evaluation_rubric->mitigates->loop.take_home_opportunity_cost_saturation_loop",
           "source": "int.strict_take_home_timebox_blinded_evaluation_rubric",
-          "target": "L-002",
+          "target": "loop.take_home_opportunity_cost_saturation_loop",
           "type": "mitigates"
         },
         "classes": "edge-mitigates"

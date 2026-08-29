@@ -7,8 +7,10 @@
       "EVD-006"
     ],
     "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.interview_resource_scheduling_saturation` amplifies `mech.take_home_evaluation_fatigue_asymmetry`\n- `mech.take_home_evaluation_fatigue_asymmetry` amplifies `mech.interview_resource_scheduling_saturation`",
-    "aliases": [],
-    "id": "L-002",
+    "aliases": [
+      "L-002"
+    ],
+    "id": "loop.take_home_opportunity_cost_saturation_loop",
     "type": "loop",
     "summary": "Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.",
     "mechanisms": [

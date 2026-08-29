@@ -1,6 +1,8 @@
 ---
-id: "L-001"
+id: "loop.employment_gap_penalty_loop"
 type: "loop"
+aliases:
+  - "L-001"
 title: "Петля штрафу за перерву в роботі"
 summary: "Перерва в роботі запускає автоматичне пониження в ранжуванні (mech.employment_gap_downranking_bias), через що профіль не проходить фільтри за ключовими словами й кваліфікацією (mech.automated_keyword_qualification_filter); через меншу кількість запрошень на інтервʼю перерва довшає, а довша перерва посилює пониження."
 mechanisms:

@@ -9,7 +9,7 @@ targets:
   - "mech.stale_or_orphaned_job_requisition"
   - "bar.application_ingestion"
   - "pat.closed_then_reposted_requisition_motif"
-  - "L-003"
+  - "loop.inflated_requirements_search_saturation_loop"
 actor: "employer-policy"
 scope: "organizational"
 cost: "low"

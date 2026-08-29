@@ -96,7 +96,7 @@ recommendations:
     cost: "medium"
     costs: "Роботу, зупинену на таймбоксі, читають поруч із тими, що на ньому не зупинилися, а хвилини рецензента кандидат не встановлює."
     targets:
-      - "L-002"
+      - "loop.take_home_opportunity_cost_saturation_loop"
       - "mech.take_home_evaluation_fatigue_asymmetry"
       - "bar.take_home_work_sample_evaluation"
       - "obs.take_home_assignment_exceeding_reasonable_stated_scope"

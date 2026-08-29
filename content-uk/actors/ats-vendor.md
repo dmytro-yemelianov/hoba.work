@@ -43,7 +43,7 @@ recommendations:
     costs: "Усі пороги, які клієнти підбирали під стару шкалу балів, зсуваються, а конкуренти й далі перелічують цю ознаку серед своїх функцій."
     targets:
       - "mech.employment_gap_downranking_bias"
-      - "L-001"
+      - "loop.employment_gap_penalty_loop"
       - "bar.automated_filter_parser_threshold"
     interventions:
       - "int.remove_career_gap_feature_from_automated_ranking_models"
@@ -95,7 +95,7 @@ recommendations:
       - "mech.inflated_requisition_requirements_vs_actual_team_needs"
       - "pat.experience_age_impossibility"
       - "bar.automated_filter_parser_threshold"
-      - "L-003"
+      - "loop.inflated_requirements_search_saturation_loop"
     interventions: []
   -
     id: "name-the-rule-in-the-automated-decline"

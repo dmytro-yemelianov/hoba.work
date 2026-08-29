@@ -7,8 +7,10 @@
       "EVD-003"
     ],
     "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.employment_gap_downranking_bias` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.employment_gap_downranking_bias`",
-    "aliases": [],
-    "id": "L-001",
+    "aliases": [
+      "L-001"
+    ],
+    "id": "loop.employment_gap_penalty_loop",
     "type": "loop",
     "summary": "An employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",
     "mechanisms": [

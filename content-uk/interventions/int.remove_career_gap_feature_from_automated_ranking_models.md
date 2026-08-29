@@ -7,7 +7,7 @@ title: "Вилучення ознаки перерви в роботі з мод
 summary: "Вимкнення штрафу за перерви в роботі — в алгоритмах добору й оцінювання кандидатів."
 targets:
   - "mech.employment_gap_downranking_bias"
-  - "L-001"
+  - "loop.employment_gap_penalty_loop"
 actor: "ats-vendor"
 scope: "ecosystem"
 cost: "low"
@@ -46,7 +46,7 @@ status: "active"
 evidence_level: "supported"
 expected_effects:
   - "mech.employment_gap_downranking_bias перестає діяти в моделі ранжування: безперервність більше не є входом"
-  - "L-001 втрачає ребро, яке його замикало: перерва більше не подовжує наступну"
+  - "loop.employment_gap_penalty_loop втрачає ребро, яке його замикало: перерва більше не подовжує наступну"
 measurements:
   - "gap_candidate_screen_rate"
   - "long_term_placement_success"
@@ -60,7 +60,7 @@ evidence_ids:
 
 ### Очікувані ефекти
 - mech.employment_gap_downranking_bias перестає діяти в моделі ранжування: безперервність більше не є входом
-- L-001 втрачає ребро, яке його замикало: перерва більше не подовжує наступну
+- loop.employment_gap_penalty_loop втрачає ребро, яке його замикало: перерва більше не подовжує наступну
 
 ### Вимірювання
 - `gap_candidate_screen_rate`

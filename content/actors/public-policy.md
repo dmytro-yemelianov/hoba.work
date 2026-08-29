@@ -94,7 +94,7 @@ recommendations:
     costs: "The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too."
     targets:
       - "mech.employment_gap_downranking_bias"
-      - "L-001"
+      - "loop.employment_gap_penalty_loop"
       - "bar.automated_filter_parser_threshold"
     interventions:
       - "int.remove_career_gap_feature_from_automated_ranking_models"

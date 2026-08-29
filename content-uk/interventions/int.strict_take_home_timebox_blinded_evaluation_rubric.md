@@ -7,7 +7,7 @@ title: "Обмеження часу тестових та анонімна пе�
 summary: "Встановлення чіткого ліміту в 3 години на тестове завдання, оплата тривалих завдань та анонімна перевірка коду."
 targets:
   - "mech.take_home_evaluation_fatigue_asymmetry"
-  - "L-002"
+  - "loop.take_home_opportunity_cost_saturation_loop"
   - "bar.take_home_work_sample_evaluation"
 actor: "hiring-manager"
 scope: "organizational"

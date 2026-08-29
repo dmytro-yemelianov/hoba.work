@@ -1,6 +1,8 @@
 ---
-id: "L-002"
+id: "loop.take_home_opportunity_cost_saturation_loop"
 type: "loop"
+aliases:
+  - "L-002"
 title: "Take-Home Opportunity-Cost Saturation Loop"
 summary: "Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue."
 mechanisms:

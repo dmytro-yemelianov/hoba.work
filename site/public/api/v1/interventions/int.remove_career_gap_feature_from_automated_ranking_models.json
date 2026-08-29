@@ -6,7 +6,7 @@
     "evidence_ids": [
       "EVD-003"
     ],
-    "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- L-001 loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
+    "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
     "aliases": [
       "I-004"
     ],
@@ -15,7 +15,7 @@
     "summary": "Disable employment duration gap penalties in recruitment AI algorithms and screening models.",
     "targets": [
       "mech.employment_gap_downranking_bias",
-      "L-001"
+      "loop.employment_gap_penalty_loop"
     ],
     "actor": "ats-vendor",
     "scope": "ecosystem",
@@ -23,7 +23,7 @@
     "evidence_level": "supported",
     "expected_effects": [
       "mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input",
-      "L-001 loses the edge that closed it, because a gap can no longer widen the next gap"
+      "loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap"
     ],
     "measurements": [
       "gap_candidate_screen_rate",

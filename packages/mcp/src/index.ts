@@ -157,7 +157,7 @@ server.registerTool(
 server.registerTool(
   'get_node',
   {
-    description: 'Retrieve the full specification of an entity by its canonical ID (e.g. A-001, B-005, M-014, P-001, L-001, I-001, EVD-001).',
+    description: 'Retrieve the full specification of an entity by its canonical dotted ID (e.g. obs.complete_silence_after_submission, bar.recruiter_screening_call, mech.employment_gap_downranking_bias, pat.seniority_double_bind, loop.employment_gap_penalty_loop, int.upfront_compensation_band_disclosure, EVD-001). Legacy short codes (A-001, B-005, M-014, …) still resolve as aliases.',
     inputSchema: { id: z.string().describe('Canonical hoba entity identifier') },
   },
   async ({ id }) => {
@@ -287,7 +287,7 @@ server.registerTool(
   'get_interventions',
   {
     description: 'Retrieve targeted system interventions designed to mitigate a barrier, mechanism, pattern or causal loop.',
-    inputSchema: { target_id: z.string().describe('Target entity ID (e.g. M-004, B-001, P-001, L-001)') },
+    inputSchema: { target_id: z.string().describe('Target entity ID (e.g. mech.pre_selected_internal_candidate, bar.application_ingestion, pat.seniority_double_bind, loop.employment_gap_penalty_loop); legacy short codes resolve as aliases') },
   },
   async ({ target_id }) => {
     const node = graph.getNode(target_id);

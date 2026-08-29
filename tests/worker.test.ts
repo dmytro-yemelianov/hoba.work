@@ -183,6 +183,14 @@ describe('legacy entity-ID redirects', () => {
     expect(legacyRedirect('/interventions/I-001.md')).toBe('/interventions/int.auto_close_stale_job_requisitions.md');
   });
 
+  it('redirects an old loop short code to its new dotted-namespace path', () => {
+    expect(legacyRedirect('/loops/L-001')).toBe('/loops/loop.employment_gap_penalty_loop');
+  });
+
+  it('redirects an old loop short code requesting its Markdown representation', () => {
+    expect(legacyRedirect('/loops/L-001.md')).toBe('/loops/loop.employment_gap_penalty_loop.md');
+  });
+
   it('leaves the root path alone', () => {
     expect(legacyRedirect('/')).toBeNull();
   });

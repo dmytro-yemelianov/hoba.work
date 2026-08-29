@@ -13,7 +13,7 @@ targets:
   - "bar.client_profile_approval_and_client_interview"
   - "pat.seniority_double_bind"
   - "pat.closed_then_reposted_requisition_motif"
-  - "L-003"
+  - "loop.inflated_requirements_search_saturation_loop"
 actor: "recruiter-process"
 scope: "organizational"
 cost: "medium"

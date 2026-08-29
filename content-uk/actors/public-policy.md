@@ -94,7 +94,7 @@ recommendations:
     costs: "Правило можна перевірити лише там, де ознаку названо в картці моделі або на екрані налаштувань, тож воно спирається на обовʼязок документування, що лягає на постачальника, а не на роботодавця, якого регулюють. Коли названо один вхід, його непрямі відповідники — давність останньої ролі, щільність переходів — лишаються поза текстом, доки їх не назвуть окремо."
     targets:
       - "mech.employment_gap_downranking_bias"
-      - "L-001"
+      - "loop.employment_gap_penalty_loop"
       - "bar.automated_filter_parser_threshold"
     interventions:
       - "int.remove_career_gap_feature_from_automated_ranking_models"

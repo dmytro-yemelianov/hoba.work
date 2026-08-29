@@ -65,7 +65,7 @@
           "costs": "Every threshold customers tuned against the old score distribution shifts, and the field stays on competitors' feature lists after it leaves this one.",
           "targets": [
             "mech.employment_gap_downranking_bias",
-            "L-001",
+            "loop.employment_gap_penalty_loop",
             "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
@@ -128,7 +128,7 @@
             "mech.inflated_requisition_requirements_vs_actual_team_needs",
             "pat.experience_age_impossibility",
             "bar.automated_filter_parser_threshold",
-            "L-003"
+            "loop.inflated_requirements_search_saturation_loop"
           ],
           "interventions": []
         },
@@ -273,7 +273,7 @@
           "cost": "medium",
           "costs": "A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets.",
           "targets": [
-            "L-002",
+            "loop.take_home_opportunity_cost_saturation_loop",
             "mech.take_home_evaluation_fatigue_asymmetry",
             "bar.take_home_work_sample_evaluation",
             "obs.take_home_assignment_exceeding_reasonable_stated_scope"
@@ -496,7 +496,7 @@
             "mech.headcount_freeze_or_budget_cancellation",
             "bar.application_ingestion",
             "pat.closed_then_reposted_requisition_motif",
-            "L-003",
+            "loop.inflated_requirements_search_saturation_loop",
             "obs.complete_silence_after_submission",
             "obs.position_closed_after_final_interview_without_hire",
             "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
@@ -598,7 +598,7 @@
             "mech.inflated_requisition_requirements_vs_actual_team_needs",
             "pat.experience_age_impossibility",
             "mech.automated_keyword_qualification_filter",
-            "L-003"
+            "loop.inflated_requirements_search_saturation_loop"
           ],
           "interventions": []
         },
@@ -627,7 +627,7 @@
             "mech.take_home_evaluation_fatigue_asymmetry",
             "mech.interview_resource_scheduling_saturation",
             "bar.take_home_work_sample_evaluation",
-            "L-002"
+            "loop.take_home_opportunity_cost_saturation_loop"
           ],
           "interventions": [
             "int.strict_take_home_timebox_blinded_evaluation_rubric"
@@ -654,7 +654,7 @@
           "costs": "The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting.",
           "targets": [
             "mech.mid_process_role_requirement_redefinition",
-            "L-003"
+            "loop.inflated_requirements_search_saturation_loop"
           ],
           "interventions": []
         },
@@ -797,7 +797,7 @@
           "costs": "The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.",
           "targets": [
             "mech.employment_gap_downranking_bias",
-            "L-001",
+            "loop.employment_gap_penalty_loop",
             "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
@@ -961,7 +961,7 @@
             "bar.inbound_screening_triage",
             "mech.recruiter_volume_quota_incentive_distortion",
             "mech.employment_gap_downranking_bias",
-            "L-001"
+            "loop.employment_gap_penalty_loop"
           ],
           "interventions": []
         }
@@ -2894,7 +2894,7 @@
         "bar.inbound_screening_triage",
         "pat.seniority_double_bind",
         "pat.experience_age_impossibility",
-        "L-003",
+        "loop.inflated_requirements_search_saturation_loop",
         "obs.complete_silence_after_submission"
       ],
       "specimens": []
@@ -9970,8 +9970,10 @@
         "EVD-003"
       ],
       "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.employment_gap_downranking_bias` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.employment_gap_downranking_bias`",
-      "aliases": [],
-      "id": "L-001",
+      "aliases": [
+        "L-001"
+      ],
+      "id": "loop.employment_gap_penalty_loop",
       "type": "loop",
       "summary": "An employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",
       "mechanisms": [
@@ -10064,101 +10066,6 @@
       ]
     },
     {
-      "title": "Take-Home Opportunity-Cost Saturation Loop",
-      "status": "active",
-      "evidence_ids": [
-        "EVD-006"
-      ],
-      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.interview_resource_scheduling_saturation` amplifies `mech.take_home_evaluation_fatigue_asymmetry`\n- `mech.take_home_evaluation_fatigue_asymmetry` amplifies `mech.interview_resource_scheduling_saturation`",
-      "aliases": [],
-      "id": "L-002",
-      "type": "loop",
-      "summary": "Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.",
-      "mechanisms": [
-        "mech.interview_resource_scheduling_saturation",
-        "mech.take_home_evaluation_fatigue_asymmetry"
-      ],
-      "edges": [
-        {
-          "from": "mech.interview_resource_scheduling_saturation",
-          "to": "mech.take_home_evaluation_fatigue_asymmetry",
-          "relation": "amplifies"
-        },
-        {
-          "from": "mech.take_home_evaluation_fatigue_asymmetry",
-          "to": "mech.interview_resource_scheduling_saturation",
-          "relation": "amplifies"
-        }
-      ],
-      "entry_points": [
-        "mech.interview_resource_scheduling_saturation"
-      ],
-      "interventions": [
-        "int.strict_take_home_timebox_blinded_evaluation_rubric"
-      ],
-      "evidence_level": "supported",
-      "specimens": [
-        {
-          "kind": "note",
-          "label": "One month of a candidate calendar",
-          "lines": [
-            {
-              "text": "Take-home A: 14 hours. Take-home B: 11 hours. Take-home C: 16 hours.",
-              "tell": false
-            },
-            {
-              "text": "Applications sent that month: 4 — down from 21 the month before.",
-              "tell": true
-            },
-            {
-              "text": "Outcomes: two rejections after sub-ten-minute reviews, one no response, one still open.",
-              "tell": false
-            }
-          ],
-          "reading": "The hours are real and they come out of the same budget as the search itself. Fewer applications is not a change in motivation; it is arithmetic."
-        },
-        {
-          "kind": "note",
-          "label": "The same month from the reviewer side",
-          "lines": [
-            {
-              "text": "Submissions in the queue: 19 · Reviewer capacity: 2 hours per week",
-              "tell": true
-            },
-            {
-              "text": "Median review time per submission: 6 minutes.",
-              "tell": false
-            },
-            {
-              "text": "Reviewers report the assignments are too large to assess properly, and the scope is set by the same team.",
-              "tell": false
-            }
-          ],
-          "reading": "Both sides are short of the same thing. Larger assignments do not buy better signal — they buy shallower reads, which is what makes it a loop rather than a trade-off."
-        }
-      ],
-      "perspectives": [
-        {
-          "actor": "candidate",
-          "sees": "Assignments scoped at a few hours that take double-digit hours each, and rejections returned faster than the work can be read.",
-          "reads": "The hours come out of the same budget as the search itself, so each assignment is a bet placed against the applications not sent that week.",
-          "does": "Sends fewer applications and finishes the assignments already accepted, because the hours in them are already spent."
-        },
-        {
-          "actor": "hiring-manager",
-          "sees": "A queue of submissions and interviewer hours that are already committed to the sprint the role exists to relieve.",
-          "reads": "A larger assignment covers more of the job, and a full read of every submission is not available from the hours the team has.",
-          "does": "Keeps the scope, since a smaller assignment would decide less, and the reviews get the minutes left after the team's own delivery."
-        },
-        {
-          "actor": "recruiter",
-          "sees": "Candidates going quiet between the assignment being sent and the work coming back, and time-to-fill running on the requisition.",
-          "reads": "A stage where the pipeline stalls is a reason to put more people into it, not a reason to remove the stage.",
-          "does": "Sends reminders and reopens sourcing, which puts more submissions into the same review queue."
-        }
-      ]
-    },
-    {
       "title": "Inflated-Requirements Search Saturation Loop",
       "status": "active",
       "evidence_ids": [
@@ -10167,8 +10074,10 @@
         "EVD-031"
       ],
       "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.inflated_requisition_requirements_vs_actual_team_needs` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.mid_process_role_requirement_redefinition`\n- `mech.mid_process_role_requirement_redefinition` amplifies `mech.inflated_requisition_requirements_vs_actual_team_needs`",
-      "aliases": [],
-      "id": "L-003",
+      "aliases": [
+        "L-003"
+      ],
+      "id": "loop.inflated_requirements_search_saturation_loop",
       "type": "loop",
       "summary": "Teams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.",
       "mechanisms": [
@@ -10262,6 +10171,103 @@
           "does": "Skips the posting or applies against a list they do not match, and never learns which of the requirements the screen enforced."
         }
       ]
+    },
+    {
+      "title": "Take-Home Opportunity-Cost Saturation Loop",
+      "status": "active",
+      "evidence_ids": [
+        "EVD-006"
+      ],
+      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.interview_resource_scheduling_saturation` amplifies `mech.take_home_evaluation_fatigue_asymmetry`\n- `mech.take_home_evaluation_fatigue_asymmetry` amplifies `mech.interview_resource_scheduling_saturation`",
+      "aliases": [
+        "L-002"
+      ],
+      "id": "loop.take_home_opportunity_cost_saturation_loop",
+      "type": "loop",
+      "summary": "Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.",
+      "mechanisms": [
+        "mech.interview_resource_scheduling_saturation",
+        "mech.take_home_evaluation_fatigue_asymmetry"
+      ],
+      "edges": [
+        {
+          "from": "mech.interview_resource_scheduling_saturation",
+          "to": "mech.take_home_evaluation_fatigue_asymmetry",
+          "relation": "amplifies"
+        },
+        {
+          "from": "mech.take_home_evaluation_fatigue_asymmetry",
+          "to": "mech.interview_resource_scheduling_saturation",
+          "relation": "amplifies"
+        }
+      ],
+      "entry_points": [
+        "mech.interview_resource_scheduling_saturation"
+      ],
+      "interventions": [
+        "int.strict_take_home_timebox_blinded_evaluation_rubric"
+      ],
+      "evidence_level": "supported",
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "One month of a candidate calendar",
+          "lines": [
+            {
+              "text": "Take-home A: 14 hours. Take-home B: 11 hours. Take-home C: 16 hours.",
+              "tell": false
+            },
+            {
+              "text": "Applications sent that month: 4 — down from 21 the month before.",
+              "tell": true
+            },
+            {
+              "text": "Outcomes: two rejections after sub-ten-minute reviews, one no response, one still open.",
+              "tell": false
+            }
+          ],
+          "reading": "The hours are real and they come out of the same budget as the search itself. Fewer applications is not a change in motivation; it is arithmetic."
+        },
+        {
+          "kind": "note",
+          "label": "The same month from the reviewer side",
+          "lines": [
+            {
+              "text": "Submissions in the queue: 19 · Reviewer capacity: 2 hours per week",
+              "tell": true
+            },
+            {
+              "text": "Median review time per submission: 6 minutes.",
+              "tell": false
+            },
+            {
+              "text": "Reviewers report the assignments are too large to assess properly, and the scope is set by the same team.",
+              "tell": false
+            }
+          ],
+          "reading": "Both sides are short of the same thing. Larger assignments do not buy better signal — they buy shallower reads, which is what makes it a loop rather than a trade-off."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "candidate",
+          "sees": "Assignments scoped at a few hours that take double-digit hours each, and rejections returned faster than the work can be read.",
+          "reads": "The hours come out of the same budget as the search itself, so each assignment is a bet placed against the applications not sent that week.",
+          "does": "Sends fewer applications and finishes the assignments already accepted, because the hours in them are already spent."
+        },
+        {
+          "actor": "hiring-manager",
+          "sees": "A queue of submissions and interviewer hours that are already committed to the sprint the role exists to relieve.",
+          "reads": "A larger assignment covers more of the job, and a full read of every submission is not available from the hours the team has.",
+          "does": "Keeps the scope, since a smaller assignment would decide less, and the reviews get the minutes left after the team's own delivery."
+        },
+        {
+          "actor": "recruiter",
+          "sees": "Candidates going quiet between the assignment being sent and the work coming back, and time-to-fill running on the requisition.",
+          "reads": "A stage where the pipeline stalls is a reason to put more people into it, not a reason to remove the stage.",
+          "does": "Sends reminders and reopens sourcing, which puts more submissions into the same review queue."
+        }
+      ]
     }
   ],
   "interventions": [
@@ -10282,7 +10288,7 @@
         "mech.stale_or_orphaned_job_requisition",
         "bar.application_ingestion",
         "pat.closed_then_reposted_requisition_motif",
-        "L-003"
+        "loop.inflated_requirements_search_saturation_loop"
       ],
       "actor": "employer-policy",
       "scope": "organizational",
@@ -11093,7 +11099,7 @@
       "evidence_ids": [
         "EVD-003"
       ],
-      "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- L-001 loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
+      "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
       "aliases": [
         "I-004"
       ],
@@ -11102,7 +11108,7 @@
       "summary": "Disable employment duration gap penalties in recruitment AI algorithms and screening models.",
       "targets": [
         "mech.employment_gap_downranking_bias",
-        "L-001"
+        "loop.employment_gap_penalty_loop"
       ],
       "actor": "ats-vendor",
       "scope": "ecosystem",
@@ -11110,7 +11116,7 @@
       "evidence_level": "supported",
       "expected_effects": [
         "mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input",
-        "L-001 loses the edge that closed it, because a gap can no longer widen the next gap"
+        "loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap"
       ],
       "measurements": [
         "gap_candidate_screen_rate",
@@ -11169,7 +11175,7 @@
         "EVD-035",
         "EVD-001"
       ],
-      "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
+      "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- loop.inflated_requirements_search_saturation_loop's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
       "aliases": [
         "I-007"
       ],
@@ -11179,7 +11185,7 @@
       "targets": [
         "mech.inflated_requisition_requirements_vs_actual_team_needs",
         "bar.requisition_approval_public_posting",
-        "L-003"
+        "loop.inflated_requirements_search_saturation_loop"
       ],
       "actor": "hiring-manager",
       "scope": "team",
@@ -11188,7 +11194,7 @@
       "expected_effects": [
         "mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on",
         "bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid",
-        "L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
+        "loop.inflated_requirements_search_saturation_loop's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it"
       ],
       "measurements": [
         "screened_requirement_count",
@@ -11351,7 +11357,7 @@
         "bar.client_profile_approval_and_client_interview",
         "pat.seniority_double_bind",
         "pat.closed_then_reposted_requisition_motif",
-        "L-003"
+        "loop.inflated_requirements_search_saturation_loop"
       ],
       "actor": "recruiter-process",
       "scope": "organizational",
@@ -11433,7 +11439,7 @@
       "summary": "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.",
       "targets": [
         "mech.take_home_evaluation_fatigue_asymmetry",
-        "L-002",
+        "loop.take_home_opportunity_cost_saturation_loop",
         "bar.take_home_work_sample_evaluation"
       ],
       "actor": "hiring-manager",
