@@ -6,13 +6,13 @@
     "evidence_ids": [
       "EVD-001"
     ],
-    "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one\n- M-003 moves from invisible to checkable on the candidate's side of the line\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
+    "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one\n- mech.ats_parser_extraction_failure moves from invisible to checkable on the candidate's side of the line\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
     "aliases": [],
     "id": "I-005",
     "type": "intervention",
     "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
     "targets": [
-      "M-003",
+      "mech.ats_parser_extraction_failure",
       "bar.automated_filter_parser_threshold",
       "pat.experience_age_impossibility"
     ],
@@ -22,7 +22,7 @@
     "evidence_level": "supported",
     "expected_effects": [
       "The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one",
-      "M-003 moves from invisible to checkable on the candidate's side of the line"
+      "mech.ats_parser_extraction_failure moves from invisible to checkable on the candidate's side of the line"
     ],
     "measurements": [
       "parser_extraction_error_rate",

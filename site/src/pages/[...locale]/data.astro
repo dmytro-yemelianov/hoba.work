@@ -147,9 +147,9 @@ const tocItems = [
           <ul class="row-list mt-5">
             {conflicting.map((e) => (
               <li class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <a href={href(e.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{e.mechanism}</a>
+                <a href={href(e.mechanism)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{e.mechanism}</a>
                 <span class="text-hoba-border" aria-hidden="true">→</span>
-                <a href={href(e.artifact)} class="font-mono text-sm text-hoba-accent shrink-0">{e.artifact}</a>
+                <a href={href(e.artifact)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{e.artifact}</a>
                 <span class="text-base text-hoba-muted min-w-0 break-words">{titleOf(e.mechanism)}</span>
               </li>
             ))}
@@ -167,7 +167,7 @@ const tocItems = [
           <ul class="row-list mt-5">
             {report.identifiability.neverAlone.map((n) => (
               <li data-ceiling-id={n.mechanism} class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <a href={href(n.mechanism)} class="font-mono text-sm text-hoba-accent shrink-0">{n.mechanism}</a>
+                <a href={href(n.mechanism)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{n.mechanism}</a>
                 <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(n.mechanism)}</span>
                 <span class="meta ml-auto shrink-0">{t('gap.ceilingCovered')}</span>
                 <span class="flex flex-wrap gap-1.5">
@@ -197,7 +197,7 @@ const tocItems = [
                 <ul class="flex flex-col gap-1.5">
                   {group.mechanisms.map((id) => (
                     <li class="flex flex-wrap items-baseline gap-x-3">
-                      <a href={href(id)} class="font-mono text-sm text-hoba-accent shrink-0">{id}</a>
+                      <a href={href(id)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{id}</a>
                       <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(id)}</span>
                     </li>
                   ))}

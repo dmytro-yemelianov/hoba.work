@@ -59,7 +59,14 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
   });
 
   it('assigns comparative arity and cohorts to the three comparative mechanisms (A4)', () => {
-    const comparativeIds = ['cnd:m-002', 'cnd:m-009', 'cnd:m-018'];
+    const comparativeIds = [
+      'cnd:m-002',
+      'cnd:mech.stronger_competing_candidate_in_final_cohort',
+      'cnd:m-009',
+      'cnd:mech.recruiter_volume_quota_incentive_distortion',
+      'cnd:m-018',
+      'cnd:mech.domain_specificity_over_weighting',
+    ];
     for (const c of lifted.substrate.conditions) {
       if (comparativeIds.includes(c.id)) {
         expect(c.arity, c.id).toBe('comparative');

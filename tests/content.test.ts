@@ -31,7 +31,7 @@ describe('registry content', () => {
   it('preserves honest-baseline mechanisms including M-001', () => {
     const honest = bundle.mechanisms.filter((m) => m.honest_baseline);
     expect(honest.length).toBeGreaterThanOrEqual(1);
-    expect(honest.some((m) => m.id === 'M-001')).toBe(true);
+    expect(honest.some((m) => m.id === 'mech.genuine_technical_skill_shortfall')).toBe(true);
   });
 
   it('keeps the barrier funnel strictly acyclic', () => {
@@ -272,7 +272,7 @@ describe('body and frontmatter agree', () => {
           // A line carrying a backticked id is a cross-reference — it quotes
           // another entry's title, which this entry's frontmatter holds only as
           // an id. What must agree is the prose an entry repeats about itself.
-          if (/`[A-Z]+-\d+`/.test(line)) continue;
+          if (/`([A-Z]+-\d+|[a-z0-9_.-]+)`/.test(line)) continue;
           const text = line.slice(2).replace(/^\*\*[^*]+\*\*:?\s*/, '').trim();
           if (text.length < 20 || /^`[^`]+`$/.test(text)) continue;
           if (!pool.includes(text)) drifted.push(`${node.id}: ${text.slice(0, 70)}`);

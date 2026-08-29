@@ -42,7 +42,7 @@ recommendations:
     cost: "medium"
     costs: "Every threshold customers tuned against the old score distribution shifts, and the field stays on competitors' feature lists after it leaves this one."
     targets:
-      - "M-011"
+      - "mech.employment_gap_downranking_bias"
       - "L-001"
       - "bar.automated_filter_parser_threshold"
     interventions:
@@ -54,7 +54,7 @@ recommendations:
     cost: "medium"
     costs: "The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls."
     targets:
-      - "M-003"
+      - "mech.ats_parser_extraction_failure"
       - "bar.automated_filter_parser_threshold"
       - "A-009"
     interventions: []
@@ -65,7 +65,7 @@ recommendations:
     cost: "medium"
     costs: "It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform."
     targets:
-      - "M-003"
+      - "mech.ats_parser_extraction_failure"
       - "bar.application_ingestion"
       - "bar.automated_filter_parser_threshold"
     interventions:
@@ -77,8 +77,8 @@ recommendations:
     cost: "medium"
     costs: "Every held queue becomes a customer decision the current default takes off their desk, and support load is exactly what these defaults are tuned to keep down."
     targets:
-      - "M-020"
-      - "M-006"
+      - "mech.automated_application_expiration_timeout"
+      - "mech.stale_or_orphaned_job_requisition"
       - "A-001"
       - "A-002"
       - "pat.closed_then_reposted_requisition_motif"
@@ -91,8 +91,8 @@ recommendations:
     cost: "low"
     costs: "The dry run reads the customer's stored applications on the configuration path, and the screen now states a number the vendor stands behind — including when a draft rule would have ended the entire stored pool."
     targets:
-      - "M-008"
-      - "M-024"
+      - "mech.automated_keyword_qualification_filter"
+      - "mech.inflated_requisition_requirements_vs_actual_team_needs"
       - "pat.experience_age_impossibility"
       - "bar.automated_filter_parser_threshold"
       - "L-003"
@@ -104,7 +104,7 @@ recommendations:
     cost: "medium"
     costs: "The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not."
     targets:
-      - "M-008"
+      - "mech.automated_keyword_qualification_filter"
       - "bar.automated_filter_parser_threshold"
       - "A-009"
       - "A-002"

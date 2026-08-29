@@ -9,9 +9,9 @@ required_artifacts:
   - "A-002"
   - "A-013"
 compatible_mechanisms:
-  - "M-001"
-  - "M-004"
-  - "M-017"
+  - "mech.genuine_technical_skill_shortfall"
+  - "mech.unstated_compensation_band_discrepancy"
+  - "mech.experience_age_grading_mismatch"
 trigger_rule: "На рівні N кандидату відмовляють через надлишковий досвід, а на рівні N+1 — через брак глибини, і обидві відмови припадають на один ринковий цикл."
 establishes:
   - "Кандидат потрапляє у проміжок між грейдами, де ні зарплатні очікування, ні досвід не збігаються зі стандартними рівнями."

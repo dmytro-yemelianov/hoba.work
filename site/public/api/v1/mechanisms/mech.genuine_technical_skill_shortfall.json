@@ -1,0 +1,101 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Genuine Technical Skill Shortfall",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Genuine Technical Skill Shortfall\n\nThe candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark.",
+    "aliases": [
+      "M-001"
+    ],
+    "id": "mech.genuine_technical_skill_shortfall",
+    "type": "mechanism",
+    "summary": "The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.",
+    "operates_at": [
+      "bar.technical_screen_live_assessment",
+      "bar.take_home_work_sample_evaluation",
+      "bar.hiring_manager_in_depth_review"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-008",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-006"
+        ],
+        "observed_at": [
+          "technical"
+        ]
+      },
+      {
+        "artifact": "A-002",
+        "fidelity": "euphemism",
+        "likelihood": "medium",
+        "evidence": [
+          "EVD-001"
+        ],
+        "observed_at": [
+          "technical"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "candidate",
+      "nature": "rule",
+      "visibility": "inferable",
+      "removability": "candidate"
+    },
+    "amplifies": [],
+    "masks": [],
+    "evidence_level": "established",
+    "honest_baseline": true,
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Feedback naming the gap",
+        "subject": "Feedback — technical round",
+        "lines": [
+          {
+            "text": "The panel was positive on communication and on how you structured the problem.",
+            "tell": false
+          },
+          {
+            "text": "The gap was concrete: the concurrency exercise needed a bounded worker pool and the submitted solution spawned unbounded goroutines, which the panel would expect to be caught at this level.",
+            "tell": true
+          },
+          {
+            "text": "We would genuinely welcome a re-application once that area has had some time.",
+            "tell": false
+          }
+        ],
+        "reading": "A named exercise and a named property. This is the shape of feedback that is about the work rather than about fit — rare, and worth keeping."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "hiring-manager",
+        "sees": "The panel's written notes against the bar set for this level, and the exercise the notes refer to.",
+        "reads": "A gap at this level is something the team carries while it closes. A bad hire is visible for a year and has a name on it; a missed one has neither.",
+        "does": "Declines at the level assessed. The panel's specifics stay inside the loop unless they are passed on in a form the recruiter can quote."
+      },
+      {
+        "actor": "recruiter",
+        "sees": "The panel's recommendation and whatever note comes with it, not the scores behind it.",
+        "reads": "A decline that has to be worded before the next screen. Whether the reason can be repeated to the candidate depends on the form in which it arrives.",
+        "does": "Writes the rejection. Time-to-fill is measured and time-to-clarity is not, so a specific reason reaches the message where a quotable note already exists."
+      },
+      {
+        "actor": "candidate",
+        "sees": "Either a message naming the exercise and the property that was missed, or a template that names neither.",
+        "reads": "A named gap can be checked against the work. A template leaves the bar, the level and the rest of the cohort all unstated.",
+        "does": "Records the wording and the date, and can work on the named area. That is the one branch of this the candidate controls."
+      }
+    ],
+    "non_inferences": [
+      "Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark."
+    ]
+  }
+}

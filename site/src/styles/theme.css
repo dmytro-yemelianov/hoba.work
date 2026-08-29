@@ -70,7 +70,10 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .btn .wordmark, button .wordmark, a.btn .wordmark { @apply text-inherit; }
 
   /* Tags */
-  .pill { @apply inline-flex items-center gap-1.5 rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-xs font-medium text-hoba-text whitespace-nowrap leading-5; }
+  .pill { @apply inline-flex items-center gap-1.5 rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-xs font-medium text-hoba-text whitespace-nowrap leading-5 max-w-full; }
+  .pill.font-mono, .font-mono.pill { white-space: normal; word-break: break-all; }
+  .pill.whitespace-normal { white-space: normal; }
+  .pill.break-all { word-break: break-all; }
   .pill-muted { @apply text-hoba-muted; }
   .pill-active { @apply bg-hoba-text border-hoba-text text-hoba-bg; }
   /* Checkbox styled as a pill: on = solid, off = struck through and faded. */

@@ -25,7 +25,7 @@
             "id": "withdrawn-and-not-reposted",
             "label": "The posting came down and no materially similar role appeared afterwards.",
             "excludes": [
-              "M-006"
+              "mech.stale_or_orphaned_job_requisition"
             ],
             "because": "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
           },
@@ -33,7 +33,7 @@
             "id": "reposted-same-scope",
             "label": "A role with the same level and scope was published again within weeks.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Immediate reposting of the identical role contradicts honest closure via internal transfer."
           },
@@ -41,7 +41,7 @@
             "id": "still-live",
             "label": "The posting continued to accept applications after the message arrived.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
           },

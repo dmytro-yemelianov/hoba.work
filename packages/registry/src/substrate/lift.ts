@@ -62,7 +62,14 @@ const DETERMINACY: Record<string, Condition['determinacy']> = {
   noise: 'stochastic',
 };
 
-const COMPARATIVE_MECHANISMS = new Set(['M-002', 'M-009', 'M-018']);
+const COMPARATIVE_MECHANISMS = new Set([
+  'M-002',
+  'mech.stronger_competing_candidate_in_final_cohort',
+  'M-009',
+  'mech.recruiter_volume_quota_incentive_distortion',
+  'M-018',
+  'mech.domain_specificity_over_weighting',
+]);
 
 export function lift(bundle: RegistryBundle): Lifted {
   const recordClasses: RecordClass[] = [

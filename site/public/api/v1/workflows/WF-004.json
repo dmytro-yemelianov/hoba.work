@@ -29,7 +29,7 @@
         "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
         "entities": [
           "bar.outbound_sourcing_talent_pool_contact",
-          "M-016"
+          "mech.speculative_sourcing_talent_pooling_without_opening"
         ],
         "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
         "deviations": []
@@ -42,7 +42,7 @@
         "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
         "entities": [
           "bar.recruiter_screening_call",
-          "M-004"
+          "mech.unstated_compensation_band_discrepancy"
         ],
         "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
         "deviations": []

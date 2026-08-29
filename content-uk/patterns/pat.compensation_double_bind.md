@@ -9,8 +9,8 @@ required_artifacts:
   - "A-002"
   - "A-005"
 compatible_mechanisms:
-  - "M-004"
-  - "M-017"
+  - "mech.unstated_compensation_band_discrepancy"
+  - "mech.experience_age_grading_mismatch"
 trigger_rule: "Кандидата просять назвати цифру першим, а вилку на цю роль у відповідь не називають."
 establishes:
   - "Інформаційна асиметрія працює як невідкалібрований фільтр ще до того, як оцінюють технічну кваліфікацію."

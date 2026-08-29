@@ -25,7 +25,7 @@
             "id": "named-work-on-first-screen",
             "label": "The work named as absent is visible on the first screen, without navigating.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Overlooking prominent first-screen evidence indicates superficial keyword/automated parsing or neglected review rather than an honest thorough evaluation."
           },
@@ -39,8 +39,8 @@
             "id": "not-reachable",
             "label": "The path does not resolve, or resolves to something private.",
             "excludes": [
-              "M-008",
-              "M-013"
+              "mech.automated_keyword_qualification_filter",
+              "mech.mid_process_role_requirement_redefinition"
             ],
             "because": "An unreachable or private submission link confirms candidate omission rather than evaluator negligence or automated screening error."
           },

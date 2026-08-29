@@ -508,11 +508,11 @@ const presets = [
             calloutTone = 'border-l-rose-500 bg-rose-500/5';
             note = t('check.turnaround.stalled', { max: tr.max });
             if (tr.from.includes('queue') || tr.from.includes('publish') || tr.from.includes('received')) {
-              implicated = ['M-006', 'M-020', 'M-025'];
+              implicated = ['mech.stale_or_orphaned_job_requisition', 'mech.automated_application_expiration_timeout', 'mech.bid_conditional_talent_pool'];
             } else if (tr.from.includes('screen') || tr.from.includes('technical') || tr.from.includes('panel')) {
-              implicated = ['M-009', 'M-019', 'M-022'];
+              implicated = ['mech.recruiter_volume_quota_incentive_distortion', 'mech.take_home_evaluation_fatigue_asymmetry', 'mech.hiring_manager_consensus_impasse'];
             } else if (tr.from.includes('offer') || tr.from.includes('verification')) {
-              implicated = ['M-007', 'M-027'];
+              implicated = ['mech.headcount_freeze_or_budget_cancellation', 'mech.start_date_slippage_and_post_acceptance_revocation'];
             }
           } else if (days > tr.expected) {
             const delayLabel = lang === 'uk' ? 'Перевищення очікуваного часу' : 'Delayed Beyond Expected';

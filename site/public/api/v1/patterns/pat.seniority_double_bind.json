@@ -18,9 +18,9 @@
       "A-013"
     ],
     "compatible_mechanisms": [
-      "M-001",
-      "M-004",
-      "M-017"
+      "mech.genuine_technical_skill_shortfall",
+      "mech.unstated_compensation_band_discrepancy",
+      "mech.experience_age_grading_mismatch"
     ],
     "trigger_rule": "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.",
     "establishes": [

@@ -42,9 +42,9 @@ recommendations:
     cost: "medium"
     costs: "A shorter list brings more applications into a funnel this actor's own team staffs, and it gives up the requirement page as the argument for a higher level and a wider band."
     targets:
-      - "M-024"
+      - "mech.inflated_requisition_requirements_vs_actual_team_needs"
       - "pat.experience_age_impossibility"
-      - "M-008"
+      - "mech.automated_keyword_qualification_filter"
       - "L-003"
     interventions: []
   -
@@ -54,8 +54,8 @@ recommendations:
     cost: "low"
     costs: "A preference in writing is open to challenge from the panel and from the recruiter, and one that cannot be put into a sentence does not make it into the brief."
     targets:
-      - "M-010"
-      - "M-018"
+      - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
+      - "mech.domain_specificity_over_weighting"
       - "bar.technical_screen_live_assessment"
       - "bar.hiring_manager_in_depth_review"
       - "A-014"
@@ -67,8 +67,8 @@ recommendations:
     cost: "medium"
     costs: "A three-hour sample carries less to go on, so more of the decision falls to the panel, and twenty minutes from each of two reviewers comes out of a sprint the team is already behind on."
     targets:
-      - "M-019"
-      - "M-012"
+      - "mech.take_home_evaluation_fatigue_asymmetry"
+      - "mech.interview_resource_scheduling_saturation"
       - "bar.take_home_work_sample_evaluation"
       - "L-002"
     interventions:
@@ -80,7 +80,7 @@ recommendations:
     cost: "medium"
     costs: "Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name."
     targets:
-      - "M-022"
+      - "mech.hiring_manager_consensus_impasse"
       - "bar.team_cross_functional_panel"
       - "A-014"
     interventions: []
@@ -91,7 +91,7 @@ recommendations:
     cost: "high"
     costs: "The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting."
     targets:
-      - "M-013"
+      - "mech.mid_process_role_requirement_redefinition"
       - "L-003"
     interventions: []
   -
@@ -103,7 +103,7 @@ recommendations:
     targets:
       - "pat.seniority_double_bind"
       - "A-013"
-      - "M-017"
+      - "mech.experience_age_grading_mismatch"
       - "bar.hiring_manager_in_depth_review"
     interventions: []
 status: "active"

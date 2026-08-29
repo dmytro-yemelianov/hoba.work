@@ -9,8 +9,8 @@ required_artifacts:
   - "A-002"
   - "A-009"
 compatible_mechanisms:
-  - "M-008"
-  - "M-024"
+  - "mech.automated_keyword_qualification_filter"
+  - "mech.inflated_requisition_requirements_vs_actual_team_needs"
 trigger_rule: "Job description or automated screen requires X years of experience where X > technology_age."
 establishes:
   - "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."

@@ -42,7 +42,7 @@ recommendations:
     targets:
       - "A-001"
       - "A-015"
-      - "M-002"
+      - "mech.stronger_competing_candidate_in_final_cohort"
     interventions: []
   -
     id: "state-the-funding-state-of-the-seat"
@@ -51,8 +51,8 @@ recommendations:
     cost: "low"
     costs: "Тендер, який видно ринку, видно й конкурентам; частина замовників вважає сам факт пошуку конфіденційним."
     targets:
-      - "M-025"
-      - "M-016"
+      - "mech.bid_conditional_talent_pool"
+      - "mech.speculative_sourcing_talent_pooling_without_opening"
       - "bar.outbound_sourcing_talent_pool_contact"
     interventions:
       - "I-009"

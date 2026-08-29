@@ -27,8 +27,8 @@
             "id": "written-confirmation-received",
             "label": "The employer confirms the date with tracking details for onboarding equipment.",
             "excludes": [
-              "M-007",
-              "M-027"
+              "mech.headcount_freeze_or_budget_cancellation",
+              "mech.start_date_slippage_and_post_acceptance_revocation"
             ],
             "because": "Active equipment dispatch and confirmed start date rule out pre-start headcount freeze and offer revocation."
           },
@@ -36,7 +36,7 @@
             "id": "evasive-delay-notice",
             "label": "The employer provides vague holding notices without committing to a fixed onboarding date.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Evasive holding notices without confirmed dates contradict an honest post-offer onboarding path."
           },
@@ -44,7 +44,7 @@
             "id": "revocation-or-freeze-confirmed",
             "label": "The employer confirms headcount revocation or indefinite pause prior to start date.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Confirmed headcount cancellation prior to day one directly contradicts an honest hire."
           }

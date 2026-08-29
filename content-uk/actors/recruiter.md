@@ -46,7 +46,7 @@ recommendations:
     costs: "Це забирає можливість першим почути цифру кандидата і вносить у розмову число, яке згодом можуть процитувати як зобовʼязання."
     targets:
       - "bar.recruiter_screening_call"
-      - "M-004"
+      - "mech.unstated_compensation_band_discrepancy"
       - "pat.compensation_double_bind"
     interventions:
       - "I-002"
@@ -58,7 +58,7 @@ recommendations:
     costs: "Кожен лист складають, а не обирають зі списку, і роблять це під годинник, який міряють як time-to-fill, а запит критерію в панелі витрачає кредит довіри менеджера із найму, внутрішнього клієнта."
     targets:
       - "A-002"
-      - "M-010"
+      - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.team_cross_functional_panel"
     interventions:
       - "I-003"
@@ -71,7 +71,7 @@ recommendations:
     targets:
       - "A-001"
       - "A-003"
-      - "M-006"
+      - "mech.stale_or_orphaned_job_requisition"
     interventions:
       - "I-001"
   -
@@ -83,7 +83,7 @@ recommendations:
     targets:
       - "bar.recruiter_screening_call"
       - "A-007"
-      - "M-013"
+      - "mech.mid_process_role_requirement_redefinition"
     interventions: []
   -
     id: "say-if-a-requisition-exists"
@@ -92,7 +92,7 @@ recommendations:
     cost: "medium"
     costs: "Це коштує відповідей: на повідомлення, де сказано, що відкритої вакансії немає, менше причин відповідати, а саме кількістю відповідей міряють сорсингову частину пайплайну."
     targets:
-      - "M-016"
+      - "mech.speculative_sourcing_talent_pooling_without_opening"
       - "A-012"
       - "bar.outbound_sourcing_talent_pool_contact"
     interventions: []
@@ -104,8 +104,8 @@ recommendations:
     costs: "Читання без такого сортування охоплює менше профілів за годину, а кандидати з вихідного пошуку, про яких питає менеджер із найму, чекають за вхідними."
     targets:
       - "bar.inbound_screening_triage"
-      - "M-009"
-      - "M-011"
+      - "mech.recruiter_volume_quota_incentive_distortion"
+      - "mech.employment_gap_downranking_bias"
       - "L-001"
     interventions: []
 status: "active"

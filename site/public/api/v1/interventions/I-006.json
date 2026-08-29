@@ -6,13 +6,13 @@
     "evidence_ids": [
       "EVD-006"
     ],
-    "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- M-019 loses its asymmetry: the timebox binds the reviewer as well as the candidate\n- Who wrote a submission stops being an input to how it is scored\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`",
+    "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate\n- Who wrote a submission stops being an input to how it is scored\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`",
     "aliases": [],
     "id": "I-006",
     "type": "intervention",
     "summary": "Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.",
     "targets": [
-      "M-019",
+      "mech.take_home_evaluation_fatigue_asymmetry",
       "L-002",
       "bar.take_home_work_sample_evaluation"
     ],
@@ -21,7 +21,7 @@
     "cost": "medium",
     "evidence_level": "supported",
     "expected_effects": [
-      "M-019 loses its asymmetry: the timebox binds the reviewer as well as the candidate",
+      "mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate",
       "Who wrote a submission stops being an input to how it is scored"
     ],
     "measurements": [

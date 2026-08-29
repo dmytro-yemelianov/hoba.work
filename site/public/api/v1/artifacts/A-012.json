@@ -27,9 +27,9 @@
             "id": "no-reply",
             "label": "Neither the follow-up nor the earlier answer is replied to, and the thread stays as it was: an outreach message, a same-day answer, and silence.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (M-005/M-025)."
+            "because": "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (mech.pre_selected_internal_candidate/mech.bid_conditional_talent_pool)."
           },
           {
             "id": "automated-reply-only",
@@ -41,8 +41,8 @@
             "id": "thread-resumes",
             "label": "A person replies and the conversation continues: a call is booked, or the role is described in more detail.",
             "excludes": [
-              "M-005",
-              "M-025"
+              "mech.pre_selected_internal_candidate",
+              "mech.bid_conditional_talent_pool"
             ],
             "because": "Active conversational resumption and call scheduling rule out speculative ghost sourcing and bench pooling."
           },
@@ -50,7 +50,7 @@
             "id": "reply-without-next-step",
             "label": "A reply arrives with no next step in it: the search is paused, the role is already filled, or there is no open requisition behind the outreach yet.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Outreach without an active requisition behind it contradicts an immediate honest search."
           }

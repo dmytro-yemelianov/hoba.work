@@ -50,7 +50,7 @@
       ],
       "entities": [
         "bar.outbound_sourcing_talent_pool_contact",
-        "M-016"
+        "mech.speculative_sourcing_talent_pooling_without_opening"
       ],
       "specimens": []
     },
@@ -102,8 +102,8 @@
       ],
       "entities": [
         "bar.outbound_sourcing_talent_pool_contact",
-        "M-016",
-        "M-012",
+        "mech.speculative_sourcing_talent_pooling_without_opening",
+        "mech.interview_resource_scheduling_saturation",
         "A-012"
       ],
       "specimens": []
@@ -168,8 +168,8 @@
         }
       ],
       "entities": [
-        "M-007",
-        "M-013",
+        "mech.headcount_freeze_or_budget_cancellation",
+        "mech.mid_process_role_requirement_redefinition",
         "A-003",
         "A-011",
         "pat.closed_then_reposted_requisition_motif"
@@ -272,11 +272,11 @@
         }
       ],
       "entities": [
-        "M-024",
-        "M-017",
-        "M-018",
-        "M-009",
-        "M-020",
+        "mech.inflated_requisition_requirements_vs_actual_team_needs",
+        "mech.experience_age_grading_mismatch",
+        "mech.domain_specificity_over_weighting",
+        "mech.recruiter_volume_quota_incentive_distortion",
+        "mech.automated_application_expiration_timeout",
         "bar.inbound_screening_triage",
         "pat.seniority_double_bind",
         "pat.experience_age_impossibility",

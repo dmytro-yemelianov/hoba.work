@@ -31,7 +31,7 @@
         "owner": "ats-vendor",
         "description": "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.",
         "entities": [
-          "M-003"
+          "mech.ats_parser_extraction_failure"
         ],
         "visible_to_candidate": "Nothing.",
         "deviations": []
@@ -44,8 +44,8 @@
         "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
         "entities": [
           "bar.automated_filter_parser_threshold",
-          "M-008",
-          "M-011"
+          "mech.automated_keyword_qualification_filter",
+          "mech.employment_gap_downranking_bias"
         ],
         "visible_to_candidate": "Nothing, for a second or two.",
         "deviations": []
@@ -58,8 +58,8 @@
         "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
         "entities": [
           "bar.inbound_screening_triage",
-          "M-009",
-          "M-016"
+          "mech.recruiter_volume_quota_incentive_distortion",
+          "mech.speculative_sourcing_talent_pooling_without_opening"
         ],
         "visible_to_candidate": "Silence. This is where most of the waiting happens.",
         "deviations": []
@@ -72,7 +72,7 @@
         "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
         "entities": [
           "bar.inbound_screening_triage",
-          "M-009"
+          "mech.recruiter_volume_quota_incentive_distortion"
         ],
         "visible_to_candidate": "Nothing yet.",
         "deviations": []
@@ -97,8 +97,8 @@
         "description": "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.",
         "entities": [
           "A-009",
-          "M-008",
-          "M-011"
+          "mech.automated_keyword_qualification_filter",
+          "mech.employment_gap_downranking_bias"
         ],
         "visible_to_candidate": "A rejection email, minutes after applying.",
         "deviations": []
@@ -122,7 +122,7 @@
         "owner": "ats-vendor",
         "description": "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.",
         "entities": [
-          "M-020",
+          "mech.automated_application_expiration_timeout",
           "A-001"
         ],
         "visible_to_candidate": "A bulk rejection, or nothing at all.",
@@ -149,7 +149,7 @@
         "owner": "ats-vendor",
         "guard": "Extraction completes, whether or not it recovered the work history.",
         "entities": [
-          "M-003"
+          "mech.ats_parser_extraction_failure"
         ],
         "latency_expected_days": 1,
         "latency_max_days": 1
@@ -173,8 +173,8 @@
         "owner": "ats-vendor",
         "guard": "Any knockout rule fails, or the ranking falls below the threshold.",
         "entities": [
-          "M-008",
-          "M-011",
+          "mech.automated_keyword_qualification_filter",
+          "mech.employment_gap_downranking_bias",
           "A-009"
         ],
         "latency_expected_days": 1,
@@ -199,7 +199,7 @@
         "owner": "ats-vendor",
         "guard": "The record ages past the configured limit with no review recorded.",
         "entities": [
-          "M-020"
+          "mech.automated_application_expiration_timeout"
         ],
         "latency_expected_days": 30,
         "latency_max_days": 60
@@ -224,7 +224,7 @@
         "guard": "The recruiter decides not to advance it.",
         "entities": [
           "A-002",
-          "M-009"
+          "mech.recruiter_volume_quota_incentive_distortion"
         ],
         "latency_expected_days": 2,
         "latency_max_days": 5

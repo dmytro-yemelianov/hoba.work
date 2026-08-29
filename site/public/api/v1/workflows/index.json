@@ -47,7 +47,7 @@
           "entities": [
             "bar.requisition_approval_public_posting",
             "bar.outbound_sourcing_talent_pool_contact",
-            "M-006"
+            "mech.stale_or_orphaned_job_requisition"
           ],
           "visible_to_candidate": "The posting, and whatever it states.",
           "deviations": []
@@ -73,10 +73,10 @@
           "description": "Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second.",
           "entities": [
             "bar.automated_filter_parser_threshold",
-            "M-003",
-            "M-008",
-            "M-011",
-            "M-020"
+            "mech.ats_parser_extraction_failure",
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias",
+            "mech.automated_application_expiration_timeout"
           ],
           "visible_to_candidate": "Either nothing, or a rejection within minutes.",
           "deviations": []
@@ -89,8 +89,8 @@
           "description": "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.",
           "entities": [
             "bar.inbound_screening_triage",
-            "M-009",
-            "M-016"
+            "mech.recruiter_volume_quota_incentive_distortion",
+            "mech.speculative_sourcing_talent_pooling_without_opening"
           ],
           "visible_to_candidate": "Silence of indeterminate length.",
           "deviations": []
@@ -104,8 +104,8 @@
           "entities": [
             "bar.recruiter_screening_call",
             "A-013",
-            "M-004",
-            "M-017"
+            "mech.unstated_compensation_band_discrepancy",
+            "mech.experience_age_grading_mismatch"
           ],
           "visible_to_candidate": "The call itself, and whichever parameters the recruiter states.",
           "deviations": []
@@ -121,8 +121,8 @@
             "bar.take_home_work_sample_evaluation",
             "A-006",
             "A-008",
-            "M-001",
-            "M-019"
+            "mech.genuine_technical_skill_shortfall",
+            "mech.take_home_evaluation_fatigue_asymmetry"
           ],
           "visible_to_candidate": "The exercise, and sometimes structured feedback afterwards.",
           "deviations": []
@@ -138,9 +138,9 @@
             "bar.team_cross_functional_panel",
             "A-010",
             "A-014",
-            "M-010",
-            "M-018",
-            "M-022"
+            "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+            "mech.domain_specificity_over_weighting",
+            "mech.hiring_manager_consensus_impasse"
           ],
           "visible_to_candidate": "The conversations. Rarely the scores.",
           "deviations": []
@@ -154,7 +154,7 @@
           "entities": [
             "bar.compensation_levelling_reconciliation",
             "A-005",
-            "M-004"
+            "mech.unstated_compensation_band_discrepancy"
           ],
           "visible_to_candidate": "A number, or a renegotiation.",
           "deviations": []
@@ -167,7 +167,7 @@
           "description": "Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes.",
           "entities": [
             "bar.headcount_executive_budget_approval",
-            "M-007"
+            "mech.headcount_freeze_or_budget_cancellation"
           ],
           "visible_to_candidate": "Silence, usually described as \"final checks\".",
           "deviations": []
@@ -193,7 +193,7 @@
           "description": "A third-party record is compared against what the candidate claimed.",
           "entities": [
             "bar.reference_background_verification",
-            "M-021"
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility"
           ],
           "visible_to_candidate": "A request for documents, or nothing.",
           "deviations": []
@@ -233,7 +233,7 @@
           "entities": [
             "A-003",
             "A-011",
-            "M-007"
+            "mech.headcount_freeze_or_budget_cancellation"
           ],
           "visible_to_candidate": "If the candidate is lucky, an explanation. Often the posting simply disappears.",
           "deviations": []
@@ -247,8 +247,8 @@
           "entities": [
             "A-001",
             "A-012",
-            "M-006",
-            "M-020"
+            "mech.stale_or_orphaned_job_requisition",
+            "mech.automated_application_expiration_timeout"
           ],
           "visible_to_candidate": "Silence, then possibly a bulk rejection at two in the morning.",
           "deviations": []
@@ -324,8 +324,8 @@
           "guard": "Any knockout rule fails, or the ranking falls below the advance threshold.",
           "entities": [
             "A-009",
-            "M-008",
-            "M-011"
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 7
@@ -349,7 +349,7 @@
           "owner": "ats-vendor",
           "guard": "No review happened before the expiry threshold.",
           "entities": [
-            "M-020"
+            "mech.automated_application_expiration_timeout"
           ],
           "latency_expected_days": 30,
           "latency_max_days": 60
@@ -374,9 +374,9 @@
           "guard": "Compensation, level, location or availability rules the candidate out before any engineering is discussed.",
           "entities": [
             "A-013",
-            "M-004",
-            "M-014",
-            "M-017"
+            "mech.unstated_compensation_band_discrepancy",
+            "mech.location_or_timezone_compliance_constraint",
+            "mech.experience_age_grading_mismatch"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -402,8 +402,8 @@
           "guard": "The score falls short, or the review is too shallow to find what is there.",
           "entities": [
             "A-008",
-            "M-001",
-            "M-019"
+            "mech.genuine_technical_skill_shortfall",
+            "mech.take_home_evaluation_fatigue_asymmetry"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -429,7 +429,7 @@
           "guard": "A split panel under a unanimity rule defaults to no hire.",
           "entities": [
             "A-014",
-            "M-022"
+            "mech.hiring_manager_consensus_impasse"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -454,7 +454,7 @@
           "guard": "Expectation sits outside the band and neither the level nor the number moves.",
           "entities": [
             "A-005",
-            "M-004"
+            "mech.unstated_compensation_band_discrepancy"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -478,7 +478,7 @@
           "owner": "employer-policy",
           "guard": "Budget is pulled or a freeze is announced before the offer is issued.",
           "entities": [
-            "M-007"
+            "mech.headcount_freeze_or_budget_cancellation"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 14
@@ -503,7 +503,7 @@
           "guard": "A freeze reaches an outstanding offer before the countersignature.",
           "entities": [
             "A-011",
-            "M-007"
+            "mech.headcount_freeze_or_budget_cancellation"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 7
@@ -528,7 +528,7 @@
           "owner": "employer-policy",
           "guard": "A record mismatch or an eligibility bar is not reconciled.",
           "entities": [
-            "M-021"
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -540,7 +540,7 @@
           "owner": "ats-vendor",
           "guard": "Hiring stops but the listing is never withdrawn.",
           "entities": [
-            "M-006"
+            "mech.stale_or_orphaned_job_requisition"
           ],
           "latency_expected_days": 60,
           "latency_max_days": 120
@@ -592,7 +592,7 @@
           "owner": "ats-vendor",
           "description": "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.",
           "entities": [
-            "M-003"
+            "mech.ats_parser_extraction_failure"
           ],
           "visible_to_candidate": "Nothing.",
           "deviations": []
@@ -605,8 +605,8 @@
           "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
           "entities": [
             "bar.automated_filter_parser_threshold",
-            "M-008",
-            "M-011"
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias"
           ],
           "visible_to_candidate": "Nothing, for a second or two.",
           "deviations": []
@@ -619,8 +619,8 @@
           "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
           "entities": [
             "bar.inbound_screening_triage",
-            "M-009",
-            "M-016"
+            "mech.recruiter_volume_quota_incentive_distortion",
+            "mech.speculative_sourcing_talent_pooling_without_opening"
           ],
           "visible_to_candidate": "Silence. This is where most of the waiting happens.",
           "deviations": []
@@ -633,7 +633,7 @@
           "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
           "entities": [
             "bar.inbound_screening_triage",
-            "M-009"
+            "mech.recruiter_volume_quota_incentive_distortion"
           ],
           "visible_to_candidate": "Nothing yet.",
           "deviations": []
@@ -658,8 +658,8 @@
           "description": "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.",
           "entities": [
             "A-009",
-            "M-008",
-            "M-011"
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias"
           ],
           "visible_to_candidate": "A rejection email, minutes after applying.",
           "deviations": []
@@ -683,7 +683,7 @@
           "owner": "ats-vendor",
           "description": "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.",
           "entities": [
-            "M-020",
+            "mech.automated_application_expiration_timeout",
             "A-001"
           ],
           "visible_to_candidate": "A bulk rejection, or nothing at all.",
@@ -710,7 +710,7 @@
           "owner": "ats-vendor",
           "guard": "Extraction completes, whether or not it recovered the work history.",
           "entities": [
-            "M-003"
+            "mech.ats_parser_extraction_failure"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 1
@@ -734,8 +734,8 @@
           "owner": "ats-vendor",
           "guard": "Any knockout rule fails, or the ranking falls below the threshold.",
           "entities": [
-            "M-008",
-            "M-011",
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias",
             "A-009"
           ],
           "latency_expected_days": 1,
@@ -760,7 +760,7 @@
           "owner": "ats-vendor",
           "guard": "The record ages past the configured limit with no review recorded.",
           "entities": [
-            "M-020"
+            "mech.automated_application_expiration_timeout"
           ],
           "latency_expected_days": 30,
           "latency_max_days": 60
@@ -785,7 +785,7 @@
           "guard": "The recruiter decides not to advance it.",
           "entities": [
             "A-002",
-            "M-009"
+            "mech.recruiter_volume_quota_incentive_distortion"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -815,9 +815,9 @@
           ],
           "visible_to_candidate": "Nothing yet. Everything downstream inherits whatever is decided here.",
           "deviations": [
-            "M-024",
-            "M-005",
-            "M-026"
+            "mech.inflated_requisition_requirements_vs_actual_team_needs",
+            "mech.pre_selected_internal_candidate",
+            "mech.bench_priority_fill"
           ]
         },
         {
@@ -836,9 +836,9 @@
           "deviations": [
             "bar.requisition_approval_public_posting",
             "bar.outbound_sourcing_talent_pool_contact",
-            "M-006",
-            "M-016",
-            "M-025",
+            "mech.stale_or_orphaned_job_requisition",
+            "mech.speculative_sourcing_talent_pooling_without_opening",
+            "mech.bid_conditional_talent_pool",
             "A-021"
           ]
         },
@@ -854,7 +854,7 @@
           "visible_to_candidate": "A confirmation that names the role and says what happens next.",
           "deviations": [
             "bar.application_ingestion",
-            "M-003"
+            "mech.ats_parser_extraction_failure"
           ]
         },
         {
@@ -871,9 +871,9 @@
           "visible_to_candidate": "If a rule ends it here, which rule.",
           "deviations": [
             "bar.automated_filter_parser_threshold",
-            "M-008",
-            "M-011",
-            "M-020"
+            "mech.automated_keyword_qualification_filter",
+            "mech.employment_gap_downranking_bias",
+            "mech.automated_application_expiration_timeout"
           ]
         },
         {
@@ -889,7 +889,7 @@
           "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
           "deviations": [
             "bar.inbound_screening_triage",
-            "M-009"
+            "mech.recruiter_volume_quota_incentive_distortion"
           ]
         },
         {
@@ -904,9 +904,9 @@
           "visible_to_candidate": "The numbers and the constraints, from both sides, in the first call.",
           "deviations": [
             "bar.recruiter_screening_call",
-            "M-004",
-            "M-014",
-            "M-017"
+            "mech.unstated_compensation_band_discrepancy",
+            "mech.location_or_timezone_compliance_constraint",
+            "mech.experience_age_grading_mismatch"
           ]
         },
         {
@@ -924,10 +924,10 @@
           "deviations": [
             "bar.technical_screen_live_assessment",
             "bar.take_home_work_sample_evaluation",
-            "M-001",
-            "M-010",
-            "M-019",
-            "M-023"
+            "mech.genuine_technical_skill_shortfall",
+            "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+            "mech.take_home_evaluation_fatigue_asymmetry",
+            "mech.portfolio_work_artifact_misinterpretation"
           ]
         },
         {
@@ -944,12 +944,12 @@
             "bar.hiring_manager_in_depth_review",
             "bar.team_cross_functional_panel",
             "bar.client_profile_approval_and_client_interview",
-            "M-002",
-            "M-012",
-            "M-013",
-            "M-015",
-            "M-018",
-            "M-022"
+            "mech.stronger_competing_candidate_in_final_cohort",
+            "mech.interview_resource_scheduling_saturation",
+            "mech.mid_process_role_requirement_redefinition",
+            "mech.communication_or_working_style_friction",
+            "mech.domain_specificity_over_weighting",
+            "mech.hiring_manager_consensus_impasse"
           ]
         },
         {
@@ -964,7 +964,7 @@
           "visible_to_candidate": "The same band the posting stated, and which point in it the offer sits at.",
           "deviations": [
             "bar.compensation_levelling_reconciliation",
-            "M-004"
+            "mech.unstated_compensation_band_discrepancy"
           ]
         },
         {
@@ -980,7 +980,7 @@
           "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
           "deviations": [
             "bar.headcount_executive_budget_approval",
-            "M-007"
+            "mech.headcount_freeze_or_budget_cancellation"
           ]
         },
         {
@@ -993,7 +993,7 @@
           "visible_to_candidate": "The complete offer document, and how long they have to answer.",
           "deviations": [
             "bar.offer_closing_contract_execution",
-            "M-007"
+            "mech.headcount_freeze_or_budget_cancellation"
           ]
         },
         {
@@ -1009,9 +1009,9 @@
           "deviations": [
             "bar.reference_background_verification",
             "bar.probation_period_post_start_confirmation",
-            "M-021",
-            "M-027",
-            "M-028",
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility",
+            "mech.start_date_slippage_and_post_acceptance_revocation",
+            "mech.probation_used_as_extended_de_facto_interview",
             "A-020"
           ]
         },
@@ -1058,8 +1058,8 @@
             "A-003",
             "A-011",
             "A-012",
-            "M-006",
-            "M-020"
+            "mech.stale_or_orphaned_job_requisition",
+            "mech.automated_application_expiration_timeout"
           ]
         }
       ],
@@ -1313,7 +1313,7 @@
           "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
           "entities": [
             "bar.outbound_sourcing_talent_pool_contact",
-            "M-016"
+            "mech.speculative_sourcing_talent_pooling_without_opening"
           ],
           "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
           "deviations": []
@@ -1326,7 +1326,7 @@
           "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
           "entities": [
             "bar.recruiter_screening_call",
-            "M-004"
+            "mech.unstated_compensation_band_discrepancy"
           ],
           "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
           "deviations": []

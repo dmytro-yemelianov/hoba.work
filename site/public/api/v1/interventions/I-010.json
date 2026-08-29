@@ -7,23 +7,23 @@
       "EVD-036",
       "EVD-037"
     ],
-    "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
+    "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
     "aliases": [],
     "id": "I-010",
     "type": "intervention",
     "summary": "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.",
     "targets": [
       "bar.inbound_screening_triage",
-      "M-009",
-      "M-020"
+      "mech.recruiter_volume_quota_incentive_distortion",
+      "mech.automated_application_expiration_timeout"
     ],
     "actor": "ats-vendor",
     "scope": "ecosystem",
     "cost": "medium",
     "evidence_level": "supported",
     "expected_effects": [
-      "M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status",
-      "The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are",
+      "mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status",
+      "The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are",
       "bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search"
     ],
     "measurements": [

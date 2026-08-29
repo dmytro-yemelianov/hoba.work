@@ -1,0 +1,89 @@
+---
+id: "mech.communication_or_working_style_friction"
+type: "mechanism"
+aliases:
+  - "M-015"
+title: "Communication or Working Style Friction"
+summary: "During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening."
+operates_at:
+  - "bar.recruiter_screening_call"
+  - "bar.team_cross_functional_panel"
+emissions:
+  -
+    artifact: "A-010"
+    fidelity: "direct"
+    likelihood: "high"
+    evidence: ["EVD-006"]
+  -
+    artifact: "A-002"
+    fidelity: "euphemism"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+    observed_at: ["recruiter"]
+facets:
+  actor: "candidate"
+  nature: "bias"
+  visibility: "observable"
+  removability: "candidate"
+amplifies: []
+masks: []
+perspectives:
+  -
+    actor: "candidate"
+    sees: "The exchange as it happened under time pressure, and a rejection that names fit or collaboration without pointing at a moment."
+    reads: "A short answer given while still working on the problem, and a note about it that cannot be read back. There is nothing to check the reading against."
+    does: "Reconstructs the session from memory and changes how disagreement is phrased in the next one."
+  -
+    actor: "hiring-manager"
+    sees: "The panel's written impressions of how a disagreement went, alongside the technical scores. No recording, and each interviewer saw a different half hour."
+    reads: "A signal about how the person takes review in a team that has to work with them daily. A bad hire on this axis is visible for a year and has a name on it."
+    does: "Weighs the impression against the technical notes, and where the panel is split resolves it toward the more conservative outcome."
+  -
+    actor: "recruiter"
+    sees: "A panel recommendation with the reason recorded as style or fit, and no transcript behind it."
+    reads: "A decision that is final and hard to put in writing to the candidate without it reading as a judgement about the person."
+    does: "Sends the standard closer-alignment wording, or relays the specific note if the panel has phrased it as something the candidate can act on."
+status: "active"
+evidence_level: "established"
+honest_baseline: true
+evidence_ids:
+  - "EVD-006"
+specimens:
+  -
+    kind: "transcript"
+    label: "The exchange the note refers to"
+    context: "minute 33, pairing exercise"
+    lines:
+      -
+        speaker: "Interviewer"
+        at: "33:02"
+        text: "I think this loop is doing more work than it needs to."
+      -
+        speaker: "Candidate"
+        at: "33:06"
+        text: "It is fine. The input is bounded."
+        tell: true
+      -
+        speaker: "Interviewer"
+        at: "33:11"
+        text: "Sure, but if it were not?"
+      -
+        speaker: "Candidate"
+        at: "33:14"
+        text: "Then I would change it. But it is."
+    reading: "The panel recorded this as resistance to critique. A short answer under time pressure and a defensive posture look identical in a transcript — which is why this belongs in the honest-baseline set and not in the excuses."
+non_inferences:
+  - "Style friction in a high-pressure interview is not a permanent personality defect."
+---
+
+# Communication or Working Style Friction
+
+During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.
+
+### Structural Context
+- **Actor:** `candidate`
+- **Nature:** `bias`
+- **Removability:** `candidate`
+
+### Non-Inferences
+- Style friction in a high-pressure interview is not a permanent personality defect.

@@ -1,0 +1,92 @@
+---
+id: "mech.stale_or_orphaned_job_requisition"
+type: "mechanism"
+aliases:
+  - "M-006"
+title: "Stale or Orphaned Job Requisition"
+summary: "Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount."
+operates_at:
+  - "bar.requisition_approval_public_posting"
+  - "bar.application_ingestion"
+  - "bar.automated_filter_parser_threshold"
+  - "bar.inbound_screening_triage"
+emissions:
+  -
+    artifact: "A-001"
+    fidelity: "void"
+    likelihood: "high"
+    evidence: ["EVD-004"]
+    observed_at: ["ingestion"]
+  -
+    artifact: "A-004"
+    fidelity: "noise"
+    likelihood: "medium"
+    evidence: ["EVD-004"]
+    observed_at: ["screening"]
+facets:
+  actor: "system"
+  nature: "void"
+  visibility: "opaque"
+  removability: "none"
+amplifies:
+  - "mech.automated_application_expiration_timeout"
+masks: []
+perspectives:
+  -
+    actor: "employer-policy"
+    sees: "A requisition moved to paused or unfunded in the budget ledger."
+    reads: "Pausing an approved requisition keeps the option to restart it, and the approval costs nothing while it sits."
+    does: "Records the change where budgets are recorded. Taking a public listing down is a separate action in a separate system, and the budget decision does not trigger it."
+  -
+    actor: "ats-vendor"
+    sees: "A posting record in an active state, and applications arriving against it."
+    reads: "The state of the record is a customer-owned field. Nothing distinguishes a running search from a record no one has closed."
+    does: "Keeps rendering and syndicating the posting and accepting applications, and closes the unreviewed ones when the default expiry period runs out."
+  -
+    actor: "recruiter"
+    sees: "The requisition list as the platform holds it, in which a listing no longer being worked looks like any other."
+    reads: "Whether a search is still running is a fact held by the team that stopped, not by the funnel."
+    does: "Answers directly and has the listing removed once the question arrives. A requisition with no search behind it does not enter time-to-fill, which is what is counted."
+  -
+    actor: "candidate"
+    sees: "A posting visible on the careers page and on aggregators, and no reply after submission."
+    reads: "Silence is the same artifact whether a record was left open or an application was read and set aside."
+    does: "Asks directly whether the posting is current, which is the only channel that returns the state of the record, and keeps the date of each submission."
+status: "active"
+evidence_level: "established"
+honest_baseline: false
+evidence_ids:
+  - "EVD-004"
+specimens:
+  -
+    kind: "chat"
+    label: "Asking whether the role is alive"
+    lines:
+      -
+        speaker: "Candidate"
+        at: "day 0"
+        text: "I applied for this in January and again in March — is the posting current?"
+      -
+        speaker: "Recruiter"
+        at: "day 2"
+        text: "Let me check. That team stopped hiring in December; the listing should have come down. I will get it removed."
+        tell: true
+    reading: "The posting was not bait and it was not a decision. It was a record nobody owned, which is a different thing to be angry at."
+non_inferences:
+  - "Application silence does not reflect candidate suitability."
+---
+
+# Stale or Orphaned Job Requisition
+
+Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.
+
+### Structural Context
+- **Actor:** `system`
+- **Nature:** `void`
+- **Removability:** `none`
+
+### Causal Relations
+- Amplifies `mech.automated_application_expiration_timeout` — Automated Application Expiration Timeout
+
+### Non-Inferences
+- Application silence does not reflect candidate suitability.

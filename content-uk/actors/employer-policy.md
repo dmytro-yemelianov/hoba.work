@@ -44,7 +44,7 @@ recommendations:
     cost: "medium"
     costs: "Опубліковане число стає зобовʼязанням: вилку вже не переглянути тихо посеред пошуку, і її бачить кожен, хто вже працює на цьому рівні."
     targets:
-      - "M-004"
+      - "mech.unstated_compensation_band_discrepancy"
       - "bar.recruiter_screening_call"
       - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
@@ -59,7 +59,7 @@ recommendations:
     targets:
       - "bar.headcount_executive_budget_approval"
       - "bar.requisition_approval_public_posting"
-      - "M-007"
+      - "mech.headcount_freeze_or_budget_cancellation"
       - "A-003"
     interventions: []
   -
@@ -69,8 +69,8 @@ recommendations:
     cost: "medium"
     costs: "Поставлений на паузу пошук не втримати живим: перевідкриття означає ще один прохід ланцюгом затверджень і оголошення, що починається з нуля відгуків, — а це пряма плата за опційність, якою цей шар дорожить."
     targets:
-      - "M-006"
-      - "M-007"
+      - "mech.stale_or_orphaned_job_requisition"
+      - "mech.headcount_freeze_or_budget_cancellation"
       - "bar.application_ingestion"
       - "pat.closed_then_reposted_requisition_motif"
       - "L-003"
@@ -86,7 +86,7 @@ recommendations:
     cost: "medium"
     costs: "Зовнішній пул на таких оголошеннях меншає, а це послаблює саме оголошення як свідчення відкритого пошуку, і внутрішня кандидатура лягає на папір ще до того, як пошук завершиться."
     targets:
-      - "M-005"
+      - "mech.pre_selected_internal_candidate"
       - "bar.requisition_approval_public_posting"
       - "A-002"
       - "A-003"
@@ -100,7 +100,7 @@ recommendations:
     targets:
       - "bar.reference_background_verification"
       - "bar.offer_closing_contract_execution"
-      - "M-021"
+      - "mech.reference_check_discrepancy_or_regulatory_ineligibility"
     interventions: []
 status: "active"
 evidence_level: "supported"

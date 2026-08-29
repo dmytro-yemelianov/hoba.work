@@ -1,0 +1,88 @@
+---
+id: "mech.interview_resource_scheduling_saturation"
+type: "mechanism"
+aliases:
+  - "M-012"
+title: "Interview Resource & Scheduling Saturation"
+summary: "Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped."
+operates_at:
+  - "bar.technical_screen_live_assessment"
+  - "bar.hiring_manager_in_depth_review"
+  - "bar.team_cross_functional_panel"
+emissions:
+  -
+    artifact: "A-007"
+    fidelity: "direct"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+  -
+    artifact: "A-001"
+    fidelity: "noise"
+    likelihood: "medium"
+    evidence: ["EVD-001"]
+facets:
+  actor: "hiring-manager"
+  nature: "noise"
+  visibility: "inferable"
+  removability: "intermediary"
+amplifies:
+  - "mech.take_home_evaluation_fatigue_asymmetry"
+masks: []
+perspectives:
+  -
+    actor: "hiring-manager"
+    sees: "The same engineers' calendars carrying the sprint and the panel, and a requisition running past its target date. What the loop costs the people covering the open work is not in that view."
+    reads: "An interviewer who is free is the option that keeps the loop moving; the alternative is another week on the requisition. A cold read is still a round completed."
+    does: "Puts whoever has the slot on the panel and takes the write-up that comes back."
+  -
+    actor: "candidate"
+    sees: "Rounds moved, gaps between them, and an interviewer opening the submitted work during the call."
+    reads: "The changes are visible only through their own calendar, where a scheduling constraint and a decline in interest look alike."
+    does: "Records each date and each change, asks what remains in the loop and by when, and keeps other processes live."
+  -
+    actor: "recruiter"
+    sees: "Panel slots that come back unfilled and dates that shift; the interviewers' other commitments sit on the calendars the recruiter is scheduling around."
+    reads: "A move is an operational fact with a date, and time-to-fill is measured on the total. There is nothing in it to report about the candidate's standing."
+    does: "Reissues the invitation with the new date and decides whether the candidate is told the loop has stalled."
+status: "active"
+evidence_level: "supported"
+honest_baseline: false
+evidence_ids:
+  - "EVD-001"
+specimens:
+  -
+    kind: "chat"
+    label: "Inside the interviewer calendar"
+    lines:
+      -
+        speaker: "Engineering manager"
+        at: "Wed 17:40"
+        text: "Can you take the panel Thursday? Nobody else on the team is free."
+      -
+        speaker: "Interviewer"
+        at: "Wed 17:52"
+        text: "I am on release duty and I have not read the take-home. I can do it but it will be a cold read."
+        tell: true
+      -
+        speaker: "Engineering manager"
+        at: "Wed 17:55"
+        text: "Take it. We are already two weeks over on this req."
+    reading: "The evaluation was compromised before it began, and nothing in the candidate could have changed that. This trace lives on the other side of the table."
+non_inferences:
+  - "Rescheduling is an operational fact and does not indicate a negative evaluation."
+---
+
+# Interview Resource & Scheduling Saturation
+
+Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.
+
+### Structural Context
+- **Actor:** `hiring-manager`
+- **Nature:** `noise`
+- **Removability:** `intermediary`
+
+### Causal Relations
+- Amplifies `mech.take_home_evaluation_fatigue_asymmetry` — Take-Home Evaluation Fatigue & Asymmetry
+
+### Non-Inferences
+- Rescheduling is an operational fact and does not indicate a negative evaluation.

@@ -196,7 +196,12 @@ describe('the published registry', () => {
     // also says no named actor holds a lever. Anything else is an omission,
     // and this test is what stops it being described as a finding.
     const omissions = report.unaddressedMechanisms.filter((m) => !m.outOfReach);
-    expect(omissions.map((m) => m.id)).toEqual(['M-008', 'M-014', 'M-015', 'M-018']);
+    expect(omissions.map((m) => m.id)).toEqual([
+      'mech.automated_keyword_qualification_filter',
+      'mech.communication_or_working_style_friction',
+      'mech.domain_specificity_over_weighting',
+      'mech.location_or_timezone_compliance_constraint',
+    ]);
   });
 
   it('cannot separate every mechanism by observation, and says which', () => {
@@ -208,8 +213,12 @@ describe('the published registry', () => {
     // during it sits in a staffing record no message describes. Both ties are
     // published findings, not accidents.
     expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([
-      ['M-005', 'M-026'],
-      ['M-009', 'M-016', 'M-025'],
+      ['mech.bench_priority_fill', 'mech.pre_selected_internal_candidate'],
+      [
+        'mech.bid_conditional_talent_pool',
+        'mech.recruiter_volume_quota_incentive_distortion',
+        'mech.speculative_sourcing_talent_pooling_without_opening',
+      ],
     ]);
   });
 
@@ -223,7 +232,16 @@ describe('the published registry', () => {
     // "an internal hire was named" genuinely does not say which structure
     // produced it.
     expect(report.identifiability.neverAlone.map((n) => n.mechanism)).toEqual([
-      'M-001', 'M-002', 'M-005', 'M-008', 'M-009', 'M-011', 'M-016', 'M-017', 'M-025', 'M-026',
+      'mech.automated_keyword_qualification_filter',
+      'mech.bench_priority_fill',
+      'mech.bid_conditional_talent_pool',
+      'mech.employment_gap_downranking_bias',
+      'mech.experience_age_grading_mismatch',
+      'mech.genuine_technical_skill_shortfall',
+      'mech.pre_selected_internal_candidate',
+      'mech.recruiter_volume_quota_incentive_distortion',
+      'mech.speculative_sourcing_talent_pooling_without_opening',
+      'mech.stronger_competing_candidate_in_final_cohort',
     ]);
   });
 });

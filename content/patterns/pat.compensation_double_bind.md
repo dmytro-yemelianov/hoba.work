@@ -9,8 +9,8 @@ required_artifacts:
   - "A-002"
   - "A-005"
 compatible_mechanisms:
-  - "M-004"
-  - "M-017"
+  - "mech.unstated_compensation_band_discrepancy"
+  - "mech.experience_age_grading_mismatch"
 trigger_rule: "The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return."
 establishes:
   - "An information asymmetry works as an uncalibrated filter before technical merit is assessed."

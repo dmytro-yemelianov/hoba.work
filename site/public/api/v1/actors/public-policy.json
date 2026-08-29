@@ -61,7 +61,7 @@
         "targets": [
           "bar.requisition_approval_public_posting",
           "bar.compensation_levelling_reconciliation",
-          "M-004",
+          "mech.unstated_compensation_band_discrepancy",
           "pat.compensation_double_bind",
           "pat.seniority_double_bind"
         ],
@@ -76,7 +76,7 @@
         "cost": "medium",
         "costs": "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.",
         "targets": [
-          "M-014",
+          "mech.location_or_timezone_compliance_constraint",
           "bar.recruiter_screening_call",
           "bar.requisition_approval_public_posting"
         ],
@@ -89,8 +89,8 @@
         "cost": "medium",
         "costs": "Two dates are cheap to check, but the fact that decides a breach — whether the search had ended — sits in records only the employer holds, so every complaint starts with disclosure. The rule also reaches sourcing that is legal and ordinary, which widens the perimeter it has to defend.",
         "targets": [
-          "M-006",
-          "M-016",
+          "mech.stale_or_orphaned_job_requisition",
+          "mech.speculative_sourcing_talent_pooling_without_opening",
           "bar.requisition_approval_public_posting",
           "A-004",
           "pat.closed_then_reposted_requisition_motif"
@@ -107,9 +107,9 @@
         "costs": "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.",
         "targets": [
           "bar.automated_filter_parser_threshold",
-          "M-008",
-          "M-020",
-          "M-003",
+          "mech.automated_keyword_qualification_filter",
+          "mech.automated_application_expiration_timeout",
+          "mech.ats_parser_extraction_failure",
           "A-009",
           "A-001"
         ],
@@ -122,7 +122,7 @@
         "cost": "medium",
         "costs": "The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.",
         "targets": [
-          "M-011",
+          "mech.employment_gap_downranking_bias",
           "L-001",
           "bar.automated_filter_parser_threshold"
         ],
@@ -139,7 +139,7 @@
         "targets": [
           "A-002",
           "A-014",
-          "M-010",
+          "mech.hidden_evaluation_rubric_or_undisclosed_priority",
           "bar.requisition_approval_public_posting"
         ],
         "interventions": [

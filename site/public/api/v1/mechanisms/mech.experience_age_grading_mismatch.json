@@ -1,0 +1,100 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Experience-Age Grading Mismatch",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-002"
+    ],
+    "content": "# Experience-Age Grading Mismatch\n\nA candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.unstated_compensation_band_discrepancy` — Unstated Compensation Band Discrepancy\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organisational tier mismatch, not a candidate deficiency.",
+    "aliases": [
+      "M-017"
+    ],
+    "id": "mech.experience_age_grading_mismatch",
+    "type": "mechanism",
+    "summary": "A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.",
+    "operates_at": [
+      "bar.inbound_screening_triage",
+      "bar.recruiter_screening_call",
+      "bar.hiring_manager_in_depth_review"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-013",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-002"
+        ],
+        "observed_at": []
+      },
+      {
+        "artifact": "A-002",
+        "fidelity": "euphemism",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ],
+        "observed_at": []
+      }
+    ],
+    "facets": {
+      "actor": "recruiter",
+      "nature": "bias",
+      "visibility": "inferable",
+      "removability": "none"
+    },
+    "amplifies": [
+      "mech.unstated_compensation_band_discrepancy"
+    ],
+    "masks": [
+      "mech.genuine_technical_skill_shortfall"
+    ],
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Screening note, internal",
+        "lines": [
+          {
+            "text": "12 years experience against a role scoped at 4–6.",
+            "tell": false
+          },
+          {
+            "text": "Concern: likely to be bored within two quarters; salary expectation probably above band; risk of using us as a bridge.",
+            "tell": true
+          },
+          {
+            "text": "Recommend: pass, unless the manager wants to see them for the level above.",
+            "tell": false
+          }
+        ],
+        "reading": "Every line is a forecast about the future, none is an observation about the work. This is why the rejection can arrive before any technical signal exists."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "recruiter",
+        "sees": "A CV with years and scope above the level the requisition is graded and funded at, and a screening queue larger than the week's capacity.",
+        "reads": "A forecast about retention and salary expectation, formed before any technical signal exists. The band is fixed and the level is not the recruiter's to change.",
+        "does": "Passes at screening, or asks the hiring manager whether they want the profile at the level above — which is a different requisition."
+      },
+      {
+        "actor": "candidate",
+        "sees": "A rejection naming seniority or overqualification, arriving before any technical stage, for a role whose posted band was acceptable.",
+        "reads": "A decision about a future they were not asked about. Nothing in it separates a levelling grid from a judgement about the work.",
+        "does": "Records the stage the rejection arrived at, and names a salary expectation at the screen of the next process rather than after it."
+      },
+      {
+        "actor": "employer-policy",
+        "sees": "A levelling grid mapping years and scope to a band, and requisitions approved at one level at a time.",
+        "reads": "Consistency across every hire, which is what the grid exists for. The applications the grid excludes do not reach this layer.",
+        "does": "Holds the grid and the band, and any exception moves through the levelling committee on its own cycle rather than through the process in progress."
+      }
+    ],
+    "non_inferences": [
+      "Being rejected as \"overqualified\" is an organisational tier mismatch, not a candidate deficiency."
+    ]
+  }
+}

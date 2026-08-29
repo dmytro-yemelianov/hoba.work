@@ -9,10 +9,10 @@ required_artifacts:
   - "A-003"
   - "A-004"
 compatible_mechanisms:
-  - "M-002"
-  - "M-006"
-  - "M-010"
-  - "M-013"
+  - "mech.stronger_competing_candidate_in_final_cohort"
+  - "mech.stale_or_orphaned_job_requisition"
+  - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
+  - "mech.mid_process_role_requirement_redefinition"
 trigger_rule: "Вакансію закрито, кандидату відмовлено — і протягом 60 днів зʼявляється публічне оголошення про суттєво схожу роль."
 establishes:
   - "Ніхто з опитаних кандидатів не відповів вимогам вакансії чи цільовому профілю, або ж критерії пошуку змінилися посеред процесу."

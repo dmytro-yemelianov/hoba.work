@@ -1,0 +1,85 @@
+---
+id: "mech.employment_gap_downranking_bias"
+type: "mechanism"
+aliases:
+  - "M-011"
+title: "Employment Gap Downranking Bias"
+summary: "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history."
+operates_at:
+  - "bar.automated_filter_parser_threshold"
+  - "bar.inbound_screening_triage"
+emissions:
+  -
+    artifact: "A-001"
+    fidelity: "void"
+    likelihood: "high"
+    evidence: ["EVD-003"]
+    observed_at: ["ingestion"]
+  -
+    artifact: "A-002"
+    fidelity: "euphemism"
+    likelihood: "high"
+    evidence: ["EVD-003"]
+    observed_at: ["screening"]
+facets:
+  actor: "system"
+  nature: "bias"
+  visibility: "inferable"
+  removability: "none"
+amplifies:
+  - "mech.automated_keyword_qualification_filter"
+masks: []
+perspectives:
+  -
+    actor: "ats-vendor"
+    sees: "The date ranges the parser extracts from the history, and the continuity feature that reads them. Work done inside a gap is not among the fields that feature reads."
+    reads: "The penalty is a weight in the arithmetic that produces one number. A rank below the advance threshold reads the same whether it came from the match or from the deduction."
+    does: "Returns the rank and places the profile below the threshold. The setting ships enabled and stays on until a customer changes it."
+  -
+    actor: "recruiter"
+    sees: "The list in the order the platform returns it. The arithmetic that produced the order is not displayed alongside it."
+    reads: "The order is where the reading starts, and capacity ends it partway down. A profile below that point leaves no record that it was skipped."
+    does: "Screens from the top of the order until the week's capacity is spent. What sits below that point is not read, and is not rejected either."
+  -
+    actor: "candidate"
+    sees: "Their own history with the interval in it, and afterwards either silence or template wording."
+    reads: "The interval and the outcome coincide, and nothing in the message separates a deduction on a date range from a judgement of the work."
+    does: "Puts the interval and the work done inside it into the history itself. The date range is a fact of record, and it is what the ranking reads."
+status: "active"
+evidence_level: "supported"
+honest_baseline: false
+evidence_ids:
+  - "EVD-003"
+specimens:
+  -
+    kind: "ats"
+    label: "Ranking breakdown, as scored"
+    lines:
+      -
+        text: "Skills match: 91/100"
+      -
+        text: "Domain match: 88/100"
+      -
+        text: "Continuity penalty: −22 (gap of 14 months detected)"
+        tell: true
+      -
+        text: "Final rank: 57/100 — below advance threshold"
+    reading: "The penalty is applied to a date range, not to anything in the work. Nothing the candidate shipped during or after the gap is in the arithmetic."
+non_inferences:
+  - "An employment gap does not correlate with a decline in technical ability."
+---
+
+# Employment Gap Downranking Bias
+
+Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.
+
+### Structural Context
+- **Actor:** `system`
+- **Nature:** `bias`
+- **Removability:** `none`
+
+### Causal Relations
+- Amplifies `mech.automated_keyword_qualification_filter` — Automated Keyword / Qualification Filter
+
+### Non-Inferences
+- An employment gap does not correlate with a decline in technical ability.

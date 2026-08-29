@@ -22,7 +22,7 @@ function hoba(args: string[], opts: { expectFailure?: boolean } = {}): { stdout:
 
 describe('hoba CLI', { timeout: 20000 }, () => {
   it('shows an entity and emits JSON on request', () => {
-    expect(hoba(['show', 'M-001']).stdout).toContain('Genuine Technical Skill Shortfall');
+    expect(hoba(['show', 'mech.genuine_technical_skill_shortfall']).stdout).toContain('Genuine Technical Skill Shortfall');
     const json = JSON.parse(hoba(['show', 'bar.requisition_approval_public_posting', '--json']).stdout);
     expect(json.node.stage).toBe('pre-posting');
     expect(json.registry_version).toMatch(/^\d{4}\.\d{2}\.\d+$/);
@@ -53,7 +53,7 @@ describe('hoba CLI', { timeout: 20000 }, () => {
     expect(json.anomalies.length).toBeGreaterThan(0);
     const queued = json.anomalies.find((a: { toState: string }) => a.toState === 'recruiter-screen');
     expect(queued.severity).toBe('stalled_anomalous');
-    expect(queued.implicatedMechanisms).toContain('M-006');
+    expect(queued.implicatedMechanisms).toContain('mech.stale_or_orphaned_job_requisition');
   });
 
   it('computes financial runway and solvency risk profiles', () => {

@@ -1,0 +1,83 @@
+---
+id: "mech.stronger_competing_candidate_in_final_cohort"
+type: "mechanism"
+aliases:
+  - "M-002"
+title: "Stronger Competing Candidate in Final Cohort"
+summary: "Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead."
+operates_at:
+  - "bar.hiring_manager_in_depth_review"
+  - "bar.team_cross_functional_panel"
+  - "bar.headcount_executive_budget_approval"
+emissions:
+  -
+    artifact: "A-002"
+    fidelity: "euphemism"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+  -
+    artifact: "A-003"
+    fidelity: "distortion"
+    likelihood: "low"
+    evidence: ["EVD-004"]
+facets:
+  actor: "candidate"
+  nature: "rule"
+  visibility: "opaque"
+  removability: "none"
+amplifies: []
+masks:
+  - "mech.genuine_technical_skill_shortfall"
+perspectives:
+  -
+    actor: "candidate"
+    sees: "A decline that arrives after every round has been cleared, with no account of who else was in the final group."
+    reads: "From outside, a bar unmet and a comparison lost arrive in the same envelope. The cohort is not a field the candidate can see."
+    does: "Goes back over their own rounds, because they are the only variable available: the ranking that decided it comes back in answer to no question."
+  -
+    actor: "hiring-manager"
+    sees: "Finalists who all clear the bar, and the difference in what each would need before they work unaided."
+    reads: "The decision is a ranking between acceptable people, not a fault found in either. Ramp-up is the difference that can be stated."
+    does: "Takes the shorter ramp and closes the requisition. A ranking produces no fault to send back, so there is nothing specific to hand to the recruiter."
+  -
+    actor: "recruiter"
+    sees: "One requisition, several finalists, and a decision that names a choice rather than a shortfall."
+    reads: "Nothing in the outcome reads as feedback, and what decided it is a fact about a person who is not the recipient."
+    does: "Sends the standard wording and keeps the file for a later requisition at the same level."
+status: "active"
+evidence_level: "established"
+honest_baseline: true
+evidence_ids:
+  - "EVD-001"
+  - "EVD-006"
+specimens:
+  -
+    kind: "email"
+    label: "Rejection naming the comparison"
+    lines:
+      -
+        text: "This was a genuinely difficult decision — you cleared every bar we set."
+      -
+        text: "We went with another finalist who has shipped the same payment rails we are migrating to, which shortens the ramp by a quarter or so."
+        tell: true
+      -
+        text: "If anything opens at this level again I would like to come back to you directly."
+    reading: "Nothing here says the candidate fell short. A comparison decided it, and comparisons are not properties of either person."
+non_inferences:
+  - "Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control."
+---
+
+# Stronger Competing Candidate in Final Cohort
+
+Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.
+
+### Structural Context
+- **Actor:** `candidate`
+- **Nature:** `rule`
+- **Removability:** `none`
+
+### Causal Relations
+- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall
+
+### Non-Inferences
+- Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.

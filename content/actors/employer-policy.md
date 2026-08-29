@@ -44,7 +44,7 @@ recommendations:
     cost: "medium"
     costs: "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level."
     targets:
-      - "M-004"
+      - "mech.unstated_compensation_band_discrepancy"
       - "bar.recruiter_screening_call"
       - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
@@ -59,7 +59,7 @@ recommendations:
     targets:
       - "bar.headcount_executive_budget_approval"
       - "bar.requisition_approval_public_posting"
-      - "M-007"
+      - "mech.headcount_freeze_or_budget_cancellation"
       - "A-003"
     interventions: []
   -
@@ -69,8 +69,8 @@ recommendations:
     cost: "medium"
     costs: "A paused search cannot be kept warm: reopening means another trip through the approval chain and a posting that restarts from zero applicants, which is a direct charge on this layer's optionality."
     targets:
-      - "M-006"
-      - "M-007"
+      - "mech.stale_or_orphaned_job_requisition"
+      - "mech.headcount_freeze_or_budget_cancellation"
       - "bar.application_ingestion"
       - "pat.closed_then_reposted_requisition_motif"
       - "L-003"
@@ -86,7 +86,7 @@ recommendations:
     cost: "medium"
     costs: "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded."
     targets:
-      - "M-005"
+      - "mech.pre_selected_internal_candidate"
       - "bar.requisition_approval_public_posting"
       - "A-002"
       - "A-003"
@@ -100,7 +100,7 @@ recommendations:
     targets:
       - "bar.reference_background_verification"
       - "bar.offer_closing_contract_execution"
-      - "M-021"
+      - "mech.reference_check_discrepancy_or_regulatory_ineligibility"
     interventions: []
 status: "active"
 evidence_level: "supported"

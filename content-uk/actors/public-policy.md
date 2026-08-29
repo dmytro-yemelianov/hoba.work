@@ -42,7 +42,7 @@ recommendations:
     targets:
       - "bar.requisition_approval_public_posting"
       - "bar.compensation_levelling_reconciliation"
-      - "M-004"
+      - "mech.unstated_compensation_band_discrepancy"
       - "pat.compensation_double_bind"
       - "pat.seniority_double_bind"
     interventions:
@@ -54,7 +54,7 @@ recommendations:
     cost: "medium"
     costs: "Правило звʼязує оголошення, яке читають звідусіль, із договорами, можливими в кількох місцях, а орган, що його пише, дотягується лише до власної території — якої саме, цей атлас не називає. Роботодавець мусить оприлюднити карту юридичних осіб, яку тримає всередині, і оголошення, що читалися як відкриті, помітно звужуються."
     targets:
-      - "M-014"
+      - "mech.location_or_timezone_compliance_constraint"
       - "bar.recruiter_screening_call"
       - "bar.requisition_approval_public_posting"
     interventions: []
@@ -65,8 +65,8 @@ recommendations:
     cost: "medium"
     costs: "Дві дати перевірити легко, але факт, який вирішує порушення — чи пошук уже завершено, — лежить у записах, які має тільки роботодавець, тож кожна скарга починається з витребування документів. Правило також дотягується до сорсингу, який законний і звичайний, а це розширює периметр, який доведеться захищати."
     targets:
-      - "M-006"
-      - "M-016"
+      - "mech.stale_or_orphaned_job_requisition"
+      - "mech.speculative_sourcing_talent_pooling_without_opening"
       - "bar.requisition_approval_public_posting"
       - "A-004"
       - "pat.closed_then_reposted_requisition_motif"
@@ -80,9 +80,9 @@ recommendations:
     costs: "Обовʼязок пишуть для роботодавця, а виконує його налаштування на екрані конфігурації, якого автор правила не бачить, тож текст мусить закріпити відповідальність десь між тим, хто купує систему, і тим, хто її постачає. Кожна названа причина — ще й твердження, яке можна оскаржити, і за обсягу завершених заявок це стає потоком справ раніше, ніж засобом захисту."
     targets:
       - "bar.automated_filter_parser_threshold"
-      - "M-008"
-      - "M-020"
-      - "M-003"
+      - "mech.automated_keyword_qualification_filter"
+      - "mech.automated_application_expiration_timeout"
+      - "mech.ats_parser_extraction_failure"
       - "A-009"
       - "A-001"
     interventions: []
@@ -93,7 +93,7 @@ recommendations:
     cost: "medium"
     costs: "Правило можна перевірити лише там, де ознаку названо в картці моделі або на екрані налаштувань, тож воно спирається на обовʼязок документування, що лягає на постачальника, а не на роботодавця, якого регулюють. Коли названо один вхід, його непрямі відповідники — давність останньої ролі, щільність переходів — лишаються поза текстом, доки їх не назвуть окремо."
     targets:
-      - "M-011"
+      - "mech.employment_gap_downranking_bias"
       - "L-001"
       - "bar.automated_filter_parser_threshold"
     interventions:
@@ -107,7 +107,7 @@ recommendations:
     targets:
       - "A-002"
       - "A-014"
-      - "M-010"
+      - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.requisition_approval_public_posting"
     interventions:
       - "I-003"

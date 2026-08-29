@@ -23,9 +23,9 @@ test.describe('language without a URL', () => {
 
   test('the canonical URL is the language-free one, in either language', async ({ page }) => {
     for (const lang of ['en', 'uk']) {
-      await page.goto(`/mechanisms/M-001?lang=${lang}`);
-      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://hoba.work/mechanisms/M-001');
-      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://hoba.work/mechanisms/M-001');
+      await page.goto(`/mechanisms/mech.genuine_technical_skill_shortfall?lang=${lang}`);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall');
+      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall');
       await expect(page.locator('html')).toHaveAttribute('lang', lang);
     }
     // Nothing to alternate between any more.
@@ -63,14 +63,14 @@ test.describe('language without a URL', () => {
   test('the switcher stays on the page and survives a reload', async ({ browser }) => {
     const context = await browser.newContext({ locale: 'en-US' });
     const page = await context.newPage();
-    await page.goto('/mechanisms/M-001');
+    await page.goto('/mechanisms/mech.genuine_technical_skill_shortfall');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 
     await page.locator('[data-lang-switch="uk"]').click();
-    await expect(page).toHaveURL(/\/mechanisms\/M-001/);
+    await expect(page).toHaveURL(/\/mechanisms\/mech\.genuine_technical_skill_shortfall/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
 
-    await page.goto('/mechanisms/M-001');
+    await page.goto('/mechanisms/mech.genuine_technical_skill_shortfall');
     await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
     await context.close();
   });
@@ -79,7 +79,7 @@ test.describe('language without a URL', () => {
     for (const [legacy, target] of [
       ['/uk/', '/'],
       ['/uk/registry', '/registry'],
-      ['/uk/mechanisms/M-001', '/mechanisms/M-001'],
+      ['/uk/mechanisms/M-001', '/mechanisms/mech.genuine_technical_skill_shortfall'],
       ['/_i/uk/patterns', '/patterns'],
     ] as const) {
       const response = await page.goto(legacy);
@@ -91,7 +91,7 @@ test.describe('language without a URL', () => {
   test('a reader who chose Ukrainian sees no English interface strings', async ({ browser }) => {
     const context = await browser.newContext({ locale: 'uk-UA' });
     const page = await context.newPage();
-    for (const path of ['/', '/registry', '/analyze', '/mechanisms/M-001']) {
+    for (const path of ['/', '/registry', '/analyze', '/mechanisms/mech.genuine_technical_skill_shortfall']) {
       await page.goto(path);
       const nav = await page.locator('header nav a').allInnerTexts();
       expect(nav.join(' '), path).not.toMatch(/\b(Registry|Patterns|Graph|Data|Analyze)\b/);
@@ -106,7 +106,7 @@ test.describe('every page reaches the worker', () => {
   const PAGES = [
     '/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data',
     '/methodology', '/developers', '/contribute', '/about',
-    '/artifacts/A-013', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/M-001',
+    '/artifacts/A-013', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.genuine_technical_skill_shortfall',
     '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-002', '/actors/recruiter',
   ];
 

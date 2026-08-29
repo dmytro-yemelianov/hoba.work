@@ -1,0 +1,95 @@
+---
+id: "mech.location_or_timezone_compliance_constraint"
+type: "mechanism"
+aliases:
+  - "M-014"
+title: "Location or Timezone Compliance Constraint"
+summary: "The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides."
+operates_at:
+  - "bar.automated_filter_parser_threshold"
+  - "bar.recruiter_screening_call"
+emissions:
+  -
+    artifact: "A-017"
+    fidelity: "direct"
+    likelihood: "high"
+    evidence: []
+  -
+    artifact: "A-009"
+    fidelity: "direct"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+    observed_at: ["ingestion"]
+  -
+    artifact: "A-002"
+    fidelity: "euphemism"
+    likelihood: "medium"
+    evidence: ["EVD-001"]
+    observed_at: ["recruiter"]
+facets:
+  actor: "policy"
+  nature: "rule"
+  visibility: "observable"
+  removability: "intermediary"
+amplifies: []
+masks: []
+perspectives:
+  -
+    actor: "employer-policy"
+    sees: "The list of jurisdictions where an entity or an employment provider can issue a contract, and a candidate record showing a country outside it."
+    reads: "A contract that cannot be signed, whatever the panel concluded. Adding a jurisdiction is a registration and tax decision, not a hiring one."
+    does: "Holds the coverage list as written, and leaves any exception to a separate approval running on its own quarterly cycle."
+  -
+    actor: "recruiter"
+    sees: "A residency answer that falls outside the approved country list — a check that can happen at the screen or at the offer paperwork."
+    reads: "This process ends here regardless of the panel's recommendation, and the requisition returns to sourcing while time-to-fill keeps counting."
+    does: "States the constraint at the screen, where the list is at hand, or delivers it at the offer stage in the wording available for it."
+  -
+    actor: "candidate"
+    sees: "A posting marked remote, a process that runs normally, and a jurisdiction question arriving late — or a rejection minutes after submitting."
+    reads: "Either the location was disqualifying from the start, or something about the profile was. Nothing in the message separates the two."
+    does: "Records the stage at which the question was asked, and asks about entity coverage before the next remote process rather than after it."
+  -
+    actor: "public-policy"
+    sees: "Employment law and tax registration in each jurisdiction, and the conditions under which a cross-border employment relationship can exist at all."
+    reads: "A settled boundary, working as written. Nothing in it says at which point in a hiring process the boundary has to be disclosed."
+    does: "Sets the rule and the licensed intermediary arrangements that can carry an employment relationship across it, on a legislative cycle no single process can wait for."
+status: "active"
+evidence_level: "established"
+honest_baseline: false
+evidence_ids:
+  - "EVD-001"
+specimens:
+  -
+    kind: "chat"
+    label: "Where the constraint actually sits"
+    lines:
+      -
+        speaker: "Recruiter"
+        at: "offer stage"
+        text: "Everything is agreed on our side. One question — you are resident where exactly?"
+      -
+        speaker: "Candidate"
+        at: "offer stage"
+        text: "Same country as in my application, no change."
+      -
+        speaker: "Recruiter"
+        at: "offer stage"
+        text: "Then I have bad news. We have no legal entity there and our provider does not cover it, so we cannot issue a contract regardless of the role."
+        tell: true
+    reading: "A hard constraint that is knowable on day one and was checked at the offer. Nothing about the candidate is being assessed here."
+non_inferences:
+  - "The jurisdictional barrier is entirely independent of the candidate's technical competence."
+---
+
+# Location or Timezone Compliance Constraint
+
+The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.
+
+### Structural Context
+- **Actor:** `policy`
+- **Nature:** `rule`
+- **Removability:** `intermediary`
+
+### Non-Inferences
+- The jurisdictional barrier is entirely independent of the candidate's technical competence.

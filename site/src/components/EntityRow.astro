@@ -20,7 +20,7 @@ const { id, title, href, pill, note } = Astro.props;
     </a>
   ) : (
     <div class="row">
-      <span class="font-mono text-sm text-hoba-muted shrink-0">{id}</span>
+      <span class="font-mono text-sm text-hoba-muted break-all max-w-full">{id}</span>
       <span class="text-hoba-text">{title}</span>
       {pill && <span class="pill pill-muted ml-auto">{pill}</span>}
       {note && <span class="w-full text-sm text-hoba-muted">{note}</span>}

@@ -75,7 +75,7 @@ test.describe('the canonical path anchors the registry', () => {
   });
 
   test('an entity says which era made it ordinary', async ({ page }) => {
-    await page.goto('/mechanisms/M-024?lang=en');
+    await page.goto('/mechanisms/mech.inflated_requisition_requirements_vs_actual_team_needs?lang=en');
     const note = page.getByRole('region', { name: /made this ordinary/i });
     await expect(note).toContainText('A fixed number of seats');
     await note.getByRole('link').first().click();

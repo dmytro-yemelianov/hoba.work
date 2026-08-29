@@ -159,6 +159,14 @@ describe('legacy entity-ID redirects', () => {
     expect(legacyRedirect('/barriers/B-002.md')).toBe('/barriers/bar.automated_filter_parser_threshold.md');
   });
 
+  it('redirects an old mechanism short code to its new dotted-namespace path', () => {
+    expect(legacyRedirect('/mechanisms/M-001')).toBe('/mechanisms/mech.genuine_technical_skill_shortfall');
+  });
+
+  it('redirects an old mechanism short code requesting its Markdown representation', () => {
+    expect(legacyRedirect('/mechanisms/M-001.md')).toBe('/mechanisms/mech.genuine_technical_skill_shortfall.md');
+  });
+
   it('leaves the root path alone', () => {
     expect(legacyRedirect('/')).toBeNull();
   });

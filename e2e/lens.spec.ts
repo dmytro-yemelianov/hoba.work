@@ -14,7 +14,7 @@ const actorCount = loadRegistryFromRoot(findRegistryRoot(process.cwd())!, 'en').
  */
 test.describe('the lens', () => {
   test('shows every point of view until one is chosen', async ({ page }) => {
-    await page.goto('/mechanisms/M-009?lang=en');
+    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en');
     const voices = page.locator('.perspective:not(.is-blind)');
     expect(await voices.count()).toBeGreaterThan(1);
     for (let i = 0; i < (await voices.count()); i++) await expect(voices.nth(i)).toBeVisible();
@@ -23,7 +23,7 @@ test.describe('the lens', () => {
   });
 
   test('collapses to one seat, and says when that seat cannot see', async ({ page }) => {
-    await page.goto('/mechanisms/M-009?lang=en&lens=recruiter');
+    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=recruiter');
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'recruiter');
 
     const shown = page.locator('.lens-block:visible');
@@ -32,14 +32,14 @@ test.describe('the lens', () => {
 
     // An entry the chosen seat has no view of states that, rather than
     // silently rendering nothing.
-    await page.goto('/mechanisms/M-009?lang=en&lens=public-policy');
+    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=public-policy');
     const only = page.locator('.lens-block:visible');
     await expect(only).toHaveCount(1);
     await expect(only.first()).toHaveAttribute('data-actor', 'public-policy');
   });
 
   test('a chosen seat survives navigation and is applied before paint', async ({ page }) => {
-    await page.goto('/mechanisms/M-009?lang=en&lens=hiring-manager');
+    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=hiring-manager');
     await page.goto('/barriers/bar.technical_screen_live_assessment?lang=en');
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'hiring-manager');
     // No flash: the attribute is on <html> from the inline script, not from a

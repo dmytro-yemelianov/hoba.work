@@ -27,7 +27,7 @@
             "id": "criteria-differ-by-round",
             "label": "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises.",
             "excludes": [
-              "M-019"
+              "mech.take_home_evaluation_fatigue_asymmetry"
             ],
             "because": "Different criteria across distinct rounds establish separate evaluation dimensions rather than noisy evaluator disagreement."
           },
@@ -35,9 +35,9 @@
             "id": "same-criterion-opposite-scores",
             "label": "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (M-019) rather than an honest calibrated verdict."
+            "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (mech.take_home_evaluation_fatigue_asymmetry) rather than an honest calibrated verdict."
           },
           {
             "id": "reply-adds-nothing",

@@ -90,7 +90,7 @@ describe('hoba MCP server', () => {
     expect(info.counts.barriers).toBeGreaterThanOrEqual(14);
     const node = payload(await client.request('tools/call', { name: 'get_node', arguments: { id: 'L-001' } }));
     expect(node.registry_version).toBe(info.registry_version);
-    expect(node.node.mechanisms).toEqual(['M-011', 'M-008']);
+    expect(node.node.mechanisms).toEqual(['mech.employment_gap_downranking_bias', 'mech.automated_keyword_qualification_filter']);
   });
 
   it('explains observations and validates the stage argument', async () => {
@@ -157,7 +157,7 @@ describe('hoba MCP server', () => {
     expect(some.filter_applied).toBe(true);
     expect(some.patterns.map((p: { id: string }) => p.id)).toEqual(['pat.seniority_double_bind']);
 
-    const trav = payload(await client.request('tools/call', { name: 'traverse_graph', arguments: { start_id: 'M-001', depth: 1, relations: ['operates_at'] } }));
-    expect(trav.nodes.map((n: { id: string }) => n.id).sort()).toEqual(['M-001', 'bar.hiring_manager_in_depth_review', 'bar.take_home_work_sample_evaluation', 'bar.technical_screen_live_assessment']);
+    const trav = payload(await client.request('tools/call', { name: 'traverse_graph', arguments: { start_id: 'mech.genuine_technical_skill_shortfall', depth: 1, relations: ['operates_at'] } }));
+    expect(trav.nodes.map((n: { id: string }) => n.id).sort()).toEqual(['bar.hiring_manager_in_depth_review', 'bar.take_home_work_sample_evaluation', 'bar.technical_screen_live_assessment', 'mech.genuine_technical_skill_shortfall']);
   });
 });

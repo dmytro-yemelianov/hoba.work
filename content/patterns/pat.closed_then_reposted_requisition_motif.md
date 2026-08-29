@@ -9,10 +9,10 @@ required_artifacts:
   - "A-003"
   - "A-004"
 compatible_mechanisms:
-  - "M-002"
-  - "M-006"
-  - "M-010"
-  - "M-013"
+  - "mech.stronger_competing_candidate_in_final_cohort"
+  - "mech.stale_or_orphaned_job_requisition"
+  - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
+  - "mech.mid_process_role_requirement_redefinition"
 trigger_rule: "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days."
 establishes:
   - "The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process."

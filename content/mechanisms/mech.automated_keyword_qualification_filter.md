@@ -1,0 +1,90 @@
+---
+id: "mech.automated_keyword_qualification_filter"
+type: "mechanism"
+aliases:
+  - "M-008"
+title: "Automated Keyword / Qualification Filter"
+summary: "Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds."
+operates_at:
+  - "bar.automated_filter_parser_threshold"
+emissions:
+  -
+    artifact: "A-009"
+    fidelity: "direct"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+    observed_at: ["ingestion"]
+  -
+    artifact: "A-002"
+    fidelity: "euphemism"
+    likelihood: "high"
+    evidence: ["EVD-001"]
+facets:
+  actor: "system"
+  nature: "rule"
+  visibility: "inferable"
+  removability: "candidate"
+amplifies:
+  - "mech.employment_gap_downranking_bias"
+  - "mech.mid_process_role_requirement_redefinition"
+masks: []
+perspectives:
+  -
+    actor: "ats-vendor"
+    sees: "The rule as the customer configured it and the string it tests for, evaluated against the parsed fields of one application. Whether an adjacent qualification sits in those fields is not something a string comparison can represent."
+    reads: "The rule ran to specification: the token is present or it is absent. A failed knockout is a determinate result, not a low score."
+    does: "Writes the rejection status in the same session and emits the notification the customer configured. The rule stays on until a customer turns it off."
+  -
+    actor: "hiring-manager"
+    sees: "The shortlist that reaches the review, and the requirements as they were written into the posting. What that wording removed before the shortlist is not in the view."
+    reads: "A thin pipeline reads as scarcity of the skill in the market rather than as the reach of the requirement as it was written."
+    does: "Holds the bar and asks for more sourcing, or rewrites the requirements once the search runs long."
+  -
+    actor: "candidate"
+    sees: "A rejection that arrives minutes after submission, in template wording that names no field."
+    reads: "The interval is the only evidence about how the application was read, and the message does not distinguish a rule from a person."
+    does: "Records the interval between submission and reply, and carries the exact strings the posting names into the next application."
+status: "active"
+evidence_level: "established"
+honest_baseline: false
+evidence_ids:
+  - "EVD-001"
+  - "EVD-037"
+specimens:
+  -
+    kind: "ats"
+    label: "Screening rules, as they ran"
+    lines:
+      -
+        at: "+0.4s"
+        text: "Rule 1: must_contain(\"Kubernetes\") — PASS"
+      -
+        at: "+0.4s"
+        text: "Rule 2: must_contain(\"CKA\") — candidate holds CKAD — FAIL"
+        tell: true
+      -
+        at: "+0.4s"
+        text: "Rule 3: not evaluated (short-circuit)"
+      -
+        at: "+0.5s"
+        text: "Status: Rejected — does not meet minimum criteria"
+    reading: "An adjacent certification is not a near miss to a string match; it is a miss. The filter compares tokens, not competence."
+non_inferences:
+  - "Passing keyword filters does not guarantee interview invitation."
+---
+
+# Automated Keyword / Qualification Filter
+
+Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.
+
+### Structural Context
+- **Actor:** `system`
+- **Nature:** `rule`
+- **Removability:** `candidate`
+
+### Causal Relations
+- Amplifies `mech.employment_gap_downranking_bias` — Employment Gap Downranking Bias
+- Amplifies `mech.mid_process_role_requirement_redefinition` — Mid-Process Role Requirement Redefinition
+
+### Non-Inferences
+- Passing keyword filters does not guarantee interview invitation.

@@ -20,10 +20,10 @@
         "A-004"
       ],
       "compatible_mechanisms": [
-        "M-002",
-        "M-006",
-        "M-010",
-        "M-013"
+        "mech.stronger_competing_candidate_in_final_cohort",
+        "mech.stale_or_orphaned_job_requisition",
+        "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+        "mech.mid_process_role_requirement_redefinition"
       ],
       "trigger_rule": "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.",
       "establishes": [
@@ -143,8 +143,8 @@
         "A-005"
       ],
       "compatible_mechanisms": [
-        "M-004",
-        "M-017"
+        "mech.unstated_compensation_band_discrepancy",
+        "mech.experience_age_grading_mismatch"
       ],
       "trigger_rule": "The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.",
       "establishes": [
@@ -251,8 +251,8 @@
         "A-009"
       ],
       "compatible_mechanisms": [
-        "M-008",
-        "M-024"
+        "mech.automated_keyword_qualification_filter",
+        "mech.inflated_requisition_requirements_vs_actual_team_needs"
       ],
       "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
       "establishes": [
@@ -348,9 +348,9 @@
         "A-013"
       ],
       "compatible_mechanisms": [
-        "M-001",
-        "M-004",
-        "M-017"
+        "mech.genuine_technical_skill_shortfall",
+        "mech.unstated_compensation_band_discrepancy",
+        "mech.experience_age_grading_mismatch"
       ],
       "trigger_rule": "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.",
       "establishes": [

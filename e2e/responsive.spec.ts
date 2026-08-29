@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze', '/methodology', '/mechanisms/M-001', '/patterns/pat.closed_then_reposted_requisition_motif', '/barriers/bar.client_profile_approval_and_client_interview'];
+const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze', '/methodology', '/mechanisms/mech.genuine_technical_skill_shortfall', '/patterns/pat.closed_then_reposted_requisition_motif', '/barriers/bar.client_profile_approval_and_client_interview'];
 const WIDTHS = [360, 768, 1280];
 
 /** Anything wider than the viewport means a layout leak, not a design choice. */
@@ -31,7 +31,7 @@ test.describe('responsive layout', () => {
     const FRAMED = [
       '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/M-001', '/barriers/bar.application_ingestion', '/artifacts/A-001',
+      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/A-001',
       '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-001', '/404',
     ];
     let reference: Record<string, number> | null = null;
@@ -72,7 +72,7 @@ test.describe('responsive layout', () => {
     const PAGES = [
       '/', '/registry', '/patterns', '/graph', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/M-001', '/barriers/bar.application_ingestion', '/artifacts/A-001',
+      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/A-001',
       '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-001', '/404',
     ];
     for (const path of PAGES) {

@@ -1,0 +1,98 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Hiring Manager Consensus Impasse",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-006"
+    ],
+    "content": "# Hiring Manager Consensus Impasse\n\nThe panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate.",
+    "aliases": [
+      "M-022"
+    ],
+    "id": "mech.hiring_manager_consensus_impasse",
+    "type": "mechanism",
+    "summary": "The panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.",
+    "operates_at": [
+      "bar.team_cross_functional_panel"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-014",
+        "fidelity": "direct",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-006"
+        ],
+        "observed_at": [
+          "team"
+        ]
+      },
+      {
+        "artifact": "A-002",
+        "fidelity": "euphemism",
+        "likelihood": "high",
+        "evidence": [
+          "EVD-001"
+        ],
+        "observed_at": []
+      }
+    ],
+    "facets": {
+      "actor": "hiring-manager",
+      "nature": "bias",
+      "visibility": "opaque",
+      "removability": "none"
+    },
+    "amplifies": [],
+    "masks": [
+      "mech.stronger_competing_candidate_in_final_cohort"
+    ],
+    "evidence_level": "supported",
+    "honest_baseline": false,
+    "specimens": [
+      {
+        "kind": "note",
+        "label": "Debrief tally",
+        "lines": [
+          {
+            "text": "Interviewer A: hire. Interviewer B: hire. Interviewer C: no hire. Interviewer D: no hire.",
+            "tell": false
+          },
+          {
+            "text": "No tiebreaker present. Policy: absent consensus, default to no hire.",
+            "tell": true
+          },
+          {
+            "text": "Outcome recorded as: not aligned with team needs.",
+            "tell": false
+          }
+        ],
+        "reading": "A 2–2 split became a rejection by rule, and the rule was then written up as a judgement about the candidate."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "hiring-manager",
+        "sees": "A debrief that does not resolve: two for, two against, with no calibration record that would weigh one interviewer's bar against another's.",
+        "reads": "Absent a reason to override, the split is the answer. A bad hire is visible for a year and has a name on it; a candidate not hired leaves nothing to be asked about.",
+        "does": "Applies the default and records the outcome in the fit wording the debrief form accepts, which is what the rest of the process then sees."
+      },
+      {
+        "actor": "recruiter",
+        "sees": "A debrief that closes without a recommendation, and an outcome field set to no hire with no single reason attached to it.",
+        "reads": "The requisition is open again and the pipeline restarts. What the panel actually scored is not visible from here.",
+        "does": "Sends the standard rejection, since there is no agreed reason to convey, and reopens sourcing against a bar written down no more clearly than before."
+      },
+      {
+        "actor": "candidate",
+        "sees": "Feedback from one round naming architectural depth as a strength, another naming technical background as a gap, then a rejection citing fit.",
+        "reads": "Two assessments of the same performance that cannot both hold. From here they read as an assessment of the candidate rather than of a room that did not agree.",
+        "does": "Sets out to close a gap that half the panel did not record, and keeps both statements with their dates."
+      }
+    ],
+    "non_inferences": [
+      "A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate."
+    ]
+  }
+}

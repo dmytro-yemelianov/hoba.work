@@ -168,6 +168,14 @@ describe('aliases survive Zod parsing', () => {
     expect(renamed).toBeDefined();
     expect(renamed!.aliases).toEqual(['P-001']);
   });
+
+  it('loads a renamed mechanism entity with its aliases field intact, not stripped', () => {
+    const root = resolveRegistryRoot();
+    const bundle = loadRegistryFromRoot(root, 'en');
+    const renamed = bundle.mechanisms.find((m) => m.id === 'mech.genuine_technical_skill_shortfall');
+    expect(renamed).toBeDefined();
+    expect(renamed!.aliases).toEqual(['M-001']);
+  });
 });
 
 describe('evidence aliases survive Zod parsing', () => {

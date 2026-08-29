@@ -9,8 +9,8 @@ required_artifacts:
   - "A-002"
   - "A-009"
 compatible_mechanisms:
-  - "M-008"
-  - "M-024"
+  - "mech.automated_keyword_qualification_filter"
+  - "mech.inflated_requisition_requirements_vs_actual_team_needs"
 trigger_rule: "Опис вакансії або автоматичний скринінг вимагає X років досвіду з технологією, де X більший за вік самої технології."
 establishes:
   - "Опис вакансії склали з копії попереднього шаблону без технічної перевірки, а пороги з нього працюють як правила автоматичного відсіву."

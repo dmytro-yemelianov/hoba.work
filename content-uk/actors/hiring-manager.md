@@ -42,9 +42,9 @@ recommendations:
     cost: "medium"
     costs: "Коротший перелік приводить більше заявок у воронку, яку обслуговує команда самого актора, і забирає сторінку вимог як аргумент за вищий рівень і ширшу вилку."
     targets:
-      - "M-024"
+      - "mech.inflated_requisition_requirements_vs_actual_team_needs"
       - "pat.experience_age_impossibility"
-      - "M-008"
+      - "mech.automated_keyword_qualification_filter"
       - "L-003"
     interventions: []
   -
@@ -54,8 +54,8 @@ recommendations:
     cost: "low"
     costs: "Записане уподобання відкрите для заперечень від панелі й від рекрутера, а те, яке не вкладається в одне речення, до брифу не потрапляє."
     targets:
-      - "M-010"
-      - "M-018"
+      - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
+      - "mech.domain_specificity_over_weighting"
       - "bar.technical_screen_live_assessment"
       - "bar.hiring_manager_in_depth_review"
       - "A-014"
@@ -67,8 +67,8 @@ recommendations:
     cost: "medium"
     costs: "Тригодинна робота дає менше матеріалу, тому більше рішення лягає на панель, а двадцять хвилин від кожного з двох рецензентів беруться зі спринту, у якому команда вже відстає."
     targets:
-      - "M-019"
-      - "M-012"
+      - "mech.take_home_evaluation_fatigue_asymmetry"
+      - "mech.interview_resource_scheduling_saturation"
       - "bar.take_home_work_sample_evaluation"
       - "L-002"
     interventions:
@@ -80,7 +80,7 @@ recommendations:
     cost: "medium"
     costs: "Назвати того, чий голос вирішальний, означає, що цей актор підписує найм, з яким панель не погодилася, а невдалий найм видно рік, і на ньому стоїть його імʼя."
     targets:
-      - "M-022"
+      - "mech.hiring_manager_consensus_impasse"
       - "bar.team_cross_functional_panel"
       - "A-014"
     interventions: []
@@ -91,7 +91,7 @@ recommendations:
     cost: "high"
     costs: "Цикл добігає кінця за профілем, який команда вже переросла, а зміна, якої потребували вимоги, чекає на пошук, що почнеться заново з публікації."
     targets:
-      - "M-013"
+      - "mech.mid_process_role_requirement_redefinition"
       - "L-003"
     interventions: []
   -
@@ -103,7 +103,7 @@ recommendations:
     targets:
       - "pat.seniority_double_bind"
       - "A-013"
-      - "M-017"
+      - "mech.experience_age_grading_mismatch"
       - "bar.hiring_manager_in_depth_review"
     interventions: []
 status: "active"

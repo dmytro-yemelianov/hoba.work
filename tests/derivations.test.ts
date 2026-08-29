@@ -148,8 +148,8 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
     expect(anomalies.length).toBeGreaterThan(0);
     const queuedToScreen = anomalies.find((a) => a.toState === 'recruiter-screen')!;
     expect(queuedToScreen.severity).toBe('stalled_anomalous');
-    expect(queuedToScreen.implicatedMechanisms).toContain('M-006');
-    expect(queuedToScreen.implicatedMechanisms).toContain('M-020');
+    expect(queuedToScreen.implicatedMechanisms).toContain('mech.stale_or_orphaned_job_requisition');
+    expect(queuedToScreen.implicatedMechanisms).toContain('mech.automated_application_expiration_timeout');
   });
 
   it('calculates runway horizon and classifies risk profile correctly', () => {
@@ -160,7 +160,7 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
     const vulnerable = substrateCalculateRunway(5000, 3000);
     expect(vulnerable.runwayMonths).toBeLessThan(3);
     expect(vulnerable.riskStatus).toBe('acute_exhaustion_vulnerability');
-    expect(vulnerable.vulnerabilityNote).toContain('M-017');
+    expect(vulnerable.vulnerabilityNote).toContain('mech.experience_age_grading_mismatch');
   });
 
   it('verifies flow conservation across all authored funding records', () => {

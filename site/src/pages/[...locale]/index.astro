@@ -107,7 +107,7 @@ const caseMechanisms = bundle.mechanisms
       <!-- Right Column: Interactive Diagnostic Flow Preview -->
       <div class="lg:col-span-5">
         <div class="rounded-2xl border border-hoba-border bg-hoba-card/90 p-5 shadow-xl shadow-black/5 relative overflow-hidden">
-          <div class="flex items-center justify-between border-b border-hoba-border pb-3 mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-hoba-border pb-3 mb-4">
             <div class="flex items-center gap-2">
               <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -117,16 +117,16 @@ const caseMechanisms = bundle.mechanisms
                 {lang === 'uk' ? 'Приклад розбору випадку' : 'Diagnostic Pipeline Flow'}
               </span>
             </div>
-            <span class="pill pill-muted font-mono text-[11px] break-all">DAG: A-002 → bar.automated_filter_parser_threshold → M-001</span>
+            <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[11px] font-mono text-hoba-muted break-all max-w-full">DAG: A-002 → bar.automated_filter_parser_threshold → mech.genuine_technical_skill_shortfall</span>
           </div>
 
           <!-- Flow Steps -->
           <div class="space-y-2.5">
             <!-- Node 1: Observation -->
             <a href={`${prefix}/artifacts/A-002`} class="block p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent/50 transition-all text-left no-underline group">
-              <div class="flex items-center justify-between gap-2">
-                <span class="pill pill-muted text-[10px] font-mono text-hoba-accent">A-002 · {lang === 'uk' ? 'Спостереження' : 'Observation'}</span>
-                <span class="text-[11px] font-mono text-hoba-muted">{lang === 'uk' ? 'Етап: Скринінг' : 'Stage: Screening'}</span>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-hoba-accent break-all">A-002 · {lang === 'uk' ? 'Спостереження' : 'Observation'}</span>
+                <span class="text-[11px] font-mono text-hoba-muted shrink-0">{lang === 'uk' ? 'Етап: Скринінг' : 'Stage: Screening'}</span>
               </div>
               <p class="mt-1 text-xs font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
                 {lang === 'uk' ? 'Шаблонна нічна відмова без деталей (03:14)' : 'Standardized late-night rejection message (03:14)'}
@@ -140,9 +140,9 @@ const caseMechanisms = bundle.mechanisms
 
             <!-- Node 2: Barrier -->
             <a href={`${prefix}/barriers/bar.automated_filter_parser_threshold`} class="block p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent/50 transition-all text-left no-underline group">
-              <div class="flex items-center justify-between gap-2">
-                <span class="pill pill-muted text-[10px] font-mono text-amber-700 dark:text-amber-400 break-all">bar.automated_filter_parser_threshold · {lang === 'uk' ? 'Барʼєр воронки' : 'Funnel Barrier'}</span>
-                <span class="text-[11px] font-mono text-hoba-muted">{lang === 'uk' ? 'Детерміновано' : 'Deterministic'}</span>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-amber-700 dark:text-amber-400 break-all">bar.automated_filter_parser_threshold · {lang === 'uk' ? 'Барʼєр воронки' : 'Funnel Barrier'}</span>
+                <span class="text-[11px] font-mono text-hoba-muted shrink-0">{lang === 'uk' ? 'Детерміновано' : 'Deterministic'}</span>
               </div>
               <p class="mt-1 text-xs font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
                 {lang === 'uk' ? 'Автоматичний фільтр парсера резюме ATS' : 'Automated ATS Resume Parser Threshold'}
@@ -155,10 +155,10 @@ const caseMechanisms = bundle.mechanisms
             </div>
 
             <!-- Node 3: Mechanism -->
-            <a href={`${prefix}/mechanisms/M-001`} class="block p-3 rounded-lg border border-rose-500/30 bg-rose-500/5 hover:border-rose-500/60 transition-all text-left no-underline group">
-              <div class="flex items-center justify-between gap-2">
-                <span class="pill pill-muted text-[10px] font-mono text-rose-700 dark:text-rose-400">M-001 · {lang === 'uk' ? 'Механізм' : 'Mechanism'}</span>
-                <span class="pill pill-muted text-[10px] text-rose-700 dark:text-rose-400 border-rose-500/30">{lang === 'uk' ? 'Екзогенно (поза контролем)' : 'Exogenous'}</span>
+            <a href={`${prefix}/mechanisms/mech.genuine_technical_skill_shortfall`} class="block p-3 rounded-lg border border-rose-500/30 bg-rose-500/5 hover:border-rose-500/60 transition-all text-left no-underline group">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-rose-700 dark:text-rose-400 break-all">mech.genuine_technical_skill_shortfall · {lang === 'uk' ? 'Механізм' : 'Mechanism'}</span>
+                <span class="inline-block rounded-full border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 text-[10px] text-rose-700 dark:text-rose-400 shrink-0">{lang === 'uk' ? 'Екзогенно' : 'Exogenous'}</span>
               </div>
               <p class="mt-1 text-xs font-semibold text-hoba-text group-hover:text-rose-600 dark:group-hover:text-rose-300 transition-colors">
                 {lang === 'uk' ? 'Фантомна вакансія або збір бази без активного бюджету' : 'Ghost Requisition & Pipeline Refresh without Budget'}
@@ -395,8 +395,8 @@ const caseMechanisms = bundle.mechanisms
               <li class="py-2">
                 <a href={`${prefix}/mechanisms/${m.id}`} class="group flex flex-col gap-1 hover:bg-hoba-hover -mx-2 p-2 rounded-md transition-colors no-underline">
                   <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="flex items-center gap-2 min-w-0">
-                      <span class="font-mono text-xs font-semibold text-hoba-accent shrink-0">{m.id}</span>
+                    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 min-w-0">
+                      <span class="font-mono text-xs font-semibold text-hoba-accent break-all">{m.id}</span>
                       <span class="text-sm text-hoba-text font-medium group-hover:text-hoba-accent transition-colors break-words">{m.title}</span>
                     </div>
                     <RemovabilityBadge removability={m.facets.removability} lang={lang} />

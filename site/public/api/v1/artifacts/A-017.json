@@ -25,8 +25,8 @@
             "id": "stated-in-the-posting",
             "label": "The posting stated the same constraint, in the same terms, before the application was made.",
             "excludes": [
-              "M-003",
-              "M-022"
+              "mech.ats_parser_extraction_failure",
+              "mech.hiring_manager_consensus_impasse"
             ],
             "because": "An upfront explicit location constraint rules out post-hoc constraint injection and location bait-and-switch."
           },
@@ -34,7 +34,7 @@
             "id": "absent-from-the-posting",
             "label": "The posting said nothing about the constraint, or stated a wider one.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Rejecting on an unstated location constraint contradicts an honest baseline evaluation against published terms."
           },
@@ -42,7 +42,7 @@
             "id": "posting-edited",
             "label": "The posting now carries the constraint, and the saved copy shows it did not.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "Retroactively editing criteria after applications arrive contradicts honest process standards."
           },

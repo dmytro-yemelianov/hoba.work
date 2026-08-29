@@ -16,7 +16,7 @@ test.describe('analysis wizard', () => {
     await page.locator('#step-h [data-goto="o"]').click();
     await expect(page.locator('#barriers-output')).toContainText('bar.technical_screen_live_assessment');
     await page.locator('#step-o [data-goto="b"]').click();
-    await expect(page.locator('#mechanisms-output')).toContainText('M-001');
+    await expect(page.locator('#mechanisms-output')).toContainText('mech.genuine_technical_skill_shortfall');
     await expect(page.locator('#patterns-output')).toContainText('pat.closed_then_reposted_requisition_motif');
     await page.locator('#step-b [data-goto="a"]').click();
     await expect(page.locator('#count-candidate')).toHaveText('2');
@@ -56,7 +56,7 @@ test.describe('analysis wizard', () => {
     await expect(page.locator('input[name="artifacts_selected"][value="A-021"]')).toBeChecked();
 
     await page.locator('#tab-b').click();
-    await expect(page.locator('#mechanisms-output')).toContainText('M-006');
+    await expect(page.locator('#mechanisms-output')).toContainText('mech.stale_or_orphaned_job_requisition');
     await expect(page.locator('#patterns-output')).toContainText('pat.closed_then_reposted_requisition_motif');
   });
 });

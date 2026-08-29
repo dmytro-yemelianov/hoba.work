@@ -43,7 +43,7 @@ recommendations:
     cost: "low"
     costs: "Експорт в одну колонку звичайним текстом віддає верстку, а кожну наступну правку документа доводиться перевіряти знову."
     targets:
-      - "M-003"
+      - "mech.ats_parser_extraction_failure"
       - "bar.application_ingestion"
       - "bar.automated_filter_parser_threshold"
       - "A-009"
@@ -56,9 +56,9 @@ recommendations:
     cost: "low"
     costs: "Логістичне питання в першій відповіді випереджає розмову про саму роботу, а відповідь нема з чим звірити."
     targets:
-      - "M-016"
-      - "M-005"
-      - "M-006"
+      - "mech.speculative_sourcing_talent_pooling_without_opening"
+      - "mech.pre_selected_internal_candidate"
+      - "mech.stale_or_orphaned_job_requisition"
       - "bar.outbound_sourcing_talent_pool_contact"
       - "A-012"
     interventions: []
@@ -69,7 +69,7 @@ recommendations:
     cost: "medium"
     costs: "Це питання може завершити процес уже на скринінгу, а очікування, назване рано, фіксує число раніше, ніж зафіксовано рівень."
     targets:
-      - "M-004"
+      - "mech.unstated_compensation_band_discrepancy"
       - "bar.recruiter_screening_call"
       - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
@@ -87,7 +87,7 @@ recommendations:
       - "A-004"
       - "A-014"
       - "A-007"
-      - "M-013"
+      - "mech.mid_process_role_requirement_redefinition"
     interventions: []
   -
     id: "submit-at-the-stated-timebox"
@@ -97,7 +97,7 @@ recommendations:
     costs: "Роботу, зупинену на таймбоксі, читають поруч із тими, що на ньому не зупинилися, а хвилини рецензента кандидат не встановлює."
     targets:
       - "L-002"
-      - "M-019"
+      - "mech.take_home_evaluation_fatigue_asymmetry"
       - "bar.take_home_work_sample_evaluation"
       - "A-006"
     interventions:
@@ -109,9 +109,9 @@ recommendations:
     cost: "medium"
     costs: "Відповідь, що приходить після обраної дати, зараховується як відсутність відповіді, а вже витрачений час списується, а не вичікується."
     targets:
-      - "M-020"
-      - "M-006"
-      - "M-009"
+      - "mech.automated_application_expiration_timeout"
+      - "mech.stale_or_orphaned_job_requisition"
+      - "mech.recruiter_volume_quota_incentive_distortion"
       - "bar.inbound_screening_triage"
       - "A-001"
     interventions:

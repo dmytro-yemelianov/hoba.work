@@ -6,29 +6,29 @@
     "evidence_ids": [
       "EVD-003"
     ],
-    "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-011`",
+    "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.employment_gap_downranking_bias` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.employment_gap_downranking_bias`",
     "aliases": [],
     "id": "L-001",
     "type": "loop",
-    "summary": "An employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",
+    "summary": "An employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",
     "mechanisms": [
-      "M-011",
-      "M-008"
+      "mech.employment_gap_downranking_bias",
+      "mech.automated_keyword_qualification_filter"
     ],
     "edges": [
       {
-        "from": "M-011",
-        "to": "M-008",
+        "from": "mech.employment_gap_downranking_bias",
+        "to": "mech.automated_keyword_qualification_filter",
         "relation": "amplifies"
       },
       {
-        "from": "M-008",
-        "to": "M-011",
+        "from": "mech.automated_keyword_qualification_filter",
+        "to": "mech.employment_gap_downranking_bias",
         "relation": "amplifies"
       }
     ],
     "entry_points": [
-      "M-011"
+      "mech.employment_gap_downranking_bias"
     ],
     "interventions": [
       "I-004"

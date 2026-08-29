@@ -63,7 +63,7 @@
           "cost": "medium",
           "costs": "Every threshold customers tuned against the old score distribution shifts, and the field stays on competitors' feature lists after it leaves this one.",
           "targets": [
-            "M-011",
+            "mech.employment_gap_downranking_bias",
             "L-001",
             "bar.automated_filter_parser_threshold"
           ],
@@ -78,7 +78,7 @@
           "cost": "medium",
           "costs": "The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls.",
           "targets": [
-            "M-003",
+            "mech.ats_parser_extraction_failure",
             "bar.automated_filter_parser_threshold",
             "A-009"
           ],
@@ -91,7 +91,7 @@
           "cost": "medium",
           "costs": "It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform.",
           "targets": [
-            "M-003",
+            "mech.ats_parser_extraction_failure",
             "bar.application_ingestion",
             "bar.automated_filter_parser_threshold"
           ],
@@ -106,8 +106,8 @@
           "cost": "medium",
           "costs": "Every held queue becomes a customer decision the current default takes off their desk, and support load is exactly what these defaults are tuned to keep down.",
           "targets": [
-            "M-020",
-            "M-006",
+            "mech.automated_application_expiration_timeout",
+            "mech.stale_or_orphaned_job_requisition",
             "A-001",
             "A-002",
             "pat.closed_then_reposted_requisition_motif"
@@ -123,8 +123,8 @@
           "cost": "low",
           "costs": "The dry run reads the customer's stored applications on the configuration path, and the screen now states a number the vendor stands behind — including when a draft rule would have ended the entire stored pool.",
           "targets": [
-            "M-008",
-            "M-024",
+            "mech.automated_keyword_qualification_filter",
+            "mech.inflated_requisition_requirements_vs_actual_team_needs",
             "pat.experience_age_impossibility",
             "bar.automated_filter_parser_threshold",
             "L-003"
@@ -138,7 +138,7 @@
           "cost": "medium",
           "costs": "The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not.",
           "targets": [
-            "M-008",
+            "mech.automated_keyword_qualification_filter",
             "bar.automated_filter_parser_threshold",
             "A-009",
             "A-002"
@@ -209,7 +209,7 @@
           "cost": "low",
           "costs": "A single-column text export gives up the layout, and every later edit to the document has to be checked again.",
           "targets": [
-            "M-003",
+            "mech.ats_parser_extraction_failure",
             "bar.application_ingestion",
             "bar.automated_filter_parser_threshold",
             "A-009"
@@ -225,9 +225,9 @@
           "cost": "low",
           "costs": "A logistics question in the first reply comes before any discussion of the work, and the answer cannot be checked against anything.",
           "targets": [
-            "M-016",
-            "M-005",
-            "M-006",
+            "mech.speculative_sourcing_talent_pooling_without_opening",
+            "mech.pre_selected_internal_candidate",
+            "mech.stale_or_orphaned_job_requisition",
             "bar.outbound_sourcing_talent_pool_contact",
             "A-012"
           ],
@@ -240,7 +240,7 @@
           "cost": "medium",
           "costs": "The question can end a process at the screen, and stating an expectation early fixes a number before the level is fixed.",
           "targets": [
-            "M-004",
+            "mech.unstated_compensation_band_discrepancy",
             "bar.recruiter_screening_call",
             "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind",
@@ -261,7 +261,7 @@
             "A-004",
             "A-014",
             "A-007",
-            "M-013"
+            "mech.mid_process_role_requirement_redefinition"
           ],
           "interventions": []
         },
@@ -273,7 +273,7 @@
           "costs": "A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets.",
           "targets": [
             "L-002",
-            "M-019",
+            "mech.take_home_evaluation_fatigue_asymmetry",
             "bar.take_home_work_sample_evaluation",
             "A-006"
           ],
@@ -288,9 +288,9 @@
           "cost": "medium",
           "costs": "An answer that arrives after the chosen date is treated as no answer, and the time already spent is written off rather than waited out.",
           "targets": [
-            "M-020",
-            "M-006",
-            "M-009",
+            "mech.automated_application_expiration_timeout",
+            "mech.stale_or_orphaned_job_requisition",
+            "mech.recruiter_volume_quota_incentive_distortion",
             "bar.inbound_screening_triage",
             "A-001"
           ],
@@ -361,7 +361,7 @@
           "targets": [
             "A-001",
             "A-015",
-            "M-002"
+            "mech.stronger_competing_candidate_in_final_cohort"
           ],
           "interventions": []
         },
@@ -372,8 +372,8 @@
           "cost": "low",
           "costs": "A bid the market can see is a bid competitors can see; some clients treat the existence of the search as confidential.",
           "targets": [
-            "M-025",
-            "M-016",
+            "mech.bid_conditional_talent_pool",
+            "mech.speculative_sourcing_talent_pooling_without_opening",
             "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": [
@@ -461,7 +461,7 @@
           "cost": "medium",
           "costs": "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.",
           "targets": [
-            "M-004",
+            "mech.unstated_compensation_band_discrepancy",
             "bar.recruiter_screening_call",
             "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind"
@@ -479,7 +479,7 @@
           "targets": [
             "bar.headcount_executive_budget_approval",
             "bar.requisition_approval_public_posting",
-            "M-007",
+            "mech.headcount_freeze_or_budget_cancellation",
             "A-003"
           ],
           "interventions": []
@@ -491,8 +491,8 @@
           "cost": "medium",
           "costs": "A paused search cannot be kept warm: reopening means another trip through the approval chain and a posting that restarts from zero applicants, which is a direct charge on this layer's optionality.",
           "targets": [
-            "M-006",
-            "M-007",
+            "mech.stale_or_orphaned_job_requisition",
+            "mech.headcount_freeze_or_budget_cancellation",
             "bar.application_ingestion",
             "pat.closed_then_reposted_requisition_motif",
             "L-003",
@@ -511,7 +511,7 @@
           "cost": "medium",
           "costs": "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.",
           "targets": [
-            "M-005",
+            "mech.pre_selected_internal_candidate",
             "bar.requisition_approval_public_posting",
             "A-002",
             "A-003"
@@ -527,7 +527,7 @@
           "targets": [
             "bar.reference_background_verification",
             "bar.offer_closing_contract_execution",
-            "M-021"
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility"
           ],
           "interventions": []
         }
@@ -594,9 +594,9 @@
           "cost": "medium",
           "costs": "A shorter list brings more applications into a funnel this actor's own team staffs, and it gives up the requirement page as the argument for a higher level and a wider band.",
           "targets": [
-            "M-024",
+            "mech.inflated_requisition_requirements_vs_actual_team_needs",
             "pat.experience_age_impossibility",
-            "M-008",
+            "mech.automated_keyword_qualification_filter",
             "L-003"
           ],
           "interventions": []
@@ -608,8 +608,8 @@
           "cost": "low",
           "costs": "A preference in writing is open to challenge from the panel and from the recruiter, and one that cannot be put into a sentence does not make it into the brief.",
           "targets": [
-            "M-010",
-            "M-018",
+            "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+            "mech.domain_specificity_over_weighting",
             "bar.technical_screen_live_assessment",
             "bar.hiring_manager_in_depth_review",
             "A-014"
@@ -623,8 +623,8 @@
           "cost": "medium",
           "costs": "A three-hour sample carries less to go on, so more of the decision falls to the panel, and twenty minutes from each of two reviewers comes out of a sprint the team is already behind on.",
           "targets": [
-            "M-019",
-            "M-012",
+            "mech.take_home_evaluation_fatigue_asymmetry",
+            "mech.interview_resource_scheduling_saturation",
             "bar.take_home_work_sample_evaluation",
             "L-002"
           ],
@@ -639,7 +639,7 @@
           "cost": "medium",
           "costs": "Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name.",
           "targets": [
-            "M-022",
+            "mech.hiring_manager_consensus_impasse",
             "bar.team_cross_functional_panel",
             "A-014"
           ],
@@ -652,7 +652,7 @@
           "cost": "high",
           "costs": "The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting.",
           "targets": [
-            "M-013",
+            "mech.mid_process_role_requirement_redefinition",
             "L-003"
           ],
           "interventions": []
@@ -666,7 +666,7 @@
           "targets": [
             "pat.seniority_double_bind",
             "A-013",
-            "M-017",
+            "mech.experience_age_grading_mismatch",
             "bar.hiring_manager_in_depth_review"
           ],
           "interventions": []
@@ -734,7 +734,7 @@
           "targets": [
             "bar.requisition_approval_public_posting",
             "bar.compensation_levelling_reconciliation",
-            "M-004",
+            "mech.unstated_compensation_band_discrepancy",
             "pat.compensation_double_bind",
             "pat.seniority_double_bind"
           ],
@@ -749,7 +749,7 @@
           "cost": "medium",
           "costs": "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.",
           "targets": [
-            "M-014",
+            "mech.location_or_timezone_compliance_constraint",
             "bar.recruiter_screening_call",
             "bar.requisition_approval_public_posting"
           ],
@@ -762,8 +762,8 @@
           "cost": "medium",
           "costs": "Two dates are cheap to check, but the fact that decides a breach — whether the search had ended — sits in records only the employer holds, so every complaint starts with disclosure. The rule also reaches sourcing that is legal and ordinary, which widens the perimeter it has to defend.",
           "targets": [
-            "M-006",
-            "M-016",
+            "mech.stale_or_orphaned_job_requisition",
+            "mech.speculative_sourcing_talent_pooling_without_opening",
             "bar.requisition_approval_public_posting",
             "A-004",
             "pat.closed_then_reposted_requisition_motif"
@@ -780,9 +780,9 @@
           "costs": "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.",
           "targets": [
             "bar.automated_filter_parser_threshold",
-            "M-008",
-            "M-020",
-            "M-003",
+            "mech.automated_keyword_qualification_filter",
+            "mech.automated_application_expiration_timeout",
+            "mech.ats_parser_extraction_failure",
             "A-009",
             "A-001"
           ],
@@ -795,7 +795,7 @@
           "cost": "medium",
           "costs": "The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.",
           "targets": [
-            "M-011",
+            "mech.employment_gap_downranking_bias",
             "L-001",
             "bar.automated_filter_parser_threshold"
           ],
@@ -812,7 +812,7 @@
           "targets": [
             "A-002",
             "A-014",
-            "M-010",
+            "mech.hidden_evaluation_rubric_or_undisclosed_priority",
             "bar.requisition_approval_public_posting"
           ],
           "interventions": [
@@ -887,7 +887,7 @@
           "costs": "It spends the flexibility of hearing the candidate's figure first, and it puts a number into the conversation that can be quoted back later as a commitment.",
           "targets": [
             "bar.recruiter_screening_call",
-            "M-004",
+            "mech.unstated_compensation_band_discrepancy",
             "pat.compensation_double_bind"
           ],
           "interventions": [
@@ -902,7 +902,7 @@
           "costs": "Each message is written rather than selected, against a clock measured as time-to-fill, and asking the panel for a criterion spends standing with the hiring manager, who is the internal client.",
           "targets": [
             "A-002",
-            "M-010",
+            "mech.hidden_evaluation_rubric_or_undisclosed_priority",
             "bar.team_cross_functional_panel"
           ],
           "interventions": [
@@ -918,7 +918,7 @@
           "targets": [
             "A-001",
             "A-003",
-            "M-006"
+            "mech.stale_or_orphaned_job_requisition"
           ],
           "interventions": [
             "I-001"
@@ -933,7 +933,7 @@
           "targets": [
             "bar.recruiter_screening_call",
             "A-007",
-            "M-013"
+            "mech.mid_process_role_requirement_redefinition"
           ],
           "interventions": []
         },
@@ -944,7 +944,7 @@
           "cost": "medium",
           "costs": "It costs replies: outreach that states there is no open requisition gives less reason to answer, and reply volume is what the sourcing side of the pipeline is counted in.",
           "targets": [
-            "M-016",
+            "mech.speculative_sourcing_talent_pooling_without_opening",
             "A-012",
             "bar.outbound_sourcing_talent_pool_contact"
           ],
@@ -958,8 +958,8 @@
           "costs": "Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones.",
           "targets": [
             "bar.inbound_screening_triage",
-            "M-009",
-            "M-011",
+            "mech.recruiter_volume_quota_incentive_distortion",
+            "mech.employment_gap_downranking_bias",
             "L-001"
           ],
           "interventions": []

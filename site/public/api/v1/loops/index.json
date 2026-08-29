@@ -8,29 +8,29 @@
       "evidence_ids": [
         "EVD-003"
       ],
-      "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-011` amplifies `M-008`\n- `M-008` amplifies `M-011`",
+      "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.employment_gap_downranking_bias` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.employment_gap_downranking_bias`",
       "aliases": [],
       "id": "L-001",
       "type": "loop",
-      "summary": "An employment gap triggers automated downranking (M-011), which pushes the profile below keyword and qualification filters (M-008); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",
+      "summary": "An employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.",
       "mechanisms": [
-        "M-011",
-        "M-008"
+        "mech.employment_gap_downranking_bias",
+        "mech.automated_keyword_qualification_filter"
       ],
       "edges": [
         {
-          "from": "M-011",
-          "to": "M-008",
+          "from": "mech.employment_gap_downranking_bias",
+          "to": "mech.automated_keyword_qualification_filter",
           "relation": "amplifies"
         },
         {
-          "from": "M-008",
-          "to": "M-011",
+          "from": "mech.automated_keyword_qualification_filter",
+          "to": "mech.employment_gap_downranking_bias",
           "relation": "amplifies"
         }
       ],
       "entry_points": [
-        "M-011"
+        "mech.employment_gap_downranking_bias"
       ],
       "interventions": [
         "I-004"
@@ -108,29 +108,29 @@
       "evidence_ids": [
         "EVD-006"
       ],
-      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-012` amplifies `M-019`\n- `M-019` amplifies `M-012`",
+      "content": "# Take-Home Opportunity-Cost Saturation Loop\n\nCandidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.interview_resource_scheduling_saturation` amplifies `mech.take_home_evaluation_fatigue_asymmetry`\n- `mech.take_home_evaluation_fatigue_asymmetry` amplifies `mech.interview_resource_scheduling_saturation`",
       "aliases": [],
       "id": "L-002",
       "type": "loop",
       "summary": "Candidates spend heavy hours on take-home assignments with no bounded scope, which leaves less time for applications, while reviewers work through the queue under evaluation fatigue.",
       "mechanisms": [
-        "M-012",
-        "M-019"
+        "mech.interview_resource_scheduling_saturation",
+        "mech.take_home_evaluation_fatigue_asymmetry"
       ],
       "edges": [
         {
-          "from": "M-012",
-          "to": "M-019",
+          "from": "mech.interview_resource_scheduling_saturation",
+          "to": "mech.take_home_evaluation_fatigue_asymmetry",
           "relation": "amplifies"
         },
         {
-          "from": "M-019",
-          "to": "M-012",
+          "from": "mech.take_home_evaluation_fatigue_asymmetry",
+          "to": "mech.interview_resource_scheduling_saturation",
           "relation": "amplifies"
         }
       ],
       "entry_points": [
-        "M-012"
+        "mech.interview_resource_scheduling_saturation"
       ],
       "interventions": [
         "I-006"
@@ -205,35 +205,35 @@
         "EVD-004",
         "EVD-031"
       ],
-      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `M-024` amplifies `M-008`\n- `M-008` amplifies `M-013`\n- `M-013` amplifies `M-024`",
+      "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.inflated_requisition_requirements_vs_actual_team_needs` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.mid_process_role_requirement_redefinition`\n- `mech.mid_process_role_requirement_redefinition` amplifies `mech.inflated_requisition_requirements_vs_actual_team_needs`",
       "aliases": [],
       "id": "L-003",
       "type": "loop",
       "summary": "Teams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.",
       "mechanisms": [
-        "M-024",
-        "M-008",
-        "M-013"
+        "mech.inflated_requisition_requirements_vs_actual_team_needs",
+        "mech.automated_keyword_qualification_filter",
+        "mech.mid_process_role_requirement_redefinition"
       ],
       "edges": [
         {
-          "from": "M-024",
-          "to": "M-008",
+          "from": "mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "to": "mech.automated_keyword_qualification_filter",
           "relation": "amplifies"
         },
         {
-          "from": "M-008",
-          "to": "M-013",
+          "from": "mech.automated_keyword_qualification_filter",
+          "to": "mech.mid_process_role_requirement_redefinition",
           "relation": "amplifies"
         },
         {
-          "from": "M-013",
-          "to": "M-024",
+          "from": "mech.mid_process_role_requirement_redefinition",
+          "to": "mech.inflated_requisition_requirements_vs_actual_team_needs",
           "relation": "amplifies"
         }
       ],
       "entry_points": [
-        "M-024"
+        "mech.inflated_requisition_requirements_vs_actual_team_needs"
       ],
       "interventions": [
         "I-001",

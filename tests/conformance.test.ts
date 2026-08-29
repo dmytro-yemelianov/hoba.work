@@ -92,7 +92,7 @@ describe('conformance', () => {
       expect(gate.gate, gate.reason.code).toMatch(/^bar\.[a-z0-9_]+$/);
       expect(gate.state.length, gate.reason.code).toBeGreaterThan(0);
       expect(gate.mechanisms.length, gate.reason.code).toBeGreaterThan(0);
-      for (const m of gate.mechanisms) expect(m).toMatch(/^M-\d{3}$/);
+      for (const m of gate.mechanisms) expect(m).toMatch(/^mech\.[a-z0-9_]+$/);
     }
   });
 });

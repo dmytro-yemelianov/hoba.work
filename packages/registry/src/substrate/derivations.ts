@@ -701,7 +701,7 @@ export function substrateCheckConformance(
       reason: impossible
         ? { code: 'years.impossible', params: { required: posting.required_years, existed: posting.technology_age } }
         : { code: 'years.possible', params: { required: posting.required_years, existed: posting.technology_age } },
-      mechanisms: ['M-024', 'M-017'],
+      mechanisms: ['mech.inflated_requisition_requirements_vs_actual_team_needs', 'mech.experience_age_grading_mismatch'],
     });
   }
 
@@ -719,7 +719,7 @@ export function substrateCheckConformance(
         : short
           ? { code: 'years.short', params: { required: posting.required_years, have: profile.years! } }
           : { code: 'years.met', params: { required: posting.required_years, have: profile.years! } },
-      mechanisms: ['M-008', 'M-011'],
+      mechanisms: ['mech.automated_keyword_qualification_filter', 'mech.employment_gap_downranking_bias'],
     });
   }
 
@@ -737,7 +737,7 @@ export function substrateCheckConformance(
         : authorised
           ? { code: 'authorisation.present', params: { where: posting.requires_authorisation_in } }
           : { code: 'authorisation.absent', params: { where: posting.requires_authorisation_in } },
-      mechanisms: ['M-014'],
+      mechanisms: ['mech.location_or_timezone_compliance_constraint'],
     });
   }
 
@@ -754,7 +754,7 @@ export function substrateCheckConformance(
         : inside
           ? { code: 'location.inside', params: { where: profile.located_in! } }
           : { code: 'location.outside', params: { where: profile.located_in!, places: (posting.hiring_locations ?? []).join(', ') } },
-      mechanisms: ['M-014'],
+      mechanisms: ['mech.location_or_timezone_compliance_constraint'],
     });
   }
 
@@ -770,7 +770,7 @@ export function substrateCheckConformance(
         missing.length > 0
           ? { code: 'skills.missing', params: { missing: missing.join(', '), n: missing.length } }
           : { code: 'skills.present', params: { n: (posting.required_skills ?? []).length } },
-      mechanisms: ['M-003', 'M-008', 'M-011'],
+      mechanisms: ['mech.ats_parser_extraction_failure', 'mech.automated_keyword_qualification_filter', 'mech.employment_gap_downranking_bias'],
     });
   }
 
@@ -788,7 +788,7 @@ export function substrateCheckConformance(
         : below
           ? { code: 'band.under', params: { expectation: profile.expectation, min: posting.band_min! } }
           : { code: 'band.inside', params: { expectation: profile.expectation } },
-      mechanisms: ['M-004'],
+      mechanisms: ['mech.unstated_compensation_band_discrepancy'],
     });
   } else if (posting.band_min === undefined && posting.band_max === undefined && profile.expectation !== undefined) {
     gates.push({
@@ -797,7 +797,7 @@ export function substrateCheckConformance(
       state: 'level-and-band',
       verdict: 'undetermined',
       reason: { code: 'band.unpublished', params: {} },
-      mechanisms: ['M-004'],
+      mechanisms: ['mech.unstated_compensation_band_discrepancy'],
     });
   }
 
@@ -853,11 +853,11 @@ export function substrateDetectTemporalAnomalies(
     if (actualDays > max) {
       severity = 'stalled_anomalous';
       if (fromStr.includes('queue') || fromStr.includes('publish') || fromStr.includes('received')) {
-        implicated.push('M-006', 'M-020', 'M-025');
+        implicated.push('mech.stale_or_orphaned_job_requisition', 'mech.automated_application_expiration_timeout', 'mech.bid_conditional_talent_pool');
       } else if (fromStr.includes('screen') || fromStr.includes('technical') || fromStr.includes('panel')) {
-        implicated.push('M-009', 'M-019', 'M-022');
+        implicated.push('mech.recruiter_volume_quota_incentive_distortion', 'mech.take_home_evaluation_fatigue_asymmetry', 'mech.hiring_manager_consensus_impasse');
       } else if (fromStr.includes('offer') || fromStr.includes('verification')) {
-        implicated.push('M-007', 'M-027');
+        implicated.push('mech.headcount_freeze_or_budget_cancellation', 'mech.start_date_slippage_and_post_acceptance_revocation');
       }
     } else if (actualDays > expected) {
       severity = 'delayed';
@@ -896,7 +896,7 @@ export function substrateCalculateRunway(savings: number, monthlyBurn: number): 
 
   if (runwayMonths < 3) {
     riskStatus = 'acute_exhaustion_vulnerability';
-    vulnerabilityNote = 'Acute vulnerability: search duration approaches reserve depletion; high exposure to M-017 (structural down-levelling) and pat.compensation_double_bind.';
+    vulnerabilityNote = 'Acute vulnerability: search duration approaches reserve depletion; high exposure to mech.experience_age_grading_mismatch (structural down-levelling) and pat.compensation_double_bind.';
   } else if (runwayMonths < 6) {
     riskStatus = 'moderate_runway_stress';
     vulnerabilityNote = 'Moderate stress: search duration may exceed average multi-stage latency (3-6 months).';

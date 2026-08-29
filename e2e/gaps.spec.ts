@@ -53,16 +53,16 @@ test.describe('the atlas reports its own limits', () => {
     }
   });
   test('an entry states what it reaches past its own links, and counts it right', async ({ page }) => {
-    await page.goto('/mechanisms/M-001?lang=en');
+    await page.goto('/mechanisms/mech.genuine_technical_skill_shortfall?lang=en');
     const section = page.locator('section', { has: page.getByRole('heading', { name: says('en', 'reach.title') }) });
     await expect(section).toBeVisible();
 
     // The published number is the transitive reach minus what the relation
     // sections above already name, so a page that simply repeated its own
     // links would fail here.
-    const reach = closure(bundle, 'M-001');
+    const reach = closure(bundle, 'mech.genuine_technical_skill_shortfall');
     const indirect = reach.affects.filter((id) => !reach.directAffects.includes(id));
-    expect(indirect.length, 'M-001 must reach something past its own edges for this to test anything').toBeGreaterThan(0);
+    expect(indirect.length, 'mech.genuine_technical_skill_shortfall must reach something past its own edges for this to test anything').toBeGreaterThan(0);
     await expect(section).toContainText(String(indirect.length));
   });
 });

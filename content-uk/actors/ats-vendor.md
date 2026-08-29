@@ -42,7 +42,7 @@ recommendations:
     cost: "medium"
     costs: "Усі пороги, які клієнти підбирали під стару шкалу балів, зсуваються, а конкуренти й далі перелічують цю ознаку серед своїх функцій."
     targets:
-      - "M-011"
+      - "mech.employment_gap_downranking_bias"
       - "L-001"
       - "bar.automated_filter_parser_threshold"
     interventions:
@@ -54,7 +54,7 @@ recommendations:
     cost: "medium"
     costs: "Ця черга — робота, яка лягає на клієнта і за яку ніхто не відповідає, а частка заявок, які платформа закриває без участі людини, — число, яке бачить покупець, — зменшується."
     targets:
-      - "M-003"
+      - "mech.ats_parser_extraction_failure"
       - "bar.automated_filter_parser_threshold"
       - "A-009"
     interventions: []
@@ -65,7 +65,7 @@ recommendations:
     cost: "medium"
     costs: "Зʼявляється звернений до кандидатів інтерфейс, який підтримує вендор і через який надходять виправлення, а користуються ним не ті, хто купив платформу."
     targets:
-      - "M-003"
+      - "mech.ats_parser_extraction_failure"
       - "bar.application_ingestion"
       - "bar.automated_filter_parser_threshold"
     interventions:
@@ -77,8 +77,8 @@ recommendations:
     cost: "medium"
     costs: "Кожна затримана черга стає рішенням клієнта, яке теперішнє замовчування знімає з його столу, а саме навантаження на підтримку ці замовчування й покликані тримати низьким."
     targets:
-      - "M-020"
-      - "M-006"
+      - "mech.automated_application_expiration_timeout"
+      - "mech.stale_or_orphaned_job_requisition"
       - "A-001"
       - "A-002"
       - "pat.closed_then_reposted_requisition_motif"
@@ -91,8 +91,8 @@ recommendations:
     cost: "low"
     costs: "Пробний прогін читає збережені заявки клієнта вже на екрані налаштування, і екран тепер називає число, за яке вендор відповідає, — зокрема тоді, коли чернетка правила відсікла б увесь збережений пул."
     targets:
-      - "M-008"
-      - "M-024"
+      - "mech.automated_keyword_qualification_filter"
+      - "mech.inflated_requisition_requirements_vs_actual_team_needs"
       - "pat.experience_age_impossibility"
       - "bar.automated_filter_parser_threshold"
       - "L-003"
@@ -104,7 +104,7 @@ recommendations:
     cost: "medium"
     costs: "Налаштування клієнта може процитувати кожен, до кого його застосували, а поріг, названий письмово, збирає відповіді, яких теперішній шаблон не збирає."
     targets:
-      - "M-008"
+      - "mech.automated_keyword_qualification_filter"
       - "bar.automated_filter_parser_threshold"
       - "A-009"
       - "A-002"

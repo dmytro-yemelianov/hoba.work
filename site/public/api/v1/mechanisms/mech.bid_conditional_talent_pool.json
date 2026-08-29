@@ -1,0 +1,103 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Bid-Conditional Talent Pool",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Bid-Conditional Talent Pool\n\nRecruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.\n- Does not establish that the recruiter was free to disclose the bid's existence.",
+    "aliases": [
+      "M-025"
+    ],
+    "id": "mech.bid_conditional_talent_pool",
+    "type": "mechanism",
+    "summary": "Recruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.",
+    "operates_at": [
+      "bar.outbound_sourcing_talent_pool_contact"
+    ],
+    "emissions": [
+      {
+        "artifact": "A-001",
+        "fidelity": "void",
+        "likelihood": "high",
+        "evidence": [],
+        "observed_at": [
+          "sourcing"
+        ]
+      },
+      {
+        "artifact": "A-012",
+        "fidelity": "void",
+        "likelihood": "high",
+        "evidence": [],
+        "observed_at": [
+          "sourcing"
+        ]
+      }
+    ],
+    "facets": {
+      "actor": "recruiter",
+      "nature": "incentive",
+      "visibility": "opaque",
+      "removability": "none"
+    },
+    "amplifies": [],
+    "masks": [],
+    "evidence_level": "hypothesis",
+    "honest_baseline": false,
+    "specimens": [
+      {
+        "kind": "chat",
+        "label": "Outreach against a bid",
+        "lines": [
+          {
+            "speaker": "Recruiter",
+            "text": "We are growing the team on a large fintech engagement and your profile is a strong match. Could we talk this week?",
+            "tell": false
+          },
+          {
+            "speaker": "Candidate",
+            "at": "day 2",
+            "text": "Happy to. Is this for an open role I can read somewhere?",
+            "tell": false
+          },
+          {
+            "speaker": "Recruiter",
+            "text": "The details are under wraps for now — I can share more on the call.",
+            "tell": true
+          },
+          {
+            "speaker": "Candidate",
+            "at": "day 19",
+            "text": "Following up on our call — is there any update?",
+            "tell": false
+          }
+        ],
+        "reading": "Everything said is true. The engagement is real, the match may be real, and the role does not exist yet: it exists if a contract signs. The one fact that would let the candidate price the wait is the one fact the conversation is structured not to state."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "candidate",
+        "sees": "A concrete-sounding approach about a role that cannot be found posted anywhere, then a call that goes well, then a silence with no stated end.",
+        "reads": "Nothing distinguishes this from an approach against a funded seat. The difference is a record — a signed contract — that no message references and no search of the postings can reveal.",
+        "does": "Asks what the conversation is attached to: an approved requisition, or a pipeline for something expected. The answer, or its absence, is the only observable this structure leaks."
+      },
+      {
+        "actor": "recruiter",
+        "sees": "A staffing plan owed against a proposal, with named profiles required in it, and a deadline set by the client's procurement, not by any funnel.",
+        "reads": "The bid cannot be won without the CVs, and the people behind the CVs cannot be promised anything until it is won. Both halves are true at once, and the brief usually forbids stating the second.",
+        "does": "Builds the pool the proposal needs, keeps the conversations warm for as long as the decision takes, and closes them without a verdict when the decision goes the other way — because there is no verdict to send about a role that never came to exist."
+      },
+      {
+        "actor": "client",
+        "sees": "A vendor's proposal with named, available profiles in it — evidence the vendor can actually staff what it is bidding to deliver.",
+        "reads": "The profiles are part of the bid's credibility. Whether the people behind them know what stage the engagement is at is the vendor's affair, and nothing in procurement asks.",
+        "does": "Evaluates the bid on rate, profiles and risk, on procurement's calendar — unaware that the calendar is experienced, somewhere, as an unexplained silence."
+      }
+    ],
+    "non_inferences": [
+      "Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.",
+      "Does not establish that the recruiter was free to disclose the bid's existence."
+    ]
+  }
+}

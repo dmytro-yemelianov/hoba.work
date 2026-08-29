@@ -22,9 +22,9 @@
         ],
         "visible_to_candidate": "Nothing yet. Everything downstream inherits whatever is decided here.",
         "deviations": [
-          "M-024",
-          "M-005",
-          "M-026"
+          "mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "mech.pre_selected_internal_candidate",
+          "mech.bench_priority_fill"
         ]
       },
       {
@@ -43,9 +43,9 @@
         "deviations": [
           "bar.requisition_approval_public_posting",
           "bar.outbound_sourcing_talent_pool_contact",
-          "M-006",
-          "M-016",
-          "M-025",
+          "mech.stale_or_orphaned_job_requisition",
+          "mech.speculative_sourcing_talent_pooling_without_opening",
+          "mech.bid_conditional_talent_pool",
           "A-021"
         ]
       },
@@ -61,7 +61,7 @@
         "visible_to_candidate": "A confirmation that names the role and says what happens next.",
         "deviations": [
           "bar.application_ingestion",
-          "M-003"
+          "mech.ats_parser_extraction_failure"
         ]
       },
       {
@@ -78,9 +78,9 @@
         "visible_to_candidate": "If a rule ends it here, which rule.",
         "deviations": [
           "bar.automated_filter_parser_threshold",
-          "M-008",
-          "M-011",
-          "M-020"
+          "mech.automated_keyword_qualification_filter",
+          "mech.employment_gap_downranking_bias",
+          "mech.automated_application_expiration_timeout"
         ]
       },
       {
@@ -96,7 +96,7 @@
         "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
         "deviations": [
           "bar.inbound_screening_triage",
-          "M-009"
+          "mech.recruiter_volume_quota_incentive_distortion"
         ]
       },
       {
@@ -111,9 +111,9 @@
         "visible_to_candidate": "The numbers and the constraints, from both sides, in the first call.",
         "deviations": [
           "bar.recruiter_screening_call",
-          "M-004",
-          "M-014",
-          "M-017"
+          "mech.unstated_compensation_band_discrepancy",
+          "mech.location_or_timezone_compliance_constraint",
+          "mech.experience_age_grading_mismatch"
         ]
       },
       {
@@ -131,10 +131,10 @@
         "deviations": [
           "bar.technical_screen_live_assessment",
           "bar.take_home_work_sample_evaluation",
-          "M-001",
-          "M-010",
-          "M-019",
-          "M-023"
+          "mech.genuine_technical_skill_shortfall",
+          "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+          "mech.take_home_evaluation_fatigue_asymmetry",
+          "mech.portfolio_work_artifact_misinterpretation"
         ]
       },
       {
@@ -151,12 +151,12 @@
           "bar.hiring_manager_in_depth_review",
           "bar.team_cross_functional_panel",
           "bar.client_profile_approval_and_client_interview",
-          "M-002",
-          "M-012",
-          "M-013",
-          "M-015",
-          "M-018",
-          "M-022"
+          "mech.stronger_competing_candidate_in_final_cohort",
+          "mech.interview_resource_scheduling_saturation",
+          "mech.mid_process_role_requirement_redefinition",
+          "mech.communication_or_working_style_friction",
+          "mech.domain_specificity_over_weighting",
+          "mech.hiring_manager_consensus_impasse"
         ]
       },
       {
@@ -171,7 +171,7 @@
         "visible_to_candidate": "The same band the posting stated, and which point in it the offer sits at.",
         "deviations": [
           "bar.compensation_levelling_reconciliation",
-          "M-004"
+          "mech.unstated_compensation_band_discrepancy"
         ]
       },
       {
@@ -187,7 +187,7 @@
         "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
         "deviations": [
           "bar.headcount_executive_budget_approval",
-          "M-007"
+          "mech.headcount_freeze_or_budget_cancellation"
         ]
       },
       {
@@ -200,7 +200,7 @@
         "visible_to_candidate": "The complete offer document, and how long they have to answer.",
         "deviations": [
           "bar.offer_closing_contract_execution",
-          "M-007"
+          "mech.headcount_freeze_or_budget_cancellation"
         ]
       },
       {
@@ -216,9 +216,9 @@
         "deviations": [
           "bar.reference_background_verification",
           "bar.probation_period_post_start_confirmation",
-          "M-021",
-          "M-027",
-          "M-028",
+          "mech.reference_check_discrepancy_or_regulatory_ineligibility",
+          "mech.start_date_slippage_and_post_acceptance_revocation",
+          "mech.probation_used_as_extended_de_facto_interview",
           "A-020"
         ]
       },
@@ -265,8 +265,8 @@
           "A-003",
           "A-011",
           "A-012",
-          "M-006",
-          "M-020"
+          "mech.stale_or_orphaned_job_requisition",
+          "mech.automated_application_expiration_timeout"
         ]
       }
     ],

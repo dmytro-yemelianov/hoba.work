@@ -28,7 +28,7 @@
             "id": "active-funded-search-confirmed",
             "label": "The recruiter confirms an active search with initial screening calls scheduled within the week.",
             "excludes": [
-              "M-006"
+              "mech.stale_or_orphaned_job_requisition"
             ],
             "because": "An active screening schedule is incompatible with a ghost requisition maintained without hiring intent."
           },
@@ -36,7 +36,7 @@
             "id": "evergreen-pipeline-confirmed",
             "label": "The recruiter confirms the listing is maintained continuously for future project demand.",
             "excludes": [
-              "M-001"
+              "mech.genuine_technical_skill_shortfall"
             ],
             "because": "An evergreen pipeline posting is incompatible with an honest baseline search for an immediate single opening."
           }

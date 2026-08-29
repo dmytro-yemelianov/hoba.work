@@ -1166,7 +1166,7 @@
               "id": "nothing-added",
               "label": "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Inability to provide a single grounded communicative exchange points to non-calibrated impression scoring rather than an evidence-based panel."
             },
@@ -1174,7 +1174,7 @@
               "id": "moment-named",
               "label": "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session.",
               "excludes": [
-                "M-018"
+                "mech.domain_specificity_over_weighting"
               ],
               "because": "A concrete communicative exchange demonstrates individualized panel recall, ruling out arbitrary non-specific impression bias."
             },
@@ -1300,16 +1300,16 @@
               "id": "deferred-with-date",
               "label": "A written reply states that the requisition is paused rather than closed, names the quarter or the date on which the freeze is reviewed, and says the offer is revisited if headcount returns.",
               "excludes": [
-                "M-001",
-                "M-006"
+                "mech.genuine_technical_skill_shortfall",
+                "mech.stale_or_orphaned_job_requisition"
               ],
-              "because": "A formal written pause date confirms a genuine headcount freeze (M-007) rather than an honest hire or an evergreen ghost posting."
+              "because": "A formal written pause date confirms a genuine headcount freeze (mech.headcount_freeze_or_budget_cancellation) rather than an honest hire or an evergreen ghost posting."
             },
             {
               "id": "cancelled-in-writing",
               "label": "A written reply states that the requisition is closed and the headcount withdrawn, and names no date to return to.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Definitive written headcount cancellation after offer issuance directly confirms retraction."
             },
@@ -1317,7 +1317,7 @@
               "id": "scope-without-date",
               "label": "A written reply confirms the freeze and its scope — every open requisition, other offers in the same position — and states that whether the role is cancelled or deferred is not known from inside the hiring process.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Company-wide freeze confirmation confirms systemic budget suspension."
             },
@@ -1423,9 +1423,9 @@
               "id": "no-reply",
               "label": "Neither the follow-up nor the earlier answer is replied to, and the thread stays as it was: an outreach message, a same-day answer, and silence.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
-              "because": "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (M-005/M-025)."
+              "because": "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (mech.pre_selected_internal_candidate/mech.bid_conditional_talent_pool)."
             },
             {
               "id": "automated-reply-only",
@@ -1437,8 +1437,8 @@
               "id": "thread-resumes",
               "label": "A person replies and the conversation continues: a call is booked, or the role is described in more detail.",
               "excludes": [
-                "M-005",
-                "M-025"
+                "mech.pre_selected_internal_candidate",
+                "mech.bid_conditional_talent_pool"
               ],
               "because": "Active conversational resumption and call scheduling rule out speculative ghost sourcing and bench pooling."
             },
@@ -1446,7 +1446,7 @@
               "id": "reply-without-next-step",
               "label": "A reply arrives with no next step in it: the search is paused, the role is already filled, or there is no open requisition behind the outreach yet.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Outreach without an active requisition behind it contradicts an immediate honest search."
             }
@@ -1558,7 +1558,7 @@
               "id": "higher-req-named",
               "label": "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral.",
               "excludes": [
-                "M-017"
+                "mech.experience_age_grading_mismatch"
               ],
               "because": "Active referral to an unblocked higher level band rules out structural down-levelling with a hard ceiling."
             },
@@ -1572,7 +1572,7 @@
               "id": "answered-as-budget",
               "label": "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Stating rigid departmental budget ceilings rather than technical qualification gaps confirms pay band constraints rather than skill deficiencies."
             },
@@ -1703,7 +1703,7 @@
               "id": "criteria-differ-by-round",
               "label": "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises.",
               "excludes": [
-                "M-019"
+                "mech.take_home_evaluation_fatigue_asymmetry"
               ],
               "because": "Different criteria across distinct rounds establish separate evaluation dimensions rather than noisy evaluator disagreement."
             },
@@ -1711,9 +1711,9 @@
               "id": "same-criterion-opposite-scores",
               "label": "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
-              "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (M-019) rather than an honest calibrated verdict."
+              "because": "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (mech.take_home_evaluation_fatigue_asymmetry) rather than an honest calibrated verdict."
             },
             {
               "id": "reply-adds-nothing",
@@ -1827,17 +1827,17 @@
               "id": "message-on-a-round-interval",
               "label": "The message arrived a round number of days after submission — thirty, forty-five, sixty — and the posting's state did not change around it.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
-              "because": "A rejection arriving on a round calendar interval (e.g. 30/60 days) demonstrates an automated ATS queue expiry rule (M-011) rather than an active reviewer decision."
+              "because": "A rejection arriving on a round calendar interval (e.g. 30/60 days) demonstrates an automated ATS queue expiry rule (mech.employment_gap_downranking_bias) rather than an active reviewer decision."
             },
             {
               "id": "posting-still-live",
               "label": "The posting was still accepting applications when the rejection arrived.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
-              "because": "A rejection arriving while the role remains active and seeking candidates indicates an automated knockout filter or ghost listing (M-006/M-008)."
+              "because": "A rejection arriving while the role remains active and seeking candidates indicates an automated knockout filter or ghost listing (mech.stale_or_orphaned_job_requisition/mech.automated_keyword_qualification_filter)."
             },
             {
               "id": "history-unavailable",
@@ -1948,7 +1948,7 @@
               "id": "withdrawn-and-not-reposted",
               "label": "The posting came down and no materially similar role appeared afterwards.",
               "excludes": [
-                "M-006"
+                "mech.stale_or_orphaned_job_requisition"
               ],
               "because": "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
             },
@@ -1956,7 +1956,7 @@
               "id": "reposted-same-scope",
               "label": "A role with the same level and scope was published again within weeks.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Immediate reposting of the identical role contradicts honest closure via internal transfer."
             },
@@ -1964,7 +1964,7 @@
               "id": "still-live",
               "label": "The posting continued to accept applications after the message arrived.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
             },
@@ -2050,8 +2050,8 @@
               "id": "stated-in-the-posting",
               "label": "The posting stated the same constraint, in the same terms, before the application was made.",
               "excludes": [
-                "M-003",
-                "M-022"
+                "mech.ats_parser_extraction_failure",
+                "mech.hiring_manager_consensus_impasse"
               ],
               "because": "An upfront explicit location constraint rules out post-hoc constraint injection and location bait-and-switch."
             },
@@ -2059,7 +2059,7 @@
               "id": "absent-from-the-posting",
               "label": "The posting said nothing about the constraint, or stated a wider one.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Rejecting on an unstated location constraint contradicts an honest baseline evaluation against published terms."
             },
@@ -2067,7 +2067,7 @@
               "id": "posting-edited",
               "label": "The posting now carries the constraint, and the saved copy shows it did not.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Retroactively editing criteria after applications arrive contradicts honest process standards."
             },
@@ -2152,7 +2152,7 @@
               "id": "listed-as-required",
               "label": "The posting named the sector among the requirements.",
               "excludes": [
-                "M-016"
+                "mech.speculative_sourcing_talent_pooling_without_opening"
               ],
               "because": "An explicit mandatory requirement stated up front rules out covert post-hoc goalpost shifting."
             },
@@ -2166,7 +2166,7 @@
               "id": "absent-from-the-posting",
               "label": "The posting did not mention the sector at all.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Disqualifying a candidate over an unmentioned sector criterion contradicts an honest evaluation against published standards."
             },
@@ -2251,7 +2251,7 @@
               "id": "named-work-on-first-screen",
               "label": "The work named as absent is visible on the first screen, without navigating.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Overlooking prominent first-screen evidence indicates superficial keyword/automated parsing or neglected review rather than an honest thorough evaluation."
             },
@@ -2265,8 +2265,8 @@
               "id": "not-reachable",
               "label": "The path does not resolve, or resolves to something private.",
               "excludes": [
-                "M-008",
-                "M-013"
+                "mech.automated_keyword_qualification_filter",
+                "mech.mid_process_role_requirement_redefinition"
               ],
               "because": "An unreachable or private submission link confirms candidate omission rather than evaluator negligence or automated screening error."
             },
@@ -2353,8 +2353,8 @@
               "id": "written-confirmation-received",
               "label": "The employer confirms the date with tracking details for onboarding equipment.",
               "excludes": [
-                "M-007",
-                "M-027"
+                "mech.headcount_freeze_or_budget_cancellation",
+                "mech.start_date_slippage_and_post_acceptance_revocation"
               ],
               "because": "Active equipment dispatch and confirmed start date rule out pre-start headcount freeze and offer revocation."
             },
@@ -2362,7 +2362,7 @@
               "id": "evasive-delay-notice",
               "label": "The employer provides vague holding notices without committing to a fixed onboarding date.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Evasive holding notices without confirmed dates contradict an honest post-offer onboarding path."
             },
@@ -2370,7 +2370,7 @@
               "id": "revocation-or-freeze-confirmed",
               "label": "The employer confirms headcount revocation or indefinite pause prior to start date.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "Confirmed headcount cancellation prior to day one directly contradicts an honest hire."
             }
@@ -2455,7 +2455,7 @@
               "id": "active-funded-search-confirmed",
               "label": "The recruiter confirms an active search with initial screening calls scheduled within the week.",
               "excludes": [
-                "M-006"
+                "mech.stale_or_orphaned_job_requisition"
               ],
               "because": "An active screening schedule is incompatible with a ghost requisition maintained without hiring intent."
             },
@@ -2463,7 +2463,7 @@
               "id": "evergreen-pipeline-confirmed",
               "label": "The recruiter confirms the listing is maintained continuously for future project demand.",
               "excludes": [
-                "M-001"
+                "mech.genuine_technical_skill_shortfall"
               ],
               "because": "An evergreen pipeline posting is incompatible with an honest baseline search for an immediate single opening."
             }
