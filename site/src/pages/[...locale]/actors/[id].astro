@@ -43,7 +43,7 @@ const facts = [
   <PageHeader title={actor.title} lead={actor.summary}>
     <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
       <a href={`${prefix}/actors`} class="hover:text-hoba-text">{t('actors.kicker')}</a><span>/</span>
-      <span class="text-hoba-accent font-mono">{actor.id}</span>
+      <span class="text-hoba-accent font-mono break-all">{actor.id}</span>
     </nav>
     <p slot="actions">
       <a href={`?lens=${actor.id}`} class="btn btn-secondary">{t('actors.readAs')}</a>

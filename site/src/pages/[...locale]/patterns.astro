@@ -52,7 +52,7 @@ const idLinks = (ids: string[], route: string) => ids.map((id) => ({ id, href: `
     <div data-view="list" class="row-list border-t border-hoba-border">
       {bundle.patterns.map((p) => (
         <a href={`${prefix}/patterns/${p.id}`} class="row-link text-base">
-          <span class="font-mono text-sm text-hoba-accent w-16 shrink-0">{p.id}</span>
+          <span class="font-mono text-sm text-hoba-accent w-16 break-all max-w-full">{p.id}</span>
           <span class="font-medium text-hoba-text">{p.title}</span>
           <span class="text-sm text-hoba-muted truncate hidden md:inline flex-1 min-w-0">{p.summary}</span>
         </a>

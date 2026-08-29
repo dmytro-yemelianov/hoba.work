@@ -31,7 +31,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
         <a href={`${prefix}/registry?type=artifact`} class="hover:text-hoba-text">{t('entity.plural.artifact')}</a><span>/</span>
-        <span class="text-hoba-accent font-mono">{artifact.id}</span>
+        <span class="text-hoba-accent font-mono break-all">{artifact.id}</span>
       </nav>
       <div slot="meta" class="flex flex-wrap items-center gap-1.5">
         <EntityBadge type="artifact" id={artifact.id} lang={lang} />

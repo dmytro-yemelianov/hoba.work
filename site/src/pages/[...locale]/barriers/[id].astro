@@ -33,7 +33,7 @@ const targetedInterventions = bundle.interventions.filter((i) => i.targets.inclu
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
         <a href={`${prefix}/registry?type=barrier`} class="hover:text-hoba-text">{t('entity.plural.barrier')}</a><span>/</span>
-        <span class="text-hoba-accent font-mono">{barrier.id}</span>
+        <span class="text-hoba-accent font-mono break-all">{barrier.id}</span>
       </nav>
       <div slot="meta" class="flex flex-wrap items-center gap-1.5">
         <EntityBadge type="barrier" id={barrier.id} lang={lang} />

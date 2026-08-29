@@ -35,7 +35,7 @@ const targets = intervention.targets.map((id) => {
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
         <a href={`${prefix}/registry?type=intervention`} class="hover:text-hoba-text">{t('entity.plural.intervention')}</a><span>/</span>
-        <span class="text-hoba-accent font-mono">{intervention.id}</span>
+        <span class="text-hoba-accent font-mono break-all">{intervention.id}</span>
       </nav>
       <div slot="meta" class="flex flex-wrap items-center gap-1.5">
         <EntityBadge type="intervention" id={intervention.id} lang={lang} />

@@ -31,7 +31,7 @@ const relevantInterventions = bundle.interventions.filter((i) => pattern.interve
   <PageHeader title={pattern.title} lead={pattern.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/patterns`} class="hover:text-hoba-text">{t('entity.plural.pattern')}</a><span>/</span>
-        <span class="text-hoba-accent font-mono">{pattern.id}</span>
+        <span class="text-hoba-accent font-mono break-all">{pattern.id}</span>
       </nav>
       <div slot="meta" class="flex flex-wrap items-center gap-1.5">
         <EntityBadge type="pattern" id={pattern.id} lang={lang} />
