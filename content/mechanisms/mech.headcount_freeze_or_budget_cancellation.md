@@ -52,7 +52,7 @@ perspectives:
     reads: "The timing sits directly after the rounds already completed, so a cause above the process and a verdict on the process look the same from here."
     does: "Records the date and the wording, asks whether the requisition is paused or closed, and keeps the other processes running."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 honest_baseline: false
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"

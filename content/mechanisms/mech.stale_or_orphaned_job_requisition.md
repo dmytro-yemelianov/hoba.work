@@ -53,7 +53,7 @@ perspectives:
     reads: "Silence is the same artifact whether a record was left open or an application was read and set aside."
     does: "Asks directly whether the posting is current, which is the only channel that returns the state of the record, and keeps the date of each submission."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 honest_baseline: false
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"

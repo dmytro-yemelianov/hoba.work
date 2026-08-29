@@ -55,7 +55,7 @@ perspectives:
     reads: "Планку застосовують. Вимога, записана як мінімум, виконується як мінімум — і на тому, що витягнув парсер."
     does: "Змінює записану вимогу, коли короткий список виходить не таким, як очікували, — лише в цей момент правило звідси видно."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
   - "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026"

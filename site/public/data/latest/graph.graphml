@@ -36,7 +36,7 @@
     <node id="obs.feedback_naming_as_absent_something_the_submitted_work_contains">
       <data key="d_label">Feedback naming as absent something the submitted work contains</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="obs.feedback_stating_candidate_is_overqualified_for_the_grade">
       <data key="d_label">Feedback stating candidate is overqualified for the grade</data>
@@ -61,7 +61,7 @@
     <node id="obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation">
       <data key="d_label">Offer accepted followed by delayed start date or post-signing revocation</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="obs.offer_rescinded_or_delayed_due_to_internal_freeze">
       <data key="d_label">Offer rescinded or delayed due to internal freeze</data>
@@ -76,22 +76,22 @@
     <node id="obs.rejection_after_the_application_sat_pending_for_months">
       <data key="d_label">Rejection after the application sat pending for months</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground">
       <data key="d_label">Rejection naming a jurisdiction or work-eligibility ground</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="obs.rejection_naming_a_specific_industry_sector_as_required">
       <data key="d_label">Rejection naming a specific industry sector as required</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="obs.rejection_naming_an_internal_hire_as_the_outcome">
       <data key="d_label">Rejection naming an internal hire as the outcome</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="obs.rejection_within_minutes_of_application_submission">
       <data key="d_label">Rejection within minutes of application submission</data>
@@ -101,7 +101,7 @@
     <node id="obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body">
       <data key="d_label">Republished job posting with refreshed date and identical requirement body</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="obs.take_home_assignment_exceeding_reasonable_stated_scope">
       <data key="d_label">Take-home assignment exceeding reasonable stated scope</data>
@@ -116,112 +116,112 @@
     <node id="bar.requisition_approval_public_posting">
       <data key="d_label">Requisition Approval &amp; Public Posting</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="bar.outbound_sourcing_talent_pool_contact">
       <data key="d_label">Outbound Sourcing &amp; Talent Pool Contact</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="bar.application_ingestion">
       <data key="d_label">Application Ingestion</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.automated_filter_parser_threshold">
       <data key="d_label">Automated Filter &amp; Parser Threshold</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.inbound_screening_triage">
       <data key="d_label">Inbound Screening &amp; Triage</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.recruiter_screening_call">
       <data key="d_label">Recruiter Screening Call</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.technical_screen_live_assessment">
       <data key="d_label">Technical Screen / Live Assessment</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.take_home_work_sample_evaluation">
       <data key="d_label">Take-Home / Work Sample Evaluation</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.hiring_manager_in_depth_review">
       <data key="d_label">Hiring Manager In-Depth Review</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.team_cross_functional_panel">
       <data key="d_label">Team &amp; Cross-Functional Panel</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.compensation_levelling_reconciliation">
       <data key="d_label">Compensation &amp; Levelling Reconciliation</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.headcount_executive_budget_approval">
       <data key="d_label">Headcount &amp; Executive Budget Approval</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="bar.reference_background_verification">
       <data key="d_label">Reference &amp; Background Verification</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="bar.offer_closing_contract_execution">
       <data key="d_label">Offer Closing &amp; Contract Execution</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="bar.client_profile_approval_and_client_interview">
       <data key="d_label">Client Profile Approval and Client Interview</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="bar.probation_period_post_start_confirmation">
       <data key="d_label">Probation Period &amp; Post-Start Confirmation</data>
       <data key="d_type">barrier</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.ats_parser_extraction_failure">
       <data key="d_label">ATS Parser Extraction Failure</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.automated_application_expiration_timeout">
       <data key="d_label">Automated Application Expiration Timeout</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.automated_keyword_qualification_filter">
       <data key="d_label">Automated Keyword / Qualification Filter</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.bench_priority_fill">
       <data key="d_label">Bench-Priority Fill</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="mech.bid_conditional_talent_pool">
       <data key="d_label">Bid-Conditional Talent Pool</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="mech.communication_or_working_style_friction">
       <data key="d_label">Communication or Working Style Friction</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.domain_specificity_over_weighting">
       <data key="d_label">Domain Specificity Over-Weighting</data>
@@ -241,12 +241,12 @@
     <node id="mech.genuine_technical_skill_shortfall">
       <data key="d_label">Genuine Technical Skill Shortfall</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.headcount_freeze_or_budget_cancellation">
       <data key="d_label">Headcount Freeze or Budget Cancellation</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="mech.hidden_evaluation_rubric_or_undisclosed_priority">
       <data key="d_label">Hidden Evaluation Rubric or Undisclosed Priority</data>
@@ -271,7 +271,7 @@
     <node id="mech.location_or_timezone_compliance_constraint">
       <data key="d_label">Location or Timezone Compliance Constraint</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.mid_process_role_requirement_redefinition">
       <data key="d_label">Mid-Process Role Requirement Redefinition</data>
@@ -291,7 +291,7 @@
     <node id="mech.probation_used_as_extended_de_facto_interview">
       <data key="d_label">Probation Used as Extended De-Facto Interview</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.recruiter_volume_quota_incentive_distortion">
       <data key="d_label">Recruiter Volume &amp; Quota Incentive Distortion</data>
@@ -301,7 +301,7 @@
     <node id="mech.reference_check_discrepancy_or_regulatory_ineligibility">
       <data key="d_label">Reference Check Discrepancy or Regulatory Ineligibility</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.speculative_sourcing_talent_pooling_without_opening">
       <data key="d_label">Speculative Sourcing / Talent Pooling Without Opening</data>
@@ -311,17 +311,17 @@
     <node id="mech.stale_or_orphaned_job_requisition">
       <data key="d_label">Stale or Orphaned Job Requisition</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">strongly_supported</data>
     </node>
     <node id="mech.start_date_slippage_and_post_acceptance_revocation">
       <data key="d_label">Start-Date Slippage and Post-Acceptance Revocation</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.stronger_competing_candidate_in_final_cohort">
       <data key="d_label">Stronger Competing Candidate in Final Cohort</data>
       <data key="d_type">mechanism</data>
-      <data key="d_evidence">established</data>
+      <data key="d_evidence">proven</data>
     </node>
     <node id="mech.take_home_evaluation_fatigue_asymmetry">
       <data key="d_label">Take-Home Evaluation Fatigue &amp; Asymmetry</data>
@@ -361,7 +361,7 @@
     <node id="loop.inflated_requirements_search_saturation_loop">
       <data key="d_label">Inflated-Requirements Search Saturation Loop</data>
       <data key="d_type">loop</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="loop.take_home_opportunity_cost_saturation_loop">
       <data key="d_label">Take-Home Opportunity-Cost Saturation Loop</data>
@@ -411,7 +411,7 @@
     <node id="int.publish_the_technical_screen_s_columns_and_threshold_before_the_round">
       <data key="d_label">Publish the Technical Screen&apos;s Columns and Threshold Before the Round</data>
       <data key="d_type">intervention</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">compatible</data>
     </node>
     <node id="int.recorded_finalist_standing_with_a_dated_re_entry_route">
       <data key="d_label">Recorded Finalist Standing With a Dated Re-Entry Route</data>

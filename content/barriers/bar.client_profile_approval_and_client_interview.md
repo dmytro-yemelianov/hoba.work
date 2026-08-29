@@ -49,7 +49,7 @@ perspectives:
     reads: "Candidate placement directly realizes project revenue once client sign-off is secured."
     does: "Monitors client approval rates and manages bench fallback options."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
 ---

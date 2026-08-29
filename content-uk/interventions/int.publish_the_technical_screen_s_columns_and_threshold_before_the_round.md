@@ -11,7 +11,7 @@ targets:
 actor: "employer-policy"
 scope: "organizational"
 cost: "medium"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 expected_effects:
   - "Інструмент bar.technical_screen_live_assessment існує до тієї години, яку він оцінює: колонки, ваги й межу можна прочитати ззовні панелі"
   - "Сума на бал нижче порогу в bar.technical_screen_live_assessment стає розміщуваною, бо число, з яким її порівнюють, опубліковано"

@@ -45,7 +45,7 @@ perspectives:
     reads: "From here the process reads as finished, though nothing takes effect until the second signature, and that step is not visible from outside."
     does: "Holds off on resigning or closing other processes until the countersigned copy arrives, and records the dates and the wording of what was promised."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---

@@ -44,7 +44,7 @@ perspectives:
     reads: "Рішення остаточне, і його важко викласти кандидату письмово так, щоб це не читалося як оцінка особистості."
     does: "Надсилає стандартне формулювання про ближчу відповідність або переказує конкретну нотатку, якщо панель сформулювала її так, що з нею можна щось зробити."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"

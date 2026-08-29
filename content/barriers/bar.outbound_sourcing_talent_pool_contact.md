@@ -47,7 +47,7 @@ perspectives:
     reads: "A warm pipeline before approval shortens the fill after it, at no cost on any budget line the approval cycle tracks."
     does: "Sets the approval cycle that decides when a forecast becomes a requisition, and does not gate the contact that happens before it."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
 ---

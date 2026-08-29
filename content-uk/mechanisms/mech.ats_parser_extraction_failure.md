@@ -41,7 +41,7 @@ perspectives:
     reads: "Профіль нижче межі читається як профіль, що не підійшов. Документ, що стоїть за оцінкою, не відкривають, щоб перевірити, який це випадок."
     does: "Іде списком згори вниз. У списку немає позначки, яка відрізняла б непрочитане від непридатного, тож нижче межі документи ніхто не відкриває."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

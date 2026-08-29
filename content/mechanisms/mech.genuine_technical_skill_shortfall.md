@@ -46,7 +46,7 @@ perspectives:
     reads: "A named gap can be checked against the work. A template leaves the bar, the level and the rest of the cohort all unstated."
     does: "Records the wording and the date, and can work on the named area. That is the one branch of this the candidate controls."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"

@@ -41,7 +41,7 @@ perspectives:
     reads: "A profile below the line reads as a profile that did not qualify. The document behind the score is not opened to check which it is."
     does: "Works down the ranked list from the top. The list carries no marker separating unread from unqualified, so the positions below the line stay closed."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

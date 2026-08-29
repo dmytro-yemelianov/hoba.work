@@ -39,7 +39,7 @@ export const barrier = (over: Partial<BarrierNode> & { id: string; order: number
   specimens: [],
   perspectives: [],
   status: 'active',
-  evidence_level: 'established',
+  evidence_level: 'strongly_supported',
   evidence_ids: [],
   aliases: [],
   ...over,

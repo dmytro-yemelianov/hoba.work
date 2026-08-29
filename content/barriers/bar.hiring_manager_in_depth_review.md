@@ -51,7 +51,7 @@ perspectives:
     reads: "An advance is a pipeline step cleared; a decline here is a rejection to be worded without the reasoning that produced it."
     does: "Moves the candidate to the panel, or sends the decline in standard wording, since the requirement behind it is not in what reached them."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
 ---

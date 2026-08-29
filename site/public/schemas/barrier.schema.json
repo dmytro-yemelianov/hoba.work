@@ -85,12 +85,15 @@
         "evidence_level": {
           "type": "string",
           "enum": [
-            "established",
+            "observed",
+            "compatible",
             "supported",
-            "hypothesis",
-            "illustrative"
+            "strongly_supported",
+            "proven",
+            "contradicted",
+            "unknown"
           ],
-          "default": "established"
+          "default": "strongly_supported"
         },
         "specimens": {
           "type": "array",

@@ -41,7 +41,7 @@ perspectives:
     reads: "Кількість отриманих заявок читається як охоплення. Цифри показують надходження, а не те, що з ними сталося далі."
     does: "Зберігає вимогу публікувати вакансію зовні й визначає штат рекрутингу, який задає пропускну здатність перегляду; цей цикл рішень міряють кварталами."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---

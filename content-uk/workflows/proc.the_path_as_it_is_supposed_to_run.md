@@ -410,7 +410,7 @@ transitions:
     entities: []
 specimens: []
 status: "active"
-evidence_level: "illustrative"
+evidence_level: "unknown"
 evidence_ids: []
 ---
 

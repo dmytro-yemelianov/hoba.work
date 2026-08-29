@@ -55,7 +55,7 @@ perspectives:
     reads: "Усталена межа, яка працює як написано. Ніде в ній не сказано, на якому етапі найму цю межу треба розкрити."
     does: "Установлює саме правило й ліцензовані посередницькі схеми, здатні перенести трудові відносини через цю межу, — у законодавчому циклі, на який жоден окремий процес не чекає."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

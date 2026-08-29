@@ -46,7 +46,7 @@ perspectives:
     reads: "Названу прогалину можна звірити з роботою. Шаблон лишає невідомими і планку, і рівень, і решту когорти."
     does: "Записує формулювання й дату та може відпрацювати названу тему. Це єдина ланка, яку кандидат тут контролює."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"

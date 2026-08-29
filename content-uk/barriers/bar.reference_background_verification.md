@@ -47,7 +47,7 @@ perspectives:
     reads: "Перевірка — це точка, де правило про допуск (ліцензія, право на працю, межа того, про що взагалі можна питати) стає «пройдено» або «не пройдено»."
     does: "Обмежує, що можна перевіряти і про що треба повідомити при негативному висновку; як саме звіряють розбіжність підрядника в цих межах, тут не визначають."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---

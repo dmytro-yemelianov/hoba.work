@@ -53,7 +53,7 @@ perspectives:
     reads: "Тиша — той самий артефакт і тоді, коли запис лишили відкритим, і тоді, коли заявку прочитали й відклали."
     does: "Питає прямо, чи оголошення актуальне: це єдиний канал, який повертає стан запису. Фіксує дату кожної подачі."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 honest_baseline: false
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"

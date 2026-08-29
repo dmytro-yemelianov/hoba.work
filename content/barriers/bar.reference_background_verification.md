@@ -47,7 +47,7 @@ perspectives:
     reads: "Verification is the point where an eligibility rule — a licence, a right to work, a limit on what may be asked — becomes a pass or a fail."
     does: "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled within those bounds is not set here."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---

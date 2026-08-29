@@ -45,7 +45,7 @@ perspectives:
     reads: "Опублікована вилка читається як розкриття, якого вимагало правило."
     does: "Правило дотягується до вилки й зупиняється. Рівень, на якому оцінюють кандидата, не є полем для розкриття, тож рухома половина цього шлюзу лишається поза досяжністю правила."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
   - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"

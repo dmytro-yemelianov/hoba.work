@@ -75,7 +75,7 @@
           "id": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
           "label": "Feedback naming as absent something the submitted work contains",
           "type": "artifact",
-          "evidence_level": "hypothesis",
+          "evidence_level": "compatible",
           "stages": [
             "screening",
             "technical"
@@ -144,7 +144,7 @@
           "id": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "label": "Offer accepted followed by delayed start date or post-signing revocation",
           "type": "artifact",
-          "evidence_level": "established",
+          "evidence_level": "proven",
           "stages": [
             "post-offer"
           ]
@@ -182,7 +182,7 @@
           "id": "obs.rejection_after_the_application_sat_pending_for_months",
           "label": "Rejection after the application sat pending for months",
           "type": "artifact",
-          "evidence_level": "hypothesis",
+          "evidence_level": "compatible",
           "stages": [
             "ingestion",
             "screening"
@@ -195,7 +195,7 @@
           "id": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "label": "Rejection naming a jurisdiction or work-eligibility ground",
           "type": "artifact",
-          "evidence_level": "hypothesis",
+          "evidence_level": "compatible",
           "stages": [
             "ingestion",
             "recruiter"
@@ -208,7 +208,7 @@
           "id": "obs.rejection_naming_a_specific_industry_sector_as_required",
           "label": "Rejection naming a specific industry sector as required",
           "type": "artifact",
-          "evidence_level": "hypothesis",
+          "evidence_level": "compatible",
           "stages": [
             "recruiter",
             "technical"
@@ -221,7 +221,7 @@
           "id": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "label": "Rejection naming an internal hire as the outcome",
           "type": "artifact",
-          "evidence_level": "hypothesis",
+          "evidence_level": "compatible",
           "stages": [
             "team",
             "offer"
@@ -246,7 +246,7 @@
           "id": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
           "label": "Republished job posting with refreshed date and identical requirement body",
           "type": "artifact",
-          "evidence_level": "established",
+          "evidence_level": "proven",
           "stages": [
             "pre-posting",
             "sourcing"
@@ -286,7 +286,7 @@
           "type": "barrier",
           "stage": "pre-posting",
           "order": 1,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-barrier"
       },
@@ -297,7 +297,7 @@
           "type": "barrier",
           "stage": "sourcing",
           "order": 2,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-barrier"
       },
@@ -308,7 +308,7 @@
           "type": "barrier",
           "stage": "ingestion",
           "order": 3,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -319,7 +319,7 @@
           "type": "barrier",
           "stage": "ingestion",
           "order": 4,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -330,7 +330,7 @@
           "type": "barrier",
           "stage": "screening",
           "order": 5,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -341,7 +341,7 @@
           "type": "barrier",
           "stage": "recruiter",
           "order": 6,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -352,7 +352,7 @@
           "type": "barrier",
           "stage": "technical",
           "order": 7,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -363,7 +363,7 @@
           "type": "barrier",
           "stage": "technical",
           "order": 8,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -374,7 +374,7 @@
           "type": "barrier",
           "stage": "hiring-manager",
           "order": 9,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -385,7 +385,7 @@
           "type": "barrier",
           "stage": "team",
           "order": 10,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -396,7 +396,7 @@
           "type": "barrier",
           "stage": "compensation",
           "order": 11,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -407,7 +407,7 @@
           "type": "barrier",
           "stage": "offer",
           "order": 12,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-barrier"
       },
@@ -418,7 +418,7 @@
           "type": "barrier",
           "stage": "post-offer",
           "order": 13,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -429,7 +429,7 @@
           "type": "barrier",
           "stage": "post-offer",
           "order": 14,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-barrier"
       },
@@ -440,7 +440,7 @@
           "type": "barrier",
           "stage": "client",
           "order": 15,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-barrier"
       },
@@ -451,7 +451,7 @@
           "type": "barrier",
           "stage": "post-offer",
           "order": 16,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-barrier"
       },
@@ -465,7 +465,7 @@
           "visibility": "inferable",
           "removability": "candidate",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-candidate"
       },
@@ -479,7 +479,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -493,7 +493,7 @@
           "visibility": "inferable",
           "removability": "candidate",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-candidate"
       },
@@ -507,7 +507,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": true,
-          "evidence_level": "hypothesis"
+          "evidence_level": "compatible"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -521,7 +521,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "hypothesis"
+          "evidence_level": "compatible"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -535,7 +535,7 @@
           "visibility": "observable",
           "removability": "candidate",
           "honest_baseline": true,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-candidate"
       },
@@ -591,7 +591,7 @@
           "visibility": "inferable",
           "removability": "candidate",
           "honest_baseline": true,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-candidate"
       },
@@ -605,7 +605,7 @@
           "visibility": "inferable",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -675,7 +675,7 @@
           "visibility": "observable",
           "removability": "intermediary",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-intermediary"
       },
@@ -731,7 +731,7 @@
           "visibility": "inferable",
           "removability": "intermediary",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-intermediary"
       },
@@ -759,7 +759,7 @@
           "visibility": "observable",
           "removability": "candidate",
           "honest_baseline": true,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-candidate"
       },
@@ -787,7 +787,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "strongly_supported"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -801,7 +801,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -815,7 +815,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": true,
-          "evidence_level": "established"
+          "evidence_level": "proven"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -897,7 +897,7 @@
           "id": "loop.inflated_requirements_search_saturation_loop",
           "label": "Inflated-Requirements Search Saturation Loop",
           "type": "loop",
-          "evidence_level": "hypothesis"
+          "evidence_level": "compatible"
         },
         "classes": "node-loop"
       },
@@ -1005,7 +1005,7 @@
           "type": "intervention",
           "actor": "employer-policy",
           "cost": "medium",
-          "evidence_level": "hypothesis"
+          "evidence_level": "compatible"
         },
         "classes": "node-intervention"
       },

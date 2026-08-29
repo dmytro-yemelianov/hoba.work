@@ -45,7 +45,7 @@ perspectives:
     reads: "Nothing in the outcome reads as feedback, and what decided it is a fact about a person who is not the recipient."
     does: "Sends the standard wording and keeps the file for a later requisition at the same level."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

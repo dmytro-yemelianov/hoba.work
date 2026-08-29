@@ -55,7 +55,7 @@ perspectives:
     reads: "A settled boundary, working as written. Nothing in it says at which point in a hiring process the boundary has to be disclosed."
     does: "Sets the rule and the licensed intermediary arrangements that can carry an employment relationship across it, on a legislative cycle no single process can wait for."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

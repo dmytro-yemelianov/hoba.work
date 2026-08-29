@@ -41,7 +41,7 @@ perspectives:
     reads: "Випробувальний термін встановлює межу, після якої починають діяти повноцінні законодавчі стандарти захисту працівника."
     does: "Забезпечує дотримання строків попередження та переводить працівника на постійний статус."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
   - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"

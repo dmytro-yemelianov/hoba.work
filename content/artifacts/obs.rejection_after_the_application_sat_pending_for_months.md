@@ -25,7 +25,7 @@ perspectives:
     reads: "The configuration ran on schedule. Whether any of those records was ever opened is not a condition the rule tests."
     does: "Transitions the records, queues the notifications, and reports the cleared backlog as pipeline hygiene."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids: []
 probes:
   -

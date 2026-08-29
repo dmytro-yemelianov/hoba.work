@@ -25,6 +25,49 @@ describe('validateRegistryBundle', () => {
     expect(issues.every((i) => i.severity === 'error')).toBe(true);
   });
 
+  // Design doc §6: a claim may never be authored as `proven` without at least
+  // one linked evidence record whose kind is `primary` or `research`.
+  // `compatible` never implies `proven` — a tier is not jumped without the
+  // evidence for the jump.
+  describe('the proven tier', () => {
+    const withEvidence = (kind: string) =>
+      makeBundle({
+        mechanisms: [mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-001'], evidence_level: 'proven', evidence_ids: ['EVD-001'] })],
+        evidence: [{ id: 'EVD-001', type: 'evidence', title: 'A source', kind, summary: 'A fixture evidence record.', aliases: [] } as never],
+      });
+
+    it('accepts proven when the linked evidence is primary or research', () => {
+      for (const kind of ['primary', 'research']) {
+        expect(validateRegistryBundle(withEvidence(kind)).filter((i) => i.rule === 'unsupported-claim')).toEqual([]);
+      }
+    });
+
+    it('rejects proven when the linked evidence is too weak to carry it', () => {
+      for (const kind of ['survey', 'reporting', 'anecdote', 'illustrative']) {
+        const issues = validateRegistryBundle(withEvidence(kind)).filter((i) => i.rule === 'unsupported-claim');
+        expect(issues, kind).toHaveLength(1);
+        expect(issues[0]!.severity).toBe('error');
+        expect(issues[0]!.nodeId).toBe('M-001');
+      }
+    });
+
+    it('rejects proven with no linked evidence at all', () => {
+      const bundle = makeBundle({
+        mechanisms: [mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-001'], evidence_level: 'proven', evidence_ids: [] })],
+      });
+      expect(validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim')).toHaveLength(1);
+    });
+
+    it('leaves every tier below proven alone, however thin its evidence', () => {
+      for (const level of ['observed', 'compatible', 'supported', 'strongly_supported', 'contradicted', 'unknown']) {
+        const bundle = makeBundle({
+          mechanisms: [mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-001'], evidence_level: level as never, evidence_ids: [] })],
+        });
+        expect(validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim'), level).toEqual([]);
+      }
+    });
+  });
+
   it('requires at least one active honest-baseline mechanism', () => {
     const bundle = makeBundle();
     bundle.mechanisms = bundle.mechanisms.map((m) => ({ ...m, honest_baseline: false }));

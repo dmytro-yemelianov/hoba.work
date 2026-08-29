@@ -51,7 +51,7 @@ perspectives:
     reads: "«Далі» — це пройдений крок пайплайну; відмова тут — текст, який треба написати без міркувань, з яких вона постала."
     does: "Веде кандидата на панель або надсилає відмову стандартним формулюванням, бо вимога, що стоїть за нею, до рекрутера не дійшла."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
 ---

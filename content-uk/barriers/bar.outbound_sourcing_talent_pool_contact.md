@@ -47,7 +47,7 @@ perspectives:
     reads: "Теплий пайплайн до затвердження скорочує час на закриття після нього і не лягає на жоден бюджетний рядок, який відстежує цикл погоджень."
     does: "Задає цикл погоджень, який вирішує, коли прогноз стає вакансією, і не регулює контакти, що відбуваються до цього."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
 ---

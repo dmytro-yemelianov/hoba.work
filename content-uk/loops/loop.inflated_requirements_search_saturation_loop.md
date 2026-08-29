@@ -72,7 +72,7 @@ perspectives:
     reads: "Цей список — або планка, або побажання, і оголошення не каже, що саме; роки досвіду — та частина, на яку фільтр здатен зреагувати."
     does: "Пропускає вакансію або подається попри список, якому не відповідає, і ніколи не дізнається, які саме вимоги насправді застосував скринінг."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"

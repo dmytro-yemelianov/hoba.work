@@ -1,4 +1,5 @@
 import { HOBAKnowledgeGraph } from './graph.js';
+import { PROVING_EVIDENCE_KINDS } from './schemas.js';
 import type { RegistryBundle, RegistryNode } from './types.js';
 
 export type ValidationSeverity = 'error' | 'warning';
@@ -208,7 +209,28 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     }
   }
 
-  // 8. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
+  // 8. The proven tier is earned, not authored (design doc §6). A claim may not
+  //    stand at `proven` without at least one linked evidence record whose kind
+  //    is `primary` or `research` — so a tier is never jumped without the
+  //    evidence for the jump. Every weaker tier is left alone: this rule is
+  //    about the strongest claim the registry can make, not about evidence
+  //    coverage in general.
+  const evidenceKindById = new Map(bundle.evidence.map((e) => [e.id, e.kind]));
+  const proving = new Set<string>(PROVING_EVIDENCE_KINDS);
+  for (const n of nodes) {
+    const claim = (n as { evidence_level?: string }).evidence_level;
+    if (claim !== 'proven') continue;
+    const linked = (n as { evidence_ids?: string[] }).evidence_ids ?? [];
+    if (linked.some((id) => proving.has(evidenceKindById.get(id) ?? ''))) continue;
+    error(
+      'unsupported-claim',
+      `is authored as "proven" but links no evidence of kind ${PROVING_EVIDENCE_KINDS.map((k) => `"${k}"`).join(' or ')}` +
+        (linked.length ? ` (has: ${linked.join(', ')})` : ' (has none)'),
+      n.id
+    );
+  }
+
+  // 9. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
   const probeOwners = new Map<string, string>();
   for (const a of bundle.artifacts) {
     for (const p of a.probes) {

@@ -55,7 +55,7 @@ perspectives:
     reads: "The bar is being applied. A requirement written as a minimum is executed as a minimum, on whatever the parser extracted."
     does: "Adjusts the written requirement when the shortlist looks wrong, which is the only point at which the rule becomes visible from here."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
   - "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026"

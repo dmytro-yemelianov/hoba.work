@@ -46,7 +46,7 @@ perspectives:
     reads: "The posting is the enforceable surface: what it must state is reachable by rule, what stands behind it is not."
     does: "Requires the band in the posting where transparency rules apply, and leaves the approved level and the funding status outside what any disclosure rule reaches."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---

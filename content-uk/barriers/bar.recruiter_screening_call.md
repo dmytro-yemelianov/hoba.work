@@ -60,7 +60,7 @@ perspectives:
     reads: "Там, де вилку зобовʼязані публікувати, на цьому шлюзі питають про суму, яку обидві сторони вже можуть назвати."
     does: "Вимагає вилку в оголошенні й лишає поза правилом рівень, на якому кандидата насправді оцінюватимуть, бо правила пишуть там, де їх можна виміряти й забезпечити."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
   - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"

@@ -43,7 +43,7 @@ perspectives:
     reads: "One rule applied the same way to every hire is the defensible position. An exception made once is a precedent that has to be defended later."
     does: "Holds the offer until the file closes, and fixes how much of the reason may be stated — which is what determines whether the candidate is told the field or told nothing."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

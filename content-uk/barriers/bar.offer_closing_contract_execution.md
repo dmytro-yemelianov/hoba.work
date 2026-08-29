@@ -45,7 +45,7 @@ perspectives:
     reads: "Звідси процес виглядає завершеним, хоча до другого підпису ніщо не набуває чинності, а цього кроку ззовні не видно."
     does: "Відкладає звільнення й закриття інших процесів, доки не надійде примірник із зустрічним підписом, і фіксує дати та формулювання того, що обіцяли."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---

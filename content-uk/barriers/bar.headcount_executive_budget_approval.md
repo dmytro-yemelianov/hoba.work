@@ -49,7 +49,7 @@ perspectives:
     reads: "Пайплайн стоїть на кроці поза його повноваженнями, а чи зрушать фінанси цей рядок до кінця кварталу — не те, що до нього доходить."
     does: "Не може назвати дату; його міряють за time-to-fill, а не за часом до ясності, тож кандидат почує щось знову тоді, коли рядок зрушить."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---

@@ -7,7 +7,7 @@ title: "Offer accepted followed by delayed start date or post-signing revocation
 summary: "A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding."
 stages:
   - "post-offer"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
   - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"

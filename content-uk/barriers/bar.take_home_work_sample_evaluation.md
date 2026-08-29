@@ -42,7 +42,7 @@ perspectives:
     reads: "Шлюз читається як інтервал у пайплайні: дні між відправкою й рішенням, з яким уже можна щось робити."
     does: "Нагадує рецензентам, поки інтервал росте, і пише результат за рекомендацією, бо нотатки перевірки до нього не доходять."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---

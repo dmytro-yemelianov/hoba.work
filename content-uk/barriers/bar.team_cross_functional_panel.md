@@ -44,7 +44,7 @@ perspectives:
     reads: "Вимога одностайності читається як узгодженість між наймами й запис, який можна відстояти для кожного з них."
     does: "Тримає поріг однаковим для всіх команд. Години, яких коштує повторний прогін співбесід, не є рядком у звітності цього шару."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---

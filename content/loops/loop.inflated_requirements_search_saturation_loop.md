@@ -72,7 +72,7 @@ perspectives:
     reads: "The list is either the bar or a wish, and the posting does not say which; the year thresholds are the part a filter can act on."
     does: "Skips the posting or applies against a list they do not match, and never learns which of the requirements the screen enforced."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"

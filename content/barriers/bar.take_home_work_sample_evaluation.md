@@ -42,7 +42,7 @@ perspectives:
     reads: "The gate reads as an interval in the pipeline: days between dispatch and a decision that can be acted on."
     does: "Follows up with the reviewers as the interval grows, and writes the outcome from the recommendation, since the notes behind it do not reach the recruiter."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---

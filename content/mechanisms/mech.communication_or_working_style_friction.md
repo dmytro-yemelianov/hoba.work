@@ -44,7 +44,7 @@ perspectives:
     reads: "A decision that is final and hard to put in writing to the candidate without it reading as a judgement about the person."
     does: "Sends the standard closer-alignment wording, or relays the specific note if the panel has phrased it as something the candidate can act on."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"

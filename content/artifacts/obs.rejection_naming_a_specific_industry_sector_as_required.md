@@ -25,7 +25,7 @@ perspectives:
     reads: "Preferences and thresholds are recorded in the same field. Which one a line was is decided when it is used, not when it is written."
     does: "Passes the reason on in the manager's words, because it is specific enough to send and not attributable to anything the recruiter assessed."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids: []
 probes:
   -

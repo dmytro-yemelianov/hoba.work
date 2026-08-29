@@ -45,7 +45,7 @@ perspectives:
     reads: "The interval is the only evidence about how the application was read, and the message does not distinguish a rule from a person."
     does: "Records the interval between submission and reply, and carries the exact strings the posting names into the next application."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

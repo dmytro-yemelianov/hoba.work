@@ -43,7 +43,7 @@ perspectives:
     reads: "Одне правило, застосоване однаково до кожного найму, — це позиція, яку можна захистити. Виняток, зроблений один раз, стає прецедентом, який потім доведеться захищати."
     does: "Тримає оффер, доки справу не закрито, і визначає, скільки з причини можна назвати, — саме це вирішує, скажуть кандидату поле чи не скажуть нічого."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

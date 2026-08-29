@@ -49,7 +49,7 @@ perspectives:
     reads: "The pipeline is stopped at a step outside their authority, and whether finance clears it this quarter is not among the things that reach them."
     does: "Cannot give a date, and is measured on time-to-fill rather than on time-to-clarity, so the candidate hears again when the row moves."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---

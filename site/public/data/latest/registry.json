@@ -3604,7 +3604,7 @@
         "screening",
         "technical"
       ],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "probes": [
         {
           "id": "PROBE-A-019-1",
@@ -4234,7 +4234,7 @@
       "stages": [
         "post-offer"
       ],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "probes": [
         {
           "id": "PROBE-A-020-1",
@@ -4592,7 +4592,7 @@
         "ingestion",
         "screening"
       ],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "probes": [
         {
           "id": "PROBE-A-015-1",
@@ -4721,7 +4721,7 @@
         "ingestion",
         "recruiter"
       ],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "probes": [
         {
           "id": "PROBE-A-017-1",
@@ -4825,7 +4825,7 @@
         "recruiter",
         "technical"
       ],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "probes": [
         {
           "id": "PROBE-A-018-1",
@@ -4926,7 +4926,7 @@
         "team",
         "offer"
       ],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "probes": [
         {
           "id": "PROBE-A-016-1",
@@ -5154,7 +5154,7 @@
         "pre-posting",
         "sourcing"
       ],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "probes": [
         {
           "id": "PROBE-A-021-1",
@@ -5505,7 +5505,7 @@
       ],
       "description": "The gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "specimens": [
         {
           "kind": "note",
@@ -5574,7 +5574,7 @@
       ],
       "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
       "pass_condition": "The candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "specimens": [
         {
           "kind": "chat",
@@ -5642,7 +5642,7 @@
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
       "pass_condition": "The application record is received, validates against the minimum schema, and is linked to an active job requisition.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "ats",
@@ -5716,7 +5716,7 @@
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.",
       "pass_condition": "The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "ats",
@@ -5797,7 +5797,7 @@
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
       "pass_condition": "The recruiter adds the application to the active short-list for a first conversation.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -5861,7 +5861,7 @@
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
       "pass_condition": "The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "transcript",
@@ -5949,7 +5949,7 @@
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
       "pass_condition": "The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -6011,7 +6011,7 @@
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
       "pass_condition": "The submitted code meets the architecture, functionality, test coverage and documentation requirements.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -6077,7 +6077,7 @@
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
       "pass_condition": "The hiring manager confirms the required depth and approves the candidate for the final panel.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "transcript",
@@ -6152,7 +6152,7 @@
       ],
       "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
       "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -6223,7 +6223,7 @@
       ],
       "description": "Internal alignment between candidate expected compensation/level and company pay bands / levelling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -6291,7 +6291,7 @@
       ],
       "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
       "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "specimens": [
         {
           "kind": "ats",
@@ -6366,7 +6366,7 @@
       ],
       "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
       "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -6436,7 +6436,7 @@
       "precedes": [],
       "description": "Final mutual execution of the formal employment agreement and start-date confirmation.",
       "pass_condition": "Both parties sign offer contract and onboarding workflow is triggered.",
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "specimens": [
         {
           "kind": "ats",
@@ -6504,7 +6504,7 @@
       "precedes": [],
       "description": "The candidate profile is submitted to the end client for review, followed by a client-side interview round.",
       "pass_condition": "The client approves the profile submission and signs off on the technical and culture match after the interview.",
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "specimens": [
         {
           "kind": "ats",
@@ -6574,7 +6574,7 @@
       "precedes": [],
       "description": "The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.",
       "pass_condition": "The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "specimens": [
         {
           "kind": "note",
@@ -6670,7 +6670,7 @@
         "mech.automated_keyword_qualification_filter"
       ],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": false,
       "specimens": [
         {
@@ -6778,7 +6778,7 @@
       "masks": [
         "mech.stale_or_orphaned_job_requisition"
       ],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": false,
       "specimens": [
         {
@@ -6890,7 +6890,7 @@
         "mech.mid_process_role_requirement_redefinition"
       ],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": false,
       "specimens": [
         {
@@ -6993,7 +6993,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "honest_baseline": true,
       "specimens": [
         {
@@ -7091,7 +7091,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "honest_baseline": false,
       "specimens": [
         {
@@ -7196,7 +7196,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": true,
       "specimens": [
         {
@@ -7625,7 +7625,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": true,
       "specimens": [
         {
@@ -7724,7 +7724,7 @@
         "mech.genuine_technical_skill_shortfall",
         "mech.stronger_competing_candidate_in_final_cohort"
       ],
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "honest_baseline": false,
       "specimens": [
         {
@@ -8237,7 +8237,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": false,
       "specimens": [
         {
@@ -8677,7 +8677,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": false,
       "specimens": [
         {
@@ -8878,7 +8878,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": true,
       "specimens": [
         {
@@ -9084,7 +9084,7 @@
         "mech.automated_application_expiration_timeout"
       ],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "strongly_supported",
       "honest_baseline": false,
       "specimens": [
         {
@@ -9195,7 +9195,7 @@
       },
       "amplifies": [],
       "masks": [],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": false,
       "specimens": [
         {
@@ -9287,7 +9287,7 @@
       "masks": [
         "mech.genuine_technical_skill_shortfall"
       ],
-      "evidence_level": "established",
+      "evidence_level": "proven",
       "honest_baseline": true,
       "specimens": [
         {
@@ -10133,7 +10133,7 @@
         "int.standardized_late_stage_rejection_feedback_taxonomy",
         "int.requirements_drawn_from_the_team_s_own_backlog"
       ],
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "specimens": [
         {
           "kind": "posting",
@@ -10970,7 +10970,7 @@
       "actor": "employer-policy",
       "scope": "organizational",
       "cost": "medium",
-      "evidence_level": "hypothesis",
+      "evidence_level": "compatible",
       "expected_effects": [
         "bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel",
         "A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published",

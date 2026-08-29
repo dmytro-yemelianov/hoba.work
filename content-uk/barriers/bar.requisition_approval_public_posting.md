@@ -46,7 +46,7 @@ perspectives:
     reads: "Публікація — це поверхня, до якої дотягується правило: що вона мусить містити, регулюється; що стоїть за нею — ні."
     does: "Вимагає вказувати вилку в публікації там, де діють правила прозорості оплати, і лишає затверджений рівень та стан фінансування поза досяжністю будь-якого правила про розкриття."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---

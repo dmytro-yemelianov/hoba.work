@@ -7,7 +7,7 @@ title: "Прийнятий офер зі зсувом дати старту аб
 summary: "Підписаний офер супроводжується неодноразовими перенесеннями дати виходу, тишею перед першим днем або скасуванням під час раннього онбордингу."
 stages:
   - "post-offer"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
   - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"

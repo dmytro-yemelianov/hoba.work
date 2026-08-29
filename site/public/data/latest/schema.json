@@ -631,10 +631,13 @@
               "evidence_level": {
                 "type": "string",
                 "enum": [
-                  "established",
+                  "observed",
+                  "compatible",
                   "supported",
-                  "hypothesis",
-                  "illustrative"
+                  "strongly_supported",
+                  "proven",
+                  "contradicted",
+                  "unknown"
                 ],
                 "default": "supported"
               },
@@ -823,7 +826,7 @@
               },
               "evidence_level": {
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
-                "default": "established"
+                "default": "strongly_supported"
               },
               "specimens": {
                 "type": "array",

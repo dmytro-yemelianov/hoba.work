@@ -60,7 +60,7 @@ perspectives:
     reads: "Where a band must be published, the question at this gate is asked against a number both sides can name."
     does: "Requires the band in the posting and leaves the level a candidate is assessed at outside the rule, because rules are written where they can be measured and enforced."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
   - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"

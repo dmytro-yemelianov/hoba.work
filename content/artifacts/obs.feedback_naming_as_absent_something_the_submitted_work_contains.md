@@ -25,7 +25,7 @@ perspectives:
     reads: "What the first screen shows stands for the whole, because there is no time to establish that it does not. A layout that buries the work reads the same as an absence of it."
     does: "Writes the note against what was seen, in the vocabulary of what was expected to be there."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids: []
 probes:
   -

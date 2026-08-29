@@ -45,7 +45,7 @@ perspectives:
     reads: "Інтервал — єдине свідчення про те, як заявку читали, а повідомлення не відрізняє правило від людини."
     does: "Фіксує проміжок між подачею й відповіддю та переносить точні рядки з оголошення в наступну заявку."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

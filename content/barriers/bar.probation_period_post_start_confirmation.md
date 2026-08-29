@@ -41,7 +41,7 @@ perspectives:
     reads: "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect."
     does: "Enforces notice requirements and confirms payroll status transition upon probation completion."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
   - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"

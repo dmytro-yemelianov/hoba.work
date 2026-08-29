@@ -8,7 +8,7 @@ summary: "Вакансія оновлюється з новою датою пу�
 stages:
   - "pre-posting"
   - "sourcing"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
   - "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"

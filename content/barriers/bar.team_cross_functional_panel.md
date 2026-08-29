@@ -44,7 +44,7 @@ perspectives:
     reads: "A unanimity requirement reads as consistency across hires and as a defensible record for each one."
     does: "Keeps the threshold uniform across teams. The hours a re-run of the loop consumes are not a line in the cycle this layer reports on."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---

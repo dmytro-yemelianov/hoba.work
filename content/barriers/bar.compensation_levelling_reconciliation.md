@@ -45,7 +45,7 @@ perspectives:
     reads: "A published band reads as the disclosure the rule required."
     does: "The rule reaches the band and stops. The level a candidate is assessed at is not a disclosable field, so the half of this gate that moves sits outside what the rule reaches."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
   - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"

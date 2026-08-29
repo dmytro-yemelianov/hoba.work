@@ -56,7 +56,7 @@ perspectives:
     reads: "A scheduled expiry is a decision only where the framing counts it as one. Where the rule lives on a configuration screen with a default, no filing records that a decision was made."
     does: "The available lever is a rule written for a class of systems — disclosure, explainability, a right to human review — and it arrives on a cycle longer than the threshold it would govern."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: false
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

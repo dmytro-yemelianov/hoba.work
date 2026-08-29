@@ -10,7 +10,7 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
-const verbs = ['observed', 'compatible', 'supported', 'established'] as const;
+const verbs = ['observed', 'compatible', 'supported', 'proven'] as const;
 
 const tocItems = [
   { id: 'method-core', label: t('method.core.title'), icon: '⚖️' },
@@ -52,7 +52,7 @@ const tocItems = [
       <section id="method-evidence" class="scroll-mt-24 mt-10">
         <h2>{t('method.evidence.title')}</h2>
         <p>{t('method.evidence.text1.before')}<code>evidence_level</code>{t('method.evidence.text1.middle')}<code>EVD-xxx</code>{t('method.evidence.text1.after')}</p>
-        <p>{t('method.evidence.text2.before')}<code>hypothesis</code>{t('method.evidence.text2.after')}</p>
+        <p>{t('method.evidence.text2.before')}<code>compatible</code>{t('method.evidence.text2.after')}</p>
       </section>
 
       <section id="method-nongoals" class="scroll-mt-24 mt-10">

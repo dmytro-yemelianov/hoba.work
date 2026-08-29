@@ -49,7 +49,7 @@ perspectives:
     reads: "Успішний вихід спеціаліста генерує виручку за контрактом одразу після фінального погодження замовником."
     does: "Відстежує конверсію погодження профілів замовниками та керує опцією залучення спеціалістів із бенчу."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 evidence_ids:
   - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
 ---

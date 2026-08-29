@@ -72,7 +72,28 @@ export const evidenceKindSchema = z.enum([
   'illustrative',
 ]);
 
-export const evidenceLevelSchema = z.enum(['established', 'supported', 'hypothesis', 'illustrative']);
+/**
+ * How strongly a claim is being made, from the external spec via design doc §6.
+ *
+ * Ordered weakest to strongest, with two states that are not points on that
+ * line: `contradicted` (the evidence runs against the claim) and `unknown`
+ * (no claim about the world is being made — a description, not an assertion).
+ *
+ * `proven` is the only tier the validator gates: it requires a linked evidence
+ * record of kind `primary` or `research`. See the `unsupported-claim` rule.
+ */
+export const evidenceLevelSchema = z.enum([
+  'observed',
+  'compatible',
+  'supported',
+  'strongly_supported',
+  'proven',
+  'contradicted',
+  'unknown',
+]);
+
+/** The evidence kinds strong enough to carry a `proven` claim (design doc §6). */
+export const PROVING_EVIDENCE_KINDS = ['primary', 'research'] as const;
 
 export const nodeStatusSchema = z.enum(['active', 'deprecated']);
 
@@ -258,7 +279,7 @@ export const barrierSchema = z.object({
   description: z.string().min(10),
   pass_condition: z.string().min(5),
   superseded_by: barrierId.optional(),
-  evidence_level: evidenceLevelSchema.default('established'),
+  evidence_level: evidenceLevelSchema.default('strongly_supported'),
   specimens: z.array(specimenSchema).default([]),
   /** The same entry seen from inside each actor that meets it. */
   perspectives: z.array(perspectiveSchema).default([]),

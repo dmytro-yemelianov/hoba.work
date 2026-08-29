@@ -32,7 +32,7 @@ facets:
   removability: "none"
 amplifies: []
 masks: []
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 honest_baseline: true
 evidence_ids: []
 specimens:

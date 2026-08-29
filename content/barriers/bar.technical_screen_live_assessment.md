@@ -41,7 +41,7 @@ perspectives:
     reads: "The outcome is settled, and the reason for it stays with the panel."
     does: "Writes the message from the recommendation, which is the level of detail available to write from."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---

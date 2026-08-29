@@ -41,7 +41,7 @@ perspectives:
     reads: "Рішення вже ухвалене, а підстава для нього лишається в панелі."
     does: "Пише повідомлення з рекомендації — іншого рівня деталізації для нього немає."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---

@@ -45,7 +45,7 @@ perspectives:
     reads: "У результаті немає нічого, що читалося б як фідбек, а те, що все вирішило, стосується людини, якій цей лист не адресований."
     does: "Надсилає стандартне формулювання й залишає профіль для наступної вакансії того самого рівня."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 honest_baseline: true
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"

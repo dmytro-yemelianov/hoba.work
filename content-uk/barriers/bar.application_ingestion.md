@@ -47,7 +47,7 @@ perspectives:
     reads: "Проходження цього шлюзу нічого не говорить про кандидата. Поки до запису не дійде сортування, це обсяг."
     does: "На цьому шлюзі — нічого. Черга опрацьовується на наступному, у порядку, який задають там."
 status: "active"
-evidence_level: "established"
+evidence_level: "proven"
 evidence_ids:
   - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---

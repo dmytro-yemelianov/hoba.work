@@ -25,7 +25,7 @@ perspectives:
     reads: "The disposition is accurate and unusually specific — most closing reasons are not this legible from outside."
     does: "Sends the stated reason rather than the generic template, because the internal outcome is the one closing reason that can be given without commenting on any candidate."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids: []
 probes:
   -

@@ -25,7 +25,7 @@ perspectives:
     reads: "Перший екран заступає ціле, бо часу встановити, що не заступає, немає. Розкладка, яка ховає роботу, читається так само, як її відсутність."
     does: "Пише нотатку за побаченим — словами того, що очікував там знайти."
 status: "active"
-evidence_level: "hypothesis"
+evidence_level: "compatible"
 evidence_ids: []
 probes:
   -

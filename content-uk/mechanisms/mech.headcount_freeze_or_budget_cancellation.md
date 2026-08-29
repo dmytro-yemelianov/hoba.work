@@ -52,7 +52,7 @@ perspectives:
     reads: "За часом це стається одразу після вже пройдених раундів, тож причина, що лежить вище процесу, і вирок у самому процесі звідси виглядають однаково."
     does: "Фіксує дату й формулювання, питає, вакансію поставлено на паузу чи закрито, і не зупиняє інші процеси."
 status: "active"
-evidence_level: "established"
+evidence_level: "strongly_supported"
 honest_baseline: false
 evidence_ids:
   - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
