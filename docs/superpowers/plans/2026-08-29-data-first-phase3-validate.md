@@ -70,11 +70,59 @@ live in `tests/examples/`.
 
 ---
 
+## Where this stands (2026-08-29)
+
+| slice | state |
+|---|---|
+| 3.1 epistemic model | **done** — `0ae94e2`. Seven states live; 23 → `proven`, 10 → `strongly_supported`, 9 → `compatible`, 1 → `unknown`. The `unsupported-claim` rule refuses an unearned `proven`, verified against real content. |
+| 3.3 Scenario | **done** — `8239180`. Schema, loader, build-time resolution (error, not warning), two seed scenarios, and the one-directional guarantee tested structurally. |
+| 3.4 Analysis | **done** — `9ca2edd`. Schema, `validateAnalysis` with the overclaim invariant, worked example under `tests/examples/`. |
+| 3.2 `agency_zones` | **open — a design question, below.** |
+
+With 3.1, 3.3 and 3.4 in, rollout step 3's stated deliverables ("extend the
+validator for new IDs/aliases/epistemic states; add the Scenario schema +
+validator; add the Analysis schema + validator") are complete. 3.2 comes from
+§6 and DoD 6 rather than from step 3's own list, and it is deliberately last.
+
+### The open question on 3.2
+
+§6 says `agency_zones` is "added as a new, purely additive **field** on
+mechanisms". Authoring it means 28 mechanisms × 3–5 actors of impact ratings,
+in both mirrors.
+
+But the registry already declares everything those ratings would encode:
+
+- which parties hold an intervention that **targets** this mechanism — the
+  capacity to act on it, which is what agency *is*;
+- `facets.removability` — whether it can be removed, and by which class of actor;
+- which actors hold a stated `perspective` on it at all.
+
+`PLAN-SUBSTRATE.md`'s founding principle points the other way from §6 here:
+*"The substrate is computed before it is authored… Authoring changes only where
+the ten types cannot say the thing."* On this reading the ten types **can** say
+it, and hand-authoring 112 impact ratings would be inventing a story the
+registry is otherwise careful not to tell — the opposite of its own core rule.
+
+Three ways to settle it, for the owner:
+
+1. **Derive it.** `agencyZones(bundle, mechanismId)` computed from targeting
+   interventions, removability and perspectives. No new authored content, every
+   value explainable, and it cannot drift from the entities it summarises.
+2. **Author it as §6 says.** A per-mechanism editorial judgement that can say
+   things the derivation cannot, at the cost of 112 values no evidence backs.
+3. **Derive, then allow an override.** The computed value stands unless a
+   mechanism declares one, the way `visibility` overrides already work in the
+   substrate. More machinery than either, and the honest answer if a handful of
+   mechanisms genuinely disagree with the derivation.
+
+Recommendation: (1), and revisit (3) only if a real disagreement shows up.
+
 ## Order and rationale
 
 3.1 first: the other three depend on the epistemic vocabulary, and `validate_analysis`
-checks invariants that do not exist until it lands. 3.2 is independent and small in code,
-large in content. 3.3 before 3.4, because an analysis references the same ontology ids a
-scenario does and reuses its resolution helper.
+checks invariants that do not exist until it lands. 3.3 before 3.4, because an analysis
+references the same ontology ids a scenario does and reuses its resolution helper — and in
+the event both ended up keying `agency` by actor slug, which is the second thing Slice 11's
+`slug` field earns its keep for. 3.2 last, and held: see the open question above.
 
 Each slice ends green on all six gates and is committed on its own.
