@@ -49,17 +49,17 @@ interventions:
   - "int.candidate_ats_parser_conformance_test_utility"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A posting requiring more years with a framework than the framework has existed, and a rejection minutes after submitting, outside working hours."
     reads: "The threshold is checkable against a release date, which makes this one of the few claims in a posting that can be false rather than arguable."
     does: "Keeps the posting text and the time of the rejection, which can be set against the release date; the requirement itself reaches nobody who could rewrite it."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "A draft posting assembled from the template of a previous requisition, reviewed for the part that describes the team's work."
     reads: "Years of experience is a shorthand for depth, and in the draft that figure carries less weight than the description of the role."
     does: "Approves the draft and returns to the delivery the requisition exists to cover; the number reaches a screening rule without passing a technical review."
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "A configured knockout rule comparing a parsed year count against a threshold the customer entered."
     reads: "A value below the threshold is a fail; whether the threshold is reachable at all is not a property the rule can evaluate."
     does: "Rejects at submission and emits the standard does-not-meet-minimum-criteria notice, in seconds, at whatever hour it arrives."

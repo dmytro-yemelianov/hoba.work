@@ -6,7 +6,7 @@ aliases:
 title: "Direct Engineering Payroll"
 record_class: "payroll"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Direct recurring payroll compensation paid to the employed engineer."
 flows: []
 visibility_default: "observable"

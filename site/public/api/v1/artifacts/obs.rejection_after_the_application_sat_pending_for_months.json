@@ -106,19 +106,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A submission in one month and a rejection in another, with nothing between them: no acknowledgement beyond the automatic one, no question, no stage.",
         "reads": "The interval bounds nothing on its own. A long wait is equally consistent with a queue that never reached the record and with a threshold that closed it on a date.",
         "does": "Checks whether the posting stayed live through the interval and whether the portal shows a status that changed before the message arrived, because those are the two things the interval can be compared against."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A requisition that has been closed for weeks and a disposition list that still has to be cleared before the quarter's reporting.",
         "reads": "Records that never entered the queue are not decisions deferred; they are decisions the queue never had capacity to reach.",
         "does": "Clears the outstanding dispositions in one operation, because the alternative is leaving them open against a requisition that no longer exists."
       },
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "A retention rule firing against every record still in a pending state past the configured interval, and one notification queued per record.",
         "reads": "The configuration ran on schedule. Whether any of those records was ever opened is not a condition the rule tests.",
         "does": "Transitions the records, queues the notifications, and reports the cleared backlog as pipeline hygiene."

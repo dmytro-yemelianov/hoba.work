@@ -83,25 +83,25 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A request for a compensation expectation at the screen, and a band that is not stated in return.",
         "reads": "The number is collected before the level is fixed, so it is an input to the level rather than an answer to it.",
         "does": "Names a range without the band, without the level, and without knowing how many others in the pipeline have already named one."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A screening form with an expectations field that has to be filled before the candidate moves to the panel, and disclosure rules for the band that are set elsewhere.",
         "reads": "The number is the cheapest available check on whether the process is viable, before panel time is spent on it.",
         "does": "Asks for the number first and records it in the field, and says about the band exactly what is permitted at this stage."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A band per level and a rule about what may be said about it, both reviewed on a cycle measured in quarters.",
         "reads": "A stated expectation is the input that places a candidate on the grid; a band stated first becomes the floor of every negotiation that follows.",
         "does": "Publishes the band where a disclosure rule requires it and not elsewhere, and keeps levelling a decision separate from the number."
       },
       {
-        "actor": "public-policy",
+        "actor": "actor.public_policy_and_industry_standards",
         "sees": "Postings in covered jurisdictions, which either carry a band or do not.",
         "reads": "A published band is measurable and enforceable; the level a candidate will be assessed at is neither.",
         "does": "Requires the band in the posting, which closes one branch of the bind and leaves the levelling branch untouched."

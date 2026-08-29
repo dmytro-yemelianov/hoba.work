@@ -46,17 +46,17 @@ specimens:
     reading: "The release duty is still there. What changes is that the round carries a second name before the week starts, so an unavailable interviewer passes the seat instead of moving the date."
 perspectives:
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "A rota with two names against each round of the sprint, and a sprint board with those hours already taken out of it."
     reads: "Interview capacity is planned before the week rather than found inside it, and the cost is visible on the board where it was previously absorbed by whoever had the slot."
     does: "Takes the points off the sprint for the rota week, and passes the seat to the second name when the first is on release duty."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A round that keeps its date, and an interviewer who opens the submitted work before the call rather than during it."
     reads: "A change of interviewer arrives with the date unchanged, which is a different event from a round being moved."
     does: "Keeps the slot and prepares once, instead of replanning the week around a moved round."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Panel seats coming back filled from the rota, and a reschedule request only where both names are unavailable."
     reads: "A date that moves becomes the exception the process reports rather than the ordinary way a seat gets filled."
     does: "Sends the invitation with the interviewer's name and the prep block already accepted, and names a new date only when both rota names are out."

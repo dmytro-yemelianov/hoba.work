@@ -6,7 +6,7 @@ aliases:
 title: "Candidate Liquid Savings"
 record_class: "runway"
 owner: "inside"
-owner_actor: "candidate"
+owner_actor: "actor.candidate"
 summary: "Total liquid personal savings allocated to sustain the job search interval."
 flows:
   - to: "record.candidate_search_runway"

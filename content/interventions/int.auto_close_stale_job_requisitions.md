@@ -31,22 +31,22 @@ specimens:
     reading: "The same batch job that produces silent bulk rejections can be pointed at the listing instead of the candidate. The cost is a configuration line."
 perspectives:
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A configuration line, and the count of open requisitions it would withdraw this quarter, on the same cycle where headcount is reviewed."
     reads: "What is being spent is optionality: a listing that closes on a timer cannot be held open while funding is decided, and reopening it runs the approval chain again."
     does: "Sets the interval and what counts as activity, and decides whether a lapsed authorisation withdraws the listing or only flags it for review."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Listings dropping off the careers page overnight, and the batch notification going to every application still in flight against them."
     reads: "A requisition closed on a timer is counted as closed rather than filled, and the pipeline built against it is gone if the search restarts."
     does: "Sends the closure notice with the date on it, and asks for the requisition to be reopened where the manager still intends to hire."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A message naming the requisition, the date the search closed, and the reason the listing came down."
     reads: "The process ended for a reason that has nothing to do with the application; there is nothing further to wait for and nothing left to infer."
     does: "Closes the file, stops holding capacity for a possible next round, and reapplies if the role is posted again."
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "A customer enabling an expiry rule pointed at the listing, on the same scheduler that already expires unreviewed applications."
     reads: "This is an existing batch capability with a different target rather than new machinery; whether it runs is a customer setting."
     does: "Ships the rule as a configurable option, and its default value decides how many customers ever run it."

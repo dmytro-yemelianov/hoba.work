@@ -69,19 +69,19 @@
     ],
     "perspectives": [
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A catalogue of mandatory checks with a class, a closing evidence type and a window against each line, and the count of holds that closed inside the window last quarter.",
         "reads": "One classification applied to every hire is the defensible position, and it now has to be written down before a file is open rather than settled while one is.",
         "does": "Fixes what a document closes, how long the window runs, and that the field and both values are released by default."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A vendor result that arrives already classified, and a notice to the candidate generated from the same record.",
         "reads": "What is disclosed is set by the class of the check rather than judged per message, and the start date moves to a stated date instead of staying provisional.",
         "does": "Sends the released notice on the day the result lands, and moves the start date rather than holding it open-ended."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The disputed field, both values, the document that closes it and the date the window ends — on the day the check returns.",
         "reads": "The hold is a paperwork task with a named remedy and an end date, rather than an unexplained pause after an offer already accepted.",
         "does": "Retrieves the payslips or contract covering the disputed months, and keeps the resignation date behind the revised start date until the field closes."

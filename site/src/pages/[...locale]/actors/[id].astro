@@ -19,7 +19,7 @@ import type { ActorNode } from '@hoba/registry';
 
 export async function getStaticPaths() {
   return LANGS.flatMap((lang) =>
-    getBundle(lang).actors.map((actor) => ({ params: { ...localeParams(lang), id: actor.id }, props: { lang, actor } }))
+    getBundle(lang).actors.map((actor) => ({ params: { ...localeParams(lang), id: actor.slug }, props: { lang, actor } }))
   );
 }
 
@@ -46,7 +46,7 @@ const facts = [
       <span class="text-hoba-accent font-mono break-all">{actor.id}</span>
     </nav>
     <p slot="actions">
-      <a href={`?lens=${actor.id}`} class="btn btn-secondary">{t('actors.readAs')}</a>
+      <a href={`?lens=${actor.slug}`} class="btn btn-secondary">{t('actors.readAs')}</a>
     </p>
   </PageHeader>
 
@@ -114,7 +114,7 @@ const facts = [
       <section class="section">
         <h2 class="section-title">{t('actors.views')}</h2>
         <ul class="row-list">
-          {seen.map((entry) => <EntityRow id={entry.id} title={entry.title} href={`${entry.href}?lens=${actor.id}`} />)}
+          {seen.map((entry) => <EntityRow id={entry.id} title={entry.title} href={`${entry.href}?lens=${actor.slug}`} />)}
         </ul>
       </section>
     )}

@@ -48,17 +48,17 @@ specimens:
     reading: "Both sides are short of the same thing. Larger assignments do not buy better signal — they buy shallower reads, which is what makes it a loop rather than a trade-off."
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "Assignments scoped at a few hours that take double-digit hours each, and rejections returned faster than the work can be read."
     reads: "The hours come out of the same budget as the search itself, so each assignment is a bet placed against the applications not sent that week."
     does: "Sends fewer applications and finishes the assignments already accepted, because the hours in them are already spent."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "A queue of submissions and interviewer hours that are already committed to the sprint the role exists to relieve."
     reads: "A larger assignment covers more of the job, and a full read of every submission is not available from the hours the team has."
     does: "Keeps the scope, since a smaller assignment would decide less, and the reviews get the minutes left after the team's own delivery."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Candidates going quiet between the assignment being sent and the work coming back, and time-to-fill running on the requisition."
     reads: "A stage where the pipeline stalls is a reason to put more people into it, not a reason to remove the stage."
     does: "Sends reminders and reopens sourcing, which puts more submissions into the same review queue."

@@ -6,7 +6,7 @@ aliases:
 title: "Employer Hiring and Sourcing Budget"
 record_class: "budget-line"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Operational recruiting budget covering external agency fees and search costs."
 flows:
   - to: "record.contingency_placement_fee_commitment"

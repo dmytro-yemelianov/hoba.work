@@ -1,6 +1,7 @@
 ---
-id: "employer-policy"
+id: "actor.employer_policy"
 type: "actor"
+slug: "employer-policy"
 title: "Employer policy"
 summary: "Finance, leadership and the people function: the layer that authorises headcount, fixes bands and writes the rules the funnel executes. Never meets a candidate."
 controls:

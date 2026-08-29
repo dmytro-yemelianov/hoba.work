@@ -82,19 +82,19 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "Direct on-the-job output under real sprint pressure, treating probation as a higher-fidelity filter than multi-round panel interviews.",
         "reads": "Hiring fast and pruning early during probation reduces upfront interview coordination costs.",
         "does": "Replaces extensive technical testing with early probationary evaluation."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A full employment offer that operates in practice as a temporary contract with heightened termination exposure.",
         "reads": "The real hiring threshold was shifted post-start without explicit pre-acceptance disclosure.",
         "does": "Delivers aggressively during initial months while maintaining external professional networks."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "Probation turnover rates and dismissal compliance documentation under the Ukrainian Labour Code's constraints.",
         "reads": "High probation turnover increases team onboarding costs while preserving statutory compliance.",
         "does": "Monitors probation pass rates and reviews termination justifications."

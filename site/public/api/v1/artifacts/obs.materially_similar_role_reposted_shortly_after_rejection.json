@@ -96,19 +96,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The same requisition number, team and band on a listing whose posted date has moved, with the body text otherwise unchanged.",
         "reads": "A refreshed listing and a second opening look the same on the board. The requisition number is what separates them, and one question resolved which it was.",
         "does": "Records both dates and the requisition number, and asks the recruiter directly, which costs one message."
       },
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "One requisition record and a syndication schedule that re-posts a listing when it passes the configured interval.",
         "reads": "Whether a listing stays in the visible window on a board is a distribution setting. Nothing about who was rejected enters that path.",
         "does": "Refreshes the posted date on the interval the customer's configuration sets, and the board shows the listing as new."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The same requisition open on their own board with an unchanged number, and a question about it in the inbox.",
         "reads": "The repost is the board's refresh cycle rather than a decision anyone took after the rejection.",
         "does": "Answers it, since the requisition number and the refresh interval are facts that cannot be quoted back as a commitment."

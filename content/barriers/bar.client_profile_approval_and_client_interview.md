@@ -29,22 +29,22 @@ specimens:
     reading: "The candidate remains in an external waiting state where decision authority sits with a party not named on the requisition."
 perspectives:
   -
-    actor: "client"
+    actor: "actor.client"
     sees: "A curated batch of candidate profiles forwarded by vendors, evaluated against internal delivery timelines."
     reads: "Profiles are supplier proposals; reviewing them carries no direct employment commitment."
     does: "Selects preferred profiles for a client interview or rejects without detailed feedback."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A candidate who passed vendor screening, awaiting feedback from the client account manager."
     reads: "Time-to-feedback is dictated by the client; the vendor cannot advance the candidate unilaterally."
     does: "Follows up with the client contact while keeping the candidate warm with generic holding updates."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "An extended delay after vendor interviews, followed by an additional external round."
     reads: "The interview process includes an unannounced external decision gate."
     does: "Prepares for a client interview whose evaluation criteria and contractual context are opaque."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "Commercial margin targets dependent on placing candidate billable hours on the client contract."
     reads: "Candidate placement directly realizes project revenue once client sign-off is secured."
     does: "Monitors client approval rates and manages bench fallback options."

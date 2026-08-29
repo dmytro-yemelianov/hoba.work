@@ -6,7 +6,7 @@ aliases:
 title: "Candidate Search Runway"
 record_class: "runway"
 owner: "inside"
-owner_actor: "candidate"
+owner_actor: "actor.candidate"
 summary: "Available runway in months derived from personal savings and monthly burn rate."
 flows:
   - to: "record.search_month_burn_allocation"

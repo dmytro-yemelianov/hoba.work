@@ -37,17 +37,17 @@ masks:
   - "mech.stronger_competing_candidate_in_final_cohort"
 perspectives:
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A funded requisition, and a posting rule that applies to every requisition regardless of who already works inside the scope."
     reads: "Consistency across hires is what makes a process defensible. A rule that holds for all requisitions cannot be switched off for one."
     does: "Publishes externally as the rule requires. What happens to the external pipeline afterwards is not reported back to this layer."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Someone already covering part of the scope, and a slate of external candidates each assessed inside the hours the loop allows."
     reads: "Work already observed and work inferred from an interview are not the same evidence. Only one person on the slate has been watched doing the work itself."
     does: "Runs the external loop as posted and assesses each candidate against a bar the internal work already meets."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A live posting, scheduled rounds, and interviewers who prepare. The composition of the slate is not stated."
     reads: "Nothing in the process distinguishes it from one that is open. Whether a requisition is already promised internally is not a field the candidate is shown."
     does: "Can ask at the final round how many are being seen and whether any are internal. That answer is available on request and absent without one."

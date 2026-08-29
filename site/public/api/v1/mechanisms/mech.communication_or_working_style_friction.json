@@ -85,19 +85,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The exchange as it happened under time pressure, and a rejection that names fit or collaboration without pointing at a moment.",
         "reads": "A short answer given while still working on the problem, and a note about it that cannot be read back. There is nothing to check the reading against.",
         "does": "Reconstructs the session from memory and changes how disagreement is phrased in the next one."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "The panel's written impressions of how a disagreement went, alongside the technical scores. No recording, and each interviewer saw a different half hour.",
         "reads": "A signal about how the person takes review in a team that has to work with them daily. A bad hire on this axis is visible for a year and has a name on it.",
         "does": "Weighs the impression against the technical notes, and where the panel is split resolves it toward the more conservative outcome."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A panel recommendation with the reason recorded as style or fit, and no transcript behind it.",
         "reads": "A decision that is final and hard to put in writing to the candidate without it reading as a judgement about the person.",
         "does": "Sends the standard closer-alignment wording, or relays the specific note if the panel has phrased it as something the candidate can act on."

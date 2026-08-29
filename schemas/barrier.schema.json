@@ -167,13 +167,13 @@
               "actor": {
                 "type": "string",
                 "enum": [
-                  "candidate",
-                  "recruiter",
-                  "hiring-manager",
-                  "ats-vendor",
-                  "employer-policy",
-                  "public-policy",
-                  "client"
+                  "actor.candidate",
+                  "actor.recruiter",
+                  "actor.hiring_manager",
+                  "actor.ats_vendor",
+                  "actor.employer_policy",
+                  "actor.public_policy_and_industry_standards",
+                  "actor.client"
                 ]
               },
               "sees": {

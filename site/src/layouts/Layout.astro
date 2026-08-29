@@ -77,7 +77,7 @@ const shareImage = image ?? defaultImage;
         // standing one. Set before paint so a page never flashes every point of
         // view before collapsing to the chosen one.
         try {
-          var LENSES = ['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy'];
+          var LENSES = ['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy', 'client'];
           var asked = new URLSearchParams(location.search).get('lens');
           var lens = asked || localStorage.getItem('hoba_lens');
           if (LENSES.indexOf(lens) >= 0) document.documentElement.dataset.lens = lens;

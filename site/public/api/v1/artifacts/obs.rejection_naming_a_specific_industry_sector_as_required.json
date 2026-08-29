@@ -78,19 +78,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A reason that names an industry rather than a capability: payments, health, advertising, trading — a sector the candidate has not worked in, stated as the thing that was missing.",
         "reads": "The sector is a real difference. Whether it is a difference in what the work requires, or a proxy standing in for that, the message does not distinguish — and the two look identical from outside.",
         "does": "Compares the sector named against the requirements the posting listed, because a requirement that appears only in the closing message appeared somewhere between the two."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "Two candidates who can both build the system, one of whom has already met the constraints this sector imposes and will not spend the first quarter discovering them.",
         "reads": "Sector context is a real cost, paid in ramp-up time that the team carries. Weighing it is judgement, not a rule, and nothing in the process asks how much of it was weighed.",
         "does": "States the difference plainly, because it is the most concrete thing that separated two people who both passed."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A requirement that was written into the search brief as a preference and is now being applied as a threshold.",
         "reads": "Preferences and thresholds are recorded in the same field. Which one a line was is decided when it is used, not when it is written.",
         "does": "Passes the reason on in the manager's words, because it is specific enough to send and not attributable to anything the recruiter assessed."

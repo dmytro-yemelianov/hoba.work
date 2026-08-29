@@ -80,19 +80,19 @@
     ],
     "perspectives": [
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "The date ranges the parser extracts from the history, and the continuity feature that reads them. Work done inside a gap is not among the fields that feature reads.",
         "reads": "The penalty is a weight in the arithmetic that produces one number. A rank below the advance threshold reads the same whether it came from the match or from the deduction.",
         "does": "Returns the rank and places the profile below the threshold. The setting ships enabled and stays on until a customer changes it."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The list in the order the platform returns it. The arithmetic that produced the order is not displayed alongside it.",
         "reads": "The order is where the reading starts, and capacity ends it partway down. A profile below that point leaves no record that it was skipped.",
         "does": "Screens from the top of the order until the week's capacity is spent. What sits below that point is not read, and is not rejected either."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "Their own history with the interval in it, and afterwards either silence or template wording.",
         "reads": "The interval and the outcome coincide, and nothing in the message separates a deduction on a date range from a judgement of the work.",
         "does": "Puts the interval and the work done inside it into the history itself. The date range is a fact of record, and it is what the ranking reads."

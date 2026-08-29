@@ -11,17 +11,17 @@ stages:
   - "technical"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A message sent at 03:14 with no sentence specific to this candidate, this role or this conversation, and a follow-up that returns the same wording."
     reads: "The text is the standard wording for this outcome. Which requirement was the gap is not stated in it, and asking returned the template again."
     does: "Records the date and the exact wording, and compares the wording of the CV against the requirements as they were published, since the message names no gap to work from."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A rejection step in the queue and, afterwards, a request for one line of specifics."
     reads: "The wording is the one approved for this outcome; what the panel scored beyond a recommendation is not in the recruiter's record either."
     does: "Sends the approved wording and answers within it, because anything more specific is quoted back afterwards as a stated reason."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "One approved wording covering every rejection at every stage, and the disclosure rule that sets what may be given as a reason."
     reads: "Identical wording across all outcomes is what makes each of them consistent and defensible if any one is challenged."
     does: "Sets the template once for the whole funnel; the hours a candidate spends inferring a reason from it are not a figure this layer holds."

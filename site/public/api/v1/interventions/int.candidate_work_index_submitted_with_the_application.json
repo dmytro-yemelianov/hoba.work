@@ -64,19 +64,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The surface an application opens on by default — a profile page, a list of repositories in date order — and their own work spread across it in a shape that page does not show.",
         "reads": "Which surface is opened is decided by what the application carries, and the index is the part of that the candidate writes.",
         "does": "Names each artefact, the part of it that is theirs and the direct path to it, and opens the index in the first minutes of the live screen instead of leaving the choice of surface to the hour."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "An index in the application with named artefacts and direct links, alongside the profile link.",
         "reads": "The minutes available per application go to something already located, and a line in the CV has a path attached that opens in one click.",
         "does": "Records the note from the named artefact where the index points to one, and from the profile page where the application carries no index."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "The index in the material the panel receives, with the ownership line and the read path in it.",
         "reads": "The exercise hour and the evidence of past work stop competing for the same minutes: what to open is stated, so the round is spent on the exercise.",
         "does": "Reads the named artefact before the session where it is short enough, and asks about that work in the round rather than about the profile."

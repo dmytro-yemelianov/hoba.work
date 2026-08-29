@@ -11,7 +11,7 @@ states:
     id: "drafted"
     title: "Requisition drafted"
     kind: "initial"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "A manager writes the role. Level, band and requirements are decided here, usually by copying the last search for the same team."
     entities:
       - "bar.requisition_approval_public_posting"
@@ -20,7 +20,7 @@ states:
     id: "authorised"
     title: "Headcount authorised"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Finance and leadership commit budget against the requisition. Approval can lapse or be withdrawn later without the funnel noticing."
     entities:
       - "bar.requisition_approval_public_posting"
@@ -30,7 +30,7 @@ states:
     id: "published"
     title: "Posting live"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "The role is public. It may also be refreshed automatically every thirty days, which looks identical to a new opening."
     entities:
       - "bar.requisition_approval_public_posting"
@@ -41,7 +41,7 @@ states:
     id: "received"
     title: "Application received"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "A record exists and is linked to the requisition. Nothing has been read."
     entities:
       - "bar.application_ingestion"
@@ -51,7 +51,7 @@ states:
     id: "machine-screened"
     title: "Automated screen"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second."
     entities:
       - "bar.automated_filter_parser_threshold"
@@ -64,7 +64,7 @@ states:
     id: "recruiter-queue"
     title: "In the recruiter queue"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours."
     entities:
       - "bar.inbound_screening_triage"
@@ -75,7 +75,7 @@ states:
     id: "recruiter-screen"
     title: "Recruiter screen"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "A conversation about compensation, timeline, location and a two-minute version of the last project."
     entities:
       - "bar.recruiter_screening_call"
@@ -87,7 +87,7 @@ states:
     id: "technical"
     title: "Technical assessment"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "A live exercise, a take-home, or both, scored against a rubric the candidate does not see."
     entities:
       - "bar.technical_screen_live_assessment"
@@ -101,7 +101,7 @@ states:
     id: "panel"
     title: "Manager and team panel"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Depth, ownership and collaboration, assessed across several interviewers who may be measuring different things."
     entities:
       - "bar.hiring_manager_in_depth_review"
@@ -116,7 +116,7 @@ states:
     id: "levelling"
     title: "Compensation and levelling"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "The level the panel assigned meets the band finance approved. First time the two are compared."
     entities:
       - "bar.compensation_levelling_reconciliation"
@@ -127,7 +127,7 @@ states:
     id: "approval"
     title: "Offer approval"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes."
     entities:
       - "bar.headcount_executive_budget_approval"
@@ -137,7 +137,7 @@ states:
     id: "offer"
     title: "Offer issued"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "A written offer exists. The requisition is still open until the countersignature lands."
     entities:
       - "bar.offer_closing_contract_execution"
@@ -147,7 +147,7 @@ states:
     id: "verification"
     title: "Reference and background check"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "A third-party record is compared against what the candidate claimed."
     entities:
       - "bar.reference_background_verification"
@@ -157,7 +157,7 @@ states:
     id: "hired"
     title: "Hired"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Contract executed both ways, start date set, onboarding triggered."
     entities:
       - "bar.offer_closing_contract_execution"
@@ -166,7 +166,7 @@ states:
     id: "rejected"
     title: "Rejected"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "A decision was made and communicated. What it says about the cause is a separate question entirely."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -177,7 +177,7 @@ states:
     id: "frozen"
     title: "Search frozen or cancelled"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Budget withdrawn or the requisition put on hold. Can happen at any point, including after an offer."
     entities:
       - "obs.position_closed_after_final_interview_without_hire"
@@ -188,7 +188,7 @@ states:
     id: "lapsed"
     title: "Lapsed without a decision"
     kind: "terminal"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "No one decided anything. The record aged past a threshold, or the posting was never taken down."
     entities:
       - "obs.complete_silence_after_submission"
@@ -201,7 +201,7 @@ transitions:
     from: "drafted"
     to: "authorised"
     label: "budget signed off"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Finance commits headcount against the requisition."
     latency_expected_days: 7
     latency_max_days: 21
@@ -211,7 +211,7 @@ transitions:
     from: "authorised"
     to: "published"
     label: "posting goes live"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "An approved requisition with a written description is published."
     latency_expected_days: 2
     latency_max_days: 7
@@ -221,7 +221,7 @@ transitions:
     from: "published"
     to: "received"
     label: "application submitted"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "The candidate applies, or answers outbound outreach."
     latency_expected_days: 7
     latency_max_days: 30
@@ -232,7 +232,7 @@ transitions:
     from: "received"
     to: "machine-screened"
     label: "rules evaluated"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "The record is complete enough for the configured rules to run."
     latency_expected_days: 1
     latency_max_days: 3
@@ -242,7 +242,7 @@ transitions:
     from: "machine-screened"
     to: "recruiter-queue"
     label: "thresholds cleared"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Extraction score and every knockout rule pass."
     latency_expected_days: 1
     latency_max_days: 3
@@ -252,7 +252,7 @@ transitions:
     from: "machine-screened"
     to: "rejected"
     label: "filtered out"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Any knockout rule fails, or the ranking falls below the advance threshold."
     latency_expected_days: 1
     latency_max_days: 7
@@ -264,7 +264,7 @@ transitions:
     from: "recruiter-queue"
     to: "recruiter-screen"
     label: "short-listed"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "A person reads the profile and puts it on the list."
     latency_expected_days: 5
     latency_max_days: 14
@@ -274,7 +274,7 @@ transitions:
     from: "recruiter-queue"
     to: "lapsed"
     label: "aged out"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "No review happened before the expiry threshold."
     latency_expected_days: 30
     latency_max_days: 60
@@ -284,7 +284,7 @@ transitions:
     from: "recruiter-screen"
     to: "technical"
     label: "parameters align"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Expectations, timeline and location are compatible, and the profile is submitted to the team."
     latency_expected_days: 3
     latency_max_days: 7
@@ -294,7 +294,7 @@ transitions:
     from: "recruiter-screen"
     to: "rejected"
     label: "parameters do not align"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Compensation, level, location or availability rules the candidate out before any engineering is discussed."
     latency_expected_days: 2
     latency_max_days: 5
@@ -307,7 +307,7 @@ transitions:
     from: "technical"
     to: "panel"
     label: "assessment passed"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "The score clears the rubric threshold."
     latency_expected_days: 5
     latency_max_days: 12
@@ -318,7 +318,7 @@ transitions:
     from: "technical"
     to: "rejected"
     label: "assessment not passed"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "The score falls short, or the review is too shallow to find what is there."
     latency_expected_days: 3
     latency_max_days: 7
@@ -330,7 +330,7 @@ transitions:
     from: "panel"
     to: "levelling"
     label: "panel recommends hire"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Consensus reaches the hire threshold."
     latency_expected_days: 3
     latency_max_days: 7
@@ -341,7 +341,7 @@ transitions:
     from: "panel"
     to: "rejected"
     label: "panel does not reach consensus"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "A split panel under a unanimity rule defaults to no hire."
     latency_expected_days: 3
     latency_max_days: 7
@@ -352,7 +352,7 @@ transitions:
     from: "levelling"
     to: "approval"
     label: "level and band reconcile"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "The assigned level and the approved band overlap."
     latency_expected_days: 2
     latency_max_days: 5
@@ -362,7 +362,7 @@ transitions:
     from: "levelling"
     to: "rejected"
     label: "level and band do not reconcile"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Expectation sits outside the band and neither the level nor the number moves."
     latency_expected_days: 2
     latency_max_days: 5
@@ -373,7 +373,7 @@ transitions:
     from: "approval"
     to: "offer"
     label: "sign-off complete"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Every approver in the chain has cleared it."
     latency_expected_days: 3
     latency_max_days: 7
@@ -383,7 +383,7 @@ transitions:
     from: "approval"
     to: "frozen"
     label: "headcount withdrawn"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Budget is pulled or a freeze is announced before the offer is issued."
     latency_expected_days: 3
     latency_max_days: 14
@@ -393,7 +393,7 @@ transitions:
     from: "offer"
     to: "verification"
     label: "offer accepted"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "The candidate signs and the checks begin."
     latency_expected_days: 3
     latency_max_days: 7
@@ -403,7 +403,7 @@ transitions:
     from: "offer"
     to: "frozen"
     label: "offer retracted"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "A freeze reaches an outstanding offer before the countersignature."
     latency_expected_days: 2
     latency_max_days: 7
@@ -414,7 +414,7 @@ transitions:
     from: "verification"
     to: "hired"
     label: "checks clear"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "No unresolved discrepancy in the third-party record."
     latency_expected_days: 5
     latency_max_days: 14
@@ -425,7 +425,7 @@ transitions:
     from: "verification"
     to: "rejected"
     label: "discrepancy unresolved"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "A record mismatch or an eligibility bar is not reconciled."
     latency_expected_days: 3
     latency_max_days: 7
@@ -435,7 +435,7 @@ transitions:
     from: "published"
     to: "lapsed"
     label: "posting outlives the search"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Hiring stops but the listing is never withdrawn."
     latency_expected_days: 60
     latency_max_days: 120
@@ -445,7 +445,7 @@ transitions:
     from: "rejected"
     to: "published"
     label: "requisition reopened"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "The search restarts, sometimes with a revised profile, sometimes as an automatic refresh."
     latency_expected_days: 14
     latency_max_days: 60

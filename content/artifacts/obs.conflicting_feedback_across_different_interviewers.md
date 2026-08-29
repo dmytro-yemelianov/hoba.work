@@ -10,17 +10,17 @@ stages:
   - "team"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "Two verdicts from the same week: one round rating architectural depth highly, another finding depth insufficient for the level, and one negative decision under them."
     reads: "The rounds asked different questions and both reported the answer as depth. Which of the two the decision rests on is not stated."
     does: "Asks for the consolidated rubric summary, and records what each round actually asked alongside what each concluded."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Two written notes on the same candidate from rounds they did not sit in, each using the word depth for a different exercise."
     reads: "Those notes are the whole of what is available about those rounds; nothing in them separates a disagreement about the candidate from a difference between the two exercises."
     does: "Sets who interviews and what each round asks, and closes the split with a decision rather than a re-run. A hire made over a recorded negative note carries their name if it goes wrong."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Two recommendations pointing opposite ways and a decision line under them. The scores behind each recommendation are not in the recruiter's view."
     reads: "One reason has to be written to the candidate out of two notes that do not agree. Anything said beyond the recorded decision can be quoted back later."
     does: "Sends the outcome in wording that stays inside what was written down, and moves the requisition on. Reopening a recorded decision sits with the hiring manager, not the recruiter."

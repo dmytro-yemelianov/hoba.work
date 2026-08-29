@@ -6,7 +6,7 @@ aliases:
 title: "Vendor Margin and Headcount Allocation"
 record_class: "requisition-funding"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Internal vendor allocation splitting client billing into gross margin and candidate cost."
 flows:
   - to: "record.subcontractor_compensation"

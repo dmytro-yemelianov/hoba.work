@@ -32,22 +32,22 @@ amplifies:
 masks: []
 perspectives:
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "An approval form with one requirement list to cover the whole of what the role might have to absorb, and a level that has to be justified against the grid."
     reads: "The list is the only written statement of the ceiling. A requirement left off cannot be screened for later without going back through approval."
     does: "Writes the superset — the whole stack, the seniority the level needs — and calibrates afterwards against real candidates, in the screen and on the panel."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "The requirement list as written, and a pipeline that thins under it. What the manager requires but has not written down is not visible from here."
     reads: "Until the manager says otherwise, the list is the screening standard, and the pool that clears it is small."
     does: "Screens against the written list, then goes back to the manager to find which items are movable — while time-to-fill runs from the day the requisition opened."
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "The requirement list as configurable criteria: years, titles, named technologies, each one a feature the ranking model can read or a knockout rule the customer can switch on."
     reads: "Every listed item is a requirement. Nothing in the record separates what the role needs from what someone hoped for."
     does: "Applies the criteria as configured and ranks accordingly. A longer list yields a smaller qualified pool, and the pool size is what the customer sees."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A posting listing a stack of named technologies and a seniority level, and later the same role posted again."
     reads: "The list is the bar. Which items are load-bearing is stated nowhere the candidate can reach, and neither is the level they would be assessed at."
     does: "Either does not apply to a role whose actual work is within reach, or applies and spends the hours; when the role reappears, there is nothing available to tell an unmet bar from a list nobody clears."

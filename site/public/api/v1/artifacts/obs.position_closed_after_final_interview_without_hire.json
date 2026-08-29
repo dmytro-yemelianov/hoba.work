@@ -109,19 +109,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A final round described in its closing minutes as one week from a decision, and an email four days later naming a planning review as the cause.",
         "reads": "The stated cause sits above the interview loop. What the panel concluded did not determine the outcome, and the six weeks are already spent.",
         "does": "Records the dates, the panel's own stated position and the wording of the close, and asks whether the requisition was frozen or cancelled."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "A loop they ran to its end, a panel recommendation they can act on, and a requisition removed from the plan by a decision taken elsewhere.",
         "reads": "The outcome of the loop no longer decides anything. The gap the role exists to absorb is still open and still covered by the team.",
         "does": "Keeps the shortlist and returns to the same names if the requisition comes back, because funding it is not something this role controls."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "Open requisitions as funded line items in a planning review held on a quarterly cycle.",
         "reads": "An approved requisition that can be paused costs less than one that cannot; pausing is the instrument the approval was written to allow.",
         "does": "Puts the requisition on hold. The stage each candidate had reached is not a field the review carries."

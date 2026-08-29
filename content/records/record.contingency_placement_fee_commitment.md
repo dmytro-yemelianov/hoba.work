@@ -6,7 +6,7 @@ aliases:
 title: "Contingency Placement Fee Commitment"
 record_class: "placement-fee"
 owner: "inside"
-owner_actor: "recruiter"
+owner_actor: "actor.recruiter"
 summary: "Placement commission contingent upon candidate starting and passing warranty period."
 flows:
   - to: "record.external_agency_settlement"

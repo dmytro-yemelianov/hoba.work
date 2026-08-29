@@ -19,7 +19,7 @@
           "id": "submitted",
           "title": "Submitted",
           "kind": "initial",
-          "owner": "candidate",
+          "owner": "actor.candidate",
           "description": "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
           "entities": [
             "bar.application_ingestion",
@@ -32,7 +32,7 @@
           "id": "parsing",
           "title": "Parsing",
           "kind": "active",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.",
           "entities": [
             "mech.ats_parser_extraction_failure"
@@ -44,7 +44,7 @@
           "id": "scoring",
           "title": "Rule evaluation",
           "kind": "active",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
           "entities": [
             "bar.automated_filter_parser_threshold",
@@ -58,7 +58,7 @@
           "id": "queued",
           "title": "Queued for human review",
           "kind": "active",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
           "entities": [
             "bar.inbound_screening_triage",
@@ -72,7 +72,7 @@
           "id": "reviewed",
           "title": "Read by a person",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
           "entities": [
             "bar.inbound_screening_triage",
@@ -85,7 +85,7 @@
           "id": "advanced",
           "title": "Advanced to the funnel",
           "kind": "terminal",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "The record leaves this machine and enters proc.the_hiring_funnel_end_to_end at the recruiter screen.",
           "entities": [
             "bar.recruiter_screening_call"
@@ -97,7 +97,7 @@
           "id": "auto-rejected",
           "title": "Rejected by rule",
           "kind": "terminal",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.",
           "entities": [
             "obs.rejection_within_minutes_of_application_submission",
@@ -111,7 +111,7 @@
           "id": "human-rejected",
           "title": "Rejected by a person",
           "kind": "terminal",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Someone read it and did not take it forward. What the message says about why is a separate decision, usually a template.",
           "entities": [
             "obs.generic_closer_alignment_rejection_template"
@@ -123,7 +123,7 @@
           "id": "expired",
           "title": "Expired unreviewed",
           "kind": "terminal",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.",
           "entities": [
             "mech.automated_application_expiration_timeout",
@@ -138,7 +138,7 @@
           "from": "submitted",
           "to": "parsing",
           "label": "document accepted",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Required fields validate and the file is a supported type.",
           "entities": [
             "bar.application_ingestion"
@@ -150,7 +150,7 @@
           "from": "parsing",
           "to": "scoring",
           "label": "fields extracted",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Extraction completes, whether or not it recovered the work history.",
           "entities": [
             "mech.ats_parser_extraction_failure"
@@ -162,7 +162,7 @@
           "from": "scoring",
           "to": "queued",
           "label": "all rules pass",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Every knockout rule passes and the rank clears the advance threshold.",
           "entities": [
             "bar.automated_filter_parser_threshold"
@@ -174,7 +174,7 @@
           "from": "scoring",
           "to": "auto-rejected",
           "label": "a rule fails",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Any knockout rule fails, or the ranking falls below the threshold.",
           "entities": [
             "mech.automated_keyword_qualification_filter",
@@ -188,7 +188,7 @@
           "from": "queued",
           "to": "reviewed",
           "label": "a recruiter opens it",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Capacity reaches this position in the queue before the expiry threshold.",
           "entities": [
             "bar.inbound_screening_triage"
@@ -200,7 +200,7 @@
           "from": "queued",
           "to": "expired",
           "label": "threshold reached first",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "The record ages past the configured limit with no review recorded.",
           "entities": [
             "mech.automated_application_expiration_timeout"
@@ -212,7 +212,7 @@
           "from": "reviewed",
           "to": "advanced",
           "label": "short-listed",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "The profile is put on the active list for outreach.",
           "entities": [
             "bar.inbound_screening_triage"
@@ -224,7 +224,7 @@
           "from": "reviewed",
           "to": "human-rejected",
           "label": "passed over",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "The recruiter decides not to advance it.",
           "entities": [
             "obs.generic_closer_alignment_rejection_template",
@@ -253,7 +253,7 @@
           "id": "demand",
           "title": "Client demand & contract scope",
           "kind": "initial",
-          "owner": "client",
+          "owner": "actor.client",
           "description": "The end client identifies project headcount demand or issues a vendor tender. Budget exists if the contract is signed or is contingent on winning the bid.",
           "entities": [],
           "visible_to_candidate": "Nothing. The search is not visible publicly.",
@@ -263,7 +263,7 @@
           "id": "search-open",
           "title": "Vendor search opened",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
           "entities": [
             "bar.outbound_sourcing_talent_pool_contact",
@@ -276,7 +276,7 @@
           "id": "vendor-screen",
           "title": "Vendor recruiter screen",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
           "entities": [
             "bar.recruiter_screening_call",
@@ -289,7 +289,7 @@
           "id": "vendor-technical",
           "title": "Vendor technical evaluation",
           "kind": "active",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "Technical interview or test task scored against the vendor assessment of the client technical threshold.",
           "entities": [
             "bar.technical_screen_live_assessment",
@@ -302,7 +302,7 @@
           "id": "submitted",
           "title": "Submitted to client",
           "kind": "active",
-          "owner": "client",
+          "owner": "actor.client",
           "description": "The candidate CV is submitted to the client account team for profile review and interview selection.",
           "entities": [
             "bar.client_profile_approval_and_client_interview",
@@ -316,7 +316,7 @@
           "id": "client-interview",
           "title": "Client interview round",
           "kind": "active",
-          "owner": "client",
+          "owner": "actor.client",
           "description": "Interview conducted directly by client engineering or project management leadership.",
           "entities": [
             "bar.client_profile_approval_and_client_interview",
@@ -329,7 +329,7 @@
           "id": "offer",
           "title": "Offer formulation",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Compensation package calculated from client billing rate minus required gross margin.",
           "entities": [
             "bar.compensation_levelling_reconciliation"
@@ -341,7 +341,7 @@
           "id": "verification",
           "title": "Pre-placement verification",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Client-mandated background checks, certifications, and compliance paperwork.",
           "entities": [
             "bar.reference_background_verification"
@@ -353,7 +353,7 @@
           "id": "placed",
           "title": "Contract signed & project start",
           "kind": "terminal",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Contract executed and candidate onboarded onto active client delivery.",
           "entities": [
             "bar.offer_closing_contract_execution"
@@ -365,7 +365,7 @@
           "id": "vendor-declined",
           "title": "Vendor-level rejection",
           "kind": "terminal",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "The search terminates at vendor screening or technical evaluation before client submission.",
           "entities": [
             "obs.generic_closer_alignment_rejection_template"
@@ -377,7 +377,7 @@
           "id": "declined-by-client",
           "title": "Declined by client",
           "kind": "terminal",
-          "owner": "client",
+          "owner": "actor.client",
           "description": "The client declines the CV submission or rejects the candidate after the client interview.",
           "entities": [
             "obs.generic_closer_alignment_rejection_template",
@@ -390,7 +390,7 @@
           "id": "closed-unfunded",
           "title": "Search closed unfunded / tender lost",
           "kind": "terminal",
-          "owner": "client",
+          "owner": "actor.client",
           "description": "The search closes because the client tender was lost, project budget was cancelled, or the commercial contract was paused.",
           "entities": [
             "obs.complete_silence_after_submission",
@@ -404,7 +404,7 @@
           "id": "bench-filled",
           "title": "Requisition filled from internal bench",
           "kind": "terminal",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "The position is allocated to an existing internal specialist released from another account, closing the external process.",
           "entities": [
             "obs.position_closed_after_final_interview_without_hire",
@@ -419,7 +419,7 @@
           "from": "demand",
           "to": "search-open",
           "label": "Contract signed or tender profiles required",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Commercial contract signed or tender requires candidate CVs",
           "entities": [
             "bar.outbound_sourcing_talent_pool_contact"
@@ -431,7 +431,7 @@
           "from": "search-open",
           "to": "vendor-screen",
           "label": "Candidate responds to vendor outreach",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Outreach accepted and screen booked",
           "entities": [
             "bar.outbound_sourcing_talent_pool_contact"
@@ -443,7 +443,7 @@
           "from": "search-open",
           "to": "closed-unfunded",
           "label": "Tender lost or client contract cancelled early",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Commercial opportunity discontinued before screening",
           "entities": [],
           "latency_expected_days": 7,
@@ -453,7 +453,7 @@
           "from": "vendor-screen",
           "to": "vendor-technical",
           "label": "Vendor recruiter screen passed",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Expectations aligned with client billing margin",
           "entities": [
             "bar.recruiter_screening_call"
@@ -465,7 +465,7 @@
           "from": "vendor-screen",
           "to": "vendor-declined",
           "label": "Screening mismatch or rate misalignment",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Candidate rate exceeds allowable vendor margin or skills misfit",
           "entities": [],
           "latency_expected_days": 2,
@@ -475,7 +475,7 @@
           "from": "vendor-technical",
           "to": "submitted",
           "label": "Vendor assessment passed",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "Technical bar meets vendor expectation of client threshold",
           "entities": [
             "bar.technical_screen_live_assessment",
@@ -488,7 +488,7 @@
           "from": "vendor-technical",
           "to": "vendor-declined",
           "label": "Vendor assessment not met",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "Profile does not meet vendor internal quality bar",
           "entities": [],
           "latency_expected_days": 3,
@@ -498,7 +498,7 @@
           "from": "submitted",
           "to": "client-interview",
           "label": "Client approves CV submission",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Client manager accepts profile and requests interview",
           "entities": [
             "bar.client_profile_approval_and_client_interview"
@@ -510,7 +510,7 @@
           "from": "submitted",
           "to": "declined-by-client",
           "label": "Client rejects CV submission",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Client manager rejects profile on CV review",
           "entities": [
             "bar.client_profile_approval_and_client_interview"
@@ -522,7 +522,7 @@
           "from": "submitted",
           "to": "bench-filled",
           "label": "Vendor assigns internal bench specialist",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Bench consultant becomes available mid-search",
           "entities": [],
           "latency_expected_days": 3,
@@ -532,7 +532,7 @@
           "from": "submitted",
           "to": "closed-unfunded",
           "label": "Client cancels requisition or loses project funding",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Client withdraws demand during profile review",
           "entities": [],
           "latency_expected_days": 7,
@@ -542,7 +542,7 @@
           "from": "client-interview",
           "to": "offer",
           "label": "Client approves interview",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Client confirms candidate meets project requirements",
           "entities": [
             "bar.client_profile_approval_and_client_interview"
@@ -554,7 +554,7 @@
           "from": "client-interview",
           "to": "declined-by-client",
           "label": "Client declines after interview",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Client decides against candidate after meeting",
           "entities": [
             "bar.client_profile_approval_and_client_interview"
@@ -566,7 +566,7 @@
           "from": "offer",
           "to": "verification",
           "label": "Offer agreed and contract drafted",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Candidate accepts offer parameters",
           "entities": [
             "bar.compensation_levelling_reconciliation"
@@ -578,7 +578,7 @@
           "from": "offer",
           "to": "closed-unfunded",
           "label": "Client pulls project before signing",
-          "owner": "client",
+          "owner": "actor.client",
           "guard": "Client cancels funding after offer extended",
           "entities": [],
           "latency_expected_days": 4,
@@ -588,7 +588,7 @@
           "from": "verification",
           "to": "placed",
           "label": "Background check passed and start date confirmed",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Verification complete and project onboarding commences",
           "entities": [
             "bar.reference_background_verification",
@@ -618,7 +618,7 @@
           "id": "drafted",
           "title": "Requisition drafted",
           "kind": "initial",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "A manager writes the role. Level, band and requirements are decided here, usually by copying the last search for the same team.",
           "entities": [
             "bar.requisition_approval_public_posting"
@@ -630,7 +630,7 @@
           "id": "authorised",
           "title": "Headcount authorised",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Finance and leadership commit budget against the requisition. Approval can lapse or be withdrawn later without the funnel noticing.",
           "entities": [
             "bar.requisition_approval_public_posting",
@@ -643,7 +643,7 @@
           "id": "published",
           "title": "Posting live",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "The role is public. It may also be refreshed automatically every thirty days, which looks identical to a new opening.",
           "entities": [
             "bar.requisition_approval_public_posting",
@@ -657,7 +657,7 @@
           "id": "received",
           "title": "Application received",
           "kind": "active",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "A record exists and is linked to the requisition. Nothing has been read.",
           "entities": [
             "bar.application_ingestion",
@@ -670,7 +670,7 @@
           "id": "machine-screened",
           "title": "Automated screen",
           "kind": "active",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second.",
           "entities": [
             "bar.automated_filter_parser_threshold",
@@ -686,7 +686,7 @@
           "id": "recruiter-queue",
           "title": "In the recruiter queue",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.",
           "entities": [
             "bar.inbound_screening_triage",
@@ -700,7 +700,7 @@
           "id": "recruiter-screen",
           "title": "Recruiter screen",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "A conversation about compensation, timeline, location and a two-minute version of the last project.",
           "entities": [
             "bar.recruiter_screening_call",
@@ -715,7 +715,7 @@
           "id": "technical",
           "title": "Technical assessment",
           "kind": "active",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "A live exercise, a take-home, or both, scored against a rubric the candidate does not see.",
           "entities": [
             "bar.technical_screen_live_assessment",
@@ -732,7 +732,7 @@
           "id": "panel",
           "title": "Manager and team panel",
           "kind": "active",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "Depth, ownership and collaboration, assessed across several interviewers who may be measuring different things.",
           "entities": [
             "bar.hiring_manager_in_depth_review",
@@ -750,7 +750,7 @@
           "id": "levelling",
           "title": "Compensation and levelling",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "The level the panel assigned meets the band finance approved. First time the two are compared.",
           "entities": [
             "bar.compensation_levelling_reconciliation",
@@ -764,7 +764,7 @@
           "id": "approval",
           "title": "Offer approval",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes.",
           "entities": [
             "bar.headcount_executive_budget_approval",
@@ -777,7 +777,7 @@
           "id": "offer",
           "title": "Offer issued",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "A written offer exists. The requisition is still open until the countersignature lands.",
           "entities": [
             "bar.offer_closing_contract_execution",
@@ -790,7 +790,7 @@
           "id": "verification",
           "title": "Reference and background check",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "A third-party record is compared against what the candidate claimed.",
           "entities": [
             "bar.reference_background_verification",
@@ -803,7 +803,7 @@
           "id": "hired",
           "title": "Hired",
           "kind": "terminal",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Contract executed both ways, start date set, onboarding triggered.",
           "entities": [
             "bar.offer_closing_contract_execution"
@@ -815,7 +815,7 @@
           "id": "rejected",
           "title": "Rejected",
           "kind": "terminal",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "A decision was made and communicated. What it says about the cause is a separate question entirely.",
           "entities": [
             "obs.generic_closer_alignment_rejection_template",
@@ -829,7 +829,7 @@
           "id": "frozen",
           "title": "Search frozen or cancelled",
           "kind": "terminal",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Budget withdrawn or the requisition put on hold. Can happen at any point, including after an offer.",
           "entities": [
             "obs.position_closed_after_final_interview_without_hire",
@@ -843,7 +843,7 @@
           "id": "lapsed",
           "title": "Lapsed without a decision",
           "kind": "terminal",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "No one decided anything. The record aged past a threshold, or the posting was never taken down.",
           "entities": [
             "obs.complete_silence_after_submission",
@@ -860,7 +860,7 @@
           "from": "drafted",
           "to": "authorised",
           "label": "budget signed off",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Finance commits headcount against the requisition.",
           "entities": [
             "bar.headcount_executive_budget_approval"
@@ -872,7 +872,7 @@
           "from": "authorised",
           "to": "published",
           "label": "posting goes live",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "An approved requisition with a written description is published.",
           "entities": [
             "bar.requisition_approval_public_posting"
@@ -884,7 +884,7 @@
           "from": "published",
           "to": "received",
           "label": "application submitted",
-          "owner": "candidate",
+          "owner": "actor.candidate",
           "guard": "The candidate applies, or answers outbound outreach.",
           "entities": [
             "bar.application_ingestion",
@@ -897,7 +897,7 @@
           "from": "received",
           "to": "machine-screened",
           "label": "rules evaluated",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "The record is complete enough for the configured rules to run.",
           "entities": [
             "bar.automated_filter_parser_threshold"
@@ -909,7 +909,7 @@
           "from": "machine-screened",
           "to": "recruiter-queue",
           "label": "thresholds cleared",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Extraction score and every knockout rule pass.",
           "entities": [
             "bar.automated_filter_parser_threshold"
@@ -921,7 +921,7 @@
           "from": "machine-screened",
           "to": "rejected",
           "label": "filtered out",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Any knockout rule fails, or the ranking falls below the advance threshold.",
           "entities": [
             "obs.rejection_within_minutes_of_application_submission",
@@ -935,7 +935,7 @@
           "from": "recruiter-queue",
           "to": "recruiter-screen",
           "label": "short-listed",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "A person reads the profile and puts it on the list.",
           "entities": [
             "bar.inbound_screening_triage"
@@ -947,7 +947,7 @@
           "from": "recruiter-queue",
           "to": "lapsed",
           "label": "aged out",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "No review happened before the expiry threshold.",
           "entities": [
             "mech.automated_application_expiration_timeout"
@@ -959,7 +959,7 @@
           "from": "recruiter-screen",
           "to": "technical",
           "label": "parameters align",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Expectations, timeline and location are compatible, and the profile is submitted to the team.",
           "entities": [
             "bar.recruiter_screening_call"
@@ -971,7 +971,7 @@
           "from": "recruiter-screen",
           "to": "rejected",
           "label": "parameters do not align",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Compensation, level, location or availability rules the candidate out before any engineering is discussed.",
           "entities": [
             "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
@@ -986,7 +986,7 @@
           "from": "technical",
           "to": "panel",
           "label": "assessment passed",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "The score clears the rubric threshold.",
           "entities": [
             "bar.technical_screen_live_assessment",
@@ -999,7 +999,7 @@
           "from": "technical",
           "to": "rejected",
           "label": "assessment not passed",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "The score falls short, or the review is too shallow to find what is there.",
           "entities": [
             "obs.explicit_feedback_citing_skill_depth_shortfall",
@@ -1013,7 +1013,7 @@
           "from": "panel",
           "to": "levelling",
           "label": "panel recommends hire",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "Consensus reaches the hire threshold.",
           "entities": [
             "bar.hiring_manager_in_depth_review",
@@ -1026,7 +1026,7 @@
           "from": "panel",
           "to": "rejected",
           "label": "panel does not reach consensus",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "A split panel under a unanimity rule defaults to no hire.",
           "entities": [
             "obs.conflicting_feedback_across_different_interviewers",
@@ -1039,7 +1039,7 @@
           "from": "levelling",
           "to": "approval",
           "label": "level and band reconcile",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "The assigned level and the approved band overlap.",
           "entities": [
             "bar.compensation_levelling_reconciliation"
@@ -1051,7 +1051,7 @@
           "from": "levelling",
           "to": "rejected",
           "label": "level and band do not reconcile",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Expectation sits outside the band and neither the level nor the number moves.",
           "entities": [
             "obs.compensation_band_reduced_or_altered_mid_process",
@@ -1064,7 +1064,7 @@
           "from": "approval",
           "to": "offer",
           "label": "sign-off complete",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Every approver in the chain has cleared it.",
           "entities": [
             "bar.headcount_executive_budget_approval"
@@ -1076,7 +1076,7 @@
           "from": "approval",
           "to": "frozen",
           "label": "headcount withdrawn",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Budget is pulled or a freeze is announced before the offer is issued.",
           "entities": [
             "mech.headcount_freeze_or_budget_cancellation"
@@ -1088,7 +1088,7 @@
           "from": "offer",
           "to": "verification",
           "label": "offer accepted",
-          "owner": "candidate",
+          "owner": "actor.candidate",
           "guard": "The candidate signs and the checks begin.",
           "entities": [
             "bar.reference_background_verification"
@@ -1100,7 +1100,7 @@
           "from": "offer",
           "to": "frozen",
           "label": "offer retracted",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "A freeze reaches an outstanding offer before the countersignature.",
           "entities": [
             "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
@@ -1113,7 +1113,7 @@
           "from": "verification",
           "to": "hired",
           "label": "checks clear",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "No unresolved discrepancy in the third-party record.",
           "entities": [
             "bar.offer_closing_contract_execution",
@@ -1126,7 +1126,7 @@
           "from": "verification",
           "to": "rejected",
           "label": "discrepancy unresolved",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "A record mismatch or an eligibility bar is not reconciled.",
           "entities": [
             "mech.reference_check_discrepancy_or_regulatory_ineligibility"
@@ -1138,7 +1138,7 @@
           "from": "published",
           "to": "lapsed",
           "label": "posting outlives the search",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "Hiring stops but the listing is never withdrawn.",
           "entities": [
             "mech.stale_or_orphaned_job_requisition"
@@ -1150,7 +1150,7 @@
           "from": "rejected",
           "to": "published",
           "label": "requisition reopened",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "The search restarts, sometimes with a revised profile, sometimes as an automatic refresh.",
           "entities": [
             "obs.materially_similar_role_reposted_shortly_after_rejection",
@@ -1179,7 +1179,7 @@
           "id": "real-need",
           "title": "A real opening, described honestly",
           "kind": "initial",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "The requisition describes work that exists now, at a level the team actually needs, inside a band the budget already covers. Nothing here is aspirational: the list of requirements is what the job uses, not what the last four candidates happened to have.",
           "entities": [
             "int.requirements_drawn_from_the_team_s_own_backlog"
@@ -1195,7 +1195,7 @@
           "id": "published",
           "title": "Published with its terms on the page",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "The posting states the compensation band, the location rules, the stages the process has and roughly how long each takes. It comes down when the search ends.",
           "entities": [
             "int.upfront_compensation_band_disclosure",
@@ -1217,7 +1217,7 @@
           "id": "applied",
           "title": "Applied, and told so",
           "kind": "active",
-          "owner": "candidate",
+          "owner": "actor.candidate",
           "description": "The application is submitted and acknowledged. The record holds what the candidate actually wrote, and the candidate can tell that it arrived.",
           "entities": [
             "int.candidate_ats_parser_conformance_test_utility"
@@ -1232,7 +1232,7 @@
           "id": "machine-check",
           "title": "Machine work stays mechanical",
           "kind": "active",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "description": "Automation deduplicates, extracts and orders. It does not decide. Where a rule does end an application, the rule is stated and it is one a person would defend out loud.",
           "entities": [
             "int.candidate_ats_parser_conformance_test_utility",
@@ -1251,7 +1251,7 @@
           "id": "human-read",
           "title": "Read by a person, inside the stated window",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Every application that clears the mechanical stage is read by someone, and read before the window the posting promised runs out.",
           "entities": [
             "int.auto_close_stale_job_requisitions",
@@ -1267,7 +1267,7 @@
           "id": "terms-check",
           "title": "Terms compared before anyone spends time",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Band, level, location, notice period and start date are put side by side in the first conversation, before any assessment is scheduled. Either side can stop here at no cost to the other.",
           "entities": [
             "int.upfront_compensation_band_disclosure"
@@ -1284,7 +1284,7 @@
           "id": "work-sample",
           "title": "Assessed on the work, against a rubric that is shared",
           "kind": "active",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "One timeboxed exercise that resembles the job. The candidate is given the criteria before starting, the timebox is enforced against the evaluator as well, and the same rubric scores everyone.",
           "entities": [
             "int.strict_take_home_timebox_blinded_evaluation_rubric",
@@ -1305,7 +1305,7 @@
           "id": "panel",
           "title": "One panel, one question each, one decision rule",
           "kind": "active",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "description": "Every interviewer knows what they are measuring and that nobody else is measuring it. The rule that turns their scores into a decision is agreed before the first conversation, and no round is added after the process has started.",
           "entities": [
             "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota"
@@ -1327,7 +1327,7 @@
           "id": "level-and-band",
           "title": "The level meets the band that was published",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "The level follows from the evidence the panel gathered, and the band was public from the first day. Reconciling them is arithmetic, not a negotiation about whether the band exists.",
           "entities": [
             "int.upfront_compensation_band_disclosure"
@@ -1342,7 +1342,7 @@
           "id": "approval",
           "title": "Approval already exists",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Headcount was signed before the role was published, so this step is a countersignature rather than a second decision. If the budget goes, the search closes and everyone inside it is told.",
           "entities": [
             "int.auto_close_stale_job_requisitions",
@@ -1358,7 +1358,7 @@
           "id": "offer",
           "title": "A written offer with everything in it",
           "kind": "active",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Salary, level, title, location terms, start date and anything conditional, in writing, with a decision window the candidate agreed to. Nothing in it changes after acceptance.",
           "entities": [],
           "visible_to_candidate": "The complete offer document, and how long they have to answer.",
@@ -1371,7 +1371,7 @@
           "id": "verification",
           "title": "Checks that are proportionate and answerable",
           "kind": "active",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Only the checks the role actually requires. Where a third-party record disagrees with what the candidate said, the discrepancy is put to the candidate before it decides anything.",
           "entities": [
             "int.verification_discrepancy_disclosure_and_reconciliation_window"
@@ -1390,7 +1390,7 @@
           "id": "hired",
           "title": "Hired on the terms that were published",
           "kind": "terminal",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "Contract executed both ways on the terms that were on the page from the beginning, with a start date both sides chose.",
           "entities": [],
           "visible_to_candidate": "A signed contract that matches the posting.",
@@ -1400,7 +1400,7 @@
           "id": "declined",
           "title": "Declined, with a reason that can be acted on",
           "kind": "terminal",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "description": "Not every candidate is hired, and a decline is not a deviation. What makes it part of this path is that it arrives, it names the stage it happened at and the criterion that decided it, and it says whether applying again is worth anything.",
           "entities": [
             "int.standardized_late_stage_rejection_feedback_taxonomy",
@@ -1418,7 +1418,7 @@
           "id": "closed",
           "title": "Search closed, and everyone told",
           "kind": "terminal",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "description": "A search can legitimately stop: the need changes, the budget goes, someone internal turns out to be right for it. What this path requires is that the posting comes down and every candidate still inside the process is told within days.",
           "entities": [
             "int.auto_close_stale_job_requisitions"
@@ -1439,7 +1439,7 @@
           "from": "real-need",
           "to": "published",
           "label": "posted with its terms",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "An approved requisition, a band and a described process go live together.",
           "entities": [
             "int.upfront_compensation_band_disclosure"
@@ -1451,7 +1451,7 @@
           "from": "published",
           "to": "applied",
           "label": "application submitted",
-          "owner": "candidate",
+          "owner": "actor.candidate",
           "guard": "The candidate applies against terms they could read beforehand.",
           "entities": [],
           "latency_expected_days": 7,
@@ -1461,7 +1461,7 @@
           "from": "applied",
           "to": "machine-check",
           "label": "record processed",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "The submission is parsed and acknowledged.",
           "entities": [
             "int.candidate_ats_parser_conformance_test_utility"
@@ -1473,7 +1473,7 @@
           "from": "machine-check",
           "to": "human-read",
           "label": "passed to a person",
-          "owner": "ats-vendor",
+          "owner": "actor.ats_vendor",
           "guard": "No automated rule ended it, so a person now has it.",
           "entities": [
             "int.remove_career_gap_feature_from_automated_ranking_models"
@@ -1485,7 +1485,7 @@
           "from": "human-read",
           "to": "terms-check",
           "label": "worth a conversation",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "A person read the profile and wants to talk.",
           "entities": [],
           "latency_expected_days": 3,
@@ -1495,7 +1495,7 @@
           "from": "terms-check",
           "to": "work-sample",
           "label": "terms are compatible",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "Band, level, location and timing work for both sides, said out loud.",
           "entities": [
             "int.upfront_compensation_band_disclosure"
@@ -1507,7 +1507,7 @@
           "from": "work-sample",
           "to": "panel",
           "label": "work meets the rubric",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "The exercise was scored against the criteria the candidate was given.",
           "entities": [
             "int.strict_take_home_timebox_blinded_evaluation_rubric"
@@ -1519,7 +1519,7 @@
           "from": "panel",
           "to": "level-and-band",
           "label": "panel decides by its rule",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "The agreed decision rule returns a hire.",
           "entities": [],
           "latency_expected_days": 3,
@@ -1529,7 +1529,7 @@
           "from": "level-and-band",
           "to": "approval",
           "label": "level lands inside the band",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "The evidence-assigned level maps to a point in the published band.",
           "entities": [],
           "latency_expected_days": 2,
@@ -1539,7 +1539,7 @@
           "from": "approval",
           "to": "offer",
           "label": "countersigned",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "The approval that existed before publication is confirmed.",
           "entities": [],
           "latency_expected_days": 2,
@@ -1549,7 +1549,7 @@
           "from": "offer",
           "to": "verification",
           "label": "offer accepted",
-          "owner": "candidate",
+          "owner": "actor.candidate",
           "guard": "The candidate accepts a complete written offer inside the agreed window.",
           "entities": [],
           "latency_expected_days": 3,
@@ -1559,7 +1559,7 @@
           "from": "verification",
           "to": "hired",
           "label": "checks clear",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Nothing proportionate to the role is unresolved.",
           "entities": [],
           "latency_expected_days": 5,
@@ -1569,7 +1569,7 @@
           "from": "human-read",
           "to": "declined",
           "label": "declined after reading",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "A person decided no, and said at which stage and on what criterion.",
           "entities": [
             "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -1579,7 +1579,7 @@
           "from": "terms-check",
           "to": "declined",
           "label": "terms are incompatible",
-          "owner": "recruiter",
+          "owner": "actor.recruiter",
           "guard": "The gap is named in the same conversation, before any assessment is booked.",
           "entities": [
             "int.upfront_compensation_band_disclosure"
@@ -1589,7 +1589,7 @@
           "from": "work-sample",
           "to": "declined",
           "label": "work did not meet the rubric",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "The score is below the shared criteria, and the criterion is named.",
           "entities": [
             "int.standardized_late_stage_rejection_feedback_taxonomy",
@@ -1600,7 +1600,7 @@
           "from": "panel",
           "to": "declined",
           "label": "decision rule returns no hire",
-          "owner": "hiring-manager",
+          "owner": "actor.hiring_manager",
           "guard": "The rule agreed beforehand returns no hire, and which dimension decided it is stated.",
           "entities": [
             "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -1610,7 +1610,7 @@
           "from": "level-and-band",
           "to": "declined",
           "label": "level and expectation do not meet",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "The published band and the candidate's stated expectation do not overlap, which both sides already knew.",
           "entities": [
             "int.upfront_compensation_band_disclosure"
@@ -1620,7 +1620,7 @@
           "from": "verification",
           "to": "declined",
           "label": "discrepancy stands",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "The candidate was shown the discrepancy and it remains unresolved.",
           "entities": []
         },
@@ -1628,7 +1628,7 @@
           "from": "published",
           "to": "closed",
           "label": "need changed",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "The work no longer exists, and the posting comes down the same week.",
           "entities": [
             "int.auto_close_stale_job_requisitions"
@@ -1638,7 +1638,7 @@
           "from": "approval",
           "to": "closed",
           "label": "budget withdrawn",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "Headcount is pulled, and every candidate in the process is told within days.",
           "entities": [
             "int.auto_close_stale_job_requisitions"
@@ -1648,7 +1648,7 @@
           "from": "offer",
           "to": "closed",
           "label": "offer withdrawn and explained",
-          "owner": "employer-policy",
+          "owner": "actor.employer_policy",
           "guard": "An outstanding offer cannot stand, and the candidate is told why, in writing, immediately.",
           "entities": []
         }

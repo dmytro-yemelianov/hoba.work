@@ -1,6 +1,7 @@
 ---
-id: "public-policy"
+id: "actor.public_policy_and_industry_standards"
 type: "actor"
+slug: "public-policy"
 title: "Public policy and industry standards"
 summary: "Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for."
 controls:

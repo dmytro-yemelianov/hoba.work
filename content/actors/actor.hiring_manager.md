@@ -1,6 +1,7 @@
 ---
-id: "hiring-manager"
+id: "actor.hiring_manager"
 type: "actor"
+slug: "hiring-manager"
 title: "Hiring manager"
 summary: "The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb."
 controls:

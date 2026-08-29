@@ -1,6 +1,7 @@
 ---
-id: "candidate"
+id: "actor.candidate"
 type: "actor"
+slug: "candidate"
 title: "Candidate"
 summary: "The person applying. The only party in the funnel who sees the whole of their own process and almost none of anyone else's."
 controls:

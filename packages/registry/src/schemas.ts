@@ -192,7 +192,15 @@ export const loopEdgeSchema = z.object({
 });
 
 // Fields shared by every graph node.
-export const actorId = z.enum(['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy', 'client']);
+export const actorId = z.enum([
+  'actor.candidate',
+  'actor.recruiter',
+  'actor.hiring_manager',
+  'actor.ats_vendor',
+  'actor.employer_policy',
+  'actor.public_policy_and_industry_standards',
+  'actor.client',
+]);
 
 /**
  * One actor's view of one entry.
@@ -375,6 +383,16 @@ export const actorSchema = z.object({
   ...nodeBase,
   id: actorId,
   type: z.literal('actor'),
+  /**
+   * The public route segment: `/actors/<slug>`.
+   *
+   * Actors are the one type whose id and URL diverge. Their ids were already
+   * unique readable slugs before the migration, so moving the URL to
+   * `/actors/actor.recruiter` would have been a regression for no gain; the
+   * slug is the pre-migration id, and it is what every `/actors/...` link is
+   * built from. Everywhere else in the registry an actor is its canonical id.
+   */
+  slug: z.string().regex(/^[a-z0-9-]+$/, 'actor slug must be lowercase, digits and hyphens'),
   summary: z.string().min(10),
   /** Decisions this actor actually makes. */
   controls: z.array(z.string()).min(1),

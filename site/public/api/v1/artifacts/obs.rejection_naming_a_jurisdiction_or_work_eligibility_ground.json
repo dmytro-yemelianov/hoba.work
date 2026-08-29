@@ -81,19 +81,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A reason that can be checked against the posting: a country, a set of hours, a permit. Unlike most stated reasons, this one refers to a fact rather than a judgement.",
         "reads": "The ground named is verifiable, which is unusual. Whether it was the operative ground, or the one that could be written down without commenting on the candidate, is not settled by the message.",
         "does": "Compares the ground against what the posting stated when it was applied to, using a saved copy, because a posting can be edited after the fact."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A candidate the team would take and a hiring location list that does not include where they are.",
         "reads": "This is the one closing reason that is fully outside the candidate and fully inside a document. It can be stated without hedging.",
         "does": "Names the ground plainly, because doing so is both accurate and easier than a template that would invite a follow-up."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A list of jurisdictions in which a contract can be issued, set by which entities and payroll providers exist, and reviewed on a slower cycle than any single search.",
         "reads": "The list is a constraint on the search, not an assessment within it. Roles are published against it, and exceptions cost more than a single hire usually justifies.",
         "does": "Holds the list, and grants exceptions through a route that runs on a different calendar from the requisition."

@@ -65,19 +65,19 @@
     ],
     "perspectives": [
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "A status vocabulary in which every way a record leaves the queue has its own terminal value, and the migration that splits the existing Rejected in two.",
         "reads": "The split is a schema change and a template variable; what it exposes — how much of the queue was never opened — becomes a figure in every customer's dashboard.",
         "does": "Ships the statuses and the counter, makes the terminal status a required variable in the notification template, and carries the customers whose reporting was built on a single Rejected value."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The requisition dashboard carrying received, opened and closed-unreviewed side by side, and the expiry batch landing in the third column.",
         "reads": "How far the queue ran past the week is a published figure on the requisition rather than a condition of the job. Time-to-fill is still what the report is read for.",
         "does": "Works the current inbound with the count standing next to it; where the count is argued about, it is argued about against the recruiting headcount that fixes review capacity."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A notice naming the status the record ended in, and whether a person opened it.",
         "reads": "A record nobody reached and a record that was assessed and declined no longer arrive in the same words; only one of the two says anything about the profile.",
         "does": "Reads the message for the status rather than for an assessment it states is not there, and decides about reapplying on that."

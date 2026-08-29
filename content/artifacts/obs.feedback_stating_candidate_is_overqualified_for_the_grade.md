@@ -11,22 +11,22 @@ stages:
   - "team"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A rejection naming experience above the band scoped for the role, and a retention concern raised at the screen, before any technical round."
     reads: "The stated ground is fit with a band rather than the work shown. The message does not say whether a requisition at another level exists."
     does: "Asks whether anything is open at a higher level, and records the stated reason and the date it was given."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A profile whose last title sits above the role, against a requisition opened at one band that the screen cannot move."
     reads: "The level question is answerable now, and the same mismatch found at offer stage costs the search weeks. What the hiring manager will accept at this level is not written down anywhere the recruiter can read it."
     does: "Raises the concern on the call and passes the answer on. Changing the band is not theirs to do; the wording of the rejection is."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "A candidate who has previously held a wider scope than the role carries, assessed at the level the requisition was opened at."
     reads: "A hire who leaves early is visible and attributed to the person who made it; a candidate declined on level leaves no record anyone reads later."
     does: "Declines at this band, or asks for the level to be reconsidered, which means a different requisition funded elsewhere."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "One requisition approved at one band, and a levelling grid that defines what sits above it. Individual candidates do not reach this layer."
     reads: "One band per requisition is what keeps offers consistent and defensible across every hire. A person declined at the edge of the grid is not an event this layer records."
     does: "Holds the requisition at the approved band. Opening one at a higher level is a separate funding decision on a quarterly cycle."

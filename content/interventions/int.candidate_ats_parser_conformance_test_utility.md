@@ -32,12 +32,12 @@ specimens:
     reading: "This is the one intervention on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "An extraction report against their own file: how many work entries and skills a parser recovers, and which layout choice dropped them."
     reads: "The failure was in the document rather than in the record, and it is fixable before submission rather than inferable afterwards."
     does: "Re-exports single-column with text headings, re-checks, and submits the version that survives extraction."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A complete profile in the queue: work history in fields, skills in fields, orderable against the rest."
     reads: "A profile with nothing in the experience field and a profile whose experience did not extract read identically from here; this removes one of the two before it arrives."
     does: "Screens on the content, and in the applications that still arrive empty, an unreadable file and a thin record remain indistinguishable."

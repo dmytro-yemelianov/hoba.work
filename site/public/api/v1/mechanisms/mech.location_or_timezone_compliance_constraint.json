@@ -87,25 +87,25 @@
     ],
     "perspectives": [
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "The list of jurisdictions where an entity or an employment provider can issue a contract, and a candidate record showing a country outside it.",
         "reads": "A contract that cannot be signed, whatever the panel concluded. Adding a jurisdiction is a registration and tax decision, not a hiring one.",
         "does": "Holds the coverage list as written, and leaves any exception to a separate approval running on its own quarterly cycle."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A residency answer that falls outside the approved country list — a check that can happen at the screen or at the offer paperwork.",
         "reads": "This process ends here regardless of the panel's recommendation, and the requisition returns to sourcing while time-to-fill keeps counting.",
         "does": "States the constraint at the screen, where the list is at hand, or delivers it at the offer stage in the wording available for it."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A posting marked remote, a process that runs normally, and a jurisdiction question arriving late — or a rejection minutes after submitting.",
         "reads": "Either the location was disqualifying from the start, or something about the profile was. Nothing in the message separates the two.",
         "does": "Records the stage at which the question was asked, and asks about entity coverage before the next remote process rather than after it."
       },
       {
-        "actor": "public-policy",
+        "actor": "actor.public_policy_and_industry_standards",
         "sees": "Employment law and tax registration in each jurisdiction, and the conditions under which a cross-border employment relationship can exist at all.",
         "reads": "A settled boundary, working as written. Nothing in it says at which point in a hiring process the boundary has to be disclosed.",
         "does": "Sets the rule and the licensed intermediary arrangements that can carry an employment relationship across it, on a legislative cycle no single process can wait for."

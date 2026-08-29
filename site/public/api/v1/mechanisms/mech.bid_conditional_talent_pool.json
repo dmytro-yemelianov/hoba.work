@@ -77,19 +77,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A concrete-sounding approach about a role that cannot be found posted anywhere, then a call that goes well, then a silence with no stated end.",
         "reads": "Nothing distinguishes this from an approach against a funded seat. The difference is a record — a signed contract — that no message references and no search of the postings can reveal.",
         "does": "Asks what the conversation is attached to: an approved requisition, or a pipeline for something expected. The answer, or its absence, is the only observable this structure leaks."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A staffing plan owed against a proposal, with named profiles required in it, and a deadline set by the client's procurement, not by any funnel.",
         "reads": "The bid cannot be won without the CVs, and the people behind the CVs cannot be promised anything until it is won. Both halves are true at once, and the brief usually forbids stating the second.",
         "does": "Builds the pool the proposal needs, keeps the conversations warm for as long as the decision takes, and closes them without a verdict when the decision goes the other way — because there is no verdict to send about a role that never came to exist."
       },
       {
-        "actor": "client",
+        "actor": "actor.client",
         "sees": "A vendor's proposal with named, available profiles in it — evidence the vendor can actually staff what it is bidding to deliver.",
         "reads": "The profiles are part of the bid's credibility. Whether the people behind them know what stage the engagement is at is the vendor's affair, and nothing in procurement asks.",
         "does": "Evaluates the bid on rate, profiles and risk, on procurement's calendar — unaware that the calendar is experienced, somewhere, as an unexplained silence."

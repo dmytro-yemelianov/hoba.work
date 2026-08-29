@@ -62,19 +62,19 @@
     ],
     "perspectives": [
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A page attached to every technical posting carrying four columns, their weights and the number a total is compared with.",
         "reads": "A published instrument is one every panel has to score against and one the organisation is answerable to; the columns can no longer be settled after the round.",
         "does": "Defines which instruments may be published and how a change to one is dated, and holds the publication back for roles where no rubric has been written."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The columns, the weights and the threshold before booking the hour, and the column scores with the outcome.",
         "reads": "The hour is scored on four named things, so preparation has a target, and a total a point under the line reads as that rather than as a verdict on the person.",
         "does": "Prepares against the named columns, and where the exercise format does not match what the role does, decides that before spending the hour."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "The team's rubric as an external document with a date on it, and every panel entry now recorded against those columns.",
         "reads": "The instrument is fixed before the round, so two interviewers disagreeing becomes a difference in a named column rather than a difference in what was being looked for.",
         "does": "Writes the columns and the threshold down before the role opens, and takes a change to them through the same publication step rather than mid-search."

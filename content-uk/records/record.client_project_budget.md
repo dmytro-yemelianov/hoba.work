@@ -6,7 +6,7 @@ aliases:
 title: "Проєктний бюджет замовника"
 record_class: "budget-line"
 owner: "outside-party"
-owner_actor: "client"
+owner_actor: "actor.client"
 summary: "Бюджетний ліміт замовника, виділений на закупівлю зовнішніх інженерних послуг."
 flows:
   - to: "record.client_services_agreement"

@@ -15,8 +15,9 @@
           "ats-vendor"
         ]
       },
-      "id": "ats-vendor",
+      "id": "actor.ats_vendor",
       "type": "actor",
+      "slug": "ats-vendor",
       "summary": "The platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.",
       "controls": [
         "What the parser can extract, and what it silently drops",
@@ -160,8 +161,9 @@
           "candidate-action"
         ]
       },
-      "id": "candidate",
+      "id": "actor.candidate",
       "type": "actor",
+      "slug": "candidate",
       "summary": "The person applying. The only party in the funnel who sees the whole of their own process and almost none of anyone else's.",
       "controls": [
         "What is submitted, and in what machine-readable shape",
@@ -309,8 +311,9 @@
         "facet": [],
         "intervention": []
       },
-      "id": "client",
+      "id": "actor.client",
       "type": "actor",
+      "slug": "client",
       "summary": "The party paying for the seat when the company is not its own customer. Signs the contract the requisition depends on, and often holds a gate the candidate never sees named.",
       "controls": [
         "Whether the contract that funds the seat is signed, extended or cancelled",
@@ -409,8 +412,9 @@
           "employer-policy"
         ]
       },
-      "id": "employer-policy",
+      "id": "actor.employer_policy",
       "type": "actor",
+      "slug": "employer-policy",
       "summary": "Finance, leadership and the people function: the layer that authorises headcount, fixes bands and writes the rules the funnel executes. Never meets a candidate.",
       "controls": [
         "Whether a requisition is funded, and whether it stays funded",
@@ -546,8 +550,9 @@
           "hiring-manager"
         ]
       },
-      "id": "hiring-manager",
+      "id": "actor.hiring_manager",
       "type": "actor",
+      "slug": "hiring-manager",
       "summary": "The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb.",
       "controls": [
         "The requirements as written, and the ones only they know about",
@@ -687,8 +692,9 @@
           "policy"
         ]
       },
-      "id": "public-policy",
+      "id": "actor.public_policy_and_industry_standards",
       "type": "actor",
+      "slug": "public-policy",
       "summary": "Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for.",
       "controls": [
         "What must be disclosed — pay transparency rules being the clearest current example",
@@ -835,8 +841,9 @@
           "recruiter-process"
         ]
       },
-      "id": "recruiter",
+      "id": "actor.recruiter",
       "type": "actor",
+      "slug": "recruiter",
       "summary": "The function that moves people through the funnel. Holds the most information about the process and the least authority over its outcome.",
       "controls": [
         "Which applications are read and in what order",

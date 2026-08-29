@@ -116,19 +116,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "Four dates for one interview, invitations withdrawn by the organiser each time, and a fourth message with no replacement slot in it.",
         "reads": "Something on the other side is moving, and which thing it is — a calendar, a panel, a requisition — is not in any message received.",
         "does": "Records the dates and the wording, keeps other processes open, and asks for a date rather than for a reason."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "Declines coming back from the panel's calendar, and no instruction about whether the search itself has changed.",
         "reads": "A slot to reissue. Whether the requisition is still funded is not visible from the scheduling view.",
         "does": "Sends new times and keeps the candidate in the pipeline; no cause arrives with the decline, so none travels onward."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "One conflict on one morning, resolved by moving one invitation. The series exists in the candidate's inbox, not in the panel's calendar.",
         "reads": "A week in which delivery and the loop need the same hours, and the loop is the part that can be moved.",
         "does": "Releases the slot to the work the role exists to absorb and asks for a new time, each move decided on its own."

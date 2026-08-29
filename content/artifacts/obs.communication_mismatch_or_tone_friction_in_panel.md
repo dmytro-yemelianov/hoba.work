@@ -10,17 +10,17 @@ stages:
   - "team"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "An exchange where the question and the answer sat at different levels, reconciled in the room within half a minute. Then written feedback that states the mismatch as a property of the answers."
     reads: "One exchange and a generalisation of it both fit the same recording; which of the two the panel worked from is not in the note."
     does: "Asks which moment the note refers to, and keeps the wording, since the note is the only version of the round that leaves the room."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Written impressions from each interviewer after the round. The recording is not what the panel reviews."
     reads: "Wording that lines up across notes reads as a shared signal; a bad hire is visible for a year and has a name on it, a missed one has neither."
     does: "Decides on the note as written, since it is the record of the round, and has no cheap way to test whether it describes one exchange or a pattern."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A summary line for the round: technically solid, communication not calibrated. What was said at minute twenty-two is not in the recruiter's view."
     reads: "A reason to relay, at the level of detail it was given at."
     does: "Passes the summary on, and when the candidate asks which moment it refers to, has the same sentence to answer with and nothing behind it."

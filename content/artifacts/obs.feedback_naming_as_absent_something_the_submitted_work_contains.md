@@ -10,17 +10,17 @@ stages:
   - "technical"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A shortfall named in terms of something missing, against a submission that contains it — at a path that was given, in a file that opens."
     reads: "Absent and insufficient are different claims. A reader who opened the work and judged it thin would say thin; the word missing describes a surface, and the surface may not be the one the work is on."
     does: "Checks what the given path actually resolves to for someone with no context: default branch, first screen, whether the work sits under another organisation's account."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A profile and a link. Opening the link leads to a listing whose relevance is not decidable without reading code."
     reads: "The submission is a claim to be passed on, not one to be assessed here. What can be checked at this desk is whether the requirement's keywords appear."
     does: "Records against the requirement using what the profile states, and forwards the link unopened to whoever can read it."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "A repository opened for a few minutes between meetings, landing on whatever the default branch shows first."
     reads: "What the first screen shows stands for the whole, because there is no time to establish that it does not. A layout that buries the work reads the same as an absence of it."
     does: "Writes the note against what was seen, in the vocabulary of what was expected to be there."

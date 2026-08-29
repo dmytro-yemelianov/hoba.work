@@ -6,7 +6,7 @@ aliases:
 title: "Контракт на надання послуг із замовником"
 record_class: "contract"
 owner: "outside-party"
-owner_actor: "client"
+owner_actor: "actor.client"
 summary: "Комерційний договір, що фіксує білінгову ставку та обсяг позиції."
 flows:
   - to: "record.vendor_margin_and_headcount_allocation"

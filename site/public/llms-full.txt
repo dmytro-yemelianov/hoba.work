@@ -818,7 +818,7 @@ Classify every mandatory check in advance as reconcilable by document or disqual
 
 ## Actors
 
-### ats-vendor — ATS vendor
+### actor.ats_vendor — ATS vendor
 
 The platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see.
 
@@ -839,7 +839,7 @@ The platform the funnel runs inside. Writes no policy and decides no hire, yet i
 - Could do (low): Show what a knockout rule removes before saving — Which knockout rules can be expressed, and what the configuration screen shows while one is being written, are both the vendor's. Whether a rule is reasonable is not visible from here; what it would have done to the applications already stored is, and running the draft against them puts that in front of the person who does hold the judgement. Costs: The dry run reads the customer's stored applications on the configuration path, and the screen now states a number the vendor stands behind — including when a draft rule would have ended the entire stored pool.
 - Could do (medium): Name the rule and threshold in automated declines — The message an automated rule sends is the vendor's template, and the rule that fired, its threshold and the value it read are already in the log line behind it. Carrying those three items into the message is what separates a decline that names a criterion from one that arrives as a verdict on the person. Costs: The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not.
 
-### candidate — Candidate
+### actor.candidate — Candidate
 
 The person applying. The only party in the funnel who sees the whole of their own process and almost none of anyone else's.
 
@@ -861,7 +861,7 @@ The person applying. The only party in the funnel who sees the whole of their ow
 - Could do (medium): Submit at the stated timebox and name the cuts — The hours a work sample takes come out of the same budget as the search itself, and the minutes it is read for are set on the other side of the gate. Stopping at the stated timebox and writing down what was cut to fit it keeps the exercise inside the scope that was agreed and leaves the trade-offs on the page. Costs: A submission that stops at the timebox is read next to submissions that did not stop, and the reviewer's minutes are not something the candidate sets.
 - Could do (medium): Set a date when a silent process closes — Silence after submission covers a listing nobody took down, a batch expiry job and a queue that was never reached, and none of the three is visible from outside. Choosing the closing date in advance turns an open question into a finished one and returns the hours to the searches that answered. Costs: An answer that arrives after the chosen date is treated as no answer, and the time already spent is written off rather than waited out.
 
-### client — Client
+### actor.client — Client
 
 The party paying for the seat when the company is not its own customer. Signs the contract the requisition depends on, and often holds a gate the candidate never sees named.
 
@@ -881,7 +881,7 @@ The party paying for the seat when the company is not its own customer. Signs th
 - Could do (low): State in the brief whether the seat is funded or bid-conditional — A search run against an unsigned bid is a real search for a conditional seat. The vendor's recruiters can only disclose what the brief states, so the one sentence that makes outreach honest — this role opens when the contract signs — has to originate here. Costs: A bid the market can see is a bid competitors can see; some clients treat the existence of the search as confidential.
 - Could do (low): Return profile decisions on a stated clock, with a category — The employer cannot tell the candidate what it was never told. A decline that arrives as one of three categories — profile, rate, timing — on a stated turnaround lets the vendor close records with a reason instead of a template, without exposing anything commercially sensitive. Costs: A category is a commitment; 'no' with no category can no longer be sent.
 
-### employer-policy — Employer policy
+### actor.employer_policy — Employer policy
 
 Finance, leadership and the people function: the layer that authorises headcount, fixes bands and writes the rules the funnel executes. Never meets a candidate.
 
@@ -901,7 +901,7 @@ Finance, leadership and the people function: the layer that authorises headcount
 - Could do (medium): State on the posting that an internal candidacy exists — The rule that a role is published externally regardless of an internal candidate sits in this layer, and so does what the posting may say. One line stating that an internal candidacy is in process gives an external applicant, at the point of applying, the fact the panel already has. Costs: The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.
 - Could do (medium): Narrow the checks and show the candidate any discrepancy — Which checks a role requires, and whether a third-party record is put to the candidate before it decides anything, are both settled in this layer. At bar.reference_background_verification a mismatch between a vendor record and an application holds the offer, and only a policy rule makes the candidate's account part of the file before the hold becomes a decision. Costs: Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.
 
-### hiring-manager — Hiring manager
+### actor.hiring_manager — Hiring manager
 
 The person the role reports to, and the panel they convene. Sets the bar, owns the outcome, and is doing this alongside the work the role exists to absorb.
 
@@ -922,7 +922,7 @@ The person the role reports to, and the panel they convene. Sets the bar, owns t
 - Could do (high): Freeze the requirements once the loop opens — The requirements as written are this actor's; whether a requisition closes is not. Assessments taken against one description do not carry over to another, so a change of stack or scope that arrives mid-loop belongs in the next posting rather than in the scoring of work already done. Everyone already inside is then measured against the description they were given. Costs: The loop runs to the end against a profile the team has moved past, and the change the requirements needed waits for a search that starts again from the posting.
 - Could do (medium): Fix the assessed level before the loop opens — The level a candidate is assessed at is this actor's to set, and it is set at the in-depth review whether or not it was written down first. Naming the level, and what evidence meets it, before the loop opens means experience above the band is measured against the requirements rather than against a forecast about how long someone stays. Costs: A level fixed in advance removes the move of recovering a strong candidate at the level below, and where the level was set wrong the search runs again from the posting.
 
-### public-policy — Public policy and industry standards
+### actor.public_policy_and_industry_standards — Public policy and industry standards
 
 Regulators, labour law, and the conventions the market copies from itself. Sets the outer bounds and moves on a timescale no individual process can wait for.
 
@@ -940,7 +940,7 @@ Regulators, labour law, and the conventions the market copies from itself. Sets 
 - Could do (medium): Require continuity-based ranking features to be documented and justified — A feature that scores the length of a break sits inside the automated decision-making whose bounds this actor sets, and it is the input that closes the gap-penalty loop. Requiring any ranking input derived from employment continuity to be documented and justified makes its presence checkable, which a prohibition on its own does not. Costs: The rule can only be checked where the feature is named in a model card or a settings screen, so it rests on a documentation duty that lands on a supplier rather than on the employer being regulated. Naming one input leaves its proxies — recency of the last role, density of transitions — outside the text until they are named too.
 - Could do (low): Publish a common schema for posting terms and outcomes — The market copies conventions from itself faster than it absorbs rules, and this actor writes conventions as well as rules. A published schema — band, level, stages, jurisdictions, and a decline that names its stage and its criterion — gives the disclosure duties a shape that can be filled in once and read by machine. Costs: A schema carries no obligation, so it is adopted where it is cheaper than what it replaces and nowhere else. The categories fixed in the first version become the ceiling on what is disclosed later, and the body that publishes it owns the revisions for as long as anyone uses it.
 
-### recruiter — Recruiter
+### actor.recruiter — Recruiter
 
 The function that moves people through the funnel. Holds the most information about the process and the least authority over its outcome.
 

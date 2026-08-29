@@ -6,7 +6,7 @@ aliases:
 title: "Річний бюджет інженерного департаменту"
 record_class: "budget-line"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Річний операційний бюджетний ліміт, виділений на фонд оплати праці інженерних команд."
 flows:
   - to: "record.approved_requisition_funding"

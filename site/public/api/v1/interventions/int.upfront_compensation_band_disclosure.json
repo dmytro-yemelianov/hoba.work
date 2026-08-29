@@ -57,25 +57,25 @@
     ],
     "perspectives": [
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A posting draft with a band in it, and the same band readable by everyone already employed at that level.",
         "reads": "Publishing fixes a number that was previously settled per candidate, and makes internal pay spread visible in a document anyone can open.",
         "does": "Requires the band to be verified by finance before the posting goes live, which adds an approval step to publishing a role."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The band as a published line in the requisition, available before the screening call rather than after the panel.",
         "reads": "The expectation question is no longer the filter: a candidate above the band says so at the screen, where the process has cost nobody five rounds.",
         "does": "Opens the screen with the number, and routes a mismatch into the levelling question instead of carrying it to the offer stage."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The band and the level in the posting, dated and attributed, before any unpaid hours are committed.",
         "reads": "The one number the whole process is arranged around is available before entering it, so applying becomes a decision about a known range.",
         "does": "Applies or does not, and where the expectation sits above the band, raises it at the screen instead of at the offer."
       },
       {
-        "actor": "public-policy",
+        "actor": "actor.public_policy_and_industry_standards",
         "sees": "Postings carrying a band in covered jurisdictions, and postings carrying one elsewhere because the practice spread.",
         "reads": "Compliance is checkable against the text of the posting; the level a candidate is actually assessed at sits outside what any current disclosure rule reaches.",
         "does": "Sets the requirement on the posting, the one artefact an inspection can check; the levelling decision has no comparable artefact for a rule to attach to."

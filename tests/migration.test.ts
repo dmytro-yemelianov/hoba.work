@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot, insertAlias, planFileRename } from '@hoba/registry';
+import { applyActorIdRename, applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot, insertAlias, planFileRename } from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
 import { writeTempRegistry } from './helpers';
 
@@ -198,6 +198,58 @@ describe('applyIdRename', () => {
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
     expect(result.filesChanged).toEqual(['content/patterns/P-001.md']);
     expect(fs.readFileSync(`${root}/content/patterns/P-0010.md`, 'utf8')).toContain('"P-0010"');
+  });
+});
+
+describe('applyActorIdRename', () => {
+  it('rewrites only the fields the schema types as actorId, leaving the other two vocabularies alone', () => {
+    const root = writeTempRegistry({
+      // A mechanism carries both: a facet actor (actorTypeSchema, 2-space) and
+      // perspective actors (actorId, 4-space). Only the second is an entity ref.
+      'content/mechanisms/mech.x.md':
+        '---\nid: "mech.x"\ntype: "mechanism"\nfacets:\n  actor: "recruiter"\n' +
+        'perspectives:\n  -\n    actor: "recruiter"\n    sees: "..."\n---\n',
+      // An intervention's own `actor` is interventionActorSchema, at 0 indent.
+      'content/interventions/int.y.md':
+        '---\nid: "int.y"\ntype: "intervention"\nactor: "recruiter"\n' +
+        'perspectives:\n  -\n    actor: "recruiter"\n---\n',
+      // A workflow owner and a record owner_actor are both actorId.
+      'content/workflows/proc.z.md':
+        '---\nid: "proc.z"\ntype: "workflow"\nstates:\n  -\n    id: "s"\n    owner: "recruiter"\n---\n',
+      'content/records/record.w.md':
+        '---\nid: "record.w"\ntype: "record"\nowner_actor: "recruiter"\n---\n',
+      // The actor itself: its own id renames, its alias vocabularies do not.
+      'content/actors/recruiter.md':
+        '---\nid: "recruiter"\ntype: "actor"\naliases:\n  facet:\n    - "recruiter"\n' +
+        '  intervention:\n    - "recruiter-process"\n---\n',
+    });
+
+    applyActorIdRename(root, 'recruiter', 'actor.recruiter');
+
+    const mech = fs.readFileSync(`${root}/content/mechanisms/mech.x.md`, 'utf8');
+    expect(mech).toContain('  actor: "recruiter"\n'); // facet, untouched
+    expect(mech).toContain('    actor: "actor.recruiter"'); // perspective, renamed
+
+    const intervention = fs.readFileSync(`${root}/content/interventions/int.y.md`, 'utf8');
+    expect(intervention).toContain('\nactor: "recruiter"'); // intervention vocabulary, untouched
+    expect(intervention).toContain('    actor: "actor.recruiter"');
+
+    expect(fs.readFileSync(`${root}/content/workflows/proc.z.md`, 'utf8')).toContain('    owner: "actor.recruiter"');
+    expect(fs.readFileSync(`${root}/content/records/record.w.md`, 'utf8')).toContain('owner_actor: "actor.recruiter"');
+
+    const actor = fs.readFileSync(`${root}/content/actors/recruiter.md`, 'utf8');
+    expect(actor).toContain('id: "actor.recruiter"');
+    expect(actor).toContain('    - "recruiter"'); // aliases.facet, untouched
+    expect(actor).toContain('    - "recruiter-process"');
+  });
+
+  it('does not touch a different actor that shares a prefix', () => {
+    const root = writeTempRegistry({
+      'content/mechanisms/mech.x.md':
+        '---\nid: "mech.x"\ntype: "mechanism"\nperspectives:\n  -\n    actor: "public-policy"\n---\n',
+    });
+    applyActorIdRename(root, 'policy', 'actor.policy');
+    expect(fs.readFileSync(`${root}/content/mechanisms/mech.x.md`, 'utf8')).toContain('    actor: "public-policy"');
   });
 });
 

@@ -22,7 +22,7 @@ const PUBLIC = path.join(root, 'site', 'public');
 const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data', '/methodology', '/developers', '/contribute', '/about'];
 
 const entityRoutes = (bundle: RegistryBundle): string[] => [
-  ...bundle.actors.map((a) => `/actors/${a.id}`),
+  ...bundle.actors.map((a) => `/actors/${a.slug}`),
   ...bundle.artifacts.map((a) => `/artifacts/${a.id}`),
   ...bundle.barriers.map((b) => `/barriers/${b.id}`),
   ...bundle.mechanisms.map((m) => `/mechanisms/${m.id}`),

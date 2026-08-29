@@ -21,7 +21,9 @@ interface Props {
 
 const { lang, actors } = Astro.props;
 const t = useTranslations(lang);
-const names = JSON.stringify(Object.fromEntries(actors.map((a) => [a.id, a.title])));
+// Keyed by slug, because that is what `?lens=` and `data-lens` carry: the
+// lens is part of the public URL, so it stays on the readable name.
+const names = JSON.stringify(Object.fromEntries(actors.map((a) => [a.slug, a.title])));
 ---
 <details class="lens-menu relative">
   <summary
@@ -39,7 +41,7 @@ const names = JSON.stringify(Object.fromEntries(actors.map((a) => [a.id, a.title
     <p class="px-2 pt-1 pb-2 text-xs text-hoba-muted">{t('lens.hint')}</p>
     <button type="button" class="lens-option" data-lens="" aria-pressed="true">{t('lens.none')}</button>
     {actors.map((actor) => (
-      <button type="button" class="lens-option" data-lens={actor.id} aria-pressed="false">
+      <button type="button" class="lens-option" data-lens={actor.slug} aria-pressed="false">
         <span class="text-hoba-text">{actor.title}</span>
       </button>
     ))}

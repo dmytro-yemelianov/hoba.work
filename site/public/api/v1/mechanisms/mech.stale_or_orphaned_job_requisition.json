@@ -78,25 +78,25 @@
     ],
     "perspectives": [
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A requisition moved to paused or unfunded in the budget ledger.",
         "reads": "Pausing an approved requisition keeps the option to restart it, and the approval costs nothing while it sits.",
         "does": "Records the change where budgets are recorded. Taking a public listing down is a separate action in a separate system, and the budget decision does not trigger it."
       },
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "A posting record in an active state, and applications arriving against it.",
         "reads": "The state of the record is a customer-owned field. Nothing distinguishes a running search from a record no one has closed.",
         "does": "Keeps rendering and syndicating the posting and accepting applications, and closes the unreviewed ones when the default expiry period runs out."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The requisition list as the platform holds it, in which a listing no longer being worked looks like any other.",
         "reads": "Whether a search is still running is a fact held by the team that stopped, not by the funnel.",
         "does": "Answers directly and has the listing removed once the question arrives. A requisition with no search behind it does not enter time-to-fill, which is what is counted."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A posting visible on the careers page and on aggregators, and no reply after submission.",
         "reads": "Silence is the same artifact whether a record was left open or an application was read and set aside.",
         "does": "Asks directly whether the posting is current, which is the only channel that returns the state of the record, and keeps the date of each submission."

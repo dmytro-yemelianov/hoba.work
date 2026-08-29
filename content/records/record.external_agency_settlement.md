@@ -6,7 +6,7 @@ aliases:
 title: "External Agency Settlement"
 record_class: "contract"
 owner: "outside-party"
-owner_actor: "client"
+owner_actor: "actor.client"
 summary: "Commercial fee settlement received by the external recruitment agency."
 flows: []
 visibility_default: "opaque"

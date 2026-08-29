@@ -52,19 +52,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A confirmation that the form was accepted and a status that reads as under review. Nothing about which queue the record entered or who it is assigned to.",
         "reads": "The application is in the process, and the word review implies a reader.",
         "does": "Records the date and the wording, and keeps other processes running while the status stays unchanged."
       },
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "A request that validated against the schema and a record linked to a live requisition. The CV arrives here as fields, not as a reading.",
         "reads": "The transaction succeeded. This is throughput, which is what the buyer of the platform evaluates.",
         "does": "Creates the record, applies the default status, and starts the expiry clock that ships enabled."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A counter on a requisition rising against a screening capacity that does not rise with it.",
         "reads": "Passing this gate carries no signal about the candidate. Until triage reaches the record, it is volume.",
         "does": "Nothing at this gate. The queue is worked at the next one, in an order set there."

@@ -29,7 +29,7 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
 
   const actors = collect('actors', (id) => ({
     ...sidecar.entities[id]!,
-    title: flatTitle(`rec:actor.${id.toLowerCase()}`),
+    title: flatTitle(`rec:${id.toLowerCase()}`),
   }));
   const eras = collect('eras', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
   const evidence = collect('evidence', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));

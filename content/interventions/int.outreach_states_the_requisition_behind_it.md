@@ -48,17 +48,17 @@ specimens:
     reading: "Two templates instead of one. Whoever reads either of them knows which of the two conversations they are in before spending anything on it."
 perspectives:
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Two outreach templates in the sequencer, and the field on the contact record that decides which one goes out."
     reads: "The reply rate on the pool template is not the reply rate on the requisition template, and both are counted against the same outreach target."
     does: "Sends the template the record's state selects, and books the planning date as the day the pool records opened against that forecast are answered."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A first message that says which of the two it is, with a requisition number on it or a planning date."
     reads: "A conversation against a forecast and a live process are separable before answering, and the silence that follows a deferred forecast has a date on it."
     does: "Answers both, and schedules rounds against the one with a requisition behind it."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "Outreach going out under a template that names the approval state of headcount the approval cycle has not decided."
     reads: "A forecast named outside the company is a planning signal leaving the approval cycle before that cycle has settled anything."
     does: "Decides which forecasts may be named in outreach and which may only be described as a pool, and that decision is the boundary the templates are written inside."

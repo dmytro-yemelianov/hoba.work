@@ -11,7 +11,7 @@ states:
     id: "real-need"
     title: "A real opening, described honestly"
     kind: "initial"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "The requisition describes work that exists now, at a level the team actually needs, inside a band the budget already covers. Nothing here is aspirational: the list of requirements is what the job uses, not what the last four candidates happened to have."
     entities:
       - "int.requirements_drawn_from_the_team_s_own_backlog"
@@ -24,7 +24,7 @@ states:
     id: "published"
     title: "Published with its terms on the page"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "The posting states the compensation band, the location rules, the stages the process has and roughly how long each takes. It comes down when the search ends."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -43,7 +43,7 @@ states:
     id: "applied"
     title: "Applied, and told so"
     kind: "active"
-    owner: "candidate"
+    owner: "actor.candidate"
     description: "The application is submitted and acknowledged. The record holds what the candidate actually wrote, and the candidate can tell that it arrived."
     entities:
       - "int.candidate_ats_parser_conformance_test_utility"
@@ -55,7 +55,7 @@ states:
     id: "machine-check"
     title: "Machine work stays mechanical"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Automation deduplicates, extracts and orders. It does not decide. Where a rule does end an application, the rule is stated and it is one a person would defend out loud."
     entities:
       - "int.candidate_ats_parser_conformance_test_utility"
@@ -71,7 +71,7 @@ states:
     id: "human-read"
     title: "Read by a person, inside the stated window"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Every application that clears the mechanical stage is read by someone, and read before the window the posting promised runs out."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -84,7 +84,7 @@ states:
     id: "terms-check"
     title: "Terms compared before anyone spends time"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Band, level, location, notice period and start date are put side by side in the first conversation, before any assessment is scheduled. Either side can stop here at no cost to the other."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -98,7 +98,7 @@ states:
     id: "work-sample"
     title: "Assessed on the work, against a rubric that is shared"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "One timeboxed exercise that resembles the job. The candidate is given the criteria before starting, the timebox is enforced against the evaluator as well, and the same rubric scores everyone."
     entities:
       - "int.strict_take_home_timebox_blinded_evaluation_rubric"
@@ -116,7 +116,7 @@ states:
     id: "panel"
     title: "One panel, one question each, one decision rule"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Every interviewer knows what they are measuring and that nobody else is measuring it. The rule that turns their scores into a decision is agreed before the first conversation, and no round is added after the process has started."
     entities:
       - "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota"
@@ -135,7 +135,7 @@ states:
     id: "level-and-band"
     title: "The level meets the band that was published"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "The level follows from the evidence the panel gathered, and the band was public from the first day. Reconciling them is arithmetic, not a negotiation about whether the band exists."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -147,7 +147,7 @@ states:
     id: "approval"
     title: "Approval already exists"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Headcount was signed before the role was published, so this step is a countersignature rather than a second decision. If the budget goes, the search closes and everyone inside it is told."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -160,7 +160,7 @@ states:
     id: "offer"
     title: "A written offer with everything in it"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Salary, level, title, location terms, start date and anything conditional, in writing, with a decision window the candidate agreed to. Nothing in it changes after acceptance."
     entities: []
     visible_to_candidate: "The complete offer document, and how long they have to answer."
@@ -171,7 +171,7 @@ states:
     id: "verification"
     title: "Checks that are proportionate and answerable"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Only the checks the role actually requires. Where a third-party record disagrees with what the candidate said, the discrepancy is put to the candidate before it decides anything."
     entities:
       - "int.verification_discrepancy_disclosure_and_reconciliation_window"
@@ -187,7 +187,7 @@ states:
     id: "hired"
     title: "Hired on the terms that were published"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Contract executed both ways on the terms that were on the page from the beginning, with a start date both sides chose."
     entities: []
     visible_to_candidate: "A signed contract that matches the posting."
@@ -196,7 +196,7 @@ states:
     id: "declined"
     title: "Declined, with a reason that can be acted on"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Not every candidate is hired, and a decline is not a deviation. What makes it part of this path is that it arrives, it names the stage it happened at and the criterion that decided it, and it says whether applying again is worth anything."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -211,7 +211,7 @@ states:
     id: "closed"
     title: "Search closed, and everyone told"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "A search can legitimately stop: the need changes, the budget goes, someone internal turns out to be right for it. What this path requires is that the posting comes down and every candidate still inside the process is told within days."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -228,7 +228,7 @@ transitions:
     from: "real-need"
     to: "published"
     label: "posted with its terms"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "An approved requisition, a band and a described process go live together."
     latency_expected_days: 2
     latency_max_days: 7
@@ -238,7 +238,7 @@ transitions:
     from: "published"
     to: "applied"
     label: "application submitted"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "The candidate applies against terms they could read beforehand."
     latency_expected_days: 7
     latency_max_days: 30
@@ -247,7 +247,7 @@ transitions:
     from: "applied"
     to: "machine-check"
     label: "record processed"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "The submission is parsed and acknowledged."
     latency_expected_days: 1
     latency_max_days: 2
@@ -257,7 +257,7 @@ transitions:
     from: "machine-check"
     to: "human-read"
     label: "passed to a person"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "No automated rule ended it, so a person now has it."
     latency_expected_days: 2
     latency_max_days: 5
@@ -267,7 +267,7 @@ transitions:
     from: "human-read"
     to: "terms-check"
     label: "worth a conversation"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "A person read the profile and wants to talk."
     latency_expected_days: 3
     latency_max_days: 7
@@ -276,7 +276,7 @@ transitions:
     from: "terms-check"
     to: "work-sample"
     label: "terms are compatible"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Band, level, location and timing work for both sides, said out loud."
     latency_expected_days: 3
     latency_max_days: 7
@@ -286,7 +286,7 @@ transitions:
     from: "work-sample"
     to: "panel"
     label: "work meets the rubric"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "The exercise was scored against the criteria the candidate was given."
     latency_expected_days: 5
     latency_max_days: 10
@@ -296,7 +296,7 @@ transitions:
     from: "panel"
     to: "level-and-band"
     label: "panel decides by its rule"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "The agreed decision rule returns a hire."
     latency_expected_days: 3
     latency_max_days: 5
@@ -305,7 +305,7 @@ transitions:
     from: "level-and-band"
     to: "approval"
     label: "level lands inside the band"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "The evidence-assigned level maps to a point in the published band."
     latency_expected_days: 2
     latency_max_days: 4
@@ -314,7 +314,7 @@ transitions:
     from: "approval"
     to: "offer"
     label: "countersigned"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "The approval that existed before publication is confirmed."
     latency_expected_days: 2
     latency_max_days: 5
@@ -323,7 +323,7 @@ transitions:
     from: "offer"
     to: "verification"
     label: "offer accepted"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "The candidate accepts a complete written offer inside the agreed window."
     latency_expected_days: 3
     latency_max_days: 7
@@ -332,7 +332,7 @@ transitions:
     from: "verification"
     to: "hired"
     label: "checks clear"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Nothing proportionate to the role is unresolved."
     latency_expected_days: 5
     latency_max_days: 14
@@ -341,7 +341,7 @@ transitions:
     from: "human-read"
     to: "declined"
     label: "declined after reading"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "A person decided no, and said at which stage and on what criterion."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -349,7 +349,7 @@ transitions:
     from: "terms-check"
     to: "declined"
     label: "terms are incompatible"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "The gap is named in the same conversation, before any assessment is booked."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -357,7 +357,7 @@ transitions:
     from: "work-sample"
     to: "declined"
     label: "work did not meet the rubric"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "The score is below the shared criteria, and the criterion is named."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -366,7 +366,7 @@ transitions:
     from: "panel"
     to: "declined"
     label: "decision rule returns no hire"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "The rule agreed beforehand returns no hire, and which dimension decided it is stated."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -374,7 +374,7 @@ transitions:
     from: "level-and-band"
     to: "declined"
     label: "level and expectation do not meet"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "The published band and the candidate's stated expectation do not overlap, which both sides already knew."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -382,14 +382,14 @@ transitions:
     from: "verification"
     to: "declined"
     label: "discrepancy stands"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "The candidate was shown the discrepancy and it remains unresolved."
     entities: []
   -
     from: "published"
     to: "closed"
     label: "need changed"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "The work no longer exists, and the posting comes down the same week."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -397,7 +397,7 @@ transitions:
     from: "approval"
     to: "closed"
     label: "budget withdrawn"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Headcount is pulled, and every candidate in the process is told within days."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -405,7 +405,7 @@ transitions:
     from: "offer"
     to: "closed"
     label: "offer withdrawn and explained"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "An outstanding offer cannot stand, and the candidate is told why, in writing, immediately."
     entities: []
 specimens: []

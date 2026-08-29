@@ -30,17 +30,17 @@ amplifies:
 masks: []
 perspectives:
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "The rule as the customer configured it and the string it tests for, evaluated against the parsed fields of one application. Whether an adjacent qualification sits in those fields is not something a string comparison can represent."
     reads: "The rule ran to specification: the token is present or it is absent. A failed knockout is a determinate result, not a low score."
     does: "Writes the rejection status in the same session and emits the notification the customer configured. The rule stays on until a customer turns it off."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "The shortlist that reaches the review, and the requirements as they were written into the posting. What that wording removed before the shortlist is not in the view."
     reads: "A thin pipeline reads as scarcity of the skill in the market rather than as the reach of the requirement as it was written."
     does: "Holds the bar and asks for more sourcing, or rewrites the requirements once the search runs long."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A rejection that arrives minutes after submission, in template wording that names no field."
     reads: "The interval is the only evidence about how the application was read, and the message does not distinguish a rule from a person."
     does: "Records the interval between submission and reply, and carries the exact strings the posting names into the next application."

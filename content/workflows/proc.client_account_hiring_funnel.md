@@ -11,7 +11,7 @@ states:
     id: "demand"
     title: "Client demand & contract scope"
     kind: "initial"
-    owner: "client"
+    owner: "actor.client"
     description: "The end client identifies project headcount demand or issues a vendor tender. Budget exists if the contract is signed or is contingent on winning the bid."
     entities: []
     visible_to_candidate: "Nothing. The search is not visible publicly."
@@ -19,7 +19,7 @@ states:
     id: "search-open"
     title: "Vendor search opened"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed."
     entities:
       - "bar.outbound_sourcing_talent_pool_contact"
@@ -29,7 +29,7 @@ states:
     id: "vendor-screen"
     title: "Vendor recruiter screen"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Introductory conversation assessing experience and target compensation against the vendor target margin."
     entities:
       - "bar.recruiter_screening_call"
@@ -39,7 +39,7 @@ states:
     id: "vendor-technical"
     title: "Vendor technical evaluation"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Technical interview or test task scored against the vendor assessment of the client technical threshold."
     entities:
       - "bar.technical_screen_live_assessment"
@@ -49,7 +49,7 @@ states:
     id: "submitted"
     title: "Submitted to client"
     kind: "active"
-    owner: "client"
+    owner: "actor.client"
     description: "The candidate CV is submitted to the client account team for profile review and interview selection."
     entities:
       - "bar.client_profile_approval_and_client_interview"
@@ -60,7 +60,7 @@ states:
     id: "client-interview"
     title: "Client interview round"
     kind: "active"
-    owner: "client"
+    owner: "actor.client"
     description: "Interview conducted directly by client engineering or project management leadership."
     entities:
       - "bar.client_profile_approval_and_client_interview"
@@ -70,7 +70,7 @@ states:
     id: "offer"
     title: "Offer formulation"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Compensation package calculated from client billing rate minus required gross margin."
     entities:
       - "bar.compensation_levelling_reconciliation"
@@ -79,7 +79,7 @@ states:
     id: "verification"
     title: "Pre-placement verification"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Client-mandated background checks, certifications, and compliance paperwork."
     entities:
       - "bar.reference_background_verification"
@@ -88,7 +88,7 @@ states:
     id: "placed"
     title: "Contract signed & project start"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Contract executed and candidate onboarded onto active client delivery."
     entities:
       - "bar.offer_closing_contract_execution"
@@ -97,7 +97,7 @@ states:
     id: "vendor-declined"
     title: "Vendor-level rejection"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "The search terminates at vendor screening or technical evaluation before client submission."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -106,7 +106,7 @@ states:
     id: "declined-by-client"
     title: "Declined by client"
     kind: "terminal"
-    owner: "client"
+    owner: "actor.client"
     description: "The client declines the CV submission or rejects the candidate after the client interview."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -116,7 +116,7 @@ states:
     id: "closed-unfunded"
     title: "Search closed unfunded / tender lost"
     kind: "terminal"
-    owner: "client"
+    owner: "actor.client"
     description: "The search closes because the client tender was lost, project budget was cancelled, or the commercial contract was paused."
     entities:
       - "obs.complete_silence_after_submission"
@@ -127,7 +127,7 @@ states:
     id: "bench-filled"
     title: "Requisition filled from internal bench"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "The position is allocated to an existing internal specialist released from another account, closing the external process."
     entities:
       - "obs.position_closed_after_final_interview_without_hire"
@@ -137,7 +137,7 @@ transitions:
   -
     from: "demand"
     to: "search-open"
-    owner: "client"
+    owner: "actor.client"
     label: "Contract signed or tender profiles required"
     guard: "Commercial contract signed or tender requires candidate CVs"
     latency_expected_days: 3
@@ -147,7 +147,7 @@ transitions:
   -
     from: "search-open"
     to: "vendor-screen"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Candidate responds to vendor outreach"
     guard: "Outreach accepted and screen booked"
     latency_expected_days: 5
@@ -157,7 +157,7 @@ transitions:
   -
     from: "search-open"
     to: "closed-unfunded"
-    owner: "client"
+    owner: "actor.client"
     label: "Tender lost or client contract cancelled early"
     guard: "Commercial opportunity discontinued before screening"
     latency_expected_days: 7
@@ -166,7 +166,7 @@ transitions:
   -
     from: "vendor-screen"
     to: "vendor-technical"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Vendor recruiter screen passed"
     guard: "Expectations aligned with client billing margin"
     latency_expected_days: 3
@@ -176,7 +176,7 @@ transitions:
   -
     from: "vendor-screen"
     to: "vendor-declined"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Screening mismatch or rate misalignment"
     guard: "Candidate rate exceeds allowable vendor margin or skills misfit"
     latency_expected_days: 2
@@ -185,7 +185,7 @@ transitions:
   -
     from: "vendor-technical"
     to: "submitted"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     label: "Vendor assessment passed"
     guard: "Technical bar meets vendor expectation of client threshold"
     latency_expected_days: 4
@@ -196,7 +196,7 @@ transitions:
   -
     from: "vendor-technical"
     to: "vendor-declined"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     label: "Vendor assessment not met"
     guard: "Profile does not meet vendor internal quality bar"
     latency_expected_days: 3
@@ -205,7 +205,7 @@ transitions:
   -
     from: "submitted"
     to: "client-interview"
-    owner: "client"
+    owner: "actor.client"
     label: "Client approves CV submission"
     guard: "Client manager accepts profile and requests interview"
     latency_expected_days: 5
@@ -215,7 +215,7 @@ transitions:
   -
     from: "submitted"
     to: "declined-by-client"
-    owner: "client"
+    owner: "actor.client"
     label: "Client rejects CV submission"
     guard: "Client manager rejects profile on CV review"
     latency_expected_days: 5
@@ -225,7 +225,7 @@ transitions:
   -
     from: "submitted"
     to: "bench-filled"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     label: "Vendor assigns internal bench specialist"
     guard: "Bench consultant becomes available mid-search"
     latency_expected_days: 3
@@ -234,7 +234,7 @@ transitions:
   -
     from: "submitted"
     to: "closed-unfunded"
-    owner: "client"
+    owner: "actor.client"
     label: "Client cancels requisition or loses project funding"
     guard: "Client withdraws demand during profile review"
     latency_expected_days: 7
@@ -243,7 +243,7 @@ transitions:
   -
     from: "client-interview"
     to: "offer"
-    owner: "client"
+    owner: "actor.client"
     label: "Client approves interview"
     guard: "Client confirms candidate meets project requirements"
     latency_expected_days: 4
@@ -253,7 +253,7 @@ transitions:
   -
     from: "client-interview"
     to: "declined-by-client"
-    owner: "client"
+    owner: "actor.client"
     label: "Client declines after interview"
     guard: "Client decides against candidate after meeting"
     latency_expected_days: 3
@@ -263,7 +263,7 @@ transitions:
   -
     from: "offer"
     to: "verification"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Offer agreed and contract drafted"
     guard: "Candidate accepts offer parameters"
     latency_expected_days: 3
@@ -273,7 +273,7 @@ transitions:
   -
     from: "offer"
     to: "closed-unfunded"
-    owner: "client"
+    owner: "actor.client"
     label: "Client pulls project before signing"
     guard: "Client cancels funding after offer extended"
     latency_expected_days: 4
@@ -282,7 +282,7 @@ transitions:
   -
     from: "verification"
     to: "placed"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     label: "Background check passed and start date confirmed"
     guard: "Verification complete and project onboarding commences"
     latency_expected_days: 5

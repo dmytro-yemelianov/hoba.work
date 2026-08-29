@@ -58,17 +58,17 @@ specimens:
     reading: "The delay occurs after the candidate has resigned from previous employment, shifting contractual risk entirely onto the worker."
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A confirmed start date deferred after notice was given to a prior employer, leaving their career runway exposed."
     reads: "Start-date slippage signals unbudgeted headcount risk or an unannounced internal hiring pause."
     does: "Requests clear written documentation of employment status and assesses legal and search alternatives."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "An onboarding ticket blocked by finance or department leadership pending quarterly budget reconciliation."
     reads: "The offer was extended under previous headcount assumptions that changed before start day."
     does: "Relays holding messages while awaiting confirmation on whether the placement can proceed."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "Quarterly headcount adjustments or project scope revisions occurring between offer acceptance and payroll commencement."
     reads: "Pushing start dates preserves budget flexibility before formal employment liability attaches."
     does: "Enforces hiring pauses across pending pipeline offers where commercial conditions shift."

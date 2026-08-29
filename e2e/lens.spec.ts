@@ -38,6 +38,18 @@ test.describe('the lens', () => {
     await expect(only.first()).toHaveAttribute('data-actor', 'public-policy');
   });
 
+  // Every seat the picker offers has to be a seat the lens knows. The
+  // allowlist and the stylesheet each enumerate the actors by hand, and for a
+  // while they listed six of the seven: choosing the client hid every
+  // perspective and revealed none.
+  test('offers no seat it cannot show, including the last one added', async ({ page }) => {
+    await page.goto('/barriers/bar.client_profile_approval_and_client_interview?lang=en&lens=client');
+    await expect(page.locator('html')).toHaveAttribute('data-lens', 'client');
+    const shown = page.locator('.lens-block:visible');
+    await expect(shown).toHaveCount(1);
+    await expect(shown.first()).toHaveAttribute('data-actor', 'client');
+  });
+
   test('a chosen seat survives navigation and is applied before paint', async ({ page }) => {
     await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=hiring-manager');
     await page.goto('/barriers/bar.technical_screen_live_assessment?lang=en');

@@ -85,19 +85,19 @@
       ],
       "perspectives": [
         {
-          "actor": "candidate",
+          "actor": "actor.candidate",
           "sees": "Applications that return no reply at all, or a generic rejection, with the same CV and the same market as the cycle before.",
           "reads": "Something in the profile moved between cycles, and the only thing that did move is the length of the break itself.",
           "does": "Keeps applying, since applications are the only input available, and each month without an interview adds to the break the next application carries."
         },
         {
-          "actor": "recruiter",
+          "actor": "actor.recruiter",
           "sees": "A ranked queue of several hundred applications against capacity to read a few dozen, on a requisition where time-to-fill is measured.",
           "reads": "The order is a triage of a list that cannot be read end to end, not a judgement about anyone in it.",
           "does": "Reads from the top down until the week's capacity is used, which is where the ranking becomes the decision."
         },
         {
-          "actor": "ats-vendor",
+          "actor": "actor.ats_vendor",
           "sees": "A continuity feature computed from the dates in the parsed work history, shipping enabled by default.",
           "reads": "It is one input among several in a ranking the buyer evaluates on throughput; whether a low-scored profile was unreadable rather than unqualified is not something the score records.",
           "does": "Applies the penalty on every scoring pass and offers it as a setting the customer can switch off, which nothing in the default configuration prompts anyone to do."
@@ -192,19 +192,19 @@
       ],
       "perspectives": [
         {
-          "actor": "hiring-manager",
+          "actor": "actor.hiring_manager",
           "sees": "Three months of applications, two candidates reaching onsite, no hire, and the team covering the work with overtime.",
           "reads": "The pipeline holds nobody the panel wanted, and a lower bar would add to the pool it has already turned down.",
           "does": "Rewrites the requirements upward, adds the missing signal as a formal requirement, and reposts: a bad hire is recorded against them and an open search is not."
         },
         {
-          "actor": "recruiter",
+          "actor": "actor.recruiter",
           "sees": "A requisition ageing past the time-to-fill it is measured on, and a requirements list that got longer at the rewrite.",
           "reads": "The requirements belong to the hiring manager, who is the internal client for this search.",
           "does": "Raises the question once, posts the revised text, and moves screening capacity to requisitions that can close."
         },
         {
-          "actor": "candidate",
+          "actor": "actor.candidate",
           "sees": "A posting with ten required technologies, a nine-year threshold and a lead requirement, republished with a longer list than the version before it.",
           "reads": "The list is either the bar or a wish, and the posting does not say which; the year thresholds are the part a filter can act on.",
           "does": "Skips the posting or applies against a list they do not match, and never learns which of the requirements the screen enforced."
@@ -289,19 +289,19 @@
       ],
       "perspectives": [
         {
-          "actor": "candidate",
+          "actor": "actor.candidate",
           "sees": "Assignments scoped at a few hours that take double-digit hours each, and rejections returned faster than the work can be read.",
           "reads": "The hours come out of the same budget as the search itself, so each assignment is a bet placed against the applications not sent that week.",
           "does": "Sends fewer applications and finishes the assignments already accepted, because the hours in them are already spent."
         },
         {
-          "actor": "hiring-manager",
+          "actor": "actor.hiring_manager",
           "sees": "A queue of submissions and interviewer hours that are already committed to the sprint the role exists to relieve.",
           "reads": "A larger assignment covers more of the job, and a full read of every submission is not available from the hours the team has.",
           "does": "Keeps the scope, since a smaller assignment would decide less, and the reviews get the minutes left after the team's own delivery."
         },
         {
-          "actor": "recruiter",
+          "actor": "actor.recruiter",
           "sees": "Candidates going quiet between the assignment being sent and the work coming back, and time-to-fill running on the requisition.",
           "reads": "A stage where the pipeline stalls is a reason to put more people into it, not a reason to remove the stage.",
           "does": "Sends reminders and reopens sourcing, which puts more submissions into the same review queue."

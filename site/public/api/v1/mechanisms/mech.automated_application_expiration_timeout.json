@@ -92,25 +92,25 @@
     ],
     "perspectives": [
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "A scheduled job, the records matching status and age, and a count of notifications queued. Review activity is a stored field, and the threshold does not consult it.",
         "reads": "Records past the threshold are stale queue state. Nothing in the schema separates an application nobody opened from one that was assessed and declined.",
         "does": "Runs the job at the customer's configured threshold and sends the configured template. The setting ships enabled, and switching it off is a customer action."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The queue depth on the requisition drops overnight, and applications the recruiter never opened now carry the status Rejected.",
         "reads": "The backlog cleared at the threshold rather than through screening. The binding constraint was never a decision, but how many applications fit into the week.",
         "does": "Works the current inbound, which is what time-to-fill is measured against. The expired batch is not itemised anywhere the recruiter is asked to account for it."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A rejection weeks after applying, in the same wording used for a rejection after an interview.",
         "reads": "A decision about the application. Nothing in the message separates a person's decision from a scheduled status change, and nothing says whether the role was live.",
         "does": "Records the date and stops following up. Whether to apply to this employer again is decided on a message that carries no reason."
       },
       {
-        "actor": "public-policy",
+        "actor": "actor.public_policy_and_industry_standards",
         "sees": "The class of practice rather than the batch: an application status changed by rule, in jurisdictions where automated decision-making carries disclosure or explanation duties.",
         "reads": "A scheduled expiry is a decision only where the framing counts it as one. Where the rule lives on a configuration screen with a default, no filing records that a decision was made.",
         "does": "The available lever is a rule written for a class of systems — disclosure, explainability, a right to human review — and it arrives on a cycle longer than the threshold it would govern."

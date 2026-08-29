@@ -77,19 +77,19 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "A submission and a review slot wedged between the team's own delivery work. The rubric is a form with fields for structure, correctness and tests.",
         "reads": "What the opened files show is what the submission shows. Anything held elsewhere in the repository is not part of the assessment being written.",
         "does": "Fills the rubric from what was opened and carries that note into the debrief, where it stands as the account of the whole submission."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A completed rubric and a one-line verdict. The time logged against the review is not in the fields the recruiter reads.",
         "reads": "The panel read the work and the verdict stands for the reading. Nothing in the record separates a thin submission from a thin reading of one.",
         "does": "Sends the rejection in the template wording and closes the record. The review note stays inside the debrief; nothing obliges it to travel further."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "The hours the assignment took, the date it was submitted, and a rejection in standard wording some days later.",
         "reads": "The work was read and found insufficient — the only reading the message supports, since nothing in it separates a person's verdict from a rule's.",
         "does": "There is no named defect to correct. The next assignment is approached the same way, or declined once the unpaid hours are weighed against a process whose state is unknown."

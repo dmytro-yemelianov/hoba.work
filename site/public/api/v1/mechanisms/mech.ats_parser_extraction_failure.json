@@ -85,13 +85,13 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A document that opens correctly in a reader, and either a rejection soon after submission or no reply at all.",
         "reads": "The stored profile is not shown back, so this is inferable from the timing and from nothing else.",
         "does": "Resubmits in a single-column form with a text layer, wherever a second application is accepted. This is the branch the candidate can act on without anyone's cooperation."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A queue ordered by score, longer than the number of screens that fit in the week.",
         "reads": "A profile below the line reads as a profile that did not qualify. The document behind the score is not opened to check which it is.",
         "does": "Works down the ranked list from the top. The list carries no marker separating unread from unqualified, so the positions below the line stay closed."

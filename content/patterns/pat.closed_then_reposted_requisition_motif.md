@@ -66,22 +66,22 @@ interventions:
   - "int.recorded_finalist_standing_with_a_dated_re_entry_route"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A generic rejection after a final round, and the same requisition number back on the careers page weeks later with the text unchanged."
     reads: "Either the profile was revised, or the platform refreshed the listing, or the headcount is new — and the sequence on its own does not separate them."
     does: "Asks whether the listing is the same requisition, and records the dates and the answer before deciding whether to reapply."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "The requisition record moving from closed back to open with a revised profile, and a rejection template that is the same for every candidate at that stage."
     reads: "This is one continuous search that changed shape, not two openings."
     does: "Sends the standard wording, since a specific reason given at the close of one round can be quoted back at the next, and states the restart when a candidate asks directly."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Two finalists at the end of a loop, and the work the role exists to absorb still uncovered."
     reads: "A loop that ended without a hire is information about the profile, and the profile is the part of this the manager controls."
     does: "Rewrites the requirements and restarts the search on the same requisition, because a new requisition would go back through funding."
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "A requisition whose status returned to open, and a scheduled refresh that pushes open listings back out to aggregators with a current date."
     reads: "An open requisition is a listing to distribute; the refresh reads the status field and not the history behind it."
     does: "Republishes under the original identifier and stamps the posting with today's date, which is the default behaviour for any open requisition."

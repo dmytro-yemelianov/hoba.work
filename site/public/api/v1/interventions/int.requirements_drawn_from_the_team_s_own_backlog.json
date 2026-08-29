@@ -61,19 +61,19 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "The requisition draft next to the last two quarters of merged work, and the requirements carried over from the previous search that now have to be matched to a task or moved.",
         "reads": "The ceiling can still be written down, but it is written in a section the screen does not read; what is screened on is what the backlog can account for.",
         "does": "Moves each unmatched line into the second section, and carries the risk that a requirement not screened on brings someone who has to learn it on the job."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "Two lists in the requisition instead of one, and only the first is the screening standard.",
         "reads": "What is movable is written down before the pipeline thins, rather than found by going back to the manager in week six.",
         "does": "Screens against the first list, and passes the second one to candidates as a description of the work rather than as a bar."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A posting where each screened requirement names the work it is for, and a separate list marked as not screened on.",
         "reads": "The bar is stated as the work rather than as a stack, so which lines the assessment runs against is readable before applying.",
         "does": "Applies against the screened list, and reads the second section as description rather than as a threshold to clear."

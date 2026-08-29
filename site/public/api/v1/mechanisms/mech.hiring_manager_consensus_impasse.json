@@ -73,19 +73,19 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "A debrief that does not resolve: two for, two against, with no calibration record that would weigh one interviewer's bar against another's.",
         "reads": "Absent a reason to override, the split is the answer. A bad hire is visible for a year and has a name on it; a candidate not hired leaves nothing to be asked about.",
         "does": "Applies the default and records the outcome in the fit wording the debrief form accepts, which is what the rest of the process then sees."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A debrief that closes without a recommendation, and an outcome field set to no hire with no single reason attached to it.",
         "reads": "The requisition is open again and the pipeline restarts. What the panel actually scored is not visible from here.",
         "does": "Sends the standard rejection, since there is no agreed reason to convey, and reopens sourcing against a bar written down no more clearly than before."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "Feedback from one round naming architectural depth as a strength, another naming technical background as a gap, then a rejection citing fit.",
         "reads": "Two assessments of the same performance that cannot both hold. From here they read as an assessment of the candidate rather than of a room that did not agree.",
         "does": "Sets out to close a gap that half the panel did not record, and keeps both statements with their dates."

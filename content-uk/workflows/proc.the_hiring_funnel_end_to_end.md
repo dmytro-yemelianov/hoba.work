@@ -11,7 +11,7 @@ states:
     id: "drafted"
     title: "Вакансію складено"
     kind: "initial"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Менеджер описує роль. Рівень, вилку й вимоги вирішують саме тут — зазвичай просто копіюють останній пошук для тієї самої команди."
     entities:
       - "bar.requisition_approval_public_posting"
@@ -20,7 +20,7 @@ states:
     id: "authorised"
     title: "Хедкаунт авторизовано"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Фінанси й керівництво резервують бюджет під вакансію. Погодження може спливти, а пізніше його можуть і відкликати — воронка цього не помітить."
     entities:
       - "bar.requisition_approval_public_posting"
@@ -30,7 +30,7 @@ states:
     id: "published"
     title: "Оголошення опубліковано"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Роль публічна. Оголошення можуть ще й автоматично оновлювати кожні тридцять днів — на вигляд це те саме, що нова вакансія."
     entities:
       - "bar.requisition_approval_public_posting"
@@ -41,7 +41,7 @@ states:
     id: "received"
     title: "Заявку отримано"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Запис існує й привʼязаний до вакансії. Ніхто нічого не прочитав."
     entities:
       - "bar.application_ingestion"
@@ -51,7 +51,7 @@ states:
     id: "machine-screened"
     title: "Автоматичний скринінг"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Розбір документа парсером, пороги ключових слів, нокаут-правила, ранжування. Рішення — менш ніж за секунду."
     entities:
       - "bar.automated_filter_parser_threshold"
@@ -64,7 +64,7 @@ states:
     id: "recruiter-queue"
     title: "У черзі до рекрутера"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Чекає, доки прочитає людина, — у вхідній черзі, на яку в тижні бракує годин."
     entities:
       - "bar.inbound_screening_triage"
@@ -75,7 +75,7 @@ states:
     id: "recruiter-screen"
     title: "Скринінг із рекрутером"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Розмова про компенсацію, терміни, локацію й двохвилинну версію останнього проєкту."
     entities:
       - "bar.recruiter_screening_call"
@@ -87,7 +87,7 @@ states:
     id: "technical"
     title: "Технічна перевірка"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Задача наживо, тестове або і те, і те — оцінюють за шкалою, якої кандидат не бачить."
     entities:
       - "bar.technical_screen_live_assessment"
@@ -101,7 +101,7 @@ states:
     id: "panel"
     title: "Панель менеджера та команди"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Глибина, володіння задачею й співпраця — оцінюють кілька інтервʼюерів, які можуть міряти різне."
     entities:
       - "bar.hiring_manager_in_depth_review"
@@ -116,7 +116,7 @@ states:
     id: "levelling"
     title: "Компенсація та грейд"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Рівень, який призначила панель, зустрічається з вилкою, яку затвердили фінанси. Уперше їх зіставляють."
     entities:
       - "bar.compensation_levelling_reconciliation"
@@ -127,7 +127,7 @@ states:
     id: "approval"
     title: "Погодження офферу"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Менеджер, директор, фінанси й талант-комітет підписують по черзі. Усі, кого кандидат бачив, уже сказали «так»."
     entities:
       - "bar.headcount_executive_budget_approval"
@@ -137,7 +137,7 @@ states:
     id: "offer"
     title: "Оффер видано"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Письмовий оффер існує. Вакансія лишається відкритою, доки немає зустрічного підпису."
     entities:
       - "bar.offer_closing_contract_execution"
@@ -147,7 +147,7 @@ states:
     id: "verification"
     title: "Перевірка рекомендацій і бекграунду"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Сторонній запис зіставляють із тим, що заявив кандидат."
     entities:
       - "bar.reference_background_verification"
@@ -157,7 +157,7 @@ states:
     id: "hired"
     title: "Найнято"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Договір підписано з обох боків, дату виходу узгоджено, онбординг запущено."
     entities:
       - "bar.offer_closing_contract_execution"
@@ -166,7 +166,7 @@ states:
     id: "rejected"
     title: "Відмовлено"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Рішення ухвалено й повідомлено. Що воно каже про причину — питання цілком окреме."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -177,7 +177,7 @@ states:
     id: "frozen"
     title: "Пошук заморожено або скасовано"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Бюджет відкликано або вакансію поставлено на паузу. Може статися будь-коли, зокрема після офферу."
     entities:
       - "obs.position_closed_after_final_interview_without_hire"
@@ -188,7 +188,7 @@ states:
     id: "lapsed"
     title: "Спливло без рішення"
     kind: "terminal"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Ніхто нічого не вирішував. Запис пролежав довше за встановлений строк, або оголошення так і не зняли."
     entities:
       - "obs.complete_silence_after_submission"
@@ -201,7 +201,7 @@ transitions:
     from: "drafted"
     to: "authorised"
     label: "бюджет погоджено"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Фінанси резервують хедкаунт під вакансію."
     latency_expected_days: 7
     latency_max_days: 21
@@ -211,7 +211,7 @@ transitions:
     from: "authorised"
     to: "published"
     label: "оголошення виходить"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Затверджену вакансію з написаним описом публікують."
     latency_expected_days: 2
     latency_max_days: 7
@@ -221,7 +221,7 @@ transitions:
     from: "published"
     to: "received"
     label: "заявку подано"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "Кандидат подається або відповідає на вихідний контакт."
     latency_expected_days: 7
     latency_max_days: 30
@@ -232,7 +232,7 @@ transitions:
     from: "received"
     to: "machine-screened"
     label: "правила спрацьовують"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Запис достатньо повний, щоб налаштовані правила відпрацювали."
     latency_expected_days: 1
     latency_max_days: 3
@@ -242,7 +242,7 @@ transitions:
     from: "machine-screened"
     to: "recruiter-queue"
     label: "пороги пройдено"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Оцінка розбору й усі нокаут-правила проходять."
     latency_expected_days: 1
     latency_max_days: 3
@@ -252,7 +252,7 @@ transitions:
     from: "machine-screened"
     to: "rejected"
     label: "відсіяно фільтром"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Будь-яке нокаут-правило падає або ранг нижчий за поріг просування."
     latency_expected_days: 1
     latency_max_days: 7
@@ -264,7 +264,7 @@ transitions:
     from: "recruiter-queue"
     to: "recruiter-screen"
     label: "у шорт-лист"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Людина читає профіль і додає його до списку."
     latency_expected_days: 5
     latency_max_days: 14
@@ -274,7 +274,7 @@ transitions:
     from: "recruiter-queue"
     to: "lapsed"
     label: "спливло за часом"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Ніхто не переглянув профіль до того, як минув строк."
     latency_expected_days: 30
     latency_max_days: 60
@@ -284,7 +284,7 @@ transitions:
     from: "recruiter-screen"
     to: "technical"
     label: "параметри збігаються"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Очікування, терміни й локація сумісні, профіль передають команді."
     latency_expected_days: 3
     latency_max_days: 7
@@ -294,7 +294,7 @@ transitions:
     from: "recruiter-screen"
     to: "rejected"
     label: "параметри не збігаються"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Компенсація, рівень, локація чи доступність відсіюють кандидата ще до розмови про інженерію."
     latency_expected_days: 2
     latency_max_days: 5
@@ -307,7 +307,7 @@ transitions:
     from: "technical"
     to: "panel"
     label: "перевірку пройдено"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Оцінка перевищує поріг шкали."
     latency_expected_days: 5
     latency_max_days: 12
@@ -318,7 +318,7 @@ transitions:
     from: "technical"
     to: "rejected"
     label: "перевірку не пройдено"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Оцінка не дотягує — або перевірка надто поверхова, щоб побачити те, що там є."
     latency_expected_days: 3
     latency_max_days: 7
@@ -330,7 +330,7 @@ transitions:
     from: "panel"
     to: "levelling"
     label: "панель рекомендує найм"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Згода в панелі дотягує до порога «брати»."
     latency_expected_days: 3
     latency_max_days: 7
@@ -341,7 +341,7 @@ transitions:
     from: "panel"
     to: "rejected"
     label: "панель не дійшла консенсусу"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Панель розділилася, а правило одностайності в такому разі означає «не брати»."
     latency_expected_days: 3
     latency_max_days: 7
@@ -352,7 +352,7 @@ transitions:
     from: "levelling"
     to: "approval"
     label: "рівень і вилка сходяться"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Призначений рівень і затверджена вилка перетинаються."
     latency_expected_days: 2
     latency_max_days: 5
@@ -362,7 +362,7 @@ transitions:
     from: "levelling"
     to: "rejected"
     label: "рівень і вилка не сходяться"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Очікування поза вилкою, і не рухається ні рівень, ні цифра."
     latency_expected_days: 2
     latency_max_days: 5
@@ -373,7 +373,7 @@ transitions:
     from: "approval"
     to: "offer"
     label: "погодження завершено"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Кожен погоджувач у ланцюгу дав добро."
     latency_expected_days: 3
     latency_max_days: 7
@@ -383,7 +383,7 @@ transitions:
     from: "approval"
     to: "frozen"
     label: "хедкаунт відкликано"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Бюджет знято або оголошено фриз до видачі офферу."
     latency_expected_days: 3
     latency_max_days: 14
@@ -393,7 +393,7 @@ transitions:
     from: "offer"
     to: "verification"
     label: "оффер прийнято"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "Кандидат підписує, починаються перевірки."
     latency_expected_days: 3
     latency_max_days: 7
@@ -403,7 +403,7 @@ transitions:
     from: "offer"
     to: "frozen"
     label: "оффер відкликано"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Фриз застає вже виданий оффер до того, як надходить зустрічний підпис."
     latency_expected_days: 2
     latency_max_days: 7
@@ -414,7 +414,7 @@ transitions:
     from: "verification"
     to: "hired"
     label: "перевірки чисті"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Жодної неусуненої розбіжності у сторонньому записі."
     latency_expected_days: 5
     latency_max_days: 14
@@ -425,7 +425,7 @@ transitions:
     from: "verification"
     to: "rejected"
     label: "розбіжність не усунено"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Невідповідність у записі або обмеження щодо права на роботу не усунуто."
     latency_expected_days: 3
     latency_max_days: 7
@@ -435,7 +435,7 @@ transitions:
     from: "published"
     to: "lapsed"
     label: "оголошення переживає пошук"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Найм припиняється, але оголошення ніхто не знімає."
     latency_expected_days: 60
     latency_max_days: 120
@@ -445,7 +445,7 @@ transitions:
     from: "rejected"
     to: "published"
     label: "вакансію відкрито знову"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Пошук перезапускають — іноді зі зміненим профілем, іноді це автоматичне оновлення."
     latency_expected_days: 14
     latency_max_days: 60

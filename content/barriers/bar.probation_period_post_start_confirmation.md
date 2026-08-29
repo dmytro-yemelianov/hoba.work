@@ -26,17 +26,17 @@ specimens:
     reading: "The transition from conditional probation to permanent standing requires explicit managerial evaluation or statutory lapse."
 perspectives:
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Direct on-the-job execution during the first three months, assessing delivery speed, architecture decisions, and team communication."
     reads: "Probation provides a low-friction termination window if the hire demonstrates unexpected capability gaps."
     does: "Conducts regular 1-on-1 reviews and files the final probation confirmation report."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "Initial project onboarding, ramp-up expectations, and milestone checkpoints toward passing probation."
     reads: "Employment remains contingent on early performance until the probation gate is officially cleared."
     does: "Delivers against sprint goals and seeks written confirmation upon completion of the probation interval."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "Legal compliance boundaries (statutory 3-month caps under the Ukrainian Labour Code, or contractual notice rules under the UK Employment Rights Act 1996)."
     reads: "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect."
     does: "Enforces notice requirements and confirms payroll status transition upon probation completion."

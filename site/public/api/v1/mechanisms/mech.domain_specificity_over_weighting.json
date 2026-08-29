@@ -92,25 +92,25 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "A gap in the team's coverage of a specific set of rules or protocols, and a candidate whose depth is in an adjacent shape of the same problem.",
         "reads": "Transferable depth plus a ramp-up the team pays for while it is already short-handed. A miss on the vertical is visible after the hire and has a name on it.",
         "does": "Holds the vertical as a requirement rather than a preference, and the round turns on it whatever the rest of the panel recorded."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A technical conversation that goes well until a question about a specific vertical, then a rejection worded as closer alignment.",
         "reads": "The engineering was heard and the vertical decided it, or the engineering was the reason and the vertical is the wording. The email carries both.",
         "does": "Records where in the round the turn happened, and reads the next posting's domain nouns as requirements rather than as context."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A brief with a vertical named in it, and panels returning notes that cite the vertical rather than the technical rubric.",
         "reads": "A requirement that narrows the pool while time-to-fill keeps counting, and one the hiring manager holds rather than the recruiter.",
         "does": "Screens on the vertical, because a shortlist without it comes back from the hiring manager, and sends the standard wording to the rest."
       },
       {
-        "actor": "ats-vendor",
+        "actor": "actor.ats_vendor",
         "sees": "A requirement entered as a domain term, and a ranking model for which that term is a feature like any other.",
         "reads": "A configured preference, scored as specified. The platform has nothing that represents an adjacent domain solving the same problem.",
         "does": "Ranks and filters on the term as entered, and profiles whose depth is described in other nouns fall below the review threshold."

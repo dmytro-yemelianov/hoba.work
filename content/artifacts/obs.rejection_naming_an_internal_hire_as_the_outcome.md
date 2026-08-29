@@ -10,17 +10,17 @@ stages:
   - "offer"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A message that names where the hire came from, arriving after several rounds that were scheduled, attended and prepared for."
     reads: "The sentence establishes where the role landed. It does not establish when that became likely, and the difference between those two is the whole of what the candidate wants to know."
     does: "Notes what was asked in the later rounds — whether the questions were about the work or about the team's existing plans — because that is the only record of what the process was doing while it ran."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "An internal transfer that resolves a headcount problem without a notice period, alongside an external shortlist that was assembled in case it did not."
     reads: "Both routes were live. One closed first, and the requisition needed one person, not the better of two processes."
     does: "Asks for the external rounds to be closed out, and writes a reason short enough to be sent unchanged to everyone still open."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A requisition marked filled with an internal disposition code, and a shortlist of external candidates who now need messages."
     reads: "The disposition is accurate and unusually specific — most closing reasons are not this legible from outside."
     does: "Sends the stated reason rather than the generic template, because the internal outcome is the one closing reason that can be given without commenting on any candidate."

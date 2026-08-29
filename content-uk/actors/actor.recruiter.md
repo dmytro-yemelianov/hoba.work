@@ -1,6 +1,7 @@
 ---
-id: "recruiter"
+id: "actor.recruiter"
 type: "actor"
+slug: "recruiter"
 title: "Рекрутер"
 summary: "Функція, яка рухає людей воронкою. Має найбільше інформації про процес і найменше влади над його результатом."
 controls:

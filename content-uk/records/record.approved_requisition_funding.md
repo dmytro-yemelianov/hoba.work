@@ -6,7 +6,7 @@ aliases:
 title: "Затверджене фінансування вакансії"
 record_class: "requisition-funding"
 owner: "inside"
-owner_actor: "hiring-manager"
+owner_actor: "actor.hiring_manager"
 summary: "Затверджене фінансування ставки та зарплатний діапазон для активної вакансії."
 flows:
   - to: "record.direct_engineering_payroll"

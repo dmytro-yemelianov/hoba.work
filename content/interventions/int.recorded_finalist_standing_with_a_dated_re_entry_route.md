@@ -44,17 +44,17 @@ specimens:
     reading: "A ranking cannot be turned into a fault, and this does not try. It records what the ranking was and what the record is entitled to afterwards, so the outcome leaves something behind it."
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A decline naming the cohort size, the class of reason, and the stage and date the record re-enters at."
     reads: "The outcome was a ranking in a group of a stated size rather than a fault found in the rounds, and the record has a stated life after the decision."
     does: "Applies again inside that date and enters at the stated stage, instead of starting the loop from the screen."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A required reason class and a cohort count on the closing record, and a queue where matched standings sit alongside new applications."
     reads: "The outcome has to be classified before the requisition can be closed, and a comparison is one of the classes the taxonomy contains."
     does: "Records the class, sends the cohort size and the re-entry date with the decline, and works the matched standings when a requisition at that level opens."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Two records arriving at the panel stage on a reposted requisition, each with the previous panel's scores attached."
     reads: "The evidence the earlier loop produced is reusable up to the date on the standing; after that the record re-enters at the screen like any other."
     does: "Runs the panel on the standing rather than the full loop, or lets the standing lapse where the level or the profile has moved."

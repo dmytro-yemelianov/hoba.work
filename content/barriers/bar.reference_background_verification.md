@@ -27,22 +27,22 @@ specimens:
     reading: "The gate checks a third-party record against a claim. A mismatch here is usually a document problem with a named remedy, not a finding about honesty."
 perspectives:
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "The list of mandatory checks, which of them cleared, and which line came back unresolved. The report arrives as a status, not as a person."
     reads: "An unresolved line is an open item on a record that has to be defensible: while the file disagrees with itself, the offer cannot complete."
     does: "Holds the offer at the gate until the record reconciles, and sets in advance which checks are mandatory and what evidence closes each one."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A vendor report of cleared and uncleared lines, and an offer flagged as held. The records the vendor queried are not in the recruiter's view."
     reads: "A date mismatch is an item to reconcile before the start date, and the time-to-fill clock is already running against it."
     does: "Writes to the candidate naming the mismatch and the document that would close it, and keeps the start date provisional until it does."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "An offer already accepted and now marked as held, plus whatever part of the finding is passed on: which record disagrees, and by how much."
     reads: "The offer now turns on paperwork the candidate does not hold — a former employer's payroll dates against their own memory of the same months."
     does: "Retrieves whatever documentation covers the disputed months, and postpones resigning or closing other processes while the hold stands."
   -
-    actor: "public-policy"
+    actor: "actor.public_policy_and_industry_standards"
     sees: "Which categories of check are run, and in which jurisdiction. Nothing about the individual file."
     reads: "Verification is the point where an eligibility rule — a licence, a right to work, a limit on what may be asked — becomes a pass or a fail."
     does: "Bounds what may be checked and what an adverse finding obliges the employer to disclose; how a vendor mismatch is reconciled within those bounds is not set here."

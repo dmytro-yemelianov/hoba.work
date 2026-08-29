@@ -71,19 +71,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A newly posted opening matching their skillset, suggesting an urgent active search.",
         "reads": "The position has just opened and early applications will receive prompt review.",
         "does": "Customizes resume and submits application within the initial 24-hour window."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "An automated posting refresh scheduled in the ATS to keep the requisition at the top of candidate search feeds.",
         "reads": "Refreshing the date restores organic applicant volume after the initial post decays.",
         "does": "Monitors incoming CV volume while sorting matches into long-term talent communities."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "Continuous talent brand presence and pipeline generation across core engineering disciplines.",
         "reads": "Sustained posting visibility minimizes time-to-hire when client or departmental headcount unlocks.",
         "does": "Authorizes ongoing job board listings across foundational roles."

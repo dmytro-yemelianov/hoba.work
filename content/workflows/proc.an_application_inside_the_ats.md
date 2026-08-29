@@ -11,7 +11,7 @@ states:
     id: "submitted"
     title: "Submitted"
     kind: "initial"
-    owner: "candidate"
+    owner: "actor.candidate"
     description: "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted."
     entities:
       - "bar.application_ingestion"
@@ -21,7 +21,7 @@ states:
     id: "parsing"
     title: "Parsing"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently."
     entities:
       - "mech.ats_parser_extraction_failure"
@@ -30,7 +30,7 @@ states:
     id: "scoring"
     title: "Rule evaluation"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure."
     entities:
       - "bar.automated_filter_parser_threshold"
@@ -41,7 +41,7 @@ states:
     id: "queued"
     title: "Queued for human review"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first."
     entities:
       - "bar.inbound_screening_triage"
@@ -52,7 +52,7 @@ states:
     id: "reviewed"
     title: "Read by a person"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep."
     entities:
       - "bar.inbound_screening_triage"
@@ -62,7 +62,7 @@ states:
     id: "advanced"
     title: "Advanced to the funnel"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "The record leaves this machine and enters proc.the_hiring_funnel_end_to_end at the recruiter screen."
     entities:
       - "bar.recruiter_screening_call"
@@ -71,7 +71,7 @@ states:
     id: "auto-rejected"
     title: "Rejected by rule"
     kind: "terminal"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight."
     entities:
       - "obs.rejection_within_minutes_of_application_submission"
@@ -82,7 +82,7 @@ states:
     id: "human-rejected"
     title: "Rejected by a person"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Someone read it and did not take it forward. What the message says about why is a separate decision, usually a template."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -91,7 +91,7 @@ states:
     id: "expired"
     title: "Expired unreviewed"
     kind: "terminal"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review."
     entities:
       - "mech.automated_application_expiration_timeout"
@@ -102,7 +102,7 @@ transitions:
     from: "submitted"
     to: "parsing"
     label: "document accepted"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Required fields validate and the file is a supported type."
     latency_expected_days: 1
     latency_max_days: 1
@@ -112,7 +112,7 @@ transitions:
     from: "parsing"
     to: "scoring"
     label: "fields extracted"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Extraction completes, whether or not it recovered the work history."
     latency_expected_days: 1
     latency_max_days: 1
@@ -122,7 +122,7 @@ transitions:
     from: "scoring"
     to: "queued"
     label: "all rules pass"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Every knockout rule passes and the rank clears the advance threshold."
     latency_expected_days: 1
     latency_max_days: 2
@@ -132,7 +132,7 @@ transitions:
     from: "scoring"
     to: "auto-rejected"
     label: "a rule fails"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Any knockout rule fails, or the ranking falls below the threshold."
     latency_expected_days: 1
     latency_max_days: 3
@@ -144,7 +144,7 @@ transitions:
     from: "queued"
     to: "reviewed"
     label: "a recruiter opens it"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Capacity reaches this position in the queue before the expiry threshold."
     latency_expected_days: 4
     latency_max_days: 14
@@ -154,7 +154,7 @@ transitions:
     from: "queued"
     to: "expired"
     label: "threshold reached first"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "The record ages past the configured limit with no review recorded."
     latency_expected_days: 30
     latency_max_days: 60
@@ -164,7 +164,7 @@ transitions:
     from: "reviewed"
     to: "advanced"
     label: "short-listed"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "The profile is put on the active list for outreach."
     latency_expected_days: 2
     latency_max_days: 5
@@ -174,7 +174,7 @@ transitions:
     from: "reviewed"
     to: "human-rejected"
     label: "passed over"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "The recruiter decides not to advance it."
     latency_expected_days: 2
     latency_max_days: 5

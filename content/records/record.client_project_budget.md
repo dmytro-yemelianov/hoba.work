@@ -6,7 +6,7 @@ aliases:
 title: "Client Project Budget"
 record_class: "budget-line"
 owner: "outside-party"
-owner_actor: "client"
+owner_actor: "actor.client"
 summary: "Client total budget line earmarked for third-party engineering services."
 flows:
   - to: "record.client_services_agreement"

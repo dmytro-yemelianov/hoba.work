@@ -28,17 +28,17 @@ specimens:
     reading: "The arithmetic is the whole intervention. The same person, the same work, above the threshold instead of below it."
 perspectives:
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "A feature column in the training set, and the ranked order that shifts for every customer once it is removed."
     reads: "The removal itself is one line in a feature list and a re-scoring run; the effect it is made for happens outside the platform, where there is no telemetry."
     does: "Ships the change with the model card updated, and carries the support load from customers whose thresholds were tuned against the old distribution."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Profiles in the queue that the previous ranking placed below the review threshold."
     reads: "The queue is longer and the screening capacity is the same; ranking decides reading order, not how many get read."
     does: "Reads down the new order until capacity runs out, and the profiles below that line stay unread — for a reason that is no longer the gap."
   -
-    actor: "public-policy"
+    actor: "actor.public_policy_and_industry_standards"
     sees: "A published model card naming the feature that was removed, in a market where the same feature ships enabled by default elsewhere."
     reads: "One vendor removing it changes one vendor's ranking; what would hold it across the market is a rule about what an automated screen may read at all."
     does: "Writes the requirement against what a vendor must publish and explain; what a customer switches on inside a configuration screen sits outside what any disclosure rule inspects."

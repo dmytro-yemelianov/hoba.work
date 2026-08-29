@@ -34,9 +34,9 @@ const blind = actors.filter((a) => !held.has(a.id));
 
     <div class="mt-5">
       {perspectives.map((p) => (
-        <article class="perspective lens-block" data-actor={p.actor}>
+        <article class="perspective lens-block" data-actor={byId.get(p.actor)?.slug ?? p.actor}>
           <p class="perspective-who">
-            <a href={`${prefix}/actors/${p.actor}`} class="text-base font-medium text-hoba-text hover:text-hoba-accent">
+            <a href={`${prefix}/actors/${byId.get(p.actor)?.slug ?? p.actor}`} class="text-base font-medium text-hoba-text hover:text-hoba-accent">
               {byId.get(p.actor)?.title ?? p.actor}
             </a>
           </p>
@@ -52,9 +52,9 @@ const blind = actors.filter((a) => !held.has(a.id));
       ))}
 
       {blind.map((actor) => (
-        <article class="perspective lens-block is-blind" data-actor={actor.id}>
+        <article class="perspective lens-block is-blind" data-actor={actor.slug}>
           <p class="perspective-who">
-            <a href={`${prefix}/actors/${actor.id}`} class="text-base font-medium text-hoba-text hover:text-hoba-accent">{actor.title}</a>
+            <a href={`${prefix}/actors/${actor.slug}`} class="text-base font-medium text-hoba-text hover:text-hoba-accent">{actor.title}</a>
             <span class="pill pill-muted">{t('persp.blind')}</span>
           </p>
           <p class="mt-2 text-base text-hoba-muted max-w-2xl">{t('persp.blindNote')}</p>

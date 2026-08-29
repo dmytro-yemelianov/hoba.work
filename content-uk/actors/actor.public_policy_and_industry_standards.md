@@ -1,6 +1,7 @@
 ---
-id: "public-policy"
+id: "actor.public_policy_and_industry_standards"
 type: "actor"
+slug: "public-policy"
 title: "Публічна політика та галузеві стандарти"
 summary: "Регулятори, трудове право й конвенції, які ринок копіює сам у себе. Задають зовнішні межі й рухаються в темпі, на який жоден окремий процес не може чекати."
 controls:

@@ -1,6 +1,7 @@
 ---
-id: "recruiter"
+id: "actor.recruiter"
 type: "actor"
+slug: "recruiter"
 title: "Recruiter"
 summary: "The function that moves people through the funnel. Holds the most information about the process and the least authority over its outcome."
 controls:

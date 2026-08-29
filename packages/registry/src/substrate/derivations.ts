@@ -16,7 +16,6 @@ import type { Condition, Substrate } from './schema.js';
 import type { Lifted } from './lift.js';
 
 const toPublicId = (substrateId: string): string => {
-  if (substrateId.startsWith('rec:actor.')) return substrateId.slice(10);
   const prefixMatch = substrateId.match(/^(cnd|evc|rec|prc):(.+)$/);
   if (prefixMatch) {
     const raw = prefixMatch[2]!;

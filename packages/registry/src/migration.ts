@@ -139,6 +139,61 @@ export function applyIdRename(root: string, oldId: string, newId: string): Renam
   return { oldId, newId, filesChanged };
 }
 
+/**
+ * The fields the schema types as `actorId`, written as the exact line each one
+ * takes in this repository's YAML.
+ *
+ * An actor id cannot be renamed the way the other ten types were. Three closed
+ * vocabularies share the same strings — `actorId` (the entity ids),
+ * `actorTypeSchema` (mechanism facets, which adds `system`/`policy`/`external`)
+ * and `interventionActorSchema` (which adds `recruiter-process` and friends) —
+ * so a blunt substitution of `"recruiter"` would silently rewrite two
+ * vocabularies that are not being migrated. Only these four fields are entity
+ * references; `facets.actor` (two-space), an intervention's own `actor` (no
+ * indent) and the `aliases.facet`/`aliases.intervention` lists are not.
+ */
+const ACTOR_ID_FIELDS = [
+  /** A perspective's actor, inside a list item. */
+  { prefix: '    actor: ' },
+  /** A workflow state's or transition's owner. */
+  { prefix: '    owner: ' },
+  /** A record's owning actor. */
+  { prefix: 'owner_actor: ' },
+  /** The actor entity's own id. */
+  { prefix: 'id: ' },
+] as const;
+
+/**
+ * Field-scoped counterpart to {@link applyIdRename} for actors: rewrites only
+ * whole lines whose key is one of the `actorId`-typed fields and whose value is
+ * exactly `oldId`. Anchored on the line start, the full key and the closing
+ * quote, so neither a different vocabulary nor a longer id that merely starts
+ * with the same characters can match.
+ */
+export function applyActorIdRename(root: string, oldId: string, newId: string): RenameApplication {
+  const filesChanged: string[] = [];
+
+  for (const tree of RENAME_TREES) {
+    const dir = path.join(root, tree);
+    if (!fs.existsSync(dir)) continue;
+    for (const file of walkMarkdownFiles(dir)) {
+      const text = fs.readFileSync(file, 'utf8');
+      let updated = text;
+      for (const { prefix } of ACTOR_ID_FIELDS) {
+        updated = updated
+          .split('\n')
+          .map((line) => (line === `${prefix}"${oldId}"` ? `${prefix}"${newId}"` : line))
+          .join('\n');
+      }
+      if (updated === text) continue;
+      fs.writeFileSync(file, updated);
+      filesChanged.push(path.relative(root, file));
+    }
+  }
+
+  return { oldId, newId, filesChanged };
+}
+
 function walkMarkdownFiles(dir: string): string[] {
   const out: string[] = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

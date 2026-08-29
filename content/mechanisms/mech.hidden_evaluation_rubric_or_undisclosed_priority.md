@@ -31,12 +31,12 @@ masks:
   - "mech.genuine_technical_skill_shortfall"
 perspectives:
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "The panel's write-ups, in the vocabulary the team uses for its own systems. What the candidate was sent before the round is not in front of the panel."
     reads: "A design that departs from the pattern the team runs on reads as a shortfall in depth, not as a mismatch with a preference. A criterion the team shares is not experienced as a criterion; it is the standard."
     does: "Records the objection in the panel's own terms and sets the level from it. The brief for the next candidate is unchanged."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "The questions as they were asked and the reaction in the room, and afterwards a reason stated in general terms."
     reads: "The feedback names a shortfall that cannot be checked against the criterion applied, because that criterion was not stated in the round."
     does: "Records the exchange and asks in the round whether a stated preference is a constraint to design within. There is no revision available against a rule that was not given."

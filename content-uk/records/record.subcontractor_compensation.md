@@ -6,7 +6,7 @@ aliases:
 title: "Винагорода спеціаліста за контрактом"
 record_class: "payroll"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Чиста винагорода, що виплачується інженеру за надання послуг замовнику."
 flows: []
 visibility_default: "observable"

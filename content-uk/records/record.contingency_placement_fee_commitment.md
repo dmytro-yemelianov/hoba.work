@@ -6,7 +6,7 @@ aliases:
 title: "Комісія агенції за успішний найм"
 record_class: "placement-fee"
 owner: "inside"
-owner_actor: "recruiter"
+owner_actor: "actor.recruiter"
 summary: "Комісійна винагорода рекрутинговій агенції, прив'язана до виходу кандидата та проходження гарантійного терміну."
 flows:
   - to: "record.external_agency_settlement"

@@ -11,7 +11,7 @@ states:
     id: "demand"
     title: "Попит замовника та контур контракту"
     kind: "initial"
-    owner: "client"
+    owner: "actor.client"
     description: "Кінцевий клієнт відкриває потребу в інженерних ресурсах або оголошує тендер. Фінансування є реальним за підписаного контракту або ймовірнісним до виграшу тендеру."
     entities: []
     visible_to_candidate: "Нічого. Пошук не є публічним."
@@ -19,7 +19,7 @@ states:
     id: "search-open"
     title: "Відкриття пошуку вендором"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Рекрутери вендора розпочинають прямий сорсинг або публікацію оголошень. Що стоїть за пошуком — підписаний контракт чи очікування виграшу — не розкривається."
     entities:
       - "bar.outbound_sourcing_talent_pool_contact"
@@ -29,7 +29,7 @@ states:
     id: "vendor-screen"
     title: "Скринінг рекрутером вендора"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Первинна розмова щодо досвіду та зарплатних очікувань з урахуванням планової маржі вендора."
     entities:
       - "bar.recruiter_screening_call"
@@ -39,7 +39,7 @@ states:
     id: "vendor-technical"
     title: "Технічна оцінка вендором"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Технічне інтерв'ю або тестове завдання, оцінене за внутрішніми критеріями вендора щодо очікуваної планки клієнта."
     entities:
       - "bar.technical_screen_live_assessment"
@@ -49,7 +49,7 @@ states:
     id: "submitted"
     title: "Профіль передано замовнику"
     kind: "active"
-    owner: "client"
+    owner: "actor.client"
     description: "Резюме кандидата передається акаунт-команді клієнта для перегляду та відбору на клієнтську співбесіду."
     entities:
       - "bar.client_profile_approval_and_client_interview"
@@ -60,7 +60,7 @@ states:
     id: "client-interview"
     title: "Співбесіда із замовником"
     kind: "active"
-    owner: "client"
+    owner: "actor.client"
     description: "Співбесіда безпосередньо з технічною командою або керівництвом проєкту на стороні клієнта."
     entities:
       - "bar.client_profile_approval_and_client_interview"
@@ -70,7 +70,7 @@ states:
     id: "offer"
     title: "Формування пропозиції"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Фіналізація пакета винагороди на основі білінгового рейту клієнта за вирахуванням маржі."
     entities:
       - "bar.compensation_levelling_reconciliation"
@@ -79,7 +79,7 @@ states:
     id: "verification"
     title: "Передпроєктна перевірка"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Перевірка рекомендацій, сертифікатів та оформлення юридичних документів за вимогами клієнта."
     entities:
       - "bar.reference_background_verification"
@@ -88,7 +88,7 @@ states:
     id: "placed"
     title: "Підписання контракту та старт на проєкті"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Підписання договору та інтеграція спеціаліста в активну команду проєкту клієнта."
     entities:
       - "bar.offer_closing_contract_execution"
@@ -97,7 +97,7 @@ states:
     id: "vendor-declined"
     title: "Відхилено вендором"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Процес зупинено на етапі внутрішнього скринінгу чи технічної оцінки до передачі резюме клієнту."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -106,7 +106,7 @@ states:
     id: "declined-by-client"
     title: "Відхилено замовником"
     kind: "terminal"
-    owner: "client"
+    owner: "actor.client"
     description: "Клієнт відхилив передане резюме або відмовив кандидату за результатами клієнтської співбесіди."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -116,7 +116,7 @@ states:
     id: "closed-unfunded"
     title: "Пошук закрито без фінансування / тендер втрачено"
     kind: "terminal"
-    owner: "client"
+    owner: "actor.client"
     description: "Пошук зупинено через програш у тендері, скасування фінансування замовником або призупинення проєкту."
     entities:
       - "obs.complete_silence_after_submission"
@@ -127,7 +127,7 @@ states:
     id: "bench-filled"
     title: "Позицію закрито внутрішнім бенчем"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Позицію перекрито внутрішнім інженером компанії, який звільнився з іншого проєкту, що зупинило зовнішній процес."
     entities:
       - "obs.position_closed_after_final_interview_without_hire"
@@ -137,7 +137,7 @@ transitions:
   -
     from: "demand"
     to: "search-open"
-    owner: "client"
+    owner: "actor.client"
     label: "Підписано контракт або оголошено тендер"
     guard: "Наявний підписаний комерційний договір або вимога надати резюме під тендер"
     latency_expected_days: 3
@@ -147,7 +147,7 @@ transitions:
   -
     from: "search-open"
     to: "vendor-screen"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Кандидат відповів на звернення"
     guard: "Звернення прийнято та погоджено час первинної розмови"
     latency_expected_days: 5
@@ -157,7 +157,7 @@ transitions:
   -
     from: "search-open"
     to: "closed-unfunded"
-    owner: "client"
+    owner: "actor.client"
     label: "Тендер програно або контракт скасовано до початку співбесід"
     guard: "Комерційна можливість анульована до проведення оцінки"
     latency_expected_days: 7
@@ -166,7 +166,7 @@ transitions:
   -
     from: "vendor-screen"
     to: "vendor-technical"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Скринінг вендором пройдено"
     guard: "Зарплатні очікування відповідають розрахунковій маржі вендора"
     latency_expected_days: 3
@@ -176,7 +176,7 @@ transitions:
   -
     from: "vendor-screen"
     to: "vendor-declined"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Невідповідність очікувань за ставкою або профілем"
     guard: "Запит перевищує допустиму маржу вендора або профіль не відповідає вакансії"
     latency_expected_days: 2
@@ -185,7 +185,7 @@ transitions:
   -
     from: "vendor-technical"
     to: "submitted"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     label: "Технічну оцінку вендора пройдено"
     guard: "Рівень відповідає внутрішньому уявленню вендора про вимоги замовника"
     latency_expected_days: 4
@@ -196,7 +196,7 @@ transitions:
   -
     from: "vendor-technical"
     to: "vendor-declined"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     label: "Технічну оцінку не пройдено"
     guard: "Профіль не досягає внутрішньої планки вендора"
     latency_expected_days: 3
@@ -205,7 +205,7 @@ transitions:
   -
     from: "submitted"
     to: "client-interview"
-    owner: "client"
+    owner: "actor.client"
     label: "Замовник погодив резюме"
     guard: "Менеджер клієнта схвалив профіль та призначив інтерв'ю"
     latency_expected_days: 5
@@ -215,7 +215,7 @@ transitions:
   -
     from: "submitted"
     to: "declined-by-client"
-    owner: "client"
+    owner: "actor.client"
     label: "Замовник відхилив резюме"
     guard: "Менеджер замовника відхилив кандидата на етапі скринінгу резюме"
     latency_expected_days: 5
@@ -225,7 +225,7 @@ transitions:
   -
     from: "submitted"
     to: "bench-filled"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     label: "Вендор призначив внутрішнього спеціаліста"
     guard: "Внутрішній спеціаліст звільнився з іншого проєкту під час пошуку"
     latency_expected_days: 3
@@ -234,7 +234,7 @@ transitions:
   -
     from: "submitted"
     to: "closed-unfunded"
-    owner: "client"
+    owner: "actor.client"
     label: "Замовник скасував позицію або втратив бюджет"
     guard: "Клієнт відкликав запит під час розгляду профілів"
     latency_expected_days: 7
@@ -243,7 +243,7 @@ transitions:
   -
     from: "client-interview"
     to: "offer"
-    owner: "client"
+    owner: "actor.client"
     label: "Замовник погодив кандидата після співбесіди"
     guard: "Клієнт підтвердив відповідність кандидата вимогам команди проєкту"
     latency_expected_days: 4
@@ -253,7 +253,7 @@ transitions:
   -
     from: "client-interview"
     to: "declined-by-client"
-    owner: "client"
+    owner: "actor.client"
     label: "Замовник відмовив після співбесіди"
     guard: "Клієнт вирішив не продовжувати співпрацю після зустрічі"
     latency_expected_days: 3
@@ -263,7 +263,7 @@ transitions:
   -
     from: "offer"
     to: "verification"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     label: "Пропозицію узгоджено та підготовлено договір"
     guard: "Кандидат прийняв запропоновані умови"
     latency_expected_days: 3
@@ -273,7 +273,7 @@ transitions:
   -
     from: "offer"
     to: "closed-unfunded"
-    owner: "client"
+    owner: "actor.client"
     label: "Замовник зупинив проєкт до фінального підписання"
     guard: "Клієнт скасував фінансування після виставлення пропозиції"
     latency_expected_days: 4
@@ -282,7 +282,7 @@ transitions:
   -
     from: "verification"
     to: "placed"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     label: "Перевірку пройдено та погоджено дату виходу"
     guard: "Документи оформлено, розпочато онбординг на проєкт замовника"
     latency_expected_days: 5

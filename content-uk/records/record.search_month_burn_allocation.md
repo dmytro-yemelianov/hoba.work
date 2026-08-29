@@ -6,7 +6,7 @@ aliases:
 title: "Витрати місяця пошуку"
 record_class: "payroll"
 owner: "inside"
-owner_actor: "candidate"
+owner_actor: "actor.candidate"
 summary: "Витрати на проживання та робочі інструменти під час активного пошуку."
 flows: []
 visibility_default: "observable"

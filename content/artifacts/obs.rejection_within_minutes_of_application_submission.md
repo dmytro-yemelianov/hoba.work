@@ -9,17 +9,17 @@ stages:
   - "ingestion"
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A submission at 23:47 and a rejection at 23:58, outside working hours in every timezone the employer operates in."
     reads: "Eleven minutes bounds how much reading could have happened; whether a person or a rule closed the record is not in the message."
     does: "Reviews the answers given to the mandatory questions — permit, country, years of experience — because that is the only part of the decision the candidate holds a copy of."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A weekly figure: applications received, applications screened. This application sits inside the difference between the two and never enters the review queue."
     reads: "The pipeline is a count against a capacity limit; a record closed at ingestion is not part of the work the queue holds."
     does: "Works the queue that capacity allows, and answers a follow-up, if one arrives, from the status field, which reads that the minimum criteria were not met."
   -
-    actor: "ats-vendor"
+    actor: "actor.ats_vendor"
     sees: "A submission, a rules evaluation two seconds later, a status transition and a queued notification. All four are events, and none of them is a reading of the profile."
     reads: "The configuration ran as configured. Whether the criterion it enforced is the one the customer meant is not a value the platform holds."
     does: "Sends the templated notification, records the disposition, and reports the interval as throughput on the dashboard the buyer evaluates."

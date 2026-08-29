@@ -67,19 +67,19 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "An offer placed on hold and a named field in dispute: dates on one role, a degree the registrar has not confirmed, a prior engagement flagged as a conflict.",
         "reads": "A third-party record and their own record disagree. Which one is wrong is answerable, and the document that answers it is either in hand or obtainable.",
         "does": "Produces the payslip, contract or transcript covering the disputed months, and from here on states dates as the payroll record holds them rather than as remembered."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A vendor result marked for review, naming the field and the two values. The underlying records sit with the provider, not in the ATS.",
         "reads": "The start date is at risk until the file closes, and the result does not say which side of the mismatch is the error.",
         "does": "Pauses onboarding, asks the candidate for the document that reconciles the field, and keeps the wording to what the check returned."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "The check result against the standard this layer wrote: which findings a document can reconcile, and which end the process regardless of explanation.",
         "reads": "One rule applied the same way to every hire is the defensible position. An exception made once is a precedent that has to be defended later.",
         "does": "Holds the offer until the file closes, and fixes how much of the reason may be stated — which is what determines whether the candidate is told the field or told nothing."

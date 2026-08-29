@@ -56,17 +56,17 @@ specimens:
     reading: "Nothing in the record was decided against the external candidate. A person the company already pays became free, and an employed engineer on the bench costs the margin every idle week. The search ended because its reason did."
 perspectives:
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A process that was moving, then a closure — sometimes naming an internal hire, sometimes just the search ending."
     reads: "Indistinguishable from a role that was promised internally before it was posted. The difference — whether the internal person was available when the search began or became available during it — sits in a staffing record no message describes."
     does: "Notes the interval between the last positive signal and the closure; a short one is the only outside trace of an availability that changed mid-search."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A bench that costs salary against no billing, and an open seat that fits someone on it."
     reads: "Filling the seat from the bench converts an idle cost into billed work in one move; continuing an external search past that point pays twice for the same seat."
     does: "Fills from the bench as soon as the dates line up, and closes the external search that the bench has made redundant."
   -
-    actor: "client"
+    actor: "actor.client"
     sees: "A seat filled on schedule with a profile the vendor vouches for, often faster than an external start date could have landed."
     reads: "Whether the person came from a search or from the bench is invisible in the deliverable, and the contract does not ask."
     does: "Accepts the staffing, unaware an external process ended somewhere so that this one could close on time."

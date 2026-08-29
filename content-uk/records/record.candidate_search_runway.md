@@ -6,7 +6,7 @@ aliases:
 title: "Запас автономності кандидата"
 record_class: "runway"
 owner: "inside"
-owner_actor: "candidate"
+owner_actor: "actor.candidate"
 summary: "Запас автономності в місяцях, розрахований на основі заощаджень та щомісячних витрат."
 flows:
   - to: "record.search_month_burn_allocation"

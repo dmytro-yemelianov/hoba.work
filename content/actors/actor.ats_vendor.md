@@ -1,6 +1,7 @@
 ---
-id: "ats-vendor"
+id: "actor.ats_vendor"
 type: "actor"
+slug: "ats-vendor"
 title: "ATS vendor"
 summary: "The platform the funnel runs inside. Writes no policy and decides no hire, yet its defaults decide what a great many people ever see."
 controls:

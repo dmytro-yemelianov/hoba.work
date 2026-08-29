@@ -6,7 +6,7 @@ aliases:
 title: "Бюджет роботодавця на найм і сорсинг"
 record_class: "budget-line"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Операційний рекрутинговий бюджет на покриття комісій агенцій та витрат на пошук."
 flows:
   - to: "record.contingency_placement_fee_commitment"

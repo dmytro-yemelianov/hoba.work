@@ -127,7 +127,7 @@ export function lift(bundle: RegistryBundle): Lifted {
 
   // Parties, and the flat record-backed collections.
   const flat: [keyof RegistryBundle, string, (id: string) => string][] = [
-    ['actors', 'cls:actor', (id) => `rec:actor.${low(id)}`],
+    ['actors', 'cls:actor', (id) => `rec:${low(id)}`],
     ['eras', 'cls:era', (id) => `rec:${low(id)}`],
     ['evidence', 'cls:evidence', (id) => `rec:${low(id)}`],
     ['interventions', 'cls:intervention', (id) => `rec:${low(id)}`],
@@ -204,7 +204,7 @@ export function lift(bundle: RegistryBundle): Lifted {
           if (!ownerOf.has(e)) ownerOf.set(e, t.owner);
         }
 
-  const partyOfActor = (actorId: string) => `rec:actor.${low(actorId)}`;
+  const partyOfActor = (actorId: string) => `rec:${low(actorId)}`;
 
   sidecar.order['barriers'] = bundle.barriers.map((b) => b.id);
   for (const b of bundle.barriers) {

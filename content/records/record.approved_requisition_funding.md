@@ -6,7 +6,7 @@ aliases:
 title: "Approved Requisition Funding"
 record_class: "requisition-funding"
 owner: "inside"
-owner_actor: "hiring-manager"
+owner_actor: "actor.hiring_manager"
 summary: "Headcount allocation and salary band approved for the active requisition."
 flows:
   - to: "record.direct_engineering_payroll"

@@ -30,17 +30,17 @@ amplifies:
 masks: []
 perspectives:
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "The same engineers' calendars carrying the sprint and the panel, and a requisition running past its target date. What the loop costs the people covering the open work is not in that view."
     reads: "An interviewer who is free is the option that keeps the loop moving; the alternative is another week on the requisition. A cold read is still a round completed."
     does: "Puts whoever has the slot on the panel and takes the write-up that comes back."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "Rounds moved, gaps between them, and an interviewer opening the submitted work during the call."
     reads: "The changes are visible only through their own calendar, where a scheduling constraint and a decline in interest look alike."
     does: "Records each date and each change, asks what remains in the loop and by when, and keeps other processes live."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "Panel slots that come back unfilled and dates that shift; the interviewers' other commitments sit on the calendars the recruiter is scheduling around."
     reads: "A move is an operational fact with a date, and time-to-fill is measured on the total. There is nothing in it to report about the candidate's standing."
     does: "Reissues the invitation with the new date and decides whether the candidate is told the loop has stalled."

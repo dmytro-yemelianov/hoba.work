@@ -11,7 +11,7 @@ states:
     id: "submitted"
     title: "Подано"
     kind: "initial"
-    owner: "candidate"
+    owner: "actor.candidate"
     description: "Відправку форми прийнято. Поля перевіряють на відповідність схемі вакансії; нічого ще не інтерпретовано."
     entities:
       - "bar.application_ingestion"
@@ -21,7 +21,7 @@ states:
     id: "parsing"
     title: "Розбір"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Документ перетворюють на структуровані поля. Багатоколонкова верстка, графіка й нестандартні шрифти регулярно й мовчки гублять цілі розділи."
     entities:
       - "mech.ats_parser_extraction_failure"
@@ -30,7 +30,7 @@ states:
     id: "scoring"
     title: "Обчислення правил"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Нокаут-правила, покриття ключових слів, пороги років і ознаки ранжування відпрацьовують послідовно й зупиняються на першому ж провалі."
     entities:
       - "bar.automated_filter_parser_threshold"
@@ -41,7 +41,7 @@ states:
     id: "queued"
     title: "У черзі на людський перегляд"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Запис вище порогу й чекає. Позиція в черзі залежить від джерела: вихідні списки зазвичай читають першими."
     entities:
       - "bar.inbound_screening_triage"
@@ -52,7 +52,7 @@ states:
     id: "reviewed"
     title: "Прочитано людиною"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Рекрутер відкриває профіль. Коли черга глибока, медіанний час уваги на профіль вимірюється секундами."
     entities:
       - "bar.inbound_screening_triage"
@@ -62,7 +62,7 @@ states:
     id: "advanced"
     title: "Просунуто у воронку"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Запис виходить із цієї машини й заходить у proc.the_hiring_funnel_end_to_end на скринінг рекрутера."
     entities:
       - "bar.recruiter_screening_call"
@@ -71,7 +71,7 @@ states:
     id: "auto-rejected"
     title: "Відхилено правилом"
     kind: "terminal"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Правило впало. Сповіщення часто стає в чергу й надсилається за кілька хвилин — саме так виникає відмова опівночі."
     entities:
       - "obs.rejection_within_minutes_of_application_submission"
@@ -82,7 +82,7 @@ states:
     id: "human-rejected"
     title: "Відхилено людиною"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Хтось прочитав і не взяв далі. Що повідомлення каже про причину — окреме рішення, зазвичай шаблонне."
     entities:
       - "obs.generic_closer_alignment_rejection_template"
@@ -91,7 +91,7 @@ states:
     id: "expired"
     title: "Спливло без перегляду"
     kind: "terminal"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Планове завдання закрило запис, коли минув строк. Ніхто його не читав, а лист, який воно надсилає, не відрізнити від того, що йде після перегляду."
     entities:
       - "mech.automated_application_expiration_timeout"
@@ -102,7 +102,7 @@ transitions:
     from: "submitted"
     to: "parsing"
     label: "документ прийнято"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Обовʼязкові поля валідні, а файл підтримуваного типу."
     latency_expected_days: 1
     latency_max_days: 1
@@ -112,7 +112,7 @@ transitions:
     from: "parsing"
     to: "scoring"
     label: "поля витягнуто"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Розбір завершився — незалежно від того, чи вдалося відновити історію роботи."
     latency_expected_days: 1
     latency_max_days: 1
@@ -122,7 +122,7 @@ transitions:
     from: "scoring"
     to: "queued"
     label: "усі правила пройдено"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Кожне нокаут-правило проходить, а ранг перевищує поріг просування."
     latency_expected_days: 1
     latency_max_days: 2
@@ -132,7 +132,7 @@ transitions:
     from: "scoring"
     to: "auto-rejected"
     label: "правило впало"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Будь-яке нокаут-правило падає або ранг нижчий за поріг."
     latency_expected_days: 1
     latency_max_days: 3
@@ -144,7 +144,7 @@ transitions:
     from: "queued"
     to: "reviewed"
     label: "рекрутер відкриває"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Ресурсу на перегляд вистачає, щоб дійти до цієї позиції раніше, ніж мине строк."
     latency_expected_days: 4
     latency_max_days: 14
@@ -154,7 +154,7 @@ transitions:
     from: "queued"
     to: "expired"
     label: "поріг настав раніше"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Запис пролежав довше за налаштований ліміт, а перегляду не зафіксовано."
     latency_expected_days: 30
     latency_max_days: 60
@@ -164,7 +164,7 @@ transitions:
     from: "reviewed"
     to: "advanced"
     label: "у шорт-лист"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Профіль додають до активного списку для контакту."
     latency_expected_days: 2
     latency_max_days: 5
@@ -174,7 +174,7 @@ transitions:
     from: "reviewed"
     to: "human-rejected"
     label: "не взято далі"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Рекрутер вирішує не просувати заявку."
     latency_expected_days: 2
     latency_max_days: 5

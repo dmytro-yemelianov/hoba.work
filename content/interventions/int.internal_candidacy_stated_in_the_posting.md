@@ -35,17 +35,17 @@ specimens:
     reading: "Nothing in the process changed. What changed is when the fact is available: on the posting, rather than as an aside in the last round."
 perspectives:
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A posting rule that applies to every requisition, and a proposed field stating what already stands behind one before it goes live."
     reads: "A published slate makes an internal candidacy visible to that employee's own team and to everyone who reads the posting; a rule that discloses for all requisitions cannot be switched off for one."
     does: "Defines when a candidacy counts as formal and therefore disclosable, and that definition is what the posting field is filled from."
   -
-    actor: "hiring-manager"
+    actor: "actor.hiring_manager"
     sees: "Fewer external applications against a requisition carrying the line, and the same number of interview slots to fill."
     reads: "The comparison the loop exists for still needs a slate; a smaller external pool is the cost of the pool knowing what it is entering."
     does: "Runs the loop as posted, and where the external pool thins below what a comparison needs, asks whether the role should be posted externally at all."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A posting stating that an internal candidacy exists, with a date on it, before any round is scheduled."
     reads: "The composition of the slate is stated rather than inferred, and the hours a four-round loop costs are weighed against it."
     does: "Applies or does not, and where they do, asks at the first screen what the internal candidate has already been observed doing."

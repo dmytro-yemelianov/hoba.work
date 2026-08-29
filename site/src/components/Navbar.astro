@@ -139,7 +139,7 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
             <div class="mt-1 flex flex-col gap-0.5 px-1">
               <button type="button" class="lens-option" data-lens="" aria-pressed="true">{t('lens.none')}</button>
               {actors.map((actor) => (
-                <button type="button" class="lens-option" data-lens={actor.id} aria-pressed="false">
+                <button type="button" class="lens-option" data-lens={actor.slug} aria-pressed="false">
                   <span class="text-hoba-text">{actor.title}</span>
                 </button>
               ))}

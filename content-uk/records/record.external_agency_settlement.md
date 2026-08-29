@@ -6,7 +6,7 @@ aliases:
 title: "Розрахунок із зовнішньою агенцією"
 record_class: "contract"
 owner: "outside-party"
-owner_actor: "client"
+owner_actor: "actor.client"
 summary: "Комерційний платіж, отриманий зовнішньою рекрутинговою агенцією за закриття позиції."
 flows: []
 visibility_default: "opaque"

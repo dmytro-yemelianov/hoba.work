@@ -47,17 +47,17 @@ specimens:
     reading: "Two fields carry it. The surface actually opened is written next to the note written from it, and a profile above the band leaves a routing code rather than a pass."
 perspectives:
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "A screening note with three fields — the requirement, what the record shows, the surface opened — and a fixed list of disposition codes to close it with."
     reads: "The wording stays theirs; what may go into the note does not. A forecast about tenure has no field, and a profile above the band closes as a referral rather than as a pass."
     does: "Records the surface actually opened next to the note written from it, and sends an above-band profile to levelling instead of closing it at the screen."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "Two fields on the application form: the link where the work sits, and what their part in it is."
     reads: "Which surface a screener opens is set on the form rather than discovered, so a profile page that does not show the work is no longer the only surface available."
     does: "Links the commits and the repository rather than the account, and states the ownership in the field instead of leaving it in a CV line."
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A referral route from screening into the levelling committee, and the volume that arrives on it once above-band stops being a pass."
     reads: "The grid itself is unchanged; what changes is that the applications it excludes now reach the layer that maintains it."
     does: "Sets the cadence the committee runs at and what it may decide, or does not — and where it does not, the referral is a code with nothing behind it."

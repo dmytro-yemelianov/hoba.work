@@ -31,7 +31,7 @@ const actors = bundle.actors.map((actor) => ({
     {actors.map(({ actor, views }) => (
       <li class="py-5">
         <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <a href={`${prefix}/actors/${actor.id}`} class="text-lg font-medium text-hoba-text hover:text-hoba-accent">{actor.title}</a>
+          <a href={`${prefix}/actors/${actor.slug}`} class="text-lg font-medium text-hoba-text hover:text-hoba-accent">{actor.title}</a>
           <span class="pill pill-muted font-mono">{actor.id}</span>
           {actor.recommendations.length > 0 && (
             <span class="pill pill-muted">{actor.recommendations.length} · {t('actors.recommendations')}</span>
@@ -40,7 +40,7 @@ const actors = bundle.actors.map((actor) => ({
         </p>
         <p class="mt-1 text-base text-hoba-muted max-w-3xl">{actor.summary}</p>
         <p class="mt-2">
-          <a href={`${prefix}/actors/${actor.id}?lens=${actor.id}`} class="text-sm text-hoba-accent hover:underline underline-offset-2">
+          <a href={`${prefix}/actors/${actor.slug}?lens=${actor.slug}`} class="text-sm text-hoba-accent hover:underline underline-offset-2">
             {t('actors.readAs')} →
           </a>
         </p>

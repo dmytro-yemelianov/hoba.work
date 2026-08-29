@@ -6,7 +6,7 @@ aliases:
 title: "Annual Engineering Department Budget"
 record_class: "budget-line"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Annual operating budget allocation assigned to engineering department headcount."
 flows:
   - to: "record.approved_requisition_funding"

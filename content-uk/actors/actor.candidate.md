@@ -1,6 +1,7 @@
 ---
-id: "candidate"
+id: "actor.candidate"
 type: "actor"
+slug: "candidate"
 title: "Кандидат"
 summary: "Людина, яка подається. Єдина сторона у воронці, яка бачить увесь свій процес — і майже нічого з чужого."
 controls:

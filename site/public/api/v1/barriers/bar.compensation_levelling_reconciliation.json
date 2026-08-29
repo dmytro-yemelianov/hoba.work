@@ -44,25 +44,25 @@
     ],
     "perspectives": [
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A number stated at the screen, and later a message that it does not fit. The level it was compared against is named afterwards, if at all.",
         "reads": "It reads as a negotiation over the number they named, rather than as the meeting of two decisions taken separately.",
         "does": "Can restate the number or withdraw. Whether restating it changes anything turns on which of the two produced the gap — the level or the band — and that is not in the message."
       },
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "The level the panel assessed at, and the band that level carries. Their input to this gate closed when the level was set.",
         "reads": "The gap reads as a levelling question: the same candidate one level up sits inside a band, and moving the level needs a signature above them.",
         "does": "Requests the level up, or holds the level and lets the process close. The unfilled seat on the team stays with them either way."
       },
       {
-        "actor": "employer-policy",
+        "actor": "actor.employer_policy",
         "sees": "A request to place a candidate outside an approved band, with the level and the number attached. The rounds behind that number are not in the request.",
         "reads": "An exception at one level reads against everyone already placed inside that band.",
         "does": "Approves the exception or holds the grid. The grid is what makes each existing placement defensible, and it is revised on a quarterly cycle rather than per candidate."
       },
       {
-        "actor": "public-policy",
+        "actor": "actor.public_policy_and_industry_standards",
         "sees": "The posting, and whether the band is in it. What happens between a level and a band inside a company is not filed anywhere.",
         "reads": "A published band reads as the disclosure the rule required.",
         "does": "The rule reaches the band and stops. The level a candidate is assessed at is not a disclosable field, so the half of this gate that moves sits outside what the rule reaches."

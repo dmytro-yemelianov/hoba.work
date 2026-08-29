@@ -6,7 +6,7 @@ aliases:
 title: "Маржинальний розподіл та фінансування позиції вендором"
 record_class: "requisition-funding"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Внутрішній розподіл виручки вендора між валовою маржею та витратами на спеціаліста."
 flows:
   - to: "record.subcontractor_compensation"

@@ -6,7 +6,7 @@ aliases:
 title: "Search-Month Burn Allocation"
 record_class: "payroll"
 owner: "inside"
-owner_actor: "candidate"
+owner_actor: "actor.candidate"
 summary: "Living and tooling expenses incurred per month of active job search."
 flows: []
 visibility_default: "observable"

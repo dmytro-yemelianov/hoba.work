@@ -88,19 +88,19 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "Three months of applications, two candidates reaching onsite, no hire, and the team covering the work with overtime.",
         "reads": "The pipeline holds nobody the panel wanted, and a lower bar would add to the pool it has already turned down.",
         "does": "Rewrites the requirements upward, adds the missing signal as a formal requirement, and reposts: a bad hire is recorded against them and an open search is not."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "A requisition ageing past the time-to-fill it is measured on, and a requirements list that got longer at the rewrite.",
         "reads": "The requirements belong to the hiring manager, who is the internal client for this search.",
         "does": "Raises the question once, posts the revised text, and moves screening capacity to requisitions that can close."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A posting with ten required technologies, a nine-year threshold and a lead requirement, republished with a longer list than the version before it.",
         "reads": "The list is either the bar or a wish, and the posting does not say which; the year thresholds are the part a filter can act on.",
         "does": "Skips the posting or applies against a list they do not match, and never learns which of the requirements the screen enforced."

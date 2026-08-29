@@ -6,7 +6,7 @@ aliases:
 title: "Ліквідні заощадження кандидата"
 record_class: "runway"
 owner: "inside"
-owner_actor: "candidate"
+owner_actor: "actor.candidate"
 summary: "Особисті ліквідні заощадження, виділені для забезпечення періоду пошуку роботи."
 flows:
   - to: "record.candidate_search_runway"

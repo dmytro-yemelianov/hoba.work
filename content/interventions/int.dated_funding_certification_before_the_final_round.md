@@ -45,17 +45,17 @@ specimens:
     reading: "The date is one field. What it does is move the approval from after the panel to before the scheduler, and give the recruiter a date to quote where the pending row had none."
 perspectives:
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A certification with an expiry on every requisition, and a quarterly review in which each line already carries the date it runs out."
     reads: "Optionality narrows: a requisition can no longer sit in pending while the quarter is decided, because pending now blocks the scheduler rather than the offer."
     does: "Sets the certification horizon and who may re-certify, and decides whether a lapsed date pauses the requisition or closes it."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "The funded-through date as a field in the requisition, and a scheduler that refuses a final round when the date does not cover the expected start."
     reads: "A date exists to quote where the pending row had none; the cost is that some final rounds cannot be booked at all."
     does: "Quotes the date when scheduling, and where the certification lapses mid-loop, sends the dated notice instead of waiting for the row to move."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A scheduling message naming the date the funding behind the requisition expires, and, where it lapses, a dated notice saying paused or closed."
     reads: "The interval after a panel that went well has a stated cause and a boundary: the wait turns on a certification date rather than on the rounds already completed."
     does: "Weighs that date against the other processes in flight, and stops holding capacity for this one once the notice says closed."

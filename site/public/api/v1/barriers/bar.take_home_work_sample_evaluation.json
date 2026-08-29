@@ -47,19 +47,19 @@
     ],
     "perspectives": [
       {
-        "actor": "hiring-manager",
+        "actor": "actor.hiring_manager",
         "sees": "A repository and a scoring form, opened between the team's own delivery work. The hours the submission took are not a field on the form.",
         "reads": "A score against the rubric reads as the work this candidate would produce on the team.",
         "does": "Advances or declines on the returned scores. A second read is scheduled where the two reviewers disagree, and not otherwise."
       },
       {
-        "actor": "candidate",
+        "actor": "actor.candidate",
         "sees": "A brief, a deadline, and a scope the candidate sets inside it. After submission, a verdict with no reference to any particular file.",
         "reads": "The hours spent read as the unit this gate measures, and a decline reads as a judgement on the code.",
         "does": "Builds to the upper bound of the brief, because the brief states a scope and not a review depth. What is left afterwards is the dates and the wording of the verdict."
       },
       {
-        "actor": "recruiter",
+        "actor": "actor.recruiter",
         "sees": "The date the assignment went out, the date it came back, and a line of recommendation. The submission itself is not in the fields the recruiter works from.",
         "reads": "The gate reads as an interval in the pipeline: days between dispatch and a decision that can be acted on.",
         "does": "Follows up with the reviewers as the interval grows, and writes the outcome from the recommendation, since the notes behind it do not reach the recruiter."

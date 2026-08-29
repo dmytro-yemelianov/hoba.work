@@ -1,6 +1,7 @@
 ---
-id: "employer-policy"
+id: "actor.employer_policy"
 type: "actor"
+slug: "employer-policy"
 title: "Політика роботодавця"
 summary: "Фінанси, керівництво і HR-функція: шар, який авторизує хедкаунт, фіксує вилки й пише правила, що їх виконує воронка. Ніколи не зустрічає кандидата."
 controls:

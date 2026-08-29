@@ -1,6 +1,7 @@
 ---
-id: "client"
+id: "actor.client"
 type: "actor"
+slug: "client"
 title: "Client"
 summary: "The party paying for the seat when the company is not its own customer. Signs the contract the requisition depends on, and often holds a gate the candidate never sees named."
 controls:

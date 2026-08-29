@@ -6,7 +6,7 @@ aliases:
 title: "Пряма виплата винагороди інженеру"
 record_class: "payroll"
 owner: "inside"
-owner_actor: "employer-policy"
+owner_actor: "actor.employer_policy"
 summary: "Пряма регулярна виплата винагороди працевлаштованому інженеру."
 flows: []
 visibility_default: "observable"

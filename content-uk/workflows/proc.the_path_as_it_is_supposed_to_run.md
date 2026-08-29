@@ -11,7 +11,7 @@ states:
     id: "real-need"
     title: "Справжня вакансія, описана чесно"
     kind: "initial"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Вакансія описує роботу, яка існує вже зараз, на рівні, якого команді справді бракує, у вилці, яку бюджет уже покриває. Тут немає нічого «на виріст»: список вимог — це те, що робота використовує, а не те, що випадково мали останні четверо кандидатів."
     entities:
       - "int.requirements_drawn_from_the_team_s_own_backlog"
@@ -24,7 +24,7 @@ states:
     id: "published"
     title: "Опубліковано разом з умовами"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "В оголошенні вказані вилка, правила щодо локації, етапи процесу й приблизна тривалість кожного. Коли пошук завершується, оголошення знімають."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -43,7 +43,7 @@ states:
     id: "applied"
     title: "Відгукнувся — і знає про це"
     kind: "active"
-    owner: "candidate"
+    owner: "actor.candidate"
     description: "Заявку надіслано й підтверджено. Запис містить те, що кандидат насправді написав, і кандидат бачить, що заявка дійшла."
     entities:
       - "int.candidate_ats_parser_conformance_test_utility"
@@ -55,7 +55,7 @@ states:
     id: "machine-check"
     title: "Машинна робота лишається механічною"
     kind: "active"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     description: "Автоматика прибирає дублікати, витягує дані й упорядковує. Вона не вирішує. А якщо правило все ж закриває заявку, це правило назване — і таке, яке людина могла б захистити вголос."
     entities:
       - "int.candidate_ats_parser_conformance_test_utility"
@@ -71,7 +71,7 @@ states:
     id: "human-read"
     title: "Прочитано людиною, у названий строк"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Кожну заявку, що пройшла механічний етап, читає людина — і читає до того, як вичерпається строк, обіцяний в оголошенні."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -84,7 +84,7 @@ states:
     id: "terms-check"
     title: "Умови звіряють, доки нічий час ще не витрачено"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Вилку, рівень, локацію, строк відпрацювання й дату старту кладуть поруч у першій же розмові — до того, як призначено будь-яку перевірку. Будь-яка зі сторін може зупинитись тут, і це нічого не коштує другій."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -98,7 +98,7 @@ states:
     id: "work-sample"
     title: "Оцінюють роботу — за критеріями, які показали"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Одне завдання з обмеженим часом, схоже на саму роботу. Критерії кандидат отримує до початку, ліміт часу діє й для того, хто перевіряє, і всіх оцінюють за тією самою шкалою."
     entities:
       - "int.strict_take_home_timebox_blinded_evaluation_rubric"
@@ -116,7 +116,7 @@ states:
     id: "panel"
     title: "Одна панель, у кожного своє питання, одне правило рішення"
     kind: "active"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     description: "Кожен інтервʼюер знає, що саме він вимірює — і що більше цього не вимірює ніхто. Правило, яке перетворює їхні оцінки на рішення, узгоджене до першої розмови, і після старту процесу етапів не додають."
     entities:
       - "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota"
@@ -135,7 +135,7 @@ states:
     id: "level-and-band"
     title: "Рівень зустрічається з опублікованою вилкою"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Рівень випливає з того, що зібрала панель, а вилка була публічною з першого дня. Звести їх — це арифметика, а не переговори про те, чи вилка взагалі існує."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -147,7 +147,7 @@ states:
     id: "approval"
     title: "Погодження вже існує"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Хедкаунт підписали ще до публікації ролі, тож цей крок — контрпідпис, а не друге рішення. Якщо бюджет зникає, пошук закривають, а всім усередині кажуть про це."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -160,7 +160,7 @@ states:
     id: "offer"
     title: "Письмовий офер, у якому є все"
     kind: "active"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Зарплата, рівень, посада, умови щодо локації, дата старту й усе, що є умовним, — письмово, зі строком на відповідь, який кандидат погодив. Ніщо з цього не змінюється після прийняття."
     entities: []
     visible_to_candidate: "Повний документ офера й час, який є на відповідь."
@@ -171,7 +171,7 @@ states:
     id: "verification"
     title: "Перевірки, співмірні з роллю, на які можна відповісти"
     kind: "active"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Лише ті перевірки, яких роль справді потребує. А якщо запис третьої сторони розходиться з тим, що казав кандидат, розбіжність показують кандидату до того, як вона щось вирішить."
     entities:
       - "int.verification_discrepancy_disclosure_and_reconciliation_window"
@@ -187,7 +187,7 @@ states:
     id: "hired"
     title: "Найнято на умовах, які були опубліковані"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Договір підписано з обох боків — на умовах, які були на сторінці від самого початку, з датою старту, яку обрали обидві сторони."
     entities: []
     visible_to_candidate: "Підписаний договір, що збігається з оголошенням."
@@ -196,7 +196,7 @@ states:
     id: "declined"
     title: "Відмова з причиною, з якою можна щось зробити"
     kind: "terminal"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     description: "Наймають не кожного, і відмова — не відхилення. Частиною цього шляху її робить те, що вона приходить, називає етап, на якому все сталося, і критерій, за яким вирішили, — і каже, чи має сенс відгукуватись знову."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -211,7 +211,7 @@ states:
     id: "closed"
     title: "Пошук закрито — і про це сказали"
     kind: "terminal"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     description: "Пошук має право зупинитись: потреба змінилась, бюджет зник, хтось усередині виявився саме тим. Цей шлях вимагає іншого — щоб оголошення зняли, а кожному, хто ще всередині процесу, сказали про це протягом кількох днів."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -228,7 +228,7 @@ transitions:
     from: "real-need"
     to: "published"
     label: "опубліковано з умовами"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Погоджена вакансія, вилка й описаний процес виходять у світ разом."
     latency_expected_days: 2
     latency_max_days: 7
@@ -238,7 +238,7 @@ transitions:
     from: "published"
     to: "applied"
     label: "надіслано заявку"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "Кандидат відгукується на умови, які міг прочитати заздалегідь."
     latency_expected_days: 7
     latency_max_days: 30
@@ -247,7 +247,7 @@ transitions:
     from: "applied"
     to: "machine-check"
     label: "запис оброблено"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Заявку розібрано й підтверджено."
     latency_expected_days: 1
     latency_max_days: 2
@@ -257,7 +257,7 @@ transitions:
     from: "machine-check"
     to: "human-read"
     label: "передано людині"
-    owner: "ats-vendor"
+    owner: "actor.ats_vendor"
     guard: "Жодне автоматичне правило не закрило заявку, тож тепер вона в людини."
     latency_expected_days: 2
     latency_max_days: 5
@@ -267,7 +267,7 @@ transitions:
     from: "human-read"
     to: "terms-check"
     label: "варте розмови"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Людина прочитала профіль і хоче поговорити."
     latency_expected_days: 3
     latency_max_days: 7
@@ -276,7 +276,7 @@ transitions:
     from: "terms-check"
     to: "work-sample"
     label: "умови сумісні"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Вилка, рівень, локація й терміни влаштовують обидві сторони — і це сказано вголос."
     latency_expected_days: 3
     latency_max_days: 7
@@ -286,7 +286,7 @@ transitions:
     from: "work-sample"
     to: "panel"
     label: "робота відповідає критеріям"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Завдання оцінили за критеріями, які кандидат отримав."
     latency_expected_days: 5
     latency_max_days: 10
@@ -296,7 +296,7 @@ transitions:
     from: "panel"
     to: "level-and-band"
     label: "панель вирішує за своїм правилом"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Узгоджене правило рішення дає «наймаємо»."
     latency_expected_days: 3
     latency_max_days: 5
@@ -305,7 +305,7 @@ transitions:
     from: "level-and-band"
     to: "approval"
     label: "рівень потрапляє у вилку"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Рівень, призначений за доказами, лягає в точку опублікованої вилки."
     latency_expected_days: 2
     latency_max_days: 4
@@ -314,7 +314,7 @@ transitions:
     from: "approval"
     to: "offer"
     label: "контрпідпис"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Погодження, яке існувало ще до публікації, підтверджено."
     latency_expected_days: 2
     latency_max_days: 5
@@ -323,7 +323,7 @@ transitions:
     from: "offer"
     to: "verification"
     label: "офер прийнято"
-    owner: "candidate"
+    owner: "actor.candidate"
     guard: "Кандидат приймає повний письмовий офер у погоджений строк."
     latency_expected_days: 3
     latency_max_days: 7
@@ -332,7 +332,7 @@ transitions:
     from: "verification"
     to: "hired"
     label: "перевірки чисті"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Немає нічого невирішеного з того, що співмірне ролі."
     latency_expected_days: 5
     latency_max_days: 14
@@ -341,7 +341,7 @@ transitions:
     from: "human-read"
     to: "declined"
     label: "відмова після прочитання"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Людина вирішила «ні» — і сказала, на якому етапі та за яким критерієм."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -349,7 +349,7 @@ transitions:
     from: "terms-check"
     to: "declined"
     label: "умови несумісні"
-    owner: "recruiter"
+    owner: "actor.recruiter"
     guard: "Розрив названо в тій самій розмові, до того, як призначили будь-яку перевірку."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -357,7 +357,7 @@ transitions:
     from: "work-sample"
     to: "declined"
     label: "робота не відповідає критеріям"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Оцінка нижча за спільні критерії, і критерій названо."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -366,7 +366,7 @@ transitions:
     from: "panel"
     to: "declined"
     label: "правило рішення дає «ні»"
-    owner: "hiring-manager"
+    owner: "actor.hiring_manager"
     guard: "Правило, узгоджене заздалегідь, дає «не наймаємо», і сказано, який вимір це вирішив."
     entities:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
@@ -374,7 +374,7 @@ transitions:
     from: "level-and-band"
     to: "declined"
     label: "рівень і очікування не зустрічаються"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Опублікована вилка й заявлені очікування кандидата не перетинаються — і обидві сторони знали про це раніше."
     entities:
       - "int.upfront_compensation_band_disclosure"
@@ -382,14 +382,14 @@ transitions:
     from: "verification"
     to: "declined"
     label: "розбіжність лишається"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Кандидату показали розбіжність, і вона лишилась невирішеною."
     entities: []
   -
     from: "published"
     to: "closed"
     label: "потреба змінилась"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Роботи більше немає, і оголошення знімають того ж тижня."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -397,7 +397,7 @@ transitions:
     from: "approval"
     to: "closed"
     label: "бюджет забрали"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Хедкаунт скасовано, і кожному кандидату в процесі кажуть про це протягом кількох днів."
     entities:
       - "int.auto_close_stale_job_requisitions"
@@ -405,7 +405,7 @@ transitions:
     from: "offer"
     to: "closed"
     label: "офер відкликано з поясненням"
-    owner: "employer-policy"
+    owner: "actor.employer_policy"
     guard: "Виданий офер не може встояти, і кандидату негайно пояснюють письмово, чому."
     entities: []
 specimens: []

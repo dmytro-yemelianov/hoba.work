@@ -34,17 +34,17 @@ specimens:
     reading: "Everyone the candidate met has already said yes. This gate is the reason a process can stop after a unanimous panel."
 perspectives:
   -
-    actor: "employer-policy"
+    actor: "actor.employer_policy"
     sees: "A requisition in a quarterly review, alongside every other one. The rounds already run against it are not a field in that review."
     reads: "An approved requisition that can be held costs less than one that cannot, and pending is the state in which the option stays open."
     does: "Issues the certification on the cycle rather than on the loop already running. Nothing in that cycle is timed to a candidate's calendar."
   -
-    actor: "candidate"
+    actor: "actor.candidate"
     sees: "A panel that went well, then an interval with no scheduled next step, then either an offer or a note about the role's direction."
     reads: "Silence after a round that went well reads as a verdict on the candidate, since the approval chain has never been shown to them."
     does: "Keeps the other processes running and sets a date past which they stop waiting. That date is the only part of this gate they set."
   -
-    actor: "recruiter"
+    actor: "actor.recruiter"
     sees: "The approval chain with one row pending, and no date on that row."
     reads: "The pipeline is stopped at a step outside their authority, and whether finance clears it this quarter is not among the things that reach them."
     does: "Cannot give a date, and is measured on time-to-fill rather than on time-to-clarity, so the candidate hears again when the row moves."

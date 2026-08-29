@@ -6,7 +6,7 @@ aliases:
 title: "Client Services Agreement"
 record_class: "contract"
 owner: "outside-party"
-owner_actor: "client"
+owner_actor: "actor.client"
 summary: "Commercial contract defining billing rate and seat scope."
 flows:
   - to: "record.vendor_margin_and_headcount_allocation"
