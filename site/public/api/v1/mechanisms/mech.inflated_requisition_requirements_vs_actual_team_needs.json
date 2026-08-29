@@ -4,7 +4,7 @@
     "title": "Inflated Requisition Requirements vs Actual Team Needs",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nThe posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.automated_keyword_qualification_filter` — Automated Keyword / Qualification Filter\n- Amplifies `mech.unstated_compensation_band_discrepancy` — Unstated Compensation Band Discrepancy\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not establish anything about how the candidate would do the team's actual work.",
     "aliases": [
@@ -24,7 +24,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "recruiter"
@@ -35,7 +35,7 @@
         "fidelity": "noise",
         "likelihood": "medium",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": []
       }

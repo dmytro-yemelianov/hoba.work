@@ -12,13 +12,13 @@ emissions:
     artifact: "obs.rejection_within_minutes_of_application_submission"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["ingestion"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
 facets:
   actor: "system"
   nature: "rule"
@@ -48,8 +48,8 @@ status: "active"
 evidence_level: "established"
 honest_baseline: false
 evidence_ids:
-  - "EVD-001"
-  - "EVD-037"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22"
 specimens:
   -
     kind: "ats"

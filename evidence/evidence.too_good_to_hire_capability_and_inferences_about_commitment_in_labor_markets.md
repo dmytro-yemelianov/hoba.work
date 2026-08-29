@@ -1,0 +1,21 @@
+---
+id: "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
+type: "evidence"
+aliases:
+  - "EVD-002"
+title: "Too Good to Hire? Capability and Inferences about Commitment in Labor Markets"
+kind: research
+summary: >-
+  Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for "overqualified" rejections and the seniority double bind.
+citation: "Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313."
+url: "https://doi.org/10.1177/0001839219840022"
+period: "2020"
+---
+
+# Too Good to Hire? Capability and Inferences about Commitment in Labor Markets
+
+Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for "overqualified" rejections and the seniority double bind.
+
+- **Kind:** `research`
+- **Citation:** Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313.
+- **Source:** [doi.org](https://doi.org/10.1177/0001839219840022)

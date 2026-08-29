@@ -10,8 +10,8 @@ stages:
   - "sourcing"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-034"
-  - "EVD-039"
+  - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
+  - "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
 probes:
   -
     id: "PROBE-A-021-1"

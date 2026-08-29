@@ -57,7 +57,7 @@ perspectives:
     does: "Writes the columns and the threshold down before the role opens, and takes a change to them through the same publication step rather than mid-search."
 status: "active"
 evidence_ids:
-  - "EVD-033"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
 ---
 
 # Publish the Technical Screen's Columns and Threshold Before the Round

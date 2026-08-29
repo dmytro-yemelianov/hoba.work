@@ -4,7 +4,7 @@
     "title": "Speculative Sourcing / Talent Pooling Without Opening",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters open conversations and build candidate pools against headcount that has not been approved or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.recruiter_volume_quota_incentive_distortion` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.",
     "aliases": [
@@ -25,7 +25,7 @@
         "fidelity": "distortion",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       },
@@ -34,7 +34,7 @@
         "fidelity": "void",
         "likelihood": "medium",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "sourcing"

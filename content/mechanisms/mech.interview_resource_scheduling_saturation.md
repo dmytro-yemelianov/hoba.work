@@ -14,12 +14,12 @@ emissions:
     artifact: "obs.multiple_interview_reschedulings_or_interviewer_no_show"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
   -
     artifact: "obs.complete_silence_after_submission"
     fidelity: "noise"
     likelihood: "medium"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
 facets:
   actor: "hiring-manager"
   nature: "noise"
@@ -48,7 +48,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-001"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 specimens:
   -
     kind: "chat"

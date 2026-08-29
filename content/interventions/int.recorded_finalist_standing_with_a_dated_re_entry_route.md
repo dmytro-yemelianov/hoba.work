@@ -60,7 +60,7 @@ perspectives:
     does: "Runs the panel on the standing rather than the full loop, or lets the standing lapse where the level or the profile has moved."
 status: "active"
 evidence_ids:
-  - "EVD-045"
+  - "evidence.candidate_dossier_retention_and_talent_pool_transparency_gdpr_art_5_1_e_edpb_guidelines_3_2019"
 ---
 
 # Recorded Finalist Standing With a Dated Re-Entry Route

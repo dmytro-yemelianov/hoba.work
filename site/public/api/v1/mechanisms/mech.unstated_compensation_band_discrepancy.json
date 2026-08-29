@@ -4,8 +4,8 @@
     "title": "Unstated Compensation Band Discrepancy",
     "status": "active",
     "evidence_ids": [
-      "EVD-005",
-      "EVD-038"
+      "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab",
+      "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
     ],
     "content": "# Unstated Compensation Band Discrepancy\n\nCandidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.mid_process_role_requirement_redefinition` — Mid-Process Role Requirement Redefinition\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.",
     "aliases": [
@@ -24,7 +24,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-005"
+          "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
         ],
         "observed_at": [
           "recruiter"
@@ -35,7 +35,7 @@
         "fidelity": "direct",
         "likelihood": "medium",
         "evidence": [
-          "EVD-005"
+          "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
         ],
         "observed_at": []
       },
@@ -44,7 +44,7 @@
         "fidelity": "euphemism",
         "likelihood": "medium",
         "evidence": [
-          "EVD-002"
+          "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
         ],
         "observed_at": [
           "recruiter"

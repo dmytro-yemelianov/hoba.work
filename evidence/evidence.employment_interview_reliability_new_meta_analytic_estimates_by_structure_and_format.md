@@ -1,0 +1,21 @@
+---
+id: "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+type: "evidence"
+aliases:
+  - "EVD-006"
+title: "Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format"
+kind: research
+summary: >-
+  Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.
+citation: "Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276."
+url: "https://doi.org/10.1111/ijsa.12036"
+period: "2013"
+---
+
+# Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format
+
+Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.
+
+- **Kind:** `research`
+- **Citation:** Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.
+- **Source:** [doi.org](https://doi.org/10.1111/ijsa.12036)

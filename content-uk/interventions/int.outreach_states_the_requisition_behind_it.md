@@ -64,7 +64,7 @@ perspectives:
     does: "Визначає, які прогнози можна називати у зверненнях, а які лише описувати як резерв, — і це рішення є межею, всередині якої пишуть шаблони."
 status: "active"
 evidence_ids:
-  - "EVD-034"
+  - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
 ---
 
 # У зверненні названо вакансію, за якою його надіслано

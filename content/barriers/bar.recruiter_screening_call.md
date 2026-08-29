@@ -62,8 +62,8 @@ perspectives:
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-001"
-  - "EVD-005"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
 ---
 
 # Recruiter Screening Call

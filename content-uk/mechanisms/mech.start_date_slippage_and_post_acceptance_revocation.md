@@ -14,8 +14,8 @@ emissions:
     fidelity: "direct"
     likelihood: "high"
     evidence:
-      - "EVD-040"
-      - "EVD-041"
+      - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+      - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
     observed_at:
       - "post-offer"
   -
@@ -43,8 +43,8 @@ honest_baseline: false
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-040"
-  - "EVD-041"
+  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
 specimens:
   -
     kind: "email"
@@ -67,7 +67,7 @@ perspectives:
     actor: "candidate"
     sees: "Підписаний офер із невизначеною або відкладеною датою після звільнення з попередньої роботи."
     reads: "Зобов'язання виявилися асиметричними: звільнення є незворотним, а старт відкладається."
-    does: "Оцінює правові можливості компенсації (EVD-041) та розглядає поновлення активного пошуку."
+    does: "Оцінює правові можливості компенсації за британським Employment Rights Act 1996 та розглядає поновлення активного пошуку."
   -
     actor: "recruiter"
     sees: "Закриту вакансію, яка зависає через неможливість призначити перший робочий день."

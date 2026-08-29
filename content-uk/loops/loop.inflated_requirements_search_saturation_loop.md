@@ -74,9 +74,9 @@ perspectives:
 status: "active"
 evidence_level: "hypothesis"
 evidence_ids:
-  - "EVD-001"
-  - "EVD-004"
-  - "EVD-031"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
+  - "evidence.self_selected_survey_of_it_job_seekers_in_one_national_market_dou"
 ---
 
 # Петля завищених вимог і тривалого пошуку

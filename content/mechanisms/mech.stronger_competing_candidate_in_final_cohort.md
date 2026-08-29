@@ -14,12 +14,12 @@ emissions:
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
   -
     artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "distortion"
     likelihood: "low"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
 facets:
   actor: "candidate"
   nature: "rule"
@@ -48,8 +48,8 @@ status: "active"
 evidence_level: "established"
 honest_baseline: true
 evidence_ids:
-  - "EVD-001"
-  - "EVD-006"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 specimens:
   -
     kind: "email"

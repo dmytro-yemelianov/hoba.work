@@ -3,139 +3,7 @@
   "count": 48,
   "items": [
     {
-      "id": "EVD-001",
-      "type": "evidence",
-      "title": "Hidden Workers: Untapped Talent (HBS / Accenture)",
-      "kind": "research",
-      "summary": "Survey of 8,000 workers and 2,250 executives in the US, UK and Germany on automated hiring. 88% of employers agree that qualified high-skill candidates are vetted out of the process by applicant tracking systems because they do not match the exact criteria of the job description; the report attributes a large \"hidden worker\" population to configurable ATS exclusion rules and knock-out filters.",
-      "citation": "Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). Hidden Workers: Untapped Talent. Harvard Business School Project on Managing the Future of Work & Accenture.",
-      "url": "https://www.hbs.edu/managing-the-future-of-work/research/hidden-workers-untapped-talent",
-      "period": "2021",
-      "aliases": []
-    },
-    {
-      "id": "EVD-002",
-      "type": "evidence",
-      "title": "Too Good to Hire? Capability and Inferences about Commitment in Labor Markets",
-      "kind": "research",
-      "summary": "Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for \"overqualified\" rejections and the seniority double bind.",
-      "citation": "Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313.",
-      "url": "https://doi.org/10.1177/0001839219840022",
-      "period": "2020",
-      "aliases": []
-    },
-    {
-      "id": "EVD-003",
-      "type": "evidence",
-      "title": "Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment",
-      "kind": "research",
-      "summary": "Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.",
-      "citation": "Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167.",
-      "url": "https://doi.org/10.1093/qje/qjt015",
-      "period": "2013",
-      "aliases": []
-    },
-    {
-      "id": "EVD-004",
-      "type": "evidence",
-      "title": "Job Seekers Beware of Ghost Jobs (Clarify Capital survey of hiring managers)",
-      "kind": "survey",
-      "summary": "Survey of 1,045 managers involved in hiring (fielded 31 Aug – 1 Sep 2022) on job postings kept live without active hiring: about half keep postings open because they are \"always open to new people\", 43% cite giving the impression that the company is growing or keeping existing employees motivated, one in three postings had been active for more than 30 days, and one in four respondents did not plan to fill the role for three months or longer.",
-      "citation": "Clarify Capital (2022). Job Seekers Beware of Ghost Jobs. Survey of 1,045 hiring managers, 31 Aug – 1 Sep 2022.",
-      "url": "https://clarifycapital.com/job-seekers-beware-of-ghost-jobs-survey",
-      "period": "2022",
-      "aliases": []
-    },
-    {
-      "id": "EVD-005",
-      "type": "evidence",
-      "title": "Salary Transparency: Growth Slows, but Momentum Continues (Indeed Hiring Lab)",
-      "kind": "research",
-      "summary": "Tracks the share of US job postings on Indeed that disclose pay: 57.8% in September 2024, up from 52.2% a year earlier, with wide variation by occupation. Roughly four in ten postings still omit compensation — the structural precondition for compensation-band discrepancies surfacing only at late stages.",
-      "citation": "Indeed Hiring Lab (2024, October 23). Salary Transparency: Growth Slows, but Momentum Continues.",
-      "url": "https://hiringlab.indeed.com/2024/10/23/salary-transparency-growth-slows-but-momentum-continues/",
-      "period": "2024",
-      "aliases": []
-    },
-    {
-      "id": "EVD-006",
-      "type": "evidence",
-      "title": "Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format",
-      "kind": "research",
-      "summary": "Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.",
-      "citation": "Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.",
-      "url": "https://doi.org/10.1111/ijsa.12036",
-      "period": "2013",
-      "aliases": []
-    },
-    {
-      "id": "EVD-007",
-      "type": "evidence",
-      "title": "Federal funds target range and effective rate (FRED)",
-      "kind": "primary",
-      "summary": "The FOMC held the federal funds target range at 0.00–0.25% from 16 December 2008 to 15 December 2015 and again from 16 March 2020 to 16 March 2022. In every full month inside those two windows the effective federal funds rate stayed between 0.05% and 0.22%. Verified against the full daily DFEDTARU/DFEDTARL series (2,556 and 731 daily observations respectively, no other value in either window) and the monthly FEDFUNDS series.",
-      "citation": "Board of Governors of the Federal Reserve System (US), Federal Funds Target Range — Upper Limit [DFEDTARU], Lower Limit [DFEDTARL] and Federal Funds Effective Rate [FEDFUNDS], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
-      "url": "https://fred.stlouisfed.org/series/DFEDTARU",
-      "period": "2008–2022",
-      "aliases": []
-    },
-    {
-      "id": "EVD-008",
-      "type": "evidence",
-      "title": "ECB deposit facility rate (FRED)",
-      "kind": "primary",
-      "summary": "The ECB deposit facility rate was cut to 0.00% on 11 July 2012, turned negative at −0.10% on 11 June 2014, reached −0.50% on 18 September 2019 and returned to 0.00% on 27 July 2022. Every one of the 3,668 daily observations between 11 July 2012 and 26 July 2022 is at or below zero.",
-      "citation": "European Central Bank, ECB Deposit Facility Rate for Euro Area [ECBDFR], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
-      "url": "https://fred.stlouisfed.org/series/ECBDFR",
-      "period": "2012–2022",
-      "aliases": []
-    },
-    {
-      "id": "EVD-009",
-      "type": "evidence",
-      "title": "PitchBook-NVCA Venture Monitor, Q4 2021",
-      "kind": "research",
-      "summary": "US venture-backed companies raised $329.6 billion in 2021, against a previous record of $166.6 billion in 2020. The report states the figures verbatim; they are data-provider estimates and are revised in later vintages.",
-      "citation": "PitchBook Data and National Venture Capital Association, Q4 2021 PitchBook-NVCA Venture Monitor, 13 January 2022.",
-      "url": "https://nvca.org/wp-content/uploads/2022/01/Q4_2021_PitchBook_NVCA_Venture_Monitor.pdf",
-      "period": "2020–2021",
-      "aliases": []
-    },
-    {
-      "id": "EVD-010",
-      "type": "evidence",
-      "title": "KPMG Venture Pulse, Q4 2021",
-      "kind": "research",
-      "summary": "Global venture capital investment totalled $671 billion across 2021, the highest annual figure in the series, of which $171.4 billion was invested in Q4 2021 across 8,710 deals. Underlying data provided by PitchBook as of 31 December 2021.",
-      "citation": "KPMG Private Enterprise, Venture Pulse Q4 2021: Global analysis of venture funding, 19 January 2022, p. 7.",
-      "url": "https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2022/01/venture-pulse-q4-2021.pdf",
-      "period": "2021",
-      "aliases": []
-    },
-    {
-      "id": "EVD-011",
-      "type": "evidence",
-      "title": "Technology IPO profitability, 1980–2025 (Ritter)",
-      "kind": "research",
-      "summary": "Of 121 US technology listings in 2021, 21% were profitable on trailing- twelve-month earnings. The profitable share ranged from 15% to 43% in every year from 2011 to 2021, so a listing route remained open to companies without trailing profits throughout the period.",
-      "citation": "Ritter, Jay R. (2026). Initial Public Offerings: Technology Stock IPOs, Table 4b — Technology and Life Science Company IPOs, 1980–2025. University of Florida.",
-      "url": "https://web.archive.org/web/20260731141233/https://site.warrington.ufl.edu/ritter/files/IPOs-Tech.pdf",
-      "period": "2011–2021",
-      "aliases": []
-    },
-    {
-      "id": "EVD-012",
-      "type": "evidence",
-      "title": "26 U.S.C. §174 as it stood before 2022",
-      "kind": "primary",
-      "summary": "Under section 174(a)(1) as it stood before the Tax Cuts and Jobs Act took effect, a taxpayer could treat research or experimental expenditures paid or incurred in connection with a trade or business as expenses not chargeable to capital account, deductible in the year paid or incurred. Payroll spent on building product reduced taxable income in the same year it was spent.",
-      "citation": "26 U.S.C. §174, United States Code, 2017 Edition. U.S. Government Publishing Office.",
-      "url": "https://www.govinfo.gov/content/pkg/USCODE-2017-title26/html/USCODE-2017-title26-subtitleA-chap1-subchapB-partVI-sec174.htm",
-      "period": "to 2021",
-      "aliases": []
-    },
-    {
-      "id": "EVD-013",
+      "id": "evidence.26_u_s_c_174_after_the_2017_amendment",
       "type": "evidence",
       "title": "26 U.S.C. §174 after the 2017 amendment",
       "kind": "primary",
@@ -143,21 +11,25 @@
       "citation": "26 U.S.C. §174, United States Code, 2023 Edition. U.S. Government Publishing Office. Amendment: Pub. L. 115-97 §13206(a).",
       "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapB-partVI-sec174.htm",
       "period": "2022–2024",
-      "aliases": []
+      "aliases": [
+        "EVD-013"
+      ]
     },
     {
-      "id": "EVD-014",
+      "id": "evidence.26_u_s_c_174_as_it_stood_before_2022",
       "type": "evidence",
-      "title": "Rev. Proc. 2025-28 (IRS)",
+      "title": "26 U.S.C. §174 as it stood before 2022",
       "kind": "primary",
-      "summary": "IRS guidance on the 2025 restoration: foreign research or experimental expenditures keep the 15-year amortisation period; balances capitalised under the 2022–2024 rules may be recovered in full in the first tax year beginning after 31 December 2024 or ratably over two years; and a taxpayer meeting the section 448(c) gross-receipts test — $31,000,000 average annual gross receipts over the three prior tax years for a year beginning in 2025 — may elect the new treatment retroactively to tax years beginning after 31 December 2021, by 6 July 2026.",
-      "citation": "Internal Revenue Service, Rev. Proc. 2025-28, Internal Revenue Bulletin 2025-38, sections 2.02, 2.03(1), 2.06 and 3.02(1).",
-      "url": "https://www.irs.gov/pub/irs-drop/rp-25-28.pdf",
-      "period": "2025–2026",
-      "aliases": []
+      "summary": "Under section 174(a)(1) as it stood before the Tax Cuts and Jobs Act took effect, a taxpayer could treat research or experimental expenditures paid or incurred in connection with a trade or business as expenses not chargeable to capital account, deductible in the year paid or incurred. Payroll spent on building product reduced taxable income in the same year it was spent.",
+      "citation": "26 U.S.C. §174, United States Code, 2017 Edition. U.S. Government Publishing Office.",
+      "url": "https://www.govinfo.gov/content/pkg/USCODE-2017-title26/html/USCODE-2017-title26-subtitleA-chap1-subchapB-partVI-sec174.htm",
+      "period": "to 2021",
+      "aliases": [
+        "EVD-012"
+      ]
     },
     {
-      "id": "EVD-015",
+      "id": "evidence.26_u_s_c_174a_domestic_research_expenditures",
       "type": "evidence",
       "title": "26 U.S.C. §174A — domestic research expenditures",
       "kind": "primary",
@@ -165,241 +37,12 @@
       "citation": "26 U.S.C. §174A, Domestic research or experimental expenditures. Added by Pub. L. 119-21 §70302(a), 4 July 2025.",
       "url": "https://www.law.cornell.edu/uscode/text/26/174A",
       "period": "2025–",
-      "aliases": []
+      "aliases": [
+        "EVD-015"
+      ]
     },
     {
-      "id": "EVD-016",
-      "type": "evidence",
-      "title": "FOMC policy rate decisions (Open Market Operations)",
-      "kind": "primary",
-      "summary": "The FOMC raised the federal funds target range to 5.25–5.50% effective 27 July 2023, the peak of the tightening cycle, and held it there until the 25 basis point reduction of 18 September 2024 — roughly fourteen months.",
-      "citation": "Board of Governors of the Federal Reserve System (US), Open Market Operations, policy tools archive.",
-      "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm",
-      "period": "2022–2024",
-      "aliases": []
-    },
-    {
-      "id": "EVD-017",
-      "type": "evidence",
-      "title": "NASDAQ Composite Index (FRED)",
-      "kind": "primary",
-      "summary": "The NASDAQ Composite fell 36.4% from its record close of 16,057.44 on 19 November 2021 to its cycle low close of 10,213.29 on 28 December 2022.",
-      "citation": "NASDAQ OMX Group, NASDAQ Composite Index [NASDAQCOM], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
-      "url": "https://fred.stlouisfed.org/series/NASDAQCOM",
-      "period": "2021–2022",
-      "aliases": []
-    },
-    {
-      "id": "EVD-018",
-      "type": "evidence",
-      "title": "PitchBook-NVCA Venture Monitor, Q4 2023",
-      "kind": "research",
-      "summary": "Every stage of the US private funding chain contracted at once. Deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value reached a decade low of $61.5 billion across an estimated 1,129 events. New fund commitments fell to a six-year low of $66.9 billion across 474 funds, against $169.2 billion in 2021 and $172.8 billion in 2022.",
-      "citation": "PitchBook Data and National Venture Capital Association, Q4 2023 PitchBook-NVCA Venture Monitor, January 2024.",
-      "url": "https://nvca.org/wp-content/uploads/2024/01/Q4-2023-PitchBook-NVCA-Venture-Monitor.pdf",
-      "period": "2021–2023",
-      "aliases": []
-    },
-    {
-      "id": "EVD-019",
-      "type": "evidence",
-      "title": "US information-sector employment (BLS CES)",
-      "kind": "primary",
-      "summary": "US payroll employment in the information sector (NAICS 51 — software publishing, data processing and telecommunications, but not computer systems design) fell from a November 2022 peak of 3,115,000 to 2,780,000 in July 2026, a decline of 335,000 or 10.8%. An official establishment survey, not a layoff tracker.",
-      "citation": "US Bureau of Labor Statistics, Current Employment Statistics, series CES5000000001 (All employees, thousands, information, seasonally adjusted).",
-      "url": "https://data.bls.gov/timeseries/CES5000000001",
-      "period": "2022–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-020",
-      "type": "evidence",
-      "title": "Job openings, information sector (BLS JOLTS)",
-      "kind": "primary",
-      "summary": "Job openings in the US information sector averaged 224,000 a month in 2022 and 121,000 a month in 2025, and stood at 90,000 in June 2026, against an April 2022 peak of 274,000.",
-      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000JOL (Job openings, information, total US, seasonally adjusted).",
-      "url": "https://data.bls.gov/timeseries/JTS510000000000000JOL",
-      "period": "2022–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-021",
-      "type": "evidence",
-      "title": "Layoffs and discharges, information sector (BLS JOLTS)",
-      "kind": "primary",
-      "summary": "Official separations in the US information sector were 451,000 in 2022, 399,000 in 2023, 395,000 in 2024 and 447,000 in 2025 — roughly flat across the period, and without the year-to-year collapse reported by tracked-layoff counts over the same span.",
-      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).",
-      "url": "https://data.bls.gov/timeseries/JTU510000000000000LDL",
-      "period": "2022–2025",
-      "aliases": []
-    },
-    {
-      "id": "EVD-022",
-      "type": "evidence",
-      "title": "Hires, information sector (BLS JOLTS)",
-      "kind": "primary",
-      "summary": "Gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025, a decline of 367,000 or 28.9%. The measure counts hiring flows, not layoff announcements.",
-      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000HIL (Hires, information, total US, not seasonally adjusted).",
-      "url": "https://data.bls.gov/timeseries/JTU510000000000000HIL",
-      "period": "2022–2025",
-      "aliases": []
-    },
-    {
-      "id": "EVD-023",
-      "type": "evidence",
-      "title": "Tracked technology layoffs (Layoffs.fyi)",
-      "kind": "survey",
-      "summary": "A privately maintained tracker that compiles publicly reported layoff events at technology and startup companies worldwide, revised as new reports arrive. It is not a statistical census. It records 165,269 employees in 2022, 265,660 in 2023, 152,922 in 2024, 122,606 in 2025 and 127,180 between 1 January and 24 August 2026.",
-      "citation": "Layoffs.fyi — Tech and Startup Layoff Tracker, per-year pages, retrieved 27 August 2026.",
-      "url": "https://layoffs.fyi/2026-layoffs/",
-      "period": "2022–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-024",
-      "type": "evidence",
-      "title": "Announced job cuts, technology sector (Challenger, Gray & Christmas)",
-      "kind": "survey",
-      "summary": "A count of announcements of planned job cuts by US-based employers rather than of completed separations; not an official statistic. It reports 133,988 technology-sector cuts announced in 2024, 154,445 in 2025 and 149,023 between January and July 2026 — 67% above the 89,251 announced in the same months of 2025.",
-      "citation": "Challenger, Gray & Christmas, Job Cut Announcement Report, July 2026.",
-      "url": "https://www.challengergray.com/wp-content/uploads/2026/08/Challenger-Report-July-2026.pdf",
-      "period": "2024–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-025",
-      "type": "evidence",
-      "title": "Hires rate, total private (BLS JOLTS)",
-      "kind": "primary",
-      "summary": "The seasonally adjusted hires rate for total private employment was 3.7% in June 2026 (preliminary), a full percentage point below its June 2022 level of 4.7%: fewer positions per hundred jobs are being filled each month.",
-      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS100000000000000HIR (Hires rate, total private, seasonally adjusted).",
-      "url": "https://data.bls.gov/timeseries/JTS100000000000000HIR",
-      "period": "2022–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-026",
-      "type": "evidence",
-      "title": "Quits rate, information sector (BLS JOLTS)",
-      "kind": "primary",
-      "summary": "The seasonally adjusted quits rate in the US information sector was 1.1% in June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being vacated by the people already in them.",
-      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000QUR (Quits rate, information, seasonally adjusted).",
-      "url": "https://data.bls.gov/timeseries/JTS510000000000000QUR",
-      "period": "2022–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-027",
-      "type": "evidence",
-      "title": "Applications per opening (Greenhouse hiring benchmarks)",
-      "kind": "research",
-      "summary": "Applications received per open role across the reporting platform's customer base rose from 116 in 2022 to 244 in 2025, an increase of 111%. The stated dataset covers over 6,000 companies and over 640 million applications, so it measures one platform's customers rather than the labour market.",
-      "citation": "Greenhouse, The Hire Standard: hiring benchmarks report, North America, March 2026.",
-      "url": "https://www.greenhouse.com/recruiting-benchmarks",
-      "period": "2022–2025",
-      "aliases": []
-    },
-    {
-      "id": "EVD-028",
-      "type": "evidence",
-      "title": "Seniority mix of software postings (Indeed Hiring Lab)",
-      "kind": "research",
-      "summary": "Senior-level roles accounted for 69.3% of software development postings and entry-level roles for 4.5% in the first quarter of 2026, measured on one job board's postings rather than on all vacancies.",
-      "citation": "Indeed Hiring Lab, The Labor Market Is Tilting Toward Seniority, 23 July 2026.",
-      "url": "https://hiringlab.indeed.com/2026/07/23/the-labor-market-is-tilting-toward-seniority/",
-      "period": "2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-029",
-      "type": "evidence",
-      "title": "Employment of young software developers (Stanford Digital Economy Lab)",
-      "kind": "research",
-      "summary": "In payroll records covering 3.5–5 million workers a month, employment of software developers aged 22–25 fell by close to 20% between its late-2022 peak and September 2025, while employment for older workers in the same occupation did not fall. This is the paper's raw descriptive series for one occupation; its headline regression result — a 16% relative decline for ages 22–25 in AI-exposed occupations, controlling for firm-level shocks — is a different figure and should not be conflated with it.",
-      "citation": "Brynjolfsson, E., Chandar, B., & Chen, R. (2025). Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence. Stanford Digital Economy Lab, 13 November 2025.",
-      "url": "https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf",
-      "period": "2022–2025",
-      "aliases": []
-    },
-    {
-      "id": "EVD-030",
-      "type": "evidence",
-      "title": "Applications per opening on a national IT job board (DOU)",
-      "kind": "primary",
-      "summary": "Platform-reported counts for a single national IT job board. In March 2026 the board carried 7,987 openings and recorded 131,000 applications from 22,800 candidates — an average of 26 applications per opening, and 132 per opening in front-end development. The first quarter of 2026 carried 22,900 openings, 23% more than the same quarter of 2025. These are one board's own counts for one country, not a market-wide measure, and the average conceals the spread: the ratio differs by a factor of five between specialisations on the same board in the same month.",
-      "citation": "Конкуренція серед розробників росте. ІТ-ринок праці у І кварталі 2026. DOU, 2026.",
-      "url": "https://dou.ua/lenta/articles/it-job-market-1-quarter-2026/",
-      "period": "2025–2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-031",
-      "type": "evidence",
-      "title": "Self-selected survey of IT job seekers in one national market (DOU)",
-      "kind": "survey",
-      "summary": "A web survey run on a national IT community site in March–April 2026, covering 3,777 professionals in the country, 943 working abroad, and 363 looking for a first job in the field. Respondents were not sampled: they answered a questionnaire published on a site they already read, and the publication states no recruitment method, response rate or weighting. It describes who chose to answer, which is a different population from everyone searching.",
-      "citation": "Більше пошуку, менше оптимізму: як змінився ІТ-ринок праці — результати опитування DOU, 2026.",
-      "url": "https://dou.ua/lenta/articles/job-market-2026-part-1/",
-      "period": "2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-032",
-      "type": "evidence",
-      "title": "Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))",
-      "kind": "primary",
-      "summary": "Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A separate route applies where the candidate applied remotely: notice may instead follow within three business days of the action, naming the reporting agency, stating that the agency did not make the decision, and telling the candidate they may request a free copy and dispute its accuracy. The statute therefore already requires disclosure of the record, but only the first route places it before the decision is final, and neither fixes how long an offer stays open while a disputed field is reconciled.",
-      "citation": "15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes.",
-      "url": "https://www.law.cornell.edu/uscode/text/15/1681b",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-033",
-      "type": "evidence",
-      "title": "Corrected validity estimates reorder the selection methods, and work samples fall furthest",
-      "kind": "research",
-      "summary": "Sackett et al. (2022) showed that the range-restriction corrections long used in personnel-selection meta-analyses systematically overstated validity, and re-estimated it. This paper reproduces the full table. Against the prior figures, the corrected operational validities are: structured interviews .42 (was .51), job knowledge tests .40 (was .48), empirically keyed biodata .38 (was .35), work sample tests .33 (was .54), general mental ability .31 (was .51), unstructured interviews .19 (was .38). Two readings matter here. Structured interviews become the strongest single predictor, ahead of general mental ability. And work sample tests fall furthest of anything in the table — .21 — so the familiar claim that a sample of the work is the best available signal no longer holds, though .33 still places it above general mental ability. These are correlations with job performance once hired. Nothing here measures whether a scoring scheme is applied consistently, published in advance, or opened at all.",
-      "citation": "Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2023). Revisiting the design of selection systems in light of new findings regarding the validity of widely used predictors. Industrial and Organizational Psychology, 16(3). Reproducing the corrected estimates of Sackett, Zhang, Berry & Lievens (2022), Journal of Applied Psychology 107(11), 2040–2068.",
-      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A20984B138319E3D432E643978BF026D/S175494262300024Xa.pdf/revisiting_the_design_of_selection_systems_in_light_of_new_findings_regarding_the_validity_of_widely_used_predictors.pdf",
-      "period": "2022–2023",
-      "aliases": []
-    },
-    {
-      "id": "EVD-034",
-      "type": "evidence",
-      "title": "Postings without a fillable requisition, measured on one ATS platform (Greenhouse)",
-      "kind": "survey",
-      "summary": "A hiring platform reports that in any given quarter 18–22% of the roles posted through it are classified by the vendor as postings not attached to a search that can be filled, and pairs this with a survey of 2,500 workers in the US, UK and Germany in which 61% said they had heard nothing after an interview. The first figure is the vendor's own classification of its own customers' postings and is not independently auditable; the second is a self-reported recollection, not a matched record. Together they establish that a posting's existence does not imply a live requisition behind it — not any proportion for the market as a whole.",
-      "citation": "Greenhouse 2024 State of Job Hunting report. Platform classification of ghost jobs and survey of 2,500 workers across the US, UK and Germany.",
-      "url": "https://www.greenhouse.com/blog/greenhouse-2024-state-of-job-hunting-report",
-      "period": "2024",
-      "aliases": []
-    },
-    {
-      "id": "EVD-035",
-      "type": "evidence",
-      "title": "Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)",
-      "kind": "research",
-      "summary": "Across 26 million job postings, 67% of postings for production supervisor asked for a college degree while 16% of the people then doing that job held one — a gap of 51 percentage points between what the posting required and what the role demonstrably ran on. The study covers middle-skill occupations in the United States, not software roles, so it evidences the mechanism — a requirement list assembled from something other than the work being done — rather than any figure for technical hiring. The report also surveyed 600 business and HR leaders.",
-      "citation": "Fuller, J. B., & Raman, M. (2017). Dismissed by Degrees: How degree inflation is undermining U.S. competitiveness and hurting America's middle class. Harvard Business School, Accenture and Grads of Life, October 2017.",
-      "url": "https://www.hbs.edu/news/releases/degree-inflation-us-competetiveness",
-      "period": "2017",
-      "aliases": []
-    },
-    {
-      "id": "EVD-036",
-      "type": "evidence",
-      "title": "Whether an application was assessed at all is defined in regulation (41 CFR 60-1.3)",
-      "kind": "primary",
-      "summary": "US federal contracting regulation turns on whether an expression of interest was actually assessed. An individual counts as an \"Internet Applicant\" only where, among four criteria, \"the contractor considers the individual for employment in a particular position\" — defined as assessing the substantive information provided against the qualifications for that position. The rule then states the converse plainly: where there is a large number of expressions of interest, the contractor does *not* consider an individual by using \"data management techniques that do not depend on assessment of qualifications, such as random sampling or absolute numerical limits, to reduce the number of expressions of interest to be considered\". So an application closed without being read is a category the law already names and treats differently from a reviewed decline. The rule binds federal contractors in the United States, it governs who must be counted rather than what a candidate is told, and it does not require a contractor to record why any individual went unconsidered.",
-      "citation": "41 C.F.R. §60-1.3, definition of \"Internet Applicant\", paragraphs (1)-(3). Office of Federal Contract Compliance Programs.",
-      "url": "https://www.ecfr.gov/current/title-41/subtitle-B/chapter-60/part-60-1/subpart-A/section-60-1.3",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-037",
+      "id": "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22",
       "type": "evidence",
       "title": "A rejection issued without human involvement is regulated in the EU (GDPR Art. 22)",
       "kind": "primary",
@@ -407,109 +50,12 @@
       "citation": "Regulation (EU) 2016/679 (GDPR), Article 22 and Recital 71.",
       "url": "https://gdpr-info.eu/art-22-gdpr/",
       "period": "current",
-      "aliases": []
+      "aliases": [
+        "EVD-037"
+      ]
     },
     {
-      "id": "EVD-038",
-      "type": "evidence",
-      "title": "Publishing the band before the interview becomes a duty in the EU (Directive 2023/970, Art. 5)",
-      "kind": "primary",
-      "summary": "EU law requires employers to give applicants the initial pay or its range for the advertised position, set on objective and gender-neutral criteria, \"in a manner such as to ensure an informed and transparent negotiation on pay, such as in a published job vacancy notice, prior to the job interview or otherwise\", and to state the applicable collective agreement where there is one. It also forbids asking an applicant about their pay history in current or previous employment, and requires vacancy notices and job titles to be gender-neutral. The directive is being transposed into national law across Member States, and the reporting duties in Article 9 begin on 7 June 2027 for the largest employers. It fixes when a number must be disclosed, not that the number cannot move afterwards.",
-      "citation": "Directive (EU) 2023/970 of the European Parliament and of the Council of 10 May 2023, Article 5 (Pay transparency prior to employment).",
-      "url": "https://eur-lex.europa.eu/eli/dir/2023/970/oj/eng",
-      "period": "2023–2027",
-      "aliases": []
-    },
-    {
-      "id": "EVD-039",
-      "type": "evidence",
-      "title": "Openings that exist because a rule requires them (Ukraine, civil service competitions)",
-      "kind": "primary",
-      "summary": "Ukrainian law requires a competition to fill a civil service post: \"З метою добору осіб, здатних професійно виконувати посадові обов'язки, проводиться конкурс на зайняття посади державної служби\". The requirement covers vacant posts, posts held during an absence, and category \"А\" posts whose term is expiring. Whole classes of publicly advertised openings therefore exist because a statute mandates the competition, not because an employer freely chose to search outside — so a public posting is not by itself evidence that the outcome is open. The law governs the Ukrainian civil service, not private technical hiring, and it says nothing about whether any particular competition has a favoured candidate; it establishes only that mandated-posting regimes exist and are ordinary.",
-      "citation": "Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).",
-      "url": "https://zakon.rada.gov.ua/laws/show/889-19",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-040",
-      "type": "evidence",
-      "title": "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)",
-      "kind": "primary",
-      "summary": "Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.",
-      "citation": "Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).",
-      "url": "https://zakon.rada.gov.ua/laws/show/322-08",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-041",
-      "type": "evidence",
-      "title": "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)",
-      "kind": "primary",
-      "summary": "The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.",
-      "citation": "UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).",
-      "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/86",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-042",
-      "type": "evidence",
-      "title": "Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)",
-      "kind": "primary",
-      "summary": "5 U.S.C. § 2301 (Merit system principles) and the UK Civil Service Management Code (Section 1.1 on fair and open competition) require transparent declaration of whether positions are open exclusively to internal promotion slates or contested in open public competition. Open competitions running parallel to pre-identified incumbent candidacies must state evaluation rules explicitly to prevent deceptive solicitation of external applicant labor.",
-      "citation": "5 U.S.C. § 2301(b)(1) ('Recruitment should be from qualified individuals from appropriate sources in an endeavor to achieve a work force from all segments of society, and selection and advancement should be determined solely on the basis of relative ability, knowledge, and skills, after fair and open competition which assures that all receive equal opportunity.').",
-      "url": "https://www.law.cornell.edu/uscode/text/5/2301",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-043",
-      "type": "evidence",
-      "title": "Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)",
-      "kind": "primary",
-      "summary": "The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4) and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a)) mandate structured assessment mechanisms and verified evaluator competency in employment screening. Rushed, unreviewed interview panels operating without dedicated preparation time increase inter-rater noise and introduce arbitrary disqualification factors inconsistent with job-related qualification metrics.",
-      "citation": "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. § 1607.4 (Information on impact) & Regulation (EU) 2024/1689 Annex III, Item 4(a) (High-risk AI systems in recruitment and selection).",
-      "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-044",
-      "type": "evidence",
-      "title": "Promissory Estoppel and Pre-Employment Good Faith (Restatement of Employment Law § 2.02)",
-      "kind": "primary",
-      "summary": "Section 2.02 of the Restatement of Employment Law (American Law Institute, 2015) and prevailing common-law promissory estoppel doctrines establish actionable employer liability when an employer makes representations of an existing, funded position to induce a prospective employee to incur detrimental reliance (e.g. resigning from prior employment, incurring moving costs) while knowing the underlying headcount authorization or budgetary certification had not been secured or had lapsed.",
-      "citation": "Restatement of Employment Law § 2.02 (Promise of Employment: Reliance and Revocation) (American Law Institute, 2015).",
-      "url": "https://www.ali.org/publications/show/employment-law/",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-045",
-      "type": "evidence",
-      "title": "Candidate Dossier Retention and Talent Pool Transparency (GDPR Art. 5(1)(e) & EDPB Guidelines 3/2019)",
-      "kind": "primary",
-      "summary": "Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/679) and European Data Protection Board Guidelines 3/2019 establish strict storage limitation principles for recruitment candidate data: holding candidate evaluation records in 'talent pool' pools beyond the initial hiring process requires explicit consent or legitimate interest bounded by stated expiration dates and transparent re-entry criteria.",
-      "citation": "Regulation (EU) 2016/679 (GDPR), Article 5(1)(e) ('kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed').",
-      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
-      "period": "current",
-      "aliases": []
-    },
-    {
-      "id": "EVD-046",
-      "type": "evidence",
-      "title": "The Algorithmic Barrier: Quantifying Frictional Unemployment in Automated Recruitment (Fofanah, 2026)",
-      "kind": "research",
-      "summary": "Benchmarks a legacy keyword-based ATS parser against a proposed semantic matching system on the same applicant pool. The legacy system's recall is 0.45 (vs. 0.92 for the semantic system) — meaning most qualified candidates in the pool are never surfaced to a reviewer. The paper's error-mode analysis attributes over 40% of the legacy system's false negatives to pure lexical variation: a candidate's CV describing work in different wording from the posting's exact required terms (e.g. \"client engagement\" where the rubric expects \"customer success\"), not a genuine skills gap.",
-      "citation": "Fofanah, I. D. (2026). The Algorithmic Barrier: Quantifying Artificial Frictional Unemployment and Information Asymmetry in Automated Recruitment Systems. arXiv:2601.14534.",
-      "url": "https://arxiv.org/abs/2601.14534",
-      "period": "2026",
-      "aliases": []
-    },
-    {
-      "id": "EVD-047",
+      "id": "evidence.algorithmic_bias_in_recruitment_evaluating_resume_screeners_video_analysis_yadav_ahirwar_2026",
       "type": "evidence",
       "title": "Algorithmic Bias In Recruitment: Evaluating Resume Screeners & Video Analysis (Yadav & Ahirwar, 2026)",
       "kind": "research",
@@ -517,10 +63,51 @@
       "citation": "Yadav, K., & Ahirwar, K. (2026). Algorithmic Bias In Recruitment: Evaluating the Fairness and Diversity Impact of AI-Driven Resume Screeners and Video Interview Analysis. International Journal for Novel Research in Economics, Finance and Management.",
       "url": "https://ijnrefm.com/algorithmic-bias-in-recruitment-evaluating-the-fairness-and-diversity-impact-of-ai-driven-resume-screeners-and-video-interview-analysis/",
       "period": "2026",
-      "aliases": []
+      "aliases": [
+        "EVD-047"
+      ]
     },
     {
-      "id": "EVD-048",
+      "id": "evidence.announced_job_cuts_technology_sector_challenger_gray_christmas",
+      "type": "evidence",
+      "title": "Announced job cuts, technology sector (Challenger, Gray & Christmas)",
+      "kind": "survey",
+      "summary": "A count of announcements of planned job cuts by US-based employers rather than of completed separations; not an official statistic. It reports 133,988 technology-sector cuts announced in 2024, 154,445 in 2025 and 149,023 between January and July 2026 — 67% above the 89,251 announced in the same months of 2025.",
+      "citation": "Challenger, Gray & Christmas, Job Cut Announcement Report, July 2026.",
+      "url": "https://www.challengergray.com/wp-content/uploads/2026/08/Challenger-Report-July-2026.pdf",
+      "period": "2024–2026",
+      "aliases": [
+        "EVD-024"
+      ]
+    },
+    {
+      "id": "evidence.applications_per_opening_greenhouse_hiring_benchmarks",
+      "type": "evidence",
+      "title": "Applications per opening (Greenhouse hiring benchmarks)",
+      "kind": "research",
+      "summary": "Applications received per open role across the reporting platform's customer base rose from 116 in 2022 to 244 in 2025, an increase of 111%. The stated dataset covers over 6,000 companies and over 640 million applications, so it measures one platform's customers rather than the labour market.",
+      "citation": "Greenhouse, The Hire Standard: hiring benchmarks report, North America, March 2026.",
+      "url": "https://www.greenhouse.com/recruiting-benchmarks",
+      "period": "2022–2025",
+      "aliases": [
+        "EVD-027"
+      ]
+    },
+    {
+      "id": "evidence.applications_per_opening_on_a_national_it_job_board_dou",
+      "type": "evidence",
+      "title": "Applications per opening on a national IT job board (DOU)",
+      "kind": "primary",
+      "summary": "Platform-reported counts for a single national IT job board. In March 2026 the board carried 7,987 openings and recorded 131,000 applications from 22,800 candidates — an average of 26 applications per opening, and 132 per opening in front-end development. The first quarter of 2026 carried 22,900 openings, 23% more than the same quarter of 2025. These are one board's own counts for one country, not a market-wide measure, and the average conceals the spread: the ratio differs by a factor of five between specialisations on the same board in the same month.",
+      "citation": "Конкуренція серед розробників росте. ІТ-ринок праці у І кварталі 2026. DOU, 2026.",
+      "url": "https://dou.ua/lenta/articles/it-job-market-1-quarter-2026/",
+      "period": "2025–2026",
+      "aliases": [
+        "EVD-030"
+      ]
+    },
+    {
+      "id": "evidence.behind_the_privilege_shield_safeguarding_ai_bias_testing_data_in_employment_decisions_norton_rose_fulbright_2026",
       "type": "evidence",
       "title": "Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions (Norton Rose Fulbright, 2026)",
       "kind": "reporting",
@@ -528,7 +115,516 @@
       "citation": "Norton Rose Fulbright, Inside Tech Law (2026, June). Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions.",
       "url": "https://www.insidetechlaw.com/blog/2026/06/behind-the-privilege-shield-safeguarding-ai-bias-testing-data-in-employment-decisions",
       "period": "2026",
-      "aliases": []
+      "aliases": [
+        "EVD-048"
+      ]
+    },
+    {
+      "id": "evidence.candidate_dossier_retention_and_talent_pool_transparency_gdpr_art_5_1_e_edpb_guidelines_3_2019",
+      "type": "evidence",
+      "title": "Candidate Dossier Retention and Talent Pool Transparency (GDPR Art. 5(1)(e) & EDPB Guidelines 3/2019)",
+      "kind": "primary",
+      "summary": "Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/679) and European Data Protection Board Guidelines 3/2019 establish strict storage limitation principles for recruitment candidate data: holding candidate evaluation records in 'talent pool' pools beyond the initial hiring process requires explicit consent or legitimate interest bounded by stated expiration dates and transparent re-entry criteria.",
+      "citation": "Regulation (EU) 2016/679 (GDPR), Article 5(1)(e) ('kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed').",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "period": "current",
+      "aliases": [
+        "EVD-045"
+      ]
+    },
+    {
+      "id": "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest",
+      "type": "evidence",
+      "title": "Corrected validity estimates reorder the selection methods, and work samples fall furthest",
+      "kind": "research",
+      "summary": "Sackett et al. (2022) showed that the range-restriction corrections long used in personnel-selection meta-analyses systematically overstated validity, and re-estimated it. This paper reproduces the full table. Against the prior figures, the corrected operational validities are: structured interviews .42 (was .51), job knowledge tests .40 (was .48), empirically keyed biodata .38 (was .35), work sample tests .33 (was .54), general mental ability .31 (was .51), unstructured interviews .19 (was .38). Two readings matter here. Structured interviews become the strongest single predictor, ahead of general mental ability. And work sample tests fall furthest of anything in the table — .21 — so the familiar claim that a sample of the work is the best available signal no longer holds, though .33 still places it above general mental ability. These are correlations with job performance once hired. Nothing here measures whether a scoring scheme is applied consistently, published in advance, or opened at all.",
+      "citation": "Sackett, P. R., Zhang, C., Berry, C. M., & Lievens, F. (2023). Revisiting the design of selection systems in light of new findings regarding the validity of widely used predictors. Industrial and Organizational Psychology, 16(3). Reproducing the corrected estimates of Sackett, Zhang, Berry & Lievens (2022), Journal of Applied Psychology 107(11), 2040–2068.",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/A20984B138319E3D432E643978BF026D/S175494262300024Xa.pdf/revisiting_the_design_of_selection_systems_in_light_of_new_findings_regarding_the_validity_of_widely_used_predictors.pdf",
+      "period": "2022–2023",
+      "aliases": [
+        "EVD-033"
+      ]
+    },
+    {
+      "id": "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment",
+      "type": "evidence",
+      "title": "Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment",
+      "kind": "research",
+      "summary": "Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.",
+      "citation": "Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167.",
+      "url": "https://doi.org/10.1093/qje/qjt015",
+      "period": "2013",
+      "aliases": [
+        "EVD-003"
+      ]
+    },
+    {
+      "id": "evidence.ecb_deposit_facility_rate_fred",
+      "type": "evidence",
+      "title": "ECB deposit facility rate (FRED)",
+      "kind": "primary",
+      "summary": "The ECB deposit facility rate was cut to 0.00% on 11 July 2012, turned negative at −0.10% on 11 June 2014, reached −0.50% on 18 September 2019 and returned to 0.00% on 27 July 2022. Every one of the 3,668 daily observations between 11 July 2012 and 26 July 2022 is at or below zero.",
+      "citation": "European Central Bank, ECB Deposit Facility Rate for Euro Area [ECBDFR], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
+      "url": "https://fred.stlouisfed.org/series/ECBDFR",
+      "period": "2012–2022",
+      "aliases": [
+        "EVD-008"
+      ]
+    },
+    {
+      "id": "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format",
+      "type": "evidence",
+      "title": "Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format",
+      "kind": "research",
+      "summary": "Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.",
+      "citation": "Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276.",
+      "url": "https://doi.org/10.1111/ijsa.12036",
+      "period": "2013",
+      "aliases": [
+        "EVD-006"
+      ]
+    },
+    {
+      "id": "evidence.employment_of_young_software_developers_stanford_digital_economy_lab",
+      "type": "evidence",
+      "title": "Employment of young software developers (Stanford Digital Economy Lab)",
+      "kind": "research",
+      "summary": "In payroll records covering 3.5–5 million workers a month, employment of software developers aged 22–25 fell by close to 20% between its late-2022 peak and September 2025, while employment for older workers in the same occupation did not fall. This is the paper's raw descriptive series for one occupation; its headline regression result — a 16% relative decline for ages 22–25 in AI-exposed occupations, controlling for firm-level shocks — is a different figure and should not be conflated with it.",
+      "citation": "Brynjolfsson, E., Chandar, B., & Chen, R. (2025). Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence. Stanford Digital Economy Lab, 13 November 2025.",
+      "url": "https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf",
+      "period": "2022–2025",
+      "aliases": [
+        "EVD-029"
+      ]
+    },
+    {
+      "id": "evidence.federal_funds_target_range_and_effective_rate_fred",
+      "type": "evidence",
+      "title": "Federal funds target range and effective rate (FRED)",
+      "kind": "primary",
+      "summary": "The FOMC held the federal funds target range at 0.00–0.25% from 16 December 2008 to 15 December 2015 and again from 16 March 2020 to 16 March 2022. In every full month inside those two windows the effective federal funds rate stayed between 0.05% and 0.22%. Verified against the full daily DFEDTARU/DFEDTARL series (2,556 and 731 daily observations respectively, no other value in either window) and the monthly FEDFUNDS series.",
+      "citation": "Board of Governors of the Federal Reserve System (US), Federal Funds Target Range — Upper Limit [DFEDTARU], Lower Limit [DFEDTARL] and Federal Funds Effective Rate [FEDFUNDS], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
+      "url": "https://fred.stlouisfed.org/series/DFEDTARU",
+      "period": "2008–2022",
+      "aliases": [
+        "EVD-007"
+      ]
+    },
+    {
+      "id": "evidence.fomc_policy_rate_decisions_open_market_operations",
+      "type": "evidence",
+      "title": "FOMC policy rate decisions (Open Market Operations)",
+      "kind": "primary",
+      "summary": "The FOMC raised the federal funds target range to 5.25–5.50% effective 27 July 2023, the peak of the tightening cycle, and held it there until the 25 basis point reduction of 18 September 2024 — roughly fourteen months.",
+      "citation": "Board of Governors of the Federal Reserve System (US), Open Market Operations, policy tools archive.",
+      "url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm",
+      "period": "2022–2024",
+      "aliases": [
+        "EVD-016"
+      ]
+    },
+    {
+      "id": "evidence.hidden_workers_untapped_talent_hbs_accenture",
+      "type": "evidence",
+      "title": "Hidden Workers: Untapped Talent (HBS / Accenture)",
+      "kind": "research",
+      "summary": "Survey of 8,000 workers and 2,250 executives in the US, UK and Germany on automated hiring. 88% of employers agree that qualified high-skill candidates are vetted out of the process by applicant tracking systems because they do not match the exact criteria of the job description; the report attributes a large \"hidden worker\" population to configurable ATS exclusion rules and knock-out filters.",
+      "citation": "Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). Hidden Workers: Untapped Talent. Harvard Business School Project on Managing the Future of Work & Accenture.",
+      "url": "https://www.hbs.edu/managing-the-future-of-work/research/hidden-workers-untapped-talent",
+      "period": "2021",
+      "aliases": [
+        "EVD-001"
+      ]
+    },
+    {
+      "id": "evidence.hires_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Hires, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "Gross hires in the US information sector fell from 1,270,000 in 2022 to 903,000 in 2025, a decline of 367,000 or 28.9%. The measure counts hiring flows, not layoff announcements.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000HIL (Hires, information, total US, not seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTU510000000000000HIL",
+      "period": "2022–2025",
+      "aliases": [
+        "EVD-022"
+      ]
+    },
+    {
+      "id": "evidence.hires_rate_total_private_bls_jolts",
+      "type": "evidence",
+      "title": "Hires rate, total private (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "The seasonally adjusted hires rate for total private employment was 3.7% in June 2026 (preliminary), a full percentage point below its June 2022 level of 4.7%: fewer positions per hundred jobs are being filled each month.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS100000000000000HIR (Hires rate, total private, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTS100000000000000HIR",
+      "period": "2022–2026",
+      "aliases": [
+        "EVD-025"
+      ]
+    },
+    {
+      "id": "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code",
+      "type": "evidence",
+      "title": "Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)",
+      "kind": "primary",
+      "summary": "5 U.S.C. § 2301 (Merit system principles) and the UK Civil Service Management Code (Section 1.1 on fair and open competition) require transparent declaration of whether positions are open exclusively to internal promotion slates or contested in open public competition. Open competitions running parallel to pre-identified incumbent candidacies must state evaluation rules explicitly to prevent deceptive solicitation of external applicant labor.",
+      "citation": "5 U.S.C. § 2301(b)(1) ('Recruitment should be from qualified individuals from appropriate sources in an endeavor to achieve a work force from all segments of society, and selection and advancement should be determined solely on the basis of relative ability, knowledge, and skills, after fair and open competition which assures that all receive equal opportunity.').",
+      "url": "https://www.law.cornell.edu/uscode/text/5/2301",
+      "period": "current",
+      "aliases": [
+        "EVD-042"
+      ]
+    },
+    {
+      "id": "evidence.job_openings_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Job openings, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "Job openings in the US information sector averaged 224,000 a month in 2022 and 121,000 a month in 2025, and stood at 90,000 in June 2026, against an April 2022 peak of 274,000.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000JOL (Job openings, information, total US, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTS510000000000000JOL",
+      "period": "2022–2026",
+      "aliases": [
+        "EVD-020"
+      ]
+    },
+    {
+      "id": "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers",
+      "type": "evidence",
+      "title": "Job Seekers Beware of Ghost Jobs (Clarify Capital survey of hiring managers)",
+      "kind": "survey",
+      "summary": "Survey of 1,045 managers involved in hiring (fielded 31 Aug – 1 Sep 2022) on job postings kept live without active hiring: about half keep postings open because they are \"always open to new people\", 43% cite giving the impression that the company is growing or keeping existing employees motivated, one in three postings had been active for more than 30 days, and one in four respondents did not plan to fill the role for three months or longer.",
+      "citation": "Clarify Capital (2022). Job Seekers Beware of Ghost Jobs. Survey of 1,045 hiring managers, 31 Aug – 1 Sep 2022.",
+      "url": "https://clarifycapital.com/job-seekers-beware-of-ghost-jobs-survey",
+      "period": "2022",
+      "aliases": [
+        "EVD-004"
+      ]
+    },
+    {
+      "id": "evidence.kpmg_venture_pulse_q4_2021",
+      "type": "evidence",
+      "title": "KPMG Venture Pulse, Q4 2021",
+      "kind": "research",
+      "summary": "Global venture capital investment totalled $671 billion across 2021, the highest annual figure in the series, of which $171.4 billion was invested in Q4 2021 across 8,710 deals. Underlying data provided by PitchBook as of 31 December 2021.",
+      "citation": "KPMG Private Enterprise, Venture Pulse Q4 2021: Global analysis of venture funding, 19 January 2022, p. 7.",
+      "url": "https://assets.kpmg.com/content/dam/kpmg/xx/pdf/2022/01/venture-pulse-q4-2021.pdf",
+      "period": "2021",
+      "aliases": [
+        "EVD-010"
+      ]
+    },
+    {
+      "id": "evidence.layoffs_and_discharges_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Layoffs and discharges, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "Official separations in the US information sector were 451,000 in 2022, 399,000 in 2023, 395,000 in 2024 and 447,000 in 2025 — roughly flat across the period, and without the year-to-year collapse reported by tracked-layoff counts over the same span.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTU510000000000000LDL",
+      "period": "2022–2025",
+      "aliases": [
+        "EVD-021"
+      ]
+    },
+    {
+      "id": "evidence.nasdaq_composite_index_fred",
+      "type": "evidence",
+      "title": "NASDAQ Composite Index (FRED)",
+      "kind": "primary",
+      "summary": "The NASDAQ Composite fell 36.4% from its record close of 16,057.44 on 19 November 2021 to its cycle low close of 10,213.29 on 28 December 2022.",
+      "citation": "NASDAQ OMX Group, NASDAQ Composite Index [NASDAQCOM], retrieved from FRED, Federal Reserve Bank of St. Louis, 27 August 2026.",
+      "url": "https://fred.stlouisfed.org/series/NASDAQCOM",
+      "period": "2021–2022",
+      "aliases": [
+        "EVD-017"
+      ]
+    },
+    {
+      "id": "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions",
+      "type": "evidence",
+      "title": "Openings that exist because a rule requires them (Ukraine, civil service competitions)",
+      "kind": "primary",
+      "summary": "Ukrainian law requires a competition to fill a civil service post: \"З метою добору осіб, здатних професійно виконувати посадові обов'язки, проводиться конкурс на зайняття посади державної служби\". The requirement covers vacant posts, posts held during an absence, and category \"А\" posts whose term is expiring. Whole classes of publicly advertised openings therefore exist because a statute mandates the competition, not because an employer freely chose to search outside — so a public posting is not by itself evidence that the outcome is open. The law governs the Ukrainian civil service, not private technical hiring, and it says nothing about whether any particular competition has a favoured candidate; it establishes only that mandated-posting regimes exist and are ordinary.",
+      "citation": "Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).",
+      "url": "https://zakon.rada.gov.ua/laws/show/889-19",
+      "period": "current",
+      "aliases": [
+        "EVD-039"
+      ]
+    },
+    {
+      "id": "evidence.pitchbook_nvca_venture_monitor_q4_2021",
+      "type": "evidence",
+      "title": "PitchBook-NVCA Venture Monitor, Q4 2021",
+      "kind": "research",
+      "summary": "US venture-backed companies raised $329.6 billion in 2021, against a previous record of $166.6 billion in 2020. The report states the figures verbatim; they are data-provider estimates and are revised in later vintages.",
+      "citation": "PitchBook Data and National Venture Capital Association, Q4 2021 PitchBook-NVCA Venture Monitor, 13 January 2022.",
+      "url": "https://nvca.org/wp-content/uploads/2022/01/Q4_2021_PitchBook_NVCA_Venture_Monitor.pdf",
+      "period": "2020–2021",
+      "aliases": [
+        "EVD-009"
+      ]
+    },
+    {
+      "id": "evidence.pitchbook_nvca_venture_monitor_q4_2023",
+      "type": "evidence",
+      "title": "PitchBook-NVCA Venture Monitor, Q4 2023",
+      "kind": "research",
+      "summary": "Every stage of the US private funding chain contracted at once. Deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value reached a decade low of $61.5 billion across an estimated 1,129 events. New fund commitments fell to a six-year low of $66.9 billion across 474 funds, against $169.2 billion in 2021 and $172.8 billion in 2022.",
+      "citation": "PitchBook Data and National Venture Capital Association, Q4 2023 PitchBook-NVCA Venture Monitor, January 2024.",
+      "url": "https://nvca.org/wp-content/uploads/2024/01/Q4-2023-PitchBook-NVCA-Venture-Monitor.pdf",
+      "period": "2021–2023",
+      "aliases": [
+        "EVD-018"
+      ]
+    },
+    {
+      "id": "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse",
+      "type": "evidence",
+      "title": "Postings without a fillable requisition, measured on one ATS platform (Greenhouse)",
+      "kind": "survey",
+      "summary": "A hiring platform reports that in any given quarter 18–22% of the roles posted through it are classified by the vendor as postings not attached to a search that can be filled, and pairs this with a survey of 2,500 workers in the US, UK and Germany in which 61% said they had heard nothing after an interview. The first figure is the vendor's own classification of its own customers' postings and is not independently auditable; the second is a self-reported recollection, not a matched record. Together they establish that a posting's existence does not imply a live requisition behind it — not any proportion for the market as a whole.",
+      "citation": "Greenhouse 2024 State of Job Hunting report. Platform classification of ghost jobs and survey of 2,500 workers across the US, UK and Germany.",
+      "url": "https://www.greenhouse.com/blog/greenhouse-2024-state-of-job-hunting-report",
+      "period": "2024",
+      "aliases": [
+        "EVD-034"
+      ]
+    },
+    {
+      "id": "evidence.pre_adverse_action_disclosure_in_employment_background_checks_15_u_s_c_1681b_b_3",
+      "type": "evidence",
+      "title": "Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))",
+      "kind": "primary",
+      "summary": "Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A separate route applies where the candidate applied remotely: notice may instead follow within three business days of the action, naming the reporting agency, stating that the agency did not make the decision, and telling the candidate they may request a free copy and dispute its accuracy. The statute therefore already requires disclosure of the record, but only the first route places it before the decision is final, and neither fixes how long an offer stays open while a disputed field is reconciled.",
+      "citation": "15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes.",
+      "url": "https://www.law.cornell.edu/uscode/text/15/1681b",
+      "period": "current",
+      "aliases": [
+        "EVD-032"
+      ]
+    },
+    {
+      "id": "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+      "type": "evidence",
+      "title": "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)",
+      "kind": "primary",
+      "summary": "Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.",
+      "citation": "Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).",
+      "url": "https://zakon.rada.gov.ua/laws/show/322-08",
+      "period": "current",
+      "aliases": [
+        "EVD-040"
+      ]
+    },
+    {
+      "id": "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02",
+      "type": "evidence",
+      "title": "Promissory Estoppel and Pre-Employment Good Faith (Restatement of Employment Law § 2.02)",
+      "kind": "primary",
+      "summary": "Section 2.02 of the Restatement of Employment Law (American Law Institute, 2015) and prevailing common-law promissory estoppel doctrines establish actionable employer liability when an employer makes representations of an existing, funded position to induce a prospective employee to incur detrimental reliance (e.g. resigning from prior employment, incurring moving costs) while knowing the underlying headcount authorization or budgetary certification had not been secured or had lapsed.",
+      "citation": "Restatement of Employment Law § 2.02 (Promise of Employment: Reliance and Revocation) (American Law Institute, 2015).",
+      "url": "https://www.ali.org/publications/show/employment-law/",
+      "period": "current",
+      "aliases": [
+        "EVD-044"
+      ]
+    },
+    {
+      "id": "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5",
+      "type": "evidence",
+      "title": "Publishing the band before the interview becomes a duty in the EU (Directive 2023/970, Art. 5)",
+      "kind": "primary",
+      "summary": "EU law requires employers to give applicants the initial pay or its range for the advertised position, set on objective and gender-neutral criteria, \"in a manner such as to ensure an informed and transparent negotiation on pay, such as in a published job vacancy notice, prior to the job interview or otherwise\", and to state the applicable collective agreement where there is one. It also forbids asking an applicant about their pay history in current or previous employment, and requires vacancy notices and job titles to be gender-neutral. The directive is being transposed into national law across Member States, and the reporting duties in Article 9 begin on 7 June 2027 for the largest employers. It fixes when a number must be disclosed, not that the number cannot move afterwards.",
+      "citation": "Directive (EU) 2023/970 of the European Parliament and of the Council of 10 May 2023, Article 5 (Pay transparency prior to employment).",
+      "url": "https://eur-lex.europa.eu/eli/dir/2023/970/oj/eng",
+      "period": "2023–2027",
+      "aliases": [
+        "EVD-038"
+      ]
+    },
+    {
+      "id": "evidence.quits_rate_information_sector_bls_jolts",
+      "type": "evidence",
+      "title": "Quits rate, information sector (BLS JOLTS)",
+      "kind": "primary",
+      "summary": "The seasonally adjusted quits rate in the US information sector was 1.1% in June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being vacated by the people already in them.",
+      "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000QUR (Quits rate, information, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/JTS510000000000000QUR",
+      "period": "2022–2026",
+      "aliases": [
+        "EVD-026"
+      ]
+    },
+    {
+      "id": "evidence.rev_proc_2025_28_irs",
+      "type": "evidence",
+      "title": "Rev. Proc. 2025-28 (IRS)",
+      "kind": "primary",
+      "summary": "IRS guidance on the 2025 restoration: foreign research or experimental expenditures keep the 15-year amortisation period; balances capitalised under the 2022–2024 rules may be recovered in full in the first tax year beginning after 31 December 2024 or ratably over two years; and a taxpayer meeting the section 448(c) gross-receipts test — $31,000,000 average annual gross receipts over the three prior tax years for a year beginning in 2025 — may elect the new treatment retroactively to tax years beginning after 31 December 2021, by 6 July 2026.",
+      "citation": "Internal Revenue Service, Rev. Proc. 2025-28, Internal Revenue Bulletin 2025-38, sections 2.02, 2.03(1), 2.06 and 3.02(1).",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-25-28.pdf",
+      "period": "2025–2026",
+      "aliases": [
+        "EVD-014"
+      ]
+    },
+    {
+      "id": "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab",
+      "type": "evidence",
+      "title": "Salary Transparency: Growth Slows, but Momentum Continues (Indeed Hiring Lab)",
+      "kind": "research",
+      "summary": "Tracks the share of US job postings on Indeed that disclose pay: 57.8% in September 2024, up from 52.2% a year earlier, with wide variation by occupation. Roughly four in ten postings still omit compensation — the structural precondition for compensation-band discrepancies surfacing only at late stages.",
+      "citation": "Indeed Hiring Lab (2024, October 23). Salary Transparency: Growth Slows, but Momentum Continues.",
+      "url": "https://hiringlab.indeed.com/2024/10/23/salary-transparency-growth-slows-but-momentum-continues/",
+      "period": "2024",
+      "aliases": [
+        "EVD-005"
+      ]
+    },
+    {
+      "id": "evidence.self_selected_survey_of_it_job_seekers_in_one_national_market_dou",
+      "type": "evidence",
+      "title": "Self-selected survey of IT job seekers in one national market (DOU)",
+      "kind": "survey",
+      "summary": "A web survey run on a national IT community site in March–April 2026, covering 3,777 professionals in the country, 943 working abroad, and 363 looking for a first job in the field. Respondents were not sampled: they answered a questionnaire published on a site they already read, and the publication states no recruitment method, response rate or weighting. It describes who chose to answer, which is a different population from everyone searching.",
+      "citation": "Більше пошуку, менше оптимізму: як змінився ІТ-ринок праці — результати опитування DOU, 2026.",
+      "url": "https://dou.ua/lenta/articles/job-market-2026-part-1/",
+      "period": "2026",
+      "aliases": [
+        "EVD-031"
+      ]
+    },
+    {
+      "id": "evidence.seniority_mix_of_software_postings_indeed_hiring_lab",
+      "type": "evidence",
+      "title": "Seniority mix of software postings (Indeed Hiring Lab)",
+      "kind": "research",
+      "summary": "Senior-level roles accounted for 69.3% of software development postings and entry-level roles for 4.5% in the first quarter of 2026, measured on one job board's postings rather than on all vacancies.",
+      "citation": "Indeed Hiring Lab, The Labor Market Is Tilting Toward Seniority, 23 July 2026.",
+      "url": "https://hiringlab.indeed.com/2026/07/23/the-labor-market-is-tilting-toward-seniority/",
+      "period": "2026",
+      "aliases": [
+        "EVD-028"
+      ]
+    },
+    {
+      "id": "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees",
+      "type": "evidence",
+      "title": "Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)",
+      "kind": "research",
+      "summary": "Across 26 million job postings, 67% of postings for production supervisor asked for a college degree while 16% of the people then doing that job held one — a gap of 51 percentage points between what the posting required and what the role demonstrably ran on. The study covers middle-skill occupations in the United States, not software roles, so it evidences the mechanism — a requirement list assembled from something other than the work being done — rather than any figure for technical hiring. The report also surveyed 600 business and HR leaders.",
+      "citation": "Fuller, J. B., & Raman, M. (2017). Dismissed by Degrees: How degree inflation is undermining U.S. competitiveness and hurting America's middle class. Harvard Business School, Accenture and Grads of Life, October 2017.",
+      "url": "https://www.hbs.edu/news/releases/degree-inflation-us-competetiveness",
+      "period": "2017",
+      "aliases": [
+        "EVD-035"
+      ]
+    },
+    {
+      "id": "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996",
+      "type": "evidence",
+      "title": "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)",
+      "kind": "primary",
+      "summary": "The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.",
+      "citation": "UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).",
+      "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/86",
+      "period": "current",
+      "aliases": [
+        "EVD-041"
+      ]
+    },
+    {
+      "id": "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii",
+      "type": "evidence",
+      "title": "Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)",
+      "kind": "primary",
+      "summary": "The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4) and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a)) mandate structured assessment mechanisms and verified evaluator competency in employment screening. Rushed, unreviewed interview panels operating without dedicated preparation time increase inter-rater noise and introduce arbitrary disqualification factors inconsistent with job-related qualification metrics.",
+      "citation": "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. § 1607.4 (Information on impact) & Regulation (EU) 2024/1689 Annex III, Item 4(a) (High-risk AI systems in recruitment and selection).",
+      "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607",
+      "period": "current",
+      "aliases": [
+        "EVD-043"
+      ]
+    },
+    {
+      "id": "evidence.technology_ipo_profitability_1980_2025_ritter",
+      "type": "evidence",
+      "title": "Technology IPO profitability, 1980–2025 (Ritter)",
+      "kind": "research",
+      "summary": "Of 121 US technology listings in 2021, 21% were profitable on trailing- twelve-month earnings. The profitable share ranged from 15% to 43% in every year from 2011 to 2021, so a listing route remained open to companies without trailing profits throughout the period.",
+      "citation": "Ritter, Jay R. (2026). Initial Public Offerings: Technology Stock IPOs, Table 4b — Technology and Life Science Company IPOs, 1980–2025. University of Florida.",
+      "url": "https://web.archive.org/web/20260731141233/https://site.warrington.ufl.edu/ritter/files/IPOs-Tech.pdf",
+      "period": "2011–2021",
+      "aliases": [
+        "EVD-011"
+      ]
+    },
+    {
+      "id": "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026",
+      "type": "evidence",
+      "title": "The Algorithmic Barrier: Quantifying Frictional Unemployment in Automated Recruitment (Fofanah, 2026)",
+      "kind": "research",
+      "summary": "Benchmarks a legacy keyword-based ATS parser against a proposed semantic matching system on the same applicant pool. The legacy system's recall is 0.45 (vs. 0.92 for the semantic system) — meaning most qualified candidates in the pool are never surfaced to a reviewer. The paper's error-mode analysis attributes over 40% of the legacy system's false negatives to pure lexical variation: a candidate's CV describing work in different wording from the posting's exact required terms (e.g. \"client engagement\" where the rubric expects \"customer success\"), not a genuine skills gap.",
+      "citation": "Fofanah, I. D. (2026). The Algorithmic Barrier: Quantifying Artificial Frictional Unemployment and Information Asymmetry in Automated Recruitment Systems. arXiv:2601.14534.",
+      "url": "https://arxiv.org/abs/2601.14534",
+      "period": "2026",
+      "aliases": [
+        "EVD-046"
+      ]
+    },
+    {
+      "id": "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets",
+      "type": "evidence",
+      "title": "Too Good to Hire? Capability and Inferences about Commitment in Labor Markets",
+      "kind": "research",
+      "summary": "Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for \"overqualified\" rejections and the seniority double bind.",
+      "citation": "Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313.",
+      "url": "https://doi.org/10.1177/0001839219840022",
+      "period": "2020",
+      "aliases": [
+        "EVD-002"
+      ]
+    },
+    {
+      "id": "evidence.tracked_technology_layoffs_layoffs_fyi",
+      "type": "evidence",
+      "title": "Tracked technology layoffs (Layoffs.fyi)",
+      "kind": "survey",
+      "summary": "A privately maintained tracker that compiles publicly reported layoff events at technology and startup companies worldwide, revised as new reports arrive. It is not a statistical census. It records 165,269 employees in 2022, 265,660 in 2023, 152,922 in 2024, 122,606 in 2025 and 127,180 between 1 January and 24 August 2026.",
+      "citation": "Layoffs.fyi — Tech and Startup Layoff Tracker, per-year pages, retrieved 27 August 2026.",
+      "url": "https://layoffs.fyi/2026-layoffs/",
+      "period": "2022–2026",
+      "aliases": [
+        "EVD-023"
+      ]
+    },
+    {
+      "id": "evidence.us_information_sector_employment_bls_ces",
+      "type": "evidence",
+      "title": "US information-sector employment (BLS CES)",
+      "kind": "primary",
+      "summary": "US payroll employment in the information sector (NAICS 51 — software publishing, data processing and telecommunications, but not computer systems design) fell from a November 2022 peak of 3,115,000 to 2,780,000 in July 2026, a decline of 335,000 or 10.8%. An official establishment survey, not a layoff tracker.",
+      "citation": "US Bureau of Labor Statistics, Current Employment Statistics, series CES5000000001 (All employees, thousands, information, seasonally adjusted).",
+      "url": "https://data.bls.gov/timeseries/CES5000000001",
+      "period": "2022–2026",
+      "aliases": [
+        "EVD-019"
+      ]
+    },
+    {
+      "id": "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3",
+      "type": "evidence",
+      "title": "Whether an application was assessed at all is defined in regulation (41 CFR 60-1.3)",
+      "kind": "primary",
+      "summary": "US federal contracting regulation turns on whether an expression of interest was actually assessed. An individual counts as an \"Internet Applicant\" only where, among four criteria, \"the contractor considers the individual for employment in a particular position\" — defined as assessing the substantive information provided against the qualifications for that position. The rule then states the converse plainly: where there is a large number of expressions of interest, the contractor does *not* consider an individual by using \"data management techniques that do not depend on assessment of qualifications, such as random sampling or absolute numerical limits, to reduce the number of expressions of interest to be considered\". So an application closed without being read is a category the law already names and treats differently from a reviewed decline. The rule binds federal contractors in the United States, it governs who must be counted rather than what a candidate is told, and it does not require a contractor to record why any individual went unconsidered.",
+      "citation": "41 C.F.R. §60-1.3, definition of \"Internet Applicant\", paragraphs (1)-(3). Office of Federal Contract Compliance Programs.",
+      "url": "https://www.ecfr.gov/current/title-41/subtitle-B/chapter-60/part-60-1/subpart-A/section-60-1.3",
+      "period": "current",
+      "aliases": [
+        "EVD-036"
+      ]
     }
   ]
 }

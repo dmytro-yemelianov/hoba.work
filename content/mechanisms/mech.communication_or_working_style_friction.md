@@ -13,12 +13,12 @@ emissions:
     artifact: "obs.communication_mismatch_or_tone_friction_in_panel"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-006"]
+    evidence: ["evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["recruiter"]
 facets:
   actor: "candidate"
@@ -47,7 +47,7 @@ status: "active"
 evidence_level: "established"
 honest_baseline: true
 evidence_ids:
-  - "EVD-006"
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 specimens:
   -
     kind: "transcript"

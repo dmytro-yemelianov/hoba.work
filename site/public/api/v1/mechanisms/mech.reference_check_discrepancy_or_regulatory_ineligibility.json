@@ -4,7 +4,7 @@
     "title": "Reference Check Discrepancy or Regulatory Ineligibility",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nA third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV.",
     "aliases": [
@@ -22,7 +22,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "post-offer"
@@ -33,7 +33,7 @@
         "fidelity": "euphemism",
         "likelihood": "medium",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       }

@@ -51,7 +51,7 @@ perspectives:
     does: "Подається або ні, а якщо подається — питає на першому скринінгу, що саме за внутрішнім кандидатом уже бачили в роботі."
 status: "active"
 evidence_ids:
-  - "EVD-042"
+  - "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
 ---
 
 # Внутрішня кандидатура, названа в оголошенні

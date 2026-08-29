@@ -4,7 +4,7 @@
     "title": "Employment Gap Penalty Loop",
     "status": "active",
     "evidence_ids": [
-      "EVD-003"
+      "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
     ],
     "content": "# Employment Gap Penalty Loop\n\nAn employment gap triggers automated downranking (mech.employment_gap_downranking_bias), which pushes the profile below keyword and qualification filters (mech.automated_keyword_qualification_filter); fewer interview invitations lengthen the gap, which in turn strengthens the downranking.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.employment_gap_downranking_bias` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.employment_gap_downranking_bias`",
     "aliases": [

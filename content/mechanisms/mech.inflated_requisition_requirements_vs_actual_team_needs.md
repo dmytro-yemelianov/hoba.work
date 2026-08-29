@@ -14,13 +14,13 @@ emissions:
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["recruiter"]
   -
     artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
     fidelity: "noise"
     likelihood: "medium"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
 facets:
   actor: "hiring-manager"
   nature: "incentive"
@@ -55,7 +55,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-001"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 specimens:
   -
     kind: "posting"

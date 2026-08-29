@@ -37,14 +37,14 @@ perspectives:
     does: "Delivers against sprint goals and seeks written confirmation upon completion of the probation interval."
   -
     actor: "employer-policy"
-    sees: "Legal compliance boundaries (statutory 3-month caps under EVD-040 or contractual notice rules under EVD-041)."
+    sees: "Legal compliance boundaries (statutory 3-month caps under the Ukrainian Labour Code, or contractual notice rules under the UK Employment Rights Act 1996)."
     reads: "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect."
     does: "Enforces notice requirements and confirms payroll status transition upon probation completion."
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-040"
-  - "EVD-041"
+  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
 ---
 
 # Probation Period & Post-Start Confirmation

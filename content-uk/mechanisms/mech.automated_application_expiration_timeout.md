@@ -18,13 +18,13 @@ emissions:
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "void"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["screening"]
   -
     artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "medium"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["ingestion"]
 facets:
   actor: "system"
@@ -59,7 +59,7 @@ status: "active"
 evidence_level: "established"
 honest_baseline: false
 evidence_ids:
-  - "EVD-001"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 specimens:
   -
     kind: "ats"

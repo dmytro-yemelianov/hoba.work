@@ -58,8 +58,8 @@ measurements:
   - "late_stage_compensation_drop_rate"
   - "screen_to_offer_band_agreement_rate"
 evidence_ids:
-  - "EVD-005"
-  - "EVD-038"
+  - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
+  - "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
 ---
 
 # Відкрите розкриття зарплатної вилки на старті

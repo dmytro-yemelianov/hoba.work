@@ -63,7 +63,7 @@ perspectives:
     does: "Дістає розрахункові листи чи договір за спірні місяці й тримає дату звільнення позаду перенесеної дати виходу, доки поле не закрито."
 status: "active"
 evidence_ids:
-  - "EVD-032"
+  - "evidence.pre_adverse_action_disclosure_in_employment_background_checks_15_u_s_c_1681b_b_3"
 ---
 
 # Розкриття розбіжностей у перевірці та строк на звірку

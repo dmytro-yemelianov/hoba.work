@@ -51,7 +51,7 @@ perspectives:
     does: "Applies or does not, and where they do, asks at the first screen what the internal candidate has already been observed doing."
 status: "active"
 evidence_ids:
-  - "EVD-042"
+  - "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
 ---
 
 # Internal Candidacy Stated in the Posting

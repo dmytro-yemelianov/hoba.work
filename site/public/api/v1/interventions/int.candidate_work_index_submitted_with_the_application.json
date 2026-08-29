@@ -4,7 +4,7 @@
     "title": "Candidate Work Index Submitted With the Application",
     "status": "active",
     "evidence_ids": [
-      "EVD-033"
+      "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
     ],
     "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- mech.portfolio_work_artifact_misinterpretation loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
     "aliases": [

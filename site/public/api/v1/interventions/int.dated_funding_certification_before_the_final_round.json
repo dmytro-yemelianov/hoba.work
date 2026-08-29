@@ -4,7 +4,7 @@
     "title": "Dated Funding Certification Before the Final Round",
     "status": "active",
     "evidence_ids": [
-      "EVD-044"
+      "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02"
     ],
     "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
     "aliases": [

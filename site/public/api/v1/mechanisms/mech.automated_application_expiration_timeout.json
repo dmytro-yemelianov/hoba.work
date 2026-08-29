@@ -4,7 +4,7 @@
     "title": "Automated Application Expiration Timeout",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Automated Application Expiration Timeout\n\nThe ATS is configured to reject in bulk every application still pending after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stale_or_orphaned_job_requisition` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- A bulk timeout rejection carries no assessment of the profile at all.",
     "aliases": [
@@ -30,7 +30,7 @@
         "fidelity": "void",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "screening"
@@ -41,7 +41,7 @@
         "fidelity": "void",
         "likelihood": "medium",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "ingestion"

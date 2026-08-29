@@ -6,7 +6,7 @@
       "title": "ATS Parser Extraction Failure",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# ATS Parser Extraction Failure\n\nMulti-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `mech.automated_keyword_qualification_filter` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not imply human recruiter evaluated and disliked candidate experience.",
       "aliases": [
@@ -25,7 +25,7 @@
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "ingestion"
@@ -36,7 +36,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "ingestion"
@@ -107,7 +107,7 @@
       "title": "Automated Application Expiration Timeout",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Automated Application Expiration Timeout\n\nThe ATS is configured to reject in bulk every application still pending after 45 or 60 days.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stale_or_orphaned_job_requisition` — Stale or Orphaned Job Requisition\n\n### Non-Inferences\n- A bulk timeout rejection carries no assessment of the profile at all.",
       "aliases": [
@@ -133,7 +133,7 @@
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "screening"
@@ -144,7 +144,7 @@
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "ingestion"
@@ -227,8 +227,8 @@
       "title": "Automated Keyword / Qualification Filter",
       "status": "active",
       "evidence_ids": [
-        "EVD-001",
-        "EVD-037"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture",
+        "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22"
       ],
       "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `mech.employment_gap_downranking_bias` — Employment Gap Downranking Bias\n- Amplifies `mech.mid_process_role_requirement_redefinition` — Mid-Process Role Requirement Redefinition\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
       "aliases": [
@@ -246,7 +246,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "ingestion"
@@ -257,7 +257,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         }
@@ -536,7 +536,7 @@
       "title": "Communication or Working Style Friction",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Communication or Working Style Friction\n\nDuring a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `bias`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Style friction in a high-pressure interview is not a permanent personality defect.",
       "aliases": [
@@ -555,7 +555,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": []
         },
@@ -564,7 +564,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "recruiter"
@@ -643,7 +643,7 @@
       "title": "Domain Specificity Over-Weighting",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Domain Specificity Over-Weighting\n\nThe interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.hidden_evaluation_rubric_or_undisclosed_priority` — Hidden Evaluation Rubric or Undisclosed Priority\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
       "aliases": [
@@ -671,7 +671,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "recruiter"
@@ -682,7 +682,7 @@
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": []
         }
@@ -763,7 +763,7 @@
       "title": "Employment Gap Downranking Bias",
       "status": "active",
       "evidence_ids": [
-        "EVD-003"
+        "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
       ],
       "content": "# Employment Gap Downranking Bias\n\nAutomated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.automated_keyword_qualification_filter` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- An employment gap does not correlate with a decline in technical ability.",
       "aliases": [
@@ -782,7 +782,7 @@
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
-            "EVD-003"
+            "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
           ],
           "observed_at": [
             "ingestion"
@@ -793,7 +793,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-003"
+            "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
           ],
           "observed_at": [
             "screening"
@@ -865,7 +865,7 @@
       "title": "Experience-Age Grading Mismatch",
       "status": "active",
       "evidence_ids": [
-        "EVD-002"
+        "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
       ],
       "content": "# Experience-Age Grading Mismatch\n\nA candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.unstated_compensation_band_discrepancy` — Unstated Compensation Band Discrepancy\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organisational tier mismatch, not a candidate deficiency.",
       "aliases": [
@@ -885,7 +885,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-002"
+            "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
           ],
           "observed_at": []
         },
@@ -894,7 +894,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         }
@@ -962,7 +962,7 @@
       "title": "Genuine Technical Skill Shortfall",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Genuine Technical Skill Shortfall\n\nThe candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark.",
       "aliases": [
@@ -982,7 +982,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": [
             "technical"
@@ -993,7 +993,7 @@
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "technical"
@@ -1060,7 +1060,7 @@
       "title": "Headcount Freeze or Budget Cancellation",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Headcount Freeze or Budget Cancellation\n\nExecutive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.stale_or_orphaned_job_requisition` — Stale or Orphaned Job Requisition\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Candidate performance in interview was not the causal trigger for process termination.",
       "aliases": [
@@ -1080,7 +1080,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": []
         },
@@ -1089,7 +1089,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": []
         }
@@ -1164,7 +1164,7 @@
       "title": "Hidden Evaluation Rubric or Undisclosed Priority",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Hidden Evaluation Rubric or Undisclosed Priority\n\nThe panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.hiring_manager_consensus_impasse` — Hiring Manager Consensus Impasse\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Not guessing an unstated preference is not a shortfall in core competence.",
       "aliases": [
@@ -1184,7 +1184,7 @@
           "fidelity": "distortion",
           "likelihood": "medium",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": []
         },
@@ -1193,7 +1193,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": []
         }
@@ -1268,7 +1268,7 @@
       "title": "Hiring Manager Consensus Impasse",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Hiring Manager Consensus Impasse\n\nThe panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate.",
       "aliases": [
@@ -1286,7 +1286,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": [
             "team"
@@ -1297,7 +1297,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         }
@@ -1363,7 +1363,7 @@
       "title": "Inflated Requisition Requirements vs Actual Team Needs",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Inflated Requisition Requirements vs Actual Team Needs\n\nThe posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.automated_keyword_qualification_filter` — Automated Keyword / Qualification Filter\n- Amplifies `mech.unstated_compensation_band_discrepancy` — Unstated Compensation Band Discrepancy\n\n### Non-Inferences\n- Failing to meet an inflated \"wishlist\" does not establish anything about how the candidate would do the team's actual work.",
       "aliases": [
@@ -1383,7 +1383,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "recruiter"
@@ -1394,7 +1394,7 @@
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": []
         }
@@ -1467,7 +1467,7 @@
       "title": "Interview Resource & Scheduling Saturation",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.take_home_evaluation_fatigue_asymmetry` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational fact and does not indicate a negative evaluation.",
       "aliases": [
@@ -1487,7 +1487,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         },
@@ -1496,7 +1496,7 @@
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         }
@@ -1568,7 +1568,7 @@
       "title": "Location or Timezone Compliance Constraint",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Location or Timezone Compliance Constraint\n\nThe company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- The jurisdictional barrier is entirely independent of the candidate's technical competence.",
       "aliases": [
@@ -1594,7 +1594,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "ingestion"
@@ -1605,7 +1605,7 @@
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "recruiter"
@@ -1683,7 +1683,7 @@
       "title": "Mid-Process Role Requirement Redefinition",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Mid-Process Role Requirement Redefinition\n\nThe team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.unstated_compensation_band_discrepancy` — Unstated Compensation Band Discrepancy\n- Amplifies `mech.inflated_requisition_requirements_vs_actual_team_needs` — Inflated Requisition Requirements vs Actual Team Needs\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers.",
       "aliases": [
@@ -1703,7 +1703,7 @@
           "fidelity": "distortion",
           "likelihood": "medium",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": [
             "team"
@@ -1714,7 +1714,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": []
         }
@@ -1789,7 +1789,7 @@
       "title": "Portfolio / Work Artifact Misinterpretation",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Portfolio / Work Artifact Misinterpretation\n\nThe surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organisation.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
       "aliases": [
@@ -1815,7 +1815,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         },
@@ -1824,7 +1824,7 @@
           "fidelity": "distortion",
           "likelihood": "medium",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": [
             "technical"
@@ -1888,8 +1888,8 @@
       "title": "Pre-Selected Internal Candidate",
       "status": "active",
       "evidence_ids": [
-        "EVD-004",
-        "EVD-039"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers",
+        "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
       ],
       "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
       "aliases": [
@@ -1917,7 +1917,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": [
             "screening"
@@ -1928,7 +1928,7 @@
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": []
         }
@@ -2007,8 +2007,8 @@
       "title": "Probation Used as Extended De-Facto Interview",
       "status": "active",
       "evidence_ids": [
-        "EVD-040",
-        "EVD-041"
+        "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+        "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
       ],
       "content": "# Probation Used as Extended De-Facto Interview\n\nManagers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Non-Inferences\n- Does not establish that the employee committed gross misconduct.",
       "aliases": [
@@ -2026,8 +2026,8 @@
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [
-            "EVD-040",
-            "EVD-041"
+            "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+            "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
           ],
           "observed_at": [
             "post-offer"
@@ -2076,7 +2076,7 @@
               "tell": true
             },
             {
-              "text": "Notice issued under statutory probation clause (EVD-040).",
+              "text": "Notice issued under the statutory probation clause of the Ukrainian Labour Code.",
               "tell": false
             }
           ],
@@ -2098,7 +2098,7 @@
         },
         {
           "actor": "employer-policy",
-          "sees": "Probation turnover rates and dismissal compliance documentation under labour statute constraints (EVD-040).",
+          "sees": "Probation turnover rates and dismissal compliance documentation under the Ukrainian Labour Code's constraints.",
           "reads": "High probation turnover increases team onboarding costs while preserving statutory compliance.",
           "does": "Monitors probation pass rates and reviews termination justifications."
         }
@@ -2111,9 +2111,9 @@
       "title": "Recruiter Volume & Quota Incentive Distortion",
       "status": "active",
       "evidence_ids": [
-        "EVD-001",
-        "EVD-030",
-        "EVD-036"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture",
+        "evidence.applications_per_opening_on_a_national_it_job_board_dou",
+        "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3"
       ],
       "content": "# Recruiter Volume & Quota Incentive Distortion\n\nApplicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.interview_resource_scheduling_saturation` — Interview Resource & Scheduling Saturation\n- Masks `mech.automated_keyword_qualification_filter` — Automated Keyword / Qualification Filter\n\n### Non-Inferences\n- Does not mean the recruiter is individually negligent; the capacity mismatch is structural.",
       "aliases": [
@@ -2132,7 +2132,7 @@
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         },
@@ -2141,7 +2141,7 @@
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "recruiter"
@@ -2219,7 +2219,7 @@
       "title": "Reference Check Discrepancy or Regulatory Ineligibility",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Reference Check Discrepancy or Regulatory Ineligibility\n\nA third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Non-Inferences\n- An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV.",
       "aliases": [
@@ -2237,7 +2237,7 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "post-offer"
@@ -2248,7 +2248,7 @@
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         }
@@ -2308,7 +2308,7 @@
       "title": "Speculative Sourcing / Talent Pooling Without Opening",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Speculative Sourcing / Talent Pooling Without Opening\n\nRecruiters open conversations and build candidate pools against headcount that has not been approved or funded.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.recruiter_volume_quota_incentive_distortion` — Recruiter Volume & Quota Incentive Distortion\n\n### Non-Inferences\n- Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.",
       "aliases": [
@@ -2329,7 +2329,7 @@
           "fidelity": "distortion",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         },
@@ -2338,7 +2338,7 @@
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "sourcing"
@@ -2418,7 +2418,7 @@
       "title": "Stale or Orphaned Job Requisition",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.automated_application_expiration_timeout` — Automated Application Expiration Timeout\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability.",
       "aliases": [
@@ -2439,7 +2439,7 @@
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": [
             "ingestion"
@@ -2450,7 +2450,7 @@
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": [
             "screening"
@@ -2524,8 +2524,8 @@
       "title": "Start-Date Slippage and Post-Acceptance Revocation",
       "status": "active",
       "evidence_ids": [
-        "EVD-040",
-        "EVD-041"
+        "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+        "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
       ],
       "content": "# Start-Date Slippage and Post-Acceptance Revocation\n\nEmployers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not establish that candidate credentials or references failed validation.",
       "aliases": [
@@ -2544,8 +2544,8 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
-            "EVD-040",
-            "EVD-041"
+            "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+            "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
           ],
           "observed_at": [
             "post-offer"
@@ -2608,7 +2608,7 @@
           "actor": "candidate",
           "sees": "A signed offer with an indefinite or pushed start date after resigning from previous employment.",
           "reads": "Contractual commitment was asymmetrical: candidate resignation is irreversible while company start date is deferred.",
-          "does": "Assesses legal notice entitlements (EVD-041) and evaluates reopening active job search."
+          "does": "Assesses legal notice entitlements under the UK Employment Rights Act 1996 and evaluates reopening active job search."
         },
         {
           "actor": "recruiter",
@@ -2625,8 +2625,8 @@
       "title": "Stronger Competing Candidate in Final Cohort",
       "status": "active",
       "evidence_ids": [
-        "EVD-001",
-        "EVD-006"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture",
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Stronger Competing Candidate in Final Cohort\n\nCandidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.",
       "aliases": [
@@ -2646,7 +2646,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": []
         },
@@ -2655,7 +2655,7 @@
           "fidelity": "distortion",
           "likelihood": "low",
           "evidence": [
-            "EVD-004"
+            "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
           "observed_at": []
         }
@@ -2721,7 +2721,7 @@
       "title": "Take-Home Evaluation Fatigue & Asymmetry",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Take-Home Evaluation Fatigue & Asymmetry\n\nA 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.interview_resource_scheduling_saturation` — Interview Resource & Scheduling Saturation\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- A take-home rejection made under evaluation fatigue does not measure the engineering in the submission.",
       "aliases": [
@@ -2739,7 +2739,7 @@
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
-            "EVD-006"
+            "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
           "observed_at": [
             "technical"
@@ -2750,7 +2750,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-001"
+            "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
           "observed_at": [
             "technical"
@@ -2820,8 +2820,8 @@
       "title": "Unstated Compensation Band Discrepancy",
       "status": "active",
       "evidence_ids": [
-        "EVD-005",
-        "EVD-038"
+        "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab",
+        "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
       ],
       "content": "# Unstated Compensation Band Discrepancy\n\nCandidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.mid_process_role_requirement_redefinition` — Mid-Process Role Requirement Redefinition\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.",
       "aliases": [
@@ -2840,7 +2840,7 @@
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
-            "EVD-005"
+            "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
           ],
           "observed_at": [
             "recruiter"
@@ -2851,7 +2851,7 @@
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [
-            "EVD-005"
+            "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
           ],
           "observed_at": []
         },
@@ -2860,7 +2860,7 @@
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
-            "EVD-002"
+            "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
           ],
           "observed_at": [
             "recruiter"

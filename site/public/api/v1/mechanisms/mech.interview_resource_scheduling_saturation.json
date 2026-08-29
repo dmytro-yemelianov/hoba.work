@@ -4,7 +4,7 @@
     "title": "Interview Resource & Scheduling Saturation",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Interview Resource & Scheduling Saturation\n\nEngineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `noise`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.take_home_evaluation_fatigue_asymmetry` — Take-Home Evaluation Fatigue & Asymmetry\n\n### Non-Inferences\n- Rescheduling is an operational fact and does not indicate a negative evaluation.",
     "aliases": [
@@ -24,7 +24,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       },
@@ -33,7 +33,7 @@
         "fidelity": "noise",
         "likelihood": "medium",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       }

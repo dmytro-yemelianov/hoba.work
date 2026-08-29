@@ -13,13 +13,13 @@ emissions:
     artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "high"
-    evidence: ["EVD-003"]
+    evidence: ["evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"]
     observed_at: ["ingestion"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-003"]
+    evidence: ["evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"]
     observed_at: ["screening"]
 facets:
   actor: "system"
@@ -49,7 +49,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-003"
+  - "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
 specimens:
   -
     kind: "ats"

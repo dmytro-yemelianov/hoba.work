@@ -4,8 +4,8 @@
     "title": "Automated Keyword / Qualification Filter",
     "status": "active",
     "evidence_ids": [
-      "EVD-001",
-      "EVD-037"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture",
+      "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22"
     ],
     "content": "# Automated Keyword / Qualification Filter\n\nDeterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `rule`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `mech.employment_gap_downranking_bias` — Employment Gap Downranking Bias\n- Amplifies `mech.mid_process_role_requirement_redefinition` — Mid-Process Role Requirement Redefinition\n\n### Non-Inferences\n- Passing keyword filters does not guarantee interview invitation.",
     "aliases": [
@@ -23,7 +23,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "ingestion"
@@ -34,7 +34,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       }

@@ -60,7 +60,7 @@ perspectives:
     does: "Проводить панель поверх статусу замість повного циклу — або дає статусу спливти там, де рівень чи профіль ролі змінилися."
 status: "active"
 evidence_ids:
-  - "EVD-045"
+  - "evidence.candidate_dossier_retention_and_talent_pool_transparency_gdpr_art_5_1_e_edpb_guidelines_3_2019"
 ---
 
 # Зафіксований статус фіналіста з датованим шляхом повернення

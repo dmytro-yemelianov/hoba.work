@@ -4,7 +4,7 @@
     "title": "Hiring Manager Consensus Impasse",
     "status": "active",
     "evidence_ids": [
-      "EVD-006"
+      "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
     ],
     "content": "# Hiring Manager Consensus Impasse\n\nThe panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate.",
     "aliases": [
@@ -22,7 +22,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-006"
+          "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
         ],
         "observed_at": [
           "team"
@@ -33,7 +33,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       }

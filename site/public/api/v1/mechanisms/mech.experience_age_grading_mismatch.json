@@ -4,7 +4,7 @@
     "title": "Experience-Age Grading Mismatch",
     "status": "active",
     "evidence_ids": [
-      "EVD-002"
+      "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
     ],
     "content": "# Experience-Age Grading Mismatch\n\nA candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.\n\n### Structural Context\n- **Actor:** `recruiter`\n- **Nature:** `bias`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.unstated_compensation_band_discrepancy` — Unstated Compensation Band Discrepancy\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Being rejected as \"overqualified\" is an organisational tier mismatch, not a candidate deficiency.",
     "aliases": [
@@ -24,7 +24,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-002"
+          "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
         ],
         "observed_at": []
       },
@@ -33,7 +33,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       }

@@ -56,8 +56,8 @@ perspectives:
     does: "Подається за списком для скринінгу, а другий розділ читає як опис, а не як поріг."
 status: "active"
 evidence_ids:
-  - "EVD-035"
-  - "EVD-001"
+  - "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---
 
 # Вимоги, написані з беклогу команди

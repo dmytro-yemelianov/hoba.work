@@ -14,12 +14,12 @@ emissions:
     artifact: "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-002"]
+    evidence: ["evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
 facets:
   actor: "recruiter"
   nature: "bias"
@@ -49,7 +49,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-002"
+  - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
 specimens:
   -
     kind: "note"

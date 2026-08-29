@@ -51,7 +51,7 @@ measurements:
   - "gap_candidate_screen_rate"
   - "long_term_placement_success"
 evidence_ids:
-  - "EVD-003"
+  - "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
 ---
 
 # Remove Career Gap Feature from Automated Ranking Models

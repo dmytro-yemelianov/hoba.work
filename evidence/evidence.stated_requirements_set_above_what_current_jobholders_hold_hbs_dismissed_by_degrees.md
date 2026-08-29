@@ -1,0 +1,28 @@
+---
+id: "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees"
+type: "evidence"
+aliases:
+  - "EVD-035"
+title: "Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)"
+kind: research
+summary: >-
+  Across 26 million job postings, 67% of postings for production supervisor
+  asked for a college degree while 16% of the people then doing that job held
+  one — a gap of 51 percentage points between what the posting required and what
+  the role demonstrably ran on. The study covers middle-skill occupations in the
+  United States, not software roles, so it evidences the mechanism — a
+  requirement list assembled from something other than the work being done —
+  rather than any figure for technical hiring. The report also surveyed 600
+  business and HR leaders.
+citation: "Fuller, J. B., & Raman, M. (2017). Dismissed by Degrees: How degree inflation is undermining U.S. competitiveness and hurting America's middle class. Harvard Business School, Accenture and Grads of Life, October 2017."
+url: "https://www.hbs.edu/news/releases/degree-inflation-us-competetiveness"
+period: "2017"
+---
+
+# Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)
+
+Across 26 million job postings, 67% of postings for production supervisor asked for a college degree while 16% of the people then doing that job held one — a gap of 51 percentage points between what the posting required and what the role demonstrably ran on. The study covers middle-skill occupations in the United States, not software roles, so it evidences the mechanism — a requirement list assembled from something other than the work being done — rather than any figure for technical hiring. The report also surveyed 600 business and HR leaders.
+
+- **Kind:** `research`
+- **Citation:** Fuller, J. B., & Raman, M. (2017). Dismissed by Degrees: How degree inflation is undermining U.S. competitiveness and hurting America's middle class. Harvard Business School, Accenture and Grads of Life, October 2017.
+- **Source:** [hbs.edu](https://www.hbs.edu/news/releases/degree-inflation-us-competetiveness)

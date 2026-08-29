@@ -20,13 +20,13 @@ emissions:
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
     observed_at: ["screening"]
   -
     artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "euphemism"
     likelihood: "medium"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
 facets:
   actor: "policy"
   nature: "incentive"
@@ -55,8 +55,8 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-004"
-  - "EVD-039"
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
+  - "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
 specimens:
   -
     kind: "transcript"

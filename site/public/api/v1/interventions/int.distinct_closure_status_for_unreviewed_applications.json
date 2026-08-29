@@ -4,8 +4,8 @@
     "title": "Distinct Closure Status for Unreviewed Applications",
     "status": "active",
     "evidence_ids": [
-      "EVD-036",
-      "EVD-037"
+      "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3",
+      "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22"
     ],
     "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
     "aliases": [

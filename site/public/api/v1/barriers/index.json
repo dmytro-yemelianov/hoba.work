@@ -6,7 +6,7 @@
       "title": "Requisition Approval & Public Posting",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
       "aliases": [
@@ -75,7 +75,7 @@
       "title": "Outbound Sourcing & Talent Pool Contact",
       "status": "active",
       "evidence_ids": [
-        "EVD-034"
+        "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
       ],
       "content": "# Outbound Sourcing & Talent Pool Contact\n\nRecruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.\n\n### Pass Condition\nThe candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
       "aliases": [
@@ -144,7 +144,7 @@
       "title": "Application Ingestion",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nThe application record is received, validates against the minimum schema, and is linked to an active job requisition.",
       "aliases": [
@@ -215,9 +215,9 @@
       "title": "Automated Filter & Parser Threshold",
       "status": "active",
       "evidence_ids": [
-        "EVD-001",
-        "EVD-046",
-        "EVD-047"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture",
+        "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026",
+        "evidence.algorithmic_bias_in_recruitment_evaluating_resume_screeners_video_analysis_yadav_ahirwar_2026"
       ],
       "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
       "aliases": [
@@ -299,7 +299,7 @@
       "title": "Inbound Screening & Triage",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nThe recruiter adds the application to the active short-list for a first conversation.",
       "aliases": [
@@ -362,8 +362,8 @@
       "title": "Recruiter Screening Call",
       "status": "active",
       "evidence_ids": [
-        "EVD-001",
-        "EVD-005"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture",
+        "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
       ],
       "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nThe recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
       "aliases": [
@@ -450,7 +450,7 @@
       "title": "Technical Screen / Live Assessment",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nThe candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
       "aliases": [
@@ -513,7 +513,7 @@
       "title": "Take-Home / Work Sample Evaluation",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nThe submitted code meets the architecture, functionality, test coverage and documentation requirements.",
       "aliases": [
@@ -579,7 +579,7 @@
       "title": "Hiring Manager In-Depth Review",
       "status": "active",
       "evidence_ids": [
-        "EVD-002"
+        "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
       ],
       "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nThe hiring manager confirms the required depth and approves the candidate for the final panel.",
       "aliases": [
@@ -654,7 +654,7 @@
       "title": "Team & Cross-Functional Panel",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold.",
       "aliases": [
@@ -724,8 +724,8 @@
       "title": "Compensation & Levelling Reconciliation",
       "status": "active",
       "evidence_ids": [
-        "EVD-002",
-        "EVD-005"
+        "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets",
+        "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
       ],
       "content": "# Compensation & Levelling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / levelling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
       "aliases": [
@@ -793,7 +793,7 @@
       "title": "Headcount & Executive Budget Approval",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership.",
       "aliases": [
@@ -868,7 +868,7 @@
       "title": "Reference & Background Verification",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Reference & Background Verification\n\nThird-party or internal verification of past employment records, academic degrees, and professional references.\n\n### Pass Condition\nAll mandatory background checks clear with no unresolved factual discrepancies.",
       "aliases": [
@@ -940,7 +940,7 @@
       "title": "Offer Closing & Contract Execution",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered.",
       "aliases": [
@@ -1008,7 +1008,7 @@
       "title": "Client Profile Approval and Client Interview",
       "status": "active",
       "evidence_ids": [
-        "EVD-034"
+        "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
       ],
       "content": "# Client Profile Approval and Client Interview\n\nThe candidate profile is submitted to the end client for review, followed by a client-side interview round.\n\n### Pass Condition\nThe client approves the profile submission and signs off on the technical and culture match after the interview.",
       "aliases": [
@@ -1077,8 +1077,8 @@
       "title": "Probation Period & Post-Start Confirmation",
       "status": "active",
       "evidence_ids": [
-        "EVD-040",
-        "EVD-041"
+        "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
+        "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
       ],
       "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
       "aliases": [
@@ -1128,7 +1128,7 @@
         },
         {
           "actor": "employer-policy",
-          "sees": "Legal compliance boundaries (statutory 3-month caps under EVD-040 or contractual notice rules under EVD-041).",
+          "sees": "Legal compliance boundaries (statutory 3-month caps under the Ukrainian Labour Code, or contractual notice rules under the UK Employment Rights Act 1996).",
           "reads": "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect.",
           "does": "Enforces notice requirements and confirms payroll status transition upon probation completion."
         }

@@ -16,30 +16,30 @@ indicators:
     label: "US federal funds target range, held at its floor"
     figure: "0.00–0.25%"
     period: "16 Dec 2008 – 15 Dec 2015"
-    evidence: "EVD-007"
+    evidence: "evidence.federal_funds_target_range_and_effective_rate_fred"
   -
     label: "ECB deposit facility rate, at or below zero"
     figure: "0.00% → −0.50%"
     period: "11 Jul 2012 – 26 Jul 2022"
-    evidence: "EVD-008"
+    evidence: "evidence.ecb_deposit_facility_rate_fred"
   -
     label: "Research and development payroll deductible in the year it was paid"
     figure: "100%"
     period: "to tax year 2021"
-    evidence: "EVD-012"
+    evidence: "evidence.26_u_s_c_174_as_it_stood_before_2022"
   -
     label: "US technology listings profitable on trailing earnings"
     figure: "15–43% a year"
     period: "2011–2021"
-    evidence: "EVD-011"
+    evidence: "evidence.technology_ipo_profitability_1980_2025_ritter"
 entities:
   - "bar.outbound_sourcing_talent_pool_contact"
   - "mech.speculative_sourcing_talent_pooling_without_opening"
 evidence_ids:
-  - "EVD-007"
-  - "EVD-008"
-  - "EVD-011"
-  - "EVD-012"
+  - "evidence.federal_funds_target_range_and_effective_rate_fred"
+  - "evidence.ecb_deposit_facility_rate_fred"
+  - "evidence.technology_ipo_profitability_1980_2025_ritter"
+  - "evidence.26_u_s_c_174_as_it_stood_before_2022"
 specimens: []
 status: "active"
 ---

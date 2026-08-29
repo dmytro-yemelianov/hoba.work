@@ -13,8 +13,8 @@ emissions:
     fidelity: "direct"
     likelihood: "medium"
     evidence:
-      - "EVD-040"
-      - "EVD-041"
+      - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+      - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
     observed_at:
       - "post-offer"
   -
@@ -42,8 +42,8 @@ honest_baseline: false
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-040"
-  - "EVD-041"
+  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
 specimens:
   -
     kind: "note"
@@ -56,7 +56,7 @@ specimens:
         text: "Темп виконання завдань не досяг очікуваного рівня автономності на другий місяць."
         tell: true
       -
-        text: "Оформлено повідомлення про розірвання договору за статтею про випробувальний термін (EVD-040)."
+        text: "Оформлено повідомлення про розірвання договору за статтею про випробувальний термін КЗпП України."
         tell: false
     reading: "Етап співбесід було скорочено через переконання, що справжню кваліфікацію покаже лише реальна робота."
 perspectives:
@@ -72,7 +72,7 @@ perspectives:
     does: "Максимально викладається в перші місяці, зберігаючи контакти на ринку праці."
   -
     actor: "employer-policy"
-    sees: "Статистику плинності на випробувальному терміні та документальне обґрунтування звільнень за законодавством (EVD-040)."
+    sees: "Статистику плинності на випробувальному терміні та документальне обґрунтування звільнень за КЗпП України."
     reads: "Висока плинність на старті збільшує витрати на онбординг, хоча й залишається юридично коректною."
     does: "Відстежує відсоток проходження випробувального терміну та перевіряє правомірність рішень."
 non_inferences:

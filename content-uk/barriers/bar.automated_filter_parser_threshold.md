@@ -57,9 +57,9 @@ perspectives:
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-001"
-  - "EVD-046"
-  - "EVD-047"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026"
+  - "evidence.algorithmic_bias_in_recruitment_evaluating_resume_screeners_video_analysis_yadav_ahirwar_2026"
 ---
 
 # Автоматичний фільтр та поріг парсера

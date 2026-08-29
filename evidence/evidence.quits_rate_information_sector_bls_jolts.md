@@ -1,0 +1,23 @@
+---
+id: "evidence.quits_rate_information_sector_bls_jolts"
+type: "evidence"
+aliases:
+  - "EVD-026"
+title: "Quits rate, information sector (BLS JOLTS)"
+kind: primary
+summary: >-
+  The seasonally adjusted quits rate in the US information sector was 1.1% in
+  June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being
+  vacated by the people already in them.
+citation: "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000QUR (Quits rate, information, seasonally adjusted)."
+url: "https://data.bls.gov/timeseries/JTS510000000000000QUR"
+period: "2022–2026"
+---
+
+# Quits rate, information sector (BLS JOLTS)
+
+The seasonally adjusted quits rate in the US information sector was 1.1% in June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being vacated by the people already in them.
+
+- **Kind:** `primary`
+- **Citation:** US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTS510000000000000QUR (Quits rate, information, seasonally adjusted).
+- **Source:** [data.bls.gov](https://data.bls.gov/timeseries/JTS510000000000000QUR)

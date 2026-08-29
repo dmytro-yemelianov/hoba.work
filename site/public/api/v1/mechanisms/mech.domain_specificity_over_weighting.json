@@ -4,7 +4,7 @@
     "title": "Domain Specificity Over-Weighting",
     "status": "active",
     "evidence_ids": [
-      "EVD-006"
+      "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
     ],
     "content": "# Domain Specificity Over-Weighting\n\nThe interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.\n\n### Structural Context\n- **Actor:** `hiring-manager`\n- **Nature:** `bias`\n- **Removability:** `intermediary`\n\n### Causal Relations\n- Amplifies `mech.hidden_evaluation_rubric_or_undisclosed_priority` — Hidden Evaluation Rubric or Undisclosed Priority\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.",
     "aliases": [
@@ -32,7 +32,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": [
           "recruiter"
@@ -43,7 +43,7 @@
         "fidelity": "direct",
         "likelihood": "medium",
         "evidence": [
-          "EVD-006"
+          "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
         ],
         "observed_at": []
       }

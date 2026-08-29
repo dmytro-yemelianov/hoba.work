@@ -56,8 +56,8 @@ perspectives:
     does: "Applies against the screened list, and reads the second section as description rather than as a threshold to clear."
 status: "active"
 evidence_ids:
-  - "EVD-035"
-  - "EVD-001"
+  - "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---
 
 # Requirements Drawn From the Team's Own Backlog

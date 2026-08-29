@@ -12,13 +12,13 @@ emissions:
     artifact: "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["post-offer"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "medium"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
 facets:
   actor: "candidate"
   nature: "rule"
@@ -46,7 +46,7 @@ status: "active"
 evidence_level: "established"
 honest_baseline: true
 evidence_ids:
-  - "EVD-001"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 specimens:
   -
     kind: "email"

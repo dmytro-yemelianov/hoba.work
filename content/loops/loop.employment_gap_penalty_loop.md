@@ -69,7 +69,7 @@ perspectives:
 status: "active"
 evidence_level: "supported"
 evidence_ids:
-  - "EVD-003"
+  - "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
 ---
 
 # Employment Gap Penalty Loop

@@ -28,8 +28,8 @@ perspectives:
 status: "active"
 evidence_level: "supported"
 evidence_ids:
-  - "EVD-001"
-  - "EVD-048"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.behind_the_privilege_shield_safeguarding_ai_bias_testing_data_in_employment_decisions_norton_rose_fulbright_2026"
 probes:
   -
     id: "PROBE-A-002-1"

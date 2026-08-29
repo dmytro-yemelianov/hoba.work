@@ -1,0 +1,25 @@
+---
+id: "evidence.pitchbook_nvca_venture_monitor_q4_2023"
+type: "evidence"
+aliases:
+  - "EVD-018"
+title: "PitchBook-NVCA Venture Monitor, Q4 2023"
+kind: research
+summary: >-
+  Every stage of the US private funding chain contracted at once. Deal value
+  fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value
+  reached a decade low of $61.5 billion across an estimated 1,129 events. New
+  fund commitments fell to a six-year low of $66.9 billion across 474 funds,
+  against $169.2 billion in 2021 and $172.8 billion in 2022.
+citation: "PitchBook Data and National Venture Capital Association, Q4 2023 PitchBook-NVCA Venture Monitor, January 2024."
+url: "https://nvca.org/wp-content/uploads/2024/01/Q4-2023-PitchBook-NVCA-Venture-Monitor.pdf"
+period: "2021–2023"
+---
+
+# PitchBook-NVCA Venture Monitor, Q4 2023
+
+Every stage of the US private funding chain contracted at once. Deal value fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value reached a decade low of $61.5 billion across an estimated 1,129 events. New fund commitments fell to a six-year low of $66.9 billion across 474 funds, against $169.2 billion in 2021 and $172.8 billion in 2022.
+
+- **Kind:** `research`
+- **Citation:** PitchBook Data and National Venture Capital Association, Q4 2023 PitchBook-NVCA Venture Monitor, January 2024.
+- **Source:** [nvca.org](https://nvca.org/wp-content/uploads/2024/01/Q4-2023-PitchBook-NVCA-Venture-Monitor.pdf)

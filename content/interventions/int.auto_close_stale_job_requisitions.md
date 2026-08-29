@@ -59,7 +59,7 @@ measurements:
   - "stale_requisition_rate"
   - "closure_latency_days"
 evidence_ids:
-  - "EVD-004"
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 ---
 
 # Auto-Close Stale Job Requisitions

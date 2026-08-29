@@ -63,7 +63,7 @@ perspectives:
     does: "Sets the cadence the committee runs at and what it may decide, or does not — and where it does not, the referral is a code with nothing behind it."
 status: "active"
 evidence_ids:
-  - "EVD-033"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
 ---
 
 # Screening Note Bound to Observations and Disposition Codes

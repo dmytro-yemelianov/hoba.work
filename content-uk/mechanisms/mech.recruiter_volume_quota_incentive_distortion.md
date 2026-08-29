@@ -13,12 +13,12 @@ emissions:
     artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
   -
     artifact: "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
     fidelity: "noise"
     likelihood: "medium"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["recruiter"]
 facets:
   actor: "recruiter"
@@ -49,9 +49,9 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-001"
-  - "EVD-030"
-  - "EVD-036"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
+  - "evidence.applications_per_opening_on_a_national_it_job_board_dou"
+  - "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3"
 specimens:
   -
     kind: "ats"

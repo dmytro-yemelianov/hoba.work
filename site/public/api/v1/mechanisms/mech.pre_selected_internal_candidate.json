@@ -4,8 +4,8 @@
     "title": "Pre-Selected Internal Candidate",
     "status": "active",
     "evidence_ids": [
-      "EVD-004",
-      "EVD-039"
+      "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers",
+      "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
     ],
     "content": "# Pre-Selected Internal Candidate\n\nRequisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Causal Relations\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Cannot be asserted as fact without internal hiring log confirmation.",
     "aliases": [
@@ -33,7 +33,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": [
           "screening"
@@ -44,7 +44,7 @@
         "fidelity": "euphemism",
         "likelihood": "medium",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": []
       }

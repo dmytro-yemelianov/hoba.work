@@ -4,7 +4,7 @@
     "title": "Stale or Orphaned Job Requisition",
     "status": "active",
     "evidence_ids": [
-      "EVD-004"
+      "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
     ],
     "content": "# Stale or Orphaned Job Requisition\n\nJob posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.\n\n### Structural Context\n- **Actor:** `system`\n- **Nature:** `void`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.automated_application_expiration_timeout` — Automated Application Expiration Timeout\n\n### Non-Inferences\n- Application silence does not reflect candidate suitability.",
     "aliases": [
@@ -25,7 +25,7 @@
         "fidelity": "void",
         "likelihood": "high",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": [
           "ingestion"
@@ -36,7 +36,7 @@
         "fidelity": "noise",
         "likelihood": "medium",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": [
           "screening"

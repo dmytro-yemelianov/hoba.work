@@ -47,8 +47,8 @@ perspectives:
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-002"
-  - "EVD-005"
+  - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
+  - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
 ---
 
 # Compensation & Levelling Reconciliation

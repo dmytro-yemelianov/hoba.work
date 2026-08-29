@@ -1,0 +1,21 @@
+---
+id: "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
+type: "evidence"
+aliases:
+  - "EVD-003"
+title: "Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment"
+kind: research
+summary: >-
+  Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.
+citation: "Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167."
+url: "https://doi.org/10.1093/qje/qjt015"
+period: "2013"
+---
+
+# Duration Dependence and Labor Market Conditions: Evidence from a Field Experiment
+
+Field experiment sending roughly 12,000 fictitious résumés to about 3,000 postings in 100 US cities: the probability of an interview callback falls sharply with the length of the current unemployment spell (most of the decline within the first eight months) and the penalty is stronger in tighter labor markets — employers use gap length as a screening signal.
+
+- **Kind:** `research`
+- **Citation:** Kroft, K., Lange, F., & Notowidigdo, M. J. (2013). The Quarterly Journal of Economics, 128(3), 1123–1167.
+- **Source:** [doi.org](https://doi.org/10.1093/qje/qjt015)

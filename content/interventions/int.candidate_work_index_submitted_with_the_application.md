@@ -59,7 +59,7 @@ perspectives:
     does: "Reads the named artefact before the session where it is short enough, and asks about that work in the round rather than about the profile."
 status: "active"
 evidence_ids:
-  - "EVD-033"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
 ---
 
 # Candidate Work Index Submitted With the Application

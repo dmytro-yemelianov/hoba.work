@@ -14,13 +14,13 @@ emissions:
     artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "distortion"
     likelihood: "medium"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
     observed_at: ["team"]
   -
     artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
 facets:
   actor: "hiring-manager"
   nature: "noise"
@@ -56,7 +56,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-004"
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 specimens:
   -
     kind: "email"

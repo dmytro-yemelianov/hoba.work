@@ -70,7 +70,7 @@ perspectives:
 status: "active"
 evidence_level: "supported"
 evidence_ids:
-  - "EVD-002"
+  - "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
 ---
 
 # Seniority Double Bind

@@ -15,12 +15,12 @@ emissions:
     artifact: "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
     fidelity: "distortion"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
   -
     artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "medium"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["sourcing"]
 facets:
   actor: "recruiter"
@@ -55,7 +55,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-001"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 specimens:
   -
     kind: "chat"

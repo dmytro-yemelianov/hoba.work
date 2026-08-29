@@ -63,7 +63,7 @@ perspectives:
     does: "Задає, як часто збирається комітет і що він може вирішувати, — або не задає; і там, де не задає, передача лишається кодом, за яким нічого немає."
 status: "active"
 evidence_ids:
-  - "EVD-033"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
 ---
 
 # Нотатка скринінгу, обмежена спостереженнями й кодами рішення

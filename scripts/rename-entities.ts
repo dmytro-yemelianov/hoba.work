@@ -7,6 +7,11 @@
  * then inserts an `aliases:` entry recording the old code (insertAlias).
  *
  *   pnpm rename-entities --type pattern --dir patterns
+ *
+ * Evidence lives in one language-neutral tree at the repository root rather
+ * than in a pair of language mirrors, so it is renamed with:
+ *
+ *   pnpm rename-entities --type evidence --dir evidence --single-tree
  */
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -18,6 +23,8 @@ const typeIdx = args.indexOf('--type');
 const dirIdx = args.indexOf('--dir');
 const typeArg = typeIdx !== -1 ? args[typeIdx + 1] : undefined;
 const dirArg = dirIdx !== -1 ? args[dirIdx + 1] : undefined;
+/** One language-neutral tree at the repository root, rather than the two mirrors. */
+const trees = args.includes('--single-tree') ? [''] : ['content', 'content-uk'];
 if (!typeArg || !dirArg) {
   console.error('Usage: pnpm rename-entities --type <entity-type> --dir <content-directory-name>');
   process.exit(1);
@@ -40,10 +47,10 @@ for (const { oldId, newId } of entries) {
   const { filesChanged } = applyIdRename(root, oldId, newId);
   console.log(`  ${oldId} -> ${newId}: rewrote ${filesChanged.length} file(s)`);
 
-  const renames = planFileRename(root, dirArg, oldId, newId);
+  const renames = planFileRename(root, dirArg, oldId, newId, trees);
   if (renames.length === 0) {
     console.error(
-      `\nERROR: no file found for "${oldId}" under content/${dirArg}/ or content-uk/${dirArg}/ — ` +
+      `\nERROR: no file found for "${oldId}" under ${trees.map((t) => `${t ? `${t}/` : ''}${dirArg}/`).join(' or ')} — ` +
       `is --dir "${dirArg}" correct for type "${typeArg}"? ` +
       `Content for this entity has already been rewritten in place by applyIdRename above; ` +
       `review "git diff" before re-running.`

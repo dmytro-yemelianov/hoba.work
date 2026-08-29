@@ -13,18 +13,18 @@ emissions:
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-005"]
+    evidence: ["evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"]
     observed_at: ["recruiter"]
   -
     artifact: "obs.compensation_band_reduced_or_altered_mid_process"
     fidelity: "direct"
     likelihood: "medium"
-    evidence: ["EVD-005"]
+    evidence: ["evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"]
   -
     artifact: "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
     fidelity: "euphemism"
     likelihood: "medium"
-    evidence: ["EVD-002"]
+    evidence: ["evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"]
     observed_at: ["recruiter"]
 facets:
   actor: "policy"
@@ -60,8 +60,8 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-005"
-  - "EVD-038"
+  - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
+  - "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
 specimens:
   -
     kind: "chat"

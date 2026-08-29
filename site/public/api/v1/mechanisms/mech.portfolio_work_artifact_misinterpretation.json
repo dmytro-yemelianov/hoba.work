@@ -4,7 +4,7 @@
     "title": "Portfolio / Work Artifact Misinterpretation",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Portfolio / Work Artifact Misinterpretation\n\nThe surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organisation.\n\n### Structural Context\n- **Actor:** `candidate`\n- **Nature:** `noise`\n- **Removability:** `candidate`\n\n### Causal Relations\n- Amplifies `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n\n### Non-Inferences\n- Misinterpreted architecture can be corrected through structured documentation.",
     "aliases": [
@@ -30,7 +30,7 @@
         "fidelity": "euphemism",
         "likelihood": "high",
         "evidence": [
-          "EVD-001"
+          "evidence.hidden_workers_untapped_talent_hbs_accenture"
         ],
         "observed_at": []
       },
@@ -39,7 +39,7 @@
         "fidelity": "distortion",
         "likelihood": "medium",
         "evidence": [
-          "EVD-006"
+          "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
         ],
         "observed_at": [
           "technical"

@@ -57,7 +57,7 @@ perspectives:
     does: "Записує колонки й поріг до відкриття вакансії, а зміну до них проводить тим самим кроком публікації, а не посеред пошуку."
 status: "active"
 evidence_ids:
-  - "EVD-033"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
 ---
 
 # Публікація колонок і порогу технічного скринінгу до раунду

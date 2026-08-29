@@ -52,7 +52,7 @@ measurements:
   - "take_home_completion_rate"
   - "inter_rater_rubric_correlation"
 evidence_ids:
-  - "EVD-006"
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---
 
 # Обмеження часу тестових та анонімна перевірка за шкалою

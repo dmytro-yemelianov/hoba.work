@@ -33,8 +33,8 @@ perspectives:
 status: "active"
 evidence_level: "supported"
 evidence_ids:
-  - "EVD-005"
-  - "EVD-038"
+  - "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
+  - "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
 probes:
   -
     id: "PROBE-A-005-1"

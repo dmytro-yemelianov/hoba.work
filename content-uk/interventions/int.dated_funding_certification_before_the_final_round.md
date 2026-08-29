@@ -61,7 +61,7 @@ perspectives:
     does: "Зважує цю дату разом з іншими процесами, які веде паралельно, і перестає тримати час під цей процес, щойно в повідомленні сказано «закрито»."
 status: "active"
 evidence_ids:
-  - "EVD-044"
+  - "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02"
 ---
 
 # Датоване підтвердження фінансування до фінального раунду

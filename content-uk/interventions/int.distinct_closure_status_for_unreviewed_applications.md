@@ -60,8 +60,8 @@ perspectives:
     does: "Читає лист заради статусу, а не заради оцінки, якої, як сказано в самому листі, там немає, і на цьому вирішує, чи подаватися знову."
 status: "active"
 evidence_ids:
-  - "EVD-036"
-  - "EVD-037"
+  - "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3"
+  - "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22"
 ---
 
 # Окремий статус закриття для непереглянутих заявок

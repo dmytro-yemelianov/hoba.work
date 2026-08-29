@@ -59,7 +59,7 @@ perspectives:
     does: "Читає названий артефакт до сесії там, де він досить короткий, і питає в раунді про цю роботу, а не про профіль."
 status: "active"
 evidence_ids:
-  - "EVD-033"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
 ---
 
 # Індекс робіт, який кандидат подає разом із заявкою

@@ -6,7 +6,7 @@
       "title": "Auto-Close Stale Job Requisitions",
       "status": "active",
       "evidence_ids": [
-        "EVD-004"
+        "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
       "content": "# Auto-Close Stale Job Requisitions\n\nImplement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.\n\n### Expected Effects\n- mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it\n- Silence after applying acquires a bound — the record is closed and the closure is sent\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`",
       "aliases": [
@@ -88,7 +88,7 @@
       "title": "Candidate ATS Parser Conformance Test Utility",
       "status": "active",
       "evidence_ids": [
-        "EVD-001"
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one\n- mech.ats_parser_extraction_failure moves from invisible to checkable on the candidate's side of the line\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
       "aliases": [
@@ -163,7 +163,7 @@
       "title": "Candidate Work Index Submitted With the Application",
       "status": "active",
       "evidence_ids": [
-        "EVD-033"
+        "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
       ],
       "content": "# Candidate Work Index Submitted With the Application\n\nSubmit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.\n\n### Expected Effects\n- mech.portfolio_work_artifact_misinterpretation loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it\n- A contribution held under another organisation arrives as a commit range rather than as something to be discovered\n- The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first\n\n### Measurements\n- `work_index_attachment_rate`\n- `named_artifact_citation_rate`\n- `technical_screen_advance_rate`",
       "aliases": [
@@ -246,7 +246,7 @@
       "title": "Dated Funding Certification Before the Final Round",
       "status": "active",
       "evidence_ids": [
-        "EVD-044"
+        "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02"
       ],
       "content": "# Dated Funding Certification Before the Final Round\n\nCarry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.\n\n### Expected Effects\n- bar.headcount_executive_budget_approval is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends\n- mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date\n- bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live\n\n### Measurements\n- `panel_to_offer_latency_days`\n- `requisition_funding_lapse_rate`\n- `countersignature_latency_days`",
       "aliases": [
@@ -332,8 +332,8 @@
       "title": "Distinct Closure Status for Unreviewed Applications",
       "status": "active",
       "evidence_ids": [
-        "EVD-036",
-        "EVD-037"
+        "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3",
+        "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22"
       ],
       "content": "# Distinct Closure Status for Unreviewed Applications\n\nGive the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.\n\n### Expected Effects\n- mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status\n- The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are\n- bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search\n\n### Measurements\n- `unreviewed_at_close_rate`\n- `time_to_first_human_open_days`\n- `closure_status_coverage`",
       "aliases": [
@@ -416,7 +416,7 @@
       "title": "Internal Candidacy Stated in the Posting",
       "status": "active",
       "evidence_ids": [
-        "EVD-042"
+        "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
       ],
       "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- mech.pre_selected_internal_candidate stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
       "aliases": [
@@ -489,7 +489,7 @@
       "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota",
       "status": "active",
       "evidence_ids": [
-        "EVD-043"
+        "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii"
       ],
       "content": "# Interview Seats Booked With Prep Time and a Second Name on the Rota\n\nBook every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.\n\n### Expected Effects\n- mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date\n- A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name\n- Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot\n\n### Measurements\n- `interview_reschedule_rate`\n- `panel_seat_backfill_rate`\n- `rounds_per_interviewer_month`",
       "aliases": [
@@ -575,7 +575,7 @@
       "title": "Outreach States the Requisition Behind It",
       "status": "active",
       "evidence_ids": [
-        "EVD-034"
+        "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
       ],
       "content": "# Outreach States the Requisition Behind It\n\nEvery outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.\n\n### Expected Effects\n- bar.outbound_sourcing_talent_pool_contact's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent\n- mech.speculative_sourcing_talent_pooling_without_opening becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on\n- The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast\n\n### Measurements\n- `unattached_outreach_rate`\n- `pool_record_age_days`\n- `planning_decision_notice_rate`",
       "aliases": [
@@ -662,7 +662,7 @@
       "title": "Publish the Technical Screen's Columns and Threshold Before the Round",
       "status": "active",
       "evidence_ids": [
-        "EVD-033"
+        "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
       ],
       "content": "# Publish the Technical Screen's Columns and Threshold Before the Round\n\nPublish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.\n\n### Expected Effects\n- bar.technical_screen_live_assessment's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel\n- A total one point under the threshold at bar.technical_screen_live_assessment is locatable, because the number it is compared with is published\n- A round read cold under mech.interview_resource_scheduling_saturation is scored on the published columns rather than on what the hour left as an impression\n\n### Measurements\n- `rubric_completion_rate`\n- `borderline_outcome_rate`",
       "aliases": [
@@ -743,7 +743,7 @@
       "title": "Recorded Finalist Standing With a Dated Re-Entry Route",
       "status": "active",
       "evidence_ids": [
-        "EVD-045"
+        "evidence.candidate_dossier_retention_and_talent_pool_transparency_gdpr_art_5_1_e_edpb_guidelines_3_2019"
       ],
       "content": "# Recorded Finalist Standing With a Dated Re-Entry Route\n\nRecord, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.\n\n### Expected Effects\n- mech.stronger_competing_candidate_in_final_cohort becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group\n- bar.headcount_executive_budget_approval: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing\n- pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated\n\n### Measurements\n- `finalist_standing_record_rate`\n- `finalist_reentry_rate`\n- `reposted_requisition_match_rate`",
       "aliases": [
@@ -828,7 +828,7 @@
       "title": "Remove Career Gap Feature from Automated Ranking Models",
       "status": "active",
       "evidence_ids": [
-        "EVD-003"
+        "evidence.duration_dependence_and_labor_market_conditions_evidence_from_a_field_experiment"
       ],
       "content": "# Remove Career Gap Feature from Automated Ranking Models\n\nDisable employment duration gap penalties in recruitment AI algorithms and screening models.\n\n### Expected Effects\n- mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input\n- loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap\n\n### Measurements\n- `gap_candidate_screen_rate`\n- `long_term_placement_success`",
       "aliases": [
@@ -903,8 +903,8 @@
       "title": "Requirements Drawn From the Team's Own Backlog",
       "status": "active",
       "evidence_ids": [
-        "EVD-035",
-        "EVD-001"
+        "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees",
+        "evidence.hidden_workers_untapped_talent_hbs_accenture"
       ],
       "content": "# Requirements Drawn From the Team's Own Backlog\n\nDraft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.\n\n### Expected Effects\n- mech.inflated_requisition_requirements_vs_actual_team_needs is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on\n- bar.requisition_approval_public_posting fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid\n- loop.inflated_requirements_search_saturation_loop's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it\n\n### Measurements\n- `screened_requirement_count`\n- `mid_search_requirement_edits`\n- `screen_to_onsite_rate`",
       "aliases": [
@@ -983,7 +983,7 @@
       "title": "Screening Note Bound to Observations and Disposition Codes",
       "status": "active",
       "evidence_ids": [
-        "EVD-033"
+        "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
       ],
       "content": "# Screening Note Bound to Observations and Disposition Codes\n\nRestrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.\n\n### Expected Effects\n- The forecast mech.experience_age_grading_mismatch is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code\n- mech.portfolio_work_artifact_misinterpretation becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be\n- A profile above the graded band leaves bar.inbound_screening_triage with a routing code rather than a pass at screen\n\n### Measurements\n- `screening_note_field_completeness`\n- `above_grid_referral_rate`\n- `artifact_surface_recorded_rate`",
       "aliases": [
@@ -1071,7 +1071,7 @@
       "title": "Standardized Late-Stage Rejection Feedback Taxonomy",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Standardized Late-Stage Rejection Feedback Taxonomy\n\nProvide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.\n\n### Expected Effects\n- The stage and the criterion behind a late rejection become part of what is sent\n- mech.hidden_evaluation_rubric_or_undisclosed_priority becomes checkable: a rubric that is reported has to exist before the round\n\n### Measurements\n- `informative_feedback_ratio`\n- `interviewer_calibration_variance`",
       "aliases": [
@@ -1159,7 +1159,7 @@
       "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric",
       "status": "active",
       "evidence_ids": [
-        "EVD-006"
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
       ],
       "content": "# Strict Take-Home Timebox & Blinded Evaluation Rubric\n\nEnforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.\n\n### Expected Effects\n- mech.take_home_evaluation_fatigue_asymmetry loses its asymmetry: the timebox binds the reviewer as well as the candidate\n- Who wrote a submission stops being an input to how it is scored\n\n### Measurements\n- `take_home_completion_rate`\n- `inter_rater_rubric_correlation`",
       "aliases": [
@@ -1232,8 +1232,8 @@
       "title": "Upfront Compensation Band Disclosure",
       "status": "active",
       "evidence_ids": [
-        "EVD-005",
-        "EVD-038"
+        "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab",
+        "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
       ],
       "content": "# Upfront Compensation Band Disclosure\n\nPublish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.\n\n### Expected Effects\n- mech.unstated_compensation_band_discrepancy has nothing to operate on: the band is stated before the candidate is asked for a number\n- bar.compensation_levelling_reconciliation becomes arithmetic rather than a negotiation about whether a band exists\n\n### Measurements\n- `late_stage_compensation_drop_rate`\n- `screen_to_offer_band_agreement_rate`",
       "aliases": [
@@ -1314,7 +1314,7 @@
       "title": "Verification Discrepancy Disclosure and Reconciliation Window",
       "status": "active",
       "evidence_ids": [
-        "EVD-032"
+        "evidence.pre_adverse_action_disclosure_in_employment_background_checks_15_u_s_c_1681b_b_3"
       ],
       "content": "# Verification Discrepancy Disclosure and Reconciliation Window\n\nClassify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.\n\n### Expected Effects\n- mech.reference_check_discrepancy_or_regulatory_ineligibility arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause\n- bar.reference_background_verification contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns\n- Which findings a document can close and which end the process is a published classification rather than a per-file decision\n\n### Measurements\n- `verification_hold_duration_days`\n- `discrepancy_reconciliation_rate`\n- `disclosed_finding_ratio`",
       "aliases": [

@@ -62,7 +62,7 @@ perspectives:
     does: "Надсилає запрошення з імʼям інтервʼюера і вже підтвердженим блоком підготовки, а нову дату називає лише тоді, коли зайняті обидва імені з ротації."
 status: "active"
 evidence_ids:
-  - "EVD-043"
+  - "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii"
 ---
 
 # Місце в панелі з часом на підготовку і другим імʼям у ротації

@@ -9,8 +9,8 @@ stages:
   - "post-offer"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-040"
-  - "EVD-041"
+  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
 probes:
   -
     id: "PROBE-A-020-1"

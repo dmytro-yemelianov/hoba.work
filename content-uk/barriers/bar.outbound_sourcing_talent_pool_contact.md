@@ -49,7 +49,7 @@ perspectives:
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-034"
+  - "evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"
 ---
 
 # Вихідний сорсинг та контакт із талант-пулом

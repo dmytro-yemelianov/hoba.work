@@ -4,10 +4,10 @@
     "title": "The record funding years",
     "status": "active",
     "evidence_ids": [
-      "EVD-007",
-      "EVD-009",
-      "EVD-010",
-      "EVD-011"
+      "evidence.federal_funds_target_range_and_effective_rate_fred",
+      "evidence.pitchbook_nvca_venture_monitor_q4_2021",
+      "evidence.kpmg_venture_pulse_q4_2021",
+      "evidence.technology_ipo_profitability_1980_2025_ritter"
     ],
     "content": "# The record funding years\n\nThe shortest era on this page, and the one that shaped what most people still\nexpect a hiring process to look like. Funding raised in a single year roughly\ndoubled the previous record, and headcount plans were written against that\ncapital rather than against revenue.\n\nTwo things followed that are worth stating plainly, because they are the\nbaseline everything after 2022 is measured against. Roles were opened before the\nwork that would fill them existed. And the constraint an employer optimised for\nwas time-to-fill — which is the only condition under which a process gets\nshorter rather than longer.",
     "aliases": [
@@ -27,25 +27,25 @@
         "label": "US venture-backed companies raised",
         "figure": "$329.6B",
         "period": "2021, against $166.6B in 2020",
-        "evidence": "EVD-009"
+        "evidence": "evidence.pitchbook_nvca_venture_monitor_q4_2021"
       },
       {
         "label": "Global venture capital invested",
         "figure": "$671B",
         "period": "2021",
-        "evidence": "EVD-010"
+        "evidence": "evidence.kpmg_venture_pulse_q4_2021"
       },
       {
         "label": "US policy rate, back at its floor",
         "figure": "0.00–0.25%",
         "period": "16 Mar 2020 – 16 Mar 2022",
-        "evidence": "EVD-007"
+        "evidence": "evidence.federal_funds_target_range_and_effective_rate_fred"
       },
       {
         "label": "US technology listings profitable on trailing earnings",
         "figure": "21% of 121",
         "period": "2021",
-        "evidence": "EVD-011"
+        "evidence": "evidence.technology_ipo_profitability_1980_2025_ritter"
       }
     ],
     "entities": [

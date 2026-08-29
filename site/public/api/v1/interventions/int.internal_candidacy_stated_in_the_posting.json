@@ -4,7 +4,7 @@
     "title": "Internal Candidacy Stated in the Posting",
     "status": "active",
     "evidence_ids": [
-      "EVD-042"
+      "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
     ],
     "content": "# Internal Candidacy Stated in the Posting\n\nWhere a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.\n\n### Expected Effects\n- mech.pre_selected_internal_candidate stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round\n- bar.requisition_approval_public_posting publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration\n\n### Measurements\n- `slate_disclosure_rate`\n- `internal_fill_rate_on_posted_requisitions`\n- `external_rounds_per_internal_fill`",
     "aliases": [

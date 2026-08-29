@@ -13,8 +13,8 @@ emissions:
     fidelity: "direct"
     likelihood: "medium"
     evidence:
-      - "EVD-040"
-      - "EVD-041"
+      - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+      - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
     observed_at:
       - "post-offer"
   -
@@ -42,8 +42,8 @@ honest_baseline: false
 status: "active"
 evidence_level: "established"
 evidence_ids:
-  - "EVD-040"
-  - "EVD-041"
+  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
 specimens:
   -
     kind: "note"
@@ -56,7 +56,7 @@ specimens:
         text: "Delivery pace did not ramp to senior independent output within month two."
         tell: true
       -
-        text: "Notice issued under statutory probation clause (EVD-040)."
+        text: "Notice issued under the statutory probation clause of the Ukrainian Labour Code."
         tell: false
     reading: "The interview process was truncated under the assumption that probation serves as the true filtering phase."
 perspectives:
@@ -72,7 +72,7 @@ perspectives:
     does: "Delivers aggressively during initial months while maintaining external professional networks."
   -
     actor: "employer-policy"
-    sees: "Probation turnover rates and dismissal compliance documentation under labour statute constraints (EVD-040)."
+    sees: "Probation turnover rates and dismissal compliance documentation under the Ukrainian Labour Code's constraints."
     reads: "High probation turnover increases team onboarding costs while preserving statutory compliance."
     does: "Monitors probation pass rates and reviews termination justifications."
 non_inferences:

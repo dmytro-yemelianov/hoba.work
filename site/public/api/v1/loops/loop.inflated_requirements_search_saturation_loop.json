@@ -4,9 +4,9 @@
     "title": "Inflated-Requirements Search Saturation Loop",
     "status": "active",
     "evidence_ids": [
-      "EVD-001",
-      "EVD-004",
-      "EVD-031"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture",
+      "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers",
+      "evidence.self_selected_survey_of_it_job_seekers_in_one_national_market_dou"
     ],
     "content": "# Inflated-Requirements Search Saturation Loop\n\nTeams write inflated requirements that filter out strong generalists; the search stays open for months, recruiters tire of it, and the role is redefined mid-process.\n\n### Cycle Dynamics\nThis causal loop reinforces mechanisms across iterations:\n- `mech.inflated_requisition_requirements_vs_actual_team_needs` amplifies `mech.automated_keyword_qualification_filter`\n- `mech.automated_keyword_qualification_filter` amplifies `mech.mid_process_role_requirement_redefinition`\n- `mech.mid_process_role_requirement_redefinition` amplifies `mech.inflated_requisition_requirements_vs_actual_team_needs`",
     "aliases": [

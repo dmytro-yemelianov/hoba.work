@@ -12,13 +12,13 @@ emissions:
     artifact: "obs.conflicting_feedback_across_different_interviewers"
     fidelity: "direct"
     likelihood: "high"
-    evidence: ["EVD-006"]
+    evidence: ["evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"]
     observed_at: ["team"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
-    evidence: ["EVD-001"]
+    evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
 facets:
   actor: "hiring-manager"
   nature: "bias"
@@ -47,7 +47,7 @@ status: "active"
 evidence_level: "supported"
 honest_baseline: false
 evidence_ids:
-  - "EVD-006"
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 specimens:
   -
     kind: "note"

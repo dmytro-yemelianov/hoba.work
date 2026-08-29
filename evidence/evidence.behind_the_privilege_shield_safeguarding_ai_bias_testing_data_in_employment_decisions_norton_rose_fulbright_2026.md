@@ -1,0 +1,36 @@
+---
+id: "evidence.behind_the_privilege_shield_safeguarding_ai_bias_testing_data_in_employment_decisions_norton_rose_fulbright_2026"
+type: "evidence"
+aliases:
+  - "EVD-048"
+title: "Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions (Norton Rose Fulbright, 2026)"
+kind: reporting
+summary: >-
+  Legal analysis of a May 28, 2026 discovery order in Mobley v. Workday
+  (N.D. Cal.), the pending federal case alleging that Workday's applicant
+  screening tool produces disparate impact against candidates by age, race
+  and disability. The order held that AI bias-testing analyses can be
+  shielded by attorney-client privilege where outside counsel meaningfully
+  directed the testing for legal-advice purposes — quoting the court's
+  finding that "Workday has shown more than mere direction by its
+  attorneys" — while the underlying raw factual data and any
+  regulator-facing reports remain discoverable. Note: this record covers
+  only the privilege ruling; Mobley v. Workday's substantive disparate-impact
+  and "agent of the employer" theories remain contested litigation, not
+  adjudicated fact — an earlier July 2024 order only denied a motion to
+  dismiss those theories on plausibility grounds, and a nationwide ADEA
+  collective was preliminarily certified in May 2025.
+citation: "Norton Rose Fulbright, Inside Tech Law (2026, June). Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions."
+url: "https://www.insidetechlaw.com/blog/2026/06/behind-the-privilege-shield-safeguarding-ai-bias-testing-data-in-employment-decisions"
+period: "2026"
+---
+
+# Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions (Norton Rose Fulbright, 2026)
+
+Legal analysis of a May 28, 2026 discovery order in *Mobley v. Workday* (N.D. Cal.), the pending federal case alleging that Workday's applicant screening tool produces disparate impact against candidates by age, race and disability. The order held that AI bias-testing analyses can be shielded by attorney-client privilege where outside counsel meaningfully directed the testing for legal-advice purposes — quoting the court's finding that "Workday has shown more than mere direction by its attorneys" — while the underlying raw factual data and any regulator-facing reports remain discoverable.
+
+**Note:** this record covers only the privilege ruling. Mobley v. Workday's substantive disparate-impact and "agent of the employer" theories remain contested litigation, not adjudicated fact — an earlier July 2024 order only denied a motion to dismiss those theories on plausibility grounds, and a nationwide ADEA collective was preliminarily certified in May 2025.
+
+- **Kind:** `reporting`
+- **Citation:** Norton Rose Fulbright, Inside Tech Law (2026, June). Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions.
+- **Source:** [insidetechlaw.com](https://www.insidetechlaw.com/blog/2026/06/behind-the-privilege-shield-safeguarding-ai-bias-testing-data-in-employment-decisions)

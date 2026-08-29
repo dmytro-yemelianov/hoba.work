@@ -65,7 +65,7 @@ perspectives:
 status: "active"
 evidence_level: "supported"
 evidence_ids:
-  - "EVD-006"
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
 ---
 
 # Take-Home Opportunity-Cost Saturation Loop

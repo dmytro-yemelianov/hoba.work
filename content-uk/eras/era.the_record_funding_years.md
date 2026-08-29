@@ -16,32 +16,32 @@ indicators:
     label: "Залучено компаніями з венчурним капіталом у США"
     figure: "$329,6 млрд"
     period: "2021, проти $166,6 млрд у 2020"
-    evidence: "EVD-009"
+    evidence: "evidence.pitchbook_nvca_venture_monitor_q4_2021"
   -
     label: "Глобальні венчурні інвестиції"
     figure: "$671 млрд"
     period: "2021"
-    evidence: "EVD-010"
+    evidence: "evidence.kpmg_venture_pulse_q4_2021"
   -
     label: "Ставка ФРС, знову на нижній межі"
     figure: "0,00–0,25%"
     period: "16 бер. 2020 – 16 бер. 2022"
-    evidence: "EVD-007"
+    evidence: "evidence.federal_funds_target_range_and_effective_rate_fred"
   -
     label: "Технологічні IPO в США, прибуткові за попередніми результатами"
     figure: "21% зі 121"
     period: "2021"
-    evidence: "EVD-011"
+    evidence: "evidence.technology_ipo_profitability_1980_2025_ritter"
 entities:
   - "bar.outbound_sourcing_talent_pool_contact"
   - "mech.speculative_sourcing_talent_pooling_without_opening"
   - "mech.interview_resource_scheduling_saturation"
   - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
 evidence_ids:
-  - "EVD-007"
-  - "EVD-009"
-  - "EVD-010"
-  - "EVD-011"
+  - "evidence.federal_funds_target_range_and_effective_rate_fred"
+  - "evidence.pitchbook_nvca_venture_monitor_q4_2021"
+  - "evidence.kpmg_venture_pulse_q4_2021"
+  - "evidence.technology_ipo_profitability_1980_2025_ritter"
 specimens: []
 status: "active"
 ---

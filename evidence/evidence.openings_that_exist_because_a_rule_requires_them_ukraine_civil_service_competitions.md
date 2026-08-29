@@ -1,0 +1,31 @@
+---
+id: "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
+type: "evidence"
+aliases:
+  - "EVD-039"
+title: "Openings that exist because a rule requires them (Ukraine, civil service competitions)"
+kind: primary
+summary: >-
+  Ukrainian law requires a competition to fill a civil service post: "З метою
+  добору осіб, здатних професійно виконувати посадові обов'язки, проводиться
+  конкурс на зайняття посади державної служби". The requirement covers vacant
+  posts, posts held during an absence, and category "А" posts whose term is
+  expiring. Whole classes of publicly advertised openings therefore exist
+  because a statute mandates the competition, not because an employer freely
+  chose to search outside — so a public posting is not by itself evidence that
+  the outcome is open. The law governs the Ukrainian civil service, not private
+  technical hiring, and it says nothing about whether any particular competition
+  has a favoured candidate; it establishes only that mandated-posting regimes
+  exist and are ordinary.
+citation: "Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби)."
+url: "https://zakon.rada.gov.ua/laws/show/889-19"
+period: "current"
+---
+
+# Openings that exist because a rule requires them (Ukraine, civil service competitions)
+
+Ukrainian law requires a competition to fill a civil service post: "З метою добору осіб, здатних професійно виконувати посадові обов'язки, проводиться конкурс на зайняття посади державної служби". The requirement covers vacant posts, posts held during an absence, and category "А" posts whose term is expiring. Whole classes of publicly advertised openings therefore exist because a statute mandates the competition, not because an employer freely chose to search outside — so a public posting is not by itself evidence that the outcome is open. The law governs the Ukrainian civil service, not private technical hiring, and it says nothing about whether any particular competition has a favoured candidate; it establishes only that mandated-posting regimes exist and are ordinary.
+
+- **Kind:** `primary`
+- **Citation:** Закон України «Про державну службу» № 889-VIII, стаття 22 (Конкурс на зайняття посади державної служби).
+- **Source:** [zakon.rada.gov.ua](https://zakon.rada.gov.ua/laws/show/889-19)

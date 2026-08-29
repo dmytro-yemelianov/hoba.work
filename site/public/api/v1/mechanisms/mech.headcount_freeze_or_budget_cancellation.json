@@ -4,7 +4,7 @@
     "title": "Headcount Freeze or Budget Cancellation",
     "status": "active",
     "evidence_ids": [
-      "EVD-004"
+      "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
     ],
     "content": "# Headcount Freeze or Budget Cancellation\n\nExecutive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `rule`\n- **Removability:** `none`\n\n### Causal Relations\n- Amplifies `mech.stale_or_orphaned_job_requisition` — Stale or Orphaned Job Requisition\n- Masks `mech.genuine_technical_skill_shortfall` — Genuine Technical Skill Shortfall\n- Masks `mech.stronger_competing_candidate_in_final_cohort` — Stronger Competing Candidate in Final Cohort\n\n### Non-Inferences\n- Candidate performance in interview was not the causal trigger for process termination.",
     "aliases": [
@@ -24,7 +24,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": []
       },
@@ -33,7 +33,7 @@
         "fidelity": "direct",
         "likelihood": "high",
         "evidence": [
-          "EVD-004"
+          "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
         ],
         "observed_at": []
       }

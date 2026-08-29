@@ -4,7 +4,7 @@
     "title": "Candidate ATS Parser Conformance Test Utility",
     "status": "active",
     "evidence_ids": [
-      "EVD-001"
+      "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
     "content": "# Candidate ATS Parser Conformance Test Utility\n\nProvide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.\n\n### Expected Effects\n- The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one\n- mech.ats_parser_extraction_failure moves from invisible to checkable on the candidate's side of the line\n\n### Measurements\n- `parser_extraction_error_rate`\n- `ingestion_pass_rate`",
     "aliases": [

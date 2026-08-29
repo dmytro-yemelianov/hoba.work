@@ -16,32 +16,32 @@ indicators:
     label: "Піковий цільовий діапазон ставки ФРС"
     figure: "5,25–5,50%"
     period: "27 лип. 2023 – 18 вер. 2024"
-    evidence: "EVD-016"
+    evidence: "evidence.fomc_policy_rate_decisions_open_market_operations"
   -
     label: "NASDAQ Composite, від рекорду до мінімуму циклу"
     figure: "−36,4%"
     period: "19 лист. 2021 – 28 груд. 2022"
-    evidence: "EVD-017"
+    evidence: "evidence.nasdaq_composite_index_fred"
   -
     label: "Обсяг венчурних угод у США"
     figure: "$348,0 млрд → $170,6 млрд"
     period: "2021 → 2023"
-    evidence: "EVD-018"
+    evidence: "evidence.pitchbook_nvca_venture_monitor_q4_2023"
   -
     label: "Обсяг венчурних виходів у США, десятирічний мінімум"
     figure: "$61,5 млрд"
     period: "2023"
-    evidence: "EVD-018"
+    evidence: "evidence.pitchbook_nvca_venture_monitor_q4_2023"
   -
     label: "Зарплата розробників амортизується, а не списується"
     figure: "5 років внутрішні, 15 закордонні"
     period: "податкові роки від 2022"
-    evidence: "EVD-013"
+    evidence: "evidence.26_u_s_c_174_after_the_2017_amendment"
   -
     label: "Зафіксовані трекером технологічні звільнення (не перепис)"
     figure: "165 269 → 265 660"
     period: "2022 → 2023"
-    evidence: "EVD-023"
+    evidence: "evidence.tracked_technology_layoffs_layoffs_fyi"
 entities:
   - "mech.headcount_freeze_or_budget_cancellation"
   - "mech.mid_process_role_requirement_redefinition"
@@ -49,11 +49,11 @@ entities:
   - "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
   - "pat.closed_then_reposted_requisition_motif"
 evidence_ids:
-  - "EVD-013"
-  - "EVD-016"
-  - "EVD-017"
-  - "EVD-018"
-  - "EVD-023"
+  - "evidence.26_u_s_c_174_after_the_2017_amendment"
+  - "evidence.fomc_policy_rate_decisions_open_market_operations"
+  - "evidence.nasdaq_composite_index_fred"
+  - "evidence.pitchbook_nvca_venture_monitor_q4_2023"
+  - "evidence.tracked_technology_layoffs_layoffs_fyi"
 specimens: []
 status: "active"
 ---

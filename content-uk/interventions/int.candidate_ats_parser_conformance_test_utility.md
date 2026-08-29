@@ -50,7 +50,7 @@ measurements:
   - "parser_extraction_error_rate"
   - "ingestion_pass_rate"
 evidence_ids:
-  - "EVD-001"
+  - "evidence.hidden_workers_untapped_talent_hbs_accenture"
 ---
 
 # Інструмент перевірки коректності парсингу резюме в ATS

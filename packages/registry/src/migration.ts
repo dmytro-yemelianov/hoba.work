@@ -154,10 +154,24 @@ export interface FileRenamePlan {
   newPath: string;
 }
 
-/** Computes git-mv source/destination pairs for one entity across every language tree it exists in. */
-export function planFileRename(root: string, typeDir: string, oldId: string, newId: string): FileRenamePlan[] {
+/**
+ * Computes git-mv source/destination pairs for one entity across every tree it
+ * exists in.
+ *
+ * `trees` defaults to the two language mirrors, which is where the ten authored
+ * types live. Evidence is the exception: a citation is the same document in
+ * either language, so it lives in one language-neutral tree at the repository
+ * root — pass `['']` for that.
+ */
+export function planFileRename(
+  root: string,
+  typeDir: string,
+  oldId: string,
+  newId: string,
+  trees: readonly string[] = ['content', 'content-uk']
+): FileRenamePlan[] {
   const plans: FileRenamePlan[] = [];
-  for (const tree of ['content', 'content-uk']) {
+  for (const tree of trees) {
     const oldPath = path.join(root, tree, typeDir, `${oldId}.md`);
     if (!fs.existsSync(oldPath)) continue;
     plans.push({ oldPath, newPath: path.join(root, tree, typeDir, `${newId}.md`) });

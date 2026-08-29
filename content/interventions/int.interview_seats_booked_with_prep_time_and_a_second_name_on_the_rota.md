@@ -62,7 +62,7 @@ perspectives:
     does: "Sends the invitation with the interviewer's name and the prep block already accepted, and names a new date only when both rota names are out."
 status: "active"
 evidence_ids:
-  - "EVD-043"
+  - "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii"
 ---
 
 # Interview Seats Booked With Prep Time and a Second Name on the Rota

@@ -15,13 +15,13 @@ emissions:
     artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "high"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
     observed_at: ["ingestion"]
   -
     artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
     fidelity: "noise"
     likelihood: "medium"
-    evidence: ["EVD-004"]
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
     observed_at: ["screening"]
 facets:
   actor: "system"
@@ -56,7 +56,7 @@ status: "active"
 evidence_level: "established"
 honest_baseline: false
 evidence_ids:
-  - "EVD-004"
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
 specimens:
   -
     kind: "chat"

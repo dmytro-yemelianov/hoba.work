@@ -48,7 +48,7 @@ program
 
 program
   .command('show <id>')
-  .description('Display detailed specification of a given entity ID (e.g. M-001, EVD-001)')
+  .description('Display detailed specification of a given entity ID (e.g. mech.employment_gap_downranking_bias); legacy short codes resolve as aliases')
   .action((id: string, _opts: unknown, cmd: Command) => {
     run(() => cmdShow(id, cmd.optsWithGlobals() as GlobalOptions));
   });

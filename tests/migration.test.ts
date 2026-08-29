@@ -214,6 +214,25 @@ describe('planFileRename', () => {
     ]);
   });
 
+  it('plans a rename in a single language-neutral tree at the repository root', () => {
+    // Evidence is one tree at the root, not a pair of language mirrors: a
+    // citation is the same document in either language.
+    const root = writeTempRegistry({
+      'evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
+    });
+    const plans = planFileRename(root, 'evidence', 'EVD-001', 'evidence.hidden_workers', ['']);
+    expect(plans).toEqual([
+      { oldPath: `${root}/evidence/EVD-001.md`, newPath: `${root}/evidence/evidence.hidden_workers.md` },
+    ]);
+  });
+
+  it('leaves the language-mirror trees as the default when no trees are named', () => {
+    const root = writeTempRegistry({
+      'evidence/EVD-001.md': '---\nid: "EVD-001"\n---\n',
+    });
+    expect(planFileRename(root, 'evidence', 'EVD-001', 'evidence.hidden_workers')).toEqual([]);
+  });
+
   it('skips a language tree where the old file does not exist', () => {
     const root = writeTempRegistry({
       'content/actors/candidate.md': '---\nid: "candidate"\n---\n',
