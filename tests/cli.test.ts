@@ -97,6 +97,47 @@ describe('hoba CLI', { timeout: 20000 }, () => {
     expect(txt).toContain('obs.explicit_feedback_citing_skill_depth_shortfall');
   });
 
+  // Design doc §11: the surface the external spec asks for. `get` is not a
+  // second implementation — §11 flags the `show`/`get` overlap and says
+  // reconcile rather than ship two near-duplicates, so it is one command
+  // reachable by both names.
+  it('reaches the same entity under `get` as under `show`, by canonical ID and by legacy code', () => {
+    const canonical = JSON.parse(hoba(['get', 'mech.genuine_technical_skill_shortfall', '--json']).stdout);
+    const viaShow = JSON.parse(hoba(['show', 'mech.genuine_technical_skill_shortfall', '--json']).stdout);
+    const viaAlias = JSON.parse(hoba(['get', 'M-001', '--json']).stdout);
+    expect(canonical.node.id).toBe('mech.genuine_technical_skill_shortfall');
+    expect(viaShow).toEqual(canonical);
+    expect(viaAlias.node.id).toBe(canonical.node.id);
+  });
+
+  it('prints an entity’s neighbourhood with `graph`', () => {
+    const json = JSON.parse(hoba(['graph', 'mech.genuine_technical_skill_shortfall', '--json']).stdout);
+    expect(json.id).toBe('mech.genuine_technical_skill_shortfall');
+    expect(json.neighbours.length).toBeGreaterThan(0);
+    for (const n of json.neighbours) expect(n).toHaveProperty('relation');
+    expect(hoba(['graph', 'nope.nothing'], { expectFailure: true }).status).toBe(1);
+  });
+
+  it('reads an authored scenario with `scenario`', () => {
+    const json = JSON.parse(hoba(['scenario', 'scenario.application_silence', '--json']).stdout);
+    expect(json.scenario.id).toBe('scenario.application_silence');
+    expect(json.scenario.observations.length).toBeGreaterThan(0);
+    // Listing with no argument names what is available.
+    expect(hoba(['scenario']).stdout).toContain('scenario.application_silence');
+    expect(hoba(['scenario', 'scenario.nope'], { expectFailure: true }).status).toBe(1);
+  });
+
+  it('reports registry stats and version', () => {
+    const stats = JSON.parse(hoba(['registry', 'stats', '--json']).stdout);
+    expect(stats.counts.mechanisms).toBeGreaterThan(0);
+    expect(stats.counts.scenarios).toBeGreaterThanOrEqual(2);
+    const version = JSON.parse(hoba(['registry', 'version', '--json']).stdout);
+    expect(version.registry_version).toMatch(/^\d{4}\.\d{2}\.\d+$/);
+    expect(version.schema_version).toMatch(/^\d+\.\d+\.\d+$/);
+    // The plain form prints the version and nothing else to parse around.
+    expect(hoba(['registry', 'version']).stdout.trim()).toBe(version.registry_version);
+  });
+
   it('validates both mirrors strictly with no warnings', () => {
     const out = hoba(['validate', '--strict']);
     expect(out.stdout).toContain('0 error(s), 0 warning(s)');

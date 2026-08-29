@@ -179,8 +179,19 @@ hoba conservation
 # Search across the knowledge graph
 hoba search "reposted" --types artifact,pattern
 
-# Inspect detailed entity specification
+# Inspect detailed entity specification (`get` is the same command)
 hoba show mech.genuine_technical_skill_shortfall
+
+# What an entity is connected to, and by which relation
+hoba graph pat.compensation_double_bind
+
+# Read an authored scenario, or list the scenarios there are
+hoba scenario scenario.application_silence
+hoba scenario
+
+# Registry metadata
+hoba registry stats
+hoba registry version
 
 # Validate content (schemas, references, DAG, loop declarations, EN/UK parity)
 hoba validate --strict

@@ -6,6 +6,7 @@ import {
   formatValidationIssue,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
+  loadScenarios,
   lift,
   loadRegistryFromRoot,
   resolveRegistryRoot,
@@ -508,6 +509,146 @@ export function cmdConservation(options: GlobalOptions) {
     for (const v of report.violations) {
       console.log(pc.red(`  - [${v.recordId}] ${v.reason}`));
     }
+  }
+  console.log();
+}
+
+/**
+ * `hoba graph <id>` — what one entity is connected to, and how (design doc §11).
+ *
+ * `show` already prints an entity's own fields; this prints its edges, so the
+ * two answer different questions rather than overlapping the way `show`/`get`
+ * would have.
+ */
+export function cmdGraph(id: string, options: GlobalOptions & { depth?: string }) {
+  const { bundle } = loadBundle(options);
+  const graph = new HOBAKnowledgeGraph(bundle);
+  const node = graph.getNode(id);
+  if (!node) throw new CliError(`Entity with ID "${id}" not found in registry.`);
+
+  const depth = Math.max(1, Number(options.depth ?? 1) || 1);
+  const { nodes, edges } = graph.getNeighbors(node.id, { depth });
+  const neighbours = edges.map((e) => ({
+    relation: e.type,
+    from: e.source,
+    to: e.target,
+    /** Which end of the edge is not the entity asked about. */
+    other: e.source === node.id ? e.target : e.source,
+    direction: e.source === node.id ? ('out' as const) : ('in' as const),
+  }));
+
+  if (options.json) {
+    printJson({ registry_version: bundle.version, id: node.id, depth, neighbours, nodes: nodes.map((n) => n.id) });
+    return;
+  }
+
+  console.log(pc.bold(pc.cyan(`\n=== ${node.id} — neighbourhood (depth ${depth}) ===`)));
+  console.log(pc.bold(node.title) + `\n`);
+  if (neighbours.length === 0) {
+    console.log(pc.dim('  Nothing is connected to this entry.\n'));
+    return;
+  }
+  for (const n of neighbours) {
+    const arrow = n.direction === 'out' ? '->' : '<-';
+    console.log(`  ${pc.dim(arrow)} ${pc.yellow(n.relation.padEnd(16))} ${n.other}`);
+  }
+  console.log(pc.dim(`\n  ${neighbours.length} edge(s), ${nodes.length} node(s) within ${depth} hop(s).\n`));
+}
+
+/**
+ * `hoba scenario [id]` — read an authored scenario, or list what there is.
+ *
+ * A scenario composes ontology entities; it is not one, so it is read from its
+ * own collection rather than through `show`.
+ */
+export function cmdScenario(id: string | undefined, options: GlobalOptions) {
+  const { root, bundle } = loadBundle(options);
+  const scenarios = loadScenarios(root);
+
+  if (!id) {
+    if (options.json) {
+      printJson({ registry_version: bundle.version, count: scenarios.length, scenarios });
+      return;
+    }
+    console.log(pc.bold(pc.cyan(`\n=== ${scenarios.length} scenario(s) ===\n`)));
+    for (const s of scenarios) console.log(`  ${pc.yellow(s.id)}  ${s.title.en}`);
+    console.log();
+    return;
+  }
+
+  const found = scenarios.find((s) => s.id === id);
+  if (!found) {
+    const valid = scenarios.map((s) => s.id).join(', ') || '(none authored)';
+    throw new CliError(`Unknown scenario "${id}". Available: ${valid}`);
+  }
+
+  if (options.json) {
+    printJson({ registry_version: bundle.version, scenario: found });
+    return;
+  }
+
+  const titleOf = (entityId: string) => new HOBAKnowledgeGraph(bundle).getNode(entityId)?.title ?? '';
+  const list = (label: string, ids: string[]) => {
+    if (!ids.length) return;
+    console.log(pc.yellow(`${label}:`));
+    for (const entityId of ids) console.log(`  - ${entityId}${titleOf(entityId) ? pc.dim(` — ${titleOf(entityId)}`) : ''}`);
+    console.log();
+  };
+
+  console.log(pc.bold(pc.cyan(`\n=== [SCENARIO] ${found.id} ===`)));
+  console.log(pc.bold(found.title.en) + `\n`);
+  list('Observed', found.observations);
+  list('Compatible mechanisms', found.compatible_mechanisms);
+  list('Compatible barriers', found.compatible_barriers);
+  list('Process states', found.process_states);
+  if (found.excluded_claims.length) {
+    console.log(pc.yellow('Does NOT establish:'));
+    for (const c of found.excluded_claims) console.log(`  - ${c}`);
+    console.log();
+  }
+  for (const [act, interventions] of Object.entries(found.agency)) list(`Agency — ${act}`, interventions);
+}
+
+/** `hoba registry stats|version` — what this registry is, in one place (§11). */
+export function cmdRegistry(sub: string, options: GlobalOptions) {
+  const { root, bundle } = loadBundle(options);
+
+  if (sub === 'version') {
+    if (options.json) {
+      printJson({ registry_version: bundle.version, schema_version: bundle.schema_version, updated_at: bundle.updated_at });
+      return;
+    }
+    // Plain form prints the version alone, so a script can consume it directly.
+    console.log(bundle.version);
+    return;
+  }
+
+  if (sub !== 'stats') throw new CliError(`Unknown "registry" subcommand "${sub}". Expected "stats" or "version".`);
+
+  const counts = {
+    artifacts: bundle.artifacts.length,
+    barriers: bundle.barriers.length,
+    mechanisms: bundle.mechanisms.length,
+    patterns: bundle.patterns.length,
+    loops: bundle.loops.length,
+    interventions: bundle.interventions.length,
+    workflows: bundle.workflows.length,
+    actors: bundle.actors.length,
+    eras: bundle.eras.length,
+    records: bundle.records.length,
+    evidence: bundle.evidence.length,
+    scenarios: loadScenarios(root).length,
+  };
+
+  if (options.json) {
+    printJson({ registry_version: bundle.version, schema_version: bundle.schema_version, counts });
+    return;
+  }
+
+  console.log(pc.bold(pc.cyan(`\n=== hoba registry ${bundle.version} (schema ${bundle.schema_version}) ===\n`)));
+  const width = Math.max(...Object.keys(counts).map((k) => k.length));
+  for (const [k, v] of Object.entries(counts)) {
+    console.log(`  ${k.padEnd(width)}  ${pc.bold(String(v).padStart(3))}`);
   }
   console.log();
 }

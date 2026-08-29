@@ -10,6 +10,9 @@ import {
   cmdPatterns,
   cmdRunway,
   cmdSearch,
+  cmdGraph,
+  cmdRegistry,
+  cmdScenario,
   cmdShow,
   cmdValidate,
   type GlobalOptions,
@@ -48,9 +51,35 @@ program
 
 program
   .command('show <id>')
+  // The external spec calls this `get`. Rather than ship two near-duplicate
+  // commands (design doc §11 flags the overlap), it is one command under both
+  // names.
+  .alias('get')
   .description('Display detailed specification of a given entity ID (e.g. mech.employment_gap_downranking_bias); legacy short codes resolve as aliases')
   .action((id: string, _opts: unknown, cmd: Command) => {
     run(() => cmdShow(id, cmd.optsWithGlobals() as GlobalOptions));
+  });
+
+program
+  .command('graph <id>')
+  .description('Show what an entity is connected to, and by which relation')
+  .option('-d, --depth <n>', 'How many hops to walk (default 1)')
+  .action((id: string, opts: { depth?: string }, cmd: Command) => {
+    run(() => cmdGraph(id, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
+  });
+
+program
+  .command('scenario [id]')
+  .description('Read an authored scenario, or list the scenarios there are')
+  .action((id: string | undefined, _opts: unknown, cmd: Command) => {
+    run(() => cmdScenario(id, cmd.optsWithGlobals() as GlobalOptions));
+  });
+
+program
+  .command('registry <subcommand>')
+  .description('Registry metadata: "stats" for entity counts, "version" for the release it is')
+  .action((sub: string, _opts: unknown, cmd: Command) => {
+    run(() => cmdRegistry(sub, cmd.optsWithGlobals() as GlobalOptions));
   });
 
 program
