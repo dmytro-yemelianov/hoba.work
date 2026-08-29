@@ -4,11 +4,29 @@ import { fileURLToPath } from 'node:url';
 import type { ContentLang } from './types.js';
 
 export const MANIFEST_FILENAME = 'registry.yaml';
+
+/** Everything the registry is made of lives under here (design doc §9). */
+export const DATA_DIR = 'data';
+
+/**
+ * One directory of authored entities per language.
+ *
+ * The language sits *above* the entities rather than beside them — `data/en/`
+ * and `data/uk/`, not `data/` and `data-uk/` — because neither mirror is the
+ * default one. The validator judges both and `compareBundleStructure` is
+ * symmetric; the old `content/` versus `content-uk/` encoded a hierarchy the
+ * code has never had.
+ */
 export const CONTENT_DIRS: Record<ContentLang, string> = {
-  en: 'content',
-  uk: 'content-uk',
+  en: path.join(DATA_DIR, 'en', 'entities'),
+  uk: path.join(DATA_DIR, 'uk', 'entities'),
 };
-export const EVIDENCE_DIR = 'evidence';
+
+/** Evidence is language-neutral: a citation is the same document either way. */
+export const EVIDENCE_DIR = path.join(DATA_DIR, 'evidence');
+
+/** Scenarios compose the ontology rather than belonging to it, but they are data. */
+export const SCENARIO_DIR = path.join(DATA_DIR, 'scenarios');
 
 /** True when `dir` looks like the root of a hoba registry checkout. */
 export function isRegistryRoot(dir: string): boolean {

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyActorIdRename, applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot, insertAlias, planFileRename } from '@hoba/registry';
+import { applyActorIdRename, EVIDENCE_DIR, applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot, insertAlias, planFileRename } from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
 import { writeTempRegistry } from './helpers';
 
@@ -150,10 +150,10 @@ describe('buildIdMapping against the real registry', () => {
 describe('applyIdRename', () => {
   it('replaces the quoted old ID with the quoted new ID in every file that contains it', () => {
     const root = writeTempRegistry({
-      'content/patterns/P-001.md': '---\nid: "P-001"\ntype: "pattern"\nrequired_artifacts:\n  - "A-002"\n---\n\n# Body\n',
-      'content/interventions/I-002.md': '---\nid: "I-002"\ntype: "intervention"\ntargets:\n  - "P-001"\n  - "B-002"\n---\n',
-      'content-uk/patterns/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n\n# Тіло\n',
-      'evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
+      'data/en/entities/pattern/P-001.md': '---\nid: "P-001"\ntype: "pattern"\nrequired_artifacts:\n  - "A-002"\n---\n\n# Body\n',
+      'data/en/entities/intervention/I-002.md': '---\nid: "I-002"\ntype: "intervention"\ntargets:\n  - "P-001"\n  - "B-002"\n---\n',
+      'data/uk/entities/pattern/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n\n# Тіло\n',
+      'data/evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
     });
 
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
@@ -162,42 +162,42 @@ describe('applyIdRename', () => {
       oldId: 'P-001',
       newId: 'pat.seniority_double_bind',
       filesChanged: expect.arrayContaining([
-        'content/patterns/P-001.md',
-        'content/interventions/I-002.md',
-        'content-uk/patterns/P-001.md',
+        'data/en/entities/pattern/P-001.md',
+        'data/en/entities/intervention/I-002.md',
+        'data/uk/entities/pattern/P-001.md',
       ]),
     });
     expect(result.filesChanged).toHaveLength(3);
 
-    const pattern = fs.readFileSync(`${root}/content/patterns/P-001.md`, 'utf8');
+    const pattern = fs.readFileSync(`${root}/data/en/entities/pattern/P-001.md`, 'utf8');
     expect(pattern).toContain('id: "pat.seniority_double_bind"');
     expect(pattern).not.toContain('"P-001"');
 
-    const intervention = fs.readFileSync(`${root}/content/interventions/I-002.md`, 'utf8');
+    const intervention = fs.readFileSync(`${root}/data/en/entities/intervention/I-002.md`, 'utf8');
     expect(intervention).toContain('- "pat.seniority_double_bind"');
     expect(intervention).toContain('- "B-002"'); // untouched, different ID
 
-    const uk = fs.readFileSync(`${root}/content-uk/patterns/P-001.md`, 'utf8');
+    const uk = fs.readFileSync(`${root}/data/uk/entities/pattern/P-001.md`, 'utf8');
     expect(uk).toContain('id: "pat.seniority_double_bind"');
   });
 
   it('does not touch a file that only contains an unrelated ID', () => {
     const root = writeTempRegistry({
-      'content/patterns/P-002.md': '---\nid: "P-002"\ntype: "pattern"\n---\n',
+      'data/en/entities/pattern/P-002.md': '---\nid: "P-002"\ntype: "pattern"\n---\n',
     });
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
     expect(result.filesChanged).toEqual([]);
-    expect(fs.readFileSync(`${root}/content/patterns/P-002.md`, 'utf8')).toContain('"P-002"');
+    expect(fs.readFileSync(`${root}/data/en/entities/pattern/P-002.md`, 'utf8')).toContain('"P-002"');
   });
 
   it('does not match a substring of a longer ID', () => {
     const root = writeTempRegistry({
-      'content/patterns/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n',
-      'content/patterns/P-0010.md': '---\nid: "P-0010"\ntype: "pattern"\n---\n',
+      'data/en/entities/pattern/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n',
+      'data/en/entities/pattern/P-0010.md': '---\nid: "P-0010"\ntype: "pattern"\n---\n',
     });
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
-    expect(result.filesChanged).toEqual(['content/patterns/P-001.md']);
-    expect(fs.readFileSync(`${root}/content/patterns/P-0010.md`, 'utf8')).toContain('"P-0010"');
+    expect(result.filesChanged).toEqual(['data/en/entities/pattern/P-001.md']);
+    expect(fs.readFileSync(`${root}/data/en/entities/pattern/P-0010.md`, 'utf8')).toContain('"P-0010"');
   });
 });
 
@@ -206,38 +206,38 @@ describe('applyActorIdRename', () => {
     const root = writeTempRegistry({
       // A mechanism carries both: a facet actor (actorTypeSchema, 2-space) and
       // perspective actors (actorId, 4-space). Only the second is an entity ref.
-      'content/mechanisms/mech.x.md':
+      'data/en/entities/mechanism/mech.x.md':
         '---\nid: "mech.x"\ntype: "mechanism"\nfacets:\n  actor: "recruiter"\n' +
         'perspectives:\n  -\n    actor: "recruiter"\n    sees: "..."\n---\n',
       // An intervention's own `actor` is interventionActorSchema, at 0 indent.
-      'content/interventions/int.y.md':
+      'data/en/entities/intervention/int.y.md':
         '---\nid: "int.y"\ntype: "intervention"\nactor: "recruiter"\n' +
         'perspectives:\n  -\n    actor: "recruiter"\n---\n',
       // A workflow owner and a record owner_actor are both actorId.
-      'content/processes/proc.z.md':
+      'data/en/entities/process/proc.z.md':
         '---\nid: "proc.z"\ntype: "process"\nstates:\n  -\n    id: "s"\n    owner: "recruiter"\n---\n',
-      'content/records/record.w.md':
+      'data/en/entities/record/record.w.md':
         '---\nid: "record.w"\ntype: "record"\nowner_actor: "recruiter"\n---\n',
       // The actor itself: its own id renames, its alias vocabularies do not.
-      'content/actors/recruiter.md':
+      'data/en/entities/actor/recruiter.md':
         '---\nid: "recruiter"\ntype: "actor"\naliases:\n  facet:\n    - "recruiter"\n' +
         '  intervention:\n    - "recruiter-process"\n---\n',
     });
 
     applyActorIdRename(root, 'recruiter', 'actor.recruiter');
 
-    const mech = fs.readFileSync(`${root}/content/mechanisms/mech.x.md`, 'utf8');
+    const mech = fs.readFileSync(`${root}/data/en/entities/mechanism/mech.x.md`, 'utf8');
     expect(mech).toContain('  actor: "recruiter"\n'); // facet, untouched
     expect(mech).toContain('    actor: "actor.recruiter"'); // perspective, renamed
 
-    const intervention = fs.readFileSync(`${root}/content/interventions/int.y.md`, 'utf8');
+    const intervention = fs.readFileSync(`${root}/data/en/entities/intervention/int.y.md`, 'utf8');
     expect(intervention).toContain('\nactor: "recruiter"'); // intervention vocabulary, untouched
     expect(intervention).toContain('    actor: "actor.recruiter"');
 
-    expect(fs.readFileSync(`${root}/content/processes/proc.z.md`, 'utf8')).toContain('    owner: "actor.recruiter"');
-    expect(fs.readFileSync(`${root}/content/records/record.w.md`, 'utf8')).toContain('owner_actor: "actor.recruiter"');
+    expect(fs.readFileSync(`${root}/data/en/entities/process/proc.z.md`, 'utf8')).toContain('    owner: "actor.recruiter"');
+    expect(fs.readFileSync(`${root}/data/en/entities/record/record.w.md`, 'utf8')).toContain('owner_actor: "actor.recruiter"');
 
-    const actor = fs.readFileSync(`${root}/content/actors/recruiter.md`, 'utf8');
+    const actor = fs.readFileSync(`${root}/data/en/entities/actor/recruiter.md`, 'utf8');
     expect(actor).toContain('id: "actor.recruiter"');
     expect(actor).toContain('    - "recruiter"'); // aliases.facet, untouched
     expect(actor).toContain('    - "recruiter-process"');
@@ -245,24 +245,24 @@ describe('applyActorIdRename', () => {
 
   it('does not touch a different actor that shares a prefix', () => {
     const root = writeTempRegistry({
-      'content/mechanisms/mech.x.md':
+      'data/en/entities/mechanism/mech.x.md':
         '---\nid: "mech.x"\ntype: "mechanism"\nperspectives:\n  -\n    actor: "public-policy"\n---\n',
     });
     applyActorIdRename(root, 'policy', 'actor.policy');
-    expect(fs.readFileSync(`${root}/content/mechanisms/mech.x.md`, 'utf8')).toContain('    actor: "public-policy"');
+    expect(fs.readFileSync(`${root}/data/en/entities/mechanism/mech.x.md`, 'utf8')).toContain('    actor: "public-policy"');
   });
 });
 
 describe('planFileRename', () => {
   it('plans a rename for every language tree where the old file exists', () => {
     const root = writeTempRegistry({
-      'content/patterns/P-001.md': '---\nid: "P-001"\n---\n',
-      'content-uk/patterns/P-001.md': '---\nid: "P-001"\n---\n',
+      'data/en/entities/pattern/P-001.md': '---\nid: "P-001"\n---\n',
+      'data/uk/entities/pattern/P-001.md': '---\nid: "P-001"\n---\n',
     });
-    const plans = planFileRename(root, 'patterns', 'P-001', 'pat.seniority_double_bind');
+    const plans = planFileRename(root, 'pattern', 'P-001', 'pat.seniority_double_bind');
     expect(plans).toEqual([
-      { oldPath: `${root}/content/patterns/P-001.md`, newPath: `${root}/content/patterns/pat.seniority_double_bind.md` },
-      { oldPath: `${root}/content-uk/patterns/P-001.md`, newPath: `${root}/content-uk/patterns/pat.seniority_double_bind.md` },
+      { oldPath: `${root}/data/en/entities/pattern/P-001.md`, newPath: `${root}/data/en/entities/pattern/pat.seniority_double_bind.md` },
+      { oldPath: `${root}/data/uk/entities/pattern/P-001.md`, newPath: `${root}/data/uk/entities/pattern/pat.seniority_double_bind.md` },
     ]);
   });
 
@@ -270,37 +270,37 @@ describe('planFileRename', () => {
     // Evidence is one tree at the root, not a pair of language mirrors: a
     // citation is the same document in either language.
     const root = writeTempRegistry({
-      'evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
+      'data/evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
     });
-    const plans = planFileRename(root, 'evidence', 'EVD-001', 'evidence.hidden_workers', ['']);
+    const plans = planFileRename(root, '', 'EVD-001', 'evidence.hidden_workers', [EVIDENCE_DIR]);
     expect(plans).toEqual([
-      { oldPath: `${root}/evidence/EVD-001.md`, newPath: `${root}/evidence/evidence.hidden_workers.md` },
+      { oldPath: `${root}/data/evidence/EVD-001.md`, newPath: `${root}/data/evidence/evidence.hidden_workers.md` },
     ]);
   });
 
   it('leaves the language-mirror trees as the default when no trees are named', () => {
     const root = writeTempRegistry({
-      'evidence/EVD-001.md': '---\nid: "EVD-001"\n---\n',
+      'data/evidence/EVD-001.md': '---\nid: "EVD-001"\n---\n',
     });
     expect(planFileRename(root, 'evidence', 'EVD-001', 'evidence.hidden_workers')).toEqual([]);
   });
 
   it('skips a language tree where the old file does not exist', () => {
     const root = writeTempRegistry({
-      'content/actors/candidate.md': '---\nid: "candidate"\n---\n',
+      'data/en/entities/actor/candidate.md': '---\nid: "candidate"\n---\n',
     });
-    const plans = planFileRename(root, 'actors', 'candidate', 'actor.candidate');
+    const plans = planFileRename(root, 'actor', 'candidate', 'actor.candidate');
     expect(plans).toHaveLength(1);
-    expect(plans[0].oldPath).toBe(`${root}/content/actors/candidate.md`);
+    expect(plans[0].oldPath).toBe(`${root}/data/en/entities/actor/candidate.md`);
   });
 });
 
 describe('insertAlias', () => {
   it('inserts an aliases block immediately after the type: line', () => {
     const root = writeTempRegistry({
-      'content/patterns/pat.seniority_double_bind.md': '---\nid: "pat.seniority_double_bind"\ntype: "pattern"\nsummary: "..."\n---\n\n# Body\n',
+      'data/en/entities/pattern/pat.seniority_double_bind.md': '---\nid: "pat.seniority_double_bind"\ntype: "pattern"\nsummary: "..."\n---\n\n# Body\n',
     });
-    const filePath = `${root}/content/patterns/pat.seniority_double_bind.md`;
+    const filePath = `${root}/data/en/entities/pattern/pat.seniority_double_bind.md`;
     insertAlias(filePath, 'P-001');
     const text = fs.readFileSync(filePath, 'utf8');
     expect(text).toBe(
@@ -310,17 +310,17 @@ describe('insertAlias', () => {
 
   it('throws a clear error when the file has no type: line to anchor on', () => {
     const root = writeTempRegistry({
-      'content/patterns/broken.md': '---\nid: "x"\n---\n',
+      'data/en/entities/pattern/broken.md': '---\nid: "x"\n---\n',
     });
-    expect(() => insertAlias(`${root}/content/patterns/broken.md`, 'P-001')).toThrow(/no "type:" line/);
+    expect(() => insertAlias(`${root}/data/en/entities/pattern/broken.md`, 'P-001')).toThrow(/no "type:" line/);
   });
 
   it('throws a clear error when the file already has an aliases: field', () => {
     const root = writeTempRegistry({
-      'content/actors/hiring-manager.md':
+      'data/en/entities/actor/hiring-manager.md':
         '---\nid: "actor.hiring_manager"\ntype: "actor"\naliases:\n  facet:\n    - "hiring-manager"\n---\n\n# Body\n',
     });
-    const filePath = `${root}/content/actors/hiring-manager.md`;
+    const filePath = `${root}/data/en/entities/actor/hiring-manager.md`;
     expect(() => insertAlias(filePath, 'H-001')).toThrow(/already has an "aliases:" field/);
     // Verify the file was not modified
     const text = fs.readFileSync(filePath, 'utf8');

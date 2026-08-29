@@ -13,9 +13,10 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { CONTENT_DIRS, EVIDENCE_DIR, SCENARIO_DIR } from './paths.js';
 
 /** Every tree the registry's content lives in, relative to the root. */
-const HASHED_TREES = ['content', 'content-uk', 'evidence', path.join('data', 'scenarios')];
+const HASHED_TREES = [CONTENT_DIRS.en, CONTENT_DIRS.uk, EVIDENCE_DIR, SCENARIO_DIR];
 const HASHED_EXTENSIONS = new Set(['.md', '.yaml', '.yml']);
 
 function walk(dir: string): string[] {

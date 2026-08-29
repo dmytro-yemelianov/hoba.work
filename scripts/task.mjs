@@ -76,36 +76,44 @@ function check(only) {
 
 // ---- new -----------------------------------------------------------------
 
+/** Directory and canonical id prefix per authored type. */
 const TYPES = {
-  artifact: { dir: 'artifacts', prefix: 'A' },
-  barrier: { dir: 'barriers', prefix: 'B' },
-  mechanism: { dir: 'mechanisms', prefix: 'M' },
-  pattern: { dir: 'patterns', prefix: 'P' },
-  loop: { dir: 'loops', prefix: 'L' },
-  intervention: { dir: 'interventions', prefix: 'I' },
+  observation: { dir: 'observation', prefix: 'obs' },
+  barrier: { dir: 'barrier', prefix: 'bar' },
+  mechanism: { dir: 'mechanism', prefix: 'mech' },
+  pattern: { dir: 'pattern', prefix: 'pat' },
+  loop: { dir: 'loop', prefix: 'loop' },
+  intervention: { dir: 'intervention', prefix: 'int' },
 };
 
-function nextId(prefix, dir) {
-  const used = readdirSync(join(ROOT, 'content', dir))
-    .filter((f) => f.endsWith('.md'))
-    .map((f) => Number(f.slice(2, 5)));
-  return `${prefix}-${String(Math.max(0, ...used) + 1).padStart(3, '0')}`;
+/** Both entity mirrors, language above the entities (design doc §9). */
+const TREES = [join('data', 'en', 'entities'), join('data', 'uk', 'entities')];
+
+/**
+ * A canonical dotted id derived from the title, the way the migration derived
+ * every existing one. This used to count `A-00N` filenames and hand back the
+ * next number, which has produced nonsense since the ids stopped being numeric.
+ */
+function idFor(prefix, title) {
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  if (!slug) throw new Error(`cannot derive an id from the title "${title}"`);
+  return `${prefix}.${slug}`;
 }
 
 /** Frontmatter that already satisfies the schema, so the first save validates. */
 function template(type, id, title) {
   const common = `id: "${id}"\ntype: "${type}"\ntitle: "${title}"\n`;
-  const tail = `status: "active"\nevidence_level: "hypothesis"\nevidence_ids: []\n`;
+  const tail = `status: "active"\nevidence_level: "compatible"\nevidence_ids: []\n`;
   const body = `---\n\n# ${title}\n\nTODO: the summary again, then the sections this type carries.\n`;
   const nonInf = `non_inferences:\n  - "TODO: what this does NOT establish."\n`;
   const specimens = `specimens: []\n`;
   const blocks = {
-    artifact: `${common}summary: "TODO: a summary of at least ten characters."\nstages:\n  - "screening"\n${specimens}probes: []\n${nonInf}${tail}`,
+    observation: `${common}summary: "TODO: a summary of at least ten characters."\nstages:\n  - "screening"\n${specimens}probes: []\n${nonInf}${tail}`,
     barrier: `${common}stage: "screening"\norder: 99\nprecedes: []\ndescription: "TODO: a description of at least ten characters."\npass_condition: "TODO: what passing this gate means."\n${specimens}${tail}`,
-    mechanism: `${common}summary: "TODO: a summary of at least ten characters."\noperates_at:\n  - "B-001"\nemissions: []\nfacets:\n  actor: "system"\n  nature: "rule"\n  visibility: "opaque"\n  removability: "none"\namplifies: []\nmasks: []\nhonest_baseline: false\n${specimens}${nonInf}${tail}`,
-    pattern: `${common}summary: "TODO: a summary of at least ten characters."\nrequired_artifacts:\n  - "A-001"\ncompatible_mechanisms:\n  - "M-001"\ntrigger_rule: "TODO: when this pattern fires."\nestablishes:\n  - "TODO: what it establishes."\n${nonInf}interventions: []\n${specimens}${tail}`,
-    loop: `${common}summary: "TODO: a summary of at least ten characters."\nmechanisms:\n  - "M-001"\n  - "M-002"\nedges:\n  -\n    from: "M-001"\n    to: "M-002"\n    relation: "amplifies"\n  -\n    from: "M-002"\n    to: "M-001"\n    relation: "amplifies"\nentry_points:\n  - "M-001"\ninterventions: []\n${specimens}${tail}`,
-    intervention: `${common}summary: "TODO: a summary of at least ten characters."\ntargets:\n  - "M-001"\nactor: "employer-policy"\nscope: "organizational"\ncost: "low"\nexpected_effects:\n  - "TODO: the expected effect."\nmeasurements:\n  - "todo_metric_name"\n${specimens}${tail}`,
+    mechanism: `${common}summary: "TODO: a summary of at least ten characters."\noperates_at:\n  - "bar.application_ingestion"\nemissions: []\nfacets:\n  actor: "system"\n  nature: "rule"\n  visibility: "opaque"\n  removability: "none"\namplifies: []\nmasks: []\nhonest_baseline: false\n${specimens}${nonInf}${tail}`,
+    pattern: `${common}summary: "TODO: a summary of at least ten characters."\nrequired_artifacts:\n  - "obs.complete_silence_after_submission"\ncompatible_mechanisms:\n  - "mech.genuine_technical_skill_shortfall"\ntrigger_rule: "TODO: when this pattern fires."\nestablishes:\n  - "TODO: what it establishes."\n${nonInf}interventions: []\n${specimens}${tail}`,
+    loop: `${common}summary: "TODO: a summary of at least ten characters."\nmechanisms:\n  - "mech.genuine_technical_skill_shortfall"\n  - "mech.automated_keyword_qualification_filter"\nedges:\n  -\n    from: "mech.genuine_technical_skill_shortfall"\n    to: "mech.automated_keyword_qualification_filter"\n    relation: "amplifies"\n  -\n    from: "mech.automated_keyword_qualification_filter"\n    to: "mech.genuine_technical_skill_shortfall"\n    relation: "amplifies"\nentry_points:\n  - "mech.genuine_technical_skill_shortfall"\ninterventions: []\n${specimens}${tail}`,
+    intervention: `${common}summary: "TODO: a summary of at least ten characters."\ntargets:\n  - "mech.genuine_technical_skill_shortfall"\nactor: "employer-policy"\nscope: "organizational"\ncost: "low"\nexpected_effects:\n  - "TODO: the expected effect."\nmeasurements:\n  - "todo_metric_name"\n${specimens}${tail}`,
   };
   return `---\n${blocks[type]}${body}`;
 }
@@ -114,8 +122,8 @@ function scaffold(type, title) {
   const spec = TYPES[type];
   if (!spec) throw new Error(`unknown type "${type}" — one of ${Object.keys(TYPES).join(', ')}`);
   if (!title) throw new Error('a title is required: pnpm task new mechanism "Some title"');
-  const id = nextId(spec.prefix, spec.dir);
-  for (const root of ['content', 'content-uk']) {
+  const id = idFor(spec.prefix, title);
+  for (const root of TREES) {
     const dir = join(ROOT, root, spec.dir);
     mkdirSync(dir, { recursive: true });
     const file = join(dir, `${id}.md`);
@@ -133,7 +141,7 @@ const FORBIDDEN = /\b(Google|Meta|Amazon|Microsoft|Apple|Netflix|Uber|Stripe|Rev
 function specimens() {
   let failures = 0;
   const shapes = {};
-  for (const root of ['content', 'content-uk']) {
+  for (const root of TREES) {
     for (const [, spec] of Object.entries(TYPES)) {
       const dir = join(ROOT, root, spec.dir);
       if (!existsSync(dir)) continue;

@@ -1,5 +1,5 @@
 /**
- * Integration checks over the real registry content (content/, content-uk/, evidence/).
+ * Integration checks over the real registry content under data/.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,6 +11,7 @@ import {
   loadRegistryFromRoot,
   validateRegistry,
 } from '@hoba/registry';
+import { CONTENT_DIRS } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 import { observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, processSchema, eraSchema, actorSchema } from '@hoba/registry';
 
@@ -24,21 +25,21 @@ import { observationSchema, barrierSchema, mechanismSchema, patternSchema, loopS
  */
 describe('no frontmatter field is silently dropped', () => {
   const SCHEMAS: Record<string, { _def: { shape: () => Record<string, unknown> } }> = {
-    observations: observationSchema as never,
-    barriers: barrierSchema as never,
-    mechanisms: mechanismSchema as never,
-    patterns: patternSchema as never,
-    loops: loopSchema as never,
-    interventions: interventionSchema as never,
-    processes: processSchema as never,
-    eras: eraSchema as never,
-    actors: actorSchema as never,
+    observation: observationSchema as never,
+    barrier: barrierSchema as never,
+    mechanism: mechanismSchema as never,
+    pattern: patternSchema as never,
+    loop: loopSchema as never,
+    intervention: interventionSchema as never,
+    process: processSchema as never,
+    era: eraSchema as never,
+    actor: actorSchema as never,
   };
 
   for (const [dir, schema] of Object.entries(SCHEMAS)) {
-    it(`every top-level key authored in content/${dir} is defined by its schema`, () => {
+    it(`every top-level key authored in ${CONTENT_DIRS.en}/${dir} is defined by its schema`, () => {
       const defined = new Set(Object.keys(schema._def.shape()));
-      const root = path.join(REPO_ROOT, 'content', dir);
+      const root = path.join(REPO_ROOT, CONTENT_DIRS.en, dir);
       const orphans = new Map<string, string[]>();
 
       for (const file of fs.readdirSync(root).filter((f) => f.endsWith('.md'))) {
@@ -53,7 +54,7 @@ describe('no frontmatter field is silently dropped', () => {
 
       expect(
         [...orphans].map(([key, files]) => `${key} (in ${files.length} file(s), e.g. ${files[0]})`),
-        `content/${dir}: these keys are authored but dropped on load`
+        `${CONTENT_DIRS.en}/${dir}: these keys are authored but dropped on load`
       ).toEqual([]);
     });
   }

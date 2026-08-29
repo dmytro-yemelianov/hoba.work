@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
+import { SCENARIO_DIR } from './paths.js';
 import { stageIdSchema } from './schemas.js';
 import type { EmpiricalScenario, RegistryBundle } from './types.js';
 import type { ValidationIssue } from './validation.js';
@@ -50,9 +51,6 @@ export const scenarioSchema = z.object({
 });
 
 export type Scenario = z.infer<typeof scenarioSchema>;
-
-/** Where scenarios live, relative to the repository root. */
-export const SCENARIO_DIR = path.join('data', 'scenarios');
 
 export function loadScenarios(root: string): Scenario[] {
   const dir = path.join(root, SCENARIO_DIR);

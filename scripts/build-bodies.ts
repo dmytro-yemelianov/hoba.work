@@ -12,12 +12,12 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { findRegistryRoot, loadRegistryFromRoot, type ContentLang, type RegistryBundle } from '@hoba/registry';
+import { CONTENT_DIRS, findRegistryRoot, loadRegistryFromRoot, type ContentLang, type RegistryBundle } from '@hoba/registry';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-bodies: registry root not found');
 
-const DIRS: Record<ContentLang, string> = { en: 'content', uk: 'content-uk' };
+const DIRS: Record<ContentLang, string> = CONTENT_DIRS;
 
 interface Words {
   nonInferences: string;
@@ -141,14 +141,26 @@ function body(node: Record<string, any>, bundle: RegistryBundle, w: Words): stri
   return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
 
-const COLLECTIONS = ['observations', 'barriers', 'mechanisms', 'patterns', 'loops', 'interventions'] as const;
+/**
+ * The types with a derived body, as a pair: the bundle key is plural, the
+ * directory is the singular type name. They stopped being the same string when
+ * the entity tree moved under `data/<lang>/entities/<type>/`.
+ */
+const COLLECTIONS = [
+  ['observations', 'observation'],
+  ['barriers', 'barrier'],
+  ['mechanisms', 'mechanism'],
+  ['patterns', 'pattern'],
+  ['loops', 'loop'],
+  ['interventions', 'intervention'],
+] as const;
 
 let written = 0;
 for (const lang of ['en', 'uk'] as const) {
   const bundle = loadRegistryFromRoot(root, lang);
-  for (const collection of COLLECTIONS) {
+  for (const [collection, dir] of COLLECTIONS) {
     for (const node of bundle[collection] as Record<string, any>[]) {
-      const file = path.join(root, DIRS[lang], collection, `${node.id}.md`);
+      const file = path.join(root, DIRS[lang], dir, `${node.id}.md`);
       const raw = fs.readFileSync(file, 'utf8');
       const end = raw.indexOf('\n---\n', 4) + 5;
       const next = raw.slice(0, end) + '\n' + body(node, bundle, WORDS[lang]);

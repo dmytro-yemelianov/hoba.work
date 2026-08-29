@@ -1,8 +1,8 @@
 /**
  * Renames every entity of one type from its short code to its dotted-namespace
  * ID, using migration/id-mapping.json (generated in Phase 1) as the source of
- * truth. Per entity: rewrites every quoted reference across content/,
- * content-uk/, and evidence/ (applyIdRename), computes the git-mv plan for
+ * truth. Per entity: rewrites every quoted reference across both entity
+ * mirrors and the evidence tree (applyIdRename), computes the git-mv plan for
  * every language tree it exists in (planFileRename), performs the git mv,
  * then inserts an `aliases:` entry recording the old code (insertAlias).
  *
@@ -16,7 +16,7 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { applyIdRename, insertAlias, planFileRename, resolveRegistryRoot } from '@hoba/registry';
+import { applyIdRename, CONTENT_DIRS, EVIDENCE_DIR, insertAlias, planFileRename, resolveRegistryRoot } from '@hoba/registry';
 
 const args = process.argv.slice(2);
 const typeIdx = args.indexOf('--type');
@@ -24,7 +24,7 @@ const dirIdx = args.indexOf('--dir');
 const typeArg = typeIdx !== -1 ? args[typeIdx + 1] : undefined;
 const dirArg = dirIdx !== -1 ? args[dirIdx + 1] : undefined;
 /** One language-neutral tree at the repository root, rather than the two mirrors. */
-const trees = args.includes('--single-tree') ? [''] : ['content', 'content-uk'];
+const trees = args.includes('--single-tree') ? [EVIDENCE_DIR] : [CONTENT_DIRS.en, CONTENT_DIRS.uk];
 if (!typeArg || !dirArg) {
   console.error('Usage: pnpm rename-entities --type <entity-type> --dir <content-directory-name>');
   process.exit(1);

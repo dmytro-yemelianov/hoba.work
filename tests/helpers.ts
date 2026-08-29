@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { CONTENT_DIRS, EVIDENCE_DIR } from '@hoba/registry';
 import type {
   ActorNode,
   ObservationNode,
@@ -183,15 +184,17 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
   };
 }
 
-/** Write a throwaway registry checkout (registry.yaml + content/ + evidence/) and return its root. */
+/** Write a throwaway registry checkout (registry.yaml + data/) and return its root. */
 export function writeTempRegistry(files: Record<string, string>): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hoba-test-'));
   fs.writeFileSync(
     path.join(root, 'registry.yaml'),
     'version: "1.0.0"\nschema_version: "1.0.0"\nupdated_at: "2026-01-01T00:00:00Z"\n'
   );
-  fs.mkdirSync(path.join(root, 'content'), { recursive: true });
-  fs.mkdirSync(path.join(root, 'evidence'), { recursive: true });
+  // `isRegistryRoot` looks for the canonical entity tree plus the manifest, so
+  // both exist even when a test writes neither.
+  fs.mkdirSync(path.join(root, CONTENT_DIRS.en), { recursive: true });
+  fs.mkdirSync(path.join(root, EVIDENCE_DIR), { recursive: true });
   for (const [rel, body] of Object.entries(files)) {
     const full = path.join(root, rel);
     fs.mkdirSync(path.dirname(full), { recursive: true });

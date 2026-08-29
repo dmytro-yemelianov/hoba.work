@@ -16,9 +16,9 @@ function tempRegistry(files: Record<string, string>): string {
 }
 
 const BASE = {
-  'content/mechanisms/mech.a.md': '---\nid: "mech.a"\n---\n',
-  'content-uk/mechanisms/mech.a.md': '---\nid: "mech.a"\n---\n',
-  'evidence/evidence.a.md': '---\nid: "evidence.a"\n---\n',
+  'data/en/entities/mechanism/mech.a.md': '---\nid: "mech.a"\n---\n',
+  'data/uk/entities/mechanism/mech.a.md': '---\nid: "mech.a"\n---\n',
+  'data/evidence/evidence.a.md': '---\nid: "evidence.a"\n---\n',
   'data/scenarios/a.yaml': 'id: scenario.a\n',
 };
 
@@ -34,7 +34,7 @@ describe('registryContentHash', () => {
 
   it('changes when any byte of any entity changes', () => {
     const before = registryContentHash(tempRegistry(BASE));
-    const after = registryContentHash(tempRegistry({ ...BASE, 'content/mechanisms/mech.a.md': '---\nid: "mech.a"\ntitle: "x"\n---\n' }));
+    const after = registryContentHash(tempRegistry({ ...BASE, 'data/en/entities/mechanism/mech.a.md': '---\nid: "mech.a"\ntitle: "x"\n---\n' }));
     expect(after).not.toBe(before);
   });
 
@@ -42,8 +42,8 @@ describe('registryContentHash', () => {
     // A rename is exactly what eleven slices of this migration did, so the hash
     // has to see it. Folding only the bytes would miss it entirely.
     const before = registryContentHash(tempRegistry(BASE));
-    const { 'content/mechanisms/mech.a.md': body, ...rest } = BASE;
-    const after = registryContentHash(tempRegistry({ ...rest, 'content/mechanisms/mech.renamed.md': body }));
+    const { 'data/en/entities/mechanism/mech.a.md': body, ...rest } = BASE;
+    const after = registryContentHash(tempRegistry({ ...rest, 'data/en/entities/mechanism/mech.renamed.md': body }));
     expect(after).not.toBe(before);
   });
 

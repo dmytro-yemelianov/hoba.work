@@ -16,6 +16,7 @@ import {
   registryManifestSchema,
   authoredRecordSchema,
 } from './schemas.js';
+import { EVIDENCE_DIR, MANIFEST_FILENAME, findRegistryRoot } from './paths.js';
 import type { ContentLang, RegistryBundle, RegistryManifest } from './types.js';
 import { contentDirFor, evidenceDirFor, manifestPathFor } from './paths.js';
 
@@ -119,33 +120,37 @@ export interface LoadRegistryOptions {
 }
 
 /**
- * Load a registry from a content directory (e.g. `content/` or `content-uk/`).
+ * Load a registry from one language's entity directory (`data/en/entities`).
  * Every file is schema-validated; the first failure aborts with a path-qualified
  * error. Output ordering is deterministic (sorted by ID; barriers by funnel order).
  */
 export function loadRegistryFromDirectory(baseDir: string, options: LoadRegistryOptions = {}): RegistryBundle {
-  const parent = path.resolve(baseDir, '..');
-  const evidenceDir = options.evidenceDir ?? path.join(parent, 'evidence');
-  const manifestPath = options.manifestPath ?? path.join(parent, 'registry.yaml');
+  // The entity tree sits three levels down (`data/<lang>/entities`), so the
+  // root is found by walking up to the manifest rather than by counting `..`s —
+  // which is what broke when the tree moved and which would break again on the
+  // next move.
+  const root = findRegistryRoot(baseDir) ?? path.resolve(baseDir, '..', '..', '..');
+  const evidenceDir = options.evidenceDir ?? path.join(root, EVIDENCE_DIR);
+  const manifestPath = options.manifestPath ?? path.join(root, MANIFEST_FILENAME);
 
   const manifest = loadRegistryManifest(manifestPath);
 
   const byId = <T extends { id: string }>(a: T, b: T) => a.id.localeCompare(b.id);
 
-  const actors = loadEntityDir(path.join(baseDir, 'actors'), actorSchema).sort(byId);
-  const processes = loadEntityDir(path.join(baseDir, 'processes'), processSchema).sort(byId);
+  const actors = loadEntityDir(path.join(baseDir, 'actor'), actorSchema).sort(byId);
+  const processes = loadEntityDir(path.join(baseDir, 'process'), processSchema).sort(byId);
   // Eras read forward in time, not by id, because the order is the argument.
-  const eras = loadEntityDir(path.join(baseDir, 'eras'), eraSchema).sort((a, b) => a.from - b.from || a.id.localeCompare(b.id));
-  const observations = loadEntityDir(path.join(baseDir, 'observations'), observationSchema).sort(byId);
-  const barriers = loadEntityDir(path.join(baseDir, 'barriers'), barrierSchema).sort(
+  const eras = loadEntityDir(path.join(baseDir, 'era'), eraSchema).sort((a, b) => a.from - b.from || a.id.localeCompare(b.id));
+  const observations = loadEntityDir(path.join(baseDir, 'observation'), observationSchema).sort(byId);
+  const barriers = loadEntityDir(path.join(baseDir, 'barrier'), barrierSchema).sort(
     (a, b) => a.order - b.order || a.id.localeCompare(b.id)
   );
-  const mechanisms = loadEntityDir(path.join(baseDir, 'mechanisms'), mechanismSchema).sort(byId);
-  const patterns = loadEntityDir(path.join(baseDir, 'patterns'), patternSchema).sort(byId);
-  const loops = loadEntityDir(path.join(baseDir, 'loops'), loopSchema).sort(byId);
-  const interventions = loadEntityDir(path.join(baseDir, 'interventions'), interventionSchema).sort(byId);
+  const mechanisms = loadEntityDir(path.join(baseDir, 'mechanism'), mechanismSchema).sort(byId);
+  const patterns = loadEntityDir(path.join(baseDir, 'pattern'), patternSchema).sort(byId);
+  const loops = loadEntityDir(path.join(baseDir, 'loop'), loopSchema).sort(byId);
+  const interventions = loadEntityDir(path.join(baseDir, 'intervention'), interventionSchema).sort(byId);
   const evidence = loadEntityDir(evidenceDir, evidenceSchema).sort(byId);
-  const records = loadEntityDir(path.join(baseDir, 'records'), authoredRecordSchema).sort(byId);
+  const records = loadEntityDir(path.join(baseDir, 'record'), authoredRecordSchema).sort(byId);
 
   return {
     ...manifest,

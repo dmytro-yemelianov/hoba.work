@@ -1,7 +1,7 @@
 /**
  * Generates the old-code -> new dotted-namespace ID mapping table for the
  * data-first architecture migration (Phase 1: Canonicalize). Read-only —
- * writes one report file, touches no content under content/, content-uk/,
+ * writes one report file, touches no content under data/,
  * or evidence/.
  *
  *   pnpm generate:id-mapping

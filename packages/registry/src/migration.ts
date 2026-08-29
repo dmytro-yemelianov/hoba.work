@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { CONTENT_DIRS, EVIDENCE_DIR } from './paths.js';
 import type { RegistryBundle } from './types.js';
 
 export interface IdMappingEntry {
@@ -107,11 +108,11 @@ export interface RenameApplication {
   filesChanged: string[];
 }
 
-const RENAME_TREES = ['content', 'content-uk', 'evidence'];
+const RENAME_TREES = [CONTENT_DIRS.en, CONTENT_DIRS.uk, EVIDENCE_DIR];
 
 /**
  * Replaces every double-quoted occurrence of `oldId` with `newId` across
- * content/, content-uk/, and evidence/. Anchored on the surrounding quote
+ * both entity mirrors and the evidence tree. Anchored on the surrounding quote
  * characters so "P-0010" is never matched while renaming "P-001" — and
  * because every ID reference in this codebase's content is written as a
  * quoted YAML string, this single substitution simultaneously updates the
@@ -223,7 +224,7 @@ export function planFileRename(
   typeDir: string,
   oldId: string,
   newId: string,
-  trees: readonly string[] = ['content', 'content-uk']
+  trees: readonly string[] = [CONTENT_DIRS.en, CONTENT_DIRS.uk]
 ): FileRenamePlan[] {
   const plans: FileRenamePlan[] = [];
   for (const tree of trees) {
