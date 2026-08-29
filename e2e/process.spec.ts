@@ -65,7 +65,7 @@ test.describe('the process player', () => {
 
 test.describe('the canonical path anchors the registry', () => {
   test('a barrier says which commitment it breaks, and the link lands on it', async ({ page }) => {
-    await page.goto('/barriers/B-002?lang=en');
+    await page.goto('/barriers/bar.automated_filter_parser_threshold?lang=en');
     const note = page.getByRole('region', { name: /canonical path/i });
     await expect(note).toContainText('Machine work stays mechanical');
 

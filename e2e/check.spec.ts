@@ -26,8 +26,8 @@ test.describe('conformance check', () => {
     await page.fill('#bandMax', '80');
 
     // Three conditions fail; the one named is the earliest in the funnel.
-    await expect(page.locator('#check-verdict')).toContainText('B-002');
-    await expect(page.locator('#check-verdict')).not.toContainText('B-009');
+    await expect(page.locator('#check-verdict')).toContainText('bar.automated_filter_parser_threshold');
+    await expect(page.locator('#check-verdict')).not.toContainText('bar.compensation_levelling_reconciliation');
   });
 
   test('never turns a missing keyword into a failure', async ({ page }) => {

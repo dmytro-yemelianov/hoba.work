@@ -40,7 +40,7 @@ test.describe('the lens', () => {
 
   test('a chosen seat survives navigation and is applied before paint', async ({ page }) => {
     await page.goto('/mechanisms/M-009?lang=en&lens=hiring-manager');
-    await page.goto('/barriers/B-005?lang=en');
+    await page.goto('/barriers/bar.technical_screen_live_assessment?lang=en');
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'hiring-manager');
     // No flash: the attribute is on <html> from the inline script, not from a
     // module that runs after first paint.
@@ -49,7 +49,7 @@ test.describe('the lens', () => {
   });
 
   test('the picker changes the seat and clears back to everyone', async ({ page }) => {
-    await page.goto('/barriers/B-005?lang=en');
+    await page.goto('/barriers/bar.technical_screen_live_assessment?lang=en');
     await page.locator('.lens-menu > summary').click();
     await page.locator('.lens-menu .lens-option[data-lens="candidate"]').click();
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'candidate');

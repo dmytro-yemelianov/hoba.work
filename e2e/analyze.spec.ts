@@ -14,7 +14,7 @@ test.describe('analysis wizard', () => {
     await page.locator('input[name="artifacts_selected"][value="A-004"]').check();
     await page.locator('input[name="stage_select"][value="technical"]').check();
     await page.locator('#step-h [data-goto="o"]').click();
-    await expect(page.locator('#barriers-output')).toContainText('B-005');
+    await expect(page.locator('#barriers-output')).toContainText('bar.technical_screen_live_assessment');
     await page.locator('#step-o [data-goto="b"]').click();
     await expect(page.locator('#mechanisms-output')).toContainText('M-001');
     await expect(page.locator('#patterns-output')).toContainText('pat.closed_then_reposted_requisition_motif');

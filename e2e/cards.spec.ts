@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 test.describe('share cards', () => {
   test('every entity page declares its own card', async ({ page }) => {
     for (const [path, id] of [
-      ['/artifacts/A-009', 'A-009'], ['/barriers/B-010', 'B-010'], ['/mechanisms/M-011', 'M-011'],
+      ['/artifacts/A-009', 'A-009'], ['/barriers/bar.headcount_executive_budget_approval', 'bar.headcount_executive_budget_approval'], ['/mechanisms/M-011', 'M-011'],
       ['/patterns/pat.compensation_double_bind', 'pat.compensation_double_bind'], ['/loops/L-001', 'L-001'], ['/interventions/I-002', 'I-002'],
     ] as const) {
       const response = await page.goto(path);

@@ -292,10 +292,10 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
     <h2 class="section-title">{t('graph.fallback')}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
       <ul class="row-list">
-        {bundle.barriers.map((b) => <li><a href={`${prefix}/barriers/${b.id}`} class="row-link text-base"><span class="font-mono text-sm text-hoba-accent">{b.id}</span><span>{b.title}</span></a></li>)}
+        {bundle.barriers.map((b) => <li><a href={`${prefix}/barriers/${b.id}`} class="row-link text-base"><span class="font-mono text-sm text-hoba-accent break-all max-w-full">{b.id}</span><span>{b.title}</span></a></li>)}
       </ul>
       <ul class="row-list">
-        {bundle.mechanisms.map((m) => <li><a href={`${prefix}/mechanisms/${m.id}`} class="row-link text-base"><span class="font-mono text-sm text-hoba-accent">{m.id}</span><span>{m.title}</span></a></li>)}
+        {bundle.mechanisms.map((m) => <li><a href={`${prefix}/mechanisms/${m.id}`} class="row-link text-base"><span class="font-mono text-sm text-hoba-accent break-all max-w-full">{m.id}</span><span>{m.title}</span></a></li>)}
       </ul>
     </div>
   </section>

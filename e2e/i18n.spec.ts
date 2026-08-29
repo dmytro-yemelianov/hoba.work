@@ -106,8 +106,8 @@ test.describe('every page reaches the worker', () => {
   const PAGES = [
     '/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data',
     '/methodology', '/developers', '/contribute', '/about',
-    '/artifacts/A-013', '/barriers/B-010', '/mechanisms/M-001',
-    '/patterns/P-001', '/loops/L-001', '/interventions/I-002', '/actors/recruiter',
+    '/artifacts/A-013', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/M-001',
+    '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-002', '/actors/recruiter',
   ];
 
   for (const path of PAGES) {

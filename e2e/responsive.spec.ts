@@ -31,8 +31,8 @@ test.describe('responsive layout', () => {
     const FRAMED = [
       '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/M-001', '/barriers/B-001', '/artifacts/A-001',
-      '/patterns/P-001', '/loops/L-001', '/interventions/I-001', '/404',
+      '/mechanisms/M-001', '/barriers/bar.application_ingestion', '/artifacts/A-001',
+      '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-001', '/404',
     ];
     let reference: Record<string, number> | null = null;
 
@@ -72,8 +72,8 @@ test.describe('responsive layout', () => {
     const PAGES = [
       '/', '/registry', '/patterns', '/graph', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/M-001', '/barriers/B-001', '/artifacts/A-001',
-      '/patterns/P-001', '/loops/L-001', '/interventions/I-001', '/404',
+      '/mechanisms/M-001', '/barriers/bar.application_ingestion', '/artifacts/A-001',
+      '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-001', '/404',
     ];
     for (const path of PAGES) {
       await page.goto(path);

@@ -26,8 +26,8 @@ test.describe('a shared entity page stands on its own', () => {
 
   test('specimens render on every entity type', async ({ page }) => {
     const ONE_OF_EACH = [
-      '/artifacts/A-009', '/barriers/B-010', '/mechanisms/M-020',
-      '/patterns/P-003', '/loops/L-001', '/interventions/I-004',
+      '/artifacts/A-009', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/M-020',
+      '/patterns/pat.experience_age_impossibility', '/loops/L-001', '/interventions/I-004',
     ];
     for (const path of ONE_OF_EACH) {
       await page.goto(path);

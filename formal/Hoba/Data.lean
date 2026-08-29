@@ -10,7 +10,7 @@ namespace Hoba
 def ideal : Machine where
   n := 15
   kind := [Kind.initial, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.active, Kind.terminal, Kind.terminal, Kind.terminal]
-  deviations := [[80, 61, 82], [33, 34, 62, 72, 81, 20], [21, 59], [22, 64, 67, 76], [23, 65], [24, 60, 70, 73], [25, 26, 57, 66, 75, 79], [27, 28, 35, 58, 68, 69, 71, 74, 78], [29, 60], [30, 63], [32, 63], [31, 36, 77, 83, 84, 19], [], [1, 7, 12, 13], [0, 2, 10, 11, 62, 76]]
+  deviations := [[64, 45, 66], [81, 77, 46, 56, 65, 20], [69, 43], [70, 48, 51, 60], [75, 49], [79, 44, 54, 57], [84, 82, 41, 50, 59, 63], [74, 83, 71, 42, 52, 53, 55, 58, 62], [72, 44], [73, 47], [76, 47], [80, 78, 61, 67, 68, 19], [], [1, 7, 12, 13], [0, 2, 10, 11, 46, 60]]
   edges := [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9), (9, 10), (10, 11), (11, 12), (4, 13), (5, 13), (6, 13), (7, 13), (8, 13), (11, 13), (1, 14), (9, 14), (10, 14)]
   rank := [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 11]
 
@@ -37,16 +37,16 @@ def gates : Machine where
   rank := [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0, 0]
 
 /-- State names for `gates`, in index order. -/
-def gatesNames : List String := ["B-013", "B-014", "B-001", "B-002", "B-003", "B-004", "B-005", "B-006", "B-007", "B-008", "B-009", "B-010", "B-011", "B-012", "B-015", "B-016"]
+def gatesNames : List String := ["bar.requisition_approval_public_posting", "bar.outbound_sourcing_talent_pool_contact", "bar.application_ingestion", "bar.automated_filter_parser_threshold", "bar.inbound_screening_triage", "bar.recruiter_screening_call", "bar.technical_screen_live_assessment", "bar.take_home_work_sample_evaluation", "bar.hiring_manager_in_depth_review", "bar.team_cross_functional_panel", "bar.compensation_levelling_reconciliation", "bar.headcount_executive_budget_approval", "bar.reference_background_verification", "bar.offer_closing_contract_execution", "bar.client_profile_approval_and_client_interview", "bar.probation_period_post_start_confirmation"]
 
 /-- Every entity a state can name, in index order. -/
-def entityNames : List String := ["A-001", "A-002", "A-003", "A-004", "A-005", "A-006", "A-007", "A-008", "A-009", "A-010", "A-011", "A-012", "A-013", "A-014", "A-015", "A-016", "A-017", "A-018", "A-019", "A-020", "A-021", "B-001", "B-002", "B-003", "B-004", "B-005", "B-006", "B-007", "B-008", "B-009", "B-010", "B-011", "B-012", "B-013", "B-014", "B-015", "B-016", "I-001", "I-002", "I-003", "I-004", "I-005", "I-006", "I-007", "I-008", "I-009", "I-010", "I-011", "I-012", "I-013", "I-014", "I-015", "I-016", "I-017", "L-001", "L-002", "L-003", "M-001", "M-002", "M-003", "M-004", "M-005", "M-006", "M-007", "M-008", "M-009", "M-010", "M-011", "M-012", "M-013", "M-014", "M-015", "M-016", "M-017", "M-018", "M-019", "M-020", "M-021", "M-022", "M-023", "M-024", "M-025", "M-026", "M-027", "M-028", "pat.closed_then_reposted_requisition_motif", "pat.compensation_double_bind", "pat.experience_age_impossibility", "pat.seniority_double_bind"]
+def entityNames : List String := ["A-001", "A-002", "A-003", "A-004", "A-005", "A-006", "A-007", "A-008", "A-009", "A-010", "A-011", "A-012", "A-013", "A-014", "A-015", "A-016", "A-017", "A-018", "A-019", "A-020", "A-021", "I-001", "I-002", "I-003", "I-004", "I-005", "I-006", "I-007", "I-008", "I-009", "I-010", "I-011", "I-012", "I-013", "I-014", "I-015", "I-016", "I-017", "L-001", "L-002", "L-003", "M-001", "M-002", "M-003", "M-004", "M-005", "M-006", "M-007", "M-008", "M-009", "M-010", "M-011", "M-012", "M-013", "M-014", "M-015", "M-016", "M-017", "M-018", "M-019", "M-020", "M-021", "M-022", "M-023", "M-024", "M-025", "M-026", "M-027", "M-028", "bar.application_ingestion", "bar.automated_filter_parser_threshold", "bar.client_profile_approval_and_client_interview", "bar.compensation_levelling_reconciliation", "bar.headcount_executive_budget_approval", "bar.hiring_manager_in_depth_review", "bar.inbound_screening_triage", "bar.offer_closing_contract_execution", "bar.outbound_sourcing_talent_pool_contact", "bar.probation_period_post_start_confirmation", "bar.recruiter_screening_call", "bar.reference_background_verification", "bar.requisition_approval_public_posting", "bar.take_home_work_sample_evaluation", "bar.team_cross_functional_panel", "bar.technical_screen_live_assessment", "pat.closed_then_reposted_requisition_motif", "pat.compensation_double_bind", "pat.experience_age_impossibility", "pat.seniority_double_bind"]
 
 /-- The barriers, as indices into `entityNames`. -/
-def barrierIds : List Nat := [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+def barrierIds : List Nat := [69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84]
 
 /-- The mechanisms, as indices into `entityNames`. -/
-def mechanismIds : List Nat := [57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84]
+def mechanismIds : List Nat := [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68]
 
 /-- A closed walk found in the observed funnel: out of this state, and back. -/
 def observedCycleStart : Nat := 2

@@ -21,7 +21,7 @@ test.describe('machine formats', () => {
     expect(body).toContain('```');
     expect(body).toMatch(/^> .*Continuity penalty/m);
     // Relations resolve wherever the file is pasted.
-    expect(body).toMatch(/\[B-002\]\(https:\/\/hoba\.work\/barriers\/B-002\)/);
+    expect(body).toMatch(/\[bar\.automated_filter_parser_threshold\]\(https:\/\/hoba\.work\/barriers\/bar\.automated_filter_parser_threshold\)/);
   });
 
   test('the canonical URL serves the same document under Accept', async ({ request }) => {
@@ -48,8 +48,8 @@ test.describe('machine formats', () => {
 
   test('every entity type has a Markdown representation', async ({ request }) => {
     for (const path of [
-      '/artifacts/A-013.md', '/barriers/B-010.md', '/mechanisms/M-020.md',
-      '/patterns/P-004.md', '/loops/L-001.md', '/interventions/I-002.md',
+      '/artifacts/A-013.md', '/barriers/bar.headcount_executive_budget_approval.md', '/mechanisms/M-020.md',
+      '/patterns/pat.closed_then_reposted_requisition_motif.md', '/loops/L-001.md', '/interventions/I-002.md',
     ]) {
       const response = await request.get(`${path}?lang=en`);
       expect(response.status(), path).toBe(200);

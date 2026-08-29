@@ -160,8 +160,8 @@ const mechanismIdx = bundle.mechanisms.map((m) => entityIndex.get(m.id)!).sort((
 
 const lifted = lift(bundle);
 const substrate = lifted.substrate;
-const substrateBarrierConditions = substrate.conditions.filter((c) => c.id.startsWith('cnd:b-'));
-const substrateMechanismConditions = substrate.conditions.filter((c) => c.id.startsWith('cnd:m-'));
+const substrateBarrierConditions = substrate.conditions.filter((c) => c.id.startsWith('cnd:b-') || c.id.startsWith('cnd:bar.'));
+const substrateMechanismConditions = substrate.conditions.filter((c) => c.id.startsWith('cnd:m-') || c.id.startsWith('cnd:mech.'));
 
 const out: string[] = [
   '/-',
