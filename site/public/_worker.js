@@ -35,6 +35,22 @@ const STATIC_PREFIXES = ['/api/', '/data/', '/schemas/', '/_astro/', '/icons/'];
 // GENERATED — do not edit by hand. Run `pnpm generate:redirects` to refresh
 // from every entity's `aliases` field. See scripts/generate-redirects.ts.
 const LEGACY_ALIASES = {
+  "B-001": "/barriers/bar.application_ingestion",
+  "B-002": "/barriers/bar.automated_filter_parser_threshold",
+  "B-003": "/barriers/bar.inbound_screening_triage",
+  "B-004": "/barriers/bar.recruiter_screening_call",
+  "B-005": "/barriers/bar.technical_screen_live_assessment",
+  "B-006": "/barriers/bar.take_home_work_sample_evaluation",
+  "B-007": "/barriers/bar.hiring_manager_in_depth_review",
+  "B-008": "/barriers/bar.team_cross_functional_panel",
+  "B-009": "/barriers/bar.compensation_levelling_reconciliation",
+  "B-010": "/barriers/bar.headcount_executive_budget_approval",
+  "B-011": "/barriers/bar.reference_background_verification",
+  "B-012": "/barriers/bar.offer_closing_contract_execution",
+  "B-013": "/barriers/bar.requisition_approval_public_posting",
+  "B-014": "/barriers/bar.outbound_sourcing_talent_pool_contact",
+  "B-015": "/barriers/bar.client_profile_approval_and_client_interview",
+  "B-016": "/barriers/bar.probation_period_post_start_confirmation",
   "P-001": "/patterns/pat.seniority_double_bind",
   "P-002": "/patterns/pat.closed_then_reposted_requisition_motif",
   "P-003": "/patterns/pat.experience_age_impossibility",

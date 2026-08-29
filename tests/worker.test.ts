@@ -151,6 +151,14 @@ describe('legacy entity-ID redirects', () => {
     expect(legacyRedirect('/patterns/P-001/')).toBe('/patterns/pat.seniority_double_bind');
   });
 
+  it('redirects an old barrier short code to its new dotted-namespace path', () => {
+    expect(legacyRedirect('/barriers/B-002')).toBe('/barriers/bar.automated_filter_parser_threshold');
+  });
+
+  it('redirects an old barrier short code requesting its Markdown representation', () => {
+    expect(legacyRedirect('/barriers/B-002.md')).toBe('/barriers/bar.automated_filter_parser_threshold.md');
+  });
+
   it('leaves the root path alone', () => {
     expect(legacyRedirect('/')).toBeNull();
   });
