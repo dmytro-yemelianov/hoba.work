@@ -159,11 +159,13 @@ Tools: `get_registry_info`, `search_registry`, `get_node`, `explain_observation`
 alias hoba="node $PWD/packages/cli/dist/cli.js"
 
 # Run forensic hoba analysis on one or more observations
+hoba explain obs.materially_similar_role_reposted_shortly_after_rejection --stage technical
+hoba explain obs.complete_silence_after_submission obs.materially_similar_role_reposted_shortly_after_rejection --json
+# Legacy short codes still resolve, so an old note or link keeps working:
 hoba explain A-004 --stage technical
-hoba explain A-001 A-004 --json
 
 # Diagnose stage dwell anomalies and identify stalled mechanisms
-hoba latency WF-001 recruiter-queue 45 --json
+hoba latency proc.the_hiring_funnel_end_to_end recruiter-queue 45 --json
 
 # Calculate candidate runway horizon, exhaustion risk, and vulnerability notes
 hoba runway 24000 3500
@@ -178,21 +180,21 @@ hoba conservation
 hoba search "reposted" --types artifact,pattern
 
 # Inspect detailed entity specification
-hoba show M-001
+hoba show mech.genuine_technical_skill_shortfall
 
 # Validate content (schemas, references, DAG, loop declarations, EN/UK parity)
 hoba validate --strict
 ```
 
 ### Formal Verification (Lean 4)
-All canonical workflows (`WF-001`..`WF-004`), barrier dependency DAGs, cycle properties, and flow conservation invariants are formalized and proved directly in the **Lean 4** kernel:
+All four canonical workflows (`proc.*`), barrier dependency DAGs, cycle properties, and flow conservation invariants are formalized and proved directly in the **Lean 4** kernel:
 ```bash
 # Build formal Lean data and discharge kernel theorems
 pnpm lean
 ```
 Key kernel-proved theorems include:
-- `ideal_acyclic` & `ideal_route_bounded`: Canonical hiring path `WF-003` terminates in $\le 12$ ranks.
-- `observed_has_cycle`: Observed funnel `WF-001` contains the closed-then-reposted cycle `P-002`.
+- `ideal_acyclic` & `ideal_route_bounded`: Canonical hiring path `proc.the_path_as_it_is_supposed_to_run` terminates in $\le 12$ ranks.
+- `observed_has_cycle`: Observed funnel `proc.the_hiring_funnel_end_to_end` contains the closed-then-reposted cycle `pat.closed_then_reposted_requisition_motif`.
 - `substrate_gates_acyclic`: Structural barrier lattice is strictly acyclic.
 - `substrate_condition_partition`: Exact partition of substrate conditions into barriers and mechanisms.
 - `substrate_flows_positive`: Conservation and validity of all financial resource flows.
