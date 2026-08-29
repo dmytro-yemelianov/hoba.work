@@ -1,6 +1,8 @@
 ---
-id: "R-007"
+id: "record.subcontractor_compensation"
 type: "record"
+aliases:
+  - "R-007"
 title: "Subcontractor Compensation"
 record_class: "payroll"
 owner: "inside"

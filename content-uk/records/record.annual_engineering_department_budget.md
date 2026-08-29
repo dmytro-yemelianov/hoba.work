@@ -1,13 +1,15 @@
 ---
-id: "R-001"
+id: "record.annual_engineering_department_budget"
 type: "record"
+aliases:
+  - "R-001"
 title: "Річний бюджет інженерного департаменту"
 record_class: "budget-line"
 owner: "inside"
 owner_actor: "employer-policy"
 summary: "Річний операційний бюджетний ліміт, виділений на фонд оплати праці інженерних команд."
 flows:
-  - to: "R-002"
+  - to: "record.approved_requisition_funding"
     label: "виділення коштів під реквізицію"
     percentage: 100
     fraction: 1.0

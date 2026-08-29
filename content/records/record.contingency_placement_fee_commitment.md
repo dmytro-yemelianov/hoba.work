@@ -1,13 +1,15 @@
 ---
-id: "R-009"
+id: "record.contingency_placement_fee_commitment"
 type: "record"
+aliases:
+  - "R-009"
 title: "Contingency Placement Fee Commitment"
 record_class: "placement-fee"
 owner: "inside"
 owner_actor: "recruiter"
 summary: "Placement commission contingent upon candidate starting and passing warranty period."
 flows:
-  - to: "R-010"
+  - to: "record.external_agency_settlement"
     label: "agency invoice disbursement"
     percentage: 20
     fraction: 0.20

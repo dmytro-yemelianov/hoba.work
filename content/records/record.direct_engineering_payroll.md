@@ -1,6 +1,8 @@
 ---
-id: "R-003"
+id: "record.direct_engineering_payroll"
 type: "record"
+aliases:
+  - "R-003"
 title: "Direct Engineering Payroll"
 record_class: "payroll"
 owner: "inside"

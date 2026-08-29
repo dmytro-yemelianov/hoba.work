@@ -1,6 +1,8 @@
 ---
-id: "R-010"
+id: "record.external_agency_settlement"
 type: "record"
+aliases:
+  - "R-010"
 title: "External Agency Settlement"
 record_class: "contract"
 owner: "outside-party"

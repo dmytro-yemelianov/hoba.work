@@ -1,13 +1,15 @@
 ---
-id: "R-011"
+id: "record.candidate_liquid_savings"
 type: "record"
+aliases:
+  - "R-011"
 title: "Ліквідні заощадження кандидата"
 record_class: "runway"
 owner: "inside"
 owner_actor: "candidate"
 summary: "Особисті ліквідні заощадження, виділені для забезпечення періоду пошуку роботи."
 flows:
-  - to: "R-012"
+  - to: "record.candidate_search_runway"
     label: "виділення коштів на період пошуку"
     percentage: 100
     fraction: 1.0

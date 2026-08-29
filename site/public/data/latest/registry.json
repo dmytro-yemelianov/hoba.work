@@ -12212,8 +12212,10 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Annual Engineering Department Budget\n\nAnnual operating budget allocation assigned to engineering department headcount.",
-      "aliases": [],
-      "id": "R-001",
+      "aliases": [
+        "R-001"
+      ],
+      "id": "record.annual_engineering_department_budget",
       "type": "record",
       "record_class": "budget-line",
       "owner": "inside",
@@ -12221,7 +12223,7 @@
       "summary": "Annual operating budget allocation assigned to engineering department headcount.",
       "flows": [
         {
-          "to": "R-002",
+          "to": "record.approved_requisition_funding",
           "label": "requisition headcount allocation",
           "percentage": 100,
           "fraction": 1,
@@ -12236,8 +12238,10 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Approved Requisition Funding\n\nHeadcount allocation and salary band approved for the active requisition.",
-      "aliases": [],
-      "id": "R-002",
+      "aliases": [
+        "R-002"
+      ],
+      "id": "record.approved_requisition_funding",
       "type": "record",
       "record_class": "requisition-funding",
       "owner": "inside",
@@ -12245,7 +12249,7 @@
       "summary": "Headcount allocation and salary band approved for the active requisition.",
       "flows": [
         {
-          "to": "R-003",
+          "to": "record.direct_engineering_payroll",
           "label": "hired candidate compensation",
           "percentage": 100,
           "fraction": 1,
@@ -12256,180 +12260,14 @@
       "evidence_level": "supported"
     },
     {
-      "title": "Direct Engineering Payroll",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Direct Engineering Payroll\n\nDirect recurring payroll compensation paid to the employed engineer.",
-      "aliases": [],
-      "id": "R-003",
-      "type": "record",
-      "record_class": "payroll",
-      "owner": "inside",
-      "owner_actor": "employer-policy",
-      "summary": "Direct recurring payroll compensation paid to the employed engineer.",
-      "flows": [],
-      "visibility_default": "observable",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "Client Project Budget",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Client Project Budget\n\nClient total budget line earmarked for third-party engineering services.",
-      "aliases": [],
-      "id": "R-004",
-      "type": "record",
-      "record_class": "budget-line",
-      "owner": "outside-party",
-      "owner_actor": "client",
-      "summary": "Client total budget line earmarked for third-party engineering services.",
-      "flows": [
-        {
-          "to": "R-005",
-          "label": "master services contract",
-          "percentage": 100,
-          "fraction": 1,
-          "split_type": "settlement"
-        }
-      ],
-      "visibility_default": "opaque",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "Client Services Agreement",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Client Services Agreement\n\nCommercial contract defining billing rate and seat scope.",
-      "aliases": [],
-      "id": "R-005",
-      "type": "record",
-      "record_class": "contract",
-      "owner": "outside-party",
-      "owner_actor": "client",
-      "summary": "Commercial contract defining billing rate and seat scope.",
-      "flows": [
-        {
-          "to": "R-006",
-          "label": "vendor margin split",
-          "percentage": 100,
-          "fraction": 1,
-          "split_type": "margin"
-        }
-      ],
-      "visibility_default": "opaque",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "Vendor Margin and Headcount Allocation",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Vendor Margin and Headcount Allocation\n\nInternal vendor allocation splitting client billing into gross margin and candidate cost.",
-      "aliases": [],
-      "id": "R-006",
-      "type": "record",
-      "record_class": "requisition-funding",
-      "owner": "inside",
-      "owner_actor": "employer-policy",
-      "summary": "Internal vendor allocation splitting client billing into gross margin and candidate cost.",
-      "flows": [
-        {
-          "to": "R-007",
-          "label": "contractor payroll allocation",
-          "percentage": 75,
-          "fraction": 0.75,
-          "split_type": "payroll"
-        }
-      ],
-      "visibility_default": "opaque",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "Subcontractor Compensation",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Subcontractor Compensation\n\nNet compensation disbursed to the engineer delivering client services.",
-      "aliases": [],
-      "id": "R-007",
-      "type": "record",
-      "record_class": "payroll",
-      "owner": "inside",
-      "owner_actor": "employer-policy",
-      "summary": "Net compensation disbursed to the engineer delivering client services.",
-      "flows": [],
-      "visibility_default": "observable",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "Employer Hiring and Sourcing Budget",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Employer Hiring and Sourcing Budget\n\nOperational recruiting budget covering external agency fees and search costs.",
-      "aliases": [],
-      "id": "R-008",
-      "type": "record",
-      "record_class": "budget-line",
-      "owner": "inside",
-      "owner_actor": "employer-policy",
-      "summary": "Operational recruiting budget covering external agency fees and search costs.",
-      "flows": [
-        {
-          "to": "R-009",
-          "label": "success fee commitment",
-          "percentage": 100,
-          "fraction": 1,
-          "split_type": "allocation"
-        }
-      ],
-      "visibility_default": "opaque",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "Contingency Placement Fee Commitment",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# Contingency Placement Fee Commitment\n\nPlacement commission contingent upon candidate starting and passing warranty period.",
-      "aliases": [],
-      "id": "R-009",
-      "type": "record",
-      "record_class": "placement-fee",
-      "owner": "inside",
-      "owner_actor": "recruiter",
-      "summary": "Placement commission contingent upon candidate starting and passing warranty period.",
-      "flows": [
-        {
-          "to": "R-010",
-          "label": "agency invoice disbursement",
-          "percentage": 20,
-          "fraction": 0.2,
-          "split_type": "fee"
-        }
-      ],
-      "visibility_default": "opaque",
-      "evidence_level": "supported"
-    },
-    {
-      "title": "External Agency Settlement",
-      "status": "active",
-      "evidence_ids": [],
-      "content": "# External Agency Settlement\n\nCommercial fee settlement received by the external recruitment agency.",
-      "aliases": [],
-      "id": "R-010",
-      "type": "record",
-      "record_class": "contract",
-      "owner": "outside-party",
-      "owner_actor": "client",
-      "summary": "Commercial fee settlement received by the external recruitment agency.",
-      "flows": [],
-      "visibility_default": "opaque",
-      "evidence_level": "supported"
-    },
-    {
       "title": "Candidate Liquid Savings",
       "status": "active",
       "evidence_ids": [],
       "content": "# Candidate Liquid Savings\n\nTotal liquid personal savings allocated to sustain the job search interval.",
-      "aliases": [],
-      "id": "R-011",
+      "aliases": [
+        "R-011"
+      ],
+      "id": "record.candidate_liquid_savings",
       "type": "record",
       "record_class": "runway",
       "owner": "inside",
@@ -12437,7 +12275,7 @@
       "summary": "Total liquid personal savings allocated to sustain the job search interval.",
       "flows": [
         {
-          "to": "R-012",
+          "to": "record.candidate_search_runway",
           "label": "search runway allocation",
           "percentage": 100,
           "fraction": 1,
@@ -12452,8 +12290,10 @@
       "status": "active",
       "evidence_ids": [],
       "content": "# Candidate Search Runway\n\nAvailable runway in months derived from personal savings and monthly burn rate.",
-      "aliases": [],
-      "id": "R-012",
+      "aliases": [
+        "R-012"
+      ],
+      "id": "record.candidate_search_runway",
       "type": "record",
       "record_class": "runway",
       "owner": "inside",
@@ -12461,7 +12301,7 @@
       "summary": "Available runway in months derived from personal savings and monthly burn rate.",
       "flows": [
         {
-          "to": "R-013",
+          "to": "record.search_month_burn_allocation",
           "label": "monthly living expenditure",
           "percentage": 100,
           "fraction": 1,
@@ -12472,12 +12312,154 @@
       "evidence_level": "supported"
     },
     {
+      "title": "Client Project Budget",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Client Project Budget\n\nClient total budget line earmarked for third-party engineering services.",
+      "aliases": [
+        "R-004"
+      ],
+      "id": "record.client_project_budget",
+      "type": "record",
+      "record_class": "budget-line",
+      "owner": "outside-party",
+      "owner_actor": "client",
+      "summary": "Client total budget line earmarked for third-party engineering services.",
+      "flows": [
+        {
+          "to": "record.client_services_agreement",
+          "label": "master services contract",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "settlement"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Client Services Agreement",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Client Services Agreement\n\nCommercial contract defining billing rate and seat scope.",
+      "aliases": [
+        "R-005"
+      ],
+      "id": "record.client_services_agreement",
+      "type": "record",
+      "record_class": "contract",
+      "owner": "outside-party",
+      "owner_actor": "client",
+      "summary": "Commercial contract defining billing rate and seat scope.",
+      "flows": [
+        {
+          "to": "record.vendor_margin_and_headcount_allocation",
+          "label": "vendor margin split",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "margin"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Contingency Placement Fee Commitment",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Contingency Placement Fee Commitment\n\nPlacement commission contingent upon candidate starting and passing warranty period.",
+      "aliases": [
+        "R-009"
+      ],
+      "id": "record.contingency_placement_fee_commitment",
+      "type": "record",
+      "record_class": "placement-fee",
+      "owner": "inside",
+      "owner_actor": "recruiter",
+      "summary": "Placement commission contingent upon candidate starting and passing warranty period.",
+      "flows": [
+        {
+          "to": "record.external_agency_settlement",
+          "label": "agency invoice disbursement",
+          "percentage": 20,
+          "fraction": 0.2,
+          "split_type": "fee"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Direct Engineering Payroll",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Direct Engineering Payroll\n\nDirect recurring payroll compensation paid to the employed engineer.",
+      "aliases": [
+        "R-003"
+      ],
+      "id": "record.direct_engineering_payroll",
+      "type": "record",
+      "record_class": "payroll",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Direct recurring payroll compensation paid to the employed engineer.",
+      "flows": [],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Employer Hiring and Sourcing Budget",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Employer Hiring and Sourcing Budget\n\nOperational recruiting budget covering external agency fees and search costs.",
+      "aliases": [
+        "R-008"
+      ],
+      "id": "record.employer_hiring_and_sourcing_budget",
+      "type": "record",
+      "record_class": "budget-line",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Operational recruiting budget covering external agency fees and search costs.",
+      "flows": [
+        {
+          "to": "record.contingency_placement_fee_commitment",
+          "label": "success fee commitment",
+          "percentage": 100,
+          "fraction": 1,
+          "split_type": "allocation"
+        }
+      ],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "External Agency Settlement",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# External Agency Settlement\n\nCommercial fee settlement received by the external recruitment agency.",
+      "aliases": [
+        "R-010"
+      ],
+      "id": "record.external_agency_settlement",
+      "type": "record",
+      "record_class": "contract",
+      "owner": "outside-party",
+      "owner_actor": "client",
+      "summary": "Commercial fee settlement received by the external recruitment agency.",
+      "flows": [],
+      "visibility_default": "opaque",
+      "evidence_level": "supported"
+    },
+    {
       "title": "Search-Month Burn Allocation",
       "status": "active",
       "evidence_ids": [],
       "content": "# Search-Month Burn Allocation\n\nLiving and tooling expenses incurred per month of active job search.",
-      "aliases": [],
-      "id": "R-013",
+      "aliases": [
+        "R-013"
+      ],
+      "id": "record.search_month_burn_allocation",
       "type": "record",
       "record_class": "payroll",
       "owner": "inside",
@@ -12485,6 +12467,50 @@
       "summary": "Living and tooling expenses incurred per month of active job search.",
       "flows": [],
       "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Subcontractor Compensation",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Subcontractor Compensation\n\nNet compensation disbursed to the engineer delivering client services.",
+      "aliases": [
+        "R-007"
+      ],
+      "id": "record.subcontractor_compensation",
+      "type": "record",
+      "record_class": "payroll",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Net compensation disbursed to the engineer delivering client services.",
+      "flows": [],
+      "visibility_default": "observable",
+      "evidence_level": "supported"
+    },
+    {
+      "title": "Vendor Margin and Headcount Allocation",
+      "status": "active",
+      "evidence_ids": [],
+      "content": "# Vendor Margin and Headcount Allocation\n\nInternal vendor allocation splitting client billing into gross margin and candidate cost.",
+      "aliases": [
+        "R-006"
+      ],
+      "id": "record.vendor_margin_and_headcount_allocation",
+      "type": "record",
+      "record_class": "requisition-funding",
+      "owner": "inside",
+      "owner_actor": "employer-policy",
+      "summary": "Internal vendor allocation splitting client billing into gross margin and candidate cost.",
+      "flows": [
+        {
+          "to": "record.subcontractor_compensation",
+          "label": "contractor payroll allocation",
+          "percentage": 75,
+          "fraction": 0.75,
+          "split_type": "payroll"
+        }
+      ],
+      "visibility_default": "opaque",
       "evidence_level": "supported"
     }
   ]

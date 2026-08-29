@@ -1,6 +1,8 @@
 ---
-id: "R-013"
+id: "record.search_month_burn_allocation"
 type: "record"
+aliases:
+  - "R-013"
 title: "Search-Month Burn Allocation"
 record_class: "payroll"
 owner: "inside"

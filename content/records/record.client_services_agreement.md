@@ -1,13 +1,15 @@
 ---
-id: "R-005"
+id: "record.client_services_agreement"
 type: "record"
+aliases:
+  - "R-005"
 title: "Client Services Agreement"
 record_class: "contract"
 owner: "outside-party"
 owner_actor: "client"
 summary: "Commercial contract defining billing rate and seat scope."
 flows:
-  - to: "R-006"
+  - to: "record.vendor_margin_and_headcount_allocation"
     label: "vendor margin split"
     percentage: 100
     fraction: 1.0

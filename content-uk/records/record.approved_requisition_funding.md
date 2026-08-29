@@ -1,13 +1,15 @@
 ---
-id: "R-002"
+id: "record.approved_requisition_funding"
 type: "record"
+aliases:
+  - "R-002"
 title: "Затверджене фінансування вакансії"
 record_class: "requisition-funding"
 owner: "inside"
 owner_actor: "hiring-manager"
 summary: "Затверджене фінансування ставки та зарплатний діапазон для активної вакансії."
 flows:
-  - to: "R-003"
+  - to: "record.direct_engineering_payroll"
     label: "виплата винагороди найнятому фахівцю"
     percentage: 100
     fraction: 1.0

@@ -1,13 +1,15 @@
 ---
-id: "R-006"
+id: "record.vendor_margin_and_headcount_allocation"
 type: "record"
+aliases:
+  - "R-006"
 title: "Маржинальний розподіл та фінансування позиції вендором"
 record_class: "requisition-funding"
 owner: "inside"
 owner_actor: "employer-policy"
 summary: "Внутрішній розподіл виручки вендора між валовою маржею та витратами на спеціаліста."
 flows:
-  - to: "R-007"
+  - to: "record.subcontractor_compensation"
     label: "виплата винагороди інженеру на проєкті"
     percentage: 75
     fraction: 0.75

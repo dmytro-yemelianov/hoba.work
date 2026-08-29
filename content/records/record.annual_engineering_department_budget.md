@@ -1,13 +1,15 @@
 ---
-id: "R-001"
+id: "record.annual_engineering_department_budget"
 type: "record"
+aliases:
+  - "R-001"
 title: "Annual Engineering Department Budget"
 record_class: "budget-line"
 owner: "inside"
 owner_actor: "employer-policy"
 summary: "Annual operating budget allocation assigned to engineering department headcount."
 flows:
-  - to: "R-002"
+  - to: "record.approved_requisition_funding"
     label: "requisition headcount allocation"
     percentage: 100
     fraction: 1.0

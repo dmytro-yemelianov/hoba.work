@@ -1,13 +1,15 @@
 ---
-id: "R-008"
+id: "record.employer_hiring_and_sourcing_budget"
 type: "record"
+aliases:
+  - "R-008"
 title: "Бюджет роботодавця на найм і сорсинг"
 record_class: "budget-line"
 owner: "inside"
 owner_actor: "employer-policy"
 summary: "Операційний рекрутинговий бюджет на покриття комісій агенцій та витрат на пошук."
 flows:
-  - to: "R-009"
+  - to: "record.contingency_placement_fee_commitment"
     label: "зобов'язання з виплати комісії за успіх"
     percentage: 100
     fraction: 1.0
