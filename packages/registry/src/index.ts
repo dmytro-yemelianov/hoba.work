@@ -8,3 +8,4 @@ export * from './substrate/index.js';
 export * from './validation.js';
 export * from './paths.js';
 export * from './migration.js';
+export * from './scenarios.js';

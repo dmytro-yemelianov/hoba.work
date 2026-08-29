@@ -1,0 +1,33 @@
+# The motif the registry publishes as prose-asserted rather than computed: the
+# same role reappears after a rejection. Several mechanisms produce it and the
+# observation alone cannot separate them, which is the point of composing it as
+# a scenario instead of asserting a cause.
+id: scenario.closed_then_reposted
+title:
+  en: "Rejected, then the same role is posted again"
+  uk: "Відмова, а потім та сама вакансія знову у публікації"
+observations:
+  - "obs.position_closed_after_final_interview_without_hire"
+  - "obs.materially_similar_role_reposted_shortly_after_rejection"
+  - "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
+compatible_mechanisms:
+  - "mech.headcount_freeze_or_budget_cancellation"
+  - "mech.mid_process_role_requirement_redefinition"
+  - "mech.pre_selected_internal_candidate"
+  - "mech.stale_or_orphaned_job_requisition"
+compatible_barriers:
+  - "bar.headcount_executive_budget_approval"
+  - "bar.requisition_approval_public_posting"
+process_states:
+  - "proc.the_hiring_funnel_end_to_end"
+excluded_claims:
+  - "The reposted requisition is the same requisition."
+  - "The candidate was rejected in order to hire someone already chosen."
+  - "The employer acted in bad faith."
+agency:
+  candidate:
+    - "int.recorded_finalist_standing_with_a_dated_re_entry_route"
+  employer-policy:
+    - "int.dated_funding_certification_before_the_final_round"
+    - "int.internal_candidacy_stated_in_the_posting"
+    - "int.auto_close_stale_job_requisitions"

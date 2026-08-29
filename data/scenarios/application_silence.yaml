@@ -1,0 +1,35 @@
+# The design doc's own worked example (§4), grounded in entities the registry
+# actually holds. A scenario names what was seen and what could be behind it;
+# it never asserts which.
+id: scenario.application_silence
+title:
+  en: "Application followed by silence"
+  uk: "Відгук без подальшої відповіді"
+observations:
+  - "obs.complete_silence_after_submission"
+  - "obs.rejection_after_the_application_sat_pending_for_months"
+compatible_mechanisms:
+  - "mech.stale_or_orphaned_job_requisition"
+  - "mech.automated_application_expiration_timeout"
+  - "mech.ats_parser_extraction_failure"
+  - "mech.recruiter_volume_quota_incentive_distortion"
+  - "mech.speculative_sourcing_talent_pooling_without_opening"
+compatible_barriers:
+  - "bar.application_ingestion"
+  - "bar.automated_filter_parser_threshold"
+  - "bar.inbound_screening_triage"
+process_states:
+  - "proc.an_application_inside_the_ats"
+excluded_claims:
+  - "The recruiter deliberately ghosted the candidate."
+  - "The application was read and rejected on its merits."
+  - "The requisition was open at the moment the application arrived."
+agency:
+  candidate:
+    - "int.candidate_ats_parser_conformance_test_utility"
+    - "int.candidate_work_index_submitted_with_the_application"
+  employer-policy:
+    - "int.auto_close_stale_job_requisitions"
+    - "int.distinct_closure_status_for_unreviewed_applications"
+  recruiter:
+    - "int.screening_note_bound_to_observations_and_disposition_codes"

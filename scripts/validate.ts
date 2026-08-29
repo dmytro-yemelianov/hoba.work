@@ -8,8 +8,10 @@ import {
   formatValidationIssue,
   HOBAKnowledgeGraph,
   loadRegistryFromRoot,
+  loadScenarios,
   resolveRegistryRoot,
   validateRegistry,
+  validateScenarios,
   type ValidationIssue,
 } from '@hoba/registry';
 
@@ -46,14 +48,20 @@ for (const loop of bundleEn.loops) {
   console.log(`  ${confirmed ? '✓' : '⚠'} ${loop.id} ${confirmed ? 'is backed by a declared SCC' : 'is NOT fully backed by a declared mechanism cycle'}`);
 }
 
-// 2. Ukrainian mirror: same rules + structural parity with the canonical content
+// 2. Scenarios: compositions over the ontology, checked against it. Design doc
+//    §4 makes an unresolvable id here a build error, never a warning — a
+//    scenario naming an entity the registry does not have is broken, not weak.
+const scenarios = loadScenarios(root);
+report(`Scenarios (${scenarios.length})`, validateScenarios(scenarios, bundleEn));
+
+// 3. Ukrainian mirror: same rules + structural parity with the canonical content
 const bundleUk = loadRegistryFromRoot(root, 'uk');
 report('Ukrainian mirror', [...validateRegistry(bundleUk).issues, ...compareBundleStructure(bundleEn, bundleUk)]);
 
 console.log(
   `\n${bundleEn.artifacts.length} artifacts, ${bundleEn.barriers.length} barriers, ${bundleEn.mechanisms.length} mechanisms, ` +
     `${bundleEn.patterns.length} patterns, ${bundleEn.loops.length} loops, ${bundleEn.interventions.length} interventions, ` +
-    `${bundleEn.evidence.length} evidence records`
+    `${bundleEn.evidence.length} evidence records, ${scenarios.length} scenarios`
 );
 console.log(`${errorCount} error(s), ${warningCount} warning(s)`);
 
