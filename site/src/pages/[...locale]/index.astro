@@ -430,7 +430,7 @@ const caseMechanisms = bundle.mechanisms
       {bundle.patterns.map((p) => (
         <a href={`${prefix}/patterns/${p.id}`} class="group p-5 rounded-xl border border-hoba-border bg-hoba-card hover:border-hoba-accent hover:shadow-md transition-all flex flex-col justify-between no-underline">
           <div>
-            <span class="font-mono text-xs font-semibold text-hoba-accent">{p.id}</span>
+            <span class="font-mono text-xs font-semibold text-hoba-accent break-all">{p.id}</span>
             <h3 class="mt-2 text-base font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">{p.title}</h3>
             <p class="mt-2 text-xs sm:text-sm text-hoba-muted leading-relaxed line-clamp-3">{p.summary}</p>
           </div>

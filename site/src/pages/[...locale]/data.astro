@@ -30,7 +30,12 @@ const prefix = localePrefix(lang);
 // Where an id can be clicked, it is; the point of publishing a gap is that a
 // reader can go and look at what is missing a change.
 const ROUTES: Record<string, string> = { B: 'barriers', M: 'mechanisms', A: 'artifacts', P: 'patterns', L: 'loops', I: 'interventions' };
-const href = (id: string) => `${prefix}/${ROUTES[id[0]!]}/${id}`;
+const DOTTED_ROUTES: Record<string, string> = { bar: 'barriers', mech: 'mechanisms', obs: 'artifacts', pat: 'patterns', loop: 'loops', int: 'interventions' };
+const href = (id: string) => {
+  const dot = id.indexOf('.');
+  const route = dot === -1 ? ROUTES[id[0]!] : DOTTED_ROUTES[id.slice(0, dot)];
+  return `${prefix}/${route}/${id}`;
+};
 
 const gapRows = [
   { title: t('gap.gates'), text: t('gap.gatesText', { n: gaps.gatesWithoutIntervention.length, total: gaps.totals.gates }), ids: gaps.gatesWithoutIntervention, reachBadge: false },
