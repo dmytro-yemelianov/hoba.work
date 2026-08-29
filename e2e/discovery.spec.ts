@@ -14,7 +14,7 @@ test.describe('discovery surface', () => {
     const body = await (await request.get('/sitemap.xml')).text();
     const locs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     expect(locs.length).toBeGreaterThan(70);
-    for (const route of ['/', '/registry', '/graph', '/artifacts/A-013', '/mechanisms/mech.genuine_technical_skill_shortfall', '/interventions/I-002']) {
+    for (const route of ['/', '/registry', '/graph', '/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade', '/mechanisms/mech.genuine_technical_skill_shortfall', '/interventions/I-002']) {
       expect(locs, route).toContain(`https://hoba.work${route === '/' ? '/' : route}`);
     }
     // No language segment: shareable links carry no locale.
@@ -39,7 +39,7 @@ test.describe('discovery surface', () => {
       expect(body, heading).toContain(heading);
     }
     expect(body).toContain('### mech.genuine_technical_skill_shortfall —');
-    expect(body).toContain('### A-013 —');
+    expect(body).toContain('### obs.feedback_stating_candidate_is_overqualified_for_the_grade —');
     expect(body.length).toBeGreaterThan(20_000);
   });
 });

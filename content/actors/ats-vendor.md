@@ -56,7 +56,7 @@ recommendations:
     targets:
       - "mech.ats_parser_extraction_failure"
       - "bar.automated_filter_parser_threshold"
-      - "A-009"
+      - "obs.rejection_within_minutes_of_application_submission"
     interventions: []
   -
     id: "show-the-parsed-record-to-the-applicant"
@@ -79,8 +79,8 @@ recommendations:
     targets:
       - "mech.automated_application_expiration_timeout"
       - "mech.stale_or_orphaned_job_requisition"
-      - "A-001"
-      - "A-002"
+      - "obs.complete_silence_after_submission"
+      - "obs.generic_closer_alignment_rejection_template"
       - "pat.closed_then_reposted_requisition_motif"
     interventions:
       - "I-001"
@@ -106,8 +106,8 @@ recommendations:
     targets:
       - "mech.automated_keyword_qualification_filter"
       - "bar.automated_filter_parser_threshold"
-      - "A-009"
-      - "A-002"
+      - "obs.rejection_within_minutes_of_application_submission"
+      - "obs.generic_closer_alignment_rejection_template"
     interventions: []
 status: "active"
 evidence_level: "supported"

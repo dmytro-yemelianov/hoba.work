@@ -12,13 +12,13 @@ operates_at:
   - "bar.inbound_screening_triage"
 emissions:
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "high"
     evidence: ["EVD-004"]
     observed_at: ["ingestion"]
   -
-    artifact: "A-004"
+    artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
     fidelity: "noise"
     likelihood: "medium"
     evidence: ["EVD-004"]

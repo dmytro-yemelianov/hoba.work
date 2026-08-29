@@ -9,13 +9,13 @@ operates_at:
   - "bar.outbound_sourcing_talent_pool_contact"
 emissions:
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "high"
     evidence: []
     observed_at: ["sourcing"]
   -
-    artifact: "A-012"
+    artifact: "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
     fidelity: "void"
     likelihood: "high"
     evidence: []

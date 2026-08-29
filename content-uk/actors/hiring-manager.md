@@ -58,7 +58,7 @@ recommendations:
       - "mech.domain_specificity_over_weighting"
       - "bar.technical_screen_live_assessment"
       - "bar.hiring_manager_in_depth_review"
-      - "A-014"
+      - "obs.conflicting_feedback_across_different_interviewers"
     interventions: []
   -
     id: "timebox-and-review-floor"
@@ -82,7 +82,7 @@ recommendations:
     targets:
       - "mech.hiring_manager_consensus_impasse"
       - "bar.team_cross_functional_panel"
-      - "A-014"
+      - "obs.conflicting_feedback_across_different_interviewers"
     interventions: []
   -
     id: "freeze-requirements-once-the-loop-opens"
@@ -102,7 +102,7 @@ recommendations:
     costs: "Зафіксований наперед рівень прибирає можливість підхопити сильного кандидата на рівень нижче, а якщо рівень задано хибно, пошук починається знову з публікації."
     targets:
       - "pat.seniority_double_bind"
-      - "A-013"
+      - "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
       - "mech.experience_age_grading_mismatch"
       - "bar.hiring_manager_in_depth_review"
     interventions: []

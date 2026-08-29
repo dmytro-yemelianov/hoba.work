@@ -9,13 +9,13 @@ operates_at:
   - "bar.team_cross_functional_panel"
 emissions:
   -
-    artifact: "A-014"
+    artifact: "obs.conflicting_feedback_across_different_interviewers"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-006"]
     observed_at: ["team"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]

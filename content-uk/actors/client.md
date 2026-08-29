@@ -40,8 +40,8 @@ recommendations:
     cost: "low"
     costs: "Названий етап викликає питання, коли затягується; неназваному не доводиться відповідати за себе."
     targets:
-      - "A-001"
-      - "A-015"
+      - "obs.complete_silence_after_submission"
+      - "obs.rejection_after_the_application_sat_pending_for_months"
       - "mech.stronger_competing_candidate_in_final_cohort"
     interventions: []
   -
@@ -63,8 +63,8 @@ recommendations:
     cost: "low"
     costs: "Категорія — це зобовʼязання; «ні» без категорії надсилати більше не можна."
     targets:
-      - "A-002"
-      - "A-015"
+      - "obs.generic_closer_alignment_rejection_template"
+      - "obs.rejection_after_the_application_sat_pending_for_months"
     interventions:
       - "I-003"
 ---

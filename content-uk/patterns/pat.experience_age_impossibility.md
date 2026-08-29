@@ -6,8 +6,8 @@ aliases:
 title: "Більше років досвіду, ніж існує технологія"
 summary: "Вакансія вимагає більше років практичного досвіду з конкретним фреймворком чи інструментом, ніж ця технологія взагалі існує."
 required_artifacts:
-  - "A-002"
-  - "A-009"
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.rejection_within_minutes_of_application_submission"
 compatible_mechanisms:
   - "mech.automated_keyword_qualification_filter"
   - "mech.inflated_requisition_requirements_vs_actual_team_needs"

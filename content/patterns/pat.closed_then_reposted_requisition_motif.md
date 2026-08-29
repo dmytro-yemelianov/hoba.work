@@ -6,8 +6,8 @@ aliases:
 title: "Closed-Then-Reposted Requisition Motif"
 summary: "A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later."
 required_artifacts:
-  - "A-003"
-  - "A-004"
+  - "obs.position_closed_after_final_interview_without_hire"
+  - "obs.materially_similar_role_reposted_shortly_after_rejection"
 compatible_mechanisms:
   - "mech.stronger_competing_candidate_in_final_cohort"
   - "mech.stale_or_orphaned_job_requisition"

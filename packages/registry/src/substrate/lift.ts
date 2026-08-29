@@ -145,7 +145,7 @@ export function lift(bundle: RegistryBundle): Lifted {
   // Observations are event classes; statements attach to communicative observations (A4).
   sidecar.order['artifacts'] = bundle.artifacts.map((a) => a.id);
   for (const a of bundle.artifacts) {
-    const isAbsence = a.id === 'A-001';
+    const isAbsence = a.id === 'obs.complete_silence_after_submission' || a.id === 'A-001';
     const communicates = !isAbsence;
     eventClasses.push({
       id: `evc:${low(a.id)}`,

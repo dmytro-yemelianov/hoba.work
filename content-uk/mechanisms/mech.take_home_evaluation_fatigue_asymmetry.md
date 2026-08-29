@@ -9,13 +9,13 @@ operates_at:
   - "bar.take_home_work_sample_evaluation"
 emissions:
   -
-    artifact: "A-006"
+    artifact: "obs.take_home_assignment_exceeding_reasonable_stated_scope"
     fidelity: "noise"
     likelihood: "medium"
     evidence: ["EVD-006"]
     observed_at: ["technical"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]

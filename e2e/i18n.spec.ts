@@ -106,7 +106,7 @@ test.describe('every page reaches the worker', () => {
   const PAGES = [
     '/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data',
     '/methodology', '/developers', '/contribute', '/about',
-    '/artifacts/A-013', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.genuine_technical_skill_shortfall',
+    '/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.genuine_technical_skill_shortfall',
     '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-002', '/actors/recruiter',
   ];
 

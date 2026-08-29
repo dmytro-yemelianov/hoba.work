@@ -80,13 +80,13 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
   });
 
   it('distinguishes absences (A-001) from communicative statement observations (A4)', () => {
-    const silence = lifted.substrate.eventClasses.find((e) => e.id === 'evc:a-001')!;
+    const silence = lifted.substrate.eventClasses.find((e) => e.id === 'evc:obs.complete_silence_after_submission')!;
     expect(silence.communicates).toBe(false);
-    expect(lifted.substrate.statements.some((s) => s.id === 'sta:a-001')).toBe(false);
+    expect(lifted.substrate.statements.some((s) => s.id === 'sta:obs.complete_silence_after_submission')).toBe(false);
 
-    const rejection = lifted.substrate.eventClasses.find((e) => e.id === 'evc:a-002')!;
+    const rejection = lifted.substrate.eventClasses.find((e) => e.id === 'evc:obs.generic_closer_alignment_rejection_template')!;
     expect(rejection.communicates).toBe(true);
-    expect(lifted.substrate.statements.some((s) => s.id === 'sta:a-002')).toBe(true);
+    expect(lifted.substrate.statements.some((s) => s.id === 'sta:obs.generic_closer_alignment_rejection_template')).toBe(true);
   });
 
   it('declares visibility rules across candidate audience and subject classes (A4)', () => {

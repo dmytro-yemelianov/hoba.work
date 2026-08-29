@@ -46,7 +46,7 @@
           "mech.stale_or_orphaned_job_requisition",
           "mech.speculative_sourcing_talent_pooling_without_opening",
           "mech.bid_conditional_talent_pool",
-          "A-021"
+          "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
         ]
       },
       {
@@ -219,7 +219,7 @@
           "mech.reference_check_discrepancy_or_regulatory_ineligibility",
           "mech.start_date_slippage_and_post_acceptance_revocation",
           "mech.probation_used_as_extended_de_facto_interview",
-          "A-020"
+          "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
         ]
       },
       {
@@ -244,10 +244,10 @@
         ],
         "visible_to_candidate": "Which stage, which criterion, and whether to apply again.",
         "deviations": [
-          "A-002",
-          "A-008",
-          "A-013",
-          "A-014"
+          "obs.generic_closer_alignment_rejection_template",
+          "obs.explicit_feedback_citing_skill_depth_shortfall",
+          "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
+          "obs.conflicting_feedback_across_different_interviewers"
         ]
       },
       {
@@ -261,10 +261,10 @@
         ],
         "visible_to_candidate": "A message saying the search ended, and when.",
         "deviations": [
-          "A-001",
-          "A-003",
-          "A-011",
-          "A-012",
+          "obs.complete_silence_after_submission",
+          "obs.position_closed_after_final_interview_without_hire",
+          "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
+          "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "mech.stale_or_orphaned_job_requisition",
           "mech.automated_application_expiration_timeout"
         ]

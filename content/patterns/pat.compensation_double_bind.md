@@ -6,8 +6,8 @@ aliases:
 title: "Compensation Double Bind"
 summary: "The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at."
 required_artifacts:
-  - "A-002"
-  - "A-005"
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.compensation_band_reduced_or_altered_mid_process"
 compatible_mechanisms:
   - "mech.unstated_compensation_band_discrepancy"
   - "mech.experience_age_grading_mismatch"

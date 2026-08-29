@@ -3,61 +3,20 @@
     "nodes": [
       {
         "data": {
-          "id": "A-001",
-          "label": "Complete silence after submission",
+          "id": "obs.communication_mismatch_or_tone_friction_in_panel",
+          "label": "Communication mismatch or tone friction in panel",
           "type": "artifact",
           "evidence_level": "supported",
           "stages": [
-            "ingestion",
-            "sourcing"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-002",
-          "label": "Generic \"closer alignment\" rejection template",
-          "type": "artifact",
-          "evidence_level": "supported",
-          "stages": [
-            "screening",
             "recruiter",
-            "technical"
+            "team"
           ]
         },
         "classes": "node-artifact"
       },
       {
         "data": {
-          "id": "A-003",
-          "label": "Position closed after final interview without hire",
-          "type": "artifact",
-          "evidence_level": "supported",
-          "stages": [
-            "team",
-            "offer"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-004",
-          "label": "Materially similar role reposted shortly after rejection",
-          "type": "artifact",
-          "evidence_level": "supported",
-          "stages": [
-            "sourcing",
-            "screening",
-            "technical"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-005",
+          "id": "obs.compensation_band_reduced_or_altered_mid_process",
           "label": "Compensation band reduced or altered mid-process",
           "type": "artifact",
           "evidence_level": "supported",
@@ -71,24 +30,24 @@
       },
       {
         "data": {
-          "id": "A-006",
-          "label": "Take-home assignment exceeding reasonable stated scope",
+          "id": "obs.complete_silence_after_submission",
+          "label": "Complete silence after submission",
           "type": "artifact",
           "evidence_level": "supported",
           "stages": [
-            "technical"
+            "ingestion",
+            "sourcing"
           ]
         },
         "classes": "node-artifact"
       },
       {
         "data": {
-          "id": "A-007",
-          "label": "Multiple interview reschedulings or interviewer no-show",
+          "id": "obs.conflicting_feedback_across_different_interviewers",
+          "label": "Conflicting feedback across different interviewers",
           "type": "artifact",
           "evidence_level": "supported",
           "stages": [
-            "recruiter",
             "technical",
             "team"
           ]
@@ -97,7 +56,7 @@
       },
       {
         "data": {
-          "id": "A-008",
+          "id": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "label": "Explicit feedback citing skill-depth shortfall",
           "type": "artifact",
           "evidence_level": "supported",
@@ -110,58 +69,20 @@
       },
       {
         "data": {
-          "id": "A-009",
-          "label": "Rejection within minutes of application submission",
+          "id": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
+          "label": "Feedback naming as absent something the submitted work contains",
           "type": "artifact",
-          "evidence_level": "supported",
+          "evidence_level": "hypothesis",
           "stages": [
-            "ingestion"
+            "screening",
+            "technical"
           ]
         },
         "classes": "node-artifact"
       },
       {
         "data": {
-          "id": "A-010",
-          "label": "Communication mismatch or tone friction in panel",
-          "type": "artifact",
-          "evidence_level": "supported",
-          "stages": [
-            "recruiter",
-            "team"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-011",
-          "label": "Offer rescinded or delayed due to internal freeze",
-          "type": "artifact",
-          "evidence_level": "supported",
-          "stages": [
-            "offer",
-            "post-offer"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-012",
-          "label": "Unsolicited recruiter outreach followed by ghosting",
-          "type": "artifact",
-          "evidence_level": "supported",
-          "stages": [
-            "sourcing",
-            "recruiter"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-013",
+          "id": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "label": "Feedback stating candidate is overqualified for the grade",
           "type": "artifact",
           "evidence_level": "supported",
@@ -175,11 +96,40 @@
       },
       {
         "data": {
-          "id": "A-014",
-          "label": "Conflicting feedback across different interviewers",
+          "id": "obs.generic_closer_alignment_rejection_template",
+          "label": "Generic \"closer alignment\" rejection template",
           "type": "artifact",
           "evidence_level": "supported",
           "stages": [
+            "screening",
+            "recruiter",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.materially_similar_role_reposted_shortly_after_rejection",
+          "label": "Materially similar role reposted shortly after rejection",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "sourcing",
+            "screening",
+            "technical"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
+          "label": "Multiple interview reschedulings or interviewer no-show",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "recruiter",
             "technical",
             "team"
           ]
@@ -188,7 +138,45 @@
       },
       {
         "data": {
-          "id": "A-015",
+          "id": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+          "label": "Offer accepted followed by delayed start date or post-signing revocation",
+          "type": "artifact",
+          "evidence_level": "established",
+          "stages": [
+            "post-offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
+          "label": "Offer rescinded or delayed due to internal freeze",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "offer",
+            "post-offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.position_closed_after_final_interview_without_hire",
+          "label": "Position closed after final interview without hire",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "team",
+            "offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.rejection_after_the_application_sat_pending_for_months",
           "label": "Rejection after the application sat pending for months",
           "type": "artifact",
           "evidence_level": "hypothesis",
@@ -201,20 +189,7 @@
       },
       {
         "data": {
-          "id": "A-016",
-          "label": "Rejection naming an internal hire as the outcome",
-          "type": "artifact",
-          "evidence_level": "hypothesis",
-          "stages": [
-            "team",
-            "offer"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-017",
+          "id": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "label": "Rejection naming a jurisdiction or work-eligibility ground",
           "type": "artifact",
           "evidence_level": "hypothesis",
@@ -227,7 +202,7 @@
       },
       {
         "data": {
-          "id": "A-018",
+          "id": "obs.rejection_naming_a_specific_industry_sector_as_required",
           "label": "Rejection naming a specific industry sector as required",
           "type": "artifact",
           "evidence_level": "hypothesis",
@@ -240,12 +215,49 @@
       },
       {
         "data": {
-          "id": "A-019",
-          "label": "Feedback naming as absent something the submitted work contains",
+          "id": "obs.rejection_naming_an_internal_hire_as_the_outcome",
+          "label": "Rejection naming an internal hire as the outcome",
           "type": "artifact",
           "evidence_level": "hypothesis",
           "stages": [
-            "screening",
+            "team",
+            "offer"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.rejection_within_minutes_of_application_submission",
+          "label": "Rejection within minutes of application submission",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
+            "ingestion"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "label": "Republished job posting with refreshed date and identical requirement body",
+          "type": "artifact",
+          "evidence_level": "established",
+          "stages": [
+            "pre-posting",
+            "sourcing"
+          ]
+        },
+        "classes": "node-artifact"
+      },
+      {
+        "data": {
+          "id": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
+          "label": "Take-home assignment exceeding reasonable stated scope",
+          "type": "artifact",
+          "evidence_level": "supported",
+          "stages": [
             "technical"
           ]
         },
@@ -253,25 +265,13 @@
       },
       {
         "data": {
-          "id": "A-020",
-          "label": "Offer accepted followed by delayed start date or post-signing revocation",
+          "id": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
+          "label": "Unsolicited recruiter outreach followed by ghosting",
           "type": "artifact",
-          "evidence_level": "established",
+          "evidence_level": "supported",
           "stages": [
-            "post-offer"
-          ]
-        },
-        "classes": "node-artifact"
-      },
-      {
-        "data": {
-          "id": "A-021",
-          "label": "Republished job posting with refreshed date and identical requirement body",
-          "type": "artifact",
-          "evidence_level": "established",
-          "stages": [
-            "pre-posting",
-            "sourcing"
+            "sourcing",
+            "recruiter"
           ]
         },
         "classes": "node-artifact"
@@ -1269,9 +1269,9 @@
       },
       {
         "data": {
-          "id": "mech.ats_parser_extraction_failure->emits->A-001",
+          "id": "mech.ats_parser_extraction_failure->emits->obs.complete_silence_after_submission",
           "source": "mech.ats_parser_extraction_failure",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -1280,9 +1280,9 @@
       },
       {
         "data": {
-          "id": "mech.ats_parser_extraction_failure->emits->A-009",
+          "id": "mech.ats_parser_extraction_failure->emits->obs.rejection_within_minutes_of_application_submission",
           "source": "mech.ats_parser_extraction_failure",
-          "target": "A-009",
+          "target": "obs.rejection_within_minutes_of_application_submission",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1318,9 +1318,9 @@
       },
       {
         "data": {
-          "id": "mech.automated_application_expiration_timeout->emits->A-015",
+          "id": "mech.automated_application_expiration_timeout->emits->obs.rejection_after_the_application_sat_pending_for_months",
           "source": "mech.automated_application_expiration_timeout",
-          "target": "A-015",
+          "target": "obs.rejection_after_the_application_sat_pending_for_months",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1329,9 +1329,9 @@
       },
       {
         "data": {
-          "id": "mech.automated_application_expiration_timeout->emits->A-002",
+          "id": "mech.automated_application_expiration_timeout->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.automated_application_expiration_timeout",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1340,9 +1340,9 @@
       },
       {
         "data": {
-          "id": "mech.automated_application_expiration_timeout->emits->A-001",
+          "id": "mech.automated_application_expiration_timeout->emits->obs.complete_silence_after_submission",
           "source": "mech.automated_application_expiration_timeout",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -1369,9 +1369,9 @@
       },
       {
         "data": {
-          "id": "mech.automated_keyword_qualification_filter->emits->A-009",
+          "id": "mech.automated_keyword_qualification_filter->emits->obs.rejection_within_minutes_of_application_submission",
           "source": "mech.automated_keyword_qualification_filter",
-          "target": "A-009",
+          "target": "obs.rejection_within_minutes_of_application_submission",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1380,9 +1380,9 @@
       },
       {
         "data": {
-          "id": "mech.automated_keyword_qualification_filter->emits->A-002",
+          "id": "mech.automated_keyword_qualification_filter->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.automated_keyword_qualification_filter",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1427,9 +1427,9 @@
       },
       {
         "data": {
-          "id": "mech.bench_priority_fill->emits->A-002",
+          "id": "mech.bench_priority_fill->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.bench_priority_fill",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1438,9 +1438,9 @@
       },
       {
         "data": {
-          "id": "mech.bench_priority_fill->emits->A-003",
+          "id": "mech.bench_priority_fill->emits->obs.position_closed_after_final_interview_without_hire",
           "source": "mech.bench_priority_fill",
-          "target": "A-003",
+          "target": "obs.position_closed_after_final_interview_without_hire",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -1449,9 +1449,9 @@
       },
       {
         "data": {
-          "id": "mech.bench_priority_fill->emits->A-016",
+          "id": "mech.bench_priority_fill->emits->obs.rejection_naming_an_internal_hire_as_the_outcome",
           "source": "mech.bench_priority_fill",
-          "target": "A-016",
+          "target": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -1469,9 +1469,9 @@
       },
       {
         "data": {
-          "id": "mech.bid_conditional_talent_pool->emits->A-001",
+          "id": "mech.bid_conditional_talent_pool->emits->obs.complete_silence_after_submission",
           "source": "mech.bid_conditional_talent_pool",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1480,9 +1480,9 @@
       },
       {
         "data": {
-          "id": "mech.bid_conditional_talent_pool->emits->A-012",
+          "id": "mech.bid_conditional_talent_pool->emits->obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "source": "mech.bid_conditional_talent_pool",
-          "target": "A-012",
+          "target": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1509,9 +1509,9 @@
       },
       {
         "data": {
-          "id": "mech.communication_or_working_style_friction->emits->A-010",
+          "id": "mech.communication_or_working_style_friction->emits->obs.communication_mismatch_or_tone_friction_in_panel",
           "source": "mech.communication_or_working_style_friction",
-          "target": "A-010",
+          "target": "obs.communication_mismatch_or_tone_friction_in_panel",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1520,9 +1520,9 @@
       },
       {
         "data": {
-          "id": "mech.communication_or_working_style_friction->emits->A-002",
+          "id": "mech.communication_or_working_style_friction->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.communication_or_working_style_friction",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1549,9 +1549,9 @@
       },
       {
         "data": {
-          "id": "mech.domain_specificity_over_weighting->emits->A-018",
+          "id": "mech.domain_specificity_over_weighting->emits->obs.rejection_naming_a_specific_industry_sector_as_required",
           "source": "mech.domain_specificity_over_weighting",
-          "target": "A-018",
+          "target": "obs.rejection_naming_a_specific_industry_sector_as_required",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -1560,9 +1560,9 @@
       },
       {
         "data": {
-          "id": "mech.domain_specificity_over_weighting->emits->A-002",
+          "id": "mech.domain_specificity_over_weighting->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.domain_specificity_over_weighting",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1571,9 +1571,9 @@
       },
       {
         "data": {
-          "id": "mech.domain_specificity_over_weighting->emits->A-008",
+          "id": "mech.domain_specificity_over_weighting->emits->obs.explicit_feedback_citing_skill_depth_shortfall",
           "source": "mech.domain_specificity_over_weighting",
-          "target": "A-008",
+          "target": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -1618,9 +1618,9 @@
       },
       {
         "data": {
-          "id": "mech.employment_gap_downranking_bias->emits->A-001",
+          "id": "mech.employment_gap_downranking_bias->emits->obs.complete_silence_after_submission",
           "source": "mech.employment_gap_downranking_bias",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -1629,9 +1629,9 @@
       },
       {
         "data": {
-          "id": "mech.employment_gap_downranking_bias->emits->A-002",
+          "id": "mech.employment_gap_downranking_bias->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.employment_gap_downranking_bias",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1676,9 +1676,9 @@
       },
       {
         "data": {
-          "id": "mech.experience_age_grading_mismatch->emits->A-013",
+          "id": "mech.experience_age_grading_mismatch->emits->obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "source": "mech.experience_age_grading_mismatch",
-          "target": "A-013",
+          "target": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1687,9 +1687,9 @@
       },
       {
         "data": {
-          "id": "mech.experience_age_grading_mismatch->emits->A-002",
+          "id": "mech.experience_age_grading_mismatch->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.experience_age_grading_mismatch",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1743,9 +1743,9 @@
       },
       {
         "data": {
-          "id": "mech.genuine_technical_skill_shortfall->emits->A-008",
+          "id": "mech.genuine_technical_skill_shortfall->emits->obs.explicit_feedback_citing_skill_depth_shortfall",
           "source": "mech.genuine_technical_skill_shortfall",
-          "target": "A-008",
+          "target": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1754,9 +1754,9 @@
       },
       {
         "data": {
-          "id": "mech.genuine_technical_skill_shortfall->emits->A-002",
+          "id": "mech.genuine_technical_skill_shortfall->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.genuine_technical_skill_shortfall",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -1792,9 +1792,9 @@
       },
       {
         "data": {
-          "id": "mech.headcount_freeze_or_budget_cancellation->emits->A-003",
+          "id": "mech.headcount_freeze_or_budget_cancellation->emits->obs.position_closed_after_final_interview_without_hire",
           "source": "mech.headcount_freeze_or_budget_cancellation",
-          "target": "A-003",
+          "target": "obs.position_closed_after_final_interview_without_hire",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1803,9 +1803,9 @@
       },
       {
         "data": {
-          "id": "mech.headcount_freeze_or_budget_cancellation->emits->A-011",
+          "id": "mech.headcount_freeze_or_budget_cancellation->emits->obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "source": "mech.headcount_freeze_or_budget_cancellation",
-          "target": "A-011",
+          "target": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1868,9 +1868,9 @@
       },
       {
         "data": {
-          "id": "mech.hidden_evaluation_rubric_or_undisclosed_priority->emits->A-008",
+          "id": "mech.hidden_evaluation_rubric_or_undisclosed_priority->emits->obs.explicit_feedback_citing_skill_depth_shortfall",
           "source": "mech.hidden_evaluation_rubric_or_undisclosed_priority",
-          "target": "A-008",
+          "target": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "medium"
@@ -1879,9 +1879,9 @@
       },
       {
         "data": {
-          "id": "mech.hidden_evaluation_rubric_or_undisclosed_priority->emits->A-014",
+          "id": "mech.hidden_evaluation_rubric_or_undisclosed_priority->emits->obs.conflicting_feedback_across_different_interviewers",
           "source": "mech.hidden_evaluation_rubric_or_undisclosed_priority",
-          "target": "A-014",
+          "target": "obs.conflicting_feedback_across_different_interviewers",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1917,9 +1917,9 @@
       },
       {
         "data": {
-          "id": "mech.hiring_manager_consensus_impasse->emits->A-014",
+          "id": "mech.hiring_manager_consensus_impasse->emits->obs.conflicting_feedback_across_different_interviewers",
           "source": "mech.hiring_manager_consensus_impasse",
-          "target": "A-014",
+          "target": "obs.conflicting_feedback_across_different_interviewers",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -1928,9 +1928,9 @@
       },
       {
         "data": {
-          "id": "mech.hiring_manager_consensus_impasse->emits->A-002",
+          "id": "mech.hiring_manager_consensus_impasse->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.hiring_manager_consensus_impasse",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1975,9 +1975,9 @@
       },
       {
         "data": {
-          "id": "mech.inflated_requisition_requirements_vs_actual_team_needs->emits->A-002",
+          "id": "mech.inflated_requisition_requirements_vs_actual_team_needs->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.inflated_requisition_requirements_vs_actual_team_needs",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -1986,9 +1986,9 @@
       },
       {
         "data": {
-          "id": "mech.inflated_requisition_requirements_vs_actual_team_needs->emits->A-004",
+          "id": "mech.inflated_requisition_requirements_vs_actual_team_needs->emits->obs.materially_similar_role_reposted_shortly_after_rejection",
           "source": "mech.inflated_requisition_requirements_vs_actual_team_needs",
-          "target": "A-004",
+          "target": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2042,9 +2042,9 @@
       },
       {
         "data": {
-          "id": "mech.interview_resource_scheduling_saturation->emits->A-007",
+          "id": "mech.interview_resource_scheduling_saturation->emits->obs.multiple_interview_reschedulings_or_interviewer_no_show",
           "source": "mech.interview_resource_scheduling_saturation",
-          "target": "A-007",
+          "target": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2053,9 +2053,9 @@
       },
       {
         "data": {
-          "id": "mech.interview_resource_scheduling_saturation->emits->A-001",
+          "id": "mech.interview_resource_scheduling_saturation->emits->obs.complete_silence_after_submission",
           "source": "mech.interview_resource_scheduling_saturation",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2091,9 +2091,9 @@
       },
       {
         "data": {
-          "id": "mech.location_or_timezone_compliance_constraint->emits->A-017",
+          "id": "mech.location_or_timezone_compliance_constraint->emits->obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "source": "mech.location_or_timezone_compliance_constraint",
-          "target": "A-017",
+          "target": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2102,9 +2102,9 @@
       },
       {
         "data": {
-          "id": "mech.location_or_timezone_compliance_constraint->emits->A-009",
+          "id": "mech.location_or_timezone_compliance_constraint->emits->obs.rejection_within_minutes_of_application_submission",
           "source": "mech.location_or_timezone_compliance_constraint",
-          "target": "A-009",
+          "target": "obs.rejection_within_minutes_of_application_submission",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2113,9 +2113,9 @@
       },
       {
         "data": {
-          "id": "mech.location_or_timezone_compliance_constraint->emits->A-002",
+          "id": "mech.location_or_timezone_compliance_constraint->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.location_or_timezone_compliance_constraint",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -2151,9 +2151,9 @@
       },
       {
         "data": {
-          "id": "mech.mid_process_role_requirement_redefinition->emits->A-003",
+          "id": "mech.mid_process_role_requirement_redefinition->emits->obs.position_closed_after_final_interview_without_hire",
           "source": "mech.mid_process_role_requirement_redefinition",
-          "target": "A-003",
+          "target": "obs.position_closed_after_final_interview_without_hire",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "medium"
@@ -2162,9 +2162,9 @@
       },
       {
         "data": {
-          "id": "mech.mid_process_role_requirement_redefinition->emits->A-004",
+          "id": "mech.mid_process_role_requirement_redefinition->emits->obs.materially_similar_role_reposted_shortly_after_rejection",
           "source": "mech.mid_process_role_requirement_redefinition",
-          "target": "A-004",
+          "target": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2218,9 +2218,9 @@
       },
       {
         "data": {
-          "id": "mech.portfolio_work_artifact_misinterpretation->emits->A-019",
+          "id": "mech.portfolio_work_artifact_misinterpretation->emits->obs.feedback_naming_as_absent_something_the_submitted_work_contains",
           "source": "mech.portfolio_work_artifact_misinterpretation",
-          "target": "A-019",
+          "target": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -2229,9 +2229,9 @@
       },
       {
         "data": {
-          "id": "mech.portfolio_work_artifact_misinterpretation->emits->A-002",
+          "id": "mech.portfolio_work_artifact_misinterpretation->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.portfolio_work_artifact_misinterpretation",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2240,9 +2240,9 @@
       },
       {
         "data": {
-          "id": "mech.portfolio_work_artifact_misinterpretation->emits->A-008",
+          "id": "mech.portfolio_work_artifact_misinterpretation->emits->obs.explicit_feedback_citing_skill_depth_shortfall",
           "source": "mech.portfolio_work_artifact_misinterpretation",
-          "target": "A-008",
+          "target": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "medium"
@@ -2296,9 +2296,9 @@
       },
       {
         "data": {
-          "id": "mech.pre_selected_internal_candidate->emits->A-016",
+          "id": "mech.pre_selected_internal_candidate->emits->obs.rejection_naming_an_internal_hire_as_the_outcome",
           "source": "mech.pre_selected_internal_candidate",
-          "target": "A-016",
+          "target": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -2307,9 +2307,9 @@
       },
       {
         "data": {
-          "id": "mech.pre_selected_internal_candidate->emits->A-002",
+          "id": "mech.pre_selected_internal_candidate->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.pre_selected_internal_candidate",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2318,9 +2318,9 @@
       },
       {
         "data": {
-          "id": "mech.pre_selected_internal_candidate->emits->A-003",
+          "id": "mech.pre_selected_internal_candidate->emits->obs.position_closed_after_final_interview_without_hire",
           "source": "mech.pre_selected_internal_candidate",
-          "target": "A-003",
+          "target": "obs.position_closed_after_final_interview_without_hire",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -2347,9 +2347,9 @@
       },
       {
         "data": {
-          "id": "mech.probation_used_as_extended_de_facto_interview->emits->A-020",
+          "id": "mech.probation_used_as_extended_de_facto_interview->emits->obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "source": "mech.probation_used_as_extended_de_facto_interview",
-          "target": "A-020",
+          "target": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -2358,9 +2358,9 @@
       },
       {
         "data": {
-          "id": "mech.probation_used_as_extended_de_facto_interview->emits->A-002",
+          "id": "mech.probation_used_as_extended_de_facto_interview->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.probation_used_as_extended_de_facto_interview",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2369,9 +2369,9 @@
       },
       {
         "data": {
-          "id": "mech.probation_used_as_extended_de_facto_interview->emits->A-016",
+          "id": "mech.probation_used_as_extended_de_facto_interview->emits->obs.rejection_naming_an_internal_hire_as_the_outcome",
           "source": "mech.probation_used_as_extended_de_facto_interview",
-          "target": "A-016",
+          "target": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2398,9 +2398,9 @@
       },
       {
         "data": {
-          "id": "mech.recruiter_volume_quota_incentive_distortion->emits->A-001",
+          "id": "mech.recruiter_volume_quota_incentive_distortion->emits->obs.complete_silence_after_submission",
           "source": "mech.recruiter_volume_quota_incentive_distortion",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -2409,9 +2409,9 @@
       },
       {
         "data": {
-          "id": "mech.recruiter_volume_quota_incentive_distortion->emits->A-012",
+          "id": "mech.recruiter_volume_quota_incentive_distortion->emits->obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "source": "mech.recruiter_volume_quota_incentive_distortion",
-          "target": "A-012",
+          "target": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2447,9 +2447,9 @@
       },
       {
         "data": {
-          "id": "mech.reference_check_discrepancy_or_regulatory_ineligibility->emits->A-011",
+          "id": "mech.reference_check_discrepancy_or_regulatory_ineligibility->emits->obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "source": "mech.reference_check_discrepancy_or_regulatory_ineligibility",
-          "target": "A-011",
+          "target": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2458,9 +2458,9 @@
       },
       {
         "data": {
-          "id": "mech.reference_check_discrepancy_or_regulatory_ineligibility->emits->A-002",
+          "id": "mech.reference_check_discrepancy_or_regulatory_ineligibility->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.reference_check_discrepancy_or_regulatory_ineligibility",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -2505,9 +2505,9 @@
       },
       {
         "data": {
-          "id": "mech.speculative_sourcing_talent_pooling_without_opening->emits->A-012",
+          "id": "mech.speculative_sourcing_talent_pooling_without_opening->emits->obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "source": "mech.speculative_sourcing_talent_pooling_without_opening",
-          "target": "A-012",
+          "target": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "high"
@@ -2516,9 +2516,9 @@
       },
       {
         "data": {
-          "id": "mech.speculative_sourcing_talent_pooling_without_opening->emits->A-001",
+          "id": "mech.speculative_sourcing_talent_pooling_without_opening->emits->obs.complete_silence_after_submission",
           "source": "mech.speculative_sourcing_talent_pooling_without_opening",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -2572,9 +2572,9 @@
       },
       {
         "data": {
-          "id": "mech.stale_or_orphaned_job_requisition->emits->A-001",
+          "id": "mech.stale_or_orphaned_job_requisition->emits->obs.complete_silence_after_submission",
           "source": "mech.stale_or_orphaned_job_requisition",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "high"
@@ -2583,9 +2583,9 @@
       },
       {
         "data": {
-          "id": "mech.stale_or_orphaned_job_requisition->emits->A-004",
+          "id": "mech.stale_or_orphaned_job_requisition->emits->obs.materially_similar_role_reposted_shortly_after_rejection",
           "source": "mech.stale_or_orphaned_job_requisition",
-          "target": "A-004",
+          "target": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2621,9 +2621,9 @@
       },
       {
         "data": {
-          "id": "mech.start_date_slippage_and_post_acceptance_revocation->emits->A-020",
+          "id": "mech.start_date_slippage_and_post_acceptance_revocation->emits->obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "source": "mech.start_date_slippage_and_post_acceptance_revocation",
-          "target": "A-020",
+          "target": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "high"
@@ -2632,9 +2632,9 @@
       },
       {
         "data": {
-          "id": "mech.start_date_slippage_and_post_acceptance_revocation->emits->A-001",
+          "id": "mech.start_date_slippage_and_post_acceptance_revocation->emits->obs.complete_silence_after_submission",
           "source": "mech.start_date_slippage_and_post_acceptance_revocation",
-          "target": "A-001",
+          "target": "obs.complete_silence_after_submission",
           "type": "emits",
           "fidelity": "void",
           "likelihood": "medium"
@@ -2643,9 +2643,9 @@
       },
       {
         "data": {
-          "id": "mech.start_date_slippage_and_post_acceptance_revocation->emits->A-011",
+          "id": "mech.start_date_slippage_and_post_acceptance_revocation->emits->obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "source": "mech.start_date_slippage_and_post_acceptance_revocation",
-          "target": "A-011",
+          "target": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -2681,9 +2681,9 @@
       },
       {
         "data": {
-          "id": "mech.stronger_competing_candidate_in_final_cohort->emits->A-002",
+          "id": "mech.stronger_competing_candidate_in_final_cohort->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.stronger_competing_candidate_in_final_cohort",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2692,9 +2692,9 @@
       },
       {
         "data": {
-          "id": "mech.stronger_competing_candidate_in_final_cohort->emits->A-003",
+          "id": "mech.stronger_competing_candidate_in_final_cohort->emits->obs.position_closed_after_final_interview_without_hire",
           "source": "mech.stronger_competing_candidate_in_final_cohort",
-          "target": "A-003",
+          "target": "obs.position_closed_after_final_interview_without_hire",
           "type": "emits",
           "fidelity": "distortion",
           "likelihood": "low"
@@ -2721,9 +2721,9 @@
       },
       {
         "data": {
-          "id": "mech.take_home_evaluation_fatigue_asymmetry->emits->A-006",
+          "id": "mech.take_home_evaluation_fatigue_asymmetry->emits->obs.take_home_assignment_exceeding_reasonable_stated_scope",
           "source": "mech.take_home_evaluation_fatigue_asymmetry",
-          "target": "A-006",
+          "target": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
           "type": "emits",
           "fidelity": "noise",
           "likelihood": "medium"
@@ -2732,9 +2732,9 @@
       },
       {
         "data": {
-          "id": "mech.take_home_evaluation_fatigue_asymmetry->emits->A-002",
+          "id": "mech.take_home_evaluation_fatigue_asymmetry->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.take_home_evaluation_fatigue_asymmetry",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2779,9 +2779,9 @@
       },
       {
         "data": {
-          "id": "mech.unstated_compensation_band_discrepancy->emits->A-002",
+          "id": "mech.unstated_compensation_band_discrepancy->emits->obs.generic_closer_alignment_rejection_template",
           "source": "mech.unstated_compensation_band_discrepancy",
-          "target": "A-002",
+          "target": "obs.generic_closer_alignment_rejection_template",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "high"
@@ -2790,9 +2790,9 @@
       },
       {
         "data": {
-          "id": "mech.unstated_compensation_band_discrepancy->emits->A-005",
+          "id": "mech.unstated_compensation_band_discrepancy->emits->obs.compensation_band_reduced_or_altered_mid_process",
           "source": "mech.unstated_compensation_band_discrepancy",
-          "target": "A-005",
+          "target": "obs.compensation_band_reduced_or_altered_mid_process",
           "type": "emits",
           "fidelity": "direct",
           "likelihood": "medium"
@@ -2801,9 +2801,9 @@
       },
       {
         "data": {
-          "id": "mech.unstated_compensation_band_discrepancy->emits->A-013",
+          "id": "mech.unstated_compensation_band_discrepancy->emits->obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "source": "mech.unstated_compensation_band_discrepancy",
-          "target": "A-013",
+          "target": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "type": "emits",
           "fidelity": "euphemism",
           "likelihood": "medium"
@@ -2830,8 +2830,8 @@
       },
       {
         "data": {
-          "id": "A-003->instantiates->pat.closed_then_reposted_requisition_motif",
-          "source": "A-003",
+          "id": "obs.position_closed_after_final_interview_without_hire->instantiates->pat.closed_then_reposted_requisition_motif",
+          "source": "obs.position_closed_after_final_interview_without_hire",
           "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
@@ -2839,8 +2839,8 @@
       },
       {
         "data": {
-          "id": "A-004->instantiates->pat.closed_then_reposted_requisition_motif",
-          "source": "A-004",
+          "id": "obs.materially_similar_role_reposted_shortly_after_rejection->instantiates->pat.closed_then_reposted_requisition_motif",
+          "source": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "target": "pat.closed_then_reposted_requisition_motif",
           "type": "instantiates"
         },
@@ -2884,8 +2884,8 @@
       },
       {
         "data": {
-          "id": "A-002->instantiates->pat.compensation_double_bind",
-          "source": "A-002",
+          "id": "obs.generic_closer_alignment_rejection_template->instantiates->pat.compensation_double_bind",
+          "source": "obs.generic_closer_alignment_rejection_template",
           "target": "pat.compensation_double_bind",
           "type": "instantiates"
         },
@@ -2893,8 +2893,8 @@
       },
       {
         "data": {
-          "id": "A-005->instantiates->pat.compensation_double_bind",
-          "source": "A-005",
+          "id": "obs.compensation_band_reduced_or_altered_mid_process->instantiates->pat.compensation_double_bind",
+          "source": "obs.compensation_band_reduced_or_altered_mid_process",
           "target": "pat.compensation_double_bind",
           "type": "instantiates"
         },
@@ -2920,8 +2920,8 @@
       },
       {
         "data": {
-          "id": "A-002->instantiates->pat.experience_age_impossibility",
-          "source": "A-002",
+          "id": "obs.generic_closer_alignment_rejection_template->instantiates->pat.experience_age_impossibility",
+          "source": "obs.generic_closer_alignment_rejection_template",
           "target": "pat.experience_age_impossibility",
           "type": "instantiates"
         },
@@ -2929,8 +2929,8 @@
       },
       {
         "data": {
-          "id": "A-009->instantiates->pat.experience_age_impossibility",
-          "source": "A-009",
+          "id": "obs.rejection_within_minutes_of_application_submission->instantiates->pat.experience_age_impossibility",
+          "source": "obs.rejection_within_minutes_of_application_submission",
           "target": "pat.experience_age_impossibility",
           "type": "instantiates"
         },
@@ -2956,8 +2956,8 @@
       },
       {
         "data": {
-          "id": "A-002->instantiates->pat.seniority_double_bind",
-          "source": "A-002",
+          "id": "obs.generic_closer_alignment_rejection_template->instantiates->pat.seniority_double_bind",
+          "source": "obs.generic_closer_alignment_rejection_template",
           "target": "pat.seniority_double_bind",
           "type": "instantiates"
         },
@@ -2965,8 +2965,8 @@
       },
       {
         "data": {
-          "id": "A-013->instantiates->pat.seniority_double_bind",
-          "source": "A-013",
+          "id": "obs.feedback_stating_candidate_is_overqualified_for_the_grade->instantiates->pat.seniority_double_bind",
+          "source": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "target": "pat.seniority_double_bind",
           "type": "instantiates"
         },

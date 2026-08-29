@@ -5,7 +5,7 @@ test.describe('a shared entity page stands on its own', () => {
   test.use({ locale: 'uk-UA' });
 
   test('an observation opens with the document, labelled as a reconstruction', async ({ page }) => {
-    await page.goto('/artifacts/A-013');
+    await page.goto('/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade');
 
     const specimens = page.locator('.specimen');
     expect(await specimens.count()).toBeGreaterThanOrEqual(2);
@@ -26,7 +26,7 @@ test.describe('a shared entity page stands on its own', () => {
 
   test('specimens render on every entity type', async ({ page }) => {
     const ONE_OF_EACH = [
-      '/artifacts/A-009', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.automated_application_expiration_timeout',
+      '/artifacts/obs.rejection_within_minutes_of_application_submission', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.automated_application_expiration_timeout',
       '/patterns/pat.experience_age_impossibility', '/loops/L-001', '/interventions/I-004',
     ];
     for (const path of ONE_OF_EACH) {

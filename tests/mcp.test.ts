@@ -110,7 +110,11 @@ describe('hoba MCP server', () => {
 
     const scExplain = payload(await client.request('tools/call', { name: 'explain_observation', arguments: { scenario_id: 'ats-knockout' } }));
     expect(scExplain.scenario_id).toBe('ats-knockout');
-    expect(scExplain.analysis.hard_facts.selected_artifacts.map((a: { id: string }) => a.id)).toEqual(['A-002', 'A-008', 'A-012']);
+    expect(scExplain.analysis.hard_facts.selected_artifacts.map((a: { id: string }) => a.id)).toEqual([
+      'obs.generic_closer_alignment_rejection_template',
+      'obs.explicit_feedback_citing_skill_depth_shortfall',
+      'obs.unsolicited_recruiter_outreach_followed_by_ghosting',
+    ]);
     expect(scExplain.analysis.counts.compatible_mechanisms).toBeGreaterThan(0);
   });
 

@@ -31,7 +31,7 @@ test.describe('responsive layout', () => {
     const FRAMED = [
       '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/A-001',
+      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/obs.complete_silence_after_submission',
       '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-001', '/404',
     ];
     let reference: Record<string, number> | null = null;
@@ -72,7 +72,7 @@ test.describe('responsive layout', () => {
     const PAGES = [
       '/', '/registry', '/patterns', '/graph', '/data', '/analyze',
       '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/A-001',
+      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/artifacts/obs.complete_silence_after_submission',
       '/patterns/pat.seniority_double_bind', '/loops/L-001', '/interventions/I-001', '/404',
     ];
     for (const path of PAGES) {

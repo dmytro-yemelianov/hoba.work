@@ -11,12 +11,12 @@ operates_at:
   - "bar.hiring_manager_in_depth_review"
 emissions:
   -
-    artifact: "A-013"
+    artifact: "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-002"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]

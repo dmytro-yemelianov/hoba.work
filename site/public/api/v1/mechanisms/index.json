@@ -21,7 +21,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [
@@ -32,7 +32,7 @@
           ]
         },
         {
-          "artifact": "A-009",
+          "artifact": "obs.rejection_within_minutes_of_application_submission",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -122,14 +122,14 @@
       ],
       "emissions": [
         {
-          "artifact": "A-015",
+          "artifact": "obs.rejection_after_the_application_sat_pending_for_months",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [],
           "observed_at": []
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
@@ -140,7 +140,7 @@
           ]
         },
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [
@@ -242,7 +242,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-009",
+          "artifact": "obs.rejection_within_minutes_of_application_submission",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -253,7 +253,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -345,7 +345,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [],
@@ -354,14 +354,14 @@
           ]
         },
         {
-          "artifact": "A-003",
+          "artifact": "obs.position_closed_after_final_interview_without_hire",
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [],
           "observed_at": []
         },
         {
-          "artifact": "A-016",
+          "artifact": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [],
@@ -448,7 +448,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [],
@@ -457,7 +457,7 @@
           ]
         },
         {
-          "artifact": "A-012",
+          "artifact": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [],
@@ -551,7 +551,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-010",
+          "artifact": "obs.communication_mismatch_or_tone_friction_in_panel",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -560,7 +560,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -658,7 +658,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-018",
+          "artifact": "obs.rejection_naming_a_specific_industry_sector_as_required",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [],
@@ -667,7 +667,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -678,7 +678,7 @@
           ]
         },
         {
-          "artifact": "A-008",
+          "artifact": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [
@@ -778,7 +778,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
@@ -789,7 +789,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -881,7 +881,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-013",
+          "artifact": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -890,7 +890,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -978,7 +978,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-008",
+          "artifact": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -989,7 +989,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
@@ -1076,7 +1076,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-003",
+          "artifact": "obs.position_closed_after_final_interview_without_hire",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1085,7 +1085,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-011",
+          "artifact": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1180,7 +1180,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-008",
+          "artifact": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "fidelity": "distortion",
           "likelihood": "medium",
           "evidence": [
@@ -1189,7 +1189,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-014",
+          "artifact": "obs.conflicting_feedback_across_different_interviewers",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1282,7 +1282,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-014",
+          "artifact": "obs.conflicting_feedback_across_different_interviewers",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1293,7 +1293,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -1379,7 +1379,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -1390,7 +1390,7 @@
           ]
         },
         {
-          "artifact": "A-004",
+          "artifact": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
@@ -1483,7 +1483,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-007",
+          "artifact": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1492,7 +1492,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
@@ -1583,14 +1583,14 @@
       ],
       "emissions": [
         {
-          "artifact": "A-017",
+          "artifact": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [],
           "observed_at": []
         },
         {
-          "artifact": "A-009",
+          "artifact": "obs.rejection_within_minutes_of_application_submission",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1601,7 +1601,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
@@ -1699,7 +1699,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-003",
+          "artifact": "obs.position_closed_after_final_interview_without_hire",
           "fidelity": "distortion",
           "likelihood": "medium",
           "evidence": [
@@ -1710,7 +1710,7 @@
           ]
         },
         {
-          "artifact": "A-004",
+          "artifact": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -1804,14 +1804,14 @@
       ],
       "emissions": [
         {
-          "artifact": "A-019",
+          "artifact": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [],
           "observed_at": []
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -1820,7 +1820,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-008",
+          "artifact": "obs.explicit_feedback_citing_skill_depth_shortfall",
           "fidelity": "distortion",
           "likelihood": "medium",
           "evidence": [
@@ -1906,14 +1906,14 @@
       ],
       "emissions": [
         {
-          "artifact": "A-016",
+          "artifact": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [],
           "observed_at": []
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -1924,7 +1924,7 @@
           ]
         },
         {
-          "artifact": "A-003",
+          "artifact": "obs.position_closed_after_final_interview_without_hire",
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
@@ -2022,7 +2022,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-020",
+          "artifact": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [
@@ -2034,7 +2034,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [],
@@ -2043,7 +2043,7 @@
           ]
         },
         {
-          "artifact": "A-016",
+          "artifact": "obs.rejection_naming_an_internal_hire_as_the_outcome",
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [],
@@ -2128,7 +2128,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
@@ -2137,7 +2137,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-012",
+          "artifact": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
@@ -2233,7 +2233,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-011",
+          "artifact": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -2244,7 +2244,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [
@@ -2325,7 +2325,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-012",
+          "artifact": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "fidelity": "distortion",
           "likelihood": "high",
           "evidence": [
@@ -2334,7 +2334,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [
@@ -2435,7 +2435,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "high",
           "evidence": [
@@ -2446,7 +2446,7 @@
           ]
         },
         {
-          "artifact": "A-004",
+          "artifact": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
@@ -2540,7 +2540,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-020",
+          "artifact": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [
@@ -2552,7 +2552,7 @@
           ]
         },
         {
-          "artifact": "A-001",
+          "artifact": "obs.complete_silence_after_submission",
           "fidelity": "void",
           "likelihood": "medium",
           "evidence": [],
@@ -2561,7 +2561,7 @@
           ]
         },
         {
-          "artifact": "A-011",
+          "artifact": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [],
@@ -2642,7 +2642,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -2651,7 +2651,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-003",
+          "artifact": "obs.position_closed_after_final_interview_without_hire",
           "fidelity": "distortion",
           "likelihood": "low",
           "evidence": [
@@ -2735,7 +2735,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-006",
+          "artifact": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
           "fidelity": "noise",
           "likelihood": "medium",
           "evidence": [
@@ -2746,7 +2746,7 @@
           ]
         },
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -2836,7 +2836,7 @@
       ],
       "emissions": [
         {
-          "artifact": "A-002",
+          "artifact": "obs.generic_closer_alignment_rejection_template",
           "fidelity": "euphemism",
           "likelihood": "high",
           "evidence": [
@@ -2847,7 +2847,7 @@
           ]
         },
         {
-          "artifact": "A-005",
+          "artifact": "obs.compensation_band_reduced_or_altered_mid_process",
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [
@@ -2856,7 +2856,7 @@
           "observed_at": []
         },
         {
-          "artifact": "A-013",
+          "artifact": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "fidelity": "euphemism",
           "likelihood": "medium",
           "evidence": [

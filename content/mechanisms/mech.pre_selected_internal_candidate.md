@@ -12,18 +12,18 @@ operates_at:
   - "bar.hiring_manager_in_depth_review"
 emissions:
   -
-    artifact: "A-016"
+    artifact: "obs.rejection_naming_an_internal_hire_as_the_outcome"
     fidelity: "direct"
     likelihood: "medium"
     evidence: []
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-004"]
     observed_at: ["screening"]
   -
-    artifact: "A-003"
+    artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["EVD-004"]

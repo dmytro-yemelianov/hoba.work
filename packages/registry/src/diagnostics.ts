@@ -22,28 +22,44 @@ export const EMPIRICAL_SCENARIOS: EmpiricalScenario[] = [
     title: 'Ghost Requisition & Pipeline Refresh',
     summary: 'Stale posting refreshed with identical body while active applicants experience silence.',
     stage: 'sourcing',
-    artifacts: ['A-001', 'A-004', 'A-021'],
+    artifacts: [
+      'obs.complete_silence_after_submission',
+      'obs.materially_similar_role_reposted_shortly_after_rejection',
+      'obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body',
+    ],
   },
   {
     id: 'ats-knockout',
     title: 'Automated Parsing Knockout',
     summary: 'Instant rejection outside business hours combined with rigid uncontextualized filters.',
     stage: 'screening',
-    artifacts: ['A-002', 'A-008', 'A-012'],
+    artifacts: [
+      'obs.generic_closer_alignment_rejection_template',
+      'obs.explicit_feedback_citing_skill_depth_shortfall',
+      'obs.unsolicited_recruiter_outreach_followed_by_ghosting',
+    ],
   },
   {
     id: 'post-panel-freeze',
     title: 'Post-Panel Freeze & Silence',
     summary: 'Strong verbal engagement followed by multi-week offer hold and sudden ghosting.',
     stage: 'technical',
-    artifacts: ['A-001', 'A-007', 'A-016'],
+    artifacts: [
+      'obs.complete_silence_after_submission',
+      'obs.multiple_interview_reschedulings_or_interviewer_no_show',
+      'obs.rejection_naming_an_internal_hire_as_the_outcome',
+    ],
   },
   {
     id: 'downlevelling-trap',
     title: 'Down-Levelling & Delayed Start',
     summary: 'Scope expansion, sub-band compensation offer, and post-acceptance start date slippage.',
     stage: 'post-offer',
-    artifacts: ['A-017', 'A-018', 'A-020'],
+    artifacts: [
+      'obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground',
+      'obs.rejection_naming_a_specific_industry_sector_as_required',
+      'obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation',
+    ],
   },
 ];
 

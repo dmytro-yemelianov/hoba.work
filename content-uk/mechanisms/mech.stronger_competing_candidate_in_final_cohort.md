@@ -11,12 +11,12 @@ operates_at:
   - "bar.headcount_executive_budget_approval"
 emissions:
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]
   -
-    artifact: "A-003"
+    artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "distortion"
     likelihood: "low"
     evidence: ["EVD-004"]

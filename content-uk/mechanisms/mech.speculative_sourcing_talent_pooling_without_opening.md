@@ -12,12 +12,12 @@ operates_at:
   - "bar.recruiter_screening_call"
 emissions:
   -
-    artifact: "A-012"
+    artifact: "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
     fidelity: "distortion"
     likelihood: "high"
     evidence: ["EVD-001"]
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "medium"
     evidence: ["EVD-001"]

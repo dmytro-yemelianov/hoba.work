@@ -29,14 +29,14 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   });
 
   it('explains an observation and reports unknown ids', () => {
-    const json = JSON.parse(hoba(['explain', 'A-004', 'A-999', '--stage', 'technical', '--json']).stdout);
+    const json = JSON.parse(hoba(['explain', 'obs.materially_similar_role_reposted_shortly_after_rejection', 'A-999', '--stage', 'technical', '--json']).stdout);
     expect(json.analysis.hard_facts.unknown_artifact_ids).toEqual(['A-999']);
     expect(json.analysis.obstacle.identified_barriers.map((b: { id: string }) => b.id)).toEqual(['bar.technical_screen_live_assessment', 'bar.take_home_work_sample_evaluation']);
     expect(json.analysis.counts.probes).toBe(1);
   });
 
   it('rejects an unknown stage and an unknown id with exit code 1', () => {
-    const stage = hoba(['explain', 'A-004', '--stage', 'bogus'], { expectFailure: true });
+    const stage = hoba(['explain', 'obs.materially_similar_role_reposted_shortly_after_rejection', '--stage', 'bogus'], { expectFailure: true });
     expect(stage.status).toBe(1);
     expect(stage.stdout).toContain('Unknown stage');
     expect(hoba(['show', 'Z-000'], { expectFailure: true }).status).toBe(1);
@@ -45,7 +45,7 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   it('searches with type filters', () => {
     const json = JSON.parse(hoba(['search', 'reposted', '--types', 'artifact', '--json']).stdout);
     expect(json.results.every((r: { type: string }) => r.type === 'artifact')).toBe(true);
-    expect(json.results.map((r: { id: string }) => r.id)).toContain('A-004');
+    expect(json.results.map((r: { id: string }) => r.id)).toContain('obs.materially_similar_role_reposted_shortly_after_rejection');
   });
 
   it('diagnoses temporal latency and dwell anomalies', () => {
@@ -84,13 +84,17 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   it('executes analysis for empirical scenarios', () => {
     const json = JSON.parse(hoba(['explain', '--scenario', 'ghost-refresh', '--json']).stdout);
     expect(json.scenario).toBe('ghost-refresh');
-    expect(json.analysis.hard_facts.selected_artifacts.map((a: { id: string }) => a.id)).toEqual(['A-001', 'A-004', 'A-021']);
+    expect(json.analysis.hard_facts.selected_artifacts.map((a: { id: string }) => a.id)).toEqual([
+      'obs.complete_silence_after_submission',
+      'obs.materially_similar_role_reposted_shortly_after_rejection',
+      'obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body',
+    ]);
     expect(json.analysis.hard_facts.stage).toBe('sourcing');
     expect(json.analysis.counts.compatible_mechanisms).toBeGreaterThan(0);
 
     const txt = hoba(['explain', '--scenario', 'ats-knockout']).stdout;
     expect(txt).toContain('Automated Parsing Knockout');
-    expect(txt).toContain('A-008');
+    expect(txt).toContain('obs.explicit_feedback_citing_skill_depth_shortfall');
   });
 
   it('validates both mirrors strictly with no warnings', () => {

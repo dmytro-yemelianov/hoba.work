@@ -75,7 +75,7 @@ test.describe('knowledge graph explorer', () => {
     await hoverANode(page);
     const tooltip = page.locator('#graph-tooltip');
     await expect(tooltip).toBeVisible();
-    await expect(tooltip.locator('#tip-id')).toHaveText(/^[ABMPLI]-\d{3}$/);
+    await expect(tooltip.locator('#tip-id')).toHaveText(/^(obs|bar|mech|pat|loop|int|[ABMPLI])(\.|\-)[a-z0-9_]+$/);
     await expect(tooltip.locator('#tip-title')).not.toBeEmpty();
     await expect(tooltip).toContainText(says('uk', 'graph.tooltipHint'));
   });

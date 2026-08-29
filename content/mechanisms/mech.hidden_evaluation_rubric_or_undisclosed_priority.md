@@ -11,12 +11,12 @@ operates_at:
   - "bar.team_cross_functional_panel"
 emissions:
   -
-    artifact: "A-008"
+    artifact: "obs.explicit_feedback_citing_skill_depth_shortfall"
     fidelity: "distortion"
     likelihood: "medium"
     evidence: ["EVD-006"]
   -
-    artifact: "A-014"
+    artifact: "obs.conflicting_feedback_across_different_interviewers"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-006"]

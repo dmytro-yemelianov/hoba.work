@@ -16,7 +16,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 48) — the published sources behind the claims.
 
-The graph has 89 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 158 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -41,7 +41,23 @@ An MCP server ships in the repository (`packages/mcp`) exposing search, entity l
 
 ## Observations
 
-### A-001 — Complete silence after submission
+### obs.communication_mismatch_or_tone_friction_in_panel — Communication mismatch or tone friction in panel
+
+Noticeable divergence in communication style, pacing, or terminology during live panel discussions.
+
+- Stages: recruiter, team · Evidence: supported
+- Does NOT establish: Does not prove the candidate lacks teamwork skills in general.
+- Probe [PROBE-A-010-1] (low): Ask the recruiter for explicit feedback on the collaborative dynamic. → Clarifies whether the friction was taken as an attitude issue or as a difference in style.
+
+### obs.compensation_band_reduced_or_altered_mid_process — Compensation band reduced or altered mid-process
+
+The compensation band offered or discussed is revised downward from the range previously agreed or advertised.
+
+- Stages: recruiter, compensation, offer · Evidence: supported
+- Does NOT establish: Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.
+- Probe [PROBE-A-005-1] (medium): Ask whether the revised band follows from a lower levelling grade or from a company-wide budget adjustment. → Separates the outcome of the levelling assessment from the company's financial constraints.
+
+### obs.complete_silence_after_submission — Complete silence after submission
 
 After the application is submitted, nothing arrives: no automated receipt, no acknowledgement, no rejection, no message from a recruiter.
 
@@ -50,106 +66,7 @@ After the application is submitted, nothing arrives: no automated receipt, no ac
 - Does NOT establish: Does not prove the role was cancelled or already filled.
 - Probe [PROBE-A-001-1] (low): Check the email spam folder and the security quarantine for an automated acknowledgement from the ATS. → Shows whether the application was ingested and generated a confirmation ID.
 
-### A-002 — Generic "closer alignment" rejection template
-
-A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.
-
-- Stages: screening, recruiter, technical · Evidence: supported
-- Does NOT establish: Does not establish which specific skill was deemed insufficient.
-- Does NOT establish: Does not establish whether a human reviewer read the full resume.
-- Probe [PROBE-A-002-1] (low): Compare the wording of the CV with the exact requirement phrases in the published job description. → Reveals a possible vocabulary mismatch between the candidate's wording and the ATS rubric.
-
-### A-003 — Position closed after final interview without hire
-
-The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.
-
-- Stages: team, offer · Evidence: supported
-- Does NOT establish: Does not prove that the candidate failed the technical or behavioural evaluations.
-- Does NOT establish: Does not prove that the company misstated its intention in opening the role.
-- Probe [PROBE-A-003-1] (low): Ask the recruiter whether the role was closed by a budget restructuring or by a reallocation of the work inside the team. → Clarifies whether the barrier was specific to this candidate or budgetary.
-
-### A-004 — Materially similar role reposted shortly after rejection
-
-The same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.
-
-- Stages: sourcing, screening, technical · Evidence: supported
-- Does NOT establish: Does not establish that the role was a "fake" or "ghost" posting.
-- Does NOT establish: Does not establish that the prior interview feedback was fraudulent.
-- Probe [PROBE-A-004-1] (low): Check the requisition ID on the listing, or ask the recruiter whether the posting is an automated ATS refresh or a separate headcount opening. → Distinguishes an automated refresh on the job board from a genuinely recurring hiring need.
-
-### A-005 — Compensation band reduced or altered mid-process
-
-The compensation band offered or discussed is revised downward from the range previously agreed or advertised.
-
-- Stages: recruiter, compensation, offer · Evidence: supported
-- Does NOT establish: Does not prove an intentional bait-and-switch unless evidence of company policy establishes one.
-- Probe [PROBE-A-005-1] (medium): Ask whether the revised band follows from a lower levelling grade or from a company-wide budget adjustment. → Separates the outcome of the levelling assessment from the company's financial constraints.
-
-### A-006 — Take-home assignment exceeding reasonable stated scope
-
-The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.
-
-- Stages: technical · Evidence: supported
-- Does NOT establish: Does not prove the company is harvesting free intellectual property for production use.
-- Probe [PROBE-A-006-1] (low): Write the boundaries and trade-offs into the submission's README, naming the assumptions made to fit the agreed timebox. → Tests whether evaluators value scope management and communication over unbounded free work.
-
-### A-007 — Multiple interview reschedulings or interviewer no-show
-
-Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.
-
-- Stages: recruiter, technical, team · Evidence: supported
-- Does NOT establish: Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.
-- Probe [PROBE-A-007-1] (low): Offer a set of concrete times you are free, and confirm the contact details 2 hours before the call. → Minimises scheduling friction and shows how quickly the recruiter answers.
-
-### A-008 — Explicit feedback citing skill-depth shortfall
-
-Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.
-
-- Stages: technical, team · Evidence: supported
-- Does NOT establish: Does not imply general incompetence; it reflects the threshold for this specific role level.
-- Probe [PROBE-A-008-1] (medium): Review the interview solution against the standard patterns for that problem and identify the edge cases it misses. → Verifies whether the code actually lacked the optimisation or rigour the notes name.
-
-### A-009 — Rejection within minutes of application submission
-
-Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.
-
-- Stages: ingestion · Evidence: supported
-- Does NOT establish: Does not mean a human engineer read the resume and judged it poor.
-- Probe [PROBE-A-009-1] (low): Audit the application answers to the mandatory knock-out questions (work permit, country of residence, minimum years of experience). → Identifies which boolean filter rule the ATS applied.
-
-### A-010 — Communication mismatch or tone friction in panel
-
-Noticeable divergence in communication style, pacing, or terminology during live panel discussions.
-
-- Stages: recruiter, team · Evidence: supported
-- Does NOT establish: Does not prove the candidate lacks teamwork skills in general.
-- Probe [PROBE-A-010-1] (low): Ask the recruiter for explicit feedback on the collaborative dynamic. → Clarifies whether the friction was taken as an attitude issue or as a difference in style.
-
-### A-011 — Offer rescinded or delayed due to internal freeze
-
-Candidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.
-
-- Stages: offer, post-offer · Evidence: supported
-- Does NOT establish: Does not mean the candidate failed a reference check, unless the message says so.
-- Probe [PROBE-A-011-1] (low): Ask for written notice of whether the requisition is cancelled outright or deferred to the next fiscal quarter. → Establishes whether there is a date to wait for.
-
-### A-012 — Unsolicited recruiter outreach followed by ghosting
-
-Recruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.
-
-- Stages: sourcing, recruiter · Evidence: supported
-- Does NOT establish: Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like.
-- Probe [PROBE-A-012-1] (low): Send one polite follow-up after five business days, on the original outreach thread. → Recovers a stalled conversation if the recruiter was away or over capacity.
-
-### A-013 — Feedback stating candidate is overqualified for the grade
-
-Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.
-
-- Stages: recruiter, screening, team · Evidence: supported
-- Does NOT establish: Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch.
-- Probe [PROBE-A-013-1] (low): Ask whether the organisation has requisitions open at a higher band or at staff level, where the wider scope is part of the role. → Shows whether anything is open above this band.
-
-### A-014 — Conflicting feedback across different interviewers
+### obs.conflicting_feedback_across_different_interviewers — Conflicting feedback across different interviewers
 
 Feedback from one round praises architectural depth while another round claims insufficient technical background.
 
@@ -157,43 +74,15 @@ Feedback from one round praises architectural depth while another round claims i
 - Does NOT establish: Does not prove bad faith; it shows the rubric was not calibrated across the hiring committee.
 - Probe [PROBE-A-014-1] (low): Ask the talent partner for the consolidated rubric summary. → Shows whether the two rounds were scoring against different criteria.
 
-### A-015 — Rejection after the application sat pending for months
+### obs.explicit_feedback_citing_skill_depth_shortfall — Explicit feedback citing skill-depth shortfall
 
-A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.
+Interviewer or recruiter provides structured notes citing a specific deficit in algorithmic complexity, architecture, or tool mastery.
 
-- Stages: ingestion, screening · Evidence: hypothesis
-- Does NOT establish: Does not mean the application was read at any point during the interval.
-- Does NOT establish: Does not mean a decision on the merits was taken at the end of it.
-- Probe [PROBE-A-015-1] (low): Compare the date the posting came down with the date the rejection arrived, using the portal's own listing history or a saved copy of the posting. → Establishes whether the message followed the close of the search or an interval counted from submission.
+- Stages: technical, team · Evidence: supported
+- Does NOT establish: Does not imply general incompetence; it reflects the threshold for this specific role level.
+- Probe [PROBE-A-008-1] (medium): Review the interview solution against the standard patterns for that problem and identify the edge cases it misses. → Verifies whether the code actually lacked the optimisation or rigour the notes name.
 
-### A-016 — Rejection naming an internal hire as the outcome
-
-The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.
-
-- Stages: team, offer · Evidence: hypothesis
-- Does NOT establish: Does not establish that the internal candidate was identified before the search was published.
-- Does NOT establish: Does not establish that the external rounds were run without a decision available to them.
-- Probe [PROBE-A-016-1] (low): Check whether the posting was withdrawn or remained live, and whether it was reposted with the same level and scope within the following weeks. → Distinguishes a filled requisition from a search that continued after the message.
-
-### A-017 — Rejection naming a jurisdiction or work-eligibility ground
-
-The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.
-
-- Stages: ingestion, recruiter · Evidence: hypothesis
-- Does NOT establish: Does not establish that no route to employment existed, only that none was used here.
-- Does NOT establish: Does not establish that the constraint was the first ground on which the application was set aside.
-- Probe [PROBE-A-017-1] (low): Compare the ground named in the message against the copy of the posting as it stood on the day of application. → Establishes whether the ground was stated up front or introduced afterwards.
-
-### A-018 — Rejection naming a specific industry sector as required
-
-The stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.
-
-- Stages: recruiter, technical · Evidence: hypothesis
-- Does NOT establish: Does not establish that the sector was irrelevant to the work.
-- Does NOT establish: Does not establish that the assessed work fell short in any respect.
-- Probe [PROBE-A-018-1] (low): Compare the sector named in the message against the requirements section of the posting as it stood on the day of application. → Establishes whether the sector was listed as required, listed as preferred, or absent.
-
-### A-019 — Feedback naming as absent something the submitted work contains
+### obs.feedback_naming_as_absent_something_the_submitted_work_contains — Feedback naming as absent something the submitted work contains
 
 The stated shortfall is the absence of work that is present in what the candidate submitted, at the path they gave.
 
@@ -202,7 +91,41 @@ The stated shortfall is the absence of work that is present in what the candidat
 - Does NOT establish: Does not establish that the work would have met the bar had it been read.
 - Probe [PROBE-A-019-1] (low): Open the submitted path in a private window with no session, and note what the first screen shows before any navigation. → Establishes what a reader with no context and no time actually lands on.
 
-### A-020 — Offer accepted followed by delayed start date or post-signing revocation
+### obs.feedback_stating_candidate_is_overqualified_for_the_grade — Feedback stating candidate is overqualified for the grade
+
+Candidate is rejected on the grounds that their experience, seniority, or previous scope sits above the band the role was opened at.
+
+- Stages: recruiter, screening, team · Evidence: supported
+- Does NOT establish: Does not imply the candidate is undesirable; what it names is a concern about retention and about a pay mismatch.
+- Probe [PROBE-A-013-1] (low): Ask whether the organisation has requisitions open at a higher band or at staff level, where the wider scope is part of the role. → Shows whether anything is open above this band.
+
+### obs.generic_closer_alignment_rejection_template — Generic "closer alignment" rejection template
+
+A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.
+
+- Stages: screening, recruiter, technical · Evidence: supported
+- Does NOT establish: Does not establish which specific skill was deemed insufficient.
+- Does NOT establish: Does not establish whether a human reviewer read the full resume.
+- Probe [PROBE-A-002-1] (low): Compare the wording of the CV with the exact requirement phrases in the published job description. → Reveals a possible vocabulary mismatch between the candidate's wording and the ATS rubric.
+
+### obs.materially_similar_role_reposted_shortly_after_rejection — Materially similar role reposted shortly after rejection
+
+The same listing, or a near-identical one, is reposted or refreshed on the job boards within 1–8 weeks of the rejection.
+
+- Stages: sourcing, screening, technical · Evidence: supported
+- Does NOT establish: Does not establish that the role was a "fake" or "ghost" posting.
+- Does NOT establish: Does not establish that the prior interview feedback was fraudulent.
+- Probe [PROBE-A-004-1] (low): Check the requisition ID on the listing, or ask the recruiter whether the posting is an automated ATS refresh or a separate headcount opening. → Distinguishes an automated refresh on the job board from a genuinely recurring hiring need.
+
+### obs.multiple_interview_reschedulings_or_interviewer_no_show — Multiple interview reschedulings or interviewer no-show
+
+Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.
+
+- Stages: recruiter, technical, team · Evidence: supported
+- Does NOT establish: Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.
+- Probe [PROBE-A-007-1] (low): Offer a set of concrete times you are free, and confirm the contact details 2 hours before the call. → Minimises scheduling friction and shows how quickly the recruiter answers.
+
+### obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation — Offer accepted followed by delayed start date or post-signing revocation
 
 A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding.
 
@@ -211,7 +134,68 @@ A signed offer is met with repeated start-date delays, pre-day-one communication
 - Does NOT establish: Does not establish that the role was fraudulent when the offer was originally issued.
 - Probe [PROBE-A-020-1] (low): Request written confirmation of the revised start date alongside written clarification of whether hardware shipment and payroll registration remain active. → Separates an administrative IT delay from a structural hiring freeze or pre-start headcount cancellation.
 
-### A-021 — Republished job posting with refreshed date and identical requirement body
+### obs.offer_rescinded_or_delayed_due_to_internal_freeze — Offer rescinded or delayed due to internal freeze
+
+Candidate is offered a role verbally or in writing, and the offer is then delayed or withdrawn before the start date.
+
+- Stages: offer, post-offer · Evidence: supported
+- Does NOT establish: Does not mean the candidate failed a reference check, unless the message says so.
+- Probe [PROBE-A-011-1] (low): Ask for written notice of whether the requisition is cancelled outright or deferred to the next fiscal quarter. → Establishes whether there is a date to wait for.
+
+### obs.position_closed_after_final_interview_without_hire — Position closed after final interview without hire
+
+The candidate completes every interview round and then learns that the requisition has been cancelled, frozen, or closed.
+
+- Stages: team, offer · Evidence: supported
+- Does NOT establish: Does not prove that the candidate failed the technical or behavioural evaluations.
+- Does NOT establish: Does not prove that the company misstated its intention in opening the role.
+- Probe [PROBE-A-003-1] (low): Ask the recruiter whether the role was closed by a budget restructuring or by a reallocation of the work inside the team. → Clarifies whether the barrier was specific to this candidate or budgetary.
+
+### obs.rejection_after_the_application_sat_pending_for_months — Rejection after the application sat pending for months
+
+A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.
+
+- Stages: ingestion, screening · Evidence: hypothesis
+- Does NOT establish: Does not mean the application was read at any point during the interval.
+- Does NOT establish: Does not mean a decision on the merits was taken at the end of it.
+- Probe [PROBE-A-015-1] (low): Compare the date the posting came down with the date the rejection arrived, using the portal's own listing history or a saved copy of the posting. → Establishes whether the message followed the close of the search or an interval counted from submission.
+
+### obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground — Rejection naming a jurisdiction or work-eligibility ground
+
+The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.
+
+- Stages: ingestion, recruiter · Evidence: hypothesis
+- Does NOT establish: Does not establish that no route to employment existed, only that none was used here.
+- Does NOT establish: Does not establish that the constraint was the first ground on which the application was set aside.
+- Probe [PROBE-A-017-1] (low): Compare the ground named in the message against the copy of the posting as it stood on the day of application. → Establishes whether the ground was stated up front or introduced afterwards.
+
+### obs.rejection_naming_a_specific_industry_sector_as_required — Rejection naming a specific industry sector as required
+
+The stated reason is the absence of experience in one named sector, rather than the depth or correctness of the work assessed.
+
+- Stages: recruiter, technical · Evidence: hypothesis
+- Does NOT establish: Does not establish that the sector was irrelevant to the work.
+- Does NOT establish: Does not establish that the assessed work fell short in any respect.
+- Probe [PROBE-A-018-1] (low): Compare the sector named in the message against the requirements section of the posting as it stood on the day of application. → Establishes whether the sector was listed as required, listed as preferred, or absent.
+
+### obs.rejection_naming_an_internal_hire_as_the_outcome — Rejection naming an internal hire as the outcome
+
+The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.
+
+- Stages: team, offer · Evidence: hypothesis
+- Does NOT establish: Does not establish that the internal candidate was identified before the search was published.
+- Does NOT establish: Does not establish that the external rounds were run without a decision available to them.
+- Probe [PROBE-A-016-1] (low): Check whether the posting was withdrawn or remained live, and whether it was reposted with the same level and scope within the following weeks. → Distinguishes a filled requisition from a search that continued after the message.
+
+### obs.rejection_within_minutes_of_application_submission — Rejection within minutes of application submission
+
+Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.
+
+- Stages: ingestion · Evidence: supported
+- Does NOT establish: Does not mean a human engineer read the resume and judged it poor.
+- Probe [PROBE-A-009-1] (low): Audit the application answers to the mandatory knock-out questions (work permit, country of residence, minimum years of experience). → Identifies which boolean filter rule the ATS applied.
+
+### obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body — Republished job posting with refreshed date and identical requirement body
 
 An opening is closed or reposted with an updated timestamp and identical requirement text, resetting applicant queues while preserving candidate pipeline collection.
 
@@ -219,6 +203,22 @@ An opening is closed or reposted with an updated timestamp and identical require
 - Does NOT establish: Does not establish that previous applicants were rejected on qualification grounds.
 - Does NOT establish: Does not establish that a confirmed budget line exists for immediate onboarding.
 - Probe [PROBE-A-021-1] (low): Compare the requirement text hash against prior archive snapshots and ask the recruiter if active interviewing has commenced. → Separates an active newly funded replacement hire from an evergreen talent pool or stale posting refresh.
+
+### obs.take_home_assignment_exceeding_reasonable_stated_scope — Take-home assignment exceeding reasonable stated scope
+
+The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.
+
+- Stages: technical · Evidence: supported
+- Does NOT establish: Does not prove the company is harvesting free intellectual property for production use.
+- Probe [PROBE-A-006-1] (low): Write the boundaries and trade-offs into the submission's README, naming the assumptions made to fit the agreed timebox. → Tests whether evaluators value scope management and communication over unbounded free work.
+
+### obs.unsolicited_recruiter_outreach_followed_by_ghosting — Unsolicited recruiter outreach followed by ghosting
+
+Recruiter opens direct outreach expressing strong interest, then stops replying once the candidate answers with availability.
+
+- Stages: sourcing, recruiter · Evidence: supported
+- Does NOT establish: Does not prove the profile was rejected; often it is what an automated batch sourcing campaign looks like.
+- Probe [PROBE-A-012-1] (low): Send one polite follow-up after five business days, on the original outreach thread. → Recovers a stalled conversation if the recruiter was away or over capacity.
 
 ## Barriers
 
@@ -339,7 +339,7 @@ Multi-column formatting, graphics, custom fonts, or unsupported document layouts
 
 - Actor: system · Nature: noise · Visibility: inferable · Removability: candidate
 - Operates at: bar.application_ingestion, bar.automated_filter_parser_threshold
-- Emits: A-001 (void), A-009 (direct)
+- Emits: obs.complete_silence_after_submission (void), obs.rejection_within_minutes_of_application_submission (direct)
 - Does NOT establish: Does not imply human recruiter evaluated and disliked candidate experience.
 
 ### mech.automated_application_expiration_timeout — Automated Application Expiration Timeout
@@ -348,7 +348,7 @@ The ATS is configured to reject in bulk every application still pending after 45
 
 - Actor: system · Nature: rule · Visibility: opaque · Removability: none
 - Operates at: bar.application_ingestion, bar.inbound_screening_triage
-- Emits: A-015 (direct), A-002 (void), A-001 (void)
+- Emits: obs.rejection_after_the_application_sat_pending_for_months (direct), obs.generic_closer_alignment_rejection_template (void), obs.complete_silence_after_submission (void)
 - Does NOT establish: A bulk timeout rejection carries no assessment of the profile at all.
 
 ### mech.automated_keyword_qualification_filter — Automated Keyword / Qualification Filter
@@ -357,7 +357,7 @@ Deterministic filter rejecting applications missing exact acronyms, certificatio
 
 - Actor: system · Nature: rule · Visibility: inferable · Removability: candidate
 - Operates at: bar.automated_filter_parser_threshold
-- Emits: A-009 (direct), A-002 (euphemism)
+- Emits: obs.rejection_within_minutes_of_application_submission (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: Passing keyword filters does not guarantee interview invitation.
 
 ### mech.bench_priority_fill — Bench-Priority Fill
@@ -366,7 +366,7 @@ An engineer already employed and between projects becomes available mid-search, 
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.requisition_approval_public_posting, bar.inbound_screening_triage · honest baseline
-- Emits: A-002 (euphemism), A-003 (void), A-016 (direct)
+- Emits: obs.generic_closer_alignment_rejection_template (euphemism), obs.position_closed_after_final_interview_without_hire (void), obs.rejection_naming_an_internal_hire_as_the_outcome (direct)
 - Does NOT establish: Does not establish that the internal candidate was earmarked before the search was published — that is mech.pre_selected_internal_candidate, and from the outside the two are the same.
 - Does NOT establish: Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment.
 
@@ -376,7 +376,7 @@ Recruiters run a real search for a real role whose funding depends on a contract
 
 - Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.outbound_sourcing_talent_pool_contact
-- Emits: A-001 (void), A-012 (void)
+- Emits: obs.complete_silence_after_submission (void), obs.unsolicited_recruiter_outreach_followed_by_ghosting (void)
 - Does NOT establish: Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.
 - Does NOT establish: Does not establish that the recruiter was free to disclose the bid's existence.
 
@@ -386,7 +386,7 @@ During a collaborative interview exercise the candidate is abrasive in tone, def
 
 - Actor: candidate · Nature: bias · Visibility: observable · Removability: candidate
 - Operates at: bar.recruiter_screening_call, bar.team_cross_functional_panel · honest baseline
-- Emits: A-010 (direct), A-002 (euphemism)
+- Emits: obs.communication_mismatch_or_tone_friction_in_panel (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: Style friction in a high-pressure interview is not a permanent personality defect.
 
 ### mech.domain_specificity_over_weighting — Domain Specificity Over-Weighting
@@ -395,7 +395,7 @@ The interviewer holds experience in one exact vertical — adtech, crypto, a nam
 
 - Actor: hiring-manager · Nature: bias · Visibility: inferable · Removability: intermediary
 - Operates at: bar.recruiter_screening_call, bar.hiring_manager_in_depth_review
-- Emits: A-018 (direct), A-002 (euphemism), A-008 (direct)
+- Emits: obs.rejection_naming_a_specific_industry_sector_as_required (direct), obs.generic_closer_alignment_rejection_template (euphemism), obs.explicit_feedback_citing_skill_depth_shortfall (direct)
 - Does NOT establish: Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.
 
 ### mech.employment_gap_downranking_bias — Employment Gap Downranking Bias
@@ -404,7 +404,7 @@ Automated ranking algorithms or human screeners discount candidates with recent 
 
 - Actor: system · Nature: bias · Visibility: inferable · Removability: none
 - Operates at: bar.automated_filter_parser_threshold, bar.inbound_screening_triage
-- Emits: A-001 (void), A-002 (euphemism)
+- Emits: obs.complete_silence_after_submission (void), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: An employment gap does not correlate with a decline in technical ability.
 
 ### mech.experience_age_grading_mismatch — Experience-Age Grading Mismatch
@@ -413,7 +413,7 @@ A candidate with 10+ years applies for a role graded at mid or senior, and the s
 
 - Actor: recruiter · Nature: bias · Visibility: inferable · Removability: none
 - Operates at: bar.inbound_screening_triage, bar.recruiter_screening_call, bar.hiring_manager_in_depth_review
-- Emits: A-013 (direct), A-002 (euphemism)
+- Emits: obs.feedback_stating_candidate_is_overqualified_for_the_grade (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: Being rejected as "overqualified" is an organisational tier mismatch, not a candidate deficiency.
 
 ### mech.genuine_technical_skill_shortfall — Genuine Technical Skill Shortfall
@@ -422,7 +422,7 @@ The candidate’s verified technical execution or domain depth does not meet the
 
 - Actor: candidate · Nature: rule · Visibility: inferable · Removability: candidate
 - Operates at: bar.technical_screen_live_assessment, bar.take_home_work_sample_evaluation, bar.hiring_manager_in_depth_review · honest baseline
-- Emits: A-008 (direct), A-002 (euphemism)
+- Emits: obs.explicit_feedback_citing_skill_depth_shortfall (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark.
 
 ### mech.headcount_freeze_or_budget_cancellation — Headcount Freeze or Budget Cancellation
@@ -431,7 +431,7 @@ Executive leadership or finance halts all new hires across division due to macro
 
 - Actor: policy · Nature: rule · Visibility: inferable · Removability: none
 - Operates at: bar.team_cross_functional_panel, bar.headcount_executive_budget_approval, bar.offer_closing_contract_execution
-- Emits: A-003 (direct), A-011 (direct)
+- Emits: obs.position_closed_after_final_interview_without_hire (direct), obs.offer_rescinded_or_delayed_due_to_internal_freeze (direct)
 - Does NOT establish: Candidate performance in interview was not the causal trigger for process termination.
 
 ### mech.hidden_evaluation_rubric_or_undisclosed_priority — Hidden Evaluation Rubric or Undisclosed Priority
@@ -440,7 +440,7 @@ The panel grades the candidate against architectural preferences, internal frame
 
 - Actor: hiring-manager · Nature: bias · Visibility: opaque · Removability: intermediary
 - Operates at: bar.technical_screen_live_assessment, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
-- Emits: A-008 (distortion), A-014 (direct)
+- Emits: obs.explicit_feedback_citing_skill_depth_shortfall (distortion), obs.conflicting_feedback_across_different_interviewers (direct)
 - Does NOT establish: Not guessing an unstated preference is not a shortfall in core competence.
 
 ### mech.hiring_manager_consensus_impasse — Hiring Manager Consensus Impasse
@@ -449,7 +449,7 @@ The panel splits evenly, no one holds a tiebreaking vote, and the rule for the a
 
 - Actor: hiring-manager · Nature: bias · Visibility: opaque · Removability: none
 - Operates at: bar.team_cross_functional_panel
-- Emits: A-014 (direct), A-002 (euphemism)
+- Emits: obs.conflicting_feedback_across_different_interviewers (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate.
 
 ### mech.inflated_requisition_requirements_vs_actual_team_needs — Inflated Requisition Requirements vs Actual Team Needs
@@ -458,7 +458,7 @@ The posting lists 10+ named technologies and a Staff-level bar for a role whose 
 
 - Actor: hiring-manager · Nature: incentive · Visibility: inferable · Removability: intermediary
 - Operates at: bar.requisition_approval_public_posting, bar.automated_filter_parser_threshold, bar.recruiter_screening_call
-- Emits: A-002 (euphemism), A-004 (noise)
+- Emits: obs.generic_closer_alignment_rejection_template (euphemism), obs.materially_similar_role_reposted_shortly_after_rejection (noise)
 - Does NOT establish: Failing to meet an inflated "wishlist" does not establish anything about how the candidate would do the team's actual work.
 
 ### mech.interview_resource_scheduling_saturation — Interview Resource & Scheduling Saturation
@@ -467,7 +467,7 @@ Engineering interviewers carry sprint commitments alongside the panels they sit 
 
 - Actor: hiring-manager · Nature: noise · Visibility: inferable · Removability: intermediary
 - Operates at: bar.technical_screen_live_assessment, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
-- Emits: A-007 (direct), A-001 (noise)
+- Emits: obs.multiple_interview_reschedulings_or_interviewer_no_show (direct), obs.complete_silence_after_submission (noise)
 - Does NOT establish: Rescheduling is an operational fact and does not indicate a negative evaluation.
 
 ### mech.location_or_timezone_compliance_constraint — Location or Timezone Compliance Constraint
@@ -476,7 +476,7 @@ The company has no legal entity or provider that can issue an employment contrac
 
 - Actor: policy · Nature: rule · Visibility: observable · Removability: intermediary
 - Operates at: bar.automated_filter_parser_threshold, bar.recruiter_screening_call
-- Emits: A-017 (direct), A-009 (direct), A-002 (euphemism)
+- Emits: obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground (direct), obs.rejection_within_minutes_of_application_submission (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: The jurisdictional barrier is entirely independent of the candidate's technical competence.
 
 ### mech.mid_process_role_requirement_redefinition — Mid-Process Role Requirement Redefinition
@@ -485,7 +485,7 @@ The team changes the stack, the seniority level or the project scope while candi
 
 - Actor: hiring-manager · Nature: noise · Visibility: inferable · Removability: none
 - Operates at: bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.compensation_levelling_reconciliation
-- Emits: A-003 (distortion), A-004 (direct)
+- Emits: obs.position_closed_after_final_interview_without_hire (distortion), obs.materially_similar_role_reposted_shortly_after_rejection (direct)
 - Does NOT establish: The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers.
 
 ### mech.portfolio_work_artifact_misinterpretation — Portfolio / Work Artifact Misinterpretation
@@ -494,7 +494,7 @@ The surface a screener opens does not show the candidate's architecture work, wh
 
 - Actor: candidate · Nature: noise · Visibility: inferable · Removability: candidate
 - Operates at: bar.inbound_screening_triage, bar.technical_screen_live_assessment
-- Emits: A-019 (direct), A-002 (euphemism), A-008 (distortion)
+- Emits: obs.feedback_naming_as_absent_something_the_submitted_work_contains (direct), obs.generic_closer_alignment_rejection_template (euphemism), obs.explicit_feedback_citing_skill_depth_shortfall (distortion)
 - Does NOT establish: Misinterpreted architecture can be corrected through structured documentation.
 
 ### mech.pre_selected_internal_candidate — Pre-Selected Internal Candidate
@@ -503,7 +503,7 @@ Requisition was publicly advertised to satisfy corporate policy or legal complia
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.requisition_approval_public_posting, bar.application_ingestion, bar.inbound_screening_triage, bar.hiring_manager_in_depth_review
-- Emits: A-016 (direct), A-002 (euphemism), A-003 (euphemism)
+- Emits: obs.rejection_naming_an_internal_hire_as_the_outcome (direct), obs.generic_closer_alignment_rejection_template (euphemism), obs.position_closed_after_final_interview_without_hire (euphemism)
 - Does NOT establish: Cannot be asserted as fact without internal hiring log confirmation.
 
 ### mech.probation_used_as_extended_de_facto_interview — Probation Used as Extended De-Facto Interview
@@ -512,7 +512,7 @@ Managers lower late-stage interview thresholds, treating the statutory probation
 
 - Actor: hiring-manager · Nature: incentive · Visibility: inferable · Removability: intermediary
 - Operates at: bar.probation_period_post_start_confirmation
-- Emits: A-020 (direct), A-002 (euphemism), A-016 (noise)
+- Emits: obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation (direct), obs.generic_closer_alignment_rejection_template (euphemism), obs.rejection_naming_an_internal_hire_as_the_outcome (noise)
 - Does NOT establish: Does not establish that the employee committed gross misconduct.
 
 ### mech.recruiter_volume_quota_incentive_distortion — Recruiter Volume & Quota Incentive Distortion
@@ -521,7 +521,7 @@ Applicant volume (500+ per req) runs past the screening hours available; profile
 
 - Actor: recruiter · Nature: incentive · Visibility: inferable · Removability: intermediary
 - Operates at: bar.inbound_screening_triage, bar.recruiter_screening_call
-- Emits: A-001 (void), A-012 (noise)
+- Emits: obs.complete_silence_after_submission (void), obs.unsolicited_recruiter_outreach_followed_by_ghosting (noise)
 - Does NOT establish: Does not mean the recruiter is individually negligent; the capacity mismatch is structural.
 
 ### mech.reference_check_discrepancy_or_regulatory_ineligibility — Reference Check Discrepancy or Regulatory Ineligibility
@@ -530,7 +530,7 @@ A third-party check returns employment dates it could not verify, a degree the r
 
 - Actor: candidate · Nature: rule · Visibility: observable · Removability: candidate
 - Operates at: bar.reference_background_verification · honest baseline
-- Emits: A-011 (direct), A-002 (euphemism)
+- Emits: obs.offer_rescinded_or_delayed_due_to_internal_freeze (direct), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV.
 
 ### mech.speculative_sourcing_talent_pooling_without_opening — Speculative Sourcing / Talent Pooling Without Opening
@@ -539,7 +539,7 @@ Recruiters open conversations and build candidate pools against headcount that h
 
 - Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.requisition_approval_public_posting, bar.outbound_sourcing_talent_pool_contact, bar.inbound_screening_triage, bar.recruiter_screening_call
-- Emits: A-012 (distortion), A-001 (void)
+- Emits: obs.unsolicited_recruiter_outreach_followed_by_ghosting (distortion), obs.complete_silence_after_submission (void)
 - Does NOT establish: Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.
 
 ### mech.stale_or_orphaned_job_requisition — Stale or Orphaned Job Requisition
@@ -548,7 +548,7 @@ Job posting remains active on careers page and aggregator portals despite the te
 
 - Actor: system · Nature: void · Visibility: opaque · Removability: none
 - Operates at: bar.requisition_approval_public_posting, bar.application_ingestion, bar.automated_filter_parser_threshold, bar.inbound_screening_triage
-- Emits: A-001 (void), A-004 (noise)
+- Emits: obs.complete_silence_after_submission (void), obs.materially_similar_role_reposted_shortly_after_rejection (noise)
 - Does NOT establish: Application silence does not reflect candidate suitability.
 
 ### mech.start_date_slippage_and_post_acceptance_revocation — Start-Date Slippage and Post-Acceptance Revocation
@@ -557,7 +557,7 @@ Employers defer confirmed start dates or revoke accepted offers between signing 
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.offer_closing_contract_execution, bar.probation_period_post_start_confirmation
-- Emits: A-020 (direct), A-001 (void), A-011 (euphemism)
+- Emits: obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation (direct), obs.complete_silence_after_submission (void), obs.offer_rescinded_or_delayed_due_to_internal_freeze (euphemism)
 - Does NOT establish: Does not establish that candidate credentials or references failed validation.
 
 ### mech.stronger_competing_candidate_in_final_cohort — Stronger Competing Candidate in Final Cohort
@@ -566,7 +566,7 @@ Candidate cleared all passing bars, but another applicant in the same pipeline d
 
 - Actor: candidate · Nature: rule · Visibility: opaque · Removability: none
 - Operates at: bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.headcount_executive_budget_approval · honest baseline
-- Emits: A-002 (euphemism), A-003 (distortion)
+- Emits: obs.generic_closer_alignment_rejection_template (euphemism), obs.position_closed_after_final_interview_without_hire (distortion)
 - Does NOT establish: Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.
 
 ### mech.take_home_evaluation_fatigue_asymmetry — Take-Home Evaluation Fatigue & Asymmetry
@@ -575,7 +575,7 @@ A 15-hour take-home is reviewed in minutes, and the structure and tests held out
 
 - Actor: hiring-manager · Nature: noise · Visibility: opaque · Removability: none
 - Operates at: bar.take_home_work_sample_evaluation
-- Emits: A-006 (noise), A-002 (euphemism)
+- Emits: obs.take_home_assignment_exceeding_reasonable_stated_scope (noise), obs.generic_closer_alignment_rejection_template (euphemism)
 - Does NOT establish: A take-home rejection made under evaluation fatigue does not measure the engineering in the submission.
 
 ### mech.unstated_compensation_band_discrepancy — Unstated Compensation Band Discrepancy
@@ -584,7 +584,7 @@ Candidate market rate exceeds budgeted compensation for the requisition, but sal
 
 - Actor: policy · Nature: rule · Visibility: opaque · Removability: intermediary
 - Operates at: bar.recruiter_screening_call, bar.compensation_levelling_reconciliation
-- Emits: A-002 (euphemism), A-005 (direct), A-013 (euphemism)
+- Emits: obs.generic_closer_alignment_rejection_template (euphemism), obs.compensation_band_reduced_or_altered_mid_process (direct), obs.feedback_stating_candidate_is_overqualified_for_the_grade (euphemism)
 - Does NOT establish: Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.
 
 ## Patterns
@@ -594,7 +594,7 @@ Candidate market rate exceeds budgeted compensation for the requisition, but sal
 A candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.
 
 - Triggers when: The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.
-- Requires: A-003, A-004 · Mechanisms: mech.stronger_competing_candidate_in_final_cohort, mech.stale_or_orphaned_job_requisition, mech.hidden_evaluation_rubric_or_undisclosed_priority, mech.mid_process_role_requirement_redefinition
+- Requires: obs.position_closed_after_final_interview_without_hire, obs.materially_similar_role_reposted_shortly_after_rejection · Mechanisms: mech.stronger_competing_candidate_in_final_cohort, mech.stale_or_orphaned_job_requisition, mech.hidden_evaluation_rubric_or_undisclosed_priority, mech.mid_process_role_requirement_redefinition
 - Establishes: The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.
 - Does NOT establish: Does not establish that the original job listing was fake or a ghost job.
 - Does NOT establish: Does not establish that the candidate was intentionally misled.
@@ -604,7 +604,7 @@ A candidate completes multiple late-stage interviews, is rejected with a generic
 The candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.
 
 - Triggers when: The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.
-- Requires: A-002, A-005 · Mechanisms: mech.unstated_compensation_band_discrepancy, mech.experience_age_grading_mismatch
+- Requires: obs.generic_closer_alignment_rejection_template, obs.compensation_band_reduced_or_altered_mid_process · Mechanisms: mech.unstated_compensation_band_discrepancy, mech.experience_age_grading_mismatch
 - Establishes: An information asymmetry works as an uncalibrated filter before technical merit is assessed.
 - Does NOT establish: Does not establish that the employer has an unlimited budget, or that any of this is malicious.
 
@@ -613,7 +613,7 @@ The candidate has to name a compensation expectation first: a high number ends t
 A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.
 
 - Triggers when: Job description or automated screen requires X years of experience where X > technology_age.
-- Requires: A-002, A-009 · Mechanisms: mech.automated_keyword_qualification_filter, mech.inflated_requisition_requirements_vs_actual_team_needs
+- Requires: obs.generic_closer_alignment_rejection_template, obs.rejection_within_minutes_of_application_submission · Mechanisms: mech.automated_keyword_qualification_filter, mech.inflated_requisition_requirements_vs_actual_team_needs
 - Establishes: The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.
 - Does NOT establish: Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.
 
@@ -622,7 +622,7 @@ A requisition requires more years of hands-on experience with a specific framewo
 The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles.
 
 - Triggers when: The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.
-- Requires: A-002, A-013 · Mechanisms: mech.genuine_technical_skill_shortfall, mech.unstated_compensation_band_discrepancy, mech.experience_age_grading_mismatch
+- Requires: obs.generic_closer_alignment_rejection_template, obs.feedback_stating_candidate_is_overqualified_for_the_grade · Mechanisms: mech.genuine_technical_skill_shortfall, mech.unstated_compensation_band_discrepancy, mech.experience_age_grading_mismatch
 - Establishes: The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.
 - Does NOT establish: Does not establish that the candidate lacks market value.
 - Does NOT establish: Does not establish malice or coordinated collusion between employers.

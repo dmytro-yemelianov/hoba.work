@@ -10,18 +10,18 @@ operates_at:
   - "bar.recruiter_screening_call"
 emissions:
   -
-    artifact: "A-017"
+    artifact: "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground"
     fidelity: "direct"
     likelihood: "high"
     evidence: []
   -
-    artifact: "A-009"
+    artifact: "obs.rejection_within_minutes_of_application_submission"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-001"]
     observed_at: ["ingestion"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["EVD-001"]

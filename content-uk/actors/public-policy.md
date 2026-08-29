@@ -68,7 +68,7 @@ recommendations:
       - "mech.stale_or_orphaned_job_requisition"
       - "mech.speculative_sourcing_talent_pooling_without_opening"
       - "bar.requisition_approval_public_posting"
-      - "A-004"
+      - "obs.materially_similar_role_reposted_shortly_after_rejection"
       - "pat.closed_then_reposted_requisition_motif"
     interventions:
       - "I-001"
@@ -83,8 +83,8 @@ recommendations:
       - "mech.automated_keyword_qualification_filter"
       - "mech.automated_application_expiration_timeout"
       - "mech.ats_parser_extraction_failure"
-      - "A-009"
-      - "A-001"
+      - "obs.rejection_within_minutes_of_application_submission"
+      - "obs.complete_silence_after_submission"
     interventions: []
   -
     id: "document-continuity-features"
@@ -105,8 +105,8 @@ recommendations:
     cost: "low"
     costs: "Схема не несе обовʼязку, тож її переймають там, де вона дешевша за те, що заміняє, і більше ніде. Категорії, зафіксовані в першій версії, стають стелею того, що взагалі розкривають, а орган, який її опублікував, відповідає за її перегляд, доки нею користуються."
     targets:
-      - "A-002"
-      - "A-014"
+      - "obs.generic_closer_alignment_rejection_template"
+      - "obs.conflicting_feedback_across_different_interviewers"
       - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.requisition_approval_public_posting"
     interventions:

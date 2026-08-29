@@ -48,7 +48,7 @@ test.describe('machine formats', () => {
 
   test('every entity type has a Markdown representation', async ({ request }) => {
     for (const path of [
-      '/artifacts/A-013.md', '/barriers/bar.headcount_executive_budget_approval.md', '/mechanisms/mech.automated_application_expiration_timeout.md',
+      '/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade.md', '/barriers/bar.headcount_executive_budget_approval.md', '/mechanisms/mech.automated_application_expiration_timeout.md',
       '/patterns/pat.closed_then_reposted_requisition_motif.md', '/loops/L-001.md', '/interventions/I-002.md',
     ]) {
       const response = await request.get(`${path}?lang=en`);

@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-const PAGES = ['/', '/registry', '/analyze', '/mechanisms/mech.genuine_technical_skill_shortfall', '/patterns', '/data', '/developers', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/artifacts/A-013'];
+const PAGES = ['/', '/registry', '/analyze', '/mechanisms/mech.genuine_technical_skill_shortfall', '/patterns', '/data', '/developers', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/artifacts/obs.feedback_stating_candidate_is_overqualified_for_the_grade'];
 
 for (const scheme of ['dark', 'light'] as const) {
   test.describe(`accessibility (${scheme})`, () => {

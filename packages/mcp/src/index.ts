@@ -270,8 +270,9 @@ server.registerTool(
     },
   },
   async ({ artifact_ids, mechanism_ids }) => {
-    const artifacts = new Set(artifact_ids ?? []);
-    const mechanisms = new Set(mechanism_ids ?? []);
+    const resolveId = (id: string) => graph.getNode(id)?.id ?? id;
+    const artifacts = new Set((artifact_ids ?? []).map(resolveId));
+    const mechanisms = new Set((mechanism_ids ?? []).map(resolveId));
     const filterApplied = artifacts.size + mechanisms.size > 0;
     const matched = filterApplied
       ? bundle.patterns.filter(
@@ -289,8 +290,10 @@ server.registerTool(
     inputSchema: { target_id: z.string().describe('Target entity ID (e.g. M-004, B-001, P-001, L-001)') },
   },
   async ({ target_id }) => {
-    if (!graph.getNode(target_id)) return fail(`Target ${target_id} not found in hoba registry.`);
-    const interventions = bundle.interventions.filter((i) => i.targets.includes(target_id));
+    const node = graph.getNode(target_id);
+    if (!node) return fail(`Target ${target_id} not found in hoba registry.`);
+    const canonicalId = node.id;
+    const interventions = bundle.interventions.filter((i) => i.targets.includes(canonicalId) || i.targets.includes(target_id));
     return ok({ target_id, count: interventions.length, interventions });
   }
 );

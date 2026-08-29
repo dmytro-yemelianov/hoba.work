@@ -57,7 +57,7 @@ recommendations:
     cost: "medium"
     costs: "Кожен лист складають, а не обирають зі списку, і роблять це під годинник, який міряють як time-to-fill, а запит критерію в панелі витрачає кредит довіри менеджера із найму, внутрішнього клієнта."
     targets:
-      - "A-002"
+      - "obs.generic_closer_alignment_rejection_template"
       - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.team_cross_functional_panel"
     interventions:
@@ -69,8 +69,8 @@ recommendations:
     cost: "medium"
     costs: "Ті, кому сказали, будують інші плани, а сам лист письмово фіксує, що пошук внутрішнього клієнта зупинився, — і це на позиції, яку оцінюють за time-to-fill і за цими самими стосунками."
     targets:
-      - "A-001"
-      - "A-003"
+      - "obs.complete_silence_after_submission"
+      - "obs.position_closed_after_final_interview_without_hire"
       - "mech.stale_or_orphaned_job_requisition"
     interventions:
       - "I-001"
@@ -82,7 +82,7 @@ recommendations:
     costs: "Названа дата — це зобовʼязання, яке тримається на календарях інтервʼюерів, що їх ця позиція не контролює, тож кожне зміщення перетворюється на лист, який доведеться написати."
     targets:
       - "bar.recruiter_screening_call"
-      - "A-007"
+      - "obs.multiple_interview_reschedulings_or_interviewer_no_show"
       - "mech.mid_process_role_requirement_redefinition"
     interventions: []
   -
@@ -93,7 +93,7 @@ recommendations:
     costs: "Це коштує відповідей: на повідомлення, де сказано, що відкритої вакансії немає, менше причин відповідати, а саме кількістю відповідей міряють сорсингову частину пайплайну."
     targets:
       - "mech.speculative_sourcing_talent_pooling_without_opening"
-      - "A-012"
+      - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
       - "bar.outbound_sourcing_talent_pool_contact"
     interventions: []
   -

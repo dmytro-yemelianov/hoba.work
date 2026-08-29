@@ -65,7 +65,7 @@
           "mech.ats_parser_extraction_failure",
           "bar.application_ingestion",
           "bar.automated_filter_parser_threshold",
-          "A-009"
+          "obs.rejection_within_minutes_of_application_submission"
         ],
         "interventions": [
           "I-005"
@@ -82,7 +82,7 @@
           "mech.pre_selected_internal_candidate",
           "mech.stale_or_orphaned_job_requisition",
           "bar.outbound_sourcing_talent_pool_contact",
-          "A-012"
+          "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
         ],
         "interventions": []
       },
@@ -97,7 +97,7 @@
           "bar.recruiter_screening_call",
           "bar.compensation_levelling_reconciliation",
           "pat.compensation_double_bind",
-          "A-005"
+          "obs.compensation_band_reduced_or_altered_mid_process"
         ],
         "interventions": [
           "I-002"
@@ -111,9 +111,9 @@
         "costs": "It is unpaid administrative time in the period when time is scarcest, and a complete record of a process that ends in silence is still a record of silence.",
         "targets": [
           "pat.closed_then_reposted_requisition_motif",
-          "A-004",
-          "A-014",
-          "A-007",
+          "obs.materially_similar_role_reposted_shortly_after_rejection",
+          "obs.conflicting_feedback_across_different_interviewers",
+          "obs.multiple_interview_reschedulings_or_interviewer_no_show",
           "mech.mid_process_role_requirement_redefinition"
         ],
         "interventions": []
@@ -128,7 +128,7 @@
           "L-002",
           "mech.take_home_evaluation_fatigue_asymmetry",
           "bar.take_home_work_sample_evaluation",
-          "A-006"
+          "obs.take_home_assignment_exceeding_reasonable_stated_scope"
         ],
         "interventions": [
           "I-006"
@@ -145,7 +145,7 @@
           "mech.stale_or_orphaned_job_requisition",
           "mech.recruiter_volume_quota_incentive_distortion",
           "bar.inbound_screening_triage",
-          "A-001"
+          "obs.complete_silence_after_submission"
         ],
         "interventions": [
           "I-001"

@@ -20,13 +20,23 @@ export class HOBAKnowledgeGraph {
   }
 
   private indexNodes() {
-    for (const a of this.bundle.artifacts) this.nodeMap.set(a.id, a);
-    for (const b of this.bundle.barriers) this.nodeMap.set(b.id, b);
-    for (const m of this.bundle.mechanisms) this.nodeMap.set(m.id, m);
-    for (const p of this.bundle.patterns) this.nodeMap.set(p.id, p);
-    for (const l of this.bundle.loops) this.nodeMap.set(l.id, l);
-    for (const i of this.bundle.interventions) this.nodeMap.set(i.id, i);
-    for (const e of this.bundle.evidence) this.nodeMap.set(e.id, e);
+    const collections = [
+      this.bundle.artifacts,
+      this.bundle.barriers,
+      this.bundle.mechanisms,
+      this.bundle.patterns,
+      this.bundle.loops,
+      this.bundle.interventions,
+      this.bundle.evidence,
+    ];
+    for (const coll of collections) {
+      for (const item of coll) {
+        this.nodeMap.set(item.id, item);
+        for (const alias of (item as { aliases?: string[] }).aliases ?? []) {
+          this.nodeMap.set(alias, item);
+        }
+      }
+    }
   }
 
   private addEdge(source: string, target: string, type: GraphRelation, meta: Partial<GraphEdge> = {}) {

@@ -104,7 +104,7 @@
         "bar.outbound_sourcing_talent_pool_contact",
         "mech.speculative_sourcing_talent_pooling_without_opening",
         "mech.interview_resource_scheduling_saturation",
-        "A-012"
+        "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
       ],
       "specimens": []
     },
@@ -170,8 +170,8 @@
       "entities": [
         "mech.headcount_freeze_or_budget_cancellation",
         "mech.mid_process_role_requirement_redefinition",
-        "A-003",
-        "A-011",
+        "obs.position_closed_after_final_interview_without_hire",
+        "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
         "pat.closed_then_reposted_requisition_motif"
       ],
       "specimens": []
@@ -281,7 +281,7 @@
         "pat.seniority_double_bind",
         "pat.experience_age_impossibility",
         "L-003",
-        "A-001"
+        "obs.complete_silence_after_submission"
       ],
       "specimens": []
     }

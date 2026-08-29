@@ -10,18 +10,18 @@ operates_at:
   - "bar.inbound_screening_triage"
 emissions:
   -
-    artifact: "A-015"
+    artifact: "obs.rejection_after_the_application_sat_pending_for_months"
     fidelity: "direct"
     likelihood: "high"
     evidence: []
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "void"
     likelihood: "high"
     evidence: ["EVD-001"]
     observed_at: ["screening"]
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "medium"
     evidence: ["EVD-001"]

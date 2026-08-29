@@ -6,8 +6,8 @@ aliases:
 title: "Experience-Age Impossibility"
 summary: "A requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem."
 required_artifacts:
-  - "A-002"
-  - "A-009"
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.rejection_within_minutes_of_application_submission"
 compatible_mechanisms:
   - "mech.automated_keyword_qualification_filter"
   - "mech.inflated_requisition_requirements_vs_actual_team_needs"

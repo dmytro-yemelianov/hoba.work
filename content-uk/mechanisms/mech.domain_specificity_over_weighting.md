@@ -10,19 +10,19 @@ operates_at:
   - "bar.hiring_manager_in_depth_review"
 emissions:
   -
-    artifact: "A-018"
+    artifact: "obs.rejection_naming_a_specific_industry_sector_as_required"
     fidelity: "direct"
     likelihood: "medium"
     evidence: []
     observed_at: ["recruiter"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]
     observed_at: ["recruiter"]
   -
-    artifact: "A-008"
+    artifact: "obs.explicit_feedback_citing_skill_depth_shortfall"
     fidelity: "direct"
     likelihood: "medium"
     evidence: ["EVD-006"]

@@ -80,7 +80,7 @@
           "targets": [
             "mech.ats_parser_extraction_failure",
             "bar.automated_filter_parser_threshold",
-            "A-009"
+            "obs.rejection_within_minutes_of_application_submission"
           ],
           "interventions": []
         },
@@ -108,8 +108,8 @@
           "targets": [
             "mech.automated_application_expiration_timeout",
             "mech.stale_or_orphaned_job_requisition",
-            "A-001",
-            "A-002",
+            "obs.complete_silence_after_submission",
+            "obs.generic_closer_alignment_rejection_template",
             "pat.closed_then_reposted_requisition_motif"
           ],
           "interventions": [
@@ -140,8 +140,8 @@
           "targets": [
             "mech.automated_keyword_qualification_filter",
             "bar.automated_filter_parser_threshold",
-            "A-009",
-            "A-002"
+            "obs.rejection_within_minutes_of_application_submission",
+            "obs.generic_closer_alignment_rejection_template"
           ],
           "interventions": []
         }
@@ -212,7 +212,7 @@
             "mech.ats_parser_extraction_failure",
             "bar.application_ingestion",
             "bar.automated_filter_parser_threshold",
-            "A-009"
+            "obs.rejection_within_minutes_of_application_submission"
           ],
           "interventions": [
             "I-005"
@@ -229,7 +229,7 @@
             "mech.pre_selected_internal_candidate",
             "mech.stale_or_orphaned_job_requisition",
             "bar.outbound_sourcing_talent_pool_contact",
-            "A-012"
+            "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
           ],
           "interventions": []
         },
@@ -244,7 +244,7 @@
             "bar.recruiter_screening_call",
             "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind",
-            "A-005"
+            "obs.compensation_band_reduced_or_altered_mid_process"
           ],
           "interventions": [
             "I-002"
@@ -258,9 +258,9 @@
           "costs": "It is unpaid administrative time in the period when time is scarcest, and a complete record of a process that ends in silence is still a record of silence.",
           "targets": [
             "pat.closed_then_reposted_requisition_motif",
-            "A-004",
-            "A-014",
-            "A-007",
+            "obs.materially_similar_role_reposted_shortly_after_rejection",
+            "obs.conflicting_feedback_across_different_interviewers",
+            "obs.multiple_interview_reschedulings_or_interviewer_no_show",
             "mech.mid_process_role_requirement_redefinition"
           ],
           "interventions": []
@@ -275,7 +275,7 @@
             "L-002",
             "mech.take_home_evaluation_fatigue_asymmetry",
             "bar.take_home_work_sample_evaluation",
-            "A-006"
+            "obs.take_home_assignment_exceeding_reasonable_stated_scope"
           ],
           "interventions": [
             "I-006"
@@ -292,7 +292,7 @@
             "mech.stale_or_orphaned_job_requisition",
             "mech.recruiter_volume_quota_incentive_distortion",
             "bar.inbound_screening_triage",
-            "A-001"
+            "obs.complete_silence_after_submission"
           ],
           "interventions": [
             "I-001"
@@ -359,8 +359,8 @@
           "cost": "low",
           "costs": "A named stage invites questions when it overruns; an unnamed one never has to answer for itself.",
           "targets": [
-            "A-001",
-            "A-015",
+            "obs.complete_silence_after_submission",
+            "obs.rejection_after_the_application_sat_pending_for_months",
             "mech.stronger_competing_candidate_in_final_cohort"
           ],
           "interventions": []
@@ -387,8 +387,8 @@
           "cost": "low",
           "costs": "A category is a commitment; 'no' with no category can no longer be sent.",
           "targets": [
-            "A-002",
-            "A-015"
+            "obs.generic_closer_alignment_rejection_template",
+            "obs.rejection_after_the_application_sat_pending_for_months"
           ],
           "interventions": [
             "I-003"
@@ -480,7 +480,7 @@
             "bar.headcount_executive_budget_approval",
             "bar.requisition_approval_public_posting",
             "mech.headcount_freeze_or_budget_cancellation",
-            "A-003"
+            "obs.position_closed_after_final_interview_without_hire"
           ],
           "interventions": []
         },
@@ -496,9 +496,9 @@
             "bar.application_ingestion",
             "pat.closed_then_reposted_requisition_motif",
             "L-003",
-            "A-001",
-            "A-003",
-            "A-011"
+            "obs.complete_silence_after_submission",
+            "obs.position_closed_after_final_interview_without_hire",
+            "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
           ],
           "interventions": [
             "I-001"
@@ -513,8 +513,8 @@
           "targets": [
             "mech.pre_selected_internal_candidate",
             "bar.requisition_approval_public_posting",
-            "A-002",
-            "A-003"
+            "obs.generic_closer_alignment_rejection_template",
+            "obs.position_closed_after_final_interview_without_hire"
           ],
           "interventions": []
         },
@@ -612,7 +612,7 @@
             "mech.domain_specificity_over_weighting",
             "bar.technical_screen_live_assessment",
             "bar.hiring_manager_in_depth_review",
-            "A-014"
+            "obs.conflicting_feedback_across_different_interviewers"
           ],
           "interventions": []
         },
@@ -641,7 +641,7 @@
           "targets": [
             "mech.hiring_manager_consensus_impasse",
             "bar.team_cross_functional_panel",
-            "A-014"
+            "obs.conflicting_feedback_across_different_interviewers"
           ],
           "interventions": []
         },
@@ -665,7 +665,7 @@
           "costs": "A level fixed in advance removes the move of recovering a strong candidate at the level below, and where the level was set wrong the search runs again from the posting.",
           "targets": [
             "pat.seniority_double_bind",
-            "A-013",
+            "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
             "mech.experience_age_grading_mismatch",
             "bar.hiring_manager_in_depth_review"
           ],
@@ -765,7 +765,7 @@
             "mech.stale_or_orphaned_job_requisition",
             "mech.speculative_sourcing_talent_pooling_without_opening",
             "bar.requisition_approval_public_posting",
-            "A-004",
+            "obs.materially_similar_role_reposted_shortly_after_rejection",
             "pat.closed_then_reposted_requisition_motif"
           ],
           "interventions": [
@@ -783,8 +783,8 @@
             "mech.automated_keyword_qualification_filter",
             "mech.automated_application_expiration_timeout",
             "mech.ats_parser_extraction_failure",
-            "A-009",
-            "A-001"
+            "obs.rejection_within_minutes_of_application_submission",
+            "obs.complete_silence_after_submission"
           ],
           "interventions": []
         },
@@ -810,8 +810,8 @@
           "cost": "low",
           "costs": "A schema carries no obligation, so it is adopted where it is cheaper than what it replaces and nowhere else. The categories fixed in the first version become the ceiling on what is disclosed later, and the body that publishes it owns the revisions for as long as anyone uses it.",
           "targets": [
-            "A-002",
-            "A-014",
+            "obs.generic_closer_alignment_rejection_template",
+            "obs.conflicting_feedback_across_different_interviewers",
             "mech.hidden_evaluation_rubric_or_undisclosed_priority",
             "bar.requisition_approval_public_posting"
           ],
@@ -901,7 +901,7 @@
           "cost": "medium",
           "costs": "Each message is written rather than selected, against a clock measured as time-to-fill, and asking the panel for a criterion spends standing with the hiring manager, who is the internal client.",
           "targets": [
-            "A-002",
+            "obs.generic_closer_alignment_rejection_template",
             "mech.hidden_evaluation_rubric_or_undisclosed_priority",
             "bar.team_cross_functional_panel"
           ],
@@ -916,8 +916,8 @@
           "cost": "medium",
           "costs": "Candidates who are told make other plans, and the message puts in writing that the internal client's search has stopped, against a seat measured on time-to-fill and on that relationship.",
           "targets": [
-            "A-001",
-            "A-003",
+            "obs.complete_silence_after_submission",
+            "obs.position_closed_after_final_interview_without_hire",
             "mech.stale_or_orphaned_job_requisition"
           ],
           "interventions": [
@@ -932,7 +932,7 @@
           "costs": "A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written.",
           "targets": [
             "bar.recruiter_screening_call",
-            "A-007",
+            "obs.multiple_interview_reschedulings_or_interviewer_no_show",
             "mech.mid_process_role_requirement_redefinition"
           ],
           "interventions": []
@@ -945,7 +945,7 @@
           "costs": "It costs replies: outreach that states there is no open requisition gives less reason to answer, and reply volume is what the sourcing side of the pipeline is counted in.",
           "targets": [
             "mech.speculative_sourcing_talent_pooling_without_opening",
-            "A-012",
+            "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
             "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": []

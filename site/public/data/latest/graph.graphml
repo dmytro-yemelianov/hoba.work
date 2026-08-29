@@ -8,110 +8,110 @@
   <key id="d_evidence" for="node" attr.name="evidence_level" attr.type="string"/>
   <key id="d_edge_type" for="edge" attr.name="relation" attr.type="string"/>
   <graph id="HOBA" edgedefault="directed">
-    <node id="A-001">
-      <data key="d_label">Complete silence after submission</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-002">
-      <data key="d_label">Generic &quot;closer alignment&quot; rejection template</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-003">
-      <data key="d_label">Position closed after final interview without hire</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-004">
-      <data key="d_label">Materially similar role reposted shortly after rejection</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-005">
-      <data key="d_label">Compensation band reduced or altered mid-process</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-006">
-      <data key="d_label">Take-home assignment exceeding reasonable stated scope</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-007">
-      <data key="d_label">Multiple interview reschedulings or interviewer no-show</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-008">
-      <data key="d_label">Explicit feedback citing skill-depth shortfall</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-009">
-      <data key="d_label">Rejection within minutes of application submission</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-010">
+    <node id="obs.communication_mismatch_or_tone_friction_in_panel">
       <data key="d_label">Communication mismatch or tone friction in panel</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">supported</data>
     </node>
-    <node id="A-011">
-      <data key="d_label">Offer rescinded or delayed due to internal freeze</data>
+    <node id="obs.compensation_band_reduced_or_altered_mid_process">
+      <data key="d_label">Compensation band reduced or altered mid-process</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">supported</data>
     </node>
-    <node id="A-012">
-      <data key="d_label">Unsolicited recruiter outreach followed by ghosting</data>
+    <node id="obs.complete_silence_after_submission">
+      <data key="d_label">Complete silence after submission</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">supported</data>
     </node>
-    <node id="A-013">
-      <data key="d_label">Feedback stating candidate is overqualified for the grade</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">supported</data>
-    </node>
-    <node id="A-014">
+    <node id="obs.conflicting_feedback_across_different_interviewers">
       <data key="d_label">Conflicting feedback across different interviewers</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">supported</data>
     </node>
-    <node id="A-015">
-      <data key="d_label">Rejection after the application sat pending for months</data>
+    <node id="obs.explicit_feedback_citing_skill_depth_shortfall">
+      <data key="d_label">Explicit feedback citing skill-depth shortfall</data>
       <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
+      <data key="d_evidence">supported</data>
     </node>
-    <node id="A-016">
-      <data key="d_label">Rejection naming an internal hire as the outcome</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
-    </node>
-    <node id="A-017">
-      <data key="d_label">Rejection naming a jurisdiction or work-eligibility ground</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
-    </node>
-    <node id="A-018">
-      <data key="d_label">Rejection naming a specific industry sector as required</data>
-      <data key="d_type">artifact</data>
-      <data key="d_evidence">hypothesis</data>
-    </node>
-    <node id="A-019">
+    <node id="obs.feedback_naming_as_absent_something_the_submitted_work_contains">
       <data key="d_label">Feedback naming as absent something the submitted work contains</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">hypothesis</data>
     </node>
-    <node id="A-020">
+    <node id="obs.feedback_stating_candidate_is_overqualified_for_the_grade">
+      <data key="d_label">Feedback stating candidate is overqualified for the grade</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.generic_closer_alignment_rejection_template">
+      <data key="d_label">Generic &quot;closer alignment&quot; rejection template</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.materially_similar_role_reposted_shortly_after_rejection">
+      <data key="d_label">Materially similar role reposted shortly after rejection</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.multiple_interview_reschedulings_or_interviewer_no_show">
+      <data key="d_label">Multiple interview reschedulings or interviewer no-show</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation">
       <data key="d_label">Offer accepted followed by delayed start date or post-signing revocation</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">established</data>
     </node>
-    <node id="A-021">
+    <node id="obs.offer_rescinded_or_delayed_due_to_internal_freeze">
+      <data key="d_label">Offer rescinded or delayed due to internal freeze</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.position_closed_after_final_interview_without_hire">
+      <data key="d_label">Position closed after final interview without hire</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.rejection_after_the_application_sat_pending_for_months">
+      <data key="d_label">Rejection after the application sat pending for months</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground">
+      <data key="d_label">Rejection naming a jurisdiction or work-eligibility ground</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="obs.rejection_naming_a_specific_industry_sector_as_required">
+      <data key="d_label">Rejection naming a specific industry sector as required</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="obs.rejection_naming_an_internal_hire_as_the_outcome">
+      <data key="d_label">Rejection naming an internal hire as the outcome</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">hypothesis</data>
+    </node>
+    <node id="obs.rejection_within_minutes_of_application_submission">
+      <data key="d_label">Rejection within minutes of application submission</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body">
       <data key="d_label">Republished job posting with refreshed date and identical requirement body</data>
       <data key="d_type">artifact</data>
       <data key="d_evidence">established</data>
+    </node>
+    <node id="obs.take_home_assignment_exceeding_reasonable_stated_scope">
+      <data key="d_label">Take-home assignment exceeding reasonable stated scope</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="obs.unsolicited_recruiter_outreach_followed_by_ghosting">
+      <data key="d_label">Unsolicited recruiter outreach followed by ghosting</data>
+      <data key="d_type">artifact</data>
+      <data key="d_evidence">supported</data>
     </node>
     <node id="bar.requisition_approval_public_posting">
       <data key="d_label">Requisition Approval &amp; Public Posting</data>
@@ -510,10 +510,10 @@
     <edge id="mech.ats_parser_extraction_failure-&gt;operates_at-&gt;bar.automated_filter_parser_threshold" source="mech.ats_parser_extraction_failure" target="bar.automated_filter_parser_threshold">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.ats_parser_extraction_failure-&gt;emits-&gt;A-001" source="mech.ats_parser_extraction_failure" target="A-001">
+    <edge id="mech.ats_parser_extraction_failure-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.ats_parser_extraction_failure" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.ats_parser_extraction_failure-&gt;emits-&gt;A-009" source="mech.ats_parser_extraction_failure" target="A-009">
+    <edge id="mech.ats_parser_extraction_failure-&gt;emits-&gt;obs.rejection_within_minutes_of_application_submission" source="mech.ats_parser_extraction_failure" target="obs.rejection_within_minutes_of_application_submission">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.ats_parser_extraction_failure-&gt;amplifies-&gt;mech.automated_keyword_qualification_filter" source="mech.ats_parser_extraction_failure" target="mech.automated_keyword_qualification_filter">
@@ -525,13 +525,13 @@
     <edge id="mech.automated_application_expiration_timeout-&gt;operates_at-&gt;bar.inbound_screening_triage" source="mech.automated_application_expiration_timeout" target="bar.inbound_screening_triage">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.automated_application_expiration_timeout-&gt;emits-&gt;A-015" source="mech.automated_application_expiration_timeout" target="A-015">
+    <edge id="mech.automated_application_expiration_timeout-&gt;emits-&gt;obs.rejection_after_the_application_sat_pending_for_months" source="mech.automated_application_expiration_timeout" target="obs.rejection_after_the_application_sat_pending_for_months">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.automated_application_expiration_timeout-&gt;emits-&gt;A-002" source="mech.automated_application_expiration_timeout" target="A-002">
+    <edge id="mech.automated_application_expiration_timeout-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.automated_application_expiration_timeout" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.automated_application_expiration_timeout-&gt;emits-&gt;A-001" source="mech.automated_application_expiration_timeout" target="A-001">
+    <edge id="mech.automated_application_expiration_timeout-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.automated_application_expiration_timeout" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.automated_application_expiration_timeout-&gt;masks-&gt;mech.stale_or_orphaned_job_requisition" source="mech.automated_application_expiration_timeout" target="mech.stale_or_orphaned_job_requisition">
@@ -540,10 +540,10 @@
     <edge id="mech.automated_keyword_qualification_filter-&gt;operates_at-&gt;bar.automated_filter_parser_threshold" source="mech.automated_keyword_qualification_filter" target="bar.automated_filter_parser_threshold">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.automated_keyword_qualification_filter-&gt;emits-&gt;A-009" source="mech.automated_keyword_qualification_filter" target="A-009">
+    <edge id="mech.automated_keyword_qualification_filter-&gt;emits-&gt;obs.rejection_within_minutes_of_application_submission" source="mech.automated_keyword_qualification_filter" target="obs.rejection_within_minutes_of_application_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.automated_keyword_qualification_filter-&gt;emits-&gt;A-002" source="mech.automated_keyword_qualification_filter" target="A-002">
+    <edge id="mech.automated_keyword_qualification_filter-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.automated_keyword_qualification_filter" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.automated_keyword_qualification_filter-&gt;amplifies-&gt;mech.employment_gap_downranking_bias" source="mech.automated_keyword_qualification_filter" target="mech.employment_gap_downranking_bias">
@@ -558,22 +558,22 @@
     <edge id="mech.bench_priority_fill-&gt;operates_at-&gt;bar.inbound_screening_triage" source="mech.bench_priority_fill" target="bar.inbound_screening_triage">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.bench_priority_fill-&gt;emits-&gt;A-002" source="mech.bench_priority_fill" target="A-002">
+    <edge id="mech.bench_priority_fill-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.bench_priority_fill" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.bench_priority_fill-&gt;emits-&gt;A-003" source="mech.bench_priority_fill" target="A-003">
+    <edge id="mech.bench_priority_fill-&gt;emits-&gt;obs.position_closed_after_final_interview_without_hire" source="mech.bench_priority_fill" target="obs.position_closed_after_final_interview_without_hire">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.bench_priority_fill-&gt;emits-&gt;A-016" source="mech.bench_priority_fill" target="A-016">
+    <edge id="mech.bench_priority_fill-&gt;emits-&gt;obs.rejection_naming_an_internal_hire_as_the_outcome" source="mech.bench_priority_fill" target="obs.rejection_naming_an_internal_hire_as_the_outcome">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.bid_conditional_talent_pool-&gt;operates_at-&gt;bar.outbound_sourcing_talent_pool_contact" source="mech.bid_conditional_talent_pool" target="bar.outbound_sourcing_talent_pool_contact">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.bid_conditional_talent_pool-&gt;emits-&gt;A-001" source="mech.bid_conditional_talent_pool" target="A-001">
+    <edge id="mech.bid_conditional_talent_pool-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.bid_conditional_talent_pool" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.bid_conditional_talent_pool-&gt;emits-&gt;A-012" source="mech.bid_conditional_talent_pool" target="A-012">
+    <edge id="mech.bid_conditional_talent_pool-&gt;emits-&gt;obs.unsolicited_recruiter_outreach_followed_by_ghosting" source="mech.bid_conditional_talent_pool" target="obs.unsolicited_recruiter_outreach_followed_by_ghosting">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.communication_or_working_style_friction-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.communication_or_working_style_friction" target="bar.recruiter_screening_call">
@@ -582,10 +582,10 @@
     <edge id="mech.communication_or_working_style_friction-&gt;operates_at-&gt;bar.team_cross_functional_panel" source="mech.communication_or_working_style_friction" target="bar.team_cross_functional_panel">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.communication_or_working_style_friction-&gt;emits-&gt;A-010" source="mech.communication_or_working_style_friction" target="A-010">
+    <edge id="mech.communication_or_working_style_friction-&gt;emits-&gt;obs.communication_mismatch_or_tone_friction_in_panel" source="mech.communication_or_working_style_friction" target="obs.communication_mismatch_or_tone_friction_in_panel">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.communication_or_working_style_friction-&gt;emits-&gt;A-002" source="mech.communication_or_working_style_friction" target="A-002">
+    <edge id="mech.communication_or_working_style_friction-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.communication_or_working_style_friction" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.domain_specificity_over_weighting-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.domain_specificity_over_weighting" target="bar.recruiter_screening_call">
@@ -594,13 +594,13 @@
     <edge id="mech.domain_specificity_over_weighting-&gt;operates_at-&gt;bar.hiring_manager_in_depth_review" source="mech.domain_specificity_over_weighting" target="bar.hiring_manager_in_depth_review">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.domain_specificity_over_weighting-&gt;emits-&gt;A-018" source="mech.domain_specificity_over_weighting" target="A-018">
+    <edge id="mech.domain_specificity_over_weighting-&gt;emits-&gt;obs.rejection_naming_a_specific_industry_sector_as_required" source="mech.domain_specificity_over_weighting" target="obs.rejection_naming_a_specific_industry_sector_as_required">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.domain_specificity_over_weighting-&gt;emits-&gt;A-002" source="mech.domain_specificity_over_weighting" target="A-002">
+    <edge id="mech.domain_specificity_over_weighting-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.domain_specificity_over_weighting" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.domain_specificity_over_weighting-&gt;emits-&gt;A-008" source="mech.domain_specificity_over_weighting" target="A-008">
+    <edge id="mech.domain_specificity_over_weighting-&gt;emits-&gt;obs.explicit_feedback_citing_skill_depth_shortfall" source="mech.domain_specificity_over_weighting" target="obs.explicit_feedback_citing_skill_depth_shortfall">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.domain_specificity_over_weighting-&gt;amplifies-&gt;mech.hidden_evaluation_rubric_or_undisclosed_priority" source="mech.domain_specificity_over_weighting" target="mech.hidden_evaluation_rubric_or_undisclosed_priority">
@@ -615,10 +615,10 @@
     <edge id="mech.employment_gap_downranking_bias-&gt;operates_at-&gt;bar.inbound_screening_triage" source="mech.employment_gap_downranking_bias" target="bar.inbound_screening_triage">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.employment_gap_downranking_bias-&gt;emits-&gt;A-001" source="mech.employment_gap_downranking_bias" target="A-001">
+    <edge id="mech.employment_gap_downranking_bias-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.employment_gap_downranking_bias" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.employment_gap_downranking_bias-&gt;emits-&gt;A-002" source="mech.employment_gap_downranking_bias" target="A-002">
+    <edge id="mech.employment_gap_downranking_bias-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.employment_gap_downranking_bias" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.employment_gap_downranking_bias-&gt;amplifies-&gt;mech.automated_keyword_qualification_filter" source="mech.employment_gap_downranking_bias" target="mech.automated_keyword_qualification_filter">
@@ -633,10 +633,10 @@
     <edge id="mech.experience_age_grading_mismatch-&gt;operates_at-&gt;bar.hiring_manager_in_depth_review" source="mech.experience_age_grading_mismatch" target="bar.hiring_manager_in_depth_review">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.experience_age_grading_mismatch-&gt;emits-&gt;A-013" source="mech.experience_age_grading_mismatch" target="A-013">
+    <edge id="mech.experience_age_grading_mismatch-&gt;emits-&gt;obs.feedback_stating_candidate_is_overqualified_for_the_grade" source="mech.experience_age_grading_mismatch" target="obs.feedback_stating_candidate_is_overqualified_for_the_grade">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.experience_age_grading_mismatch-&gt;emits-&gt;A-002" source="mech.experience_age_grading_mismatch" target="A-002">
+    <edge id="mech.experience_age_grading_mismatch-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.experience_age_grading_mismatch" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.experience_age_grading_mismatch-&gt;amplifies-&gt;mech.unstated_compensation_band_discrepancy" source="mech.experience_age_grading_mismatch" target="mech.unstated_compensation_band_discrepancy">
@@ -654,10 +654,10 @@
     <edge id="mech.genuine_technical_skill_shortfall-&gt;operates_at-&gt;bar.hiring_manager_in_depth_review" source="mech.genuine_technical_skill_shortfall" target="bar.hiring_manager_in_depth_review">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.genuine_technical_skill_shortfall-&gt;emits-&gt;A-008" source="mech.genuine_technical_skill_shortfall" target="A-008">
+    <edge id="mech.genuine_technical_skill_shortfall-&gt;emits-&gt;obs.explicit_feedback_citing_skill_depth_shortfall" source="mech.genuine_technical_skill_shortfall" target="obs.explicit_feedback_citing_skill_depth_shortfall">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.genuine_technical_skill_shortfall-&gt;emits-&gt;A-002" source="mech.genuine_technical_skill_shortfall" target="A-002">
+    <edge id="mech.genuine_technical_skill_shortfall-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.genuine_technical_skill_shortfall" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;operates_at-&gt;bar.team_cross_functional_panel" source="mech.headcount_freeze_or_budget_cancellation" target="bar.team_cross_functional_panel">
@@ -669,10 +669,10 @@
     <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;operates_at-&gt;bar.offer_closing_contract_execution" source="mech.headcount_freeze_or_budget_cancellation" target="bar.offer_closing_contract_execution">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;emits-&gt;A-003" source="mech.headcount_freeze_or_budget_cancellation" target="A-003">
+    <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;emits-&gt;obs.position_closed_after_final_interview_without_hire" source="mech.headcount_freeze_or_budget_cancellation" target="obs.position_closed_after_final_interview_without_hire">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;emits-&gt;A-011" source="mech.headcount_freeze_or_budget_cancellation" target="A-011">
+    <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;emits-&gt;obs.offer_rescinded_or_delayed_due_to_internal_freeze" source="mech.headcount_freeze_or_budget_cancellation" target="obs.offer_rescinded_or_delayed_due_to_internal_freeze">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.headcount_freeze_or_budget_cancellation-&gt;amplifies-&gt;mech.stale_or_orphaned_job_requisition" source="mech.headcount_freeze_or_budget_cancellation" target="mech.stale_or_orphaned_job_requisition">
@@ -693,10 +693,10 @@
     <edge id="mech.hidden_evaluation_rubric_or_undisclosed_priority-&gt;operates_at-&gt;bar.team_cross_functional_panel" source="mech.hidden_evaluation_rubric_or_undisclosed_priority" target="bar.team_cross_functional_panel">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.hidden_evaluation_rubric_or_undisclosed_priority-&gt;emits-&gt;A-008" source="mech.hidden_evaluation_rubric_or_undisclosed_priority" target="A-008">
+    <edge id="mech.hidden_evaluation_rubric_or_undisclosed_priority-&gt;emits-&gt;obs.explicit_feedback_citing_skill_depth_shortfall" source="mech.hidden_evaluation_rubric_or_undisclosed_priority" target="obs.explicit_feedback_citing_skill_depth_shortfall">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.hidden_evaluation_rubric_or_undisclosed_priority-&gt;emits-&gt;A-014" source="mech.hidden_evaluation_rubric_or_undisclosed_priority" target="A-014">
+    <edge id="mech.hidden_evaluation_rubric_or_undisclosed_priority-&gt;emits-&gt;obs.conflicting_feedback_across_different_interviewers" source="mech.hidden_evaluation_rubric_or_undisclosed_priority" target="obs.conflicting_feedback_across_different_interviewers">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.hidden_evaluation_rubric_or_undisclosed_priority-&gt;amplifies-&gt;mech.hiring_manager_consensus_impasse" source="mech.hidden_evaluation_rubric_or_undisclosed_priority" target="mech.hiring_manager_consensus_impasse">
@@ -708,10 +708,10 @@
     <edge id="mech.hiring_manager_consensus_impasse-&gt;operates_at-&gt;bar.team_cross_functional_panel" source="mech.hiring_manager_consensus_impasse" target="bar.team_cross_functional_panel">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.hiring_manager_consensus_impasse-&gt;emits-&gt;A-014" source="mech.hiring_manager_consensus_impasse" target="A-014">
+    <edge id="mech.hiring_manager_consensus_impasse-&gt;emits-&gt;obs.conflicting_feedback_across_different_interviewers" source="mech.hiring_manager_consensus_impasse" target="obs.conflicting_feedback_across_different_interviewers">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.hiring_manager_consensus_impasse-&gt;emits-&gt;A-002" source="mech.hiring_manager_consensus_impasse" target="A-002">
+    <edge id="mech.hiring_manager_consensus_impasse-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.hiring_manager_consensus_impasse" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.hiring_manager_consensus_impasse-&gt;masks-&gt;mech.stronger_competing_candidate_in_final_cohort" source="mech.hiring_manager_consensus_impasse" target="mech.stronger_competing_candidate_in_final_cohort">
@@ -726,10 +726,10 @@
     <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="bar.recruiter_screening_call">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;emits-&gt;A-002" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="A-002">
+    <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;emits-&gt;A-004" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="A-004">
+    <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;emits-&gt;obs.materially_similar_role_reposted_shortly_after_rejection" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="obs.materially_similar_role_reposted_shortly_after_rejection">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;amplifies-&gt;mech.automated_keyword_qualification_filter" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="mech.automated_keyword_qualification_filter">
@@ -747,10 +747,10 @@
     <edge id="mech.interview_resource_scheduling_saturation-&gt;operates_at-&gt;bar.team_cross_functional_panel" source="mech.interview_resource_scheduling_saturation" target="bar.team_cross_functional_panel">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.interview_resource_scheduling_saturation-&gt;emits-&gt;A-007" source="mech.interview_resource_scheduling_saturation" target="A-007">
+    <edge id="mech.interview_resource_scheduling_saturation-&gt;emits-&gt;obs.multiple_interview_reschedulings_or_interviewer_no_show" source="mech.interview_resource_scheduling_saturation" target="obs.multiple_interview_reschedulings_or_interviewer_no_show">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.interview_resource_scheduling_saturation-&gt;emits-&gt;A-001" source="mech.interview_resource_scheduling_saturation" target="A-001">
+    <edge id="mech.interview_resource_scheduling_saturation-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.interview_resource_scheduling_saturation" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.interview_resource_scheduling_saturation-&gt;amplifies-&gt;mech.take_home_evaluation_fatigue_asymmetry" source="mech.interview_resource_scheduling_saturation" target="mech.take_home_evaluation_fatigue_asymmetry">
@@ -762,13 +762,13 @@
     <edge id="mech.location_or_timezone_compliance_constraint-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.location_or_timezone_compliance_constraint" target="bar.recruiter_screening_call">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.location_or_timezone_compliance_constraint-&gt;emits-&gt;A-017" source="mech.location_or_timezone_compliance_constraint" target="A-017">
+    <edge id="mech.location_or_timezone_compliance_constraint-&gt;emits-&gt;obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground" source="mech.location_or_timezone_compliance_constraint" target="obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.location_or_timezone_compliance_constraint-&gt;emits-&gt;A-009" source="mech.location_or_timezone_compliance_constraint" target="A-009">
+    <edge id="mech.location_or_timezone_compliance_constraint-&gt;emits-&gt;obs.rejection_within_minutes_of_application_submission" source="mech.location_or_timezone_compliance_constraint" target="obs.rejection_within_minutes_of_application_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.location_or_timezone_compliance_constraint-&gt;emits-&gt;A-002" source="mech.location_or_timezone_compliance_constraint" target="A-002">
+    <edge id="mech.location_or_timezone_compliance_constraint-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.location_or_timezone_compliance_constraint" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.mid_process_role_requirement_redefinition-&gt;operates_at-&gt;bar.hiring_manager_in_depth_review" source="mech.mid_process_role_requirement_redefinition" target="bar.hiring_manager_in_depth_review">
@@ -780,10 +780,10 @@
     <edge id="mech.mid_process_role_requirement_redefinition-&gt;operates_at-&gt;bar.compensation_levelling_reconciliation" source="mech.mid_process_role_requirement_redefinition" target="bar.compensation_levelling_reconciliation">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.mid_process_role_requirement_redefinition-&gt;emits-&gt;A-003" source="mech.mid_process_role_requirement_redefinition" target="A-003">
+    <edge id="mech.mid_process_role_requirement_redefinition-&gt;emits-&gt;obs.position_closed_after_final_interview_without_hire" source="mech.mid_process_role_requirement_redefinition" target="obs.position_closed_after_final_interview_without_hire">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.mid_process_role_requirement_redefinition-&gt;emits-&gt;A-004" source="mech.mid_process_role_requirement_redefinition" target="A-004">
+    <edge id="mech.mid_process_role_requirement_redefinition-&gt;emits-&gt;obs.materially_similar_role_reposted_shortly_after_rejection" source="mech.mid_process_role_requirement_redefinition" target="obs.materially_similar_role_reposted_shortly_after_rejection">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.mid_process_role_requirement_redefinition-&gt;amplifies-&gt;mech.unstated_compensation_band_discrepancy" source="mech.mid_process_role_requirement_redefinition" target="mech.unstated_compensation_band_discrepancy">
@@ -801,13 +801,13 @@
     <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;operates_at-&gt;bar.technical_screen_live_assessment" source="mech.portfolio_work_artifact_misinterpretation" target="bar.technical_screen_live_assessment">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;emits-&gt;A-019" source="mech.portfolio_work_artifact_misinterpretation" target="A-019">
+    <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;emits-&gt;obs.feedback_naming_as_absent_something_the_submitted_work_contains" source="mech.portfolio_work_artifact_misinterpretation" target="obs.feedback_naming_as_absent_something_the_submitted_work_contains">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;emits-&gt;A-002" source="mech.portfolio_work_artifact_misinterpretation" target="A-002">
+    <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.portfolio_work_artifact_misinterpretation" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;emits-&gt;A-008" source="mech.portfolio_work_artifact_misinterpretation" target="A-008">
+    <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;emits-&gt;obs.explicit_feedback_citing_skill_depth_shortfall" source="mech.portfolio_work_artifact_misinterpretation" target="obs.explicit_feedback_citing_skill_depth_shortfall">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.portfolio_work_artifact_misinterpretation-&gt;amplifies-&gt;mech.genuine_technical_skill_shortfall" source="mech.portfolio_work_artifact_misinterpretation" target="mech.genuine_technical_skill_shortfall">
@@ -825,13 +825,13 @@
     <edge id="mech.pre_selected_internal_candidate-&gt;operates_at-&gt;bar.hiring_manager_in_depth_review" source="mech.pre_selected_internal_candidate" target="bar.hiring_manager_in_depth_review">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.pre_selected_internal_candidate-&gt;emits-&gt;A-016" source="mech.pre_selected_internal_candidate" target="A-016">
+    <edge id="mech.pre_selected_internal_candidate-&gt;emits-&gt;obs.rejection_naming_an_internal_hire_as_the_outcome" source="mech.pre_selected_internal_candidate" target="obs.rejection_naming_an_internal_hire_as_the_outcome">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.pre_selected_internal_candidate-&gt;emits-&gt;A-002" source="mech.pre_selected_internal_candidate" target="A-002">
+    <edge id="mech.pre_selected_internal_candidate-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.pre_selected_internal_candidate" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.pre_selected_internal_candidate-&gt;emits-&gt;A-003" source="mech.pre_selected_internal_candidate" target="A-003">
+    <edge id="mech.pre_selected_internal_candidate-&gt;emits-&gt;obs.position_closed_after_final_interview_without_hire" source="mech.pre_selected_internal_candidate" target="obs.position_closed_after_final_interview_without_hire">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.pre_selected_internal_candidate-&gt;masks-&gt;mech.stronger_competing_candidate_in_final_cohort" source="mech.pre_selected_internal_candidate" target="mech.stronger_competing_candidate_in_final_cohort">
@@ -840,13 +840,13 @@
     <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;operates_at-&gt;bar.probation_period_post_start_confirmation" source="mech.probation_used_as_extended_de_facto_interview" target="bar.probation_period_post_start_confirmation">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;emits-&gt;A-020" source="mech.probation_used_as_extended_de_facto_interview" target="A-020">
+    <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;emits-&gt;obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation" source="mech.probation_used_as_extended_de_facto_interview" target="obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;emits-&gt;A-002" source="mech.probation_used_as_extended_de_facto_interview" target="A-002">
+    <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.probation_used_as_extended_de_facto_interview" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;emits-&gt;A-016" source="mech.probation_used_as_extended_de_facto_interview" target="A-016">
+    <edge id="mech.probation_used_as_extended_de_facto_interview-&gt;emits-&gt;obs.rejection_naming_an_internal_hire_as_the_outcome" source="mech.probation_used_as_extended_de_facto_interview" target="obs.rejection_naming_an_internal_hire_as_the_outcome">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;operates_at-&gt;bar.inbound_screening_triage" source="mech.recruiter_volume_quota_incentive_distortion" target="bar.inbound_screening_triage">
@@ -855,10 +855,10 @@
     <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.recruiter_volume_quota_incentive_distortion" target="bar.recruiter_screening_call">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;emits-&gt;A-001" source="mech.recruiter_volume_quota_incentive_distortion" target="A-001">
+    <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.recruiter_volume_quota_incentive_distortion" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;emits-&gt;A-012" source="mech.recruiter_volume_quota_incentive_distortion" target="A-012">
+    <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;emits-&gt;obs.unsolicited_recruiter_outreach_followed_by_ghosting" source="mech.recruiter_volume_quota_incentive_distortion" target="obs.unsolicited_recruiter_outreach_followed_by_ghosting">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.recruiter_volume_quota_incentive_distortion-&gt;amplifies-&gt;mech.interview_resource_scheduling_saturation" source="mech.recruiter_volume_quota_incentive_distortion" target="mech.interview_resource_scheduling_saturation">
@@ -870,10 +870,10 @@
     <edge id="mech.reference_check_discrepancy_or_regulatory_ineligibility-&gt;operates_at-&gt;bar.reference_background_verification" source="mech.reference_check_discrepancy_or_regulatory_ineligibility" target="bar.reference_background_verification">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.reference_check_discrepancy_or_regulatory_ineligibility-&gt;emits-&gt;A-011" source="mech.reference_check_discrepancy_or_regulatory_ineligibility" target="A-011">
+    <edge id="mech.reference_check_discrepancy_or_regulatory_ineligibility-&gt;emits-&gt;obs.offer_rescinded_or_delayed_due_to_internal_freeze" source="mech.reference_check_discrepancy_or_regulatory_ineligibility" target="obs.offer_rescinded_or_delayed_due_to_internal_freeze">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.reference_check_discrepancy_or_regulatory_ineligibility-&gt;emits-&gt;A-002" source="mech.reference_check_discrepancy_or_regulatory_ineligibility" target="A-002">
+    <edge id="mech.reference_check_discrepancy_or_regulatory_ineligibility-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.reference_check_discrepancy_or_regulatory_ineligibility" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;operates_at-&gt;bar.requisition_approval_public_posting" source="mech.speculative_sourcing_talent_pooling_without_opening" target="bar.requisition_approval_public_posting">
@@ -888,10 +888,10 @@
     <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.speculative_sourcing_talent_pooling_without_opening" target="bar.recruiter_screening_call">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;emits-&gt;A-012" source="mech.speculative_sourcing_talent_pooling_without_opening" target="A-012">
+    <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;emits-&gt;obs.unsolicited_recruiter_outreach_followed_by_ghosting" source="mech.speculative_sourcing_talent_pooling_without_opening" target="obs.unsolicited_recruiter_outreach_followed_by_ghosting">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;emits-&gt;A-001" source="mech.speculative_sourcing_talent_pooling_without_opening" target="A-001">
+    <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.speculative_sourcing_talent_pooling_without_opening" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;amplifies-&gt;mech.recruiter_volume_quota_incentive_distortion" source="mech.speculative_sourcing_talent_pooling_without_opening" target="mech.recruiter_volume_quota_incentive_distortion">
@@ -909,10 +909,10 @@
     <edge id="mech.stale_or_orphaned_job_requisition-&gt;operates_at-&gt;bar.inbound_screening_triage" source="mech.stale_or_orphaned_job_requisition" target="bar.inbound_screening_triage">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.stale_or_orphaned_job_requisition-&gt;emits-&gt;A-001" source="mech.stale_or_orphaned_job_requisition" target="A-001">
+    <edge id="mech.stale_or_orphaned_job_requisition-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.stale_or_orphaned_job_requisition" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.stale_or_orphaned_job_requisition-&gt;emits-&gt;A-004" source="mech.stale_or_orphaned_job_requisition" target="A-004">
+    <edge id="mech.stale_or_orphaned_job_requisition-&gt;emits-&gt;obs.materially_similar_role_reposted_shortly_after_rejection" source="mech.stale_or_orphaned_job_requisition" target="obs.materially_similar_role_reposted_shortly_after_rejection">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.stale_or_orphaned_job_requisition-&gt;amplifies-&gt;mech.automated_application_expiration_timeout" source="mech.stale_or_orphaned_job_requisition" target="mech.automated_application_expiration_timeout">
@@ -924,13 +924,13 @@
     <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;operates_at-&gt;bar.probation_period_post_start_confirmation" source="mech.start_date_slippage_and_post_acceptance_revocation" target="bar.probation_period_post_start_confirmation">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;emits-&gt;A-020" source="mech.start_date_slippage_and_post_acceptance_revocation" target="A-020">
+    <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;emits-&gt;obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation" source="mech.start_date_slippage_and_post_acceptance_revocation" target="obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;emits-&gt;A-001" source="mech.start_date_slippage_and_post_acceptance_revocation" target="A-001">
+    <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.start_date_slippage_and_post_acceptance_revocation" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;emits-&gt;A-011" source="mech.start_date_slippage_and_post_acceptance_revocation" target="A-011">
+    <edge id="mech.start_date_slippage_and_post_acceptance_revocation-&gt;emits-&gt;obs.offer_rescinded_or_delayed_due_to_internal_freeze" source="mech.start_date_slippage_and_post_acceptance_revocation" target="obs.offer_rescinded_or_delayed_due_to_internal_freeze">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;operates_at-&gt;bar.hiring_manager_in_depth_review" source="mech.stronger_competing_candidate_in_final_cohort" target="bar.hiring_manager_in_depth_review">
@@ -942,10 +942,10 @@
     <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;operates_at-&gt;bar.headcount_executive_budget_approval" source="mech.stronger_competing_candidate_in_final_cohort" target="bar.headcount_executive_budget_approval">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;emits-&gt;A-002" source="mech.stronger_competing_candidate_in_final_cohort" target="A-002">
+    <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.stronger_competing_candidate_in_final_cohort" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;emits-&gt;A-003" source="mech.stronger_competing_candidate_in_final_cohort" target="A-003">
+    <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;emits-&gt;obs.position_closed_after_final_interview_without_hire" source="mech.stronger_competing_candidate_in_final_cohort" target="obs.position_closed_after_final_interview_without_hire">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;masks-&gt;mech.genuine_technical_skill_shortfall" source="mech.stronger_competing_candidate_in_final_cohort" target="mech.genuine_technical_skill_shortfall">
@@ -954,10 +954,10 @@
     <edge id="mech.take_home_evaluation_fatigue_asymmetry-&gt;operates_at-&gt;bar.take_home_work_sample_evaluation" source="mech.take_home_evaluation_fatigue_asymmetry" target="bar.take_home_work_sample_evaluation">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.take_home_evaluation_fatigue_asymmetry-&gt;emits-&gt;A-006" source="mech.take_home_evaluation_fatigue_asymmetry" target="A-006">
+    <edge id="mech.take_home_evaluation_fatigue_asymmetry-&gt;emits-&gt;obs.take_home_assignment_exceeding_reasonable_stated_scope" source="mech.take_home_evaluation_fatigue_asymmetry" target="obs.take_home_assignment_exceeding_reasonable_stated_scope">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.take_home_evaluation_fatigue_asymmetry-&gt;emits-&gt;A-002" source="mech.take_home_evaluation_fatigue_asymmetry" target="A-002">
+    <edge id="mech.take_home_evaluation_fatigue_asymmetry-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.take_home_evaluation_fatigue_asymmetry" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.take_home_evaluation_fatigue_asymmetry-&gt;amplifies-&gt;mech.interview_resource_scheduling_saturation" source="mech.take_home_evaluation_fatigue_asymmetry" target="mech.interview_resource_scheduling_saturation">
@@ -972,13 +972,13 @@
     <edge id="mech.unstated_compensation_band_discrepancy-&gt;operates_at-&gt;bar.compensation_levelling_reconciliation" source="mech.unstated_compensation_band_discrepancy" target="bar.compensation_levelling_reconciliation">
       <data key="d_edge_type">operates_at</data>
     </edge>
-    <edge id="mech.unstated_compensation_band_discrepancy-&gt;emits-&gt;A-002" source="mech.unstated_compensation_band_discrepancy" target="A-002">
+    <edge id="mech.unstated_compensation_band_discrepancy-&gt;emits-&gt;obs.generic_closer_alignment_rejection_template" source="mech.unstated_compensation_band_discrepancy" target="obs.generic_closer_alignment_rejection_template">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.unstated_compensation_band_discrepancy-&gt;emits-&gt;A-005" source="mech.unstated_compensation_band_discrepancy" target="A-005">
+    <edge id="mech.unstated_compensation_band_discrepancy-&gt;emits-&gt;obs.compensation_band_reduced_or_altered_mid_process" source="mech.unstated_compensation_band_discrepancy" target="obs.compensation_band_reduced_or_altered_mid_process">
       <data key="d_edge_type">emits</data>
     </edge>
-    <edge id="mech.unstated_compensation_band_discrepancy-&gt;emits-&gt;A-013" source="mech.unstated_compensation_band_discrepancy" target="A-013">
+    <edge id="mech.unstated_compensation_band_discrepancy-&gt;emits-&gt;obs.feedback_stating_candidate_is_overqualified_for_the_grade" source="mech.unstated_compensation_band_discrepancy" target="obs.feedback_stating_candidate_is_overqualified_for_the_grade">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.unstated_compensation_band_discrepancy-&gt;amplifies-&gt;mech.mid_process_role_requirement_redefinition" source="mech.unstated_compensation_band_discrepancy" target="mech.mid_process_role_requirement_redefinition">
@@ -987,10 +987,10 @@
     <edge id="mech.unstated_compensation_band_discrepancy-&gt;masks-&gt;mech.genuine_technical_skill_shortfall" source="mech.unstated_compensation_band_discrepancy" target="mech.genuine_technical_skill_shortfall">
       <data key="d_edge_type">masks</data>
     </edge>
-    <edge id="A-003-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="A-003" target="pat.closed_then_reposted_requisition_motif">
+    <edge id="obs.position_closed_after_final_interview_without_hire-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="obs.position_closed_after_final_interview_without_hire" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-004-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="A-004" target="pat.closed_then_reposted_requisition_motif">
+    <edge id="obs.materially_similar_role_reposted_shortly_after_rejection-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="obs.materially_similar_role_reposted_shortly_after_rejection" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
     <edge id="mech.stronger_competing_candidate_in_final_cohort-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="mech.stronger_competing_candidate_in_final_cohort" target="pat.closed_then_reposted_requisition_motif">
@@ -1005,10 +1005,10 @@
     <edge id="mech.mid_process_role_requirement_redefinition-&gt;instantiates-&gt;pat.closed_then_reposted_requisition_motif" source="mech.mid_process_role_requirement_redefinition" target="pat.closed_then_reposted_requisition_motif">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-002-&gt;instantiates-&gt;pat.compensation_double_bind" source="A-002" target="pat.compensation_double_bind">
+    <edge id="obs.generic_closer_alignment_rejection_template-&gt;instantiates-&gt;pat.compensation_double_bind" source="obs.generic_closer_alignment_rejection_template" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-005-&gt;instantiates-&gt;pat.compensation_double_bind" source="A-005" target="pat.compensation_double_bind">
+    <edge id="obs.compensation_band_reduced_or_altered_mid_process-&gt;instantiates-&gt;pat.compensation_double_bind" source="obs.compensation_band_reduced_or_altered_mid_process" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
     <edge id="mech.unstated_compensation_band_discrepancy-&gt;instantiates-&gt;pat.compensation_double_bind" source="mech.unstated_compensation_band_discrepancy" target="pat.compensation_double_bind">
@@ -1017,10 +1017,10 @@
     <edge id="mech.experience_age_grading_mismatch-&gt;instantiates-&gt;pat.compensation_double_bind" source="mech.experience_age_grading_mismatch" target="pat.compensation_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-002-&gt;instantiates-&gt;pat.experience_age_impossibility" source="A-002" target="pat.experience_age_impossibility">
+    <edge id="obs.generic_closer_alignment_rejection_template-&gt;instantiates-&gt;pat.experience_age_impossibility" source="obs.generic_closer_alignment_rejection_template" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-009-&gt;instantiates-&gt;pat.experience_age_impossibility" source="A-009" target="pat.experience_age_impossibility">
+    <edge id="obs.rejection_within_minutes_of_application_submission-&gt;instantiates-&gt;pat.experience_age_impossibility" source="obs.rejection_within_minutes_of_application_submission" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
     <edge id="mech.automated_keyword_qualification_filter-&gt;instantiates-&gt;pat.experience_age_impossibility" source="mech.automated_keyword_qualification_filter" target="pat.experience_age_impossibility">
@@ -1029,10 +1029,10 @@
     <edge id="mech.inflated_requisition_requirements_vs_actual_team_needs-&gt;instantiates-&gt;pat.experience_age_impossibility" source="mech.inflated_requisition_requirements_vs_actual_team_needs" target="pat.experience_age_impossibility">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-002-&gt;instantiates-&gt;pat.seniority_double_bind" source="A-002" target="pat.seniority_double_bind">
+    <edge id="obs.generic_closer_alignment_rejection_template-&gt;instantiates-&gt;pat.seniority_double_bind" source="obs.generic_closer_alignment_rejection_template" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
-    <edge id="A-013-&gt;instantiates-&gt;pat.seniority_double_bind" source="A-013" target="pat.seniority_double_bind">
+    <edge id="obs.feedback_stating_candidate_is_overqualified_for_the_grade-&gt;instantiates-&gt;pat.seniority_double_bind" source="obs.feedback_stating_candidate_is_overqualified_for_the_grade" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
     <edge id="mech.genuine_technical_skill_shortfall-&gt;instantiates-&gt;pat.seniority_double_bind" source="mech.genuine_technical_skill_shortfall" target="pat.seniority_double_bind">

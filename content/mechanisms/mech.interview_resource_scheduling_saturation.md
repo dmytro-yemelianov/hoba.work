@@ -11,12 +11,12 @@ operates_at:
   - "bar.team_cross_functional_panel"
 emissions:
   -
-    artifact: "A-007"
+    artifact: "obs.multiple_interview_reschedulings_or_interviewer_no_show"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-001"]
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "noise"
     likelihood: "medium"
     evidence: ["EVD-001"]

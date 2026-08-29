@@ -31,11 +31,62 @@ const WIZ_KEYS = [
 const i18n = JSON.stringify({ prefix, lang, ...clientDictionary(lang, WIZ_KEYS) }).replace(/</g, '\\u003c');
 
 const ARTIFACT_CATEGORIES = [
-  { id: 'messages', key: 'analyze.cat.messages', icon: '📬', ids: ['A-002', 'A-008', 'A-010', 'A-020'] },
-  { id: 'delays', key: 'analyze.cat.delays', icon: '⏳', ids: ['A-001', 'A-005', 'A-007', 'A-016'] },
-  { id: 'listings', key: 'analyze.cat.listings', icon: '📋', ids: ['A-004', 'A-018', 'A-021'] },
-  { id: 'tasks', key: 'analyze.cat.tasks', icon: '📝', ids: ['A-003', 'A-009', 'A-012', 'A-019'] },
-  { id: 'offers', key: 'analyze.cat.offers', icon: '💰', ids: ['A-006', 'A-011', 'A-013', 'A-014', 'A-015', 'A-017'] },
+  {
+    id: 'messages',
+    key: 'analyze.cat.messages',
+    icon: '📬',
+    ids: [
+      'obs.generic_closer_alignment_rejection_template',
+      'obs.explicit_feedback_citing_skill_depth_shortfall',
+      'obs.communication_mismatch_or_tone_friction_in_panel',
+      'obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation',
+    ],
+  },
+  {
+    id: 'delays',
+    key: 'analyze.cat.delays',
+    icon: '⏳',
+    ids: [
+      'obs.complete_silence_after_submission',
+      'obs.compensation_band_reduced_or_altered_mid_process',
+      'obs.multiple_interview_reschedulings_or_interviewer_no_show',
+      'obs.rejection_naming_an_internal_hire_as_the_outcome',
+    ],
+  },
+  {
+    id: 'listings',
+    key: 'analyze.cat.listings',
+    icon: '📋',
+    ids: [
+      'obs.materially_similar_role_reposted_shortly_after_rejection',
+      'obs.rejection_naming_a_specific_industry_sector_as_required',
+      'obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body',
+    ],
+  },
+  {
+    id: 'tasks',
+    key: 'analyze.cat.tasks',
+    icon: '📝',
+    ids: [
+      'obs.position_closed_after_final_interview_without_hire',
+      'obs.rejection_within_minutes_of_application_submission',
+      'obs.unsolicited_recruiter_outreach_followed_by_ghosting',
+      'obs.feedback_naming_as_absent_something_the_submitted_work_contains',
+    ],
+  },
+  {
+    id: 'offers',
+    key: 'analyze.cat.offers',
+    icon: '💰',
+    ids: [
+      'obs.take_home_assignment_exceeding_reasonable_stated_scope',
+      'obs.offer_rescinded_or_delayed_due_to_internal_freeze',
+      'obs.feedback_stating_candidate_is_overqualified_for_the_grade',
+      'obs.conflicting_feedback_across_different_interviewers',
+      'obs.rejection_after_the_application_sat_pending_for_months',
+      'obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground',
+    ],
+  },
 ] as const;
 
 const SCENARIO_ICONS: Record<string, string> = {
@@ -105,7 +156,7 @@ const zones = [
           {EMPIRICAL_SCENARIOS.map((sc) => (
             <button
               type="button"
-              class="scenario-preset group flex flex-col p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card transition-all text-left cursor-pointer"
+              class="scenario-preset group flex flex-col p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card transition-all text-left cursor-pointer min-w-0"
               data-scenario-id={sc.id}
               data-stage={sc.stage ?? ''}
               data-artifacts={JSON.stringify(sc.artifacts)}
@@ -177,13 +228,13 @@ const zones = [
                 </summary>
                 <div class="disclosure-body grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
                   {catArtifacts.map((art) => (
-                    <div class="artifact-item" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
-                      <label class="group relative flex items-start gap-3 p-3 rounded-lg border border-hoba-border/70 bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card/80 transition-all cursor-pointer h-full">
+                    <div class="artifact-item min-w-0" data-search={`${art.id} ${art.title} ${art.summary}`.toLowerCase()}>
+                      <label class="group relative flex items-start gap-3 p-3 rounded-lg border border-hoba-border/70 bg-hoba-bg hover:border-hoba-accent hover:bg-hoba-card/80 transition-all cursor-pointer h-full min-w-0">
                         <input type="checkbox" name="artifacts_selected" value={art.id} class="checkbox mt-1 shrink-0" />
                         <div class="flex flex-col flex-1 min-w-0">
-                          <div class="flex items-baseline justify-between gap-2">
-                            <span class="font-mono text-xs font-semibold text-hoba-accent">{art.id}</span>
-                            <span class="text-[11px] font-mono text-hoba-muted">{art.stages.map((s) => t(`stage.${s}`)).join(' · ')}</span>
+                          <div class="flex flex-wrap items-baseline justify-between gap-2">
+                            <span class="font-mono text-xs font-semibold text-hoba-accent break-all max-w-full">{art.id}</span>
+                            <span class="text-[11px] font-mono text-hoba-muted shrink-0">{art.stages.map((s) => t(`stage.${s}`)).join(' · ')}</span>
                           </div>
                           <span class="mt-1 text-sm font-medium text-hoba-text group-hover:text-hoba-accent transition-colors leading-snug">{art.title}</span>
                           <span class="mt-1 text-xs text-hoba-muted line-clamp-2 leading-relaxed">{art.summary}</span>

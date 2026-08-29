@@ -1,0 +1,106 @@
+---
+id: "obs.multiple_interview_reschedulings_or_interviewer_no_show"
+type: "artifact"
+aliases:
+  - "A-007"
+title: "Multiple interview reschedulings or interviewer no-show"
+summary: "Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time."
+stages:
+  - "recruiter"
+  - "technical"
+  - "team"
+perspectives:
+  -
+    actor: "candidate"
+    sees: "Four dates for one interview, invitations withdrawn by the organiser each time, and a fourth message with no replacement slot in it."
+    reads: "Something on the other side is moving, and which thing it is — a calendar, a panel, a requisition — is not in any message received."
+    does: "Records the dates and the wording, keeps other processes open, and asks for a date rather than for a reason."
+  -
+    actor: "recruiter"
+    sees: "Declines coming back from the panel's calendar, and no instruction about whether the search itself has changed."
+    reads: "A slot to reissue. Whether the requisition is still funded is not visible from the scheduling view."
+    does: "Sends new times and keeps the candidate in the pipeline; no cause arrives with the decline, so none travels onward."
+  -
+    actor: "hiring-manager"
+    sees: "One conflict on one morning, resolved by moving one invitation. The series exists in the candidate's inbox, not in the panel's calendar."
+    reads: "A week in which delivery and the loop need the same hours, and the loop is the part that can be moved."
+    does: "Releases the slot to the work the role exists to absorb and asks for a new time, each move decided on its own."
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "EVD-001"
+probes:
+  -
+    id: "PROBE-A-007-1"
+    action: "Offer a set of concrete times you are free, and confirm the contact details 2 hours before the call."
+    expected_signal: "Minimises scheduling friction and shows how quickly the recruiter answers."
+    cost: "low"
+    outcomes:
+      -
+        id: "slot-held"
+        label: "One of the offered times is confirmed, the two-hour check is answered, and the interview runs at that time."
+        excludes: []
+      -
+        id: "confirmed-then-moved"
+        label: "A time is confirmed and then withdrawn by the organiser again, with a replacement date offered in the same message."
+        excludes: []
+      -
+        id: "no-one-joins"
+        label: "The time stands, the two-hour check goes unanswered, and no one joins the call at that time."
+        excludes: []
+      -
+        id: "no-reply"
+        label: "The availability message goes unanswered and no new date arrives."
+        excludes: []
+specimens:
+  -
+    kind: "chat"
+    label: "Scheduling thread"
+    context: "same interview, four dates"
+    lines:
+      -
+        speaker: "Recruiter"
+        at: "week 2"
+        text: "Tuesday 14:00 works for the panel — sending the invite now."
+      -
+        speaker: "Recruiter"
+        at: "week 2"
+        text: "Apologies, the interviewer has a conflict. Can we move to Thursday same time?"
+      -
+        speaker: "Recruiter"
+        at: "week 3"
+        text: "Sorry to do this again — Thursday is out. Would Monday work?"
+      -
+        speaker: "Recruiter"
+        at: "week 4"
+        text: "Something urgent came up on the team. I will come back to you with new slots."
+        tell: true
+    reading: "Four moves, no interview. Record the dates: a pattern of postponement is evidence about the process, not about the candidate."
+  -
+    kind: "ats"
+    label: "Calendar record"
+    lines:
+      -
+        at: "week 2, Tue"
+        text: "Invite sent — Technical panel"
+      -
+        at: "week 2, Tue"
+        text: "Cancelled by organiser"
+      -
+        at: "week 3, Mon"
+        text: "Invite sent — Technical panel"
+      -
+        at: "week 4"
+        text: "Cancelled by organiser · no replacement issued"
+        tell: true
+    reading: "Every cancellation came from the same side. That asymmetry is the observable part."
+non_inferences:
+  - "Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents."
+---
+
+# Multiple interview reschedulings or interviewer no-show
+
+Interviews are postponed repeatedly or moved at short notice, or the interviewer does not join the call at the scheduled time.
+
+### Diagnostic Non-Inferences
+- Does not imply candidate rejection; frequently reflects interviewer calendar congestion or emergency incidents.

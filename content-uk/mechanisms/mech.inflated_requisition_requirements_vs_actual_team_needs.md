@@ -11,13 +11,13 @@ operates_at:
   - "bar.recruiter_screening_call"
 emissions:
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]
     observed_at: ["recruiter"]
   -
-    artifact: "A-004"
+    artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
     fidelity: "noise"
     likelihood: "medium"
     evidence: ["EVD-004"]

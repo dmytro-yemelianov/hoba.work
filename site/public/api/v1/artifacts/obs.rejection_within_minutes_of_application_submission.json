@@ -1,0 +1,124 @@
+{
+  "registry_version": "2026.08.3",
+  "data": {
+    "title": "Rejection within minutes of application submission",
+    "status": "active",
+    "evidence_ids": [
+      "EVD-001"
+    ],
+    "content": "# Rejection within minutes of application submission\n\nAutomated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.\n\n### Diagnostic Non-Inferences\n- Does not mean a human engineer read the resume and judged it poor.",
+    "aliases": [
+      "A-009"
+    ],
+    "id": "obs.rejection_within_minutes_of_application_submission",
+    "type": "artifact",
+    "summary": "Automated rejection email arrives within 2 to 30 minutes of form submission, outside business hours.",
+    "stages": [
+      "ingestion"
+    ],
+    "evidence_level": "supported",
+    "probes": [
+      {
+        "id": "PROBE-A-009-1",
+        "action": "Audit the application answers to the mandatory knock-out questions (work permit, country of residence, minimum years of experience).",
+        "expected_signal": "Identifies which boolean filter rule the ATS applied.",
+        "cost": "low",
+        "outcomes": [
+          {
+            "id": "answer-outside-a-stated-condition",
+            "label": "The answers are as intended, and one of them falls outside a condition the posting states: a country outside the listed hiring locations, no permit where the posting requires one, or fewer years than the stated minimum.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "all-answers-inside",
+            "label": "The answers are as intended, and every mandatory one meets the conditions the posting states.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "stored-answer-differs",
+            "label": "The stored application shows an answer other than the one intended — a field left blank, or a dropdown submitted at its default value.",
+            "excludes": [],
+            "because": ""
+          },
+          {
+            "id": "answers-unrecoverable",
+            "label": "The answers cannot be retrieved: the portal shows no submitted application and no confirmation copy was kept.",
+            "excludes": [],
+            "because": ""
+          }
+        ]
+      }
+    ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "Rejection email",
+        "subject": "Your application",
+        "context": "submitted 23:47, rejected 23:58",
+        "lines": [
+          {
+            "text": "Thank you for applying. After reviewing your application we have decided not to proceed at this time.",
+            "tell": false
+          },
+          {
+            "text": "Sent 23:58 — eleven minutes after submission, outside working hours in every timezone the company operates in.",
+            "tell": true
+          }
+        ],
+        "reading": "The interval is the evidence. Eleven minutes at midnight describes the throughput of a rule, not the attention of a reader."
+      },
+      {
+        "kind": "ats",
+        "label": "Application timeline",
+        "lines": [
+          {
+            "at": "23:47:12",
+            "text": "Application submitted",
+            "tell": false
+          },
+          {
+            "at": "23:47:13",
+            "text": "Screening rules evaluated",
+            "tell": false
+          },
+          {
+            "at": "23:47:14",
+            "text": "Status: Rejected — does not meet minimum criteria",
+            "tell": true
+          },
+          {
+            "at": "23:58:00",
+            "text": "Notification email queued",
+            "tell": false
+          }
+        ],
+        "reading": "Two seconds between submission and decision. The eleven-minute delay was the mail queue, not deliberation."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "candidate",
+        "sees": "A submission at 23:47 and a rejection at 23:58, outside working hours in every timezone the employer operates in.",
+        "reads": "Eleven minutes bounds how much reading could have happened; whether a person or a rule closed the record is not in the message.",
+        "does": "Reviews the answers given to the mandatory questions — permit, country, years of experience — because that is the only part of the decision the candidate holds a copy of."
+      },
+      {
+        "actor": "recruiter",
+        "sees": "A weekly figure: applications received, applications screened. This application sits inside the difference between the two and never enters the review queue.",
+        "reads": "The pipeline is a count against a capacity limit; a record closed at ingestion is not part of the work the queue holds.",
+        "does": "Works the queue that capacity allows, and answers a follow-up, if one arrives, from the status field, which reads that the minimum criteria were not met."
+      },
+      {
+        "actor": "ats-vendor",
+        "sees": "A submission, a rules evaluation two seconds later, a status transition and a queued notification. All four are events, and none of them is a reading of the profile.",
+        "reads": "The configuration ran as configured. Whether the criterion it enforced is the one the customer meant is not a value the platform holds.",
+        "does": "Sends the templated notification, records the disposition, and reports the interval as throughput on the dashboard the buyer evaluates."
+      }
+    ],
+    "non_inferences": [
+      "Does not mean a human engineer read the resume and judged it poor."
+    ]
+  }
+}

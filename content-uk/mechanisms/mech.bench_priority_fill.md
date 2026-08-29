@@ -10,18 +10,18 @@ operates_at:
   - "bar.inbound_screening_triage"
 emissions:
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: []
     observed_at: ["screening"]
   -
-    artifact: "A-003"
+    artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "void"
     likelihood: "medium"
     evidence: []
   -
-    artifact: "A-016"
+    artifact: "obs.rejection_naming_an_internal_hire_as_the_outcome"
     fidelity: "direct"
     likelihood: "medium"
     evidence: []

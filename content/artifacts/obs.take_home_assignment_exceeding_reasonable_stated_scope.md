@@ -1,0 +1,91 @@
+---
+id: "obs.take_home_assignment_exceeding_reasonable_stated_scope"
+type: "artifact"
+aliases:
+  - "A-006"
+title: "Take-home assignment exceeding reasonable stated scope"
+summary: "The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours."
+stages:
+  - "technical"
+perspectives:
+  -
+    actor: "candidate"
+    sees: "A brief with eight requirements listed against a stated budget of two to four hours, and an answer to the scoping question that leaves the list unchanged."
+    reads: "The stated time and the stated deliverables are two different sizes, and which of the two the submission will be scored against is not written anywhere the candidate can reach."
+    does: "Decides how many unpaid hours to commit, and submits with the timebox, the deliberate cuts and the assumptions written into the README, keeping the brief and the reply on record."
+  -
+    actor: "recruiter"
+    sees: "A candidate asking which parts are core, and a brief that is the only document the recruiter holds about this exercise."
+    reads: "A question about scope is a question about the rubric, and the rubric sits with the panel; the stage is measured by how quickly it clears."
+    does: "Answers from the brief, since that is what the recruiter has, and returns the thread to a submission date."
+  -
+    actor: "hiring-manager"
+    sees: "Finished submissions. How long any of them took is not a field in what reaches the panel."
+    reads: "Differences in completeness read as differences in level, because completeness is the variable the submissions expose."
+    does: "Compares the batch against itself rather than against the stated budget, and sets the bar from the fullest submission received."
+status: "active"
+evidence_level: "supported"
+evidence_ids:
+  - "EVD-006"
+probes:
+  -
+    id: "PROBE-A-006-1"
+    action: "Write the boundaries and trade-offs into the submission's README, naming the assumptions made to fit the agreed timebox."
+    expected_signal: "Tests whether evaluators value scope management and communication over unbounded free work."
+    cost: "low"
+    outcomes:
+      -
+        id: "readme-cited"
+        label: "Written feedback, or the next conversation, refers to the timebox note and the cuts you named, and treats them as part of what was submitted."
+        excludes: []
+      -
+        id: "cuts-read-as-gaps"
+        label: "The reply lists the stubbed items as missing work, with no reference to the note that names them as deliberate."
+        excludes: []
+      -
+        id: "template-rejection"
+        label: "A rejection in standard wording arrives with nothing in it specific to the submission."
+        excludes: []
+      -
+        id: "no-reply"
+        label: "No reply arrives at all; the brief and the submission date are the only dated records you keep."
+        excludes: []
+specimens:
+  -
+    kind: "note"
+    label: "The assignment brief, as received"
+    subject: "Take-home exercise — Senior Backend Engineer"
+    context: "stated budget: 2–4 hours"
+    lines:
+      -
+        text: "Build a service that ingests order events, deduplicates them, and exposes a query API over the resulting state."
+      -
+        text: "Requirements: persistence with migrations, idempotent consumers, retry with backoff, structured logging, metrics endpoint, containerised local run, integration tests, and a short design document covering scaling and failure modes."
+        tell: true
+      -
+        text: "Please submit within one week. We estimate 2–4 hours."
+    reading: "Count the deliverables against the stated budget. The mismatch is measurable, which makes it a fact rather than a feeling."
+  -
+    kind: "chat"
+    label: "Asking about scope"
+    lines:
+      -
+        speaker: "Candidate"
+        at: "day 1"
+        text: "Happy to do this. To fit the 2–4 hours, which parts should I treat as the core and which can I stub with a note in the README?"
+      -
+        speaker: "Recruiter"
+        at: "day 2"
+        text: "Ideally all of it — we use it to see how you work end to end."
+        tell: true
+    reading: "A direct question does not reconcile the stated budget with the expected deliverable. That is the observation; the reason for it is not visible from here."
+non_inferences:
+  - "Does not prove the company is harvesting free intellectual property for production use."
+---
+
+# Take-home assignment exceeding reasonable stated scope
+
+The take-home assignment asks for production-grade features that take 20+ hours to build, against a stated budget of 2–4 hours.
+
+### Diagnostic Non-Inferences
+- Does not prove the company is harvesting free intellectual property for production use.

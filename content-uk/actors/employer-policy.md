@@ -60,7 +60,7 @@ recommendations:
       - "bar.headcount_executive_budget_approval"
       - "bar.requisition_approval_public_posting"
       - "mech.headcount_freeze_or_budget_cancellation"
-      - "A-003"
+      - "obs.position_closed_after_final_interview_without_hire"
     interventions: []
   -
     id: "expire-listing-when-authorisation-lapses"
@@ -74,9 +74,9 @@ recommendations:
       - "bar.application_ingestion"
       - "pat.closed_then_reposted_requisition_motif"
       - "L-003"
-      - "A-001"
-      - "A-003"
-      - "A-011"
+      - "obs.complete_silence_after_submission"
+      - "obs.position_closed_after_final_interview_without_hire"
+      - "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
     interventions:
       - "I-001"
   -
@@ -88,8 +88,8 @@ recommendations:
     targets:
       - "mech.pre_selected_internal_candidate"
       - "bar.requisition_approval_public_posting"
-      - "A-002"
-      - "A-003"
+      - "obs.generic_closer_alignment_rejection_template"
+      - "obs.position_closed_after_final_interview_without_hire"
     interventions: []
   -
     id: "scope-checks-and-show-discrepancies"

@@ -57,7 +57,7 @@ recommendations:
     cost: "medium"
     costs: "Each message is written rather than selected, against a clock measured as time-to-fill, and asking the panel for a criterion spends standing with the hiring manager, who is the internal client."
     targets:
-      - "A-002"
+      - "obs.generic_closer_alignment_rejection_template"
       - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
       - "bar.team_cross_functional_panel"
     interventions:
@@ -69,8 +69,8 @@ recommendations:
     cost: "medium"
     costs: "Candidates who are told make other plans, and the message puts in writing that the internal client's search has stopped, against a seat measured on time-to-fill and on that relationship."
     targets:
-      - "A-001"
-      - "A-003"
+      - "obs.complete_silence_after_submission"
+      - "obs.position_closed_after_final_interview_without_hire"
       - "mech.stale_or_orphaned_job_requisition"
     interventions:
       - "I-001"
@@ -82,7 +82,7 @@ recommendations:
     costs: "A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written."
     targets:
       - "bar.recruiter_screening_call"
-      - "A-007"
+      - "obs.multiple_interview_reschedulings_or_interviewer_no_show"
       - "mech.mid_process_role_requirement_redefinition"
     interventions: []
   -
@@ -93,7 +93,7 @@ recommendations:
     costs: "It costs replies: outreach that states there is no open requisition gives less reason to answer, and reply volume is what the sourcing side of the pipeline is counted in."
     targets:
       - "mech.speculative_sourcing_talent_pooling_without_opening"
-      - "A-012"
+      - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
       - "bar.outbound_sourcing_talent_pool_contact"
     interventions: []
   -

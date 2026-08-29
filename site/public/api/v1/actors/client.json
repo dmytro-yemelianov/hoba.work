@@ -59,8 +59,8 @@
         "cost": "low",
         "costs": "A named stage invites questions when it overruns; an unnamed one never has to answer for itself.",
         "targets": [
-          "A-001",
-          "A-015",
+          "obs.complete_silence_after_submission",
+          "obs.rejection_after_the_application_sat_pending_for_months",
           "mech.stronger_competing_candidate_in_final_cohort"
         ],
         "interventions": []
@@ -87,8 +87,8 @@
         "cost": "low",
         "costs": "A category is a commitment; 'no' with no category can no longer be sent.",
         "targets": [
-          "A-002",
-          "A-015"
+          "obs.generic_closer_alignment_rejection_template",
+          "obs.rejection_after_the_application_sat_pending_for_months"
         ],
         "interventions": [
           "I-003"

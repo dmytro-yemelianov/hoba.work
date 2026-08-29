@@ -10,12 +10,12 @@ operates_at:
   - "bar.team_cross_functional_panel"
 emissions:
   -
-    artifact: "A-010"
+    artifact: "obs.communication_mismatch_or_tone_friction_in_panel"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-006"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]

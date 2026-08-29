@@ -10,17 +10,17 @@ operates_at:
   - "bar.technical_screen_live_assessment"
 emissions:
   -
-    artifact: "A-019"
+    artifact: "obs.feedback_naming_as_absent_something_the_submitted_work_contains"
     fidelity: "direct"
     likelihood: "medium"
     evidence: []
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-001"]
   -
-    artifact: "A-008"
+    artifact: "obs.explicit_feedback_citing_skill_depth_shortfall"
     fidelity: "distortion"
     likelihood: "medium"
     evidence: ["EVD-006"]

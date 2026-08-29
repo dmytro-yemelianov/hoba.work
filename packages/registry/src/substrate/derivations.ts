@@ -68,7 +68,7 @@ export function substrateIdentifiability(substrate: Substrate): Identifiability 
   }));
 
   const identifying: { artifact: string; mechanism: string }[] = [];
-  const observationEventClasses = substrate.eventClasses.filter((e) => e.id.startsWith('evc:a-'));
+  const observationEventClasses = substrate.eventClasses.filter((e) => e.id.startsWith('evc:a-') || e.id.startsWith('evc:obs.'));
 
   for (const obs of observationEventClasses) {
     const pubObs = toPublicId(obs.id);

@@ -9,7 +9,7 @@ operates_at:
   - "bar.probation_period_post_start_confirmation"
 emissions:
   -
-    artifact: "A-020"
+    artifact: "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
     fidelity: "direct"
     likelihood: "medium"
     evidence:
@@ -18,14 +18,14 @@ emissions:
     observed_at:
       - "post-offer"
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: []
     observed_at:
       - "post-offer"
   -
-    artifact: "A-016"
+    artifact: "obs.rejection_naming_an_internal_hire_as_the_outcome"
     fidelity: "noise"
     likelihood: "medium"
     evidence: []

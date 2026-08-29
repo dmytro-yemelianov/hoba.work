@@ -58,7 +58,7 @@
         "description": "A record exists and is linked to the requisition. Nothing has been read.",
         "entities": [
           "bar.application_ingestion",
-          "A-001"
+          "obs.complete_silence_after_submission"
         ],
         "visible_to_candidate": "A confirmation, or silence.",
         "deviations": []
@@ -101,7 +101,7 @@
         "description": "A conversation about compensation, timeline, location and a two-minute version of the last project.",
         "entities": [
           "bar.recruiter_screening_call",
-          "A-013",
+          "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "mech.unstated_compensation_band_discrepancy",
           "mech.experience_age_grading_mismatch"
         ],
@@ -117,8 +117,8 @@
         "entities": [
           "bar.technical_screen_live_assessment",
           "bar.take_home_work_sample_evaluation",
-          "A-006",
-          "A-008",
+          "obs.take_home_assignment_exceeding_reasonable_stated_scope",
+          "obs.explicit_feedback_citing_skill_depth_shortfall",
           "mech.genuine_technical_skill_shortfall",
           "mech.take_home_evaluation_fatigue_asymmetry"
         ],
@@ -134,8 +134,8 @@
         "entities": [
           "bar.hiring_manager_in_depth_review",
           "bar.team_cross_functional_panel",
-          "A-010",
-          "A-014",
+          "obs.communication_mismatch_or_tone_friction_in_panel",
+          "obs.conflicting_feedback_across_different_interviewers",
           "mech.hidden_evaluation_rubric_or_undisclosed_priority",
           "mech.domain_specificity_over_weighting",
           "mech.hiring_manager_consensus_impasse"
@@ -151,7 +151,7 @@
         "description": "The level the panel assigned meets the band finance approved. First time the two are compared.",
         "entities": [
           "bar.compensation_levelling_reconciliation",
-          "A-005",
+          "obs.compensation_band_reduced_or_altered_mid_process",
           "mech.unstated_compensation_band_discrepancy"
         ],
         "visible_to_candidate": "A number, or a renegotiation.",
@@ -178,7 +178,7 @@
         "description": "A written offer exists. The requisition is still open until the countersignature lands.",
         "entities": [
           "bar.offer_closing_contract_execution",
-          "A-011"
+          "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
         ],
         "visible_to_candidate": "The offer document.",
         "deviations": []
@@ -215,9 +215,9 @@
         "owner": "recruiter",
         "description": "A decision was made and communicated. What it says about the cause is a separate question entirely.",
         "entities": [
-          "A-002",
-          "A-008",
-          "A-013"
+          "obs.generic_closer_alignment_rejection_template",
+          "obs.explicit_feedback_citing_skill_depth_shortfall",
+          "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
         ],
         "visible_to_candidate": "A message, ranging from a rubric category to a template.",
         "deviations": []
@@ -229,8 +229,8 @@
         "owner": "employer-policy",
         "description": "Budget withdrawn or the requisition put on hold. Can happen at any point, including after an offer.",
         "entities": [
-          "A-003",
-          "A-011",
+          "obs.position_closed_after_final_interview_without_hire",
+          "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "mech.headcount_freeze_or_budget_cancellation"
         ],
         "visible_to_candidate": "If the candidate is lucky, an explanation. Often the posting simply disappears.",
@@ -243,8 +243,8 @@
         "owner": "ats-vendor",
         "description": "No one decided anything. The record aged past a threshold, or the posting was never taken down.",
         "entities": [
-          "A-001",
-          "A-012",
+          "obs.complete_silence_after_submission",
+          "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
           "mech.stale_or_orphaned_job_requisition",
           "mech.automated_application_expiration_timeout"
         ],
@@ -321,7 +321,7 @@
         "owner": "ats-vendor",
         "guard": "Any knockout rule fails, or the ranking falls below the advance threshold.",
         "entities": [
-          "A-009",
+          "obs.rejection_within_minutes_of_application_submission",
           "mech.automated_keyword_qualification_filter",
           "mech.employment_gap_downranking_bias"
         ],
@@ -371,7 +371,7 @@
         "owner": "recruiter",
         "guard": "Compensation, level, location or availability rules the candidate out before any engineering is discussed.",
         "entities": [
-          "A-013",
+          "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
           "mech.unstated_compensation_band_discrepancy",
           "mech.location_or_timezone_compliance_constraint",
           "mech.experience_age_grading_mismatch"
@@ -399,7 +399,7 @@
         "owner": "hiring-manager",
         "guard": "The score falls short, or the review is too shallow to find what is there.",
         "entities": [
-          "A-008",
+          "obs.explicit_feedback_citing_skill_depth_shortfall",
           "mech.genuine_technical_skill_shortfall",
           "mech.take_home_evaluation_fatigue_asymmetry"
         ],
@@ -426,7 +426,7 @@
         "owner": "hiring-manager",
         "guard": "A split panel under a unanimity rule defaults to no hire.",
         "entities": [
-          "A-014",
+          "obs.conflicting_feedback_across_different_interviewers",
           "mech.hiring_manager_consensus_impasse"
         ],
         "latency_expected_days": 3,
@@ -451,7 +451,7 @@
         "owner": "employer-policy",
         "guard": "Expectation sits outside the band and neither the level nor the number moves.",
         "entities": [
-          "A-005",
+          "obs.compensation_band_reduced_or_altered_mid_process",
           "mech.unstated_compensation_band_discrepancy"
         ],
         "latency_expected_days": 2,
@@ -500,7 +500,7 @@
         "owner": "employer-policy",
         "guard": "A freeze reaches an outstanding offer before the countersignature.",
         "entities": [
-          "A-011",
+          "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
           "mech.headcount_freeze_or_budget_cancellation"
         ],
         "latency_expected_days": 2,
@@ -550,7 +550,7 @@
         "owner": "recruiter",
         "guard": "The search restarts, sometimes with a revised profile, sometimes as an automatic refresh.",
         "entities": [
-          "A-004",
+          "obs.materially_similar_role_reposted_shortly_after_rejection",
           "pat.closed_then_reposted_requisition_motif"
         ],
         "latency_expected_days": 14,

@@ -10,13 +10,13 @@ operates_at:
   - "bar.automated_filter_parser_threshold"
 emissions:
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "medium"
     evidence: ["EVD-001"]
     observed_at: ["ingestion"]
   -
-    artifact: "A-009"
+    artifact: "obs.rejection_within_minutes_of_application_submission"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-001"]

@@ -11,13 +11,13 @@ operates_at:
   - "bar.hiring_manager_in_depth_review"
 emissions:
   -
-    artifact: "A-008"
+    artifact: "obs.explicit_feedback_citing_skill_depth_shortfall"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-006"]
     observed_at: ["technical"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["EVD-001"]

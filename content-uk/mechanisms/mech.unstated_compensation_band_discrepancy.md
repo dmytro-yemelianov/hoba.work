@@ -10,18 +10,18 @@ operates_at:
   - "bar.compensation_levelling_reconciliation"
 emissions:
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["EVD-005"]
     observed_at: ["recruiter"]
   -
-    artifact: "A-005"
+    artifact: "obs.compensation_band_reduced_or_altered_mid_process"
     fidelity: "direct"
     likelihood: "medium"
     evidence: ["EVD-005"]
   -
-    artifact: "A-013"
+    artifact: "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["EVD-002"]

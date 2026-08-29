@@ -6,8 +6,8 @@ aliases:
 title: "Зарплатний глухий кут"
 summary: "Кандидат мусить першим назвати очікування: висока цифра одразу веде до відмови, низька — до нижчого грейду."
 required_artifacts:
-  - "A-002"
-  - "A-005"
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.compensation_band_reduced_or_altered_mid_process"
 compatible_mechanisms:
   - "mech.unstated_compensation_band_discrepancy"
   - "mech.experience_age_grading_mismatch"

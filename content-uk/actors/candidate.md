@@ -46,7 +46,7 @@ recommendations:
       - "mech.ats_parser_extraction_failure"
       - "bar.application_ingestion"
       - "bar.automated_filter_parser_threshold"
-      - "A-009"
+      - "obs.rejection_within_minutes_of_application_submission"
     interventions:
       - "I-005"
   -
@@ -60,7 +60,7 @@ recommendations:
       - "mech.pre_selected_internal_candidate"
       - "mech.stale_or_orphaned_job_requisition"
       - "bar.outbound_sourcing_talent_pool_contact"
-      - "A-012"
+      - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
     interventions: []
   -
     id: "ask-for-the-band-before-assessment"
@@ -73,7 +73,7 @@ recommendations:
       - "bar.recruiter_screening_call"
       - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
-      - "A-005"
+      - "obs.compensation_band_reduced_or_altered_mid_process"
     interventions:
       - "I-002"
   -
@@ -84,9 +84,9 @@ recommendations:
     costs: "Це неоплачуваний адміністративний час саме тоді, коли часу найменше, а повний запис процесу, що закінчився мовчанням, лишається записом мовчання."
     targets:
       - "pat.closed_then_reposted_requisition_motif"
-      - "A-004"
-      - "A-014"
-      - "A-007"
+      - "obs.materially_similar_role_reposted_shortly_after_rejection"
+      - "obs.conflicting_feedback_across_different_interviewers"
+      - "obs.multiple_interview_reschedulings_or_interviewer_no_show"
       - "mech.mid_process_role_requirement_redefinition"
     interventions: []
   -
@@ -99,7 +99,7 @@ recommendations:
       - "L-002"
       - "mech.take_home_evaluation_fatigue_asymmetry"
       - "bar.take_home_work_sample_evaluation"
-      - "A-006"
+      - "obs.take_home_assignment_exceeding_reasonable_stated_scope"
     interventions:
       - "I-006"
   -
@@ -113,7 +113,7 @@ recommendations:
       - "mech.stale_or_orphaned_job_requisition"
       - "mech.recruiter_volume_quota_incentive_distortion"
       - "bar.inbound_screening_triage"
-      - "A-001"
+      - "obs.complete_silence_after_submission"
     interventions:
       - "I-001"
 status: "active"

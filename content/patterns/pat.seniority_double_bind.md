@@ -6,8 +6,8 @@ aliases:
 title: "Seniority Double Bind"
 summary: "The same candidate is rejected as overqualified for junior and mid-level roles and as underqualified, or not specialised enough, for staff and leadership roles."
 required_artifacts:
-  - "A-002"
-  - "A-013"
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
 compatible_mechanisms:
   - "mech.genuine_technical_skill_shortfall"
   - "mech.unstated_compensation_band_discrepancy"

@@ -11,12 +11,12 @@ operates_at:
   - "bar.offer_closing_contract_execution"
 emissions:
   -
-    artifact: "A-003"
+    artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-004"]
   -
-    artifact: "A-011"
+    artifact: "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-004"]

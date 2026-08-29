@@ -9,13 +9,13 @@ operates_at:
   - "bar.reference_background_verification"
 emissions:
   -
-    artifact: "A-011"
+    artifact: "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-001"]
     observed_at: ["post-offer"]
   -
-    artifact: "A-002"
+    artifact: "obs.generic_closer_alignment_rejection_template"
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["EVD-001"]

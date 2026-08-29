@@ -10,7 +10,7 @@ operates_at:
   - "bar.probation_period_post_start_confirmation"
 emissions:
   -
-    artifact: "A-020"
+    artifact: "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
     fidelity: "direct"
     likelihood: "high"
     evidence:
@@ -19,14 +19,14 @@ emissions:
     observed_at:
       - "post-offer"
   -
-    artifact: "A-001"
+    artifact: "obs.complete_silence_after_submission"
     fidelity: "void"
     likelihood: "medium"
     evidence: []
     observed_at:
       - "post-offer"
   -
-    artifact: "A-011"
+    artifact: "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: []

@@ -11,13 +11,13 @@ operates_at:
   - "bar.compensation_levelling_reconciliation"
 emissions:
   -
-    artifact: "A-003"
+    artifact: "obs.position_closed_after_final_interview_without_hire"
     fidelity: "distortion"
     likelihood: "medium"
     evidence: ["EVD-004"]
     observed_at: ["team"]
   -
-    artifact: "A-004"
+    artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
     fidelity: "direct"
     likelihood: "high"
     evidence: ["EVD-004"]
