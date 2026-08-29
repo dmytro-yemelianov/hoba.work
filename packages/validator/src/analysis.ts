@@ -15,8 +15,8 @@
  * required rather than optional.
  */
 import { z } from 'zod';
-import { evidenceLevelSchema } from './schemas.js';
-import type { RegistryBundle } from './types.js';
+import { evidenceLevelSchema } from '@hoba/registry-core/schemas';
+import type { RegistryBundle } from '@hoba/registry-core/types';
 import type { ValidationIssue } from './validation.js';
 
 /**

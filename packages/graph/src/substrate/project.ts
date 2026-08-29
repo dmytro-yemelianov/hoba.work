@@ -7,7 +7,7 @@
  * objects; the sidecar supplies everything it kept. Any drift between the two
  * representations surfaces as a deep-equality failure in the gate test.
  */
-import type { RegistryBundle } from '../types.js';
+import type { RegistryBundle } from '@hoba/registry-core/types';
 import type { Lifted } from './lift.js';
 
 const up = (suffix: string) => suffix.toUpperCase();

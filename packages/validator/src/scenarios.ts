@@ -16,8 +16,8 @@
  * disk lives in `scenarios-store.ts`.
  */
 import { z } from 'zod';
-import { stageIdSchema } from './schemas.js';
-import type { RegistryBundle } from './types.js';
+import { stageIdSchema } from '@hoba/registry-core/schemas';
+import type { RegistryBundle } from '@hoba/registry-core/types';
 import type { ValidationIssue } from './validation.js';
 
 const observationRef = z.string().regex(/^obs\.[a-z0-9_]+$/);

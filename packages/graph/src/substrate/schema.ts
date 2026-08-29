@@ -17,7 +17,7 @@
  *  probability — see SPEC-MODEL §8.
  */
 import { z } from 'zod';
-import { emissionFidelitySchema } from '../schemas.js';
+import { emissionFidelitySchema } from '@hoba/registry-core/schemas';
 
 const evidenceRef = z.string().regex(/^EVD-\d{3}$/);
 

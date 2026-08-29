@@ -9,9 +9,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
-import { SCENARIO_DIR } from './paths.js';
+import { SCENARIO_DIR } from '@hoba/registry-core/paths';
 import { scenarioSchema, type Scenario } from './scenarios.js';
-import type { EmpiricalScenario } from './types.js';
+import type { EmpiricalScenario } from '@hoba/registry-core/types';
 
 export function loadScenarios(root: string): Scenario[] {
   const dir = path.join(root, SCENARIO_DIR);

@@ -1,4 +1,4 @@
-import type { AnyRecord, GraphEdge, GraphRelation, RegistryBundle } from './types.js';
+import type { AnyRecord, GraphEdge, GraphRelation, RegistryBundle } from '@hoba/registry-core/types';
 
 export interface NeighborhoodOptions {
   depth?: number;

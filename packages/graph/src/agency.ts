@@ -28,7 +28,7 @@
  * is what the Lean proofs and the UI badges key off, and it is one of the
  * inputs here rather than a competitor to the output.
  */
-import type { RegistryBundle, ActorNode, MechanismNode } from './types.js';
+import type { RegistryBundle, ActorNode, MechanismNode } from '@hoba/registry-core/types';
 
 /**
  * How much purchase one actor has on one mechanism.

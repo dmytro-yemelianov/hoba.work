@@ -1,4 +1,4 @@
-import type { RegistryBundle, RegistryNode } from './types.js';
+import type { RegistryBundle, RegistryNode } from '@hoba/registry-core/types';
 
 /**
  * What `searchBundle` actually indexes, stated rather than derived.

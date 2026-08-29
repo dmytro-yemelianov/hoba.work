@@ -11,7 +11,8 @@
  * model can report what the model never contained. A clean report here means
  * the atlas is internally complete, not that it is finished.
  */
-import type { RegistryBundle, RemovabilityType } from './types.js';
+import type { RegistryBundle } from '@hoba/registry-core/types';
+import type { GapReport, Identifiability, Indistinguishable, NeverAlone, Unaddressed, UnplacedEmission } from '@hoba/registry-core/types';
 
 /** Ids reachable from a starting entry, and the relations walked to get there. */
 export interface Closure {
@@ -30,78 +31,17 @@ export interface Closure {
   directAffectedBy: string[];
 }
 
-/**
- * A set of mechanisms that emit exactly the same observations.
- *
- * No evidence expressible in this registry distinguishes them, so a protocol
- * run that narrows to one member has in fact narrowed to all of them. This is
- * a limit of the observation vocabulary, not a defect in the mechanisms.
- */
-export interface Indistinguishable {
-  /** The shared emission signature, sorted. */
-  signature: string[];
-  mechanisms: string[];
-}
 
-/** A mechanism nobody has proposed a change for, and whether anyone could. */
-export interface Unaddressed {
-  id: string;
-  removability: RemovabilityType;
-  /**
-   * True when removability is `none`: no named actor holds a lever, so the
-   * absence of an intervention is a finding rather than an omission.
-   */
-  outOfReach: boolean;
-}
 
-/**
- * A mechanism that no set of its own emissions can pin down.
- *
- * Exact ties are the visible case, but the general one is subsumption: if
- * everything a mechanism emits is also emitted by another, then every subset of
- * its trace is consistent with that other too, and no evidence expressible here
- * ever narrows to it alone. Equality is just subsumption in both directions.
- */
-export interface NeverAlone {
-  mechanism: string;
-  /** Mechanisms emitting everything this one does, and so never ruled out. */
-  coveredBy: string[];
-}
 
-export interface Identifiability {
-  /** Observations consistent with exactly one mechanism on their own. */
-  identifying: { artifact: string; mechanism: string }[];
-  neverAlone: NeverAlone[];
-}
 
-/** An emission whose trace the atlas cannot place at a stage. */
-export interface UnplacedEmission {
-  mechanism: string;
-  artifact: string;
-  /**
-   * `ambiguous` where the mechanism's stages and the observation's overlap in
-   * more than one place; `conflicting` where they do not overlap at all, which
-   * is the sharper case: it proves the trace is seen somewhere the mechanism
-   * does not operate, so no intersection could ever have stood in for this.
-   */
-  reason: 'ambiguous' | 'conflicting';
-}
 
-export interface GapReport {
-  indistinguishable: Indistinguishable[];
-  /** Mechanism pairs no observation separates, as a share of all pairs. */
-  discrimination: { indistinguishablePairs: number; totalPairs: number };
-  unaddressedMechanisms: Unaddressed[];
-  /** Gates each actor can reach through some intervention, by actor. */
-  levers: { actor: string; gates: string[] }[];
-  /** Gates no intervention reaches, directly or through a mechanism. */
-  gatesWithoutLever: string[];
-  /** Observations that co-occur in no single mechanism's emissions. */
-  unexplainedPairs: [string, string][];
-  identifiability: Identifiability;
-  /** Emissions with no recorded stage, and why one could not be entailed. */
-  unplacedEmissions: UnplacedEmission[];
-}
+
+
+
+
+
+
 
 const emissionsOf = (m: { emissions: { artifact: string }[] }): Set<string> =>
   new Set(m.emissions.map((e) => e.artifact));

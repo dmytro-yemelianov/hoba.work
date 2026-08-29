@@ -8,35 +8,18 @@
  * that the answer to "what should I check next" can honestly be "nothing here
  * will tell you".
  */
-import type { DiagnosticProbe } from './types.js';
+import type { DiagnosticProbe, Narrowing, ProbeResult, SeparationReport } from '@hoba/registry-core/types';
 import {
   substrateNarrow,
   substrateSeparates,
   substrateSeparation,
 } from './substrate/derivations.js';
 
-export interface ProbeResult {
-  probe: string;
-  outcome: string;
-}
 
-export interface NarrowingStep {
-  probe: string;
-  outcome: string;
-  label: string;
-  /** Why the elimination is forced, copied from the outcome. */
-  because: string;
-  /** Compatible mechanisms this outcome removed. Often none. */
-  eliminated: string[];
-  remaining: number;
-}
 
-export interface Narrowing {
-  remaining: string[];
-  steps: NarrowingStep[];
-  /** Results naming a probe or an outcome that does not exist. */
-  unknown: ProbeResult[];
-}
+
+
+
 
 /**
  * Apply probe results in the order they were reported.
@@ -54,25 +37,7 @@ export function separates(probe: DiagnosticProbe, a: string, b: string): boolean
   return substrateSeparates(probe, a, b);
 }
 
-export interface SeparationReport {
-  /** Every pair no available probe can tell apart. */
-  indistinguishable_pairs: [string, string][];
-  /**
-   * Those pairs collected by transitive closure.
-   *
-   * Membership of a group does not mean every pair inside it is
-   * indistinguishable, only that each member is tied to another by a pair
-   * nothing separates. It is a summary of where the evidence runs out, not a
-   * partition.
-   */
-  indistinguishable_groups: string[][];
-  /** The smallest probe set that separates everything separable. */
-  minimal_probes: string[];
-  /** How many pairs any probe can settle at all. */
-  separable_pairs: number;
-  /** False when the probe set was too large to search exactly and a greedy cover was used. */
-  exact: boolean;
-}
+
 
 /**
  * The smallest set of probes that distinguishes everything distinguishable,

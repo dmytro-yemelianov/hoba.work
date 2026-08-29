@@ -95,6 +95,25 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
+  packages/graph:
+    dependencies:
+      '@hoba/registry-core':
+        specifier: workspace:*
+        version: link:../registry-core
+      zod:
+        specifier: ^3.24.2
+        version: 3.25.76
+    devDependencies:
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
   packages/mcp:
     dependencies:
       '@hoba/registry':
@@ -116,6 +135,72 @@ importers:
 
   packages/registry:
     dependencies:
+      '@hoba/graph':
+        specifier: workspace:*
+        version: link:../graph
+      '@hoba/registry-core':
+        specifier: workspace:*
+        version: link:../registry-core
+      '@hoba/search':
+        specifier: workspace:*
+        version: link:../search
+      '@hoba/validator':
+        specifier: workspace:*
+        version: link:../validator
+    devDependencies:
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
+  packages/registry-core:
+    dependencies:
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.3.1
+      zod:
+        specifier: ^3.24.2
+        version: 3.25.76
+    devDependencies:
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
+  packages/search:
+    dependencies:
+      '@hoba/registry-core':
+        specifier: workspace:*
+        version: link:../registry-core
+    devDependencies:
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/node':
+        specifier: ^22.13.4
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
+  packages/validator:
+    dependencies:
+      '@hoba/graph':
+        specifier: workspace:*
+        version: link:../graph
+      '@hoba/registry-core':
+        specifier: workspace:*
+        version: link:../registry-core
       js-yaml:
         specifier: ^4.1.0
         version: 4.3.1

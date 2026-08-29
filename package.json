@@ -16,7 +16,7 @@
     "build:cards": "tsx scripts/build-cards.ts",
     "build:discovery": "tsx scripts/build-discovery.ts",
     "build:lean": "tsx scripts/build-lean.ts",
-    "build:packages": "tsc -b packages/registry packages/cli packages/mcp && chmod +x packages/cli/dist/cli.js packages/mcp/dist/index.js",
+    "build:packages": "tsc -b packages/registry-core packages/graph packages/validator packages/search packages/registry packages/cli packages/mcp && chmod +x packages/cli/dist/cli.js packages/mcp/dist/index.js",
     "build:registry": "tsx scripts/build-registry.ts",
     "build:worker": "tsx scripts/build-worker.ts",
     "clean": "rimraf node_modules packages/*/dist packages/*/node_modules packages/*/tsconfig.tsbuildinfo apps/web/.astro apps/web/dist apps/web/node_modules",
@@ -33,7 +33,7 @@
     "task": "node scripts/task.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -b packages/registry packages/cli packages/mcp --dry",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -b packages/registry-core packages/graph packages/validator packages/search packages/registry packages/cli packages/mcp --dry",
     "validate": "tsx scripts/validate.ts",
     "validate:strict": "tsx scripts/validate.ts --strict"
   },

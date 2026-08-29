@@ -1,6 +1,6 @@
-import { HOBAKnowledgeGraph } from './graph.js';
-import { PROVING_EVIDENCE_KINDS } from './schemas.js';
-import type { RegistryBundle, RegistryNode } from './types.js';
+import { HOBAKnowledgeGraph } from '@hoba/graph/graph';
+import { PROVING_EVIDENCE_KINDS } from '@hoba/registry-core/schemas';
+import type { RegistryBundle, RegistryNode } from '@hoba/registry-core/types';
 
 export type ValidationSeverity = 'error' | 'warning';
 

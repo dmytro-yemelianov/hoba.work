@@ -1,0 +1,7 @@
+/** Public surface of @hoba/validator. */
+export * from './validation.js';
+export * from './conformance.js';
+export * from './gaps.js';
+export * from './analysis.js';
+export * from './scenarios.js';
+export * from './scenarios-store.js';

@@ -7,7 +7,6 @@
  * browser without pulling in zod.
  */
 import type { z } from 'zod';
-import type { Narrowing, ProbeResult, SeparationReport } from './separation.js';
 import type {
   actorId,
   actorSchema,
@@ -222,4 +221,195 @@ export interface EmpiricalScenario {
   summary: string;
   stage?: StageId;
   artifacts: string[];
+}
+
+
+// ---------------------------------------------------------------------------
+// Result shapes
+//
+// These describe what the separation, conformance and gap analyses return.
+// They live here rather than beside the functions that build them because
+// this module is the shared vocabulary every package may depend on, and a
+// result type declared in a leaf makes the vocabulary depend on the leaf —
+// which is a cycle the moment the packages are separate.
+// ---------------------------------------------------------------------------
+
+export interface Narrowing {
+  remaining: string[];
+  steps: NarrowingStep[];
+  /** Results naming a probe or an outcome that does not exist. */
+  unknown: ProbeResult[];
+}
+
+export interface ProbeResult {
+  probe: string;
+  outcome: string;
+}
+
+export interface SeparationReport {
+  /** Every pair no available probe can tell apart. */
+  indistinguishable_pairs: [string, string][];
+  /**
+   * Those pairs collected by transitive closure.
+   *
+   * Membership of a group does not mean every pair inside it is
+   * indistinguishable, only that each member is tied to another by a pair
+   * nothing separates. It is a summary of where the evidence runs out, not a
+   * partition.
+   */
+  indistinguishable_groups: string[][];
+  /** The smallest probe set that separates everything separable. */
+  minimal_probes: string[];
+  /** How many pairs any probe can settle at all. */
+  separable_pairs: number;
+  /** False when the probe set was too large to search exactly and a greedy cover was used. */
+  exact: boolean;
+}
+
+export interface CandidateProfile {
+  /** Years of relevant experience the dated history supports. */
+  years?: number;
+  /** Phrases the person can evidence, lowercased by the caller or by `check`. */
+  skills?: string[];
+  /** Where the person can lawfully work, as the reader names those places. */
+  authorised_for?: string[];
+  /** Where the person is, in the same vocabulary as `hiring_locations`. */
+  located_in?: string;
+  /** What they have said they expect, in the same unit as the band. */
+  expectation?: number;
+}
+
+export interface ConformanceReport {
+  gates: GateOutcome[];
+  /** The first gate that fails, if any: where a run would deterministically stop. */
+  stops_at?: GateOutcome;
+  /** Requirements nobody could meet, which is a fact about the posting. */
+  unsatisfiable: GateOutcome[];
+  /** How many gates the check simply cannot decide. */
+  undetermined: number;
+}
+
+export interface GateOutcome {
+  /** The barrier this is about. */
+  gate: string;
+  stage: StageId;
+  /** The state of the canonical path where it is decided. */
+  state: string;
+  verdict: GateVerdict;
+  reason: GateReason;
+  /** Registry mechanisms that operate here, for the reader to go and read. */
+  mechanisms: string[];
+}
+
+export interface PostingFacets {
+  /** Years the posting states as a minimum. */
+  required_years?: number;
+  /** Phrases the posting states as mandatory. */
+  required_skills?: string[];
+  /** Where authorisation is required, if the posting says so. */
+  requires_authorisation_in?: string;
+  /** The places the posting says it hires in. */
+  hiring_locations?: string[];
+  band_min?: number;
+  band_max?: number;
+  /**
+   * How long the required thing has existed, in years, where the reader knows.
+   *
+   * The one check here that can return a verdict about the posting rather than
+   * about the person: a requirement for more years than the thing has existed
+   * cannot be met by anybody.
+   */
+  technology_age?: number;
+}
+
+export interface GapReport {
+  indistinguishable: Indistinguishable[];
+  /** Mechanism pairs no observation separates, as a share of all pairs. */
+  discrimination: { indistinguishablePairs: number; totalPairs: number };
+  unaddressedMechanisms: Unaddressed[];
+  /** Gates each actor can reach through some intervention, by actor. */
+  levers: { actor: string; gates: string[] }[];
+  /** Gates no intervention reaches, directly or through a mechanism. */
+  gatesWithoutLever: string[];
+  /** Observations that co-occur in no single mechanism's emissions. */
+  unexplainedPairs: [string, string][];
+  identifiability: Identifiability;
+  /** Emissions with no recorded stage, and why one could not be entailed. */
+  unplacedEmissions: UnplacedEmission[];
+}
+
+export interface Identifiability {
+  /** Observations consistent with exactly one mechanism on their own. */
+  identifying: { artifact: string; mechanism: string }[];
+  neverAlone: NeverAlone[];
+}
+
+/**
+ * A set of mechanisms that emit exactly the same observations.
+ *
+ * No evidence expressible in this registry distinguishes them, so a protocol
+ * run that narrows to one member has in fact narrowed to all of them. This is
+ * a limit of the observation vocabulary, not a defect in the mechanisms.
+ */
+export interface Indistinguishable {
+  /** The shared emission signature, sorted. */
+  signature: string[];
+  mechanisms: string[];
+}
+
+/** A mechanism nobody has proposed a change for, and whether anyone could. */
+export interface Unaddressed {
+  id: string;
+  removability: RemovabilityType;
+  /**
+   * True when removability is `none`: no named actor holds a lever, so the
+   * absence of an intervention is a finding rather than an omission.
+   */
+  outOfReach: boolean;
+}
+
+/** An emission whose trace the atlas cannot place at a stage. */
+export interface UnplacedEmission {
+  mechanism: string;
+  artifact: string;
+  /**
+   * `ambiguous` where the mechanism's stages and the observation's overlap in
+   * more than one place; `conflicting` where they do not overlap at all, which
+   * is the sharper case: it proves the trace is seen somewhere the mechanism
+   * does not operate, so no intersection could ever have stood in for this.
+   */
+  reason: 'ambiguous' | 'conflicting';
+}
+
+export interface NarrowingStep {
+  probe: string;
+  outcome: string;
+  label: string;
+  /** Why the elimination is forced, copied from the outcome. */
+  because: string;
+  /** Compatible mechanisms this outcome removed. Often none. */
+  eliminated: string[];
+  remaining: number;
+}
+
+export type GateVerdict = 'passes' | 'fails' | 'undetermined' | 'unsatisfiable';
+
+export interface GateReason {
+  /** A message key the caller localises; this package holds no prose. */
+  code: string;
+  params: Record<string, string | number>;
+}
+
+/**
+ * A mechanism that no set of its own emissions can pin down.
+ *
+ * Exact ties are the visible case, but the general one is subsumption: if
+ * everything a mechanism emits is also emitted by another, then every subset of
+ * its trace is consistent with that other too, and no evidence expressible here
+ * ever narrows to it alone. Equality is just subsumption in both directions.
+ */
+export interface NeverAlone {
+  mechanism: string;
+  /** Mechanisms emitting everything this one does, and so never ruled out. */
+  coveredBy: string[];
 }

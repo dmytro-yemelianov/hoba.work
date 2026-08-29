@@ -23,7 +23,7 @@
  *  - workflows are processes over per-state event classes, conditions on the
  *    edges being exactly the B-* entities of the authored transition.
  */
-import type { AnyRecord, RegistryBundle } from '../types.js';
+import type { AnyRecord, RegistryBundle } from '@hoba/registry-core/types';
 import type {
   Cohort,
   Condition,

@@ -8,10 +8,10 @@
  *     condition set is provably empty (computed_empty) or relies on unobserved
  *     hidden state (prose_asserted).
  */
-import type { DiagnosticProbe } from '../types.js';
-import type { CandidateProfile, ConformanceReport, GateOutcome, PostingFacets } from '../conformance.js';
-import type { GapReport, Identifiability, Indistinguishable, Unaddressed, UnplacedEmission } from '../gaps.js';
-import type { Narrowing, ProbeResult, SeparationReport } from '../separation.js';
+import type { DiagnosticProbe } from '@hoba/registry-core/types';
+import type { CandidateProfile, ConformanceReport, GateOutcome, PostingFacets } from '@hoba/registry-core/types';
+import type { GapReport, Identifiability, Indistinguishable, Unaddressed, UnplacedEmission } from '@hoba/registry-core/types';
+import type { Narrowing, ProbeResult, SeparationReport } from '@hoba/registry-core/types';
 import type { Condition, Substrate } from './schema.js';
 import type { Lifted } from './lift.js';
 

@@ -10,7 +10,7 @@ import type {
   MechanismNode,
   RegistryBundle,
   StageId,
-} from './types.js';
+} from '@hoba/registry-core/types';
 
 export const EPISTEMIC_DISCLAIMER =
   'Topological / Uncalibrated Analysis: Compatible mechanisms reflect logical compatibility with observed facts and structural gates, not probabilistic certainty. An observation is not a cause; a rejection message is not necessarily a reason.';

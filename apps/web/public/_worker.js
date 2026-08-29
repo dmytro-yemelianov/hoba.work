@@ -4046,7 +4046,7 @@ var coerce = {
 };
 var NEVER = INVALID;
 
-// packages/registry/dist/schemas.js
+// packages/registry-core/dist/schemas.js
 var ID_PATTERNS = {
   artifact: /^(A-\d{3}|obs\.[a-z0-9_]+)$/,
   barrier: /^(B-\d{3}|bar\.[a-z0-9_]+)$/,
@@ -4535,7 +4535,7 @@ var registryBundleSchema = registryManifestSchema.extend({
   records: external_exports.array(authoredRecordSchema).default([])
 });
 
-// packages/registry/dist/analysis.js
+// packages/validator/dist/analysis.js
 var CLAIM_SCALE = ["observed", "compatible", "supported", "strongly_supported", "proven"];
 function claimRank(level) {
   const i = CLAIM_SCALE.indexOf(level);
@@ -4628,7 +4628,7 @@ function validateAnalysis(input, bundle) {
   return issues;
 }
 
-// packages/registry/dist/scenarios.js
+// packages/validator/dist/scenarios.js
 var observationRef2 = external_exports.string().regex(/^obs\.[a-z0-9_]+$/);
 var mechanismRef = external_exports.string().regex(/^mech\.[a-z0-9_]+$/);
 var barrierRef = external_exports.string().regex(/^bar\.[a-z0-9_]+$/);
