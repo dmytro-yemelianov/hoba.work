@@ -79,6 +79,10 @@ describe('hoba MCP server', () => {
         'get_registry_info',
         'search_registry',
         'traverse_graph',
+        'validate_analysis',
+        'validate_claim',
+        'validate_entity_ids',
+        'validate_scenario',
         'verify_flow_conservation',
       ].sort()
     );
@@ -91,6 +95,57 @@ describe('hoba MCP server', () => {
     const node = payload(await client.request('tools/call', { name: 'get_node', arguments: { id: 'L-001' } }));
     expect(node.registry_version).toBe(info.registry_version);
     expect(node.node.mechanisms).toEqual(['mech.employment_gap_downranking_bias', 'mech.automated_keyword_qualification_filter']);
+  });
+
+  // Design doc §12: the validation tools, and the methodology exposed as
+  // resources for clients that prefer URIs to tool calls.
+  it('resolves entity IDs and reports the canonical form of a legacy code', async () => {
+    const res = payload(await client.request('tools/call', { name: 'validate_entity_ids', arguments: { ids: ['M-001', 'mech.genuine_technical_skill_shortfall', 'nope.nothing'] } }));
+    expect(res.all_resolve).toBe(false);
+    const byId = Object.fromEntries(res.results.map((r: { id: string }) => [r.id, r]));
+    expect(byId['M-001'].canonical_id).toBe('mech.genuine_technical_skill_shortfall');
+    expect(byId['M-001'].is_alias).toBe(true);
+    expect(byId['mech.genuine_technical_skill_shortfall'].is_alias).toBe(false);
+    expect(byId['nope.nothing'].resolves).toBe(false);
+  });
+
+  it('validates a scenario and refuses one that names an entity the registry lacks', async () => {
+    const good = {
+      id: 'scenario.mcp_fixture',
+      title: { en: 'A', uk: 'Б' },
+      observations: ['obs.complete_silence_after_submission'],
+    };
+    expect(payload(await client.request('tools/call', { name: 'validate_scenario', arguments: { scenario: good } })).valid).toBe(true);
+
+    const bad = { ...good, observations: ['obs.no_such_observation'] };
+    const res = payload(await client.request('tools/call', { name: 'validate_scenario', arguments: { scenario: bad } }));
+    expect(res.valid).toBe(false);
+    expect(JSON.stringify(res.issues)).toContain('obs.no_such_observation');
+  });
+
+  it('refuses a claim the registry does not carry that far', async () => {
+    const over = payload(await client.request('tools/call', { name: 'validate_claim', arguments: { id: 'M-001', claim_level: 'proven' } }));
+    expect(over.registry_level).toBeDefined();
+    const within = payload(await client.request('tools/call', { name: 'validate_claim', arguments: { id: 'M-001', claim_level: 'observed' } }));
+    expect(within.valid).toBe(true);
+    const unknown = await client.request('tools/call', { name: 'validate_claim', arguments: { id: 'nope.nothing', claim_level: 'observed' } });
+    expect(unknown.result.isError).toBe(true);
+  });
+
+  it('exposes the methodology as resources as well as a tool', async () => {
+    const list = await client.request('resources/list', {});
+    const uris = (list.result.resources as { uri: string }[]).map((r) => r.uri).sort();
+    expect(uris).toEqual([
+      'hoba://methodology/agency',
+      'hoba://methodology/core',
+      'hoba://methodology/epistemic-rules',
+      'hoba://methodology/evidence',
+      'hoba://methodology/non-goals',
+    ]);
+    const read = await client.request('resources/read', { uri: 'hoba://methodology/epistemic-rules' });
+    const body = JSON.parse(read.result.contents[0].text);
+    expect(body.levels).toContain('proven');
+    expect(body.invariant).toContain('primary');
   });
 
   it('explains observations and validates the stage argument', async () => {

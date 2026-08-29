@@ -3,7 +3,14 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import {
+  claimRank,
   EMPIRICAL_SCENARIOS,
+  evidenceKindSchema,
+  evidenceLevelSchema,
+  PROVING_EVIDENCE_KINDS,
+  scenarioSchema,
+  validateAnalysis,
+  validateScenarios,
   evaluatePatternEmptiness,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
@@ -404,6 +411,163 @@ server.registerTool(
   async () => {
     const report = evaluatePatternEmptiness(lifted);
     return ok({ ...report });
+  }
+);
+
+// ---------------------------------------------------------------------------
+// Methodology resources (design doc §12)
+//
+// A second exposure surface for what `get_methodology` already returns, for
+// clients that prefer resource URIs to tool calls. The content is composed from
+// the same METHODOLOGY object and the live schema enums — nothing here is
+// authored twice.
+// ---------------------------------------------------------------------------
+const METHODOLOGY_RESOURCES: Record<string, { title: string; body: () => unknown }> = {
+  core: {
+    title: 'The HOBA protocol',
+    body: () => ({ protocol: METHODOLOGY.protocol, core_rule: METHODOLOGY.core_rule, ontology: METHODOLOGY.ontology }),
+  },
+  'epistemic-rules': {
+    title: 'How strongly a claim may be made',
+    body: () => ({
+      verbs: METHODOLOGY.epistemic_verbs,
+      levels: evidenceLevelSchema.options,
+      invariant:
+        'An entity may not stand at "proven" without a linked evidence record of kind "primary" or "research". ' +
+        'The validator rejects it; a tier is never jumped without the evidence for the jump.',
+      off_scale: {
+        contradicted: 'The evidence runs against the claim.',
+        unknown: 'No claim about the world is being made — a description, not an assertion.',
+      },
+    }),
+  },
+  agency: {
+    title: 'Who can change what',
+    body: () => ({
+      protocol_step: METHODOLOGY.protocol.A,
+      removability: 'Per mechanism: candidate | intermediary | none. What the Lean proofs and UI badges key off.',
+      agency_zones:
+        'Per mechanism, per actor: high (holds an intervention targeting it), medium (it is their own force, or theirs to remove), ' +
+        'low (they can see it and no more). Derived from the entities themselves, never authored, and absent for an actor with no declared relationship.',
+      actors: bundle.actors.map((a) => ({ id: a.id, slug: a.slug, title: a.title })),
+    }),
+  },
+  evidence: {
+    title: 'What backs a claim',
+    body: () => ({
+      kinds: evidenceKindSchema.options,
+      proving_kinds: PROVING_EVIDENCE_KINDS,
+      count: bundle.evidence.length,
+      rule: 'A citation raises a claim only when it addresses the specific mechanism, not the general topic.',
+    }),
+  },
+  'non-goals': { title: 'What this is not', body: () => ({ non_goals: METHODOLOGY.non_goals }) },
+};
+
+for (const [topic, { title, body }] of Object.entries(METHODOLOGY_RESOURCES)) {
+  server.registerResource(
+    `methodology-${topic}`,
+    `hoba://methodology/${topic}`,
+    { title, description: title, mimeType: 'application/json' },
+    async (uri) => ({
+      contents: [
+        {
+          uri: uri.href,
+          mimeType: 'application/json',
+          text: JSON.stringify({ registry_version: bundle.version, topic, ...(body() as object) }, null, 2),
+        },
+      ],
+    })
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Validation tools (design doc §12) — the first live use of the Scenario and
+// Analysis schemas over MCP.
+// ---------------------------------------------------------------------------
+server.registerTool(
+  'validate_entity_ids',
+  {
+    description:
+      'Check whether entity IDs resolve against the registry, and report the canonical ID for any legacy short code. ' +
+      'Use before composing a scenario or an analysis that names them.',
+    inputSchema: { ids: z.array(z.string()).min(1).describe('Entity IDs, canonical or legacy') },
+  },
+  async ({ ids }) => {
+    const results = ids.map((id) => {
+      const node = graph.getNode(id);
+      return node
+        ? { id, resolves: true, canonical_id: node.id, type: node.type, is_alias: node.id !== id }
+        : { id, resolves: false };
+    });
+    return ok({ all_resolve: results.every((r) => r.resolves), results });
+  }
+);
+
+server.registerTool(
+  'validate_scenario',
+  {
+    description:
+      'Validate a scenario object against the Scenario schema and check that every entity it names exists. ' +
+      'An unresolvable ID is an error, not a warning.',
+    inputSchema: { scenario: z.record(z.unknown()).describe('A scenario object, as stored under data/scenarios/') },
+  },
+  async ({ scenario }) => {
+    const parsed = scenarioSchema.safeParse(scenario);
+    if (!parsed.success) {
+      return ok({
+        valid: false,
+        issues: parsed.error.issues.map((i) => ({ severity: 'error', rule: 'schema', message: `${i.path.join('.') || '(root)'}: ${i.message}` })),
+      });
+    }
+    const issues = validateScenarios([parsed.data], bundle);
+    return ok({ valid: issues.length === 0, id: parsed.data.id, issues });
+  }
+);
+
+server.registerTool(
+  'validate_analysis',
+  {
+    description:
+      'Validate a structured Analysis object: schema conformance, every named entity resolves, and no claim stands ' +
+      'above the level the cited entity itself carries.',
+    inputSchema: { analysis: z.record(z.unknown()).describe('An Analysis object, per schema/analysis.schema.json') },
+  },
+  async ({ analysis }) => {
+    const issues = validateAnalysis(analysis, bundle);
+    return ok({ valid: issues.length === 0, issues });
+  }
+);
+
+server.registerTool(
+  'validate_claim',
+  {
+    description:
+      'Check one claim — an entity and the strength being claimed for it — against the epistemic rules. ' +
+      'Answers whether the registry itself carries the claim that far.',
+    inputSchema: {
+      id: z.string().describe('Entity ID, canonical or legacy'),
+      claim_level: evidenceLevelSchema.describe(`One of: ${evidenceLevelSchema.options.join(', ')}`),
+    },
+  },
+  async ({ id, claim_level }) => {
+    const node = graph.getNode(id);
+    if (!node) return fail(`Entity ${id} not found in hoba registry.`);
+    const carried = (node as { evidence_level?: string }).evidence_level ?? 'unknown';
+    const claimed = claimRank(claim_level);
+    const held = claimRank(carried);
+    const overclaims = claimed !== null && held !== null && claimed > held;
+    return ok({
+      id: node.id,
+      claim_level,
+      registry_level: carried,
+      valid: !overclaims,
+      reason: overclaims
+        ? `The registry carries ${node.id} only as "${carried}"; claiming "${claim_level}" asserts more than its evidence does.`
+        : claimed === null || held === null
+          ? `"${claim_level}" and "${carried}" are not both points on the epistemic scale, so neither outranks the other.`
+          : `The registry carries ${node.id} as "${carried}", which is at least "${claim_level}".`,
+    });
   }
 );
 
