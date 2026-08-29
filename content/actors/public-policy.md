@@ -40,8 +40,8 @@ recommendations:
     cost: "medium"
     costs: "A band is a number on a page and a level is a claim about an internal grid, so each complaint needs records the regulator has to ask for separately. It also fixes at publication a level that is currently settled after the panel."
     targets:
-      - "B-013"
-      - "B-009"
+      - "bar.requisition_approval_public_posting"
+      - "bar.compensation_levelling_reconciliation"
       - "M-004"
       - "pat.compensation_double_bind"
       - "pat.seniority_double_bind"
@@ -55,8 +55,8 @@ recommendations:
     costs: "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly."
     targets:
       - "M-014"
-      - "B-004"
-      - "B-013"
+      - "bar.recruiter_screening_call"
+      - "bar.requisition_approval_public_posting"
     interventions: []
   -
     id: "dated-postings-withdrawn-on-closure"
@@ -67,7 +67,7 @@ recommendations:
     targets:
       - "M-006"
       - "M-016"
-      - "B-013"
+      - "bar.requisition_approval_public_posting"
       - "A-004"
       - "pat.closed_then_reposted_requisition_motif"
     interventions:
@@ -79,7 +79,7 @@ recommendations:
     cost: "high"
     costs: "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy."
     targets:
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "M-008"
       - "M-020"
       - "M-003"
@@ -95,7 +95,7 @@ recommendations:
     targets:
       - "M-011"
       - "L-001"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
     interventions:
       - "I-004"
   -
@@ -108,7 +108,7 @@ recommendations:
       - "A-002"
       - "A-014"
       - "M-010"
-      - "B-013"
+      - "bar.requisition_approval_public_posting"
     interventions:
       - "I-003"
       - "I-002"

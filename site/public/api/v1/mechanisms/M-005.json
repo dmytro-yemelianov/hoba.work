@@ -13,10 +13,10 @@
     "type": "mechanism",
     "summary": "Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.",
     "operates_at": [
-      "B-013",
-      "B-001",
-      "B-003",
-      "B-007"
+      "bar.requisition_approval_public_posting",
+      "bar.application_ingestion",
+      "bar.inbound_screening_triage",
+      "bar.hiring_manager_in_depth_review"
     ],
     "emissions": [
       {

@@ -1,0 +1,57 @@
+---
+id: "bar.team_cross_functional_panel"
+type: "barrier"
+aliases:
+  - "B-008"
+title: "Team & Cross-Functional Panel"
+stage: "team"
+order: 10
+precedes:
+  - "bar.compensation_levelling_reconciliation"
+description: "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms."
+pass_condition: "Consensus score among team panelists meets or exceeds hire recommendation threshold."
+specimens:
+  -
+    kind: "note"
+    label: "Panel tally, as submitted"
+    lines:
+      -
+        text: "Panelist 1 — collaboration 4, communication 4: hire"
+      -
+        text: "Panelist 2 — collaboration 4, communication 3: hire"
+      -
+        text: "Panelist 3 — collaboration 3, communication 2: no hire"
+      -
+        text: "Consensus threshold: unanimous, or manager override."
+        tell: true
+      -
+        text: "Outcome: not aligned."
+    reading: "The gate is not an average; it is a veto rule. One dissent and a unanimity requirement produce the same result as three dissents."
+perspectives:
+  -
+    actor: "hiring-manager"
+    sees: "The panel's score sheets and, in the split case, one dissent with a comment. What that panelist saw arrives second-hand."
+    reads: "Under a unanimity threshold, one no-hire and three no-hires read the same. The dissent reads as a risk that would be carried alone."
+    does: "Overrides or closes. The override carries their signature, and so would the hire it produces."
+  -
+    actor: "candidate"
+    sees: "A sequence of separate conversations, each with a person whose weight in the decision is not stated. Then one outcome."
+    reads: "The round reads as an average of impressions, and the wording of the decline does not distinguish a split panel from a unanimous one."
+    does: "Cannot tell which conversation the decision turned on, so records who was on the panel and what each of them asked — the only part of this gate still available afterwards."
+  -
+    actor: "employer-policy"
+    sees: "The threshold as a configured rule, and the outcome it produced. The individual sheets stay with the team."
+    reads: "A unanimity requirement reads as consistency across hires and as a defensible record for each one."
+    does: "Keeps the threshold uniform across teams. The hours a re-run of the loop consumes are not a line in the cycle this layer reports on."
+status: "active"
+evidence_level: "established"
+evidence_ids:
+  - "EVD-006"
+---
+
+# Team & Cross-Functional Panel
+
+Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.
+
+### Pass Condition
+Consensus score among team panelists meets or exceeds hire recommendation threshold.

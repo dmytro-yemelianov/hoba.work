@@ -45,8 +45,8 @@ recommendations:
     costs: "Опубліковане число стає зобовʼязанням: вилку вже не переглянути тихо посеред пошуку, і її бачить кожен, хто вже працює на цьому рівні."
     targets:
       - "M-004"
-      - "B-004"
-      - "B-009"
+      - "bar.recruiter_screening_call"
+      - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
     interventions:
       - "I-002"
@@ -57,8 +57,8 @@ recommendations:
     cost: "high"
     costs: "Бюджет фіксується на публікації, а не на офері, і профінансовану наперед вакансію важче поставити на паузу, ніж затверджену наприкінці."
     targets:
-      - "B-010"
-      - "B-013"
+      - "bar.headcount_executive_budget_approval"
+      - "bar.requisition_approval_public_posting"
       - "M-007"
       - "A-003"
     interventions: []
@@ -71,7 +71,7 @@ recommendations:
     targets:
       - "M-006"
       - "M-007"
-      - "B-001"
+      - "bar.application_ingestion"
       - "pat.closed_then_reposted_requisition_motif"
       - "L-003"
       - "A-001"
@@ -87,7 +87,7 @@ recommendations:
     costs: "Зовнішній пул на таких оголошеннях меншає, а це послаблює саме оголошення як свідчення відкритого пошуку, і внутрішня кандидатура лягає на папір ще до того, як пошук завершиться."
     targets:
       - "M-005"
-      - "B-013"
+      - "bar.requisition_approval_public_posting"
       - "A-002"
       - "A-003"
     interventions: []
@@ -98,8 +98,8 @@ recommendations:
     cost: "medium"
     costs: "Кожна розбіжність додає ще один цикл узгодження перед контрпідписом, а єдиний стандартний пакет перевірок доводиться розділяти за ролями замість того, щоб однаково запускати на кожному наймі."
     targets:
-      - "B-011"
-      - "B-012"
+      - "bar.reference_background_verification"
+      - "bar.offer_closing_contract_execution"
       - "M-021"
     interventions: []
 status: "active"

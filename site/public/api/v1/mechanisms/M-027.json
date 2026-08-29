@@ -13,8 +13,8 @@
     "type": "mechanism",
     "summary": "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.",
     "operates_at": [
-      "B-012",
-      "B-016"
+      "bar.offer_closing_contract_execution",
+      "bar.probation_period_post_start_confirmation"
     ],
     "emissions": [
       {

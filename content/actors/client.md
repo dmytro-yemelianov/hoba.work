@@ -53,7 +53,7 @@ recommendations:
     targets:
       - "M-025"
       - "M-016"
-      - "B-014"
+      - "bar.outbound_sourcing_talent_pool_contact"
     interventions:
       - "I-009"
   -

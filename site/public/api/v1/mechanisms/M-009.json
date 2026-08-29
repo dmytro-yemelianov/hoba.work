@@ -14,8 +14,8 @@
     "type": "mechanism",
     "summary": "Applicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.",
     "operates_at": [
-      "B-003",
-      "B-004"
+      "bar.inbound_screening_triage",
+      "bar.recruiter_screening_call"
     ],
     "emissions": [
       {

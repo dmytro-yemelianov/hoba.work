@@ -15,7 +15,7 @@
       "summary": "Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.",
       "targets": [
         "M-006",
-        "B-001",
+        "bar.application_ingestion",
         "pat.closed_then_reposted_requisition_motif",
         "L-003"
       ],
@@ -96,8 +96,8 @@
       "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
       "targets": [
         "M-004",
-        "B-004",
-        "B-009",
+        "bar.recruiter_screening_call",
+        "bar.compensation_levelling_reconciliation",
         "pat.seniority_double_bind",
         "pat.compensation_double_bind"
       ],
@@ -176,9 +176,9 @@
       "targets": [
         "M-001",
         "M-010",
-        "B-007",
-        "B-008",
-        "B-015",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.client_profile_approval_and_client_interview",
         "pat.seniority_double_bind",
         "pat.closed_then_reposted_requisition_motif",
         "L-003"
@@ -334,7 +334,7 @@
       "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
       "targets": [
         "M-003",
-        "B-002",
+        "bar.automated_filter_parser_threshold",
         "pat.experience_age_impossibility"
       ],
       "actor": "candidate-action",
@@ -408,7 +408,7 @@
       "targets": [
         "M-019",
         "L-002",
-        "B-006"
+        "bar.take_home_work_sample_evaluation"
       ],
       "actor": "hiring-manager",
       "scope": "organizational",
@@ -479,7 +479,7 @@
       "summary": "Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.",
       "targets": [
         "M-024",
-        "B-013",
+        "bar.requisition_approval_public_posting",
         "L-003"
       ],
       "actor": "hiring-manager",
@@ -556,7 +556,7 @@
       "summary": "Where a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.",
       "targets": [
         "M-005",
-        "B-013"
+        "bar.requisition_approval_public_posting"
       ],
       "actor": "employer-policy",
       "scope": "organizational",
@@ -626,7 +626,7 @@
       "type": "intervention",
       "summary": "Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.",
       "targets": [
-        "B-014",
+        "bar.outbound_sourcing_talent_pool_contact",
         "M-016",
         "M-025"
       ],
@@ -712,7 +712,7 @@
       "type": "intervention",
       "summary": "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.",
       "targets": [
-        "B-003",
+        "bar.inbound_screening_triage",
         "M-009",
         "M-020"
       ],
@@ -793,7 +793,7 @@
       "type": "intervention",
       "summary": "Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.",
       "targets": [
-        "B-003",
+        "bar.inbound_screening_triage",
         "M-017",
         "M-023"
       ],
@@ -880,8 +880,8 @@
       "summary": "Submit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.",
       "targets": [
         "M-023",
-        "B-005",
-        "B-003"
+        "bar.technical_screen_live_assessment",
+        "bar.inbound_screening_triage"
       ],
       "actor": "candidate-action",
       "scope": "individual",
@@ -960,7 +960,7 @@
       "type": "intervention",
       "summary": "Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.",
       "targets": [
-        "B-005",
+        "bar.technical_screen_live_assessment",
         "M-012"
       ],
       "actor": "employer-policy",
@@ -1040,7 +1040,7 @@
       "summary": "Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.",
       "targets": [
         "M-012",
-        "B-005"
+        "bar.technical_screen_live_assessment"
       ],
       "actor": "hiring-manager",
       "scope": "team",
@@ -1123,8 +1123,8 @@
       "type": "intervention",
       "summary": "Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.",
       "targets": [
-        "B-010",
-        "B-012",
+        "bar.headcount_executive_budget_approval",
+        "bar.offer_closing_contract_execution",
         "M-007"
       ],
       "actor": "employer-policy",
@@ -1207,8 +1207,8 @@
       "type": "intervention",
       "summary": "Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.",
       "targets": [
-        "B-011",
-        "B-016",
+        "bar.reference_background_verification",
+        "bar.probation_period_post_start_confirmation",
         "M-021",
         "M-027",
         "M-028"
@@ -1294,7 +1294,7 @@
       "summary": "Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.",
       "targets": [
         "M-002",
-        "B-010",
+        "bar.headcount_executive_budget_approval",
         "pat.closed_then_reposted_requisition_motif"
       ],
       "actor": "recruiter-process",

@@ -45,7 +45,7 @@ recommendations:
     cost: "medium"
     costs: "It spends the flexibility of hearing the candidate's figure first, and it puts a number into the conversation that can be quoted back later as a commitment."
     targets:
-      - "B-004"
+      - "bar.recruiter_screening_call"
       - "M-004"
       - "pat.compensation_double_bind"
     interventions:
@@ -59,7 +59,7 @@ recommendations:
     targets:
       - "A-002"
       - "M-010"
-      - "B-008"
+      - "bar.team_cross_functional_panel"
     interventions:
       - "I-003"
   -
@@ -81,7 +81,7 @@ recommendations:
     cost: "medium"
     costs: "A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written."
     targets:
-      - "B-004"
+      - "bar.recruiter_screening_call"
       - "A-007"
       - "M-013"
     interventions: []
@@ -94,7 +94,7 @@ recommendations:
     targets:
       - "M-016"
       - "A-012"
-      - "B-014"
+      - "bar.outbound_sourcing_talent_pool_contact"
     interventions: []
   -
     id: "fix-the-reading-order"
@@ -103,7 +103,7 @@ recommendations:
     cost: "high"
     costs: "Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones."
     targets:
-      - "B-003"
+      - "bar.inbound_screening_triage"
       - "M-009"
       - "M-011"
       - "L-001"

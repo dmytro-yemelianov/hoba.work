@@ -40,8 +40,8 @@ recommendations:
     cost: "medium"
     costs: "Вилка — це число на сторінці, а рівень — твердження про внутрішню сітку, тож кожна скарга потребує документів, які регулятор мусить запитати окремо. Це також фіксує на день публікації рівень, який нині визначають після панелі."
     targets:
-      - "B-013"
-      - "B-009"
+      - "bar.requisition_approval_public_posting"
+      - "bar.compensation_levelling_reconciliation"
       - "M-004"
       - "pat.compensation_double_bind"
       - "pat.seniority_double_bind"
@@ -55,8 +55,8 @@ recommendations:
     costs: "Правило звʼязує оголошення, яке читають звідусіль, із договорами, можливими в кількох місцях, а орган, що його пише, дотягується лише до власної території — якої саме, цей атлас не називає. Роботодавець мусить оприлюднити карту юридичних осіб, яку тримає всередині, і оголошення, що читалися як відкриті, помітно звужуються."
     targets:
       - "M-014"
-      - "B-004"
-      - "B-013"
+      - "bar.recruiter_screening_call"
+      - "bar.requisition_approval_public_posting"
     interventions: []
   -
     id: "dated-postings-withdrawn-on-closure"
@@ -67,7 +67,7 @@ recommendations:
     targets:
       - "M-006"
       - "M-016"
-      - "B-013"
+      - "bar.requisition_approval_public_posting"
       - "A-004"
       - "pat.closed_then_reposted_requisition_motif"
     interventions:
@@ -79,7 +79,7 @@ recommendations:
     cost: "high"
     costs: "Обовʼязок пишуть для роботодавця, а виконує його налаштування на екрані конфігурації, якого автор правила не бачить, тож текст мусить закріпити відповідальність десь між тим, хто купує систему, і тим, хто її постачає. Кожна названа причина — ще й твердження, яке можна оскаржити, і за обсягу завершених заявок це стає потоком справ раніше, ніж засобом захисту."
     targets:
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "M-008"
       - "M-020"
       - "M-003"
@@ -95,7 +95,7 @@ recommendations:
     targets:
       - "M-011"
       - "L-001"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
     interventions:
       - "I-004"
   -
@@ -108,7 +108,7 @@ recommendations:
       - "A-002"
       - "A-014"
       - "M-010"
-      - "B-013"
+      - "bar.requisition_approval_public_posting"
     interventions:
       - "I-003"
       - "I-002"

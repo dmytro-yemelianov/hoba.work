@@ -13,7 +13,7 @@
     "summary": "Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.",
     "targets": [
       "M-006",
-      "B-001",
+      "bar.application_ingestion",
       "pat.closed_then_reposted_requisition_motif",
       "L-003"
     ],

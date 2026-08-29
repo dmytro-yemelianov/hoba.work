@@ -1,0 +1,54 @@
+---
+id: "bar.technical_screen_live_assessment"
+type: "barrier"
+aliases:
+  - "B-005"
+title: "Technical Screen / Live Assessment"
+stage: "technical"
+order: 7
+precedes:
+  - "bar.take_home_work_sample_evaluation"
+  - "bar.hiring_manager_in_depth_review"
+description: "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals."
+pass_condition: "The candidate's total on the assessing engineer's rubric is at or above the threshold to advance."
+specimens:
+  -
+    kind: "note"
+    label: "The rubric the engineer scored against"
+    lines:
+      -
+        text: "Correctness: 4/5 · Complexity reasoning: 3/5 · Communication: 4/5 · Testing instinct: 3/5"
+      -
+        text: "Threshold to advance: 14/20. Total: 14."
+        tell: true
+      -
+        text: "Recommendation: advance, weak yes."
+    reading: "The gate is a sum against a line. A weak yes and a strong no differ by two points in one column, and the candidate never sees the columns."
+perspectives:
+  -
+    actor: "candidate"
+    sees: "An exercise, a conversation about it, and an outcome. Not the columns, not their weights, not the line the total is compared with."
+    reads: "The hour resolves into a single number that is never shown, so a miss by one point and a clear fail arrive in the same wording."
+    does: "Reconstructs the session from memory and guesses which part of it cost the points, with nothing in the outcome to check the guess against."
+  -
+    actor: "hiring-manager"
+    sees: "Four column scores, a total, and the assessing engineer's recommendation. Not what the same candidate showed in rounds they did not attend."
+    reads: "A total on the line is an advance with doubt attached. On the company's own account, a bad hire is visible for a year and carries a name while a missed hire carries none — which is why the threshold holds. On a client account the asymmetry can invert: an unfilled billable seat loses revenue every week, and the same market that runs this five-round loop also makes same-week offers."
+    does: "Holds the threshold where it is and passes the doubt into the next round rather than settling it here."
+  -
+    actor: "recruiter"
+    sees: "The recommendation and, at most, the total. The columns and what was said in the room are not part of what is handed over."
+    reads: "The outcome is settled, and the reason for it stays with the panel."
+    does: "Writes the message from the recommendation, which is the level of detail available to write from."
+status: "active"
+evidence_level: "established"
+evidence_ids:
+  - "EVD-006"
+---
+
+# Technical Screen / Live Assessment
+
+Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.
+
+### Pass Condition
+The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.

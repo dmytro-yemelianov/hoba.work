@@ -45,7 +45,7 @@ recommendations:
     cost: "medium"
     costs: "Це забирає можливість першим почути цифру кандидата і вносить у розмову число, яке згодом можуть процитувати як зобовʼязання."
     targets:
-      - "B-004"
+      - "bar.recruiter_screening_call"
       - "M-004"
       - "pat.compensation_double_bind"
     interventions:
@@ -59,7 +59,7 @@ recommendations:
     targets:
       - "A-002"
       - "M-010"
-      - "B-008"
+      - "bar.team_cross_functional_panel"
     interventions:
       - "I-003"
   -
@@ -81,7 +81,7 @@ recommendations:
     cost: "medium"
     costs: "Названа дата — це зобовʼязання, яке тримається на календарях інтервʼюерів, що їх ця позиція не контролює, тож кожне зміщення перетворюється на лист, який доведеться написати."
     targets:
-      - "B-004"
+      - "bar.recruiter_screening_call"
       - "A-007"
       - "M-013"
     interventions: []
@@ -94,7 +94,7 @@ recommendations:
     targets:
       - "M-016"
       - "A-012"
-      - "B-014"
+      - "bar.outbound_sourcing_talent_pool_contact"
     interventions: []
   -
     id: "fix-the-reading-order"
@@ -103,7 +103,7 @@ recommendations:
     cost: "high"
     costs: "Читання без такого сортування охоплює менше профілів за годину, а кандидати з вихідного пошуку, про яких питає менеджер із найму, чекають за вхідними."
     targets:
-      - "B-003"
+      - "bar.inbound_screening_triage"
       - "M-009"
       - "M-011"
       - "L-001"

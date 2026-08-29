@@ -56,8 +56,8 @@ recommendations:
     targets:
       - "M-010"
       - "M-018"
-      - "B-005"
-      - "B-007"
+      - "bar.technical_screen_live_assessment"
+      - "bar.hiring_manager_in_depth_review"
       - "A-014"
     interventions: []
   -
@@ -69,7 +69,7 @@ recommendations:
     targets:
       - "M-019"
       - "M-012"
-      - "B-006"
+      - "bar.take_home_work_sample_evaluation"
       - "L-002"
     interventions:
       - "I-006"
@@ -81,7 +81,7 @@ recommendations:
     costs: "Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name."
     targets:
       - "M-022"
-      - "B-008"
+      - "bar.team_cross_functional_panel"
       - "A-014"
     interventions: []
   -
@@ -104,7 +104,7 @@ recommendations:
       - "pat.seniority_double_bind"
       - "A-013"
       - "M-017"
-      - "B-007"
+      - "bar.hiring_manager_in_depth_review"
     interventions: []
 status: "active"
 evidence_level: "supported"

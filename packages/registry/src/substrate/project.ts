@@ -17,7 +17,10 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
   const eventById = new Map(substrate.eventClasses.map((e) => [e.id, e]));
   const recordById = new Map(substrate.records.map((r) => [r.id, r]));
 
-  const publicOf = (substrateId: string) => up(substrateId.split(':')[1]!);
+  const publicOf = (substrateId: string) => {
+    const raw = substrateId.split(':')[1]!;
+    return /^[a-z]+-\d+$/i.test(raw) ? up(raw) : raw;
+  };
 
   const flatTitle = (recId: string) => recordById.get(recId)!.title;
 

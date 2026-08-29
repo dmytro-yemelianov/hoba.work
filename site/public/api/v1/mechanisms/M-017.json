@@ -12,9 +12,9 @@
     "type": "mechanism",
     "summary": "A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.",
     "operates_at": [
-      "B-003",
-      "B-004",
-      "B-007"
+      "bar.inbound_screening_triage",
+      "bar.recruiter_screening_call",
+      "bar.hiring_manager_in_depth_review"
     ],
     "emissions": [
       {

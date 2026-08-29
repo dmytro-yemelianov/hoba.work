@@ -66,7 +66,7 @@
           "targets": [
             "M-011",
             "L-001",
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
             "I-004"
@@ -80,7 +80,7 @@
           "costs": "The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls.",
           "targets": [
             "M-003",
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "A-009"
           ],
           "interventions": []
@@ -93,8 +93,8 @@
           "costs": "It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform.",
           "targets": [
             "M-003",
-            "B-001",
-            "B-002"
+            "bar.application_ingestion",
+            "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
             "I-005"
@@ -127,7 +127,7 @@
             "M-008",
             "M-024",
             "pat.experience_age_impossibility",
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "L-003"
           ],
           "interventions": []
@@ -140,7 +140,7 @@
           "costs": "The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not.",
           "targets": [
             "M-008",
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "A-009",
             "A-002"
           ],
@@ -211,8 +211,8 @@
           "costs": "A single-column text export gives up the layout, and every later edit to the document has to be checked again.",
           "targets": [
             "M-003",
-            "B-001",
-            "B-002",
+            "bar.application_ingestion",
+            "bar.automated_filter_parser_threshold",
             "A-009"
           ],
           "interventions": [
@@ -229,7 +229,7 @@
             "M-016",
             "M-005",
             "M-006",
-            "B-014",
+            "bar.outbound_sourcing_talent_pool_contact",
             "A-012"
           ],
           "interventions": []
@@ -242,8 +242,8 @@
           "costs": "The question can end a process at the screen, and stating an expectation early fixes a number before the level is fixed.",
           "targets": [
             "M-004",
-            "B-004",
-            "B-009",
+            "bar.recruiter_screening_call",
+            "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind",
             "A-005"
           ],
@@ -275,7 +275,7 @@
           "targets": [
             "L-002",
             "M-019",
-            "B-006",
+            "bar.take_home_work_sample_evaluation",
             "A-006"
           ],
           "interventions": [
@@ -292,7 +292,7 @@
             "M-020",
             "M-006",
             "M-009",
-            "B-003",
+            "bar.inbound_screening_triage",
             "A-001"
           ],
           "interventions": [
@@ -375,7 +375,7 @@
           "targets": [
             "M-025",
             "M-016",
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": [
             "I-009"
@@ -463,8 +463,8 @@
           "costs": "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.",
           "targets": [
             "M-004",
-            "B-004",
-            "B-009",
+            "bar.recruiter_screening_call",
+            "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind"
           ],
           "interventions": [
@@ -478,8 +478,8 @@
           "cost": "high",
           "costs": "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.",
           "targets": [
-            "B-010",
-            "B-013",
+            "bar.headcount_executive_budget_approval",
+            "bar.requisition_approval_public_posting",
             "M-007",
             "A-003"
           ],
@@ -494,7 +494,7 @@
           "targets": [
             "M-006",
             "M-007",
-            "B-001",
+            "bar.application_ingestion",
             "pat.closed_then_reposted_requisition_motif",
             "L-003",
             "A-001",
@@ -513,7 +513,7 @@
           "costs": "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.",
           "targets": [
             "M-005",
-            "B-013",
+            "bar.requisition_approval_public_posting",
             "A-002",
             "A-003"
           ],
@@ -526,8 +526,8 @@
           "cost": "medium",
           "costs": "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.",
           "targets": [
-            "B-011",
-            "B-012",
+            "bar.reference_background_verification",
+            "bar.offer_closing_contract_execution",
             "M-021"
           ],
           "interventions": []
@@ -611,8 +611,8 @@
           "targets": [
             "M-010",
             "M-018",
-            "B-005",
-            "B-007",
+            "bar.technical_screen_live_assessment",
+            "bar.hiring_manager_in_depth_review",
             "A-014"
           ],
           "interventions": []
@@ -626,7 +626,7 @@
           "targets": [
             "M-019",
             "M-012",
-            "B-006",
+            "bar.take_home_work_sample_evaluation",
             "L-002"
           ],
           "interventions": [
@@ -641,7 +641,7 @@
           "costs": "Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name.",
           "targets": [
             "M-022",
-            "B-008",
+            "bar.team_cross_functional_panel",
             "A-014"
           ],
           "interventions": []
@@ -668,7 +668,7 @@
             "pat.seniority_double_bind",
             "A-013",
             "M-017",
-            "B-007"
+            "bar.hiring_manager_in_depth_review"
           ],
           "interventions": []
         }
@@ -733,8 +733,8 @@
           "cost": "medium",
           "costs": "A band is a number on a page and a level is a claim about an internal grid, so each complaint needs records the regulator has to ask for separately. It also fixes at publication a level that is currently settled after the panel.",
           "targets": [
-            "B-013",
-            "B-009",
+            "bar.requisition_approval_public_posting",
+            "bar.compensation_levelling_reconciliation",
             "M-004",
             "pat.compensation_double_bind",
             "pat.seniority_double_bind"
@@ -751,8 +751,8 @@
           "costs": "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.",
           "targets": [
             "M-014",
-            "B-004",
-            "B-013"
+            "bar.recruiter_screening_call",
+            "bar.requisition_approval_public_posting"
           ],
           "interventions": []
         },
@@ -765,7 +765,7 @@
           "targets": [
             "M-006",
             "M-016",
-            "B-013",
+            "bar.requisition_approval_public_posting",
             "A-004",
             "pat.closed_then_reposted_requisition_motif"
           ],
@@ -780,7 +780,7 @@
           "cost": "high",
           "costs": "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.",
           "targets": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-008",
             "M-020",
             "M-003",
@@ -798,7 +798,7 @@
           "targets": [
             "M-011",
             "L-001",
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
             "I-004"
@@ -814,7 +814,7 @@
             "A-002",
             "A-014",
             "M-010",
-            "B-013"
+            "bar.requisition_approval_public_posting"
           ],
           "interventions": [
             "I-003",
@@ -887,7 +887,7 @@
           "cost": "medium",
           "costs": "It spends the flexibility of hearing the candidate's figure first, and it puts a number into the conversation that can be quoted back later as a commitment.",
           "targets": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "M-004",
             "pat.compensation_double_bind"
           ],
@@ -904,7 +904,7 @@
           "targets": [
             "A-002",
             "M-010",
-            "B-008"
+            "bar.team_cross_functional_panel"
           ],
           "interventions": [
             "I-003"
@@ -932,7 +932,7 @@
           "cost": "medium",
           "costs": "A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written.",
           "targets": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "A-007",
             "M-013"
           ],
@@ -947,7 +947,7 @@
           "targets": [
             "M-016",
             "A-012",
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": []
         },
@@ -958,7 +958,7 @@
           "cost": "high",
           "costs": "Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones.",
           "targets": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009",
             "M-011",
             "L-001"
@@ -987,7 +987,7 @@
           "owner": "hiring-manager",
           "description": "A manager writes the role. Level, band and requirements are decided here, usually by copying the last search for the same team.",
           "entities": [
-            "B-013"
+            "bar.requisition_approval_public_posting"
           ],
           "visible_to_candidate": "Nothing. The role does not exist publicly yet.",
           "deviations": []
@@ -999,8 +999,8 @@
           "owner": "employer-policy",
           "description": "Finance and leadership commit budget against the requisition. Approval can lapse or be withdrawn later without the funnel noticing.",
           "entities": [
-            "B-013",
-            "B-010"
+            "bar.requisition_approval_public_posting",
+            "bar.headcount_executive_budget_approval"
           ],
           "visible_to_candidate": "Nothing.",
           "deviations": []
@@ -1012,8 +1012,8 @@
           "owner": "recruiter",
           "description": "The role is public. It may also be refreshed automatically every thirty days, which looks identical to a new opening.",
           "entities": [
-            "B-013",
-            "B-014",
+            "bar.requisition_approval_public_posting",
+            "bar.outbound_sourcing_talent_pool_contact",
             "M-006"
           ],
           "visible_to_candidate": "The posting, and whatever it states.",
@@ -1026,7 +1026,7 @@
           "owner": "ats-vendor",
           "description": "A record exists and is linked to the requisition. Nothing has been read.",
           "entities": [
-            "B-001",
+            "bar.application_ingestion",
             "A-001"
           ],
           "visible_to_candidate": "A confirmation, or silence.",
@@ -1039,7 +1039,7 @@
           "owner": "ats-vendor",
           "description": "Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second.",
           "entities": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-003",
             "M-008",
             "M-011",
@@ -1055,7 +1055,7 @@
           "owner": "recruiter",
           "description": "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.",
           "entities": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009",
             "M-016"
           ],
@@ -1069,7 +1069,7 @@
           "owner": "recruiter",
           "description": "A conversation about compensation, timeline, location and a two-minute version of the last project.",
           "entities": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "A-013",
             "M-004",
             "M-017"
@@ -1084,8 +1084,8 @@
           "owner": "hiring-manager",
           "description": "A live exercise, a take-home, or both, scored against a rubric the candidate does not see.",
           "entities": [
-            "B-005",
-            "B-006",
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation",
             "A-006",
             "A-008",
             "M-001",
@@ -1101,8 +1101,8 @@
           "owner": "hiring-manager",
           "description": "Depth, ownership and collaboration, assessed across several interviewers who may be measuring different things.",
           "entities": [
-            "B-007",
-            "B-008",
+            "bar.hiring_manager_in_depth_review",
+            "bar.team_cross_functional_panel",
             "A-010",
             "A-014",
             "M-010",
@@ -1119,7 +1119,7 @@
           "owner": "employer-policy",
           "description": "The level the panel assigned meets the band finance approved. First time the two are compared.",
           "entities": [
-            "B-009",
+            "bar.compensation_levelling_reconciliation",
             "A-005",
             "M-004"
           ],
@@ -1133,7 +1133,7 @@
           "owner": "employer-policy",
           "description": "Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes.",
           "entities": [
-            "B-010",
+            "bar.headcount_executive_budget_approval",
             "M-007"
           ],
           "visible_to_candidate": "Silence, usually described as \"final checks\".",
@@ -1146,7 +1146,7 @@
           "owner": "recruiter",
           "description": "A written offer exists. The requisition is still open until the countersignature lands.",
           "entities": [
-            "B-012",
+            "bar.offer_closing_contract_execution",
             "A-011"
           ],
           "visible_to_candidate": "The offer document.",
@@ -1159,7 +1159,7 @@
           "owner": "employer-policy",
           "description": "A third-party record is compared against what the candidate claimed.",
           "entities": [
-            "B-011",
+            "bar.reference_background_verification",
             "M-021"
           ],
           "visible_to_candidate": "A request for documents, or nothing.",
@@ -1172,7 +1172,7 @@
           "owner": "employer-policy",
           "description": "Contract executed both ways, start date set, onboarding triggered.",
           "entities": [
-            "B-012"
+            "bar.offer_closing_contract_execution"
           ],
           "visible_to_candidate": "A signed contract.",
           "deviations": []
@@ -1229,7 +1229,7 @@
           "owner": "employer-policy",
           "guard": "Finance commits headcount against the requisition.",
           "entities": [
-            "B-010"
+            "bar.headcount_executive_budget_approval"
           ],
           "latency_expected_days": 7,
           "latency_max_days": 21
@@ -1241,7 +1241,7 @@
           "owner": "recruiter",
           "guard": "An approved requisition with a written description is published.",
           "entities": [
-            "B-013"
+            "bar.requisition_approval_public_posting"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 7
@@ -1253,8 +1253,8 @@
           "owner": "candidate",
           "guard": "The candidate applies, or answers outbound outreach.",
           "entities": [
-            "B-001",
-            "B-014"
+            "bar.application_ingestion",
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "latency_expected_days": 7,
           "latency_max_days": 30
@@ -1266,7 +1266,7 @@
           "owner": "ats-vendor",
           "guard": "The record is complete enough for the configured rules to run.",
           "entities": [
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 3
@@ -1278,7 +1278,7 @@
           "owner": "ats-vendor",
           "guard": "Extraction score and every knockout rule pass.",
           "entities": [
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 3
@@ -1304,7 +1304,7 @@
           "owner": "recruiter",
           "guard": "A person reads the profile and puts it on the list.",
           "entities": [
-            "B-003"
+            "bar.inbound_screening_triage"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -1328,7 +1328,7 @@
           "owner": "recruiter",
           "guard": "Expectations, timeline and location are compatible, and the profile is submitted to the team.",
           "entities": [
-            "B-004"
+            "bar.recruiter_screening_call"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1355,8 +1355,8 @@
           "owner": "hiring-manager",
           "guard": "The score clears the rubric threshold.",
           "entities": [
-            "B-005",
-            "B-006"
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 12
@@ -1382,8 +1382,8 @@
           "owner": "hiring-manager",
           "guard": "Consensus reaches the hire threshold.",
           "entities": [
-            "B-007",
-            "B-008"
+            "bar.hiring_manager_in_depth_review",
+            "bar.team_cross_functional_panel"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1408,7 +1408,7 @@
           "owner": "employer-policy",
           "guard": "The assigned level and the approved band overlap.",
           "entities": [
-            "B-009"
+            "bar.compensation_levelling_reconciliation"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -1433,7 +1433,7 @@
           "owner": "employer-policy",
           "guard": "Every approver in the chain has cleared it.",
           "entities": [
-            "B-010"
+            "bar.headcount_executive_budget_approval"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1457,7 +1457,7 @@
           "owner": "candidate",
           "guard": "The candidate signs and the checks begin.",
           "entities": [
-            "B-011"
+            "bar.reference_background_verification"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1482,8 +1482,8 @@
           "owner": "employer-policy",
           "guard": "No unresolved discrepancy in the third-party record.",
           "entities": [
-            "B-012",
-            "B-016"
+            "bar.offer_closing_contract_execution",
+            "bar.probation_period_post_start_confirmation"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -1546,7 +1546,7 @@
           "owner": "candidate",
           "description": "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
           "entities": [
-            "B-001",
+            "bar.application_ingestion",
             "A-001"
           ],
           "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email.",
@@ -1571,7 +1571,7 @@
           "owner": "ats-vendor",
           "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
           "entities": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-008",
             "M-011"
           ],
@@ -1585,7 +1585,7 @@
           "owner": "ats-vendor",
           "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
           "entities": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009",
             "M-016"
           ],
@@ -1599,7 +1599,7 @@
           "owner": "recruiter",
           "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
           "entities": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009"
           ],
           "visible_to_candidate": "Nothing yet.",
@@ -1612,7 +1612,7 @@
           "owner": "recruiter",
           "description": "The record leaves this machine and enters WF-001 at the recruiter screen.",
           "entities": [
-            "B-004"
+            "bar.recruiter_screening_call"
           ],
           "visible_to_candidate": "An invitation to talk.",
           "deviations": []
@@ -1665,7 +1665,7 @@
           "owner": "ats-vendor",
           "guard": "Required fields validate and the file is a supported type.",
           "entities": [
-            "B-001"
+            "bar.application_ingestion"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 1
@@ -1689,7 +1689,7 @@
           "owner": "ats-vendor",
           "guard": "Every knockout rule passes and the rank clears the advance threshold.",
           "entities": [
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 2
@@ -1715,7 +1715,7 @@
           "owner": "recruiter",
           "guard": "Capacity reaches this position in the queue before the expiry threshold.",
           "entities": [
-            "B-003"
+            "bar.inbound_screening_triage"
           ],
           "latency_expected_days": 4,
           "latency_max_days": 14
@@ -1739,7 +1739,7 @@
           "owner": "recruiter",
           "guard": "The profile is put on the active list for outreach.",
           "entities": [
-            "B-003"
+            "bar.inbound_screening_triage"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -1801,8 +1801,8 @@
           ],
           "visible_to_candidate": "The role, the band, the stages, and a date by which the first answer should arrive.",
           "deviations": [
-            "B-013",
-            "B-014",
+            "bar.requisition_approval_public_posting",
+            "bar.outbound_sourcing_talent_pool_contact",
             "M-006",
             "M-016",
             "M-025",
@@ -1820,7 +1820,7 @@
           ],
           "visible_to_candidate": "A confirmation that names the role and says what happens next.",
           "deviations": [
-            "B-001",
+            "bar.application_ingestion",
             "M-003"
           ]
         },
@@ -1837,7 +1837,7 @@
           ],
           "visible_to_candidate": "If a rule ends it here, which rule.",
           "deviations": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-008",
             "M-011",
             "M-020"
@@ -1855,7 +1855,7 @@
           ],
           "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
           "deviations": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009"
           ]
         },
@@ -1870,7 +1870,7 @@
           ],
           "visible_to_candidate": "The numbers and the constraints, from both sides, in the first call.",
           "deviations": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "M-004",
             "M-014",
             "M-017"
@@ -1889,8 +1889,8 @@
           ],
           "visible_to_candidate": "The exercise, the timebox and the criteria — before starting, not after.",
           "deviations": [
-            "B-005",
-            "B-006",
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation",
             "M-001",
             "M-010",
             "M-019",
@@ -1908,9 +1908,9 @@
           ],
           "visible_to_candidate": "Who they will meet, what each conversation is for, and how many there are.",
           "deviations": [
-            "B-007",
-            "B-008",
-            "B-015",
+            "bar.hiring_manager_in_depth_review",
+            "bar.team_cross_functional_panel",
+            "bar.client_profile_approval_and_client_interview",
             "M-002",
             "M-012",
             "M-013",
@@ -1930,7 +1930,7 @@
           ],
           "visible_to_candidate": "The same band the posting stated, and which point in it the offer sits at.",
           "deviations": [
-            "B-009",
+            "bar.compensation_levelling_reconciliation",
             "M-004"
           ]
         },
@@ -1946,7 +1946,7 @@
           ],
           "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
           "deviations": [
-            "B-010",
+            "bar.headcount_executive_budget_approval",
             "M-007"
           ]
         },
@@ -1959,7 +1959,7 @@
           "entities": [],
           "visible_to_candidate": "The complete offer document, and how long they have to answer.",
           "deviations": [
-            "B-012",
+            "bar.offer_closing_contract_execution",
             "M-007"
           ]
         },
@@ -1974,8 +1974,8 @@
           ],
           "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
           "deviations": [
-            "B-011",
-            "B-016",
+            "bar.reference_background_verification",
+            "bar.probation_period_post_start_confirmation",
             "M-021",
             "M-027",
             "M-028",
@@ -2279,7 +2279,7 @@
           "owner": "recruiter",
           "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
           "entities": [
-            "B-014",
+            "bar.outbound_sourcing_talent_pool_contact",
             "M-016"
           ],
           "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
@@ -2292,7 +2292,7 @@
           "owner": "recruiter",
           "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
           "entities": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "M-004"
           ],
           "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
@@ -2305,8 +2305,8 @@
           "owner": "hiring-manager",
           "description": "Technical interview or test task scored against the vendor assessment of the client technical threshold.",
           "entities": [
-            "B-005",
-            "B-006"
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
           ],
           "visible_to_candidate": "A technical evaluation round with vendor engineering staff.",
           "deviations": []
@@ -2318,7 +2318,7 @@
           "owner": "client",
           "description": "The candidate CV is submitted to the client account team for profile review and interview selection.",
           "entities": [
-            "B-015",
+            "bar.client_profile_approval_and_client_interview",
             "A-001",
             "A-015"
           ],
@@ -2332,7 +2332,7 @@
           "owner": "client",
           "description": "Interview conducted directly by client engineering or project management leadership.",
           "entities": [
-            "B-015",
+            "bar.client_profile_approval_and_client_interview",
             "A-002"
           ],
           "visible_to_candidate": "An external interview round evaluating project and culture fit.",
@@ -2345,7 +2345,7 @@
           "owner": "recruiter",
           "description": "Compensation package calculated from client billing rate minus required gross margin.",
           "entities": [
-            "B-009"
+            "bar.compensation_levelling_reconciliation"
           ],
           "visible_to_candidate": "An offer package structured around vendor compensation models.",
           "deviations": []
@@ -2357,7 +2357,7 @@
           "owner": "employer-policy",
           "description": "Client-mandated background checks, certifications, and compliance paperwork.",
           "entities": [
-            "B-011"
+            "bar.reference_background_verification"
           ],
           "visible_to_candidate": "Document requests and compliance background screening.",
           "deviations": []
@@ -2369,7 +2369,7 @@
           "owner": "employer-policy",
           "description": "Contract executed and candidate onboarded onto active client delivery.",
           "entities": [
-            "B-012"
+            "bar.offer_closing_contract_execution"
           ],
           "visible_to_candidate": "Confirmed start date and client team onboarding.",
           "deviations": []
@@ -2435,7 +2435,7 @@
           "owner": "client",
           "guard": "Commercial contract signed or tender requires candidate CVs",
           "entities": [
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 10
@@ -2447,7 +2447,7 @@
           "owner": "recruiter",
           "guard": "Outreach accepted and screen booked",
           "entities": [
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -2469,7 +2469,7 @@
           "owner": "recruiter",
           "guard": "Expectations aligned with client billing margin",
           "entities": [
-            "B-004"
+            "bar.recruiter_screening_call"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -2491,8 +2491,8 @@
           "owner": "hiring-manager",
           "guard": "Technical bar meets vendor expectation of client threshold",
           "entities": [
-            "B-005",
-            "B-006"
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
           ],
           "latency_expected_days": 4,
           "latency_max_days": 10
@@ -2514,7 +2514,7 @@
           "owner": "client",
           "guard": "Client manager accepts profile and requests interview",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -2526,7 +2526,7 @@
           "owner": "client",
           "guard": "Client manager rejects profile on CV review",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -2558,7 +2558,7 @@
           "owner": "client",
           "guard": "Client confirms candidate meets project requirements",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 4,
           "latency_max_days": 10
@@ -2570,7 +2570,7 @@
           "owner": "client",
           "guard": "Client decides against candidate after meeting",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -2582,7 +2582,7 @@
           "owner": "recruiter",
           "guard": "Candidate accepts offer parameters",
           "entities": [
-            "B-009"
+            "bar.compensation_levelling_reconciliation"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -2604,9 +2604,9 @@
           "owner": "employer-policy",
           "guard": "Verification complete and project onboarding commences",
           "entities": [
-            "B-011",
-            "B-012",
-            "B-016"
+            "bar.reference_background_verification",
+            "bar.offer_closing_contract_execution",
+            "bar.probation_period_post_start_confirmation"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -2663,7 +2663,7 @@
         }
       ],
       "entities": [
-        "B-014",
+        "bar.outbound_sourcing_talent_pool_contact",
         "M-016"
       ],
       "specimens": []
@@ -2715,7 +2715,7 @@
         }
       ],
       "entities": [
-        "B-014",
+        "bar.outbound_sourcing_talent_pool_contact",
         "M-016",
         "M-012",
         "A-012"
@@ -2891,7 +2891,7 @@
         "M-018",
         "M-009",
         "M-020",
-        "B-003",
+        "bar.inbound_screening_triage",
         "pat.seniority_double_bind",
         "pat.experience_age_impossibility",
         "L-003",
@@ -5427,14 +5427,16 @@
         "EVD-004"
       ],
       "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
-      "aliases": [],
-      "id": "B-013",
+      "aliases": [
+        "B-013"
+      ],
+      "id": "bar.requisition_approval_public_posting",
       "type": "barrier",
       "stage": "pre-posting",
       "order": 1,
       "precedes": [
-        "B-014",
-        "B-001"
+        "bar.outbound_sourcing_talent_pool_contact",
+        "bar.application_ingestion"
       ],
       "description": "The gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
@@ -5494,14 +5496,16 @@
         "EVD-034"
       ],
       "content": "# Outbound Sourcing & Talent Pool Contact\n\nRecruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.\n\n### Pass Condition\nThe candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
-      "aliases": [],
-      "id": "B-014",
+      "aliases": [
+        "B-014"
+      ],
+      "id": "bar.outbound_sourcing_talent_pool_contact",
       "type": "barrier",
       "stage": "sourcing",
       "order": 2,
       "precedes": [
-        "B-001",
-        "B-004"
+        "bar.application_ingestion",
+        "bar.recruiter_screening_call"
       ],
       "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
       "pass_condition": "The candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
@@ -5561,13 +5565,15 @@
         "EVD-001"
       ],
       "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nThe application record is received, validates against the minimum schema, and is linked to an active job requisition.",
-      "aliases": [],
-      "id": "B-001",
+      "aliases": [
+        "B-001"
+      ],
+      "id": "bar.application_ingestion",
       "type": "barrier",
       "stage": "ingestion",
       "order": 3,
       "precedes": [
-        "B-002"
+        "bar.automated_filter_parser_threshold"
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
       "pass_condition": "The application record is received, validates against the minimum schema, and is linked to an active job requisition.",
@@ -5632,14 +5638,16 @@
         "EVD-047"
       ],
       "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
-      "aliases": [],
-      "id": "B-002",
+      "aliases": [
+        "B-002"
+      ],
+      "id": "bar.automated_filter_parser_threshold",
       "type": "barrier",
       "stage": "ingestion",
       "order": 4,
       "precedes": [
-        "B-003",
-        "B-004"
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call"
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.",
       "pass_condition": "The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
@@ -5712,13 +5720,15 @@
         "EVD-001"
       ],
       "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nThe recruiter adds the application to the active short-list for a first conversation.",
-      "aliases": [],
-      "id": "B-003",
+      "aliases": [
+        "B-003"
+      ],
+      "id": "bar.inbound_screening_triage",
       "type": "barrier",
       "stage": "screening",
       "order": 5,
       "precedes": [
-        "B-004"
+        "bar.recruiter_screening_call"
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
       "pass_condition": "The recruiter adds the application to the active short-list for a first conversation.",
@@ -5774,13 +5784,15 @@
         "EVD-005"
       ],
       "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nThe recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
-      "aliases": [],
-      "id": "B-004",
+      "aliases": [
+        "B-004"
+      ],
+      "id": "bar.recruiter_screening_call",
       "type": "barrier",
       "stage": "recruiter",
       "order": 6,
       "precedes": [
-        "B-005"
+        "bar.technical_screen_live_assessment"
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
       "pass_condition": "The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
@@ -5859,14 +5871,16 @@
         "EVD-006"
       ],
       "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nThe candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
-      "aliases": [],
-      "id": "B-005",
+      "aliases": [
+        "B-005"
+      ],
+      "id": "bar.technical_screen_live_assessment",
       "type": "barrier",
       "stage": "technical",
       "order": 7,
       "precedes": [
-        "B-006",
-        "B-007"
+        "bar.take_home_work_sample_evaluation",
+        "bar.hiring_manager_in_depth_review"
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
       "pass_condition": "The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
@@ -5920,13 +5934,15 @@
         "EVD-006"
       ],
       "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nThe submitted code meets the architecture, functionality, test coverage and documentation requirements.",
-      "aliases": [],
-      "id": "B-006",
+      "aliases": [
+        "B-006"
+      ],
+      "id": "bar.take_home_work_sample_evaluation",
       "type": "barrier",
       "stage": "technical",
       "order": 8,
       "precedes": [
-        "B-007"
+        "bar.hiring_manager_in_depth_review"
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
       "pass_condition": "The submitted code meets the architecture, functionality, test coverage and documentation requirements.",
@@ -5984,13 +6000,15 @@
         "EVD-002"
       ],
       "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nThe hiring manager confirms the required depth and approves the candidate for the final panel.",
-      "aliases": [],
-      "id": "B-007",
+      "aliases": [
+        "B-007"
+      ],
+      "id": "bar.hiring_manager_in_depth_review",
       "type": "barrier",
       "stage": "hiring-manager",
       "order": 9,
       "precedes": [
-        "B-008"
+        "bar.team_cross_functional_panel"
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
       "pass_condition": "The hiring manager confirms the required depth and approves the candidate for the final panel.",
@@ -6057,13 +6075,15 @@
         "EVD-006"
       ],
       "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold.",
-      "aliases": [],
-      "id": "B-008",
+      "aliases": [
+        "B-008"
+      ],
+      "id": "bar.team_cross_functional_panel",
       "type": "barrier",
       "stage": "team",
       "order": 10,
       "precedes": [
-        "B-009"
+        "bar.compensation_levelling_reconciliation"
       ],
       "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
       "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
@@ -6126,13 +6146,15 @@
         "EVD-005"
       ],
       "content": "# Compensation & Levelling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / levelling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
-      "aliases": [],
-      "id": "B-009",
+      "aliases": [
+        "B-009"
+      ],
+      "id": "bar.compensation_levelling_reconciliation",
       "type": "barrier",
       "stage": "compensation",
       "order": 11,
       "precedes": [
-        "B-010"
+        "bar.headcount_executive_budget_approval"
       ],
       "description": "Internal alignment between candidate expected compensation/level and company pay bands / levelling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
@@ -6192,13 +6214,15 @@
         "EVD-004"
       ],
       "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership.",
-      "aliases": [],
-      "id": "B-010",
+      "aliases": [
+        "B-010"
+      ],
+      "id": "bar.headcount_executive_budget_approval",
       "type": "barrier",
       "stage": "offer",
       "order": 12,
       "precedes": [
-        "B-011"
+        "bar.reference_background_verification"
       ],
       "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
       "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
@@ -6265,13 +6289,15 @@
         "EVD-001"
       ],
       "content": "# Reference & Background Verification\n\nThird-party or internal verification of past employment records, academic degrees, and professional references.\n\n### Pass Condition\nAll mandatory background checks clear with no unresolved factual discrepancies.",
-      "aliases": [],
-      "id": "B-011",
+      "aliases": [
+        "B-011"
+      ],
+      "id": "bar.reference_background_verification",
       "type": "barrier",
       "stage": "post-offer",
       "order": 13,
       "precedes": [
-        "B-012"
+        "bar.offer_closing_contract_execution"
       ],
       "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
       "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
@@ -6335,8 +6361,10 @@
         "EVD-004"
       ],
       "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered.",
-      "aliases": [],
-      "id": "B-012",
+      "aliases": [
+        "B-012"
+      ],
+      "id": "bar.offer_closing_contract_execution",
       "type": "barrier",
       "stage": "post-offer",
       "order": 14,
@@ -6401,8 +6429,10 @@
         "EVD-034"
       ],
       "content": "# Client Profile Approval and Client Interview\n\nThe candidate profile is submitted to the end client for review, followed by a client-side interview round.\n\n### Pass Condition\nThe client approves the profile submission and signs off on the technical and culture match after the interview.",
-      "aliases": [],
-      "id": "B-015",
+      "aliases": [
+        "B-015"
+      ],
+      "id": "bar.client_profile_approval_and_client_interview",
       "type": "barrier",
       "stage": "client",
       "order": 15,
@@ -6469,8 +6499,10 @@
         "EVD-041"
       ],
       "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
-      "aliases": [],
-      "id": "B-016",
+      "aliases": [
+        "B-016"
+      ],
+      "id": "bar.probation_period_post_start_confirmation",
       "type": "barrier",
       "stage": "post-offer",
       "order": 16,
@@ -6534,9 +6566,9 @@
       "type": "mechanism",
       "summary": "The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.",
       "operates_at": [
-        "B-005",
-        "B-006",
-        "B-007"
+        "bar.technical_screen_live_assessment",
+        "bar.take_home_work_sample_evaluation",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -6631,9 +6663,9 @@
       "type": "mechanism",
       "summary": "Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.",
       "operates_at": [
-        "B-007",
-        "B-008",
-        "B-010"
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.headcount_executive_budget_approval"
       ],
       "emissions": [
         {
@@ -6724,8 +6756,8 @@
       "type": "mechanism",
       "summary": "Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.",
       "operates_at": [
-        "B-001",
-        "B-002"
+        "bar.application_ingestion",
+        "bar.automated_filter_parser_threshold"
       ],
       "emissions": [
         {
@@ -6824,8 +6856,8 @@
       "type": "mechanism",
       "summary": "Candidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.",
       "operates_at": [
-        "B-004",
-        "B-009"
+        "bar.recruiter_screening_call",
+        "bar.compensation_levelling_reconciliation"
       ],
       "emissions": [
         {
@@ -6944,10 +6976,10 @@
       "type": "mechanism",
       "summary": "Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.",
       "operates_at": [
-        "B-013",
-        "B-001",
-        "B-003",
-        "B-007"
+        "bar.requisition_approval_public_posting",
+        "bar.application_ingestion",
+        "bar.inbound_screening_triage",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -7060,10 +7092,10 @@
       "type": "mechanism",
       "summary": "Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.",
       "operates_at": [
-        "B-013",
-        "B-001",
-        "B-002",
-        "B-003"
+        "bar.requisition_approval_public_posting",
+        "bar.application_ingestion",
+        "bar.automated_filter_parser_threshold",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -7164,9 +7196,9 @@
       "type": "mechanism",
       "summary": "Executive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.",
       "operates_at": [
-        "B-008",
-        "B-010",
-        "B-012"
+        "bar.team_cross_functional_panel",
+        "bar.headcount_executive_budget_approval",
+        "bar.offer_closing_contract_execution"
       ],
       "emissions": [
         {
@@ -7267,7 +7299,7 @@
       "type": "mechanism",
       "summary": "Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.",
       "operates_at": [
-        "B-002"
+        "bar.automated_filter_parser_threshold"
       ],
       "emissions": [
         {
@@ -7371,8 +7403,8 @@
       "type": "mechanism",
       "summary": "Applicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.",
       "operates_at": [
-        "B-003",
-        "B-004"
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -7475,9 +7507,9 @@
       "type": "mechanism",
       "summary": "The panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.",
       "operates_at": [
-        "B-005",
-        "B-007",
-        "B-008"
+        "bar.technical_screen_live_assessment",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -7577,8 +7609,8 @@
       "type": "mechanism",
       "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
       "operates_at": [
-        "B-002",
-        "B-003"
+        "bar.automated_filter_parser_threshold",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -7677,9 +7709,9 @@
       "type": "mechanism",
       "summary": "Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.",
       "operates_at": [
-        "B-005",
-        "B-007",
-        "B-008"
+        "bar.technical_screen_live_assessment",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -7776,9 +7808,9 @@
       "type": "mechanism",
       "summary": "The team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.",
       "operates_at": [
-        "B-007",
-        "B-008",
-        "B-009"
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.compensation_levelling_reconciliation"
       ],
       "emissions": [
         {
@@ -7880,8 +7912,8 @@
       "type": "mechanism",
       "summary": "The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.",
       "operates_at": [
-        "B-002",
-        "B-004"
+        "bar.automated_filter_parser_threshold",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -7993,8 +8025,8 @@
       "type": "mechanism",
       "summary": "During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.",
       "operates_at": [
-        "B-004",
-        "B-008"
+        "bar.recruiter_screening_call",
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -8098,10 +8130,10 @@
       "type": "mechanism",
       "summary": "Recruiters open conversations and build candidate pools against headcount that has not been approved or funded.",
       "operates_at": [
-        "B-013",
-        "B-014",
-        "B-003",
-        "B-004"
+        "bar.requisition_approval_public_posting",
+        "bar.outbound_sourcing_talent_pool_contact",
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -8206,9 +8238,9 @@
       "type": "mechanism",
       "summary": "A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.",
       "operates_at": [
-        "B-003",
-        "B-004",
-        "B-007"
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -8301,8 +8333,8 @@
       "type": "mechanism",
       "summary": "The interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.",
       "operates_at": [
-        "B-004",
-        "B-007"
+        "bar.recruiter_screening_call",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -8419,7 +8451,7 @@
       "type": "mechanism",
       "summary": "A 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.",
       "operates_at": [
-        "B-006"
+        "bar.take_home_work_sample_evaluation"
       ],
       "emissions": [
         {
@@ -8516,8 +8548,8 @@
       "type": "mechanism",
       "summary": "The ATS is configured to reject in bulk every application still pending after 45 or 60 days.",
       "operates_at": [
-        "B-001",
-        "B-003"
+        "bar.application_ingestion",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -8634,7 +8666,7 @@
       "type": "mechanism",
       "summary": "A third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.",
       "operates_at": [
-        "B-011"
+        "bar.reference_background_verification"
       ],
       "emissions": [
         {
@@ -8721,7 +8753,7 @@
       "type": "mechanism",
       "summary": "The panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.",
       "operates_at": [
-        "B-008"
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -8814,8 +8846,8 @@
       "type": "mechanism",
       "summary": "The surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organisation.",
       "operates_at": [
-        "B-003",
-        "B-005"
+        "bar.inbound_screening_triage",
+        "bar.technical_screen_live_assessment"
       ],
       "emissions": [
         {
@@ -8911,9 +8943,9 @@
       "type": "mechanism",
       "summary": "The posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.",
       "operates_at": [
-        "B-013",
-        "B-002",
-        "B-004"
+        "bar.requisition_approval_public_posting",
+        "bar.automated_filter_parser_threshold",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -9011,7 +9043,7 @@
       "type": "mechanism",
       "summary": "Recruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.",
       "operates_at": [
-        "B-014"
+        "bar.outbound_sourcing_talent_pool_contact"
       ],
       "emissions": [
         {
@@ -9109,8 +9141,8 @@
       "type": "mechanism",
       "summary": "An engineer already employed and between projects becomes available mid-search, and the seat the external candidate is interviewing for is filled from the bench.",
       "operates_at": [
-        "B-013",
-        "B-003"
+        "bar.requisition_approval_public_posting",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -9214,8 +9246,8 @@
       "type": "mechanism",
       "summary": "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.",
       "operates_at": [
-        "B-012",
-        "B-016"
+        "bar.offer_closing_contract_execution",
+        "bar.probation_period_post_start_confirmation"
       ],
       "emissions": [
         {
@@ -9313,7 +9345,7 @@
       "type": "mechanism",
       "summary": "Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.",
       "operates_at": [
-        "B-016"
+        "bar.probation_period_post_start_confirmation"
       ],
       "emissions": [
         {
@@ -10148,7 +10180,7 @@
       "summary": "Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.",
       "targets": [
         "M-006",
-        "B-001",
+        "bar.application_ingestion",
         "pat.closed_then_reposted_requisition_motif",
         "L-003"
       ],
@@ -10229,8 +10261,8 @@
       "summary": "Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.",
       "targets": [
         "M-004",
-        "B-004",
-        "B-009",
+        "bar.recruiter_screening_call",
+        "bar.compensation_levelling_reconciliation",
         "pat.seniority_double_bind",
         "pat.compensation_double_bind"
       ],
@@ -10309,9 +10341,9 @@
       "targets": [
         "M-001",
         "M-010",
-        "B-007",
-        "B-008",
-        "B-015",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.client_profile_approval_and_client_interview",
         "pat.seniority_double_bind",
         "pat.closed_then_reposted_requisition_motif",
         "L-003"
@@ -10467,7 +10499,7 @@
       "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
       "targets": [
         "M-003",
-        "B-002",
+        "bar.automated_filter_parser_threshold",
         "pat.experience_age_impossibility"
       ],
       "actor": "candidate-action",
@@ -10541,7 +10573,7 @@
       "targets": [
         "M-019",
         "L-002",
-        "B-006"
+        "bar.take_home_work_sample_evaluation"
       ],
       "actor": "hiring-manager",
       "scope": "organizational",
@@ -10612,7 +10644,7 @@
       "summary": "Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.",
       "targets": [
         "M-024",
-        "B-013",
+        "bar.requisition_approval_public_posting",
         "L-003"
       ],
       "actor": "hiring-manager",
@@ -10689,7 +10721,7 @@
       "summary": "Where a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.",
       "targets": [
         "M-005",
-        "B-013"
+        "bar.requisition_approval_public_posting"
       ],
       "actor": "employer-policy",
       "scope": "organizational",
@@ -10759,7 +10791,7 @@
       "type": "intervention",
       "summary": "Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.",
       "targets": [
-        "B-014",
+        "bar.outbound_sourcing_talent_pool_contact",
         "M-016",
         "M-025"
       ],
@@ -10845,7 +10877,7 @@
       "type": "intervention",
       "summary": "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.",
       "targets": [
-        "B-003",
+        "bar.inbound_screening_triage",
         "M-009",
         "M-020"
       ],
@@ -10926,7 +10958,7 @@
       "type": "intervention",
       "summary": "Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.",
       "targets": [
-        "B-003",
+        "bar.inbound_screening_triage",
         "M-017",
         "M-023"
       ],
@@ -11013,8 +11045,8 @@
       "summary": "Submit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.",
       "targets": [
         "M-023",
-        "B-005",
-        "B-003"
+        "bar.technical_screen_live_assessment",
+        "bar.inbound_screening_triage"
       ],
       "actor": "candidate-action",
       "scope": "individual",
@@ -11093,7 +11125,7 @@
       "type": "intervention",
       "summary": "Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.",
       "targets": [
-        "B-005",
+        "bar.technical_screen_live_assessment",
         "M-012"
       ],
       "actor": "employer-policy",
@@ -11173,7 +11205,7 @@
       "summary": "Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.",
       "targets": [
         "M-012",
-        "B-005"
+        "bar.technical_screen_live_assessment"
       ],
       "actor": "hiring-manager",
       "scope": "team",
@@ -11256,8 +11288,8 @@
       "type": "intervention",
       "summary": "Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.",
       "targets": [
-        "B-010",
-        "B-012",
+        "bar.headcount_executive_budget_approval",
+        "bar.offer_closing_contract_execution",
         "M-007"
       ],
       "actor": "employer-policy",
@@ -11340,8 +11372,8 @@
       "type": "intervention",
       "summary": "Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.",
       "targets": [
-        "B-011",
-        "B-016",
+        "bar.reference_background_verification",
+        "bar.probation_period_post_start_confirmation",
         "M-021",
         "M-027",
         "M-028"
@@ -11427,7 +11459,7 @@
       "summary": "Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.",
       "targets": [
         "M-002",
-        "B-010",
+        "bar.headcount_executive_budget_approval",
         "pat.closed_then_reposted_requisition_motif"
       ],
       "actor": "recruiter-process",

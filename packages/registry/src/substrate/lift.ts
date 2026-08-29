@@ -168,7 +168,7 @@ export function lift(bundle: RegistryBundle): Lifted {
       transitions: w.transitions.map((t) => ({
         from: `evc:${low(w.id)}.${t.from}`,
         to: `evc:${low(w.id)}.${t.to}`,
-        conditions: (t.entities ?? []).filter((e) => e.startsWith('B-')).map((e) => `cnd:${low(e)}`),
+        conditions: (t.entities ?? []).filter((e) => e.startsWith('B-') || e.startsWith('bar.')).map((e) => `cnd:${low(e)}`),
         latency_expected_days: t.latency_expected_days,
         latency_max_days: t.latency_max_days,
       })),
@@ -188,7 +188,7 @@ export function lift(bundle: RegistryBundle): Lifted {
   for (const w of bundle.workflows)
     for (const t of w.transitions)
       for (const e of t.entities ?? [])
-        if (e.startsWith('B-')) {
+        if (e.startsWith('B-') || e.startsWith('bar.')) {
           const g = gateOf.get(e) ?? [];
           const evc = `evc:${low(w.id)}.${t.to}`;
           if (!g.includes(evc)) g.push(evc);

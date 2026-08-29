@@ -16,11 +16,12 @@ import type { Condition, Substrate } from './schema.js';
 import type { Lifted } from './lift.js';
 
 const toPublicId = (substrateId: string): string => {
-  if (substrateId.startsWith('cnd:')) return substrateId.slice(4).toUpperCase();
-  if (substrateId.startsWith('evc:')) return substrateId.slice(4).toUpperCase();
   if (substrateId.startsWith('rec:actor.')) return substrateId.slice(10);
-  if (substrateId.startsWith('rec:')) return substrateId.slice(4).toUpperCase();
-  if (substrateId.startsWith('prc:')) return substrateId.slice(4).toUpperCase();
+  const prefixMatch = substrateId.match(/^(cnd|evc|rec|prc):(.+)$/);
+  if (prefixMatch) {
+    const raw = prefixMatch[2]!;
+    return /^[a-z]+-\d+$/i.test(raw) ? raw.toUpperCase() : raw;
+  }
   return substrateId;
 };
 
@@ -28,7 +29,7 @@ const toPublicId = (substrateId: string): string => {
 // 1. Indistinguishability & Identifiability over Substrate
 
 const getMechanismConditions = (substrate: Substrate): Condition[] =>
-  substrate.conditions.filter((c) => c.id.startsWith('cnd:m-'));
+  substrate.conditions.filter((c) => c.id.startsWith('cnd:m-') || c.id.startsWith('cnd:mech.'));
 
 const getCausesPublic = (c: Condition): string[] =>
   c.causes.map((evc) => toPublicId(evc)).sort();
@@ -225,7 +226,7 @@ export function substrateGaps(lifted: Lifted): GapReport {
     if (!byActor.has(actor)) byActor.set(actor, new Set());
     const gates = byActor.get(actor)!;
     for (const t of (i.targets as string[]) ?? []) {
-      const hit = t.startsWith('B-') ? [t] : (gatesOfMechanism.get(t) ?? []);
+      const hit = (t.startsWith('B-') || t.startsWith('bar.')) ? [t] : (gatesOfMechanism.get(t) ?? []);
       for (const g of hit) {
         gates.add(g);
         reached.add(g);

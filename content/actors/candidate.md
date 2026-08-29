@@ -44,8 +44,8 @@ recommendations:
     costs: "A single-column text export gives up the layout, and every later edit to the document has to be checked again."
     targets:
       - "M-003"
-      - "B-001"
-      - "B-002"
+      - "bar.application_ingestion"
+      - "bar.automated_filter_parser_threshold"
       - "A-009"
     interventions:
       - "I-005"
@@ -59,7 +59,7 @@ recommendations:
       - "M-016"
       - "M-005"
       - "M-006"
-      - "B-014"
+      - "bar.outbound_sourcing_talent_pool_contact"
       - "A-012"
     interventions: []
   -
@@ -70,8 +70,8 @@ recommendations:
     costs: "The question can end a process at the screen, and stating an expectation early fixes a number before the level is fixed."
     targets:
       - "M-004"
-      - "B-004"
-      - "B-009"
+      - "bar.recruiter_screening_call"
+      - "bar.compensation_levelling_reconciliation"
       - "pat.compensation_double_bind"
       - "A-005"
     interventions:
@@ -98,7 +98,7 @@ recommendations:
     targets:
       - "L-002"
       - "M-019"
-      - "B-006"
+      - "bar.take_home_work_sample_evaluation"
       - "A-006"
     interventions:
       - "I-006"
@@ -112,7 +112,7 @@ recommendations:
       - "M-020"
       - "M-006"
       - "M-009"
-      - "B-003"
+      - "bar.inbound_screening_triage"
       - "A-001"
     interventions:
       - "I-001"

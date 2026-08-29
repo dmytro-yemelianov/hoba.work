@@ -41,8 +41,8 @@
         ],
         "visible_to_candidate": "The role, the band, the stages, and a date by which the first answer should arrive.",
         "deviations": [
-          "B-013",
-          "B-014",
+          "bar.requisition_approval_public_posting",
+          "bar.outbound_sourcing_talent_pool_contact",
           "M-006",
           "M-016",
           "M-025",
@@ -60,7 +60,7 @@
         ],
         "visible_to_candidate": "A confirmation that names the role and says what happens next.",
         "deviations": [
-          "B-001",
+          "bar.application_ingestion",
           "M-003"
         ]
       },
@@ -77,7 +77,7 @@
         ],
         "visible_to_candidate": "If a rule ends it here, which rule.",
         "deviations": [
-          "B-002",
+          "bar.automated_filter_parser_threshold",
           "M-008",
           "M-011",
           "M-020"
@@ -95,7 +95,7 @@
         ],
         "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
         "deviations": [
-          "B-003",
+          "bar.inbound_screening_triage",
           "M-009"
         ]
       },
@@ -110,7 +110,7 @@
         ],
         "visible_to_candidate": "The numbers and the constraints, from both sides, in the first call.",
         "deviations": [
-          "B-004",
+          "bar.recruiter_screening_call",
           "M-004",
           "M-014",
           "M-017"
@@ -129,8 +129,8 @@
         ],
         "visible_to_candidate": "The exercise, the timebox and the criteria — before starting, not after.",
         "deviations": [
-          "B-005",
-          "B-006",
+          "bar.technical_screen_live_assessment",
+          "bar.take_home_work_sample_evaluation",
           "M-001",
           "M-010",
           "M-019",
@@ -148,9 +148,9 @@
         ],
         "visible_to_candidate": "Who they will meet, what each conversation is for, and how many there are.",
         "deviations": [
-          "B-007",
-          "B-008",
-          "B-015",
+          "bar.hiring_manager_in_depth_review",
+          "bar.team_cross_functional_panel",
+          "bar.client_profile_approval_and_client_interview",
           "M-002",
           "M-012",
           "M-013",
@@ -170,7 +170,7 @@
         ],
         "visible_to_candidate": "The same band the posting stated, and which point in it the offer sits at.",
         "deviations": [
-          "B-009",
+          "bar.compensation_levelling_reconciliation",
           "M-004"
         ]
       },
@@ -186,7 +186,7 @@
         ],
         "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
         "deviations": [
-          "B-010",
+          "bar.headcount_executive_budget_approval",
           "M-007"
         ]
       },
@@ -199,7 +199,7 @@
         "entities": [],
         "visible_to_candidate": "The complete offer document, and how long they have to answer.",
         "deviations": [
-          "B-012",
+          "bar.offer_closing_contract_execution",
           "M-007"
         ]
       },
@@ -214,8 +214,8 @@
         ],
         "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
         "deviations": [
-          "B-011",
-          "B-016",
+          "bar.reference_background_verification",
+          "bar.probation_period_post_start_confirmation",
           "M-021",
           "M-027",
           "M-028",

@@ -12,10 +12,10 @@
     "type": "mechanism",
     "summary": "Recruiters open conversations and build candidate pools against headcount that has not been approved or funded.",
     "operates_at": [
-      "B-013",
-      "B-014",
-      "B-003",
-      "B-004"
+      "bar.requisition_approval_public_posting",
+      "bar.outbound_sourcing_talent_pool_contact",
+      "bar.inbound_screening_triage",
+      "bar.recruiter_screening_call"
     ],
     "emissions": [
       {

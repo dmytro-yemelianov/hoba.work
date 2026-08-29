@@ -20,7 +20,7 @@
           "owner": "hiring-manager",
           "description": "A manager writes the role. Level, band and requirements are decided here, usually by copying the last search for the same team.",
           "entities": [
-            "B-013"
+            "bar.requisition_approval_public_posting"
           ],
           "visible_to_candidate": "Nothing. The role does not exist publicly yet.",
           "deviations": []
@@ -32,8 +32,8 @@
           "owner": "employer-policy",
           "description": "Finance and leadership commit budget against the requisition. Approval can lapse or be withdrawn later without the funnel noticing.",
           "entities": [
-            "B-013",
-            "B-010"
+            "bar.requisition_approval_public_posting",
+            "bar.headcount_executive_budget_approval"
           ],
           "visible_to_candidate": "Nothing.",
           "deviations": []
@@ -45,8 +45,8 @@
           "owner": "recruiter",
           "description": "The role is public. It may also be refreshed automatically every thirty days, which looks identical to a new opening.",
           "entities": [
-            "B-013",
-            "B-014",
+            "bar.requisition_approval_public_posting",
+            "bar.outbound_sourcing_talent_pool_contact",
             "M-006"
           ],
           "visible_to_candidate": "The posting, and whatever it states.",
@@ -59,7 +59,7 @@
           "owner": "ats-vendor",
           "description": "A record exists and is linked to the requisition. Nothing has been read.",
           "entities": [
-            "B-001",
+            "bar.application_ingestion",
             "A-001"
           ],
           "visible_to_candidate": "A confirmation, or silence.",
@@ -72,7 +72,7 @@
           "owner": "ats-vendor",
           "description": "Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second.",
           "entities": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-003",
             "M-008",
             "M-011",
@@ -88,7 +88,7 @@
           "owner": "recruiter",
           "description": "Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.",
           "entities": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009",
             "M-016"
           ],
@@ -102,7 +102,7 @@
           "owner": "recruiter",
           "description": "A conversation about compensation, timeline, location and a two-minute version of the last project.",
           "entities": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "A-013",
             "M-004",
             "M-017"
@@ -117,8 +117,8 @@
           "owner": "hiring-manager",
           "description": "A live exercise, a take-home, or both, scored against a rubric the candidate does not see.",
           "entities": [
-            "B-005",
-            "B-006",
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation",
             "A-006",
             "A-008",
             "M-001",
@@ -134,8 +134,8 @@
           "owner": "hiring-manager",
           "description": "Depth, ownership and collaboration, assessed across several interviewers who may be measuring different things.",
           "entities": [
-            "B-007",
-            "B-008",
+            "bar.hiring_manager_in_depth_review",
+            "bar.team_cross_functional_panel",
             "A-010",
             "A-014",
             "M-010",
@@ -152,7 +152,7 @@
           "owner": "employer-policy",
           "description": "The level the panel assigned meets the band finance approved. First time the two are compared.",
           "entities": [
-            "B-009",
+            "bar.compensation_levelling_reconciliation",
             "A-005",
             "M-004"
           ],
@@ -166,7 +166,7 @@
           "owner": "employer-policy",
           "description": "Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes.",
           "entities": [
-            "B-010",
+            "bar.headcount_executive_budget_approval",
             "M-007"
           ],
           "visible_to_candidate": "Silence, usually described as \"final checks\".",
@@ -179,7 +179,7 @@
           "owner": "recruiter",
           "description": "A written offer exists. The requisition is still open until the countersignature lands.",
           "entities": [
-            "B-012",
+            "bar.offer_closing_contract_execution",
             "A-011"
           ],
           "visible_to_candidate": "The offer document.",
@@ -192,7 +192,7 @@
           "owner": "employer-policy",
           "description": "A third-party record is compared against what the candidate claimed.",
           "entities": [
-            "B-011",
+            "bar.reference_background_verification",
             "M-021"
           ],
           "visible_to_candidate": "A request for documents, or nothing.",
@@ -205,7 +205,7 @@
           "owner": "employer-policy",
           "description": "Contract executed both ways, start date set, onboarding triggered.",
           "entities": [
-            "B-012"
+            "bar.offer_closing_contract_execution"
           ],
           "visible_to_candidate": "A signed contract.",
           "deviations": []
@@ -262,7 +262,7 @@
           "owner": "employer-policy",
           "guard": "Finance commits headcount against the requisition.",
           "entities": [
-            "B-010"
+            "bar.headcount_executive_budget_approval"
           ],
           "latency_expected_days": 7,
           "latency_max_days": 21
@@ -274,7 +274,7 @@
           "owner": "recruiter",
           "guard": "An approved requisition with a written description is published.",
           "entities": [
-            "B-013"
+            "bar.requisition_approval_public_posting"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 7
@@ -286,8 +286,8 @@
           "owner": "candidate",
           "guard": "The candidate applies, or answers outbound outreach.",
           "entities": [
-            "B-001",
-            "B-014"
+            "bar.application_ingestion",
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "latency_expected_days": 7,
           "latency_max_days": 30
@@ -299,7 +299,7 @@
           "owner": "ats-vendor",
           "guard": "The record is complete enough for the configured rules to run.",
           "entities": [
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 3
@@ -311,7 +311,7 @@
           "owner": "ats-vendor",
           "guard": "Extraction score and every knockout rule pass.",
           "entities": [
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 3
@@ -337,7 +337,7 @@
           "owner": "recruiter",
           "guard": "A person reads the profile and puts it on the list.",
           "entities": [
-            "B-003"
+            "bar.inbound_screening_triage"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -361,7 +361,7 @@
           "owner": "recruiter",
           "guard": "Expectations, timeline and location are compatible, and the profile is submitted to the team.",
           "entities": [
-            "B-004"
+            "bar.recruiter_screening_call"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -388,8 +388,8 @@
           "owner": "hiring-manager",
           "guard": "The score clears the rubric threshold.",
           "entities": [
-            "B-005",
-            "B-006"
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 12
@@ -415,8 +415,8 @@
           "owner": "hiring-manager",
           "guard": "Consensus reaches the hire threshold.",
           "entities": [
-            "B-007",
-            "B-008"
+            "bar.hiring_manager_in_depth_review",
+            "bar.team_cross_functional_panel"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -441,7 +441,7 @@
           "owner": "employer-policy",
           "guard": "The assigned level and the approved band overlap.",
           "entities": [
-            "B-009"
+            "bar.compensation_levelling_reconciliation"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -466,7 +466,7 @@
           "owner": "employer-policy",
           "guard": "Every approver in the chain has cleared it.",
           "entities": [
-            "B-010"
+            "bar.headcount_executive_budget_approval"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -490,7 +490,7 @@
           "owner": "candidate",
           "guard": "The candidate signs and the checks begin.",
           "entities": [
-            "B-011"
+            "bar.reference_background_verification"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -515,8 +515,8 @@
           "owner": "employer-policy",
           "guard": "No unresolved discrepancy in the third-party record.",
           "entities": [
-            "B-012",
-            "B-016"
+            "bar.offer_closing_contract_execution",
+            "bar.probation_period_post_start_confirmation"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -579,7 +579,7 @@
           "owner": "candidate",
           "description": "A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.",
           "entities": [
-            "B-001",
+            "bar.application_ingestion",
             "A-001"
           ],
           "visible_to_candidate": "A confirmation page, sometimes an acknowledgement email.",
@@ -604,7 +604,7 @@
           "owner": "ats-vendor",
           "description": "Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.",
           "entities": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-008",
             "M-011"
           ],
@@ -618,7 +618,7 @@
           "owner": "ats-vendor",
           "description": "The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.",
           "entities": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009",
             "M-016"
           ],
@@ -632,7 +632,7 @@
           "owner": "recruiter",
           "description": "A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.",
           "entities": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009"
           ],
           "visible_to_candidate": "Nothing yet.",
@@ -645,7 +645,7 @@
           "owner": "recruiter",
           "description": "The record leaves this machine and enters WF-001 at the recruiter screen.",
           "entities": [
-            "B-004"
+            "bar.recruiter_screening_call"
           ],
           "visible_to_candidate": "An invitation to talk.",
           "deviations": []
@@ -698,7 +698,7 @@
           "owner": "ats-vendor",
           "guard": "Required fields validate and the file is a supported type.",
           "entities": [
-            "B-001"
+            "bar.application_ingestion"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 1
@@ -722,7 +722,7 @@
           "owner": "ats-vendor",
           "guard": "Every knockout rule passes and the rank clears the advance threshold.",
           "entities": [
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "latency_expected_days": 1,
           "latency_max_days": 2
@@ -748,7 +748,7 @@
           "owner": "recruiter",
           "guard": "Capacity reaches this position in the queue before the expiry threshold.",
           "entities": [
-            "B-003"
+            "bar.inbound_screening_triage"
           ],
           "latency_expected_days": 4,
           "latency_max_days": 14
@@ -772,7 +772,7 @@
           "owner": "recruiter",
           "guard": "The profile is put on the active list for outreach.",
           "entities": [
-            "B-003"
+            "bar.inbound_screening_triage"
           ],
           "latency_expected_days": 2,
           "latency_max_days": 5
@@ -834,8 +834,8 @@
           ],
           "visible_to_candidate": "The role, the band, the stages, and a date by which the first answer should arrive.",
           "deviations": [
-            "B-013",
-            "B-014",
+            "bar.requisition_approval_public_posting",
+            "bar.outbound_sourcing_talent_pool_contact",
             "M-006",
             "M-016",
             "M-025",
@@ -853,7 +853,7 @@
           ],
           "visible_to_candidate": "A confirmation that names the role and says what happens next.",
           "deviations": [
-            "B-001",
+            "bar.application_ingestion",
             "M-003"
           ]
         },
@@ -870,7 +870,7 @@
           ],
           "visible_to_candidate": "If a rule ends it here, which rule.",
           "deviations": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-008",
             "M-011",
             "M-020"
@@ -888,7 +888,7 @@
           ],
           "visible_to_candidate": "Either a next step or a decision, by the date the posting gave.",
           "deviations": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009"
           ]
         },
@@ -903,7 +903,7 @@
           ],
           "visible_to_candidate": "The numbers and the constraints, from both sides, in the first call.",
           "deviations": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "M-004",
             "M-014",
             "M-017"
@@ -922,8 +922,8 @@
           ],
           "visible_to_candidate": "The exercise, the timebox and the criteria — before starting, not after.",
           "deviations": [
-            "B-005",
-            "B-006",
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation",
             "M-001",
             "M-010",
             "M-019",
@@ -941,9 +941,9 @@
           ],
           "visible_to_candidate": "Who they will meet, what each conversation is for, and how many there are.",
           "deviations": [
-            "B-007",
-            "B-008",
-            "B-015",
+            "bar.hiring_manager_in_depth_review",
+            "bar.team_cross_functional_panel",
+            "bar.client_profile_approval_and_client_interview",
             "M-002",
             "M-012",
             "M-013",
@@ -963,7 +963,7 @@
           ],
           "visible_to_candidate": "The same band the posting stated, and which point in it the offer sits at.",
           "deviations": [
-            "B-009",
+            "bar.compensation_levelling_reconciliation",
             "M-004"
           ]
         },
@@ -979,7 +979,7 @@
           ],
           "visible_to_candidate": "A date for the offer, rather than an indefinite period described as final checks.",
           "deviations": [
-            "B-010",
+            "bar.headcount_executive_budget_approval",
             "M-007"
           ]
         },
@@ -992,7 +992,7 @@
           "entities": [],
           "visible_to_candidate": "The complete offer document, and how long they have to answer.",
           "deviations": [
-            "B-012",
+            "bar.offer_closing_contract_execution",
             "M-007"
           ]
         },
@@ -1007,8 +1007,8 @@
           ],
           "visible_to_candidate": "What is being checked, and any discrepancy, before it is acted on.",
           "deviations": [
-            "B-011",
-            "B-016",
+            "bar.reference_background_verification",
+            "bar.probation_period_post_start_confirmation",
             "M-021",
             "M-027",
             "M-028",
@@ -1312,7 +1312,7 @@
           "owner": "recruiter",
           "description": "Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.",
           "entities": [
-            "B-014",
+            "bar.outbound_sourcing_talent_pool_contact",
             "M-016"
           ],
           "visible_to_candidate": "Outreach messages or job postings without commercial contract context.",
@@ -1325,7 +1325,7 @@
           "owner": "recruiter",
           "description": "Introductory conversation assessing experience and target compensation against the vendor target margin.",
           "entities": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "M-004"
           ],
           "visible_to_candidate": "A screening call where the rate band is presented as the vendor internal range.",
@@ -1338,8 +1338,8 @@
           "owner": "hiring-manager",
           "description": "Technical interview or test task scored against the vendor assessment of the client technical threshold.",
           "entities": [
-            "B-005",
-            "B-006"
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
           ],
           "visible_to_candidate": "A technical evaluation round with vendor engineering staff.",
           "deviations": []
@@ -1351,7 +1351,7 @@
           "owner": "client",
           "description": "The candidate CV is submitted to the client account team for profile review and interview selection.",
           "entities": [
-            "B-015",
+            "bar.client_profile_approval_and_client_interview",
             "A-001",
             "A-015"
           ],
@@ -1365,7 +1365,7 @@
           "owner": "client",
           "description": "Interview conducted directly by client engineering or project management leadership.",
           "entities": [
-            "B-015",
+            "bar.client_profile_approval_and_client_interview",
             "A-002"
           ],
           "visible_to_candidate": "An external interview round evaluating project and culture fit.",
@@ -1378,7 +1378,7 @@
           "owner": "recruiter",
           "description": "Compensation package calculated from client billing rate minus required gross margin.",
           "entities": [
-            "B-009"
+            "bar.compensation_levelling_reconciliation"
           ],
           "visible_to_candidate": "An offer package structured around vendor compensation models.",
           "deviations": []
@@ -1390,7 +1390,7 @@
           "owner": "employer-policy",
           "description": "Client-mandated background checks, certifications, and compliance paperwork.",
           "entities": [
-            "B-011"
+            "bar.reference_background_verification"
           ],
           "visible_to_candidate": "Document requests and compliance background screening.",
           "deviations": []
@@ -1402,7 +1402,7 @@
           "owner": "employer-policy",
           "description": "Contract executed and candidate onboarded onto active client delivery.",
           "entities": [
-            "B-012"
+            "bar.offer_closing_contract_execution"
           ],
           "visible_to_candidate": "Confirmed start date and client team onboarding.",
           "deviations": []
@@ -1468,7 +1468,7 @@
           "owner": "client",
           "guard": "Commercial contract signed or tender requires candidate CVs",
           "entities": [
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 10
@@ -1480,7 +1480,7 @@
           "owner": "recruiter",
           "guard": "Outreach accepted and screen booked",
           "entities": [
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -1502,7 +1502,7 @@
           "owner": "recruiter",
           "guard": "Expectations aligned with client billing margin",
           "entities": [
-            "B-004"
+            "bar.recruiter_screening_call"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1524,8 +1524,8 @@
           "owner": "hiring-manager",
           "guard": "Technical bar meets vendor expectation of client threshold",
           "entities": [
-            "B-005",
-            "B-006"
+            "bar.technical_screen_live_assessment",
+            "bar.take_home_work_sample_evaluation"
           ],
           "latency_expected_days": 4,
           "latency_max_days": 10
@@ -1547,7 +1547,7 @@
           "owner": "client",
           "guard": "Client manager accepts profile and requests interview",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -1559,7 +1559,7 @@
           "owner": "client",
           "guard": "Client manager rejects profile on CV review",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14
@@ -1591,7 +1591,7 @@
           "owner": "client",
           "guard": "Client confirms candidate meets project requirements",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 4,
           "latency_max_days": 10
@@ -1603,7 +1603,7 @@
           "owner": "client",
           "guard": "Client decides against candidate after meeting",
           "entities": [
-            "B-015"
+            "bar.client_profile_approval_and_client_interview"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1615,7 +1615,7 @@
           "owner": "recruiter",
           "guard": "Candidate accepts offer parameters",
           "entities": [
-            "B-009"
+            "bar.compensation_levelling_reconciliation"
           ],
           "latency_expected_days": 3,
           "latency_max_days": 7
@@ -1637,9 +1637,9 @@
           "owner": "employer-policy",
           "guard": "Verification complete and project onboarding commences",
           "entities": [
-            "B-011",
-            "B-012",
-            "B-016"
+            "bar.reference_background_verification",
+            "bar.offer_closing_contract_execution",
+            "bar.probation_period_post_start_confirmation"
           ],
           "latency_expected_days": 5,
           "latency_max_days": 14

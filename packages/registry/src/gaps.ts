@@ -269,7 +269,7 @@ export function gaps(bundle: RegistryBundle): GapReport {
     if (!byActor.has(i.actor)) byActor.set(i.actor, new Set());
     const gates = byActor.get(i.actor)!;
     for (const t of i.targets) {
-      const hit = t.startsWith('B-') ? [t] : (gatesOfMechanism.get(t) ?? []);
+      const hit = (t.startsWith('B-') || t.startsWith('bar.')) ? [t] : (gatesOfMechanism.get(t) ?? []);
       for (const g of hit) {
         gates.add(g);
         reached.add(g);

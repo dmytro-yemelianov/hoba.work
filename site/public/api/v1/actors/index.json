@@ -65,7 +65,7 @@
           "targets": [
             "M-011",
             "L-001",
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
             "I-004"
@@ -79,7 +79,7 @@
           "costs": "The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls.",
           "targets": [
             "M-003",
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "A-009"
           ],
           "interventions": []
@@ -92,8 +92,8 @@
           "costs": "It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform.",
           "targets": [
             "M-003",
-            "B-001",
-            "B-002"
+            "bar.application_ingestion",
+            "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
             "I-005"
@@ -126,7 +126,7 @@
             "M-008",
             "M-024",
             "pat.experience_age_impossibility",
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "L-003"
           ],
           "interventions": []
@@ -139,7 +139,7 @@
           "costs": "The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not.",
           "targets": [
             "M-008",
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "A-009",
             "A-002"
           ],
@@ -210,8 +210,8 @@
           "costs": "A single-column text export gives up the layout, and every later edit to the document has to be checked again.",
           "targets": [
             "M-003",
-            "B-001",
-            "B-002",
+            "bar.application_ingestion",
+            "bar.automated_filter_parser_threshold",
             "A-009"
           ],
           "interventions": [
@@ -228,7 +228,7 @@
             "M-016",
             "M-005",
             "M-006",
-            "B-014",
+            "bar.outbound_sourcing_talent_pool_contact",
             "A-012"
           ],
           "interventions": []
@@ -241,8 +241,8 @@
           "costs": "The question can end a process at the screen, and stating an expectation early fixes a number before the level is fixed.",
           "targets": [
             "M-004",
-            "B-004",
-            "B-009",
+            "bar.recruiter_screening_call",
+            "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind",
             "A-005"
           ],
@@ -274,7 +274,7 @@
           "targets": [
             "L-002",
             "M-019",
-            "B-006",
+            "bar.take_home_work_sample_evaluation",
             "A-006"
           ],
           "interventions": [
@@ -291,7 +291,7 @@
             "M-020",
             "M-006",
             "M-009",
-            "B-003",
+            "bar.inbound_screening_triage",
             "A-001"
           ],
           "interventions": [
@@ -374,7 +374,7 @@
           "targets": [
             "M-025",
             "M-016",
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": [
             "I-009"
@@ -462,8 +462,8 @@
           "costs": "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.",
           "targets": [
             "M-004",
-            "B-004",
-            "B-009",
+            "bar.recruiter_screening_call",
+            "bar.compensation_levelling_reconciliation",
             "pat.compensation_double_bind"
           ],
           "interventions": [
@@ -477,8 +477,8 @@
           "cost": "high",
           "costs": "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.",
           "targets": [
-            "B-010",
-            "B-013",
+            "bar.headcount_executive_budget_approval",
+            "bar.requisition_approval_public_posting",
             "M-007",
             "A-003"
           ],
@@ -493,7 +493,7 @@
           "targets": [
             "M-006",
             "M-007",
-            "B-001",
+            "bar.application_ingestion",
             "pat.closed_then_reposted_requisition_motif",
             "L-003",
             "A-001",
@@ -512,7 +512,7 @@
           "costs": "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.",
           "targets": [
             "M-005",
-            "B-013",
+            "bar.requisition_approval_public_posting",
             "A-002",
             "A-003"
           ],
@@ -525,8 +525,8 @@
           "cost": "medium",
           "costs": "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.",
           "targets": [
-            "B-011",
-            "B-012",
+            "bar.reference_background_verification",
+            "bar.offer_closing_contract_execution",
             "M-021"
           ],
           "interventions": []
@@ -610,8 +610,8 @@
           "targets": [
             "M-010",
             "M-018",
-            "B-005",
-            "B-007",
+            "bar.technical_screen_live_assessment",
+            "bar.hiring_manager_in_depth_review",
             "A-014"
           ],
           "interventions": []
@@ -625,7 +625,7 @@
           "targets": [
             "M-019",
             "M-012",
-            "B-006",
+            "bar.take_home_work_sample_evaluation",
             "L-002"
           ],
           "interventions": [
@@ -640,7 +640,7 @@
           "costs": "Naming the tiebreaker means this actor signs a hire the panel did not agree on, and a hire that goes wrong is visible for a year and carries their name.",
           "targets": [
             "M-022",
-            "B-008",
+            "bar.team_cross_functional_panel",
             "A-014"
           ],
           "interventions": []
@@ -667,7 +667,7 @@
             "pat.seniority_double_bind",
             "A-013",
             "M-017",
-            "B-007"
+            "bar.hiring_manager_in_depth_review"
           ],
           "interventions": []
         }
@@ -732,8 +732,8 @@
           "cost": "medium",
           "costs": "A band is a number on a page and a level is a claim about an internal grid, so each complaint needs records the regulator has to ask for separately. It also fixes at publication a level that is currently settled after the panel.",
           "targets": [
-            "B-013",
-            "B-009",
+            "bar.requisition_approval_public_posting",
+            "bar.compensation_levelling_reconciliation",
             "M-004",
             "pat.compensation_double_bind",
             "pat.seniority_double_bind"
@@ -750,8 +750,8 @@
           "costs": "The rule binds a posting readable everywhere to contracts possible in a few places, and the body writing it reaches only its own territory — which one that is, this atlas does not state. The employer must publish an entity map it holds internally, and postings that read as open narrow visibly.",
           "targets": [
             "M-014",
-            "B-004",
-            "B-013"
+            "bar.recruiter_screening_call",
+            "bar.requisition_approval_public_posting"
           ],
           "interventions": []
         },
@@ -764,7 +764,7 @@
           "targets": [
             "M-006",
             "M-016",
-            "B-013",
+            "bar.requisition_approval_public_posting",
             "A-004",
             "pat.closed_then_reposted_requisition_motif"
           ],
@@ -779,7 +779,7 @@
           "cost": "high",
           "costs": "The duty is written for an employer and performed by a setting on a configuration screen the rule's author never sees, so the text has to fix responsibility somewhere between the party that buys the system and the party that ships it. Each stated reason is also a statement that can be disputed, and at the volume of ended applications that is a caseload before it is a remedy.",
           "targets": [
-            "B-002",
+            "bar.automated_filter_parser_threshold",
             "M-008",
             "M-020",
             "M-003",
@@ -797,7 +797,7 @@
           "targets": [
             "M-011",
             "L-001",
-            "B-002"
+            "bar.automated_filter_parser_threshold"
           ],
           "interventions": [
             "I-004"
@@ -813,7 +813,7 @@
             "A-002",
             "A-014",
             "M-010",
-            "B-013"
+            "bar.requisition_approval_public_posting"
           ],
           "interventions": [
             "I-003",
@@ -886,7 +886,7 @@
           "cost": "medium",
           "costs": "It spends the flexibility of hearing the candidate's figure first, and it puts a number into the conversation that can be quoted back later as a commitment.",
           "targets": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "M-004",
             "pat.compensation_double_bind"
           ],
@@ -903,7 +903,7 @@
           "targets": [
             "A-002",
             "M-010",
-            "B-008"
+            "bar.team_cross_functional_panel"
           ],
           "interventions": [
             "I-003"
@@ -931,7 +931,7 @@
           "cost": "medium",
           "costs": "A stated date is a commitment held against interviewer calendars this seat does not control, so every slip becomes a message that has to be written.",
           "targets": [
-            "B-004",
+            "bar.recruiter_screening_call",
             "A-007",
             "M-013"
           ],
@@ -946,7 +946,7 @@
           "targets": [
             "M-016",
             "A-012",
-            "B-014"
+            "bar.outbound_sourcing_talent_pool_contact"
           ],
           "interventions": []
         },
@@ -957,7 +957,7 @@
           "cost": "high",
           "costs": "Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones.",
           "targets": [
-            "B-003",
+            "bar.inbound_screening_triage",
             "M-009",
             "M-011",
             "L-001"

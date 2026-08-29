@@ -14,9 +14,9 @@
       "type": "mechanism",
       "summary": "The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.",
       "operates_at": [
-        "B-005",
-        "B-006",
-        "B-007"
+        "bar.technical_screen_live_assessment",
+        "bar.take_home_work_sample_evaluation",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -111,9 +111,9 @@
       "type": "mechanism",
       "summary": "Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.",
       "operates_at": [
-        "B-007",
-        "B-008",
-        "B-010"
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.headcount_executive_budget_approval"
       ],
       "emissions": [
         {
@@ -204,8 +204,8 @@
       "type": "mechanism",
       "summary": "Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.",
       "operates_at": [
-        "B-001",
-        "B-002"
+        "bar.application_ingestion",
+        "bar.automated_filter_parser_threshold"
       ],
       "emissions": [
         {
@@ -304,8 +304,8 @@
       "type": "mechanism",
       "summary": "Candidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.",
       "operates_at": [
-        "B-004",
-        "B-009"
+        "bar.recruiter_screening_call",
+        "bar.compensation_levelling_reconciliation"
       ],
       "emissions": [
         {
@@ -424,10 +424,10 @@
       "type": "mechanism",
       "summary": "Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.",
       "operates_at": [
-        "B-013",
-        "B-001",
-        "B-003",
-        "B-007"
+        "bar.requisition_approval_public_posting",
+        "bar.application_ingestion",
+        "bar.inbound_screening_triage",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -540,10 +540,10 @@
       "type": "mechanism",
       "summary": "Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.",
       "operates_at": [
-        "B-013",
-        "B-001",
-        "B-002",
-        "B-003"
+        "bar.requisition_approval_public_posting",
+        "bar.application_ingestion",
+        "bar.automated_filter_parser_threshold",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -644,9 +644,9 @@
       "type": "mechanism",
       "summary": "Executive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.",
       "operates_at": [
-        "B-008",
-        "B-010",
-        "B-012"
+        "bar.team_cross_functional_panel",
+        "bar.headcount_executive_budget_approval",
+        "bar.offer_closing_contract_execution"
       ],
       "emissions": [
         {
@@ -747,7 +747,7 @@
       "type": "mechanism",
       "summary": "Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.",
       "operates_at": [
-        "B-002"
+        "bar.automated_filter_parser_threshold"
       ],
       "emissions": [
         {
@@ -851,8 +851,8 @@
       "type": "mechanism",
       "summary": "Applicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.",
       "operates_at": [
-        "B-003",
-        "B-004"
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -955,9 +955,9 @@
       "type": "mechanism",
       "summary": "The panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.",
       "operates_at": [
-        "B-005",
-        "B-007",
-        "B-008"
+        "bar.technical_screen_live_assessment",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -1057,8 +1057,8 @@
       "type": "mechanism",
       "summary": "Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.",
       "operates_at": [
-        "B-002",
-        "B-003"
+        "bar.automated_filter_parser_threshold",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -1157,9 +1157,9 @@
       "type": "mechanism",
       "summary": "Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.",
       "operates_at": [
-        "B-005",
-        "B-007",
-        "B-008"
+        "bar.technical_screen_live_assessment",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -1256,9 +1256,9 @@
       "type": "mechanism",
       "summary": "The team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.",
       "operates_at": [
-        "B-007",
-        "B-008",
-        "B-009"
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel",
+        "bar.compensation_levelling_reconciliation"
       ],
       "emissions": [
         {
@@ -1360,8 +1360,8 @@
       "type": "mechanism",
       "summary": "The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.",
       "operates_at": [
-        "B-002",
-        "B-004"
+        "bar.automated_filter_parser_threshold",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -1473,8 +1473,8 @@
       "type": "mechanism",
       "summary": "During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.",
       "operates_at": [
-        "B-004",
-        "B-008"
+        "bar.recruiter_screening_call",
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -1578,10 +1578,10 @@
       "type": "mechanism",
       "summary": "Recruiters open conversations and build candidate pools against headcount that has not been approved or funded.",
       "operates_at": [
-        "B-013",
-        "B-014",
-        "B-003",
-        "B-004"
+        "bar.requisition_approval_public_posting",
+        "bar.outbound_sourcing_talent_pool_contact",
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -1686,9 +1686,9 @@
       "type": "mechanism",
       "summary": "A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.",
       "operates_at": [
-        "B-003",
-        "B-004",
-        "B-007"
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -1781,8 +1781,8 @@
       "type": "mechanism",
       "summary": "The interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.",
       "operates_at": [
-        "B-004",
-        "B-007"
+        "bar.recruiter_screening_call",
+        "bar.hiring_manager_in_depth_review"
       ],
       "emissions": [
         {
@@ -1899,7 +1899,7 @@
       "type": "mechanism",
       "summary": "A 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.",
       "operates_at": [
-        "B-006"
+        "bar.take_home_work_sample_evaluation"
       ],
       "emissions": [
         {
@@ -1996,8 +1996,8 @@
       "type": "mechanism",
       "summary": "The ATS is configured to reject in bulk every application still pending after 45 or 60 days.",
       "operates_at": [
-        "B-001",
-        "B-003"
+        "bar.application_ingestion",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -2114,7 +2114,7 @@
       "type": "mechanism",
       "summary": "A third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.",
       "operates_at": [
-        "B-011"
+        "bar.reference_background_verification"
       ],
       "emissions": [
         {
@@ -2201,7 +2201,7 @@
       "type": "mechanism",
       "summary": "The panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.",
       "operates_at": [
-        "B-008"
+        "bar.team_cross_functional_panel"
       ],
       "emissions": [
         {
@@ -2294,8 +2294,8 @@
       "type": "mechanism",
       "summary": "The surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organisation.",
       "operates_at": [
-        "B-003",
-        "B-005"
+        "bar.inbound_screening_triage",
+        "bar.technical_screen_live_assessment"
       ],
       "emissions": [
         {
@@ -2391,9 +2391,9 @@
       "type": "mechanism",
       "summary": "The posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.",
       "operates_at": [
-        "B-013",
-        "B-002",
-        "B-004"
+        "bar.requisition_approval_public_posting",
+        "bar.automated_filter_parser_threshold",
+        "bar.recruiter_screening_call"
       ],
       "emissions": [
         {
@@ -2491,7 +2491,7 @@
       "type": "mechanism",
       "summary": "Recruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.",
       "operates_at": [
-        "B-014"
+        "bar.outbound_sourcing_talent_pool_contact"
       ],
       "emissions": [
         {
@@ -2589,8 +2589,8 @@
       "type": "mechanism",
       "summary": "An engineer already employed and between projects becomes available mid-search, and the seat the external candidate is interviewing for is filled from the bench.",
       "operates_at": [
-        "B-013",
-        "B-003"
+        "bar.requisition_approval_public_posting",
+        "bar.inbound_screening_triage"
       ],
       "emissions": [
         {
@@ -2694,8 +2694,8 @@
       "type": "mechanism",
       "summary": "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.",
       "operates_at": [
-        "B-012",
-        "B-016"
+        "bar.offer_closing_contract_execution",
+        "bar.probation_period_post_start_confirmation"
       ],
       "emissions": [
         {
@@ -2793,7 +2793,7 @@
       "type": "mechanism",
       "summary": "Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.",
       "operates_at": [
-        "B-016"
+        "bar.probation_period_post_start_confirmation"
       ],
       "emissions": [
         {

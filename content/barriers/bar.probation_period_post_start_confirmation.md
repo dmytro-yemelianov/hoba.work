@@ -1,0 +1,55 @@
+---
+id: "bar.probation_period_post_start_confirmation"
+type: "barrier"
+aliases:
+  - "B-016"
+title: "Probation Period & Post-Start Confirmation"
+stage: "post-offer"
+order: 16
+precedes: []
+description: "The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed."
+pass_condition: "The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment."
+specimens:
+  -
+    kind: "note"
+    label: "Probation review milestone"
+    lines:
+      -
+        text: "Day 1–60: Objectives assigned, delivery metrics tracked"
+        tell: false
+      -
+        text: "Day 90: Formal probation sign-off review by engineering manager"
+        tell: true
+      -
+        text: "Status: Full permanent standing confirmed"
+        tell: false
+    reading: "The transition from conditional probation to permanent standing requires explicit managerial evaluation or statutory lapse."
+perspectives:
+  -
+    actor: "hiring-manager"
+    sees: "Direct on-the-job execution during the first three months, assessing delivery speed, architecture decisions, and team communication."
+    reads: "Probation provides a low-friction termination window if the hire demonstrates unexpected capability gaps."
+    does: "Conducts regular 1-on-1 reviews and files the final probation confirmation report."
+  -
+    actor: "candidate"
+    sees: "Initial project onboarding, ramp-up expectations, and milestone checkpoints toward passing probation."
+    reads: "Employment remains contingent on early performance until the probation gate is officially cleared."
+    does: "Delivers against sprint goals and seeks written confirmation upon completion of the probation interval."
+  -
+    actor: "employer-policy"
+    sees: "Legal compliance boundaries (statutory 3-month caps under EVD-040 or contractual notice rules under EVD-041)."
+    reads: "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect."
+    does: "Enforces notice requirements and confirms payroll status transition upon probation completion."
+status: "active"
+evidence_level: "established"
+evidence_ids:
+  - "EVD-040"
+  - "EVD-041"
+---
+
+# Probation Period & Post-Start Confirmation
+
+The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.
+
+### Pass Condition
+The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.

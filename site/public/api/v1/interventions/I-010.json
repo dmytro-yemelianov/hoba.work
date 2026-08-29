@@ -13,7 +13,7 @@
     "type": "intervention",
     "summary": "Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.",
     "targets": [
-      "B-003",
+      "bar.inbound_screening_triage",
       "M-009",
       "M-020"
     ],

@@ -229,7 +229,7 @@ export function validateRegistry(bundle: RegistryBundle): ValidationReport {
   const issues = validateRegistryBundle(bundle);
 
   const hasBarrierRefErrors = issues.some(
-    (i) => i.severity === 'error' && i.rule === 'dangling-reference' && i.nodeId?.startsWith('B-')
+    (i) => i.severity === 'error' && i.rule === 'dangling-reference' && (i.nodeId?.startsWith('B-') || i.nodeId?.startsWith('bar.'))
   );
   if (!hasBarrierRefErrors) {
     const dag = new HOBAKnowledgeGraph(bundle).validateBarrierDAG();

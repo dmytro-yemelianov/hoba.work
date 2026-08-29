@@ -28,8 +28,8 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
     // assert that keeps "computed before authored" honest.
     for (const [id, rest] of Object.entries(lifted.sidecar.entities)) {
       expect(rest, id).not.toHaveProperty('title');
-      if (id.startsWith('B-')) expect(rest, id).not.toHaveProperty('pass_condition');
-      if (id.startsWith('M-')) {
+      if (id.startsWith('B-') || id.startsWith('bar.')) expect(rest, id).not.toHaveProperty('pass_condition');
+      if (id.startsWith('M-') || id.startsWith('mech.')) {
         expect(rest, id).not.toHaveProperty('operates_at');
         expect(rest, id).not.toHaveProperty('emissions');
       }
@@ -43,7 +43,7 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
     for (const w of bundle.workflows) {
       const proc = lifted.substrate.processes.find((p) => p.id === `prc:${w.id.toLowerCase()}`)!;
       w.transitions.forEach((t, i) => {
-        const fromEntities = (t.entities ?? []).filter((e) => e.startsWith('B-')).map((e) => `cnd:${e.toLowerCase()}`);
+        const fromEntities = (t.entities ?? []).filter((e) => e.startsWith('B-') || e.startsWith('bar.')).map((e) => `cnd:${e.toLowerCase()}`);
         expect(proc.transitions[i]!.conditions, `${w.id} #${i}`).toEqual(fromEntities);
       });
     }

@@ -44,7 +44,7 @@ recommendations:
     targets:
       - "M-011"
       - "L-001"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
     interventions:
       - "I-004"
   -
@@ -55,7 +55,7 @@ recommendations:
     costs: "Ця черга — робота, яка лягає на клієнта і за яку ніхто не відповідає, а частка заявок, які платформа закриває без участі людини, — число, яке бачить покупець, — зменшується."
     targets:
       - "M-003"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "A-009"
     interventions: []
   -
@@ -66,8 +66,8 @@ recommendations:
     costs: "Зʼявляється звернений до кандидатів інтерфейс, який підтримує вендор і через який надходять виправлення, а користуються ним не ті, хто купив платформу."
     targets:
       - "M-003"
-      - "B-001"
-      - "B-002"
+      - "bar.application_ingestion"
+      - "bar.automated_filter_parser_threshold"
     interventions:
       - "I-005"
   -
@@ -94,7 +94,7 @@ recommendations:
       - "M-008"
       - "M-024"
       - "pat.experience_age_impossibility"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "L-003"
     interventions: []
   -
@@ -105,7 +105,7 @@ recommendations:
     costs: "Налаштування клієнта може процитувати кожен, до кого його застосували, а поріг, названий письмово, збирає відповіді, яких теперішній шаблон не збирає."
     targets:
       - "M-008"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "A-009"
       - "A-002"
     interventions: []

@@ -66,8 +66,8 @@
         "costs": "The published number becomes a commitment the band cannot be quietly revised against mid-search, and it is legible to everyone already employed at that level.",
         "targets": [
           "M-004",
-          "B-004",
-          "B-009",
+          "bar.recruiter_screening_call",
+          "bar.compensation_levelling_reconciliation",
           "pat.compensation_double_bind"
         ],
         "interventions": [
@@ -81,8 +81,8 @@
         "cost": "high",
         "costs": "Budget is committed at publication rather than at the offer, and a requisition funded in advance is harder to pause than one approved at the end.",
         "targets": [
-          "B-010",
-          "B-013",
+          "bar.headcount_executive_budget_approval",
+          "bar.requisition_approval_public_posting",
           "M-007",
           "A-003"
         ],
@@ -97,7 +97,7 @@
         "targets": [
           "M-006",
           "M-007",
-          "B-001",
+          "bar.application_ingestion",
           "pat.closed_then_reposted_requisition_motif",
           "L-003",
           "A-001",
@@ -116,7 +116,7 @@
         "costs": "The external pool for those postings shrinks, which weakens the same posting as evidence of an open search, and an internal candidacy goes in writing before the search has concluded.",
         "targets": [
           "M-005",
-          "B-013",
+          "bar.requisition_approval_public_posting",
           "A-002",
           "A-003"
         ],
@@ -129,8 +129,8 @@
         "cost": "medium",
         "costs": "Every discrepancy adds a round trip before countersignature, and the single standard check pack has to be split by role instead of running identically on every hire.",
         "targets": [
-          "B-011",
-          "B-012",
+          "bar.reference_background_verification",
+          "bar.offer_closing_contract_execution",
           "M-021"
         ],
         "interventions": []

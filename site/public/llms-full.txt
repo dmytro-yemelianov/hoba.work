@@ -222,110 +222,110 @@ An opening is closed or reposted with an updated timestamp and identical require
 
 ## Barriers
 
-### B-013 — Requisition Approval & Public Posting
+### bar.requisition_approval_public_posting — Requisition Approval & Public Posting
 
 The gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.
 
 - Stage: pre-posting · Order: 1 · Passes when: An approved requisition with a written job description is published against real, funded headcount.
-- Precedes: B-014, B-001
+- Precedes: bar.outbound_sourcing_talent_pool_contact, bar.application_ingestion
 
-### B-014 — Outbound Sourcing & Talent Pool Contact
+### bar.outbound_sourcing_talent_pool_contact — Outbound Sourcing & Talent Pool Contact
 
 Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.
 
 - Stage: sourcing · Order: 2 · Passes when: The candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.
-- Precedes: B-001, B-004
+- Precedes: bar.application_ingestion, bar.recruiter_screening_call
 
-### B-001 — Application Ingestion
+### bar.application_ingestion — Application Ingestion
 
 The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.
 
 - Stage: ingestion · Order: 3 · Passes when: The application record is received, validates against the minimum schema, and is linked to an active job requisition.
-- Precedes: B-002
+- Precedes: bar.automated_filter_parser_threshold
 
-### B-002 — Automated Filter & Parser Threshold
+### bar.automated_filter_parser_threshold — Automated Filter & Parser Threshold
 
 Algorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.
 
 - Stage: ingestion · Order: 4 · Passes when: The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.
-- Precedes: B-003, B-004
+- Precedes: bar.inbound_screening_triage, bar.recruiter_screening_call
 
-### B-003 — Inbound Screening & Triage
+### bar.inbound_screening_triage — Inbound Screening & Triage
 
 Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.
 
 - Stage: screening · Order: 5 · Passes when: The recruiter adds the application to the active short-list for a first conversation.
-- Precedes: B-004
+- Precedes: bar.recruiter_screening_call
 
-### B-004 — Recruiter Screening Call
+### bar.recruiter_screening_call — Recruiter Screening Call
 
 Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.
 
 - Stage: recruiter · Order: 6 · Passes when: The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.
-- Precedes: B-005
+- Precedes: bar.technical_screen_live_assessment
 
-### B-005 — Technical Screen / Live Assessment
+### bar.technical_screen_live_assessment — Technical Screen / Live Assessment
 
 Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.
 
 - Stage: technical · Order: 7 · Passes when: The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.
-- Precedes: B-006, B-007
+- Precedes: bar.take_home_work_sample_evaluation, bar.hiring_manager_in_depth_review
 
-### B-006 — Take-Home / Work Sample Evaluation
+### bar.take_home_work_sample_evaluation — Take-Home / Work Sample Evaluation
 
 Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.
 
 - Stage: technical · Order: 8 · Passes when: The submitted code meets the architecture, functionality, test coverage and documentation requirements.
-- Precedes: B-007
+- Precedes: bar.hiring_manager_in_depth_review
 
-### B-007 — Hiring Manager In-Depth Review
+### bar.hiring_manager_in_depth_review — Hiring Manager In-Depth Review
 
 Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.
 
 - Stage: hiring-manager · Order: 9 · Passes when: The hiring manager confirms the required depth and approves the candidate for the final panel.
-- Precedes: B-008
+- Precedes: bar.team_cross_functional_panel
 
-### B-008 — Team & Cross-Functional Panel
+### bar.team_cross_functional_panel — Team & Cross-Functional Panel
 
 Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.
 
 - Stage: team · Order: 10 · Passes when: Consensus score among team panelists meets or exceeds hire recommendation threshold.
-- Precedes: B-009
+- Precedes: bar.compensation_levelling_reconciliation
 
-### B-009 — Compensation & Levelling Reconciliation
+### bar.compensation_levelling_reconciliation — Compensation & Levelling Reconciliation
 
 Internal alignment between candidate expected compensation/level and company pay bands / levelling grid.
 
 - Stage: compensation · Order: 11 · Passes when: Candidate expectations fit within approved salary band and equity guidelines for the target grade.
-- Precedes: B-010
+- Precedes: bar.headcount_executive_budget_approval
 
-### B-010 — Headcount & Executive Budget Approval
+### bar.headcount_executive_budget_approval — Headcount & Executive Budget Approval
 
 Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.
 
 - Stage: offer · Order: 12 · Passes when: Active headcount requisition is formally certified and unblocked by financial leadership.
-- Precedes: B-011
+- Precedes: bar.reference_background_verification
 
-### B-011 — Reference & Background Verification
+### bar.reference_background_verification — Reference & Background Verification
 
 Third-party or internal verification of past employment records, academic degrees, and professional references.
 
 - Stage: post-offer · Order: 13 · Passes when: All mandatory background checks clear with no unresolved factual discrepancies.
-- Precedes: B-012
+- Precedes: bar.offer_closing_contract_execution
 
-### B-012 — Offer Closing & Contract Execution
+### bar.offer_closing_contract_execution — Offer Closing & Contract Execution
 
 Final mutual execution of the formal employment agreement and start-date confirmation.
 
 - Stage: post-offer · Order: 14 · Passes when: Both parties sign offer contract and onboarding workflow is triggered.
 
-### B-015 — Client Profile Approval and Client Interview
+### bar.client_profile_approval_and_client_interview — Client Profile Approval and Client Interview
 
 The candidate profile is submitted to the end client for review, followed by a client-side interview round.
 
 - Stage: client · Order: 15 · Passes when: The client approves the profile submission and signs off on the technical and culture match after the interview.
 
-### B-016 — Probation Period & Post-Start Confirmation
+### bar.probation_period_post_start_confirmation — Probation Period & Post-Start Confirmation
 
 The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.
 
@@ -338,7 +338,7 @@ The post-hire evaluation interval (statutory or contractual probation) during wh
 The candidate’s verified technical execution or domain depth does not meet the established baseline for the role level.
 
 - Actor: candidate · Nature: rule · Visibility: inferable · Removability: candidate
-- Operates at: B-005, B-006, B-007 · honest baseline
+- Operates at: bar.technical_screen_live_assessment, bar.take_home_work_sample_evaluation, bar.hiring_manager_in_depth_review · honest baseline
 - Emits: A-008 (direct), A-002 (euphemism)
 - Does NOT establish: Rejection does not mean the candidate has no engineering ability, only that the requirement bar was unmet for this specific benchmark.
 
@@ -347,7 +347,7 @@ The candidate’s verified technical execution or domain depth does not meet the
 Candidate cleared all passing bars, but another applicant in the same pipeline demonstrated superior domain overlap or lower onboarding overhead.
 
 - Actor: candidate · Nature: rule · Visibility: opaque · Removability: none
-- Operates at: B-007, B-008, B-010 · honest baseline
+- Operates at: bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.headcount_executive_budget_approval · honest baseline
 - Emits: A-002 (euphemism), A-003 (distortion)
 - Does NOT establish: Does not mean candidate had negative feedback; relative cohort ranking is outside candidate control.
 
@@ -356,7 +356,7 @@ Candidate cleared all passing bars, but another applicant in the same pipeline d
 Multi-column formatting, graphics, custom fonts, or unsupported document layouts cause ATS parser to corrupt or omit critical work history.
 
 - Actor: system · Nature: noise · Visibility: inferable · Removability: candidate
-- Operates at: B-001, B-002
+- Operates at: bar.application_ingestion, bar.automated_filter_parser_threshold
 - Emits: A-001 (void), A-009 (direct)
 - Does NOT establish: Does not imply human recruiter evaluated and disliked candidate experience.
 
@@ -365,7 +365,7 @@ Multi-column formatting, graphics, custom fonts, or unsupported document layouts
 Candidate market rate exceeds budgeted compensation for the requisition, but salary band was never published or clarified early.
 
 - Actor: policy · Nature: rule · Visibility: opaque · Removability: intermediary
-- Operates at: B-004, B-009
+- Operates at: bar.recruiter_screening_call, bar.compensation_levelling_reconciliation
 - Emits: A-002 (euphemism), A-005 (direct), A-013 (euphemism)
 - Does NOT establish: Rejection does not mean candidate is overpriced for the market, only mismatched with this specific employer budget.
 
@@ -374,7 +374,7 @@ Candidate market rate exceeds budgeted compensation for the requisition, but sal
 Requisition was publicly advertised to satisfy corporate policy or legal compliance while an internal employee was already earmarked for the role.
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
-- Operates at: B-013, B-001, B-003, B-007
+- Operates at: bar.requisition_approval_public_posting, bar.application_ingestion, bar.inbound_screening_triage, bar.hiring_manager_in_depth_review
 - Emits: A-016 (direct), A-002 (euphemism), A-003 (euphemism)
 - Does NOT establish: Cannot be asserted as fact without internal hiring log confirmation.
 
@@ -383,7 +383,7 @@ Requisition was publicly advertised to satisfy corporate policy or legal complia
 Job posting remains active on careers page and aggregator portals despite the team having ceased active hiring or closed headcount.
 
 - Actor: system · Nature: void · Visibility: opaque · Removability: none
-- Operates at: B-013, B-001, B-002, B-003
+- Operates at: bar.requisition_approval_public_posting, bar.application_ingestion, bar.automated_filter_parser_threshold, bar.inbound_screening_triage
 - Emits: A-001 (void), A-004 (noise)
 - Does NOT establish: Application silence does not reflect candidate suitability.
 
@@ -392,7 +392,7 @@ Job posting remains active on careers page and aggregator portals despite the te
 Executive leadership or finance halts all new hires across division due to macroeconomic factors or revenue shifts mid-interview process.
 
 - Actor: policy · Nature: rule · Visibility: inferable · Removability: none
-- Operates at: B-008, B-010, B-012
+- Operates at: bar.team_cross_functional_panel, bar.headcount_executive_budget_approval, bar.offer_closing_contract_execution
 - Emits: A-003 (direct), A-011 (direct)
 - Does NOT establish: Candidate performance in interview was not the causal trigger for process termination.
 
@@ -401,7 +401,7 @@ Executive leadership or finance halts all new hires across division due to macro
 Deterministic filter rejecting applications missing exact acronyms, certifications, or specific years-of-experience thresholds.
 
 - Actor: system · Nature: rule · Visibility: inferable · Removability: candidate
-- Operates at: B-002
+- Operates at: bar.automated_filter_parser_threshold
 - Emits: A-009 (direct), A-002 (euphemism)
 - Does NOT establish: Passing keyword filters does not guarantee interview invitation.
 
@@ -410,7 +410,7 @@ Deterministic filter rejecting applications missing exact acronyms, certificatio
 Applicant volume (500+ per req) runs past the screening hours available; profiles are read at the speed of the queue and matched against the pattern the requisition was described with.
 
 - Actor: recruiter · Nature: incentive · Visibility: inferable · Removability: intermediary
-- Operates at: B-003, B-004
+- Operates at: bar.inbound_screening_triage, bar.recruiter_screening_call
 - Emits: A-001 (void), A-012 (noise)
 - Does NOT establish: Does not mean the recruiter is individually negligent; the capacity mismatch is structural.
 
@@ -419,7 +419,7 @@ Applicant volume (500+ per req) runs past the screening hours available; profile
 The panel grades the candidate against architectural preferences, internal frameworks and house conventions that were not stated in the posting or in the round.
 
 - Actor: hiring-manager · Nature: bias · Visibility: opaque · Removability: intermediary
-- Operates at: B-005, B-007, B-008
+- Operates at: bar.technical_screen_live_assessment, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
 - Emits: A-008 (distortion), A-014 (direct)
 - Does NOT establish: Not guessing an unstated preference is not a shortfall in core competence.
 
@@ -428,7 +428,7 @@ The panel grades the candidate against architectural preferences, internal frame
 Automated ranking algorithms or human screeners discount candidates with recent career breaks regardless of verified project history.
 
 - Actor: system · Nature: bias · Visibility: inferable · Removability: none
-- Operates at: B-002, B-003
+- Operates at: bar.automated_filter_parser_threshold, bar.inbound_screening_triage
 - Emits: A-001 (void), A-002 (euphemism)
 - Does NOT establish: An employment gap does not correlate with a decline in technical ability.
 
@@ -437,7 +437,7 @@ Automated ranking algorithms or human screeners discount candidates with recent 
 Engineering interviewers carry sprint commitments alongside the panels they sit on, and rounds are moved, read cold, or dropped.
 
 - Actor: hiring-manager · Nature: noise · Visibility: inferable · Removability: intermediary
-- Operates at: B-005, B-007, B-008
+- Operates at: bar.technical_screen_live_assessment, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
 - Emits: A-007 (direct), A-001 (noise)
 - Does NOT establish: Rescheduling is an operational fact and does not indicate a negative evaluation.
 
@@ -446,7 +446,7 @@ Engineering interviewers carry sprint commitments alongside the panels they sit 
 The team changes the stack, the seniority level or the project scope while candidates are mid-process, and the assessments already taken no longer apply.
 
 - Actor: hiring-manager · Nature: noise · Visibility: inferable · Removability: none
-- Operates at: B-007, B-008, B-009
+- Operates at: bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.compensation_levelling_reconciliation
 - Emits: A-003 (distortion), A-004 (direct)
 - Does NOT establish: The rejection was driven by a shift in the team's mandate, not by the candidate's interview answers.
 
@@ -455,7 +455,7 @@ The team changes the stack, the seniority level or the project scope while candi
 The company has no legal entity or provider that can issue an employment contract in the jurisdiction where the candidate resides.
 
 - Actor: policy · Nature: rule · Visibility: observable · Removability: intermediary
-- Operates at: B-002, B-004
+- Operates at: bar.automated_filter_parser_threshold, bar.recruiter_screening_call
 - Emits: A-017 (direct), A-009 (direct), A-002 (euphemism)
 - Does NOT establish: The jurisdictional barrier is entirely independent of the candidate's technical competence.
 
@@ -464,7 +464,7 @@ The company has no legal entity or provider that can issue an employment contrac
 During a collaborative interview exercise the candidate is abrasive in tone, defensive about critique, or not listening.
 
 - Actor: candidate · Nature: bias · Visibility: observable · Removability: candidate
-- Operates at: B-004, B-008 · honest baseline
+- Operates at: bar.recruiter_screening_call, bar.team_cross_functional_panel · honest baseline
 - Emits: A-010 (direct), A-002 (euphemism)
 - Does NOT establish: Style friction in a high-pressure interview is not a permanent personality defect.
 
@@ -473,7 +473,7 @@ During a collaborative interview exercise the candidate is abrasive in tone, def
 Recruiters open conversations and build candidate pools against headcount that has not been approved or funded.
 
 - Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
-- Operates at: B-013, B-014, B-003, B-004
+- Operates at: bar.requisition_approval_public_posting, bar.outbound_sourcing_talent_pool_contact, bar.inbound_screening_triage, bar.recruiter_screening_call
 - Emits: A-012 (distortion), A-001 (void)
 - Does NOT establish: Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.
 
@@ -482,7 +482,7 @@ Recruiters open conversations and build candidate pools against headcount that h
 A candidate with 10+ years applies for a role graded at mid or senior, and the screening note records forecasts about boredom, short tenure and salary expectation.
 
 - Actor: recruiter · Nature: bias · Visibility: inferable · Removability: none
-- Operates at: B-003, B-004, B-007
+- Operates at: bar.inbound_screening_triage, bar.recruiter_screening_call, bar.hiring_manager_in_depth_review
 - Emits: A-013 (direct), A-002 (euphemism)
 - Does NOT establish: Being rejected as "overqualified" is an organisational tier mismatch, not a candidate deficiency.
 
@@ -491,7 +491,7 @@ A candidate with 10+ years applies for a role graded at mid or senior, and the s
 The interviewer holds experience in one exact vertical — adtech, crypto, a named payment processor — as a requirement, ahead of transferable systems depth.
 
 - Actor: hiring-manager · Nature: bias · Visibility: inferable · Removability: intermediary
-- Operates at: B-004, B-007
+- Operates at: bar.recruiter_screening_call, bar.hiring_manager_in_depth_review
 - Emits: A-018 (direct), A-002 (euphemism), A-008 (direct)
 - Does NOT establish: Transferable general engineering skills are not disproven by lack of specific proprietary protocol knowledge.
 
@@ -500,7 +500,7 @@ The interviewer holds experience in one exact vertical — adtech, crypto, a nam
 A 15-hour take-home is reviewed in minutes, and the structure and tests held outside the files that were opened do not reach the assessment.
 
 - Actor: hiring-manager · Nature: noise · Visibility: opaque · Removability: none
-- Operates at: B-006
+- Operates at: bar.take_home_work_sample_evaluation
 - Emits: A-006 (noise), A-002 (euphemism)
 - Does NOT establish: A take-home rejection made under evaluation fatigue does not measure the engineering in the submission.
 
@@ -509,7 +509,7 @@ A 15-hour take-home is reviewed in minutes, and the structure and tests held out
 The ATS is configured to reject in bulk every application still pending after 45 or 60 days.
 
 - Actor: system · Nature: rule · Visibility: opaque · Removability: none
-- Operates at: B-001, B-003
+- Operates at: bar.application_ingestion, bar.inbound_screening_triage
 - Emits: A-015 (direct), A-002 (void), A-001 (void)
 - Does NOT establish: A bulk timeout rejection carries no assessment of the profile at all.
 
@@ -518,7 +518,7 @@ The ATS is configured to reject in bulk every application still pending after 45
 A third-party check returns employment dates it could not verify, a degree the registrar has not confirmed, or a prior engagement flagged as a conflict of interest.
 
 - Actor: candidate · Nature: rule · Visibility: observable · Removability: candidate
-- Operates at: B-011 · honest baseline
+- Operates at: bar.reference_background_verification · honest baseline
 - Emits: A-011 (direct), A-002 (euphemism)
 - Does NOT establish: An administrative mismatch in dates is distinct from fraudulent misrepresentation on a CV.
 
@@ -527,7 +527,7 @@ A third-party check returns employment dates it could not verify, a degree the r
 The panel splits evenly, no one holds a tiebreaking vote, and the rule for the absence of consensus is no hire.
 
 - Actor: hiring-manager · Nature: bias · Visibility: opaque · Removability: none
-- Operates at: B-008
+- Operates at: bar.team_cross_functional_panel
 - Emits: A-014 (direct), A-002 (euphemism)
 - Does NOT establish: A split panel reflects the absence of a calibrated internal bar, not a failure by the candidate.
 
@@ -536,7 +536,7 @@ The panel splits evenly, no one holds a tiebreaking vote, and the rule for the a
 The surface a screener opens does not show the candidate's architecture work, which sits in a non-standard repository layout or in contributions under another organisation.
 
 - Actor: candidate · Nature: noise · Visibility: inferable · Removability: candidate
-- Operates at: B-003, B-005
+- Operates at: bar.inbound_screening_triage, bar.technical_screen_live_assessment
 - Emits: A-019 (direct), A-002 (euphemism), A-008 (distortion)
 - Does NOT establish: Misinterpreted architecture can be corrected through structured documentation.
 
@@ -545,7 +545,7 @@ The surface a screener opens does not show the candidate's architecture work, wh
 The posting lists 10+ named technologies and a Staff-level bar for a role whose actual work is feature delivery.
 
 - Actor: hiring-manager · Nature: incentive · Visibility: inferable · Removability: intermediary
-- Operates at: B-013, B-002, B-004
+- Operates at: bar.requisition_approval_public_posting, bar.automated_filter_parser_threshold, bar.recruiter_screening_call
 - Emits: A-002 (euphemism), A-004 (noise)
 - Does NOT establish: Failing to meet an inflated "wishlist" does not establish anything about how the candidate would do the team's actual work.
 
@@ -554,7 +554,7 @@ The posting lists 10+ named technologies and a Staff-level bar for a role whose 
 Recruiters run a real search for a real role whose funding depends on a contract that is not yet signed; if the bid is lost, the pool is closed without the role ever having existed.
 
 - Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
-- Operates at: B-014
+- Operates at: bar.outbound_sourcing_talent_pool_contact
 - Emits: A-001 (void), A-012 (void)
 - Does NOT establish: Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.
 - Does NOT establish: Does not establish that the recruiter was free to disclose the bid's existence.
@@ -564,7 +564,7 @@ Recruiters run a real search for a real role whose funding depends on a contract
 An engineer already employed and between projects becomes available mid-search, and the seat the external candidate is interviewing for is filled from the bench.
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
-- Operates at: B-013, B-003 · honest baseline
+- Operates at: bar.requisition_approval_public_posting, bar.inbound_screening_triage · honest baseline
 - Emits: A-002 (euphemism), A-003 (void), A-016 (direct)
 - Does NOT establish: Does not establish that the internal candidate was earmarked before the search was published — that is M-005, and from the outside the two are the same.
 - Does NOT establish: Does not mean the external assessment found the candidate short: the search can end for reasons that never reached the assessment.
@@ -574,7 +574,7 @@ An engineer already employed and between projects becomes available mid-search, 
 Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.
 
 - Actor: policy · Nature: incentive · Visibility: opaque · Removability: none
-- Operates at: B-012, B-016
+- Operates at: bar.offer_closing_contract_execution, bar.probation_period_post_start_confirmation
 - Emits: A-020 (direct), A-001 (void), A-011 (euphemism)
 - Does NOT establish: Does not establish that candidate credentials or references failed validation.
 
@@ -583,7 +583,7 @@ Employers defer confirmed start dates or revoke accepted offers between signing 
 Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.
 
 - Actor: hiring-manager · Nature: incentive · Visibility: inferable · Removability: intermediary
-- Operates at: B-016
+- Operates at: bar.probation_period_post_start_confirmation
 - Emits: A-020 (direct), A-002 (euphemism), A-016 (noise)
 - Does NOT establish: Does not establish that the employee committed gross misconduct.
 
@@ -658,7 +658,7 @@ Teams write inflated requirements that filter out strong generalists; the search
 Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
 
 - Actor: employer-policy · Scope: organizational · Cost: low
-- Targets: M-006, B-001, pat.closed_then_reposted_requisition_motif, L-003
+- Targets: M-006, bar.application_ingestion, pat.closed_then_reposted_requisition_motif, L-003
 - Expected: M-006 stops operating: a listing cannot outlive the authorisation that funded it
 - Expected: Silence after applying acquires a bound — the record is closed and the closure is sent
 
@@ -667,7 +667,7 @@ Implement automated ATS policy to expire public listings when headcount authoris
 Publish verified salary and equity bands directly in job descriptions or disclose them prior to scheduling technical interview rounds.
 
 - Actor: employer-policy · Scope: industry · Cost: low
-- Targets: M-004, B-004, B-009, pat.seniority_double_bind, pat.compensation_double_bind
+- Targets: M-004, bar.recruiter_screening_call, bar.compensation_levelling_reconciliation, pat.seniority_double_bind, pat.compensation_double_bind
 - Expected: M-004 has nothing to operate on: the band is stated before the candidate is asked for a number
 - Expected: B-009 becomes arithmetic rather than a negotiation about whether a band exists
 
@@ -676,7 +676,7 @@ Publish verified salary and equity bands directly in job descriptions or disclos
 Provide candidates reaching technical or panel stages with structured, rubric-based feedback categories rather than generic templates.
 
 - Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: M-001, M-010, B-007, B-008, B-015, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, L-003
+- Targets: M-001, M-010, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel, bar.client_profile_approval_and_client_interview, pat.seniority_double_bind, pat.closed_then_reposted_requisition_motif, L-003
 - Expected: The stage and the criterion behind a late rejection become part of what is sent
 - Expected: M-010 becomes checkable: a rubric that is reported has to exist before the round
 
@@ -694,7 +694,7 @@ Disable employment duration gap penalties in recruitment AI algorithms and scree
 Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.
 
 - Actor: candidate-action · Scope: individual · Cost: low
-- Targets: M-003, B-002, pat.experience_age_impossibility
+- Targets: M-003, bar.automated_filter_parser_threshold, pat.experience_age_impossibility
 - Expected: The candidate can see the extraction before submitting, so an unreadable file is distinguishable from a thin one
 - Expected: M-003 moves from invisible to checkable on the candidate's side of the line
 
@@ -703,7 +703,7 @@ Provide candidates with an open-source parsing validation tool to verify CV mach
 Enforce strict 3-hour scope limits on take-homes, compensate candidates for extended samples, and grade submissions blind.
 
 - Actor: hiring-manager · Scope: organizational · Cost: medium
-- Targets: M-019, L-002, B-006
+- Targets: M-019, L-002, bar.take_home_work_sample_evaluation
 - Expected: M-019 loses its asymmetry: the timebox binds the reviewer as well as the candidate
 - Expected: Who wrote a submission stops being an input to how it is scored
 
@@ -712,7 +712,7 @@ Enforce strict 3-hour scope limits on take-homes, compensate candidates for exte
 Draft the requisition's requirement list from the last two quarters of the team's actual work: every requirement the screen reads names a task it is required for, and anything without one is published in a separate section that is not screened on.
 
 - Actor: hiring-manager · Scope: team · Cost: low
-- Targets: M-024, B-013, L-003
+- Targets: M-024, bar.requisition_approval_public_posting, L-003
 - Expected: M-024 is split into two published lists: the screened list carries only requirements that name a task, and the wish sits in the section that is not screened on
 - Expected: B-013 fixes a bar that states what each part of it is for: the requirement list is checkable against the team's own backlog rather than against the level in the grid
 - Expected: L-003's entry point becomes an edit with a date — raising a requirement mid-search means adding a line with no task behind it
@@ -722,7 +722,7 @@ Draft the requisition's requirement list from the last two quarters of the team'
 Where a formal internal candidacy exists against a requisition at the moment it is published, the posting says so and says what the external loop decides.
 
 - Actor: employer-policy · Scope: organizational · Cost: medium
-- Targets: M-005, B-013
+- Targets: M-005, bar.requisition_approval_public_posting
 - Expected: M-005 stops being opaque at the gate it operates at: the composition of the slate is stated where the posting is, not at minute 41 of a final round
 - Expected: B-013 publishes one more field — whether the external loop runs against an internal candidacy already formally under consideration
 
@@ -731,7 +731,7 @@ Where a formal internal candidacy exists against a requisition at the moment it 
 Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.
 
 - Actor: recruiter-process · Scope: organizational · Cost: low
-- Targets: B-014, M-016, M-025
+- Targets: bar.outbound_sourcing_talent_pool_contact, M-016, M-025
 - Expected: B-014's pass condition is stated in the first message: whether a reply attaches to an authorised requisition or to a pool is part of what is sent
 - Expected: M-016 becomes datable — a conversation held against an unapproved forecast carries the planning date it depends on
 - Expected: The silence after a speculative conversation acquires a bound: the planning decision goes to the records opened against that forecast
@@ -741,7 +741,7 @@ Every outbound message names the requisition it is sent against and its state �
 Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.
 
 - Actor: ats-vendor · Scope: ecosystem · Cost: medium
-- Targets: B-003, M-009, M-020
+- Targets: bar.inbound_screening_triage, M-009, M-020
 - Expected: M-020 can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status
 - Expected: The gap M-009 runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are
 - Expected: B-003 leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
@@ -751,7 +751,7 @@ Give the ATS a terminal status for an application closed without a human opening
 Restrict the screening note to the requirement, what the record shows and the surface opened, and close it with a fixed disposition code — including a referral to levelling for profiles above the graded band.
 
 - Actor: recruiter-process · Scope: organizational · Cost: medium
-- Targets: B-003, M-017, M-023
+- Targets: bar.inbound_screening_triage, M-017, M-023
 - Expected: The forecast M-017 is recorded as has no field to sit in: the note takes the requirement, what the record shows, and a disposition code
 - Expected: M-023 becomes checkable: the surface that was opened is recorded next to the note written from it, and the application form asks which surface that should be
 - Expected: A profile above the graded band leaves B-003 with a routing code rather than a pass at screen
@@ -761,7 +761,7 @@ Restrict the screening note to the requirement, what the record shows and the su
 Submit a one-page index naming each work artefact, the part of it that is the candidate's and the direct path to it, and open that index in the first minutes of the live screen.
 
 - Actor: candidate-action · Scope: individual · Cost: low
-- Targets: M-023, B-005, B-003
+- Targets: M-023, bar.technical_screen_live_assessment, bar.inbound_screening_triage
 - Expected: M-023 loses its default: the surface opened is the one the candidate named, with the part that is theirs stated on it
 - Expected: A contribution held under another organisation arrives as a commit range rather than as something to be discovered
 - Expected: The index travels with the application, so B-003 and B-005 open the same named artefacts instead of whatever a profile page shows first
@@ -771,7 +771,7 @@ Submit a one-page index naming each work artefact, the part of it that is the ca
 Publish the columns, their weights and the advancing threshold of the live technical screen alongside the posting, and score the round on those columns.
 
 - Actor: employer-policy · Scope: organizational · Cost: medium
-- Targets: B-005, M-012
+- Targets: bar.technical_screen_live_assessment, M-012
 - Expected: B-005's instrument exists before the hour it scores: the columns, the weights and the line are readable from outside the panel
 - Expected: A total one point under the threshold at B-005 is locatable, because the number it is compared with is published
 - Expected: A round read cold under M-012 is scored on the published columns rather than on what the hour left as an impression
@@ -781,7 +781,7 @@ Publish the columns, their weights and the advancing threshold of the live techn
 Book every interview seat as preparation plus session, take those hours off the sprint board, and give each round a second name on a standing rota so an unavailable interviewer passes the seat rather than moves the date.
 
 - Actor: hiring-manager · Scope: team · Cost: medium
-- Targets: M-012, B-005
+- Targets: M-012, bar.technical_screen_live_assessment
 - Expected: M-012 loses one of its two outputs: a seat that cannot be filled moves the seat, not the date
 - Expected: A round at B-005 is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name
 - Expected: Interviewer hours sit on the sprint board as committed work rather than as an overrun absorbed by whoever had the slot
@@ -791,7 +791,7 @@ Book every interview seat as preparation plus session, take those hours off the 
 Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.
 
 - Actor: employer-policy · Scope: organizational · Cost: medium
-- Targets: B-010, B-012, M-007
+- Targets: bar.headcount_executive_budget_approval, bar.offer_closing_contract_execution, M-007
 - Expected: B-010 is passed before the final round is scheduled: the certification date is in the requisition before the panel sits, rather than after it recommends
 - Expected: M-007 meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date
 - Expected: B-012 stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live
@@ -801,7 +801,7 @@ Carry a funding-certified-through date on every requisition, refuse to schedule 
 Classify every mandatory check in advance as reconcilable by document or disqualifying, release the disputed field and both values to the candidate on the day the result returns, and hold the offer open for a stated window with a revised start date.
 
 - Actor: employer-policy · Scope: organizational · Cost: low
-- Targets: B-011, B-016, M-021, M-027, M-028
+- Targets: bar.reference_background_verification, bar.probation_period_post_start_confirmation, M-021, M-027, M-028
 - Expected: M-021 arrives as a named field with two values and a named closing document, instead of as a hold with no stated cause
 - Expected: B-011 contains the reconciliation step: the window, the evidence that closes each check and who reviews it are set before the check runs rather than after it returns
 - Expected: Which findings a document can close and which end the process is a published classification rather than a per-file decision
@@ -811,7 +811,7 @@ Classify every mandatory check in advance as reconcilable by document or disqual
 Record, for every finalist who cleared the bar and received no offer, the cohort size, the class of reason and a dated stage the record re-enters at when a requisition at the same level opens.
 
 - Actor: recruiter-process · Scope: organizational · Cost: low
-- Targets: M-002, B-010, pat.closed_then_reposted_requisition_motif
+- Targets: M-002, bar.headcount_executive_budget_approval, pat.closed_then_reposted_requisition_motif
 - Expected: M-002 becomes a recorded outcome: the cohort size and the class of reason sit in the record and in what is sent, instead of arriving as a decline with no account of the group
 - Expected: B-010: a requisition that closes with more finalists than offers leaves standings behind it that outlast the closing
 - Expected: pat.closed_then_reposted_requisition_motif: a reposted requisition matches against the standings recorded against its previous run, and the stage a matched record re-enters at is stated

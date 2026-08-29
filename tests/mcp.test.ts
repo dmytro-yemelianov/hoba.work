@@ -158,6 +158,6 @@ describe('hoba MCP server', () => {
     expect(some.patterns.map((p: { id: string }) => p.id)).toEqual(['pat.seniority_double_bind']);
 
     const trav = payload(await client.request('tools/call', { name: 'traverse_graph', arguments: { start_id: 'M-001', depth: 1, relations: ['operates_at'] } }));
-    expect(trav.nodes.map((n: { id: string }) => n.id).sort()).toEqual(['B-005', 'B-006', 'B-007', 'M-001']);
+    expect(trav.nodes.map((n: { id: string }) => n.id).sort()).toEqual(['M-001', 'bar.hiring_manager_in_depth_review', 'bar.take_home_work_sample_evaluation', 'bar.technical_screen_live_assessment']);
   });
 });

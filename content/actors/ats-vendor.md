@@ -44,7 +44,7 @@ recommendations:
     targets:
       - "M-011"
       - "L-001"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
     interventions:
       - "I-004"
   -
@@ -55,7 +55,7 @@ recommendations:
     costs: "The hold state is work that lands on customers with nobody assigned to it, and the share of applications the platform disposes of without a person — a number the buyer is shown — falls."
     targets:
       - "M-003"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "A-009"
     interventions: []
   -
@@ -66,8 +66,8 @@ recommendations:
     costs: "It creates a candidate-facing surface the vendor maintains and receives corrections through, used by people who are not the customer that bought the platform."
     targets:
       - "M-003"
-      - "B-001"
-      - "B-002"
+      - "bar.application_ingestion"
+      - "bar.automated_filter_parser_threshold"
     interventions:
       - "I-005"
   -
@@ -94,7 +94,7 @@ recommendations:
       - "M-008"
       - "M-024"
       - "pat.experience_age_impossibility"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "L-003"
     interventions: []
   -
@@ -105,7 +105,7 @@ recommendations:
     costs: "The customer's configuration becomes quotable by everyone it is applied to, and a threshold stated in writing draws replies the current template does not."
     targets:
       - "M-008"
-      - "B-002"
+      - "bar.automated_filter_parser_threshold"
       - "A-009"
       - "A-002"
     interventions: []

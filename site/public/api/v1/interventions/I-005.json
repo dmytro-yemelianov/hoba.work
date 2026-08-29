@@ -13,7 +13,7 @@
     "summary": "Provide candidates with an open-source parsing validation tool to verify CV machine-readability before submission.",
     "targets": [
       "M-003",
-      "B-002",
+      "bar.automated_filter_parser_threshold",
       "pat.experience_age_impossibility"
     ],
     "actor": "candidate-action",

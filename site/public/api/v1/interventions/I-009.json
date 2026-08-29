@@ -12,7 +12,7 @@
     "type": "intervention",
     "summary": "Every outbound message names the requisition it is sent against and its state — approved and open, or a pool record against a forecast — and the pool records opened against a forecast are answered on the day planning decides it.",
     "targets": [
-      "B-014",
+      "bar.outbound_sourcing_talent_pool_contact",
       "M-016",
       "M-025"
     ],

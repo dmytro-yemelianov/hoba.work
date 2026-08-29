@@ -1,0 +1,64 @@
+---
+id: "bar.hiring_manager_in_depth_review"
+type: "barrier"
+aliases:
+  - "B-007"
+title: "Hiring Manager In-Depth Review"
+stage: "hiring-manager"
+order: 9
+precedes:
+  - "bar.team_cross_functional_panel"
+description: "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit."
+pass_condition: "The hiring manager confirms the required depth and approves the candidate for the final panel."
+specimens:
+  -
+    kind: "transcript"
+    label: "The question this gate is built around"
+    context: "minute 18"
+    lines:
+      -
+        speaker: "Hiring manager"
+        at: "18:04"
+        text: "Tell me about a decision on that project you would make differently now."
+        tell: true
+      -
+        speaker: "Candidate"
+        at: "18:12"
+        text: "We picked synchronous calls between two services because it was faster to ship. It cost us during incidents — a queue would have been the right call."
+      -
+        speaker: "Hiring manager"
+        at: "18:40"
+        text: "What made you choose speed at the time?"
+      -
+        speaker: "Candidate"
+        at: "18:46"
+        text: "A launch date we had committed to externally."
+    reading: "This gate is testing ownership and trade-off reasoning, not knowledge. It is also the gate where an undisclosed house preference does the most damage."
+perspectives:
+  -
+    actor: "hiring-manager"
+    sees: "An hour with the candidate, plus what the earlier rounds recorded. The rounds they did not attend arrive as scores rather than as what was said."
+    reads: "An answer about a past trade-off reads as evidence of ownership at the level the role is scoped to."
+    does: "Assesses against the requirements as written and the ones that were never written down. A bad hire is attributed and a missed one is not, so an unresolved doubt closes the loop rather than extends it."
+  -
+    actor: "candidate"
+    sees: "Questions about past decisions, and no statement of which answers are scored or at what level."
+    reads: "A conversational round reads as rapport rather than as an assessment against a written bar."
+    does: "Chooses which projects to describe and in what depth, without knowing the house preference the answer is compared against. The available lever is to ask what the level and the rubric are before answering."
+  -
+    actor: "recruiter"
+    sees: "A recommendation and a date. The reasoning behind it arrives as a summary line, not as the manager's notes."
+    reads: "An advance is a pipeline step cleared; a decline here is a rejection to be worded without the reasoning that produced it."
+    does: "Moves the candidate to the panel, or sends the decline in standard wording, since the requirement behind it is not in what reached them."
+status: "active"
+evidence_level: "established"
+evidence_ids:
+  - "EVD-002"
+---
+
+# Hiring Manager In-Depth Review
+
+Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.
+
+### Pass Condition
+The hiring manager confirms the required depth and approves the candidate for the final panel.

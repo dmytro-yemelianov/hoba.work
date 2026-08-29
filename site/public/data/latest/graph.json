@@ -278,7 +278,7 @@
       },
       {
         "data": {
-          "id": "B-013",
+          "id": "bar.requisition_approval_public_posting",
           "label": "Requisition Approval & Public Posting",
           "type": "barrier",
           "stage": "pre-posting",
@@ -289,7 +289,7 @@
       },
       {
         "data": {
-          "id": "B-014",
+          "id": "bar.outbound_sourcing_talent_pool_contact",
           "label": "Outbound Sourcing & Talent Pool Contact",
           "type": "barrier",
           "stage": "sourcing",
@@ -300,7 +300,7 @@
       },
       {
         "data": {
-          "id": "B-001",
+          "id": "bar.application_ingestion",
           "label": "Application Ingestion",
           "type": "barrier",
           "stage": "ingestion",
@@ -311,7 +311,7 @@
       },
       {
         "data": {
-          "id": "B-002",
+          "id": "bar.automated_filter_parser_threshold",
           "label": "Automated Filter & Parser Threshold",
           "type": "barrier",
           "stage": "ingestion",
@@ -322,7 +322,7 @@
       },
       {
         "data": {
-          "id": "B-003",
+          "id": "bar.inbound_screening_triage",
           "label": "Inbound Screening & Triage",
           "type": "barrier",
           "stage": "screening",
@@ -333,7 +333,7 @@
       },
       {
         "data": {
-          "id": "B-004",
+          "id": "bar.recruiter_screening_call",
           "label": "Recruiter Screening Call",
           "type": "barrier",
           "stage": "recruiter",
@@ -344,7 +344,7 @@
       },
       {
         "data": {
-          "id": "B-005",
+          "id": "bar.technical_screen_live_assessment",
           "label": "Technical Screen / Live Assessment",
           "type": "barrier",
           "stage": "technical",
@@ -355,7 +355,7 @@
       },
       {
         "data": {
-          "id": "B-006",
+          "id": "bar.take_home_work_sample_evaluation",
           "label": "Take-Home / Work Sample Evaluation",
           "type": "barrier",
           "stage": "technical",
@@ -366,7 +366,7 @@
       },
       {
         "data": {
-          "id": "B-007",
+          "id": "bar.hiring_manager_in_depth_review",
           "label": "Hiring Manager In-Depth Review",
           "type": "barrier",
           "stage": "hiring-manager",
@@ -377,7 +377,7 @@
       },
       {
         "data": {
-          "id": "B-008",
+          "id": "bar.team_cross_functional_panel",
           "label": "Team & Cross-Functional Panel",
           "type": "barrier",
           "stage": "team",
@@ -388,7 +388,7 @@
       },
       {
         "data": {
-          "id": "B-009",
+          "id": "bar.compensation_levelling_reconciliation",
           "label": "Compensation & Levelling Reconciliation",
           "type": "barrier",
           "stage": "compensation",
@@ -399,7 +399,7 @@
       },
       {
         "data": {
-          "id": "B-010",
+          "id": "bar.headcount_executive_budget_approval",
           "label": "Headcount & Executive Budget Approval",
           "type": "barrier",
           "stage": "offer",
@@ -410,7 +410,7 @@
       },
       {
         "data": {
-          "id": "B-011",
+          "id": "bar.reference_background_verification",
           "label": "Reference & Background Verification",
           "type": "barrier",
           "stage": "post-offer",
@@ -421,7 +421,7 @@
       },
       {
         "data": {
-          "id": "B-012",
+          "id": "bar.offer_closing_contract_execution",
           "label": "Offer Closing & Contract Execution",
           "type": "barrier",
           "stage": "post-offer",
@@ -432,7 +432,7 @@
       },
       {
         "data": {
-          "id": "B-015",
+          "id": "bar.client_profile_approval_and_client_interview",
           "label": "Client Profile Approval and Client Interview",
           "type": "barrier",
           "stage": "client",
@@ -443,7 +443,7 @@
       },
       {
         "data": {
-          "id": "B-016",
+          "id": "bar.probation_period_post_start_confirmation",
           "label": "Probation Period & Post-Start Confirmation",
           "type": "barrier",
           "stage": "post-offer",
@@ -1098,180 +1098,180 @@
     "edges": [
       {
         "data": {
-          "id": "B-013->precedes->B-014",
-          "source": "B-013",
-          "target": "B-014",
+          "id": "bar.requisition_approval_public_posting->precedes->bar.outbound_sourcing_talent_pool_contact",
+          "source": "bar.requisition_approval_public_posting",
+          "target": "bar.outbound_sourcing_talent_pool_contact",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-013->precedes->B-001",
-          "source": "B-013",
-          "target": "B-001",
+          "id": "bar.requisition_approval_public_posting->precedes->bar.application_ingestion",
+          "source": "bar.requisition_approval_public_posting",
+          "target": "bar.application_ingestion",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-014->precedes->B-001",
-          "source": "B-014",
-          "target": "B-001",
+          "id": "bar.outbound_sourcing_talent_pool_contact->precedes->bar.application_ingestion",
+          "source": "bar.outbound_sourcing_talent_pool_contact",
+          "target": "bar.application_ingestion",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-014->precedes->B-004",
-          "source": "B-014",
-          "target": "B-004",
+          "id": "bar.outbound_sourcing_talent_pool_contact->precedes->bar.recruiter_screening_call",
+          "source": "bar.outbound_sourcing_talent_pool_contact",
+          "target": "bar.recruiter_screening_call",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-001->precedes->B-002",
-          "source": "B-001",
-          "target": "B-002",
+          "id": "bar.application_ingestion->precedes->bar.automated_filter_parser_threshold",
+          "source": "bar.application_ingestion",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-002->precedes->B-003",
-          "source": "B-002",
-          "target": "B-003",
+          "id": "bar.automated_filter_parser_threshold->precedes->bar.inbound_screening_triage",
+          "source": "bar.automated_filter_parser_threshold",
+          "target": "bar.inbound_screening_triage",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-002->precedes->B-004",
-          "source": "B-002",
-          "target": "B-004",
+          "id": "bar.automated_filter_parser_threshold->precedes->bar.recruiter_screening_call",
+          "source": "bar.automated_filter_parser_threshold",
+          "target": "bar.recruiter_screening_call",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-003->precedes->B-004",
-          "source": "B-003",
-          "target": "B-004",
+          "id": "bar.inbound_screening_triage->precedes->bar.recruiter_screening_call",
+          "source": "bar.inbound_screening_triage",
+          "target": "bar.recruiter_screening_call",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-004->precedes->B-005",
-          "source": "B-004",
-          "target": "B-005",
+          "id": "bar.recruiter_screening_call->precedes->bar.technical_screen_live_assessment",
+          "source": "bar.recruiter_screening_call",
+          "target": "bar.technical_screen_live_assessment",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-005->precedes->B-006",
-          "source": "B-005",
-          "target": "B-006",
+          "id": "bar.technical_screen_live_assessment->precedes->bar.take_home_work_sample_evaluation",
+          "source": "bar.technical_screen_live_assessment",
+          "target": "bar.take_home_work_sample_evaluation",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-005->precedes->B-007",
-          "source": "B-005",
-          "target": "B-007",
+          "id": "bar.technical_screen_live_assessment->precedes->bar.hiring_manager_in_depth_review",
+          "source": "bar.technical_screen_live_assessment",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-006->precedes->B-007",
-          "source": "B-006",
-          "target": "B-007",
+          "id": "bar.take_home_work_sample_evaluation->precedes->bar.hiring_manager_in_depth_review",
+          "source": "bar.take_home_work_sample_evaluation",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-007->precedes->B-008",
-          "source": "B-007",
-          "target": "B-008",
+          "id": "bar.hiring_manager_in_depth_review->precedes->bar.team_cross_functional_panel",
+          "source": "bar.hiring_manager_in_depth_review",
+          "target": "bar.team_cross_functional_panel",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-008->precedes->B-009",
-          "source": "B-008",
-          "target": "B-009",
+          "id": "bar.team_cross_functional_panel->precedes->bar.compensation_levelling_reconciliation",
+          "source": "bar.team_cross_functional_panel",
+          "target": "bar.compensation_levelling_reconciliation",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-009->precedes->B-010",
-          "source": "B-009",
-          "target": "B-010",
+          "id": "bar.compensation_levelling_reconciliation->precedes->bar.headcount_executive_budget_approval",
+          "source": "bar.compensation_levelling_reconciliation",
+          "target": "bar.headcount_executive_budget_approval",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-010->precedes->B-011",
-          "source": "B-010",
-          "target": "B-011",
+          "id": "bar.headcount_executive_budget_approval->precedes->bar.reference_background_verification",
+          "source": "bar.headcount_executive_budget_approval",
+          "target": "bar.reference_background_verification",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "B-011->precedes->B-012",
-          "source": "B-011",
-          "target": "B-012",
+          "id": "bar.reference_background_verification->precedes->bar.offer_closing_contract_execution",
+          "source": "bar.reference_background_verification",
+          "target": "bar.offer_closing_contract_execution",
           "type": "precedes"
         },
         "classes": "edge-precedes"
       },
       {
         "data": {
-          "id": "M-001->operates_at->B-005",
+          "id": "M-001->operates_at->bar.technical_screen_live_assessment",
           "source": "M-001",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-001->operates_at->B-006",
+          "id": "M-001->operates_at->bar.take_home_work_sample_evaluation",
           "source": "M-001",
-          "target": "B-006",
+          "target": "bar.take_home_work_sample_evaluation",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-001->operates_at->B-007",
+          "id": "M-001->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-001",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1300,27 +1300,27 @@
       },
       {
         "data": {
-          "id": "M-002->operates_at->B-007",
+          "id": "M-002->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-002",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-002->operates_at->B-008",
+          "id": "M-002->operates_at->bar.team_cross_functional_panel",
           "source": "M-002",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-002->operates_at->B-010",
+          "id": "M-002->operates_at->bar.headcount_executive_budget_approval",
           "source": "M-002",
-          "target": "B-010",
+          "target": "bar.headcount_executive_budget_approval",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1358,18 +1358,18 @@
       },
       {
         "data": {
-          "id": "M-003->operates_at->B-001",
+          "id": "M-003->operates_at->bar.application_ingestion",
           "source": "M-003",
-          "target": "B-001",
+          "target": "bar.application_ingestion",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-003->operates_at->B-002",
+          "id": "M-003->operates_at->bar.automated_filter_parser_threshold",
           "source": "M-003",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1407,18 +1407,18 @@
       },
       {
         "data": {
-          "id": "M-004->operates_at->B-004",
+          "id": "M-004->operates_at->bar.recruiter_screening_call",
           "source": "M-004",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-004->operates_at->B-009",
+          "id": "M-004->operates_at->bar.compensation_levelling_reconciliation",
           "source": "M-004",
-          "target": "B-009",
+          "target": "bar.compensation_levelling_reconciliation",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1476,36 +1476,36 @@
       },
       {
         "data": {
-          "id": "M-005->operates_at->B-013",
+          "id": "M-005->operates_at->bar.requisition_approval_public_posting",
           "source": "M-005",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-005->operates_at->B-001",
+          "id": "M-005->operates_at->bar.application_ingestion",
           "source": "M-005",
-          "target": "B-001",
+          "target": "bar.application_ingestion",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-005->operates_at->B-003",
+          "id": "M-005->operates_at->bar.inbound_screening_triage",
           "source": "M-005",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-005->operates_at->B-007",
+          "id": "M-005->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-005",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1554,36 +1554,36 @@
       },
       {
         "data": {
-          "id": "M-006->operates_at->B-013",
+          "id": "M-006->operates_at->bar.requisition_approval_public_posting",
           "source": "M-006",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-006->operates_at->B-001",
+          "id": "M-006->operates_at->bar.application_ingestion",
           "source": "M-006",
-          "target": "B-001",
+          "target": "bar.application_ingestion",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-006->operates_at->B-002",
+          "id": "M-006->operates_at->bar.automated_filter_parser_threshold",
           "source": "M-006",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-006->operates_at->B-003",
+          "id": "M-006->operates_at->bar.inbound_screening_triage",
           "source": "M-006",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1621,27 +1621,27 @@
       },
       {
         "data": {
-          "id": "M-007->operates_at->B-008",
+          "id": "M-007->operates_at->bar.team_cross_functional_panel",
           "source": "M-007",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-007->operates_at->B-010",
+          "id": "M-007->operates_at->bar.headcount_executive_budget_approval",
           "source": "M-007",
-          "target": "B-010",
+          "target": "bar.headcount_executive_budget_approval",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-007->operates_at->B-012",
+          "id": "M-007->operates_at->bar.offer_closing_contract_execution",
           "source": "M-007",
-          "target": "B-012",
+          "target": "bar.offer_closing_contract_execution",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1697,9 +1697,9 @@
       },
       {
         "data": {
-          "id": "M-008->operates_at->B-002",
+          "id": "M-008->operates_at->bar.automated_filter_parser_threshold",
           "source": "M-008",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1746,18 +1746,18 @@
       },
       {
         "data": {
-          "id": "M-009->operates_at->B-003",
+          "id": "M-009->operates_at->bar.inbound_screening_triage",
           "source": "M-009",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-009->operates_at->B-004",
+          "id": "M-009->operates_at->bar.recruiter_screening_call",
           "source": "M-009",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1804,27 +1804,27 @@
       },
       {
         "data": {
-          "id": "M-010->operates_at->B-005",
+          "id": "M-010->operates_at->bar.technical_screen_live_assessment",
           "source": "M-010",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-010->operates_at->B-007",
+          "id": "M-010->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-010",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-010->operates_at->B-008",
+          "id": "M-010->operates_at->bar.team_cross_functional_panel",
           "source": "M-010",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1871,18 +1871,18 @@
       },
       {
         "data": {
-          "id": "M-011->operates_at->B-002",
+          "id": "M-011->operates_at->bar.automated_filter_parser_threshold",
           "source": "M-011",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-011->operates_at->B-003",
+          "id": "M-011->operates_at->bar.inbound_screening_triage",
           "source": "M-011",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1920,27 +1920,27 @@
       },
       {
         "data": {
-          "id": "M-012->operates_at->B-005",
+          "id": "M-012->operates_at->bar.technical_screen_live_assessment",
           "source": "M-012",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-012->operates_at->B-007",
+          "id": "M-012->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-012",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-012->operates_at->B-008",
+          "id": "M-012->operates_at->bar.team_cross_functional_panel",
           "source": "M-012",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -1978,27 +1978,27 @@
       },
       {
         "data": {
-          "id": "M-013->operates_at->B-007",
+          "id": "M-013->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-013",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-013->operates_at->B-008",
+          "id": "M-013->operates_at->bar.team_cross_functional_panel",
           "source": "M-013",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-013->operates_at->B-009",
+          "id": "M-013->operates_at->bar.compensation_levelling_reconciliation",
           "source": "M-013",
-          "target": "B-009",
+          "target": "bar.compensation_levelling_reconciliation",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2054,18 +2054,18 @@
       },
       {
         "data": {
-          "id": "M-014->operates_at->B-002",
+          "id": "M-014->operates_at->bar.automated_filter_parser_threshold",
           "source": "M-014",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-014->operates_at->B-004",
+          "id": "M-014->operates_at->bar.recruiter_screening_call",
           "source": "M-014",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2105,18 +2105,18 @@
       },
       {
         "data": {
-          "id": "M-015->operates_at->B-004",
+          "id": "M-015->operates_at->bar.recruiter_screening_call",
           "source": "M-015",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-015->operates_at->B-008",
+          "id": "M-015->operates_at->bar.team_cross_functional_panel",
           "source": "M-015",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2145,36 +2145,36 @@
       },
       {
         "data": {
-          "id": "M-016->operates_at->B-013",
+          "id": "M-016->operates_at->bar.requisition_approval_public_posting",
           "source": "M-016",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-016->operates_at->B-014",
+          "id": "M-016->operates_at->bar.outbound_sourcing_talent_pool_contact",
           "source": "M-016",
-          "target": "B-014",
+          "target": "bar.outbound_sourcing_talent_pool_contact",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-016->operates_at->B-003",
+          "id": "M-016->operates_at->bar.inbound_screening_triage",
           "source": "M-016",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-016->operates_at->B-004",
+          "id": "M-016->operates_at->bar.recruiter_screening_call",
           "source": "M-016",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2212,27 +2212,27 @@
       },
       {
         "data": {
-          "id": "M-017->operates_at->B-003",
+          "id": "M-017->operates_at->bar.inbound_screening_triage",
           "source": "M-017",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-017->operates_at->B-004",
+          "id": "M-017->operates_at->bar.recruiter_screening_call",
           "source": "M-017",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-017->operates_at->B-007",
+          "id": "M-017->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-017",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2279,18 +2279,18 @@
       },
       {
         "data": {
-          "id": "M-018->operates_at->B-004",
+          "id": "M-018->operates_at->bar.recruiter_screening_call",
           "source": "M-018",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-018->operates_at->B-007",
+          "id": "M-018->operates_at->bar.hiring_manager_in_depth_review",
           "source": "M-018",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2348,9 +2348,9 @@
       },
       {
         "data": {
-          "id": "M-019->operates_at->B-006",
+          "id": "M-019->operates_at->bar.take_home_work_sample_evaluation",
           "source": "M-019",
-          "target": "B-006",
+          "target": "bar.take_home_work_sample_evaluation",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2397,18 +2397,18 @@
       },
       {
         "data": {
-          "id": "M-020->operates_at->B-001",
+          "id": "M-020->operates_at->bar.application_ingestion",
           "source": "M-020",
-          "target": "B-001",
+          "target": "bar.application_ingestion",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-020->operates_at->B-003",
+          "id": "M-020->operates_at->bar.inbound_screening_triage",
           "source": "M-020",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2457,9 +2457,9 @@
       },
       {
         "data": {
-          "id": "M-021->operates_at->B-011",
+          "id": "M-021->operates_at->bar.reference_background_verification",
           "source": "M-021",
-          "target": "B-011",
+          "target": "bar.reference_background_verification",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2488,9 +2488,9 @@
       },
       {
         "data": {
-          "id": "M-022->operates_at->B-008",
+          "id": "M-022->operates_at->bar.team_cross_functional_panel",
           "source": "M-022",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2528,18 +2528,18 @@
       },
       {
         "data": {
-          "id": "M-023->operates_at->B-003",
+          "id": "M-023->operates_at->bar.inbound_screening_triage",
           "source": "M-023",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-023->operates_at->B-005",
+          "id": "M-023->operates_at->bar.technical_screen_live_assessment",
           "source": "M-023",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2588,27 +2588,27 @@
       },
       {
         "data": {
-          "id": "M-024->operates_at->B-013",
+          "id": "M-024->operates_at->bar.requisition_approval_public_posting",
           "source": "M-024",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-024->operates_at->B-002",
+          "id": "M-024->operates_at->bar.automated_filter_parser_threshold",
           "source": "M-024",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-024->operates_at->B-004",
+          "id": "M-024->operates_at->bar.recruiter_screening_call",
           "source": "M-024",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2655,9 +2655,9 @@
       },
       {
         "data": {
-          "id": "M-025->operates_at->B-014",
+          "id": "M-025->operates_at->bar.outbound_sourcing_talent_pool_contact",
           "source": "M-025",
-          "target": "B-014",
+          "target": "bar.outbound_sourcing_talent_pool_contact",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2686,18 +2686,18 @@
       },
       {
         "data": {
-          "id": "M-026->operates_at->B-013",
+          "id": "M-026->operates_at->bar.requisition_approval_public_posting",
           "source": "M-026",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-026->operates_at->B-003",
+          "id": "M-026->operates_at->bar.inbound_screening_triage",
           "source": "M-026",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2737,18 +2737,18 @@
       },
       {
         "data": {
-          "id": "M-027->operates_at->B-012",
+          "id": "M-027->operates_at->bar.offer_closing_contract_execution",
           "source": "M-027",
-          "target": "B-012",
+          "target": "bar.offer_closing_contract_execution",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
       },
       {
         "data": {
-          "id": "M-027->operates_at->B-016",
+          "id": "M-027->operates_at->bar.probation_period_post_start_confirmation",
           "source": "M-027",
-          "target": "B-016",
+          "target": "bar.probation_period_post_start_confirmation",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -2788,9 +2788,9 @@
       },
       {
         "data": {
-          "id": "M-028->operates_at->B-016",
+          "id": "M-028->operates_at->bar.probation_period_post_start_confirmation",
           "source": "M-028",
-          "target": "B-016",
+          "target": "bar.probation_period_post_start_confirmation",
           "type": "operates_at"
         },
         "classes": "edge-operates_at"
@@ -3010,9 +3010,9 @@
       },
       {
         "data": {
-          "id": "I-001->targets->B-001",
+          "id": "I-001->targets->bar.application_ingestion",
           "source": "I-001",
-          "target": "B-001",
+          "target": "bar.application_ingestion",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3046,18 +3046,18 @@
       },
       {
         "data": {
-          "id": "I-002->targets->B-004",
+          "id": "I-002->targets->bar.recruiter_screening_call",
           "source": "I-002",
-          "target": "B-004",
+          "target": "bar.recruiter_screening_call",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-002->targets->B-009",
+          "id": "I-002->targets->bar.compensation_levelling_reconciliation",
           "source": "I-002",
-          "target": "B-009",
+          "target": "bar.compensation_levelling_reconciliation",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3100,27 +3100,27 @@
       },
       {
         "data": {
-          "id": "I-003->targets->B-007",
+          "id": "I-003->targets->bar.hiring_manager_in_depth_review",
           "source": "I-003",
-          "target": "B-007",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-003->targets->B-008",
+          "id": "I-003->targets->bar.team_cross_functional_panel",
           "source": "I-003",
-          "target": "B-008",
+          "target": "bar.team_cross_functional_panel",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-003->targets->B-015",
+          "id": "I-003->targets->bar.client_profile_approval_and_client_interview",
           "source": "I-003",
-          "target": "B-015",
+          "target": "bar.client_profile_approval_and_client_interview",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3181,9 +3181,9 @@
       },
       {
         "data": {
-          "id": "I-005->targets->B-002",
+          "id": "I-005->targets->bar.automated_filter_parser_threshold",
           "source": "I-005",
-          "target": "B-002",
+          "target": "bar.automated_filter_parser_threshold",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3217,9 +3217,9 @@
       },
       {
         "data": {
-          "id": "I-006->targets->B-006",
+          "id": "I-006->targets->bar.take_home_work_sample_evaluation",
           "source": "I-006",
-          "target": "B-006",
+          "target": "bar.take_home_work_sample_evaluation",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3235,9 +3235,9 @@
       },
       {
         "data": {
-          "id": "I-007->targets->B-013",
+          "id": "I-007->targets->bar.requisition_approval_public_posting",
           "source": "I-007",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3262,18 +3262,18 @@
       },
       {
         "data": {
-          "id": "I-008->targets->B-013",
+          "id": "I-008->targets->bar.requisition_approval_public_posting",
           "source": "I-008",
-          "target": "B-013",
+          "target": "bar.requisition_approval_public_posting",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-009->targets->B-014",
+          "id": "I-009->targets->bar.outbound_sourcing_talent_pool_contact",
           "source": "I-009",
-          "target": "B-014",
+          "target": "bar.outbound_sourcing_talent_pool_contact",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3298,9 +3298,9 @@
       },
       {
         "data": {
-          "id": "I-010->targets->B-003",
+          "id": "I-010->targets->bar.inbound_screening_triage",
           "source": "I-010",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3325,9 +3325,9 @@
       },
       {
         "data": {
-          "id": "I-011->targets->B-003",
+          "id": "I-011->targets->bar.inbound_screening_triage",
           "source": "I-011",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3361,27 +3361,27 @@
       },
       {
         "data": {
-          "id": "I-012->targets->B-005",
+          "id": "I-012->targets->bar.technical_screen_live_assessment",
           "source": "I-012",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-012->targets->B-003",
+          "id": "I-012->targets->bar.inbound_screening_triage",
           "source": "I-012",
-          "target": "B-003",
+          "target": "bar.inbound_screening_triage",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-013->targets->B-005",
+          "id": "I-013->targets->bar.technical_screen_live_assessment",
           "source": "I-013",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3406,27 +3406,27 @@
       },
       {
         "data": {
-          "id": "I-014->targets->B-005",
+          "id": "I-014->targets->bar.technical_screen_live_assessment",
           "source": "I-014",
-          "target": "B-005",
+          "target": "bar.technical_screen_live_assessment",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-015->targets->B-010",
+          "id": "I-015->targets->bar.headcount_executive_budget_approval",
           "source": "I-015",
-          "target": "B-010",
+          "target": "bar.headcount_executive_budget_approval",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-015->targets->B-012",
+          "id": "I-015->targets->bar.offer_closing_contract_execution",
           "source": "I-015",
-          "target": "B-012",
+          "target": "bar.offer_closing_contract_execution",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3442,18 +3442,18 @@
       },
       {
         "data": {
-          "id": "I-016->targets->B-011",
+          "id": "I-016->targets->bar.reference_background_verification",
           "source": "I-016",
-          "target": "B-011",
+          "target": "bar.reference_background_verification",
           "type": "targets"
         },
         "classes": "edge-targets"
       },
       {
         "data": {
-          "id": "I-016->targets->B-016",
+          "id": "I-016->targets->bar.probation_period_post_start_confirmation",
           "source": "I-016",
-          "target": "B-016",
+          "target": "bar.probation_period_post_start_confirmation",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3496,9 +3496,9 @@
       },
       {
         "data": {
-          "id": "I-017->targets->B-010",
+          "id": "I-017->targets->bar.headcount_executive_budget_approval",
           "source": "I-017",
-          "target": "B-010",
+          "target": "bar.headcount_executive_budget_approval",
           "type": "targets"
         },
         "classes": "edge-targets"

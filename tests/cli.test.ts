@@ -23,7 +23,7 @@ function hoba(args: string[], opts: { expectFailure?: boolean } = {}): { stdout:
 describe('hoba CLI', { timeout: 20000 }, () => {
   it('shows an entity and emits JSON on request', () => {
     expect(hoba(['show', 'M-001']).stdout).toContain('Genuine Technical Skill Shortfall');
-    const json = JSON.parse(hoba(['show', 'B-013', '--json']).stdout);
+    const json = JSON.parse(hoba(['show', 'bar.requisition_approval_public_posting', '--json']).stdout);
     expect(json.node.stage).toBe('pre-posting');
     expect(json.registry_version).toMatch(/^\d{4}\.\d{2}\.\d+$/);
   });
@@ -31,7 +31,7 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   it('explains an observation and reports unknown ids', () => {
     const json = JSON.parse(hoba(['explain', 'A-004', 'A-999', '--stage', 'technical', '--json']).stdout);
     expect(json.analysis.hard_facts.unknown_artifact_ids).toEqual(['A-999']);
-    expect(json.analysis.obstacle.identified_barriers.map((b: { id: string }) => b.id)).toEqual(['B-005', 'B-006']);
+    expect(json.analysis.obstacle.identified_barriers.map((b: { id: string }) => b.id)).toEqual(['bar.technical_screen_live_assessment', 'bar.take_home_work_sample_evaluation']);
     expect(json.analysis.counts.probes).toBe(1);
   });
 

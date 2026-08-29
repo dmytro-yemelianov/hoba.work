@@ -9,14 +9,16 @@
         "EVD-004"
       ],
       "content": "# Requisition Approval & Public Posting\n\nThe gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.\n\n### Pass Condition\nAn approved requisition with a written job description is published against real, funded headcount.",
-      "aliases": [],
-      "id": "B-013",
+      "aliases": [
+        "B-013"
+      ],
+      "id": "bar.requisition_approval_public_posting",
       "type": "barrier",
       "stage": "pre-posting",
       "order": 1,
       "precedes": [
-        "B-014",
-        "B-001"
+        "bar.outbound_sourcing_talent_pool_contact",
+        "bar.application_ingestion"
       ],
       "description": "The gate that exists before any candidate does: headcount is authorised, the job description is written, and the requisition is published (or kept open) on careers pages and job boards.",
       "pass_condition": "An approved requisition with a written job description is published against real, funded headcount.",
@@ -76,14 +78,16 @@
         "EVD-034"
       ],
       "content": "# Outbound Sourcing & Talent Pool Contact\n\nRecruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.\n\n### Pass Condition\nThe candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
-      "aliases": [],
-      "id": "B-014",
+      "aliases": [
+        "B-014"
+      ],
+      "id": "bar.outbound_sourcing_talent_pool_contact",
       "type": "barrier",
       "stage": "sourcing",
       "order": 2,
       "precedes": [
-        "B-001",
-        "B-004"
+        "bar.application_ingestion",
+        "bar.recruiter_screening_call"
       ],
       "description": "Recruiter-initiated outreach to passive candidates and talent-pool building, independent of any inbound application.",
       "pass_condition": "The candidate responds to outreach and is attached to an active, authorised requisition rather than a speculative pool.",
@@ -143,13 +147,15 @@
         "EVD-001"
       ],
       "content": "# Application Ingestion\n\nThe initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.\n\n### Pass Condition\nThe application record is received, validates against the minimum schema, and is linked to an active job requisition.",
-      "aliases": [],
-      "id": "B-001",
+      "aliases": [
+        "B-001"
+      ],
+      "id": "bar.application_ingestion",
       "type": "barrier",
       "stage": "ingestion",
       "order": 3,
       "precedes": [
-        "B-002"
+        "bar.automated_filter_parser_threshold"
       ],
       "description": "The initial ingestion gate where candidate CV and structured application fields enter the talent acquisition database / ATS.",
       "pass_condition": "The application record is received, validates against the minimum schema, and is linked to an active job requisition.",
@@ -214,14 +220,16 @@
         "EVD-047"
       ],
       "content": "# Automated Filter & Parser Threshold\n\nAlgorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.\n\n### Pass Condition\nThe extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
-      "aliases": [],
-      "id": "B-002",
+      "aliases": [
+        "B-002"
+      ],
+      "id": "bar.automated_filter_parser_threshold",
       "type": "barrier",
       "stage": "ingestion",
       "order": 4,
       "precedes": [
-        "B-003",
-        "B-004"
+        "bar.inbound_screening_triage",
+        "bar.recruiter_screening_call"
       ],
       "description": "Algorithmic text extraction, keyword scoring, compliance screening (location/work authorisation), and knockout question evaluations.",
       "pass_condition": "The extraction score from CV parsing is at or above the threshold, and the candidate passes every mandatory algorithmic gating rule.",
@@ -294,13 +302,15 @@
         "EVD-001"
       ],
       "content": "# Inbound Screening & Triage\n\nRecruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.\n\n### Pass Condition\nThe recruiter adds the application to the active short-list for a first conversation.",
-      "aliases": [],
-      "id": "B-003",
+      "aliases": [
+        "B-003"
+      ],
+      "id": "bar.inbound_screening_triage",
       "type": "barrier",
       "stage": "screening",
       "order": 5,
       "precedes": [
-        "B-004"
+        "bar.recruiter_screening_call"
       ],
       "description": "Recruiter or sourcing coordinator manual review of parsed inbound applications vs active outbound talent pipelines.",
       "pass_condition": "The recruiter adds the application to the active short-list for a first conversation.",
@@ -356,13 +366,15 @@
         "EVD-005"
       ],
       "content": "# Recruiter Screening Call\n\nInitial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.\n\n### Pass Condition\nThe recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
-      "aliases": [],
-      "id": "B-004",
+      "aliases": [
+        "B-004"
+      ],
+      "id": "bar.recruiter_screening_call",
       "type": "barrier",
       "stage": "recruiter",
       "order": 6,
       "precedes": [
-        "B-005"
+        "bar.technical_screen_live_assessment"
       ],
       "description": "Initial conversational interview evaluating salary expectations, timeline, communication, English fluency, and high-level role alignment.",
       "pass_condition": "The recruiter and the candidate agree on the core parameters, and the recruiter submits the candidate to the hiring team.",
@@ -441,14 +453,16 @@
         "EVD-006"
       ],
       "content": "# Technical Screen / Live Assessment\n\nSynchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.\n\n### Pass Condition\nThe candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
-      "aliases": [],
-      "id": "B-005",
+      "aliases": [
+        "B-005"
+      ],
+      "id": "bar.technical_screen_live_assessment",
       "type": "barrier",
       "stage": "technical",
       "order": 7,
       "precedes": [
-        "B-006",
-        "B-007"
+        "bar.take_home_work_sample_evaluation",
+        "bar.hiring_manager_in_depth_review"
       ],
       "description": "Synchronous technical evaluation assessing core technical competencies, problem-solving speed, and system architecture fundamentals.",
       "pass_condition": "The candidate's total on the assessing engineer's rubric is at or above the threshold to advance.",
@@ -502,13 +516,15 @@
         "EVD-006"
       ],
       "content": "# Take-Home / Work Sample Evaluation\n\nAsynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.\n\n### Pass Condition\nThe submitted code meets the architecture, functionality, test coverage and documentation requirements.",
-      "aliases": [],
-      "id": "B-006",
+      "aliases": [
+        "B-006"
+      ],
+      "id": "bar.take_home_work_sample_evaluation",
       "type": "barrier",
       "stage": "technical",
       "order": 8,
       "precedes": [
-        "B-007"
+        "bar.hiring_manager_in_depth_review"
       ],
       "description": "Asynchronous technical assignment or project artifact reviewed by engineering peers against quality benchmarks.",
       "pass_condition": "The submitted code meets the architecture, functionality, test coverage and documentation requirements.",
@@ -566,13 +582,15 @@
         "EVD-002"
       ],
       "content": "# Hiring Manager In-Depth Review\n\nDetailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.\n\n### Pass Condition\nThe hiring manager confirms the required depth and approves the candidate for the final panel.",
-      "aliases": [],
-      "id": "B-007",
+      "aliases": [
+        "B-007"
+      ],
+      "id": "bar.hiring_manager_in_depth_review",
       "type": "barrier",
       "stage": "hiring-manager",
       "order": 9,
       "precedes": [
-        "B-008"
+        "bar.team_cross_functional_panel"
       ],
       "description": "Detailed evaluation of candidate seniority, project ownership history, trade-off reasoning, and team-specific mission fit.",
       "pass_condition": "The hiring manager confirms the required depth and approves the candidate for the final panel.",
@@ -639,13 +657,15 @@
         "EVD-006"
       ],
       "content": "# Team & Cross-Functional Panel\n\nMulti-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.\n\n### Pass Condition\nConsensus score among team panelists meets or exceeds hire recommendation threshold.",
-      "aliases": [],
-      "id": "B-008",
+      "aliases": [
+        "B-008"
+      ],
+      "id": "bar.team_cross_functional_panel",
       "type": "barrier",
       "stage": "team",
       "order": 10,
       "precedes": [
-        "B-009"
+        "bar.compensation_levelling_reconciliation"
       ],
       "description": "Multi-interviewer round assessing collaborative problem solving, code review etiquette, cross-functional communication, and cultural norms.",
       "pass_condition": "Consensus score among team panelists meets or exceeds hire recommendation threshold.",
@@ -708,13 +728,15 @@
         "EVD-005"
       ],
       "content": "# Compensation & Levelling Reconciliation\n\nInternal alignment between candidate expected compensation/level and company pay bands / levelling grid.\n\n### Pass Condition\nCandidate expectations fit within approved salary band and equity guidelines for the target grade.",
-      "aliases": [],
-      "id": "B-009",
+      "aliases": [
+        "B-009"
+      ],
+      "id": "bar.compensation_levelling_reconciliation",
       "type": "barrier",
       "stage": "compensation",
       "order": 11,
       "precedes": [
-        "B-010"
+        "bar.headcount_executive_budget_approval"
       ],
       "description": "Internal alignment between candidate expected compensation/level and company pay bands / levelling grid.",
       "pass_condition": "Candidate expectations fit within approved salary band and equity guidelines for the target grade.",
@@ -774,13 +796,15 @@
         "EVD-004"
       ],
       "content": "# Headcount & Executive Budget Approval\n\nFormal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.\n\n### Pass Condition\nActive headcount requisition is formally certified and unblocked by financial leadership.",
-      "aliases": [],
-      "id": "B-010",
+      "aliases": [
+        "B-010"
+      ],
+      "id": "bar.headcount_executive_budget_approval",
       "type": "barrier",
       "stage": "offer",
       "order": 12,
       "precedes": [
-        "B-011"
+        "bar.reference_background_verification"
       ],
       "description": "Formal sign-off by department leadership, finance, and talent committee to commit budget for the written offer.",
       "pass_condition": "Active headcount requisition is formally certified and unblocked by financial leadership.",
@@ -847,13 +871,15 @@
         "EVD-001"
       ],
       "content": "# Reference & Background Verification\n\nThird-party or internal verification of past employment records, academic degrees, and professional references.\n\n### Pass Condition\nAll mandatory background checks clear with no unresolved factual discrepancies.",
-      "aliases": [],
-      "id": "B-011",
+      "aliases": [
+        "B-011"
+      ],
+      "id": "bar.reference_background_verification",
       "type": "barrier",
       "stage": "post-offer",
       "order": 13,
       "precedes": [
-        "B-012"
+        "bar.offer_closing_contract_execution"
       ],
       "description": "Third-party or internal verification of past employment records, academic degrees, and professional references.",
       "pass_condition": "All mandatory background checks clear with no unresolved factual discrepancies.",
@@ -917,8 +943,10 @@
         "EVD-004"
       ],
       "content": "# Offer Closing & Contract Execution\n\nFinal mutual execution of the formal employment agreement and start-date confirmation.\n\n### Pass Condition\nBoth parties sign offer contract and onboarding workflow is triggered.",
-      "aliases": [],
-      "id": "B-012",
+      "aliases": [
+        "B-012"
+      ],
+      "id": "bar.offer_closing_contract_execution",
       "type": "barrier",
       "stage": "post-offer",
       "order": 14,
@@ -983,8 +1011,10 @@
         "EVD-034"
       ],
       "content": "# Client Profile Approval and Client Interview\n\nThe candidate profile is submitted to the end client for review, followed by a client-side interview round.\n\n### Pass Condition\nThe client approves the profile submission and signs off on the technical and culture match after the interview.",
-      "aliases": [],
-      "id": "B-015",
+      "aliases": [
+        "B-015"
+      ],
+      "id": "bar.client_profile_approval_and_client_interview",
       "type": "barrier",
       "stage": "client",
       "order": 15,
@@ -1051,8 +1081,10 @@
         "EVD-041"
       ],
       "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
-      "aliases": [],
-      "id": "B-016",
+      "aliases": [
+        "B-016"
+      ],
+      "id": "bar.probation_period_post_start_confirmation",
       "type": "barrier",
       "stage": "post-offer",
       "order": 16,

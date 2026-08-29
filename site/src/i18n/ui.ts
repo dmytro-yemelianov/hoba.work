@@ -943,7 +943,7 @@ const en = {
 
   'tour.registry.title': 'Atlas Registry Guide',
   'tour.registry.step1.title': 'Step 1: Instant Filter & Search',
-  'tour.registry.step1.text': 'Filter by entity type pill or search across IDs (e.g. B-002, M-001), titles, keywords, and stage attributes.',
+  'tour.registry.step1.text': 'Filter by entity type pill or search across IDs (e.g. bar.automated_filter_parser_threshold, M-001), titles, keywords, and stage attributes.',
   'tour.registry.step2.title': 'Step 2: Structured Grouping',
   'tour.registry.step2.text': 'Group records by Entity Type (6 tiers), Funnel Stage, or Agency Zone for clean categorical browsing without duplicates.',
   'tour.registry.step3.title': 'Step 3: Multi-View Switcher',
@@ -1923,7 +1923,7 @@ const uk: Record<UIKey, string> = {
 
   'tour.registry.title': 'Гід з реєстру атласу',
   'tour.registry.step1.title': 'Крок 1: Миттєвий пошук і фільтри',
-  'tour.registry.step1.text': 'Фільтруйте за типами сутностей або шукайте за ID (наприклад, B-002, M-001), заголовками, ключовими словами та етапами.',
+  'tour.registry.step1.text': 'Фільтруйте за типами сутностей або шукайте за ID (наприклад, bar.automated_filter_parser_threshold, M-001), заголовками, ключовими словами та етапами.',
   'tour.registry.step2.title': 'Крок 2: Розумне групування без дублів',
   'tour.registry.step2.text': 'Групуйте записи за 6 типами сутностей, етапами воронки або зонами контролю з чіткими числовими бейджами.',
   'tour.registry.step3.title': 'Крок 3: Перемикання режимів відображення',
