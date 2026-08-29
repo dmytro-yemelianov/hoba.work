@@ -72,6 +72,26 @@ actor from any other, so it is gone: an actor is a position the funnel is made
 of, not a claim about the world. A test now fails on any frontmatter key its
 schema does not define, naming the key and the file.
 
+### Changed — two kinds are now called what the contract calls them
+
+`schema/entity.schema.json` has enumerated `observation` and `process` since
+Phase 1, and the entities have carried `obs.*` and `proc.*` ids since Phase 2,
+but the live model went on calling those kinds `artifact` and `workflow`. A
+reader had to learn that `obs.*` entities live in `artifacts/` and are typed
+`artifact` — the same class of mismatch that produced four of the defects
+listed below. The i18n labels already read "Observation" in both languages.
+
+The type value, collection, directory, route, API path, schema and node type all
+moved together. **This is the only change in the migration that moves a public
+URL**: `/artifacts/<id>` is now `/observations/<id>`, and the old prefix
+redirects — in one hop even for a legacy short code, so `/artifacts/A-001` lands
+directly on `/observations/obs.complete_silence_after_submission`.
+
+Per-type field names that mention the old kinds (`required_artifacts` on a
+pattern, `emissions[].artifact` on a mechanism) deliberately did not move: they
+name a relationship *to* observations rather than the kind itself, and the
+target contract leaves per-type fields to their own schemas.
+
 ### Added
 
 - **Scenarios** (`data/scenarios/*.yaml`) — validated compositions of ontology

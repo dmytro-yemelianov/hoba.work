@@ -46,6 +46,18 @@ The alias table cannot carry this: it maps one legacy key to one path, and this 
 prefix rewrite over every observation at once. The worker gets a separate route-level
 rule, and both forms are covered by tests.
 
+## Where this stands (2026-08-29)
+
+Both halves are in — `21248be` and `7674740`. The live enum and
+`schema/entity.schema.json` now agree name for name on all eleven kinds, so the
+`RENAMED` map the DoD 1 test had carried since Phase 3 is gone.
+
+Each half broke the same two things, in the same way, and the gates caught both
+each time: a substrate sidecar key renamed on the write side but not the read
+side, which silently yields an empty list rather than an error; and a payload
+key crossing the JSON boundary to a client script, renamed on one side only,
+which typecheck cannot see. Worth knowing before the next collection rename.
+
 ## 3. Order
 
 `artifact` → `observation` first and on its own, because it is the larger of the two by an
