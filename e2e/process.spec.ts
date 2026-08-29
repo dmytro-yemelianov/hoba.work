@@ -79,7 +79,7 @@ test.describe('the canonical path anchors the registry', () => {
     const note = page.getByRole('region', { name: /made this ordinary/i });
     await expect(note).toContainText('A fixed number of seats');
     await note.getByRole('link').first().click();
-    await expect(page).toHaveURL(/\/eras#E-004$/);
+    await expect(page).toHaveURL(/\/eras#era\.a_fixed_number_of_seats$/);
   });
 });
 
@@ -104,7 +104,7 @@ test.describe('eras', () => {
     const spans = years.map((y) => y.split(/[–-]/).map(Number));
     for (let i = 1; i < spans.length; i++) expect(spans[i]![0]).toBe(spans[i - 1]![1]! + 1);
     // The era we are inside says so instead of naming what closed it.
-    await expect(page.locator('article[id^="E-"]').last()).toContainText(/still running/i);
+    await expect(page.locator('article[id^="era."]').last()).toContainText(/still running/i);
   });
 });
 

@@ -1,6 +1,8 @@
 ---
-id: "E-002"
+id: "era.the_record_funding_years"
 type: "era"
+aliases:
+  - "E-002"
 title: "The record funding years"
 summary: "Two years in which the policy floor returned and venture funding roughly doubled its previous record. Headcount plans were set against committed capital rather than against bookings, and the terms of entry were set on the candidate's side."
 from: 2020

@@ -1,6 +1,8 @@
 ---
-id: "E-001"
+id: "era.zero_rates_and_a_same_year_deduction"
 type: "era"
+aliases:
+  - "E-001"
 title: "Zero rates and a same-year deduction"
 summary: "For over a decade money cost nothing to borrow and engineering payroll reduced taxable income in the year it was paid. Both facts were policy, both were durable, and together they made an empty seat more expensive than a wrong hire."
 from: 2008

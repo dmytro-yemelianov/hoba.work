@@ -38,7 +38,10 @@ const nodes = new Map(
 );
 const evidence = new Map(bundle.evidence.map((e) => [e.id, e]));
 
-const eras = bundle.eras;
+// Ordered by time, not by filename: this page is a strip proportional to real
+// time, and load order is directory order, which changes whenever an entity is
+// renamed.
+const eras = [...bundle.eras].sort((a, b) => a.from - b.from);
 // The strip is proportional to real time, so a long cheap-money decade looks
 // like a long cheap-money decade next to a two-year correction.
 const first = eras.length ? Math.min(...eras.map((e) => e.from)) : 0;
@@ -66,7 +69,7 @@ const tocItems = eras.map((e) => ({
   icon: '📅',
 }));
 ---
-<Layout lang={lang} title={t('era.title')} description={t('era.intro')} activeNav="eras" image={`/cards/${lang}/${eras[0]?.id ?? "E-001"}.png`}>
+<Layout lang={lang} title={t('era.title')} description={t('era.intro')} activeNav="eras" image={`/cards/${lang}/${eras[0]?.id ?? "era.zero_rates_and_a_same_year_deduction"}.png`}>
   <PageHeader kicker={t('era.kicker')} title={t('era.title')} lead={t('era.intro')} tourPageKey="eras" lang={lang} />
 
   {eras.length === 0 && <p class="text-base text-hoba-muted">{t('era.empty')}</p>}
@@ -147,7 +150,7 @@ const tocItems = eras.map((e) => ({
   {eras.length > 0 && <p class="section text-sm text-hoba-muted">{t('era.sources')}</p>}
 
       <ShareBar
-        id={eras[0]?.id ?? 'E-001'}
+        id={eras[0]?.id ?? 'era.zero_rates_and_a_same_year_deduction'}
         title={t('era.title')}
         lang={lang}
         hasPostcard={false}

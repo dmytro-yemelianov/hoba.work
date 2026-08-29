@@ -1,6 +1,8 @@
 ---
-id: "E-004"
+id: "era.a_fixed_number_of_seats"
 type: "era"
+aliases:
+  - "E-004"
 title: "A fixed number of seats"
 summary: "The conditions that made hiring expensive were reversed; the number of positions was not. The contraction now runs through the hiring channel rather than the separation channel, which is why it is competition for a fixed and shrinking number of seats rather than a shortage of qualified people."
 from: 2024

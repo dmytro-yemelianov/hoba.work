@@ -1,6 +1,8 @@
 ---
-id: "E-003"
+id: "era.rates_up_payroll_repriced"
 type: "era"
+aliases:
+  - "E-003"
 title: "Rates up, payroll repriced"
 summary: "The policy rate reached its cycle peak, technology equities repriced, every stage of the private funding chain contracted at once, and software payroll became something to amortise rather than deduct. The correction ran through announced reductions rather than through attrition."
 from: 2022
