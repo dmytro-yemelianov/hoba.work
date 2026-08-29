@@ -4,7 +4,9 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 import {
   claimRank,
-  EMPIRICAL_SCENARIOS,
+  empiricalScenarios,
+  loadScenarios,
+  resolveScenarioId,
   evidenceKindSchema,
   evidenceLevelSchema,
   PROVING_EVIDENCE_KINDS,
@@ -183,15 +185,22 @@ server.registerTool(
 );
 
 server.registerTool(
-  'get_empirical_scenarios',
+  'get_scenario',
   {
-    description: 'Retrieve pre-configured empirical diagnostic scenarios (e.g. ghost-refresh, ats-knockout, post-panel-freeze, downlevelling-trap) with their default artifacts and stage.',
-    inputSchema: {},
+    description:
+      'Retrieve authored scenarios: validated compositions of ontology entities describing a coherent situation — what was observed, ' +
+      'what is compatible with it, and what it explicitly does not establish. Omit `id` to list them all. Those carrying a summary and ' +
+      'a stage double as diagnostic presets for explain_observation.',
+    inputSchema: { id: z.string().optional().describe('Scenario ID, e.g. "scenario.application_silence". Omit to list every scenario.') },
   },
-  async () =>
-    ok({
-      scenarios: EMPIRICAL_SCENARIOS,
-    })
+  async ({ id }) => {
+    const scenarios = loadScenarios(registryRoot);
+    if (!id) return ok({ count: scenarios.length, scenarios });
+    const resolved = resolveScenarioId(scenarios, id);
+    const found = scenarios.find((s) => s.id === resolved);
+    if (!found) return fail(`Unknown scenario "${id}". Available: ${scenarios.map((s) => s.id).join(', ')}`);
+    return ok({ scenario: found });
+  }
 );
 
 server.registerTool(
@@ -202,7 +211,7 @@ server.registerTool(
     inputSchema: {
       artifact_ids: z.array(z.string()).optional().describe('Observed Artifact IDs (e.g. ["A-004"])'),
       stage: stageArg,
-      scenario_id: z.string().optional().describe('Named empirical scenario ID (e.g. "ghost-refresh", "ats-knockout", "post-panel-freeze", "downlevelling-trap")'),
+      scenario_id: z.string().optional().describe('Scenario ID used as a preset, e.g. "scenario.ghost_refresh". The pre-migration bare names ("ghost-refresh") still resolve.'),
     },
   },
   async ({ artifact_ids, stage, scenario_id }) => {
@@ -210,9 +219,10 @@ server.registerTool(
     let effectiveStage = stage;
 
     if (scenario_id) {
-      const sc = EMPIRICAL_SCENARIOS.find((s) => s.id === scenario_id);
+      const presets = empiricalScenarios(registryRoot);
+      const sc = presets.find((s) => s.id === resolveScenarioId(presets, scenario_id));
       if (!sc) {
-        const valid = EMPIRICAL_SCENARIOS.map((s) => s.id).join(', ');
+        const valid = presets.map((s) => s.id).join(', ');
         return fail(`Unknown scenario_id "${scenario_id}". Available scenarios: ${valid}`);
       }
       if (effectiveArtifacts.length === 0) {

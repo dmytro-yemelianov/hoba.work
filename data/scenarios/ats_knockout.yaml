@@ -1,0 +1,13 @@
+# Migrated from the hardcoded EMPIRICAL_SCENARIOS array in diagnostics.ts.
+# Carries `summary` and `stage`, which is what makes it usable as a
+# diagnostic preset rather than only a composition to read.
+id: scenario.ats_knockout
+title:
+  en: "Automated Parsing Knockout"
+  uk: "Автоматичне відсіювання при парсингу"
+summary: "Instant rejection outside business hours combined with rigid uncontextualized filters."
+stage: "screening"
+observations:
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.explicit_feedback_citing_skill_depth_shortfall"
+  - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"

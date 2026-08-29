@@ -90,11 +90,19 @@ const ARTIFACT_CATEGORIES = [
 ] as const;
 
 const SCENARIO_ICONS: Record<string, string> = {
-  'ghost-refresh': '👻',
-  'ats-knockout': '🤖',
-  'post-panel-freeze': '🧊',
-  'downlevelling-trap': '📉',
+  ghost_refresh: '👻',
+  ats_knockout: '🤖',
+  post_panel_freeze: '🧊',
+  downlevelling_trap: '📉',
 };
+
+/**
+ * Presets are scenarios now, so their ids carry the `scenario.` namespace. The
+ * icon and label lookups key off the bare name, which is what they always
+ * were — keeping `analyze.scenarios.<name>` readable rather than turning it
+ * into `analyze.scenarios.scenario.<name>`.
+ */
+const presetKey = (id: string) => id.replace(/^scenario\./, '');
 
 const tabs = [
   { k: 'h', letter: 'H', stepNum: '1', title: t('analyze.tab.h') },
@@ -163,9 +171,9 @@ const zones = [
               title={sc.summary}
             >
               <div class="flex items-center gap-2">
-                <span class="text-lg" aria-hidden="true">{SCENARIO_ICONS[sc.id] ?? '📌'}</span>
+                <span class="text-lg" aria-hidden="true">{SCENARIO_ICONS[presetKey(sc.id)] ?? '📌'}</span>
                 <span class="text-sm font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors leading-tight">
-                  {t(`analyze.scenarios.${sc.id}`)}
+                  {t(`analyze.scenarios.${presetKey(sc.id)}`)}
                 </span>
               </div>
               <p class="mt-1.5 text-xs text-hoba-muted line-clamp-2 leading-relaxed">{sc.summary}</p>

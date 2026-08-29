@@ -1,0 +1,13 @@
+# Migrated from the hardcoded EMPIRICAL_SCENARIOS array in diagnostics.ts.
+# Carries `summary` and `stage`, which is what makes it usable as a
+# diagnostic preset rather than only a composition to read.
+id: scenario.post_panel_freeze
+title:
+  en: "Post-Panel Freeze & Silence"
+  uk: "Заморозка й тиша після панелі"
+summary: "Strong verbal engagement followed by multi-week offer hold and sudden ghosting."
+stage: "technical"
+observations:
+  - "obs.complete_silence_after_submission"
+  - "obs.multiple_interview_reschedulings_or_interviewer_no_show"
+  - "obs.rejection_naming_an_internal_hire_as_the_outcome"

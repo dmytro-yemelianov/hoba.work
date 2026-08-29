@@ -1,12 +1,13 @@
 import pc from 'picocolors';
 import {
   compareBundleStructure,
-  EMPIRICAL_SCENARIOS,
   evaluatePatternEmptiness,
   formatValidationIssue,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
+  empiricalScenarios,
   loadScenarios,
+  resolveScenarioId,
   lift,
   loadRegistryFromRoot,
   resolveRegistryRoot,
@@ -188,26 +189,34 @@ export function cmdExplain(
   let effectiveArtifacts = [...artifactIds];
   let effectiveStage = options.stage;
 
+  // The presets are authored content now, so they are read rather than
+  // compiled in — which means the registry has to be located first.
+  const { root, bundle } = loadBundle(options);
+  const presets = empiricalScenarios(root);
+  let usedPreset: (typeof presets)[number] | undefined;
+
   if (options.scenario) {
-    const found = EMPIRICAL_SCENARIOS.find((s) => s.id === options.scenario);
-    if (!found) {
-      const valid = EMPIRICAL_SCENARIOS.map((s) => s.id).join(', ');
+    // Accepts the canonical id and the bare name it had before the presets
+    // became scenarios, so `--scenario ghost-refresh` keeps working.
+    const resolved = resolveScenarioId(presets, options.scenario);
+    usedPreset = presets.find((s) => s.id === resolved);
+    if (!usedPreset) {
+      const valid = presets.map((s) => s.id).join(', ');
       throw new CliError(`Unknown scenario "${options.scenario}". Available scenarios: ${valid}`);
     }
     if (effectiveArtifacts.length === 0) {
-      effectiveArtifacts = [...found.artifacts];
+      effectiveArtifacts = [...usedPreset.artifacts];
     }
-    if (!effectiveStage && found.stage) {
-      effectiveStage = found.stage;
+    if (!effectiveStage && usedPreset.stage) {
+      effectiveStage = usedPreset.stage;
     }
   }
 
   if (effectiveArtifacts.length === 0) {
-    const list = EMPIRICAL_SCENARIOS.map((s) => `  - ${s.id}: ${s.title} (${s.artifacts.join(', ')})`).join('\n');
-    throw new CliError(`No artifact IDs or scenario provided. Specify artifact IDs (e.g. A-001 A-004) or a scenario (--scenario <name>).\n\nAvailable empirical scenarios:\n${list}`);
+    const list = presets.map((s) => `  - ${s.id}: ${s.title} (${s.artifacts.join(', ')})`).join('\n');
+    throw new CliError(`No artifact IDs or scenario provided. Specify artifact IDs (e.g. obs.complete_silence_after_submission) or a scenario (--scenario <name>).\n\nAvailable empirical scenarios:\n${list}`);
   }
 
-  const { bundle } = loadBundle(options);
   const engine = new HOBADiagnosticEngine(bundle);
   const res = engine.analyze({
     artifacts: effectiveArtifacts,
@@ -226,8 +235,7 @@ export function cmdExplain(
 
   console.log(pc.bold(pc.cyan('\n=== hoba Forensic Diagnostic Analysis ===\n')));
   if (options.scenario) {
-    const sc = EMPIRICAL_SCENARIOS.find((s) => s.id === options.scenario);
-    if (sc) console.log(pc.magenta(`Empirical Scenario: ${sc.title} (${sc.id})\n`));
+    if (usedPreset) console.log(pc.magenta(`Empirical Scenario: ${usedPreset.title} (${usedPreset.id})\n`));
   }
   if (res.hard_facts.unknown_artifact_ids.length > 0) {
     console.log(pc.yellow(`Warning: unknown or inactive artifact ID(s) ignored: ${res.hard_facts.unknown_artifact_ids.join(', ')}\n`));

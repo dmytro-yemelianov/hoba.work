@@ -49,7 +49,7 @@ test.describe('analysis wizard', () => {
 
   test('scenario presets populate inputs and evaluate diagnostics', async ({ page }) => {
     await page.goto('/analyze');
-    await page.locator('button[data-scenario-id="ghost-refresh"]').click();
+    await page.locator('button[data-scenario-id="scenario.ghost_refresh"]').click();
     await expect(page.locator('input[name="stage_select"][value="sourcing"]')).toBeChecked();
     await expect(page.locator('input[name="artifacts_selected"][value="obs.complete_silence_after_submission"]')).toBeChecked();
     await expect(page.locator('input[name="artifacts_selected"][value="obs.materially_similar_role_reposted_shortly_after_rejection"]')).toBeChecked();

@@ -5,7 +5,7 @@
  * page used to re-read and re-validate all content files on its own.
  */
 import {
-  EMPIRICAL_SCENARIOS,
+  empiricalScenarios,
   findRegistryRoot,
   HOBAKnowledgeGraph,
   loadRegistryFromRoot,
@@ -237,4 +237,9 @@ export function coverage(bundle: RegistryBundle): Coverage {
   };
 }
 
-export { EMPIRICAL_SCENARIOS, type EmpiricalScenario };
+/**
+ * The diagnostic presets, read from `data/scenarios/` at build time rather than
+ * compiled into the engine. Same four entries, now authored content.
+ */
+export const EMPIRICAL_SCENARIOS = empiricalScenarios(registryRoot);
+export { type EmpiricalScenario };

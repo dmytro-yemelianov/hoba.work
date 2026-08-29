@@ -1,0 +1,13 @@
+# Migrated from the hardcoded EMPIRICAL_SCENARIOS array in diagnostics.ts.
+# Carries `summary` and `stage`, which is what makes it usable as a
+# diagnostic preset rather than only a composition to read.
+id: scenario.downlevelling_trap
+title:
+  en: "Down-Levelling & Delayed Start"
+  uk: "Пониження рівня і зсув дати виходу"
+summary: "Scope expansion, sub-band compensation offer, and post-acceptance start date slippage."
+stage: "post-offer"
+observations:
+  - "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground"
+  - "obs.rejection_naming_a_specific_industry_sector_as_required"
+  - "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"

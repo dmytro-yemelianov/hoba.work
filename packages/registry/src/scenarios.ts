@@ -15,7 +15,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import yaml from 'js-yaml';
 import { z } from 'zod';
-import type { RegistryBundle } from './types.js';
+import { stageIdSchema } from './schemas.js';
+import type { EmpiricalScenario, RegistryBundle } from './types.js';
 import type { ValidationIssue } from './validation.js';
 
 const observationRef = z.string().regex(/^obs\.[a-z0-9_]+$/);
@@ -39,6 +40,13 @@ export const scenarioSchema = z.object({
   excluded_claims: z.array(z.string()).default([]),
   /** Interventions available to each party, keyed by actor slug. */
   agency: z.record(z.array(interventionRef)).default({}),
+  /**
+   * Optional, and only meaningful for a scenario used as a diagnostic preset:
+   * a one-line gloss and where in the funnel the situation sits. The four
+   * presets that used to be hardcoded in `diagnostics.ts` carry both.
+   */
+  summary: z.string().optional(),
+  stage: stageIdSchema.optional(),
 });
 
 export type Scenario = z.infer<typeof scenarioSchema>;
@@ -110,4 +118,37 @@ export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle)
     }
   }
   return issues;
+}
+
+/**
+ * The scenarios usable as diagnostic presets, in the shape the engine takes.
+ *
+ * These were four objects hardcoded in `diagnostics.ts`. They are authored
+ * content now, so they live with the rest of it — but the engine stays pure and
+ * browser-safe, which is why the mapping is here (this module already reads the
+ * filesystem) and not there.
+ *
+ * A preset is any scenario carrying a `summary`; a scenario without one is a
+ * composition to read, not a starting point to analyse from.
+ */
+export function empiricalScenarios(root: string): EmpiricalScenario[] {
+  return loadScenarios(root)
+    .filter((s) => s.summary)
+    .map((s) => ({
+      id: s.id,
+      title: s.title.en,
+      summary: s.summary!,
+      stage: s.stage,
+      artifacts: s.observations,
+    }));
+}
+
+/**
+ * Resolves a scenario by its canonical id or by the bare name it used to have,
+ * so `--scenario ghost-refresh` keeps working now that the id is
+ * `scenario.ghost_refresh`.
+ */
+export function resolveScenarioId(scenarios: { id: string }[], asked: string): string | undefined {
+  const normalised = `scenario.${asked.replace(/^scenario\./, '').replace(/-/g, '_')}`;
+  return scenarios.find((s) => s.id === asked || s.id === normalised)?.id;
 }

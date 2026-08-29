@@ -72,7 +72,7 @@ describe('hoba MCP server', () => {
         'find_compatible_mechanisms',
         'find_patterns',
         'get_diagnostic_probes',
-        'get_empirical_scenarios',
+        'get_scenario',
         'get_interventions',
         'get_methodology',
         'get_node',
@@ -159,9 +159,12 @@ describe('hoba MCP server', () => {
     const unknown = await client.request('tools/call', { name: 'explain_observation', arguments: { artifact_ids: ['A-999'] } });
     expect(unknown.result.isError).toBe(true);
 
-    const scenarios = payload(await client.request('tools/call', { name: 'get_empirical_scenarios', arguments: {} }));
+    const scenarios = payload(await client.request('tools/call', { name: 'get_scenario', arguments: {} }));
     expect(scenarios.scenarios.length).toBeGreaterThanOrEqual(4);
-    expect(scenarios.scenarios.map((s: { id: string }) => s.id)).toContain('ghost-refresh');
+    expect(scenarios.scenarios.map((s: { id: string }) => s.id)).toContain('scenario.ghost_refresh');
+    // The bare pre-migration name still resolves.
+    const one = payload(await client.request('tools/call', { name: 'get_scenario', arguments: { id: 'ghost-refresh' } }));
+    expect(one.scenario.id).toBe('scenario.ghost_refresh');
 
     const scExplain = payload(await client.request('tools/call', { name: 'explain_observation', arguments: { scenario_id: 'ats-knockout' } }));
     expect(scExplain.scenario_id).toBe('ats-knockout');

@@ -1,0 +1,13 @@
+# Migrated from the hardcoded EMPIRICAL_SCENARIOS array in diagnostics.ts.
+# Carries `summary` and `stage`, which is what makes it usable as a
+# diagnostic preset rather than only a composition to read.
+id: scenario.ghost_refresh
+title:
+  en: "Ghost Requisition & Pipeline Refresh"
+  uk: "Вакансія-привид і оновлення пайплайну"
+summary: "Stale posting refreshed with identical body while active applicants experience silence."
+stage: "sourcing"
+observations:
+  - "obs.complete_silence_after_submission"
+  - "obs.materially_similar_role_reposted_shortly_after_rejection"
+  - "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
