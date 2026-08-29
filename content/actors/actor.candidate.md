@@ -118,7 +118,6 @@ recommendations:
     interventions:
       - "int.auto_close_stale_job_requisitions"
 status: "active"
-evidence_level: "supported"
 evidence_ids: []
 ---
 

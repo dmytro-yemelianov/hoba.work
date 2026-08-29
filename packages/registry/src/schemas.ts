@@ -498,6 +498,12 @@ export const workflowSchema = z.object({
   subject: z.string().min(3),
   states: z.array(workflowStateSchema).min(2),
   transitions: z.array(workflowTransitionSchema).min(1),
+  /**
+   * Defaults to `unknown` rather than `supported`: a state machine that says
+   * nothing about its own standing is describing a process, not asserting that
+   * the world works this way. The canonical path is exactly that case.
+   */
+  evidence_level: evidenceLevelSchema.default('unknown'),
   specimens: z.array(specimenSchema).default([]),
 });
 

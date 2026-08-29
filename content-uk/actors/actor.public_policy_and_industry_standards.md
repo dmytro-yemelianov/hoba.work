@@ -114,7 +114,6 @@ recommendations:
       - "int.standardized_late_stage_rejection_feedback_taxonomy"
       - "int.upfront_compensation_band_disclosure"
 status: "active"
-evidence_level: "supported"
 evidence_ids: []
 ---
 

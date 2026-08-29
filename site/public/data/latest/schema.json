@@ -417,6 +417,19 @@
                 },
                 "minItems": 1
               },
+              "evidence_level": {
+                "type": "string",
+                "enum": [
+                  "observed",
+                  "compatible",
+                  "supported",
+                  "strongly_supported",
+                  "proven",
+                  "contradicted",
+                  "unknown"
+                ],
+                "default": "unknown"
+              },
               "specimens": {
                 "type": "array",
                 "items": {
@@ -629,16 +642,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/id"
               },
               "evidence_level": {
-                "type": "string",
-                "enum": [
-                  "observed",
-                  "compatible",
-                  "supported",
-                  "strongly_supported",
-                  "proven",
-                  "contradicted",
-                  "unknown"
-                ],
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "supported"
               },
               "probes": {
@@ -825,7 +829,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/barriers/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "strongly_supported"
               },
               "specimens": {
@@ -1002,7 +1006,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "supported"
               },
               "honest_baseline": {
@@ -1118,7 +1122,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "supported"
               },
               "specimens": {
@@ -1235,7 +1239,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/loops/items/properties/id"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "supported"
               },
               "specimens": {
@@ -1324,7 +1328,7 @@
                 "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "supported"
               },
               "expected_effects": {
@@ -1565,7 +1569,7 @@
                 "default": "opaque"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/artifacts/items/properties/evidence_level",
+                "$ref": "#/definitions/RegistryBundle/properties/workflows/items/properties/evidence_level",
                 "default": "supported"
               },
               "superseded_by": {

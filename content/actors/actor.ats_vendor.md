@@ -111,7 +111,6 @@ recommendations:
       - "obs.generic_closer_alignment_rejection_template"
     interventions: []
 status: "active"
-evidence_level: "supported"
 evidence_ids: []
 ---
 

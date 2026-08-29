@@ -108,7 +108,6 @@ recommendations:
       - "bar.hiring_manager_in_depth_review"
     interventions: []
 status: "active"
-evidence_level: "supported"
 evidence_ids: []
 ---
 

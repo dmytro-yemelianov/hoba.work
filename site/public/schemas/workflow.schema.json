@@ -170,6 +170,19 @@
           },
           "minItems": 1
         },
+        "evidence_level": {
+          "type": "string",
+          "enum": [
+            "observed",
+            "compatible",
+            "supported",
+            "strongly_supported",
+            "proven",
+            "contradicted",
+            "unknown"
+          ],
+          "default": "unknown"
+        },
         "specimens": {
           "type": "array",
           "items": {

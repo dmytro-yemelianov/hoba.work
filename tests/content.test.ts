@@ -1,6 +1,8 @@
 /**
  * Integration checks over the real registry content (content/, content-uk/, evidence/).
  */
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   compareBundleStructure,
@@ -10,6 +12,52 @@ import {
   validateRegistry,
 } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
+import { artifactSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, workflowSchema, eraSchema, actorSchema } from '@hoba/registry';
+
+/**
+ * Zod strips unknown keys, so frontmatter naming a field its schema does not
+ * define is discarded in silence — the author writes it, the loader drops it,
+ * and nothing says so. That is how four workflows and six actors carried an
+ * `evidence_level` that never reached the validator, which meant the
+ * `unsupported-claim` invariant could not have fired on them whatever they
+ * claimed.
+ */
+describe('no frontmatter field is silently dropped', () => {
+  const SCHEMAS: Record<string, { _def: { shape: () => Record<string, unknown> } }> = {
+    artifacts: artifactSchema as never,
+    barriers: barrierSchema as never,
+    mechanisms: mechanismSchema as never,
+    patterns: patternSchema as never,
+    loops: loopSchema as never,
+    interventions: interventionSchema as never,
+    workflows: workflowSchema as never,
+    eras: eraSchema as never,
+    actors: actorSchema as never,
+  };
+
+  for (const [dir, schema] of Object.entries(SCHEMAS)) {
+    it(`every top-level key authored in content/${dir} is defined by its schema`, () => {
+      const defined = new Set(Object.keys(schema._def.shape()));
+      const root = path.join(REPO_ROOT, 'content', dir);
+      const orphans = new Map<string, string[]>();
+
+      for (const file of fs.readdirSync(root).filter((f) => f.endsWith('.md'))) {
+        const text = fs.readFileSync(path.join(root, file), 'utf-8');
+        const frontmatter = text.split('---')[1] ?? '';
+        for (const key of frontmatter.matchAll(/^([a-z_]+):/gm)) {
+          const name = key[1]!;
+          if (defined.has(name)) continue;
+          orphans.set(name, [...(orphans.get(name) ?? []), file]);
+        }
+      }
+
+      expect(
+        [...orphans].map(([key, files]) => `${key} (in ${files.length} file(s), e.g. ${files[0]})`),
+        `content/${dir}: these keys are authored but dropped on load`
+      ).toEqual([]);
+    });
+  }
+});
 
 const bundle = loadRegistryFromRoot(REPO_ROOT, 'en');
 const uk = loadRegistryFromRoot(REPO_ROOT, 'uk');

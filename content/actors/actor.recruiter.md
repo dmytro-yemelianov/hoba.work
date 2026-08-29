@@ -110,7 +110,6 @@ recommendations:
       - "loop.employment_gap_penalty_loop"
     interventions: []
 status: "active"
-evidence_level: "supported"
 evidence_ids: []
 ---
 

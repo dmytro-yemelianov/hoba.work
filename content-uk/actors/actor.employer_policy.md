@@ -104,7 +104,6 @@ recommendations:
       - "mech.reference_check_discrepancy_or_regulatory_ineligibility"
     interventions: []
 status: "active"
-evidence_level: "supported"
 evidence_ids: []
 ---
 
