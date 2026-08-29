@@ -144,7 +144,7 @@ export const actor = (
 /** A minimal, fully valid bundle: 2 barriers, 2 mechanisms forming a declared cycle, 1 artifact, 1 pattern, 1 loop, 1 intervention. */
 export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
   return {
-    version: '2026.01.1',
+    version: '1.0.0',
     schema_version: '1.0.0',
     updated_at: '2026-01-01T00:00:00Z',
     actors: [],
@@ -188,7 +188,7 @@ export function writeTempRegistry(files: Record<string, string>): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hoba-test-'));
   fs.writeFileSync(
     path.join(root, 'registry.yaml'),
-    'version: "2026.01.1"\nschema_version: "1.0.0"\nupdated_at: "2026-01-01T00:00:00Z"\n'
+    'version: "1.0.0"\nschema_version: "1.0.0"\nupdated_at: "2026-01-01T00:00:00Z"\n'
   );
   fs.mkdirSync(path.join(root, 'content'), { recursive: true });
   fs.mkdirSync(path.join(root, 'evidence'), { recursive: true });

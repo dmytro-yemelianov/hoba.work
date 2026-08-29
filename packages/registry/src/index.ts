@@ -11,3 +11,4 @@ export * from './migration.js';
 export * from './scenarios.js';
 export * from './analysis.js';
 export * from './agency.js';
+export * from './hash.js';

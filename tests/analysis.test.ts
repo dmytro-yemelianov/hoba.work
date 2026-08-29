@@ -32,15 +32,17 @@ describe('analysisSchema', () => {
     expect(analysisSchema.safeParse(b).success).toBe(false);
   });
 
-  it('accepts the calendar registry version in use today and the semver the design doc moves to', () => {
-    for (const v of ['2026.08.3', '1.0.0']) {
+  it('requires a semver registry version, the date-coded form having been retired', () => {
+    for (const v of ['1.0.0', '2.13.4']) {
       const a = example();
       a.registry_version = v;
       expect(analysisSchema.safeParse(a).success, v).toBe(true);
     }
-    const a = example();
-    a.registry_version = 'whenever';
-    expect(analysisSchema.safeParse(a).success).toBe(false);
+    for (const v of ['whenever', '1.0', '2026.08.3']) {
+      const a = example();
+      a.registry_version = v;
+      expect(analysisSchema.safeParse(a).success, v).toBe(false);
+    }
   });
 });
 

@@ -4,6 +4,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 import {
   claimRank,
+  registryContentHash,
   empiricalScenarios,
   loadScenarios,
   resolveScenarioId,
@@ -123,11 +124,14 @@ const server = new McpServer({ name: 'hoba-mcp', version });
 server.registerTool(
   'get_registry_info',
   {
-    description: 'Registry release metadata (version, schema version) and entity counts.',
+    description:
+      'Registry release metadata (semver version, content hash, schema version) and entity counts across every collection.',
     inputSchema: {},
   },
   async () =>
     ok({
+      /** What this release contains, as opposed to what it is called (§10). */
+      registry_hash: registryContentHash(registryRoot),
       schema_version: bundle.schema_version,
       updated_at: bundle.updated_at,
       mode: 'topological_uncalibrated',
@@ -138,7 +142,12 @@ server.registerTool(
         patterns: bundle.patterns.length,
         loops: bundle.loops.length,
         interventions: bundle.interventions.length,
+        workflows: bundle.workflows.length,
+        actors: bundle.actors.length,
+        eras: bundle.eras.length,
+        records: bundle.records.length,
         evidence: bundle.evidence.length,
+        scenarios: loadScenarios(registryRoot).length,
       },
       stages: stageIdSchema.options,
     })

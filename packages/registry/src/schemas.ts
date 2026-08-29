@@ -624,7 +624,8 @@ export const authoredRecordSchema = z
 // Registry release manifest (`registry.yaml` at the repository root).
 // Keeps the three version axes required by spec §17 in one place.
 export const registryManifestSchema = z.object({
-  version: z.string().regex(/^\d{4}\.\d{2}\.\d+$/, 'registry version must look like YYYY.MM.N'),
+  /** Strict semver: no leading zeros, so the retired `2026.08.3` form cannot come back. */
+  version: z.string().regex(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/, 'registry version must be semver (e.g. 1.0.0)'),
   schema_version: z.string().regex(/^\d+\.\d+\.\d+$/, 'schema_version must be semver'),
   updated_at: z.string().datetime(),
 });

@@ -2,6 +2,13 @@
 # version axes described in spec §17. Bump `version` on every content release,
 # `schema_version` when the entity contract changes. `updated_at` is set
 # explicitly (not at build time) so registry exports stay byte-deterministic.
-version: "2026.08.3"
+#
+# `version` is strict semver as of 1.0.0. The date-coded form it replaced
+# (`2026.08.3`) said when a release was cut but nothing about compatibility;
+# the dotted-ID migration is what external spec §22 defines as a MAJOR bump, so
+# that is what it is numbered. What a release *contains* is identified by
+# `registry_hash` in the generated manifest, which is derived from the content
+# rather than from the clock.
+version: "1.0.0"
 schema_version: "1.2.0"
 updated_at: "2026-08-28T10:30:00Z"

@@ -25,7 +25,7 @@ describe('hoba CLI', { timeout: 20000 }, () => {
     expect(hoba(['show', 'mech.genuine_technical_skill_shortfall']).stdout).toContain('Genuine Technical Skill Shortfall');
     const json = JSON.parse(hoba(['show', 'bar.requisition_approval_public_posting', '--json']).stdout);
     expect(json.node.stage).toBe('pre-posting');
-    expect(json.registry_version).toMatch(/^\d{4}\.\d{2}\.\d+$/);
+    expect(json.registry_version).toMatch(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
   });
 
   it('explains an observation and reports unknown ids', () => {
@@ -132,7 +132,8 @@ describe('hoba CLI', { timeout: 20000 }, () => {
     expect(stats.counts.mechanisms).toBeGreaterThan(0);
     expect(stats.counts.scenarios).toBeGreaterThanOrEqual(2);
     const version = JSON.parse(hoba(['registry', 'version', '--json']).stdout);
-    expect(version.registry_version).toMatch(/^\d{4}\.\d{2}\.\d+$/);
+    expect(version.registry_version).toMatch(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
+    expect(version.registry_hash).toMatch(/^[0-9a-f]{64}$/);
     expect(version.schema_version).toMatch(/^\d+\.\d+\.\d+$/);
     // The plain form prints the version and nothing else to parse around.
     expect(hoba(['registry', 'version']).stdout.trim()).toBe(version.registry_version);

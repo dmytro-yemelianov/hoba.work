@@ -1,4 +1,4 @@
-import { spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
+import { execFileSync, spawn, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { REPO_ROOT } from './helpers';
@@ -90,7 +90,7 @@ describe('hoba MCP server', () => {
 
   it('every response carries the registry version', async () => {
     const info = payload(await client.request('tools/call', { name: 'get_registry_info', arguments: {} }));
-    expect(info.registry_version).toMatch(/^\d{4}\.\d{2}\.\d+$/);
+    expect(info.registry_version).toMatch(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
     expect(info.counts.barriers).toBeGreaterThanOrEqual(14);
     const node = payload(await client.request('tools/call', { name: 'get_node', arguments: { id: 'L-001' } }));
     expect(node.registry_version).toBe(info.registry_version);
@@ -147,6 +147,49 @@ describe('hoba MCP server', () => {
     expect(body.levels).toContain('proven');
     expect(body.invariant).toContain('primary');
   });
+
+  /**
+   * DoD 7: "CLI and MCP expose the same underlying data."
+   *
+   * They read the same collections through the same library functions, so this
+   * should not be able to drift — but "should not be able to" is an argument,
+   * and this is a test.
+   */
+  describe('parity with the CLI', () => {
+    const hoba = (args: string[]) =>
+      JSON.parse(
+        execFileSync('npx', ['tsx', '--tsconfig', path.join(REPO_ROOT, 'tsconfig.json'), 'packages/cli/src/cli.ts', ...args], {
+          cwd: REPO_ROOT,
+          encoding: 'utf-8',
+          env: { ...process.env, NO_COLOR: '1' },
+          stdio: ['ignore', 'pipe', 'pipe'],
+        })
+      );
+
+    it('report the same release, content hash and entity counts', async () => {
+      const info = payload(await client.request('tools/call', { name: 'get_registry_info', arguments: {} }));
+      const version = hoba(['registry', 'version', '--json']);
+      const stats = hoba(['registry', 'stats', '--json']);
+
+      expect(info.registry_version).toBe(version.registry_version);
+      expect(info.registry_hash).toBe(version.registry_hash);
+      expect(info.schema_version).toBe(version.schema_version);
+      for (const [collection, n] of Object.entries(info.counts as Record<string, number>)) {
+        expect(stats.counts[collection], collection).toBe(n);
+      }
+    });
+
+    it('resolve the same entity from a legacy code, and list the same scenarios', async () => {
+      const node = payload(await client.request('tools/call', { name: 'get_node', arguments: { id: 'M-001' } }));
+      expect(node.node.id).toBe(hoba(['get', 'M-001', '--json']).node.id);
+
+      const scenarios = payload(await client.request('tools/call', { name: 'get_scenario', arguments: {} }));
+      const cliScenarios = hoba(['scenario', '--json']);
+      expect(scenarios.scenarios.map((s: { id: string }) => s.id).sort()).toEqual(
+        cliScenarios.scenarios.map((s: { id: string }) => s.id).sort()
+      );
+    });
+  }, 60_000);
 
   it('explains observations and validates the stage argument', async () => {
     const ok = payload(await client.request('tools/call', { name: 'explain_observation', arguments: { artifact_ids: ['A-004'], stage: 'technical' } }));

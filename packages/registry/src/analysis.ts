@@ -65,13 +65,13 @@ export const analysisSchema = z.object({
   agency: z.record(z.array(interventionRef)),
   prohibited_conclusions: z.array(z.string()),
   /**
-   * The registry this was produced against.
-   *
-   * Accepts the calendar version in use today (`2026.08.3`) and the semver the
-   * design doc moves to in §10 (`1.0.0`), the same way the ID patterns accepted
-   * both forms across the rename.
+   * The registry this was produced against, so a reader can tell what it was
+   * true of. Strict semver, matching `schema/analysis.schema.json` — it briefly
+   * accepted the date-coded form too, because the live registry still emitted
+   * one until §10 landed. Strict about leading zeros, which is the only thing
+   * separating `1.0.0` from `2026.08.3` structurally.
    */
-  registry_version: z.string().regex(/^(\d{4}\.\d{2}\.\d+|\d+\.\d+\.\d+)$/, 'registry_version must be a calendar (2026.08.3) or semantic (1.0.0) version'),
+  registry_version: z.string().regex(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/, 'registry_version must be semver (e.g. 1.0.0)'),
 });
 
 export type Analysis = z.infer<typeof analysisSchema>;

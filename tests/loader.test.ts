@@ -22,7 +22,7 @@ describe('loadRegistryFromDirectory', () => {
   it('parses frontmatter, keeps the markdown body as content, and applies schema defaults', () => {
     const root = writeTempRegistry({ 'content/artifacts/A-001.md': validArtifact });
     const bundle = loadRegistryFromDirectory(path.join(root, 'content'));
-    expect(bundle.version).toBe('2026.01.1');
+    expect(bundle.version).toBe('1.0.0');
     expect(bundle.artifacts).toHaveLength(1);
     expect(bundle.artifacts[0].content).toContain('Body text.');
     expect(bundle.artifacts[0].status).toBe('active');

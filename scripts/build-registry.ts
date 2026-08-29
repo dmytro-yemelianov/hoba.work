@@ -13,6 +13,7 @@ import type { ZodTypeAny } from 'zod';
 import {
   actorSchema,
   agencyZones,
+  registryContentHash,
   workflowSchema,
   eraSchema,
   artifactSchema,
@@ -134,6 +135,14 @@ writeJson(path.join(latestDir, 'graph.json'), graph.toCytoscapeJSON());
 writeJson(path.join(latestDir, 'schema.json'), schemas['registry.schema.json']);
 writeJson(path.join(latestDir, 'manifest.json'), {
   registry_version: bundle.version,
+  /**
+   * What this release contains, as opposed to what it is called (design doc
+   * §10). Derived from every entity and scenario file, so it is identical
+   * across checkouts and different after any edit or rename. No build-time
+   * timestamp sits beside it: artifacts are committed here, and `updated_at`
+   * is authored precisely so exports stay byte-deterministic.
+   */
+  registry_hash: registryContentHash(root),
   schema_version: bundle.schema_version,
   site_version: siteVersion,
   updated_at: bundle.updated_at,

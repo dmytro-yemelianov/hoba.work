@@ -6,6 +6,7 @@ import {
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
   empiricalScenarios,
+  registryContentHash,
   loadScenarios,
   resolveScenarioId,
   lift,
@@ -623,7 +624,12 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
 
   if (sub === 'version') {
     if (options.json) {
-      printJson({ registry_version: bundle.version, schema_version: bundle.schema_version, updated_at: bundle.updated_at });
+      printJson({
+        registry_version: bundle.version,
+        registry_hash: registryContentHash(root),
+        schema_version: bundle.schema_version,
+        updated_at: bundle.updated_at,
+      });
       return;
     }
     // Plain form prints the version alone, so a script can consume it directly.
@@ -649,7 +655,7 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
   };
 
   if (options.json) {
-    printJson({ registry_version: bundle.version, schema_version: bundle.schema_version, counts });
+    printJson({ registry_version: bundle.version, registry_hash: registryContentHash(root), schema_version: bundle.schema_version, counts });
     return;
   }
 
