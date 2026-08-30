@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { evidenceKindSchema, evidenceLevelSchema } from '@hoba/registry';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -11,6 +12,13 @@ export function getStaticPaths() {
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const verbs = ['observed', 'compatible', 'supported', 'proven'] as const;
+
+/**
+ * Read off the schema, never restated. This page is about what the registry
+ * may claim, so a hand-typed list here is a second source of truth that drifts
+ * the moment the enum changes — as it did when the levels went from four to
+ * seven and this prose had to be edited by hand, in two languages.
+ */
 
 const tocItems = [
   { id: 'method-core', label: t('method.core.title'), icon: '⚖️' },
@@ -52,6 +60,19 @@ const tocItems = [
       <section id="method-evidence" class="scroll-mt-24 mt-10">
         <h2>{t('method.evidence.title')}</h2>
         <p>{t('method.evidence.text1.before')}<code>evidence_level</code>{t('method.evidence.text1.middle')}<code>EVD-xxx</code>{t('method.evidence.text1.after')}</p>
+        <p>
+          {t('method.evidence.kindsLead')}{' '}
+          {evidenceKindSchema.options.map((k, i) => (
+            <><code>{k}</code>{i < evidenceKindSchema.options.length - 1 ? ', ' : '.'}</>
+          ))}
+        </p>
+        <p>
+          {t('method.evidence.levelsLead')}{' '}
+          {evidenceLevelSchema.options.map((l, i) => (
+            <><code>{l}</code>{i < evidenceLevelSchema.options.length - 1 ? ', ' : ''}</>
+          ))}
+          {t('method.evidence.levelsTail')}
+        </p>
         <p>{t('method.evidence.text2.before')}<code>compatible</code>{t('method.evidence.text2.after')}</p>
       </section>
 
