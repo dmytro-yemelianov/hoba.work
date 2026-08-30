@@ -2,7 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { clientDictionary, interpolated, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { stageIdSchema } from '@hoba/registry';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -18,7 +19,12 @@ const commands = [
   'pnpm build',
 ];
 
+const KEYS = ['submit.send', 'submit.sending', 'submit.ok', 'submit.err.too_short',
+  'submit.err.too_long', 'submit.err.names_a_party', 'submit.err.generic'] as const;
+const strings = clientDictionary(lang, KEYS);
+
 const tocItems = [
+  { id: 'contrib-send', label: t('submit.title'), icon: '✉️' },
   { id: 'contrib-workflow', label: t('contrib.workflow'), icon: '💻' },
   { id: 'contrib-checks', label: t('contrib.checks.title'), icon: '✅' },
   { id: 'contrib-mirror', label: t('contrib.mirror.title'), icon: '🌐' },
@@ -29,6 +35,47 @@ const tocItems = [
 
   <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-4">
     <article class="prose-hoba min-w-0">
+
+      <section id="contrib-send" class="scroll-mt-24">
+        <h2>{t('submit.title')}</h2>
+        <p>{t('submit.lead')}</p>
+        <p class="text-base text-hoba-muted">{t('submit.privacy')}</p>
+
+        <form id="submit-form" class="not-prose mt-5 grid gap-4 max-w-2xl">
+          <div>
+            <label for="submit-body" class="meta block mb-1">{t('submit.body.label')}</label>
+            <textarea id="submit-body" name="body" rows="6" required minlength="40" maxlength="4000"
+              class="w-full rounded-md border border-hoba-border bg-hoba-card p-3 text-base text-hoba-text"></textarea>
+            <p class="mt-1 text-sm text-hoba-muted">{t('submit.body.hint')}</p>
+          </div>
+
+          <div>
+            <label for="submit-stage" class="meta block mb-1">{t('submit.stage.label')}</label>
+            <select id="submit-stage" name="stage"
+              class="w-full sm:w-auto rounded-md border border-hoba-border bg-hoba-card px-2 py-2 text-base text-hoba-text">
+              <option value="">{t('submit.stage.any')}</option>
+              {stageIdSchema.options.map((s) => <option value={s}>{t(interpolated(`stage.${s}`))}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label for="submit-contact" class="meta block mb-1">{t('submit.contact.label')}</label>
+            <input id="submit-contact" name="contact" type="text" maxlength="200"
+              class="w-full rounded-md border border-hoba-border bg-hoba-card px-3 py-2 text-base text-hoba-text" />
+            <p class="mt-1 text-sm text-hoba-muted">{t('submit.contact.hint')}</p>
+          </div>
+
+          {/* Not a field anyone sees: a script fills it and the request is accepted and dropped. */}
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+            class="absolute w-px h-px -m-px overflow-hidden" />
+
+          <div class="flex items-center gap-3">
+            <button type="submit" class="btn btn-primary text-sm">{t('submit.send')}</button>
+            <p id="submit-status" role="status" aria-live="polite" class="text-base text-hoba-muted"></p>
+          </div>
+        </form>
+      </section>
+
       <section id="contrib-workflow" class="scroll-mt-24">
         <h2>{t('contrib.workflow')}</h2>
         <pre tabindex="0"><code>{commands.join('\n')}</code></pre>
@@ -50,4 +97,45 @@ const tocItems = [
     <!-- Sticky Side Navigation -->
     <TableOfContents items={tocItems} lang={lang} />
   </div>
+
+<script define:vars={{ strings, lang: lang }}>
+  const form = document.getElementById('submit-form');
+  const status = document.getElementById('submit-status');
+  if (form && status) {
+    const button = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      status.textContent = strings['submit.sending'];
+      if (button) button.disabled = true;
+      try {
+        const response = await fetch('/submit', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            body: data.get('body'),
+            stage: data.get('stage') || null,
+            contact: data.get('contact') || null,
+            website: data.get('website') || '',
+            reader: new URLSearchParams(location.search).get('from'),
+            lang,
+          }),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (response.ok) {
+          form.reset();
+          status.textContent = strings['submit.ok'];
+        } else {
+          const key = `submit.err.${result.error}`;
+          const message = strings[key] ?? strings['submit.err.generic'];
+          status.textContent = message.replace('{party}', result.party ?? '');
+        }
+      } catch {
+        status.textContent = strings['submit.err.generic'];
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  }
+</script>
 </Layout>

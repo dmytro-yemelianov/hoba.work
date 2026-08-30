@@ -14,6 +14,10 @@
  */
 export { analysisSchema, validateAnalysis, claimRank, type Analysis } from '@hoba/validator/analysis';
 export { scenarioSchema, validateScenarios, resolveScenarioId, type Scenario } from '@hoba/validator/scenarios';
-export { evidenceLevelSchema, PROVING_EVIDENCE_KINDS } from '@hoba/registry-core/schemas';
+export { evidenceLevelSchema, PROVING_EVIDENCE_KINDS, stageIdSchema } from '@hoba/registry-core/schemas';
+// The rule that the registry may never name a real employer applies to what
+// arrives as well as to what is published: an inbox of texts naming companies
+// is the blacklist the methodology exists not to be.
+export { FORBIDDEN_PARTIES, namesForbiddenParty } from '@hoba/registry-core/parties';
 export type { ValidationIssue } from '@hoba/validator/validation';
 export type { RegistryBundle } from '@hoba/registry-core/types';

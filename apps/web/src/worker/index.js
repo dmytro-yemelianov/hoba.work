@@ -1,3 +1,4 @@
+import { handleSubmit, isSubmitRoute } from './submit.js';
 import { handleValidate, isValidateRoute } from './validate.js';
 
 /**
@@ -252,6 +253,7 @@ export default {
 
     // The only routes that answer to anything but GET/HEAD, so they are
     // checked before the pass-through below rather than after it.
+    if (isSubmitRoute(url.pathname)) return handleSubmit(request, env);
     if (isValidateRoute(url.pathname)) return handleValidate(request, env);
 
     if (request.method !== 'GET' && request.method !== 'HEAD') return env.ASSETS.fetch(request);

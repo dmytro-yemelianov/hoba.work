@@ -1053,6 +1053,23 @@ const en = {
   'reader.short.candidate': 'a candidate',
   'reader.short.recruiter': 'a hiring side',
   'reader.short.researcher': 'a researcher',
+  // --- Sending what the atlas does not have ---------------------------------
+  'submit.title': 'The atlas does not have what happened to you',
+  'submit.lead': 'Then it is incomplete, and this is the most useful thing anyone can tell it. Write what you received — the message, the silence, the change — in your own words. Nothing sent here appears on the site: it is read by a person, and only a pattern that several people describe becomes an entry.',
+  'submit.body.label': 'What happened',
+  'submit.body.hint': 'What you saw, when, and at which point in the process. 40 characters at least.',
+  'submit.stage.label': 'Where in the process',
+  'submit.stage.any': 'Not sure',
+  'submit.contact.label': 'Contact, if you want a reply',
+  'submit.contact.hint': 'Optional, and never published. Leave it empty and the account of what happened is just as useful.',
+  'submit.send': 'Send',
+  'submit.sending': 'Sending…',
+  'submit.ok': 'Received. A person reads these; there is no automatic reply.',
+  'submit.privacy': 'Do not name the company or the people. The atlas may never contain a real employer — an atlas that names one becomes the blacklist it exists not to be — so a message that names one is refused rather than stored.',
+  'submit.err.too_short': 'A little more than that: what you saw, and roughly when.',
+  'submit.err.too_long': 'That is longer than this form takes. The shape matters more than the full account.',
+  'submit.err.names_a_party': 'This names {party}. Remove the company name and send it again — the account is what matters, not who.',
+  'submit.err.generic': 'That did not send. Try again, or open an issue on GitHub.',
 } as const;
 
 export type UIKey = keyof typeof en;
@@ -2084,6 +2101,23 @@ const uk: Record<UIKey, string> = {
   'reader.short.candidate': 'кандидат',
   'reader.short.recruiter': 'сторона найму',
   'reader.short.researcher': 'дослідник',
+  // --- Надіслати те, чого в атласі немає ------------------------------------
+  'submit.title': 'В атласі немає того, що сталося з вами',
+  'submit.lead': 'Тоді він неповний, і це найкорисніше, що йому можна сказати. Напишіть своїми словами, що ви отримали — лист, тишу, зміну. Надіслане не зʼявляється на сайті: його читає людина, і записом стає лише те, що описали кілька людей.',
+  'submit.body.label': 'Що сталося',
+  'submit.body.hint': 'Що ви бачили, коли і на якому місці процесу. Щонайменше 40 символів.',
+  'submit.stage.label': 'Де в процесі',
+  'submit.stage.any': 'Не певен',
+  'submit.contact.label': 'Контакт, якщо хочете відповідь',
+  'submit.contact.hint': 'Необовʼязково і ніколи не публікується. Порожнє поле не робить розповідь менш корисною.',
+  'submit.send': 'Надіслати',
+  'submit.sending': 'Надсилаю…',
+  'submit.ok': 'Отримано. Це читає людина; автоматичної відповіді немає.',
+  'submit.privacy': 'Не називайте компанію чи людей. Атлас не може містити справжнього роботодавця — атлас, що називає роботодавця, стає тим чорним списком, аби не бути яким він і існує, — тож повідомлення з назвою відхиляється, а не зберігається.',
+  'submit.err.too_short': 'Трохи більше, будь ласка: що ви бачили і приблизно коли.',
+  'submit.err.too_long': 'Це довше, ніж вміщає форма. Форма важливіша за повний переказ.',
+  'submit.err.names_a_party': 'Тут названо {party}. Приберіть назву компанії й надішліть ще раз — важлива розповідь, а не хто.',
+  'submit.err.generic': 'Не надіслалось. Спробуйте ще раз або відкрийте issue на GitHub.',
 };
 
 export const ui = { en, uk } as const;

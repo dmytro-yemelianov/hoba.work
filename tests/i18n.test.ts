@@ -181,6 +181,9 @@ describe('the dictionary and the vocabularies it labels', () => {
     // Two levels — reader, then step number — so the flat rule above cannot
     // check it; the test below walks it properly.
     'reader.step.',
+    // Keyed by the error codes the submit endpoint returns; the test below
+    // walks the worker for them, which the flat rule here cannot do.
+    'submit.err.',
   ]);
 
   it('classifies every prefix whose key is built at runtime', () => {
@@ -302,6 +305,28 @@ describe('the reader entry points', () => {
           const key = `reader.step.${reader}.${i}`;
           if (!(key in ui[locale])) missing.push(`${locale}: ${key}`);
         }
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+});
+
+describe('the submission endpoint and the messages for it', () => {
+  /**
+   * The form turns whatever `POST /submit` refuses with into `submit.err.<code>`
+   * and falls back to a generic line when there is no message. A code added to
+   * the worker without one is therefore invisible: the person is told something
+   * went wrong and not what to change about their own text.
+   */
+  it('has a message for every reason the worker can refuse', () => {
+    const worker = fs.readFileSync(
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'worker', 'submit.js'), 'utf8');
+    const codes = [...new Set([...worker.matchAll(/error:\s*'([a-z_]+)'/g)].map((m) => m[1]))];
+    expect(codes.length).toBeGreaterThan(2);
+    const missing: string[] = [];
+    for (const code of codes) {
+      for (const locale of ['en', 'uk'] as const) {
+        if (!(`submit.err.${code}` in ui[locale])) missing.push(`${locale}: submit.err.${code}`);
       }
     }
     expect(missing).toEqual([]);

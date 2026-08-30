@@ -142,5 +142,17 @@ const counts = [
     <p class="mt-2 text-base text-hoba-muted max-w-3xl">{t(interpolated(`reader.limits.${reader}`))}</p>
   </section>
 
+  <section class="section" id="reader-missing">
+    <h2 class="section-title">{t('submit.title')}</h2>
+    <p class="mt-2 text-base text-hoba-muted max-w-3xl">{t('submit.lead')}</p>
+    <p class="mt-4">
+      {/* `from` records which reading failed to answer them, so a gap can be
+          traced back to the page that sent them here. */}
+      <a href={`${prefix}/contribute?from=${reader}#contrib-send`} class="btn btn-secondary text-sm">
+        {t('submit.send')} →
+      </a>
+    </p>
+  </section>
+
   <ShareBar id={`for-${reader}`} title={t(interpolated(`reader.title.${reader}`))} lang={lang} />
 </Layout>

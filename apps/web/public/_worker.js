@@ -271,8 +271,8 @@ var ZodIssueCode = util.arrayToEnum([
   "not_finite"
 ]);
 var quotelessJson = (obj) => {
-  const json2 = JSON.stringify(obj, null, 2);
-  return json2.replace(/"([^"]+)":/g, "$1:");
+  const json3 = JSON.stringify(obj, null, 2);
+  return json3.replace(/"([^"]+)":/g, "$1:");
 };
 var ZodError = class _ZodError extends Error {
   get errors() {
@@ -4696,9 +4696,70 @@ function validateScenarios(scenarios, bundle) {
   return issues;
 }
 
+// packages/registry-core/dist/parties.js
+var FORBIDDEN_PARTIES = [
+  "Google",
+  "Meta",
+  "Amazon",
+  "Microsoft",
+  "Apple",
+  "Netflix",
+  "Uber",
+  "Stripe",
+  "Revolut",
+  "Monobank",
+  "PrivatBank",
+  "EPAM",
+  "SoftServe",
+  "Luxoft"
+];
+var forbiddenPartyPattern = () => new RegExp(String.raw`\b(${FORBIDDEN_PARTIES.join("|")})\b`, "i");
+function namesForbiddenParty(text) {
+  return text.match(forbiddenPartyPattern())?.[0] ?? null;
+}
+
+// apps/web/src/worker/submit.js
+var LIMITS = { body: 4e3, contact: 200, stage: 40, reader: 20 };
+var json = (data, status = 200) => new Response(JSON.stringify(data, null, 2), {
+  status,
+  headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }
+});
+function isSubmitRoute(pathname) {
+  return pathname.replace(/\/$/, "") === "/submit";
+}
+async function handleSubmit(request, env) {
+  if (request.method !== "POST") return json({ error: "method not allowed", allow: "POST" }, 405);
+  if (!env?.SUBMISSIONS) return json({ error: "submissions are not accepting right now" }, 503);
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: "body must be JSON" }, 400);
+  }
+  if (typeof body?.website === "string" && body.website.length > 0) return json({ ok: true }, 202);
+  const text = typeof body?.body === "string" ? body.body.trim() : "";
+  if (text.length < 40) return json({ error: "too_short", field: "body" }, 400);
+  if (text.length > LIMITS.body) return json({ error: "too_long", field: "body", max: LIMITS.body }, 400);
+  const contact = typeof body?.contact === "string" ? body.contact.trim().slice(0, LIMITS.contact) : null;
+  const reader = typeof body?.reader === "string" ? body.reader.trim().slice(0, LIMITS.reader) : null;
+  const lang = body?.lang === "uk" ? "uk" : "en";
+  let stage = typeof body?.stage === "string" ? body.stage.trim().slice(0, LIMITS.stage) : null;
+  if (stage && !stageIdSchema.options.includes(stage)) stage = null;
+  const named = namesForbiddenParty(`${text}
+${contact ?? ""}`);
+  if (named) {
+    return json({ error: "names_a_party", party: named, parties: FORBIDDEN_PARTIES.length }, 422);
+  }
+  const id = crypto.randomUUID();
+  await env.SUBMISSIONS.prepare(
+    "INSERT INTO submissions (id, created_at, lang, reader, stage, body, contact) VALUES (?, ?, ?, ?, ?, ?, ?)"
+  ).bind(id, (/* @__PURE__ */ new Date()).toISOString(), lang, reader, stage, text, contact || null).run();
+  return json({ ok: true, id }, 201);
+}
+
 // apps/web/src/worker/validate.js
 var REGISTRY_ASSET = "/data/latest/registry.json";
-var json = (body, status = 200) => new Response(JSON.stringify(body, null, 2), {
+var json2 = (body, status = 200) => new Response(JSON.stringify(body, null, 2), {
   status,
   headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }
 });
@@ -4771,21 +4832,21 @@ function isValidateRoute(pathname) {
 async function handleValidate(request, env) {
   const url = new URL(request.url);
   const route = ROUTES[url.pathname.replace(/\/$/, "")];
-  if (!route) return json({ error: "not found" }, 404);
+  if (!route) return json2({ error: "not found" }, 404);
   if (request.method !== "POST") {
-    return json({ error: "method not allowed", allow: "POST" }, 405);
+    return json2({ error: "method not allowed", allow: "POST" }, 405);
   }
   let body;
   try {
     body = await request.json();
   } catch {
-    return json({ error: "body must be JSON" }, 400);
+    return json2({ error: "body must be JSON" }, 400);
   }
   try {
     const bundle = await registry(env, url.origin);
-    return json({ registry_version: bundle.version, ...route(body, bundle) });
+    return json2({ registry_version: bundle.version, ...route(body, bundle) });
   } catch (error) {
-    return json({ error: error instanceof Error ? error.message : String(error) }, 500);
+    return json2({ error: error instanceof Error ? error.message : String(error) }, 500);
   }
 }
 
@@ -4956,6 +5017,7 @@ function internalPath(pathname, lang, { markdown = false } = {}) {
 var index_default = {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (isSubmitRoute(url.pathname)) return handleSubmit(request, env);
     if (isValidateRoute(url.pathname)) return handleValidate(request, env);
     if (request.method !== "GET" && request.method !== "HEAD") return env.ASSETS.fetch(request);
     const redirect = legacyRedirect(url.pathname);

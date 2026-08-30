@@ -8,6 +8,7 @@
  *   pnpm task shots <path...>    screenshot pages at three widths in both themes
  *   pnpm task specimens          coverage, mirror parity and forbidden names
  *   pnpm task sources            every evidence URL still opens
+ *   pnpm task inbox              what readers sent that the atlas did not have
  *   pnpm task deploy-preview     branch deploy, prints the URL
  *
  * Everything writes to stdout and exits non-zero on failure, so CI can call the
@@ -299,6 +300,41 @@ function deployPreview() {
   run('pnpm', ['exec', 'wrangler', 'pages', 'deploy', 'apps/web/dist', '--project-name', 'hoba-work', '--branch', branch]);
 }
 
+
+/**
+ * What readers sent that the atlas did not contain.
+ *
+ * Kept out of the site entirely: a submission is testimony, an entry is a claim
+ * with evidence behind it, and turning one into the other is editorial work. So
+ * this prints them for a person to read, marks nothing, and decides nothing.
+ *
+ *   pnpm task inbox            unread submissions, oldest first
+ *   pnpm task inbox all        every one, whatever its status
+ */
+async function inbox(args) {
+  const all = args.includes('all');
+  const where = all ? '' : "WHERE status = 'new' ";
+  const sql = `SELECT id, created_at, lang, reader, stage, status, body FROM submissions ${where}ORDER BY created_at ASC`;
+  const raw = execFileSync(
+    'pnpm',
+    ['exec', 'wrangler', 'd1', 'execute', 'hoba-submissions', '--remote', '--json', `--command=${sql}`],
+    { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
+  );
+  const rows = JSON.parse(raw)?.[0]?.results ?? [];
+  if (rows.length === 0) {
+    process.stdout.write(c.dim(all ? 'nothing has been sent yet.\n' : 'nothing unread.\n'));
+    return;
+  }
+  for (const row of rows) {
+    const where = [row.stage ?? 'stage unstated', row.reader ? `from /for/${row.reader}` : 'no page recorded'].join(', ');
+    process.stdout.write(`\n${c.dim(row.created_at)}  ${row.lang}  ${c.dim(where)}${row.status === 'new' ? '' : c.dim(`  [${row.status}]`)}\n`);
+    process.stdout.write(`${row.body.split('\n').map((l) => `  ${l}`).join('\n')}\n`);
+    process.stdout.write(c.dim(`  ${row.id}\n`));
+  }
+  process.stdout.write(c.dim(`\n${rows.length} submission(s). Mark one read with:\n`));
+  process.stdout.write(c.dim(`  pnpm exec wrangler d1 execute hoba-submissions --remote --command="UPDATE submissions SET status='read' WHERE id='<id>'"\n`));
+}
+
 // ---- dispatch ------------------------------------------------------------
 
 const [task, ...rest] = process.argv.slice(2);
@@ -309,6 +345,7 @@ const TASKS = {
   shots: () => shots(rest),
   specimens,
   sources,
+  inbox: () => inbox(rest),
   'deploy-preview': deployPreview,
 };
 

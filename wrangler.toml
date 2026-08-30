@@ -1,0 +1,16 @@
+# Cloudflare Pages configuration, kept here rather than in the dashboard so the
+# bindings a deployment relies on are reviewable in a diff. `wrangler pages
+# deploy` reads the output directory and the project name from this file, which
+# is why the deploy scripts no longer pass them as flags.
+name = "hoba-work"
+compatibility_date = "2026-07-21"
+pages_build_output_dir = "apps/web/dist"
+
+# Reader submissions: what someone sends when the atlas does not contain what
+# happened to them. Never rendered on the site — a submission is testimony, and
+# an entry is a claim with evidence behind it; turning one into the other is
+# editorial work.
+[[d1_databases]]
+binding = "SUBMISSIONS"
+database_name = "hoba-submissions"
+database_id = "b09cc889-4594-4ff1-a1aa-d9a4f5dee180"
