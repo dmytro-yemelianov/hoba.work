@@ -62,7 +62,13 @@ const counts = [
   { n: footing.languages, label: t('reader.same.languages') },
 ];
 ---
-<Layout lang={lang} title={t(interpolated(`reader.title.${reader}`))} activeNav="home">
+<Layout
+  lang={lang}
+  title={t(interpolated(`reader.title.${reader}`))}
+  description={t(interpolated(`reader.lead.${reader}`))}
+  image={`/cards/${lang}/for-${reader}.png`}
+  activeNav="home"
+>
   <PageHeader
     title={t(interpolated(`reader.title.${reader}`))}
     lead={t(interpolated(`reader.lead.${reader}`))}

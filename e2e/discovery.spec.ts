@@ -94,3 +94,32 @@ test('the sitemap lists every page that was built, or says why not', async ({ re
     .filter((route) => !listed.has(route || '/'));
   expect(missing.sort()).toEqual(NOT_LISTED);
 });
+
+test('every page shares its own card, or is one of the two that cannot', async () => {
+  // A link posted to LinkedIn or Slack is previewed from `og:image`, and a page
+  // that falls back to the generic card is indistinguishable from every other
+  // page in the feed. The reader entry points shipped that way — three cards
+  // were generated for them and none was referenced.
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const dist = path.join(__dirname, '..', 'apps', 'web', 'dist', '_i', 'en');
+  const pages: string[] = [];
+  const walk = (dir: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name === 'index.html') pages.push(p);
+    }
+  };
+  walk(dist);
+  expect(pages.length).toBeGreaterThan(50);
+
+  const generic = pages
+    .filter((p) => /og:image" content="[^"]*og-home\.png/.test(fs.readFileSync(p, 'utf8')))
+    .map((p) => p.replace(dist, '').replace('/index.html', '') || '/')
+    .sort();
+
+  // `/` is what the home card is of; the error page is not a destination
+  // anyone shares.
+  expect(generic).toEqual(['/', '/404']);
+});
