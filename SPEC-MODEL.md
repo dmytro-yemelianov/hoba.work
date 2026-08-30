@@ -56,8 +56,8 @@ intervention, evidence, actor, workflow, era. Several are not independent:
 
 - **loops are computed**, not authored: strongly connected components over
   mechanisms, found by Tarjan. A derived view stored as a node type.
-- **barriers duplicate workflow states.** B-002 and the `machine-screened` state
-  of WF-001 are the same point in the process, authored twice and kept in sync
+- **barriers duplicate workflow states.** `bar.automated_filter_parser_threshold` and the `machine-screened` state
+  of `proc.the_hiring_funnel_end_to_end` are the same point in the process, authored twice and kept in sync
   by a validator.
 - **patterns are conjunctions of constraints**, expressed as prose
   `trigger_rule` plus two id lists, so their central claim — that the joint
@@ -68,10 +68,10 @@ intervention, evidence, actor, workflow, era. Several are not independent:
 
 Three things the registry cannot express at all:
 
-1. **The cohort.** M-002 is "stronger competing candidate in the final cohort",
+1. **The cohort.** `mech.stronger_competing_candidate_in_final_cohort` names one,
    but there is no cohort in the model — no way to say a condition ranks within
    a set rather than testing an individual.
-2. **Duration.** A-015 is defined by six weeks elapsing. Nothing in the schema
+2. **Duration.** `obs.rejection_after_the_application_sat_pending_for_months` is defined by six weeks elapsing. Nothing in the schema
    carries time, so the defining property lives in prose.
 3. **Concurrency.** An applicant with two live processes, where an offer in one
    changes the other, has no representation.
@@ -99,11 +99,11 @@ wrong default.
 
 **What the omission has been mislabelling.**
 
-- **M-016, "speculative sourcing without an opening."** Often not speculative.
+- **`mech.speculative_sourcing_talent_pooling_without_opening`, "speculative sourcing without an opening."** Often not speculative.
   CVs are collected because a bid cannot be won without them; the role is real,
   conditional on the win. That is a different structure with a different remedy,
   and the current entry cannot say it.
-- **M-007, freeze.** Frequently a client not signing, or cancelling — an event in
+- **`mech.headcount_freeze_or_budget_cancellation`, freeze.** Frequently a client not signing, or cancelling — an event in
   a record the applicant has no visibility on whatsoever.
 - **Compensation.** On a client account the band is derived from a rate the
   client pays, minus margin. That is why it reads as arbitrary and immovable:
@@ -116,7 +116,7 @@ wrong default.
 - **Ramp-up.** A won contract needing twenty engineers in six weeks moves
   thresholds that are stated elsewhere as fixed.
 
-**And one sign flips.** B-005's perspective holds that a bad hire is costlier
+**And one sign flips.** `bar.technical_screen_live_assessment`'s perspective holds that a bad hire is costlier
 than a missed one, and states it as though it were universal. On a client
 account an unfilled billable seat loses revenue directly, so the asymmetry can
 invert — which is why the same market contains both a five-round loop and a
@@ -160,8 +160,8 @@ for two of them without a structure to hang it on.
 
 Product revenue, a client contract, an investment round, credit, a state budget
 line. The macro half is already authored: the eras are literally about the
-price of money — the rate series (EVD-007, EVD-008), §174 making US engineering
-salaries costlier to expense (EVD-012–015) — but nothing connects any
+price of money — the rate series (`evidence.federal_funds_target_range_and_effective_rate_fred`, `evidence.ecb_deposit_facility_rate_fred`), §174 making US engineering
+salaries costlier to expense (`evidence.26_u_s_c_174_as_it_stood_before_2022`–015) — but nothing connects any
 requisition to any source. The era pages explain the climate; no entry can say
 *this seat was funded by that kind of money*.
 
@@ -192,7 +192,7 @@ Fees explain third-party behaviour that the current registry attributes to an
 
 - **contingency agency**: a percentage of first-year salary, paid on placement —
   which is why the behaviour is speed, volume and overselling, a *different*
-  incentive from the in-house quota already catalogued as M-009;
+  incentive from the in-house quota already catalogued as `mech.recruiter_volume_quota_incentive_distortion`;
 - **in-house recruiter**: salary plus quota metrics;
 - **ATS vendor**: per-seat subscription — what the dashboard optimises is what
   the buyer renews on, which the ats-vendor perspectives already describe in
@@ -200,9 +200,9 @@ Fees explain third-party behaviour that the current registry attributes to an
 - **referral bonus**: the referral entry path exists because of a distribution
   edge;
 - **job boards**: pay-per-posting is cheap against a funded requisition, which
-  is the arithmetic under the ghost-posting figure (EVD-034) — the posting
+  is the arithmetic under the ghost-posting figure (`evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse`) — the posting
   costs little, the seat costs a great deal, so postings outlive seats;
-- **the applicant also pays.** Unpaid take-home hours (A-006 is defined by
+- **the applicant also pays.** Unpaid take-home hours (`obs.take_home_assignment_exceeding_reasonable_stated_scope` is defined by
   them), unreimbursed travel, resignation risk before a countersignature.
   Distribution edges can point *from* the applicant, and the model must not
   make employer-side costs the only representable ones.
@@ -233,27 +233,27 @@ adds a refusal.
 The visibility relation says how much of a field a party can see. It has no way
 to say the party is shown something *false*. Yet the registry's own emission
 vocabulary — `direct / euphemism / distortion / void / noise` — is entirely
-about that divergence, and whole entries live on it: M-006 is a posting whose
+about that divergence, and whole entries live on it: `mech.stale_or_orphaned_job_requisition` is a posting whose
 public face says *open* while no search exists behind it; the "closer
 alignment" template is a euphemism by definition; an inflated CV is the same
-divergence pointed the other way; and M-003 is the third source — **the channel
+divergence pointed the other way; and `mech.ats_parser_extraction_failure` is the third source — **the channel
 itself distorts**, a parser mangling a two-column CV with nobody lying anywhere.
 
 So: a communication event carries a **statement record** — claimed values for
 fields of some other record. Where both sides are in the model, fidelity is
 *computed* by comparison; where they are not, it is authored, with the existing
 enum. Two existing gates turn out to be fidelity machinery and nothing else:
-B-011 (verification) checks the applicant's statements against third-party
+`bar.reference_background_verification` (verification) checks the applicant's statements against third-party
 records, and the machine screen checks a channel-distorted statement against a
 rule. The model did not have the concept its own gates are made of.
 
 ### 2. Silence is an observation
 
-A-001 is *complete silence*, and the model as drafted could not express it: an
+`obs.complete_silence_after_submission` is *complete silence*, and the model as drafted could not express it: an
 observation was defined as an event the applicant can see, and silence is the
 absence of one. The fix is a clarification of 3.4, not a new part: a party's
 projection includes the positions of the order itself, so *no event of class C
-by position p* is part of what they observe. A-012 — outreach, then nothing —
+by position p* is part of what they observe. `obs.unsolicited_recruiter_outreach_followed_by_ghosting` — outreach, then nothing —
 is a statement followed by an observable absence.
 
 ### 3. The model is side-symmetric; the atlas's asymmetry is derived
@@ -286,11 +286,11 @@ chains, and the model can now say it.
 ### 5. Records outlive processes
 
 A talent pool, a do-not-rehire flag, finalist standing with a re-entry date
-(I-017 is exactly this), a ranking model trained on last year's decisions — all
+(`int.recorded_finalist_standing_with_a_dated_re_entry_route` is exactly this), a ranking model trained on last year's decisions — all
 are records written in one process and read as condition parameters in a later
 one. This was always expressible, since records are primitives, but the
 adequacy test never asked for it, and it is load-bearing: reapplication,
-pooling (M-016) and cross-process feedback loops are all made of it. Named now.
+pooling (`mech.speculative_sourcing_talent_pooling_without_opening`) and cross-process feedback loops are all made of it. Named now.
 
 ### 6. The scope extends to the end of probation
 
@@ -301,7 +301,7 @@ observes the actual work and the applicant at last observes the actual job.
 More importantly for the atlas: **the cost of correcting a hire after
 signature is a parameter that shapes the whole funnel before it.** Where
 probation termination is cheap, a light funnel is rational; where it is hard,
-B-005's five-round loop is what you get. That parameter comes from a law
+`bar.technical_screen_live_assessment`'s five-round loop is what you get. That parameter comes from a law
 record, differs by jurisdiction, and explains cross-country funnel depth
 without attributing a single motive.
 
@@ -395,7 +395,7 @@ A relation from (party, record field, position in the order) to one of
 
 Two clarifications from section 2c. The projection includes the positions of
 the order itself, so an *absence* — no event of class C by position p — is
-observable, which is what A-001 is. And visibility bounds what can be seen,
+observable, which is what `obs.complete_silence_after_submission` is. And visibility bounds what can be seen,
 never what is claimed: divergence between a statement and the record it
 describes is carried by statement records and the fidelity vocabulary, not by
 a fourth visibility value.
@@ -430,10 +430,10 @@ a fourth visibility value.
 |---|---|
 | observation (`A-*`) | an event — or an absence (2c-2) — observable to the applicant; where it carries a statement, the statement's fidelity is part of the observation |
 | barrier (`B-*`) | a condition gating a forward event, plus its position in the order |
-| mechanism (`M-*`) | a condition, its owner, and the events it causes — an account of why a gate did not pass. The fidelity mechanisms are a standing divergent statement (M-006) or channel distortion (M-003) |
+| mechanism (`M-*`) | a condition, its owner, and the events it causes — an account of why a gate did not pass. The fidelity mechanisms are a standing divergent statement (`mech.stale_or_orphaned_job_requisition`) or channel distortion (`mech.ats_parser_extraction_failure`) |
 | pattern (`P-*`) | a set of conditions whose joint satisfying set is empty for some party. **Computable**, where today it is asserted |
 | loop (`L-*`) | a cycle in the event/condition dependency graph. Already computed; now it need not be stored |
-| intervention (`I-*`) | a proposed change to a condition, a visibility edge, a statement's fidelity (I-003 is one), or a distribution edge (2b). Only the first kind has a clean home today |
+| intervention (`I-*`) | a proposed change to a condition, a visibility edge, a statement's fidelity (`int.standardized_late_stage_rejection_feedback_taxonomy` is one), or a distribution edge (2b). Only the first kind has a clean home today |
 | evidence (`EVD-*`) | a record attesting a condition or a class of event |
 | actor | a party |
 | workflow | the graph of event types, with conditions on the edges |
@@ -455,7 +455,7 @@ The model must cost nothing when nothing is happening.
 
 - **Everything visible and every statement faithful** → visibility and
   fidelity both drop out, and what is left is an ordinary state machine. This
-  is the canonical path, WF-003. The first draft required only visibility,
+  is the canonical path, `proc.the_path_as_it_is_supposed_to_run`. The first draft required only visibility,
   which was not enough: a fully visible euphemism is still a euphemism.
 - **No conditions** → a message log. Two parties, some events, an order.
 - **One requisition, one application, no cohort** → three events: submitted,
@@ -471,11 +471,11 @@ The model must cost nothing when nothing is happening.
 **Outbound outreach with no requisition.** The recruiter emits a message event
 before any posting record exists. There is no requisition to be a parent, and
 the condition that would gate a forward event — headcount approved — has never
-been evaluated. This is M-016, and 2a refines it: the parent may be absent, or
+been evaluated. This is `mech.speculative_sourcing_talent_pooling_without_opening`, and 2a refines it: the parent may be absent, or
 may be a bid record not yet won — a real role conditional on a signature.
-Either way it differs from M-009 *structurally* rather than by an observation
-we have failed to find: M-009 has a funded requisition record behind the
-queue; M-016 has none, or a conditional one.
+Either way it differs from `mech.recruiter_volume_quota_incentive_distortion` *structurally* rather than by an observation
+we have failed to find: `mech.recruiter_volume_quota_incentive_distortion` has a funded requisition record behind the
+queue; `mech.speculative_sourcing_talent_pooling_without_opening` has none, or a conditional one.
 
 **Cohort.** A requisition has many child application records. A comparative
 condition ranks them. "Stronger competing candidate" stops being an unexplained
@@ -538,7 +538,7 @@ and honesty means keeping it current:
 - **Visibility** currently lives as one facet value per mechanism. Turning it
   into a per-party relation is new authoring for every entry, not a rewrite.
 - **Comparative conditions** do not exist yet; the mechanisms that need them
-  (M-002, M-009, M-018) would be re-expressed.
+  (`mech.stronger_competing_candidate_in_final_cohort`, `mech.recruiter_volume_quota_incentive_distortion`, `mech.domain_specificity_over_weighting`) would be re-expressed.
 - **Patterns** become computable, which means the four existing ones must
   actually compute, and one may turn out not to.
 - **Statements** (2c-1): the emission fidelity values survive as they are, but
@@ -582,10 +582,11 @@ why, in the order it was decided.
    the substrate?** The substrate holds it either way. The content question is
    whether the atlas grows a client party, a contract record, a client-approval
    gate and the bench mechanisms — and re-reads the entries that quietly assume
-   an own-account company, B-005's cost asymmetry first among them.
+   an own-account company, `bar.technical_screen_live_assessment`'s cost asymmetry first among them.
    Recommendation: yes, and it is the largest single content gap the atlas has,
-   larger than the ten unsourced entries. The registry currently describes one
-   organisational shape while presenting itself as describing hiring.
+   larger than the ten entries unsourced when this was written. The registry
+   currently describes one organisational shape while presenting itself as
+   describing hiring.
    **Settled: yes.**
 7. **Money: shapes now, amounts when?** The chain's shape — what funds a seat,
    who is paid along the way — can be authored for every entry class today, and

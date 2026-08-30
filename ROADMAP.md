@@ -79,7 +79,7 @@ rediscovered as a bug later.
 
 ## The two axes, recorded
 
-**The canonical path (#16).** WF-003 writes the process as the commitments it is
+**The canonical path (#16).** `proc.the_path_as_it_is_supposed_to_run` writes the process as the commitments it is
 supposed to keep, and every other entry is positioned against it. A barrier is
 not a gate — this path has fourteen gates and they are all legitimate. A barrier
 is the point at which one of those commitments stops being kept. `deviations`
@@ -111,9 +111,9 @@ compiler, success probabilities, and set algebra over the diagnostic protocol �
 checked against the code rather than against the description of the code. Two
 survive as stated, one survives in a different form, one is refused.
 
-### Lean4 over WF-003 and the barrier DAG (#18) — done
+### Lean4 over the canonical path and the barrier DAG (#18) — done
 
-WF-003 is already close to a formal object: a finite state set, transitions with
+`proc.the_path_as_it_is_supposed_to_run` — the canonical path — is already close to a formal object: a finite state set, transitions with
 guards, `deviations` on every state. Four of its properties are currently
 asserted by vitest against the data that happens to be in `content/` today.
 In Lean they become properties of the structure, and the generator then cannot
@@ -133,11 +133,11 @@ connected component. Two different checks with two different purposes.
 
 And the proposed headline theorem — that a deviation-free path ends in `hired`,
 `declined` or `closed` — is near-trivial, because those are the only three
-terminal states WF-003 has. The sharper theorem is **termination**, and it is
-worth stating because it is not currently asserted anywhere: WF-003 has fifteen
+terminal states the canonical path has. The sharper theorem is **termination**, and it is
+worth stating because it is not currently asserted anywhere: the canonical path has fifteen
 states, twenty-one transitions and **zero back edges**, so every walk from
-`real-need` reaches a terminal in at most twelve steps. WF-001 — the funnel as
-observed — has exactly one back edge, `rejected → published`, which is P-002,
+`real-need` reaches a terminal in at most twelve steps. `proc.the_hiring_funnel_end_to_end` — the funnel as
+observed — has exactly one back edge, `rejected → published`, which is `pat.closed_then_reposted_requisition_motif`,
 the closed-then-reposted motif. So: *the ideal path terminates and the observed
 funnel need not*, and the single edge that separates them is a named pattern in
 the registry. That is the atlas's central claim as a theorem about its own data.
@@ -153,7 +153,7 @@ The whole thing builds in about a second.
 Two things the proofs corrected. The bound is **twelve** steps, not thirteen —
 the estimate was states-minus-two, the proof is the depth of the rank, and it
 now tightens or breaks with the data rather than quietly staying true. And the
-exhibited cycle in WF-001 is four edges, not eleven: `published → received →
+exhibited cycle in `proc.the_hiring_funnel_end_to_end` is four edges, not eleven: `published → received →
 machine-screened → rejected → published`, found breadth-first because the tight
 one says what the long one says with fewer states.
 
@@ -179,9 +179,9 @@ every existing probe. Only then is "what is the smallest set of probes that
 separates every compatible mechanism?" a set-cover problem with an answer.
 
 What *is* computable today and is honest: the number of distinct routes through
-WF-003 and how many end in each terminal. Cardinality, not probability.
+the canonical path and how many end in each terminal. Cardinality, not probability.
 
-The weakest claim in the proposal is patterns as non-empty intersections. P-001
+The weakest claim in the proposal is patterns as non-empty intersections. `pat.seniority_double_bind`
 is defined by a prose `trigger_rule`, `required_artifacts` and
 `compatible_mechanisms` — there are no requirement *sets* to intersect. Proving
 non-emptiness would first require modelling requirements as a lattice, which the
@@ -197,7 +197,7 @@ pass told to refute every exclusion by constructing a case where both hold.
 
 Across **14 probes and 56 outcomes, not one exclusion survived.** The drafters
 proposed a single one; the refutation pass broke it. Spot-checked by hand on
-A-001 and the result stands: an automated acknowledgement in the spam folder
+`obs.complete_silence_after_submission` and the result stands: an automated acknowledgement in the spam folder
 proves a record was created, and every mechanism compatible with silence is
 compatible with a record having been created.
 
@@ -209,7 +209,7 @@ rather than a defect, and it is exactly what the strict rule was chosen to be
 able to say. A loose rule would have produced a satisfying narrowing and it
 would have been fiction.
 
-Route counting landed with it: 10 distinct routes run through WF-003, of which
+Route counting landed with it: 10 distinct routes run through the canonical path, of which
 1 ends in a hire, 6 in a decline and 3 in a closed search. A cardinality, never
 a likelihood.
 
@@ -224,7 +224,7 @@ probes.
 `Resume × Facets → which gates fire` is right, and the refusal that goes with it
 is right: nothing that rewrites a document to pass a filter. That would turn the
 atlas into an instrument for playing the system it documents, and would
-legitimise the exact mechanisms it exists to describe. I-005 already names the
+legitimise the exact mechanisms it exists to describe. `int.candidate_ats_parser_conformance_test_utility` already names the
 honest form — a conformance check, not an optimiser.
 
 The employer side must be a **facet vector**, never a database: an employer with
@@ -250,7 +250,7 @@ would contradict it.
 
 One check runs the other way and reports on the posting rather than the person:
 a requirement for more years than the thing has existed is `unsatisfiable`,
-which is P-003 computed rather than asserted. Nothing leaves the page — also
+which is `pat.experience_age_impossibility` computed rather than asserted. Nothing leaves the page — also
 asserted, by failing if any non-GET request is made.
 
 ### Success probabilities — no, and this is permanent
@@ -258,7 +258,7 @@ asserted, by failing if any non-GET request is made.
 A real probability needs a denominator: how many people with this profile
 applied, and how many were hired. Nobody has that but employers, and they do not
 publish it. What is derivable from open sources — 244 applications per opening
-(EVD-027), 4.5% of software postings at entry level (EVD-028) — describes a
+(`evidence.applications_per_opening_greenhouse_hiring_benchmarks`), 4.5% of software postings at entry level (`evidence.seniority_mix_of_software_postings_indeed_hiring_lab`) — describes a
 market, not a person.
 
 "Your probability of success: 12%" would be false precision, which the
@@ -295,12 +295,12 @@ means the atlas is internally complete, not that it is finished.
 ### The ceiling is subsumption, not identical traces
 
 A cause is settled only when nothing else emits everything it does. For seven of
-twenty-four that never holds — M-001, M-002, M-008, M-009, M-011, M-016, M-017 —
+twenty-four that never holds — `mech.genuine_technical_skill_shortfall`, `mech.stronger_competing_candidate_in_final_cohort`, `mech.automated_keyword_qualification_filter`, `mech.recruiter_volume_quota_incentive_distortion`, `mech.employment_gap_downranking_bias`, `mech.speculative_sourcing_talent_pooling_without_opening`, `mech.experience_age_grading_mismatch` —
 and it is asserted by name.
 
 The first version of this measure looked for *identical* emission signatures and
 found five groups. That is only the symmetric case. Five observations were then
-derived from how people describe rejections (A-015 to A-019, each kept only
+derived from how people describe rejections (`obs.rejection_after_the_application_sat_pending_for_months` to `obs.feedback_naming_as_absent_something_the_submitted_work_contains`, each kept only
 because it split a shared trace), the group count fell to one, and the honest
 figure barely moved: each new observation made **one side** of a pair
 identifiable and left the other a strict subset. The group count read that as
@@ -309,7 +309,7 @@ progress. Subsumption does not.
 Nine of nineteen observations are now consistent with exactly one cause, up from
 four. The instrument got sharper; the registry did not.
 
-### Decomposing A-002 was the wrong target, and measuring said so
+### Decomposing `obs.generic_closer_alignment_rejection_template` was the wrong target, and measuring said so
 
 The generic rejection is emitted by sixteen of twenty-four mechanisms, which
 looked like the thing to fix. It is not: ten of those pair it with a *different*
@@ -340,14 +340,14 @@ statistics and surveys are citable. The `anecdote` and `illustrative` evidence
 kinds exist in the schema and are deliberately held at zero records, so the bar
 stays FRED, US Code, QJE.
 
-Seven entries were sourced this way (B-014, I-007, I-009, I-010, I-011, I-013,
-I-016) and each summary states what its source does *not* establish. Law turned
+Seven entries were sourced this way (`bar.outbound_sourcing_talent_pool_contact`, `int.requirements_drawn_from_the_team_s_own_backlog`, `int.outreach_states_the_requisition_behind_it`, `int.distinct_closure_status_for_unreviewed_applications`, `int.screening_note_bound_to_observations_and_disposition_codes`, `int.publish_the_technical_screen_s_columns_and_threshold_before_the_round`,
+`int.verification_discrepancy_disclosure_and_reconciliation_window`) and each summary states what its source does *not* establish. Law turned
 out to be the richest seam, because a statute opens reliably and does not rot:
-FCRA §1681b(b)(3) for I-016, and 41 CFR 60-1.3 for I-010, which defines an
+FCRA §1681b(b)(3) for `int.verification_discrepancy_disclosure_and_reconciliation_window`, and 41 CFR 60-1.3 for `int.distinct_closure_status_for_unreviewed_applications`, which defines an
 applicant partly by whether the contractor assessed the submission at all and
 says outright that volume reduction "by data management techniques that do not
 depend on assessment of qualifications" is not consideration. The distinction
-I-010 asks an ATS to record is one the law already draws.
+`int.distinct_closure_status_for_unreviewed_applications` asks an ATS to record is one the law already draws.
 
 The legal base was then rebalanced, because it had drifted entirely US-side
 under a bilingual atlas. GDPR Article 22 and Recital 71 name "e-recruiting
@@ -355,13 +355,13 @@ practices without any human intervention" outright, which is the same
 reviewed/unreviewed line 41 CFR draws, approached from the other end: one
 governs who must be counted, the other what the person may demand. Directive
 (EU) 2023/970 Article 5 makes publishing the band before the interview a duty,
-which is I-002 stated as law. Ukraine's civil service statute mandates open
+which is `int.upfront_compensation_band_disclosure` stated as law. Ukraine's civil service statute mandates open
 competitions, so whole classes of postings exist because a rule requires them —
-M-005's premise, in Ukrainian primary law.
+`mech.pre_selected_internal_candidate`'s premise, in Ukrainian primary law.
 
 Nine entries still cite nothing. Five are the forum-derived observations, which
-were never going to be citable. Four are interventions — I-008, I-014, I-015,
-I-017 — where a genuine attempt found nothing openable: the silver-medalist and
+were never going to be citable. Four are interventions — `int.internal_candidacy_stated_in_the_posting`, `int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota`, `int.dated_funding_certification_before_the_final_round`,
+`int.recorded_finalist_standing_with_a_dated_re_entry_route` — where a genuine attempt found nothing openable: the silver-medalist and
 offer-rescission material is vendor and consultant copy carrying unsourced
 percentages, and interview-scheduling capacity is an operations claim the
 selection literature does not speak to. They stay unsourced rather than

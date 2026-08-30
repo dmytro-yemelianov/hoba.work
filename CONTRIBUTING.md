@@ -13,7 +13,7 @@ pnpm task check registry     # or a single stage
 pnpm task new mechanism "Title of the thing"
 pnpm task specimens          # coverage, mirror parity, forbidden names
 pnpm task preview            # build and serve, reuses a running server
-pnpm task shots /registry /artifacts/A-013
+pnpm task shots /registry /observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade
 pnpm task deploy-preview     # branch deploy
 ```
 

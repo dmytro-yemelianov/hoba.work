@@ -173,7 +173,7 @@ alias hoba="node $PWD/packages/cli/dist/cli.js"
 hoba explain obs.materially_similar_role_reposted_shortly_after_rejection --stage technical
 hoba explain obs.complete_silence_after_submission obs.materially_similar_role_reposted_shortly_after_rejection --json
 # Legacy short codes still resolve, so an old note or link keeps working:
-hoba explain A-004 --stage technical
+hoba explain obs.materially_similar_role_reposted_shortly_after_rejection --stage technical
 
 # Diagnose stage dwell anomalies and identify stalled mechanisms
 hoba latency proc.the_hiring_funnel_end_to_end recruiter-queue 45 --json
