@@ -25,8 +25,9 @@ perspectives:
     reads: "The configuration ran on schedule. Whether any of those records was ever opened is not a condition the rule tests."
     does: "Transitions the records, queues the notifications, and reports the cleared backlog as pipeline hygiene."
 status: "active"
-evidence_level: "compatible"
-evidence_ids: []
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
 probes:
   -
     id: "PROBE-A-015-1"

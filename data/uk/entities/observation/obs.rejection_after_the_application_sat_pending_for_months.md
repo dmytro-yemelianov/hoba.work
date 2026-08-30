@@ -25,8 +25,9 @@ perspectives:
     reads: "Конфігурація відпрацювала за розкладом. Чи відкривали бодай один із цих записів — умова, якої правило не перевіряє."
     does: "Переводить записи в новий статус, ставить сповіщення в чергу і показує розчищений залишок як гігієну пайплайну."
 status: "active"
-evidence_level: "compatible"
-evidence_ids: []
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
 probes:
   -
     id: "PROBE-A-015-1"

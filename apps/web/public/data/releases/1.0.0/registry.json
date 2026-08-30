@@ -4584,7 +4584,9 @@
     {
       "title": "Rejection after the application sat pending for months",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
+      ],
       "content": "# Rejection after the application sat pending for months\n\nA rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.\n\n### Diagnostic Non-Inferences\n- Does not mean the application was read at any point during the interval.\n- Does not mean a decision on the merits was taken at the end of it.",
       "aliases": [
         "A-015"
@@ -4596,7 +4598,7 @@
         "ingestion",
         "screening"
       ],
-      "evidence_level": "compatible",
+      "evidence_level": "supported",
       "probes": [
         {
           "id": "PROBE-A-015-1",
@@ -4920,7 +4922,10 @@
     {
       "title": "Rejection naming an internal hire as the outcome",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code",
+        "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
+      ],
       "content": "# Rejection naming an internal hire as the outcome\n\nThe closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.\n\n### Diagnostic Non-Inferences\n- Does not establish that the internal candidate was identified before the search was published.\n- Does not establish that the external rounds were run without a decision available to them.",
       "aliases": [
         "A-016"
@@ -4932,7 +4937,7 @@
         "team",
         "offer"
       ],
-      "evidence_level": "compatible",
+      "evidence_level": "supported",
       "probes": [
         {
           "id": "PROBE-A-016-1",
@@ -12035,6 +12040,17 @@
       "aliases": [
         "EVD-021"
       ]
+    },
+    {
+      "id": "evidence.mean_vacancy_duration_information_sector_dhi_dfh",
+      "type": "evidence",
+      "title": "Mean vacancy duration, information sector (DHI-DFH)",
+      "kind": "research",
+      "summary": "The DHI-DFH measure reports the average number of working days taken to fill a vacant post, counting Monday to Saturday and excluding major holidays. For the information sector it stood at roughly 46 working days at the series' close in April 2018 — about seven and a half calendar weeks. An application still open six weeks after submission is therefore inside the ordinary life of a vacancy in this sector, not past it: the silence is what an open search looks like from outside, and its length alone carries no information about whether anyone has read the submission. The construction follows Davis, Faberman and Haltiwanger's method from the Quarterly Journal of Economics. It measures how long a vacancy stays open, never how long a rejection takes to arrive, and it says nothing about whether a given application was assessed at all. The series covers the US information sector from 2001 and was discontinued in 2018, so it describes the period up to that point and not the market since.",
+      "citation": "DHI-DFH Mean Vacancy Duration Measure by Industry: Information (DHIDFHDMII), FRED, Federal Reserve Bank of St. Louis; discontinued, last observation April 2018. Method per Davis, S. J., Faberman, R. J., & Haltiwanger, J. (2013). The Establishment-Level Behavior of Vacancies and Hiring. Quarterly Journal of Economics, 128(2).",
+      "url": "https://fred.stlouisfed.org/series/DHIDFHDMII",
+      "period": "2001–2018",
+      "aliases": []
     },
     {
       "id": "evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice",

@@ -1658,7 +1658,9 @@
     {
       "title": "Rejection after the application sat pending for months",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
+      ],
       "content": "# Rejection after the application sat pending for months\n\nA rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.\n\n### Diagnostic Non-Inferences\n- Does not mean the application was read at any point during the interval.\n- Does not mean a decision on the merits was taken at the end of it.",
       "aliases": [
         "A-015"
@@ -1670,7 +1672,7 @@
         "ingestion",
         "screening"
       ],
-      "evidence_level": "compatible",
+      "evidence_level": "supported",
       "probes": [
         {
           "id": "PROBE-A-015-1",
@@ -1994,7 +1996,10 @@
     {
       "title": "Rejection naming an internal hire as the outcome",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code",
+        "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
+      ],
       "content": "# Rejection naming an internal hire as the outcome\n\nThe closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.\n\n### Diagnostic Non-Inferences\n- Does not establish that the internal candidate was identified before the search was published.\n- Does not establish that the external rounds were run without a decision available to them.",
       "aliases": [
         "A-016"
@@ -2006,7 +2011,7 @@
         "team",
         "offer"
       ],
-      "evidence_level": "compatible",
+      "evidence_level": "supported",
       "probes": [
         {
           "id": "PROBE-A-016-1",

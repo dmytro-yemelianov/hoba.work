@@ -3,7 +3,9 @@
   "data": {
     "title": "Rejection after the application sat pending for months",
     "status": "active",
-    "evidence_ids": [],
+    "evidence_ids": [
+      "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
+    ],
     "content": "# Rejection after the application sat pending for months\n\nA rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.\n\n### Diagnostic Non-Inferences\n- Does not mean the application was read at any point during the interval.\n- Does not mean a decision on the merits was taken at the end of it.",
     "aliases": [
       "A-015"
@@ -15,7 +17,7 @@
       "ingestion",
       "screening"
     ],
-    "evidence_level": "compatible",
+    "evidence_level": "supported",
     "probes": [
       {
         "id": "PROBE-A-015-1",

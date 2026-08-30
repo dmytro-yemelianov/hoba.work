@@ -14,7 +14,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 50) — the published sources behind the claims.
+- **Evidence** (`EVD-*`, 51) — the published sources behind the claims.
 
 The graph has 226 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -155,7 +155,7 @@ The candidate completes every interview round and then learns that the requisiti
 
 A rejection arrives six weeks or more after submission, with no contact in the interval and no stage ever entered.
 
-- Stages: ingestion, screening · Evidence: compatible
+- Stages: ingestion, screening · Evidence: supported
 - Does NOT establish: Does not mean the application was read at any point during the interval.
 - Does NOT establish: Does not mean a decision on the merits was taken at the end of it.
 - Probe [PROBE-A-015-1] (low): Compare the date the posting came down with the date the rejection arrived, using the portal's own listing history or a saved copy of the posting. → Establishes whether the message followed the close of the search or an interval counted from submission.
@@ -182,7 +182,7 @@ The stated reason is the absence of experience in one named sector, rather than 
 
 The closing message states the role went to someone already inside the organisation, after the candidate had completed the later rounds.
 
-- Stages: team, offer · Evidence: compatible
+- Stages: team, offer · Evidence: supported
 - Does NOT establish: Does not establish that the internal candidate was identified before the search was published.
 - Does NOT establish: Does not establish that the external rounds were run without a decision available to them.
 - Probe [PROBE-A-016-1] (low): Check whether the posting was withdrawn or remained live, and whether it was reposted with the same level and scope within the following weeks. → Distinguishes a filled requisition from a search that continued after the message.
@@ -1210,6 +1210,13 @@ Official separations in the US information sector were 451,000 in 2022, 399,000 
 
 - US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).
 - https://data.bls.gov/timeseries/JTU510000000000000LDL
+
+### evidence.mean_vacancy_duration_information_sector_dhi_dfh — Mean vacancy duration, information sector (DHI-DFH)
+
+The DHI-DFH measure reports the average number of working days taken to fill a vacant post, counting Monday to Saturday and excluding major holidays. For the information sector it stood at roughly 46 working days at the series' close in April 2018 — about seven and a half calendar weeks. An application still open six weeks after submission is therefore inside the ordinary life of a vacancy in this sector, not past it: the silence is what an open search looks like from outside, and its length alone carries no information about whether anyone has read the submission. The construction follows Davis, Faberman and Haltiwanger's method from the Quarterly Journal of Economics. It measures how long a vacancy stays open, never how long a rejection takes to arrive, and it says nothing about whether a given application was assessed at all. The series covers the US information sector from 2001 and was discontinued in 2018, so it describes the period up to that point and not the market since.
+
+- DHI-DFH Mean Vacancy Duration Measure by Industry: Information (DHIDFHDMII), FRED, Federal Reserve Bank of St. Louis; discontinued, last observation April 2018. Method per Davis, S. J., Faberman, R. J., & Haltiwanger, J. (2013). The Establishment-Level Behavior of Vacancies and Hiring. Quarterly Journal of Economics, 128(2).
+- https://fred.stlouisfed.org/series/DHIDFHDMII
 
 ### evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice — Naming staff for a contract not yet won is an adjudicated practice (GAO, ASRC Federal Data Solutions)
 

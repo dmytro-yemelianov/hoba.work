@@ -1,0 +1,28 @@
+---
+id: "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
+type: "evidence"
+title: "Mean vacancy duration, information sector (DHI-DFH)"
+kind: research
+summary: >-
+  The DHI-DFH measure reports the average number of working days taken to fill
+  a vacant post, counting Monday to Saturday and excluding major holidays. For
+  the information sector it stood at roughly 46 working days at the series'
+  close in April 2018 — about seven and a half calendar weeks. An application
+  still open six weeks after submission is therefore inside the ordinary life
+  of a vacancy in this sector, not past it: the silence is what an open search
+  looks like from outside, and its length alone carries no information about
+  whether anyone has read the submission. The construction follows Davis,
+  Faberman and Haltiwanger's method from the Quarterly Journal of Economics.
+  It measures how long a vacancy stays open, never how long a rejection takes
+  to arrive, and it says nothing about whether a given application was assessed
+  at all. The series covers the US information sector from 2001 and was
+  discontinued in 2018, so it describes the period up to that point and not the
+  market since.
+citation: "DHI-DFH Mean Vacancy Duration Measure by Industry: Information (DHIDFHDMII), FRED, Federal Reserve Bank of St. Louis; discontinued, last observation April 2018. Method per Davis, S. J., Faberman, R. J., & Haltiwanger, J. (2013). The Establishment-Level Behavior of Vacancies and Hiring. Quarterly Journal of Economics, 128(2)."
+url: "https://fred.stlouisfed.org/series/DHIDFHDMII"
+period: "2001–2018"
+---
+
+# Mean vacancy duration, information sector (DHI-DFH)
+
+The DHI-DFH measure reports the average number of working days taken to fill a vacant post, counting Monday to Saturday and excluding major holidays. For the information sector it stood at roughly 46 working days at the series' close in April 2018 — about seven and a half calendar weeks. An application still open six weeks after submission is therefore inside the ordinary life of a vacancy in this sector, not past it: the silence is what an open search looks like from outside, and its length alone carries no information about whether anyone has read the submission. The construction follows Davis, Faberman and Haltiwanger's method from the Quarterly Journal of Economics. It measures how long a vacancy stays open, never how long a rejection takes to arrive, and it says nothing about whether a given application was assessed at all. The series covers the US information sector from 2001 and was discontinued in 2018, so it describes the period up to that point and not the market since.

@@ -25,8 +25,10 @@ perspectives:
     reads: "Причина закриття точна й незвично конкретна — більшість причин ззовні настільки не читаються."
     does: "Надсилає саме її, а не типовий шаблон, бо внутрішній результат — єдина причина, яку можна назвати, не коментуючи жодного кандидата."
 status: "active"
-evidence_level: "compatible"
-evidence_ids: []
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
+  - "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
 probes:
   -
     id: "PROBE-A-016-1"

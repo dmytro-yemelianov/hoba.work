@@ -25,8 +25,10 @@ perspectives:
     reads: "The disposition is accurate and unusually specific — most closing reasons are not this legible from outside."
     does: "Sends the stated reason rather than the generic template, because the internal outcome is the one closing reason that can be given without commenting on any candidate."
 status: "active"
-evidence_level: "compatible"
-evidence_ids: []
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
+  - "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
 probes:
   -
     id: "PROBE-A-016-1"
