@@ -368,8 +368,18 @@
       <data key="d_type">loop</data>
       <data key="d_evidence">supported</data>
     </node>
+    <node id="int.a_named_decider_and_a_written_rule_for_a_split_panel">
+      <data key="d_label">A named decider and a written rule for a split panel</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
     <node id="int.auto_close_stale_job_requisitions">
       <data key="d_label">Auto-Close Stale Job Requisitions</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="int.bench_availability_declared_at_each_stage_gate">
+      <data key="d_label">Bench availability declared at each stage gate</data>
       <data key="d_type">intervention</data>
       <data key="d_evidence">supported</data>
     </node>
@@ -383,13 +393,33 @@
       <data key="d_type">intervention</data>
       <data key="d_evidence">supported</data>
     </node>
+    <node id="int.contractable_jurisdictions_listed_in_the_posting">
+      <data key="d_label">Contractable jurisdictions listed in the posting</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="int.critique_injected_on_script_in_the_collaborative_exercise">
+      <data key="d_label">Critique injected on script in the collaborative exercise</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
     <node id="int.dated_funding_certification_before_the_final_round">
       <data key="d_label">Dated Funding Certification Before the Final Round</data>
       <data key="d_type">intervention</data>
       <data key="d_evidence">supported</data>
     </node>
+    <node id="int.disqualifying_criteria_published_with_the_posting">
+      <data key="d_label">Disqualifying criteria published with the posting</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
     <node id="int.distinct_closure_status_for_unreviewed_applications">
       <data key="d_label">Distinct Closure Status for Unreviewed Applications</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="int.domain_requirement_carries_a_stated_ramp_time">
+      <data key="d_label">Domain requirement carries a stated ramp time</data>
       <data key="d_type">intervention</data>
       <data key="d_evidence">supported</data>
     </node>
@@ -420,6 +450,11 @@
     </node>
     <node id="int.remove_career_gap_feature_from_automated_ranking_models">
       <data key="d_label">Remove Career Gap Feature from Automated Ranking Models</data>
+      <data key="d_type">intervention</data>
+      <data key="d_evidence">supported</data>
+    </node>
+    <node id="int.requirement_changes_versioned_and_sent_to_candidates_in_flight">
+      <data key="d_label">Requirement changes versioned and sent to candidates in flight</data>
       <data key="d_type">intervention</data>
       <data key="d_evidence">supported</data>
     </node>
@@ -1053,6 +1088,12 @@
     <edge id="mech.experience_age_grading_mismatch-&gt;instantiates-&gt;pat.seniority_double_bind" source="mech.experience_age_grading_mismatch" target="pat.seniority_double_bind">
       <data key="d_edge_type">instantiates</data>
     </edge>
+    <edge id="int.a_named_decider_and_a_written_rule_for_a_split_panel-&gt;targets-&gt;mech.hiring_manager_consensus_impasse" source="int.a_named_decider_and_a_written_rule_for_a_split_panel" target="mech.hiring_manager_consensus_impasse">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.a_named_decider_and_a_written_rule_for_a_split_panel-&gt;targets-&gt;bar.team_cross_functional_panel" source="int.a_named_decider_and_a_written_rule_for_a_split_panel" target="bar.team_cross_functional_panel">
+      <data key="d_edge_type">targets</data>
+    </edge>
     <edge id="int.auto_close_stale_job_requisitions-&gt;targets-&gt;mech.stale_or_orphaned_job_requisition" source="int.auto_close_stale_job_requisitions" target="mech.stale_or_orphaned_job_requisition">
       <data key="d_edge_type">targets</data>
     </edge>
@@ -1064,6 +1105,15 @@
     </edge>
     <edge id="int.auto_close_stale_job_requisitions-&gt;mitigates-&gt;loop.inflated_requirements_search_saturation_loop" source="int.auto_close_stale_job_requisitions" target="loop.inflated_requirements_search_saturation_loop">
       <data key="d_edge_type">mitigates</data>
+    </edge>
+    <edge id="int.bench_availability_declared_at_each_stage_gate-&gt;targets-&gt;mech.bench_priority_fill" source="int.bench_availability_declared_at_each_stage_gate" target="mech.bench_priority_fill">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.bench_availability_declared_at_each_stage_gate-&gt;targets-&gt;bar.requisition_approval_public_posting" source="int.bench_availability_declared_at_each_stage_gate" target="bar.requisition_approval_public_posting">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.bench_availability_declared_at_each_stage_gate-&gt;targets-&gt;bar.inbound_screening_triage" source="int.bench_availability_declared_at_each_stage_gate" target="bar.inbound_screening_triage">
+      <data key="d_edge_type">targets</data>
     </edge>
     <edge id="int.candidate_ats_parser_conformance_test_utility-&gt;targets-&gt;mech.ats_parser_extraction_failure" source="int.candidate_ats_parser_conformance_test_utility" target="mech.ats_parser_extraction_failure">
       <data key="d_edge_type">targets</data>
@@ -1083,6 +1133,24 @@
     <edge id="int.candidate_work_index_submitted_with_the_application-&gt;targets-&gt;bar.inbound_screening_triage" source="int.candidate_work_index_submitted_with_the_application" target="bar.inbound_screening_triage">
       <data key="d_edge_type">targets</data>
     </edge>
+    <edge id="int.contractable_jurisdictions_listed_in_the_posting-&gt;targets-&gt;mech.location_or_timezone_compliance_constraint" source="int.contractable_jurisdictions_listed_in_the_posting" target="mech.location_or_timezone_compliance_constraint">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.contractable_jurisdictions_listed_in_the_posting-&gt;targets-&gt;bar.automated_filter_parser_threshold" source="int.contractable_jurisdictions_listed_in_the_posting" target="bar.automated_filter_parser_threshold">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.contractable_jurisdictions_listed_in_the_posting-&gt;targets-&gt;bar.recruiter_screening_call" source="int.contractable_jurisdictions_listed_in_the_posting" target="bar.recruiter_screening_call">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.critique_injected_on_script_in_the_collaborative_exercise-&gt;targets-&gt;mech.communication_or_working_style_friction" source="int.critique_injected_on_script_in_the_collaborative_exercise" target="mech.communication_or_working_style_friction">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.critique_injected_on_script_in_the_collaborative_exercise-&gt;targets-&gt;bar.recruiter_screening_call" source="int.critique_injected_on_script_in_the_collaborative_exercise" target="bar.recruiter_screening_call">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.critique_injected_on_script_in_the_collaborative_exercise-&gt;targets-&gt;bar.team_cross_functional_panel" source="int.critique_injected_on_script_in_the_collaborative_exercise" target="bar.team_cross_functional_panel">
+      <data key="d_edge_type">targets</data>
+    </edge>
     <edge id="int.dated_funding_certification_before_the_final_round-&gt;targets-&gt;bar.headcount_executive_budget_approval" source="int.dated_funding_certification_before_the_final_round" target="bar.headcount_executive_budget_approval">
       <data key="d_edge_type">targets</data>
     </edge>
@@ -1092,6 +1160,12 @@
     <edge id="int.dated_funding_certification_before_the_final_round-&gt;targets-&gt;mech.headcount_freeze_or_budget_cancellation" source="int.dated_funding_certification_before_the_final_round" target="mech.headcount_freeze_or_budget_cancellation">
       <data key="d_edge_type">targets</data>
     </edge>
+    <edge id="int.disqualifying_criteria_published_with_the_posting-&gt;targets-&gt;mech.automated_keyword_qualification_filter" source="int.disqualifying_criteria_published_with_the_posting" target="mech.automated_keyword_qualification_filter">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.disqualifying_criteria_published_with_the_posting-&gt;targets-&gt;bar.automated_filter_parser_threshold" source="int.disqualifying_criteria_published_with_the_posting" target="bar.automated_filter_parser_threshold">
+      <data key="d_edge_type">targets</data>
+    </edge>
     <edge id="int.distinct_closure_status_for_unreviewed_applications-&gt;targets-&gt;bar.inbound_screening_triage" source="int.distinct_closure_status_for_unreviewed_applications" target="bar.inbound_screening_triage">
       <data key="d_edge_type">targets</data>
     </edge>
@@ -1099,6 +1173,15 @@
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="int.distinct_closure_status_for_unreviewed_applications-&gt;targets-&gt;mech.automated_application_expiration_timeout" source="int.distinct_closure_status_for_unreviewed_applications" target="mech.automated_application_expiration_timeout">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.domain_requirement_carries_a_stated_ramp_time-&gt;targets-&gt;mech.domain_specificity_over_weighting" source="int.domain_requirement_carries_a_stated_ramp_time" target="mech.domain_specificity_over_weighting">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.domain_requirement_carries_a_stated_ramp_time-&gt;targets-&gt;bar.recruiter_screening_call" source="int.domain_requirement_carries_a_stated_ramp_time" target="bar.recruiter_screening_call">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.domain_requirement_carries_a_stated_ramp_time-&gt;targets-&gt;bar.hiring_manager_in_depth_review" source="int.domain_requirement_carries_a_stated_ramp_time" target="bar.hiring_manager_in_depth_review">
       <data key="d_edge_type">targets</data>
     </edge>
     <edge id="int.internal_candidacy_stated_in_the_posting-&gt;targets-&gt;mech.pre_selected_internal_candidate" source="int.internal_candidacy_stated_in_the_posting" target="mech.pre_selected_internal_candidate">
@@ -1142,6 +1225,15 @@
     </edge>
     <edge id="int.remove_career_gap_feature_from_automated_ranking_models-&gt;mitigates-&gt;loop.employment_gap_penalty_loop" source="int.remove_career_gap_feature_from_automated_ranking_models" target="loop.employment_gap_penalty_loop">
       <data key="d_edge_type">mitigates</data>
+    </edge>
+    <edge id="int.requirement_changes_versioned_and_sent_to_candidates_in_flight-&gt;targets-&gt;mech.mid_process_role_requirement_redefinition" source="int.requirement_changes_versioned_and_sent_to_candidates_in_flight" target="mech.mid_process_role_requirement_redefinition">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.requirement_changes_versioned_and_sent_to_candidates_in_flight-&gt;targets-&gt;bar.hiring_manager_in_depth_review" source="int.requirement_changes_versioned_and_sent_to_candidates_in_flight" target="bar.hiring_manager_in_depth_review">
+      <data key="d_edge_type">targets</data>
+    </edge>
+    <edge id="int.requirement_changes_versioned_and_sent_to_candidates_in_flight-&gt;targets-&gt;bar.team_cross_functional_panel" source="int.requirement_changes_versioned_and_sent_to_candidates_in_flight" target="bar.team_cross_functional_panel">
+      <data key="d_edge_type">targets</data>
     </edge>
     <edge id="int.requirements_drawn_from_the_team_s_own_backlog-&gt;targets-&gt;mech.inflated_requisition_requirements_vs_actual_team_needs" source="int.requirements_drawn_from_the_team_s_own_backlog" target="mech.inflated_requisition_requirements_vs_actual_team_needs">
       <data key="d_edge_type">targets</data>

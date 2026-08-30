@@ -1,0 +1,76 @@
+{
+  "registry_version": "1.0.0",
+  "data": {
+    "title": "Bench availability declared at each stage gate",
+    "status": "active",
+    "evidence_ids": [
+      "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
+    ],
+    "content": "# Bench availability declared at each stage gate\n\nAt every advance the search states whether an already-employed engineer between projects could still take the seat, and an external candidate closed out by a bench fill is told so, with the date the availability appeared.\n\n### Expected Effects\n- mech.bench_priority_fill keeps operating — it cannot be removed — but stops being read as a verdict on the candidate\n- External effort spent against an internally contestable seat becomes countable, and can be priced\n\n### Measurements\n- `bench_fill_closure_rate`\n- `dated_closure_notice_rate`",
+    "aliases": [],
+    "id": "int.bench_availability_declared_at_each_stage_gate",
+    "type": "intervention",
+    "summary": "At every advance the search states whether an already-employed engineer between projects could still take the seat, and an external candidate closed out by a bench fill is told so, with the date the availability appeared.",
+    "targets": [
+      "mech.bench_priority_fill",
+      "bar.requisition_approval_public_posting",
+      "bar.inbound_screening_triage"
+    ],
+    "actor": "employer-policy",
+    "scope": "organizational",
+    "cost": "low",
+    "evidence_level": "supported",
+    "expected_effects": [
+      "mech.bench_priority_fill keeps operating — it cannot be removed — but stops being read as a verdict on the candidate",
+      "External effort spent against an internally contestable seat becomes countable, and can be priced"
+    ],
+    "measurements": [
+      "bench_fill_closure_rate",
+      "dated_closure_notice_rate"
+    ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "The notice that replaces the alignment letter",
+        "lines": [
+          {
+            "at": "subject",
+            "text": "Backend engineer, req #5120 — the search is closed and why",
+            "tell": false
+          },
+          {
+            "at": "body",
+            "text": "On 14 March an engineer already employed here came off a project that ended early and was assigned to this seat. The requisition is filled internally as of that date.",
+            "tell": true
+          },
+          {
+            "at": "body",
+            "text": "Your panel scored above the bar. Nothing in your assessment is the reason this ended, and the scores are held for 12 months against the next opening at this level.",
+            "tell": false
+          }
+        ],
+        "reading": "A company will always prefer an engineer it is already paying, and this does not ask it to stop. It asks the date to be named. The letter costs a paragraph and takes away the only thing the candidate would otherwise have to work with: an inference about their own performance drawn from an event that had nothing to do with it."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "actor.employer_policy",
+        "sees": "A field on the requisition recording whether an internal availability is live, and a closure code that distinguishes a bench fill from a hire and from a cancellation.",
+        "reads": "The distinction already exists in the staffing system; what is new is that it reaches the outside. A search that closes internally and is reported as a hire understates how often external effort is spent against a seat that was never contestable.",
+        "does": "Adds the closure code, and requires the date the availability appeared to be carried into the notice."
+      },
+      {
+        "actor": "actor.recruiter",
+        "sees": "The staffing feed showing a bench engineer assigned to the requisition mid-search, and a pipeline that has to be closed out that day.",
+        "reads": "The close-out is not a judgement to be softened into alignment language — the reason is a date, and writing the date is faster than composing around it.",
+        "does": "Sends the dated notice to everyone still in flight, and records the assessment scores against the next opening rather than discarding them."
+      },
+      {
+        "actor": "actor.candidate",
+        "sees": "A dated reason: a seat filled from inside on a day that can be checked against the day the process went quiet.",
+        "reads": "The outcome was decided by an event in someone else's project schedule. There is no performance signal in it to act on, and no version of the interview that would have changed it.",
+        "does": "Stops re-reading the panel for a fault that was not there, and keeps the standing score rather than starting over."
+      }
+    ]
+  }
+}

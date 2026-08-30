@@ -1,0 +1,68 @@
+---
+id: "int.critique_injected_on_script_in_the_collaborative_exercise"
+type: "intervention"
+title: "Critique injected on script in the collaborative exercise"
+summary: "The collaborative round carries a written script: the same objection is raised at the same point for every candidate, and the panel records what was said in response rather than how the room felt."
+targets:
+  - "mech.communication_or_working_style_friction"
+  - "bar.recruiter_screening_call"
+  - "bar.team_cross_functional_panel"
+actor: "hiring-manager"
+scope: "team"
+cost: "low"
+specimens:
+  -
+    kind: "transcript"
+    label: "The script, and the line it produces"
+    lines:
+      -
+        at: "00:18"
+        text: "Scripted at minute 18, verbatim for every candidate: \"I think this design is wrong — you have put the queue in the wrong place.\""
+        tell: true
+      -
+        at: "00:19"
+        text: "Recorded: asked which failure the objection was about; restated the trade-off; proposed moving it and named what that would cost."
+      -
+        at: "00:31"
+        text: "Not recorded: tone, warmth, whether the room enjoyed it. The rubric has no column for it, so no column carries it."
+    reading: "Friction in a collaborative exercise is a real signal, and this does not deny it — it makes it comparable. Unscripted, the objection arrives when an interviewer happens to feel like raising it, in words chosen for that candidate, and what comes back is scored against a memory of how other rounds went. Scripted, the same prompt produces answers that can be set side by side."
+perspectives:
+  -
+    actor: "actor.hiring_manager"
+    sees: "A one-page script with the objection, the minute it lands, and the three things the answer is scored on."
+    reads: "What the panel disagreed about was never the candidate — it was which objection each interviewer raised and how hard. Fixing the prompt leaves only the answer to disagree about."
+    does: "Writes the script once per role, and holds the panel to scoring the response rather than the room."
+  -
+    actor: "actor.candidate"
+    sees: "An objection that arrives as part of the exercise, and a rubric that names what the answer is being read for."
+    reads: "The pushback is the test, not a reaction to something already gone wrong — so it can be answered on the merits instead of managed."
+    does: "Answers the objection rather than reading the room for what caused it."
+  -
+    actor: "actor.recruiter"
+    sees: "Panel write-ups that name a scripted moment and quote the response, instead of arriving as impressions."
+    reads: "A write-up quoting a common prompt is the only kind that can be compared between candidates or defended after the fact."
+    does: "Returns the quoted exchange as the feedback, and refuses write-ups that score the room."
+status: "active"
+evidence_level: "supported"
+expected_effects:
+  - "mech.communication_or_working_style_friction is measured against a common prompt rather than inferred from an interviewer's chosen one"
+  - "Interviewer variance stops entering the verdict as if it were candidate behaviour"
+measurements:
+  - "scripted_prompt_coverage"
+  - "panel_inter_rater_agreement"
+evidence_ids:
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+  - "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii"
+---
+
+# Critique injected on script in the collaborative exercise
+
+The collaborative round carries a written script: the same objection is raised at the same point for every candidate, and the panel records what was said in response rather than how the room felt.
+
+### Expected Effects
+- mech.communication_or_working_style_friction is measured against a common prompt rather than inferred from an interviewer's chosen one
+- Interviewer variance stops entering the verdict as if it were candidate behaviour
+
+### Measurements
+- `scripted_prompt_coverage`
+- `panel_inter_rater_agreement`

@@ -248,6 +248,22 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     if (!citedEvidence.has(e.id)) warning('unused-evidence', 'is cited by no entry in the registry', e.id);
   }
 
+  // 10. Every active mechanism must be targeted by some intervention. The atlas
+  //    answers "here is what produces it" and then "here is what would change
+  //    it"; a mechanism nothing targets stops at the first half, which reads as
+  //    a finding that nothing can be done. Sometimes that is true — three of
+  //    these are `removability: none` — but then the honest intervention is
+  //    disclosure, not removal, and it still has to be written. Seven were
+  //    uncovered when this rule was added, and each one turned out to have an
+  //    intervention available; none of them was a case of nothing to say.
+  const targeted = new Set<string>();
+  for (const i of bundle.interventions) for (const t of i.targets) targeted.add(t);
+  for (const m of bundle.mechanisms) {
+    if (m.status === 'active' && !targeted.has(m.id)) {
+      warning('mechanisms', 'is targeted by no intervention, so the atlas explains it without saying what would change it', m.id);
+    }
+  }
+
   // 10. Every observation must be emitted by some mechanism. The atlas exists to
   //    answer "you saw this — here is what produces it", so an observation no
   //    mechanism emits is the one entry that cannot keep that promise: a reader

@@ -29,8 +29,14 @@ test.describe('the atlas reports its own limits', () => {
     await page.goto('/data?lang=en');
     const reach = report.unaddressedMechanisms.filter((m) => m.outOfReach).map((m) => m.id);
     const omissions = report.unaddressedMechanisms.filter((m) => !m.outOfReach).map((m) => m.id);
-    expect(reach.length, 'the split is only meaningful when both sides exist').toBeGreaterThan(0);
-    expect(omissions.length).toBeGreaterThan(0);
+    // Both sides are empty now that every mechanism is targeted. The page must
+    // then say so and stop explaining a distinction between entries it is not
+    // showing; when either side comes back, the badge rules below apply again.
+    if (reach.length === 0 && omissions.length === 0) {
+      const row = page.locator('[data-gap-row="mechanisms"]');
+      await expect(row).toContainText(says('en', 'gap.none'));
+      await expect(row).not.toContainText(says('en', 'gap.mechanismsSplit'));
+    }
 
     for (const id of reach) {
       await expect(page.locator(`[data-gap-id="${id}"]`)).toContainText(says('en', 'gap.outOfReach'));

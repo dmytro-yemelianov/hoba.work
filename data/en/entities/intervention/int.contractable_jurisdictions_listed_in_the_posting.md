@@ -1,0 +1,67 @@
+---
+id: "int.contractable_jurisdictions_listed_in_the_posting"
+type: "intervention"
+title: "Contractable jurisdictions listed in the posting"
+summary: "The posting names the countries in which the employer can actually issue a contract — through an entity, an employer of record, or a contractor arrangement — so a constraint that no interview can change is known before the first call."
+targets:
+  - "mech.location_or_timezone_compliance_constraint"
+  - "bar.automated_filter_parser_threshold"
+  - "bar.recruiter_screening_call"
+actor: "employer-policy"
+scope: "organizational"
+cost: "low"
+specimens:
+  -
+    kind: "posting"
+    label: "The line that goes where \"remote\" used to be"
+    lines:
+      -
+        at: "posting"
+        text: "Remote. Contract can be issued in: PL, UA, PT, DE (own entity); ES, RO (employer of record). Nowhere else, including as a contractor."
+        tell: true
+      -
+        at: "posting"
+        text: "Overlap required with CET 10:00–15:00. This is a scheduling requirement, not a residence one."
+      -
+        at: "posting"
+        text: "This list is a statement about where we can contract, not about who may work: it is reviewed quarterly and dated below."
+    reading: "A jurisdiction the employer cannot contract in is a real and lawful constraint, and it is also the one most often discovered at the offer stage. Published, it costs a line. Withheld, it spends the candidate's whole process — and it is indistinguishable from the ground that is not lawful, which is exactly why it has to be stated as a contracting fact with a date on it rather than as a preference about people."
+perspectives:
+  -
+    actor: "actor.employer_policy"
+    sees: "The list finance and legal already hold — entities, employer-of-record coverage, and where contracting was declined — rendered into the posting template."
+    reads: "Publishing it converts a constraint that currently surfaces as a late rejection into one the market routes around, and it separates a contracting fact from a ground that would not be lawful."
+    does: "Publishes the jurisdiction list with a review date, and keeps timezone overlap stated separately from residence."
+  -
+    actor: "actor.recruiter"
+    sees: "A published list to screen against, instead of a question that has to be asked carefully on the first call."
+    reads: "The conversation that used to end a process at week six now does not start one, and the reason given is a fact about the employer rather than about the candidate."
+    does: "Points candidates outside the list at the roles that can contract where they live, and stops running processes that cannot end in a contract."
+  -
+    actor: "actor.candidate"
+    sees: "A named list of countries and a separate, stated overlap window."
+    reads: "Whether this role can exist for them is answered before any effort is spent, and a rejection on this ground later would now be checkable against a published statement."
+    does: "Applies where a contract is possible, and treats the overlap window as the negotiable part that it is."
+status: "active"
+evidence_level: "supported"
+expected_effects:
+  - "mech.location_or_timezone_compliance_constraint stops being discovered at the offer stage"
+  - "A lawful contracting limit becomes distinguishable from a ground that is not one"
+measurements:
+  - "jurisdiction_list_published_rate"
+  - "late_stage_jurisdiction_rejection_rate"
+evidence_ids:
+  - "evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_requires_it"
+---
+
+# Contractable jurisdictions listed in the posting
+
+The posting names the countries in which the employer can actually issue a contract — through an entity, an employer of record, or a contractor arrangement — so a constraint that no interview can change is known before the first call.
+
+### Expected Effects
+- mech.location_or_timezone_compliance_constraint stops being discovered at the offer stage
+- A lawful contracting limit becomes distinguishable from a ground that is not one
+
+### Measurements
+- `jurisdiction_list_published_rate`
+- `late_stage_jurisdiction_rejection_rate`

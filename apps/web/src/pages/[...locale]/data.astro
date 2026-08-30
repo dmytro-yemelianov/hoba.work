@@ -38,11 +38,11 @@ const href = (id: string) => {
 };
 
 const gapRows = [
-  { title: t('gap.gates'), text: t('gap.gatesText', { n: gaps.gatesWithoutIntervention.length, total: gaps.totals.gates }), ids: gaps.gatesWithoutIntervention, reachBadge: false },
+  { key: 'gates', title: t('gap.gates'), text: t('gap.gatesText', { n: gaps.gatesWithoutIntervention.length, total: gaps.totals.gates }), ids: gaps.gatesWithoutIntervention, reachBadge: false },
   // The out-of-reach badge belongs to this row alone: it qualifies the absence
   // of an intervention, not the absence of a citation.
-  { title: t('gap.mechanisms'), text: t('gap.mechanismsText', { n: gaps.mechanismsWithoutIntervention.length, total: gaps.totals.mechanisms }), ids: gaps.mechanismsWithoutIntervention, reachBadge: true },
-  { title: t('gap.evidence'), text: t('gap.evidenceText', { n: gaps.entriesWithoutEvidence.length, total: gaps.totals.entries }), ids: gaps.entriesWithoutEvidence, reachBadge: false },
+  { key: 'mechanisms', title: t('gap.mechanisms'), text: t('gap.mechanismsText', { n: gaps.mechanismsWithoutIntervention.length, total: gaps.totals.mechanisms }), ids: gaps.mechanismsWithoutIntervention, reachBadge: true },
+  { key: 'evidence', title: t('gap.evidence'), text: t('gap.evidenceText', { n: gaps.entriesWithoutEvidence.length, total: gaps.totals.entries }), ids: gaps.entriesWithoutEvidence, reachBadge: false },
 ];
 
 const byRemovability = (r: 'candidate' | 'intermediary' | 'none') => bundle.mechanisms.filter((m) => m.facets.removability === r).length;
@@ -218,12 +218,17 @@ const tocItems = [
 
         <ul class="row-list mt-5">
           {gapRows.map((row) => (
-            <li class="py-4">
+            <li class="py-4" data-gap-row={row.key}>
               <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <span class="text-base font-medium text-hoba-text">{row.title}</span>
                 <span class="pill pill-muted ml-auto font-mono tabular-nums">{row.ids.length}</span>
               </p>
               <p class="mt-1 text-base text-hoba-muted max-w-2xl">{row.text}</p>
+              {/* Explains a distinction between the entries below, so it is
+                  worth reading only when there are entries to distinguish. */}
+              {row.reachBadge && row.ids.length > 0 && (
+                <p class="mt-1 text-base text-hoba-muted max-w-2xl">{t('gap.mechanismsSplit')}</p>
+              )}
               {row.ids.length > 0 ? (
                 <ul class="mt-2 flex flex-wrap gap-1.5">
                   {row.ids.map((id) => (

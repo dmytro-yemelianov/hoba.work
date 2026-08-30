@@ -915,8 +915,30 @@
       },
       {
         "data": {
+          "id": "int.a_named_decider_and_a_written_rule_for_a_split_panel",
+          "label": "A named decider and a written rule for a split panel",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
           "id": "int.auto_close_stale_job_requisitions",
           "label": "Auto-Close Stale Job Requisitions",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.bench_availability_declared_at_each_stage_gate",
+          "label": "Bench availability declared at each stage gate",
           "type": "intervention",
           "actor": "employer-policy",
           "cost": "low",
@@ -948,6 +970,28 @@
       },
       {
         "data": {
+          "id": "int.contractable_jurisdictions_listed_in_the_posting",
+          "label": "Contractable jurisdictions listed in the posting",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.critique_injected_on_script_in_the_collaborative_exercise",
+          "label": "Critique injected on script in the collaborative exercise",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
           "id": "int.dated_funding_certification_before_the_final_round",
           "label": "Dated Funding Certification Before the Final Round",
           "type": "intervention",
@@ -959,11 +1003,33 @@
       },
       {
         "data": {
+          "id": "int.disqualifying_criteria_published_with_the_posting",
+          "label": "Disqualifying criteria published with the posting",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
           "id": "int.distinct_closure_status_for_unreviewed_applications",
           "label": "Distinct Closure Status for Unreviewed Applications",
           "type": "intervention",
           "actor": "ats-vendor",
           "cost": "medium",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.domain_requirement_carries_a_stated_ramp_time",
+          "label": "Domain requirement carries a stated ramp time",
+          "type": "intervention",
+          "actor": "hiring-manager",
+          "cost": "low",
           "evidence_level": "supported"
         },
         "classes": "node-intervention"
@@ -1030,6 +1096,17 @@
           "type": "intervention",
           "actor": "ats-vendor",
           "cost": "low",
+          "evidence_level": "supported"
+        },
+        "classes": "node-intervention"
+      },
+      {
+        "data": {
+          "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+          "label": "Requirement changes versioned and sent to candidates in flight",
+          "type": "intervention",
+          "actor": "employer-policy",
+          "cost": "medium",
           "evidence_level": "supported"
         },
         "classes": "node-intervention"
@@ -3040,6 +3117,24 @@
       },
       {
         "data": {
+          "id": "int.a_named_decider_and_a_written_rule_for_a_split_panel->targets->mech.hiring_manager_consensus_impasse",
+          "source": "int.a_named_decider_and_a_written_rule_for_a_split_panel",
+          "target": "mech.hiring_manager_consensus_impasse",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.a_named_decider_and_a_written_rule_for_a_split_panel->targets->bar.team_cross_functional_panel",
+          "source": "int.a_named_decider_and_a_written_rule_for_a_split_panel",
+          "target": "bar.team_cross_functional_panel",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
           "id": "int.auto_close_stale_job_requisitions->targets->mech.stale_or_orphaned_job_requisition",
           "source": "int.auto_close_stale_job_requisitions",
           "target": "mech.stale_or_orphaned_job_requisition",
@@ -3073,6 +3168,33 @@
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.bench_availability_declared_at_each_stage_gate->targets->mech.bench_priority_fill",
+          "source": "int.bench_availability_declared_at_each_stage_gate",
+          "target": "mech.bench_priority_fill",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.bench_availability_declared_at_each_stage_gate->targets->bar.requisition_approval_public_posting",
+          "source": "int.bench_availability_declared_at_each_stage_gate",
+          "target": "bar.requisition_approval_public_posting",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.bench_availability_declared_at_each_stage_gate->targets->bar.inbound_screening_triage",
+          "source": "int.bench_availability_declared_at_each_stage_gate",
+          "target": "bar.inbound_screening_triage",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
       },
       {
         "data": {
@@ -3130,6 +3252,60 @@
       },
       {
         "data": {
+          "id": "int.contractable_jurisdictions_listed_in_the_posting->targets->mech.location_or_timezone_compliance_constraint",
+          "source": "int.contractable_jurisdictions_listed_in_the_posting",
+          "target": "mech.location_or_timezone_compliance_constraint",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.contractable_jurisdictions_listed_in_the_posting->targets->bar.automated_filter_parser_threshold",
+          "source": "int.contractable_jurisdictions_listed_in_the_posting",
+          "target": "bar.automated_filter_parser_threshold",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.contractable_jurisdictions_listed_in_the_posting->targets->bar.recruiter_screening_call",
+          "source": "int.contractable_jurisdictions_listed_in_the_posting",
+          "target": "bar.recruiter_screening_call",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.critique_injected_on_script_in_the_collaborative_exercise->targets->mech.communication_or_working_style_friction",
+          "source": "int.critique_injected_on_script_in_the_collaborative_exercise",
+          "target": "mech.communication_or_working_style_friction",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.critique_injected_on_script_in_the_collaborative_exercise->targets->bar.recruiter_screening_call",
+          "source": "int.critique_injected_on_script_in_the_collaborative_exercise",
+          "target": "bar.recruiter_screening_call",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.critique_injected_on_script_in_the_collaborative_exercise->targets->bar.team_cross_functional_panel",
+          "source": "int.critique_injected_on_script_in_the_collaborative_exercise",
+          "target": "bar.team_cross_functional_panel",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
           "id": "int.dated_funding_certification_before_the_final_round->targets->bar.headcount_executive_budget_approval",
           "source": "int.dated_funding_certification_before_the_final_round",
           "target": "bar.headcount_executive_budget_approval",
@@ -3157,6 +3333,24 @@
       },
       {
         "data": {
+          "id": "int.disqualifying_criteria_published_with_the_posting->targets->mech.automated_keyword_qualification_filter",
+          "source": "int.disqualifying_criteria_published_with_the_posting",
+          "target": "mech.automated_keyword_qualification_filter",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.disqualifying_criteria_published_with_the_posting->targets->bar.automated_filter_parser_threshold",
+          "source": "int.disqualifying_criteria_published_with_the_posting",
+          "target": "bar.automated_filter_parser_threshold",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
           "id": "int.distinct_closure_status_for_unreviewed_applications->targets->bar.inbound_screening_triage",
           "source": "int.distinct_closure_status_for_unreviewed_applications",
           "target": "bar.inbound_screening_triage",
@@ -3178,6 +3372,33 @@
           "id": "int.distinct_closure_status_for_unreviewed_applications->targets->mech.automated_application_expiration_timeout",
           "source": "int.distinct_closure_status_for_unreviewed_applications",
           "target": "mech.automated_application_expiration_timeout",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.domain_requirement_carries_a_stated_ramp_time->targets->mech.domain_specificity_over_weighting",
+          "source": "int.domain_requirement_carries_a_stated_ramp_time",
+          "target": "mech.domain_specificity_over_weighting",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.domain_requirement_carries_a_stated_ramp_time->targets->bar.recruiter_screening_call",
+          "source": "int.domain_requirement_carries_a_stated_ramp_time",
+          "target": "bar.recruiter_screening_call",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.domain_requirement_carries_a_stated_ramp_time->targets->bar.hiring_manager_in_depth_review",
+          "source": "int.domain_requirement_carries_a_stated_ramp_time",
+          "target": "bar.hiring_manager_in_depth_review",
           "type": "targets"
         },
         "classes": "edge-targets"
@@ -3307,6 +3528,33 @@
           "type": "mitigates"
         },
         "classes": "edge-mitigates"
+      },
+      {
+        "data": {
+          "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight->targets->mech.mid_process_role_requirement_redefinition",
+          "source": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+          "target": "mech.mid_process_role_requirement_redefinition",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight->targets->bar.hiring_manager_in_depth_review",
+          "source": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+          "target": "bar.hiring_manager_in_depth_review",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
+      },
+      {
+        "data": {
+          "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight->targets->bar.team_cross_functional_panel",
+          "source": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+          "target": "bar.team_cross_functional_panel",
+          "type": "targets"
+        },
+        "classes": "edge-targets"
       },
       {
         "data": {

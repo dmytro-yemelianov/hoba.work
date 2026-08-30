@@ -178,7 +178,9 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     ],
     patterns: [pattern({ id: 'P-001', interventions: ['I-001'] })],
     loops: [loop({ id: 'L-001' })],
-    interventions: [intervention({ id: 'I-001', targets: ['M-001', 'P-001'] })],
+    // Covers both mechanisms: a bundle that calls itself fully valid has to
+    // say what would change each of them, not only the one with an emission.
+    interventions: [intervention({ id: 'I-001', targets: ['M-001', 'M-002', 'P-001'] })],
     evidence: [
       { id: 'EVD-001', type: 'evidence', title: 'Fixture evidence', kind: 'research', summary: 'A fixture evidence record.', aliases: [] },
     ],

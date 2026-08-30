@@ -1,0 +1,68 @@
+---
+id: "int.domain_requirement_carries_a_stated_ramp_time"
+type: "intervention"
+title: "Domain requirement carries a stated ramp time"
+summary: "A requisition that asks for experience in one named vertical must state how long the team believes that domain takes to learn; where the answer is weeks, the requirement is scored as a preference rather than a gate."
+targets:
+  - "mech.domain_specificity_over_weighting"
+  - "bar.recruiter_screening_call"
+  - "bar.hiring_manager_in_depth_review"
+actor: "hiring-manager"
+scope: "team"
+cost: "low"
+specimens:
+  -
+    kind: "ats"
+    label: "The field the requisition gains"
+    lines:
+      -
+        at: "req"
+        text: "Domain: payments. Ramp estimate entered by hiring manager: 6 weeks to first independent change."
+        tell: true
+      -
+        at: "req"
+        text: "Ramp ≤ 12 weeks → scored as preference. Screening may not reject on domain alone."
+      -
+        at: "req"
+        text: "To make it a gate, name the regulation, certification or customer commitment that cannot wait 6 weeks."
+    reading: "The manager is not asked to drop the preference — they are asked to price it. A vertical that takes six weeks to learn cannot also be the thing that disqualifies someone with ten years of the underlying systems work, and writing the estimate is what makes the two claims meet."
+perspectives:
+  -
+    actor: "actor.hiring_manager"
+    sees: "A required field asking how long the domain takes, next to the requirement that names it."
+    reads: "The estimate is one the team already makes when it onboards internal transfers; writing it down is what stops the same domain being treated as unlearnable for outsiders."
+    does: "Enters the estimate, and either justifies the gate or accepts candidates who clear everything except the vertical."
+  -
+    actor: "actor.recruiter"
+    sees: "A screening rule that says which requirements may reject and which may only rank."
+    reads: "The instruction that used to arrive as \"must have fintech\" now arrives with a duration attached, and a duration can be argued with where a preference could not."
+    does: "Advances candidates strong on transferable depth where the ramp is short, and cites the estimate when the manager objects."
+  -
+    actor: "actor.candidate"
+    sees: "A posting that says how long the team thinks its domain takes to pick up."
+    reads: "Whether the vertical is a wall or a ramp is now the employer's stated position rather than something to guess at from a rejection."
+    does: "Applies to the roles where the ramp is stated and short, and stops rewriting a CV to fake a vertical."
+status: "active"
+evidence_level: "supported"
+expected_effects:
+  - "mech.domain_specificity_over_weighting must state its own cost before it can reject"
+  - "A requirement assembled from something other than the work becomes visible at the point it is written"
+measurements:
+  - "ramp_estimate_completion_rate"
+  - "domain_only_rejection_rate"
+evidence_ids:
+  - "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees"
+  - "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
+---
+
+# Domain requirement carries a stated ramp time
+
+A requisition that asks for experience in one named vertical must state how long the team believes that domain takes to learn; where the answer is weeks, the requirement is scored as a preference rather than a gate.
+
+### Expected Effects
+- mech.domain_specificity_over_weighting must state its own cost before it can reject
+- A requirement assembled from something other than the work becomes visible at the point it is written
+
+### Measurements
+- `ramp_estimate_completion_rate`
+- `domain_only_rejection_rate`

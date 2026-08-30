@@ -11,12 +11,12 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Mechanisms** (`M-*`, 28) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
 - **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
 - **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
-- **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
+- **Interventions** (`I-*`, 24) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 51) — the published sources behind the claims.
 
-The graph has 226 nodes and 257 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 233 nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -653,6 +653,15 @@ Candidates spend heavy hours on take-home assignments with no bounded scope, whi
 
 ## Interventions
 
+### int.a_named_decider_and_a_written_rule_for_a_split_panel — A named decider and a written rule for a split panel
+
+Before the panel sits, one member is named as holding the decision and the rule for an even split is written down; when the split happens, the candidate is told that it did and which way the rule ran.
+
+- Actor: hiring-manager · Scope: team · Cost: low
+- Targets: mech.hiring_manager_consensus_impasse, bar.team_cross_functional_panel
+- Expected: mech.hiring_manager_consensus_impasse keeps operating — panels will split — but stops resolving by default and unrecorded
+- Expected: The candidate learns the outcome turned on a tie rule, not on a finding about them
+
 ### int.auto_close_stale_job_requisitions — Auto-Close Stale Job Requisitions
 
 Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
@@ -661,6 +670,15 @@ Implement automated ATS policy to expire public listings when headcount authoris
 - Targets: mech.stale_or_orphaned_job_requisition, bar.application_ingestion, pat.closed_then_reposted_requisition_motif, loop.inflated_requirements_search_saturation_loop
 - Expected: mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it
 - Expected: Silence after applying acquires a bound — the record is closed and the closure is sent
+
+### int.bench_availability_declared_at_each_stage_gate — Bench availability declared at each stage gate
+
+At every advance the search states whether an already-employed engineer between projects could still take the seat, and an external candidate closed out by a bench fill is told so, with the date the availability appeared.
+
+- Actor: employer-policy · Scope: organizational · Cost: low
+- Targets: mech.bench_priority_fill, bar.requisition_approval_public_posting, bar.inbound_screening_triage
+- Expected: mech.bench_priority_fill keeps operating — it cannot be removed — but stops being read as a verdict on the candidate
+- Expected: External effort spent against an internally contestable seat becomes countable, and can be priced
 
 ### int.candidate_ats_parser_conformance_test_utility — Candidate ATS Parser Conformance Test Utility
 
@@ -681,6 +699,24 @@ Submit a one-page index naming each work artefact, the part of it that is the ca
 - Expected: A contribution held under another organisation arrives as a commit range rather than as something to be discovered
 - Expected: The index travels with the application, so bar.inbound_screening_triage and bar.technical_screen_live_assessment open the same named artefacts instead of whatever a profile page shows first
 
+### int.contractable_jurisdictions_listed_in_the_posting — Contractable jurisdictions listed in the posting
+
+The posting names the countries in which the employer can actually issue a contract — through an entity, an employer of record, or a contractor arrangement — so a constraint that no interview can change is known before the first call.
+
+- Actor: employer-policy · Scope: organizational · Cost: low
+- Targets: mech.location_or_timezone_compliance_constraint, bar.automated_filter_parser_threshold, bar.recruiter_screening_call
+- Expected: mech.location_or_timezone_compliance_constraint stops being discovered at the offer stage
+- Expected: A lawful contracting limit becomes distinguishable from a ground that is not one
+
+### int.critique_injected_on_script_in_the_collaborative_exercise — Critique injected on script in the collaborative exercise
+
+The collaborative round carries a written script: the same objection is raised at the same point for every candidate, and the panel records what was said in response rather than how the room felt.
+
+- Actor: hiring-manager · Scope: team · Cost: low
+- Targets: mech.communication_or_working_style_friction, bar.recruiter_screening_call, bar.team_cross_functional_panel
+- Expected: mech.communication_or_working_style_friction is measured against a common prompt rather than inferred from an interviewer's chosen one
+- Expected: Interviewer variance stops entering the verdict as if it were candidate behaviour
+
 ### int.dated_funding_certification_before_the_final_round — Dated Funding Certification Before the Final Round
 
 Carry a funding-certified-through date on every requisition, refuse to schedule a final round unless that date covers the expected start, and release the countersignature on a live certification rather than on a second approval.
@@ -691,6 +727,15 @@ Carry a funding-certified-through date on every requisition, refuse to schedule 
 - Expected: mech.headcount_freeze_or_budget_cancellation meets a requisition whose funded-through date is either live or lapsed; where a freeze lands mid-loop the requisition changes to a dated state and every candidate in flight is written to on that date
 - Expected: bar.offer_closing_contract_execution stops carrying a funding decision: the countersignature is blocked while the certification has lapsed and released while it is live
 
+### int.disqualifying_criteria_published_with_the_posting — Disqualifying criteria published with the posting
+
+Every criterion the automated filter can reject on — a required acronym, a named certification, a years-of-experience threshold — is listed in the posting as a disqualifier, so a deterministic gate is legible before the application is written.
+
+- Actor: employer-policy · Scope: organizational · Cost: low
+- Targets: mech.automated_keyword_qualification_filter, bar.automated_filter_parser_threshold
+- Expected: mech.automated_keyword_qualification_filter stops operating unseen: the rule that rejects is the rule that was published
+- Expected: An application withheld against a stated disqualifier costs neither side a review
+
 ### int.distinct_closure_status_for_unreviewed_applications — Distinct Closure Status for Unreviewed Applications
 
 Give the ATS a terminal status for an application closed without a human opening it, distinct from the one used for a reviewed decline, bind it into the notification template, and count it on the requisition.
@@ -700,6 +745,15 @@ Give the ATS a terminal status for an application closed without a human opening
 - Expected: mech.automated_application_expiration_timeout can no longer write the value used for a decision: the expiry job writes closed_unreviewed, and the notification template carries that status
 - Expected: The gap mech.recruiter_volume_quota_incentive_distortion runs on becomes a figure on the requisition — applications closed unopened are counted where applications received already are
 - Expected: bar.inbound_screening_triage leaves a state that can be read from outside: not reached, reviewed and not advanced, or closed with the search
+
+### int.domain_requirement_carries_a_stated_ramp_time — Domain requirement carries a stated ramp time
+
+A requisition that asks for experience in one named vertical must state how long the team believes that domain takes to learn; where the answer is weeks, the requirement is scored as a preference rather than a gate.
+
+- Actor: hiring-manager · Scope: team · Cost: low
+- Targets: mech.domain_specificity_over_weighting, bar.recruiter_screening_call, bar.hiring_manager_in_depth_review
+- Expected: mech.domain_specificity_over_weighting must state its own cost before it can reject
+- Expected: A requirement assembled from something other than the work becomes visible at the point it is written
 
 ### int.internal_candidacy_stated_in_the_posting — Internal Candidacy Stated in the Posting
 
@@ -758,6 +812,15 @@ Disable employment duration gap penalties in recruitment AI algorithms and scree
 - Targets: mech.employment_gap_downranking_bias, loop.employment_gap_penalty_loop
 - Expected: mech.employment_gap_downranking_bias stops operating in the ranking model: continuity is no longer an input
 - Expected: loop.employment_gap_penalty_loop loses the edge that closed it, because a gap can no longer widen the next gap
+
+### int.requirement_changes_versioned_and_sent_to_candidates_in_flight — Requirement changes versioned and sent to candidates in flight
+
+The requisition carries a dated version of its requirements; when the team changes the stack, the level or the scope mid-search, everyone in flight is told what changed and which of their completed assessments still counts.
+
+- Actor: employer-policy · Scope: organizational · Cost: medium
+- Targets: mech.mid_process_role_requirement_redefinition, bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
+- Expected: mech.mid_process_role_requirement_redefinition keeps operating — needs change — but stops being absorbed silently by the candidate
+- Expected: Which specification an assessment was taken against becomes a recorded fact rather than a later reinterpretation
 
 ### int.requirements_drawn_from_the_team_s_own_backlog — Requirements Drawn From the Team's Own Backlog
 

@@ -195,13 +195,15 @@ describe('the published registry', () => {
     // A mechanism with no proposed change is only defensible when the atlas
     // also says no named actor holds a lever. Anything else is an omission,
     // and this test is what stops it being described as a finding.
+    //
+    // There are none left, in either class. The four omissions this recorded
+    // were written; so were the three the test had excused as out of reach,
+    // because `removability: none` argues against removing a mechanism, not
+    // against saying what would change how it lands. The validator enforces
+    // the general rule now, so this records the stronger fact.
     const omissions = report.unaddressedMechanisms.filter((m) => !m.outOfReach);
-    expect(omissions.map((m) => m.id)).toEqual([
-      'mech.automated_keyword_qualification_filter',
-      'mech.communication_or_working_style_friction',
-      'mech.domain_specificity_over_weighting',
-      'mech.location_or_timezone_compliance_constraint',
-    ]);
+    expect(omissions.map((m) => m.id)).toEqual([]);
+    expect(report.unaddressedMechanisms.map((m) => m.id)).toEqual([]);
   });
 
   it('cannot separate every mechanism by observation, and says which', () => {

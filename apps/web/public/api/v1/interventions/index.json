@@ -1,7 +1,80 @@
 {
   "registry_version": "1.0.0",
-  "count": 17,
+  "count": 24,
   "items": [
+    {
+      "title": "A named decider and a written rule for a split panel",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format",
+        "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii"
+      ],
+      "content": "# A named decider and a written rule for a split panel\n\nBefore the panel sits, one member is named as holding the decision and the rule for an even split is written down; when the split happens, the candidate is told that it did and which way the rule ran.\n\n### Expected Effects\n- mech.hiring_manager_consensus_impasse keeps operating — panels will split — but stops resolving by default and unrecorded\n- The candidate learns the outcome turned on a tie rule, not on a finding about them\n\n### Measurements\n- `tie_rule_declared_rate`\n- `impasse_disclosure_rate`",
+      "aliases": [],
+      "id": "int.a_named_decider_and_a_written_rule_for_a_split_panel",
+      "type": "intervention",
+      "summary": "Before the panel sits, one member is named as holding the decision and the rule for an even split is written down; when the split happens, the candidate is told that it did and which way the rule ran.",
+      "targets": [
+        "mech.hiring_manager_consensus_impasse",
+        "bar.team_cross_functional_panel"
+      ],
+      "actor": "hiring-manager",
+      "scope": "team",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.hiring_manager_consensus_impasse keeps operating — panels will split — but stops resolving by default and unrecorded",
+        "The candidate learns the outcome turned on a tie rule, not on a finding about them"
+      ],
+      "measurements": [
+        "tie_rule_declared_rate",
+        "impasse_disclosure_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "note",
+          "label": "The rule, written before the panel meets",
+          "lines": [
+            {
+              "at": "before",
+              "text": "Decider for req #5120: the hiring manager. On an even split the decider decides and records one paragraph of reasons.",
+              "tell": true
+            },
+            {
+              "at": "after",
+              "text": "Panel 2–2 on system design depth. Decider: no hire. Reason recorded: the two dissenting scores rested on the same unasked follow-up.",
+              "tell": false
+            },
+            {
+              "at": "sent",
+              "text": "To the candidate: the panel did not reach agreement; the decision fell to the named decider under the rule set before the round.",
+              "tell": false
+            }
+          ],
+          "reading": "Panels split, and no rule stops them splitting. What a written rule stops is the split being resolved by whoever is most tired, and then reported outward as a considered judgement about the candidate. The default nobody wrote down is almost always no hire — which means the absence of a rule is itself a rule, and an unstated one."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.hiring_manager",
+          "sees": "A line to fill in before the panel is scheduled: who decides, and what happens on a tie.",
+          "reads": "The tie rule was always there — it was just never written, and unwritten it defaulted to the outcome that requires nobody to be responsible for it.",
+          "does": "Names the decider, writes the tie rule, and records a paragraph of reasons when the rule is used."
+        },
+        {
+          "actor": "actor.recruiter",
+          "sees": "A debrief that ends with a recorded decision rather than a second round of scheduling.",
+          "reads": "An impasse used to cost the candidate weeks and produce nothing to send; now it produces a sentence that is true and can be sent the same day.",
+          "does": "Sends the outcome with the fact of the split in it, rather than converting it into a fit narrative."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "An outcome that says the panel disagreed and a named person decided under a rule fixed beforehand.",
+          "reads": "Being split on is not the same as being found wanting: half the room was on the other side, and what settled it was a rule about ties.",
+          "does": "Reads the result as a close call rather than a verdict, and reapplies where the registry says the same team reopens."
+        }
+      ]
+    },
     {
       "title": "Auto-Close Stale Job Requisitions",
       "status": "active",
@@ -81,6 +154,79 @@
           "sees": "A customer enabling an expiry rule pointed at the listing, on the same scheduler that already expires unreviewed applications.",
           "reads": "This is an existing batch capability with a different target rather than new machinery; whether it runs is a customer setting.",
           "does": "Ships the rule as a configurable option, and its default value decides how many customers ever run it."
+        }
+      ]
+    },
+    {
+      "title": "Bench availability declared at each stage gate",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
+      ],
+      "content": "# Bench availability declared at each stage gate\n\nAt every advance the search states whether an already-employed engineer between projects could still take the seat, and an external candidate closed out by a bench fill is told so, with the date the availability appeared.\n\n### Expected Effects\n- mech.bench_priority_fill keeps operating — it cannot be removed — but stops being read as a verdict on the candidate\n- External effort spent against an internally contestable seat becomes countable, and can be priced\n\n### Measurements\n- `bench_fill_closure_rate`\n- `dated_closure_notice_rate`",
+      "aliases": [],
+      "id": "int.bench_availability_declared_at_each_stage_gate",
+      "type": "intervention",
+      "summary": "At every advance the search states whether an already-employed engineer between projects could still take the seat, and an external candidate closed out by a bench fill is told so, with the date the availability appeared.",
+      "targets": [
+        "mech.bench_priority_fill",
+        "bar.requisition_approval_public_posting",
+        "bar.inbound_screening_triage"
+      ],
+      "actor": "employer-policy",
+      "scope": "organizational",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.bench_priority_fill keeps operating — it cannot be removed — but stops being read as a verdict on the candidate",
+        "External effort spent against an internally contestable seat becomes countable, and can be priced"
+      ],
+      "measurements": [
+        "bench_fill_closure_rate",
+        "dated_closure_notice_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "The notice that replaces the alignment letter",
+          "lines": [
+            {
+              "at": "subject",
+              "text": "Backend engineer, req #5120 — the search is closed and why",
+              "tell": false
+            },
+            {
+              "at": "body",
+              "text": "On 14 March an engineer already employed here came off a project that ended early and was assigned to this seat. The requisition is filled internally as of that date.",
+              "tell": true
+            },
+            {
+              "at": "body",
+              "text": "Your panel scored above the bar. Nothing in your assessment is the reason this ended, and the scores are held for 12 months against the next opening at this level.",
+              "tell": false
+            }
+          ],
+          "reading": "A company will always prefer an engineer it is already paying, and this does not ask it to stop. It asks the date to be named. The letter costs a paragraph and takes away the only thing the candidate would otherwise have to work with: an inference about their own performance drawn from an event that had nothing to do with it."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.employer_policy",
+          "sees": "A field on the requisition recording whether an internal availability is live, and a closure code that distinguishes a bench fill from a hire and from a cancellation.",
+          "reads": "The distinction already exists in the staffing system; what is new is that it reaches the outside. A search that closes internally and is reported as a hire understates how often external effort is spent against a seat that was never contestable.",
+          "does": "Adds the closure code, and requires the date the availability appeared to be carried into the notice."
+        },
+        {
+          "actor": "actor.recruiter",
+          "sees": "The staffing feed showing a bench engineer assigned to the requisition mid-search, and a pipeline that has to be closed out that day.",
+          "reads": "The close-out is not a judgement to be softened into alignment language — the reason is a date, and writing the date is faster than composing around it.",
+          "does": "Sends the dated notice to everyone still in flight, and records the assessment scores against the next opening rather than discarding them."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "A dated reason: a seat filled from inside on a day that can be checked against the day the process went quiet.",
+          "reads": "The outcome was decided by an event in someone else's project schedule. There is no performance signal in it to act on, and no version of the interview that would have changed it.",
+          "does": "Stops re-reading the panel for a fault that was not there, and keeps the standing score rather than starting over."
         }
       ]
     },
@@ -243,6 +389,153 @@
       ]
     },
     {
+      "title": "Contractable jurisdictions listed in the posting",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_requires_it"
+      ],
+      "content": "# Contractable jurisdictions listed in the posting\n\nThe posting names the countries in which the employer can actually issue a contract — through an entity, an employer of record, or a contractor arrangement — so a constraint that no interview can change is known before the first call.\n\n### Expected Effects\n- mech.location_or_timezone_compliance_constraint stops being discovered at the offer stage\n- A lawful contracting limit becomes distinguishable from a ground that is not one\n\n### Measurements\n- `jurisdiction_list_published_rate`\n- `late_stage_jurisdiction_rejection_rate`",
+      "aliases": [],
+      "id": "int.contractable_jurisdictions_listed_in_the_posting",
+      "type": "intervention",
+      "summary": "The posting names the countries in which the employer can actually issue a contract — through an entity, an employer of record, or a contractor arrangement — so a constraint that no interview can change is known before the first call.",
+      "targets": [
+        "mech.location_or_timezone_compliance_constraint",
+        "bar.automated_filter_parser_threshold",
+        "bar.recruiter_screening_call"
+      ],
+      "actor": "employer-policy",
+      "scope": "organizational",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.location_or_timezone_compliance_constraint stops being discovered at the offer stage",
+        "A lawful contracting limit becomes distinguishable from a ground that is not one"
+      ],
+      "measurements": [
+        "jurisdiction_list_published_rate",
+        "late_stage_jurisdiction_rejection_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The line that goes where \"remote\" used to be",
+          "lines": [
+            {
+              "at": "posting",
+              "text": "Remote. Contract can be issued in: PL, UA, PT, DE (own entity); ES, RO (employer of record). Nowhere else, including as a contractor.",
+              "tell": true
+            },
+            {
+              "at": "posting",
+              "text": "Overlap required with CET 10:00–15:00. This is a scheduling requirement, not a residence one.",
+              "tell": false
+            },
+            {
+              "at": "posting",
+              "text": "This list is a statement about where we can contract, not about who may work: it is reviewed quarterly and dated below.",
+              "tell": false
+            }
+          ],
+          "reading": "A jurisdiction the employer cannot contract in is a real and lawful constraint, and it is also the one most often discovered at the offer stage. Published, it costs a line. Withheld, it spends the candidate's whole process — and it is indistinguishable from the ground that is not lawful, which is exactly why it has to be stated as a contracting fact with a date on it rather than as a preference about people."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.employer_policy",
+          "sees": "The list finance and legal already hold — entities, employer-of-record coverage, and where contracting was declined — rendered into the posting template.",
+          "reads": "Publishing it converts a constraint that currently surfaces as a late rejection into one the market routes around, and it separates a contracting fact from a ground that would not be lawful.",
+          "does": "Publishes the jurisdiction list with a review date, and keeps timezone overlap stated separately from residence."
+        },
+        {
+          "actor": "actor.recruiter",
+          "sees": "A published list to screen against, instead of a question that has to be asked carefully on the first call.",
+          "reads": "The conversation that used to end a process at week six now does not start one, and the reason given is a fact about the employer rather than about the candidate.",
+          "does": "Points candidates outside the list at the roles that can contract where they live, and stops running processes that cannot end in a contract."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "A named list of countries and a separate, stated overlap window.",
+          "reads": "Whether this role can exist for them is answered before any effort is spent, and a rejection on this ground later would now be checkable against a published statement.",
+          "does": "Applies where a contract is possible, and treats the overlap window as the negotiable part that it is."
+        }
+      ]
+    },
+    {
+      "title": "Critique injected on script in the collaborative exercise",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format",
+        "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii"
+      ],
+      "content": "# Critique injected on script in the collaborative exercise\n\nThe collaborative round carries a written script: the same objection is raised at the same point for every candidate, and the panel records what was said in response rather than how the room felt.\n\n### Expected Effects\n- mech.communication_or_working_style_friction is measured against a common prompt rather than inferred from an interviewer's chosen one\n- Interviewer variance stops entering the verdict as if it were candidate behaviour\n\n### Measurements\n- `scripted_prompt_coverage`\n- `panel_inter_rater_agreement`",
+      "aliases": [],
+      "id": "int.critique_injected_on_script_in_the_collaborative_exercise",
+      "type": "intervention",
+      "summary": "The collaborative round carries a written script: the same objection is raised at the same point for every candidate, and the panel records what was said in response rather than how the room felt.",
+      "targets": [
+        "mech.communication_or_working_style_friction",
+        "bar.recruiter_screening_call",
+        "bar.team_cross_functional_panel"
+      ],
+      "actor": "hiring-manager",
+      "scope": "team",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.communication_or_working_style_friction is measured against a common prompt rather than inferred from an interviewer's chosen one",
+        "Interviewer variance stops entering the verdict as if it were candidate behaviour"
+      ],
+      "measurements": [
+        "scripted_prompt_coverage",
+        "panel_inter_rater_agreement"
+      ],
+      "specimens": [
+        {
+          "kind": "transcript",
+          "label": "The script, and the line it produces",
+          "lines": [
+            {
+              "at": "00:18",
+              "text": "Scripted at minute 18, verbatim for every candidate: \"I think this design is wrong — you have put the queue in the wrong place.\"",
+              "tell": true
+            },
+            {
+              "at": "00:19",
+              "text": "Recorded: asked which failure the objection was about; restated the trade-off; proposed moving it and named what that would cost.",
+              "tell": false
+            },
+            {
+              "at": "00:31",
+              "text": "Not recorded: tone, warmth, whether the room enjoyed it. The rubric has no column for it, so no column carries it.",
+              "tell": false
+            }
+          ],
+          "reading": "Friction in a collaborative exercise is a real signal, and this does not deny it — it makes it comparable. Unscripted, the objection arrives when an interviewer happens to feel like raising it, in words chosen for that candidate, and what comes back is scored against a memory of how other rounds went. Scripted, the same prompt produces answers that can be set side by side."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.hiring_manager",
+          "sees": "A one-page script with the objection, the minute it lands, and the three things the answer is scored on.",
+          "reads": "What the panel disagreed about was never the candidate — it was which objection each interviewer raised and how hard. Fixing the prompt leaves only the answer to disagree about.",
+          "does": "Writes the script once per role, and holds the panel to scoring the response rather than the room."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "An objection that arrives as part of the exercise, and a rubric that names what the answer is being read for.",
+          "reads": "The pushback is the test, not a reaction to something already gone wrong — so it can be answered on the merits instead of managed.",
+          "does": "Answers the objection rather than reading the room for what caused it."
+        },
+        {
+          "actor": "actor.recruiter",
+          "sees": "Panel write-ups that name a scripted moment and quote the response, instead of arriving as impressions.",
+          "reads": "A write-up quoting a common prompt is the only kind that can be compared between candidates or defended after the fact.",
+          "does": "Returns the quoted exchange as the feedback, and refuses write-ups that score the room."
+        }
+      ]
+    },
+    {
       "title": "Dated Funding Certification Before the Final Round",
       "status": "active",
       "evidence_ids": [
@@ -329,6 +622,79 @@
       ]
     },
     {
+      "title": "Disqualifying criteria published with the posting",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.hidden_workers_untapped_talent_hbs_accenture",
+        "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026"
+      ],
+      "content": "# Disqualifying criteria published with the posting\n\nEvery criterion the automated filter can reject on — a required acronym, a named certification, a years-of-experience threshold — is listed in the posting as a disqualifier, so a deterministic gate is legible before the application is written.\n\n### Expected Effects\n- mech.automated_keyword_qualification_filter stops operating unseen: the rule that rejects is the rule that was published\n- An application withheld against a stated disqualifier costs neither side a review\n\n### Measurements\n- `knockout_criteria_published_rate`\n- `applications_per_opening`",
+      "aliases": [],
+      "id": "int.disqualifying_criteria_published_with_the_posting",
+      "type": "intervention",
+      "summary": "Every criterion the automated filter can reject on — a required acronym, a named certification, a years-of-experience threshold — is listed in the posting as a disqualifier, so a deterministic gate is legible before the application is written.",
+      "targets": [
+        "mech.automated_keyword_qualification_filter",
+        "bar.automated_filter_parser_threshold"
+      ],
+      "actor": "employer-policy",
+      "scope": "organizational",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.automated_keyword_qualification_filter stops operating unseen: the rule that rejects is the rule that was published",
+        "An application withheld against a stated disqualifier costs neither side a review"
+      ],
+      "measurements": [
+        "knockout_criteria_published_rate",
+        "applications_per_opening"
+      ],
+      "specimens": [
+        {
+          "kind": "posting",
+          "label": "The block that goes above the requirements",
+          "lines": [
+            {
+              "at": "posting",
+              "text": "Filtered automatically. An application is not read if it lacks any of: the string \"Kubernetes\" or \"K8s\"; 5+ years dated employment in backend engineering; work authorisation in DE, PL or UA.",
+              "tell": true
+            },
+            {
+              "at": "posting",
+              "text": "Everything below this line is read by a person and weighed. Nothing below it rejects on its own.",
+              "tell": false
+            },
+            {
+              "at": "posting",
+              "text": "If the tooling you used is called something else, write both names. The filter matches the string, not the work.",
+              "tell": false
+            }
+          ],
+          "reading": "The filter is not being removed — it is being published. What changes is who can see it: a rule that rejects on an exact string costs nothing to state, and stating it turns a silent rejection into a decision the candidate makes before spending the hour."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.employer_policy",
+          "sees": "The knock-out rules already configured in the ATS, written out as a list, and the count of applications each one rejected last quarter.",
+          "reads": "The list is a description of the filter as it actually runs, not of the role as it was imagined — and a rule nobody is willing to publish is a rule that will not survive being read.",
+          "does": "Publishes the knock-out list, and strikes the rules that cannot be justified once they are written next to the work."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "A short block naming exactly what will reject the application without a person reading it.",
+          "reads": "The gate is a string match, and a rejection against it says nothing about the work — it can be cleared by naming the same tool by both its names, or it cannot be cleared at all, and either way that is known now.",
+          "does": "Applies against a gate it can see, or does not, and stops reading a filter rejection as a verdict on the work."
+        },
+        {
+          "actor": "actor.ats_vendor",
+          "sees": "Customers asking for the configured knock-out rules to be rendered into the posting template automatically.",
+          "reads": "The rules are already structured data in the requisition; rendering them is a template change, not a product, and the reason they were never shown is that nothing asked.",
+          "does": "Renders the knock-out block from the requisition config, so the published list cannot drift from the filter that runs."
+        }
+      ]
+    },
+    {
       "title": "Distinct Closure Status for Unreviewed Applications",
       "status": "active",
       "evidence_ids": [
@@ -409,6 +775,80 @@
           "sees": "A notice naming the status the record ended in, and whether a person opened it.",
           "reads": "A record nobody reached and a record that was assessed and declined no longer arrive in the same words; only one of the two says anything about the profile.",
           "does": "Reads the message for the status rather than for an assessment it states is not there, and decides about reapplying on that."
+        }
+      ]
+    },
+    {
+      "title": "Domain requirement carries a stated ramp time",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.stated_requirements_set_above_what_current_jobholders_hold_hbs_dismissed_by_degrees",
+        "evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest"
+      ],
+      "content": "# Domain requirement carries a stated ramp time\n\nA requisition that asks for experience in one named vertical must state how long the team believes that domain takes to learn; where the answer is weeks, the requirement is scored as a preference rather than a gate.\n\n### Expected Effects\n- mech.domain_specificity_over_weighting must state its own cost before it can reject\n- A requirement assembled from something other than the work becomes visible at the point it is written\n\n### Measurements\n- `ramp_estimate_completion_rate`\n- `domain_only_rejection_rate`",
+      "aliases": [],
+      "id": "int.domain_requirement_carries_a_stated_ramp_time",
+      "type": "intervention",
+      "summary": "A requisition that asks for experience in one named vertical must state how long the team believes that domain takes to learn; where the answer is weeks, the requirement is scored as a preference rather than a gate.",
+      "targets": [
+        "mech.domain_specificity_over_weighting",
+        "bar.recruiter_screening_call",
+        "bar.hiring_manager_in_depth_review"
+      ],
+      "actor": "hiring-manager",
+      "scope": "team",
+      "cost": "low",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.domain_specificity_over_weighting must state its own cost before it can reject",
+        "A requirement assembled from something other than the work becomes visible at the point it is written"
+      ],
+      "measurements": [
+        "ramp_estimate_completion_rate",
+        "domain_only_rejection_rate"
+      ],
+      "specimens": [
+        {
+          "kind": "ats",
+          "label": "The field the requisition gains",
+          "lines": [
+            {
+              "at": "req",
+              "text": "Domain: payments. Ramp estimate entered by hiring manager: 6 weeks to first independent change.",
+              "tell": true
+            },
+            {
+              "at": "req",
+              "text": "Ramp ≤ 12 weeks → scored as preference. Screening may not reject on domain alone.",
+              "tell": false
+            },
+            {
+              "at": "req",
+              "text": "To make it a gate, name the regulation, certification or customer commitment that cannot wait 6 weeks.",
+              "tell": false
+            }
+          ],
+          "reading": "The manager is not asked to drop the preference — they are asked to price it. A vertical that takes six weeks to learn cannot also be the thing that disqualifies someone with ten years of the underlying systems work, and writing the estimate is what makes the two claims meet."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.hiring_manager",
+          "sees": "A required field asking how long the domain takes, next to the requirement that names it.",
+          "reads": "The estimate is one the team already makes when it onboards internal transfers; writing it down is what stops the same domain being treated as unlearnable for outsiders.",
+          "does": "Enters the estimate, and either justifies the gate or accepts candidates who clear everything except the vertical."
+        },
+        {
+          "actor": "actor.recruiter",
+          "sees": "A screening rule that says which requirements may reject and which may only rank.",
+          "reads": "The instruction that used to arrive as \"must have fintech\" now arrives with a duration attached, and a duration can be argued with where a preference could not.",
+          "does": "Advances candidates strong on transferable depth where the ramp is short, and cites the estimate when the manager objects."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "A posting that says how long the team thinks its domain takes to pick up.",
+          "reads": "Whether the vertical is a wall or a ramp is now the employer's stated position rather than something to guess at from a rejection.",
+          "does": "Applies to the roles where the ramp is stated and short, and stops rewriting a CV to fake a vertical."
         }
       ]
     },
@@ -896,6 +1336,85 @@
           "sees": "A published model card naming the feature that was removed, in a market where the same feature ships enabled by default elsewhere.",
           "reads": "One vendor removing it changes one vendor's ranking; what would hold it across the market is a rule about what an automated screen may read at all.",
           "does": "Writes the requirement against what a vendor must publish and explain; what a customer switches on inside a configuration screen sits outside what any disclosure rule inspects."
+        }
+      ]
+    },
+    {
+      "title": "Requirement changes versioned and sent to candidates in flight",
+      "status": "active",
+      "evidence_ids": [
+        "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3",
+        "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02"
+      ],
+      "content": "# Requirement changes versioned and sent to candidates in flight\n\nThe requisition carries a dated version of its requirements; when the team changes the stack, the level or the scope mid-search, everyone in flight is told what changed and which of their completed assessments still counts.\n\n### Expected Effects\n- mech.mid_process_role_requirement_redefinition keeps operating — needs change — but stops being absorbed silently by the candidate\n- Which specification an assessment was taken against becomes a recorded fact rather than a later reinterpretation\n\n### Measurements\n- `requisition_version_disclosure_rate`\n- `assessments_revalued_without_notice`",
+      "aliases": [],
+      "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+      "type": "intervention",
+      "summary": "The requisition carries a dated version of its requirements; when the team changes the stack, the level or the scope mid-search, everyone in flight is told what changed and which of their completed assessments still counts.",
+      "targets": [
+        "mech.mid_process_role_requirement_redefinition",
+        "bar.hiring_manager_in_depth_review",
+        "bar.team_cross_functional_panel"
+      ],
+      "actor": "employer-policy",
+      "scope": "organizational",
+      "cost": "medium",
+      "evidence_level": "supported",
+      "expected_effects": [
+        "mech.mid_process_role_requirement_redefinition keeps operating — needs change — but stops being absorbed silently by the candidate",
+        "Which specification an assessment was taken against becomes a recorded fact rather than a later reinterpretation"
+      ],
+      "measurements": [
+        "requisition_version_disclosure_rate",
+        "assessments_revalued_without_notice"
+      ],
+      "specimens": [
+        {
+          "kind": "email",
+          "label": "What goes out on the day the requirement moves",
+          "lines": [
+            {
+              "at": "subject",
+              "text": "req #5120 — requirements changed today, and what it means for your assessments",
+              "tell": false
+            },
+            {
+              "at": "body",
+              "text": "v3, 14 March: level moved from senior to staff; the service in scope changed from ingest to billing. v2 is archived and linked.",
+              "tell": true
+            },
+            {
+              "at": "body",
+              "text": "Your system design round was taken against v2 and still counts. The take-home was scoped to ingest and does not; we are not asking you to redo it, and it is not held against you.",
+              "tell": false
+            },
+            {
+              "at": "body",
+              "text": "If the new version is not the role you applied for, say so and we close the file with the reason recorded as ours.",
+              "tell": false
+            }
+          ],
+          "reading": "Teams' needs change mid-search and no policy stops that. What a version stops is the change being absorbed silently, so that work already done is quietly revalued against a specification the candidate never saw and a rejection is issued as though they had failed the new one. The cost is that the requisition has to admit which version each assessment was taken against."
+        }
+      ],
+      "perspectives": [
+        {
+          "actor": "actor.hiring_manager",
+          "sees": "A version bump on the requisition, and the list of candidates whose completed rounds it invalidates.",
+          "reads": "Changing the role mid-search has a cost that used to fall entirely on people outside the company; the list is that cost, itemised, at the moment the decision is made.",
+          "does": "Bumps the version deliberately, and decides per assessment whether it still counts rather than leaving it to the panel to reinterpret."
+        },
+        {
+          "actor": "actor.recruiter",
+          "sees": "A generated notice listing what moved and which rounds survive, ready to send to everyone in flight.",
+          "reads": "The alternative was carrying the change silently and then explaining a rejection that came from it, which is the conversation this removes.",
+          "does": "Sends the notice the day the version moves, and closes files at the candidate's request with the reason recorded on the employer."
+        },
+        {
+          "actor": "actor.candidate",
+          "sees": "A dated diff of the role, and a line per assessment saying whether it still counts.",
+          "reads": "The ground moved, and it moved for reasons in the team's own plans — the work already submitted was not found wanting, it was scoped to a version that no longer exists.",
+          "does": "Decides whether the new version is worth continuing for, and keeps the rounds that still stand instead of starting over."
         }
       ]
     },

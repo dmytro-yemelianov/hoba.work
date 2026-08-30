@@ -1,0 +1,76 @@
+{
+  "registry_version": "1.0.0",
+  "data": {
+    "title": "Disqualifying criteria published with the posting",
+    "status": "active",
+    "evidence_ids": [
+      "evidence.hidden_workers_untapped_talent_hbs_accenture",
+      "evidence.the_algorithmic_barrier_quantifying_frictional_unemployment_in_automated_recruitment_fofanah_2026"
+    ],
+    "content": "# Disqualifying criteria published with the posting\n\nEvery criterion the automated filter can reject on — a required acronym, a named certification, a years-of-experience threshold — is listed in the posting as a disqualifier, so a deterministic gate is legible before the application is written.\n\n### Expected Effects\n- mech.automated_keyword_qualification_filter stops operating unseen: the rule that rejects is the rule that was published\n- An application withheld against a stated disqualifier costs neither side a review\n\n### Measurements\n- `knockout_criteria_published_rate`\n- `applications_per_opening`",
+    "aliases": [],
+    "id": "int.disqualifying_criteria_published_with_the_posting",
+    "type": "intervention",
+    "summary": "Every criterion the automated filter can reject on — a required acronym, a named certification, a years-of-experience threshold — is listed in the posting as a disqualifier, so a deterministic gate is legible before the application is written.",
+    "targets": [
+      "mech.automated_keyword_qualification_filter",
+      "bar.automated_filter_parser_threshold"
+    ],
+    "actor": "employer-policy",
+    "scope": "organizational",
+    "cost": "low",
+    "evidence_level": "supported",
+    "expected_effects": [
+      "mech.automated_keyword_qualification_filter stops operating unseen: the rule that rejects is the rule that was published",
+      "An application withheld against a stated disqualifier costs neither side a review"
+    ],
+    "measurements": [
+      "knockout_criteria_published_rate",
+      "applications_per_opening"
+    ],
+    "specimens": [
+      {
+        "kind": "posting",
+        "label": "The block that goes above the requirements",
+        "lines": [
+          {
+            "at": "posting",
+            "text": "Filtered automatically. An application is not read if it lacks any of: the string \"Kubernetes\" or \"K8s\"; 5+ years dated employment in backend engineering; work authorisation in DE, PL or UA.",
+            "tell": true
+          },
+          {
+            "at": "posting",
+            "text": "Everything below this line is read by a person and weighed. Nothing below it rejects on its own.",
+            "tell": false
+          },
+          {
+            "at": "posting",
+            "text": "If the tooling you used is called something else, write both names. The filter matches the string, not the work.",
+            "tell": false
+          }
+        ],
+        "reading": "The filter is not being removed — it is being published. What changes is who can see it: a rule that rejects on an exact string costs nothing to state, and stating it turns a silent rejection into a decision the candidate makes before spending the hour."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "actor.employer_policy",
+        "sees": "The knock-out rules already configured in the ATS, written out as a list, and the count of applications each one rejected last quarter.",
+        "reads": "The list is a description of the filter as it actually runs, not of the role as it was imagined — and a rule nobody is willing to publish is a rule that will not survive being read.",
+        "does": "Publishes the knock-out list, and strikes the rules that cannot be justified once they are written next to the work."
+      },
+      {
+        "actor": "actor.candidate",
+        "sees": "A short block naming exactly what will reject the application without a person reading it.",
+        "reads": "The gate is a string match, and a rejection against it says nothing about the work — it can be cleared by naming the same tool by both its names, or it cannot be cleared at all, and either way that is known now.",
+        "does": "Applies against a gate it can see, or does not, and stops reading a filter rejection as a verdict on the work."
+      },
+      {
+        "actor": "actor.ats_vendor",
+        "sees": "Customers asking for the configured knock-out rules to be rendered into the posting template automatically.",
+        "reads": "The rules are already structured data in the requisition; rendering them is a template change, not a product, and the reason they were never shown is that nothing asked.",
+        "does": "Renders the knock-out block from the requisition config, so the published list cannot drift from the filter that runs."
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "registry_version": "1.0.0",
+  "data": {
+    "title": "Requirement changes versioned and sent to candidates in flight",
+    "status": "active",
+    "evidence_ids": [
+      "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3",
+      "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02"
+    ],
+    "content": "# Requirement changes versioned and sent to candidates in flight\n\nThe requisition carries a dated version of its requirements; when the team changes the stack, the level or the scope mid-search, everyone in flight is told what changed and which of their completed assessments still counts.\n\n### Expected Effects\n- mech.mid_process_role_requirement_redefinition keeps operating — needs change — but stops being absorbed silently by the candidate\n- Which specification an assessment was taken against becomes a recorded fact rather than a later reinterpretation\n\n### Measurements\n- `requisition_version_disclosure_rate`\n- `assessments_revalued_without_notice`",
+    "aliases": [],
+    "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+    "type": "intervention",
+    "summary": "The requisition carries a dated version of its requirements; when the team changes the stack, the level or the scope mid-search, everyone in flight is told what changed and which of their completed assessments still counts.",
+    "targets": [
+      "mech.mid_process_role_requirement_redefinition",
+      "bar.hiring_manager_in_depth_review",
+      "bar.team_cross_functional_panel"
+    ],
+    "actor": "employer-policy",
+    "scope": "organizational",
+    "cost": "medium",
+    "evidence_level": "supported",
+    "expected_effects": [
+      "mech.mid_process_role_requirement_redefinition keeps operating — needs change — but stops being absorbed silently by the candidate",
+      "Which specification an assessment was taken against becomes a recorded fact rather than a later reinterpretation"
+    ],
+    "measurements": [
+      "requisition_version_disclosure_rate",
+      "assessments_revalued_without_notice"
+    ],
+    "specimens": [
+      {
+        "kind": "email",
+        "label": "What goes out on the day the requirement moves",
+        "lines": [
+          {
+            "at": "subject",
+            "text": "req #5120 — requirements changed today, and what it means for your assessments",
+            "tell": false
+          },
+          {
+            "at": "body",
+            "text": "v3, 14 March: level moved from senior to staff; the service in scope changed from ingest to billing. v2 is archived and linked.",
+            "tell": true
+          },
+          {
+            "at": "body",
+            "text": "Your system design round was taken against v2 and still counts. The take-home was scoped to ingest and does not; we are not asking you to redo it, and it is not held against you.",
+            "tell": false
+          },
+          {
+            "at": "body",
+            "text": "If the new version is not the role you applied for, say so and we close the file with the reason recorded as ours.",
+            "tell": false
+          }
+        ],
+        "reading": "Teams' needs change mid-search and no policy stops that. What a version stops is the change being absorbed silently, so that work already done is quietly revalued against a specification the candidate never saw and a rejection is issued as though they had failed the new one. The cost is that the requisition has to admit which version each assessment was taken against."
+      }
+    ],
+    "perspectives": [
+      {
+        "actor": "actor.hiring_manager",
+        "sees": "A version bump on the requisition, and the list of candidates whose completed rounds it invalidates.",
+        "reads": "Changing the role mid-search has a cost that used to fall entirely on people outside the company; the list is that cost, itemised, at the moment the decision is made.",
+        "does": "Bumps the version deliberately, and decides per assessment whether it still counts rather than leaving it to the panel to reinterpret."
+      },
+      {
+        "actor": "actor.recruiter",
+        "sees": "A generated notice listing what moved and which rounds survive, ready to send to everyone in flight.",
+        "reads": "The alternative was carrying the change silently and then explaining a rejection that came from it, which is the conversation this removes.",
+        "does": "Sends the notice the day the version moves, and closes files at the candidate's request with the reason recorded on the employer."
+      },
+      {
+        "actor": "actor.candidate",
+        "sees": "A dated diff of the role, and a line per assessment saying whether it still counts.",
+        "reads": "The ground moved, and it moved for reasons in the team's own plans — the work already submitted was not found wanting, it was scoped to a version that no longer exists.",
+        "does": "Decides whether the new version is worth continuing for, and keeps the rounds that still stand instead of starting over."
+      }
+    ]
+  }
+}
