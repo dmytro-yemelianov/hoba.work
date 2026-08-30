@@ -153,6 +153,7 @@ describe('the dictionary and the vocabularies it labels', () => {
     ['reader.title.', READER_SLUGS],
     ['reader.lead.', READER_SLUGS],
     ['reader.limits.', READER_SLUGS],
+    ['reader.short.', READER_SLUGS],
   ];
 
   it('labels every member of every vocabulary it interpolates', () => {

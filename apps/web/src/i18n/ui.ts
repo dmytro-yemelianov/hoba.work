@@ -1050,6 +1050,9 @@ const en = {
   'reader.step.researcher.2': 'Coverage, unplaced traces, and the mechanisms no observation can pin down.',
   'reader.step.researcher.3': 'Seven evidence levels, what each one licenses, and what disqualifies a source.',
   'reader.enter': 'Start here',
+  'reader.short.candidate': 'a candidate',
+  'reader.short.recruiter': 'a hiring side',
+  'reader.short.researcher': 'a researcher',
 } as const;
 
 export type UIKey = keyof typeof en;
@@ -2078,6 +2081,9 @@ const uk: Record<UIKey, string> = {
   'reader.step.researcher.2': 'Покриття, непоставлені сліди й механізми, яких не притисне жодне спостереження.',
   'reader.step.researcher.3': 'Сім рівнів доказовості, що кожен дозволяє і що дискваліфікує джерело.',
   'reader.enter': 'Почати звідси',
+  'reader.short.candidate': 'кандидат',
+  'reader.short.recruiter': 'сторона найму',
+  'reader.short.researcher': 'дослідник',
 };
 
 export const ui = { en, uk } as const;
