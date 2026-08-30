@@ -14,7 +14,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Interventions** (`I-*`, 17) — concrete changes, each attributed to the actor who can make it.
 - **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 48) — the published sources behind the claims.
+- **Evidence** (`EVD-*`, 50) — the published sources behind the claims.
 
 The graph has 226 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -164,7 +164,7 @@ A rejection arrives six weeks or more after submission, with no contact in the i
 
 The stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.
 
-- Stages: ingestion, recruiter · Evidence: compatible
+- Stages: ingestion, recruiter · Evidence: supported
 - Does NOT establish: Does not establish that no route to employment existed, only that none was used here.
 - Does NOT establish: Does not establish that the constraint was the first ground on which the application was set aside.
 - Probe [PROBE-A-017-1] (low): Compare the ground named in the message against the copy of the posting as it stood on the day of application. → Establishes whether the ground was stated up front or introduced afterwards.
@@ -1099,6 +1099,13 @@ Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/
 - Regulation (EU) 2016/679 (GDPR), Article 5(1)(e) ('kept in a form which permits identification of data subjects for no longer than is necessary for the purposes for which the personal data are processed').
 - https://eur-lex.europa.eu/eli/reg/2016/679/oj
 
+### evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_requires_it — Citizenship status as a hiring ground is unlawful unless a rule requires it (8 U.S.C. § 1324b)
+
+US law makes it "an unfair immigration-related employment practice for a person or other entity to discriminate against any individual … with respect to the hiring, or recruitment or referral for a fee, of the individual for employment" because of national origin or, for a protected individual, citizenship status. The exception at § 1324b(a)(2) is the operative part here: citizenship-based discrimination is permitted only where it is "required in order to comply with law, regulation, or executive order, or required by Federal, State, or local government contract". So a rejection that names the right to be employed somewhere is either a requirement someone can point to, or it is unlawful — and the statute obliges the employer to be able to tell the two apart. It reaches recruitment and referral, not only the hiring decision itself. It says nothing about where a candidate lives or which hours they can cover: those are not protected grounds, and a rejection naming them is outside this statute entirely. It binds US employers of more than three people, and it establishes what is permitted, never that any particular rejection occurred.
+
+- 8 U.S.C. § 1324b(a)(1)–(a)(2) (unfair immigration-related employment practices).
+- https://www.law.cornell.edu/uscode/text/8/1324b
+
 ### evidence.corrected_validity_estimates_reorder_the_selection_methods_and_work_samples_fall_furthest — Corrected validity estimates reorder the selection methods, and work samples fall furthest
 
 Sackett et al. (2022) showed that the range-restriction corrections long used in personnel-selection meta-analyses systematically overstated validity, and re-estimated it. This paper reproduces the full table. Against the prior figures, the corrected operational validities are: structured interviews .42 (was .51), job knowledge tests .40 (was .48), empirically keyed biodata .38 (was .35), work sample tests .33 (was .54), general mental ability .31 (was .51), unstructured interviews .19 (was .38). Two readings matter here. Structured interviews become the strongest single predictor, ahead of general mental ability. And work sample tests fall furthest of anything in the table — .21 — so the familiar claim that a sample of the work is the best available signal no longer holds, though .33 still places it above general mental ability. These are correlations with job performance once hired. Nothing here measures whether a scoring scheme is applied consistently, published in advance, or opened at all.
@@ -1203,6 +1210,13 @@ Official separations in the US information sector were 451,000 in 2022, 399,000 
 
 - US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).
 - https://data.bls.gov/timeseries/JTU510000000000000LDL
+
+### evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice — Naming staff for a contract not yet won is an adjudicated practice (GAO, ASRC Federal Data Solutions)
+
+Hiring against unsigned funding is regular enough in US federal procurement to have its own body of decided law. To sustain a protest that an awardee performed an impermissible "bait and switch", GAO requires a protester to show "the awardee either knowingly or negligently represented that it would rely on specific personnel that it did not have a reasonable basis to expect to furnish during contract performance", that the agency relied on the misrepresentation, and that the reliance "had a material effect on the evaluation results". The test presupposes the practice it polices: bidders name real candidates for roles that exist only if the bid wins, and the mechanism is the contingent offer, which the decision distinguishes from an exclusive letter of commitment. What is adjudicated is the representation made to the agency, not what becomes of the candidate: the decision says nothing about whether anyone tells the candidate the funding is conditional, and nothing about what follows a lost bid. It governs US federal contracting and establishes that the arrangement is standard and regulated, not how often it occurs.
+
+- ASRC Federal Data Solutions, LLC, B-421008 (Comp. Gen. Dec. 2, 2022).
+- https://www.gao.gov/products/b-421008
 
 ### evidence.nasdaq_composite_index_fred — NASDAQ Composite Index (FRED)
 

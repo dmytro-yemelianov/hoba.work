@@ -27,9 +27,10 @@ facets:
   removability: "none"
 amplifies: []
 masks: []
-evidence_level: "compatible"
+evidence_level: "supported"
 honest_baseline: false
-evidence_ids: []
+evidence_ids:
+  - "evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice"
 specimens:
   -
     kind: "chat"

@@ -1787,7 +1787,9 @@
     {
       "title": "Rejection naming a jurisdiction or work-eligibility ground",
       "status": "active",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_requires_it"
+      ],
       "content": "# Rejection naming a jurisdiction or work-eligibility ground\n\nThe stated reason is where the candidate lives, the hours they can cover, or the right to be employed there — not anything about the work.\n\n### Diagnostic Non-Inferences\n- Does not establish that no route to employment existed, only that none was used here.\n- Does not establish that the constraint was the first ground on which the application was set aside.",
       "aliases": [
         "A-017"
@@ -1799,7 +1801,7 @@
         "ingestion",
         "recruiter"
       ],
-      "evidence_level": "compatible",
+      "evidence_level": "supported",
       "probes": [
         {
           "id": "PROBE-A-017-1",

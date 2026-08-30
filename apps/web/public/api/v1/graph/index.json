@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0.0",
-  "nodes_count": 274,
+  "nodes_count": 276,
   "edges_count": 254,
   "elements": {
     "nodes": [
@@ -195,7 +195,7 @@
           "id": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
           "label": "Rejection naming a jurisdiction or work-eligibility ground",
           "type": "observation",
-          "evidence_level": "compatible",
+          "evidence_level": "supported",
           "stages": [
             "ingestion",
             "recruiter"
@@ -521,7 +521,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "compatible"
+          "evidence_level": "supported"
         },
         "classes": "node-mechanism removability-none"
       },

@@ -25,8 +25,9 @@ perspectives:
     reads: "Перелік — це обмеження пошуку, а не оцінка всередині нього. Вакансії публікують під нього, а винятки коштують більше, ніж зазвичай виправдовує один найм."
     does: "Тримає перелік і надає винятки маршрутом, який живе за іншим календарем, ніж вакансія."
 status: "active"
-evidence_level: "compatible"
-evidence_ids: []
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_requires_it"
 probes:
   -
     id: "PROBE-A-017-1"

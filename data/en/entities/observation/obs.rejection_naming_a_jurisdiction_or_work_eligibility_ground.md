@@ -25,8 +25,9 @@ perspectives:
     reads: "The list is a constraint on the search, not an assessment within it. Roles are published against it, and exceptions cost more than a single hire usually justifies."
     does: "Holds the list, and grants exceptions through a route that runs on a different calendar from the requisition."
 status: "active"
-evidence_level: "compatible"
-evidence_ids: []
+evidence_level: "supported"
+evidence_ids:
+  - "evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_requires_it"
 probes:
   -
     id: "PROBE-A-017-1"

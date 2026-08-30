@@ -56,7 +56,7 @@ def observedCycleTail : List Nat := [3, 4, 14]
 def substrateSummary : SubstrateSummary where
   conditionCount := 44
   processCount := 4
-  recordCount := 97
+  recordCount := 99
   flowCount := 9
   barrierConditionCount := 16
   mechanismConditionCount := 28
