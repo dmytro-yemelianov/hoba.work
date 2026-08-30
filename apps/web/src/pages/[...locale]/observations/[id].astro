@@ -30,11 +30,11 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
   <PageHeader title={artifact.title} lead={artifact.summary}>
       <nav slot="eyebrow" class="text-sm text-hoba-muted flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
         <a href={`${prefix}/registry`} class="hover:text-hoba-text">{t('common.registry')}</a><span>/</span>
-        <a href={`${prefix}/registry?type=artifact`} class="hover:text-hoba-text">{t('entity.plural.artifact')}</a><span>/</span>
+        <a href={`${prefix}/registry?type=observation`} class="hover:text-hoba-text">{t('entity.plural.observation')}</a><span>/</span>
         <span class="text-hoba-accent font-mono break-all">{artifact.id}</span>
       </nav>
       <div slot="meta" class="flex flex-wrap items-center gap-1.5">
-        <EntityBadge type="artifact" id={artifact.id} lang={lang} />
+        <EntityBadge type="observation" id={artifact.id} lang={lang} />
         {artifact.stages.map((st) => <span class="pill pill-muted">{t(`stage.${st}`)}</span>)}
         <span class="pill pill-muted">{asHeading(t('common.evidence'))}: <span class="text-hoba-text">{t(`level.${artifact.evidence_level}`)}</span></span>
         <span class="pill pill-muted">{asHeading(t('common.status'))}: <span class="text-hoba-text">{t(`status.${artifact.status}`)}</span></span>
@@ -119,7 +119,7 @@ const relatedPatterns = bundle.patterns.filter((p) => p.required_artifacts.inclu
       title={artifact.title}
       lang={lang}
       hasPostcard={true}
-      type="artifact"
+      type="observation"
       markdownUrl={`/observations/${artifact.id}.md`}
       jsonUrl={`/api/v1/observations/${artifact.id}.json`}
     />

@@ -51,7 +51,7 @@ const dataAttrs = (node: Item) => ({
 });
 const tabs: { type: EntityType | 'all'; label: string; count: number }[] = [
   { type: 'all', label: t('registry.all'), count: totalCount },
-  { type: 'observation', label: t('entity.plural.artifact'), count: bundle.observations.length },
+  { type: 'observation', label: t('entity.plural.observation'), count: bundle.observations.length },
   { type: 'barrier', label: t('entity.plural.barrier'), count: bundle.barriers.length },
   { type: 'mechanism', label: t('entity.plural.mechanism'), count: bundle.mechanisms.length },
   { type: 'pattern', label: t('entity.plural.pattern'), count: bundle.patterns.length },

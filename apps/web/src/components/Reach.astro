@@ -8,7 +8,7 @@
  * dozens of entries, and listing them reads as noise, so it is reported as a
  * shape — how many, of what kind — and the graph is where it is walked.
  */
-import { closure } from '@hoba/registry';
+import { closure, READER_FACING_TYPES, TYPE_ID_PREFIX } from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
 import { useTranslations } from '../i18n/utils';
 
@@ -22,22 +22,24 @@ interface Props {
 const { id, bundle, lang, prefix } = Astro.props;
 const t = useTranslations(lang);
 
-const KINDS = [
-  ['A', 'entity.artifact', 'obs.'],
-  ['B', 'entity.barrier', 'bar.'],
-  ['M', 'entity.mechanism', 'mech.'],
-  ['P', 'entity.pattern', 'pat.'],
-  ['L', 'entity.loop', 'loop.'],
-  ['I', 'entity.intervention', 'int.'],
-] as const;
+// The kinds a reader meets and the id prefix each carries, both read from the
+// registry. The hand-written table this replaces still said `entity.artifact`
+// after the kind was renamed to `observation`, and `t()` returns the key it
+// cannot find — so that string was printed at readers on 66 pages. It also
+// matched legacy `A-`/`B-` codes that no entity has carried since the dotted-id
+// migration, and nothing said so.
+const KINDS = READER_FACING_TYPES.map((type) => ({
+  key: `entity.${type}` as Parameters<typeof t>[0],
+  idPrefix: `${TYPE_ID_PREFIX[type]}.`,
+}));
 
 const reach = closure(bundle, id);
 const shape = (all: string[], direct: string[]) => {
   const indirect = all.filter((entry) => !direct.includes(entry));
   return KINDS
-    .map(([letter, key, prefix]) => ({
+    .map(({ key, idPrefix }) => ({
       label: t(key),
-      n: indirect.filter((entry) => entry.startsWith(`${letter}-`) || entry.startsWith(prefix)).length,
+      n: indirect.filter((entry) => entry.startsWith(idPrefix)).length,
     }))
     .filter((part) => part.n > 0);
 };

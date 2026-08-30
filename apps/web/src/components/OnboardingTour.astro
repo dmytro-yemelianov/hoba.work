@@ -31,18 +31,10 @@ const STEP_SELECTORS: Record<string, string[]> = {
   actors: ['#actors-grid', '#actors-grid li:nth-child(1)', '#actors-grid li:nth-child(2)', '#actors-grid'],
 };
 
-const STEPS_COUNT_MAP: Record<string, number> = {
-  home: 6,
-  analyze: 5,
-  check: 5,
-  process: 6,
-  graph: 6,
-  registry: 5,
-  eras: 4,
-  actors: 4,
-};
-
-const count = STEPS_COUNT_MAP[pageKey] ?? 4;
+// How many steps a tour has is the number of things it points at. It used to
+// be stated a second time in a parallel map, which agreed with this one only
+// so long as both were edited together.
+const count = STEP_SELECTORS[pageKey]?.length ?? 4;
 const icons = STEP_ICONS[pageKey] ?? ['💡', '🔍', '🎯', '✨', '⚙️', '🔒'];
 const selectors = STEP_SELECTORS[pageKey] ?? [];
 

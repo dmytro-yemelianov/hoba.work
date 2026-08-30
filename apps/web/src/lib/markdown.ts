@@ -223,7 +223,7 @@ export function catalogueMarkdown(bundle: RegistryBundle, lang: Lang, t: Transla
   ];
 
   const sections: [string, Entity[]][] = [
-    [t('entity.plural.artifact'), bundle.observations],
+    [t('entity.plural.observation'), bundle.observations],
     [t('entity.plural.barrier'), bundle.barriers],
     [t('entity.plural.mechanism'), bundle.mechanisms],
     [t('entity.plural.pattern'), bundle.patterns],

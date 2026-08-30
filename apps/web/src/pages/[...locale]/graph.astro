@@ -119,13 +119,18 @@ const nodes: GraphNodeInput[] = [
 const edges = graph.edges.map((e) => ({ source: e.source, target: e.target, relation: e.type }));
 const relationTypes: GraphRelationType[] = ['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates'];
 
+const actorTitles = new Map(bundle.actors.map((a) => [a.id, a.title] as const));
 const idealWorkflow = bundle.processes.find((w) => w.id === IDEAL_PATH_ID);
 const idealSteps = idealWorkflow
   ? idealWorkflow.states.map((s, idx) => ({
       index: idx + 1,
       id: s.id,
       title: s.title,
-      owner: t(`actor.${s.owner}` as Parameters<typeof t>[0]) ?? s.owner,
+      // The actor's own title, not a facet label. `s.owner` is an actorId and
+      // has been dotted since the actor rename, so `actor.${s.owner}` built the
+      // key `actor.actor.candidate` — and `t()` returns the key it cannot find,
+      // so the HUD printed that string at a reader.
+      owner: actorTitles.get(s.owner) ?? s.owner,
       description: s.description,
       entities: s.entities,
     }))

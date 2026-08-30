@@ -1,4 +1,7 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import * as S from '@hoba/registry';
 import { ui } from '../apps/web/src/i18n/ui';
 import { branded, internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../apps/web/src/i18n/utils';
 
@@ -85,5 +88,159 @@ describe('the wordmark', () => {
     expect(branded('<script>x</script> hoba')).toBe(
       '&lt;script&gt;x&lt;/script&gt; <b class="wordmark">hoba</b>'
     );
+  });
+});
+
+describe('the dictionary and the vocabularies it labels', () => {
+  const SRC = path.join(__dirname, '..', 'apps', 'web', 'src');
+  const sources = (): string[] => {
+    const out: string[] = [];
+    const walk = (dir: string) => {
+      for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, e.name);
+        if (e.isDirectory()) walk(p);
+        else if (/\.(astro|ts)$/.test(e.name)) out.push(p);
+      }
+    };
+    walk(SRC);
+    return out;
+  };
+
+  /**
+   * `useTranslations` returns the key itself when it cannot find one, so a key
+   * that no longer exists is not an error — it is printed at the reader. That
+   * is how `entity.artifact` survived the rename of the kind and appeared on 66
+   * pages. `.astro` templates are outside `tsc`, so the type of a key literal
+   * is checked by nothing else.
+   */
+  it('holds every key the source asks for by name', () => {
+    const known = new Set(Object.keys(ui.en));
+    const missing: string[] = [];
+    for (const file of sources()) {
+      const text = fs.readFileSync(file, 'utf8');
+      for (const m of text.matchAll(/\bt\(\s*(['"])([a-z][\w.]*\.[\w.]+)\1/g)) {
+        if (!known.has(m[2])) missing.push(`${path.relative(SRC, file)}: ${m[2]}`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+
+  /**
+   * Keys built by interpolation cannot be checked by reading the source: the
+   * value arrives from the registry at build time. Each such prefix is paired
+   * with the vocabulary that feeds it, so adding a member to a schema without
+   * writing its label fails here rather than on the page.
+   */
+  const BY_SCHEMA: Array<[string, readonly string[]]> = [
+    ['actor.', S.actorTypeSchema.options],
+    ['cost.', S.costBandSchema.options],
+    ['entity.', [...S.READER_FACING_TYPES, 'evidence']],
+    ['entity.plural.', [...S.READER_FACING_TYPES, 'evidence']],
+    ['fidelity.', [...S.emissionFidelitySchema.options, 'unspecified']],
+    ['iactor.', S.interventionActorSchema.options],
+    ['level.', S.evidenceLevelSchema.options],
+    ['nature.', S.natureTypeSchema.options],
+    ['removability.', S.removabilityTypeSchema.options],
+    ['removability.short.', S.removabilityTypeSchema.options],
+    ['scope.', S.scopeTypeSchema.options],
+    ['stage.', S.stageIdSchema.options],
+    ['status.', S.nodeStatusSchema.options],
+    ['visibility.', S.visibilityTypeSchema.options],
+  ];
+
+  it('labels every member of every vocabulary it interpolates', () => {
+    const known = new Set(Object.keys(ui.en));
+    const missing: string[] = [];
+    for (const [prefix, options] of BY_SCHEMA) {
+      for (const option of options) if (!known.has(prefix + option)) missing.push(prefix + option);
+    }
+    expect(missing).toEqual([]);
+  });
+
+  /**
+   * The pairing above is a design fact and cannot be derived, so it is the one
+   * hand-written list left — and this keeps it honest: a new interpolated
+   * prefix must be classified, either as schema-backed above or as keyed by
+   * something that is not a vocabulary.
+   */
+  const NOT_A_VOCABULARY = new Set([
+    'agency.', 'analyze.scenarios.', 'check.r.', 'check.v.', 'contrib.checks.',
+    'method.nongoals.', 'method.verbs.', 'nav.', 'nav.desc.', 'relation.',
+    'scenario.', 'specimen.subject.', 'view.', 'zone.',
+    // Keyed by a local set — a zone, a card's position, a page of the tour —
+    // rather than by a vocabulary the registry defines.
+    'analyze.a.zone.', 'home.gives.', 'tour.',
+  ]);
+
+  it('classifies every prefix whose key is built at runtime', () => {
+    const classified = new Set([...BY_SCHEMA.map(([p]) => p), ...NOT_A_VOCABULARY]);
+    const found = new Set<string>();
+    for (const file of sources()) {
+      const text = fs.readFileSync(file, 'utf8');
+      for (const m of text.matchAll(/`([a-z][\w]*(?:\.[a-z][\w]*)*)\.\$\{/g)) found.add(`${m[1]}.`);
+    }
+    expect([...found].filter((p) => !classified.has(p)).sort()).toEqual([]);
+  });
+
+  /**
+   * The badge colours a dot with `--g-<type>`, a name assembled the same way a
+   * key is — and a missing custom property is not an error either: the
+   * declaration is dropped and the dot renders with no colour at all.
+   */
+  it('defines a graph colour for every kind a badge can carry, in both themes', () => {
+    const css = fs.readFileSync(path.join(SRC, 'styles', 'theme.css'), 'utf8');
+    const block = (selector: string) => {
+      const start = css.indexOf(`${selector} {`);
+      expect(start, selector).toBeGreaterThan(-1);
+      return css.slice(start, css.indexOf('\n}', start));
+    };
+    const names = (text: string) => new Set([...text.matchAll(/(--[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
+    const light = names(block(':root'));
+    const dark = names(block('.dark'));
+
+    const needed = [...S.READER_FACING_TYPES, 'evidence'].map((kind) => `--g-${kind}`);
+    expect(needed.filter((token) => !light.has(token))).toEqual([]);
+    expect(needed.filter((token) => !dark.has(token))).toEqual([]);
+
+    // A token defined in one theme and not the other is not missing anywhere a
+    // build would notice — it is simply wrong for half the readers.
+    expect([...light].filter((token) => !dark.has(token))).toEqual([]);
+    expect([...dark].filter((token) => !light.has(token))).toEqual([]);
+  });
+});
+
+describe('the onboarding tour', () => {
+  /**
+   * The tour points at elements by selector and names each step from the
+   * dictionary. Nothing connects the two: a step added to one and not the other
+   * either points at nothing or prints its own key as a heading.
+   */
+  it('has a written step for everything it points at, and points at every step it has', () => {
+    const src = fs.readFileSync(
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'components', 'OnboardingTour.astro'), 'utf8');
+    const block = src.match(/const STEP_SELECTORS[^{]*\{([\s\S]*?)\n\};/)![1];
+    const pages = [...block.matchAll(/^\s*(\w+):\s*\[([\s\S]*?)\],$/gm)]
+      // Count string literals, not quote characters: one selector carries an
+      // attribute filter with quotes of its own inside it.
+      .map(([, page, list]) => [page, (list.match(/'[^']*'|"[^"]*"|`[^`]*`/g) ?? []).length] as const);
+    expect(pages.length).toBeGreaterThan(0);
+
+    const keys = new Set(Object.keys(ui.en));
+    const problems: string[] = [];
+    for (const [page, steps] of pages) {
+      if (!keys.has(`tour.${page}.title`)) problems.push(`tour.${page}.title`);
+      for (let i = 1; i <= steps; i++) {
+        for (const field of ['title', 'text']) {
+          const key = `tour.${page}.step${i}.${field}`;
+          if (!keys.has(key)) problems.push(key);
+        }
+      }
+      const written = [...keys]
+        .filter((k) => k.startsWith(`tour.${page}.step`) && k.endsWith('.title'))
+        .map((k) => Number(k.match(/step(\d+)/)![1]));
+      const orphaned = written.filter((n) => n > steps);
+      if (orphaned.length) problems.push(`${page}: step ${orphaned.join(', ')} written but never pointed at`);
+    }
+    expect(problems).toEqual([]);
   });
 });

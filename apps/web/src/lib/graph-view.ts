@@ -122,7 +122,7 @@ export interface GraphViewOptions {
 }
 
 const TYPE_VAR: Record<GraphNodeType, string> = {
-  observation: '--g-artifact',
+  observation: '--g-observation',
   barrier: '--g-barrier',
   mechanism: '--g-mechanism',
   pattern: '--g-pattern',
