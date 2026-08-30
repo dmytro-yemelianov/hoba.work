@@ -17,11 +17,13 @@ emissions:
     observed_at: ["screening"]
   -
     artifact: "obs.position_closed_after_final_interview_without_hire"
+    observed_at: ["offer"]
     fidelity: "void"
     likelihood: "medium"
     evidence: []
   -
     artifact: "obs.rejection_naming_an_internal_hire_as_the_outcome"
+    observed_at: ["offer"]
     fidelity: "direct"
     likelihood: "medium"
     evidence: []

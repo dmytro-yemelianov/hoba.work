@@ -11,6 +11,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.complete_silence_after_submission"
+    observed_at: ["ingestion"]
     fidelity: "void"
     likelihood: "high"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

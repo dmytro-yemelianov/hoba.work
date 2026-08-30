@@ -23,6 +23,7 @@ emissions:
     observed_at: ["recruiter"]
   -
     artifact: "obs.explicit_feedback_citing_skill_depth_shortfall"
+    observed_at: ["team"]
     fidelity: "direct"
     likelihood: "medium"
     evidence: ["evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"]

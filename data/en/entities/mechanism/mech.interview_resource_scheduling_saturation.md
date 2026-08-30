@@ -18,6 +18,7 @@ emissions:
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
   -
     artifact: "obs.complete_silence_after_submission"
+    observed_at: ["ingestion"]
     fidelity: "noise"
     likelihood: "medium"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

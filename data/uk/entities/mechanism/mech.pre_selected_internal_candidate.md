@@ -13,6 +13,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.rejection_naming_an_internal_hire_as_the_outcome"
+    observed_at: ["offer"]
     fidelity: "direct"
     likelihood: "medium"
     evidence: []
@@ -24,6 +25,7 @@ emissions:
     observed_at: ["screening"]
   -
     artifact: "obs.position_closed_after_final_interview_without_hire"
+    observed_at: ["offer"]
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]

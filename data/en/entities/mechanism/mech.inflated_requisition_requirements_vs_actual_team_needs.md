@@ -18,6 +18,7 @@ emissions:
     observed_at: ["recruiter"]
   -
     artifact: "obs.materially_similar_role_reposted_shortly_after_rejection"
+    observed_at: ["sourcing"]
     fidelity: "noise"
     likelihood: "medium"
     evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
