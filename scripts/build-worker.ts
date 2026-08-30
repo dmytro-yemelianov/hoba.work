@@ -7,6 +7,7 @@
  * the worker call `@hoba/registry/edge` directly, and the output stays a single
  * committed file, so nothing about the deploy changes.
  */
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { build } from 'esbuild';
 import { resolveRegistryRoot } from '@hoba/registry';
@@ -33,8 +34,25 @@ const result = await build({
   metafile: true,
 });
 
-  const bytes = Object.values(result.metafile.outputs)[0]?.bytes ?? 0;
-  console.log(`worker: ${(bytes / 1024).toFixed(1)} kB -> ${path.relative(root, outfile)}`);
+  // What ships is checked, not how it was made. esbuild's `neutral` platform
+  // refuses to resolve Node's built-ins today, so a barrel import that drags
+  // `node:fs` in fails the build — that is where the last one was caught. But
+  // that protection is a property of this config: adding `external`, or moving
+  // the platform to `node`, turns the same mistake back into a bundle that
+  // builds, ships, and fails only when Cloudflare runs it.
+  const [, output] = Object.entries(result.metafile.outputs)[0];
+  const bundled = await readFile(outfile, 'utf8');
+  const reachedIn = [...bundled.matchAll(/\bfrom\s*["'](node:[^"']+)["']|\brequire\(\s*["']([^"']+)["']/g)]
+    .map((m) => m[1] ?? m[2]);
+  if (reachedIn.length > 0) {
+    throw new Error(
+      `worker bundle reaches ${[...new Set(reachedIn)].join(', ')}, which the edge cannot provide.\n` +
+      `Import exact modules (\`@hoba/registry/edge\`, not \`@hoba/registry\`): a package barrel\n` +
+      `re-exports the filesystem loader.`
+    );
+  }
+
+  console.log(`worker: ${(output.bytes / 1024).toFixed(1)} kB -> ${path.relative(root, outfile)}`);
 }
 
 main().catch((error) => {
