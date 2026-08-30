@@ -13,7 +13,7 @@ import {
 } from '@hoba/registry';
 import { CONTENT_DIRS } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
-import { observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, processSchema, eraSchema, actorSchema } from '@hoba/registry';
+import { namesForbiddenParty, observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, processSchema, eraSchema, actorSchema } from '@hoba/registry';
 
 /**
  * Zod strips unknown keys, so frontmatter naming a field its schema does not
@@ -164,12 +164,17 @@ describe('specimens', () => {
   it('names no real company or person', () => {
     // Specimens are composites. A named employer would turn the atlas into the
     // blacklist its own methodology says it must not be.
-    const forbidden = /\b(Google|Meta|Amazon|Microsoft|Apple|Netflix|Uber|Stripe|Revolut|Monobank|PrivatBank|EPAM|SoftServe|Luxoft)\b/i;
+    // Scoped to specimen text on purpose, and it must stay that way:
+    // evidence records legitimately say "meta-analysis" and cite "Google
+    // Scholar", so widening this to all prose would fail on both. A
+    // specimen is where a named party would appear as an actor in a scene,
+    // which is the thing being refused. The list itself is shared with the
+    // chore — see packages/registry-core/src/parties.ts.
     for (const b of [bundle, uk]) {
       for (const node of readerFacing(b)) {
         for (const specimen of node.specimens) {
           const text = [specimen.label, specimen.subject, specimen.context, specimen.reading, ...specimen.lines.map((l) => `${l.speaker ?? ''} ${l.text}`)].join(' ');
-          expect(forbidden.test(text), `${node.id}: ${text.slice(0, 80)}`).toBe(false);
+          expect(namesForbiddenParty(text), `${node.id}: ${text.slice(0, 80)}`).toBeNull();
         }
       }
     }

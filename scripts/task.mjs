@@ -137,9 +137,9 @@ function scaffold(type, title) {
 
 // ---- specimens -----------------------------------------------------------
 
-const FORBIDDEN = /\b(Google|Meta|Amazon|Microsoft|Apple|Netflix|Uber|Stripe|Revolut|Monobank|PrivatBank|EPAM|SoftServe|Luxoft)\b/i;
-
-function specimens() {
+async function specimens() {
+  // One list, shared with the gate — see packages/registry-core/src/parties.ts.
+  const { namesForbiddenParty } = await import('@hoba/registry');
   let failures = 0;
   const shapes = {};
   for (const root of TREES) {
@@ -156,9 +156,9 @@ function specimens() {
         }
         const kinds = [...text.matchAll(/^    kind: "(\w+)"$/gm)].map((m) => m[1]).join(',');
         (shapes[id] ??= {})[root] = kinds;
-        const named = text.match(FORBIDDEN);
+        const named = namesForbiddenParty(text);
         if (named) {
-          process.stdout.write(c.red(`names "${named[0]}"  ${root}/${spec.dir}/${file}\n`));
+          process.stdout.write(c.red(`names "${named}"  ${root}/${spec.dir}/${file}\n`));
           failures++;
         }
       }
