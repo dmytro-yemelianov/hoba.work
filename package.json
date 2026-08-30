@@ -33,7 +33,7 @@
     "task": "node scripts/task.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -b packages/registry-core packages/graph packages/validator packages/search packages/registry packages/cli packages/mcp --dry && pnpm --filter hoba-site exec astro check --minimumSeverity error",
+    "typecheck": "pnpm build:packages && tsc -p tsconfig.json --noEmit && pnpm --filter hoba-site exec astro check --minimumSeverity error",
     "validate": "pnpm build:packages && tsx scripts/validate.ts",
     "validate:strict": "pnpm build:packages && tsx scripts/validate.ts --strict"
   },
