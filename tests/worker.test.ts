@@ -1,5 +1,8 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
+import { REPO_ROOT } from './helpers';
 // @ts-expect-error plain JS worker without type declarations
 import { isValidateRoute } from '../apps/web/src/worker/validate.js';
 // @ts-expect-error plain JS worker without type declarations
@@ -265,5 +268,46 @@ describe('POST /validate/*', () => {
     expect(isValidateRoute('/validate/analysis')).toBe(true);
     expect(isValidateRoute('/validate/nothing')).toBe(false);
     expect(isValidateRoute('/registry')).toBe(false);
+  });
+});
+
+/**
+ * The redirect table is generated into the worker *source* and then bundled.
+ * Two ways that goes wrong quietly, both of which happened: the generator
+ * pointed at a directory that no longer existed after `site/` became
+ * `apps/web/`, and once fixed it would have written into esbuild's output,
+ * where the next build erases it. Neither failure is visible from the site
+ * until someone follows an old link.
+ */
+describe('the redirect table is generated, current, and in the right file', () => {
+  const read = (p: string) => fs.readFileSync(path.join(REPO_ROOT, p), 'utf-8');
+  const tableOf = (src: string) => {
+    const m = src.match(/(?:const|var) LEGACY_ALIASES = (\{[\s\S]*?\});/);
+    return m ? (JSON.parse(m[1]!) as Record<string, string>) : null;
+  };
+
+  it('lives in the worker source, not only in the bundle', () => {
+    expect(tableOf(read('apps/web/src/worker/index.js'))).not.toBeNull();
+  });
+
+  it('names every alias every entity declares, and nothing else', () => {
+    const bundle = loadRegistryFromRoot(resolveRegistryRoot(), 'en');
+    const ROUTE: Record<string, string> = {
+      barrier: 'barriers', observation: 'observations', mechanism: 'mechanisms',
+      pattern: 'patterns', loop: 'loops', intervention: 'interventions',
+    };
+    const expected: Record<string, string> = {};
+    for (const collection of [bundle.barriers, bundle.observations, bundle.mechanisms, bundle.patterns, bundle.loops, bundle.interventions]) {
+      for (const item of collection as { id: string; type: string; aliases?: string[] }[]) {
+        for (const alias of Array.isArray(item.aliases) ? item.aliases : []) {
+          expected[alias] = `/${ROUTE[item.type]}/${item.id}`;
+        }
+      }
+    }
+    expect(tableOf(read('apps/web/src/worker/index.js'))).toEqual(expected);
+  });
+
+  it('survives into the built bundle that actually ships', () => {
+    expect(tableOf(read('apps/web/public/_worker.js'))).toEqual(tableOf(read('apps/web/src/worker/index.js')));
   });
 });

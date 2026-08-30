@@ -1,5 +1,5 @@
 /**
- * Regenerates the LEGACY_ALIASES block inside apps/web/public/_worker.js from
+ * Regenerates the LEGACY_ALIASES block inside the worker source from
  * every entity's `aliases` field in the live (English) registry. Idempotent:
  * safe to run after every phase of the entity-rename migration as more
  * types accumulate aliases.
@@ -52,7 +52,11 @@ const block =
   `const LEGACY_ALIASES = ${JSON.stringify(sorted, null, 2)};\n` +
   '// END GENERATED';
 
-const workerPath = path.join(root, 'site', 'public', '_worker.js');
+// The worker *source*, never `apps/web/public/_worker.js` — that file is
+// esbuild's output now, so a table written there would survive exactly until
+// the next `pnpm build:worker` and then vanish, taking every new redirect with
+// it. Silently: nothing reads the bundle back.
+const workerPath = path.join(root, 'apps', 'web', 'src', 'worker', 'index.js');
 const source = fs.readFileSync(workerPath, 'utf8');
 const updated = source.replace(/\/\/ GENERATED[\s\S]*?\/\/ END GENERATED/, block);
 if (updated === source && !source.includes('// GENERATED')) {
@@ -60,4 +64,4 @@ if (updated === source && !source.includes('// GENERATED')) {
 }
 fs.writeFileSync(workerPath, updated);
 
-console.log(`Wrote ${Object.keys(sorted).length} redirect(s) to apps/web/public/_worker.js.`);
+console.log(`Wrote ${Object.keys(sorted).length} redirect(s) to ${path.relative(root, workerPath)}.`);
