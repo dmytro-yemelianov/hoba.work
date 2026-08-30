@@ -97,6 +97,13 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      # Playwright imports the workspace packages by source, and that source
+      # re-exports its siblings by package name — which resolve to `dist`. This
+      # job downloads the site build but builds nothing, so without this every
+      # spec fails at import, before a browser opens.
+      - name: Build Packages
+        run: pnpm build:packages
+
       - name: Download site build
         uses: actions/download-artifact@v8
         with:
