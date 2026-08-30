@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import { READER_FACING_TYPES } from '@hoba/registry';
 import { getGraph, IDEAL_PATH_ID, STAGES } from '../../lib/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
 import type { GraphNodeInput, GraphRelationType } from '../../lib/graph-view';
@@ -149,10 +150,10 @@ const strings = json({
   exitFullscreen: t('graph.exitFullscreen'),
   tooltipHint: t('graph.tooltipHint'),
   openDetail: t('graph.openDetail'),
-  types: Object.fromEntries(['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'].map((k) => [k, t(`entity.${k}` as Parameters<typeof t>[0])])),
+  types: Object.fromEntries(READER_FACING_TYPES.map((k) => [k, t(`entity.${k}` as Parameters<typeof t>[0])])),
 });
 
-const layers = ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
+const layers = READER_FACING_TYPES;
 const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 ---
 <Layout lang={lang} title={t('graph.title')} activeNav="graph">

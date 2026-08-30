@@ -95,6 +95,21 @@ export const evidenceLevelSchema = z.enum([
 /** The evidence kinds strong enough to carry a `proven` claim (design doc §6). */
 export const PROVING_EVIDENCE_KINDS = ['primary', 'research'] as const;
 
+/**
+ * The six kinds a reader meets: the ones with a page, a card, specimens and
+ * per-actor perspectives. The other five — evidence, record, process, actor,
+ * era — are real entities that the atlas is *made of* rather than ones it puts
+ * in front of you as findings.
+ *
+ * Named once because it was written out by hand in eleven places: the registry
+ * page twice, the graph page twice, `EntityBadge`, `graph-view`, `search`, the
+ * MCP tool schema, and the tests. Every one of them had to be edited when the
+ * `artifact` kind became `observation`, and nothing would have caught the one
+ * that was missed.
+ */
+export const READER_FACING_TYPES = ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
+export type ReaderFacingType = (typeof READER_FACING_TYPES)[number];
+
 export const nodeStatusSchema = z.enum(['active', 'deprecated']);
 
 export const costBandSchema = z.enum(['low', 'medium', 'high']);

@@ -4,6 +4,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 import {
   claimRank,
+  READER_FACING_TYPES,
   registryContentHash,
   empiricalScenarios,
   loadScenarios,
@@ -56,7 +57,7 @@ console.error(`[hoba-mcp] v${version} — registry ${bundle.version} loaded from
 // ---------------------------------------------------------------------------
 // Shared argument schemas
 // ---------------------------------------------------------------------------
-const searchableTypeSchema = z.enum(['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention']);
+const searchableTypeSchema = z.enum(READER_FACING_TYPES);
 const relationSchema = z.enum(['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates']);
 const stageArg = stageIdSchema.optional().describe(`Hiring funnel stage. One of: ${stageIdSchema.options.join(', ')}`);
 

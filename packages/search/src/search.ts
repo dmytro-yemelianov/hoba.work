@@ -1,13 +1,15 @@
+import { READER_FACING_TYPES, type ReaderFacingType } from '@hoba/registry-core/schemas';
 import type { RegistryBundle, RegistryNode } from '@hoba/registry-core/types';
 
 /**
- * What `searchBundle` actually indexes, stated rather than derived.
+ * What `searchBundle` actually indexes: the six kinds a reader meets, plus
+ * records.
  *
  * It used to be `Exclude<EntityType, 'evidence'>`, which was only correct while
  * those two lists happened to agree. They no longer do: the type enum covers
  * all eleven ontology kinds, and search covers the seven with prose to search.
  */
-export type SearchableType = 'observation' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention' | 'record';
+export type SearchableType = ReaderFacingType | 'record';
 
 export interface SearchHit {
   type: SearchableType;
@@ -37,7 +39,7 @@ export function searchBundle(bundle: RegistryBundle, query: string, options: Sea
   if (!q) return [];
 
   const wanted = new Set<SearchableType>(
-    options.types ?? ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention', 'record']
+    options.types ?? [...READER_FACING_TYPES, 'record']
   );
 
   const pools: RegistryNode[] = [

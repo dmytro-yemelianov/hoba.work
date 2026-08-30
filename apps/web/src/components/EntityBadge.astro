@@ -1,7 +1,8 @@
 ---
+import type { ReaderFacingType } from '@hoba/registry';
 import { useTranslations, type Lang } from '../i18n/utils';
 
-type EntityType = 'observation' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention' | 'evidence';
+type EntityType = ReaderFacingType | 'evidence';
 interface Props {
   type: EntityType;
   id?: string;

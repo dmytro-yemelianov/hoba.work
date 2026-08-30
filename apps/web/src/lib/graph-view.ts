@@ -1,3 +1,4 @@
+import type { ReaderFacingType } from '@hoba/registry/core';
 /**
  * Canvas renderer for the HOBA knowledge graph.
  *
@@ -11,7 +12,7 @@
  * tooltip and the details panel as real DOM through the callbacks below.
  */
 
-export type GraphNodeType = 'observation' | 'barrier' | 'mechanism' | 'pattern' | 'loop' | 'intervention';
+export type GraphNodeType = ReaderFacingType;
 
 export type GraphRelationType =
   | 'operates_at'
