@@ -11,11 +11,13 @@ operates_at:
 emissions:
   -
     artifact: "obs.feedback_naming_as_absent_something_the_submitted_work_contains"
+    observed_at: ["screening"]
     fidelity: "direct"
     likelihood: "medium"
     evidence: []
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
+    observed_at: ["screening"]
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

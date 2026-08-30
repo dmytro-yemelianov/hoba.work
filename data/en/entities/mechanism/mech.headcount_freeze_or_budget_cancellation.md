@@ -12,11 +12,13 @@ operates_at:
 emissions:
   -
     artifact: "obs.position_closed_after_final_interview_without_hire"
+    observed_at: ["offer"]
     fidelity: "direct"
     likelihood: "high"
     evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
   -
     artifact: "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
+    observed_at: ["post-offer"]
     fidelity: "direct"
     likelihood: "high"
     evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]

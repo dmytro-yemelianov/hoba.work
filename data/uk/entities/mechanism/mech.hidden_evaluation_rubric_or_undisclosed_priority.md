@@ -12,11 +12,13 @@ operates_at:
 emissions:
   -
     artifact: "obs.explicit_feedback_citing_skill_depth_shortfall"
+    observed_at: ["technical"]
     fidelity: "distortion"
     likelihood: "medium"
     evidence: ["evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"]
   -
     artifact: "obs.conflicting_feedback_across_different_interviewers"
+    observed_at: ["team"]
     fidelity: "direct"
     likelihood: "high"
     evidence: ["evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"]

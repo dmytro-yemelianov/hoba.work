@@ -11,6 +11,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.rejection_after_the_application_sat_pending_for_months"
+    observed_at: ["ingestion"]
     fidelity: "direct"
     likelihood: "high"
     evidence: []

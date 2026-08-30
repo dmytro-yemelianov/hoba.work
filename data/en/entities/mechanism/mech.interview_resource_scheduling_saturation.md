@@ -12,6 +12,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.multiple_interview_reschedulings_or_interviewer_no_show"
+    observed_at: ["technical", "team"]
     fidelity: "direct"
     likelihood: "high"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

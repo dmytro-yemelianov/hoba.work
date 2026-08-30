@@ -12,11 +12,13 @@ operates_at:
 emissions:
   -
     artifact: "obs.feedback_stating_candidate_is_overqualified_for_the_grade"
+    observed_at: ["recruiter"]
     fidelity: "direct"
     likelihood: "high"
     evidence: ["evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
+    observed_at: ["screening"]
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

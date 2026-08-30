@@ -11,6 +11,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground"
+    observed_at: ["recruiter"]
     fidelity: "direct"
     likelihood: "high"
     evidence: []

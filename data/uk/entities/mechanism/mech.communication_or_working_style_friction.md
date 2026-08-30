@@ -11,6 +11,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.communication_mismatch_or_tone_friction_in_panel"
+    observed_at: ["team"]
     fidelity: "direct"
     likelihood: "high"
     evidence: ["evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"]

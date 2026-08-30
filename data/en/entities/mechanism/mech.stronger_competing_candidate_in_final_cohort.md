@@ -17,6 +17,7 @@ emissions:
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
   -
     artifact: "obs.position_closed_after_final_interview_without_hire"
+    observed_at: ["offer"]
     fidelity: "distortion"
     likelihood: "low"
     evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]

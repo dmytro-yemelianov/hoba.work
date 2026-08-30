@@ -17,6 +17,7 @@ emissions:
     observed_at: ["recruiter"]
   -
     artifact: "obs.compensation_band_reduced_or_altered_mid_process"
+    observed_at: ["compensation"]
     fidelity: "direct"
     likelihood: "medium"
     evidence: ["evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"]

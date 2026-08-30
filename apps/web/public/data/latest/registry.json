@@ -6755,7 +6755,9 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [],
-          "observed_at": []
+          "observed_at": [
+            "ingestion"
+          ]
         },
         {
           "artifact": "obs.generic_closer_alignment_rejection_template",
@@ -7188,7 +7190,9 @@
           "evidence": [
             "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
-          "observed_at": []
+          "observed_at": [
+            "team"
+          ]
         },
         {
           "artifact": "obs.generic_closer_alignment_rejection_template",
@@ -7518,7 +7522,9 @@
           "evidence": [
             "evidence.too_good_to_hire_capability_and_inferences_about_commitment_in_labor_markets"
           ],
-          "observed_at": []
+          "observed_at": [
+            "recruiter"
+          ]
         },
         {
           "artifact": "obs.generic_closer_alignment_rejection_template",
@@ -7527,7 +7533,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "screening"
+          ]
         }
       ],
       "facets": {
@@ -7713,7 +7721,9 @@
           "evidence": [
             "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
-          "observed_at": []
+          "observed_at": [
+            "offer"
+          ]
         },
         {
           "artifact": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
@@ -7722,7 +7732,9 @@
           "evidence": [
             "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
-          "observed_at": []
+          "observed_at": [
+            "post-offer"
+          ]
         }
       ],
       "facets": {
@@ -7817,7 +7829,9 @@
           "evidence": [
             "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
-          "observed_at": []
+          "observed_at": [
+            "technical"
+          ]
         },
         {
           "artifact": "obs.conflicting_feedback_across_different_interviewers",
@@ -7826,7 +7840,9 @@
           "evidence": [
             "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
           ],
-          "observed_at": []
+          "observed_at": [
+            "team"
+          ]
         }
       ],
       "facets": {
@@ -8120,7 +8136,10 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "technical",
+            "team"
+          ]
         },
         {
           "artifact": "obs.complete_silence_after_submission",
@@ -8218,7 +8237,9 @@
           "fidelity": "direct",
           "likelihood": "high",
           "evidence": [],
-          "observed_at": []
+          "observed_at": [
+            "recruiter"
+          ]
         },
         {
           "artifact": "obs.rejection_within_minutes_of_application_submission",
@@ -8439,7 +8460,9 @@
           "fidelity": "direct",
           "likelihood": "medium",
           "evidence": [],
-          "observed_at": []
+          "observed_at": [
+            "screening"
+          ]
         },
         {
           "artifact": "obs.generic_closer_alignment_rejection_template",
@@ -8448,7 +8471,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "screening"
+          ]
         },
         {
           "artifact": "obs.explicit_feedback_citing_skill_depth_shortfall",
@@ -8962,7 +8987,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "sourcing"
+          ]
         },
         {
           "artifact": "obs.complete_silence_after_submission",
@@ -9288,7 +9315,9 @@
           "evidence": [
             "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
           ],
-          "observed_at": []
+          "observed_at": [
+            "offer"
+          ]
         }
       ],
       "facets": {
@@ -9484,7 +9513,9 @@
           "evidence": [
             "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
           ],
-          "observed_at": []
+          "observed_at": [
+            "compensation"
+          ]
         },
         {
           "artifact": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",

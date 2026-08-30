@@ -13,6 +13,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
+    observed_at: ["sourcing"]
     fidelity: "distortion"
     likelihood: "high"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
