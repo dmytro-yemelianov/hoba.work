@@ -5,7 +5,7 @@
  * that into a PNG — but run at build time rather than in the Worker. That keeps
  * it off any plan that meters CPU per request, keeps `_worker.js` a plain
  * dependency-free module (the tests import it directly, and CI forbids
- * generated output under site/public), and makes every card a cacheable static
+ * generated output under apps/web/public), and makes every card a cacheable static
  * asset instead of a render.
  *
  * The card leads with the tell: the one line from the entity's first specimen
@@ -1085,7 +1085,7 @@ async function main(): Promise<void> {
     }
   }
 
-  process.stdout.write(`cards: ${written} PNGs, ${(bytes / 1024 / 1024).toFixed(1)} MB in site/dist/cards/\n`);
+  process.stdout.write(`cards: ${written} PNGs, ${(bytes / 1024 / 1024).toFixed(1)} MB in apps/web/dist/cards/\n`);
 }
 
 main().catch((error) => {

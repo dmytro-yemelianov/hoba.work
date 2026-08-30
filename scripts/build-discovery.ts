@@ -3,7 +3,7 @@
  *
  * All four are generated from the registry and the route list so they cannot
  * drift from what the site actually serves. The CI step that fails on a dirty
- * `site/public` after a build is what keeps them honest.
+ * `apps/web/public` after a build is what keeps them honest.
  *
  * llms.txt follows the convention of a short orientation file at the root:
  * what this is, how it is structured, where the machine-readable copies live.

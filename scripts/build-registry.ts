@@ -1,7 +1,7 @@
 /**
  * Generate every machine-readable export of the registry:
- *   schemas/*.schema.json, site/public/schemas/*, site/public/data/**,
- *   site/public/api/v1/** and site/public/openapi.json.
+ *   schemas/*.schema.json, apps/web/public/schemas/*, apps/web/public/data/**,
+ *   apps/web/public/api/v1/** and apps/web/public/openapi.json.
  *
  * Output is byte-deterministic for a given Git tree (spec §17): no timestamps
  * are generated here — `updated_at` comes from registry.yaml.
@@ -105,7 +105,7 @@ for (const [filename, schemaObj] of Object.entries(schemas)) {
   writeJson(path.join(schemasDir, filename), withId);
   writeJson(path.join(sitePublicDir, 'schemas', filename), withId);
 }
-console.log(`✓ Generated ${Object.keys(schemas).length} JSON schemas in schemas/ and site/public/schemas/`);
+console.log(`✓ Generated ${Object.keys(schemas).length} JSON schemas in schemas/ and apps/web/public/schemas/`);
 
 // ---------------------------------------------------------------------------
 // 2. Static data exports (latest + immutable release snapshot)
@@ -150,7 +150,7 @@ writeJson(path.join(latestDir, 'manifest.json'), {
 console.log('✓ Generated machine exports (registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)');
 
 // ---------------------------------------------------------------------------
-// 3. Static REST API (site/public/api/v1/**)
+// 3. Static REST API (apps/web/public/api/v1/**)
 // ---------------------------------------------------------------------------
 const apiDir = path.join(sitePublicDir, 'api', 'v1');
 resetDir(apiDir);

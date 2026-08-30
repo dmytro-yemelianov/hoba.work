@@ -1,5 +1,5 @@
 /**
- * Regenerates the LEGACY_ALIASES block inside site/public/_worker.js from
+ * Regenerates the LEGACY_ALIASES block inside apps/web/public/_worker.js from
  * every entity's `aliases` field in the live (English) registry. Idempotent:
  * safe to run after every phase of the entity-rename migration as more
  * types accumulate aliases.
@@ -60,4 +60,4 @@ if (updated === source && !source.includes('// GENERATED')) {
 }
 fs.writeFileSync(workerPath, updated);
 
-console.log(`Wrote ${Object.keys(sorted).length} redirect(s) to site/public/_worker.js.`);
+console.log(`Wrote ${Object.keys(sorted).length} redirect(s) to apps/web/public/_worker.js.`);
