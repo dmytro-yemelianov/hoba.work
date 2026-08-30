@@ -15,6 +15,19 @@ worth less than one that does not.
 
 ---
 
+## [Unreleased] (Registry 1.1.0)
+
+The registry version said `1.0.0`, dated 28 August, over content that had
+changed twelve times since — seven interventions, three emissions, a trace the
+atlas had been showing without explaining. `registry.yaml`'s own comment says
+"bump `version` on every content release" and nothing enforced it, so the site
+published a release number that named the wrong content. The hash was right the
+whole time, because it is derived; the number was not, because it was typed.
+
+`release_hash` records the content a version names, and a test holds them
+together: changing content fails until a release is cut, and cutting one without
+recomputing fails too.
+
 ## [0.6.0] - 2026-08-30 (Registry 1.0.0, Schema 1.2.0)
 
 Live at https://hoba.work.

@@ -1,5 +1,7 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { COLLECTION_FOR, ID_PATTERNS, READER_FACING_TYPES, compareBundleStructure, entityTypeSchema, loadRegistryFromRoot, nodesOfTypes, resolveRegistryRoot, validateRegistry, validateRegistryBundle, evidenceSchema } from '@hoba/registry';
+import { COLLECTION_FOR, ID_PATTERNS, registryContentHash, READER_FACING_TYPES, compareBundleStructure, entityTypeSchema, loadRegistryFromRoot, nodesOfTypes, resolveRegistryRoot, validateRegistry, validateRegistryBundle, evidenceSchema } from '@hoba/registry';
 import { barrier, intervention, loop, makeBundle, mechanism, pattern } from './helpers';
 
 const rules = (bundle: ReturnType<typeof makeBundle>) => validateRegistryBundle(bundle).map((i) => `${i.severity}:${i.rule}`);
@@ -301,5 +303,23 @@ describe('the map from a kind to where a bundle keeps it', () => {
       ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
     ].map((n) => n.id).sort();
     expect(gathered).toEqual(expected);
+  });
+});
+
+describe('the release manifest and the content it names', () => {
+  /**
+   * `registry.yaml` says "bump `version` on every content release", and nothing
+   * enforced it: the published manifest read "1.0.0, 28 August" over content
+   * that had changed twelve times since. The hash is derived from the files, so
+   * recording it beside the version makes the two move together — a content
+   * change fails here until the release is cut, and cutting one without
+   * recomputing fails too.
+   */
+  it('names the content it actually ships', () => {
+    const root = resolveRegistryRoot();
+    const manifest = fs.readFileSync(path.join(root, 'registry.yaml'), 'utf8');
+    const declared = manifest.match(/^release_hash:\s*"([0-9a-f]{64})"/m)?.[1];
+    expect(declared, 'registry.yaml must record the hash of the content this version names').toBeDefined();
+    expect(registryContentHash(root)).toBe(declared);
   });
 });
