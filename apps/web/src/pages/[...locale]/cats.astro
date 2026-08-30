@@ -49,7 +49,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
       <!-- Left Column: Visual Stage -->
       <div class="lg:col-span-6 flex flex-col items-center">
-        <div class="cat-stage-container w-full rounded-2xl border border-slate-700/60 bg-slate-900/80 p-6 flex flex-col items-center shadow-2xl relative backdrop-blur-md overflow-hidden">
+        <div class="cat-stage-container w-full rounded-2xl border border-slate-700/60 bg-slate-900/95 p-6 flex flex-col items-center shadow-2xl relative backdrop-blur-md overflow-hidden">
           <!-- Ambient Glow Background -->
           <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-pink-500/10 pointer-events-none"></div>
 
@@ -133,32 +133,32 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
           </div>
         </div>
 
-        <p class="text-xs text-slate-500 mt-3 text-center">
+        <p class="text-xs text-hoba-muted mt-3 text-center">
           ✨ {t('cats.combinatorics')} · 100% Vector SVG
         </p>
       </div>
 
       <!-- Right Column: Interactive Parameter Tabs -->
       <div class="lg:col-span-6 flex flex-col">
-        <div class="rounded-2xl border border-slate-700/60 bg-slate-900/80 p-6 flex flex-col shadow-xl backdrop-blur-md">
+        <div class="rounded-2xl border border-slate-700/60 bg-slate-900/95 p-6 flex flex-col shadow-xl backdrop-blur-md">
           <!-- Parameter Tabs Header -->
           <div class="flex items-center gap-1 border-b border-slate-800 pb-3 overflow-x-auto no-scrollbar" role="tablist">
-            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer bg-cyan-500 text-white" data-tab="pose" role="tab" aria-selected="true">
+            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer bg-cyan-500 text-slate-900" data-tab="pose" role="tab" aria-selected="true">
               {t('cats.tab.pose')}
             </button>
-            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-800" data-tab="head" role="tab" aria-selected="false">
+            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-slate-800" data-tab="head" role="tab" aria-selected="false">
               {t('cats.tab.head')}
             </button>
-            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-800" data-tab="face" role="tab" aria-selected="false">
+            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-slate-800" data-tab="face" role="tab" aria-selected="false">
               {t('cats.tab.face')}
             </button>
-            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-800" data-tab="coat" role="tab" aria-selected="false">
+            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-slate-800" data-tab="coat" role="tab" aria-selected="false">
               {t('cats.tab.coat')}
             </button>
-            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-800" data-tab="acc" role="tab" aria-selected="false">
+            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-slate-800" data-tab="acc" role="tab" aria-selected="false">
               {t('cats.tab.acc')}
             </button>
-            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-400 hover:text-slate-200 hover:bg-slate-800" data-tab="backdrop" role="tab" aria-selected="false">
+            <button class="cat-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer text-slate-300 hover:text-white hover:bg-slate-800" data-tab="backdrop" role="tab" aria-selected="false">
               {t('cats.tab.backdrop')}
             </button>
           </div>
@@ -201,7 +201,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
             </div>
 
             <div>
-              <label class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Ступінь пухнастості / пузика (Chonk Factor)</label>
+              <label for="slider-chonk" class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Ступінь пухнастості / пузика (Chonk Factor)</label>
               <input id="slider-chonk" type="range" min="0.85" max="1.3" step="0.05" value={initialDNA.chonkFactor} class="w-full accent-cyan-500" />
             </div>
           </div>
@@ -407,11 +407,11 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
     <section class="mt-12">
       <div class="flex items-center justify-between mb-6">
         <div>
-          <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+          <h2 class="text-xl font-bold text-hoba-text flex items-center gap-2">
             <span>🏆</span>
             <span>{t('cats.hallOfFame')}</span>
           </h2>
-          <p class="text-xs text-slate-400 mt-1">Оберіть готовий кураторський архетип для швидкого старту</p>
+          <p class="text-xs text-hoba-muted mt-1">Оберіть готовий кураторський архетип для швидкого старту</p>
         </div>
       </div>
 
@@ -422,7 +422,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
           return (
             <button
               type="button"
-              class="preset-card p-4 rounded-xl border border-slate-700/60 bg-slate-900/60 hover:bg-slate-800/80 hover:border-cyan-500/80 transition-all flex flex-col items-center text-center cursor-pointer group shadow-md"
+              class="preset-card p-4 rounded-xl border border-slate-700/60 bg-slate-900/90 hover:bg-slate-800 hover:border-cyan-500/80 transition-all flex flex-col items-center text-center cursor-pointer group shadow-md"
               data-seed={preset.dna.seed}
             >
               <div class="w-24 h-24 flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -444,11 +444,11 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
     <section class="mt-12 pt-8 border-t border-slate-800">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
         <div>
-          <h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+          <h2 class="text-xl font-bold text-hoba-text flex items-center gap-2">
             <span>🐾</span>
             <span>{t('cats.armyTitle')}</span>
           </h2>
-          <p class="text-xs text-slate-400 mt-1">Генерація випадкових котячих варіацій у реальному часі</p>
+          <p class="text-xs text-hoba-muted mt-1">Генерація випадкових котячих варіацій у реальному часі</p>
         </div>
         <button
           id="generate-army-btn"
@@ -555,12 +555,12 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
     tabBtn.addEventListener('click', () => {
       const tab = tabBtn.getAttribute('data-tab');
       document.querySelectorAll('.cat-tab-btn').forEach((b) => {
-        b.classList.remove('bg-cyan-500', 'text-white');
-        b.classList.add('text-slate-400');
+        b.classList.remove('bg-cyan-500', 'text-slate-900');
+        b.classList.add('text-hoba-muted');
         b.setAttribute('aria-selected', 'false');
       });
-      tabBtn.classList.add('bg-cyan-500', 'text-white');
-      tabBtn.classList.remove('text-slate-400');
+      tabBtn.classList.add('bg-cyan-500', 'text-slate-900');
+      tabBtn.classList.remove('text-hoba-muted');
       tabBtn.setAttribute('aria-selected', 'true');
 
       document.querySelectorAll('.tab-pane').forEach((pane) => pane.classList.add('hidden'));
@@ -672,11 +672,11 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
 
       const card = document.createElement('button');
       card.type = 'button';
-      card.className = 'p-3 rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-900 hover:border-cyan-500/60 transition-all flex flex-col items-center text-center cursor-pointer group shadow';
+      card.className = 'p-3 rounded-xl border border-slate-800 bg-slate-950/95 hover:bg-slate-900 hover:border-cyan-500/60 transition-all flex flex-col items-center text-center cursor-pointer group shadow';
       card.innerHTML = `
         <div class="w-20 h-20 flex items-center justify-center group-hover:scale-105 transition-transform">${svg}</div>
         <span class="text-xs font-bold text-slate-300 mt-2 truncate w-full group-hover:text-cyan-300">${dna.name}</span>
-        <span class="text-[10px] text-slate-500 font-mono">${dna.pose}</span>
+        <span class="text-[10px] text-slate-400 font-mono">${dna.pose}</span>
       `;
       card.addEventListener('click', () => {
         updateStudio(dna);

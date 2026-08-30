@@ -1,7 +1,47 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { loadRegistryFromRoot, findRegistryRoot } from '@hoba/registry';
 
-const PAGES = ['/', '/registry', '/analyze', '/mechanisms/mech.genuine_technical_skill_shortfall', '/patterns', '/data', '/developers', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade'];
+/**
+ * One address per page template, and the list is derived so that adding a
+ * template cannot quietly add an unchecked page. It was written by hand before,
+ * and nine of the twenty-two templates had never been through axe at all —
+ * `about`, `contribute`, `methodology`, `cats`, the 404, and the barrier, loop
+ * and intervention pages, which are three of the six kinds a reader meets.
+ */
+const REPO_ROOT = path.join(__dirname, '..');
+const TEMPLATES = path.join(REPO_ROOT, 'apps', 'web', 'src', 'pages', '[...locale]');
+const bundle = loadRegistryFromRoot(findRegistryRoot(REPO_ROOT)!, 'en');
+
+/** A template's representative address: an entity page needs a real entry. */
+const SAMPLE: Record<string, string> = {
+  'index': '/',
+  '404': '/a-path-that-is-not-a-page',
+  'actors/index': '/actors',
+  'actors/[id]': `/actors/${bundle.actors[0]!.slug}`,
+  'barriers/[id]': `/barriers/${bundle.barriers[0]!.id}`,
+  'observations/[id]': `/observations/${bundle.observations[0]!.id}`,
+  'mechanisms/[id]': `/mechanisms/${bundle.mechanisms[0]!.id}`,
+  'patterns/[id]': `/patterns/${bundle.patterns[0]!.id}`,
+  'loops/[id]': `/loops/${bundle.loops[0]!.id}`,
+  'interventions/[id]': `/interventions/${bundle.interventions[0]!.id}`,
+};
+
+const templateNames = (): string[] => {
+  const out: string[] = [];
+  const walk = (dir: string, prefix = '') => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.isDirectory()) walk(path.join(dir, e.name), `${prefix}${e.name}/`);
+      else if (e.name.endsWith('.astro')) out.push(`${prefix}${e.name.replace(/\.astro$/, '')}`);
+    }
+  };
+  walk(TEMPLATES);
+  return out.sort();
+};
+
+const PAGES = templateNames().map((name) => SAMPLE[name] ?? `/${name}`);
 
 for (const scheme of ['dark', 'light'] as const) {
   test.describe(`accessibility (${scheme})`, () => {
