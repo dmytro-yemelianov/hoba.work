@@ -1,5 +1,6 @@
 import { HOBAKnowledgeGraph } from '@hoba/graph/graph';
-import { PROVING_EVIDENCE_KINDS } from '@hoba/registry-core/schemas';
+import { PROVING_EVIDENCE_KINDS, READER_FACING_TYPES } from '@hoba/registry-core/schemas';
+import { nodesOfTypes } from '@hoba/registry-core/types';
 import type { RegistryBundle, RegistryNode } from '@hoba/registry-core/types';
 
 export type ValidationSeverity = 'error' | 'warning';
@@ -19,15 +20,9 @@ export interface ValidationReport {
   ok: boolean;
 }
 
-const allNodes = (bundle: RegistryBundle): RegistryNode[] => [
-  ...bundle.observations,
-  ...bundle.barriers,
-  ...bundle.mechanisms,
-  ...bundle.patterns,
-  ...bundle.loops,
-  ...bundle.interventions,
-  ...(bundle.records ?? []),
-];
+/** Everything a reader meets, plus records: the types that carry claims. */
+const allNodes = (bundle: RegistryBundle): RegistryNode[] =>
+  nodesOfTypes(bundle, [...READER_FACING_TYPES, 'record']) as RegistryNode[];
 
 /**
  * Referential-integrity and editorial rules for a loaded bundle (spec §23).

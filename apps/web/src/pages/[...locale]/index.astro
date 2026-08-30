@@ -53,7 +53,8 @@ const personas = [
     role: 'researcher',
     icon: '🔬',
     title: t('home.role.researcher.title'),
-    desc: t('home.role.researcher.desc'),
+    // Counted, not stated: this said 89 while the registry had grown to 96.
+    desc: t('home.role.researcher.desc', { n: totalNodes }),
     cta: `${t('graph.title')} →`,
     href: `${prefix}/graph`,
     badge: 'Graph Explorer',

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ID_PATTERNS, compareBundleStructure, loadRegistryFromRoot, resolveRegistryRoot, validateRegistry, validateRegistryBundle, evidenceSchema } from '@hoba/registry';
+import { COLLECTION_FOR, ID_PATTERNS, READER_FACING_TYPES, compareBundleStructure, entityTypeSchema, loadRegistryFromRoot, nodesOfTypes, resolveRegistryRoot, validateRegistry, validateRegistryBundle, evidenceSchema } from '@hoba/registry';
 import { barrier, intervention, loop, makeBundle, mechanism, pattern } from './helpers';
 
 const rules = (bundle: ReturnType<typeof makeBundle>) => validateRegistryBundle(bundle).map((i) => `${i.severity}:${i.rule}`);
@@ -275,5 +275,31 @@ describe('evidence aliases survive Zod parsing', () => {
       summary: 'A synthetic fixture used only to verify the default value.',
     });
     expect(parsed.aliases).toEqual([]);
+  });
+});
+
+describe('the map from a kind to where a bundle keeps it', () => {
+  /**
+   * `satisfies Record<EntityType, keyof RegistryBundle>` checks the shape at
+   * compile time; this checks that the key is actually there on a bundle, which
+   * a type alone cannot promise for an optional collection.
+   */
+  it('names a real collection for every kind the schema has', () => {
+    const bundle = makeBundle();
+    const missing = entityTypeSchema.options.filter((kind) => {
+      const key = COLLECTION_FOR[kind];
+      return !key || !(key in bundle);
+    });
+    expect(missing).toEqual([]);
+  });
+
+  it('gathers the reader-facing kinds and nothing else', () => {
+    const bundle = makeBundle();
+    const gathered = nodesOfTypes(bundle, READER_FACING_TYPES).map((n) => n.id).sort();
+    const expected = [
+      ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
+      ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+    ].map((n) => n.id).sort();
+    expect(gathered).toEqual(expected);
   });
 });

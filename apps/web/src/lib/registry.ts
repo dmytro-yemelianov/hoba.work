@@ -9,6 +9,8 @@ import {
   findRegistryRoot,
   HOBAKnowledgeGraph,
   loadRegistryFromRoot,
+  nodesOfTypes,
+  READER_FACING_TYPES,
   stageIdSchema,
   type ContentLang,
   type EmpiricalScenario,
@@ -54,14 +56,7 @@ export function getGraph(lang: ContentLang = 'en'): HOBAKnowledgeGraph {
 
 
 export function countGraphNodes(bundle: RegistryBundle): number {
-  return (
-    bundle.observations.length +
-    bundle.barriers.length +
-    bundle.mechanisms.length +
-    bundle.patterns.length +
-    bundle.loops.length +
-    bundle.interventions.length
-  );
+  return nodesOfTypes(bundle, READER_FACING_TYPES).length;
 }
 
 /** Registry without markdown bodies — what client-side scripts need, at a fraction of the page weight. */

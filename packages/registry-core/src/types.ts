@@ -425,3 +425,32 @@ export interface NeverAlone {
   /** Mechanisms emitting everything this one does, and so never ruled out. */
   coveredBy: string[];
 }
+
+/**
+ * The collection on a bundle that holds each entity type. Walking the registry
+ * used to mean writing the kinds out — `countGraphNodes` listed six, the
+ * validator's `allNodes` listed the same six plus records, and neither would
+ * learn about a seventh. One map, so adding a kind to `entityTypeSchema`
+ * either lands here or fails to compile.
+ */
+export const COLLECTION_FOR = {
+  observation: 'observations',
+  barrier: 'barriers',
+  mechanism: 'mechanisms',
+  pattern: 'patterns',
+  loop: 'loops',
+  intervention: 'interventions',
+  record: 'records',
+  process: 'processes',
+  actor: 'actors',
+  era: 'eras',
+  evidence: 'evidence',
+} as const satisfies Record<EntityType, keyof RegistryBundle>;
+
+/** Every entry of the named types, in the order the types were given. */
+export function nodesOfTypes<T extends EntityType>(
+  bundle: RegistryBundle,
+  types: readonly T[]
+): Array<RegistryBundle[(typeof COLLECTION_FOR)[T]][number]> {
+  return types.flatMap((t) => (bundle[COLLECTION_FOR[t]] ?? []) as never);
+}

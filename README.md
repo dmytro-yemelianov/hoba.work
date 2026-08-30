@@ -140,12 +140,18 @@ pnpm dev
 ## 5. Machine & Developer Interfaces
 
 ### Static REST API
-Hosted with zero database latency under `https://hoba.work/api/v1/`:
-- `GET /api/v1/artifacts` — List all observations
-- `GET /api/v1/barriers` — List all barrier stages
-- `GET /api/v1/mechanisms` — List all mechanisms with classification facets
-- `GET /api/v1/graph` — Complete graph elements for visualization
-- OpenAPI 3.1 Contract: [`/openapi.json`](https://hoba.work/openapi.json)
+Flat files under `https://hoba.work/api/v1/`, served from disk with no database
+behind them. Every collection has an index and one document per entry:
+- `GET /api/v1/observations/index.json` — every observation
+- `GET /api/v1/barriers/index.json` — every barrier, in stage order
+- `GET /api/v1/mechanisms/index.json` — every mechanism with its facets
+- `GET /api/v1/mechanisms/mech.ats_parser_extraction_failure.json` — one entry
+- `GET /api/v1/graph/index.json` — nodes and edges for the explorer
+- OpenAPI 3.1 contract, generated from the registry: [`/openapi.json`](https://hoba.work/openapi.json)
+
+The `index.json` is not decoration: these paths are excluded from the worker and
+served as static files, so a directory does not resolve to its index. The
+contract lists all 22 paths.
 
 ### Validation over HTTP
 `POST /validate/{analysis,scenario,claim}` check a submitted document against the
