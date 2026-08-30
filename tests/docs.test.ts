@@ -5,14 +5,19 @@ import { loadRegistryFromRoot, findRegistryRoot } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 
 /**
- * Documents a reader is meant to treat as current. Everything else at the root
- * is a record of work already done and keeps the names that were canonical when
- * it was written: CHANGELOG.md is the release history; DRAFT-WF-004.md decided
- * the client funnel, which now exists as `proc.client_account_hiring_funnel`;
- * PLAN-SUBSTRATE.md and RFC-RECORDS.md planned the substrate and the record
- * format, both of which shipped. Rewriting those would falsify the record.
+ * Documents a reader is meant to treat as current. PLAN-SUBSTRATE.md is one of
+ * them despite reading as a plan: its stages are cited from source — lift.ts
+ * names "the rule of the gate (PLAN-SUBSTRATE A2)" — so the code depends on it
+ * being accurate.
+ *
+ * What is left out is `docs/decided/`, where a settled question keeps the names
+ * that were canonical when it was written, and CHANGELOG.md, which is the
+ * release history. Rewriting either would remove the evidence of when something
+ * was decided. Renaming an entity is not that: it is the same entity, and
+ * naming it as it is now makes the claim checkable rather than falsifying it —
+ * which is why the living documents were migrated rather than frozen.
  */
-const LIVING = ['README.md', 'CONTRIBUTING.md', 'ROADMAP.md', 'SPEC-MODEL.md'];
+const LIVING = ['README.md', 'CONTRIBUTING.md', 'ROADMAP.md', 'SPEC-MODEL.md', 'PLAN-SUBSTRATE.md'];
 
 const bundle = loadRegistryFromRoot(findRegistryRoot(REPO_ROOT)!, 'en');
 const collections = [
@@ -57,6 +62,45 @@ describe('the documents that describe the registry as it is', () => {
     for (const f of LIVING) {
       for (const m of read(f).matchAll(/`((?:obs|bar|mech|pat|loop|int|proc|actor|era|record|evidence)\.[a-z0-9_]+)`/g)) {
         if (!ids.has(m[1])) missing.push(`${f}: ${m[1]}`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+  /**
+   * A path in backticks is a claim that a reader can open it. Eight of the
+   * fourteen these documents named did not exist: the package split moved
+   * `packages/registry/src/*` into three packages and the Lean sources moved
+   * under `formal/lean/`, and prose is the one place a moved file leaves no
+   * broken import behind.
+   */
+  it('points only at files and directories that exist', () => {
+    const missing: string[] = [];
+    for (const f of LIVING) {
+      for (const m of read(f).matchAll(/`((?:packages|apps|scripts|tests|data|formal|e2e|docs)\/[A-Za-z0-9_.\/-]*)`/g)) {
+        if (!fs.existsSync(path.join(REPO_ROOT, m[1].replace(/\/$/, '')))) missing.push(`${f}: ${m[1]}`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+  /**
+   * A structure diagram sits inside a fence, so the backtick rule above never
+   * saw it — and README's had rotted entirely: it still showed one `registry`
+   * package after the split into five, `site/` for what is now `apps/web/`, and
+   * `content/` and `content-uk/` for trees that moved under `data/` two
+   * migrations ago. It is the first orientation a reader gets.
+   */
+  it('draws a tree whose every branch exists', () => {
+    const missing: string[] = [];
+    for (const f of LIVING) {
+      const stack: string[] = [];
+      for (const line of read(f).split('\n')) {
+        const m = line.match(/^((?:[│ ] {3})*)(?:├──|└──) ([A-Za-z0-9_.\/-]+)/);
+        if (!m) continue;
+        const depth = m[1].length / 4;
+        stack.length = depth;
+        stack[depth] = m[2].replace(/\/$/, '');
+        const rel = stack.slice(0, depth + 1).join('/');
+        if (!fs.existsSync(path.join(REPO_ROOT, rel))) missing.push(`${f}: ${rel}`);
       }
     }
     expect(missing).toEqual([]);

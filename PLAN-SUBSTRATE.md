@@ -12,21 +12,21 @@ Stages are issues #21–#30 on the board. The gate is live and green.
 |---|---|
 | A1 schema | **done** — `056b55e`. The two parse-enforced policies held. |
 | A2 gate | **done** — `3abe97c`. Held on both mirrors on the first run. |
-| A3 derivations | **done**. Queries re-derived with 100% equivalence; pattern finding: P-001 & P-003 computed-empty, P-002 & P-004 prose-asserted. |
-| A4 expressiveness | **done**. Comparative arity & cohorts on M-002/M-009/M-018; statements on communicative observations; visibility rules in substrate. |
+| A3 derivations | **done**. Queries re-derived with 100% equivalence; pattern finding: `pat.seniority_double_bind` & `pat.experience_age_impossibility` computed-empty, `pat.closed_then_reposted_requisition_motif` & `pat.compensation_double_bind` prose-asserted. |
+| A4 expressiveness | **done**. Comparative arity & cohorts on `mech.stronger_competing_candidate_in_final_cohort`/`mech.recruiter_volume_quota_incentive_distortion`/`mech.domain_specificity_over_weighting`; statements on communicative observations; visibility rules in substrate. |
 | A5 records & flows | **done**. 4 seed shapes (R-001–R-013) authored in EN & UK at zero amounts; lifted to substrate records & flows. |
 | A6 engine swap | **done**. `narrow()`, `checkConformance()`, `separation()` rewired to unified substrate derivations. |
 | A7 Lean | **done**. Substrate summary, conditions, processes, records, flow conservation, and DAG theorems kernel-proved in Lean. |
-| B1 client account | **done**. `client` actor, `B-015`, `WF-004` (13 states / 16 transitions), `M-025`, `M-026` across both mirrors. |
-| B2 epilogue | **done**. `B-016`, `M-027`, `M-028`, `A-020`, `EVD-040`, `EVD-041` across both mirrors. |
-| B3 observations | **done**. `A-021` (republished posting with refreshed date) splitting `M-006` and `M-001`/`M-025`. |
-| C1 total discrimination | **done**. Probe exclusions and rationales audited and landed across all observations A-001..A-021 in both mirrors. |
-| C2 temporal matrix | **done**. Full latency bounds (`latency_expected_days`, `latency_max_days`) added across WF-001, WF-002, WF-004; temporal anomaly engine implemented. |
+| B1 client account | **done**. `client` actor, `bar.client_profile_approval_and_client_interview`, `proc.client_account_hiring_funnel` (13 states / 16 transitions), `mech.bid_conditional_talent_pool`, `mech.bench_priority_fill` across both mirrors. |
+| B2 epilogue | **done**. `bar.probation_period_post_start_confirmation`, `mech.start_date_slippage_and_post_acceptance_revocation`, `mech.probation_used_as_extended_de_facto_interview`, `obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation`, `evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28`, `evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996` across both mirrors. |
+| B3 observations | **done**. `obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body` (republished posting with refreshed date) splitting `mech.stale_or_orphaned_job_requisition` and `mech.genuine_technical_skill_shortfall`/`mech.bid_conditional_talent_pool`. |
+| C1 total discrimination | **done**. Probe exclusions and rationales audited and landed across all 21 observations in both mirrors. |
+| C2 temporal matrix | **done**. Full latency bounds (`latency_expected_days`, `latency_max_days`) added across `proc.the_hiring_funnel_end_to_end`, `proc.an_application_inside_the_ats`, `proc.client_account_hiring_funnel`; temporal anomaly engine implemented. |
 | C3 economic calculus | **done**. Runway calculus (`substrateCalculateRunway`), fee yield distributions, and flow conservation verification (`substrateVerifyFlowConservation`). |
 | C4 formal temporal proofs | **done**. Lean 4 kernel theorems on topological acyclicity, event class presence, condition partition, and depth bounds. |
 
 Open decisions, both with the author: the RFC's three points, and the
-WF-004-versus-variant call with its two sub-questions (the `client` stage
+`proc.client_account_hiring_funnel`-versus-variant call with its two sub-questions (the `client` stage
 value; `bench-filled` as its own terminal).
 
 ## Invariants, before any stage
@@ -39,8 +39,9 @@ value; `bench-filled` as its own terminal).
    deterministic (verified: two loads are byte-identical), so this needs no
    golden files. Until this gate passes, no new capability may be built on the
    substrate; after it passes, it may never go red.
-3. **Public URLs and ids do not change.** `B-002` stays `B-002` on the site,
-   in the API, in the exports. Substrate ids are derived (`cnd:B-002`),
+3. **Public URLs and ids do not change.** An entity keeps the same public id
+   either side of the lift — on the site, in the API, in the exports. Substrate
+   ids are derived from it (`cnd:bar.automated_filter_parser_threshold`),
    internal, and never in a URL.
 4. **Shapes first, amounts and instances only with evidence** — the settled
    discipline, applied to every stage below, not only the money.
@@ -71,7 +72,7 @@ substrate to exist.
 
 ### Track A — the substrate
 
-**A1. Schema.** `packages/registry/src/substrate/` — types and Zod for the
+**A1. Schema.** `packages/graph/src/substrate/` — types and Zod for the
 four primitives and their settled refinements: record classes and records;
 parties as records that emit; event classes, events, order positions, optional
 `elapsed`; conditions with `owner` (three positions), `determinacy`, `arity`;
@@ -94,8 +95,8 @@ it stays as a regression tripwire but can no longer fail first.
 two schema amendments straight from the spec's view table: conditions gained
 `causes` (a mechanism-condition's emitted events) and `accounts_for` (the
 gates it is an account of). One data finding, resolved by documented rule:
-B-001 is owned by the candidate on WF-001's edge and by the vendor on
-WF-002's; the first workflow's reading wins until visibility is per-party
+`bar.application_ingestion` is owned by the candidate on `proc.the_hiring_funnel_end_to_end`'s edge and by the vendor on
+`proc.an_application_inside_the_ats`'s; the first workflow's reading wins until visibility is per-party
 (A4). An authority test proves no stripped field survives in the sidecar.
 
 **A3. Existing derivations, re-derived.** Prove "one query family" on things
@@ -108,27 +109,27 @@ condition set and checked. The spec names the risk plainly — one of the four
 may not compute — and either outcome is a finding: a computed pattern gets
 promoted, an uncomputable one is published as prose-asserted, honestly
 labelled. *Size: M, plus the pattern finding whatever it turns out to be.*
-**Done.** `packages/registry/src/substrate/derivations.ts` implements the full
+**Done.** `packages/graph/src/substrate/derivations.ts` implements the full
 query family (`substrateGaps`, `substrateSeparation`, `substrateNarrow`,
 `substrateClosure`, `substrateLoops`, `substrateProcessMetrics`) with 100%
 equivalence across both mirrors (`tests/derivations.test.ts`). Pattern emptiness
-evaluated: P-001 (seniority double bind) and P-003 (experience-age impossibility)
+evaluated: `pat.seniority_double_bind` (seniority double bind) and `pat.experience_age_impossibility` (experience-age impossibility)
 compute as strictly empty sets over discrete ranks and technology age bounds;
-P-002 (closed-then-reposted) and P-004 (compensation double bind) are honestly
+`pat.closed_then_reposted_requisition_motif` (closed-then-reposted) and `pat.compensation_double_bind` (compensation double bind) are honestly
 classified as `prose_asserted` due to unobservable hidden states and opaque bands.
 
 **A4. The new expressiveness, smallest first.** Three schema additions in the
 `observed_at` style — a field, a lift rule, a test:
-- `arity` on the three comparative mechanisms (M-002, M-009, M-018) plus the
+- `arity` on the three comparative mechanisms (`mech.stronger_competing_candidate_in_final_cohort`, `mech.recruiter_volume_quota_incentive_distortion`, `mech.domain_specificity_over_weighting`) plus the
   cohort object their conditions range over;
-- statement links on the observations that are statements (A-002 is one,
-  A-001 is an absence — the lift already knows the difference);
+- statement links on the observations that are statements (`obs.generic_closer_alignment_rejection_template` is one,
+  `obs.complete_silence_after_submission` is an absence — the lift already knows the difference);
 - visibility classes replacing the single `facets.visibility` value in the
   substrate, with the facet kept in the projection so nothing public moves.
 *Size: M.*
-**Done.** `packages/registry/src/substrate/lift.ts` attaches `cohort: 'coh:requisition.pool'`
-and `arity: 'comparative'` to M-002, M-009, M-018; attaches statements to all
-communicative observations while preserving A-001 as non-communicating silence;
+**Done.** `packages/graph/src/substrate/lift.ts` attaches `cohort: 'coh:requisition.pool'`
+and `arity: 'comparative'` to `mech.stronger_competing_candidate_in_final_cohort`, `mech.recruiter_volume_quota_incentive_distortion`, `mech.domain_specificity_over_weighting`; attaches statements to all
+communicative observations while preserving `obs.complete_silence_after_submission` as non-communicating silence;
 and populates substrate-level `visibilityRules`. The equivalence gate in
 `tests/lift.test.ts` passes cleanly on both mirrors.
 
@@ -151,33 +152,33 @@ over the substrate. Swap order per module: equivalence test first, rewire
 second, delete third. The wizard, CLI and MCP read the same engine at the end.
 *Size: L, but mechanical after A3.*
 **Done.** `narrow()`, `checkConformance()`, `separation()`, `separates()`
-delegated directly to substrate derivations in `packages/registry/src/substrate/derivations.ts`.
+delegated directly to substrate derivations in `packages/graph/src/substrate/derivations.ts`.
 CLI, MCP, wizard, and test suite run over the unified substrate engine.
 
 **A7. Lean, last.** The substrate becomes what the proofs quantify over:
 funnel-order acyclicity, one-condition-per-gate, and conservation move from
-WF-003-specific theorems to substrate-level ones. Current proofs stay green
+`proc.the_path_as_it_is_supposed_to_run`-specific theorems to substrate-level ones. Current proofs stay green
 throughout via the projection. *Size: M, deliberately unblocking — nothing
 waits on it.*
-**Done.** `SubstrateSummary` data emitted to `formal/Hoba/Data.lean`; substrate-level
+**Done.** `SubstrateSummary` data emitted to `formal/lean/Hoba/Data.lean`; substrate-level
 theorems for barrier condition counts, mechanism condition counts, condition partitioning,
-flow conservation, process tracking, and DAG acyclicity kernel-proved in `formal/Hoba/Theorems.lean`.
+flow conservation, process tracking, and DAG acyclicity kernel-proved in `formal/lean/Hoba/Theorems.lean`.
 
 ### Track B — content the current types can already hold
 
 **B1. The client account.** No substrate needed for most of it: a `client`
 actor; the client-approval gate (a new B-\* after the panel, owned by a party
 outside the employer); the bid-conditional pool and bench mechanisms; the
-client-account walk of the funnel (either WF-004 or a variant lens on WF-001 —
+client-account walk of the funnel (either `proc.client_account_hiring_funnel` or a variant lens on `proc.the_hiring_funnel_end_to_end` —
 decided when writing, whichever reads better); and the re-read the spec
-ordered — every entry that quietly assumes an own-account company, B-005's
+ordered — every entry that quietly assumes an own-account company, `bar.technical_screen_live_assessment`'s
 cost asymmetry first. All ×2 languages. Sourcing per the standing rule; the
-Ukrainian civil-service statute (EVD-039) already anchors the mandated-posting
+Ukrainian civil-service statute (`evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions`) already anchors the mandated-posting
 premise. *Size: L content. Starts immediately — it depends on nothing in
 track A.*
-**Done.** `client` actor, `B-015` (Client Profile Approval and Client Interview,
-stage: `client`, order 15), `WF-004` (Client account hiring funnel: 13 states,
-16 transitions), `M-025` and `M-026` across both mirrors. All formal Lean proofs
+**Done.** `client` actor, `bar.client_profile_approval_and_client_interview` (Client Profile Approval and Client Interview,
+stage: `client`, order 15), `proc.client_account_hiring_funnel` (Client account hiring funnel: 13 states,
+16 transitions), `mech.bid_conditional_talent_pool` and `mech.bench_priority_fill` across both mirrors. All formal Lean proofs
 and tests pass cleanly.
 
 **B2. The epilogue.** States past `hired` in the funnel and the canonical
@@ -186,19 +187,19 @@ outcomes. The probation-cost parameter cited from law records (Ukraine's
 labour code articles on the trial period; one EU contrast). Lean's depth
 constant changes and the proofs are updated with it — that is a planned edit,
 not a break. *Size: M content ×2, S code.*
-**Done.** Authored `B-016` (Probation Period & Post-Start Confirmation),
-`M-027` (Start-Date Slippage and Post-Acceptance Revocation), `M-028` (Probation
-Used as Extended De-Facto Interview), `A-020` (Offer accepted followed by delayed
-start date or revocation), `EVD-040` (Ukraine KZpP art. 26–28), and `EVD-041`
+**Done.** Authored `bar.probation_period_post_start_confirmation` (Probation Period & Post-Start Confirmation),
+`mech.start_date_slippage_and_post_acceptance_revocation` (Start-Date Slippage and Post-Acceptance Revocation), `mech.probation_used_as_extended_de_facto_interview` (Probation
+Used as Extended De-Facto Interview), `obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation` (Offer accepted followed by delayed
+start date or revocation), `evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28` (Ukraine KZpP art. 26–28), and `evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996`
 (UK ERA 1996 s. 86) across both English and Ukrainian mirrors.
 
 **B3. Statement-adjacent observations** as the sourcing turns them up — the
 republished-posting-with-new-date pattern from the DOU threads is the first
-candidate. Only entries that split something, per the A-015…A-019 discipline.
+candidate. Only entries that split something, per the `obs.rejection_after_the_application_sat_pending_for_months`…`obs.feedback_naming_as_absent_something_the_submitted_work_contains` discipline.
 *Size: S, opportunistic.*
-**Done.** Authored `A-021` (Republished job posting with refreshed date and identical
+**Done.** Authored `obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body` (Republished job posting with refreshed date and identical
 requirement body / Повторно опублікована вакансія з оновленою датою та ідентичним описом вимог)
-with diagnostic probe `PROBE-A-021-1` separating `M-006` from active searches and `M-001`.
+with diagnostic probe `PROBE-`obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body`-1` separating `mech.stale_or_orphaned_job_requisition` from active searches and `mech.genuine_technical_skill_shortfall`.
 
 ---
 
@@ -241,10 +242,10 @@ A1, A2 and A4 are deliberately invisible: they are what makes the rest safe.
 ## What I need from you, and when
 
 1. ~~Agreement on the sequencing~~ — given; the stages are issues #21–#30.
-2. **Open:** the RFC's three points (`RFC-RECORDS.md`); silence = the
+2. **Open:** the RFC's three points (`docs/decided/2026-08-rfc-records-and-flows.md`); silence = the
    recommendation stands.
-3. **Open:** the WF-004-versus-variant call on the drafts
-   (`DRAFT-WF-004.md`), plus its two sub-questions — the `client` stage value
+3. **Open:** the `proc.client_account_hiring_funnel`-versus-variant call on the drafts
+   (`DRAFT-`proc.client_account_hiring_funnel`.md`), plus its two sub-questions — the `client` stage value
    and `bench-filled` as its own terminal.
 
 Next work that needs no decision: A3 — the existing derivations re-derived as

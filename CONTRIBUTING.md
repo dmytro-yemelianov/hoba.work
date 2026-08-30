@@ -50,7 +50,7 @@ git status --short   # generated files must be committed alongside content chang
 ```
 
 When you publish a content release, bump `version` in `registry.yaml` (format `YYYY.MM.N`) and set `updated_at`
-to the release timestamp. Bump `schema_version` only when the entity contract in `packages/registry/src/schemas.ts` changes.
+to the release timestamp. Bump `schema_version` only when the entity contract in `packages/registry-core/src/schemas.ts` changes.
 
 ## 3. Adding New Nodes
 

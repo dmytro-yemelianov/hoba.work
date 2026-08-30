@@ -127,7 +127,7 @@ build a registry that violates them:
 
 Two corrections to how this was described. **The barrier DAG is not checked by
 Tarjan.** Acyclicity is a dedicated topological sort in
-`packages/registry/src/validation.ts`; Tarjan runs over *mechanisms*, and its
+`packages/validator/src/validation.ts`; Tarjan runs over *mechanisms*, and its
 job is to confirm that every declared loop (`L-*`) is backed by a real strongly
 connected component. Two different checks with two different purposes.
 
@@ -281,7 +281,7 @@ The difference between "this configuration will filter you out" and "you have a
 
 ## What the atlas can say about itself
 
-Coverage used to be a list someone wrote down. `packages/registry/src/gaps.ts`
+Coverage used to be a list someone wrote down. `packages/validator/src/gaps.ts`
 derives it instead — transitive closure in both directions, which entries no
 observation separates, which gates each actor can reach, which mechanisms carry
 no proposed change. `/data` publishes the result on every build and the tests

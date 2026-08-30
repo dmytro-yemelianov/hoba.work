@@ -60,18 +60,29 @@ Pattern (P) = recurring contradiction / double-bind / reversal
 ```text
 .
 ├── packages/
-│   ├── registry/      # @hoba/registry: core knowledge graph, Zod schemas, diagnostic engine
-│   ├── cli/           # @hoba/cli: "**hoba**" command-line tool (search, show, explain, validate)
-│   └── mcp/           # @hoba/mcp: Model Context Protocol server for AI coding assistants
-├── site/              # Astro 5 + Tailwind CSS + Cytoscape.js static web app (hoba.work)
-├── content/           # Canonical English Markdown + YAML frontmatter registry content
-├── content-uk/        # Mirrored Ukrainian localized registry content (same IDs & structure)
-├── evidence/          # Evidence records cited by nodes
-├── registry.yaml      # Release manifest: registry version, schema version, release timestamp
-├── schemas/           # Generated JSON Schemas for all entity types (do not edit by hand)
-├── scripts/           # build-registry.ts (exports/API/OpenAPI) and validate.ts
-├── tests/             # Vitest unit + content integration suites
-└── spec/              # Full **hoba** System & Website Specification
+│   ├── registry-core/  # @hoba/registry-core: Zod schemas, types, paths — no Node built-ins
+│   ├── graph/          # @hoba/graph: traversal, diagnostics, agency, the substrate lift
+│   ├── validator/      # @hoba/validator: registry rules, gaps, conformance, scenarios
+│   ├── search/         # @hoba/search: the index the site and the CLI both query
+│   ├── registry/       # @hoba/registry: the facade — plus /core (browser) and /edge (worker)
+│   ├── cli/            # @hoba/cli: the "hoba" command (search, show, explain, validate)
+│   └── mcp/            # @hoba/mcp: Model Context Protocol server for AI coding assistants
+├── apps/web/           # Astro 5 + Tailwind + Cytoscape static site, and the Pages worker
+├── data/
+│   ├── en/entities/    # Canonical English Markdown + YAML frontmatter
+│   ├── uk/entities/    # Ukrainian mirror — same ids, same structure
+│   ├── evidence/       # Evidence records cited by entries, in one language-neutral tree
+│   └── scenarios/      # Authored scenarios the CLI and /analyze run against
+├── formal/lean/        # Lean 4 kernel proofs over the generated model
+├── schemas/            # Generated JSON Schema per entity type (do not edit by hand)
+├── schema/             # Hand-written schemas for what is not an entity (analysis, relations)
+├── scripts/            # build-registry, build-worker, validate, generate-redirects, task
+├── tests/              # Vitest unit and integration suites
+├── e2e/                # Playwright browser suites, desktop and mobile
+├── docs/decided/       # Questions that are settled; names frozen at the time of writing
+├── spec/               # Versioned system & website specification
+├── migration/          # The short-code → dotted-id mapping, kept as migration history
+└── registry.yaml       # Release manifest: registry version, schema version, timestamp
 ```
 
 ---
