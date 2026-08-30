@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { classifyAgencyZone, HOBADiagnosticEngine } from '@hoba/registry';
-import { artifact, barrier, makeBundle, mechanism } from './helpers';
+import { observation, barrier, makeBundle, mechanism } from './helpers';
 
 describe('HOBADiagnosticEngine', () => {
   const engine = new HOBADiagnosticEngine(makeBundle());
@@ -74,6 +74,51 @@ describe('HOBADiagnosticEngine', () => {
     });
   });
 
+  /**
+   * Two traces can come from two mechanisms, so the compatible set is a union
+   * and must stay one — intersecting would assert a single hidden cause, which
+   * the protocol forbids. But the registry does know which mechanisms account
+   * for *everything* observed, and that is the subset ROADMAP relies on when
+   * it says a second, different observation tells the catch-all apart.
+   */
+  describe('accounting for every observation', () => {
+    const engine = new HOBADiagnosticEngine(makeBundle());
+
+    it('marks the mechanisms that emit every selected observation, not merely one', () => {
+      // At the technical stage both mechanisms are in scope, but only M-001
+      // emits the observation; M-002 merely operates at a gate there.
+      const res = engine.analyze({ artifacts: ['A-001'], stage: 'technical' });
+      const m1 = res.behind.compatible_mechanisms.find((c) => c.mechanism.id === 'M-001')!;
+      const m2 = res.behind.compatible_mechanisms.find((c) => c.mechanism.id === 'M-002')!;
+      expect(m1.accounts_for_all).toBe(true);
+      expect(m2.accounts_for_all).toBe(false);
+      expect(res.counts.accounts_for_all).toBe(1);
+    });
+
+    it('counts nobody when no single mechanism emits all of them', () => {
+      const bundle = makeBundle({
+        observations: [
+          observation({ id: 'A-001', stages: ['screening'] }),
+          observation({ id: 'A-002', stages: ['screening'] }),
+        ],
+        mechanisms: [
+          mechanism({ id: 'M-001', operates_at: ['B-001'], honest_baseline: true, emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }] }),
+          mechanism({ id: 'M-002', operates_at: ['B-001'], emissions: [{ artifact: 'A-002', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }] }),
+        ],
+        patterns: [],
+        interventions: [],
+      });
+      const res = new HOBADiagnosticEngine(bundle).analyze({ artifacts: ['A-001', 'A-002'] });
+      expect(res.counts.compatible_mechanisms).toBe(2);
+      expect(res.counts.accounts_for_all).toBe(0);
+    });
+
+    it('is the whole compatible set when only one observation is given and every member emits it', () => {
+      const res = engine.analyze({ artifacts: ['A-001'] });
+      expect(res.counts.accounts_for_all).toBeLessThanOrEqual(res.counts.compatible_mechanisms);
+    });
+  });
+
   it('reports unknown artifact IDs instead of silently dropping them', () => {
     const res = engine.analyze({ artifacts: ['A-404', 'A-001'] });
     expect(res.hard_facts.unknown_artifact_ids).toEqual(['A-404']);
@@ -99,7 +144,7 @@ describe('HOBADiagnosticEngine', () => {
     bundle.mechanisms.push(
       mechanism({ id: 'M-003', operates_at: ['B-001'], status: 'deprecated', superseded_by: 'M-001' })
     );
-    bundle.observations.push(artifact({ id: 'A-002', status: 'deprecated', superseded_by: 'A-001' }));
+    bundle.observations.push(observation({ id: 'A-002', status: 'deprecated', superseded_by: 'A-001' }));
     const res = new HOBADiagnosticEngine(bundle).analyze({ artifacts: ['A-001', 'A-002'] });
     expect(res.behind.compatible_mechanisms.map((c) => c.mechanism.id)).not.toContain('M-003');
     expect(res.hard_facts.unknown_artifact_ids).toEqual(['A-002']);
@@ -119,7 +164,7 @@ describe('classifyAgencyZone', () => {
 describe('a recorded emission stage sharpens attribution and nothing else', () => {
   /** One observation, two mechanisms: one places its trace here, one elsewhere. */
   const bundle = makeBundle({
-    observations: [artifact({ id: 'A-001', stages: ['screening', 'technical'] })],
+    observations: [observation({ id: 'A-001', stages: ['screening', 'technical'] })],
     barriers: [
       barrier({ id: 'B-001', order: 1, stage: 'screening' }),
       barrier({ id: 'B-002', order: 2, stage: 'technical' }),

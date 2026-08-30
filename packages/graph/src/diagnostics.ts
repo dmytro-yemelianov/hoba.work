@@ -71,11 +71,24 @@ export class HOBADiagnosticEngine {
           (!selectedStage || e.observed_at.length === 0 || e.observed_at.includes(selectedStage))
       );
 
+      // Emits every one of them, not merely one. Same stage rule as above, so a
+      // mechanism is not dropped over a trace the atlas has not placed.
+      const accountsForAll =
+        selectedArtifactIds.size > 0 &&
+        [...selectedArtifactIds].every((id) =>
+          m.emissions.some(
+            (e) =>
+              e.artifact === id &&
+              (!selectedStage || e.observed_at.length === 0 || e.observed_at.includes(selectedStage))
+          )
+        );
+
       compatibleMechanisms.push({
         mechanism: m,
         evidence_level: m.evidence_level,
         honest_baseline: m.honest_baseline,
         emitted_by_evidence: directlyEmitsArtifact,
+        accounts_for_all: accountsForAll,
         removability: m.facets.removability,
         amplified_by: (this.graph.reverseAdjacency.get(m.id) ?? [])
           .filter((item) => item.edge.type === 'amplifies')
@@ -147,7 +160,7 @@ export class HOBADiagnosticEngine {
      * means the observation has not told you which half.
      */
     const activeMechanisms = this.bundle.mechanisms.filter((m) => m.status === 'active').length;
-    const narrowedNothing = activeMechanisms > 0 && compatibleMechanisms.length * 2 > activeMechanisms;
+    const narrowedNothing = activeMechanisms > 0 && narrowed.length * 2 > activeMechanisms;
 
     let verdict: DiagnosticResult['verdict'] = 'diagnostic';
     /** Which low-signal reason fired, so the summary can say the true one. */
@@ -160,7 +173,7 @@ export class HOBADiagnosticEngine {
     } else if (narrowedNothing) {
       verdict = 'low_signal_ambiguity';
       lowSignalReason = 'no-narrowing';
-      probesSummary = `${compatibleMechanisms.length} of ${activeMechanisms} mechanism(s) remain compatible, so the observation(s) given do not narrow the field. A second, different observation is what separates them.`;
+      probesSummary = `${narrowed.length} of ${activeMechanisms} mechanism(s) remain compatible, so the observation(s) given do not narrow the field. A second, different observation is what separates them.`;
     } else if (candidateRemovable.length === 0 && diagnosticProbes.length === 0) {
       verdict = 'low_signal_ambiguity';
       lowSignalReason = 'no-agency';
@@ -176,7 +189,7 @@ export class HOBADiagnosticEngine {
       verdict,
       summary:
         lowSignalReason === 'no-narrowing'
-          ? `Low signal / high ambiguity. The observation(s) given do not narrow the field: ${compatibleMechanisms.length} of ${activeMechanisms} mechanisms remain compatible.`
+          ? `Low signal / high ambiguity. The observation(s) given do not narrow the field: ${narrowed.length} of ${activeMechanisms} mechanisms remain compatible.`
           : verdict === 'low_signal_ambiguity'
             ? 'Low signal / high ambiguity. System indicates minimal candidate agency.'
             : `Decomposed into ${identifiedBarriers.length} barrier gate(s), ${compatibleMechanisms.length} compatible mechanism(s), and ${diagnosticProbes.length} diagnostic probe(s).`,
@@ -209,6 +222,7 @@ export class HOBADiagnosticEngine {
       },
       counts: {
         compatible_mechanisms: narrowed.length,
+        accounts_for_all: narrowed.filter((c) => c.accounts_for_all).length,
         candidate_removable: candidateRemovable.length,
         intermediary: intermediaryDependent.length,
         no_agency: exogenousNoAgency.length,

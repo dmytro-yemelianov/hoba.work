@@ -15,7 +15,7 @@ import type {
 
 export const REPO_ROOT = path.resolve(__dirname, '..');
 
-export const artifact = (over: Partial<ObservationNode> & { id: string }): ObservationNode => ({
+export const observation = (over: Partial<ObservationNode> & { id: string }): ObservationNode => ({
   type: 'observation',
   title: `Artifact ${over.id}`,
   summary: 'A sufficiently long summary for the fixture.',
@@ -152,7 +152,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     processes: [],
     eras: [],
     observations: [
-      artifact({
+      observation({
         id: 'A-001',
         stages: ['screening'],
         // The bundle calls itself fully valid, so it cites its own evidence

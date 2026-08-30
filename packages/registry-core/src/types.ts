@@ -162,6 +162,16 @@ export interface CompatibleMechanism {
   honest_baseline: boolean;
   /** True when the mechanism directly emits one of the selected artifacts (vs. only operating at an identified barrier). */
   emitted_by_evidence: boolean;
+  /**
+   * True when the mechanism emits *every* selected observation, not merely one.
+   *
+   * The compatible set is a union and stays one: two traces can come from two
+   * mechanisms, and intersecting would assert a single hidden cause. This flag
+   * is the narrower reading offered alongside it — the mechanisms that would
+   * account for the whole picture on their own. It is what makes a second,
+   * different observation tell a catch-all apart.
+   */
+  accounts_for_all: boolean;
   removability: RemovabilityType;
   amplified_by: string[];
   masks: string[];
@@ -205,6 +215,8 @@ export interface DiagnosticResult {
   };
   counts: {
     compatible_mechanisms: number;
+    /** How many of them account for every selected observation. */
+    accounts_for_all: number;
     candidate_removable: number;
     intermediary: number;
     no_agency: number;
