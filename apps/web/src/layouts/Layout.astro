@@ -3,6 +3,7 @@ import '../styles/theme.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { OG_LOCALES, publicPath, useTranslations, type Lang } from '../i18n/utils';
+import { getBundle } from '../lib/registry';
 
 interface Props {
   title: string;
@@ -15,6 +16,14 @@ interface Props {
 
 const { title, lang = 'en', activeNav = '', image } = Astro.props;
 const t = useTranslations(lang);
+
+/**
+ * The seats a lens may collapse to, read from the registry rather than listed
+ * here. This was a hand-typed array, and the day an actor was added it was not
+ * updated — choosing that seat set a lens no stylesheet rule matched, so the
+ * page hid every perspective and revealed none.
+ */
+const lensSlugs = getBundle(lang).actors.map((a) => a.slug);
 const description = Astro.props.description ?? t('meta.description');
 
 const site = Astro.site ?? new URL('https://hoba.work');
@@ -60,7 +69,7 @@ const shareImage = image ?? defaultImage;
     <meta name="apple-mobile-web-app-title" content="hoba" />
 
     <!-- Theme: explicit choice in localStorage wins; otherwise follow the system; dark when the browser reports no preference. Runs before paint to avoid a flash. -->
-    <script is:inline>
+    <script is:inline define:vars={{ lensSlugs }}>
       (function () {
         var dark = true;
         try {
@@ -77,7 +86,7 @@ const shareImage = image ?? defaultImage;
         // standing one. Set before paint so a page never flashes every point of
         // view before collapsing to the chosen one.
         try {
-          var LENSES = ['candidate', 'recruiter', 'hiring-manager', 'ats-vendor', 'employer-policy', 'public-policy', 'client'];
+          var LENSES = lensSlugs;
           var asked = new URLSearchParams(location.search).get('lens');
           var lens = asked || localStorage.getItem('hoba_lens');
           if (LENSES.indexOf(lens) >= 0) document.documentElement.dataset.lens = lens;

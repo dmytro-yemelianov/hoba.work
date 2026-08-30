@@ -210,13 +210,10 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
      that it does not. */
   .lens-block.is-blind { display: none; }
   html[data-lens] .lens-block { display: none; }
-  html[data-lens="candidate"] .lens-block[data-actor="candidate"],
-  html[data-lens="recruiter"] .lens-block[data-actor="recruiter"],
-  html[data-lens="hiring-manager"] .lens-block[data-actor="hiring-manager"],
-  html[data-lens="ats-vendor"] .lens-block[data-actor="ats-vendor"],
-  html[data-lens="employer-policy"] .lens-block[data-actor="employer-policy"],
-  html[data-lens="public-policy"] .lens-block[data-actor="public-policy"],
-  html[data-lens="client"] .lens-block[data-actor="client"] { display: block; }
+  /* The per-seat reveal rules are emitted by LensSwitch from the registry's
+     own actors — CSS cannot compare two attributes to each other, so the pairs
+     have to be enumerated, and enumerating them by hand here is what left the
+     `client` seat with no rule when it was added. */
 
   /* A perspective is a voice, so it reads as a quoted passage rather than a
      card: a rule in the actor's gutter and the three questions as a definition

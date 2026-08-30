@@ -98,3 +98,37 @@ test.describe('actors', () => {
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'ats-vendor');
   });
 });
+
+/**
+ * The lens needs three things to agree about which seats exist: the picker, the
+ * pre-paint allowlist, and one reveal rule per seat. All three used to be
+ * written by hand, and when the `client` actor was added two of them were not
+ * updated — choosing that seat hid every perspective and revealed none. All
+ * three read the registry now; this checks that they still agree.
+ */
+test('every seat the registry has is offered, allowed and revealable', async ({ page }) => {
+  await page.goto('/barriers/bar.client_profile_approval_and_client_interview?lang=en');
+
+  const offered = await page.locator('.lens-menu .lens-option[data-lens]:not([data-lens=""])').evaluateAll(
+    (els) => els.map((e) => (e as HTMLElement).dataset.lens).filter(Boolean).sort()
+  );
+  expect(offered.length).toBeGreaterThan(0);
+
+  const allowed = await page.evaluate(() => {
+    // Astro's `define:vars` emits the value under its frontmatter name and the
+    // script reads it from there, so the literal is `lensSlugs`, not `LENSES`.
+    const src = [...document.querySelectorAll('script')].map((s) => s.textContent ?? '').find((s) => s.includes('lensSlugs'));
+    return (JSON.parse(/lensSlugs\s*=\s*(\[[^\]]*\])/.exec(src ?? '')?.[1] ?? '[]') as string[]).sort();
+  });
+
+  const revealed = await page.evaluate(() =>
+    [...new Set(
+      [...document.querySelectorAll('style')]
+        .flatMap((s) => [...(s.textContent ?? '').matchAll(/html\[data-lens="([a-z-]+)"\]/g)])
+        .map((m) => m[1]!)
+    )].sort()
+  );
+
+  expect(allowed, 'the allowlist offers a different set of seats than the picker').toEqual(offered);
+  expect(revealed, 'some offered seat has no reveal rule, so choosing it would show nothing').toEqual(offered);
+});

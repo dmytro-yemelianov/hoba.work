@@ -24,7 +24,21 @@ const t = useTranslations(lang);
 // Keyed by slug, because that is what `?lens=` and `data-lens` carry: the
 // lens is part of the public URL, so it stays on the readable name.
 const names = JSON.stringify(Object.fromEntries(actors.map((a) => [a.slug, a.title])));
+
+/**
+ * One reveal rule per seat, generated from the registry.
+ *
+ * CSS has no way to say "show the block whose `data-actor` equals the root's
+ * `data-lens`", so the pairs must be enumerated — and a hand-written
+ * enumeration is what left `client` invisible for as long as it existed:
+ * choosing it hid every perspective and revealed none, because the general
+ * rule hides them all and no rule brought that one back.
+ */
+const lensReveal = actors
+  .map((a) => `html[data-lens="${a.slug}"] .lens-block[data-actor="${a.slug}"]`)
+  .join(',\n') + ' { display: block; }';
 ---
+<style is:global set:html={lensReveal}></style>
 <details class="lens-menu relative">
   <summary
     class="nav-link inline-flex items-center gap-1.5 cursor-pointer"
