@@ -1070,6 +1070,20 @@ const en = {
   'submit.err.too_long': 'That is longer than this form takes. The shape matters more than the full account.',
   'submit.err.names_a_party': 'This names {party}. Remove the company name and send it again — the account is what matters, not who.',
   'submit.err.generic': 'That did not send. Try again, or open an issue on GitHub.',
+  // --- Reading a rejection back into the registry ---------------------------
+  'paste.title': 'Paste the rejection itself',
+  'paste.lead': 'The steps below ask you to translate what happened into the atlas\u2019s vocabulary. This does it the other way round: paste the message you received and the atlas finds the trace, if it holds one.',
+  'paste.privacy': 'Read in your browser. Nothing is sent anywhere and nothing is stored, which is why it is safe to paste a letter that names the company.',
+  'paste.label': 'The message you received',
+  'paste.placeholder': 'Thank you for your interest. After careful review\u2026',
+  'paste.read': 'Read it',
+  'paste.answer': 'This is the trace the atlas holds for that',
+  'paste.unsure': 'Nothing in the atlas identifies this letter',
+  'paste.unsureText': 'A rejection that names no reason matches the ordinary wording every entry shares, and picking a winner from that would be a guess. The closest entries are below — you may recognise one; the atlas does not.',
+  'paste.none': 'No entry in the atlas resembles this at all.',
+  'paste.words': 'Matched on',
+  'paste.continue': 'Continue with this trace',
+  'paste.missing': 'If none of these is what happened, that is the useful thing to tell us',
 } as const;
 
 export type UIKey = keyof typeof en;
@@ -2118,6 +2132,20 @@ const uk: Record<UIKey, string> = {
   'submit.err.too_long': 'Це довше, ніж вміщає форма. Форма важливіша за повний переказ.',
   'submit.err.names_a_party': 'Тут названо {party}. Приберіть назву компанії й надішліть ще раз — важлива розповідь, а не хто.',
   'submit.err.generic': 'Не надіслалось. Спробуйте ще раз або відкрийте issue на GitHub.',
+  // --- Прочитати відмову назад у реєстр -------------------------------------
+  'paste.title': 'Вставте саму відмову',
+  'paste.lead': 'Кроки нижче просять вас перекласти те, що сталося, мовою атласу. Тут навпаки: вставте повідомлення, яке ви отримали, і атлас сам знайде слід, якщо він у нього є.',
+  'paste.privacy': 'Читається у вашому браузері. Нікуди не надсилається й ніде не зберігається — саме тому сюди безпечно вставити лист, у якому названо компанію.',
+  'paste.label': 'Повідомлення, яке ви отримали',
+  'paste.placeholder': 'Дякуємо за ваш інтерес. Після ретельного розгляду\u2026',
+  'paste.read': 'Прочитати',
+  'paste.answer': 'Ось слід, який атлас має для цього',
+  'paste.unsure': 'Ніщо в атласі не впізнає цей лист',
+  'paste.unsureText': 'Відмова, яка не називає причини, збігається із загальними формулюваннями, спільними для всіх записів, і обрати переможця з них означало б угадати. Найближчі записи нижче — ви можете впізнати свій; атлас не впізнає.',
+  'paste.none': 'Жоден запис атласу на це не схожий.',
+  'paste.words': 'Збіг за словами',
+  'paste.continue': 'Продовжити з цим слідом',
+  'paste.missing': 'Якщо жодне з цього не те, що сталося, — саме про це й варто нам сказати',
 };
 
 export const ui = { en, uk } as const;
