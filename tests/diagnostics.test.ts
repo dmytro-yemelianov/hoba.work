@@ -25,6 +25,55 @@ describe('HOBADiagnosticEngine', () => {
     expect(res.behind.related_patterns.map((p) => p.id)).toEqual(['P-001']);
   });
 
+  /**
+   * A verdict of `diagnostic` is a claim that the observation narrowed the
+   * field. When almost everything is still compatible it narrowed nothing, and
+   * the engine used to say `diagnostic` anyway — for the generic rejection
+   * template it did so with 27 of 28 mechanisms still open.
+   */
+  describe('narrowing', () => {
+    const emitters = (n: number) =>
+      Array.from({ length: n }, (_, i) =>
+        mechanism({
+          id: `M-1${String(i).padStart(2, '0')}`,
+          operates_at: ['B-001'],
+          honest_baseline: i === 0,
+          facets: { actor: 'candidate', nature: 'rule', visibility: 'inferable', removability: 'candidate' },
+          emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }],
+        })
+      );
+
+    const bundleWith = (emitting: number, silent: number) =>
+      makeBundle({
+        mechanisms: [
+          ...emitters(emitting),
+          ...Array.from({ length: silent }, (_, i) => mechanism({ id: `M-2${String(i).padStart(2, '0')}`, operates_at: ['B-002'] })),
+        ],
+        patterns: [],
+        interventions: [],
+      });
+
+    it('refuses to call an observation diagnostic when more than half the registry stays compatible', () => {
+      const res = new HOBADiagnosticEngine(bundleWith(3, 2)).analyze({ artifacts: ['A-001'] });
+      expect(res.counts.compatible_mechanisms).toBe(3);
+      expect(res.verdict).toBe('low_signal_ambiguity');
+    });
+
+    it('still calls it diagnostic when the observation rules most of the registry out', () => {
+      const res = new HOBADiagnosticEngine(bundleWith(2, 6)).analyze({ artifacts: ['A-001'] });
+      expect(res.counts.compatible_mechanisms).toBe(2);
+      expect(res.verdict).toBe('diagnostic');
+    });
+
+    it('says which of the two low-signal reasons fired', () => {
+      const res = new HOBADiagnosticEngine(bundleWith(3, 2)).analyze({ artifacts: ['A-001'] });
+      // Not the agency wording: there is agency here, the observation simply
+      // did not narrow anything.
+      expect(res.summary).toMatch(/narrow/i);
+      expect(res.summary).not.toMatch(/minimal candidate agency/i);
+    });
+  });
+
   it('reports unknown artifact IDs instead of silently dropping them', () => {
     const res = engine.analyze({ artifacts: ['A-404', 'A-001'] });
     expect(res.hard_facts.unknown_artifact_ids).toEqual(['A-404']);

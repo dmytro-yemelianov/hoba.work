@@ -137,13 +137,33 @@ export class HOBADiagnosticEngine {
 
     const agencyZone = classifyAgencyZone(candidateRemovable.length, intermediaryDependent.length, exogenousNoAgency.length);
 
+    /**
+     * A verdict of `diagnostic` claims the observation narrowed the field. When
+     * most of the registry is still compatible it narrowed nothing, and saying
+     * so anyway is the false certainty this protocol exists to avoid: the
+     * generic rejection template alone leaves 27 of 28 mechanisms open.
+     *
+     * The line is half — more than half the active mechanisms still standing
+     * means the observation has not told you which half.
+     */
+    const activeMechanisms = this.bundle.mechanisms.filter((m) => m.status === 'active').length;
+    const narrowedNothing = activeMechanisms > 0 && compatibleMechanisms.length * 2 > activeMechanisms;
+
     let verdict: DiagnosticResult['verdict'] = 'diagnostic';
+    /** Which low-signal reason fired, so the summary can say the true one. */
+    let lowSignalReason: 'no-anchors' | 'no-agency' | 'no-narrowing' | null = null;
     let probesSummary: string;
     if (selectedArtifacts.length === 0) {
       verdict = 'low_signal_ambiguity';
+      lowSignalReason = 'no-anchors';
       probesSummary = 'No direct observations provided. Cannot establish compatible mechanisms without factual anchors.';
+    } else if (narrowedNothing) {
+      verdict = 'low_signal_ambiguity';
+      lowSignalReason = 'no-narrowing';
+      probesSummary = `${compatibleMechanisms.length} of ${activeMechanisms} mechanism(s) remain compatible, so the observation(s) given do not narrow the field. A second, different observation is what separates them.`;
     } else if (candidateRemovable.length === 0 && diagnosticProbes.length === 0) {
       verdict = 'low_signal_ambiguity';
+      lowSignalReason = 'no-agency';
       probesSummary =
         'Low signal. No additional candidate action is justified by the available evidence. The compatible mechanisms are purely exogenous or intermediary-controlled.';
     } else {
@@ -155,9 +175,11 @@ export class HOBADiagnosticEngine {
       mode: 'topological_uncalibrated',
       verdict,
       summary:
-        verdict === 'low_signal_ambiguity'
-          ? 'Low signal / high ambiguity. System indicates minimal candidate agency.'
-          : `Decomposed into ${identifiedBarriers.length} barrier gate(s), ${compatibleMechanisms.length} compatible mechanism(s), and ${diagnosticProbes.length} diagnostic probe(s).`,
+        lowSignalReason === 'no-narrowing'
+          ? `Low signal / high ambiguity. The observation(s) given do not narrow the field: ${compatibleMechanisms.length} of ${activeMechanisms} mechanisms remain compatible.`
+          : verdict === 'low_signal_ambiguity'
+            ? 'Low signal / high ambiguity. System indicates minimal candidate agency.'
+            : `Decomposed into ${identifiedBarriers.length} barrier gate(s), ${compatibleMechanisms.length} compatible mechanism(s), and ${diagnosticProbes.length} diagnostic probe(s).`,
       hard_facts: {
         selected_artifacts: selectedArtifacts,
         unknown_artifact_ids: unknownArtifactIds,
