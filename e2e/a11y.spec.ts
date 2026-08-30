@@ -43,6 +43,21 @@ const templateNames = (): string[] => {
 
 const PAGES = templateNames().map((name) => SAMPLE[name] ?? `/${name}`);
 
+// The mobile project runs only mobile.spec.ts, so until now nothing had put a
+// phone viewport through axe at all — and the drawer, the collapsed nav and the
+// stacked cards are markup a desktop pass never sees.
+test.describe('accessibility on a phone', () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  for (const path of PAGES) {
+    test(`${path} has no serious or critical axe violations`, async ({ page }) => {
+      await page.goto(path);
+      const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
+      const severe = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
+      expect(severe.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(', ')}`)).toEqual([]);
+    });
+  }
+});
+
 for (const scheme of ['dark', 'light'] as const) {
   test.describe(`accessibility (${scheme})`, () => {
     // One language per scheme: the axe surface is the same markup either way,

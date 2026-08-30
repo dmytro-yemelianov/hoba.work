@@ -61,3 +61,36 @@ test('llms.txt points a model at the Markdown representation', async ({ request 
   expect(body).toContain('Accept: text/markdown');
   expect(body).toContain('/registry.md');
 });
+
+test('the sitemap lists every page that was built, or says why not', async ({ request }) => {
+  // The entity check above walks the registry; this walks what the build
+  // actually produced, which is what catches a page template nobody listed.
+  // `STATIC_ROUTES` used to be written by hand, and `/actors` was in it only
+  // because someone remembered.
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const dist = path.join(__dirname, '..', 'apps', 'web', 'dist', '_i', 'en');
+  const pages: string[] = [];
+  const walk = (dir: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name === 'index.html') pages.push(p);
+    }
+  };
+  walk(dist);
+  expect(pages.length).toBeGreaterThan(50);
+
+  const xml = await (await request.get('/sitemap.xml')).text();
+  const listed = new Set(
+    [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname.replace(/(.)\/$/, '$1'))
+  );
+
+  // Held back on purpose, and named here so the reason survives: an error page
+  // is not a destination, and the cat generator is reachable but unadvertised.
+  const NOT_LISTED = ['/404', '/cats'];
+  const missing = pages
+    .map((p) => p.replace(dist, '').replace('/index.html', '') || '/')
+    .filter((route) => !listed.has(route || '/'));
+  expect(missing.sort()).toEqual(NOT_LISTED);
+});

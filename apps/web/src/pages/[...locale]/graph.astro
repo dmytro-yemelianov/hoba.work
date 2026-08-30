@@ -194,8 +194,10 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
         </button>
 
         <label class="flex flex-1 sm:flex-none items-center gap-2 text-sm text-hoba-muted min-w-0">
+          {/* The visible text is hidden below lg, and a hidden label gives no
+              accessible name — so on a phone this was an unnamed control. */}
           <span class="hidden lg:inline">{t('graph.removabilityFilter')}</span>
-          <select id="select-removability" class="w-full sm:w-auto rounded-md border border-hoba-border bg-hoba-card px-2 py-1 text-sm text-hoba-text">
+          <select id="select-removability" aria-label={t('graph.removabilityFilter')} class="w-full sm:w-auto rounded-md border border-hoba-border bg-hoba-card px-2 py-1 text-sm text-hoba-text">
             <option value="all">{t('graph.rem.all')}</option>
             <option value="candidate">{t('graph.rem.candidate')}</option>
             <option value="intermediary">{t('graph.rem.intermediary')}</option>

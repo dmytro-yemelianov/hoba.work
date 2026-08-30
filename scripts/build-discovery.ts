@@ -19,7 +19,38 @@ const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-discovery: registry root not found');
 const PUBLIC = path.join(root, 'apps', 'web', 'public');
 
-const STATIC_ROUTES = ['/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data', '/methodology', '/developers', '/contribute', '/about'];
+/**
+ * Pages a crawler is told about, read from the templates rather than listed
+ * again — the hand-written list this replaces had drifted from the routes that
+ * exist, and a page missing from the sitemap is missing silently.
+ *
+ * Two are held back on purpose:
+ *   404   — an error page, not a destination.
+ *   cats  — an easter egg; it is reachable, it is simply not advertised.
+ */
+const NOT_LISTED = new Set(['404', 'cats']);
+
+const templateRoutes = (): string[] => {
+  const dir = path.join(root, 'apps', 'web', 'src', 'pages', '[...locale]');
+  const names: string[] = [];
+  const walk = (d: string, prefix = '') => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) walk(path.join(d, e.name), `${prefix}${e.name}/`);
+      else if (e.name.endsWith('.astro')) names.push(`${prefix}${e.name.replace(/\.astro$/, '')}`);
+    }
+  };
+  walk(dir);
+  const routes = names
+    // `[id]` templates are entity routes, enumerated from the registry below.
+    .filter((n) => !n.includes('[') && !NOT_LISTED.has(n))
+    // `actors/index.astro` is the address `/actors`, the same way the top-level
+    // `index.astro` is `/`.
+    .map((n) => (n.endsWith('/index') ? n.slice(0, -'/index'.length) : n))
+    .filter((n) => n !== 'index');
+  return ['/', ...routes.sort().map((n) => `/${n}`)];
+};
+
+const STATIC_ROUTES = templateRoutes();
 
 const entityRoutes = (bundle: RegistryBundle): string[] => [
   ...bundle.actors.map((a) => `/actors/${a.slug}`),
