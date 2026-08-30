@@ -69,6 +69,16 @@ function interpolate(template: string, vars?: Record<string, string | number>): 
   return template.replace(/\{(\w+)\}/g, (_, name: string) => (name in vars ? String(vars[name]) : `{${name}}`));
 }
 
+/**
+ * A key assembled from a registry value at build time. The compiler cannot
+ * narrow `stage.${string}` to a member of the dictionary, and the value is not
+ * known until the registry is read — so the pairing of each prefix to the
+ * vocabulary that feeds it is checked in tests/i18n.test.ts instead, which is
+ * the only place that can check it. Written as a call rather than a cast so it
+ * is greppable, and so a cast never has to be invented at the call site.
+ */
+export const interpolated = (key: string): UIKey => key as UIKey;
+
 export function useTranslations(lang: Lang): Translate {
   const dict = ui[lang] as Record<UIKey, string>;
   return (key, vars) => interpolate(dict[key] ?? ui.en[key] ?? key, vars);

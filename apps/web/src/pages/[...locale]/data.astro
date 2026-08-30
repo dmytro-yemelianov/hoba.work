@@ -4,7 +4,7 @@ import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import { coverage, getBundle, STAGES } from '../../lib/registry';
 import { evaluatePatternEmptiness, gaps as derived, lift, substrateVerifyFlowConservation } from '@hoba/registry';
-import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { localeFromParams, localePrefix, localeStaticPaths, useTranslations, interpolated } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -248,7 +248,7 @@ const tocItems = [
             <p class="text-base font-medium text-hoba-text">{t('gap.stages')}</p>
             <p class="mt-1 text-base text-hoba-muted max-w-2xl">{t('gap.stagesText')}</p>
             <ul class="mt-2 flex flex-wrap gap-1.5">
-              {gaps.stagesWithoutObservation.map((stage) => <li><span class="pill pill-muted">{t(`stage.${stage}`)}</span></li>)}
+              {gaps.stagesWithoutObservation.map((stage) => <li><span class="pill pill-muted">{t(interpolated(`stage.${stage}`))}</span></li>)}
             </ul>
           </li>
         </ul>

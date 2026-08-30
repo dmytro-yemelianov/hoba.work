@@ -35,7 +35,7 @@ const laneOf = (id: string): number | undefined =>
 const interventionLane = new Map(bundle.interventions.map((i) => [i.id, mean(i.targets.map(laneOf))] as const));
 
 /** Facet labels double as list headings elsewhere, where they carry a colon. */
-const label = (key: Parameters<typeof t>[0]) => t(key).replace(/:$/, '');
+const label = (key: Parameters<typeof t>[0], vars?: Parameters<typeof t>[1]) => t(key, vars).replace(/:$/, '');
 const evidence = (level: string) => ({ label: label('common.evidence'), value: t(`level.${level}` as Parameters<typeof t>[0]) });
 
 // Everything the explorer shows is localized here, at build time: the client
@@ -430,7 +430,7 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
 
         const out: HTMLLIElement[] = [];
         const inbound: HTMLLIElement[] = [];
-        for (const edge of view.edges) {
+        for (const edge of view.graphEdges) {
           if (edge.hidden) continue;
           if (edge.source === node) out.push(connectionRow(edge.target, edge.relation));
           else if (edge.target === node) inbound.push(connectionRow(edge.source, edge.relation));
@@ -580,7 +580,7 @@ const nodeCount = graph.nodeMap.size - bundle.evidence.length;
         );
         empty.classList.toggle('hidden', visible > 0);
         empty.classList.toggle('grid', visible === 0);
-        count.textContent = fill(s.visible, { visible, total: view.nodes.length });
+        count.textContent = fill(s.visible, { visible, total: view.graphNodes.length });
       }
       toggles.forEach((toggle) => toggle.addEventListener('change', applyFilters));
       removability.addEventListener('change', applyFilters);

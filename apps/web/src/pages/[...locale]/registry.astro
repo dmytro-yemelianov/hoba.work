@@ -1,5 +1,5 @@
 ---
-import { READER_FACING_TYPES, removabilityTypeSchema, stageIdSchema } from '@hoba/registry';
+import { READER_FACING_TYPES, removabilityTypeSchema, stageIdSchema, type EvidenceLevel } from '@hoba/registry';
 import Layout from '../../layouts/Layout.astro';
 import EntityBadge from '../../components/EntityBadge.astro';
 import RemovabilityBadge from '../../components/RemovabilityBadge.astro';
@@ -130,7 +130,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
               <td class="whitespace-nowrap">
                 {node.removability ? <RemovabilityBadge removability={node.removability} lang={lang} /> : stageLabels(node.stage).length ? <span class="flex flex-wrap gap-1">{stageLabels(node.stage).map((s) => <span class="pill pill-muted">{s}</span>)}</span> : <span class="text-hoba-muted">—</span>}
               </td>
-              <td class="whitespace-nowrap"><span class="pill pill-muted">{t(`level.${node.evidenceLevel as 'established'}`)}</span></td>
+              <td class="whitespace-nowrap"><span class="pill pill-muted">{t(`level.${node.evidenceLevel as EvidenceLevel}`)}</span></td>
             </tr>
           ))}
         </tbody>
@@ -160,7 +160,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
               <h3 class="text-base font-semibold text-hoba-text">{node.title}</h3>
               <p class="mt-1 text-sm text-hoba-muted line-clamp-3">{node.text}</p>
             </div>
-            <p class="meta mt-auto">{t('common.evidence')}: {t(`level.${node.evidenceLevel as 'established'}`)}</p>
+            <p class="meta mt-auto">{t('common.evidence')}: {t(`level.${node.evidenceLevel as EvidenceLevel}`)}</p>
           </a>
         ))}
       </div>

@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import ShareBar from '../../components/ShareBar.astro';
 import { EMPIRICAL_SCENARIOS, getBundle, slimBundle, STAGES } from '../../lib/registry';
-import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import { clientDictionary, localeFromParams, localePrefix, localeStaticPaths, useTranslations, interpolated } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -173,7 +173,7 @@ const zones = [
               <div class="flex items-center gap-2">
                 <span class="text-lg" aria-hidden="true">{SCENARIO_ICONS[presetKey(sc.id)] ?? '📌'}</span>
                 <span class="text-sm font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors leading-tight">
-                  {t(`analyze.scenarios.${presetKey(sc.id)}`)}
+                  {t(interpolated(`analyze.scenarios.${presetKey(sc.id)}`))}
                 </span>
               </div>
               <p class="mt-1.5 text-xs text-hoba-muted line-clamp-2 leading-relaxed">{sc.summary}</p>

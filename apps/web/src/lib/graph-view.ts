@@ -205,6 +205,20 @@ export class GraphView {
   private options: GraphViewOptions;
   private nodes: SimNode[] = [];
   private edges: SimEdge[] = [];
+
+  /**
+   * Read-only views for the page rendering beside the canvas: it lists a
+   * node's connections and counts what is visible. It used to reach the
+   * private fields directly, which worked and told the next reader that
+   * reaching in was allowed.
+   */
+  get graphNodes(): readonly SimNode[] {
+    return this.nodes;
+  }
+
+  get graphEdges(): readonly SimEdge[] {
+    return this.edges;
+  }
   private lanes: GraphLane[] = [];
   private swimlanes: GraphSwimlane[] = [];
   private idealSteps: IdealStepInput[] = [];

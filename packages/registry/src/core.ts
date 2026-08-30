@@ -8,6 +8,9 @@
  * zod and quietly break the promise this file makes.
  */
 export * from '@hoba/registry-core/types';
+// Type-only, so it is erased: the constant itself lives beside the schema that
+// defines the kinds, and importing that here would pull zod into the browser.
+export type { ReaderFacingType } from '@hoba/registry-core/schemas';
 export * from '@hoba/validator/conformance';
 export * from '@hoba/graph/graph';
 export * from '@hoba/graph/diagnostics';

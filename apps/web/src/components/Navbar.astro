@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import LensSwitch from './LensSwitch.astro';
-import { LANGS, LANG_LABELS, LANG_COOKIE, localePrefix, withLang, useTranslations, type Lang } from '../i18n/utils';
+import { LANGS, LANG_LABELS, LANG_COOKIE, localePrefix, withLang, useTranslations, type Lang, interpolated} from '../i18n/utils';
 import { getBundle } from '../lib/registry';
 
 interface Props {
@@ -17,7 +17,7 @@ const prefix = localePrefix(lang);
 // overflow menu made the bar a list of words with no shape — a reader could not
 // tell that the graph and the registry are the same material seen twice, or
 // that the API and the aggregates are one concern.
-const item = (key: string, path: string) => ({ key, name: t(`nav.${key}`), href: `${prefix}${path}`, desc: t(`nav.desc.${key}`) });
+const item = (key: string, path: string) => ({ key, name: t(interpolated(`nav.${key}`)), href: `${prefix}${path}`, desc: t(interpolated(`nav.desc.${key}`)) });
 
 const groups = [
   {

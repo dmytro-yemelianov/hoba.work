@@ -249,6 +249,8 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
             class="btn btn-primary text-xs py-2 px-4 flex items-center gap-1.5 font-medium js-download-active-btn"
             data-card-url={cardUrl}
             data-filename={`hoba-${id}-${lang}.png`}
+            data-entry={id}
+            data-lang={lang}
           >
             <span>⬇️</span>
             <span>{t('share.downloadPng')}</span>
@@ -307,10 +309,18 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
 
       if (!img || !downloadBtn) return;
 
+      // Everything this script needs is on the button. It used to fall back to
+      // `cardUrl`, `id` and `lang` from the frontmatter, which a plain <script>
+      // never receives — the fallbacks were unreachable only because the
+      // attributes are always set, and the tab handlers below, which have no
+      // fallback, threw `id is not defined` on every click.
+      const entry = downloadBtn.dataset.entry ?? '';
+      const cardLang = downloadBtn.dataset.lang ?? 'en';
+
       downloadBtn.addEventListener('click', () => {
         const a = document.createElement('a');
-        a.href = downloadBtn.dataset.cardUrl || cardUrl;
-        a.download = downloadBtn.dataset.filename || `hoba-${id}-${lang}.png`;
+        a.href = downloadBtn.dataset.cardUrl ?? '';
+        a.download = downloadBtn.dataset.filename ?? `hoba-${entry}-${cardLang}.png`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -324,7 +334,7 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
       tabLandscape.addEventListener('click', () => {
         img.src = baseLandscapeUrl;
         downloadBtn.dataset.cardUrl = baseLandscapeUrl;
-        downloadBtn.dataset.filename = `hoba-${id}-${lang}.png`;
+        downloadBtn.dataset.filename = `hoba-${entry}-${cardLang}.png`;
         tabLandscape.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
         tabLandscape.classList.remove('text-hoba-muted');
         tabPortrait.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
@@ -334,7 +344,7 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
       tabPortrait.addEventListener('click', () => {
         img.src = basePortraitUrl;
         downloadBtn.dataset.cardUrl = basePortraitUrl;
-        downloadBtn.dataset.filename = `hoba-${id}-postcard-${lang}.png`;
+        downloadBtn.dataset.filename = `hoba-${entry}-postcard-${cardLang}.png`;
         tabPortrait.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
         tabPortrait.classList.remove('text-hoba-muted');
         tabLandscape.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
