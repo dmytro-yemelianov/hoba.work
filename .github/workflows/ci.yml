@@ -43,10 +43,13 @@ jobs:
         run: pnpm build
 
       - name: Verify committed registry exports are up to date
-        # `content` is in here because entry bodies are generated from their own
+        # `data` is in here because entry bodies are generated from their own
         # frontmatter: a body edited by hand, or left behind by a frontmatter
-        # edit, shows up as a diff instead of drifting quietly.
-        run: git diff --exit-code --stat -- schemas apps/web/public data
+        # edit, shows up as a diff instead of drifting quietly. The worker
+        # source is in here because the redirect table is generated into it —
+        # this check is only as wide as what `pnpm build` regenerates, which is
+        # why `generate:redirects` had to join the build to be covered at all.
+        run: git diff --exit-code --stat -- schemas apps/web/public apps/web/src/worker data
 
       - name: Install Lean
         uses: leanprover/lean-action@v1
