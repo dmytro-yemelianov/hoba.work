@@ -7,6 +7,7 @@
  *   pnpm task preview            build and serve, reusing a running server
  *   pnpm task shots <path...>    screenshot pages at three widths in both themes
  *   pnpm task specimens          coverage, mirror parity and forbidden names
+ *   pnpm task sources            every evidence URL still opens
  *   pnpm task deploy-preview     branch deploy, prints the URL
  *
  * Everything writes to stdout and exits non-zero on failure, so CI can call the
@@ -174,6 +175,57 @@ function specimens() {
   process.stdout.write(c.green(`✓ ${total} entities, both mirrors, no forbidden names\n`));
 }
 
+/**
+ * A citation nobody can open is not a citation, and a URL rots without anyone
+ * touching the file it sits in. Deliberately a chore and not a gate: several
+ * of the hosts this registry cites — doi.org, FRED, GAO — refuse anything that
+ * is not a browser, so a build that blocked on them would fail for reasons
+ * that have nothing to do with the registry. Run it now and then; read the
+ * output rather than trusting an exit code.
+ */
+const BOT_HOSTILE = ['doi.org', 'fred.stlouisfed.org', 'gao.gov', 'clarifycapital.com'];
+
+async function sources() {
+  const { loadRegistryFromRoot, resolveRegistryRoot } = await import('@hoba/registry');
+  const records = loadRegistryFromRoot(resolveRegistryRoot(), 'en').evidence.filter((e) => e.url);
+  const suspect = [];
+
+  process.stdout.write(`checking ${records.length} source URL(s)\n`);
+  for (const record of records) {
+    let status = 0;
+    try {
+      const res = await fetch(record.url, {
+        redirect: 'follow',
+        headers: { 'user-agent': 'Mozilla/5.0 (compatible; hoba-source-check)' },
+        signal: AbortSignal.timeout(20_000),
+      });
+      status = res.status;
+    } catch {
+      status = 0;
+    }
+    if (status >= 200 && status < 400) continue;
+    const host = new URL(record.url).host.replace(/^www\./, '');
+    // Excused by host *and* by what the host said. A 401/403/429 or a dead
+    // socket is a refusal to talk to a script; a 404 is the host saying the
+    // page is not there, which no amount of user-agent theatre will change —
+    // and excusing that would have hidden a GAO citation I got wrong.
+    const refusal = status === 0 || status === 401 || status === 403 || status === 429;
+    const excused = refusal && BOT_HOSTILE.some((h) => host.endsWith(h));
+    suspect.push({ id: record.id, url: record.url, status, excused });
+  }
+
+  const real = suspect.filter((s) => !s.excused);
+  for (const s of suspect) {
+    const mark = s.excused ? c.dim(`${s.status || 'blocked'} (host refuses non-browsers)`) : c.red(String(s.status || 'unreachable'));
+    process.stdout.write(`  ${mark}  ${s.id}\n        ${s.url}\n`);
+  }
+  process.stdout.write(
+    real.length
+      ? c.red(`\n${real.length} source(s) need a human to look\n`)
+      : c.green(`\n✓ every source that answers a script is reachable (${suspect.length} excused as bot-hostile)\n`)
+  );
+}
+
 // ---- preview / shots -----------------------------------------------------
 
 async function serverUp() {
@@ -251,6 +303,7 @@ const TASKS = {
   preview,
   shots: () => shots(rest),
   specimens,
+  sources,
   'deploy-preview': deployPreview,
 };
 

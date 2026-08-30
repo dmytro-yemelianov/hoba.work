@@ -20,8 +20,8 @@ summary: >-
   and nothing about what follows a lost bid. It governs US federal contracting
   and establishes that the arrangement is standard and regulated, not how often
   it occurs.
-citation: "ASRC Federal Data Solutions, LLC, B-421008 (Comp. Gen. Dec. 2, 2022)."
-url: "https://www.gao.gov/products/b-421008"
+citation: "ASRC Federal Data Solutions, LLC, B-421008.2; B-421008.3 (Comp. Gen. Dec. 2, 2022) (protest sustained). B-421008 is the original protest docket; the sustained decision carries the .2 and .3 numbers."
+url: "https://www.gao.gov/products/b-421008,b-421008.2,b-421008.3"
 period: "2022"
 ---
 

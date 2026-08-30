@@ -14,7 +14,7 @@ summary: >-
   underlying headcount authorization or budgetary certification had not been
   secured or had lapsed.
 citation: "Restatement of Employment Law § 2.02 (Promise of Employment: Reliance and Revocation) (American Law Institute, 2015)."
-url: "https://www.ali.org/publications/show/employment-law/"
+url: "https://www.ali.org/publications/restatement-law/employment-law"
 period: "current"
 ---
 
@@ -24,4 +24,4 @@ Section 2.02 of the Restatement of Employment Law (American Law Institute, 2015)
 
 - **Kind:** `primary`
 - **Citation:** Restatement of Employment Law § 2.02 (American Law Institute, 2015).
-- **Source:** [ali.org](https://www.ali.org/publications/show/employment-law/)
+- **Source:** [ali.org](https://www.ali.org/publications/restatement-law/employment-law)
