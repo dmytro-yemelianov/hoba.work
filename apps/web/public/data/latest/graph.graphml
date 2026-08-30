@@ -576,6 +576,9 @@
     <edge id="mech.bid_conditional_talent_pool-&gt;emits-&gt;obs.unsolicited_recruiter_outreach_followed_by_ghosting" source="mech.bid_conditional_talent_pool" target="obs.unsolicited_recruiter_outreach_followed_by_ghosting">
       <data key="d_edge_type">emits</data>
     </edge>
+    <edge id="mech.bid_conditional_talent_pool-&gt;emits-&gt;obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body" source="mech.bid_conditional_talent_pool" target="obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="mech.communication_or_working_style_friction-&gt;operates_at-&gt;bar.recruiter_screening_call" source="mech.communication_or_working_style_friction" target="bar.recruiter_screening_call">
       <data key="d_edge_type">operates_at</data>
     </edge>
@@ -894,6 +897,9 @@
     <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;emits-&gt;obs.complete_silence_after_submission" source="mech.speculative_sourcing_talent_pooling_without_opening" target="obs.complete_silence_after_submission">
       <data key="d_edge_type">emits</data>
     </edge>
+    <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;emits-&gt;obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body" source="mech.speculative_sourcing_talent_pooling_without_opening" target="obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body">
+      <data key="d_edge_type">emits</data>
+    </edge>
     <edge id="mech.speculative_sourcing_talent_pooling_without_opening-&gt;amplifies-&gt;mech.recruiter_volume_quota_incentive_distortion" source="mech.speculative_sourcing_talent_pooling_without_opening" target="mech.recruiter_volume_quota_incentive_distortion">
       <data key="d_edge_type">amplifies</data>
     </edge>
@@ -913,6 +919,9 @@
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.stale_or_orphaned_job_requisition-&gt;emits-&gt;obs.materially_similar_role_reposted_shortly_after_rejection" source="mech.stale_or_orphaned_job_requisition" target="obs.materially_similar_role_reposted_shortly_after_rejection">
+      <data key="d_edge_type">emits</data>
+    </edge>
+    <edge id="mech.stale_or_orphaned_job_requisition-&gt;emits-&gt;obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body" source="mech.stale_or_orphaned_job_requisition" target="obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body">
       <data key="d_edge_type">emits</data>
     </edge>
     <edge id="mech.stale_or_orphaned_job_requisition-&gt;amplifies-&gt;mech.automated_application_expiration_timeout" source="mech.stale_or_orphaned_job_requisition" target="mech.automated_application_expiration_timeout">

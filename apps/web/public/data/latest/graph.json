@@ -1497,6 +1497,17 @@
       },
       {
         "data": {
+          "id": "mech.bid_conditional_talent_pool->emits->obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "source": "mech.bid_conditional_talent_pool",
+          "target": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "mech.communication_or_working_style_friction->operates_at->bar.recruiter_screening_call",
           "source": "mech.communication_or_working_style_friction",
           "target": "bar.recruiter_screening_call",
@@ -2533,6 +2544,17 @@
       },
       {
         "data": {
+          "id": "mech.speculative_sourcing_talent_pooling_without_opening->emits->obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "source": "mech.speculative_sourcing_talent_pooling_without_opening",
+          "target": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "type": "emits",
+          "fidelity": "distortion",
+          "likelihood": "high"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
           "id": "mech.speculative_sourcing_talent_pooling_without_opening->amplifies->mech.recruiter_volume_quota_incentive_distortion",
           "source": "mech.speculative_sourcing_talent_pooling_without_opening",
           "target": "mech.recruiter_volume_quota_incentive_distortion",
@@ -2594,6 +2616,17 @@
           "target": "obs.materially_similar_role_reposted_shortly_after_rejection",
           "type": "emits",
           "fidelity": "noise",
+          "likelihood": "medium"
+        },
+        "classes": "edge-emits"
+      },
+      {
+        "data": {
+          "id": "mech.stale_or_orphaned_job_requisition->emits->obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "source": "mech.stale_or_orphaned_job_requisition",
+          "target": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "type": "emits",
+          "fidelity": "distortion",
           "likelihood": "medium"
         },
         "classes": "edge-emits"

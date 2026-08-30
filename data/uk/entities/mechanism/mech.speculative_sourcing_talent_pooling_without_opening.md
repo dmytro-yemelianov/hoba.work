@@ -23,6 +23,12 @@ emissions:
     likelihood: "medium"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]
     observed_at: ["sourcing"]
+  -
+    artifact: "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
+    fidelity: "distortion"
+    likelihood: "high"
+    evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
+    observed_at: ["sourcing"]
 facets:
   actor: "recruiter"
   nature: "incentive"

@@ -23,6 +23,12 @@ emissions:
     likelihood: "medium"
     evidence: ["evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"]
     observed_at: ["screening"]
+  -
+    artifact: "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
+    fidelity: "distortion"
+    likelihood: "medium"
+    evidence: ["evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"]
+    observed_at: ["sourcing"]
 facets:
   actor: "system"
   nature: "void"

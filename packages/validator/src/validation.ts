@@ -248,6 +248,21 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     if (!citedEvidence.has(e.id)) warning('unused-evidence', 'is cited by no entry in the registry', e.id);
   }
 
+  // 10. Every observation must be emitted by some mechanism. The atlas exists to
+  //    answer "you saw this — here is what produces it", so an observation no
+  //    mechanism emits is the one entry that cannot keep that promise: a reader
+  //    who recognises their own rejection in it arrives at a dead end. Nothing
+  //    said so, and one had been sitting there. A warning rather than an error,
+  //    because writing the trace before the mechanism that explains it is how
+  //    the registry actually grows; `--strict` is what makes it stop.
+  const emittedObservations = new Set<string>();
+  for (const m of bundle.mechanisms) for (const em of m.emissions) emittedObservations.add(em.artifact);
+  for (const a of bundle.observations) {
+    if (!emittedObservations.has(a.id)) {
+      warning('emissions', 'is emitted by no mechanism, so the atlas shows it without explaining it', a.id);
+    }
+  }
+
   // 10. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
   const probeOwners = new Map<string, string>();
   for (const a of bundle.observations) {

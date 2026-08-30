@@ -16,7 +16,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
 - **Evidence** (`EVD-*`, 51) — the published sources behind the claims.
 
-The graph has 226 nodes and 254 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+The graph has 226 nodes and 257 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
@@ -376,7 +376,7 @@ Recruiters run a real search for a real role whose funding depends on a contract
 
 - Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.outbound_sourcing_talent_pool_contact
-- Emits: obs.complete_silence_after_submission (void), obs.unsolicited_recruiter_outreach_followed_by_ghosting (void)
+- Emits: obs.complete_silence_after_submission (void), obs.unsolicited_recruiter_outreach_followed_by_ghosting (void), obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body (distortion)
 - Does NOT establish: Does not mean the role was fake: it was real and conditional, which is a different structure from a posting nobody intends to fill.
 - Does NOT establish: Does not establish that the recruiter was free to disclose the bid's existence.
 
@@ -539,7 +539,7 @@ Recruiters open conversations and build candidate pools against headcount that h
 
 - Actor: recruiter · Nature: incentive · Visibility: opaque · Removability: none
 - Operates at: bar.requisition_approval_public_posting, bar.outbound_sourcing_talent_pool_contact, bar.inbound_screening_triage, bar.recruiter_screening_call
-- Emits: obs.unsolicited_recruiter_outreach_followed_by_ghosting (distortion), obs.complete_silence_after_submission (void)
+- Emits: obs.unsolicited_recruiter_outreach_followed_by_ghosting (distortion), obs.complete_silence_after_submission (void), obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body (distortion)
 - Does NOT establish: Ghosting after an outbound message indicates the absence of an immediate opening, not a rejection of the profile.
 
 ### mech.stale_or_orphaned_job_requisition — Stale or Orphaned Job Requisition
@@ -548,7 +548,7 @@ Job posting remains active on careers page and aggregator portals despite the te
 
 - Actor: system · Nature: void · Visibility: opaque · Removability: none
 - Operates at: bar.requisition_approval_public_posting, bar.application_ingestion, bar.automated_filter_parser_threshold, bar.inbound_screening_triage
-- Emits: obs.complete_silence_after_submission (void), obs.materially_similar_role_reposted_shortly_after_rejection (noise)
+- Emits: obs.complete_silence_after_submission (void), obs.materially_similar_role_reposted_shortly_after_rejection (noise), obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body (distortion)
 - Does NOT establish: Application silence does not reflect candidate suitability.
 
 ### mech.start_date_slippage_and_post_acceptance_revocation — Start-Date Slippage and Post-Acceptance Revocation

@@ -20,6 +20,12 @@ emissions:
     likelihood: "high"
     evidence: []
     observed_at: ["sourcing"]
+  -
+    artifact: "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body"
+    fidelity: "distortion"
+    likelihood: "medium"
+    evidence: ["evidence.postings_without_a_fillable_requisition_measured_on_one_ats_platform_greenhouse"]
+    observed_at: ["sourcing"]
 facets:
   actor: "recruiter"
   nature: "incentive"

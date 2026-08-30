@@ -212,13 +212,18 @@ describe('the published registry', () => {
     // internal person was earmarked before the search or became available
     // during it sits in a staffing record no message describes. Both ties are
     // published findings, not accidents.
+    //
+    // The outreach class lost a member when the republished-posting trace was
+    // attached to the mechanisms that actually leave it. Both remaining members
+    // post a role that has no fillable requisition behind it — one awaiting a
+    // bid, one awaiting headcount — and refresh it with the same requirement
+    // text, because in both cases that text is fixed by something outside the
+    // team. Volume-quota distortion screens a real requisition, so it does not
+    // leave that trace and is no longer tied; it is still subsumed by the two,
+    // which the test below records.
     expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([
       ['mech.bench_priority_fill', 'mech.pre_selected_internal_candidate'],
-      [
-        'mech.bid_conditional_talent_pool',
-        'mech.recruiter_volume_quota_incentive_distortion',
-        'mech.speculative_sourcing_talent_pooling_without_opening',
-      ],
+      ['mech.bid_conditional_talent_pool', 'mech.speculative_sourcing_talent_pooling_without_opening'],
     ]);
   });
 
