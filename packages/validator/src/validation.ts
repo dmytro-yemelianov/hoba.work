@@ -230,7 +230,25 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     );
   }
 
-  // 9. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
+  // 9. Every evidence record earns its place. A source nobody cites is either
+  //    a link someone forgot to make or weight the registry is carrying for
+  //    nothing — and the first is the common case: Rev. Proc. 2025-28 sat
+  //    unused while an era's prose made two claims that came from it. A
+  //    warning, not an error, because authoring a source ahead of the entry
+  //    that will cite it is legitimate; `--strict` is what makes it stop.
+  //    Gathered from every collection that can carry a citation, not from
+  //    `allNodes`, which covers only the claim-bearing types — eras, processes
+  //    and actors all have `evidence_ids` that nothing has been reading.
+  const citedEvidence = new Set<string>();
+  const citing = [...nodes, ...bundle.eras, ...bundle.processes, ...bundle.actors];
+  for (const n of citing) for (const id of (n as { evidence_ids?: string[] }).evidence_ids ?? []) citedEvidence.add(id);
+  for (const e of bundle.eras) for (const i of e.indicators) citedEvidence.add(i.evidence);
+  for (const m of bundle.mechanisms) for (const em of m.emissions) for (const id of em.evidence ?? []) citedEvidence.add(id);
+  for (const e of bundle.evidence) {
+    if (!citedEvidence.has(e.id)) warning('unused-evidence', 'is cited by no entry in the registry', e.id);
+  }
+
+  // 10. Diagnostic probes must be globally unique (the engine de-duplicates by probe ID).
   const probeOwners = new Map<string, string>();
   for (const a of bundle.observations) {
     for (const p of a.probes) {

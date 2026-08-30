@@ -68,6 +68,38 @@ describe('validateRegistryBundle', () => {
     });
   });
 
+  // A source nobody cites is either a link someone forgot or weight carried for
+  // nothing. Rev. Proc. 2025-28 sat unused while an era's prose made two claims
+  // that came from it, and nothing said so.
+  describe('unused evidence', () => {
+    it('warns about an evidence record no entry cites', () => {
+      const bundle = makeBundle();
+      bundle.evidence = [...bundle.evidence, { id: 'EVD-777', type: 'evidence', title: 'Nobody cites me', kind: 'research', summary: 'A fixture evidence record.', aliases: [] } as never];
+      const issues = validateRegistryBundle(bundle).filter((i) => i.rule === 'unused-evidence');
+      expect(issues).toHaveLength(1);
+      expect(issues[0]!.severity).toBe('warning');
+      expect(issues[0]!.nodeId).toBe('EVD-777');
+    });
+
+    it('counts a citation from an era, a process or an actor — not only from the claim-bearing types', () => {
+      // These three are absent from `allNodes`, which is why their citations
+      // were invisible to every rule that reads it.
+      for (const collection of ['eras', 'processes', 'actors'] as const) {
+        const bundle = makeBundle();
+        bundle.evidence = [...bundle.evidence, { id: 'EVD-777', type: 'evidence', title: 'Cited', kind: 'research', summary: 'A fixture evidence record.', aliases: [] } as never];
+        (bundle as never as Record<string, unknown[]>)[collection] = [{ id: 'x', evidence_ids: ['EVD-777'], indicators: [] } as never];
+        expect(
+          validateRegistryBundle(bundle).filter((i) => i.rule === 'unused-evidence' && i.nodeId === 'EVD-777'),
+          collection
+        ).toEqual([]);
+      }
+    });
+
+    it('stays quiet when every record is cited', () => {
+      expect(validateRegistryBundle(makeBundle()).filter((i) => i.rule === 'unused-evidence')).toEqual([]);
+    });
+  });
+
   it('requires at least one active honest-baseline mechanism', () => {
     const bundle = makeBundle();
     bundle.mechanisms = bundle.mechanisms.map((m) => ({ ...m, honest_baseline: false }));

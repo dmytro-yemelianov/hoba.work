@@ -155,6 +155,9 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
       artifact({
         id: 'A-001',
         stages: ['screening'],
+        // The bundle calls itself fully valid, so it cites its own evidence
+        // rather than carrying a record nothing points at.
+        evidence_ids: ['EVD-001'],
         probes: [{ id: 'PROBE-A-001-1', action: 'Check the spam folder.', expected_signal: 'An acknowledgement.', cost: 'low', outcomes: [] }],
       }),
     ],
