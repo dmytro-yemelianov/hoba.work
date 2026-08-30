@@ -6,9 +6,15 @@ aliases:
 title: "Generic \"closer alignment\" rejection template"
 summary: "A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely."
 stages:
+  - "ingestion"
   - "screening"
   - "recruiter"
   - "technical"
+  - "hiring-manager"
+  - "team"
+  - "compensation"
+  - "offer"
+  - "post-offer"
 perspectives:
   -
     actor: "actor.candidate"

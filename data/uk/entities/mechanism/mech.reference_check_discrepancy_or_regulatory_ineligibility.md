@@ -16,6 +16,7 @@ emissions:
     observed_at: ["post-offer"]
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
+    observed_at: ["post-offer"]
     fidelity: "euphemism"
     likelihood: "medium"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

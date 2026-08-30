@@ -3859,9 +3859,15 @@
       "type": "observation",
       "summary": "A standard automated email saying that the team has decided to proceed with candidates whose profiles match the requirements of the role more closely.",
       "stages": [
+        "ingestion",
         "screening",
         "recruiter",
-        "technical"
+        "technical",
+        "hiring-manager",
+        "team",
+        "compensation",
+        "offer",
+        "post-offer"
       ],
       "evidence_level": "supported",
       "probes": [
@@ -6890,7 +6896,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "ingestion"
+          ]
         }
       ],
       "facets": {
@@ -7952,7 +7960,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "team"
+          ]
         }
       ],
       "facets": {
@@ -8924,7 +8934,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "post-offer"
+          ]
         }
       ],
       "facets": {
@@ -9324,7 +9336,9 @@
           "evidence": [
             "evidence.hidden_workers_untapped_talent_hbs_accenture"
           ],
-          "observed_at": []
+          "observed_at": [
+            "offer"
+          ]
         },
         {
           "artifact": "obs.position_closed_after_final_interview_without_hire",

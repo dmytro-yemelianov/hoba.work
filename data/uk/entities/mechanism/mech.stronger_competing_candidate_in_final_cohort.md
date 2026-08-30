@@ -12,6 +12,7 @@ operates_at:
 emissions:
   -
     artifact: "obs.generic_closer_alignment_rejection_template"
+    observed_at: ["offer"]
     fidelity: "euphemism"
     likelihood: "high"
     evidence: ["evidence.hidden_workers_untapped_talent_hbs_accenture"]

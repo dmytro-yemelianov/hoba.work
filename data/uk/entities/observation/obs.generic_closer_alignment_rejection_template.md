@@ -6,9 +6,15 @@ aliases:
 title: "Шаблонна відмова про «кандидата з більшою відповідністю»"
 summary: "Стандартний лист про те, що компанія вирішила рухатися далі з кандидатами, чий досвід точніше відповідає ролі."
 stages:
+  - "ingestion"
   - "screening"
   - "recruiter"
   - "technical"
+  - "hiring-manager"
+  - "team"
+  - "compensation"
+  - "offer"
+  - "post-offer"
 perspectives:
   -
     actor: "actor.candidate"

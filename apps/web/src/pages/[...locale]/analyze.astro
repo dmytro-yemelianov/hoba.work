@@ -242,7 +242,7 @@ const zones = [
                         <div class="flex flex-col flex-1 min-w-0">
                           <div class="flex flex-wrap items-baseline justify-between gap-2">
                             <span class="font-mono text-xs font-semibold text-hoba-accent break-all max-w-full">{art.id}</span>
-                            <span class="text-[11px] font-mono text-hoba-muted shrink-0">{art.stages.map((s) => t(`stage.${s}`)).join(' · ')}</span>
+                            <span class="text-[11px] font-mono text-hoba-muted min-w-0 break-words">{art.stages.map((s) => t(`stage.${s}`)).join(' · ')}</span>
                           </div>
                           <span class="mt-1 text-sm font-medium text-hoba-text group-hover:text-hoba-accent transition-colors leading-snug">{art.title}</span>
                           <span class="mt-1 text-xs text-hoba-muted line-clamp-2 leading-relaxed">{art.summary}</span>

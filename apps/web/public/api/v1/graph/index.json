@@ -104,9 +104,15 @@
           "type": "observation",
           "evidence_level": "supported",
           "stages": [
+            "ingestion",
             "screening",
             "recruiter",
-            "technical"
+            "technical",
+            "hiring-manager",
+            "team",
+            "compensation",
+            "offer",
+            "post-offer"
           ]
         },
         "classes": "node-artifact"
