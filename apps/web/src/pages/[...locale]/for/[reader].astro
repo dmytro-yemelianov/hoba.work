@@ -1,0 +1,146 @@
+---
+/**
+ * One entry point per reader.
+ *
+ * The risk these pages carry is becoming three different atlases, so the shared
+ * footing is computed rather than written: the same counts appear on all three
+ * because they are read from one registry, and the worked example is chosen by
+ * counting emissions rather than picked per page. What differs is the order,
+ * the question, and — for the two readers who occupy a seat — the lens.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import EntityBadge from '../../../components/EntityBadge.astro';
+import ShareBar from '../../../components/ShareBar.astro';
+import { getBundle } from '../../../lib/registry';
+import { READER_SEAT, READER_SLUGS, sharedExample, sharedFooting, type ReaderSlug } from '../../../lib/readers';
+import { LANGS, localeParams, localePrefix, useTranslations, interpolated, type Lang } from '../../../i18n/utils';
+
+export async function getStaticPaths() {
+  return LANGS.flatMap((lang) =>
+    READER_SLUGS.map((reader) => ({ params: { ...localeParams(lang), reader }, props: { lang, reader } }))
+  );
+}
+
+const { lang, reader } = Astro.props as { lang: Lang; reader: ReaderSlug };
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+const bundle = getBundle(lang);
+
+const footing = sharedFooting(bundle);
+const example = sharedExample(bundle);
+const seat = READER_SEAT[reader];
+
+/** What the registry records each seat seeing on the shared example. */
+const perspectiveFor = (actorSlug: string) =>
+  example.perspectives?.find((p) => p.actor === `actor.${actorSlug.replace(/-/g, '_')}`);
+const candidateView = perspectiveFor('candidate');
+const recruiterView = perspectiveFor('recruiter');
+
+const STEPS: Record<ReaderSlug, Array<{ href: string; label: string }>> = {
+  candidate: [
+    { href: `${prefix}/analyze`, label: t('nav.analyze') },
+    { href: `${prefix}/observations/${example.id}`, label: example.title },
+    { href: `${prefix}/registry?type=intervention`, label: t('entity.plural.intervention') },
+  ],
+  recruiter: [
+    { href: `${prefix}/process`, label: t('nav.process') },
+    { href: `${prefix}/check`, label: t('nav.check') },
+    { href: `${prefix}/registry?type=intervention`, label: t('entity.plural.intervention') },
+  ],
+  researcher: [
+    { href: `${prefix}/graph`, label: t('nav.graph') },
+    { href: `${prefix}/data`, label: t('nav.data') },
+    { href: `${prefix}/methodology`, label: t('nav.methodology') },
+  ],
+};
+
+const others = READER_SLUGS.filter((r) => r !== reader);
+const counts = [
+  { n: footing.entries, label: t('reader.same.entries') },
+  { n: footing.evidence, label: t('reader.same.evidence') },
+  { n: footing.languages, label: t('reader.same.languages') },
+];
+---
+<Layout lang={lang} title={t(interpolated(`reader.title.${reader}`))} activeNav="home">
+  <PageHeader
+    title={t(interpolated(`reader.title.${reader}`))}
+    lead={t(interpolated(`reader.lead.${reader}`))}
+    wide
+    lang={lang}
+  />
+
+  <section class="section" id="reader-footing">
+    <h2 class="section-title">{t('reader.same.title')}</h2>
+    <dl class="mt-4 flex flex-wrap gap-x-10 gap-y-3">
+      {counts.map((c) => (
+        <div>
+          <dt class="font-mono text-2xl font-semibold text-hoba-text tabular-nums">{c.n}</dt>
+          <dd class="meta">{c.label}</dd>
+        </div>
+      ))}
+    </dl>
+    <p class="mt-4 text-base text-hoba-muted max-w-3xl">{t('reader.same.text')}</p>
+    <p class="mt-4 text-base">
+      <span class="meta">{t('reader.same.others')}</span>
+      {others.map((r) => (
+        <a href={`${prefix}/for/${r}`} class="ml-3 text-hoba-accent underline underline-offset-2">
+          {t(interpolated(`reader.title.${r}`))}
+        </a>
+      ))}
+    </p>
+  </section>
+
+  <section class="section" id="reader-seat">
+    <h2 class="section-title">{t('reader.seat.title')}</h2>
+    <p class="mt-2 text-base text-hoba-muted max-w-3xl">
+      {seat ? t('reader.seat.inside') : t('reader.seat.outside')}
+    </p>
+    <p class="mt-4">
+      {seat ? (
+        <a href={`${prefix}/actors/${seat}?lens=${seat}`} class="btn btn-primary text-sm">{t('reader.seat.cta')} →</a>
+      ) : (
+        <a href={`${prefix}/actors`} class="btn btn-secondary text-sm">{t('reader.seat.all')} →</a>
+      )}
+    </p>
+  </section>
+
+  <section class="section" id="reader-example">
+    <h2 class="section-title">{t('reader.example.title')}</h2>
+    <p class="mt-2 text-base text-hoba-muted max-w-3xl">{t('reader.example.intro')}</p>
+    <p class="mt-4 flex items-center gap-2 flex-wrap">
+      <EntityBadge type="observation" id={example.id} lang={lang} />
+      <a href={`${prefix}/observations/${example.id}`} class="text-hoba-accent underline underline-offset-2">{example.title}</a>
+    </p>
+    <div class="mt-5 grid gap-5 sm:grid-cols-2">
+      {[{ view: candidateView, who: 'candidate' }, { view: recruiterView, who: 'recruiter' }]
+        .filter((p) => p.view)
+        .map(({ view, who }) => (
+          <div class={`rounded-lg border p-4 ${who === reader ? 'border-hoba-accent' : 'border-hoba-border'}`}>
+            <p class="meta">{t(interpolated(`actor.${who}`))}</p>
+            <p class="mt-2 text-base text-hoba-text">{view!.sees}</p>
+            <p class="mt-2 text-base text-hoba-muted">{view!.reads}</p>
+          </div>
+        ))}
+    </div>
+  </section>
+
+  <section class="section" id="reader-start">
+    <h2 class="section-title">{t('reader.start.title')}</h2>
+    <ol class="row-list mt-4">
+      {STEPS[reader].map((step, i) => (
+        <li class="py-3">
+          <a href={step.href} class="text-base font-medium text-hoba-accent underline underline-offset-2">{step.label}</a>
+          <p class="mt-1 text-base text-hoba-muted max-w-2xl">{t(interpolated(`reader.step.${reader}.${i + 1}`))}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section" id="reader-limits">
+    <h2 class="section-title">{t('reader.limits.title')}</h2>
+    <p class="mt-2 text-base text-hoba-muted max-w-3xl">{t(interpolated(`reader.limits.${reader}`))}</p>
+  </section>
+
+  <ShareBar id={`for-${reader}`} title={t(interpolated(`reader.title.${reader}`))} lang={lang} />
+</Layout>

@@ -12,6 +12,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { READER_SLUGS } from '../apps/web/src/lib/readers';
 import { findRegistryRoot, HOBAKnowledgeGraph, loadRegistryFromRoot, type ContentLang, type RegistryBundle } from '@hoba/registry';
 
 const SITE = 'https://hoba.work';
@@ -233,7 +234,11 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
 
 const bundle = loadRegistryFromRoot(root, 'en' as ContentLang);
 const graph = new HOBAKnowledgeGraph(bundle);
-const routes = [...STATIC_ROUTES, ...entityRoutes(bundle)];
+// One entry point per reader. They are a dynamic template, so the walk above
+// skips them the way it skips entity routes, and they are named from the same
+// list the pages are generated from.
+const readerRoutes = READER_SLUGS.map((r) => `/for/${r}`);
+const routes = [...STATIC_ROUTES, ...readerRoutes, ...entityRoutes(bundle)];
 // From the manifest, never from a file mtime: a fresh checkout has different
 // mtimes, which would make the build non-deterministic and fail CI's
 // exports-are-up-to-date check on every run.

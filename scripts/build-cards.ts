@@ -15,6 +15,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import satori from 'satori';
+import { ui } from '../apps/web/src/i18n/ui';
+import { READER_SLUGS } from '../apps/web/src/lib/readers';
 import { Resvg } from '@resvg/resvg-js';
 import {
   findRegistryRoot,
@@ -693,14 +695,34 @@ interface SectionCard {
   hue: string;
 }
 
+const READER_FACING_COUNT = (() => {
+  const b = loadRegistryFromRoot(root!, 'en');
+  return b.observations.length + b.barriers.length + b.mechanisms.length +
+    b.patterns.length + b.loops.length + b.interventions.length;
+})();
+
+/**
+ * One card per reader entry point, worded from the site dictionary rather than
+ * written again here — a share card that disagreed with the page it links to
+ * would be wrong in the one place nobody looks.
+ */
+const READER_CARDS: SectionCard[] = READER_SLUGS.map((reader) => ({
+  id: `for-${reader}`,
+  title: { en: ui.en[`reader.title.${reader}`], uk: ui.uk[`reader.title.${reader}`] },
+  kicker: { en: ui.en['reader.same.title'], uk: ui.uk['reader.same.title'] },
+  summary: { en: ui.en[`reader.lead.${reader}`], uk: ui.uk[`reader.lead.${reader}`] },
+  hue: '#58a6ff',
+}));
+
 const SECTION_CARDS: SectionCard[] = [
   {
     id: 'og-home',
     title: { en: 'Hiring Obstacles & Barriers Atlas', uk: 'Атлас барʼєрів та перешкод найму' },
     kicker: { en: 'Open Causal Atlas', uk: 'Відкритий причинний атлас' },
+    // Counted, not typed: this said 89 while the registry carried 96.
     summary: {
-      en: '89 machine-readable causal nodes explaining why the tech hiring funnel breaks and what systemic dynamics operate behind the scenes.',
-      uk: '89 верифікованих вузлів, що пояснюють, чому буксує воронка технічного найму та яка прихована динаміка стоїть за цим.',
+      en: `${READER_FACING_COUNT} machine-readable causal nodes explaining why the tech hiring funnel breaks and what systemic dynamics operate behind the scenes.`,
+      uk: `${READER_FACING_COUNT} верифікованих вузлів, що пояснюють, чому буксує воронка технічного найму та яка прихована динаміка стоїть за цим.`,
     },
     hue: '#58a6ff',
   },
@@ -1060,7 +1082,7 @@ async function main(): Promise<void> {
     }
 
     // 2. Queue all top-level section cards
-    for (const sec of SECTION_CARDS) {
+    for (const sec of [...SECTION_CARDS, ...READER_CARDS]) {
       const targetFile = path.join(dir, `${sec.id}.png`);
       const targetLang = lang;
       const targetBundle = bundle;

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import * as S from '@hoba/registry';
+import { READER_SLUGS } from '../apps/web/src/lib/readers';
 import { ui } from '../apps/web/src/i18n/ui';
 import { branded, internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../apps/web/src/i18n/utils';
 
@@ -146,6 +147,12 @@ describe('the dictionary and the vocabularies it labels', () => {
     ['stage.', S.stageIdSchema.options],
     ['status.', S.nodeStatusSchema.options],
     ['visibility.', S.visibilityTypeSchema.options],
+    // Not a registry vocabulary, but a vocabulary all the same: the reader
+    // entry points are generated from this list, so a reader added without a
+    // title, a lead and a stated limit fails here rather than on the page.
+    ['reader.title.', READER_SLUGS],
+    ['reader.lead.', READER_SLUGS],
+    ['reader.limits.', READER_SLUGS],
   ];
 
   it('labels every member of every vocabulary it interpolates', () => {
@@ -170,6 +177,9 @@ describe('the dictionary and the vocabularies it labels', () => {
     // Keyed by a local set — a zone, a card's position, a page of the tour —
     // rather than by a vocabulary the registry defines.
     'analyze.a.zone.', 'home.gives.', 'tour.',
+    // Two levels — reader, then step number — so the flat rule above cannot
+    // check it; the test below walks it properly.
+    'reader.step.',
   ]);
 
   it('classifies every prefix whose key is built at runtime', () => {
@@ -269,5 +279,30 @@ describe('the subsets of the evidence scale that are written out by hand', () =>
     const scale = [...src.match(/const CLAIM_SCALE = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
     expect(scale.filter((v) => !levels.has(v))).toEqual([]);
     expect([...levels].filter((v) => !scale.includes(v)).sort()).toEqual(['contradicted', 'unknown']);
+  });
+});
+
+describe('the reader entry points', () => {
+  /**
+   * Each page lists three places to start and explains each in a line. The
+   * count lives in the template, so this is what stops a fourth step being
+   * added to one reader and rendering as its own key.
+   */
+  it('explains every step of every reader, in both languages', () => {
+    const src = fs.readFileSync(
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'pages', '[...locale]', 'for', '[reader].astro'), 'utf8');
+    const missing: string[] = [];
+    for (const reader of READER_SLUGS) {
+      const block = src.match(new RegExp(`${reader}: \\[([\\s\\S]*?)\\],\\n`))?.[1] ?? '';
+      const steps = (block.match(/\{ href:/g) ?? []).length;
+      expect(steps, `${reader} should list some steps`).toBeGreaterThan(0);
+      for (let i = 1; i <= steps; i++) {
+        for (const locale of ['en', 'uk'] as const) {
+          const key = `reader.step.${reader}.${i}`;
+          if (!(key in ui[locale])) missing.push(`${locale}: ${key}`);
+        }
+      }
+    }
+    expect(missing).toEqual([]);
   });
 });

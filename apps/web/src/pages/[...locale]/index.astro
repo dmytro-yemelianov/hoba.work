@@ -36,8 +36,8 @@ const personas = [
     icon: '🎯',
     title: t('home.role.candidate.title'),
     desc: t('home.role.candidate.desc'),
-    cta: `${t('analyze.heading')} →`,
-    href: `${prefix}/analyze`,
+    cta: `${t('reader.enter')} →`,
+    href: `${prefix}/for/candidate`,
     badge: 'Walkthrough',
   },
   {
@@ -45,8 +45,8 @@ const personas = [
     icon: '⚙️',
     title: t('home.role.recruiter.title'),
     desc: t('home.role.recruiter.desc'),
-    cta: `${t('wf.kicker')} →`,
-    href: `${prefix}/process`,
+    cta: `${t('reader.enter')} →`,
+    href: `${prefix}/for/recruiter`,
     badge: 'State Machines',
   },
   {
@@ -55,8 +55,8 @@ const personas = [
     title: t('home.role.researcher.title'),
     // Counted, not stated: this said 89 while the registry had grown to 96.
     desc: t('home.role.researcher.desc', { n: totalNodes }),
-    cta: `${t('graph.title')} →`,
-    href: `${prefix}/graph`,
+    cta: `${t('reader.enter')} →`,
+    href: `${prefix}/for/researcher`,
     badge: 'Graph Explorer',
   },
 ] as const;

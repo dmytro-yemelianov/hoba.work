@@ -20,6 +20,7 @@ const SAMPLE: Record<string, string> = {
   'index': '/',
   '404': '/a-path-that-is-not-a-page',
   'actors/index': '/actors',
+  'for/[reader]': '/for/candidate',
   'actors/[id]': `/actors/${bundle.actors[0]!.slug}`,
   'barriers/[id]': `/barriers/${bundle.barriers[0]!.id}`,
   'observations/[id]': `/observations/${bundle.observations[0]!.id}`,

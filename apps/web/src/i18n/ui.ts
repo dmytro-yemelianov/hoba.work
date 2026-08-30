@@ -1009,6 +1009,47 @@ const en = {
   'cats.seedLabel': 'DNA Seed',
   'cats.customSeed': 'Enter custom seed or phrase...',
   'cats.combinatorics': 'Over 10¹⁵ unique mathematical combinations',
+
+  // --- Reader entry points ------------------------------------------------
+  'reader.title.candidate': 'You applied, and something happened',
+  'reader.lead.candidate': 'Start from what you actually received — the message, the silence, the sudden change — and read back to what produces it. The atlas will not tell you why your application was rejected. It will tell you what makes that signal, and what that signal cannot distinguish.',
+  'reader.title.recruiter': 'Your process emits signals you did not choose',
+  'reader.lead.recruiter': 'Every funnel produces traces at its gates, and most of them are not decisions anyone made. Read what yours emits, what causes it, and which changes are configuration rather than culture.',
+  'reader.title.researcher': 'A model, its evidence, and what it cannot settle',
+  'reader.lead.researcher': 'Every claim here carries an evidence level and a source, every gap is published, and the whole registry is downloadable. Read the model rather than looking out from a seat inside it.',
+
+  'reader.same.title': 'The same registry, read from where you sit',
+  'reader.same.text': 'These numbers are identical on all three of these pages, because there is one registry. What changes between them is the order entries come in, the question they are put to, and which seat the lens starts in. What does not change is the entries, the evidence behind them, or the wording of a single claim.',
+  'reader.same.entries': 'entries',
+  'reader.same.evidence': 'evidence records',
+  'reader.same.languages': 'languages',
+  'reader.same.others': 'The same registry, read as:',
+
+  'reader.seat.title': 'Where you sit',
+  'reader.seat.inside': 'You occupy a seat in the funnel this atlas describes, and every entry records what that seat can and cannot see. Setting the lens to it collapses every page to that point of view — and says so where an entry cannot be seen from there at all, which is the more useful half.',
+  'reader.seat.outside': 'You do not sit in this funnel. That is the difference this page is built on: the other two readings look out from a point inside the process, and yours looks at the process. No lens is set, so every seat stays visible at once.',
+  'reader.seat.cta': 'Read the atlas from this seat',
+  'reader.seat.all': 'Every seat, and what each one cannot see',
+
+  'reader.example.title': 'One entry, two readings',
+  'reader.example.intro': 'This is the trace more mechanisms produce than any other, which is why it is the example. Below is what the registry records the two seats seeing — the same entry, the same evidence, written down separately because they are not the same experience.',
+  'reader.example.open': 'Open the entry',
+
+  'reader.start.title': 'Where to start',
+  'reader.limits.title': 'What this cannot tell you',
+  'reader.limits.candidate': 'It cannot tell you what happened in your case. Several mechanisms produce an identical trace, and the atlas publishes exactly which ones it cannot tell apart — that ceiling is a finding, not an omission.',
+  'reader.limits.recruiter': 'It does not accuse. Most entries here are constraints rather than misconduct, and some cannot be removed at all — for those the honest change is disclosure, not removal, and each one says which it is.',
+  'reader.limits.researcher': 'Coverage is uneven and stated. Three entries carry no source because none exists that would bear the weight, the mechanisms no observation can pin down are listed, and the whole of it is on one page.',
+  'reader.step.candidate.1': 'Answer what you saw and it names the mechanisms that fit — and the ones it cannot tell apart.',
+  'reader.step.candidate.2': 'The trace itself: what produces it, at which gate, and how reliably.',
+  'reader.step.candidate.3': 'What would have to change, and who holds each lever. Several are yours.',
+  'reader.step.recruiter.1': 'The funnel as it is supposed to run, state by state, with the commitment each state makes.',
+  'reader.step.recruiter.2': 'Put a posting and a candidate through the arithmetic and read the verdict at each gate.',
+  'reader.step.recruiter.3': 'Every proposed change, with its cost band, its scope, and the seat that has to act.',
+  'reader.step.researcher.1': 'The whole registry as a graph: entries, relations, and what reaches what.',
+  'reader.step.researcher.2': 'Coverage, unplaced traces, and the mechanisms no observation can pin down.',
+  'reader.step.researcher.3': 'Seven evidence levels, what each one licenses, and what disqualifies a source.',
+  'reader.enter': 'Start here',
 } as const;
 
 export type UIKey = keyof typeof en;
@@ -1996,6 +2037,47 @@ const uk: Record<UIKey, string> = {
   'cats.seedLabel': 'DNA Сід',
   'cats.customSeed': 'Введіть власний сід або фразу...',
   'cats.combinatorics': 'Понад 10¹⁵ унікальних математичних комбінацій',
+
+  // --- Точки входу для читачів ---------------------------------------------
+  'reader.title.candidate': 'Ви подалися, і щось сталося',
+  'reader.lead.candidate': 'Почніть із того, що ви справді отримали — лист, тишу, раптову зміну — і читайте назад, до того, що це породжує. Атлас не скаже, чому відхилили саме вашу заявку. Він скаже, що робить цей сигнал і чого цей сигнал не розрізняє.',
+  'reader.title.recruiter': 'Ваш процес видає сигнали, яких ви не обирали',
+  'reader.lead.recruiter': 'Будь-яка лійка лишає сліди на своїх рубежах, і більшість із них — не чиєсь рішення. Прочитайте, що видає ваша, що це спричиняє і які зміни є питанням конфігурації, а не культури.',
+  'reader.title.researcher': 'Модель, її докази і те, чого вона не вирішує',
+  'reader.lead.researcher': 'Кожне твердження тут має рівень доказовості й джерело, кожна прогалина опублікована, а весь реєстр можна звантажити. Читайте модель, а не дивіться з місця всередині неї.',
+
+  'reader.same.title': 'Той самий реєстр, прочитаний з вашого місця',
+  'reader.same.text': 'Ці числа однакові на всіх трьох сторінках, бо реєстр один. Між ними змінюється порядок записів, питання, яке їм ставлять, і місце, з якого починає лінза. Не змінюються самі записи, докази під ними й формулювання жодного твердження.',
+  'reader.same.entries': 'записів',
+  'reader.same.evidence': 'доказових записів',
+  'reader.same.languages': 'мови',
+  'reader.same.others': 'Той самий реєстр, прочитаний як:',
+
+  'reader.seat.title': 'Де ви сидите',
+  'reader.seat.inside': 'Ви посідаєте місце в лійці, яку описує цей атлас, і кожен запис фіксує, що з цього місця видно, а чого — ні. Якщо поставити лінзу на нього, кожна сторінка згорнеться до цієї точки зору — і скаже, коли запис звідти не видно взагалі, а це корисніша половина.',
+  'reader.seat.outside': 'Ви не сидите в цій лійці. На цій відмінності й побудована ця сторінка: два інші прочитання дивляться з точки всередині процесу, а ваше — на сам процес. Лінза не встановлена, тож усі місця лишаються видимими одночасно.',
+  'reader.seat.cta': 'Читати атлас із цього місця',
+  'reader.seat.all': 'Усі місця й те, чого кожне не бачить',
+
+  'reader.example.title': 'Один запис, два прочитання',
+  'reader.example.intro': 'Це слід, який породжує більше механізмів, ніж будь-який інший, — тому саме він за приклад. Нижче те, що реєстр записав як бачення двох місць: той самий запис, ті самі докази, виписані окремо, бо це не той самий досвід.',
+  'reader.example.open': 'Відкрити запис',
+
+  'reader.start.title': 'З чого почати',
+  'reader.limits.title': 'Чого це не скаже',
+  'reader.limits.candidate': 'Воно не скаже, що сталося у вашому випадку. Кілька механізмів дають однаковий слід, і атлас публікує саме те, чого не розрізняє: ця стеля — висновок, а не недогляд.',
+  'reader.limits.recruiter': 'Воно не звинувачує. Більшість записів тут — обмеження, а не зловживання, а деякі не прибрати взагалі: для них чесна зміна — розкриття, а не усунення, і кожен запис каже, що саме з двох.',
+  'reader.limits.researcher': 'Покриття нерівне й назване. Три записи не мають джерела, бо такого, що витримає вагу, не існує; механізми, яких не притисне жодне спостереження, перелічені; і все це на одній сторінці.',
+  'reader.step.candidate.1': 'Відповідайте, що ви бачили, — і воно назве механізми, які підходять, і ті, яких не розрізняє.',
+  'reader.step.candidate.2': 'Сам слід: що його породжує, на якому рубежі й наскільки надійно.',
+  'reader.step.candidate.3': 'Що мало б змінитися і в чиїх руках кожен важіль. Кілька — у ваших.',
+  'reader.step.recruiter.1': 'Лійка такою, якою вона має йти: стан за станом, із зобовʼязанням кожного стану.',
+  'reader.step.recruiter.2': 'Проженіть вакансію й кандидата через арифметику й прочитайте вердикт на кожному рубежі.',
+  'reader.step.recruiter.3': 'Усі запропоновані зміни — з їхньою ціною, обсягом і місцем, яке має діяти.',
+  'reader.step.researcher.1': 'Увесь реєстр як граф: записи, звʼязки й те, що чого досягає.',
+  'reader.step.researcher.2': 'Покриття, непоставлені сліди й механізми, яких не притисне жодне спостереження.',
+  'reader.step.researcher.3': 'Сім рівнів доказовості, що кожен дозволяє і що дискваліфікує джерело.',
+  'reader.enter': 'Почати звідси',
 };
 
 export const ui = { en, uk } as const;
