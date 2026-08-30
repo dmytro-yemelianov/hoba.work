@@ -15,7 +15,9 @@ worth less than one that does not.
 
 ---
 
-## [Unreleased] (Registry 1.0.0, Schema 1.2.0)
+## [0.6.0] - 2026-08-30 (Registry 1.0.0, Schema 1.2.0)
+
+Live at https://hoba.work.
 
 The data-first architecture migration, end to end: all six rollout steps of
 `docs/superpowers/specs/2026-08-28-data-first-architecture-design.md`, and every
@@ -142,6 +144,49 @@ target contract leaves per-type fields to their own schemas.
   lines from `README.md` and runs each as a test case, because the reason its
   examples went stale was that nothing ran them.
 
+### Added — validation over HTTP, and the packages behind it
+
+`POST /validate/{analysis,scenario,claim}` check a submitted document against
+the deployed release, calling the same library functions the build and the MCP
+server call. Three things had to exist first: a third package surface
+(`@hoba/registry/edge` — the validators, no filesystem, since `core` is
+documented as reaching neither a Node built-in nor zod and the validators need
+zod), a bundled worker (`_worker.js` shipped verbatim and so could not import
+anything), and the right mount point (`_routes.json` excludes `/api/v1/*` from
+the worker, and in Pages an exclusion beats an include, so an endpoint there
+would never have run).
+
+`packages/registry` split into `registry-core`, `graph`, `validator` and
+`search`, behind a facade that keeps the name — so all 57 importing files are
+untouched. The split found that §9's own assignment is cyclic: `core.ts` is a
+facade rather than a layer, `separation.ts` belongs with `graph`, and twelve
+result types were declared beside the functions that build them while the
+shared vocabulary referenced them.
+
+### Changed — what the atlas says about what it knows
+
+Evidence coverage went from 82 of 89 entities to 86 (97%). Two came from
+primary law found by searching — 8 U.S.C. § 1324b, where the operative part is
+the exception, and a GAO bid protest whose "bait and switch" test presupposes
+the practice it polices — and one needed no search at all, because two records
+the registry already held addressed it and were simply never linked. The three
+that remain unsourced stay that way: they are the forum-derived observations
+that were never citable, and stretching them would cost more than the gap.
+
+Every emission now records where its trace is *read*, which is a different
+question from where the mechanism operates: 28 unplaced, 0 remaining. The last
+four turned out to be one defect rather than four decisions —
+`obs.generic_closer_alignment_rejection_template` declared three stages while
+18 of 28 mechanisms emit it, so it now declares nine.
+
+Two engine changes followed from that, in order. An observation compatible with
+more than half the registry is no longer called `diagnostic`, because it
+narrowed nothing — only 4 of 21 cross that line. And `accounts_for_all` marks
+the mechanisms that emit *every* selected observation, which is the difference
+between 27 compatible and one answer: the compatible set stays a union, because
+two traces can come from two mechanisms and intersecting would assert a single
+hidden cause.
+
 ### Fixed
 
 Nine defects surfaced during the migration, none of them in the renames — all
@@ -161,6 +206,20 @@ gate rather than by reading:
   allowlist and the stylesheet each enumerated six actors by hand while the
   picker offered seven.
 - Three layout overflows on 360px viewports, from IDs getting longer.
+
+And four more from the same root, found by running things rather than by a
+gate: `pnpm task new` had been generating unusable ids since Phase 2 and
+invalid frontmatter since Phase 3; two CI assertions pointed at paths deleted
+by earlier phases; `generate:redirects` wrote to a directory that stopped
+existing when `site/` became `apps/web/`, and once fixed would have written
+into esbuild's output where the next build erases it. It is part of `pnpm
+build` now, so the drift check covers it. `generate:id-mapping` got the
+opposite treatment — a guard, because after Phase 2 it maps 166 of 168 ids to
+themselves and overwrites the only record of what they used to be called.
+
+An evidence record cited by nothing is now a warning, which is how Rev. Proc.
+2025-28 was found sitting unused while an era's prose made two claims that came
+from it.
 
 ## [0.5.0] - 2026-08-28 (Registry 2026.08.3, Schema 1.2.0)
 
