@@ -244,3 +244,30 @@ describe('the onboarding tour', () => {
     expect(problems).toEqual([]);
   });
 });
+
+describe('the subsets of the evidence scale that are written out by hand', () => {
+  /**
+   * Two places name some of the evidence levels rather than all of them, and
+   * both are deliberate: `/methodology` teaches four of the seven, and the
+   * claim scale is the ordered line, which `contradicted` and `unknown` are
+   * not points on. Neither can be derived — but both must stay subsets, and
+   * neither would know if a level were renamed underneath it.
+   */
+  const levels = new Set<string>(S.evidenceLevelSchema.options);
+
+  it('keeps the four verbs methodology teaches inside the scale', () => {
+    const src = fs.readFileSync(
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'pages', '[...locale]', 'methodology.astro'), 'utf8');
+    const verbs = [...src.match(/const verbs = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
+    expect(verbs.length).toBeGreaterThan(0);
+    expect(verbs.filter((v) => !levels.has(v))).toEqual([]);
+  });
+
+  it('keeps the ordered claim scale inside the scale, minus the two states that are not points on it', () => {
+    const src = fs.readFileSync(
+      path.join(__dirname, '..', 'packages', 'validator', 'src', 'analysis.ts'), 'utf8');
+    const scale = [...src.match(/const CLAIM_SCALE = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
+    expect(scale.filter((v) => !levels.has(v))).toEqual([]);
+    expect([...levels].filter((v) => !scale.includes(v)).sort()).toEqual(['contradicted', 'unknown']);
+  });
+});

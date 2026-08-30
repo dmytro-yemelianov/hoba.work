@@ -253,7 +253,12 @@ async function preview() {
 }
 
 async function shots(paths) {
-  const targets = paths.length ? paths : ['/', '/registry', '/graph', '/observations/A-013'];
+  // An entity page read from the registry, not written here: the id this used
+  // to name was a legacy short code, so the shot was of whatever the alias
+  // table redirected to rather than of a page this repo still builds.
+  const { loadRegistryFromRoot, resolveRegistryRoot } = await import('@hoba/registry');
+  const sample = loadRegistryFromRoot(resolveRegistryRoot(), 'en').observations[0].id;
+  const targets = paths.length ? paths : ['/', '/registry', '/graph', `/observations/${sample}`];
   if (!(await serverUp())) throw new Error(`nothing on :${PREVIEW_PORT} — run "pnpm task preview" in another shell first`);
   const out = join(ROOT, '.shots');
   mkdirSync(out, { recursive: true });
