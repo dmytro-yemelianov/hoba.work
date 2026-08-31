@@ -1,0 +1,89 @@
+---
+import RemovabilityBadge from './RemovabilityBadge.astro';
+import type { HomepageDiagnosticPreview } from '../lib/registry';
+import { interpolated, useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  preview: HomepageDiagnosticPreview;
+  lang: Lang;
+  prefix: string;
+}
+
+const { preview, lang, prefix } = Astro.props;
+const t = useTranslations(lang);
+const { scenario, observation, barrier, mechanism, probe, stage } = preview;
+const stageTitle = t(interpolated(`stage.${stage}`));
+---
+<div
+  class="rounded-2xl border border-hoba-border bg-hoba-card/90 p-5 shadow-xl shadow-black/5 relative overflow-hidden"
+  data-scenario-id={scenario.id}
+>
+  <div class="border-b border-hoba-border pb-3 mb-4">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="relative flex h-2 w-2 shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-hoba-text truncate">
+          {scenario.title[lang]}
+        </span>
+      </div>
+      <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-hoba-muted break-all">
+        {scenario.id}
+      </span>
+    </div>
+    <p class="mt-2 text-[10px] font-mono text-hoba-muted break-all">
+      H → O → B → A: {observation.id} → {barrier.id} → {mechanism.id}
+    </p>
+  </div>
+
+  <div class="space-y-2.5">
+    <a href={`${prefix}/observations/${observation.id}`} class="block p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent/50 transition-all text-left no-underline group">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-hoba-accent break-all">{observation.id} · {lang === 'uk' ? 'Спостереження' : 'Observation'}</span>
+        <span class="text-[11px] font-mono text-hoba-muted shrink-0">{lang === 'uk' ? 'Етап' : 'Stage'}: {stageTitle}</span>
+      </div>
+      <p class="mt-1 text-xs font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+        {observation.title}
+      </p>
+    </a>
+
+    <div class="flex items-center justify-center text-hoba-muted text-xs font-mono py-0.5">
+      <span>↓ {lang === 'uk' ? 'Зупинка на барʼєрі воронки' : 'Stopped at Funnel Barrier'}</span>
+    </div>
+
+    <a href={`${prefix}/barriers/${barrier.id}`} class="block p-3 rounded-lg border border-hoba-border bg-hoba-bg hover:border-hoba-accent/50 transition-all text-left no-underline group">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-amber-700 dark:text-amber-400 break-all">{barrier.id} · {lang === 'uk' ? 'Барʼєр воронки' : 'Funnel Barrier'}</span>
+        <span class="text-[11px] font-mono text-hoba-muted shrink-0">{stageTitle}</span>
+      </div>
+      <p class="mt-1 text-xs font-semibold text-hoba-text group-hover:text-hoba-accent transition-colors">
+        {barrier.title}
+      </p>
+    </a>
+
+    <div class="flex items-center justify-center text-hoba-muted text-xs font-mono py-0.5">
+      <span>↓ {lang === 'uk' ? 'Сумісний кореневий механізм' : 'Compatible Root Mechanism'}</span>
+    </div>
+
+    <a href={`${prefix}/mechanisms/${mechanism.id}`} class="block p-3 rounded-lg border border-rose-500/30 bg-rose-500/5 hover:border-rose-500/60 transition-all text-left no-underline group">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-block rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-[10px] font-mono text-rose-700 dark:text-rose-400 break-all">{mechanism.id} · {lang === 'uk' ? 'Механізм' : 'Mechanism'}</span>
+        <RemovabilityBadge removability={mechanism.facets.removability} lang={lang} />
+      </div>
+      <p class="mt-1 text-xs font-semibold text-hoba-text group-hover:text-rose-600 dark:group-hover:text-rose-300 transition-colors">
+        {mechanism.title}
+      </p>
+    </a>
+  </div>
+
+  <div class="mt-3 pt-3 border-t border-hoba-border text-xs flex items-center justify-between gap-2">
+    <span class="text-hoba-muted line-clamp-2">
+      💡 <strong class="text-hoba-text">{lang === 'uk' ? 'Проба:' : 'Probe:'}</strong> {probe.action} <span class="font-mono">({probe.id})</span>
+    </span>
+    <a href={`${prefix}/analyze`} class="text-hoba-accent hover:underline font-mono shrink-0 font-medium">
+      {lang === 'uk' ? 'Розбір →' : 'Analyze →'}
+    </a>
+  </div>
+</div>

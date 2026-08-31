@@ -4,9 +4,10 @@ import { useTranslations, type Lang } from '../i18n/utils';
 interface Props {
   pageKey: 'home' | 'analyze' | 'check' | 'process' | 'graph' | 'registry' | 'eras' | 'actors';
   lang: Lang;
+  vars?: Record<string, string | number>;
 }
 
-const { pageKey, lang } = Astro.props;
+const { pageKey, lang, vars } = Astro.props;
 const t = useTranslations(lang);
 
 const STEP_ICONS: Record<string, string[]> = {
@@ -43,7 +44,7 @@ const steps = Array.from({ length: count }, (_, i) => ({
   icon: icons[i] ?? '💡',
   selector: selectors[i] ?? '',
   title: t(`tour.${pageKey}.step${i + 1}.title` as any),
-  text: t(`tour.${pageKey}.step${i + 1}.text` as any),
+  text: t(`tour.${pageKey}.step${i + 1}.text` as any, vars),
 }));
 
 const tourTitle = t(`tour.${pageKey}.title` as any);
