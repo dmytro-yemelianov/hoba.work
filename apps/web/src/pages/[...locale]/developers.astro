@@ -15,8 +15,8 @@ const tools = [
   'get_registry_info',
   'search_registry',
   'get_node',
+  'get_scenario',
   'explain_observation',
-  'get_empirical_scenarios',
   'find_compatible_mechanisms',
   'get_diagnostic_probes',
   'find_patterns',
@@ -27,16 +27,27 @@ const tools = [
   'calculate_runway',
   'verify_flow_conservation',
   'evaluate_pattern_emptiness',
+  'validate_entity_ids',
+  'validate_scenario',
+  'validate_analysis',
+  'validate_claim',
+];
+const resources = [
+  'hoba://methodology/core',
+  'hoba://methodology/epistemic-rules',
+  'hoba://methodology/agency',
+  'hoba://methodology/evidence',
+  'hoba://methodology/non-goals',
 ];
 const exports = ['registry.json', 'registry.ndjson', 'nodes.csv', 'edges.csv', 'graph.graphml', 'graph.json', 'schema.json', 'manifest.json'];
 const cli = [
   { command: 'hoba search "reposted"', text: t('dev.cli.search') },
   { command: 'hoba explain obs.materially_similar_role_reposted_shortly_after_rejection --stage technical', text: t('dev.cli.explain') },
-  { command: 'hoba explain --scenario ghost-refresh', text: t('dev.cli.explain') },
+  { command: 'hoba scenario scenario.application_silence', text: lang === 'uk' ? 'Прочитати валідований сценарій поверх онтології' : 'Read a validated scenario composed over the ontology' },
   { command: 'hoba show mech.genuine_technical_skill_shortfall', text: t('dev.cli.show') },
   { command: 'hoba validate --strict', text: t('dev.cli.validate') },
-  { command: 'hoba latency proc.the_hiring_funnel_end_to_end recruiter-queue 45', text: t('dev.cli.search') },
-  { command: 'hoba runway 25000 3500', text: t('dev.cli.search') },
+  { command: 'hoba latency proc.the_hiring_funnel_end_to_end recruiter-queue 45', text: lang === 'uk' ? 'Перевірити аномалію тривалості на етапі процесу' : 'Diagnose a stage dwell-time anomaly' },
+  { command: 'hoba runway 25000 3500', text: lang === 'uk' ? 'Розрахувати горизонт фінансового runway пошуку' : 'Calculate the financial runway horizon of a search' },
 ];
 const mcpConfig = `${t('dev.mcp.configComment1')}
 ${t('dev.mcp.configComment2')}
@@ -81,6 +92,15 @@ const tocItems = [
         <p set:html={branded(t('dev.mcp.text'))} />
         <pre tabindex="0"><code>{mcpConfig}</code></pre>
         <p><strong class="text-hoba-text">{t('dev.mcp.tools')}</strong> {tools.map((tool, i) => <><code>{tool}</code>{i < tools.length - 1 ? ', ' : '.'}</>)}</p>
+        <p>
+          <strong class="text-hoba-text">{lang === 'uk' ? 'Ресурси методології:' : 'Methodology resources:'}</strong>{' '}
+          {resources.map((resource, i) => <><code>{resource}</code>{i < resources.length - 1 ? ', ' : '.'}</>)}
+        </p>
+        <p class="text-hoba-muted">
+          {lang === 'uk'
+            ? 'MCP повертає канонічні дані, правила й детерміновані перевірки. Мовне міркування може виконувати модель на боці клієнта.'
+            : 'MCP returns canonical data, rules, and deterministic checks. Natural-language reasoning can remain in the client model.'}
+        </p>
         <p>{t('dev.mcp.npm')}</p>
       </section>
 
