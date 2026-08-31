@@ -62,7 +62,9 @@ const tocItems = [
           ))}
         </div>
         <p class="mt-5 text-hoba-muted">
-          <strong class="text-hoba-text">HOBA</strong> is the procedure used to reason over the atlas; the evidence levels below describe the strength of individual claims. They are separate axes.
+          {lang === 'uk'
+            ? 'HOBA — це процедура міркування над атласом; рівні доказовості нижче описують силу окремих тверджень. Це дві різні осі.'
+            : 'HOBA is the procedure used to reason over the atlas; the evidence levels below describe the strength of individual claims. They are separate axes.'}
         </p>
       </section>
 
