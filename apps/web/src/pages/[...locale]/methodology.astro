@@ -12,6 +12,12 @@ export function getStaticPaths() {
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const verbs = ['observed', 'compatible', 'supported', 'proven'] as const;
+const protocol = [
+  { letter: 'H', title: t('home.step.h.title'), text: t('home.step.h.text'), out: t('home.step.h.out') },
+  { letter: 'O', title: t('home.step.o.title'), text: t('home.step.o.text'), out: t('home.step.o.out') },
+  { letter: 'B', title: t('home.step.b.title'), text: t('home.step.b.text'), out: t('home.step.b.out') },
+  { letter: 'A', title: t('home.step.a.title'), text: t('home.step.a.text'), out: t('home.step.a.out') },
+] as const;
 
 /**
  * Read off the schema, never restated. This page is about what the registry
@@ -22,6 +28,7 @@ const verbs = ['observed', 'compatible', 'supported', 'proven'] as const;
 
 const tocItems = [
   { id: 'method-core', label: t('method.core.title'), icon: '⚖️' },
+  { id: 'method-protocol', label: t('home.protocol.title'), icon: '🧭' },
   { id: 'method-verbs', label: t('method.verbs.title'), icon: '🔤' },
   { id: 'method-honest', label: t('method.honest.title'), icon: '🛡️' },
   { id: 'method-evidence', label: t('method.evidence.title'), icon: '📑' },
@@ -37,6 +44,28 @@ const tocItems = [
         <h2>{t('method.core.title')}</h2>
         <blockquote set:html={branded(t('method.core.quote'))} />
         <p>{t('method.core.text')}</p>
+      </section>
+
+      <section id="method-protocol" class="scroll-mt-24 mt-10">
+        <h2>{t('home.protocol.title')}</h2>
+        <p>{t('home.protocol.sub')}</p>
+        <div class="not-prose mt-5 grid gap-3 sm:grid-cols-2">
+          {protocol.map((step) => (
+            <div class="rounded-lg border border-hoba-border bg-hoba-card p-4">
+              <div class="flex items-center gap-3">
+                <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-hoba-accent/40 bg-hoba-accent/10 font-mono font-bold text-hoba-accent">{step.letter}</span>
+                <h3 class="m-0 text-base font-semibold text-hoba-text">{step.title}</h3>
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-hoba-muted">{step.text}</p>
+              <p class="mt-2 text-xs font-mono text-hoba-muted">{step.out}</p>
+            </div>
+          ))}
+        </div>
+        <p class="mt-5 text-hoba-muted">
+          {lang === 'uk'
+            ? 'HOBA — це процедура міркування над атласом; рівні доказовості нижче описують силу окремих тверджень. Це дві різні осі.'
+            : 'HOBA is the procedure used to reason over the atlas; the evidence levels below describe the strength of individual claims. They are separate axes.'}
+        </p>
       </section>
 
       <section id="method-verbs" class="scroll-mt-24 mt-10">
