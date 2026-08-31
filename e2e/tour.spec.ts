@@ -41,9 +41,9 @@ test.describe('Onboarding Page Guide and Table of Contents', () => {
     await expect(toc.first()).toBeVisible();
 
     const tocLinks = page.locator('.toc-item');
-    await expect(tocLinks).toHaveCount(5);
+    await expect(tocLinks).toHaveCount(6);
 
-    const firstLink = tocLinks.first();
-    await expect(firstLink).toHaveAttribute('href', '#method-core');
+    await expect(tocLinks.nth(0)).toHaveAttribute('href', '#method-core');
+    await expect(tocLinks.nth(1)).toHaveAttribute('href', '#method-protocol');
   });
 });
