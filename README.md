@@ -53,6 +53,28 @@ Pattern (P) = recurring contradiction / double-bind / reversal
 - **Loops (`L-xxx`):** Causal cycles among mechanisms validated via graph SCCs.
 - **Interventions (`I-xxx`):** Targeted process and policy changes for employers, recruiters, and ATS platforms.
 
+Five more types share this tree without a diagram of their own: **Actors** (who holds a seat — candidate, recruiter, client, ATS vendor…), **Processes** (the funnel and its variants, as state machines), **Eras** (periods the hiring economy passed through), **Evidence** (what backs a claim), and **Records** (authored financial shapes — who funds a seat and who is paid along the way). A **Scenario** composes over these types but is not one itself: it names a reusable set of observations for `/analyze` and the CLI to start from, never a fact the registry asserts.
+
+### Ontology and substrate are two layers, not a count in dispute
+
+Asking "how many types does hoba have" has two right answers depending on which layer is asked. The **ontology** above — eleven authored types plus scenarios — is what a reader, the CLI, and the MCP server see: the vocabulary this document teaches. Underneath it, `lift()` mechanically derives a **formal substrate** of four primitives that the Lean proofs and cross-cutting queries (`gaps`, `separation`, `narrow`, loop detection) actually run over:
+
+```text
+Canonical authored registry
+Observation / Barrier / Mechanism / Pattern / Loop / Intervention / …
+                │
+              lift()
+                ▼
+Formal substrate
+Record / Event / Condition / Visibility
+                │
+        queries + proofs
+                ▼
+Web / CLI / API / MCP
+```
+
+The substrate is never a second, competing model: `project(substrate)` regenerates the original registry exactly, and a test enforces that equivalence (see `PLAN-SUBSTRATE.md`, stage A2). Nothing is authored twice — a person writes ontology entries and scenarios; the substrate itself is computed from them on every build, never by hand.
+
 ---
 
 ## 3. Monorepo Structure
