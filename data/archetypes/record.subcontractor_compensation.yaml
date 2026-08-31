@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "record.subcontractor_compensation"
+nickname:
+  en: "Your Half of the Invoice"
+  uk: "Твоя половина рахунка"
+axis_x: "lawful"
+axis_y: "visible"
+blurb:
+  en: "The company bills the client one number and pays you a smaller one — this record is your half, the only half you're actually shown."
+  uk: "Компанія виставляє клієнту одну цифру, а тобі платить меншу — цей запис є твоєю половиною, єдиною половиною, яку тобі справді показують."
