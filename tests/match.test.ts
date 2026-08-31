@@ -15,7 +15,7 @@ describe('reading a rejection back into the registry', () => {
       We will keep your details on file.`;
     const match = top(letter);
     expect(match?.id).toBe('obs.generic_closer_alignment_rejection_template');
-    expect(match?.confident).toBe(true);
+    expect(match?.identified).toBe(true);
   });
 
   it('reads the same letter in Ukrainian into the same entry', () => {
@@ -42,12 +42,12 @@ describe('reading a rejection back into the registry', () => {
       review of your application we will not be moving forward.`;
     const matches = matchObservations(letter, en);
     expect(matches.length).toBeGreaterThan(0);
-    expect(matches.some((m) => m.confident)).toBe(false);
+    expect(matches.some((m) => m.identified)).toBe(false);
   });
 
   it('says a thin match is thin instead of rounding it up', () => {
     const match = top('They said no.');
-    expect(match === undefined || match.confident === false).toBe(true);
+    expect(match === undefined || match.identified === false).toBe(true);
   });
 
   it('returns nothing at all for text that is not about hiring', () => {
