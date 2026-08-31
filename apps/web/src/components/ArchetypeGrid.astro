@@ -1,0 +1,71 @@
+---
+import { archetypeEntityHref, archetypeEntityTitle, type Archetype, type ArchetypeAxisX, type ArchetypeAxisY } from '../lib/registry';
+import { localePrefix, useTranslations, type Lang } from '../i18n/utils';
+import type { RegistryBundle } from '@hoba/registry';
+
+interface Props {
+  lang: Lang;
+  archetypes: Archetype[];
+  bundle: RegistryBundle;
+}
+
+const { lang, archetypes, bundle } = Astro.props;
+const t = useTranslations(lang);
+const prefix = localePrefix(lang);
+
+const AXIS_X: ArchetypeAxisX[] = ['lawful', 'neutral', 'chaotic'];
+const AXIS_Y: ArchetypeAxisY[] = ['visible', 'ambiguous', 'hidden'];
+
+/** Localized box label, so a Ukrainian reader never sees a raw English enum. */
+const boxLabel = (x: ArchetypeAxisX, y: ArchetypeAxisY): string =>
+  x === 'neutral' && y === 'ambiguous' ? t('archetypes.trueNeutral') : `${t(`archetypes.x.${x}`)} ${t(`archetypes.y.${y}`).toLowerCase()}`;
+
+const cells = AXIS_Y.flatMap((y) =>
+  AXIS_X.map((x) => ({
+    x,
+    y,
+    name: boxLabel(x, y),
+    entries: archetypes.filter((a) => a.axis_x === x && a.axis_y === y).map((a) => ({
+      archetype: a,
+      title: archetypeEntityTitle(bundle, a.id),
+      href: archetypeEntityHref(bundle, a.id),
+    })),
+  }))
+);
+---
+<div class="overflow-x-auto" tabindex="0">
+  <div class="min-w-[720px]">
+    <div class="grid grid-cols-[auto_1fr_1fr_1fr] gap-3">
+      <div></div>
+      {AXIS_X.map((x) => (
+        <div class="text-center text-xs font-bold uppercase tracking-wider text-hoba-muted pb-1">{t(`archetypes.x.${x}`)}</div>
+      ))}
+
+      {AXIS_Y.map((y) => (
+        <>
+          <div class="flex items-center justify-end pr-2 text-xs font-bold uppercase tracking-wider text-hoba-muted [writing-mode:vertical-rl] rotate-180 sm:[writing-mode:horizontal-tb] sm:rotate-0">{t(`archetypes.y.${y}`)}</div>
+          {AXIS_X.map((x) => {
+            const cell = cells.find((c) => c.x === x && c.y === y)!;
+            return (
+              <div class:list={["rounded-xl border p-3 min-h-[6rem] flex flex-col gap-2", x === 'neutral' && y === 'ambiguous' ? 'border-hoba-accent/40 bg-hoba-accent/5' : 'border-hoba-border bg-hoba-card']}>
+                <p class="text-[11px] font-semibold text-hoba-muted uppercase tracking-wide">{cell.name}</p>
+                {cell.entries.length === 0 ? (
+                  <p class="text-xs text-hoba-muted italic">—</p>
+                ) : (
+                  cell.entries.map(({ archetype, title, href }) => (
+                    <div class="rounded-lg border border-hoba-border/70 bg-hoba-bg/60 p-2">
+                      <p class="text-sm font-bold text-hoba-text leading-tight">{archetype.nickname[lang]}</p>
+                      {title && <p class="text-[11px] text-hoba-muted mt-0.5">{title}</p>}
+                      <p class="text-xs text-hoba-muted mt-1.5 leading-snug">{archetype.blurb[lang]}</p>
+                      {href && <a href={`${prefix}${href}`} class="text-xs text-hoba-accent hover:underline mt-1.5 inline-block">{t('archetypes.viewEntry')}</a>}
+                    </div>
+                  ))
+                )}
+              </div>
+            );
+          })}
+        </>
+      ))}
+    </div>
+  </div>
+</div>
