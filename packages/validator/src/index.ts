@@ -5,3 +5,5 @@ export * from './gaps.js';
 export * from './analysis.js';
 export * from './scenarios.js';
 export * from './scenarios-store.js';
+export * from './archetypes.js';
+export * from './archetypes-store.js';

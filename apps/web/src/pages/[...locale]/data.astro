@@ -46,6 +46,19 @@ const gapRows = [
 ];
 
 const byRemovability = (r: 'candidate' | 'intermediary' | 'none') => bundle.mechanisms.filter((m) => m.facets.removability === r).length;
+// Every cell here is counted from the registry, unlike /archetypes' grid,
+// which is a hand-picked joke over the same shape of thing: two axes, nine
+// (here fifteen) boxes. An empty box is a genuine claim — no mechanism of
+// that nature is that removable — not a placement nobody got to yet.
+const NATURES = ['rule', 'incentive', 'bias', 'noise', 'void'] as const;
+const REMOVABILITIES = ['candidate', 'intermediary', 'none'] as const;
+const natureGrid = NATURES.map((nature) => ({
+  nature,
+  cells: REMOVABILITIES.map((removability) => ({
+    removability,
+    mechanisms: bundle.mechanisms.filter((m) => m.facets.nature === nature && m.facets.removability === removability),
+  })),
+}));
 const honestBaselineCount = bundle.mechanisms.filter((m) => m.honest_baseline).length;
 const pct = (n: number) => Math.round((n / Math.max(1, bundle.mechanisms.length)) * 100);
 const stageOf = (barrierId: string) => bundle.barriers.find((b) => b.id === barrierId)?.stage;
@@ -70,6 +83,7 @@ const bars = [
 const tocItems = [
   { id: 'data-overview', label: t('data.metric.barriers'), icon: '📊' },
   { id: 'data-removability', label: t('data.removability.title'), icon: '🎯' },
+  { id: 'data-nature-grid', label: t('data.natureGrid.title'), icon: '🧩' },
   { id: 'data-by-stage', label: t('data.byStage.title'), icon: '📋' },
   { id: 'data-unplaced', label: t('gap.unplaced'), icon: '⚠️' },
   { id: 'data-ceiling', label: t('gap.ceiling'), icon: '🔭' },
@@ -119,6 +133,38 @@ const tocItems = [
             </li>
           ))}
         </ul>
+      </section>
+
+      <section id="data-nature-grid" class="section scroll-mt-24">
+        <h2 class="section-title">{t('data.natureGrid.title')}</h2>
+        <p class="text-base text-hoba-muted max-w-3xl">{t('data.natureGrid.text')}</p>
+        <div class="mt-5 overflow-x-auto" tabindex="0">
+          <div class="min-w-[640px] grid grid-cols-[auto_1fr_1fr_1fr] gap-3">
+            <div></div>
+            {REMOVABILITIES.map((r) => (
+              <div class="text-center text-xs font-bold uppercase tracking-wider text-hoba-muted pb-1">{t(`removability.${r}`)}</div>
+            ))}
+            {natureGrid.map((row) => (
+              <>
+                <div class="flex items-center text-xs font-bold uppercase tracking-wider text-hoba-muted pr-2">{t(`nature.${row.nature}`)}</div>
+                {row.cells.map((cell) => (
+                  <div class="rounded-xl border border-hoba-border bg-hoba-card p-3 min-h-[5rem]">
+                    <p class="font-mono text-lg font-semibold text-hoba-text">{cell.mechanisms.length}</p>
+                    {cell.mechanisms.length === 0 ? (
+                      <p class="text-xs text-hoba-muted italic mt-1">{t('data.natureGrid.empty')}</p>
+                    ) : (
+                      <ul class="mt-1 space-y-0.5">
+                        {cell.mechanisms.map((m) => (
+                          <li><a href={href(m.id)} class="text-xs text-hoba-accent hover:underline line-clamp-1">{m.title}</a></li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section id="data-by-stage" class="section scroll-mt-24">

@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "mech.automated_keyword_qualification_filter"
+nickname:
+  en: "Missing the Magic Word"
+  uk: "Без магічного слова"
+axis_x: "lawful"
+axis_y: "ambiguous"
+blurb:
+  en: "A binary filter keyed to one exact acronym or year count — provable if you know to check the posting against the filter, invisible if you don't."
+  uk: "Бінарний фільтр, налаштований на точну абревіатуру чи кількість років — доказовий, якщо знаєш звірити вакансію з фільтром, невидимий, якщо ні."

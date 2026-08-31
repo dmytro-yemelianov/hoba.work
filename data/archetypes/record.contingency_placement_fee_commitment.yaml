@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "record.contingency_placement_fee_commitment"
+nickname:
+  en: "The Recruiter's Bet on You Surviving Ninety Days"
+  uk: "Ставка рекрутера на те, що ти протримаєшся дев'яносто днів"
+axis_x: "chaotic"
+axis_y: "hidden"
+blurb:
+  en: "A fee that isn't earned at the hire — it's earned if you're still there past warranty, which ties the recruiter's incentive to your first few months, not just your first day."
+  uk: "Гонорар, що заробляється не в момент найму, а якщо ти все ще там після гарантійного періоду — це реально прив'язує стимул рекрутера до твоїх перших місяців, а не лише до першого дня."

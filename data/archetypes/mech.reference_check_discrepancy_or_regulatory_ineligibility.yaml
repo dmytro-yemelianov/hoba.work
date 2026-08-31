@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "mech.reference_check_discrepancy_or_regulatory_ineligibility"
+nickname:
+  en: "The Check That Didn't Come Back Clean"
+  uk: "Перевірка не пройшла чисто"
+axis_x: "lawful"
+axis_y: "ambiguous"
+blurb:
+  en: "A formal verification step with a real outcome — you know your own history, but rarely which line of it the checker couldn't confirm."
+  uk: "Формальний етап верифікації з реальним наслідком — ти знаєш свою історію, але рідко знаєш, який саме її рядок перевіряючий не зміг підтвердити."

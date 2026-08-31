@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "mech.location_or_timezone_compliance_constraint"
+nickname:
+  en: "Right Candidate, Wrong Country"
+  uk: "Правильний кандидат, не та країна"
+axis_x: "lawful"
+axis_y: "visible"
+blurb:
+  en: "Not a judgment about the candidate at all — a legal-entity gap that a company can, and often does, simply name out loud."
+  uk: "Це взагалі не оцінка кандидата — прогалина в юридичній особі, яку компанія може, і часто дійсно, просто назвати вголос."

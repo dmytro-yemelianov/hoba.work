@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "record.vendor_margin_and_headcount_allocation"
+nickname:
+  en: "The Split Between What They Bill and What You're Paid"
+  uk: "Розподіл між тим, що виставляють, і тим, що платять тобі"
+axis_x: "lawful"
+axis_y: "hidden"
+blurb:
+  en: "One internal record holds both numbers at once — the client's billing rate and your compensation — and only ever shows you which side of the split you're on."
+  uk: "Один внутрішній запис одночасно тримає обидва числа — ставку виставлення клієнту і твою компенсацію — і завжди показує тобі лише те, з якого боку розподілу ти."

@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "bar.automated_filter_parser_threshold"
+nickname:
+  en: "The Score You'll Never See"
+  uk: "Оцінка, якої ти ніколи не побачиш"
+axis_x: "lawful"
+axis_y: "hidden"
+blurb:
+  en: "A number crosses a threshold somewhere in the pipeline, and you find out only which side of it you landed on."
+  uk: "Число десь у процесі перетинає поріг, і ти дізнаєшся лише, з якого боку від нього опинився."

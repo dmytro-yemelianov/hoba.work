@@ -184,6 +184,9 @@ describe('the dictionary and the vocabularies it labels', () => {
     // Keyed by the error codes the submit endpoint returns; the test below
     // walks the worker for them, which the flat rule here cannot do.
     'submit.err.',
+    // The two axes of the /archetypes grid — a hand-picked joke, not a
+    // registry vocabulary (see the doc comment on archetypeSchema).
+    'archetypes.x.', 'archetypes.y.',
   ]);
 
   it('classifies every prefix whose key is built at runtime', () => {

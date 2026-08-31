@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "int.auto_close_stale_job_requisitions"
+nickname:
+  en: "The Listing Cleans Up After Itself"
+  uk: "Оголошення прибирає за собою"
+axis_x: "lawful"
+axis_y: "hidden"
+blurb:
+  en: "A posting that expires itself the moment headcount lapses, instead of outliving the search by months."
+  uk: "Вакансія, що сама завершується в момент втрати ставки, замість того щоб пережити пошук на місяці."
