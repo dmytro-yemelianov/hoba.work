@@ -49,8 +49,12 @@ export interface Match {
    * floor — enough distinctive vocabulary shared at all — and a margin over the
    * runner-up, because two entries a letter cannot separate is exactly the
    * ceiling this atlas publishes rather than rounds away.
+   *
+   * Named for what it gates, not "confidence" — this is lexical match quality
+   * against a specimen, not the epistemic confidence the rest of the atlas
+   * means by that word (the evidence levels on /methodology).
    */
-  confident: boolean;
+  identified: boolean;
   /** The words from the pasted text that put this entry here, in its own words. */
   hits: string[];
   stages: readonly string[];
@@ -130,7 +134,7 @@ export function matchObservations(text: string, observations: readonly Observati
       id: observation.id,
       title: observation.title,
       score: score / best,
-      confident: index === 0 && leaderIsAnswer,
+      identified: index === 0 && leaderIsAnswer,
       hits: hits.sort((a, b) => weight(b) - weight(a)).slice(0, 6),
       stages: observation.stages ?? [],
     }))
