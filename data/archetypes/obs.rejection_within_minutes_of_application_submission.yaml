@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "obs.rejection_within_minutes_of_application_submission"
+nickname:
+  en: "Rejected Before Anyone Could Have Read It"
+  uk: "Відмовили раніше, ніж хтось встиг прочитати"
+axis_x: "lawful"
+axis_y: "visible"
+blurb:
+  en: "The arithmetic does the work here — minutes between submission and rejection is a number you can read straight off two timestamps."
+  uk: "Тут працює арифметика — кількість хвилин між подачею і відмовою можна прочитати прямо з двох таймштампів."
