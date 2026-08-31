@@ -55,7 +55,7 @@ const cells = AXIS_Y.flatMap((y) =>
                 <div class:list={["rounded-xl border p-3 min-h-[9rem] flex flex-col gap-2", x === 'neutral' && y === 'ambiguous' ? 'border-hoba-accent/40 bg-hoba-accent/5' : 'border-hoba-border bg-hoba-card']}>
                   <p class="text-[11px] font-semibold text-hoba-muted uppercase tracking-wide">{cell.name}</p>
                   {cell.entries.length === 0 ? (
-                    <p class="text-xs text-hoba-muted/60 italic">—</p>
+                    <p class="text-xs text-hoba-muted italic">—</p>
                   ) : (
                     cell.entries.map(({ archetype, title, href }) => (
                       <div class="rounded-lg border border-hoba-border/70 bg-hoba-bg/60 p-2">
