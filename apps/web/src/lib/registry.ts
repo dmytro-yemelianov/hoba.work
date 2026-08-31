@@ -7,20 +7,29 @@
 import {
   empiricalScenarios,
   findRegistryRoot,
+  HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
   loadRegistryFromRoot,
+  loadScenarios,
   nodesOfTypes,
   READER_FACING_TYPES,
   stageIdSchema,
+  validateScenarios,
   type ContentLang,
+  type DiagnosticProbe,
   type EmpiricalScenario,
   type RegistryBundle,
   type ActorNode,
+  type BarrierNode,
   type EraNode,
+  type MechanismNode,
+  type ObservationNode,
   type ProcessNode,
   type ProcessState,
+  type Scenario,
+  type StageId,
 } from '@hoba/registry';
-import pkg from '../../package.json';
+import pkg from '../../package.json' with { type: 'json' };
 
 const root = findRegistryRoot(process.cwd());
 if (!root) {
@@ -57,6 +66,99 @@ export function getGraph(lang: ContentLang = 'en'): HOBAKnowledgeGraph {
 
 export function countGraphNodes(bundle: RegistryBundle): number {
   return nodesOfTypes(bundle, READER_FACING_TYPES).length;
+}
+
+export const HOMEPAGE_SCENARIO_ID = 'scenario.ghost_refresh';
+
+export interface HomepageDiagnosticPreview {
+  scenario: Scenario;
+  observation: ObservationNode;
+  barrier: BarrierNode;
+  mechanism: MechanismNode;
+  probe: DiagnosticProbe;
+  stage: StageId;
+}
+
+/**
+ * The homepage's small H → O → B → A example, projected from one validated
+ * scenario and the same diagnostic engine used by the CLI and MCP server.
+ *
+ * The focus is deliberately structural: among the stage-local graph traces,
+ * it chooses the highest-likelihood emission with the strongest evidence
+ * attachment. If that best trace stops being unique, the build fails instead
+ * of silently pairing an ID with somebody else's title or explanation.
+ */
+export function getHomepageDiagnosticPreview(lang: ContentLang = 'en'): HomepageDiagnosticPreview {
+  const bundle = getBundle(lang);
+  const scenario = loadScenarios(root!).find((candidate) => candidate.id === HOMEPAGE_SCENARIO_ID);
+  if (!scenario) throw new Error(`Homepage scenario not found: ${HOMEPAGE_SCENARIO_ID}`);
+
+  const issues = validateScenarios([scenario], bundle);
+  if (issues.length > 0) {
+    throw new Error(`Homepage scenario is invalid: ${issues.map((issue) => issue.message).join('; ')}`);
+  }
+  if (!scenario.stage) throw new Error(`Homepage scenario has no diagnostic stage: ${scenario.id}`);
+
+  const result = new HOBADiagnosticEngine(bundle, getGraph(lang)).analyze({
+    artifacts: scenario.observations,
+    stage: scenario.stage,
+  });
+  if (result.hard_facts.unknown_artifact_ids.length > 0) {
+    throw new Error(`Homepage scenario has unresolved observations: ${result.hard_facts.unknown_artifact_ids.join(', ')}`);
+  }
+  if (result.obstacle.identified_barriers.length !== 1) {
+    throw new Error(
+      `Homepage scenario must resolve to one barrier at ${scenario.stage}; found ${result.obstacle.identified_barriers.length}`
+    );
+  }
+
+  const barrier = result.obstacle.identified_barriers[0]!;
+  const likelihoodRank = { low: 1, medium: 2, high: 3 } as const;
+  const traces = result.hard_facts.selected_artifacts.flatMap((observation) =>
+    result.behind.compatible_mechanisms.flatMap(({ mechanism }) => {
+      if (!mechanism.operates_at.includes(barrier.id)) return [];
+      return mechanism.emissions
+        .filter(
+          (emission) =>
+            emission.artifact === observation.id &&
+            (emission.observed_at.length === 0 || emission.observed_at.includes(scenario.stage!))
+        )
+        .map((emission) => ({ observation, mechanism, emission }));
+    })
+  );
+  traces.sort(
+    (left, right) =>
+      likelihoodRank[right.emission.likelihood ?? 'low'] - likelihoodRank[left.emission.likelihood ?? 'low'] ||
+      right.emission.evidence.length - left.emission.evidence.length
+  );
+
+  const best = traces[0];
+  const equallySupported = best
+    ? traces.filter(
+        ({ emission }) =>
+          likelihoodRank[emission.likelihood ?? 'low'] === likelihoodRank[best.emission.likelihood ?? 'low'] &&
+          emission.evidence.length === best.emission.evidence.length
+      )
+    : [];
+  if (!best || equallySupported.length !== 1) {
+    throw new Error(
+      `Homepage scenario must have one best-supported observation → barrier → mechanism projection; found ${equallySupported.length}`
+    );
+  }
+
+  const { observation, mechanism } = best;
+  if (observation.probes.length !== 1) {
+    throw new Error(`Homepage observation must carry one canonical probe: ${observation.id}`);
+  }
+
+  return {
+    scenario,
+    observation,
+    barrier,
+    mechanism,
+    probe: observation.probes[0]!,
+    stage: scenario.stage,
+  };
 }
 
 /** Registry without markdown bodies — what client-side scripts need, at a fraction of the page weight. */
