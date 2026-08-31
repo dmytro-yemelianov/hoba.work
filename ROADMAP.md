@@ -43,7 +43,8 @@ The order is driven by what unblocks what, not by size.
     the client account, financial chains as shapes, the epilogue past the
     signature. Sequencing, gates and risks in PLAN-SUBSTRATE.md; the
     equivalence gate (lift → project → byte-equal, both mirrors) is the
-    invariant every stage answers to.
+    invariant every stage answers to. *Done; A1–A7 and B1–B3 were closed as
+    completed in #21–#30.*
 
 ## Decided
 

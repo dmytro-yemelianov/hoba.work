@@ -4,9 +4,10 @@ How SPEC-MODEL.md becomes code and content without breaking a site that is
 live in two languages. The spec is the *what*; this is the *in which order and
 behind which gates*.
 
-## Where this stands (2026-08-29)
+## Where this stands (2026-08-31)
 
-Stages are issues #21–#30 on the board. The gate is live and green.
+Stages A1–A7 and B1–B3 were tracked as issues #21–#30. All ten are complete
+and closed; the equivalence gate remains live and green.
 
 | stage | state |
 |---|---|
@@ -25,9 +26,10 @@ Stages are issues #21–#30 on the board. The gate is live and green.
 | C3 economic calculus | **done**. Runway calculus (`substrateCalculateRunway`), fee yield distributions, and flow conservation verification (`substrateVerifyFlowConservation`). |
 | C4 formal temporal proofs | **done**. Lean 4 kernel theorems on topological acyclicity, event class presence, condition partition, and depth bounds. |
 
-Open decisions, both with the author: the RFC's three points, and the
-`proc.client_account_hiring_funnel`-versus-variant call with its two sub-questions (the `client` stage
-value; `bench-filled` as its own terminal).
+The two design decisions are now embodied in the shipped model. Records use
+the RFC's `R-` prefix, closed record classes and zero-amount seed shapes.
+Client-account hiring is a separate `proc.client_account_hiring_funnel`, with
+the `client` stage and `bench-filled` as its own terminal.
 
 ## Invariants, before any stage
 
@@ -239,14 +241,15 @@ A1, A2 and A4 are deliberately invisible: they are what makes the rest safe.
 - **Bilingual drift.** Every B-stage lands both mirrors in one commit, as now,
   and the language-parity checks stay the gate.
 
-## What I need from you, and when
+## Decisions implemented
 
-1. ~~Agreement on the sequencing~~ — given; the stages are issues #21–#30.
-2. **Open:** the RFC's three points (`docs/decided/2026-08-rfc-records-and-flows.md`); silence = the
-   recommendation stands.
-3. **Open:** the `proc.client_account_hiring_funnel`-versus-variant call on the drafts
-   (`DRAFT-`proc.client_account_hiring_funnel`.md`), plus its two sub-questions — the `client` stage value
-   and `bench-filled` as its own terminal.
+1. The sequencing landed as issues #21–#30; all are closed as completed.
+2. The records-and-flows RFC lives at
+   `docs/decided/2026-08-rfc-records-and-flows.md`, and its three recommended
+   choices are the implemented format.
+3. The client funnel follows option A from
+   `docs/decided/2026-08-draft-client-funnel.md`: a separate process, a
+   dedicated `client` stage, and a distinct `bench-filled` terminal.
 
-Next work that needs no decision: A3 — the existing derivations re-derived as
-substrate queries, and the pattern-computability finding either way.
+The substrate programme is complete. Follow-up work is tracked as separate
+product and projection-integrity issues rather than as another substrate stage.
