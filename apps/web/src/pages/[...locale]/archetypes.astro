@@ -1,8 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { ARCHETYPES, archetypeEntityHref, archetypeEntityTitle, getBundle, type ArchetypeAxisX, type ArchetypeAxisY } from '../../lib/registry';
-import { localeFromParams, localePrefix, localeStaticPaths, useTranslations } from '../../i18n/utils';
+import TableOfContents from '../../components/TableOfContents.astro';
+import ArchetypeGrid from '../../components/ArchetypeGrid.astro';
+import { ARCHETYPES, getBundle } from '../../lib/registry';
+import { localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -10,75 +12,59 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
-const prefix = localePrefix(lang);
 const bundle = getBundle(lang);
 
-const AXIS_X: ArchetypeAxisX[] = ['lawful', 'neutral', 'chaotic'];
-const AXIS_Y: ArchetypeAxisY[] = ['visible', 'ambiguous', 'hidden'];
+/**
+ * One grid per entity type rather than one grid for all 124 — mixing 28
+ * mechanisms into the same nine boxes as 3 loops made every box read as
+ * "mechanisms, mostly," which buried the more interesting fact: each type
+ * has its own honest shape on these two axes.
+ */
+const TYPE_GROUPS = [
+  { prefix: 'obs', labelKey: 'entity.plural.observation' },
+  { prefix: 'bar', labelKey: 'entity.plural.barrier' },
+  { prefix: 'mech', labelKey: 'entity.plural.mechanism' },
+  { prefix: 'pat', labelKey: 'entity.plural.pattern' },
+  { prefix: 'loop', labelKey: 'entity.plural.loop' },
+  { prefix: 'int', labelKey: 'entity.plural.intervention' },
+  { prefix: 'actor', labelKey: 'entity.plural.actor' },
+  { prefix: 'record', labelKey: 'entity.plural.record' },
+  { prefix: 'era', labelKey: 'entity.plural.era' },
+  { prefix: 'proc', labelKey: 'entity.plural.process' },
+] as const;
 
-/** Localized box label, so a Ukrainian reader never sees a raw English enum. */
-const boxLabel = (x: ArchetypeAxisX, y: ArchetypeAxisY): string =>
-  x === 'neutral' && y === 'ambiguous' ? t('archetypes.trueNeutral') : `${t(`archetypes.x.${x}`)} ${t(`archetypes.y.${y}`).toLowerCase()}`;
+const groups = TYPE_GROUPS.map(({ prefix, labelKey }) => ({
+  id: `archetypes-${prefix}`,
+  label: t(labelKey),
+  archetypes: ARCHETYPES.filter((a) => a.id.split('.')[0] === prefix),
+})).filter((g) => g.archetypes.length > 0);
 
-const cells = AXIS_Y.flatMap((y) =>
-  AXIS_X.map((x) => ({
-    x,
-    y,
-    name: boxLabel(x, y),
-    entries: ARCHETYPES.filter((a) => a.axis_x === x && a.axis_y === y).map((a) => ({
-      archetype: a,
-      title: archetypeEntityTitle(bundle, a.id),
-      href: archetypeEntityHref(bundle, a.id),
-    })),
-  }))
-);
+const tocItems = groups.map((g) => ({ id: g.id, label: `${g.label} (${g.archetypes.length})` }));
 ---
 <Layout lang={lang} title={t('archetypes.title')} activeNav="archetypes">
-  <PageHeader kicker={t('archetypes.kicker')} title={t('archetypes.title')} lead={t('archetypes.intro')} />
+  <PageHeader kicker={t('archetypes.kicker')} title={t('archetypes.title')} lead={t('archetypes.intro')} wide />
 
   <p class="mt-4 text-sm text-hoba-muted border-l-2 border-hoba-border pl-3">{t('archetypes.disclaimer')}</p>
 
-  <div class="mt-8 overflow-x-auto">
-    <div class="min-w-[720px]">
-      <div class="grid grid-cols-[auto_1fr_1fr_1fr] gap-3">
-        <div></div>
-        {AXIS_X.map((x) => (
-          <div class="text-center text-xs font-bold uppercase tracking-wider text-hoba-muted pb-1">{t(`archetypes.x.${x}`)}</div>
-        ))}
-
-        {AXIS_Y.map((y) => (
-          <>
-            <div class="flex items-center justify-end pr-2 text-xs font-bold uppercase tracking-wider text-hoba-muted [writing-mode:vertical-rl] rotate-180 sm:[writing-mode:horizontal-tb] sm:rotate-0">{t(`archetypes.y.${y}`)}</div>
-            {AXIS_X.map((x) => {
-              const cell = cells.find((c) => c.x === x && c.y === y)!;
-              return (
-                <div class:list={["rounded-xl border p-3 min-h-[9rem] flex flex-col gap-2", x === 'neutral' && y === 'ambiguous' ? 'border-hoba-accent/40 bg-hoba-accent/5' : 'border-hoba-border bg-hoba-card']}>
-                  <p class="text-[11px] font-semibold text-hoba-muted uppercase tracking-wide">{cell.name}</p>
-                  {cell.entries.length === 0 ? (
-                    <p class="text-xs text-hoba-muted italic">—</p>
-                  ) : (
-                    cell.entries.map(({ archetype, title, href }) => (
-                      <div class="rounded-lg border border-hoba-border/70 bg-hoba-bg/60 p-2">
-                        <p class="text-sm font-bold text-hoba-text leading-tight">{archetype.nickname[lang]}</p>
-                        {title && <p class="text-[11px] text-hoba-muted mt-0.5">{title}</p>}
-                        <p class="text-xs text-hoba-muted mt-1.5 leading-snug">{archetype.blurb[lang]}</p>
-                        {href && <a href={`${prefix}${href}`} class="text-xs text-hoba-accent hover:underline mt-1.5 inline-block">{t('archetypes.viewEntry')}</a>}
-                      </div>
-                    ))
-                  )}
-                </div>
-              );
-            })}
-          </>
-        ))}
-      </div>
-    </div>
-  </div>
-
-  <dl class="mt-6 space-y-1 text-xs text-hoba-muted">
+  <dl class="mt-4 space-y-1 text-xs text-hoba-muted">
     <div><dt class="inline font-semibold">{lang === 'uk' ? 'Горизонталь: ' : 'Horizontal: '}</dt><dd class="inline">{t('archetypes.axis.x')}</dd></div>
     <div><dt class="inline font-semibold">{lang === 'uk' ? 'Вертикаль: ' : 'Vertical: '}</dt><dd class="inline">{t('archetypes.axis.y')}</dd></div>
   </dl>
 
-  <p class="mt-6 text-sm text-hoba-muted">{t('archetypes.coverageNote', { n: String(ARCHETYPES.length) })}</p>
+  <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-8">
+    <div class="space-y-12 min-w-0">
+      {groups.map((g) => (
+        <section id={g.id} class="scroll-mt-24">
+          <h2 class="section-title">{g.label} <span class="text-hoba-muted font-normal">({g.archetypes.length})</span></h2>
+          <div class="mt-4">
+            <ArchetypeGrid lang={lang} archetypes={g.archetypes} bundle={bundle} />
+          </div>
+        </section>
+      ))}
+
+      <p class="text-sm text-hoba-muted">{t('archetypes.coverageNote', { n: String(ARCHETYPES.length) })}</p>
+    </div>
+
+    <TableOfContents items={tocItems} lang={lang} />
+  </div>
 </Layout>
