@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "mech.ats_parser_extraction_failure"
+nickname:
+  en: "Lost in Translation"
+  uk: "Загублено при перекладі"
+axis_x: "neutral"
+axis_y: "hidden"
+blurb:
+  en: "A parser doing exactly what it was built to do to a résumé it was never tested against — nobody chose this outcome, and nobody sees it happen."
+  uk: "Парсер робить рівно те, для чого його написали, з резюме, на якому його ніколи не тестували — цей результат ніхто не обирав, і ніхто його не бачить."

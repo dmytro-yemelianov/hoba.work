@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "mech.automated_application_expiration_timeout"
+nickname:
+  en: "The 60-Day Countdown"
+  uk: "Зворотний відлік на 60 днів"
+axis_x: "lawful"
+axis_y: "hidden"
+blurb:
+  en: "A clock the candidate never sees start, counting down to a rejection that will look exactly like every other one."
+  uk: "Годинник, старт якого кандидат ніколи не бачить, відраховує до відмови, яка виглядатиме як будь-яка інша."
