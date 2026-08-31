@@ -365,11 +365,20 @@ const ARCHETYPE_ENTITY_ROUTES: Record<string, string> = {
   actor: 'actors',
 };
 
-/** The real page an archetype's id links to, or undefined if that type has none yet. */
-export function archetypeEntityHref(id: string): string | undefined {
+/**
+ * The real page an archetype's id links to, or undefined if that type has
+ * none yet. Actors route by `slug`, not by their dotted id — every other
+ * type here uses the id itself.
+ */
+export function archetypeEntityHref(bundle: RegistryBundle, id: string): string | undefined {
   const prefix = id.split('.')[0]!;
   const route = ARCHETYPE_ENTITY_ROUTES[prefix];
-  return route ? `/${route}/${id}` : undefined;
+  if (!route) return undefined;
+  if (prefix === 'actor') {
+    const slug = bundle.actors.find((a) => a.id === id)?.slug;
+    return slug ? `/${route}/${slug}` : undefined;
+  }
+  return `/${route}/${id}`;
 }
 
 /** The formal title an archetype is a nickname for, resolved from the bundle. */

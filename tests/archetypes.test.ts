@@ -12,16 +12,30 @@ const knownIds = new Set<string>([
 ].map((e) => e.id));
 
 /**
+ * Every entity type except evidence: a citation is a source document, not a
+ * phenomenon, and doesn't get a joke nickname. This is the set the grid is
+ * now expected to cover completely — a coverage gap here means a real entity
+ * was added to the registry without a matching archetype, not an in-progress
+ * rollout (the rollout finished; see the commit history under data/archetypes/).
+ */
+const coverageIds = new Set<string>([
+  ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops,
+  ...bundle.interventions, ...bundle.actors, ...bundle.processes, ...bundle.eras, ...bundle.records,
+].map((e) => e.id));
+
+/**
  * Archetypes are flavor, not fact — deliberately not part of `validateRegistry`
  * (see the doc comment on `archetypeSchema`). What this still guards: every
- * placed id must be real, and none may be placed twice. Coverage of all 96
- * entities is not required — a partial rollout is the current, honest state.
+ * placed id must be real, none may be placed twice, and — now that the grid
+ * covers the whole registry — every non-evidence entity has exactly one.
  */
 describe('the /archetypes grid names entities that exist, once each', () => {
   const archetypes = loadArchetypes(root);
 
-  it('has at least the pilot patterns', () => {
-    expect(archetypes.length).toBeGreaterThanOrEqual(4);
+  it('covers every entity in the registry except evidence citations', () => {
+    const placed = new Set(archetypes.map((a) => a.id));
+    const missing = [...coverageIds].filter((id) => !placed.has(id)).sort();
+    expect(missing).toEqual([]);
   });
 
   it('names no id twice and nothing the registry does not have', () => {

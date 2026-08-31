@@ -28,7 +28,7 @@ const cells = AXIS_Y.flatMap((y) =>
     entries: ARCHETYPES.filter((a) => a.axis_x === x && a.axis_y === y).map((a) => ({
       archetype: a,
       title: archetypeEntityTitle(bundle, a.id),
-      href: archetypeEntityHref(a.id),
+      href: archetypeEntityHref(bundle, a.id),
     })),
   }))
 );
@@ -80,5 +80,5 @@ const cells = AXIS_Y.flatMap((y) =>
     <div><dt class="inline font-semibold">{lang === 'uk' ? 'Вертикаль: ' : 'Vertical: '}</dt><dd class="inline">{t('archetypes.axis.y')}</dd></div>
   </dl>
 
-  <p class="mt-6 text-sm text-hoba-muted">{t('archetypes.pilotNote', { n: String(ARCHETYPES.length) })}</p>
+  <p class="mt-6 text-sm text-hoba-muted">{t('archetypes.coverageNote', { n: String(ARCHETYPES.length) })}</p>
 </Layout>

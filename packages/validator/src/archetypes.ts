@@ -55,8 +55,9 @@ export interface ArchetypeIssue {
 
 /**
  * Internal consistency only: every id must resolve, and no id may appear
- * twice. What it does *not* check is coverage — a pilot naming four of
- * ninety-six entities is not an error, it is the current state of a rollout.
+ * twice. Coverage of every non-evidence entity is enforced separately, by
+ * `tests/archetypes.test.ts` walking the full registry — kept out of this
+ * function because it needs the complete bundle, not just a set of ids.
  */
 export function validateArchetypes(archetypes: Archetype[], knownIds: ReadonlySet<string>): ArchetypeIssue[] {
   const issues: ArchetypeIssue[] = [];
