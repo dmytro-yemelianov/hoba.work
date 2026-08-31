@@ -28,6 +28,14 @@ export const EVIDENCE_DIR = path.join(DATA_DIR, 'evidence');
 /** Scenarios compose the ontology rather than belonging to it, but they are data. */
 export const SCENARIO_DIR = path.join(DATA_DIR, 'scenarios');
 
+/**
+ * Archetypes are hand-authored flavor, not canonical fact — a nickname and a
+ * grid placement for an entity, never validated against evidence the way the
+ * rest of the registry is. Kept in their own tree so they can never be
+ * mistaken for something `validateRegistry` covers.
+ */
+export const ARCHETYPE_DIR = path.join(DATA_DIR, 'archetypes');
+
 /** True when `dir` looks like the root of a hoba registry checkout. */
 export function isRegistryRoot(dir: string): boolean {
   return fs.existsSync(path.join(dir, CONTENT_DIRS.en)) && fs.existsSync(path.join(dir, MANIFEST_FILENAME));

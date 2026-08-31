@@ -5,16 +5,21 @@
  * page used to re-read and re-validate all content files on its own.
  */
 import {
+  archetypeBoxName,
   empiricalScenarios,
   findRegistryRoot,
   HOBADiagnosticEngine,
   HOBAKnowledgeGraph,
+  loadArchetypes,
   loadRegistryFromRoot,
   loadScenarios,
   nodesOfTypes,
   READER_FACING_TYPES,
   stageIdSchema,
   validateScenarios,
+  type Archetype,
+  type ArchetypeAxisX,
+  type ArchetypeAxisY,
   type ContentLang,
   type DiagnosticProbe,
   type EmpiricalScenario,
@@ -340,3 +345,39 @@ export function coverage(bundle: RegistryBundle): Coverage {
  */
 export const EMPIRICAL_SCENARIOS = empiricalScenarios(registryRoot);
 export { type EmpiricalScenario };
+
+/**
+ * Flavor, not fact — see the doc comment on `archetypeSchema`. Read from
+ * `data/archetypes/` the same way scenarios are, but never validated against
+ * evidence and never mixed into a diagnostic result.
+ */
+export const ARCHETYPES = loadArchetypes(registryRoot);
+export { archetypeBoxName, type Archetype, type ArchetypeAxisX, type ArchetypeAxisY };
+
+/** Only the entity types that render an individual detail page today. */
+const ARCHETYPE_ENTITY_ROUTES: Record<string, string> = {
+  obs: 'observations',
+  bar: 'barriers',
+  mech: 'mechanisms',
+  pat: 'patterns',
+  loop: 'loops',
+  int: 'interventions',
+  actor: 'actors',
+};
+
+/** The real page an archetype's id links to, or undefined if that type has none yet. */
+export function archetypeEntityHref(id: string): string | undefined {
+  const prefix = id.split('.')[0]!;
+  const route = ARCHETYPE_ENTITY_ROUTES[prefix];
+  return route ? `/${route}/${id}` : undefined;
+}
+
+/** The formal title an archetype is a nickname for, resolved from the bundle. */
+export function archetypeEntityTitle(bundle: RegistryBundle, id: string): string | undefined {
+  for (const value of Object.values(bundle)) {
+    if (!Array.isArray(value)) continue;
+    const match = value.find((e) => e && typeof e === 'object' && 'id' in e && (e as { id: unknown }).id === id) as { title?: string } | undefined;
+    if (match?.title) return match.title;
+  }
+  return undefined;
+}
