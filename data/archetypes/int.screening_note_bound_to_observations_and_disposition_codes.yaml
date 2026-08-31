@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "int.screening_note_bound_to_observations_and_disposition_codes"
+nickname:
+  en: "The Note Can Only Say What It Saw"
+  uk: "Нотатка може сказати лише те, що побачила"
+axis_x: "lawful"
+axis_y: "hidden"
+blurb:
+  en: "A screening note restricted to what the record actually shows, closed with a fixed code — no room left for an impression to pass as a finding."
+  uk: "Нотатка скринінгу, обмежена тим, що справді показує запис, закрита фіксованим кодом — без місця для враження, яке видають за висновок."

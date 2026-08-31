@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "int.distinct_closure_status_for_unreviewed_applications"
+nickname:
+  en: "Told the Truth: Nobody Opened It"
+  uk: "Сказано чесно: ніхто не відкривав"
+axis_x: "lawful"
+axis_y: "visible"
+blurb:
+  en: "A status that says exactly what happened — closed unread — instead of borrowing the label used for an application someone actually considered."
+  uk: "Статус, що каже саме те, що сталося — закрито непрочитаним — замість того, щоб позичати мітку, призначену для заявки, яку хтось справді розглядав."

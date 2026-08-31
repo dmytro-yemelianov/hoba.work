@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "int.requirement_changes_versioned_and_sent_to_candidates_in_flight"
+nickname:
+  en: "You Get a Changelog Too"
+  uk: "У тебе теж є список змін"
+axis_x: "lawful"
+axis_y: "visible"
+blurb:
+  en: "When the role changes mid-search, everyone already in the pipeline gets told what changed and which of their completed rounds still counts."
+  uk: "Коли роль змінюється посеред пошуку, кожен, хто вже в процесі, дізнається, що змінилось і які з пройдених раундів досі рахуються."

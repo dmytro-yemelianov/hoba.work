@@ -1,0 +1,11 @@
+# Pilot archetype — see PLAN-SUBSTRATE.md sibling note: this is flavor, not
+# a registry fact, and is never checked by validateRegistry.
+id: "int.dated_funding_certification_before_the_final_round"
+nickname:
+  en: "No Final Round Without the Money Being Real"
+  uk: "Останній раунд тільки за реальні гроші"
+axis_x: "lawful"
+axis_y: "hidden"
+blurb:
+  en: "A funding date checked live before the last interview is booked, so the panel that likes you can't be overruled by a budget nobody re-confirmed."
+  uk: "Дата фінансування перевіряється наживо до бронювання останньої співбесіди, тож панель, якій ти сподобався, не скасує бюджет, який ніхто не переперевірив."
