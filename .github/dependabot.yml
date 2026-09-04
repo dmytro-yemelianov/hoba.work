@@ -1,0 +1,119 @@
+# Weekly dependency updates for the pnpm workspace and CI actions.
+# `astro` majors are held on purpose: the repo pins ^5.3.0 and the major
+# upgrade (which clears the known build-time advisories) is a separate
+# tracked task. Minor and patch updates inside 5.x keep flowing.
+version: 2
+updates:
+  # Root manifest: toolchain and dev dependencies
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  # Astro site
+  - package-ecosystem: npm
+    directory: /apps/web
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: astro
+        update-types:
+          - version-update:semver-major
+  # Workspace packages
+  - package-ecosystem: npm
+    directory: /packages/registry-core
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /packages/graph
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /packages/validator
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /packages/search
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /packages/registry
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /packages/cli
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: /packages/mcp
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+  # CI workflow actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore(ci)

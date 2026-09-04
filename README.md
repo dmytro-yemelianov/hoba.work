@@ -135,6 +135,13 @@ pnpm validate:strict     # warnings fail too
 # CLI and MCP server run from source)
 pnpm test
 
+# Lint + format check (ESLint flat config + Prettier); `pnpm format` writes the fixes
+pnpm lint
+pnpm format
+
+# Unit + integration tests with a V8 coverage report
+pnpm coverage
+
 # Browser tests against the built site: routing/i18n, theme, data views, wizard, graph, 404,
 # mobile navigation, link integrity, axe WCAG 2.1 AA in light and dark (needs `pnpm build` first)
 pnpm e2e
@@ -143,13 +150,22 @@ pnpm e2e
 pnpm build
 ```
 
-Generated files under `schemas/` and `site/public/{api,data,schemas,openapi.json}` are committed and must be
+Generated files under `schemas/` and `apps/web/public/{api,data,schemas,openapi.json}` are committed and must be
 regenerated with `pnpm build:registry` after any content change — CI fails if they drift.
+
+### Quality Gates
+A husky pre-commit hook runs `pnpm lint && pnpm validate:strict && pnpm typecheck` on every commit. CI
+additionally runs the coverage report, an advisory production-dependency security audit (non-blocking while
+build-time-only advisories in `astro 5.x` await the major upgrade), byte-drift checks on the generated
+exports, the Lean kernel build, and Playwright + axe e2e. `.prettierignore` keeps Prettier away from
+generated trees so formatters and generators cannot fight.
 
 ### Versioning
 `registry.yaml` is the single source of truth for the **registry version** (`YYYY.MM.N`, bump on every content
 release), the **schema version** (semver, bump when the entity contract changes) and the release timestamp
-(set explicitly so exports stay byte-deterministic). The **site/package version** lives in `package.json`.
+(set explicitly so exports stay byte-deterministic). The **site/package version** lives in `package.json`;
+package bumps and changelog entries go through Changesets — add one with `pnpm changeset`, then `pnpm release`
+runs the full flow (version → publish → validate → build).
 
 ### Running Local Development Server
 ```bash
@@ -272,16 +288,17 @@ Key kernel-proved theorems include:
 ## 6. Website: Languages & Themes
 
 - Every page is prerendered in **English** (`/…`, canonical) and **Ukrainian** (`/uk/…`), including entity detail
-  pages; `<link rel="alternate" hreflang>` ties the pairs together. UI copy lives in `site/src/i18n/ui.ts` (the `uk`
-  dictionary is typed against `en` and parity-tested); registry prose comes from `content/` and `content-uk/`.
-- `site/public/_worker.js` (Cloudflare Pages Advanced Mode) negotiates the language for unprefixed HTML requests:
+  pages; `<link rel="alternate" hreflang>` ties the pairs together. UI copy lives in `apps/web/src/i18n/ui.ts` (the `uk`
+  dictionary is typed against `en` and parity-tested); registry prose comes from the mirrored entity files in
+  `data/en/` and `data/uk/` (structural parity enforced by `pnpm validate`).
+- `apps/web/public/_worker.js` (Cloudflare Pages Advanced Mode) negotiates the language for unprefixed HTML requests:
   explicit choice (`hoba_lang` cookie, set by the switcher) → `Accept-Language: uk` → Cloudflare geo `UA` → and, with
   no signal at all, Ukrainian. `/uk/…` URLs are always honoured; assets and `/api`, `/data`, `/schemas` are never redirected.
 - Catalog pages (Registry, Patterns) render the same data as a **table (default)**, a compact list, or cards; the
   switch persists to `localStorage` and is applied before paint via `<html data-view>`.
 - Light and dark themes: the toggle in the navbar persists to `localStorage`; without a stored choice the site follows
   `prefers-color-scheme`, defaulting to dark when the browser reports none. Surfaces use CSS tokens
-  (`site/src/styles/theme.css`); palette tints carry explicit `dark:` variants.
+  (`apps/web/src/styles/theme.css`); palette tints carry explicit `dark:` variants.
 
 ---
 
