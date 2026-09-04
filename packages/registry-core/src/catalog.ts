@@ -437,7 +437,7 @@ export const DATA_SURFACES: readonly DataSurface[] = [
   {
     id: 'rest',
     label: text('Static REST API', 'Статичний REST API'),
-    location: '/api/v1/{collection}',
+    location: '/api/v1/{collection}/index.json + /api/v1/{collection}/{id}.json',
     includes: text(
       'Lists and per-ID documents for all 11 ontology collections, plus the graph projection.',
       'Списки та документи за ID для всіх 11 колекцій онтології, а також графова проєкція.'
@@ -598,7 +598,7 @@ export const DATA_SURFACES: readonly DataSurface[] = [
   {
     id: 'lean',
     label: text('Lean projection', 'Lean-проєкція'),
-    location: 'formal/HOBA/GeneratedData.lean',
+    location: 'formal/lean/Hoba/Data.lean',
     includes: text(
       'Generated formal data used by theorem checks.',
       'Згенеровані формальні дані для перевірки теорем.'
