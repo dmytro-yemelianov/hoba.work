@@ -112,7 +112,7 @@ The substrate is never a second, competing model: `project(substrate)` regenerat
 ## 4. Quick Start & Development
 
 ### Prerequisites
-- Node.js >= 20
+- Node.js >= 22.12
 - pnpm >= 10
 
 ### Installation & Build
@@ -155,8 +155,8 @@ regenerated with `pnpm build:registry` after any content change — CI fails if 
 
 ### Quality Gates
 A husky pre-commit hook runs `pnpm lint && pnpm validate:strict && pnpm typecheck` on every commit. CI
-additionally runs the coverage report, an advisory production-dependency security audit (non-blocking while
-build-time-only advisories in `astro 5.x` await the major upgrade), byte-drift checks on the generated
+additionally runs the coverage report, a production-dependency security audit that fails on high and
+critical advisories, byte-drift checks on the generated
 exports, the Lean kernel build, and Playwright + axe e2e. `.prettierignore` keeps Prettier away from
 generated trees so formatters and generators cannot fight.
 

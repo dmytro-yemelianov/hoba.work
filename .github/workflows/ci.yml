@@ -45,12 +45,11 @@ jobs:
       - name: Lint & Format Check
         run: pnpm lint
 
-      - name: Security Audit (advisory, prod deps)
-        # Advisory until astro ships a patched major (5.x is affected by the
-        # build-time XSS/SSRF CVEs; sharp/libvips comes in with it). These are
-        # build-time deps of a static site — nothing affected ships to
-        # production. Fail the step again once the upgrade lands.
-        run: pnpm audit --prod || true
+      - name: Security Audit (prod deps)
+        # Fails on high/critical only. Moderates (currently qs via the
+        # MCP server's express chain — dev tooling, not the site) are
+        # reported but accepted.
+        run: pnpm audit --prod --audit-level high
 
       - name: Build Packages & Static Site
         run: pnpm build
