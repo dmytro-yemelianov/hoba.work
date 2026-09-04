@@ -10,34 +10,33 @@
           "minLength": 3
         },
         "status": {
+          "default": "active",
           "type": "string",
           "enum": [
             "active",
             "deprecated"
-          ],
-          "default": "active"
+          ]
         },
         "evidence_ids": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string",
             "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
-          },
-          "default": []
+          }
         },
         "content": {
           "type": "string"
         },
         "aliases": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "default": []
+          }
         },
         "id": {
-          "type": "string",
-          "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"
+          "$ref": "#/definitions/__schema0"
         },
         "type": {
           "type": "string",
@@ -48,60 +47,43 @@
           "minLength": 10
         },
         "mechanisms": {
+          "minItems": 2,
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
-          },
-          "minItems": 2
+            "$ref": "#/definitions/__schema1"
+          }
         },
         "edges": {
+          "minItems": 2,
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "from": {
-                "$ref": "#/definitions/Loop/properties/mechanisms/items"
-              },
-              "to": {
-                "$ref": "#/definitions/Loop/properties/mechanisms/items"
-              },
-              "relation": {
-                "type": "string",
-                "enum": [
-                  "amplifies",
-                  "masks"
-                ]
-              }
-            },
-            "required": [
-              "from",
-              "to",
-              "relation"
-            ],
-            "additionalProperties": false
-          },
-          "minItems": 2
+            "$ref": "#/definitions/__schema2"
+          }
         },
         "entry_points": {
+          "minItems": 1,
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Loop/properties/mechanisms/items"
-          },
-          "minItems": 1
+            "$ref": "#/definitions/__schema1"
+          }
         },
         "interventions": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string",
             "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"
-          },
-          "default": []
+          }
         },
         "superseded_by": {
-          "$ref": "#/definitions/Loop/properties/id"
+          "allOf": [
+            {
+              "$ref": "#/definitions/__schema0"
+            }
+          ]
         },
         "evidence_level": {
+          "default": "supported",
           "type": "string",
           "enum": [
             "observed",
@@ -111,10 +93,10 @@
             "proven",
             "contradicted",
             "unknown"
-          ],
-          "default": "supported"
+          ]
         },
         "specimens": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
@@ -141,31 +123,11 @@
                 "type": "string"
               },
               "lines": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "speaker": {
-                      "type": "string"
-                    },
-                    "at": {
-                      "type": "string"
-                    },
-                    "text": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "tell": {
-                      "type": "boolean",
-                      "default": false
-                    }
-                  },
-                  "required": [
-                    "text"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema3"
+                }
               },
               "reading": {
                 "type": "string",
@@ -178,10 +140,10 @@
               "lines"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         },
         "perspectives": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
@@ -218,8 +180,7 @@
               "does"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         }
       },
       "required": [
@@ -230,6 +191,61 @@
         "mechanisms",
         "edges",
         "entry_points"
+      ],
+      "additionalProperties": false
+    },
+    "__schema0": {
+      "type": "string",
+      "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"
+    },
+    "__schema1": {
+      "type": "string",
+      "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
+    },
+    "__schema2": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/__schema1"
+        },
+        "to": {
+          "$ref": "#/definitions/__schema1"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "amplifies",
+            "masks"
+          ]
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "relation"
+      ],
+      "additionalProperties": false
+    },
+    "__schema3": {
+      "type": "object",
+      "properties": {
+        "speaker": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tell": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
       ],
       "additionalProperties": false
     }

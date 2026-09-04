@@ -35,7 +35,7 @@ import {
  * claimed.
  */
 describe('no frontmatter field is silently dropped', () => {
-  const SCHEMAS: Record<string, { _def: { shape: () => Record<string, unknown> } }> = {
+  const SCHEMAS: Record<string, { shape: Record<string, unknown> }> = {
     observation: observationSchema as never,
     barrier: barrierSchema as never,
     mechanism: mechanismSchema as never,
@@ -49,7 +49,7 @@ describe('no frontmatter field is silently dropped', () => {
 
   for (const [dir, schema] of Object.entries(SCHEMAS)) {
     it(`every top-level key authored in ${CONTENT_DIRS.en}/${dir} is defined by its schema`, () => {
-      const defined = new Set(Object.keys(schema._def.shape()));
+      const defined = new Set(Object.keys(schema.shape));
       const root = path.join(REPO_ROOT, CONTENT_DIRS.en, dir);
       const orphans = new Map<string, string[]>();
 

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { load as loadYaml } from 'js-yaml';
-import type { ZodError, ZodTypeAny, z } from 'zod';
+import type { ZodError, ZodType, z } from 'zod';
 import {
   actorSchema,
   processSchema,
@@ -64,7 +64,7 @@ export function parseMarkdownFile<T = unknown>(filePath: string): ParseResult<T>
  * Parse a single entity file. Markdown files carry YAML frontmatter plus a body
  * (stored as `content`); plain YAML files are loaded verbatim.
  */
-function loadEntityFile<S extends ZodTypeAny>(filePath: string, schema: S): z.infer<S> {
+function loadEntityFile<S extends ZodType>(filePath: string, schema: S): z.infer<S> {
   let data: unknown;
   let content: string | undefined;
 
@@ -96,7 +96,7 @@ function listEntityFiles(dir: string): string[] {
     .map((f) => path.join(dir, f));
 }
 
-function loadEntityDir<S extends ZodTypeAny>(dir: string, schema: S): z.infer<S>[] {
+function loadEntityDir<S extends ZodType>(dir: string, schema: S): z.infer<S>[] {
   return listEntityFiles(dir).map((file) => loadEntityFile(file, schema));
 }
 

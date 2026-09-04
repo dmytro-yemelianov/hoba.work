@@ -40,7 +40,7 @@ export const scenarioSchema = z.object({
   /** What this situation explicitly does not establish, stated in prose. */
   excluded_claims: z.array(z.string()).default([]),
   /** Interventions available to each party, keyed by actor slug. */
-  agency: z.record(z.array(interventionRef)).default({}),
+  agency: z.record(z.string(), z.array(interventionRef)).default({}),
   /**
    * Optional, and only meaningful for a scenario used as a diagnostic preset:
    * a one-line gloss and where in the funnel the situation sits. The four

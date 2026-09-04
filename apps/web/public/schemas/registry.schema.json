@@ -15,7 +15,8 @@
         },
         "updated_at": {
           "type": "string",
-          "format": "date-time"
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
         },
         "actors": {
           "type": "array",
@@ -23,80 +24,43 @@
             "type": "object",
             "properties": {
               "title": {
-                "type": "string",
-                "minLength": 3
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "type": "string",
-                "enum": [
-                  "active",
-                  "deprecated"
-                ],
-                "default": "active"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
-                },
-                "default": []
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "type": "string"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "type": "object",
-                "properties": {
-                  "facet": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "system",
-                        "recruiter",
-                        "hiring-manager",
-                        "policy",
-                        "external",
-                        "candidate"
-                      ]
-                    },
-                    "default": []
-                  },
-                  "intervention": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "employer-policy",
-                        "recruiter-process",
-                        "ats-vendor",
-                        "hiring-manager",
-                        "candidate-action",
-                        "industry-standard",
-                        "policy"
-                      ]
-                    },
-                    "default": []
-                  }
-                },
-                "additionalProperties": false,
                 "default": {
                   "facet": [],
                   "intervention": []
-                }
+                },
+                "type": "object",
+                "properties": {
+                  "facet": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/__schema5"
+                    }
+                  },
+                  "intervention": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/__schema6"
+                    }
+                  }
+                },
+                "additionalProperties": false
               },
               "id": {
-                "type": "string",
-                "enum": [
-                  "actor.candidate",
-                  "actor.recruiter",
-                  "actor.hiring_manager",
-                  "actor.ats_vendor",
-                  "actor.employer_policy",
-                  "actor.public_policy_and_industry_standards",
-                  "actor.client"
-                ]
+                "$ref": "#/definitions/__schema7"
               },
               "type": {
                 "type": "string",
@@ -111,94 +75,35 @@
                 "minLength": 10
               },
               "controls": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema8"
+                }
               },
               "blind_to": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema9"
+                }
               },
               "incentives": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema10"
+                }
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "email",
-                        "chat",
-                        "ats",
-                        "transcript",
-                        "posting",
-                        "note"
-                      ]
-                    },
-                    "label": {
-                      "type": "string",
-                      "minLength": 3
-                    },
-                    "subject": {
-                      "type": "string"
-                    },
-                    "context": {
-                      "type": "string"
-                    },
-                    "lines": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "speaker": {
-                            "type": "string"
-                          },
-                          "at": {
-                            "type": "string"
-                          },
-                          "text": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "tell": {
-                            "type": "boolean",
-                            "default": false
-                          }
-                        },
-                        "required": [
-                          "text"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "minItems": 1
-                    },
-                    "reading": {
-                      "type": "string",
-                      "minLength": 10
-                    }
-                  },
-                  "required": [
-                    "kind",
-                    "label",
-                    "lines"
-                  ],
-                  "additionalProperties": false
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "recommendations": {
+                "default": [],
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -216,31 +121,25 @@
                       "minLength": 20
                     },
                     "cost": {
-                      "type": "string",
-                      "enum": [
-                        "low",
-                        "medium",
-                        "high"
-                      ]
+                      "$ref": "#/definitions/__schema13"
                     },
                     "costs": {
                       "type": "string",
                       "minLength": 10
                     },
                     "targets": {
+                      "default": [],
                       "type": "array",
                       "items": {
                         "type": "string"
-                      },
-                      "default": []
+                      }
                     },
                     "interventions": {
+                      "default": [],
                       "type": "array",
                       "items": {
-                        "type": "string",
-                        "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"
-                      },
-                      "default": []
+                        "$ref": "#/definitions/__schema14"
+                      }
                     }
                   },
                   "required": [
@@ -251,8 +150,7 @@
                     "costs"
                   ],
                   "additionalProperties": false
-                },
-                "default": []
+                }
               }
             },
             "required": [
@@ -274,23 +172,19 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "default": []
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
                 "type": "string",
@@ -309,134 +203,33 @@
                 "minLength": 3
               },
               "states": {
+                "minItems": 2,
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "pattern": "^[a-z0-9-]+$"
-                    },
-                    "title": {
-                      "type": "string",
-                      "minLength": 3
-                    },
-                    "kind": {
-                      "type": "string",
-                      "enum": [
-                        "initial",
-                        "active",
-                        "terminal"
-                      ],
-                      "default": "active"
-                    },
-                    "owner": {
-                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
-                    },
-                    "description": {
-                      "type": "string",
-                      "minLength": 10
-                    },
-                    "entities": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      },
-                      "default": []
-                    },
-                    "visible_to_candidate": {
-                      "type": "string"
-                    },
-                    "deviations": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      },
-                      "default": []
-                    },
-                    "max_dwell_days": {
-                      "type": "number",
-                      "exclusiveMinimum": 0
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "title",
-                    "owner",
-                    "description"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 2
+                  "$ref": "#/definitions/__schema16"
+                }
               },
               "transitions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "from": {
-                      "type": "string"
-                    },
-                    "to": {
-                      "type": "string"
-                    },
-                    "label": {
-                      "type": "string",
-                      "minLength": 3
-                    },
-                    "owner": {
-                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
-                    },
-                    "guard": {
-                      "type": "string",
-                      "minLength": 5
-                    },
-                    "entities": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      },
-                      "default": []
-                    },
-                    "latency_expected_days": {
-                      "type": "number",
-                      "exclusiveMinimum": 0
-                    },
-                    "latency_max_days": {
-                      "type": "number",
-                      "exclusiveMinimum": 0
-                    }
-                  },
-                  "required": [
-                    "from",
-                    "to",
-                    "label",
-                    "owner",
-                    "guard"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema17"
+                }
               },
               "evidence_level": {
-                "type": "string",
-                "enum": [
-                  "observed",
-                  "compatible",
-                  "supported",
-                  "strongly_supported",
-                  "proven",
-                  "contradicted",
-                  "unknown"
-                ],
-                "default": "unknown"
+                "default": "unknown",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               }
             },
             "required": [
@@ -457,19 +250,19 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
                 "type": "string",
@@ -506,10 +299,11 @@
                 "minLength": 20
               },
               "ended_by": {
-                "type": "string",
-                "default": ""
+                "default": "",
+                "type": "string"
               },
               "indicators": {
+                "default": [],
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -527,7 +321,7 @@
                       "minLength": 4
                     },
                     "evidence": {
-                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
+                      "$ref": "#/definitions/__schema3"
                     }
                   },
                   "required": [
@@ -537,22 +331,21 @@
                     "evidence"
                   ],
                   "additionalProperties": false
-                },
-                "default": []
+                }
               },
               "entities": {
+                "default": [],
                 "type": "array",
                 "items": {
                   "type": "string"
-                },
-                "default": []
+                }
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               }
             },
             "required": [
@@ -575,23 +368,22 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "type": "string",
-                "pattern": "^(A-\\d{3}|obs\\.[a-z0-9_]+)$"
+                "$ref": "#/definitions/__schema19"
               },
               "type": {
                 "type": "string",
@@ -602,37 +394,16 @@
                 "minLength": 10
               },
               "stages": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string",
-                  "enum": [
-                    "pre-posting",
-                    "sourcing",
-                    "ingestion",
-                    "screening",
-                    "recruiter",
-                    "technical",
-                    "hiring-manager",
-                    "team",
-                    "client",
-                    "compensation",
-                    "offer",
-                    "post-offer"
-                  ]
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema20"
+                }
               },
               "fidelity": {
                 "anyOf": [
                   {
-                    "type": "string",
-                    "enum": [
-                      "direct",
-                      "euphemism",
-                      "distortion",
-                      "noise",
-                      "void"
-                    ]
+                    "$ref": "#/definitions/__schema21"
                   },
                   {
                     "type": "null"
@@ -640,13 +411,22 @@
                 ]
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema19"
+                  }
+                ]
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "supported"
+                "default": "supported",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "probes": {
+                "default": [],
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -664,40 +444,32 @@
                       "minLength": 5
                     },
                     "cost": {
-                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/cost"
+                      "$ref": "#/definitions/__schema13"
                     },
                     "removability_target": {
-                      "type": "string",
-                      "enum": [
-                        "candidate",
-                        "intermediary",
-                        "none"
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/__schema22"
+                        }
                       ]
                     },
                     "outcomes": {
+                      "default": [],
                       "type": "array",
                       "items": {
                         "type": "object",
                         "properties": {
                           "id": {
-                            "type": "string",
-                            "pattern": "^[a-z0-9-]+$"
+                            "$ref": "#/definitions/__schema23"
                           },
                           "label": {
-                            "type": "string",
-                            "minLength": 5
+                            "$ref": "#/definitions/__schema24"
                           },
                           "excludes": {
-                            "type": "array",
-                            "items": {
-                              "type": "string",
-                              "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
-                            },
-                            "default": []
+                            "$ref": "#/definitions/__schema25"
                           },
                           "because": {
-                            "type": "string",
-                            "default": ""
+                            "$ref": "#/definitions/__schema27"
                           }
                         },
                         "required": [
@@ -705,8 +477,7 @@
                           "label"
                         ],
                         "additionalProperties": false
-                      },
-                      "default": []
+                      }
                     }
                   },
                   "required": [
@@ -716,53 +487,28 @@
                     "cost"
                   ],
                   "additionalProperties": false
-                },
-                "default": []
+                }
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "perspectives": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "actor": {
-                      "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
-                    },
-                    "sees": {
-                      "type": "string",
-                      "minLength": 20
-                    },
-                    "reads": {
-                      "type": "string",
-                      "minLength": 20
-                    },
-                    "does": {
-                      "type": "string",
-                      "minLength": 20
-                    }
-                  },
-                  "required": [
-                    "actor",
-                    "sees",
-                    "reads",
-                    "does"
-                  ],
-                  "additionalProperties": false
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema28"
+                }
               },
               "non_inferences": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema29"
+                }
               }
             },
             "required": [
@@ -782,41 +528,41 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "type": "string",
-                "pattern": "^(B-\\d{3}|bar\\.[a-z0-9_]+)$"
+                "$ref": "#/definitions/__schema30"
               },
               "type": {
                 "type": "string",
                 "const": "barrier"
               },
               "stage": {
-                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/stages/items"
+                "$ref": "#/definitions/__schema20"
               },
               "order": {
                 "type": "integer",
-                "exclusiveMinimum": 0
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
               },
               "precedes": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/barriers/items/properties/id"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema30"
+                }
               },
               "description": {
                 "type": "string",
@@ -827,25 +573,33 @@
                 "minLength": 5
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/barriers/items/properties/id"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema30"
+                  }
+                ]
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "strongly_supported"
+                "default": "strongly_supported",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "perspectives": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema28"
+                }
               }
             },
             "required": [
@@ -866,22 +620,22 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                "$ref": "#/definitions/__schema26"
               },
               "type": {
                 "type": "string",
@@ -892,24 +646,25 @@
                 "minLength": 10
               },
               "operates_at": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/barriers/items/properties/id"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema30"
+                }
               },
               "emissions": {
+                "default": [],
                 "type": "array",
                 "items": {
                   "type": "object",
                   "properties": {
                     "artifact": {
-                      "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
+                      "$ref": "#/definitions/__schema19"
                     },
                     "fidelity": {
                       "anyOf": [
                         {
-                          "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/fidelity/anyOf/0"
+                          "$ref": "#/definitions/__schema21"
                         },
                         {
                           "type": "null"
@@ -932,32 +687,31 @@
                       ]
                     },
                     "evidence": {
+                      "default": [],
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
-                      },
-                      "default": []
+                        "$ref": "#/definitions/__schema3"
+                      }
                     },
                     "observed_at": {
+                      "default": [],
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/stages/items"
-                      },
-                      "default": []
+                        "$ref": "#/definitions/__schema20"
+                      }
                     }
                   },
                   "required": [
                     "artifact"
                   ],
                   "additionalProperties": false
-                },
-                "default": []
+                }
               },
               "facets": {
                 "type": "object",
                 "properties": {
                   "actor": {
-                    "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/aliases/properties/facet/items"
+                    "$ref": "#/definitions/__schema5"
                   },
                   "nature": {
                     "type": "string",
@@ -970,15 +724,10 @@
                     ]
                   },
                   "visibility": {
-                    "type": "string",
-                    "enum": [
-                      "observable",
-                      "inferable",
-                      "opaque"
-                    ]
+                    "$ref": "#/definitions/__schema31"
                   },
                   "removability": {
-                    "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/removability_target"
+                    "$ref": "#/definitions/__schema22"
                   }
                 },
                 "required": [
@@ -990,50 +739,58 @@
                 "additionalProperties": false
               },
               "amplifies": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema26"
+                }
               },
               "masks": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema26"
+                }
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema26"
+                  }
+                ]
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "supported"
+                "default": "supported",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "honest_baseline": {
-                "type": "boolean",
-                "default": false
+                "default": false,
+                "type": "boolean"
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "perspectives": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema28"
+                }
               },
               "non_inferences": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema32"
+                }
               }
             },
             "required": [
@@ -1054,23 +811,22 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "type": "string",
-                "pattern": "^(P-\\d{3}|pat\\.[a-z0-9_]+)$"
+                "$ref": "#/definitions/__schema33"
               },
               "type": {
                 "type": "string",
@@ -1081,64 +837,72 @@
                 "minLength": 10
               },
               "required_artifacts": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/id"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema19"
+                }
               },
               "compatible_mechanisms": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema26"
+                }
               },
               "trigger_rule": {
                 "type": "string",
                 "minLength": 10
               },
               "establishes": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema34"
+                }
               },
               "non_inferences": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema35"
+                }
               },
               "interventions": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema14"
+                }
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/patterns/items/properties/id"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema33"
+                  }
+                ]
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "supported"
+                "default": "supported",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "perspectives": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema28"
+                }
               }
             },
             "required": [
@@ -1161,23 +925,22 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "type": "string",
-                "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"
+                "$ref": "#/definitions/__schema36"
               },
               "type": {
                 "type": "string",
@@ -1188,74 +951,61 @@
                 "minLength": 10
               },
               "mechanisms": {
+                "minItems": 2,
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                },
-                "minItems": 2
+                  "$ref": "#/definitions/__schema26"
+                }
               },
               "edges": {
+                "minItems": 2,
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "from": {
-                      "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                    },
-                    "to": {
-                      "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                    },
-                    "relation": {
-                      "type": "string",
-                      "enum": [
-                        "amplifies",
-                        "masks"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "from",
-                    "to",
-                    "relation"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 2
+                  "$ref": "#/definitions/__schema37"
+                }
               },
               "entry_points": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/probes/items/properties/outcomes/items/properties/excludes/items"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema26"
+                }
               },
               "interventions": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema14"
+                }
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/loops/items/properties/id"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema36"
+                  }
+                ]
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "supported"
+                "default": "supported",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "perspectives": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema28"
+                }
               }
             },
             "required": [
@@ -1276,22 +1026,22 @@
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids"
+                "$ref": "#/definitions/__schema2"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
+                "$ref": "#/definitions/__schema14"
               },
               "type": {
                 "type": "string",
@@ -1302,15 +1052,14 @@
                 "minLength": 10
               },
               "targets": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string",
-                  "pattern": "^([MBPL]-\\d{3}|(mech|bar|pat|loop)\\.[a-z0-9_]+)$"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema38"
+                }
               },
               "actor": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/aliases/properties/intervention/items"
+                "$ref": "#/definitions/__schema6"
               },
               "scope": {
                 "type": "string",
@@ -1323,42 +1072,50 @@
                 ]
               },
               "cost": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/cost"
+                "$ref": "#/definitions/__schema13"
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/recommendations/items/properties/interventions/items"
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema14"
+                  }
+                ]
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "supported"
+                "default": "supported",
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/__schema18"
+                  }
+                ]
               },
               "expected_effects": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema39"
+                }
               },
               "measurements": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "string"
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema40"
+                }
               },
               "specimens": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/specimens/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema11"
+                }
               },
               "perspectives": {
+                "default": [],
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/RegistryBundle/properties/observations/items/properties/perspectives/items"
-                },
-                "default": []
+                  "$ref": "#/definitions/__schema28"
+                }
               }
             },
             "required": [
@@ -1382,7 +1139,7 @@
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/evidence_ids/items"
+                "$ref": "#/definitions/__schema3"
               },
               "type": {
                 "type": "string",
@@ -1418,11 +1175,11 @@
                 "type": "string"
               },
               "aliases": {
+                "default": [],
                 "type": "array",
                 "items": {
                   "type": "string"
-                },
-                "default": []
+                }
               }
             },
             "required": [
@@ -1436,145 +1193,55 @@
           }
         },
         "records": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "title": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/title"
+                "$ref": "#/definitions/__schema0"
               },
               "status": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/status"
+                "$ref": "#/definitions/__schema1"
               },
               "evidence_ids": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
-                },
-                "default": []
+                "$ref": "#/definitions/__schema41"
               },
               "content": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/content"
+                "$ref": "#/definitions/__schema4"
               },
               "aliases": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/aliases"
+                "$ref": "#/definitions/__schema15"
               },
               "id": {
-                "type": "string",
-                "pattern": "^(R-\\d{3}|record\\.[a-z0-9_]+)$"
+                "$ref": "#/definitions/__schema42"
               },
               "type": {
-                "type": "string",
-                "const": "record"
+                "$ref": "#/definitions/__schema43"
               },
               "record_class": {
-                "type": "string",
-                "enum": [
-                  "budget-line",
-                  "contract",
-                  "bid",
-                  "requisition-funding",
-                  "payroll",
-                  "placement-fee",
-                  "subscription",
-                  "runway"
-                ]
+                "$ref": "#/definitions/__schema44"
               },
               "owner": {
-                "type": "string",
-                "enum": [
-                  "inside",
-                  "outside-party",
-                  "ownerless"
-                ]
+                "$ref": "#/definitions/__schema45"
               },
               "owner_actor": {
-                "$ref": "#/definitions/RegistryBundle/properties/actors/items/properties/id"
+                "$ref": "#/definitions/__schema46"
               },
               "summary": {
-                "type": "string",
-                "minLength": 10
+                "$ref": "#/definitions/__schema47"
               },
               "flows": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "to": {
-                      "type": "string",
-                      "pattern": "^(R-\\d{3}|record\\.[a-z0-9_]+)$"
-                    },
-                    "label": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "percentage": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 100
-                    },
-                    "fraction": {
-                      "type": "number",
-                      "minimum": 0,
-                      "maximum": 1
-                    },
-                    "split_type": {
-                      "type": "string",
-                      "enum": [
-                        "margin",
-                        "payroll",
-                        "settlement",
-                        "burn",
-                        "allocation",
-                        "fee"
-                      ]
-                    },
-                    "amount": {
-                      "type": "object",
-                      "properties": {
-                        "value": {
-                          "type": "number"
-                        },
-                        "unit": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "evidence": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
-                          },
-                          "minItems": 1
-                        }
-                      },
-                      "required": [
-                        "value",
-                        "unit",
-                        "evidence"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "to",
-                    "label"
-                  ],
-                  "additionalProperties": false
-                },
-                "default": []
+                "$ref": "#/definitions/__schema48"
               },
               "visibility_default": {
-                "$ref": "#/definitions/RegistryBundle/properties/mechanisms/items/properties/facets/properties/visibility",
-                "default": "opaque"
+                "$ref": "#/definitions/__schema50"
               },
               "evidence_level": {
-                "$ref": "#/definitions/RegistryBundle/properties/processes/items/properties/evidence_level",
-                "default": "supported"
+                "$ref": "#/definitions/__schema51"
               },
               "superseded_by": {
-                "$ref": "#/definitions/RegistryBundle/properties/records/items/properties/id"
+                "$ref": "#/definitions/__schema52"
               }
             },
             "required": [
@@ -1586,8 +1253,7 @@
               "summary"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         }
       },
       "required": [
@@ -1606,6 +1272,573 @@
         "evidence"
       ],
       "additionalProperties": false
+    },
+    "__schema0": {
+      "type": "string",
+      "minLength": 3
+    },
+    "__schema1": {
+      "default": "active",
+      "type": "string",
+      "enum": [
+        "active",
+        "deprecated"
+      ]
+    },
+    "__schema2": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/__schema3"
+      }
+    },
+    "__schema3": {
+      "type": "string",
+      "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
+    },
+    "__schema4": {
+      "type": "string"
+    },
+    "__schema5": {
+      "type": "string",
+      "enum": [
+        "system",
+        "recruiter",
+        "hiring-manager",
+        "policy",
+        "external",
+        "candidate"
+      ]
+    },
+    "__schema6": {
+      "type": "string",
+      "enum": [
+        "employer-policy",
+        "recruiter-process",
+        "ats-vendor",
+        "hiring-manager",
+        "candidate-action",
+        "industry-standard",
+        "policy"
+      ]
+    },
+    "__schema7": {
+      "type": "string",
+      "enum": [
+        "actor.candidate",
+        "actor.recruiter",
+        "actor.hiring_manager",
+        "actor.ats_vendor",
+        "actor.employer_policy",
+        "actor.public_policy_and_industry_standards",
+        "actor.client"
+      ]
+    },
+    "__schema8": {
+      "type": "string"
+    },
+    "__schema9": {
+      "type": "string"
+    },
+    "__schema10": {
+      "type": "string"
+    },
+    "__schema11": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "email",
+            "chat",
+            "ats",
+            "transcript",
+            "posting",
+            "note"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "subject": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
+        "lines": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/__schema12"
+          }
+        },
+        "reading": {
+          "type": "string",
+          "minLength": 10
+        }
+      },
+      "required": [
+        "kind",
+        "label",
+        "lines"
+      ],
+      "additionalProperties": false
+    },
+    "__schema12": {
+      "type": "object",
+      "properties": {
+        "speaker": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tell": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "__schema13": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "__schema14": {
+      "type": "string",
+      "pattern": "^(I-\\d{3}|int\\.[a-z0-9_]+)$"
+    },
+    "__schema15": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "__schema16": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "kind": {
+          "default": "active",
+          "type": "string",
+          "enum": [
+            "initial",
+            "active",
+            "terminal"
+          ]
+        },
+        "owner": {
+          "$ref": "#/definitions/__schema7"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10
+        },
+        "entities": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "visible_to_candidate": {
+          "type": "string"
+        },
+        "deviations": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "max_dwell_days": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "__schema17": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 3
+        },
+        "owner": {
+          "$ref": "#/definitions/__schema7"
+        },
+        "guard": {
+          "type": "string",
+          "minLength": 5
+        },
+        "entities": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "latency_expected_days": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "latency_max_days": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "label",
+        "owner",
+        "guard"
+      ],
+      "additionalProperties": false
+    },
+    "__schema18": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "compatible",
+        "supported",
+        "strongly_supported",
+        "proven",
+        "contradicted",
+        "unknown"
+      ]
+    },
+    "__schema19": {
+      "type": "string",
+      "pattern": "^(A-\\d{3}|obs\\.[a-z0-9_]+)$"
+    },
+    "__schema20": {
+      "type": "string",
+      "enum": [
+        "pre-posting",
+        "sourcing",
+        "ingestion",
+        "screening",
+        "recruiter",
+        "technical",
+        "hiring-manager",
+        "team",
+        "client",
+        "compensation",
+        "offer",
+        "post-offer"
+      ]
+    },
+    "__schema21": {
+      "type": "string",
+      "enum": [
+        "direct",
+        "euphemism",
+        "distortion",
+        "noise",
+        "void"
+      ]
+    },
+    "__schema22": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "intermediary",
+        "none"
+      ]
+    },
+    "__schema23": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "__schema24": {
+      "type": "string",
+      "minLength": 5
+    },
+    "__schema25": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/__schema26"
+      }
+    },
+    "__schema26": {
+      "type": "string",
+      "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
+    },
+    "__schema27": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema28": {
+      "type": "object",
+      "properties": {
+        "actor": {
+          "$ref": "#/definitions/__schema7"
+        },
+        "sees": {
+          "type": "string",
+          "minLength": 20
+        },
+        "reads": {
+          "type": "string",
+          "minLength": 20
+        },
+        "does": {
+          "type": "string",
+          "minLength": 20
+        }
+      },
+      "required": [
+        "actor",
+        "sees",
+        "reads",
+        "does"
+      ],
+      "additionalProperties": false
+    },
+    "__schema29": {
+      "type": "string"
+    },
+    "__schema30": {
+      "type": "string",
+      "pattern": "^(B-\\d{3}|bar\\.[a-z0-9_]+)$"
+    },
+    "__schema31": {
+      "type": "string",
+      "enum": [
+        "observable",
+        "inferable",
+        "opaque"
+      ]
+    },
+    "__schema32": {
+      "type": "string"
+    },
+    "__schema33": {
+      "type": "string",
+      "pattern": "^(P-\\d{3}|pat\\.[a-z0-9_]+)$"
+    },
+    "__schema34": {
+      "type": "string"
+    },
+    "__schema35": {
+      "type": "string"
+    },
+    "__schema36": {
+      "type": "string",
+      "pattern": "^(L-\\d{3}|loop\\.[a-z0-9_]+)$"
+    },
+    "__schema37": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "$ref": "#/definitions/__schema26"
+        },
+        "to": {
+          "$ref": "#/definitions/__schema26"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "amplifies",
+            "masks"
+          ]
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "relation"
+      ],
+      "additionalProperties": false
+    },
+    "__schema38": {
+      "type": "string",
+      "pattern": "^([MBPL]-\\d{3}|(mech|bar|pat|loop)\\.[a-z0-9_]+)$"
+    },
+    "__schema39": {
+      "type": "string"
+    },
+    "__schema40": {
+      "type": "string"
+    },
+    "__schema41": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
+      }
+    },
+    "__schema42": {
+      "type": "string",
+      "pattern": "^(R-\\d{3}|record\\.[a-z0-9_]+)$"
+    },
+    "__schema43": {
+      "type": "string",
+      "const": "record"
+    },
+    "__schema44": {
+      "type": "string",
+      "enum": [
+        "budget-line",
+        "contract",
+        "bid",
+        "requisition-funding",
+        "payroll",
+        "placement-fee",
+        "subscription",
+        "runway"
+      ]
+    },
+    "__schema45": {
+      "type": "string",
+      "enum": [
+        "inside",
+        "outside-party",
+        "ownerless"
+      ]
+    },
+    "__schema46": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema7"
+        }
+      ]
+    },
+    "__schema47": {
+      "type": "string",
+      "minLength": 10
+    },
+    "__schema48": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string",
+            "pattern": "^(R-\\d{3}|record\\.[a-z0-9_]+)$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "fraction": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "split_type": {
+            "type": "string",
+            "enum": [
+              "margin",
+              "payroll",
+              "settlement",
+              "burn",
+              "allocation",
+              "fee"
+            ]
+          },
+          "amount": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/__schema49"
+                }
+              }
+            },
+            "required": [
+              "value",
+              "unit",
+              "evidence"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "to",
+          "label"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "__schema49": {
+      "type": "string",
+      "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
+    },
+    "__schema50": {
+      "default": "opaque",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema31"
+        }
+      ]
+    },
+    "__schema51": {
+      "default": "supported",
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema18"
+        }
+      ]
+    },
+    "__schema52": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/__schema42"
+        }
+      ]
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

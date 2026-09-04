@@ -8,8 +8,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { zodToJsonSchema } from 'zod-to-json-schema';
-import type { ZodTypeAny } from 'zod';
+import { z } from 'zod';
 import {
   actorSchema,
   agencyZones,
@@ -72,7 +71,7 @@ type EntityCollection = Exclude<keyof RegistryBundle, 'version' | 'schema_versio
 interface EntityDef {
   collection: EntityCollection;
   name: string;
-  schema: ZodTypeAny;
+  schema: z.ZodType;
   summary: string;
 }
 
@@ -136,13 +135,45 @@ const ENTITIES: EntityDef[] = [
 
 const schemaFile = (name: string) => `${name.toLowerCase()}.schema.json`;
 
+/**
+ * Keep the public draft-07 + `#/definitions/<Name>` contract while using
+ * Zod 4's native converter. Input mode preserves the accepted shape of fields
+ * with defaults; the override preserves the registry's closed object schemas.
+ */
+function namedJsonSchema(schema: z.ZodType, name: string): Record<string, unknown> {
+  const {
+    $schema,
+    definitions = {},
+    ...definition
+  } = z.toJSONSchema(schema, {
+    target: 'draft-07',
+    io: 'input',
+    reused: 'ref',
+    override: (ctx) => {
+      if (ctx.zodSchema._zod.def.type === 'object') {
+        ctx.jsonSchema.additionalProperties = false;
+      }
+    },
+  });
+  const reusableDefinitions: Record<string, unknown> =
+    typeof definitions === 'object' && definitions !== null && !Array.isArray(definitions)
+      ? Object.fromEntries(Object.entries(definitions))
+      : {};
+
+  return {
+    $ref: `#/definitions/${name}`,
+    definitions: { [name]: definition, ...reusableDefinitions },
+    $schema,
+  };
+}
+
 // ---------------------------------------------------------------------------
 // 1. JSON Schemas
 // ---------------------------------------------------------------------------
 const schemas: Record<string, unknown> = Object.fromEntries(
-  ENTITIES.map((e) => [schemaFile(e.name), zodToJsonSchema(e.schema, e.name)])
+  ENTITIES.map((e) => [schemaFile(e.name), namedJsonSchema(e.schema, e.name)])
 );
-schemas['registry.schema.json'] = zodToJsonSchema(registryBundleSchema, 'RegistryBundle');
+schemas['registry.schema.json'] = namedJsonSchema(registryBundleSchema, 'RegistryBundle');
 
 resetDir(schemasDir);
 resetDir(path.join(sitePublicDir, 'schemas'));

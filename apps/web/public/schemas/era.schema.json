@@ -10,30 +10,29 @@
           "minLength": 3
         },
         "status": {
+          "default": "active",
           "type": "string",
           "enum": [
             "active",
             "deprecated"
-          ],
-          "default": "active"
+          ]
         },
         "evidence_ids": {
+          "default": [],
           "type": "array",
           "items": {
-            "type": "string",
-            "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
-          },
-          "default": []
+            "$ref": "#/definitions/__schema0"
+          }
         },
         "content": {
           "type": "string"
         },
         "aliases": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "default": []
+          }
         },
         "id": {
           "type": "string",
@@ -70,10 +69,11 @@
           "minLength": 20
         },
         "ended_by": {
-          "type": "string",
-          "default": ""
+          "default": "",
+          "type": "string"
         },
         "indicators": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
@@ -91,7 +91,7 @@
                 "minLength": 4
               },
               "evidence": {
-                "$ref": "#/definitions/Era/properties/evidence_ids/items"
+                "$ref": "#/definitions/__schema0"
               }
             },
             "required": [
@@ -101,17 +101,17 @@
               "evidence"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         },
         "entities": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "default": []
+          }
         },
         "specimens": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
@@ -138,31 +138,11 @@
                 "type": "string"
               },
               "lines": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "speaker": {
-                      "type": "string"
-                    },
-                    "at": {
-                      "type": "string"
-                    },
-                    "text": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "tell": {
-                      "type": "boolean",
-                      "default": false
-                    }
-                  },
-                  "required": [
-                    "text"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema1"
+                }
               },
               "reading": {
                 "type": "string",
@@ -175,8 +155,7 @@
               "lines"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         }
       },
       "required": [
@@ -189,6 +168,33 @@
         "capital",
         "hiring",
         "entry"
+      ],
+      "additionalProperties": false
+    },
+    "__schema0": {
+      "type": "string",
+      "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
+    },
+    "__schema1": {
+      "type": "object",
+      "properties": {
+        "speaker": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tell": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
       ],
       "additionalProperties": false
     }

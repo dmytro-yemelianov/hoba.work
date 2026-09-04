@@ -75,7 +75,7 @@ export const analysisSchema = z.object({
   ),
   unknowns: z.array(z.string()),
   /** Interventions available to each party, keyed by actor slug. */
-  agency: z.record(z.array(interventionRef)),
+  agency: z.record(z.string(), z.array(interventionRef)),
   prohibited_conclusions: z.array(z.string()),
   /**
    * The registry this was produced against, so a reader can tell what it was
