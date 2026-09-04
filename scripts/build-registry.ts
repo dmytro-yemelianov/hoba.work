@@ -209,7 +209,13 @@ writeJson(path.join(apiDir, 'index.json'), {
   schema_version: bundle.schema_version,
   openapi: '/openapi.json',
   inventory: '/data/latest/inventory.json',
-  endpoints: [...ENTITIES.map((e) => `/api/v1/${e.collection}`), '/api/v1/graph'],
+  endpoints: [
+    ...ENTITIES.flatMap((entity) => [
+      `/api/v1/${entity.collection}/index.json`,
+      `/api/v1/${entity.collection}/{id}.json`,
+    ]),
+    '/api/v1/graph/index.json',
+  ],
 });
 
 /**

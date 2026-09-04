@@ -82,6 +82,25 @@ describe('canonical data inventory', () => {
     }
   });
 
+  it('publishes concrete, resolvable interface locations', () => {
+    const rest = inventory.surfaces.find((surface) => surface.id === 'rest');
+    const lean = inventory.surfaces.find((surface) => surface.id === 'lean');
+    expect(rest?.location).toBe('/api/v1/{collection}/index.json + /api/v1/{collection}/{id}.json');
+    expect(lean?.location).toBe('formal/lean/Hoba/Data.lean');
+    expect(existsSync(resolve(root, lean!.location))).toBe(true);
+
+    const apiIndex = JSON.parse(
+      readFileSync(resolve(root, 'apps/web/public/api/v1/index.json'), 'utf8')
+    );
+    expect(apiIndex.endpoints).toEqual([
+      ...inventory.collections.flatMap((entry) => [
+        `/api/v1/${entry.collection}/index.json`,
+        `/api/v1/${entry.collection}/{id}.json`,
+      ]),
+      '/api/v1/graph/index.json',
+    ]);
+  });
+
   it('looks up and searches every ontology type while keeping graph exports scoped', () => {
     const graph = new HOBAKnowledgeGraph(bundle);
     const exportedTypes = new Set(

@@ -638,7 +638,7 @@
         "en": "Static REST API",
         "uk": "Статичний REST API"
       },
-      "location": "/api/v1/{collection}",
+      "location": "/api/v1/{collection}/index.json + /api/v1/{collection}/{id}.json",
       "includes": {
         "en": "Lists and per-ID documents for all 11 ontology collections, plus the graph projection.",
         "uk": "Списки та документи за ID для всіх 11 колекцій онтології, а також графова проєкція."
@@ -838,7 +838,7 @@
         "en": "Lean projection",
         "uk": "Lean-проєкція"
       },
-      "location": "formal/HOBA/GeneratedData.lean",
+      "location": "formal/lean/Hoba/Data.lean",
       "includes": {
         "en": "Generated formal data used by theorem checks.",
         "uk": "Згенеровані формальні дані для перевірки теорем."
