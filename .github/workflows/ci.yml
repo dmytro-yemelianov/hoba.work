@@ -39,6 +39,20 @@ jobs:
       - name: Run Test Suite
         run: pnpm test
 
+      - name: Run Coverage
+        run: pnpm coverage
+
+      - name: Lint & Format Check
+        run: pnpm lint
+
+      - name: Security Audit (prod only)
+        run: |
+          pnpm audit --prod || true
+          if pnpm audit --prod --json | jq -e '.metadata.vulnerabilities.high > 0'; then
+            echo "High severity vulnerabilities detected"
+            exit 1
+          fi
+
       - name: Build Packages & Static Site
         run: pnpm build
 

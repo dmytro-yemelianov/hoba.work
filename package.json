@@ -11,6 +11,10 @@
     "url": "git+https://github.com/dmytro-yemelianov/hoba.work.git"
   },
   "scripts": {
+    "lint": "eslint . --ext .ts,.tsx && prettier --check .",
+    "format": "prettier --write .",
+    "coverage": "vitest run --coverage",
+    "release": "pnpm changeset version && pnpm changeset publish && pnpm validate && pnpm build",
     "build": "pnpm build:packages && pnpm build:bodies && pnpm build:registry && pnpm generate:redirects && pnpm build:worker && pnpm build:discovery && pnpm --filter hoba-site build && pnpm build:cards",
     "build:bodies": "tsx scripts/build-bodies.ts",
     "build:cards": "tsx scripts/build-cards.ts",
@@ -34,10 +38,15 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "pnpm build:packages && tsc -p tsconfig.json --noEmit && pnpm --filter hoba-site exec astro check --minimumSeverity error",
+    "prepare": "husky install",
     "validate": "pnpm build:packages && tsx scripts/validate.ts",
     "validate:strict": "pnpm build:packages && tsx scripts/validate.ts --strict"
   },
   "devDependencies": {
+    "husky": "^9.1.6",
+    "eslint": "^9.4.0",
+    "prettier": "^3.3.2",
+    "@changesets/cli": "^2.27.0",
     "@axe-core/playwright": "^4.13.0",
     "@fontsource/inter": "^5.3.0",
     "@hoba/registry": "workspace:*",
