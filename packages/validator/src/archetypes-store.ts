@@ -5,7 +5,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import yaml from 'js-yaml';
+import { load as loadYaml } from 'js-yaml';
 import { ARCHETYPE_DIR } from '@hoba/registry-core/paths';
 import { archetypeSchema, type Archetype } from './archetypes.js';
 
@@ -18,7 +18,7 @@ export function loadArchetypes(root: string): Archetype[] {
     .sort()
     .map((file) => {
       const full = path.join(dir, file);
-      const parsed = archetypeSchema.safeParse(yaml.load(fs.readFileSync(full, 'utf-8')));
+      const parsed = archetypeSchema.safeParse(loadYaml(fs.readFileSync(full, 'utf-8')));
       if (!parsed.success) {
         throw new Error(
           `${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`
