@@ -14,7 +14,7 @@ import path from 'node:path';
  * that facade re-exports `@hoba/registry-core`, which did not. Generated from
  * the directory now, so a new package is covered by existing.
  */
-const packagesDir = path.resolve(__dirname, './packages');
+const packagesDir = path.resolve(import.meta.dirname, './packages');
 const workspace = fs
   .readdirSync(packagesDir, { withFileTypes: true })
   .filter((e) => e.isDirectory() && fs.existsSync(path.join(packagesDir, e.name, 'src')))
