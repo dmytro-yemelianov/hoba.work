@@ -49,6 +49,12 @@ pnpm build
 git status --short   # generated files must be committed alongside content changes
 ```
 
+The CLI checks use native TypeScript 7 (`tsc`). Astro and typescript-eslint
+temporarily use the `@typescript/typescript6` compatibility package because
+TypeScript 7.0 does not expose the programmatic API embedded-language tooling
+needs. Both compilers are installed side by side; remove the compatibility
+alias once that API is available upstream.
+
 When you publish a content release, bump `version` in `registry.yaml` (format `YYYY.MM.N`) and set `updated_at`
 to the release timestamp. Bump `schema_version` only when the entity contract in `packages/registry-core/src/schemas.ts` changes.
 
