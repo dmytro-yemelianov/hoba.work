@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import yaml from 'js-yaml';
+import { load as loadYaml } from 'js-yaml';
 import type { ZodError, ZodTypeAny, z } from 'zod';
 import {
   actorSchema,
@@ -54,7 +54,7 @@ export function parseMarkdownFile<T = unknown>(filePath: string): ParseResult<T>
   }
 
   return {
-    data: yaml.load(match[1]) as T,
+    data: loadYaml(match[1]) as T,
     content: match[2].trim(),
     filePath,
   };
@@ -73,7 +73,7 @@ function loadEntityFile<S extends ZodTypeAny>(filePath: string, schema: S): z.in
     data = parsed.data;
     content = parsed.content || undefined;
   } else {
-    data = yaml.load(fs.readFileSync(filePath, 'utf-8'));
+    data = loadYaml(fs.readFileSync(filePath, 'utf-8'));
   }
 
   if (data === null || typeof data !== 'object') {
@@ -107,7 +107,7 @@ export function loadRegistryManifest(manifestPath: string): RegistryManifest {
       'registry manifest not found (expected registry.yaml at the repository root)'
     );
   }
-  const raw = yaml.load(fs.readFileSync(manifestPath, 'utf-8'));
+  const raw = loadYaml(fs.readFileSync(manifestPath, 'utf-8'));
   const result = registryManifestSchema.safeParse(raw);
   if (!result.success) {
     throw new RegistryLoadError(manifestPath, formatZodError(result.error), result.error);

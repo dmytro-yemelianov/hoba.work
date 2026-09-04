@@ -8,7 +8,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import yaml from 'js-yaml';
+import { load as loadYaml } from 'js-yaml';
 import { SCENARIO_DIR } from '@hoba/registry-core/paths';
 import { scenarioSchema, type Scenario } from './scenarios.js';
 import type { EmpiricalScenario } from '@hoba/registry-core/types';
@@ -22,7 +22,7 @@ export function loadScenarios(root: string): Scenario[] {
     .sort()
     .map((file) => {
       const full = path.join(dir, file);
-      const parsed = scenarioSchema.safeParse(yaml.load(fs.readFileSync(full, 'utf-8')));
+      const parsed = scenarioSchema.safeParse(loadYaml(fs.readFileSync(full, 'utf-8')));
       if (!parsed.success) {
         throw new Error(
           `${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`
