@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import { getDataInventory } from '../../lib/registry';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -10,21 +11,11 @@ export function getStaticPaths() {
 
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
-const endpoints = [
-  'actors',
-  'barriers',
-  'eras',
-  'evidence',
-  'graph',
-  'interventions',
-  'loops',
-  'mechanisms',
-  'observations',
-  'patterns',
-  'processes',
-];
+const inventory = getDataInventory(lang);
+const endpoints = [...inventory.collections.map((entry) => entry.collection), 'graph'];
 const tools = [
   'get_registry_info',
+  'get_data_inventory',
   'search_registry',
   'get_node',
   'get_scenario',
@@ -51,9 +42,10 @@ const resources = [
   'hoba://methodology/evidence',
   'hoba://methodology/non-goals',
 ];
-const exports = ['registry.json', 'registry.ndjson', 'nodes.csv', 'edges.csv', 'graph.graphml', 'graph.json', 'schema.json', 'manifest.json'];
+const exports = inventory.latest_exports;
 const cli = [
   { command: 'hoba search "reposted"', text: t('dev.cli.search') },
+  { command: 'hoba registry inventory --json', text: lang === 'uk' ? 'Отримати канонічний каталог, підрахунки, поверхні та рекомендації використання' : 'Get the canonical catalog, measured counts, surfaces, and usage guidance' },
   { command: 'hoba explain obs.materially_similar_role_reposted_shortly_after_rejection --stage technical', text: t('dev.cli.explain') },
   { command: 'hoba scenario scenario.application_silence', text: lang === 'uk' ? 'Прочитати валідований сценарій поверх онтології' : 'Read a validated scenario composed over the ontology' },
   { command: 'hoba show mech.genuine_technical_skill_shortfall', text: t('dev.cli.show') },
@@ -71,8 +63,11 @@ ${t('dev.mcp.configComment2')}
     }
   }
 }`;
+const surfaceById = Object.fromEntries(inventory.surfaces.map((surface) => [surface.id, surface]));
 
 const tocItems = [
+  { id: 'dev-inventory', label: lang === 'uk' ? 'Інвентар даних' : 'Data inventory', icon: '🧭' },
+  { id: 'dev-choose', label: lang === 'uk' ? 'Що використовувати' : 'What to use', icon: '🧰' },
   { id: 'dev-rest', label: t('dev.rest.title'), icon: '🌐' },
   { id: 'mcp', label: t('dev.mcp.title'), icon: '🤖' },
   { id: 'dev-cli', label: t('dev.cli.title'), icon: '💻' },
@@ -84,7 +79,64 @@ const tocItems = [
 
   <div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_16rem] gap-10 items-start mt-4">
     <article class="prose-hoba min-w-0">
-      <section id="dev-rest" class="scroll-mt-24">
+      <section id="dev-inventory" class="scroll-mt-24">
+        <h2>{lang === 'uk' ? 'Інвентар даних і межі канону' : 'Data inventory and canonical boundaries'}</h2>
+        <p>
+          {lang === 'uk'
+            ? 'Єдиний машинозчитуваний каталог описує всі 11 колекцій, їхні джерела, схеми, API, підрахунки та межі кожної проєкції.'
+            : 'One machine-readable catalog describes all 11 collections, their sources, schemas, APIs, measured counts, and the boundary of every projection.'}{' '}
+          <a href="/data/latest/inventory.json" target="_blank" class="font-mono">/data/latest/inventory.json</a>
+        </p>
+        <div class="not-prose grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+          <div class="rounded-xl border border-hoba-border bg-hoba-card p-4"><p class="meta">{lang === 'uk' ? 'Колекції' : 'Collections'}</p><p class="font-mono text-2xl font-semibold mt-1">{inventory.totals.collections}</p></div>
+          <div class="rounded-xl border border-hoba-border bg-hoba-card p-4"><p class="meta">{lang === 'uk' ? 'Сутності' : 'Entities'}</p><p class="font-mono text-2xl font-semibold mt-1">{inventory.totals.ontology_entries}</p></div>
+          <div class="rounded-xl border border-hoba-border bg-hoba-card p-4"><p class="meta">{lang === 'uk' ? 'Сценарії' : 'Scenarios'}</p><p class="font-mono text-2xl font-semibold mt-1">{inventory.totals.scenarios}</p></div>
+          <div class="rounded-xl border border-hoba-border bg-hoba-card p-4"><p class="meta">{lang === 'uk' ? 'Архетипи' : 'Archetypes'}</p><p class="font-mono text-2xl font-semibold mt-1">{inventory.totals.archetypes}</p></div>
+        </div>
+        <div class="not-prose overflow-x-auto" tabindex="0">
+          <table class="table min-w-[760px]">
+            <thead><tr><th>{lang === 'uk' ? 'Тип' : 'Type'}</th><th class="text-right">{lang === 'uk' ? 'Кількість' : 'Count'}</th><th>{lang === 'uk' ? 'Роль' : 'Role'}</th><th>{lang === 'uk' ? 'Джерело' : 'Source'}</th><th>API / schema</th></tr></thead>
+            <tbody>
+              {inventory.collections.map((entry) => (
+                <tr data-inventory-type={entry.type}>
+                  <td><code>{entry.type}</code><br /><span class="text-sm text-hoba-muted">{entry.label[lang]}</span></td>
+                  <td class="text-right font-mono">{entry.count}</td>
+                  <td class="text-sm">{entry.purpose[lang]}</td>
+                  <td><code class="text-xs">{entry.source}</code></td>
+                  <td class="text-xs"><a href={`${entry.api_path}/index.json`} target="_blank">REST</a> · <a href={`/schemas/${entry.schema_file}`} target="_blank">schema</a></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="not-prose grid sm:grid-cols-3 gap-3 mt-6">
+          {inventory.auxiliary_datasets.map((entry) => (
+            <div data-auxiliary-dataset={entry.id} class="rounded-xl border border-hoba-border bg-hoba-card p-4">
+              <p class="meta">{entry.authority}</p>
+              <h3 class="font-semibold mt-1">{entry.label[lang]}{entry.count !== null ? ` · ${entry.count}` : ''}</h3>
+              <p class="text-sm text-hoba-muted mt-2">{entry.purpose[lang]}</p>
+              <p class="text-xs text-hoba-muted mt-3"><strong>{lang === 'uk' ? 'Не для:' : 'Not for:'}</strong> {entry.not_for[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="dev-choose" class="scroll-mt-24 mt-10">
+        <h2>{lang === 'uk' ? 'Оберіть інструмент за ситуацією' : 'Choose the tool by situation'}</h2>
+        <div class="not-prose row-list">
+          {inventory.situations.map((item) => (
+            <div data-usage-situation={item.id} class="py-4">
+              <h3 class="font-semibold text-hoba-text">{item.situation[lang]}</h3>
+              <p class="text-sm text-hoba-muted mt-1">{item.action[lang]}</p>
+              <p class="flex flex-wrap gap-1.5 mt-2">
+                {item.recommended.map((id) => <span class="pill pill-muted">{surfaceById[id]!.label[lang]}</span>)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="dev-rest" class="scroll-mt-24 mt-10">
         <h2>{t('dev.rest.title')}</h2>
         <p>{t('dev.rest.text')} <a href="/openapi.json" target="_blank" class="font-mono">/openapi.json</a></p>
         <ul class="row-list">

@@ -99,7 +99,7 @@ export type AuthoredRecordNode = z.infer<typeof authoredRecordSchema>;
 export type RecordFlow = z.infer<typeof recordFlowSchema>;
 export type RecordClassType = z.infer<typeof recordClassEnumSchema>;
 
-/** Graph nodes that participate in the hoba ontology (evidence is a leaf record, not a graph node). */
+/** Findings and financial records that participate in registry validation rules. */
 export type RegistryNode =
   | ObservationNode
   | BarrierNode
@@ -109,8 +109,11 @@ export type RegistryNode =
   | InterventionNode
   | AuthoredRecordNode;
 
+/** Every ontology entry except evidence, which is a leaf support record. */
+export type OntologyRecord = RegistryNode | ActorNode | ProcessNode | EraNode;
+
 /** Anything addressable by canonical ID, including evidence records. */
-export type AnyRecord = RegistryNode | EvidenceRecord;
+export type AnyRecord = OntologyRecord | EvidenceRecord;
 
 export type RegistryManifest = z.infer<typeof registryManifestSchema>;
 export type RegistryBundle = z.infer<typeof registryBundleSchema>;

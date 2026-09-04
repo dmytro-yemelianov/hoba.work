@@ -49,7 +49,11 @@ test.describe('discovery surface', () => {
       '## Patterns',
       '## Loops',
       '## Interventions',
+      '## Processes',
+      '## Financial records',
       '## Evidence',
+      '## Validated scenario compositions',
+      '## Presentation-only archetype overlays',
     ]) {
       expect(body, heading).toContain(heading);
     }

@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Employer Hiring and Sourcing Budget",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Employer Hiring and Sourcing Budget\n\nOperational recruiting budget covering external agency fees and search costs.",
+    "aliases": [
+      "R-008"
+    ],
+    "id": "record.employer_hiring_and_sourcing_budget",
+    "type": "record",
+    "record_class": "budget-line",
+    "owner": "inside",
+    "owner_actor": "actor.employer_policy",
+    "summary": "Operational recruiting budget covering external agency fees and search costs.",
+    "flows": [
+      {
+        "to": "record.contingency_placement_fee_commitment",
+        "label": "success fee commitment",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "allocation"
+      }
+    ],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

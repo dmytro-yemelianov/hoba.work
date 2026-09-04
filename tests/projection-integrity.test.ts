@@ -6,6 +6,7 @@ import { loadScenarios } from '@hoba/registry';
 import { ui } from '../apps/web/src/i18n/ui';
 import {
   getBundle,
+  getDataInventory,
   getHomepageDiagnosticPreview,
   HOMEPAGE_SCENARIO_ID,
 } from '../apps/web/src/lib/registry';
@@ -72,9 +73,11 @@ describe('projection integrity', () => {
     expect(literalArray(developers, 'resources').sort()).toEqual(registeredMcpResources(server));
   });
 
-  it('keeps documented REST collections aligned with OpenAPI and generated JSON', () => {
-    const developers = readFileSync(developersPath, 'utf8');
-    const documented = literalArray(developers, 'endpoints').sort();
+  it('keeps inventory REST collections aligned with OpenAPI and generated JSON', () => {
+    const documented = [
+      ...getDataInventory('en').collections.map((entry) => entry.collection),
+      'graph',
+    ].sort();
     const openapi = JSON.parse(
       readFileSync(resolve(root, 'apps/web/public/openapi.json'), 'utf8')
     ) as {
@@ -93,9 +96,8 @@ describe('projection integrity', () => {
     }
   });
 
-  it('documents exactly the generated latest data exports', () => {
-    const developers = readFileSync(developersPath, 'utf8');
-    const documented = literalArray(developers, 'exports').sort();
+  it('inventory lists exactly the generated latest data exports', () => {
+    const documented = [...getDataInventory('en').latest_exports].sort();
     const generated = readdirSync(resolve(root, 'apps/web/public/data/latest'), {
       withFileTypes: true,
     })

@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Candidate Search Runway",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Candidate Search Runway\n\nAvailable runway in months derived from personal savings and monthly burn rate.",
+    "aliases": [
+      "R-012"
+    ],
+    "id": "record.candidate_search_runway",
+    "type": "record",
+    "record_class": "runway",
+    "owner": "inside",
+    "owner_actor": "actor.candidate",
+    "summary": "Available runway in months derived from personal savings and monthly burn rate.",
+    "flows": [
+      {
+        "to": "record.search_month_burn_allocation",
+        "label": "monthly living expenditure",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "burn"
+      }
+    ],
+    "visibility_default": "observable",
+    "evidence_level": "supported"
+  }
+}

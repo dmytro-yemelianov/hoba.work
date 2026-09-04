@@ -79,6 +79,7 @@ describe('hoba MCP server', () => {
         'explain_observation',
         'find_compatible_mechanisms',
         'find_patterns',
+        'get_data_inventory',
         'get_diagnostic_probes',
         'get_scenario',
         'get_interventions',
@@ -110,6 +111,11 @@ describe('hoba MCP server', () => {
       'mech.employment_gap_downranking_bias',
       'mech.automated_keyword_qualification_filter',
     ]);
+    const inventory = payload(
+      await client.request('tools/call', { name: 'get_data_inventory', arguments: {} })
+    );
+    expect(inventory.inventory.collections).toHaveLength(11);
+    expect(inventory.inventory.totals.ontology_entries).toBeGreaterThan(100);
   });
 
   // Design doc §12: the validation tools, and the methodology exposed as

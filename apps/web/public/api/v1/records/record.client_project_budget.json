@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Client Project Budget",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Client Project Budget\n\nClient total budget line earmarked for third-party engineering services.",
+    "aliases": [
+      "R-004"
+    ],
+    "id": "record.client_project_budget",
+    "type": "record",
+    "record_class": "budget-line",
+    "owner": "outside-party",
+    "owner_actor": "actor.client",
+    "summary": "Client total budget line earmarked for third-party engineering services.",
+    "flows": [
+      {
+        "to": "record.client_services_agreement",
+        "label": "master services contract",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "settlement"
+      }
+    ],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

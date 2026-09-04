@@ -1,26 +1,31 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.1.0, schema 1.2.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.1.0, schema 1.3.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
 ## Ontology
 
-- **Observations** (`A-*`, 21) — signals a candidate can actually witness.
-- **Barriers** (`B-*`, 16) — the funnel gates, a strict DAG ordered by stage.
-- **Mechanisms** (`M-*`, 28) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
-- **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
-- **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
-- **Interventions** (`I-*`, 24) — concrete changes, each attributed to the actor who can make it.
-- **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
-- **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 51) — the published sources behind the claims.
+- **Observations** (`observation`, 21; IDs obs.* (legacy A-### aliases resolve)) — A directly observable trace left by the hiring process.
+- **Barriers** (`barrier`, 16; IDs bar.* (legacy B-### aliases resolve)) — A gate where the nominal hiring path can stop or diverge.
+- **Mechanisms** (`mechanism`, 28; IDs mech.* (legacy M-### aliases resolve)) — A causal force compatible with one or more observations and barriers.
+- **Patterns** (`pattern`, 4; IDs pat.* (legacy P-### aliases resolve)) — A recurring, rule-defined combination of observations and compatible mechanisms.
+- **Loops** (`loop`, 3; IDs loop.* (legacy L-### aliases resolve)) — A validated reinforcing cycle among mechanisms.
+- **Interventions** (`intervention`, 24; IDs int.* (legacy I-### aliases resolve)) — An actor-owned change aimed at a barrier, mechanism, pattern, or loop.
+- **Actors** (`actor`, 7; IDs actor.*) — A decision seat with explicit controls, blind spots, and incentives.
+- **Processes** (`process`, 4; IDs proc.* (legacy WF-### aliases resolve)) — A state machine naming the subject, states, owners, transitions, and expected timing.
+- **Eras** (`era`, 4; IDs era.* (legacy E-### aliases resolve)) — A sourced period of hiring economics: capital, hiring behavior, entry paths, and its ending.
+- **Evidence records** (`evidence`, 51; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
+- **Financial records** (`record`, 13; IDs record.* (legacy R-### aliases resolve)) — A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.
 
-The graph has 233 nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+Scenarios (6) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
+
+The graph export is deliberately narrower than the ontology: 96 reader-facing finding nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
 - Full registry: https://hoba.work/data/latest/registry.json
+- Inventory, boundaries and usage choices: https://hoba.work/data/latest/inventory.json
 - One entity: https://hoba.work/api/v1/mechanisms/mech.genuine_technical_skill_shortfall.json
 - Any page as Markdown: https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall.md — or the canonical URL with `Accept: text/markdown`
 - The whole catalogue as one document: https://hoba.work/registry.md

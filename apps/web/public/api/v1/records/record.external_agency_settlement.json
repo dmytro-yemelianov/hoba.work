@@ -1,0 +1,21 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "External Agency Settlement",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# External Agency Settlement\n\nCommercial fee settlement received by the external recruitment agency.",
+    "aliases": [
+      "R-010"
+    ],
+    "id": "record.external_agency_settlement",
+    "type": "record",
+    "record_class": "contract",
+    "owner": "outside-party",
+    "owner_actor": "actor.client",
+    "summary": "Commercial fee settlement received by the external recruitment agency.",
+    "flows": [],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

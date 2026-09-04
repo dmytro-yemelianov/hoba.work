@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Approved Requisition Funding",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Approved Requisition Funding\n\nHeadcount allocation and salary band approved for the active requisition.",
+    "aliases": [
+      "R-002"
+    ],
+    "id": "record.approved_requisition_funding",
+    "type": "record",
+    "record_class": "requisition-funding",
+    "owner": "inside",
+    "owner_actor": "actor.hiring_manager",
+    "summary": "Headcount allocation and salary band approved for the active requisition.",
+    "flows": [
+      {
+        "to": "record.direct_engineering_payroll",
+        "label": "hired candidate compensation",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "payroll"
+      }
+    ],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

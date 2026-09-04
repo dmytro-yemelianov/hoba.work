@@ -14,9 +14,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { READER_SLUGS } from '../apps/web/src/lib/readers';
 import {
+  buildDataInventory,
   findRegistryRoot,
   HOBAKnowledgeGraph,
+  loadArchetypes,
   loadRegistryFromRoot,
+  loadScenarios,
   type ContentLang,
   type RegistryBundle,
 } from '@hoba/registry';
@@ -24,6 +27,7 @@ import {
 const SITE = 'https://hoba.work';
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-discovery: registry root not found');
+const registryRoot: string = root;
 const PUBLIC = path.join(root, 'apps', 'web', 'public');
 
 /**
@@ -109,6 +113,11 @@ function sitemap(routes: string[], lastmod: string): string {
 }
 
 function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
+  const inventory = buildDataInventory(bundle, {
+    scenarios: loadScenarios(registryRoot).length,
+    archetypes: loadArchetypes(registryRoot).length,
+  });
+  const graphProjection = graph.toCytoscapeJSON().elements;
   return [
     '# hoba — Hiring Obstacles & Barriers Atlas',
     '',
@@ -118,21 +127,19 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     '',
     '## Ontology',
     '',
-    `- **Observations** (\`A-*\`, ${bundle.observations.length}) — signals a candidate can actually witness.`,
-    `- **Barriers** (\`B-*\`, ${bundle.barriers.length}) — the funnel gates, a strict DAG ordered by stage.`,
-    `- **Mechanisms** (\`M-*\`, ${bundle.mechanisms.length}) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.`,
-    `- **Patterns** (\`P-*\`, ${bundle.patterns.length}) — named motifs where several defensible decisions combine into a bind.`,
-    `- **Loops** (\`L-*\`, ${bundle.loops.length}) — reinforcing cycles, detected as strongly connected components.`,
-    `- **Interventions** (\`I-*\`, ${bundle.interventions.length}) — concrete changes, each attributed to the actor who can make it.`,
-    `- **Actors** (${bundle.actors.length}) — the positions the funnel is made of. Every entry carries a per-actor perspective; ${SITE}/actors, and \`?lens=<actor>\` on any page reads the whole atlas from one of them.`,
-    `- **Eras** (\`E-*\`, ${bundle.eras.length}) — periods of the hiring economy, told as where the money came from and how a person got in.`,
-    `- **Evidence** (\`EVD-*\`, ${bundle.evidence.length}) — the published sources behind the claims.`,
+    ...inventory.collections.map(
+      (entry) =>
+        `- **${entry.plural.en}** (\`${entry.type}\`, ${entry.count}; IDs ${entry.id_pattern}) — ${entry.purpose.en}`
+    ),
     '',
-    `The graph has ${graph.nodeMap.size - bundle.evidence.length} nodes and ${graph.edges.length} edges over the relations \`operates_at\`, \`emits\`, \`amplifies\`, \`masks\`, \`precedes\`, \`instantiates\`, \`targets\`, \`mitigates\`.`,
+    `Scenarios (${inventory.totals.scenarios}) are validated compositions over canonical IDs. Archetypes (${inventory.totals.archetypes}) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.`,
+    '',
+    `The graph export is deliberately narrower than the ontology: ${graphProjection.nodes.length} reader-facing finding nodes and ${graphProjection.edges.length} edges over the relations \`operates_at\`, \`emits\`, \`amplifies\`, \`masks\`, \`precedes\`, \`instantiates\`, \`targets\`, \`mitigates\`.`,
     '',
     '## Reading it by machine',
     '',
     `- Full registry: ${SITE}/data/latest/registry.json`,
+    `- Inventory, boundaries and usage choices: ${SITE}/data/latest/inventory.json`,
     `- One entity: ${SITE}/api/v1/mechanisms/mech.genuine_technical_skill_shortfall.json`,
     `- Any page as Markdown: ${SITE}/mechanisms/mech.genuine_technical_skill_shortfall.md — or the canonical URL with \`Accept: text/markdown\``,
     `- The whole catalogue as one document: ${SITE}/registry.md`,
@@ -230,6 +237,19 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     ),
   ]);
 
+  section('Processes', bundle.processes, (p) => [
+    p.summary,
+    '',
+    `- Subject: ${p.subject} · Evidence: ${p.evidence_level}`,
+    ...p.states.map(
+      (s) =>
+        `- State ${s.id} (${s.kind}, owner ${s.owner}): ${s.description}${s.max_dwell_days ? ` · max ${s.max_dwell_days} days` : ''}`
+    ),
+    ...p.transitions.map(
+      (t) => `- Transition ${t.from} → ${t.to} (${t.owner}): ${t.label} · guard: ${t.guard}`
+    ),
+  ]);
+
   section('Eras', bundle.eras, (e) => [
     e.summary,
     '',
@@ -241,12 +261,43 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     ...e.indicators.map((i) => `- ${i.figure} — ${i.label} (${i.period}, ${i.evidence})`),
   ]);
 
+  section('Financial records', bundle.records, (r) => [
+    r.summary,
+    '',
+    `- Class: ${r.record_class} · Owner: ${r.owner}${r.owner_actor ? ` (${r.owner_actor})` : ''} · Visibility: ${r.visibility_default}`,
+    ...r.flows.map(
+      (flow) =>
+        `- Flow to ${flow.to}: ${flow.label}${flow.percentage !== undefined ? ` · ${flow.percentage}%` : ''}${flow.fraction !== undefined ? ` · fraction ${flow.fraction}` : ''}`
+    ),
+  ]);
+
   section('Evidence', bundle.evidence, (e) => [
     e.summary,
     '',
     ...(e.citation ? [`- ${e.citation}`] : []),
     ...(e.url ? [`- ${e.url}`] : []),
   ]);
+
+  out.push('## Validated scenario compositions', '');
+  for (const scenario of loadScenarios(registryRoot)) {
+    out.push(`### ${scenario.id} — ${scenario.title.en}`, '');
+    if (scenario.summary) out.push(scenario.summary, '');
+    out.push(`- Observations: ${scenario.observations.join(', ')}`);
+    if (scenario.compatible_barriers.length)
+      out.push(`- Compatible barriers: ${scenario.compatible_barriers.join(', ')}`);
+    if (scenario.compatible_mechanisms.length)
+      out.push(`- Compatible mechanisms: ${scenario.compatible_mechanisms.join(', ')}`);
+    for (const claim of scenario.excluded_claims) out.push(`- Does NOT establish: ${claim}`);
+    out.push('');
+  }
+
+  out.push('## Presentation-only archetype overlays', '');
+  for (const archetype of loadArchetypes(registryRoot)) {
+    out.push(
+      `- **${archetype.id} — ${archetype.nickname.en}** (${archetype.axis_x}/${archetype.axis_y}): ${archetype.blurb.en}`
+    );
+  }
+  out.push('');
 
   return out.join('\n');
 }

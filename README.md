@@ -13,7 +13,7 @@
 
 **hoba** is a public, versioned, machine-readable atlas of technical hiring obstacles, observable signals, hidden mechanisms, recurring contradictions, causal feedback loops, and targeted system interventions.
 
-The public web application at [`hoba.work`](https://hoba.work) is one interface to the registry. The registry itself is the core product: a Git-versioned knowledge graph exposed as web pages, static REST JSON API, OpenAPI 3.1, Model Context Protocol (MCP) server, CLI, CSV, and GraphML exports.
+The public web application at [`hoba.work`](https://hoba.work) is one interface to the registry. The registry itself is the core product: a Git-versioned knowledge graph exposed as web pages, static REST JSON API, OpenAPI 3.1, Model Context Protocol (MCP) server, CLI, CSV, and GraphML exports. The generated [`inventory.json`](https://hoba.work/data/latest/inventory.json) is the machine-readable map of every collection, auxiliary dataset, surface, boundary, and recommended use.
 
 ---
 
@@ -89,12 +89,13 @@ The substrate is never a second, competing model: `project(substrate)` regenerat
 │   ├── registry/       # @hoba/registry: the facade — plus /core (browser) and /edge (worker)
 │   ├── cli/            # @hoba/cli: the "hoba" command (search, show, explain, validate)
 │   └── mcp/            # @hoba/mcp: Model Context Protocol server for AI coding assistants
-├── apps/web/           # Astro 5 + Tailwind + Cytoscape static site, and the Pages worker
+├── apps/web/           # Astro 7 + Tailwind 4 + Cytoscape static site, and the Pages worker
 ├── data/
 │   ├── en/entities/    # Canonical English Markdown + YAML frontmatter
 │   ├── uk/entities/    # Ukrainian mirror — same ids, same structure
 │   ├── evidence/       # Evidence records cited by entries, in one language-neutral tree
-│   └── scenarios/      # Authored scenarios the CLI and /analyze run against
+│   ├── scenarios/      # Validated compositions the CLI and /analyze run against
+│   └── archetypes/     # Presentation-only nicknames/grid positions; never canonical claims
 ├── formal/lean/        # Lean 4 kernel proofs over the generated model
 ├── schemas/            # Generated JSON Schema per entity type (do not edit by hand)
 ├── schema/             # Hand-written schemas for what is not an entity (analysis, relations)
@@ -161,7 +162,7 @@ exports, the Lean kernel build, and Playwright + axe e2e. `.prettierignore` keep
 generated trees so formatters and generators cannot fight.
 
 ### Versioning
-`registry.yaml` is the single source of truth for the **registry version** (`YYYY.MM.N`, bump on every content
+`registry.yaml` is the single source of truth for the **registry version** (semver, bump on every content
 release), the **schema version** (semver, bump when the entity contract changes) and the release timestamp
 (set explicitly so exports stay byte-deterministic). The **site/package version** lives in `package.json`;
 package bumps and changelog entries go through Changesets — add one with `pnpm changeset`, then `pnpm release`
@@ -177,6 +178,10 @@ pnpm dev
 
 ## 5. Machine & Developer Interfaces
 
+The [data inventory decision](docs/decided/data-inventory.md) defines the
+source-of-truth layers, projection boundaries, supported interfaces, and the
+required procedure for adding a data type.
+
 ### Static REST API
 Flat files under `https://hoba.work/api/v1/`, served from disk with no database
 behind them. Every collection has an index and one document per entry:
@@ -184,12 +189,13 @@ behind them. Every collection has an index and one document per entry:
 - `GET /api/v1/barriers/index.json` — every barrier, in stage order
 - `GET /api/v1/mechanisms/index.json` — every mechanism with its facets
 - `GET /api/v1/mechanisms/mech.ats_parser_extraction_failure.json` — one entry
+- `GET /api/v1/records/index.json` — every financial/contract/runway record
 - `GET /api/v1/graph/index.json` — nodes and edges for the explorer
 - OpenAPI 3.1 contract, generated from the registry: [`/openapi.json`](https://hoba.work/openapi.json)
 
 The `index.json` is not decoration: these paths are excluded from the worker and
 served as static files, so a directory does not resolve to its index. The
-contract lists all 22 paths.
+contract lists all 24 paths (two for each of the 11 collections, plus the API index and graph projection).
 
 ### Validation over HTTP
 `POST /validate/{analysis,scenario,claim}` check a submitted document against the
@@ -216,9 +222,10 @@ npm**; run the server from a local checkout (`pnpm install && pnpm build:package
 }
 ```
 The registry root is resolved from `--dir`, then `$HOBA_ROOT`, then by walking up from the working directory.
-Tools: `get_registry_info`, `search_registry`, `get_node`, `explain_observation`, `find_compatible_mechanisms`,
+Tools: `get_registry_info`, `get_data_inventory`, `search_registry`, `get_node`, `get_scenario`, `explain_observation`, `find_compatible_mechanisms`,
 `get_diagnostic_probes`, `find_patterns`, `get_interventions`, `traverse_graph`, `get_methodology`,
-`detect_temporal_anomalies`, `calculate_runway`, `verify_flow_conservation`, `evaluate_pattern_emptiness`.
+`detect_temporal_anomalies`, `calculate_runway`, `verify_flow_conservation`, `evaluate_pattern_emptiness`,
+`validate_entity_ids`, `validate_scenario`, `validate_analysis`, `validate_claim`.
 
 ### CLI Tool
 ```bash
@@ -243,7 +250,7 @@ hoba patterns
 hoba conservation
 
 # Search across the knowledge graph
-hoba search "reposted" --types artifact,pattern
+hoba search "reposted" --types observation,pattern
 
 # Inspect detailed entity specification (`get` is the same command)
 hoba show mech.genuine_technical_skill_shortfall
@@ -258,6 +265,7 @@ hoba scenario
 # Registry metadata
 hoba registry stats
 hoba registry version
+hoba registry inventory --json
 
 # Validate content (schemas, references, DAG, loop declarations, EN/UK parity)
 hoba validate --strict
@@ -276,12 +284,17 @@ Key kernel-proved theorems include:
 - `substrate_condition_partition`: Exact partition of substrate conditions into barriers and mechanisms.
 - `substrate_flows_positive`: Conservation and validity of all financial resource flows.
 
-### Raw Graph Exports
+### Machine-readable inventory and exports
+- Inventory and usage guide: [`/data/latest/inventory.json`](https://hoba.work/data/latest/inventory.json)
 - JSON bundle: [`/data/latest/registry.json`](https://hoba.work/data/latest/registry.json)
 - NDJSON lines: [`/data/latest/registry.ndjson`](https://hoba.work/data/latest/registry.ndjson)
 - CSV Nodes: [`/data/latest/nodes.csv`](https://hoba.work/data/latest/nodes.csv)
 - CSV Edges: [`/data/latest/edges.csv`](https://hoba.work/data/latest/edges.csv)
 - GraphML: [`/data/latest/graph.graphml`](https://hoba.work/data/latest/graph.graphml)
+
+`registry.json` and NDJSON cover all 11 ontology collections. The graph JSON,
+GraphML, and node/edge CSV files are intentionally narrower: they contain the
+six reader-facing finding types and their relationships, not the entire data inventory.
 
 ---
 
