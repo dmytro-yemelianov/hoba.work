@@ -1,7 +1,8 @@
 # Weekly dependency updates for the pnpm workspace and CI actions.
-# `astro` majors are held on purpose: the repo pins ^5.3.0 and the major
-# upgrade (which clears the known build-time advisories) is a separate
-# tracked task. Minor and patch updates inside 5.x keep flowing.
+# Minor and patch bumps flow automatically (grouped). npm semver-major
+# bumps are deliberate, tracked upgrade tasks in this repo — e.g.
+# astro 5→7 (clears the known build-time advisories), tailwind 3→4,
+# eslint 9→10, typescript 5→7, zod 3→4 — so majors are ignored below.
 version: 2
 updates:
   # Root manifest: toolchain and dev dependencies
@@ -16,6 +17,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   # Astro site
   - package-ecosystem: npm
     directory: /apps/web
@@ -29,7 +34,7 @@ updates:
           - minor
           - patch
     ignore:
-      - dependency-name: astro
+      - dependency-name: '*'
         update-types:
           - version-update:semver-major
   # Workspace packages
@@ -44,6 +49,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: npm
     directory: /packages/graph
     schedule:
@@ -55,6 +64,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: npm
     directory: /packages/validator
     schedule:
@@ -66,6 +79,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: npm
     directory: /packages/search
     schedule:
@@ -77,6 +94,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: npm
     directory: /packages/registry
     schedule:
@@ -88,6 +109,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: npm
     directory: /packages/cli
     schedule:
@@ -99,6 +124,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: npm
     directory: /packages/mcp
     schedule:
@@ -110,7 +139,11 @@ updates:
         update-types:
           - minor
           - patch
-  # CI workflow actions
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
+  # CI workflow actions (majors allowed here: CI gates the PR)
   - package-ecosystem: github-actions
     directory: /
     schedule:
