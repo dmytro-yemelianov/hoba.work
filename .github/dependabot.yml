@@ -3,9 +3,17 @@
 # bumps are deliberate, tracked upgrade tasks in this repo — e.g.
 # astro 5→7 (clears the known build-time advisories), tailwind 3→4,
 # eslint 9→10, typescript 5→7, zod 3→4 — so majors are ignored below.
+#
+# Only the root and apps/web manifests are tracked: per-directory
+# entries for packages/* regenerated pnpm-lock.yaml with stale importer
+# specifiers (ERR_PNPM_OUTDATED_LOCKFILE at CI install), while root
+# group PRs update shared dependencies across all workspace manifests
+# with a coherent lockfile. Dependencies declared only in packages/*
+# (zod, commander, picocolors, @modelcontextprotocol/sdk) are bumped
+# deliberately.
 version: 2
 updates:
-  # Root manifest: toolchain and dev dependencies
+  # Root manifest: toolchain, dev dependencies and shared workspace deps
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -21,115 +29,10 @@ updates:
       - dependency-name: '*'
         update-types:
           - version-update:semver-major
-  # Astro site
+  # Astro site: astro patches are security-relevant and have no root
+  # manifest entry, so this directory is their only automated source
   - package-ecosystem: npm
     directory: /apps/web
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  # Workspace packages
-  - package-ecosystem: npm
-    directory: /packages/registry-core
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  - package-ecosystem: npm
-    directory: /packages/graph
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  - package-ecosystem: npm
-    directory: /packages/validator
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  - package-ecosystem: npm
-    directory: /packages/search
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  - package-ecosystem: npm
-    directory: /packages/registry
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  - package-ecosystem: npm
-    directory: /packages/cli
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: chore(deps)
-    groups:
-      minor-and-patch:
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-  - package-ecosystem: npm
-    directory: /packages/mcp
     schedule:
       interval: weekly
     commit-message:
