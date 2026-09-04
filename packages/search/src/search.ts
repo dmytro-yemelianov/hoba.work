@@ -27,20 +27,23 @@ export interface SearchOptions {
   limit?: number;
 }
 
-const nodeText = (node: RegistryNode): string => ('summary' in node ? node.summary : node.description);
+const nodeText = (node: RegistryNode): string =>
+  'summary' in node ? node.summary : node.description;
 
 /**
  * Case-insensitive substring search across IDs, titles and summaries.
  * Shared by the CLI, the MCP server and (potentially) the site so all surfaces
  * agree on what "search" means.
  */
-export function searchBundle(bundle: RegistryBundle, query: string, options: SearchOptions = {}): SearchHit[] {
+export function searchBundle(
+  bundle: RegistryBundle,
+  query: string,
+  options: SearchOptions = {}
+): SearchHit[] {
   const q = query.trim().toLowerCase();
   if (!q) return [];
 
-  const wanted = new Set<SearchableType>(
-    options.types ?? [...READER_FACING_TYPES, 'record']
-  );
+  const wanted = new Set<SearchableType>(options.types ?? [...READER_FACING_TYPES, 'record']);
 
   const pools: RegistryNode[] = [
     ...bundle.observations,

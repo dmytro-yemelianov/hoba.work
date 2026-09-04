@@ -13,8 +13,20 @@
  * supposed to be absolute.
  */
 export const FORBIDDEN_PARTIES = [
-  'Google', 'Meta', 'Amazon', 'Microsoft', 'Apple', 'Netflix', 'Uber', 'Stripe',
-  'Revolut', 'Monobank', 'PrivatBank', 'EPAM', 'SoftServe', 'Luxoft',
+  'Google',
+  'Meta',
+  'Amazon',
+  'Microsoft',
+  'Apple',
+  'Netflix',
+  'Uber',
+  'Stripe',
+  'Revolut',
+  'Monobank',
+  'PrivatBank',
+  'EPAM',
+  'SoftServe',
+  'Luxoft',
 ] as const;
 
 /**

@@ -1,14 +1,31 @@
 import { expect, test } from '@playwright/test';
 
-const REQUIRED_ICONS = ['/icons/icon-192.png', '/icons/icon-512.png', '/icons/maskable-512.png', '/icons/apple-touch-icon.png'];
+const REQUIRED_ICONS = [
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/icons/maskable-512.png',
+  '/icons/apple-touch-icon.png',
+];
 
 test.describe('installability', () => {
   test('every page links the manifest, icons and theme colours', async ({ page }) => {
     await page.goto('/registry');
-    await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/manifest.webmanifest');
-    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', '/icons/apple-touch-icon.png');
-    await expect(page.locator('meta[name="theme-color"][media*="dark"]')).toHaveAttribute('content', '#0a0c10');
-    await expect(page.locator('meta[name="viewport"]')).toHaveAttribute('content', /viewport-fit=cover/);
+    await expect(page.locator('link[rel="manifest"]')).toHaveAttribute(
+      'href',
+      '/manifest.webmanifest'
+    );
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+      'href',
+      '/icons/apple-touch-icon.png'
+    );
+    await expect(page.locator('meta[name="theme-color"][media*="dark"]')).toHaveAttribute(
+      'content',
+      '#0a0c10'
+    );
+    await expect(page.locator('meta[name="viewport"]')).toHaveAttribute(
+      'content',
+      /viewport-fit=cover/
+    );
   });
 
   test('the manifest declares an installable app', async ({ request }) => {
@@ -42,9 +59,14 @@ test.describe('installability', () => {
     expect(body).toContain('caches.open');
   });
 
-  test('the service worker takes control and serves a visited page offline', async ({ page, context }) => {
+  test('the service worker takes control and serves a visited page offline', async ({
+    page,
+    context,
+  }) => {
     await page.goto('/');
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null, undefined, { timeout: 15_000 });
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null, undefined, {
+      timeout: 15_000,
+    });
 
     const online = await page.goto('/registry');
     const language = online!.headers()['content-language'];

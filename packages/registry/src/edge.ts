@@ -12,9 +12,23 @@
  * Module-by-module for the same reason `core.ts` is: `@hoba/validator` also
  * contains `scenarios-store`, which reads the filesystem.
  */
-export { analysisSchema, validateAnalysis, claimRank, type Analysis } from '@hoba/validator/analysis';
-export { scenarioSchema, validateScenarios, resolveScenarioId, type Scenario } from '@hoba/validator/scenarios';
-export { evidenceLevelSchema, PROVING_EVIDENCE_KINDS, stageIdSchema } from '@hoba/registry-core/schemas';
+export {
+  analysisSchema,
+  validateAnalysis,
+  claimRank,
+  type Analysis,
+} from '@hoba/validator/analysis';
+export {
+  scenarioSchema,
+  validateScenarios,
+  resolveScenarioId,
+  type Scenario,
+} from '@hoba/validator/scenarios';
+export {
+  evidenceLevelSchema,
+  PROVING_EVIDENCE_KINDS,
+  stageIdSchema,
+} from '@hoba/registry-core/schemas';
 // The rule that the registry may never name a real employer applies to what
 // arrives as well as to what is published: an inbox of texts naming companies
 // is the blacklist the methodology exists not to be.

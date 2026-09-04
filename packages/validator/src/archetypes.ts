@@ -59,15 +59,26 @@ export interface ArchetypeIssue {
  * `tests/archetypes.test.ts` walking the full registry — kept out of this
  * function because it needs the complete bundle, not just a set of ids.
  */
-export function validateArchetypes(archetypes: Archetype[], knownIds: ReadonlySet<string>): ArchetypeIssue[] {
+export function validateArchetypes(
+  archetypes: Archetype[],
+  knownIds: ReadonlySet<string>
+): ArchetypeIssue[] {
   const issues: ArchetypeIssue[] = [];
   const seen = new Map<string, number>();
   for (const a of archetypes) {
     seen.set(a.id, (seen.get(a.id) ?? 0) + 1);
-    if (!knownIds.has(a.id)) issues.push({ file: `${a.id}.yaml`, message: `${a.id} does not name an entity the registry has` });
+    if (!knownIds.has(a.id))
+      issues.push({
+        file: `${a.id}.yaml`,
+        message: `${a.id} does not name an entity the registry has`,
+      });
   }
   for (const [id, count] of seen) {
-    if (count > 1) issues.push({ file: `${id}.yaml`, message: `${id} has ${count} archetype files, expected one` });
+    if (count > 1)
+      issues.push({
+        file: `${id}.yaml`,
+        message: `${id} has ${count} archetype files, expected one`,
+      });
   }
   return issues;
 }

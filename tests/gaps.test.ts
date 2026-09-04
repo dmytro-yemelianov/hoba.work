@@ -5,7 +5,13 @@ import { findRegistryRoot, loadRegistryFromRoot } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 
 const emits = (...ids: string[]) =>
-  ids.map((artifactId) => ({ artifact: artifactId, evidence: [], observed_at: [], fidelity: 'direct' as const, likelihood: 'high' as const }));
+  ids.map((artifactId) => ({
+    artifact: artifactId,
+    evidence: [],
+    observed_at: [],
+    fidelity: 'direct' as const,
+    likelihood: 'high' as const,
+  }));
 
 describe('closure', () => {
   it('is transitive through the gate order', () => {
@@ -25,7 +31,7 @@ describe('closure', () => {
     expect(closure(bundle, 'M-001').affects).toEqual(['A-001', 'B-001', 'B-002', 'B-003']);
   });
 
-it('separates the one-step neighbours from what is only reached through them', () => {
+  it('separates the one-step neighbours from what is only reached through them', () => {
     const bundle = makeBundle({
       barriers: [
         barrier({ id: 'B-001', order: 1, precedes: ['B-002'] }),
@@ -114,8 +120,19 @@ describe('gaps', () => {
   it('separates a mechanism nobody can move from one nobody has addressed', () => {
     const bundle = makeBundle({
       mechanisms: [
-        mechanism({ id: 'M-001', facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'none' } }),
-        mechanism({ id: 'M-002', facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'candidate' } }),
+        mechanism({
+          id: 'M-001',
+          facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'none' },
+        }),
+        mechanism({
+          id: 'M-002',
+          facets: {
+            actor: 'system',
+            nature: 'rule',
+            visibility: 'opaque',
+            removability: 'candidate',
+          },
+        }),
       ],
       loops: [],
       patterns: [],
@@ -132,7 +149,9 @@ describe('gaps', () => {
     const bundle = makeBundle({
       barriers: [barrier({ id: 'B-001', order: 1 }), barrier({ id: 'B-002', order: 2 })],
       mechanisms: [mechanism({ id: 'M-001', operates_at: ['B-002'] })],
-      interventions: [intervention({ id: 'I-001', actor: 'recruiter-process', targets: ['M-001'] })],
+      interventions: [
+        intervention({ id: 'I-001', actor: 'recruiter-process', targets: ['M-001'] }),
+      ],
       loops: [],
       patterns: [],
     });
@@ -225,7 +244,10 @@ describe('the published registry', () => {
     // which the test below records.
     expect(report.indistinguishable.map((c) => c.mechanisms)).toEqual([
       ['mech.bench_priority_fill', 'mech.pre_selected_internal_candidate'],
-      ['mech.bid_conditional_talent_pool', 'mech.speculative_sourcing_talent_pooling_without_opening'],
+      [
+        'mech.bid_conditional_talent_pool',
+        'mech.speculative_sourcing_talent_pooling_without_opening',
+      ],
     ]);
   });
 

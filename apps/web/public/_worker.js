@@ -4094,7 +4094,13 @@ var actorTypeSchema = external_exports.enum([
 var natureTypeSchema = external_exports.enum(["rule", "incentive", "bias", "noise", "void"]);
 var visibilityTypeSchema = external_exports.enum(["observable", "inferable", "opaque"]);
 var removabilityTypeSchema = external_exports.enum(["candidate", "intermediary", "none"]);
-var emissionFidelitySchema = external_exports.enum(["direct", "euphemism", "distortion", "noise", "void"]);
+var emissionFidelitySchema = external_exports.enum([
+  "direct",
+  "euphemism",
+  "distortion",
+  "noise",
+  "void"
+]);
 var emissionLikelihoodSchema = external_exports.enum(["low", "medium", "high"]);
 var evidenceKindSchema = external_exports.enum([
   "primary",
@@ -4115,7 +4121,13 @@ var evidenceLevelSchema = external_exports.enum([
 ]);
 var nodeStatusSchema = external_exports.enum(["active", "deprecated"]);
 var costBandSchema = external_exports.enum(["low", "medium", "high"]);
-var scopeTypeSchema = external_exports.enum(["individual", "team", "organizational", "industry", "ecosystem"]);
+var scopeTypeSchema = external_exports.enum([
+  "individual",
+  "team",
+  "organizational",
+  "industry",
+  "ecosystem"
+]);
 var interventionActorSchema = external_exports.enum([
   "employer-policy",
   "recruiter-process",
@@ -4536,7 +4548,13 @@ var registryBundleSchema = registryManifestSchema.extend({
 });
 
 // packages/validator/dist/analysis.js
-var CLAIM_SCALE = ["observed", "compatible", "supported", "strongly_supported", "proven"];
+var CLAIM_SCALE = [
+  "observed",
+  "compatible",
+  "supported",
+  "strongly_supported",
+  "proven"
+];
 function claimRank(level) {
   const i = CLAIM_SCALE.indexOf(level);
   return i === -1 ? null : i;
@@ -4544,7 +4562,14 @@ function claimRank(level) {
 var observationRef = external_exports.string().regex(/^obs\.[a-z0-9_]+$/);
 var interventionRef = external_exports.string().regex(/^int\.[a-z0-9_]+$/);
 var analysisSchema = external_exports.object({
-  input_type: external_exports.enum(["social_post", "candidate_story", "funnel_metrics", "recruiter_report", "job_description", "rejection_sequence"]),
+  input_type: external_exports.enum([
+    "social_post",
+    "candidate_story",
+    "funnel_metrics",
+    "recruiter_report",
+    "job_description",
+    "rejection_sequence"
+  ]),
   source_text: external_exports.string(),
   observations: external_exports.array(external_exports.object({
     text: external_exports.string(),
@@ -4586,7 +4611,14 @@ function validateAnalysis(input, bundle) {
   const analysis = parsed.data;
   const issues = [];
   const levelById = /* @__PURE__ */ new Map();
-  for (const n of [...bundle.observations, ...bundle.mechanisms, ...bundle.barriers, ...bundle.patterns, ...bundle.loops, ...bundle.interventions]) {
+  for (const n of [
+    ...bundle.observations,
+    ...bundle.mechanisms,
+    ...bundle.barriers,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions
+  ]) {
     levelById.set(n.id, n.evidence_level ?? "unknown");
   }
   const interventionIds = new Set(bundle.interventions.map((i) => i.id));
@@ -4594,14 +4626,23 @@ function validateAnalysis(input, bundle) {
   for (const o of analysis.observations) {
     for (const ref of o.registry_refs) {
       if (!levelById.has(ref)) {
-        issues.push({ severity: "error", rule: "dangling-reference", message: `observations.registry_refs references unknown entity: ${ref}` });
+        issues.push({
+          severity: "error",
+          rule: "dangling-reference",
+          message: `observations.registry_refs references unknown entity: ${ref}`
+        });
       }
     }
   }
   for (const e of analysis.compatible_entities) {
     const authored = levelById.get(e.id);
     if (authored === void 0) {
-      issues.push({ severity: "error", rule: "dangling-reference", nodeId: e.id, message: `compatible_entities references unknown entity: ${e.id}` });
+      issues.push({
+        severity: "error",
+        rule: "dangling-reference",
+        nodeId: e.id,
+        message: `compatible_entities references unknown entity: ${e.id}`
+      });
       continue;
     }
     const claimed = claimRank(e.claim_level);
@@ -4617,11 +4658,19 @@ function validateAnalysis(input, bundle) {
   }
   for (const [actor, interventions] of Object.entries(analysis.agency)) {
     if (!actorSlugs.has(actor)) {
-      issues.push({ severity: "error", rule: "dangling-reference", message: `agency names unknown actor: ${actor}` });
+      issues.push({
+        severity: "error",
+        rule: "dangling-reference",
+        message: `agency names unknown actor: ${actor}`
+      });
     }
     for (const id of interventions) {
       if (!interventionIds.has(id)) {
-        issues.push({ severity: "error", rule: "dangling-reference", message: `agency.${actor} references unknown intervention: ${id}` });
+        issues.push({
+          severity: "error",
+          rule: "dangling-reference",
+          message: `agency.${actor} references unknown intervention: ${id}`
+        });
       }
     }
   }
@@ -4671,14 +4720,24 @@ function validateScenarios(scenarios, bundle) {
   const seen = /* @__PURE__ */ new Set();
   for (const s of scenarios) {
     if (seen.has(s.id)) {
-      issues.push({ severity: "error", rule: "duplicate-id", nodeId: s.id, message: `Duplicate scenario ID detected: ${s.id}` });
+      issues.push({
+        severity: "error",
+        rule: "duplicate-id",
+        nodeId: s.id,
+        message: `Duplicate scenario ID detected: ${s.id}`
+      });
     }
     seen.add(s.id);
     const check = (field, ids) => {
       for (const id of ids) {
         if (known.has(id))
           continue;
-        issues.push({ severity: "error", rule: "dangling-reference", nodeId: s.id, message: `${field} references unknown entity: ${id}` });
+        issues.push({
+          severity: "error",
+          rule: "dangling-reference",
+          nodeId: s.id,
+          message: `${field} references unknown entity: ${id}`
+        });
       }
     };
     check("observations", s.observations);
@@ -4688,7 +4747,12 @@ function validateScenarios(scenarios, bundle) {
     check("evidence", s.evidence);
     for (const [actor, interventions] of Object.entries(s.agency)) {
       if (!actorSlugs.has(actor)) {
-        issues.push({ severity: "error", rule: "dangling-reference", nodeId: s.id, message: `agency names unknown actor: ${actor}` });
+        issues.push({
+          severity: "error",
+          rule: "dangling-reference",
+          nodeId: s.id,
+          message: `agency names unknown actor: ${actor}`
+        });
       }
       check(`agency.${actor}`, interventions);
     }

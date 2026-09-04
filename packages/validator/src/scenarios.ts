@@ -52,7 +52,10 @@ export const scenarioSchema = z.object({
 
 export type Scenario = z.infer<typeof scenarioSchema>;
 
-export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle): ValidationIssue[] {
+export function validateScenarios(
+  scenarios: Scenario[],
+  bundle: RegistryBundle
+): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
   const known = new Set<string>([
     ...bundle.observations.map((a) => a.id),
@@ -67,14 +70,24 @@ export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle)
   const seen = new Set<string>();
   for (const s of scenarios) {
     if (seen.has(s.id)) {
-      issues.push({ severity: 'error', rule: 'duplicate-id', nodeId: s.id, message: `Duplicate scenario ID detected: ${s.id}` });
+      issues.push({
+        severity: 'error',
+        rule: 'duplicate-id',
+        nodeId: s.id,
+        message: `Duplicate scenario ID detected: ${s.id}`,
+      });
     }
     seen.add(s.id);
 
     const check = (field: string, ids: string[]) => {
       for (const id of ids) {
         if (known.has(id)) continue;
-        issues.push({ severity: 'error', rule: 'dangling-reference', nodeId: s.id, message: `${field} references unknown entity: ${id}` });
+        issues.push({
+          severity: 'error',
+          rule: 'dangling-reference',
+          nodeId: s.id,
+          message: `${field} references unknown entity: ${id}`,
+        });
       }
     };
     check('observations', s.observations);
@@ -85,7 +98,12 @@ export function validateScenarios(scenarios: Scenario[], bundle: RegistryBundle)
 
     for (const [actor, interventions] of Object.entries(s.agency)) {
       if (!actorSlugs.has(actor)) {
-        issues.push({ severity: 'error', rule: 'dangling-reference', nodeId: s.id, message: `agency names unknown actor: ${actor}` });
+        issues.push({
+          severity: 'error',
+          rule: 'dangling-reference',
+          nodeId: s.id,
+          message: `agency names unknown actor: ${actor}`,
+        });
       }
       check(`agency.${actor}`, interventions);
     }

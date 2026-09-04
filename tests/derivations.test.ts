@@ -72,7 +72,12 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
         expected_signal: 'Signal',
         cost: 'low',
         outcomes: [
-          { id: 'out-1', label: 'Yes', excludes: [compatible[0]!, compatible[1]!], because: 'Rule' },
+          {
+            id: 'out-1',
+            label: 'Yes',
+            excludes: [compatible[0]!, compatible[1]!],
+            because: 'Rule',
+          },
           { id: 'out-2', label: 'No', excludes: [], because: '' },
         ],
       },
@@ -82,7 +87,12 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
         expected_signal: 'Answer',
         cost: 'low',
         outcomes: [
-          { id: 'out-3', label: 'Yes', excludes: [compatible[0]!, compatible[2]!], because: 'Rule' },
+          {
+            id: 'out-3',
+            label: 'Yes',
+            excludes: [compatible[0]!, compatible[2]!],
+            because: 'Rule',
+          },
         ],
       },
     ];
@@ -144,12 +154,19 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
   });
 
   it('detects temporal anomalies when actual dwell exceeds max bound', () => {
-    const anomalies = substrateDetectTemporalAnomalies(lifted.substrate, 'proc.the_hiring_funnel_end_to_end', 'recruiter-queue', 45);
+    const anomalies = substrateDetectTemporalAnomalies(
+      lifted.substrate,
+      'proc.the_hiring_funnel_end_to_end',
+      'recruiter-queue',
+      45
+    );
     expect(anomalies.length).toBeGreaterThan(0);
     const queuedToScreen = anomalies.find((a) => a.toState === 'recruiter-screen')!;
     expect(queuedToScreen.severity).toBe('stalled_anomalous');
     expect(queuedToScreen.implicatedMechanisms).toContain('mech.stale_or_orphaned_job_requisition');
-    expect(queuedToScreen.implicatedMechanisms).toContain('mech.automated_application_expiration_timeout');
+    expect(queuedToScreen.implicatedMechanisms).toContain(
+      'mech.automated_application_expiration_timeout'
+    );
   });
 
   it('calculates runway horizon and classifies risk profile correctly', () => {

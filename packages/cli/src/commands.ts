@@ -33,7 +33,10 @@ export interface GlobalOptions {
 export class CliError extends Error {}
 
 /** Resolve the registry root (explicit --dir → HOBA_ROOT → cwd → CLI install location) and load a bundle. */
-export function loadBundle(options: GlobalOptions, lang: ContentLang = 'en'): { root: string; bundle: RegistryBundle } {
+export function loadBundle(
+  options: GlobalOptions,
+  lang: ContentLang = 'en'
+): { root: string; bundle: RegistryBundle } {
   const root = resolveRegistryRoot({ explicit: options.dir, fromModuleUrl: import.meta.url });
   return { root, bundle: loadRegistryFromRoot(root, lang) };
 }
@@ -42,7 +45,9 @@ export function parseStage(value: string | undefined): StageId | undefined {
   if (value === undefined) return undefined;
   const parsed = stageIdSchema.safeParse(value);
   if (!parsed.success) {
-    throw new CliError(`Unknown stage "${value}". Expected one of: ${stageIdSchema.options.join(', ')}`);
+    throw new CliError(
+      `Unknown stage "${value}". Expected one of: ${stageIdSchema.options.join(', ')}`
+    );
   }
   return parsed.data;
 }
@@ -76,7 +81,9 @@ export function cmdSearch(query: string, options: GlobalOptions & { types?: stri
     return;
   }
 
-  console.log(pc.bold(pc.cyan(`\nSearching hoba Registry (${bundle.version}) for: "${query}"...\n`)));
+  console.log(
+    pc.bold(pc.cyan(`\nSearching hoba Registry (${bundle.version}) for: "${query}"...\n`))
+  );
   if (hits.length === 0) {
     console.log(pc.yellow('No matching registry entities found.'));
     return;
@@ -133,7 +140,11 @@ export function cmdShow(id: string, options: GlobalOptions) {
       );
       if (node.honest_baseline) console.log(pc.green('  Honest baseline mechanism'));
       console.log(pc.yellow('Operates At:'), node.operates_at.join(', '));
-      console.log(pc.yellow('Emissions:'), node.emissions.map((e) => `${e.artifact} (${e.fidelity ?? 'unspecified'})`).join(', ') || 'none');
+      console.log(
+        pc.yellow('Emissions:'),
+        node.emissions.map((e) => `${e.artifact} (${e.fidelity ?? 'unspecified'})`).join(', ') ||
+          'none'
+      );
       console.log(pc.yellow('Amplifies:'), node.amplifies.join(', ') || 'none');
       console.log(pc.yellow('Masks:'), node.masks.join(', ') || 'none');
       break;
@@ -157,7 +168,16 @@ export function cmdShow(id: string, options: GlobalOptions) {
       console.log(pc.yellow('Entry Points:'), node.entry_points.join(', '));
       break;
     case 'intervention':
-      console.log(pc.yellow('Actor:'), node.actor, '|', pc.yellow('Scope:'), node.scope, '|', pc.yellow('Cost:'), node.cost);
+      console.log(
+        pc.yellow('Actor:'),
+        node.actor,
+        '|',
+        pc.yellow('Scope:'),
+        node.scope,
+        '|',
+        pc.yellow('Cost:'),
+        node.cost
+      );
       console.log(pc.yellow('Targets:'), node.targets.join(', '));
       console.log(pc.yellow('Expected Effects:'));
       for (const e of node.expected_effects) console.log(`  - ${e}`);
@@ -214,8 +234,12 @@ export function cmdExplain(
   }
 
   if (effectiveArtifacts.length === 0) {
-    const list = presets.map((s) => `  - ${s.id}: ${s.title} (${s.artifacts.join(', ')})`).join('\n');
-    throw new CliError(`No artifact IDs or scenario provided. Specify artifact IDs (e.g. obs.complete_silence_after_submission) or a scenario (--scenario <name>).\n\nAvailable empirical scenarios:\n${list}`);
+    const list = presets
+      .map((s) => `  - ${s.id}: ${s.title} (${s.artifacts.join(', ')})`)
+      .join('\n');
+    throw new CliError(
+      `No artifact IDs or scenario provided. Specify artifact IDs (e.g. obs.complete_silence_after_submission) or a scenario (--scenario <name>).\n\nAvailable empirical scenarios:\n${list}`
+    );
   }
 
   const engine = new HOBADiagnosticEngine(bundle);
@@ -236,10 +260,15 @@ export function cmdExplain(
 
   console.log(pc.bold(pc.cyan('\n=== hoba Forensic Diagnostic Analysis ===\n')));
   if (options.scenario) {
-    if (usedPreset) console.log(pc.magenta(`Empirical Scenario: ${usedPreset.title} (${usedPreset.id})\n`));
+    if (usedPreset)
+      console.log(pc.magenta(`Empirical Scenario: ${usedPreset.title} (${usedPreset.id})\n`));
   }
   if (res.hard_facts.unknown_artifact_ids.length > 0) {
-    console.log(pc.yellow(`Warning: unknown or inactive artifact ID(s) ignored: ${res.hard_facts.unknown_artifact_ids.join(', ')}\n`));
+    console.log(
+      pc.yellow(
+        `Warning: unknown or inactive artifact ID(s) ignored: ${res.hard_facts.unknown_artifact_ids.join(', ')}\n`
+      )
+    );
   }
 
   console.log(pc.bold('H — Hard Facts:'));
@@ -248,7 +277,8 @@ export function cmdExplain(
 
   console.log(pc.bold('\nO — Obstacle (Localized Barriers):'));
   if (res.obstacle.identified_barriers.length === 0) console.log(pc.dim('  (none localized)'));
-  for (const b of res.obstacle.identified_barriers) console.log(`  - [${b.id}] ${b.title} (${b.stage})`);
+  for (const b of res.obstacle.identified_barriers)
+    console.log(`  - [${b.id}] ${b.title} (${b.stage})`);
 
   console.log(pc.bold('\nB — Behind the Obstacle (Compatible Mechanisms):'));
   if (res.behind.compatible_mechanisms.length === 0) console.log(pc.dim('  (none)'));
@@ -261,7 +291,9 @@ export function cmdExplain(
           ? pc.yellow(' [INTERMEDIARY]')
           : pc.red(' [NO AGENCY]');
     const emitsTag = item.emitted_by_evidence ? pc.dim(' (emits observed signal)') : '';
-    console.log(`  - [${item.mechanism.id}] ${item.mechanism.title}${baselineTag}${removabilityTag}${emitsTag}`);
+    console.log(
+      `  - [${item.mechanism.id}] ${item.mechanism.title}${baselineTag}${removabilityTag}${emitsTag}`
+    );
   }
   if (res.behind.related_patterns.length > 0) {
     console.log(pc.bold('\n  Related Patterns:'));
@@ -277,13 +309,18 @@ export function cmdExplain(
   }
 
   console.log(pc.bold('\nA — Agency & Diagnostic Probes:'));
-  console.log(`  Verdict: ${pc.bold(res.verdict)} | Zone: ${pc.bold(res.agency.agency_zone.toUpperCase())}`);
+  console.log(
+    `  Verdict: ${pc.bold(res.verdict)} | Zone: ${pc.bold(res.agency.agency_zone.toUpperCase())}`
+  );
   console.log(`  Summary: ${res.agency.probes_summary}`);
   for (const p of res.agency.diagnostic_probes) {
     console.log(`  - [${p.id}] ${p.action}`);
     console.log(`    Expected Signal: ${pc.dim(p.expected_signal)} (Cost: ${p.cost})`);
     for (const o of p.outcomes) {
-      const effect = o.excludes.length > 0 ? pc.green(`rules out ${o.excludes.join(', ')}`) : pc.dim('rules nothing out');
+      const effect =
+        o.excludes.length > 0
+          ? pc.green(`rules out ${o.excludes.join(', ')}`)
+          : pc.dim('rules nothing out');
       console.log(`      · ${o.id}: ${o.label} — ${effect}`);
     }
   }
@@ -293,12 +330,14 @@ export function cmdExplain(
     console.log(pc.bold('\n  Narrowing (probe results applied in order):'));
     console.log(`  ${res.behind.compatible_before_probes.length} compatible before any probe`);
     for (const step of narrowing.steps) {
-      const removed = step.eliminated.length > 0 ? `−${step.eliminated.join(', ')}` : pc.dim('nothing ruled out');
+      const removed =
+        step.eliminated.length > 0 ? `−${step.eliminated.join(', ')}` : pc.dim('nothing ruled out');
       console.log(`  - [${step.probe}/${step.outcome}] ${removed} → ${step.remaining} remaining`);
       if (step.because) console.log(`    ${pc.dim(step.because)}`);
     }
   }
-  for (const u of narrowing.unknown) console.log(pc.yellow(`  ! unknown probe result: ${u.probe}/${u.outcome}`));
+  for (const u of narrowing.unknown)
+    console.log(pc.yellow(`  ! unknown probe result: ${u.probe}/${u.outcome}`));
 
   // The useful half: what no probe here can settle.
   if (separation.minimal_probes.length > 0) {
@@ -325,8 +364,10 @@ export function cmdExplain(
 
 export function cmdValidate(options: GlobalOptions & { strict?: boolean; lang?: string }): number {
   const root = resolveRegistryRoot({ explicit: options.dir, fromModuleUrl: import.meta.url });
-  const langs: ContentLang[] = options.lang === 'all' || !options.lang ? ['en', 'uk'] : [options.lang as ContentLang];
-  if (!langs.every((l) => l === 'en' || l === 'uk')) throw new CliError(`Unknown --lang "${options.lang}" (expected en, uk or all)`);
+  const langs: ContentLang[] =
+    options.lang === 'all' || !options.lang ? ['en', 'uk'] : [options.lang as ContentLang];
+  if (!langs.every((l) => l === 'en' || l === 'uk'))
+    throw new CliError(`Unknown --lang "${options.lang}" (expected en, uk or all)`);
 
   const canonical = loadRegistryFromRoot(root, 'en');
   let errorCount = 0;
@@ -335,7 +376,10 @@ export function cmdValidate(options: GlobalOptions & { strict?: boolean; lang?: 
   for (const lang of langs) {
     const bundle = lang === 'en' ? canonical : loadRegistryFromRoot(root, lang);
     const report = validateRegistry(bundle);
-    const issues = lang === 'en' ? report.issues : [...report.issues, ...compareBundleStructure(canonical, bundle)];
+    const issues =
+      lang === 'en'
+        ? report.issues
+        : [...report.issues, ...compareBundleStructure(canonical, bundle)];
     const errors = issues.filter((i) => i.severity === 'error');
     const warnings = issues.filter((i) => i.severity === 'warning');
     errorCount += errors.length;
@@ -383,10 +427,14 @@ export function cmdLatency(
   }
 
   console.log(pc.bold(pc.cyan(`\n=== hoba Temporal Dwell & Latency Analysis ===\n`)));
-  console.log(`Workflow: ${pc.bold(processId.toUpperCase())} | State: ${pc.bold(stateId)} | Current Dwell: ${pc.bold(`${days} days`)}\n`);
+  console.log(
+    `Workflow: ${pc.bold(processId.toUpperCase())} | State: ${pc.bold(stateId)} | Current Dwell: ${pc.bold(`${days} days`)}\n`
+  );
 
   if (anomalies.length === 0) {
-    console.log(pc.yellow(`No transitions found exiting from state "${stateId}" in workflow "${processId}".`));
+    console.log(
+      pc.yellow(`No transitions found exiting from state "${stateId}" in workflow "${processId}".`)
+    );
     return;
   }
 
@@ -411,7 +459,11 @@ export function cmdLatency(
         );
       }
     } else if (a.severity === 'delayed') {
-      console.log(pc.yellow(`  * Dwell exceeds expected turnaround (${a.expectedDays}d) but sits within max bound.`));
+      console.log(
+        pc.yellow(
+          `  * Dwell exceeds expected turnaround (${a.expectedDays}d) but sits within max bound.`
+        )
+      );
     } else {
       console.log(pc.green(`  ✓ Dwell is well within nominal turnaround window.`));
     }
@@ -419,15 +471,13 @@ export function cmdLatency(
   }
 }
 
-export function cmdRunway(
-  savingsStr: string,
-  burnStr: string,
-  options: GlobalOptions
-) {
+export function cmdRunway(savingsStr: string, burnStr: string, options: GlobalOptions) {
   const savings = Number(savingsStr);
   const burn = Number(burnStr);
   if (isNaN(savings) || isNaN(burn) || savings < 0 || burn <= 0) {
-    throw new CliError('Invalid savings or monthly burn rate. Expected non-negative savings and positive burn.');
+    throw new CliError(
+      'Invalid savings or monthly burn rate. Expected non-negative savings and positive burn.'
+    );
   }
 
   const calculus = substrateCalculateRunway(savings, burn);
@@ -442,7 +492,9 @@ export function cmdRunway(
   }
 
   console.log(pc.bold(pc.cyan(`\n=== hoba Candidate Economic Solvency & Runway Calculus ===\n`)));
-  console.log(`Liquid Savings: ${savings.toLocaleString()} | Monthly Burn: ${burn.toLocaleString()}`);
+  console.log(
+    `Liquid Savings: ${savings.toLocaleString()} | Monthly Burn: ${burn.toLocaleString()}`
+  );
   console.log(`Calculated Runway: ${pc.bold(`${calculus.runwayMonths.toFixed(1)} months`)}`);
 
   const statusLabel =
@@ -508,10 +560,14 @@ export function cmdConservation(options: GlobalOptions) {
   }
 
   console.log(pc.bold(pc.cyan(`\n=== hoba Financial Flow Conservation Audit ===\n`)));
-  console.log(`Total Records: ${lifted.substrate.records.length} | Total Flows: ${lifted.substrate.flows.length}`);
+  console.log(
+    `Total Records: ${lifted.substrate.records.length} | Total Flows: ${lifted.substrate.flows.length}`
+  );
 
   if (report.isConserved) {
-    console.log(pc.green('\n✓ 100% of authored financial flows satisfy non-divergent conservation.'));
+    console.log(
+      pc.green('\n✓ 100% of authored financial flows satisfy non-divergent conservation.')
+    );
     console.log(pc.dim('  No source record outward allocation exceeds 100.0%.'));
   } else {
     console.log(pc.red(`\n! Conservation violations detected (${report.violations.length}):`));
@@ -547,7 +603,13 @@ export function cmdGraph(id: string, options: GlobalOptions & { depth?: string }
   }));
 
   if (options.json) {
-    printJson({ registry_version: bundle.version, id: node.id, depth, neighbours, nodes: nodes.map((n) => n.id) });
+    printJson({
+      registry_version: bundle.version,
+      id: node.id,
+      depth,
+      neighbours,
+      nodes: nodes.map((n) => n.id),
+    });
     return;
   }
 
@@ -561,7 +623,9 @@ export function cmdGraph(id: string, options: GlobalOptions & { depth?: string }
     const arrow = n.direction === 'out' ? '->' : '<-';
     console.log(`  ${pc.dim(arrow)} ${pc.yellow(n.relation.padEnd(16))} ${n.other}`);
   }
-  console.log(pc.dim(`\n  ${neighbours.length} edge(s), ${nodes.length} node(s) within ${depth} hop(s).\n`));
+  console.log(
+    pc.dim(`\n  ${neighbours.length} edge(s), ${nodes.length} node(s) within ${depth} hop(s).\n`)
+  );
 }
 
 /**
@@ -596,11 +660,13 @@ export function cmdScenario(id: string | undefined, options: GlobalOptions) {
     return;
   }
 
-  const titleOf = (entityId: string) => new HOBAKnowledgeGraph(bundle).getNode(entityId)?.title ?? '';
+  const titleOf = (entityId: string) =>
+    new HOBAKnowledgeGraph(bundle).getNode(entityId)?.title ?? '';
   const list = (label: string, ids: string[]) => {
     if (!ids.length) return;
     console.log(pc.yellow(`${label}:`));
-    for (const entityId of ids) console.log(`  - ${entityId}${titleOf(entityId) ? pc.dim(` — ${titleOf(entityId)}`) : ''}`);
+    for (const entityId of ids)
+      console.log(`  - ${entityId}${titleOf(entityId) ? pc.dim(` — ${titleOf(entityId)}`) : ''}`);
     console.log();
   };
 
@@ -615,7 +681,8 @@ export function cmdScenario(id: string | undefined, options: GlobalOptions) {
     for (const c of found.excluded_claims) console.log(`  - ${c}`);
     console.log();
   }
-  for (const [act, interventions] of Object.entries(found.agency)) list(`Agency — ${act}`, interventions);
+  for (const [act, interventions] of Object.entries(found.agency))
+    list(`Agency — ${act}`, interventions);
 }
 
 /** `hoba registry stats|version` — what this registry is, in one place (§11). */
@@ -637,7 +704,8 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
     return;
   }
 
-  if (sub !== 'stats') throw new CliError(`Unknown "registry" subcommand "${sub}". Expected "stats" or "version".`);
+  if (sub !== 'stats')
+    throw new CliError(`Unknown "registry" subcommand "${sub}". Expected "stats" or "version".`);
 
   const counts = {
     artifacts: bundle.observations.length,
@@ -655,11 +723,20 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
   };
 
   if (options.json) {
-    printJson({ registry_version: bundle.version, registry_hash: registryContentHash(root), schema_version: bundle.schema_version, counts });
+    printJson({
+      registry_version: bundle.version,
+      registry_hash: registryContentHash(root),
+      schema_version: bundle.schema_version,
+      counts,
+    });
     return;
   }
 
-  console.log(pc.bold(pc.cyan(`\n=== hoba registry ${bundle.version} (schema ${bundle.schema_version}) ===\n`)));
+  console.log(
+    pc.bold(
+      pc.cyan(`\n=== hoba registry ${bundle.version} (schema ${bundle.schema_version}) ===\n`)
+    )
+  );
   const width = Math.max(...Object.keys(counts).map((k) => k.length));
   for (const [k, v] of Object.entries(counts)) {
     console.log(`  ${k.padEnd(width)}  ${pc.bold(String(v).padStart(3))}`);

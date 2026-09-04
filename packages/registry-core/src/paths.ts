@@ -38,7 +38,10 @@ export const ARCHETYPE_DIR = path.join(DATA_DIR, 'archetypes');
 
 /** True when `dir` looks like the root of a hoba registry checkout. */
 export function isRegistryRoot(dir: string): boolean {
-  return fs.existsSync(path.join(dir, CONTENT_DIRS.en)) && fs.existsSync(path.join(dir, MANIFEST_FILENAME));
+  return (
+    fs.existsSync(path.join(dir, CONTENT_DIRS.en)) &&
+    fs.existsSync(path.join(dir, MANIFEST_FILENAME))
+  );
 }
 
 /**
@@ -62,7 +65,9 @@ export function findRegistryRoot(startDir: string): string | undefined {
  * location of the calling module (so `node packages/cli/dist/cli.js` works
  * from anywhere inside the repository).
  */
-export function resolveRegistryRoot(options: { explicit?: string; fromModuleUrl?: string } = {}): string {
+export function resolveRegistryRoot(
+  options: { explicit?: string; fromModuleUrl?: string } = {}
+): string {
   const candidates: string[] = [];
   if (options.explicit) candidates.push(path.resolve(options.explicit));
   if (process.env.HOBA_ROOT) candidates.push(path.resolve(process.env.HOBA_ROOT));

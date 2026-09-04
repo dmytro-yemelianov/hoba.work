@@ -56,8 +56,12 @@ function crosswalk(actors: readonly ActorNode[]) {
   return { byFacet, byIntervention, byId };
 }
 
-export function agencyZones(bundle: RegistryBundle, mechanismId: string): Record<string, AgencyLevel> {
-  const mechanism = bundle.mechanisms.find((m) => m.id === mechanismId) as MechanismNode | undefined;
+export function agencyZones(
+  bundle: RegistryBundle,
+  mechanismId: string
+): Record<string, AgencyLevel> {
+  const mechanism = bundle.mechanisms.find((m) => m.id === mechanismId) as
+    MechanismNode | undefined;
   if (!mechanism) return {};
 
   const { byFacet, byIntervention, byId } = crosswalk(bundle.actors);
@@ -74,7 +78,10 @@ export function agencyZones(bundle: RegistryBundle, mechanismId: string): Record
   // medium — it is their own force, or theirs to remove.
   claim(byFacet.get(mechanism.facets.actor), 'medium');
   if (mechanism.facets.removability === 'candidate') {
-    claim([...byId.values()].find((s) => s === 'candidate'), 'medium');
+    claim(
+      [...byId.values()].find((s) => s === 'candidate'),
+      'medium'
+    );
   }
 
   // high — they hold a published lever against it.

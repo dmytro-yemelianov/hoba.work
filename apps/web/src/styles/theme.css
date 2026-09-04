@@ -47,48 +47,93 @@ body {
   font-size: 1rem; /* 16px body; scale 13 / 14 / 16 / 18 / 20 / 24 / 28 */
   line-height: 1.6;
 }
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
   font-size: 0.9em;
 }
 
 /* Data views: table is the default; the choice is stored in localStorage and
    applied to <html data-view> before paint (see Layout.astro). */
-[data-view-root] > [data-view] { display: none; }
-html:not([data-view]) [data-view-root] > [data-view="table"],
-html[data-view="table"] [data-view-root] > [data-view="table"],
-html[data-view="list"] [data-view-root] > [data-view="list"],
-html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block; }
+[data-view-root] > [data-view] {
+  display: none;
+}
+html:not([data-view]) [data-view-root] > [data-view='table'],
+html[data-view='table'] [data-view-root] > [data-view='table'],
+html[data-view='list'] [data-view-root] > [data-view='list'],
+html[data-view='cards'] [data-view-root] > [data-view='cards'] {
+  display: block;
+}
 
 @layer components {
   /* The project name. Lowercase so a Ukrainian reader does not see «нова»,
      bold so lowercase does not make it vanish into the sentence. Weight only —
      no colour, because it is a name, not a link. */
-  .wordmark { @apply font-semibold text-hoba-text; }
+  .wordmark {
+    @apply font-semibold text-hoba-text;
+  }
   /* On a filled button the surrounding text sets the colour; forcing the body
      colour here put white on accent and failed contrast. */
-  .btn .wordmark, button .wordmark, a.btn .wordmark { @apply text-inherit; }
+  .btn .wordmark,
+  button .wordmark,
+  a.btn .wordmark {
+    @apply text-inherit;
+  }
 
   /* Tags */
-  .pill { @apply inline-flex items-center gap-1.5 rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-xs font-medium text-hoba-text whitespace-nowrap leading-5 max-w-full; }
-  .pill.font-mono, .font-mono.pill { white-space: normal; word-break: break-all; }
-  .pill.whitespace-normal { white-space: normal; }
-  .pill.break-all { word-break: break-all; }
-  .pill-muted { @apply text-hoba-muted; }
-  .pill-active { @apply bg-hoba-text border-hoba-text text-hoba-bg; }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-hoba-border bg-hoba-card px-2.5 py-0.5 text-xs font-medium text-hoba-text whitespace-nowrap leading-5 max-w-full;
+  }
+  .pill.font-mono,
+  .font-mono.pill {
+    white-space: normal;
+    word-break: break-all;
+  }
+  .pill.whitespace-normal {
+    white-space: normal;
+  }
+  .pill.break-all {
+    word-break: break-all;
+  }
+  .pill-muted {
+    @apply text-hoba-muted;
+  }
+  .pill-active {
+    @apply bg-hoba-text border-hoba-text text-hoba-bg;
+  }
   /* Checkbox styled as a pill: on = solid, off = struck through and faded. */
   /* The input covers the whole pill, so a click anywhere toggles it and the
      control stays a real, focusable checkbox/radio. */
-  .pill-toggle { @apply pill relative cursor-pointer select-none transition-opacity; }
-  .pill-toggle input { @apply absolute inset-0 m-0 w-full h-full opacity-0 cursor-pointer; }
-  .pill-toggle:has(:checked) { @apply bg-hoba-hover border-hoba-text/25; }
-  .pill-toggle:not(:has(:checked)) { @apply text-hoba-muted; }
+  .pill-toggle {
+    @apply pill relative cursor-pointer select-none transition-opacity;
+  }
+  .pill-toggle input {
+    @apply absolute inset-0 m-0 w-full h-full opacity-0 cursor-pointer;
+  }
+  .pill-toggle:has(:checked) {
+    @apply bg-hoba-hover border-hoba-text/25;
+  }
+  .pill-toggle:not(:has(:checked)) {
+    @apply text-hoba-muted;
+  }
   /* A filter pill also reads as struck out when it is switched off. */
-  .pill-filter:not(:has(:checked)) .pill-label { @apply line-through; }
-  .pill-filter:not(:has(:checked)) .dot { @apply opacity-40; }
-  .pill-toggle:has(:focus-visible) { @apply ring-2 ring-hoba-accent ring-offset-1 ring-offset-hoba-bg; }
-  .dot { @apply inline-block w-1.5 h-1.5 rounded-full shrink-0; }
-  .checkbox { @apply w-4 h-4 shrink-0 rounded accent-hoba-accent; }
+  .pill-filter:not(:has(:checked)) .pill-label {
+    @apply line-through;
+  }
+  .pill-filter:not(:has(:checked)) .dot {
+    @apply opacity-40;
+  }
+  .pill-toggle:has(:focus-visible) {
+    @apply ring-2 ring-hoba-accent ring-offset-1 ring-offset-hoba-bg;
+  }
+  .dot {
+    @apply inline-block w-1.5 h-1.5 rounded-full shrink-0;
+  }
+  .checkbox {
+    @apply w-4 h-4 shrink-0 rounded accent-hoba-accent;
+  }
 
   /* Inputs and Form Controls */
   .check-input {
@@ -96,111 +141,269 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   }
 
   /* Buttons */
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all; }
-  .btn-primary { @apply bg-hoba-accent text-hoba-bg hover:opacity-95 active:scale-[0.99]; }
-  .btn-secondary { @apply border border-hoba-border bg-hoba-card text-hoba-text hover:bg-hoba-hover active:scale-[0.99]; }
-  .btn-ghost { @apply text-hoba-muted hover:text-hoba-text; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all;
+  }
+  .btn-primary {
+    @apply bg-hoba-accent text-hoba-bg hover:opacity-95 active:scale-[0.99];
+  }
+  .btn-secondary {
+    @apply border border-hoba-border bg-hoba-card text-hoba-text hover:bg-hoba-hover active:scale-[0.99];
+  }
+  .btn-ghost {
+    @apply text-hoba-muted hover:text-hoba-text;
+  }
 
   /* Lists of rows separated by hairlines instead of boxes */
-  .row-list { @apply divide-y divide-hoba-border; }
-  .row { @apply flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3; }
-  .row-link { @apply row hover:bg-hoba-hover -mx-2 px-2 rounded-md; }
+  .row-list {
+    @apply divide-y divide-hoba-border;
+  }
+  .row {
+    @apply flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3;
+  }
+  .row-link {
+    @apply row hover:bg-hoba-hover -mx-2 px-2 rounded-md;
+  }
 
   /* Blog-style callout: a coloured left rule, no box */
-  .callout { @apply border-l-2 pl-4 my-6; }
+  .callout {
+    @apply border-l-2 pl-4 my-6;
+  }
 
   /* Section rhythm */
-  .page-header { @apply pb-6 mb-8 border-b border-hoba-border; }
-  .section { @apply mt-10; }
-  .section-title { @apply text-xl font-semibold text-hoba-text mb-3; }
-  .kicker { @apply text-sm text-hoba-muted; }
-  .meta { @apply text-sm text-hoba-muted; }
+  .page-header {
+    @apply pb-6 mb-8 border-b border-hoba-border;
+  }
+  .section {
+    @apply mt-10;
+  }
+  .section-title {
+    @apply text-xl font-semibold text-hoba-text mb-3;
+  }
+  .kicker {
+    @apply text-sm text-hoba-muted;
+  }
+  .meta {
+    @apply text-sm text-hoba-muted;
+  }
 
   /* Long-form prose (methodology, about, developers, contribute) */
-  .prose-hoba > * + * { @apply mt-4; }
-  .prose-hoba h2 { @apply text-xl font-semibold text-hoba-text mt-10 mb-2; }
-  .prose-hoba h3 { @apply text-lg font-semibold text-hoba-text mt-8 mb-2; }
+  .prose-hoba > * + * {
+    @apply mt-4;
+  }
+  .prose-hoba h2 {
+    @apply text-xl font-semibold text-hoba-text mt-10 mb-2;
+  }
+  .prose-hoba h3 {
+    @apply text-lg font-semibold text-hoba-text mt-8 mb-2;
+  }
   /* Measure belongs to the running text, never to the page: headings, rules and
      lists keep the frame's gutters so an article opens like every other page. */
-  .prose-hoba p, .prose-hoba li, .prose-hoba dd, .prose-hoba blockquote { @apply max-w-3xl; }
-  .prose-hoba p, .prose-hoba li { @apply text-base leading-relaxed; }
-  .prose-hoba .lead { @apply text-lg text-hoba-muted; }
-  .prose-hoba ul { @apply list-disc pl-6 space-y-1; }
-  .prose-hoba ol { @apply list-decimal pl-6 space-y-1; }
-  .prose-hoba blockquote { @apply border-l-2 border-hoba-accent pl-4 text-hoba-text italic; }
-  .prose-hoba code { @apply text-sm bg-hoba-hover rounded px-1 py-0.5 break-words; }
-  .prose-hoba pre { @apply text-sm bg-hoba-hover rounded-md p-4 overflow-x-auto; }
-  .prose-hoba pre:focus-visible { @apply outline-none ring-2 ring-hoba-accent; }
-  .prose-hoba pre code { @apply bg-transparent p-0; }
-  .prose-hoba a { @apply text-hoba-accent underline underline-offset-2; }
-  .prose-hoba hr { @apply border-hoba-border my-8; }
-  .prose-hoba dl { @apply grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-[max-content_1fr] sm:gap-y-2; }
-  .prose-hoba dt { @apply text-hoba-text font-medium; }
-  .prose-hoba dd { @apply text-hoba-muted; }
+  .prose-hoba p,
+  .prose-hoba li,
+  .prose-hoba dd,
+  .prose-hoba blockquote {
+    @apply max-w-3xl;
+  }
+  .prose-hoba p,
+  .prose-hoba li {
+    @apply text-base leading-relaxed;
+  }
+  .prose-hoba .lead {
+    @apply text-lg text-hoba-muted;
+  }
+  .prose-hoba ul {
+    @apply list-disc pl-6 space-y-1;
+  }
+  .prose-hoba ol {
+    @apply list-decimal pl-6 space-y-1;
+  }
+  .prose-hoba blockquote {
+    @apply border-l-2 border-hoba-accent pl-4 text-hoba-text italic;
+  }
+  .prose-hoba code {
+    @apply text-sm bg-hoba-hover rounded px-1 py-0.5 break-words;
+  }
+  .prose-hoba pre {
+    @apply text-sm bg-hoba-hover rounded-md p-4 overflow-x-auto;
+  }
+  .prose-hoba pre:focus-visible {
+    @apply outline-none ring-2 ring-hoba-accent;
+  }
+  .prose-hoba pre code {
+    @apply bg-transparent p-0;
+  }
+  .prose-hoba a {
+    @apply text-hoba-accent underline underline-offset-2;
+  }
+  .prose-hoba hr {
+    @apply border-hoba-border my-8;
+  }
+  .prose-hoba dl {
+    @apply grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-[max-content_1fr] sm:gap-y-2;
+  }
+  .prose-hoba dt {
+    @apply text-hoba-text font-medium;
+  }
+  .prose-hoba dd {
+    @apply text-hoba-muted;
+  }
   /* Row lists keep their own affordances inside prose. */
   /* Structured rows are not running text: they keep the frame's full width. */
-  .prose-hoba .row-list { @apply list-none pl-0 space-y-0; }
-  .prose-hoba .row-list li { @apply max-w-none; }
-  .prose-hoba .row-link { @apply no-underline text-hoba-text; }
+  .prose-hoba .row-list {
+    @apply list-none pl-0 space-y-0;
+  }
+  .prose-hoba .row-list li {
+    @apply max-w-none;
+  }
+  .prose-hoba .row-link {
+    @apply no-underline text-hoba-text;
+  }
 
   /* Reconstructed document excerpts. A specimen should read as a thing you
      are looking at, not a paragraph you are reading — hence the frame, the
      stamped gutter and the tell that is lit rather than bolded. */
-  .specimen { @apply my-6 rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
-  .specimen-head { @apply flex flex-wrap items-center gap-2 px-4 py-2.5 text-sm border-b border-hoba-border bg-hoba-bg; }
-  .specimen-body { @apply px-4 py-4 sm:px-5; }
-  .specimen-subject { @apply flex flex-wrap gap-x-2 pb-3 mb-3 border-b border-dashed border-hoba-border text-base text-hoba-text; }
-  .specimen-prose > * + * { @apply mt-3; }
-  .specimen-prose p { @apply text-base leading-relaxed text-hoba-text max-w-2xl; }
-  .specimen-turns { @apply space-y-3; }
-  .specimen-turns li { @apply grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 sm:grid-cols-[5.5rem_auto_1fr]; }
-  .specimen-stamp { @apply font-mono text-xs text-hoba-muted tabular-nums pt-1 col-span-2 sm:col-span-1; }
-  .specimen-speaker { @apply text-sm font-medium text-hoba-muted whitespace-nowrap pt-0.5; }
-  .specimen-text { @apply text-base leading-relaxed text-hoba-text max-w-2xl; }
+  .specimen {
+    @apply my-6 rounded-md border border-hoba-border bg-hoba-card overflow-hidden;
+  }
+  .specimen-head {
+    @apply flex flex-wrap items-center gap-2 px-4 py-2.5 text-sm border-b border-hoba-border bg-hoba-bg;
+  }
+  .specimen-body {
+    @apply px-4 py-4 sm:px-5;
+  }
+  .specimen-subject {
+    @apply flex flex-wrap gap-x-2 pb-3 mb-3 border-b border-dashed border-hoba-border text-base text-hoba-text;
+  }
+  .specimen-prose > * + * {
+    @apply mt-3;
+  }
+  .specimen-prose p {
+    @apply text-base leading-relaxed text-hoba-text max-w-2xl;
+  }
+  .specimen-turns {
+    @apply space-y-3;
+  }
+  .specimen-turns li {
+    @apply grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 sm:grid-cols-[5.5rem_auto_1fr];
+  }
+  .specimen-stamp {
+    @apply font-mono text-xs text-hoba-muted tabular-nums pt-1 col-span-2 sm:col-span-1;
+  }
+  .specimen-speaker {
+    @apply text-sm font-medium text-hoba-muted whitespace-nowrap pt-0.5;
+  }
+  .specimen-text {
+    @apply text-base leading-relaxed text-hoba-text max-w-2xl;
+  }
   /* The line the entity is actually about. */
-  .specimen-tell { @apply relative; }
-  .specimen-prose p.specimen-tell { @apply -mx-2 px-2 py-1 rounded bg-hoba-accent/10 border-l-2 border-hoba-accent; }
-  .specimen-turns li.specimen-tell .specimen-text { @apply bg-hoba-accent/10 -mx-1.5 px-1.5 py-0.5 rounded box-decoration-clone; }
-  .specimen-reading { @apply px-4 py-3 sm:px-5 text-sm text-hoba-muted border-t border-hoba-border bg-hoba-bg; }
+  .specimen-tell {
+    @apply relative;
+  }
+  .specimen-prose p.specimen-tell {
+    @apply -mx-2 px-2 py-1 rounded bg-hoba-accent/10 border-l-2 border-hoba-accent;
+  }
+  .specimen-turns li.specimen-tell .specimen-text {
+    @apply bg-hoba-accent/10 -mx-1.5 px-1.5 py-0.5 rounded box-decoration-clone;
+  }
+  .specimen-reading {
+    @apply px-4 py-3 sm:px-5 text-sm text-hoba-muted border-t border-hoba-border bg-hoba-bg;
+  }
 
   /* Navigation */
-  .skip-link { @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-md focus:bg-hoba-card focus:text-hoba-text focus:border focus:border-hoba-accent; }
-  .nav-link { @apply inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors whitespace-nowrap; }
-  .nav-link-active { @apply text-hoba-text bg-hoba-hover; }
-  .nav-link-mobile { @apply block px-3 py-3 rounded-md text-base font-medium text-hoba-text hover:bg-hoba-hover transition-colors; }
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-md focus:bg-hoba-card focus:text-hoba-text focus:border focus:border-hoba-accent;
+  }
+  .nav-link {
+    @apply inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors whitespace-nowrap;
+  }
+  .nav-link-active {
+    @apply text-hoba-text bg-hoba-hover;
+  }
+  .nav-link-mobile {
+    @apply block px-3 py-3 rounded-md text-base font-medium text-hoba-text hover:bg-hoba-hover transition-colors;
+  }
   /* Grouped navigation: a summary that opens a panel of named destinations,
      each with the one line that says what it is for. Eight flat links did not
      tell a reader that the graph and the registry are the same material. */
-  .nav-group > summary::-webkit-details-marker { display: none; }
-  .nav-group > summary { @apply list-none; }
-  .nav-group[open] > summary { @apply text-hoba-text bg-hoba-hover; }
-  .nav-panel { @apply absolute left-0 z-50 mt-2 w-80 rounded-md border border-hoba-border bg-hoba-card shadow-lg p-1.5 flex flex-col gap-0.5; }
-  .nav-entry { @apply flex flex-col gap-0.5 rounded-md px-3 py-2 transition-colors hover:bg-hoba-hover; }
-  .nav-entry-name { @apply text-sm font-medium text-hoba-text; }
-  .nav-entry-desc { @apply text-xs text-hoba-muted; }
-  .nav-entry.is-active { @apply bg-hoba-hover; }
+  .nav-group > summary::-webkit-details-marker {
+    display: none;
+  }
+  .nav-group > summary {
+    @apply list-none;
+  }
+  .nav-group[open] > summary {
+    @apply text-hoba-text bg-hoba-hover;
+  }
+  .nav-panel {
+    @apply absolute left-0 z-50 mt-2 w-80 rounded-md border border-hoba-border bg-hoba-card shadow-lg p-1.5 flex flex-col gap-0.5;
+  }
+  .nav-entry {
+    @apply flex flex-col gap-0.5 rounded-md px-3 py-2 transition-colors hover:bg-hoba-hover;
+  }
+  .nav-entry-name {
+    @apply text-sm font-medium text-hoba-text;
+  }
+  .nav-entry-desc {
+    @apply text-xs text-hoba-muted;
+  }
+  .nav-entry.is-active {
+    @apply bg-hoba-hover;
+  }
 
-  .nav-drawer { @apply absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-hoba-border bg-hoba-bg shadow-lg; }
+  .nav-drawer {
+    @apply absolute inset-x-0 top-full max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4rem)] overflow-y-auto border-y border-hoba-border bg-hoba-bg shadow-lg;
+  }
 
   /* Workflow player */
-  .wf-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
-  .wf-transport { @apply flex flex-wrap items-center gap-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }
-  .wf-stage { @apply h-[min(65vh,520px)] min-h-[380px]; }
+  .wf-shell {
+    @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden;
+  }
+  .wf-transport {
+    @apply flex flex-wrap items-center gap-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg;
+  }
+  .wf-stage {
+    @apply h-[min(65vh,520px)] min-h-[380px];
+  }
   /* Choose mode: the fork belongs to the reader, so the auto-walk controls go. */
   .wf-shell.is-choosing .wf-play,
   .wf-shell.is-choosing .wf-next,
-  .wf-shell.is-choosing .wf-scrub { @apply hidden; }
-  .wf-branches { @apply hidden border-t border-hoba-border px-4 py-3 sm:px-5; }
-  .wf-shell.is-choosing .wf-branches { @apply block; }
-  .wf-branch { @apply flex w-full flex-col items-start gap-0.5 rounded-md border border-hoba-border px-3 py-2 text-left transition-colors hover:bg-hoba-hover hover:border-hoba-text/25; }
-  .wf-branch-label { @apply text-base text-hoba-text; }
-  .wf-branch-guard { @apply text-sm text-hoba-muted; }
-  .wf-modes { @apply inline-flex items-center gap-0.5 rounded-md border border-hoba-border bg-hoba-bg p-0.5 text-xs; }
-  .wf-mode { @apply rounded px-2 py-1 text-hoba-muted hover:text-hoba-text; }
-  .wf-mode[aria-pressed="true"] { @apply bg-hoba-border text-hoba-text; }
-  .wf-canvas { @apply block w-full h-full outline-none; }
-  .wf-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
-  .wf-scrub { @apply flex-1 min-w-[8rem] accent-hoba-accent; }
+  .wf-shell.is-choosing .wf-scrub {
+    @apply hidden;
+  }
+  .wf-branches {
+    @apply hidden border-t border-hoba-border px-4 py-3 sm:px-5;
+  }
+  .wf-shell.is-choosing .wf-branches {
+    @apply block;
+  }
+  .wf-branch {
+    @apply flex w-full flex-col items-start gap-0.5 rounded-md border border-hoba-border px-3 py-2 text-left transition-colors hover:bg-hoba-hover hover:border-hoba-text/25;
+  }
+  .wf-branch-label {
+    @apply text-base text-hoba-text;
+  }
+  .wf-branch-guard {
+    @apply text-sm text-hoba-muted;
+  }
+  .wf-modes {
+    @apply inline-flex items-center gap-0.5 rounded-md border border-hoba-border bg-hoba-bg p-0.5 text-xs;
+  }
+  .wf-mode {
+    @apply rounded px-2 py-1 text-hoba-muted hover:text-hoba-text;
+  }
+  .wf-mode[aria-pressed='true'] {
+    @apply bg-hoba-border text-hoba-text;
+  }
+  .wf-canvas {
+    @apply block w-full h-full outline-none;
+  }
+  .wf-canvas:focus-visible {
+    @apply ring-2 ring-inset ring-hoba-accent;
+  }
+  .wf-scrub {
+    @apply flex-1 min-w-[8rem] accent-hoba-accent;
+  }
 
   /* The lens.
      With no lens chosen every point of view is on the page and the
@@ -208,8 +411,12 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
      interesting once you have asked from where. Choosing one inverts that:
      one voice, and — if this entry has no view from that seat — the statement
      that it does not. */
-  .lens-block.is-blind { display: none; }
-  html[data-lens] .lens-block { display: none; }
+  .lens-block.is-blind {
+    display: none;
+  }
+  html[data-lens] .lens-block {
+    display: none;
+  }
   /* The per-seat reveal rules are emitted by LensSwitch from the registry's
      own actors — CSS cannot compare two attributes to each other, so the pairs
      have to be enumerated, and enumerating them by hand here is what left the
@@ -218,18 +425,38 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   /* A perspective is a voice, so it reads as a quoted passage rather than a
      card: a rule in the actor's gutter and the three questions as a definition
      list. */
-  .perspective { @apply border-l-2 border-hoba-border pl-4 py-1; }
-  .perspective + .perspective { @apply mt-6; }
-  .perspective-who { @apply flex flex-wrap items-baseline gap-x-3 gap-y-1; }
-  .perspective dl { @apply mt-2 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-[max-content_1fr] sm:gap-y-1.5; }
-  .perspective dt { @apply text-sm text-hoba-muted; }
-  .perspective dd { @apply text-base text-hoba-text max-w-2xl; }
+  .perspective {
+    @apply border-l-2 border-hoba-border pl-4 py-1;
+  }
+  .perspective + .perspective {
+    @apply mt-6;
+  }
+  .perspective-who {
+    @apply flex flex-wrap items-baseline gap-x-3 gap-y-1;
+  }
+  .perspective dl {
+    @apply mt-2 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-[max-content_1fr] sm:gap-y-1.5;
+  }
+  .perspective dt {
+    @apply text-sm text-hoba-muted;
+  }
+  .perspective dd {
+    @apply text-base text-hoba-text max-w-2xl;
+  }
 
   /* Lens picker in the header */
-  .lens-menu > summary::-webkit-details-marker { display: none; }
-  .lens-menu > summary { @apply list-none; }
-  .lens-option { @apply flex w-full items-baseline gap-2 rounded px-2 py-1.5 text-sm text-hoba-muted hover:bg-hoba-hover hover:text-hoba-text; }
-  .lens-option[aria-pressed="true"] { @apply bg-hoba-hover text-hoba-text; }
+  .lens-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+  .lens-menu > summary {
+    @apply list-none;
+  }
+  .lens-option {
+    @apply flex w-full items-baseline gap-2 rounded px-2 py-1.5 text-sm text-hoba-muted hover:bg-hoba-hover hover:text-hoba-text;
+  }
+  .lens-option[aria-pressed='true'] {
+    @apply bg-hoba-hover text-hoba-text;
+  }
 
   /* Conformance check: one column of plain inputs, no card around them. */
   .check-input {
@@ -238,34 +465,60 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   }
 
   /* Era timeline: a strip proportional to real time, then the chapters. */
-  .era-strip { @apply flex w-full gap-1 overflow-x-auto pb-1; }
+  .era-strip {
+    @apply flex w-full gap-1 overflow-x-auto pb-1;
+  }
   .era-tab {
     @apply flex min-w-[8rem] flex-col gap-0.5 rounded-md border border-hoba-border px-3 py-2 no-underline transition-colors;
     @apply hover:bg-hoba-hover sm:min-w-[7rem];
     flex: 1 1 var(--w, auto);
   }
-  .era-tab-years { @apply font-mono text-xs text-hoba-accent tabular-nums; }
-  .era-tab-title { @apply text-sm text-hoba-text; }
+  .era-tab-years {
+    @apply font-mono text-xs text-hoba-accent tabular-nums;
+  }
+  .era-tab-title {
+    @apply text-sm text-hoba-text;
+  }
 
   /* Knowledge-graph explorer */
-  .graph-shell { @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden; }
-  .graph-toolbar { @apply flex flex-wrap items-center gap-x-4 gap-y-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg; }
-  .graph-canvas { @apply block w-full flex-1 outline-none; }
-  .graph-canvas:focus-visible { @apply ring-2 ring-inset ring-hoba-accent; }
-  .icon-btn { @apply inline-flex items-center justify-center w-8 h-8 rounded-md text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors; }
+  .graph-shell {
+    @apply relative flex flex-col rounded-md border border-hoba-border bg-hoba-card overflow-hidden;
+  }
+  .graph-toolbar {
+    @apply flex flex-wrap items-center gap-x-4 gap-y-2 px-3 py-2 border-b border-hoba-border bg-hoba-bg;
+  }
+  .graph-canvas {
+    @apply block w-full flex-1 outline-none;
+  }
+  .graph-canvas:focus-visible {
+    @apply ring-2 ring-inset ring-hoba-accent;
+  }
+  .icon-btn {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-md text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover transition-colors;
+  }
   /* Details: a bottom sheet on a phone, a side panel from `sm` up. */
   .graph-panel {
     @apply absolute z-10 overflow-y-auto bg-hoba-card/95 backdrop-blur-sm transition-transform duration-200 ease-out;
     @apply inset-x-0 bottom-0 max-h-[70%] border-t border-hoba-border translate-y-full;
     @apply sm:inset-y-0 sm:left-auto sm:right-0 sm:w-[23rem] sm:max-h-none sm:border-t-0 sm:border-l sm:translate-y-0 sm:translate-x-full;
   }
-  .graph-panel.is-open { @apply translate-y-0 sm:translate-x-0; }
+  .graph-panel.is-open {
+    @apply translate-y-0 sm:translate-x-0;
+  }
 
   /* Tables */
-  .table { @apply w-full text-base; }
-  .table th { @apply text-left text-sm font-medium text-hoba-muted pb-2 pr-4 border-b border-hoba-border; }
-  .table td { @apply py-3 pr-4 border-b border-hoba-border align-top; }
-  .table tr:last-child td { @apply border-0; }
+  .table {
+    @apply w-full text-base;
+  }
+  .table th {
+    @apply text-left text-sm font-medium text-hoba-muted pb-2 pr-4 border-b border-hoba-border;
+  }
+  .table td {
+    @apply py-3 pr-4 border-b border-hoba-border align-top;
+  }
+  .table tr:last-child td {
+    @apply border-0;
+  }
 
   /* Progressive Disclosure / Details Accordions */
   .disclosure {
@@ -274,7 +527,9 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   .disclosure > summary {
     @apply flex items-center justify-between font-medium text-sm text-hoba-text cursor-pointer select-none list-none outline-none;
   }
-  .disclosure > summary::-webkit-details-marker { display: none; }
+  .disclosure > summary::-webkit-details-marker {
+    display: none;
+  }
   .disclosure > summary .disclosure-chevron {
     @apply w-4 h-4 text-hoba-muted transition-transform duration-200 shrink-0;
   }
@@ -295,7 +550,9 @@ html[data-view="cards"] [data-view-root] > [data-view="cards"] { display: block;
   border-radius: 0;
   background-color: rgb(var(--c-bg));
 }
-.graph-shell:fullscreen .graph-toolbar { background-color: rgb(var(--c-card)); }
+.graph-shell:fullscreen .graph-toolbar {
+  background-color: rgb(var(--c-card));
+}
 /* Fallback for browsers that refuse the Fullscreen API on ordinary elements. */
 .graph-shell.is-pseudo-fullscreen {
   position: fixed;

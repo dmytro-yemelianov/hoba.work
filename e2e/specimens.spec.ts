@@ -26,8 +26,12 @@ test.describe('a shared entity page stands on its own', () => {
 
   test('specimens render on every entity type', async ({ page }) => {
     const ONE_OF_EACH = [
-      '/observations/obs.rejection_within_minutes_of_application_submission', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.automated_application_expiration_timeout',
-      '/patterns/pat.experience_age_impossibility', '/loops/loop.employment_gap_penalty_loop', '/interventions/int.remove_career_gap_feature_from_automated_ranking_models',
+      '/observations/obs.rejection_within_minutes_of_application_submission',
+      '/barriers/bar.headcount_executive_budget_approval',
+      '/mechanisms/mech.automated_application_expiration_timeout',
+      '/patterns/pat.experience_age_impossibility',
+      '/loops/loop.employment_gap_penalty_loop',
+      '/interventions/int.remove_career_gap_feature_from_automated_ranking_models',
     ];
     for (const path of ONE_OF_EACH) {
       await page.goto(path);

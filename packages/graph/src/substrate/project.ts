@@ -31,11 +31,26 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
     ...sidecar.entities[id]!,
     title: flatTitle(`rec:${id.toLowerCase()}`),
   }));
-  const eras = collect('eras', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
-  const evidence = collect('evidence', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
-  const interventions = collect('interventions', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
-  const patterns = collect('patterns', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
-  const loops = collect('loops', (id) => ({ ...sidecar.entities[id]!, title: flatTitle(`rec:${id.toLowerCase()}`) }));
+  const eras = collect('eras', (id) => ({
+    ...sidecar.entities[id]!,
+    title: flatTitle(`rec:${id.toLowerCase()}`),
+  }));
+  const evidence = collect('evidence', (id) => ({
+    ...sidecar.entities[id]!,
+    title: flatTitle(`rec:${id.toLowerCase()}`),
+  }));
+  const interventions = collect('interventions', (id) => ({
+    ...sidecar.entities[id]!,
+    title: flatTitle(`rec:${id.toLowerCase()}`),
+  }));
+  const patterns = collect('patterns', (id) => ({
+    ...sidecar.entities[id]!,
+    title: flatTitle(`rec:${id.toLowerCase()}`),
+  }));
+  const loops = collect('loops', (id) => ({
+    ...sidecar.entities[id]!,
+    title: flatTitle(`rec:${id.toLowerCase()}`),
+  }));
 
   const observations = collect('observations', (id) => ({
     ...sidecar.entities[id]!,
@@ -59,13 +74,21 @@ export function project({ substrate, sidecar }: Lifted): RegistryBundle {
   });
 
   const processes = collect('processes', (id) => {
-    const stateRest = (sidecar.entities[`${id}#states`]! as { states: Record<string, unknown>[] }).states;
-    const transRest = (sidecar.entities[`${id}#transitions`]! as { transitions: Record<string, unknown>[] }).transitions;
+    const stateRest = (sidecar.entities[`${id}#states`]! as { states: Record<string, unknown>[] })
+      .states;
+    const transRest = (
+      sidecar.entities[`${id}#transitions`]! as { transitions: Record<string, unknown>[] }
+    ).transitions;
     const states = stateRest.map((rest) => ({
       ...rest,
       title: eventById.get(`evc:${id.toLowerCase()}.${rest.id as string}`)!.title,
     }));
-    return { ...sidecar.entities[id]!, title: recordTitleOrProcess(id), states, transitions: transRest };
+    return {
+      ...sidecar.entities[id]!,
+      title: recordTitleOrProcess(id),
+      states,
+      transitions: transRest,
+    };
   });
 
   function recordTitleOrProcess(workflowId: string): string {

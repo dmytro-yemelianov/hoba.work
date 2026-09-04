@@ -8,7 +8,8 @@
 const en = {
   // ---- site / meta -------------------------------------------------------
   'site.tagline': 'Hiring Obstacles & Barriers Atlas',
-  'meta.description': 'hoba — Hiring Obstacles & Barriers Atlas. A public, versioned record of where hiring breaks and what can be behind it.',
+  'meta.description':
+    'hoba — Hiring Obstacles & Barriers Atlas. A public, versioned record of where hiring breaks and what can be behind it.',
 
   // ---- navigation --------------------------------------------------------
   'nav.analyze': 'Analyze',
@@ -30,7 +31,8 @@ const en = {
   'nav.skip': 'Skip to content',
   'wf.title': 'How the process runs',
   'wf.kicker': 'State machines',
-  'wf.intro': 'Interactive state machines for the hiring process: step through the canonical baseline, ATS internal pipeline, end-to-end funnel, and client contracting workflows.',
+  'wf.intro':
+    'Interactive state machines for the hiring process: step through the canonical baseline, ATS internal pipeline, end-to-end funnel, and client contracting workflows.',
   'wf.play': 'Play',
   'wf.pause': 'Pause',
   'wf.next': 'Step forward',
@@ -44,10 +46,13 @@ const en = {
   'nav.check': 'Conformance check',
   'check.kicker': 'Conformance check',
   'check.title': 'Which barriers stop this application',
-  'check.intro': 'Compare mandatory posting requirements with your verified profile facts. The check computes deterministic barriers (years, location, compensation band) and identifies where external confirmation is impossible.',
+  'check.intro':
+    'Compare mandatory posting requirements with your verified profile facts. The check computes deterministic barriers (years, location, compensation band) and identifies where external confirmation is impossible.',
   'check.privacy': 'Everything runs in your browser. Nothing you type is sent anywhere.',
-  'check.notAboutYou': 'This check evaluates formal arithmetic gating rules to help focus limited effort where it can matter. It says nothing about candidate capability and will not tell you how likely you are to be hired.',
-  'check.noCompany': 'All inputs remain strictly in your browser. The atlas holds no company records, and this page does not collect or transmit inputs.',
+  'check.notAboutYou':
+    'This check evaluates formal arithmetic gating rules to help focus limited effort where it can matter. It says nothing about candidate capability and will not tell you how likely you are to be hired.',
+  'check.noCompany':
+    'All inputs remain strictly in your browser. The atlas holds no company records, and this page does not collect or transmit inputs.',
   'check.you': 'What you can evidence',
   'check.posting': 'What the posting states as mandatory',
   'check.years': 'Years your dated history supports',
@@ -62,33 +67,46 @@ const en = {
   'check.bandMin': 'Published band, lower end',
   'check.bandMax': 'Published band, upper end',
   'check.technologyAge': 'Years the required thing has existed',
-  'check.technologyHint': 'Fill this in only if you know it. Asking for more years than the thing has existed is a requirement nobody can meet — that is pat.experience_age_impossibility.',
+  'check.technologyHint':
+    'Fill this in only if you know it. Asking for more years than the thing has existed is a requirement nobody can meet — that is pat.experience_age_impossibility.',
   'check.result': 'What the arithmetic settles',
   'check.empty': 'Fill in anything above and the check runs.',
-  'check.stops': 'A run stops at {gate} — the point on the canonical path where {state} no longer holds.',
-  'check.noStop': 'Nothing you have entered fails deterministically. That is not encouragement — it means the conditions that decide are not ones this check can see.',
+  'check.stops':
+    'A run stops at {gate} — the point on the canonical path where {state} no longer holds.',
+  'check.noStop':
+    'Nothing you have entered fails deterministically. That is not encouragement — it means the conditions that decide are not ones this check can see.',
   'check.undetermined': '{n} of these cannot be determined from outside the system.',
   'check.v.passes': 'condition met',
   'check.v.fails': 'condition not met',
   'check.v.undetermined': 'cannot be determined',
   'check.v.unsatisfiable': 'nobody could meet it',
-  'check.r.years.impossible': 'The posting asks for {required} years of something that has existed for {existed} years. No profile can satisfy that.',
-  'check.r.years.possible': 'The thing has existed for {existed} years, so a requirement of {required} years is possible to meet.',
-  'check.r.years.unknown': 'The posting states {required} years. You have not said what your dated history supports.',
+  'check.r.years.impossible':
+    'The posting asks for {required} years of something that has existed for {existed} years. No profile can satisfy that.',
+  'check.r.years.possible':
+    'The thing has existed for {existed} years, so a requirement of {required} years is possible to meet.',
+  'check.r.years.unknown':
+    'The posting states {required} years. You have not said what your dated history supports.',
   'check.r.years.short': '{required} years stated; your dated history supports {have}.',
   'check.r.years.met': '{required} years stated; {have} supported.',
-  'check.r.authorisation.unknown': 'Authorisation in {where} is required. You have not said where you can work.',
+  'check.r.authorisation.unknown':
+    'Authorisation in {where} is required. You have not said where you can work.',
   'check.r.authorisation.present': 'You can work in {where}.',
-  'check.r.authorisation.absent': 'Authorisation in {where} is required and is not among the places you named.',
-  'check.r.location.unknown': 'The posting says it hires in {places}. You have not said where you are.',
+  'check.r.authorisation.absent':
+    'Authorisation in {where} is required and is not among the places you named.',
+  'check.r.location.unknown':
+    'The posting says it hires in {places}. You have not said where you are.',
   'check.r.location.inside': '{where} is among the places the posting hires in.',
   'check.r.location.outside': 'You are in {where}; the posting hires in {places}.',
-  'check.r.skills.present': 'All {n} mandatory phrases appear in what you can evidence. That clears the string match, which is a different question from whether the parser read them — the verdict stays undetermined.',
-  'check.r.skills.missing': 'Missing from what you can evidence: {missing} — {n} of the mandatory phrases. Whether that is a knockout rule or one input to a ranking model is not visible from outside, so it decides nothing on its own.',
+  'check.r.skills.present':
+    'All {n} mandatory phrases appear in what you can evidence. That clears the string match, which is a different question from whether the parser read them — the verdict stays undetermined.',
+  'check.r.skills.missing':
+    'Missing from what you can evidence: {missing} — {n} of the mandatory phrases. Whether that is a knockout rule or one input to a ranking model is not visible from outside, so it decides nothing on its own.',
   'check.r.band.above': 'You said {expectation}; the published band tops out at {max}.',
-  'check.r.band.under': 'You said {expectation}; the band starts at {min}. Being under a band is not a barrier, but it is a number that will be used.',
+  'check.r.band.under':
+    'You said {expectation}; the band starts at {min}. Being under a band is not a barrier, but it is a number that will be used.',
   'check.r.band.inside': '{expectation} is inside the published band.',
-  'check.r.band.unpublished': 'No band is published, so there is nothing here to reconcile until someone states one.',
+  'check.r.band.unpublished':
+    'No band is published, so there is nothing here to reconcile until someone states one.',
   'check.preset.label': 'Pre-configured Templates & Test Cases:',
   'check.preset.perfect': 'Senior Engineer (Full Conformance)',
   'check.preset.impossible': 'Impossible Tech Years',
@@ -108,22 +126,28 @@ const en = {
   'check.placeholders.bandMax': 'e.g. 130000',
   'check.placeholders.technologyAge': 'e.g. 3',
   'check.turnaround.title': 'Stage Turnaround & Dwell Anomaly Diagnoser',
-  'check.turnaround.desc': 'Evaluate whether elapsed waiting time in your current funnel stage exceeds nominal turnaround bounds, and identify hidden mechanisms operating during stalled delays.',
+  'check.turnaround.desc':
+    'Evaluate whether elapsed waiting time in your current funnel stage exceeds nominal turnaround bounds, and identify hidden mechanisms operating during stalled delays.',
   'check.turnaround.wf': 'Workflow',
   'check.turnaround.state': 'Current Funnel State',
   'check.turnaround.days': 'Elapsed Days in Stage',
   'check.turnaround.nominal': 'Nominal Turnaround',
   'check.turnaround.breach': 'Critical Dwell Anomaly',
-  'check.turnaround.stalled': 'Stage exceeds max expected turnaround of {max} days. Active risk of pipeline freeze or shadow ghosting.',
+  'check.turnaround.stalled':
+    'Stage exceeds max expected turnaround of {max} days. Active risk of pipeline freeze or shadow ghosting.',
   'check.turnaround.normal': 'Within nominal turnaround window of {expected} days.',
   'check.runway.title': 'Candidate Runway & Solvency Calculator',
-  'check.runway.desc': 'Assess your search horizon and exposure to down-levelling pressure (M-017) and uncalibrated bets (pat.compensation_double_bind) under current baseline burn.',
+  'check.runway.desc':
+    'Assess your search horizon and exposure to down-levelling pressure (M-017) and uncalibrated bets (pat.compensation_double_bind) under current baseline burn.',
   'check.runway.savings': 'Liquid Savings ($ or €)',
   'check.runway.burn': 'Monthly Baseline Burn ($ or €)',
   'check.runway.horizon': 'Runway Horizon: {months} months',
-  'check.runway.risk.high': 'Critical Solvency Risk (< 3 months). High vulnerability to down-levelling and rushed compromises.',
-  'check.runway.risk.medium': 'Moderate Horizon (3–6 months). Recommended to run parallel low-friction probes.',
-  'check.runway.risk.safe': 'Stable Horizon (> 6 months). Full capacity for selective funnel targeting.',
+  'check.runway.risk.high':
+    'Critical Solvency Risk (< 3 months). High vulnerability to down-levelling and rushed compromises.',
+  'check.runway.risk.medium':
+    'Moderate Horizon (3–6 months). Recommended to run parallel low-friction probes.',
+  'check.runway.risk.safe':
+    'Stable Horizon (> 6 months). Full capacity for selective funnel targeting.',
   'check.runway.infinite': 'Indefinite runway (zero monthly burn).',
   'nav.eras': 'Eras',
   'nav.group.atlas': 'Atlas',
@@ -153,20 +177,24 @@ const en = {
   'lens.clear': 'Show every point of view',
   'lens.hint': 'Every entry, read from inside one of the seven positions the funnel is made of.',
   'persp.title': 'From each side',
-  'persp.intro': 'The same entry from inside each position that meets it: what reaches them, what it means from there, and what happens next given what they control.',
+  'persp.intro':
+    'The same entry from inside each position that meets it: what reaches them, what it means from there, and what happens next given what they control.',
   'persp.sees': 'What reaches them',
   'persp.reads': 'What it means from there',
   'persp.does': 'What happens next',
   'persp.blind': 'Not visible from here',
-  'persp.blindNote': 'From this position the entry is not visible. That is not a gap in the atlas — it is the finding: the decision is made where nobody in this position can see it.',
+  'persp.blindNote':
+    'From this position the entry is not visible. That is not a gap in the atlas — it is the finding: the decision is made where nobody in this position can see it.',
   'actors.kicker': 'Actors',
   'actors.title': 'The seven positions the funnel is made of',
-  'actors.intro': 'The seven structural positions within the hiring ecosystem: what each actor decides, what is structurally invisible to them, their incentive metrics, and their capacity for intervention.',
+  'actors.intro':
+    'The seven structural positions within the hiring ecosystem: what each actor decides, what is structurally invisible to them, their incentive metrics, and their capacity for intervention.',
   'actors.controls': 'Decides',
   'actors.blind': 'Cannot see',
   'actors.incentives': 'Measured on',
   'actors.recommendations': 'What this position could do',
-  'actors.recIntro': 'Each of these is something this position actually controls, with the cost stated rather than implied.',
+  'actors.recIntro':
+    'Each of these is something this position actually controls, with the cost stated rather than implied.',
   'actors.costs': 'What it costs',
   'actors.addresses': 'Addresses',
   'actors.alsoSee': 'Already described as an intervention',
@@ -174,45 +202,57 @@ const en = {
   'actors.noRecs': 'No recommendations are recorded for this position yet.',
   'actors.readAs': 'Read the whole atlas from here',
   'gap.title': 'What this atlas does not cover',
-  'gap.intro': 'A registry is worth what its gaps are worth knowing, so they are counted here rather than described. Every number below is derived from the registry on each build.',
+  'gap.intro':
+    'A registry is worth what its gaps are worth knowing, so they are counted here rather than described. Every number below is derived from the registry on each build.',
   'gap.gates': 'Gates with no proposed change',
-  'gap.gatesText': 'A barrier the atlas documents but for which it names nothing anyone could do. {n} of {total}.',
+  'gap.gatesText':
+    'A barrier the atlas documents but for which it names nothing anyone could do. {n} of {total}.',
   'gap.mechanisms': 'Causes with no proposed change',
   'gap.mechanismsText': 'A mechanism no intervention targets. {n} of {total}.',
-  'gap.mechanismsSplit': 'The split below matters: where the atlas records that no named actor holds a lever, the absence is a finding; everywhere else it is an omission.',
+  'gap.mechanismsSplit':
+    'The split below matters: where the atlas records that no named actor holds a lever, the absence is a finding; everywhere else it is an omission.',
   'gap.outOfReach': 'out of reach',
   'gap.omission': 'not written yet',
   'gap.merged': 'Causes the registry cannot tell apart',
-  'gap.mergedText': 'Each group below leaves the same trace. No observation in the registry separates its members, so narrowing to one of them has in fact narrowed to all. {n} groups, {m} of {total} mechanisms. This is a limit of the observation vocabulary, not a defect in the causes.',
+  'gap.mergedText':
+    'Each group below leaves the same trace. No observation in the registry separates its members, so narrowing to one of them has in fact narrowed to all. {n} groups, {m} of {total} mechanisms. This is a limit of the observation vocabulary, not a defect in the causes.',
   'gap.mergedTrace': 'shared trace',
   'gap.mergedNone': 'Every mechanism leaves a distinct trace.',
   'gap.ceiling': 'Causes no observation can pin down',
-  'gap.ceilingText': 'A cause is settled only when nothing else emits everything it does. For {n} of {total} that never holds: another cause leaves every trace this one leaves, so it survives whatever is observed. Listed with what covers it.',
+  'gap.ceilingText':
+    'A cause is settled only when nothing else emits everything it does. For {n} of {total} that never holds: another cause leaves every trace this one leaves, so it survives whatever is observed. Listed with what covers it.',
   'gap.ceilingCovered': 'never ruled out',
   'gap.ceilingNone': 'Every cause can be settled by something.',
   'gap.identifying': 'Observations that settle a cause on their own',
   'mech.observedAt': 'Read by the candidate at: {stages}',
   'mech.observedUnplaced': 'Where this trace is read is not recorded.',
   'gap.unplaced': 'Traces the atlas cannot place',
-  'gap.unplacedText': 'Where a mechanism operates and where its trace is read are different questions, and only the first is recorded for {n} of {total} emissions. {c} of those conflict outright: the observation is never seen at any stage the mechanism acts on, so no intersection could stand in for the missing answer.',
+  'gap.unplacedText':
+    'Where a mechanism operates and where its trace is read are different questions, and only the first is recorded for {n} of {total} emissions. {c} of those conflict outright: the observation is never seen at any stage the mechanism acts on, so no intersection could stand in for the missing answer.',
   'gap.unplacedConflicting': 'conflicting',
   'gap.unplacedAmbiguous': 'more than one stage',
   'reach.title': 'Reached without being linked',
-  'reach.intro': 'The relations above are one step. This is what the entry reaches only by walking through them — the shape of it, since the list runs long in a registry this cross-referenced.',
+  'reach.intro':
+    'The relations above are one step. This is what the entry reaches only by walking through them — the shape of it, since the list runs long in a registry this cross-referenced.',
   'reach.explore': 'Walk it in the graph',
   'reach.affects': 'Bears on',
   'reach.affectedBy': 'Borne on by',
-  'gap.identifyingText': '{n} of {total} observations are consistent with exactly one cause. The rest narrow to a set, never to one.',
+  'gap.identifyingText':
+    '{n} of {total} observations are consistent with exactly one cause. The rest narrow to a set, never to one.',
   'gap.evidence': 'Entries citing no published source',
-  'gap.evidenceText': '{n} of {total}. An entry without a citation still carries its evidence level, which says how far it is supported.',
+  'gap.evidenceText':
+    '{n} of {total}. An entry without a citation still carries its evidence level, which says how far it is supported.',
   'gap.stages': 'Stages a candidate can observe nothing at',
-  'gap.stagesText': 'Not a gap to fill: before a role is posted, and inside the hiring manager\u2019s own review, there is by construction nothing for a candidate to witness. It is recorded because the silence is the finding.',
+  'gap.stagesText':
+    'Not a gap to fill: before a role is posted, and inside the hiring manager\u2019s own review, there is by construction nothing for a candidate to witness. It is recorded because the silence is the finding.',
   'gap.none': 'None.',
-  'gap.limits': 'Two limits the counts do not show. The registry describes technical hiring, and the era evidence is drawn from US macro series, so the figures on the eras page describe one market. Neither is a claim about hiring everywhere.',
+  'gap.limits':
+    'Two limits the counts do not show. The registry describes technical hiring, and the era evidence is drawn from US macro series, so the figures on the eras page describe one market. Neither is a claim about hiring everywhere.',
   'era.made': 'What made this ordinary',
   'era.kicker': 'Eras',
   'era.title': 'Where the money came from',
-  'era.intro': 'Macroeconomic hiring regimes from 2010 to present: how shifting capital costs transformed tech hiring practices and why previously effective entry channels ceased working.',
+  'era.intro':
+    'Macroeconomic hiring regimes from 2010 to present: how shifting capital costs transformed tech hiring practices and why previously effective entry channels ceased working.',
   'era.capital': 'The money',
   'era.hiring': 'What it did to hiring',
   'era.entry': 'How people got in',
@@ -229,7 +269,8 @@ const en = {
   'ideal.support': 'This entry is one of the things that holds that commitment up.',
   'ideal.link': 'Step through the path',
   'ideal.badge': 'the canonical path',
-  'ideal.lead': 'The process written as the commitments it is supposed to keep. Everything else in the registry is positioned against it: a barrier is a point where one of them stops being kept; an intervention is something that holds one up.',
+  'ideal.lead':
+    'The process written as the commitments it is supposed to keep. Everything else in the registry is positioned against it: a barrier is a point where one of them stops being kept; an intervention is something that holds one up.',
   'ideal.construct': 'A construct, not a description of any employer.',
   'ideal.deviationsHere': 'Where this commitment stops being kept',
   'ideal.holdsHere': 'What holds this step up',
@@ -245,7 +286,8 @@ const en = {
   'wf.walked': 'Walked in {n} steps',
   'wf.routes': '{n} distinct routes run through this path:',
   'wf.routesEnd': '{n} end at {title}',
-  'wf.routesNote': 'A count, not a likelihood — the atlas has no basis for saying which one a person takes.',
+  'wf.routesNote':
+    'A count, not a likelihood — the atlas has no basis for saying which one a person takes.',
   'wf.arrived': 'Got here by',
   'wf.leaves': 'Leaves by',
   'wf.transition': 'Fires when',
@@ -257,7 +299,8 @@ const en = {
   'wf.canvasLabel': 'State machine diagram. The ordered list below carries the same content.',
   'md.facts': 'At a glance',
   'md.relations': 'Related entries',
-  'md.footer': 'hoba — a public, versioned atlas of hiring obstacles. Content CC BY-SA 4.0. This document is generated from the registry; the canonical page is linked above.',
+  'md.footer':
+    'hoba — a public, versioned atlas of hiring obstacles. Content CC BY-SA 4.0. This document is generated from the registry; the canonical page is linked above.',
   'md.view': 'This page as',
   'share.card': 'Share card',
   'share.postcard': 'postcard',
@@ -282,12 +325,14 @@ const en = {
   'specimen.subject.title': 'Title:',
   'specimen.section': 'What it looks like',
   'specimen.sectionFixed': 'What it looks like when this intervention is in place',
-  'specimen.disclaimer': 'Composite excerpts, written to be typical rather than copied. No particular message, company or person is quoted here.',
+  'specimen.disclaimer':
+    'Composite excerpts, written to be typical rather than copied. No particular message, company or person is quoted here.',
   'nav.sectionAtlas': 'Atlas',
   'nav.sectionProject': 'Project',
 
   // ---- footer ------------------------------------------------------------
-  'footer.blurb': 'hoba — a public, versioned, machine-readable atlas of hiring obstacles, observations, and mechanisms. When the signal is unclear, map the system.',
+  'footer.blurb':
+    'hoba — a public, versioned, machine-readable atlas of hiring obstacles, observations, and mechanisms. When the signal is unclear, map the system.',
   'footer.canonical': 'Canonical domain:',
   'footer.atlas': 'Atlas',
   'footer.analysis': 'Analysis',
@@ -299,7 +344,8 @@ const en = {
   'footer.api': 'API and integration',
   'footer.mcp': 'MCP server (stdio)',
   'footer.principles': 'Principles',
-  'footer.principlesText': 'hoba separates observation from cause and message from motive. No company blacklists, no intent speculation, no false precision.',
+  'footer.principlesText':
+    'hoba separates observation from cause and message from motive. No company blacklists, no intent speculation, no false precision.',
   'footer.author': 'Author:',
   'footer.version': 'site v{site} · registry {registry}',
   'footer.content': 'Content:',
@@ -328,7 +374,8 @@ const en = {
   'removability.candidate': 'Candidate action',
   'removability.candidate.desc': 'Endogenous zone: the candidate can test or adapt to it directly',
   'removability.intermediary': 'Intermediary dependent',
-  'removability.intermediary.desc': 'Changing it requires a recruiter, a hiring manager, or company policy',
+  'removability.intermediary.desc':
+    'Changing it requires a recruiter, a hiring manager, or company policy',
   'removability.none': 'Exogenous (no agency)',
   'removability.none.desc': 'Exogenous zone: a structural factor outside the candidate’s control',
   'removability.all': 'All',
@@ -427,46 +474,60 @@ const en = {
   'home.case.title': 'This email is what most candidates are left with',
   'home.case.sub': 'It is also the least informative. Here is what the atlas does with it.',
   'home.case.establishes': 'What it establishes',
-  'home.case.establishesText': 'That a decision was recorded and sent out as a template, on a date you can point to. Nothing more.',
+  'home.case.establishesText':
+    'That a decision was recorded and sent out as a template, on a date you can point to. Nothing more.',
   'home.case.behind': 'What could be behind it',
-  'home.case.behindText': 'Every mechanism below can produce this exact message. The registry does not tell you which one it was — only which ones are compatible, and which of those you can test.',
+  'home.case.behindText':
+    'Every mechanism below can produce this exact message. The registry does not tell you which one it was — only which ones are compatible, and which of those you can test.',
   'home.case.agency': 'Where you can act',
-  'home.case.agencyText': 'This is why the registry sorts by agency zone. Some of these you can probe in one message; some depend on an intermediary; some are budget decisions taken above the hiring process.',
+  'home.case.agencyText':
+    'This is why the registry sorts by agency zone. Some of these you can probe in one message; some depend on an intermediary; some are budget decisions taken above the hiring process.',
   'home.case.cta': 'Open this observation',
   'home.patterns.kicker': 'Named patterns',
   'home.patterns.title': 'Some traps are structural, and worth a name',
-  'home.patterns.sub': 'When two defensible decisions combine into a bind nobody chose, it can only be discussed once it has a name.',
+  'home.patterns.sub':
+    'When two defensible decisions combine into a bind nobody chose, it can only be discussed once it has a name.',
   'home.patterns.all': 'All patterns',
   'home.not.kicker': 'Boundaries',
   'home.not.title': 'What this is not',
   'home.dev.title': 'Machine-readable, all of it',
-  'home.dev.text': 'Every entry on this site is a validated file in a public repository, served as static JSON, GraphML and CSV, and available to agents over MCP.',
+  'home.dev.text':
+    'Every entry on this site is a validated file in a public repository, served as static JSON, GraphML and CSV, and available to agents over MCP.',
   'home.stat.entities': 'Entries',
   'home.stat.barriers': 'Funnel barriers',
   'home.stat.mechanisms': 'Mechanisms',
   'home.stat.edges': 'Graph edges',
   'home.h1.before': 'You applied. Silence followed — ',
   'home.h1.accent': 'here is why the hiring funnel breaks',
-  'home.what': 'hoba is an open, versioned atlas of {n} entries mapping the causal mechanisms, barriers, and hidden structural dynamics behind tech hiring.',
+  'home.what':
+    'hoba is an open, versioned atlas of {n} entries mapping the causal mechanisms, barriers, and hidden structural dynamics behind tech hiring.',
   'home.problem.title': 'The problem it exists for',
   'home.problem.heading': 'Nobody inside the process can see all of it',
-  'home.problem': 'Nothing in the process is built to tell you which of them it was. Nobody inside it sees the whole of it — the recruiter cannot see how the panel scored you, the panel cannot see whether the budget still exists — so what reaches you is short, standardised and late. People fill that gap with the one explanation always available: that the problem was them. Often the arithmetic was settled before anyone read anything.',
+  'home.problem':
+    'Nothing in the process is built to tell you which of them it was. Nobody inside it sees the whole of it — the recruiter cannot see how the panel scored you, the panel cannot see whether the budget still exists — so what reaches you is short, standardised and late. People fill that gap with the one explanation always available: that the problem was them. Often the arithmetic was settled before anyone read anything.',
   'home.gives.title': 'What the atlas does about it',
   'home.gives.1.title': 'Separates what you saw from what it means',
-  'home.gives.1.text': 'Every observation is recorded with what it can establish and, separately, what it cannot. A rejection at two in the morning establishes that a decision was recorded. It establishes nothing about your work.',
+  'home.gives.1.text':
+    'Every observation is recorded with what it can establish and, separately, what it cannot. A rejection at two in the morning establishes that a decision was recorded. It establishes nothing about your work.',
   'home.gives.2.title': 'Names every cause that fits, and never picks one',
-  'home.gives.2.text': 'For each observation the registry lists the mechanisms compatible with it — {n} of them, for the most common rejection template. It does not assert which one fired, because from outside the system that cannot be known, and pretending otherwise is how the guessing starts.',
+  'home.gives.2.text':
+    'For each observation the registry lists the mechanisms compatible with it — {n} of them, for the most common rejection template. It does not assert which one fired, because from outside the system that cannot be known, and pretending otherwise is how the guessing starts.',
   'home.gives.3.title': 'Says who could change it, and what it would cost them',
-  'home.gives.3.text': 'Each barrier the registry can name carries matching interventions — who would have to act, from employer policy to the ATS vendor\'s defaults to the candidate\'s own next move, and what that action is rated to cost: low, medium, or high. {n} are catalogued so far. Naming who could act is not the same as expecting them to.',
+  'home.gives.3.text':
+    "Each barrier the registry can name carries matching interventions — who would have to act, from employer policy to the ATS vendor's defaults to the candidate's own next move, and what that action is rated to cost: low, medium, or high. {n} are catalogued so far. Naming who could act is not the same as expecting them to.",
   'home.cta.primary': 'Start from what happened',
   'home.cta.secondary': 'Read the atlas ({n} entries)',
   'home.role.candidate.title': 'For Candidates & Job Seekers',
-  'home.role.candidate.desc': 'Decode silent rejections, evaluate candidate agency, and run testable probes without self-blame.',
+  'home.role.candidate.desc':
+    'Decode silent rejections, evaluate candidate agency, and run testable probes without self-blame.',
   'home.role.recruiter.title': 'For Hiring & Talent Teams',
-  'home.role.recruiter.desc': 'Audit funnel latency bottlenecks, candidate drop-offs, and resume parser distortion.',
+  'home.role.recruiter.desc':
+    'Audit funnel latency bottlenecks, candidate drop-offs, and resume parser distortion.',
   'home.role.researcher.title': 'For Systems Researchers & Policy',
-  'home.role.researcher.desc': 'Explore {n} verified nodes, Lean 4 mathematical proofs, and systemic causal feedback loops.',
-  'home.tools.graph.desc': 'Explore {n} cross-referenced entities, stratified tiers, Tarjan cycles, and agency zone distributions.',
+  'home.role.researcher.desc':
+    'Explore {n} verified nodes, Lean 4 mathematical proofs, and systemic causal feedback loops.',
+  'home.tools.graph.desc':
+    'Explore {n} cross-referenced entities, stratified tiers, Tarjan cycles, and agency zone distributions.',
   'home.stat.barriersDesc': 'Sequenced funnel stages',
   'home.stat.mechanismsDesc': 'Verified causal mechanisms',
   'home.stat.patternsDesc': 'Named double binds',
@@ -475,28 +536,36 @@ const en = {
   'home.cta.registry': 'Explore the registry ({n} entries)',
   'home.protocol.kicker': 'Diagnostic methodology',
   'home.protocol.title': 'The hoba protocol',
-  'home.protocol.sub': 'Four steps that replace going over it in your head with a set of separate, checkable facts.',
+  'home.protocol.sub':
+    'Four steps that replace going over it in your head with a set of separate, checkable facts.',
   'home.step.h.title': 'Hard facts',
-  'home.step.h.text': 'Record only what you observed directly: emails received, the exact stage reached, gaps between events. No guessing at intent.',
+  'home.step.h.text':
+    'Record only what you observed directly: emails received, the exact stage reached, gaps between events. No guessing at intent.',
   'home.step.h.out': 'Output: observation nodes (A)',
   'home.step.o.title': 'Obstacle',
-  'home.step.o.text': 'Find the barrier in the hiring funnel where it stopped: ATS parsing, the technical screen, a budget freeze.',
+  'home.step.o.text':
+    'Find the barrier in the hiring funnel where it stopped: ATS parsing, the technical screen, a budget freeze.',
   'home.step.o.out': 'Output: funnel barrier DAG (B)',
   'home.step.b.title': 'Behind the obstacle',
-  'home.step.b.text': 'List the mechanisms logically compatible with those facts. The honest baseline mechanisms stay on the list, alongside structural friction.',
+  'home.step.b.text':
+    'List the mechanisms logically compatible with those facts. The honest baseline mechanisms stay on the list, alongside structural friction.',
   'home.step.b.out': 'Output: compatible mechanisms (M)',
   'home.step.a.title': 'Agency',
-  'home.step.a.text': 'Separate what you can act on from what depends on an intermediary and what is exogenous. The step ends in a few bounded, low-cost probes.',
+  'home.step.a.text':
+    'Separate what you can act on from what depends on an intermediary and what is exogenous. The step ends in a few bounded, low-cost probes.',
   'home.step.a.out': 'Output: probes and a stop condition',
   'home.pillar1.kicker': '01 / Forensic precision',
   'home.pillar1.title': 'Diagnose without guessing',
-  'home.pillar1.text': 'An observation is not a cause; a rejection email is not necessarily a reason. hoba makes the uncertainty explicit and prevents false inferences.',
+  'home.pillar1.text':
+    'An observation is not a cause; a rejection email is not necessarily a reason. hoba makes the uncertainty explicit and prevents false inferences.',
   'home.pillar2.kicker': '02 / Systemic dynamics',
   'home.pillar2.title': 'Find contradiction patterns',
-  'home.pillar2.text': 'Named patterns like the Seniority Double Bind and the Closed-Then-Reposted requisition, backed by strongly connected components (SCCs) in the graph.',
+  'home.pillar2.text':
+    'Named patterns like the Seniority Double Bind and the Closed-Then-Reposted requisition, backed by strongly connected components (SCCs) in the graph.',
   'home.pillar3.kicker': '03 / Closed improvement loop',
   'home.pillar3.title': 'Targeted system interventions',
-  'home.pillar3.text': 'Concrete policy and process changes for employers and ATS platforms, each with a metric that can be measured, to reduce noise across the market.',
+  'home.pillar3.text':
+    'Concrete policy and process changes for employers and ATS platforms, each with a metric that can be measured, to reduce noise across the market.',
   'home.cta2.title': 'Ready to work through what happened?',
   'home.cta2.sub': 'It runs in your browser. Nothing you type is sent anywhere.',
   'home.cta2.start': 'Start the hoba walkthrough',
@@ -506,7 +575,8 @@ const en = {
   'registry.title': 'Registry',
   'registry.kicker': 'Knowledge graph · {version}',
   'registry.openapi': 'OpenAPI spec',
-  'registry.intro': 'Every entry in the atlas — {n} of them, across six kinds: observations, barriers, mechanisms, patterns, loops and interventions.',
+  'registry.intro':
+    'Every entry in the atlas — {n} of them, across six kinds: observations, barriers, mechanisms, patterns, loops and interventions.',
   'registry.search': 'Search by ID, title, summary or stage',
   'registry.all': 'All',
   'registry.filterAgency': 'Agency zone:',
@@ -517,7 +587,8 @@ const en = {
   'patterns.title': 'Contradiction patterns',
   'patterns.kicker': 'Systemic contradictions',
   'patterns.heading': 'Recurring patterns',
-  'patterns.intro': 'Named structural double binds and recurring dilemmas where individually rational decisions combine into systemic hiring deadlocks.',
+  'patterns.intro':
+    'Named structural double binds and recurring dilemmas where individually rational decisions combine into systemic hiring deadlocks.',
   'patterns.viewFull': 'Open the pattern',
   'patterns.trigger': 'Trigger rule:',
   'patterns.establishes': 'Establishes:',
@@ -530,7 +601,8 @@ const en = {
   'graph.kicker': 'Every node and edge',
   'graph.downloadGraphml': 'Download GraphML',
   'graph.downloadJson': 'Download Cytoscape JSON',
-  'graph.intro': 'Interactive knowledge graph of {nodes} nodes and {edges} edges along the hiring funnel: barriers, causal mechanisms, emitted observations, and systemic feedback loops.',
+  'graph.intro':
+    'Interactive knowledge graph of {nodes} nodes and {edges} edges along the hiring funnel: barriers, causal mechanisms, emitted observations, and systemic feedback loops.',
   'graph.filterLayers': 'Node types',
   'graph.removabilityFilter': 'Agency zone',
   'graph.rem.all': 'All agency zones',
@@ -539,11 +611,13 @@ const en = {
   'graph.rem.none': 'Exogenous (no agency) only',
   'graph.inspector': 'Node details',
   'graph.selectNode': 'Select a node',
-  'graph.clickHint': 'Click a node to open its details. Drag a node to move it, drag the background to pan.',
+  'graph.clickHint':
+    'Click a node to open its details. Drag a node to move it, drag the background to pan.',
   'graph.openDetail': 'Open full page',
   'graph.controls': 'Drag to pan · scroll to zoom · click a node for details',
   'graph.fallback': 'Barriers and mechanisms as text',
-  'graph.canvasLabel': 'Interactive knowledge graph; arrow keys move between nodes, Enter opens the selected one. A text list of barriers and mechanisms follows below.',
+  'graph.canvasLabel':
+    'Interactive knowledge graph; arrow keys move between nodes, Enter opens the selected one. A text list of barriers and mechanisms follows below.',
   'graph.zoomIn': 'Zoom in',
   'graph.zoomOut': 'Zoom out',
   'graph.fit': 'Fit to view',
@@ -563,9 +637,11 @@ const en = {
   'data.kicker': 'Registry counts',
   'data.heading': 'What the registry contains',
   'data.downloadNodes': 'Download nodes.csv',
-  'data.intro': 'How many barriers, mechanisms and observations the registry holds, and how they spread across funnel stages and agency zones.',
+  'data.intro':
+    'How many barriers, mechanisms and observations the registry holds, and how they spread across funnel stages and agency zones.',
   'data.guard.title': 'Epistemic guard: topology, not prevalence',
-  'data.guard.text': 'These counts describe the curated knowledge graph, not the labor market. Submissions arrive from whoever chooses to send them; without calibrated sampling they cannot be read as representative.',
+  'data.guard.text':
+    'These counts describe the curated knowledge graph, not the labor market. Submissions arrive from whoever chooses to send them; without calibrated sampling they cannot be read as representative.',
   'data.metric.barriers': 'Barriers in the funnel',
   'data.metric.barriersSub': 'Strictly ordered, no cycles',
   'data.metric.mechanisms': 'Mechanisms',
@@ -579,7 +655,8 @@ const en = {
   'data.rem.intermediary': 'Intermediary dependent',
   'data.rem.none': 'Exogenous (no agency)',
   'data.natureGrid.title': 'By nature and agency zone',
-  'data.natureGrid.text': 'Every mechanism, cross-tabbed by what kind of force it is and who could remove it. Unlike the /archetypes grid, every cell here is counted from the registry — an empty one is a claim (no mechanism of that nature is that removable), not a placement nobody got to yet.',
+  'data.natureGrid.text':
+    'Every mechanism, cross-tabbed by what kind of force it is and who could remove it. Unlike the /archetypes grid, every cell here is counted from the registry — an empty one is a claim (no mechanism of that nature is that removable), not a placement nobody got to yet.',
   'data.natureGrid.empty': 'none recorded',
   'data.byStage.title': 'Counts by funnel stage',
   'data.byStage.barriers': 'Barriers',
@@ -591,7 +668,8 @@ const en = {
   'analyze.kicker': 'Walkthrough · registry {version}',
   'analyze.heading': 'From what you saw to what you can test',
   'analyze.privacy': 'Runs in your browser · nothing is sent anywhere',
-  'analyze.intro': 'Select your witnessed observations (rejection notices, uncompensated tasks, pipeline silences). The analyzer identifies compatible root mechanisms, active double binds, and bounded diagnostic probes without speculative guessing.',
+  'analyze.intro':
+    'Select your witnessed observations (rejection notices, uncompensated tasks, pipeline silences). The analyzer identifies compatible root mechanisms, active double binds, and bounded diagnostic probes without speculative guessing.',
   'analyze.tab.h': '1. Hard facts',
   'analyze.tab.o': '2. Obstacle',
   'analyze.tab.b': '3. Behind the obstacle',
@@ -612,7 +690,8 @@ const en = {
   'analyze.cat.offers': 'Offers, Comp & Down-Levelling',
   'analyze.h.selectedCount': '{n} observations selected',
   'analyze.h.stageLegend': 'The last stage you reached (optional):',
-  'analyze.h.stageHint': 'Leave it empty and the barriers are taken from the stages where your selected observations occur.',
+  'analyze.h.stageHint':
+    'Leave it empty and the barriers are taken from the stages where your selected observations occur.',
   'analyze.h.selectSignals': 'Select your observations:',
   'analyze.h.filter': 'Filter observations...',
   'analyze.h.next': 'Next: Obstacle →',
@@ -621,7 +700,8 @@ const en = {
   'analyze.o.back': '← Back: Hard facts',
   'analyze.o.next': 'Next: Behind the obstacle →',
   'analyze.b.title': 'Step B — Which mechanisms are compatible with what you saw?',
-  'analyze.b.sub': 'Causes logically compatible with your evidence. Compatibility is not certainty, and the honest baseline mechanisms are in the list too.',
+  'analyze.b.sub':
+    'Causes logically compatible with your evidence. Compatibility is not certainty, and the honest baseline mechanisms are in the list too.',
   'analyze.b.mechanisms': 'Compatible mechanisms:',
   'analyze.b.patterns': 'Matching contradiction patterns:',
   'analyze.b.loops': 'Causal loops that touch these mechanisms:',
@@ -633,9 +713,11 @@ const en = {
   'analyze.a.zone.candidate': 'Endogenous (you)',
   'analyze.a.zone.candidate.desc': 'You can test or change something here yourself.',
   'analyze.a.zone.intermediary': 'Intermediary',
-  'analyze.a.zone.intermediary.desc': 'Someone else has to act: a recruiter, a hiring manager, whoever sets pay.',
+  'analyze.a.zone.intermediary.desc':
+    'Someone else has to act: a recruiter, a hiring manager, whoever sets pay.',
   'analyze.a.zone.none': 'Exogenous (no agency)',
-  'analyze.a.zone.none.desc': 'Structural conditions: hiring freezes, the market, the size of the cohort you applied in.',
+  'analyze.a.zone.none.desc':
+    'Structural conditions: hiring freezes, the market, the size of the cohort you applied in.',
   'analyze.a.probes': 'Probes you can run:',
   'analyze.a.back': '← Back: Behind the obstacle',
   'analyze.a.copy': 'Copy Markdown report',
@@ -661,7 +743,8 @@ const en = {
   'wiz.ruledOut': 'Rules out {ids}.',
   'wiz.ruledNothing': 'Rules nothing out. Worth knowing, but it does not narrow the cause.',
   'wiz.limits': 'What no probe here can settle',
-  'wiz.settlesNothing': 'None of the probes available here rules any of these out. They are worth running for the record they produce — a date, a document, a written answer — but as the registry stands, no probe on this page narrows the cause.',
+  'wiz.settlesNothing':
+    'None of the probes available here rules any of these out. They are worth running for the record they produce — a date, a document, a written answer — but as the registry stands, no probe on this page narrows the cause.',
 
   'wiz.minimalProbes': 'The fewest probes that settle everything this page can settle: {ids}.',
   'wiz.cannotSeparate': 'Running every probe available would still not decide between these:',
@@ -674,9 +757,12 @@ const en = {
   'wiz.stopTail': 'Do not spend more effort optimising against this particular outcome.',
   'wiz.verdict': 'Verdict (zone: {zone}):',
   'wiz.verdictTail': 'Run the low-cost probes above before submitting comparable applications.',
-  'wiz.summaryNoObs': 'You have not entered any observations. Without them there is nothing for a mechanism to be compatible with.',
-  'wiz.summaryLow': 'Low signal. Every compatible mechanism is exogenous or depends on an intermediary, so nothing here justifies another move from you.',
-  'wiz.summary': 'Probes attached to your selection: {probes}. Compatible mechanisms you could remove yourself: {candidate}.',
+  'wiz.summaryNoObs':
+    'You have not entered any observations. Without them there is nothing for a mechanism to be compatible with.',
+  'wiz.summaryLow':
+    'Low signal. Every compatible mechanism is exogenous or depends on an intermediary, so nothing here justifies another move from you.',
+  'wiz.summary':
+    'Probes attached to your selection: {probes}. Compatible mechanisms you could remove yourself: {candidate}.',
   'wiz.copied': 'Report copied to the clipboard.',
   'wiz.clipboardDenied': 'The browser denied clipboard access.',
   'wiz.md.title': 'hoba analysis report',
@@ -698,11 +784,13 @@ const en = {
   'wiz.md.probes': 'Probes',
   'wiz.md.noneJustified': 'None justified.',
   'wiz.md.noneWord': 'None',
-  'wiz.disclaimer': 'This analysis is structural, not calibrated: a compatible mechanism is one that fits the observed facts and the structural barriers, which says nothing about how likely it is. An observation is not a cause; a rejection message is not necessarily a reason.',
+  'wiz.disclaimer':
+    'This analysis is structural, not calibrated: a compatible mechanism is one that fits the observed facts and the structural barriers, which says nothing about how likely it is. An observation is not a cause; a rejection message is not necessarily a reason.',
 
   // ---- entity pages ------------------------------------------------------
   'art.posture.title': 'How to read this observation',
-  'art.posture.text': 'An observation is something a candidate received or lived through. It is a consequence of the mechanisms underneath, not proof that any one of them was at work.',
+  'art.posture.text':
+    'An observation is something a candidate received or lived through. It is a consequence of the mechanisms underneath, not proof that any one of them was at work.',
   'art.probes': 'Diagnostic probes',
   'art.probeLabel': 'Probe {id}',
   'art.compatible': 'Compatible mechanisms ({n})',
@@ -747,31 +835,42 @@ const en = {
   'method.title': 'Methodology & epistemic rules',
   'method.kicker': 'Epistemic foundation',
   'method.heading': 'The hoba methodology',
-  'method.intro': 'How hoba takes hiring uncertainty apart, states the evidence level behind every claim, and refuses to sound more certain than the evidence allows.',
+  'method.intro':
+    'How hoba takes hiring uncertainty apart, states the evidence level behind every claim, and refuses to sound more certain than the evidence allows.',
   'method.core.title': 'Core design rule',
-  'method.core.quote': '“hoba must make uncertainty more explicit, not merely replace one unsupported story with another.”',
-  'method.core.text': 'An observation is not a cause. A rejection message is not necessarily a reason. A compatible mechanism is not a proven mechanism.',
+  'method.core.quote':
+    '“hoba must make uncertainty more explicit, not merely replace one unsupported story with another.”',
+  'method.core.text':
+    'An observation is not a cause. A rejection message is not necessarily a reason. A compatible mechanism is not a proven mechanism.',
   'method.verbs.title': 'The four epistemic verbs',
   'method.verbs.sub': 'Every claim in hoba carries one of four calibrated verbs:',
   'method.verbs.observed': '1. Observed',
-  'method.verbs.observed.text': 'Directly present in the evidence or in a submission log — a rejection email timestamp, a job post URL.',
+  'method.verbs.observed.text':
+    'Directly present in the evidence or in a submission log — a rejection email timestamp, a job post URL.',
   'method.verbs.compatible': '2. Compatible with',
-  'method.verbs.compatible.text': 'Given the structural barrier, the mechanism could logically produce the observation. No probability is implied.',
+  'method.verbs.compatible.text':
+    'Given the structural barrier, the mechanism could logically produce the observation. No probability is implied.',
   'method.verbs.supported': '3. Supported',
-  'method.verbs.supported.text': 'Research or secondary signals raise confidence beyond logical compatibility alone.',
+  'method.verbs.supported.text':
+    'Research or secondary signals raise confidence beyond logical compatibility alone.',
   'method.verbs.proven': '4. Proven',
-  'method.verbs.proven.text': 'Direct verification supports the precise causal claim — a verified ATS parsing rule, for instance.',
+  'method.verbs.proven.text':
+    'Direct verification supports the precise causal claim — a verified ATS parsing rule, for instance.',
   'method.honest.title': 'Preserving honest baselines',
-  'method.honest.text': 'A credible registry cannot become an echo chamber that blames something external for every outcome. Real gaps in skill depth, friction in communication, and leveling mismatches sit in the ontology as mandatory baseline mechanisms (',
+  'method.honest.text':
+    'A credible registry cannot become an echo chamber that blames something external for every outcome. Real gaps in skill depth, friction in communication, and leveling mismatches sit in the ontology as mandatory baseline mechanisms (',
   'method.honest.textAfter': ').',
   'method.evidence.title': 'Evidence records & levels',
   'method.evidence.text1.before': 'Every node declares an ',
   'method.evidence.text1.middle': ' and may cite ',
-  'method.evidence.text1.after': ' records. The two axes are separate, and both are read straight off the schema below rather than restated here.',
+  'method.evidence.text1.after':
+    ' records. The two axes are separate, and both are read straight off the schema below rather than restated here.',
   'method.evidence.kindsLead': 'The kind describes the source:',
   'method.evidence.levelsLead': 'The level describes how far the claim is carried:',
-  'method.evidence.levelsTail': ' — the last two are not points on that line but states a claim can be in. A citation raises a claim only when it addresses the specific mechanism rather than the general topic, and “proven” is refused outright unless a primary or research record is cited.',
-  'method.evidence.text2.before': 'Each evidence record currently points to one published source: a peer-reviewed study, an institutional report, or a practitioner survey. A level stays provisional where the node cites a source about its general topic rather than the specific mechanism; loops with no source about the feedback cycle itself are marked ',
+  'method.evidence.levelsTail':
+    ' — the last two are not points on that line but states a claim can be in. A citation raises a claim only when it addresses the specific mechanism rather than the general topic, and “proven” is refused outright unless a primary or research record is cited.',
+  'method.evidence.text2.before':
+    'Each evidence record currently points to one published source: a peer-reviewed study, an institutional report, or a practitioner survey. A level stays provisional where the node cites a source about its general topic rather than the specific mechanism; loops with no source about the feedback cycle itself are marked ',
   'method.evidence.text2.after': '.',
   'method.nongoals.title': 'Explicit non-goals',
   'method.nongoals.sub': 'hoba is deliberately not:',
@@ -788,12 +887,15 @@ const en = {
   'about.sub.before': 'Hiring Obstacles & Barriers Atlas • Canonical domain: ',
   'about.p1.before': '',
   'about.p1.strong': 'hoba',
-  'about.p1.after': ' turns what a candidate observes into machine-readable records: hard facts, the structural barrier a process stopped at, the mechanisms compatible with it, and what the candidate can actually act on.',
-  'about.p2.before': 'Silence or a form rejection says nothing about the mechanism behind it, so the applicant fills the gap with interpretation. hoba replaces that guessing with a forensic protocol: ',
+  'about.p1.after':
+    ' turns what a candidate observes into machine-readable records: hard facts, the structural barrier a process stopped at, the mechanisms compatible with it, and what the candidate can actually act on.',
+  'about.p2.before':
+    'Silence or a form rejection says nothing about the mechanism behind it, so the applicant fills the gap with interpretation. hoba replaces that guessing with a forensic protocol: ',
   'about.p2.strong': 'H — Hard facts, O — Obstacle, B — Behind the obstacle, A — Agency',
   'about.p2.after': '.',
   'about.p3.before': 'The canonical domain ',
-  'about.p3.after': ' names what the atlas maps: the systems, barriers, and evidence around technical work and hiring.',
+  'about.p3.after':
+    ' names what the atlas maps: the systems, barriers, and evidence around technical work and hiring.',
   'about.fact.entries': 'Entries',
   'about.fact.languages': 'Languages',
   'about.fact.registry': 'Registry',
@@ -809,13 +911,16 @@ const en = {
   'dev.title': 'Developers and machine interfaces',
   'dev.kicker': 'API and MCP',
   'dev.heading': 'How to read the registry from code',
-  'dev.intro': 'The hoba knowledge graph is available as static REST endpoints, an OpenAPI 3.1 description, a Model Context Protocol (MCP) server, and a CLI.',
+  'dev.intro':
+    'The hoba knowledge graph is available as static REST endpoints, an OpenAPI 3.1 description, a Model Context Protocol (MCP) server, and a CLI.',
   'dev.rest.title': 'Static REST API',
-  'dev.rest.text': 'Read-only JSON, generated at build time and served straight from the CDN. There is no database behind it.',
+  'dev.rest.text':
+    'Read-only JSON, generated at build time and served straight from the CDN. There is no database behind it.',
   'dev.rest.view': 'View JSON',
   'dev.mcp.title': 'Model Context Protocol (MCP) server',
   'dev.mcp.badge': 'stdio · local',
-  'dev.mcp.text': 'Connect AI coding assistants and autonomous agents directly to the hoba knowledge graph.',
+  'dev.mcp.text':
+    'Connect AI coding assistants and autonomous agents directly to the hoba knowledge graph.',
   'dev.mcp.configComment1': '// claude_desktop_config.json / .mcp.json — run from a local checkout',
   'dev.mcp.configComment2': '// (git clone … && pnpm install && pnpm build:packages)',
   'dev.mcp.tools': 'Available tools:',
@@ -824,7 +929,8 @@ const en = {
   'dev.cli.search': 'Find entities that match a query',
   'dev.cli.explain': 'Run the hoba protocol on an observation',
   'dev.cli.show': 'Print one node in full',
-  'dev.cli.validate': 'Check content, the barrier DAG, loop declarations and English/Ukrainian parity',
+  'dev.cli.validate':
+    'Check content, the barrier DAG, loop declarations and English/Ukrainian parity',
   'dev.cli.json': 'Add --json to any command for machine-readable output.',
   'dev.exports.title': 'Raw graph exports',
 
@@ -832,7 +938,8 @@ const en = {
   'contrib.title': 'Contributing to hoba',
   'contrib.kicker': 'Everything through Git',
   'contrib.heading': 'How to contribute',
-  'contrib.intro': 'New observations, structural barriers, mechanisms, and interventions all arrive the same way: as Git pull requests.',
+  'contrib.intro':
+    'New observations, structural barriers, mechanisms, and interventions all arrive the same way: as Git pull requests.',
   'contrib.workflow': 'What to run locally',
   'contrib.checks.title': 'What CI checks on every pull request',
   'contrib.checks.1': 'Strict conformance to the Zod schemas',
@@ -842,7 +949,8 @@ const en = {
   'contrib.checks.5': 'Honest baselines still in place',
   'contrib.checks.6': 'Structural parity between the English and Ukrainian mirrors',
   'contrib.mirror.title': 'Both languages, one structure',
-  'contrib.mirror.text': 'Every node lives in content/ (English, canonical) and content-uk/ (Ukrainian). IDs and graph structure must be identical; only the prose may differ — the validator enforces that.',
+  'contrib.mirror.text':
+    'Every node lives in content/ (English, canonical) and content-uk/ (Ukrainian). IDs and graph structure must be identical; only the prose may differ — the validator enforces that.',
 
   // ---- data views --------------------------------------------------------
   'view.label': 'View',
@@ -895,113 +1003,156 @@ const en = {
 
   'tour.home.title': 'Welcome to hoba',
   'tour.home.step1.title': 'What is hoba?',
-  'tour.home.step1.text': 'hoba is an open, machine-readable causal atlas of {n} verified nodes explaining why the technical hiring funnel breaks and what structural dynamics operate behind the scenes.',
+  'tour.home.step1.text':
+    'hoba is an open, machine-readable causal atlas of {n} verified nodes explaining why the technical hiring funnel breaks and what structural dynamics operate behind the scenes.',
   'tour.home.step2.title': 'The Four-Step hoba Framework',
-  'tour.home.step2.text': 'H (Witnessed Signals) → O (Funnel Obstacles) → B (Causal Mechanisms) → A (Agency Levers). We separate symptoms from systemic causes.',
+  'tour.home.step2.text':
+    'H (Witnessed Signals) → O (Funnel Obstacles) → B (Causal Mechanisms) → A (Agency Levers). We separate symptoms from systemic causes.',
   'tour.home.step3.title': 'Documentary Evidence & Reconstructions',
-  'tour.home.step3.text': 'Explore real-world specimens such as standardized rejection emails, ghost vacancy loops, and automated knockout screening rules with exact evidence levels.',
+  'tour.home.step3.text':
+    'Explore real-world specimens such as standardized rejection emails, ghost vacancy loops, and automated knockout screening rules with exact evidence levels.',
   'tour.home.step4.title': 'Four Interactive Exploration Engines',
-  'tour.home.step4.text': 'Use Situation Analysis (diagnostic wizard), Conformance Check (posting audit), Process Simulator (state machines), or Knowledge Graph (DAG network).',
+  'tour.home.step4.text':
+    'Use Situation Analysis (diagnostic wizard), Conformance Check (posting audit), Process Simulator (state machines), or Knowledge Graph (DAG network).',
   'tour.home.step5.title': 'Multi-Actor Perspectives & Global Lens',
-  'tour.home.step5.text': 'Switch the viewpoint lens in the navigation bar to inspect the system from the seat of a Candidate, Client, Recruiter, Hiring Manager, ATS Vendor, Employer Policy, or Public Policy & Industry Standards.',
+  'tour.home.step5.text':
+    'Switch the viewpoint lens in the navigation bar to inspect the system from the seat of a Candidate, Client, Recruiter, Hiring Manager, ATS Vendor, Employer Policy, or Public Policy & Industry Standards.',
   'tour.home.step6.title': 'Client-Side Diagnostics & Open Data',
-  'tour.home.step6.text': 'The four exploration engines above run entirely in your browser with zero telemetry — nothing you paste or select is sent anywhere. (The separate Contribute form is the one thing you submit explicitly.) Bulk downloads are available in OpenAPI, JSON, GraphML, and Markdown.',
+  'tour.home.step6.text':
+    'The four exploration engines above run entirely in your browser with zero telemetry — nothing you paste or select is sent anywhere. (The separate Contribute form is the one thing you submit explicitly.) Bulk downloads are available in OpenAPI, JSON, GraphML, and Markdown.',
 
   'tour.analyze.title': 'Situation Analysis Guide',
   'tour.analyze.step1.title': 'Step 1: Empirical Scenarios',
-  'tour.analyze.step1.text': 'Select from pre-configured empirical scenarios or choose specific witnessed facts from the registry.',
+  'tour.analyze.step1.text':
+    'Select from pre-configured empirical scenarios or choose specific witnessed facts from the registry.',
   'tour.analyze.step2.title': 'Step 2: Observed Facts Matrix (H)',
-  'tour.analyze.step2.text': 'Check off the signals you encountered: late-night auto-rejections, take-home tasks, ghosting delays, or shifting requirement lists.',
+  'tour.analyze.step2.text':
+    'Check off the signals you encountered: late-night auto-rejections, take-home tasks, ghosting delays, or shifting requirement lists.',
   'tour.analyze.step3.title': 'Step 3: Funnel Obstacle Localization (O)',
-  'tour.analyze.step3.text': 'The engine narrows to the canonical funnel gates and knockout filters compatible with what you observed.',
+  'tour.analyze.step3.text':
+    'The engine narrows to the canonical funnel gates and knockout filters compatible with what you observed.',
   'tour.analyze.step4.title': 'Step 4: Compatible Mechanisms (B)',
-  'tour.analyze.step4.text': 'Enumerates the mechanisms compatible with your observations (ghost postings, asymmetric screening thresholds) rather than speculative self-blame.',
+  'tour.analyze.step4.text':
+    'Enumerates the mechanisms compatible with your observations (ghost postings, asymmetric screening thresholds) rather than speculative self-blame.',
   'tour.analyze.step5.title': 'Step 5: Agency Zones & Diagnostic Probes (A)',
-  'tour.analyze.step5.text': 'Separate candidate-controllable factors from exogenous constraints, and review falsifiable diagnostic probes to settle ambiguities.',
+  'tour.analyze.step5.text':
+    'Separate candidate-controllable factors from exogenous constraints, and review falsifiable diagnostic probes to settle ambiguities.',
 
   'tour.check.title': 'Conformance Check Guide',
   'tour.check.step1.title': 'Step 1: Evidenced Candidate Facts',
-  'tour.check.step1.text': 'In the left column, enter your verifiable dated experience, location rights, and compensation requirements.',
+  'tour.check.step1.text':
+    'In the left column, enter your verifiable dated experience, location rights, and compensation requirements.',
   'tour.check.step2.title': 'Step 2: Stated Mandatory Specs',
-  'tour.check.step2.text': 'In the right column, input the job posting hard criteria: minimum years, required keywords, location constraints, and salary bands.',
+  'tour.check.step2.text':
+    'In the right column, input the job posting hard criteria: minimum years, required keywords, location constraints, and salary bands.',
   'tour.check.step3.title': 'Step 3: Arithmetic Knockout Verdict',
-  'tour.check.step3.text': 'The engine deterministically checks whether any mathematical knockout gate fires (such as impossible technology experience pat.experience_age_impossibility or salary cap pat.compensation_double_bind).',
+  'tour.check.step3.text':
+    'The engine deterministically checks whether any mathematical knockout gate fires (such as impossible technology experience pat.experience_age_impossibility or salary cap pat.compensation_double_bind).',
   'tour.check.step4.title': 'Step 4: Turnaround Latency Diagnostics',
-  'tour.check.step4.text': 'Diagnose stage turnaround delays against normal operating windows and identify stalled requisition freeze risks.',
+  'tour.check.step4.text':
+    'Diagnose stage turnaround delays against normal operating windows and identify stalled requisition freeze risks.',
   'tour.check.step5.title': 'Step 5: Financial Runway & Solvency Risk',
-  'tour.check.step5.text': 'Calculate your financial runway horizon to prevent search exhaustion and avoid down-leveling compression pressure.',
+  'tour.check.step5.text':
+    'Calculate your financial runway horizon to prevent search exhaustion and avoid down-leveling compression pressure.',
 
   'tour.process.title': 'Process Simulator Guide',
   'tour.process.step1.title': 'Step 1: Select a State Machine Pipeline',
-  'tour.process.step1.text': 'Switch between the Canonical Hiring Path, the ATS Pipeline, the End-to-End Funnel, or Client Contracting.',
+  'tour.process.step1.text':
+    'Switch between the Canonical Hiring Path, the ATS Pipeline, the End-to-End Funnel, or Client Contracting.',
   'tour.process.step2.title': 'Step 2: Auto-Play & Speed Controls',
-  'tour.process.step2.text': 'Play through the states with auto-play, adjust playback speed from 1x to 2x, or step manually forward and backward.',
+  'tour.process.step2.text':
+    'Play through the states with auto-play, adjust playback speed from 1x to 2x, or step manually forward and backward.',
   'tour.process.step3.title': 'Step 3: Automatic Pan & Zoom Tracking',
-  'tour.process.step3.text': 'The interactive canvas smoothly pans and centers the active state to provide an optimal viewing angle.',
+  'tour.process.step3.text':
+    'The interactive canvas smoothly pans and centers the active state to provide an optimal viewing angle.',
   'tour.process.step4.title': 'Step 4: Walk It Yourself (Branching Mode)',
-  'tour.process.step4.text': 'Switch to "Walk it yourself" mode to make branch decisions at each fork and generate a shareable replay URL.',
+  'tour.process.step4.text':
+    'Switch to "Walk it yourself" mode to make branch decisions at each fork and generate a shareable replay URL.',
   'tour.process.step5.title': 'Step 5: State Detail & Candidate Visibility',
-  'tour.process.step5.text': 'Examine candidate visibility, responsible decision actors, and documented failure modes for every individual state.',
+  'tour.process.step5.text':
+    'Examine candidate visibility, responsible decision actors, and documented failure modes for every individual state.',
   'tour.process.step6.title': 'Step 6: Historical Eras Context',
-  'tour.process.step6.text': 'See which macroeconomic era made each state ordinary and how technological shifts altered funnel conversion.',
+  'tour.process.step6.text':
+    'See which macroeconomic era made each state ordinary and how technological shifts altered funnel conversion.',
 
   'tour.graph.title': 'Knowledge Graph Guide',
   'tour.graph.step1.title': 'Step 1: Four Vertical Swimlanes',
-  'tour.graph.step1.text': 'The graph is structured into 4 distinct vertical tiers: Artifacts (top), Barriers, Mechanisms, and Interventions/Patterns/Loops (bottom).',
+  'tour.graph.step1.text':
+    'The graph is structured into 4 distinct vertical tiers: Artifacts (top), Barriers, Mechanisms, and Interventions/Patterns/Loops (bottom).',
   'tour.graph.step2.title': 'Step 2: Funnel Stages Along X-Axis',
-  'tour.graph.step2.text': 'Columns correspond to sequential hiring funnel stages from Pre-posting, Sourcing, Screening to Technical and Offer.',
+  'tour.graph.step2.text':
+    'Columns correspond to sequential hiring funnel stages from Pre-posting, Sourcing, Screening to Technical and Offer.',
   'tour.graph.step3.title': 'Step 3: Canonical Ideal Route',
-  'tour.graph.step3.text': 'Click "✨ Canonical path" to activate the step-by-step HUD walkthrough with glowing transition edges and sequential badges.',
+  'tour.graph.step3.text':
+    'Click "✨ Canonical path" to activate the step-by-step HUD walkthrough with glowing transition edges and sequential badges.',
   'tour.graph.step4.title': 'Step 4: Crosshair Stage & Swimlane Highlight',
-  'tour.graph.step4.text': 'Hover over any node to highlight its exact funnel stage column and horizontal swimlane row in a clear HUD crosshair matrix.',
+  'tour.graph.step4.text':
+    'Hover over any node to highlight its exact funnel stage column and horizontal swimlane row in a clear HUD crosshair matrix.',
   'tour.graph.step5.title': 'Step 5: Filtering by Types & Agency Zones',
-  'tour.graph.step5.text': 'Toggle entity layers and filter by Candidate Action, Intermediary Dependent, or Exogenous Agency zones in the toolbar.',
+  'tour.graph.step5.text':
+    'Toggle entity layers and filter by Candidate Action, Intermediary Dependent, or Exogenous Agency zones in the toolbar.',
   'tour.graph.step6.title': 'Step 6: Side Inspector & Graph Navigation',
-  'tour.graph.step6.text': 'Click any node to open the side inspector with its evidence grade, facts, relationships, and direct page links.',
+  'tour.graph.step6.text':
+    'Click any node to open the side inspector with its evidence grade, facts, relationships, and direct page links.',
 
   'tour.registry.title': 'Atlas Registry Guide',
   'tour.registry.step1.title': 'Step 1: Instant Filter & Search',
-  'tour.registry.step1.text': 'Filter by entity type pill or search across IDs (e.g. bar.automated_filter_parser_threshold, M-001), titles, keywords, and stage attributes.',
+  'tour.registry.step1.text':
+    'Filter by entity type pill or search across IDs (e.g. bar.automated_filter_parser_threshold, M-001), titles, keywords, and stage attributes.',
   'tour.registry.step2.title': 'Step 2: Structured Grouping',
-  'tour.registry.step2.text': 'Group records by Entity Type (6 tiers), Funnel Stage, or Agency Zone for clean categorical browsing without duplicates.',
+  'tour.registry.step2.text':
+    'Group records by Entity Type (6 tiers), Funnel Stage, or Agency Zone for clean categorical browsing without duplicates.',
   'tour.registry.step3.title': 'Step 3: Multi-View Switcher',
-  'tour.registry.step3.text': 'Switch between structured Table view, rich Cards view, or compact List view depending on your device and preference.',
+  'tour.registry.step3.text':
+    'Switch between structured Table view, rich Cards view, or compact List view depending on your device and preference.',
   'tour.registry.step4.title': 'Step 4: Machine-Readable Endpoints',
-  'tour.registry.step4.text': 'Access OpenAPI specifications, raw JSON data exports, GraphML graph files, and Markdown documentation directly from the header.',
+  'tour.registry.step4.text':
+    'Access OpenAPI specifications, raw JSON data exports, GraphML graph files, and Markdown documentation directly from the header.',
   'tour.registry.step5.title': 'Step 5: Direct Entity Links & Specimens',
-  'tour.registry.step5.text': 'Every entry links to a dedicated permalink with reconstructed specimens, causal DAG edges, and mitigation interventions.',
+  'tour.registry.step5.text':
+    'Every entry links to a dedicated permalink with reconstructed specimens, causal DAG edges, and mitigation interventions.',
 
   'tour.eras.title': 'Macro Eras Guide',
   'tour.eras.step1.title': 'Step 1: Proportional Timeline',
-  'tour.eras.step1.text': 'Navigate through macroeconomic regimes from 2010 to the current correction, scaled proportionally to real years.',
+  'tour.eras.step1.text':
+    'Navigate through macroeconomic regimes from 2010 to the current correction, scaled proportionally to real years.',
   'tour.eras.step2.title': 'Step 2: Capital Dynamics & Rates',
-  'tour.eras.step2.text': 'Understand how interest rates and capital availability shifted hiring from headcount hoarding to automated filtering.',
+  'tour.eras.step2.text':
+    'Understand how interest rates and capital availability shifted hiring from headcount hoarding to automated filtering.',
   'tour.eras.step3.title': 'Step 3: Verified Macro Indicators',
-  'tour.eras.step3.text': 'Every data point and figure links directly to peer-reviewed public sources (FRED, CompTIA, Stanford).',
+  'tour.eras.step3.text':
+    'Every data point and figure links directly to peer-reviewed public sources (FRED, CompTIA, Stanford).',
   'tour.eras.step4.title': 'Step 4: Historical Context for Registry Nodes',
-  'tour.eras.step4.text': 'Discover which macroeconomic regime made each specific barrier or screening mechanism ordinary in modern hiring.',
+  'tour.eras.step4.text':
+    'Discover which macroeconomic regime made each specific barrier or screening mechanism ordinary in modern hiring.',
 
   'tour.actors.title': 'Funnel Actors Guide',
   'tour.actors.step1.title': 'Step 1: 6 Systemic Perspectives',
-  'tour.actors.step1.text': 'Explore the hiring system from the perspective of Candidate, Recruiter, Hiring Manager, ATS Vendor, Employer Policy, and Public Policy.',
+  'tour.actors.step1.text':
+    'Explore the hiring system from the perspective of Candidate, Recruiter, Hiring Manager, ATS Vendor, Employer Policy, and Public Policy.',
   'tour.actors.step2.title': 'Step 2: Epistemic Asymmetry & Blind Spots',
-  'tour.actors.step2.text': 'See what each seat Decides, Reads, and what remains completely Invisible from that position in the process.',
+  'tour.actors.step2.text':
+    'See what each seat Decides, Reads, and what remains completely Invisible from that position in the process.',
   'tour.actors.step3.title': 'Step 3: Levers of Action & Costs',
-  'tour.actors.step3.text': 'Review what each seat could realistically do to resolve barriers, along with the concrete costs associated with those actions.',
+  'tour.actors.step3.text':
+    'Review what each seat could realistically do to resolve barriers, along with the concrete costs associated with those actions.',
   'tour.actors.step4.title': 'Step 4: Global Lens Filter',
-  'tour.actors.step4.text': 'Use the Lens selector in the top navbar to filter the entire atlas from one single actor’s viewpoint.',
+  'tour.actors.step4.text':
+    'Use the Lens selector in the top navbar to filter the entire atlas from one single actor’s viewpoint.',
 
   // ---- 404 ---------------------------------------------------------------
   'nf.title': 'Page not found',
   'nf.kicker': '404',
   'nf.heading': 'Nothing at this address',
-  'nf.text': 'Either the address is wrong or the page has moved. Check the ID (A-, B-, M-, P-, L-, I-xxx), or go back to the registry.',
+  'nf.text':
+    'Either the address is wrong or the page has moved. Check the ID (A-, B-, M-, P-, L-, I-xxx), or go back to the registry.',
   'nf.registry': 'Open the registry',
 
   // ---- Vector Cat Generator ----------------------------------------------
   'cats.title': 'Vector Cat Generator',
   'cats.kicker': 'Parametric Vector Art',
-  'cats.intro': 'Combinatorial parametric vector cat generator capable of rendering billions of distinct felines with custom poses, anatomy, coats, emotions, accessories, and exportable clean SVG vectors.',
+  'cats.intro':
+    'Combinatorial parametric vector cat generator capable of rendering billions of distinct felines with custom poses, anatomy, coats, emotions, accessories, and exportable clean SVG vectors.',
   'cats.btn.random': '🎲 Randomize Cat (Space / R)',
   'cats.btn.exportSvg': 'Download SVG',
   'cats.btn.exportPng': 'Download PNG',
@@ -1021,11 +1172,14 @@ const en = {
   'cats.combinatorics': 'Over 10¹⁵ unique mathematical combinations',
   'archetypes.title': 'Archetypes',
   'archetypes.kicker': 'Not a Finding',
-  'archetypes.intro': 'A nickname and a grid position for entries in the atlas — a joke on the alignment chart, not a claim about anyone. Nothing here is evidence, cited, or checked the way the rest of this site is; it exists because the formal titles earn their precision by giving up being fun.',
-  'archetypes.disclaimer': 'Placement is a hand-picked joke, not a measurement. It carries no epistemic weight and backs no claim the atlas makes elsewhere — read the linked entry for the real, sourced account.',
+  'archetypes.intro':
+    'A nickname and a grid position for entries in the atlas — a joke on the alignment chart, not a claim about anyone. Nothing here is evidence, cited, or checked the way the rest of this site is; it exists because the formal titles earn their precision by giving up being fun.',
+  'archetypes.disclaimer':
+    'Placement is a hand-picked joke, not a measurement. It carries no epistemic weight and backs no claim the atlas makes elsewhere — read the linked entry for the real, sourced account.',
   'archetypes.axis.x': 'Lawful ↔ Chaotic — how systematic the mechanism is, versus how ad hoc',
   'archetypes.axis.y': 'Visible ↔ Hidden — whether the person it happens to could ever spot it',
-  'archetypes.coverageNote': 'Every entry in the atlas has a nickname and a place here — {n} in all. Evidence citations are the one exception: a source document doesn’t get a joke.',
+  'archetypes.coverageNote':
+    'Every entry in the atlas has a nickname and a place here — {n} in all. Evidence citations are the one exception: a source document doesn’t get a joke.',
   'archetypes.viewEntry': 'Open the real entry →',
   'archetypes.x.lawful': 'Lawful',
   'archetypes.x.neutral': 'Neutral',
@@ -1037,74 +1191,101 @@ const en = {
 
   // --- Reader entry points ------------------------------------------------
   'reader.title.candidate': 'You applied, and something happened',
-  'reader.lead.candidate': 'Start from what you actually received — the message, the silence, the sudden change — and read back to what produces it. The atlas will not tell you why your application was rejected. It will tell you what makes that signal, and what that signal cannot distinguish.',
+  'reader.lead.candidate':
+    'Start from what you actually received — the message, the silence, the sudden change — and read back to what produces it. The atlas will not tell you why your application was rejected. It will tell you what makes that signal, and what that signal cannot distinguish.',
   'reader.title.recruiter': 'Your process emits signals you did not choose',
-  'reader.lead.recruiter': 'Every funnel produces traces at its gates, and most of them are not decisions anyone made. Read what yours emits, what causes it, and which changes are configuration rather than culture.',
+  'reader.lead.recruiter':
+    'Every funnel produces traces at its gates, and most of them are not decisions anyone made. Read what yours emits, what causes it, and which changes are configuration rather than culture.',
   'reader.title.researcher': 'A model, its evidence, and what it cannot settle',
-  'reader.lead.researcher': 'Every claim here carries an evidence level and a source, every gap is published, and the whole registry is downloadable. Read the model rather than looking out from a seat inside it.',
+  'reader.lead.researcher':
+    'Every claim here carries an evidence level and a source, every gap is published, and the whole registry is downloadable. Read the model rather than looking out from a seat inside it.',
 
   'reader.same.title': 'The same registry, read from where you sit',
-  'reader.same.text': 'These numbers are identical on all three of these pages, because there is one registry. What changes between them is the order entries come in, the question they are put to, and which seat the lens starts in. What does not change is the entries, the evidence behind them, or the wording of a single claim.',
+  'reader.same.text':
+    'These numbers are identical on all three of these pages, because there is one registry. What changes between them is the order entries come in, the question they are put to, and which seat the lens starts in. What does not change is the entries, the evidence behind them, or the wording of a single claim.',
   'reader.same.entries': 'entries',
   'reader.same.evidence': 'evidence records',
   'reader.same.languages': 'languages',
   'reader.same.others': 'The same registry, read as:',
 
   'reader.seat.title': 'Where you sit',
-  'reader.seat.inside': 'You occupy a seat in the funnel this atlas describes, and every entry records what that seat can and cannot see. Setting the lens to it collapses every page to that point of view — and says so where an entry cannot be seen from there at all, which is the more useful half.',
-  'reader.seat.outside': 'You do not sit in this funnel. That is the difference this page is built on: the other two readings look out from a point inside the process, and yours looks at the process. No lens is set, so every seat stays visible at once.',
+  'reader.seat.inside':
+    'You occupy a seat in the funnel this atlas describes, and every entry records what that seat can and cannot see. Setting the lens to it collapses every page to that point of view — and says so where an entry cannot be seen from there at all, which is the more useful half.',
+  'reader.seat.outside':
+    'You do not sit in this funnel. That is the difference this page is built on: the other two readings look out from a point inside the process, and yours looks at the process. No lens is set, so every seat stays visible at once.',
   'reader.seat.cta': 'Read the atlas from this seat',
   'reader.seat.all': 'Every seat, and what each one cannot see',
 
   'reader.example.title': 'One entry, two readings',
-  'reader.example.intro': 'This is the trace more mechanisms produce than any other, which is why it is the example. Below is what the registry records the two seats seeing — the same entry, the same evidence, written down separately because they are not the same experience.',
+  'reader.example.intro':
+    'This is the trace more mechanisms produce than any other, which is why it is the example. Below is what the registry records the two seats seeing — the same entry, the same evidence, written down separately because they are not the same experience.',
   'reader.example.open': 'Open the entry',
 
   'reader.start.title': 'Where to start',
   'reader.limits.title': 'What this cannot tell you',
-  'reader.limits.candidate': 'It cannot tell you what happened in your case. Several mechanisms produce an identical trace, and the atlas publishes exactly which ones it cannot tell apart — that ceiling is a finding, not an omission.',
-  'reader.limits.recruiter': 'It does not accuse. Most entries here are constraints rather than misconduct, and some cannot be removed at all — for those the honest change is disclosure, not removal, and each one says which it is.',
-  'reader.limits.researcher': 'Coverage is uneven and stated. Three entries carry no source because none exists that would bear the weight, the mechanisms no observation can pin down are listed, and the whole of it is on one page.',
-  'reader.step.candidate.1': 'Answer what you saw and it names the mechanisms that fit — and the ones it cannot tell apart.',
+  'reader.limits.candidate':
+    'It cannot tell you what happened in your case. Several mechanisms produce an identical trace, and the atlas publishes exactly which ones it cannot tell apart — that ceiling is a finding, not an omission.',
+  'reader.limits.recruiter':
+    'It does not accuse. Most entries here are constraints rather than misconduct, and some cannot be removed at all — for those the honest change is disclosure, not removal, and each one says which it is.',
+  'reader.limits.researcher':
+    'Coverage is uneven and stated. Three entries carry no source because none exists that would bear the weight, the mechanisms no observation can pin down are listed, and the whole of it is on one page.',
+  'reader.step.candidate.1':
+    'Answer what you saw and it names the mechanisms that fit — and the ones it cannot tell apart.',
   'reader.step.candidate.2': 'The trace itself: what produces it, at which gate, and how reliably.',
-  'reader.step.candidate.3': 'What would have to change, and who holds each lever. Several are yours.',
-  'reader.step.recruiter.1': 'The funnel as it is supposed to run, state by state, with the commitment each state makes.',
-  'reader.step.recruiter.2': 'Put a posting and a candidate through the arithmetic and read the verdict at each gate.',
-  'reader.step.recruiter.3': 'Every proposed change, with its cost band, its scope, and the seat that has to act.',
-  'reader.step.researcher.1': 'The whole registry as a graph: entries, relations, and what reaches what.',
-  'reader.step.researcher.2': 'Coverage, unplaced traces, and the mechanisms no observation can pin down.',
-  'reader.step.researcher.3': 'Seven evidence levels, what each one licenses, and what disqualifies a source.',
+  'reader.step.candidate.3':
+    'What would have to change, and who holds each lever. Several are yours.',
+  'reader.step.recruiter.1':
+    'The funnel as it is supposed to run, state by state, with the commitment each state makes.',
+  'reader.step.recruiter.2':
+    'Put a posting and a candidate through the arithmetic and read the verdict at each gate.',
+  'reader.step.recruiter.3':
+    'Every proposed change, with its cost band, its scope, and the seat that has to act.',
+  'reader.step.researcher.1':
+    'The whole registry as a graph: entries, relations, and what reaches what.',
+  'reader.step.researcher.2':
+    'Coverage, unplaced traces, and the mechanisms no observation can pin down.',
+  'reader.step.researcher.3':
+    'Seven evidence levels, what each one licenses, and what disqualifies a source.',
   'reader.enter': 'Start here',
   'reader.short.candidate': 'a candidate',
   'reader.short.recruiter': 'a hiring side',
   'reader.short.researcher': 'a researcher',
   // --- Sending what the atlas does not have ---------------------------------
   'submit.title': 'The atlas does not have what happened to you',
-  'submit.lead': 'Then it is incomplete, and this is the most useful thing anyone can tell it. Write what you received — the message, the silence, the change — in your own words. Nothing sent here appears on the site: it is read by a person, and only a pattern that several people describe becomes an entry.',
+  'submit.lead':
+    'Then it is incomplete, and this is the most useful thing anyone can tell it. Write what you received — the message, the silence, the change — in your own words. Nothing sent here appears on the site: it is read by a person, and only a pattern that several people describe becomes an entry.',
   'submit.body.label': 'What happened',
-  'submit.body.hint': 'What you saw, when, and at which point in the process. 40 characters at least.',
+  'submit.body.hint':
+    'What you saw, when, and at which point in the process. 40 characters at least.',
   'submit.stage.label': 'Where in the process',
   'submit.stage.any': 'Not sure',
   'submit.contact.label': 'Contact, if you want a reply',
-  'submit.contact.hint': 'Optional, and never published. Leave it empty and the account of what happened is just as useful.',
+  'submit.contact.hint':
+    'Optional, and never published. Leave it empty and the account of what happened is just as useful.',
   'submit.send': 'Send',
   'submit.sending': 'Sending…',
   'submit.ok': 'Received. A person reads these; there is no automatic reply.',
-  'submit.privacy': 'Do not name the company or the people. The atlas may never contain a real employer — an atlas that names one becomes the blacklist it exists not to be — so a message that names one is refused rather than stored.',
+  'submit.privacy':
+    'Do not name the company or the people. The atlas may never contain a real employer — an atlas that names one becomes the blacklist it exists not to be — so a message that names one is refused rather than stored.',
   'submit.err.too_short': 'A little more than that: what you saw, and roughly when.',
-  'submit.err.too_long': 'That is longer than this form takes. The shape matters more than the full account.',
-  'submit.err.names_a_party': 'This names {party}. Remove the company name and send it again — the account is what matters, not who.',
+  'submit.err.too_long':
+    'That is longer than this form takes. The shape matters more than the full account.',
+  'submit.err.names_a_party':
+    'This names {party}. Remove the company name and send it again — the account is what matters, not who.',
   'submit.err.generic': 'That did not send. Try again, or open an issue on GitHub.',
   // --- Reading a rejection back into the registry ---------------------------
   'paste.title': 'Paste the rejection itself',
-  'paste.lead': 'The steps below ask you to translate what happened into the atlas\u2019s vocabulary. This does it the other way round: paste the message you received and the atlas finds the trace, if it holds one.',
-  'paste.privacy': 'Read in your browser. Nothing is sent anywhere and nothing is stored, which is why it is safe to paste a letter that names the company.',
+  'paste.lead':
+    'The steps below ask you to translate what happened into the atlas\u2019s vocabulary. This does it the other way round: paste the message you received and the atlas finds the trace, if it holds one.',
+  'paste.privacy':
+    'Read in your browser. Nothing is sent anywhere and nothing is stored, which is why it is safe to paste a letter that names the company.',
   'paste.label': 'The message you received',
   'paste.placeholder': 'Thank you for your interest. After careful review\u2026',
   'paste.read': 'Read it',
   'paste.answer': 'This is the trace the atlas holds for that',
   'paste.unsure': 'Nothing in the atlas identifies this letter',
-  'paste.unsureText': 'A rejection that names no reason matches the ordinary wording every entry shares, and picking a winner from that would be a guess. The closest entries are below — you may recognise one; the atlas does not.',
+  'paste.unsureText':
+    'A rejection that names no reason matches the ordinary wording every entry shares, and picking a winner from that would be a guess. The closest entries are below — you may recognise one; the atlas does not.',
   'paste.none': 'No entry in the atlas resembles this at all.',
   'paste.words': 'Matched on',
   'paste.continue': 'Continue with this trace',
@@ -1115,7 +1296,8 @@ export type UIKey = keyof typeof en;
 
 const uk: Record<UIKey, string> = {
   'site.tagline': 'Атлас перешкод і барʼєрів у наймі',
-  'meta.description': 'hoba — Атлас перешкод і барʼєрів у наймі. Публічний версіонований опис того, де ламається найм і що за цим може стояти.',
+  'meta.description':
+    'hoba — Атлас перешкод і барʼєрів у наймі. Публічний версіонований опис того, де ламається найм і що за цим може стояти.',
 
   'nav.analyze': 'Аналіз',
   'nav.registry': 'Реєстр',
@@ -1136,7 +1318,8 @@ const uk: Record<UIKey, string> = {
   'nav.skip': 'Перейти до вмісту',
   'wf.title': 'Як працює процес',
   'wf.kicker': 'Машини станів',
-  'wf.intro': 'Інтерактивні стейт-машини процесів найму: покроковий аналіз канонічного шляху, внутрішнього пайплайну ATS, наскрізної воронки та клієнтського контракту.',
+  'wf.intro':
+    'Інтерактивні стейт-машини процесів найму: покроковий аналіз канонічного шляху, внутрішнього пайплайну ATS, наскрізної воронки та клієнтського контракту.',
   'wf.play': 'Відтворити',
   'wf.pause': 'Пауза',
   'wf.next': 'Крок уперед',
@@ -1150,10 +1333,14 @@ const uk: Record<UIKey, string> = {
   'nav.check': 'Перевірка відповідності',
   'check.kicker': 'Перевірка відповідності',
   'check.title': 'Які барʼєри зупинять цю заявку',
-  'check.intro': 'Звірте обовʼязкові вимоги вакансії з підтвердженими фактами вашого профілю. Перевірка обчислює детерміновані барʼєри (роки, локація, вилка) та вказує, де зовнішнє підтвердження неможливе.',
-  'check.privacy': 'Усе відбувається у вашому браузері. Нічого з написаного нікуди не надсилається.',
-  'check.notAboutYou': 'Ця перевірка оцінює формальні арифметичні умови, щоб спрямувати обмежені сили туди, де це має сенс. Вона не оцінює особисті здібності та не вигадує ймовірностей найму.',
-  'check.noCompany': 'Усі введені дані залишаються виключно у вашому браузері. Атлас не веде бази компаній і нічого нікуди не передає.',
+  'check.intro':
+    'Звірте обовʼязкові вимоги вакансії з підтвердженими фактами вашого профілю. Перевірка обчислює детерміновані барʼєри (роки, локація, вилка) та вказує, де зовнішнє підтвердження неможливе.',
+  'check.privacy':
+    'Усе відбувається у вашому браузері. Нічого з написаного нікуди не надсилається.',
+  'check.notAboutYou':
+    'Ця перевірка оцінює формальні арифметичні умови, щоб спрямувати обмежені сили туди, де це має сенс. Вона не оцінює особисті здібності та не вигадує ймовірностей найму.',
+  'check.noCompany':
+    'Усі введені дані залишаються виключно у вашому браузері. Атлас не веде бази компаній і нічого нікуди не передає.',
   'check.you': 'Що ви можете підтвердити',
   'check.posting': 'Що оголошення називає обовʼязковим',
   'check.years': 'Скільки років підтверджує ваша датована історія',
@@ -1168,33 +1355,45 @@ const uk: Record<UIKey, string> = {
   'check.bandMin': 'Опублікована вилка, нижня межа',
   'check.bandMax': 'Опублікована вилка, верхня межа',
   'check.technologyAge': 'Скільки років існує те, чого вимагають',
-  'check.technologyHint': 'Заповнюйте, лише якщо знаєте. Якщо вимагають більше років, ніж це взагалі існує, такої вимоги не виконає ніхто — це pat.experience_age_impossibility.',
+  'check.technologyHint':
+    'Заповнюйте, лише якщо знаєте. Якщо вимагають більше років, ніж це взагалі існує, такої вимоги не виконає ніхто — це pat.experience_age_impossibility.',
   'check.result': 'Що вирішує арифметика',
   'check.empty': 'Заповніть будь-яке поле вище — і перевірка почнеться.',
-  'check.stops': 'Проходження зупиняється на {gate} — у точці канонічного шляху, де стан «{state}» перестає триматися.',
-  'check.noStop': 'Ніщо з уведеного не дає детермінованої відмови. Це не привід для оптимізму: умови, які насправді вирішують, ця перевірка не бачить.',
+  'check.stops':
+    'Проходження зупиняється на {gate} — у точці канонічного шляху, де стан «{state}» перестає триматися.',
+  'check.noStop':
+    'Ніщо з уведеного не дає детермінованої відмови. Це не привід для оптимізму: умови, які насправді вирішують, ця перевірка не бачить.',
   'check.undetermined': '{n} з них неможливо визначити ззовні системи.',
   'check.v.passes': 'умову виконано',
   'check.v.fails': 'умову не виконано',
   'check.v.undetermined': 'визначити неможливо',
   'check.v.unsatisfiable': 'цю умову не виконає ніхто',
-  'check.r.years.impossible': 'Оголошення вимагає {required} років досвіду з тим, що існує {existed} років. Такій вимозі не відповідає жоден профіль.',
-  'check.r.years.possible': 'Ця річ існує {existed} років, тож вимога в {required} років здійсненна.',
-  'check.r.years.unknown': 'Оголошення називає {required} років. Ви не вказали, скільки підтверджує ваша датована історія.',
+  'check.r.years.impossible':
+    'Оголошення вимагає {required} років досвіду з тим, що існує {existed} років. Такій вимозі не відповідає жоден профіль.',
+  'check.r.years.possible':
+    'Ця річ існує {existed} років, тож вимога в {required} років здійсненна.',
+  'check.r.years.unknown':
+    'Оголошення називає {required} років. Ви не вказали, скільки підтверджує ваша датована історія.',
   'check.r.years.short': 'Названо {required} років; ваша датована історія підтверджує {have}.',
   'check.r.years.met': 'Названо {required} років; підтверджено {have}.',
-  'check.r.authorisation.unknown': 'Потрібен дозвіл на роботу в {where}. Ви не вказали, де ви можете працювати.',
+  'check.r.authorisation.unknown':
+    'Потрібен дозвіл на роботу в {where}. Ви не вказали, де ви можете працювати.',
   'check.r.authorisation.present': 'Ви можете працювати в {where}.',
-  'check.r.authorisation.absent': 'Потрібен дозвіл на роботу в {where}, а серед названих вами місць його немає.',
+  'check.r.authorisation.absent':
+    'Потрібен дозвіл на роботу в {where}, а серед названих вами місць його немає.',
   'check.r.location.unknown': 'За оголошенням наймають у {places}. Ви не вказали, де перебуваєте.',
   'check.r.location.inside': '{where} — серед місць, де наймають.',
   'check.r.location.outside': 'Ви у {where}, а наймають у {places}.',
-  'check.r.skills.present': 'Усі {n} обовʼязкові формулювання є серед того, що ви можете підтвердити. Це проходить збіг рядків, але чи прочитав їх парсер — інше питання, тож вердикт лишається невизначеним.',
-  'check.r.skills.missing': 'Серед того, що ви можете підтвердити, немає таких обовʼязкових формулювань: {missing} — усього {n}. Чи це відсіювальне правило, чи один із входів моделі ранжування, ззовні не видно, тож саме собою це нічого не вирішує.',
+  'check.r.skills.present':
+    'Усі {n} обовʼязкові формулювання є серед того, що ви можете підтвердити. Це проходить збіг рядків, але чи прочитав їх парсер — інше питання, тож вердикт лишається невизначеним.',
+  'check.r.skills.missing':
+    'Серед того, що ви можете підтвердити, немає таких обовʼязкових формулювань: {missing} — усього {n}. Чи це відсіювальне правило, чи один із входів моделі ранжування, ззовні не видно, тож саме собою це нічого не вирішує.',
   'check.r.band.above': 'Ви назвали {expectation}, а верхня межа опублікованої вилки — {max}.',
-  'check.r.band.under': 'Ви назвали {expectation}, а вилка починається з {min}. Бути нижче вилки — це не барʼєр, але це число все одно використають.',
+  'check.r.band.under':
+    'Ви назвали {expectation}, а вилка починається з {min}. Бути нижче вилки — це не барʼєр, але це число все одно використають.',
   'check.r.band.inside': '{expectation} — у межах опублікованої вилки.',
-  'check.r.band.unpublished': 'Вилки не опубліковано, тож тут нема чого звіряти, доки хтось її не назве.',
+  'check.r.band.unpublished':
+    'Вилки не опубліковано, тож тут нема чого звіряти, доки хтось її не назве.',
   'check.preset.label': 'Готові шаблони та тестові випадки:',
   'check.preset.perfect': 'Senior Engineer (Повна відповідність)',
   'check.preset.impossible': 'Неможливий стаж технології',
@@ -1214,22 +1413,28 @@ const uk: Record<UIKey, string> = {
   'check.placeholders.bandMax': 'напр. 130000',
   'check.placeholders.technologyAge': 'напр. 3',
   'check.turnaround.title': 'Діагностика затримок та аномалій часу очікування',
-  'check.turnaround.desc': 'Оцініть, чи час очікування на поточному етапі перевищує допустимі межі, та дізнайтеся, які приховані механізми діють під час затримок.',
+  'check.turnaround.desc':
+    'Оцініть, чи час очікування на поточному етапі перевищує допустимі межі, та дізнайтеся, які приховані механізми діють під час затримок.',
   'check.turnaround.wf': 'Процес',
   'check.turnaround.state': 'Поточний стан воронки',
   'check.turnaround.days': 'Минуло днів на цьому етапі',
   'check.turnaround.nominal': 'Нормальний час',
   'check.turnaround.breach': 'Критичне зависання',
-  'check.turnaround.stalled': 'Етап перевищує максимальний час очікування у {max} днів. Високий ризик заморозки або фантомного закриття.',
+  'check.turnaround.stalled':
+    'Етап перевищує максимальний час очікування у {max} днів. Високий ризик заморозки або фантомного закриття.',
   'check.turnaround.normal': 'У межах нормального вікна очікування ({expected} днів).',
   'check.runway.title': 'Калькулятор фінансової витривалості та ризиків',
-  'check.runway.desc': 'Оцініть горизонт пошуку та вразливість до тиску зниження грейду (M-017) чи невдалих ставок (pat.compensation_double_bind) за поточних витрат.',
+  'check.runway.desc':
+    'Оцініть горизонт пошуку та вразливість до тиску зниження грейду (M-017) чи невдалих ставок (pat.compensation_double_bind) за поточних витрат.',
   'check.runway.savings': 'Доступні заощадження ($ або €)',
   'check.runway.burn': 'Щомісячні базові витрати ($ або €)',
   'check.runway.horizon': 'Запас витривалості: {months} міс.',
-  'check.runway.risk.high': 'Критичний фінансовий ризик (< 3 міс.). Висока вразливість до зниження грейду та вимушених поступок.',
-  'check.runway.risk.medium': 'Помірний запас (3–6 міс.). Рекомендовано паралельно тестувати швидкі проби.',
-  'check.runway.risk.safe': 'Стабільний запас (> 6 міс.). Повна можливість обирати якісні пропозиції.',
+  'check.runway.risk.high':
+    'Критичний фінансовий ризик (< 3 міс.). Висока вразливість до зниження грейду та вимушених поступок.',
+  'check.runway.risk.medium':
+    'Помірний запас (3–6 міс.). Рекомендовано паралельно тестувати швидкі проби.',
+  'check.runway.risk.safe':
+    'Стабільний запас (> 6 міс.). Повна можливість обирати якісні пропозиції.',
   'check.runway.infinite': 'Необмежений запас (нульові витрати).',
   'nav.eras': 'Епохи',
   'nav.group.atlas': 'Атлас',
@@ -1251,7 +1456,8 @@ const uk: Record<UIKey, string> = {
   'nav.desc.about': 'Що це, хто підтримує і за якою ліцензією',
   'nav.desc.cats': 'Параметричний векторний генератор котиків із трильйонами комбінацій',
   'nav.archetypes': 'Архетипи',
-  'nav.desc.archetypes': 'Прізвиська та матриця на кшталт alignment chart — це для розваги, не висновок',
+  'nav.desc.archetypes':
+    'Прізвиська та матриця на кшталт alignment chart — це для розваги, не висновок',
   'nav.actors': 'Актори',
   'lens.label': 'Читати як',
   'lens.none': 'Усі точки зору',
@@ -1259,20 +1465,24 @@ const uk: Record<UIKey, string> = {
   'lens.clear': 'Показати всі точки зору',
   'lens.hint': 'Кожен запис — зсередини однієї з семи позицій, з яких складається воронка.',
   'persp.title': 'З кожного боку',
-  'persp.intro': 'Той самий запис зсередини кожної позиції, яка з ним стикається: що туди доходить, що це означає звідти і що відбувається далі з огляду на те, чим ця позиція керує.',
+  'persp.intro':
+    'Той самий запис зсередини кожної позиції, яка з ним стикається: що туди доходить, що це означає звідти і що відбувається далі з огляду на те, чим ця позиція керує.',
   'persp.sees': 'Що до них доходить',
   'persp.reads': 'Що це означає звідти',
   'persp.does': 'Що відбувається далі',
   'persp.blind': 'Звідси цього не видно',
-  'persp.blindNote': 'З цієї позиції цього запису не видно. Це не пропуск в атласі — це і є висновок: рішення ухвалюють там, куди звідси не видно.',
+  'persp.blindNote':
+    'З цієї позиції цього запису не видно. Це не пропуск в атласі — це і є висновок: рішення ухвалюють там, куди звідси не видно.',
   'actors.kicker': 'Актори',
   'actors.title': 'Сім позицій, з яких складається воронка',
-  'actors.intro': 'Сім структурних позицій у процесі найму: що контролює кожен актор, що для нього залишається невидимим, за якими метриками його оцінюють і які дії йому доступні.',
+  'actors.intro':
+    'Сім структурних позицій у процесі найму: що контролює кожен актор, що для нього залишається невидимим, за якими метриками його оцінюють і які дії йому доступні.',
   'actors.controls': 'Вирішує',
   'actors.blind': 'Не бачить',
   'actors.incentives': 'За чим оцінюють',
   'actors.recommendations': 'Що ця позиція могла б зробити',
-  'actors.recIntro': 'Кожен пункт — це те, чим ця позиція справді керує, і ціна тут названа прямо, а не мається на увазі.',
+  'actors.recIntro':
+    'Кожен пункт — це те, чим ця позиція справді керує, і ціна тут названа прямо, а не мається на увазі.',
   'actors.costs': 'Чого це коштує',
   'actors.addresses': 'Стосується',
   'actors.alsoSee': 'Уже описано як інтервенція',
@@ -1280,45 +1490,57 @@ const uk: Record<UIKey, string> = {
   'actors.noRecs': 'Для цієї позиції рекомендацій поки що не записано.',
   'actors.readAs': 'Читати весь атлас звідси',
   'gap.title': 'Чого цей атлас не покриває',
-  'gap.intro': 'Реєстр вартий рівно стільки, скільки варто знати про його прогалини, — тож їх тут порахували, а не описали. Кожне число нижче виводиться з реєстру під час збірки.',
+  'gap.intro':
+    'Реєстр вартий рівно стільки, скільки варто знати про його прогалини, — тож їх тут порахували, а не описали. Кожне число нижче виводиться з реєстру під час збірки.',
   'gap.gates': 'Шлюзи, для яких не запропоновано змін',
-  'gap.gatesText': 'Барʼєр, який атлас описує, але не називає нічого, що з ним можна зробити. {n} із {total}.',
+  'gap.gatesText':
+    'Барʼєр, який атлас описує, але не називає нічого, що з ним можна зробити. {n} із {total}.',
   'gap.mechanisms': 'Причини, для яких не запропоновано змін',
   'gap.mechanismsText': 'Механізм, на який не спрямована жодна інтервенція. {n} із {total}.',
-  'gap.mechanismsSplit': 'Поділ нижче важливий: там, де атлас записав, що важеля не тримає ніхто з названих сторін, відсутність змін — це висновок; в усіх інших випадках це недогляд.',
+  'gap.mechanismsSplit':
+    'Поділ нижче важливий: там, де атлас записав, що важеля не тримає ніхто з названих сторін, відсутність змін — це висновок; в усіх інших випадках це недогляд.',
   'gap.outOfReach': 'нікому не дотягнутися',
   'gap.omission': 'ще не написано',
   'gap.merged': 'Причини, яких реєстр не розрізняє',
-  'gap.mergedText': 'Кожна група нижче лишає той самий слід. Жодне спостереження в реєстрі не розділяє її учасників, тож звуження до одного з них насправді звузило до всіх. Груп: {n}, механізмів: {m} із {total}. Це межа словника спостережень, а не дефект самих причин.',
+  'gap.mergedText':
+    'Кожна група нижче лишає той самий слід. Жодне спостереження в реєстрі не розділяє її учасників, тож звуження до одного з них насправді звузило до всіх. Груп: {n}, механізмів: {m} із {total}. Це межа словника спостережень, а не дефект самих причин.',
   'gap.mergedTrace': 'спільний слід',
   'gap.mergedNone': 'Кожен механізм лишає власний слід.',
   'gap.ceiling': 'Причини, яких не встановлює жодне спостереження',
-  'gap.ceilingText': 'Причина встановлена лише тоді, коли ніщо інше не лишає всього, що лишає вона. Для {n} із {total} це не так ніколи: інша причина дає кожен її слід, тож переживає будь-яке спостереження. Поряд — те, що її перекриває.',
+  'gap.ceilingText':
+    'Причина встановлена лише тоді, коли ніщо інше не лишає всього, що лишає вона. Для {n} із {total} це не так ніколи: інша причина дає кожен її слід, тож переживає будь-яке спостереження. Поряд — те, що її перекриває.',
   'gap.ceilingCovered': 'ніколи не відпадає',
   'gap.ceilingNone': 'Кожну причину можна чимось встановити.',
   'gap.identifying': 'Спостереження, які встановлюють причину самотужки',
   'mech.observedAt': 'Кандидат бачить це на етапі: {stages}',
   'mech.observedUnplaced': 'Де читають цей слід — не записано.',
   'gap.unplaced': 'Сліди, яких атлас не розміщує',
-  'gap.unplacedText': 'Де механізм діє і де читають його слід — різні питання, і для {n} із {total} емісій записано лише перше. {c} із них прямо суперечать: спостереження не бачать на жодному етапі, де механізм працює, тож перетинання відповіді не замінить.',
+  'gap.unplacedText':
+    'Де механізм діє і де читають його слід — різні питання, і для {n} із {total} емісій записано лише перше. {c} із них прямо суперечать: спостереження не бачать на жодному етапі, де механізм працює, тож перетинання відповіді не замінить.',
   'gap.unplacedConflicting': 'суперечать',
   'gap.unplacedAmbiguous': 'більш ніж один етап',
   'reach.title': 'Досяжне без прямого звʼязку',
-  'reach.intro': 'Звʼязки вище — це один крок. Тут — те, до чого запис дотягується лише через них: не перелік, а обрис, бо в настільки перехресному реєстрі перелік виходить довгий.',
+  'reach.intro':
+    'Звʼязки вище — це один крок. Тут — те, до чого запис дотягується лише через них: не перелік, а обрис, бо в настільки перехресному реєстрі перелік виходить довгий.',
   'reach.explore': 'Пройти це графом',
   'reach.affects': 'Впливає на',
   'reach.affectedBy': 'Зазнає впливу від',
-  'gap.identifyingText': '{n} із {total} спостережень узгоджуються рівно з однією причиною. Решта звужують до множини, ніколи до однієї.',
+  'gap.identifyingText':
+    '{n} із {total} спостережень узгоджуються рівно з однією причиною. Решта звужують до множини, ніколи до однієї.',
   'gap.evidence': 'Записи без посилання на опубліковане джерело',
-  'gap.evidenceText': '{n} із {total}. Запис без цитати все одно має рівень доказовості, який каже, наскільки він підтверджений.',
+  'gap.evidenceText':
+    '{n} із {total}. Запис без цитати все одно має рівень доказовості, який каже, наскільки він підтверджений.',
   'gap.stages': 'Етапи, на яких кандидат не може спостерегти нічого',
-  'gap.stagesText': 'Це не прогалина, яку треба закрити: доки роль не опубліковано, і всередині власного розгляду в менеджера з найму кандидатові за побудовою нема чого побачити. Це записано, бо сама тиша і є висновком.',
+  'gap.stagesText':
+    'Це не прогалина, яку треба закрити: доки роль не опубліковано, і всередині власного розгляду в менеджера з найму кандидатові за побудовою нема чого побачити. Це записано, бо сама тиша і є висновком.',
   'gap.none': 'Немає.',
-  'gap.limits': 'Дві межі, яких числа не показують. Реєстр описує технічний найм, а докази для епох узяті з макростатистики США — тож цифри на сторінці епох описують один ринок. Ані те, ані те не є твердженням про найм усюди.',
+  'gap.limits':
+    'Дві межі, яких числа не показують. Реєстр описує технічний найм, а докази для епох узяті з макростатистики США — тож цифри на сторінці епох описують один ринок. Ані те, ані те не є твердженням про найм усюди.',
   'era.made': 'Що зробило це звичним',
   'era.kicker': 'Епохи',
   'era.title': 'Звідки бралися гроші',
-  'era.intro': 'Макроекономічні епохи найму від 2010 року до сьогодні: як вартість капіталу змінила механізми відбору та чому звичні канали входу перестали працювати.',
+  'era.intro':
+    'Макроекономічні епохи найму від 2010 року до сьогодні: як вартість капіталу змінила механізми відбору та чому звичні канали входу перестали працювати.',
   'era.capital': 'Гроші',
   'era.hiring': 'Що це робило з наймом',
   'era.entry': 'Як потрапляли всередину',
@@ -1335,13 +1557,15 @@ const uk: Record<UIKey, string> = {
   'ideal.support': 'Цей запис — одна з опор, на яких тримається це зобовʼязання.',
   'ideal.link': 'Пройти цей шлях покроково',
   'ideal.badge': 'канонічний шлях',
-  'ideal.lead': 'Процес, записаний як зобовʼязання, які він має тримати. Усе інше в реєстрі стоїть відносно нього: барʼєр — це точка, де одне з них перестає триматися; інтервенція — опора, на якій тримається одне з них.',
+  'ideal.lead':
+    'Процес, записаний як зобовʼязання, які він має тримати. Усе інше в реєстрі стоїть відносно нього: барʼєр — це точка, де одне з них перестає триматися; інтервенція — опора, на якій тримається одне з них.',
   'ideal.construct': 'Конструкція, а не опис конкретного роботодавця.',
   'ideal.deviationsHere': 'Де це зобовʼязання перестає триматися',
   'ideal.holdsHere': 'На чому тримається цей крок',
   'wf.mode.play': 'Подивитися, як працює',
   'wf.mode.choose': 'Пройти самостійно',
-  'wf.chooseHint': 'Оберіть, що сталося на кожній розвилці. Пройдений шлях стає посиланням, яке можна надіслати.',
+  'wf.chooseHint':
+    'Оберіть, що сталося на кожній розвилці. Пройдений шлях стає посиланням, яке можна надіслати.',
   'wf.branches': 'Що сталося далі?',
   'wf.ended': 'Чим завершився цей шлях',
   'wf.broken': 'Відхилення, задокументовані на цьому маршруті',
@@ -1351,7 +1575,8 @@ const uk: Record<UIKey, string> = {
   'wf.walked': 'Пройдено за {n} кроків',
   'wf.routes': 'Крізь цей шлях проходить {n} різних маршрутів:',
   'wf.routesEnd': '{n} закінчуються на «{title}»',
-  'wf.routesNote': 'Це підрахунок, а не ймовірність — атлас не має підстав казати, яким саме піде конкретна людина.',
+  'wf.routesNote':
+    'Це підрахунок, а не ймовірність — атлас не має підстав казати, яким саме піде конкретна людина.',
   'wf.arrived': 'Сюди привело',
   'wf.leaves': 'Звідси веде',
   'wf.transition': 'Спрацьовує, коли',
@@ -1363,7 +1588,8 @@ const uk: Record<UIKey, string> = {
   'wf.canvasLabel': 'Діаграма станів. Впорядкований список нижче містить той самий вміст.',
   'md.facts': 'Коротко',
   'md.relations': 'Повʼязані записи',
-  'md.footer': 'hoba — відкритий версіонований атлас перешкод у наймі. Вміст — CC BY-SA 4.0. Цей документ згенеровано з реєстру; канонічна сторінка — за посиланням вище.',
+  'md.footer':
+    'hoba — відкритий версіонований атлас перешкод у наймі. Вміст — CC BY-SA 4.0. Цей документ згенеровано з реєстру; канонічна сторінка — за посиланням вище.',
   'md.view': 'Ця сторінка як',
   'share.card': 'Картка для поширення',
   'share.postcard': 'листівка',
@@ -1388,11 +1614,13 @@ const uk: Record<UIKey, string> = {
   'specimen.subject.title': 'Назва:',
   'specimen.section': 'Як це виглядає',
   'specimen.sectionFixed': 'Як це виглядає, коли інтервенція вже працює',
-  'specimen.disclaimer': 'Ці уривки складені як типові, а не скопійовані. Жодного конкретного листа, компанії чи людини тут не цитовано.',
+  'specimen.disclaimer':
+    'Ці уривки складені як типові, а не скопійовані. Жодного конкретного листа, компанії чи людини тут не цитовано.',
   'nav.sectionAtlas': 'Атлас',
   'nav.sectionProject': 'Проєкт',
 
-  'footer.blurb': 'hoba — відкритий, версіонований, машиночитний атлас перешкод, спостережень і механізмів у наймі. Коли сигнал неясний — складайте карту системи.',
+  'footer.blurb':
+    'hoba — відкритий, версіонований, машиночитний атлас перешкод, спостережень і механізмів у наймі. Коли сигнал неясний — складайте карту системи.',
   'footer.canonical': 'Канонічний домен:',
   'footer.atlas': 'Атлас',
   'footer.analysis': 'Аналіз',
@@ -1404,7 +1632,8 @@ const uk: Record<UIKey, string> = {
   'footer.api': 'API та інтеграція',
   'footer.mcp': 'MCP-сервер (stdio)',
   'footer.principles': 'Принципи',
-  'footer.principlesText': 'hoba відділяє спостереження від причини, а повідомлення — від мотиву. Жодних чорних списків компаній, жодних здогадок про наміри, жодної фальшивої точності.',
+  'footer.principlesText':
+    'hoba відділяє спостереження від причини, а повідомлення — від мотиву. Жодних чорних списків компаній, жодних здогадок про наміри, жодної фальшивої точності.',
   'footer.author': 'Автор:',
   'footer.version': 'сайт v{site} · реєстр {registry}',
   'footer.content': 'Вміст:',
@@ -1430,9 +1659,11 @@ const uk: Record<UIKey, string> = {
   'entity.plural.era': 'Епохи',
   'entity.plural.process': 'Процеси',
   'removability.candidate': 'Дія кандидата',
-  'removability.candidate.desc': 'Ендогенна зона: кандидат може перевірити це сам або підлаштуватися',
+  'removability.candidate.desc':
+    'Ендогенна зона: кандидат може перевірити це сам або підлаштуватися',
   'removability.intermediary': 'Залежить від посередника',
-  'removability.intermediary.desc': 'Потрібна дія рекрутера, менеджера із найму або зміна політики компанії',
+  'removability.intermediary.desc':
+    'Потрібна дія рекрутера, менеджера із найму або зміна політики компанії',
   'removability.none': 'Екзогенне (поза впливом)',
   'removability.none.desc': 'Екзогенна зона: структурний чинник поза контролем кандидата',
   'removability.all': 'Усі',
@@ -1530,46 +1761,60 @@ const uk: Record<UIKey, string> = {
   'home.case.title': 'Цей лист — те, що найчастіше лишається кандидатові',
   'home.case.sub': 'І водночас найменш інформативний. Ось що з ним робить атлас.',
   'home.case.establishes': 'Що він встановлює',
-  'home.case.establishesText': 'Що рішення зафіксували, а вам надіслали шаблонний лист — у день, який можна назвати. Більше нічого.',
+  'home.case.establishesText':
+    'Що рішення зафіксували, а вам надіслали шаблонний лист — у день, який можна назвати. Більше нічого.',
   'home.case.behind': 'Що може бути за ним',
-  'home.case.behindText': 'Кожен механізм нижче може дати саме таке повідомлення. Реєстр не каже, який із них спрацював, — лише які сумісні з ним і які з них ви можете перевірити.',
+  'home.case.behindText':
+    'Кожен механізм нижче може дати саме таке повідомлення. Реєстр не каже, який із них спрацював, — лише які сумісні з ним і які з них ви можете перевірити.',
   'home.case.agency': 'Де ви можете діяти',
-  'home.case.agencyText': 'Саме тому реєстр сортує механізми за зоною впливу. Щось ви перевірите одним повідомленням, щось залежить від посередника, а щось — бюджетні рішення, ухвалені вище за сам процес найму.',
+  'home.case.agencyText':
+    'Саме тому реєстр сортує механізми за зоною впливу. Щось ви перевірите одним повідомленням, щось залежить від посередника, а щось — бюджетні рішення, ухвалені вище за сам процес найму.',
   'home.case.cta': 'Відкрити це спостереження',
   'home.patterns.kicker': 'Названі патерни',
   'home.patterns.title': 'Деякі пастки структурні — і варті назви',
-  'home.patterns.sub': 'Коли два обґрунтовані рішення складаються в глухий кут, якого ніхто не обирав, обговорювати його можна лише тоді, коли він має назву.',
+  'home.patterns.sub':
+    'Коли два обґрунтовані рішення складаються в глухий кут, якого ніхто не обирав, обговорювати його можна лише тоді, коли він має назву.',
   'home.patterns.all': 'Усі патерни',
   'home.not.kicker': 'Межі',
   'home.not.title': 'Чим це не є',
   'home.dev.title': 'Усе це — машиночитне',
-  'home.dev.text': 'Кожен запис на цьому сайті — валідований файл у публічному репозиторії. Усі вони доступні як статичні JSON, GraphML і CSV, а для агентів — через MCP.',
+  'home.dev.text':
+    'Кожен запис на цьому сайті — валідований файл у публічному репозиторії. Усі вони доступні як статичні JSON, GraphML і CSV, а для агентів — через MCP.',
   'home.stat.entities': 'Записів',
   'home.stat.barriers': 'Барʼєрів воронки',
   'home.stat.mechanisms': 'Механізмів',
   'home.stat.edges': 'Звʼязків у графі',
   'home.h1.before': 'Ви відгукнулися. У відповідь — тиша: ',
   'home.h1.accent': 'ось карта того, чому воронка найму буксує',
-  'home.what': 'hoba — відкритий машиночитний атлас із {n} записів, що досліджує причинно-наслідкові звʼязки, барʼєри та приховану динаміку технічного найму.',
+  'home.what':
+    'hoba — відкритий машиночитний атлас із {n} записів, що досліджує причинно-наслідкові звʼязки, барʼєри та приховану динаміку технічного найму.',
   'home.problem.title': 'Проблема, заради якої він існує',
   'home.problem.heading': 'Ніхто всередині процесу не бачить його цілком',
-  'home.problem': 'Ніщо в цьому процесі не влаштоване так, щоб сказати вам, що саме сталося. Ніхто всередині не бачить його цілком: рекрутер не знає, як вас оцінили на технічній співбесіді, а ті, хто оцінював, не знають, чи ще є бюджет. Тож до вас доходить коротка, шаблонна й запізніла відповідь, а прогалину люди заповнюють єдиним поясненням, яке завжди під рукою: що річ була в них. А часто всі підрахунки зробили ще до того, як хтось щось прочитав.',
+  'home.problem':
+    'Ніщо в цьому процесі не влаштоване так, щоб сказати вам, що саме сталося. Ніхто всередині не бачить його цілком: рекрутер не знає, як вас оцінили на технічній співбесіді, а ті, хто оцінював, не знають, чи ще є бюджет. Тож до вас доходить коротка, шаблонна й запізніла відповідь, а прогалину люди заповнюють єдиним поясненням, яке завжди під рукою: що річ була в них. А часто всі підрахунки зробили ще до того, як хтось щось прочитав.',
   'home.gives.title': 'Що атлас із цим робить',
   'home.gives.1.title': 'Відділяє те, що ви бачили, від того, що це означає',
-  'home.gives.1.text': 'Біля кожного спостереження записано, що воно може встановити — і окремо те, чого не може. Відмова о другій ночі встановлює, що рішення зафіксували. Про вашу роботу вона не встановлює нічого.',
+  'home.gives.1.text':
+    'Біля кожного спостереження записано, що воно може встановити — і окремо те, чого не може. Відмова о другій ночі встановлює, що рішення зафіксували. Про вашу роботу вона не встановлює нічого.',
   'home.gives.2.title': 'Називає всі причини, які підходять, і не обирає жодної',
-  'home.gives.2.text': 'Для кожного спостереження реєстр перелічує механізми, сумісні з ним: для найпоширенішого шаблону відмови їх {n}. Який саме спрацював, реєстр не стверджує: ззовні системи це не встановити, а вдавати протилежне — і означає почати вгадувати.',
+  'home.gives.2.text':
+    'Для кожного спостереження реєстр перелічує механізми, сумісні з ним: для найпоширенішого шаблону відмови їх {n}. Який саме спрацював, реєстр не стверджує: ззовні системи це не встановити, а вдавати протилежне — і означає почати вгадувати.',
   'home.gives.3.title': 'Каже, хто міг би це змінити і чого це йому коштувало б',
-  'home.gives.3.text': 'Для кожного барʼєра, який реєстр здатен назвати, є відповідні інтервенції — хто мав би діяти, від політики роботодавця до типових налаштувань ATS і до наступного кроку самого кандидата, — і скільки, за оцінкою, це йому коштуватиме: низько, середньо чи високо. Наразі каталогізовано {n}. Назвати того, хто міг би діяти, — не те саме, що очікувати цього від нього.',
+  'home.gives.3.text':
+    'Для кожного барʼєра, який реєстр здатен назвати, є відповідні інтервенції — хто мав би діяти, від політики роботодавця до типових налаштувань ATS і до наступного кроку самого кандидата, — і скільки, за оцінкою, це йому коштуватиме: низько, середньо чи високо. Наразі каталогізовано {n}. Назвати того, хто міг би діяти, — не те саме, що очікувати цього від нього.',
   'home.cta.primary': 'Почати з того, що сталося',
   'home.cta.secondary': 'Читати атлас ({n} записів)',
   'home.role.candidate.title': 'Для кандидатів та пошукачів',
-  'home.role.candidate.desc': 'Розбирайте незрозумілі відмови, оцінюйте зону власного контролю та проводьте точні перевірочні проби без самобичування.',
+  'home.role.candidate.desc':
+    'Розбирайте незрозумілі відмови, оцінюйте зону власного контролю та проводьте точні перевірочні проби без самобичування.',
   'home.role.recruiter.title': 'Для команд найму та лідерів',
-  'home.role.recruiter.desc': 'Аудіюйте затримки у воронці, втрати кандидатів на етапах та викривлення парсерів резюме.',
+  'home.role.recruiter.desc':
+    'Аудіюйте затримки у воронці, втрати кандидатів на етапах та викривлення парсерів резюме.',
   'home.role.researcher.title': 'Для дослідників систем та ринку',
-  'home.role.researcher.desc': 'Досліджуйте {n} верифікованих вузлів, математичні доведення в Lean 4 та системні причинні цикли.',
-  'home.tools.graph.desc': 'Досліджуйте {n} повʼязаних сутностей: яруси, причинні цикли Тарʼяна та розподіл зон контролю.',
+  'home.role.researcher.desc':
+    'Досліджуйте {n} верифікованих вузлів, математичні доведення в Lean 4 та системні причинні цикли.',
+  'home.tools.graph.desc':
+    'Досліджуйте {n} повʼязаних сутностей: яруси, причинні цикли Тарʼяна та розподіл зон контролю.',
   'home.stat.barriersDesc': 'Послідовні етапи воронки',
   'home.stat.mechanismsDesc': 'Верифіковані механізми',
   'home.stat.patternsDesc': 'Названі подвійні пастки',
@@ -1578,28 +1823,36 @@ const uk: Record<UIKey, string> = {
   'home.cta.registry': 'Відкрити реєстр ({n} записів)',
   'home.protocol.kicker': 'Діагностична методологія',
   'home.protocol.title': 'Протокол hoba',
-  'home.protocol.sub': 'Чотири кроки, які замінюють прокручування в голові набором окремих фактів, які можна перевірити.',
+  'home.protocol.sub':
+    'Чотири кроки, які замінюють прокручування в голові набором окремих фактів, які можна перевірити.',
   'home.step.h.title': 'Hard Facts — факти',
-  'home.step.h.text': 'Записуйте лише те, що ви бачили безпосередньо: отримані листи, точний етап, на якому все спинилося, паузи між подіями. Жодного вгадування намірів.',
+  'home.step.h.text':
+    'Записуйте лише те, що ви бачили безпосередньо: отримані листи, точний етап, на якому все спинилося, паузи між подіями. Жодного вгадування намірів.',
   'home.step.h.out': 'Результат: спостереження (A)',
   'home.step.o.title': 'Obstacle — барʼєр',
-  'home.step.o.text': 'Знайдіть барʼєр воронки, на якому все спинилося: парсинг в ATS, технічний скринінг, заморозка бюджету.',
+  'home.step.o.text':
+    'Знайдіть барʼєр воронки, на якому все спинилося: парсинг в ATS, технічний скринінг, заморозка бюджету.',
   'home.step.o.out': 'Результат: DAG барʼєрів воронки (B)',
   'home.step.b.title': 'Behind — механізми',
-  'home.step.b.text': 'Перелічіть механізми, логічно сумісні з цими фактами. Чесні базові механізми лишаються в списку поряд із системним тертям.',
+  'home.step.b.text':
+    'Перелічіть механізми, логічно сумісні з цими фактами. Чесні базові механізми лишаються в списку поряд із системним тертям.',
   'home.step.b.out': 'Результат: сумісні механізми (M)',
   'home.step.a.title': 'Agency — вплив',
-  'home.step.a.text': 'Розділіть те, на що ви можете вплинути, те, що залежить від посередника, і те, що є зовнішнім. Крок завершується кількома обмеженими дешевими пробами.',
+  'home.step.a.text':
+    'Розділіть те, на що ви можете вплинути, те, що залежить від посередника, і те, що є зовнішнім. Крок завершується кількома обмеженими дешевими пробами.',
   'home.step.a.out': 'Результат: проби та умова зупинки',
   'home.pillar1.kicker': '01 / Форензична точність',
   'home.pillar1.title': 'Діагностика без здогадок',
-  'home.pillar1.text': 'Спостереження — не причина; лист із відмовою — не обовʼязково пояснення. hoba робить невизначеність явною і запобігає хибним висновкам.',
+  'home.pillar1.text':
+    'Спостереження — не причина; лист із відмовою — не обовʼязково пояснення. hoba робить невизначеність явною і запобігає хибним висновкам.',
   'home.pillar2.kicker': '02 / Системна динаміка',
   'home.pillar2.title': 'Знаходьте патерни суперечностей',
-  'home.pillar2.text': 'Названі патерни — «Пастка подвійного рівня», «Закрито та відкрито знову» — підкріплені сильно звʼязними компонентами графа (SCC).',
+  'home.pillar2.text':
+    'Названі патерни — «Пастка подвійного рівня», «Закрито та відкрито знову» — підкріплені сильно звʼязними компонентами графа (SCC).',
   'home.pillar3.kicker': '03 / Замкнений цикл покращень',
   'home.pillar3.title': 'Цільові системні інтервенції',
-  'home.pillar3.text': 'Конкретні зміни політик і процесів для роботодавців та ATS-платформ, кожна — з метрикою, яку можна виміряти, щоб зменшити шум на ринку.',
+  'home.pillar3.text':
+    'Конкретні зміни політик і процесів для роботодавців та ATS-платформ, кожна — з метрикою, яку можна виміряти, щоб зменшити шум на ринку.',
   'home.cta2.title': 'Готові розібрати те, що сталося?',
   'home.cta2.sub': 'Усе працює у вашому браузері. Нічого з введеного нікуди не надсилається.',
   'home.cta2.start': 'Почати розбір hoba',
@@ -1608,7 +1861,8 @@ const uk: Record<UIKey, string> = {
   'registry.title': 'Реєстр',
   'registry.kicker': 'Граф знань · {version}',
   'registry.openapi': 'Специфікація OpenAPI',
-  'registry.intro': 'Атлас налічує {n} записів шести видів: спостереження, барʼєри, механізми, патерни, цикли та інтервенції.',
+  'registry.intro':
+    'Атлас налічує {n} записів шести видів: спостереження, барʼєри, механізми, патерни, цикли та інтервенції.',
   'registry.search': 'Пошук за ID, назвою, описом або етапом',
   'registry.all': 'Усі',
   'registry.filterAgency': 'Зона впливу:',
@@ -1618,7 +1872,8 @@ const uk: Record<UIKey, string> = {
   'patterns.title': 'Патерни суперечностей',
   'patterns.kicker': 'Системні суперечності',
   'patterns.heading': 'Повторювані патерни',
-  'patterns.intro': 'Структурні подвійні пастки та повторювані дилеми, де раціональні дії окремих сторін утворюють системний глухий кут найму.',
+  'patterns.intro':
+    'Структурні подвійні пастки та повторювані дилеми, де раціональні дії окремих сторін утворюють системний глухий кут найму.',
   'patterns.viewFull': 'Відкрити патерн',
   'patterns.trigger': 'Правило спрацьовування:',
   'patterns.establishes': 'Встановлює:',
@@ -1630,7 +1885,8 @@ const uk: Record<UIKey, string> = {
   'graph.kicker': 'Усі вузли та звʼязки',
   'graph.downloadGraphml': 'Завантажити GraphML',
   'graph.downloadJson': 'Завантажити Cytoscape JSON',
-  'graph.intro': 'Інтерактивний граф із {nodes} вузлів та {edges} звʼязків у воронці найму: барʼєри, причинні механізми, спостереження та системні петлі зворотного звʼязку.',
+  'graph.intro':
+    'Інтерактивний граф із {nodes} вузлів та {edges} звʼязків у воронці найму: барʼєри, причинні механізми, спостереження та системні петлі зворотного звʼязку.',
   'graph.filterLayers': 'Типи вузлів',
   'graph.removabilityFilter': 'Зона впливу',
   'graph.rem.all': 'Усі зони впливу',
@@ -1639,11 +1895,14 @@ const uk: Record<UIKey, string> = {
   'graph.rem.none': 'Лише екзогенні (поза впливом)',
   'graph.inspector': 'Деталі вузла',
   'graph.selectNode': 'Оберіть вузол',
-  'graph.clickHint': 'Натисніть вузол, щоб відкрити деталі. Перетягуйте вузол, щоб його пересунути, або тло — щоб рухати полотно.',
+  'graph.clickHint':
+    'Натисніть вузол, щоб відкрити деталі. Перетягуйте вузол, щоб його пересунути, або тло — щоб рухати полотно.',
   'graph.openDetail': 'Відкрити сторінку',
-  'graph.controls': 'Тягніть, щоб рухати · прокручуйте, щоб масштабувати · клікніть вузол для деталей',
+  'graph.controls':
+    'Тягніть, щоб рухати · прокручуйте, щоб масштабувати · клікніть вузол для деталей',
   'graph.fallback': 'Барʼєри та механізми списком',
-  'graph.canvasLabel': 'Інтерактивний граф знань; стрілки переходять між вузлами, Enter відкриває обраний. Нижче — текстовий список барʼєрів і механізмів.',
+  'graph.canvasLabel':
+    'Інтерактивний граф знань; стрілки переходять між вузлами, Enter відкриває обраний. Нижче — текстовий список барʼєрів і механізмів.',
   'graph.zoomIn': 'Збільшити',
   'graph.zoomOut': 'Зменшити',
   'graph.fit': 'Вписати у вікно',
@@ -1662,9 +1921,11 @@ const uk: Record<UIKey, string> = {
   'data.kicker': 'Числа реєстру',
   'data.heading': 'Що містить реєстр',
   'data.downloadNodes': 'Завантажити nodes.csv',
-  'data.intro': 'Скільки в реєстрі барʼєрів, механізмів і спостережень та як вони розподілені за етапами воронки й зонами впливу.',
+  'data.intro':
+    'Скільки в реєстрі барʼєрів, механізмів і спостережень та як вони розподілені за етапами воронки й зонами впливу.',
   'data.guard.title': 'Епістемічне застереження: топологія, а не поширеність',
-  'data.guard.text': 'Ці числа описують курований граф знань, а не ринок праці. Записи надходять від тих, хто вирішив їх надіслати, тож без калібрування вибірки читати їх як репрезентативні не можна.',
+  'data.guard.text':
+    'Ці числа описують курований граф знань, а не ринок праці. Записи надходять від тих, хто вирішив їх надіслати, тож без калібрування вибірки читати їх як репрезентативні не можна.',
   'data.metric.barriers': 'Барʼєри у воронці',
   'data.metric.barriersSub': 'Строгий порядок, без циклів',
   'data.metric.mechanisms': 'Механізми',
@@ -1678,7 +1939,8 @@ const uk: Record<UIKey, string> = {
   'data.rem.intermediary': 'Залежить від посередника',
   'data.rem.none': 'Екзогенне (поза впливом)',
   'data.natureGrid.title': 'За природою і зоною впливу',
-  'data.natureGrid.text': 'Кожен механізм, перехресно за типом сили та тим, хто міг би його усунути. На відміну від матриці /archetypes, кожна клітинка тут порахована з реєстру — порожня клітинка є твердженням (жоден механізм такої природи не має такого рівня усувності), а не місцем, до якого ще не дійшли руки.',
+  'data.natureGrid.text':
+    'Кожен механізм, перехресно за типом сили та тим, хто міг би його усунути. На відміну від матриці /archetypes, кожна клітинка тут порахована з реєстру — порожня клітинка є твердженням (жоден механізм такої природи не має такого рівня усувності), а не місцем, до якого ще не дійшли руки.',
   'data.natureGrid.empty': 'не зафіксовано',
   'data.byStage.title': 'Кількість за етапами воронки',
   'data.byStage.barriers': 'Барʼєри',
@@ -1689,7 +1951,8 @@ const uk: Record<UIKey, string> = {
   'analyze.kicker': 'Покроковий розбір · реєстр {version}',
   'analyze.heading': 'Від побаченого — до того, що можна перевірити',
   'analyze.privacy': 'Працює у вашому браузері · нічого нікуди не надсилається',
-  'analyze.intro': 'Оберіть безпосередньо зафіксовані спостереження (шаблони відмов, тестові завдання, тривалі паузи). Аналізатор виявить логічно сумісні механізми, активні патерни та тестовані проби без здогадок.',
+  'analyze.intro':
+    'Оберіть безпосередньо зафіксовані спостереження (шаблони відмов, тестові завдання, тривалі паузи). Аналізатор виявить логічно сумісні механізми, активні патерни та тестовані проби без здогадок.',
   'analyze.tab.h': '1. Факти',
   'analyze.tab.o': '2. Барʼєр',
   'analyze.tab.b': '3. Механізми',
@@ -1710,7 +1973,8 @@ const uk: Record<UIKey, string> = {
   'analyze.cat.offers': 'Офери, вилки зарплат та умови',
   'analyze.h.selectedCount': 'Обрано спостережень: {n}',
   'analyze.h.stageLegend': 'Останній етап, якого ви дійшли (необовʼязково):',
-  'analyze.h.stageHint': 'Якщо лишити порожнім, барʼєри визначаються за етапами, на яких трапляються обрані спостереження.',
+  'analyze.h.stageHint':
+    'Якщо лишити порожнім, барʼєри визначаються за етапами, на яких трапляються обрані спостереження.',
   'analyze.h.selectSignals': 'Оберіть свої спостереження:',
   'analyze.h.filter': 'Фільтрувати спостереження...',
   'analyze.h.next': 'Далі: барʼєр →',
@@ -1719,7 +1983,8 @@ const uk: Record<UIKey, string> = {
   'analyze.o.back': '← Назад: факти',
   'analyze.o.next': 'Далі: механізми →',
   'analyze.b.title': 'Крок B — Які механізми сумісні з тим, що ви бачили?',
-  'analyze.b.sub': 'Причини, логічно сумісні з вашими фактами. Сумісність — не певність, і серед них є й чесні базові механізми.',
+  'analyze.b.sub':
+    'Причини, логічно сумісні з вашими фактами. Сумісність — не певність, і серед них є й чесні базові механізми.',
   'analyze.b.mechanisms': 'Сумісні механізми:',
   'analyze.b.patterns': 'Відповідні патерни суперечностей:',
   'analyze.b.loops': 'Причинні цикли, що зачіпають ці механізми:',
@@ -1731,9 +1996,11 @@ const uk: Record<UIKey, string> = {
   'analyze.a.zone.candidate': 'Ендогенні (ви)',
   'analyze.a.zone.candidate.desc': 'Тут ви можете щось перевірити або змінити самі.',
   'analyze.a.zone.intermediary': 'Посередники',
-  'analyze.a.zone.intermediary.desc': 'Має діяти хтось інший: рекрутер, менеджер із найму або той, хто визначає оплату.',
+  'analyze.a.zone.intermediary.desc':
+    'Має діяти хтось інший: рекрутер, менеджер із найму або той, хто визначає оплату.',
   'analyze.a.zone.none': 'Екзогенні (поза впливом)',
-  'analyze.a.zone.none.desc': 'Структурні умови: заморозка найму, ринок, розмір потоку, разом з яким ви подалися.',
+  'analyze.a.zone.none.desc':
+    'Структурні умови: заморозка найму, ринок, розмір потоку, разом з яким ви подалися.',
   'analyze.a.probes': 'Проби, які можна провести:',
   'analyze.a.back': '← Назад: механізми',
   'analyze.a.copy': 'Скопіювати Markdown-звіт',
@@ -1758,9 +2025,11 @@ const uk: Record<UIKey, string> = {
   'wiz.ruledOut': 'Виключає {ids}.',
   'wiz.ruledNothing': 'Нічого не виключає. Знати це варто, але причину це не звужує.',
   'wiz.limits': 'Чого жодна проба тут не зʼясує',
-  'wiz.settlesNothing': 'Жодна з доступних тут проб не виключає жодного з них. Провести їх варто заради запису, який після них лишається, — дата, документ, письмова відповідь, — але в нинішньому реєстрі жодна проба на цій сторінці не звужує причину.',
+  'wiz.settlesNothing':
+    'Жодна з доступних тут проб не виключає жодного з них. Провести їх варто заради запису, який після них лишається, — дата, документ, письмова відповідь, — але в нинішньому реєстрі жодна проба на цій сторінці не звужує причину.',
 
-  'wiz.minimalProbes': 'Найменший набір проб, який зʼясовує все, що тут узагалі можна зʼясувати: {ids}.',
+  'wiz.minimalProbes':
+    'Найменший набір проб, який зʼясовує все, що тут узагалі можна зʼясувати: {ids}.',
   'wiz.cannotSeparate': 'Ці механізми не розрізнить навіть повний набір доступних проб:',
   'wiz.probe': 'Проба {id}',
   'wiz.cost': 'Вартість: {cost}',
@@ -1771,9 +2040,12 @@ const uk: Record<UIKey, string> = {
   'wiz.stopTail': 'Не витрачайте більше зусиль на підлаштування під цей конкретний результат.',
   'wiz.verdict': 'Висновок (зона: {zone}):',
   'wiz.verdictTail': 'Проведіть дешеві проби вище, перш ніж подавати схожі заявки.',
-  'wiz.summaryNoObs': 'Ви не ввели жодного спостереження. Без них механізмам просто немає з чим бути сумісними.',
-  'wiz.summaryLow': 'Слабкий сигнал. Усі сумісні механізми екзогенні або залежать від посередника, тож ваших наступних дій із цих фактів не випливає.',
-  'wiz.summary': 'Проб, привʼязаних до вашого вибору: {probes}. Сумісних механізмів, які ви можете усунути самі: {candidate}.',
+  'wiz.summaryNoObs':
+    'Ви не ввели жодного спостереження. Без них механізмам просто немає з чим бути сумісними.',
+  'wiz.summaryLow':
+    'Слабкий сигнал. Усі сумісні механізми екзогенні або залежать від посередника, тож ваших наступних дій із цих фактів не випливає.',
+  'wiz.summary':
+    'Проб, привʼязаних до вашого вибору: {probes}. Сумісних механізмів, які ви можете усунути самі: {candidate}.',
   'wiz.copied': 'Звіт скопійовано до буфера обміну.',
   'wiz.clipboardDenied': 'Браузер заборонив доступ до буфера обміну.',
   'wiz.md.title': 'Звіт hoba-аналізу',
@@ -1795,10 +2067,12 @@ const uk: Record<UIKey, string> = {
   'wiz.md.probes': 'Проби',
   'wiz.md.noneJustified': 'Жодна не виправдана.',
   'wiz.md.noneWord': 'Немає',
-  'wiz.disclaimer': 'Цей аналіз структурний, а не калібрований: сумісний механізм — той, що узгоджується зі спостереженими фактами та структурними барʼєрами, і це нічого не каже про його ймовірність. Спостереження — не причина; повідомлення про відмову — не обовʼязково пояснення.',
+  'wiz.disclaimer':
+    'Цей аналіз структурний, а не калібрований: сумісний механізм — той, що узгоджується зі спостереженими фактами та структурними барʼєрами, і це нічого не каже про його ймовірність. Спостереження — не причина; повідомлення про відмову — не обовʼязково пояснення.',
 
   'art.posture.title': 'Як читати це спостереження',
-  'art.posture.text': 'Спостереження — це те, що кандидат отримав або пережив. Воно виникає через механізми, які працюють під поверхнею, але саме по собі не доводить, що спрацював котрийсь конкретний із них.',
+  'art.posture.text':
+    'Спостереження — це те, що кандидат отримав або пережив. Воно виникає через механізми, які працюють під поверхнею, але саме по собі не доводить, що спрацював котрийсь конкретний із них.',
   'art.probes': 'Діагностичні проби',
   'art.probeLabel': 'Проба {id}',
   'art.compatible': 'Сумісні механізми ({n})',
@@ -1842,31 +2116,42 @@ const uk: Record<UIKey, string> = {
   'method.title': 'Методологія та епістемічні правила',
   'method.kicker': 'Епістемічні засади',
   'method.heading': 'Методологія hoba',
-  'method.intro': 'Як hoba розбирає невизначеність найму на частини, називає рівень доказовості за кожним твердженням і не вдає більшої певності, ніж дають докази.',
+  'method.intro':
+    'Як hoba розбирає невизначеність найму на частини, називає рівень доказовості за кожним твердженням і не вдає більшої певності, ніж дають докази.',
   'method.core.title': 'Головне правило',
-  'method.core.quote': '«hoba має робити невизначеність явнішою, а не підміняти одну непідтверджену історію іншою».',
-  'method.core.text': 'Спостереження — не причина. Повідомлення про відмову — не обовʼязково пояснення. Сумісний механізм — не доведений механізм.',
+  'method.core.quote':
+    '«hoba має робити невизначеність явнішою, а не підміняти одну непідтверджену історію іншою».',
+  'method.core.text':
+    'Спостереження — не причина. Повідомлення про відмову — не обовʼязково пояснення. Сумісний механізм — не доведений механізм.',
   'method.verbs.title': 'Чотири епістемічні дієслова',
   'method.verbs.sub': 'Кожне твердження в hoba позначене одним із чотирьох каліброваних дієслів:',
   'method.verbs.observed': '1. Спостережено',
-  'method.verbs.observed.text': 'Прямо зафіксоване в доказах або в записах про подані заявки — мітка часу листа з відмовою, посилання на вакансію.',
+  'method.verbs.observed.text':
+    'Прямо зафіксоване в доказах або в записах про подані заявки — мітка часу листа з відмовою, посилання на вакансію.',
   'method.verbs.compatible': '2. Сумісно з',
-  'method.verbs.compatible.text': 'На цьому барʼєрі механізм логічно міг дати таке спостереження. Про ймовірність тут не йдеться.',
+  'method.verbs.compatible.text':
+    'На цьому барʼєрі механізм логічно міг дати таке спостереження. Про ймовірність тут не йдеться.',
   'method.verbs.supported': '3. Підтверджено',
-  'method.verbs.supported.text': 'Дослідження або вторинні сигнали піднімають упевненість вище за саму лише логічну сумісність.',
+  'method.verbs.supported.text':
+    'Дослідження або вторинні сигнали піднімають упевненість вище за саму лише логічну сумісність.',
   'method.verbs.proven': '4. Доведено',
-  'method.verbs.proven.text': 'Пряма перевірка підтверджує саме це причинне твердження — наприклад, встановлене правило парсингу ATS.',
+  'method.verbs.proven.text':
+    'Пряма перевірка підтверджує саме це причинне твердження — наприклад, встановлене правило парсингу ATS.',
   'method.honest.title': 'Збереження чесних базових механізмів',
-  'method.honest.text': 'Надійний реєстр не може стати ехокамерою, де в кожному результаті винні зовнішні чинники. Справжня нестача глибини навичок, тертя в комунікації та невідповідність рівня стоять в онтології як обовʼязкові базові механізми (',
+  'method.honest.text':
+    'Надійний реєстр не може стати ехокамерою, де в кожному результаті винні зовнішні чинники. Справжня нестача глибини навичок, тертя в комунікації та невідповідність рівня стоять в онтології як обовʼязкові базові механізми (',
   'method.honest.textAfter': ').',
   'method.evidence.title': 'Записи доказів і рівні доказовості',
   'method.evidence.text1.before': 'Кожен вузол оголошує ',
   'method.evidence.text1.middle': ' і може посилатися на записи ',
-  'method.evidence.text1.after': '. Це дві окремі осі, і обидві читаються просто зі схеми нижче, а не переказуються тут.',
+  'method.evidence.text1.after':
+    '. Це дві окремі осі, і обидві читаються просто зі схеми нижче, а не переказуються тут.',
   'method.evidence.kindsLead': 'Вид доказу описує джерело:',
   'method.evidence.levelsLead': 'Рівень описує, наскільки твердження несе вагу:',
-  'method.evidence.levelsTail': ' — два останні не є точками на цій шкалі, а станами, в яких твердження може бути. Цитата підіймає твердження лише тоді, коли стосується конкретного механізму, а не теми загалом, а «доведено» не приймається без первинного чи дослідницького запису.',
-  'method.evidence.text2.before': 'Кожен запис доказу нині спирається на одне опубліковане джерело: рецензоване дослідження, інституційний звіт або опитування практиків. Рівень лишається попереднім там, де вузол цитує джерело про тему загалом, а не про конкретний механізм; цикли без джерела про сам зворотний звʼязок позначені як ',
+  'method.evidence.levelsTail':
+    ' — два останні не є точками на цій шкалі, а станами, в яких твердження може бути. Цитата підіймає твердження лише тоді, коли стосується конкретного механізму, а не теми загалом, а «доведено» не приймається без первинного чи дослідницького запису.',
+  'method.evidence.text2.before':
+    'Кожен запис доказу нині спирається на одне опубліковане джерело: рецензоване дослідження, інституційний звіт або опитування практиків. Рівень лишається попереднім там, де вузол цитує джерело про тему загалом, а не про конкретний механізм; цикли без джерела про сам зворотний звʼязок позначені як ',
   'method.evidence.text2.after': '.',
   'method.nongoals.title': 'Явно окреслені межі',
   'method.nongoals.sub': 'hoba свідомо не є:',
@@ -1882,12 +2167,15 @@ const uk: Record<UIKey, string> = {
   'about.sub.before': 'Атлас перешкод і барʼєрів у наймі • Канонічний домен: ',
   'about.p1.before': '',
   'about.p1.strong': 'hoba',
-  'about.p1.after': ' перетворює те, що спостерігає кандидат, на машиночитні записи: зафіксовані факти, структурний барʼєр, на якому все спинилося, сумісні з ним механізми і те, на що кандидат справді може вплинути.',
-  'about.p2.before': 'Тиша або шаблонна відмова нічого не каже про механізм, що за нею стоїть, — і кандидат добудовує пояснення сам. hoba замінює це вгадування форензичним протоколом: ',
+  'about.p1.after':
+    ' перетворює те, що спостерігає кандидат, на машиночитні записи: зафіксовані факти, структурний барʼєр, на якому все спинилося, сумісні з ним механізми і те, на що кандидат справді може вплинути.',
+  'about.p2.before':
+    'Тиша або шаблонна відмова нічого не каже про механізм, що за нею стоїть, — і кандидат добудовує пояснення сам. hoba замінює це вгадування форензичним протоколом: ',
   'about.p2.strong': 'H — факти, O — барʼєр, B — що стоїть за ним, A — вплив',
   'about.p2.after': '.',
   'about.p3.before': 'Канонічний домен ',
-  'about.p3.after': ' називає те, що атлас картографує: системи, барʼєри та докази навколо технічної роботи й найму.',
+  'about.p3.after':
+    ' називає те, що атлас картографує: системи, барʼєри та докази навколо технічної роботи й найму.',
   'about.fact.entries': 'Записів',
   'about.fact.languages': 'Мови',
   'about.fact.registry': 'Реєстр',
@@ -1902,14 +2190,17 @@ const uk: Record<UIKey, string> = {
   'dev.title': 'Машинні інтерфейси для розробників',
   'dev.kicker': 'API та MCP',
   'dev.heading': 'Як читати реєстр із коду',
-  'dev.intro': 'Граф знань hoba доступний як статичні REST-ендпоінти, опис OpenAPI 3.1, сервер Model Context Protocol (MCP) і CLI.',
+  'dev.intro':
+    'Граф знань hoba доступний як статичні REST-ендпоінти, опис OpenAPI 3.1, сервер Model Context Protocol (MCP) і CLI.',
   'dev.rest.title': 'Статичний REST API',
-  'dev.rest.text': 'JSON лише для читання: генерується під час збірки й віддається прямо з CDN. Бази даних за ним немає.',
+  'dev.rest.text':
+    'JSON лише для читання: генерується під час збірки й віддається прямо з CDN. Бази даних за ним немає.',
   'dev.rest.view': 'Переглянути JSON',
   'dev.mcp.title': 'Сервер Model Context Protocol (MCP)',
   'dev.mcp.badge': 'stdio · локально',
   'dev.mcp.text': 'Підключіть AI-асистентів і автономних агентів прямо до графа знань hoba.',
-  'dev.mcp.configComment1': '// claude_desktop_config.json / .mcp.json — запуск із локального клону',
+  'dev.mcp.configComment1':
+    '// claude_desktop_config.json / .mcp.json — запуск із локального клону',
   'dev.mcp.configComment2': '// (git clone … && pnpm install && pnpm build:packages)',
   'dev.mcp.tools': 'Доступні інструменти:',
   'dev.mcp.npm': 'Пакети ще не опубліковані в npm; npx @hoba/mcp запрацює після публікації.',
@@ -1917,14 +2208,16 @@ const uk: Record<UIKey, string> = {
   'dev.cli.search': 'Знайти сутності за запитом',
   'dev.cli.explain': 'Провести спостереження через протокол hoba',
   'dev.cli.show': 'Показати вузол повністю',
-  'dev.cli.validate': 'Перевірити контент, DAG барʼєрів, оголошення циклів і паритет англійської та української версій',
+  'dev.cli.validate':
+    'Перевірити контент, DAG барʼєрів, оголошення циклів і паритет англійської та української версій',
   'dev.cli.json': 'Додайте --json до будь-якої команди, щоб отримати машиночитний вивід.',
   'dev.exports.title': 'Файли графа для завантаження',
 
   'contrib.title': 'Долучитися до hoba',
   'contrib.kicker': 'Усе через Git',
   'contrib.heading': 'Як долучитися',
-  'contrib.intro': 'Нові спостереження, структурні барʼєри, механізми та інтервенції потрапляють сюди одним шляхом — через pull request у Git.',
+  'contrib.intro':
+    'Нові спостереження, структурні барʼєри, механізми та інтервенції потрапляють сюди одним шляхом — через pull request у Git.',
   'contrib.workflow': 'Що запустити локально',
   'contrib.checks.title': 'Що CI перевіряє в кожному pull request',
   'contrib.checks.1': 'Строга відповідність Zod-схемам',
@@ -1934,7 +2227,8 @@ const uk: Record<UIKey, string> = {
   'contrib.checks.5': 'Чесні базові механізми на місці',
   'contrib.checks.6': 'Структурний паритет англійської та української версій',
   'contrib.mirror.title': 'Дві мови, одна структура',
-  'contrib.mirror.text': 'Кожен вузол існує в content/ (англійська, канонічна) та content-uk/ (українська). ID і структура графа мають бути ідентичними; відрізнятися може лише текст — це й перевіряє валідатор.',
+  'contrib.mirror.text':
+    'Кожен вузол існує в content/ (англійська, канонічна) та content-uk/ (українська). ID і структура графа мають бути ідентичними; відрізнятися може лише текст — це й перевіряє валідатор.',
 
   'view.label': 'Вигляд',
   'view.table': 'Таблиця',
@@ -1983,112 +2277,155 @@ const uk: Record<UIKey, string> = {
 
   'tour.home.title': 'Ласкаво просимо до hoba',
   'tour.home.step1.title': 'Що таке hoba?',
-  'tour.home.step1.text': 'hoba — це відкритий машиночитний причинний атлас із {n} верифікованих вузлів, що пояснює, чому воронка технічного найму буксує і яка прихована динаміка стоїть за цим.',
+  'tour.home.step1.text':
+    'hoba — це відкритий машиночитний причинний атлас із {n} верифікованих вузлів, що пояснює, чому воронка технічного найму буксує і яка прихована динаміка стоїть за цим.',
   'tour.home.step2.title': 'Чотирикрокова методологія hoba',
-  'tour.home.step2.text': 'H (Спостережувані сигнали) → O (Барʼєри воронки) → B (Причинні механізми) → A (Важелі впливу). Ми відокремлюємо симптоми від системних причин.',
+  'tour.home.step2.text':
+    'H (Спостережувані сигнали) → O (Барʼєри воронки) → B (Причинні механізми) → A (Важелі впливу). Ми відокремлюємо симптоми від системних причин.',
   'tour.home.step3.title': 'Документальні свідоцтва та зразки',
-  'tour.home.step3.text': 'Досліджуйте реальні реконструйовані артефакти: шаблони нічних відмов, цикли фантомних вакансій та правила автоматичного відсіву з точними рівнями доказовості.',
+  'tour.home.step3.text':
+    'Досліджуйте реальні реконструйовані артефакти: шаблони нічних відмов, цикли фантомних вакансій та правила автоматичного відсіву з точними рівнями доказовості.',
   'tour.home.step4.title': 'Чотири інтерактивні інструменти',
-  'tour.home.step4.text': 'Використовуйте Аналіз ситуації (діагностика), Перевірку відповідності (аудит умов), Симулятор процесу (стейт-машини) або Граф для дослідження каузальних звʼязків.',
+  'tour.home.step4.text':
+    'Використовуйте Аналіз ситуації (діагностика), Перевірку відповідності (аудит умов), Симулятор процесу (стейт-машини) або Граф для дослідження каузальних звʼязків.',
   'tour.home.step5.title': 'Маршрути ролей та глобальний обʼєктив (Lens)',
-  'tour.home.step5.text': 'Перемикайте кут зору у верхній панелі, щоб дослідити систему з позиції Кандидата, Клієнта, Рекрутера, Найм-менеджера, ATS-вендора, Політики роботодавця чи Публічної політики та галузевих стандартів.',
+  'tour.home.step5.text':
+    'Перемикайте кут зору у верхній панелі, щоб дослідити систему з позиції Кандидата, Клієнта, Рекрутера, Найм-менеджера, ATS-вендора, Політики роботодавця чи Публічної політики та галузевих стандартів.',
   'tour.home.step6.title': 'Клієнтська діагностика та відкриті дані',
-  'tour.home.step6.text': 'Чотири інструменти вище працюють суто у вашому браузері без телеметрії — те, що ви вставляєте чи обираєте, нікуди не надсилається. (Окрема форма Contribute — єдине, що ви надсилаєте свідомо.) Дані доступні у відкритих форматах OpenAPI, JSON, GraphML та Markdown.',
+  'tour.home.step6.text':
+    'Чотири інструменти вище працюють суто у вашому браузері без телеметрії — те, що ви вставляєте чи обираєте, нікуди не надсилається. (Окрема форма Contribute — єдине, що ви надсилаєте свідомо.) Дані доступні у відкритих форматах OpenAPI, JSON, GraphML та Markdown.',
 
   'tour.analyze.title': 'Гід з аналізу ситуації',
   'tour.analyze.step1.title': 'Крок 1: Готові емпіричні сценарії',
-  'tour.analyze.step1.text': 'Оберіть готовий типовий сценарій (наприклад, фантомне оновлення або зависання на тестовому) або сформуйте власний набір спостережень.',
+  'tour.analyze.step1.text':
+    'Оберіть готовий типовий сценарій (наприклад, фантомне оновлення або зависання на тестовому) або сформуйте власний набір спостережень.',
   'tour.analyze.step2.title': 'Крок 2: Матриця спостережуваних фактів (H)',
-  'tour.analyze.step2.text': 'Позначте сигнали, з якими ви зіткнулися: нічні шаблонні відмови, обʼємні тестові завдання, затримки без фідбеку або зміну вимог.',
+  'tour.analyze.step2.text':
+    'Позначте сигнали, з якими ви зіткнулися: нічні шаблонні відмови, обʼємні тестові завдання, затримки без фідбеку або зміну вимог.',
   'tour.analyze.step3.title': 'Крок 3: Локалізація барʼєра воронки (O)',
-  'tour.analyze.step3.text': 'Рушій звужує коло до фільтрів і нокаут-гейтів канонічного шляху, сумісних із тим, що ви спостерігали.',
+  'tour.analyze.step3.text':
+    'Рушій звужує коло до фільтрів і нокаут-гейтів канонічного шляху, сумісних із тим, що ви спостерігали.',
   'tour.analyze.step4.title': 'Крок 4: Сумісні кореневі механізми (B)',
-  'tour.analyze.step4.text': 'Перелік механізмів, сумісних із вашими спостереженнями (фантомні вакансії, ринкова асиметрія), замість спекулятивного самозвинувачення.',
+  'tour.analyze.step4.text':
+    'Перелік механізмів, сумісних із вашими спостереженнями (фантомні вакансії, ринкова асиметрія), замість спекулятивного самозвинувачення.',
   'tour.analyze.step5.title': 'Крок 5: Зони контролю та фальсифіковані проби (A)',
-  'tour.analyze.step5.text': 'Розмежуйте ендогенні дії кандидата від екзогенних факторів і перегляньте проби для однозначного підтвердження гіпотези.',
+  'tour.analyze.step5.text':
+    'Розмежуйте ендогенні дії кандидата від екзогенних факторів і перегляньте проби для однозначного підтвердження гіпотези.',
 
   'tour.check.title': 'Гід з перевірки відповідності',
   'tour.check.step1.title': 'Крок 1: Ваші підтверджені факти',
-  'tour.check.step1.text': 'У лівій колонці вкажіть ваш підтверджений датований досвід, право на роботу в юрисдикціях та фінансові очікування.',
+  'tour.check.step1.text':
+    'У лівій колонці вкажіть ваш підтверджений датований досвід, право на роботу в юрисдикціях та фінансові очікування.',
   'tour.check.step2.title': 'Крок 2: Обовʼязкові умови вакансії',
-  'tour.check.step2.text': 'У правій колонці введіть жорсткі вимоги оголошення: мінімум років, обовʼязкові фрази, локацію та опубліковану вилку.',
+  'tour.check.step2.text':
+    'У правій колонці введіть жорсткі вимоги оголошення: мінімум років, обовʼязкові фрази, локацію та опубліковану вилку.',
   'tour.check.step3.title': 'Крок 3: Арифметичний вердикт',
-  'tour.check.step3.text': 'Система детерміновано обчислює, чи спрацьовує математичний нокаут-фільтр (наприклад, неможливий досвід pat.experience_age_impossibility або перевищення вилки pat.compensation_double_bind).',
+  'tour.check.step3.text':
+    'Система детерміновано обчислює, чи спрацьовує математичний нокаут-фільтр (наприклад, неможливий досвід pat.experience_age_impossibility або перевищення вилки pat.compensation_double_bind).',
   'tour.check.step4.title': 'Крок 4: Діагностика затримок (Latency)',
-  'tour.check.step4.text': 'Оцініть аномалії термінів проходження етапів і перевірте ризик заморозки або фантомного оновлення позиції.',
+  'tour.check.step4.text':
+    'Оцініть аномалії термінів проходження етапів і перевірте ризик заморозки або фантомного оновлення позиції.',
   'tour.check.step5.title': 'Крок 5: Калькулятор фінансової витривалості',
-  'tour.check.step5.text': 'Розрахуйте горизонт фінансової стійкості, щоб запобігти виснаженню пошуку та вимушеному дегрейдингу.',
+  'tour.check.step5.text':
+    'Розрахуйте горизонт фінансової стійкості, щоб запобігти виснаженню пошуку та вимушеному дегрейдингу.',
 
   'tour.process.title': 'Гід із симулятора процесу',
   'tour.process.step1.title': 'Крок 1: Оберіть пайплайн стейт-машини',
-  'tour.process.step1.text': 'Перемикайтеся між Канонічним шляхом, Пайплайном ATS, Наскрізною воронкою або Клієнтським наймом.',
+  'tour.process.step1.text':
+    'Перемикайтеся між Канонічним шляхом, Пайплайном ATS, Наскрізною воронкою або Клієнтським наймом.',
   'tour.process.step2.title': 'Крок 2: Автоплей та регулювання швидкості',
-  'tour.process.step2.text': 'Запускайте автопрогравання зі зручною швидкістю (1x–2x) або крокуйте вручну вперед і назад.',
+  'tour.process.step2.text':
+    'Запускайте автопрогравання зі зручною швидкістю (1x–2x) або крокуйте вручну вперед і назад.',
   'tour.process.step3.title': 'Крок 3: Автоматичний пан-зум камери',
-  'tour.process.step3.text': 'Інтерактивне полотно плавно масштабується та центрує активний стан воронки у полі зору.',
+  'tour.process.step3.text':
+    'Інтерактивне полотно плавно масштабується та центрує активний стан воронки у полі зору.',
   'tour.process.step4.title': 'Крок 4: Проходження власноруч (Branching)',
-  'tour.process.step4.text': 'Перемкніться на «Пройти власноруч», обирайте варіанти на кожній розвилці та генеруйте збережуване посилання.',
+  'tour.process.step4.text':
+    'Перемкніться на «Пройти власноруч», обирайте варіанти на кожній розвилці та генеруйте збережуване посилання.',
   'tour.process.step5.title': 'Крок 5: Деталізація кроку та видимість кандидата',
-  'tour.process.step5.text': 'Переглядайте, що саме бачить кандидат, хто ухвалює рішення та які задокументовані збої виникають на цьому етапі.',
+  'tour.process.step5.text':
+    'Переглядайте, що саме бачить кандидат, хто ухвалює рішення та які задокументовані збої виникають на цьому етапі.',
   'tour.process.step6.title': 'Крок 6: Історичний контекст епох',
-  'tour.process.step6.text': 'Дізнайтеся, яка макроекономічна епоха зробила кожен стан звичним і як змінювалися технології найму.',
+  'tour.process.step6.text':
+    'Дізнайтеся, яка макроекономічна епоха зробила кожен стан звичним і як змінювалися технології найму.',
 
   'tour.graph.title': 'Гід з провідника графа',
   'tour.graph.step1.title': 'Крок 1: 4 вертикальні шари (Swimlanes)',
-  'tour.graph.step1.text': 'Граф структуровано на 4 горизонтальні коридори: Спостереження (вгорі), Барʼєри, Механізми та Інтервенції/Патерни/Петлі (внизу).',
+  'tour.graph.step1.text':
+    'Граф структуровано на 4 горизонтальні коридори: Спостереження (вгорі), Барʼєри, Механізми та Інтервенції/Патерни/Петлі (внизу).',
   'tour.graph.step2.title': 'Крок 2: Етапи воронки вздовж осі X',
-  'tour.graph.step2.text': 'Стовпчики відповідають послідовним етапам воронки: від Створення вакансії та Скринінгу до Технічного інтервʼю та Офферу.',
+  'tour.graph.step2.text':
+    'Стовпчики відповідають послідовним етапам воронки: від Створення вакансії та Скринінгу до Технічного інтервʼю та Офферу.',
   'tour.graph.step3.title': 'Крок 3: Канонічний ідеальний маршрут',
-  'tour.graph.step3.text': 'Клікніть «✨ Ідеальний маршрут», щоб увімкнути покроковий HUD із підсвіченими послідовними стрілками переходу.',
+  'tour.graph.step3.text':
+    'Клікніть «✨ Ідеальний маршрут», щоб увімкнути покроковий HUD із підсвіченими послідовними стрілками переходу.',
   'tour.graph.step4.title': 'Крок 4: Прицільне підсвічування стовпчика і рядка',
-  'tour.graph.step4.text': 'При наведенні на будь-яку ноду підсвічується стовпчик її етапу та горизонтальний шар із перехресним фокусуванням.',
+  'tour.graph.step4.text':
+    'При наведенні на будь-яку ноду підсвічується стовпчик її етапу та горизонтальний шар із перехресним фокусуванням.',
   'tour.graph.step5.title': 'Крок 5: Фільтрація за типами та зонами впливу',
-  'tour.graph.step5.text': 'Перемикайте шари сутностей і фільтруйте зони контролю: Дії кандидата, Залежність від посередника чи Екзогенні фактори.',
+  'tour.graph.step5.text':
+    'Перемикайте шари сутностей і фільтруйте зони контролю: Дії кандидата, Залежність від посередника чи Екзогенні фактори.',
   'tour.graph.step6.title': 'Крок 6: Бічний інспектор та навігація',
-  'tour.graph.step6.text': 'Клікніть на будь-яку ноду для перегляду рівня доказовості, списку прямих звʼязків та переходу до детальної сторінки.',
+  'tour.graph.step6.text':
+    'Клікніть на будь-яку ноду для перегляду рівня доказовості, списку прямих звʼязків та переходу до детальної сторінки.',
 
   'tour.registry.title': 'Гід з реєстру атласу',
   'tour.registry.step1.title': 'Крок 1: Миттєвий пошук і фільтри',
-  'tour.registry.step1.text': 'Фільтруйте за типами сутностей або шукайте за ID (наприклад, bar.automated_filter_parser_threshold, M-001), заголовками, ключовими словами та етапами.',
+  'tour.registry.step1.text':
+    'Фільтруйте за типами сутностей або шукайте за ID (наприклад, bar.automated_filter_parser_threshold, M-001), заголовками, ключовими словами та етапами.',
   'tour.registry.step2.title': 'Крок 2: Розумне групування без дублів',
-  'tour.registry.step2.text': 'Групуйте записи за 6 типами сутностей, етапами воронки або зонами контролю з чіткими числовими бейджами.',
+  'tour.registry.step2.text':
+    'Групуйте записи за 6 типами сутностей, етапами воронки або зонами контролю з чіткими числовими бейджами.',
   'tour.registry.step3.title': 'Крок 3: Перемикання режимів відображення',
-  'tour.registry.step3.text': 'Обирайте між структурованою Таблицею, інформативними Картками або компактним Списком під ваш екран.',
+  'tour.registry.step3.text':
+    'Обирайте між структурованою Таблицею, інформативними Картками або компактним Списком під ваш екран.',
   'tour.registry.step4.title': 'Крок 4: Машиночитні API та експорт',
-  'tour.registry.step4.text': 'Експортуйте специфікації OpenAPI, сирі дані у JSON, граф у GraphML або Markdown-версію реєстру прямо з шапки.',
+  'tour.registry.step4.text':
+    'Експортуйте специфікації OpenAPI, сирі дані у JSON, граф у GraphML або Markdown-версію реєстру прямо з шапки.',
   'tour.registry.step5.title': 'Крок 5: Сторінки сутностей та зразки',
-  'tour.registry.step5.text': 'Кожен запис веде на постійну сторінку з реконструйованими зразками, звʼязками в DAG та дієвими інтервенціями.',
+  'tour.registry.step5.text':
+    'Кожен запис веде на постійну сторінку з реконструйованими зразками, звʼязками в DAG та дієвими інтервенціями.',
 
   'tour.eras.title': 'Гід з макроекономічних епох',
   'tour.eras.step1.title': 'Крок 1: Пропорційна шкала часу',
-  'tour.eras.step1.text': 'Переглядайте макроекономічні режими від 2010 року до сучасної корекції у пропорційному часовому масштабі.',
+  'tour.eras.step1.text':
+    'Переглядайте макроекономічні режими від 2010 року до сучасної корекції у пропорційному часовому масштабі.',
   'tour.eras.step2.title': 'Крок 2: Динаміка капіталу та процентні ставки',
-  'tour.eras.step2.text': 'Зрозумійте, як процентні ставки та вартість капіталу змінили найм від накопичення кадрів до автоматизованих фільтрів.',
+  'tour.eras.step2.text':
+    'Зрозумійте, як процентні ставки та вартість капіталу змінили найм від накопичення кадрів до автоматизованих фільтрів.',
   'tour.eras.step3.title': 'Крок 3: Верифіковані індикатори та графіки',
-  'tour.eras.step3.text': 'Кожен показник, графік і цифра містять пряме клікабельне посилання на рецензовані першоджерела (FRED, CompTIA, Stanford).',
+  'tour.eras.step3.text':
+    'Кожен показник, графік і цифра містять пряме клікабельне посилання на рецензовані першоджерела (FRED, CompTIA, Stanford).',
   'tour.eras.step4.title': 'Крок 4: Звʼязок епох із сутностями реєстру',
-  'tour.eras.step4.text': 'Дізнайтеся, який саме макрорежим породив ті чи інші барʼєри або механізми масового відсіву.',
+  'tour.eras.step4.text':
+    'Дізнайтеся, який саме макрорежим породив ті чи інші барʼєри або механізми масового відсіву.',
 
   'tour.actors.title': 'Гід з акторів воронки',
   'tour.actors.step1.title': 'Крок 1: 6 системних точок зору',
-  'tour.actors.step1.text': 'Досліджуйте найм з позиції Кандидата, Рекрутера, Найм-менеджера, ATS-вендора, Роботодавця та Регулятора.',
+  'tour.actors.step1.text':
+    'Досліджуйте найм з позиції Кандидата, Рекрутера, Найм-менеджера, ATS-вендора, Роботодавця та Регулятора.',
   'tour.actors.step2.title': 'Крок 2: Епістемічна асиметрія та сліпі зони',
-  'tour.actors.step2.text': 'Дізнайтеся, що кожен актор вирішує, що він читає та що залишається абсолютно невидимим з його місця у воронці.',
+  'tour.actors.step2.text':
+    'Дізнайтеся, що кожен актор вирішує, що він читає та що залишається абсолютно невидимим з його місця у воронці.',
   'tour.actors.step3.title': 'Крок 3: Важелі дієвих змін та їхня ціна',
-  'tour.actors.step3.text': 'Переглядайте, що реально може змінити кожен учасник для усунення перешкод і скільки це коштує.',
+  'tour.actors.step3.text':
+    'Переглядайте, що реально може змінити кожен учасник для усунення перешкод і скільки це коштує.',
   'tour.actors.step4.title': 'Крок 4: Глобальний фільтр точок зору',
-  'tour.actors.step4.text': 'Використовуйте перемикач «Точка зору» у верхній навігації, щоб фільтрувати весь атлас під кутом зору обраного актора.',
+  'tour.actors.step4.text':
+    'Використовуйте перемикач «Точка зору» у верхній навігації, щоб фільтрувати весь атлас під кутом зору обраного актора.',
 
   'nf.title': 'Сторінку не знайдено',
   'nf.kicker': '404',
   'nf.heading': 'За цією адресою нічого немає',
-  'nf.text': 'Або адреса неправильна, або сторінка переїхала. Перевірте ID (A-, B-, M-, P-, L-, I-xxx) або поверніться до реєстру.',
+  'nf.text':
+    'Або адреса неправильна, або сторінка переїхала. Перевірте ID (A-, B-, M-, P-, L-, I-xxx) або поверніться до реєстру.',
   'nf.registry': 'Відкрити реєстр',
 
   // ---- Vector Cat Generator ----------------------------------------------
   'cats.title': 'Векторний генератор котиків',
   'cats.kicker': 'Параметричний векторний рушій',
-  'cats.intro': 'Комбінаторний генератор векторних котиків, що створює мільярди унікальних пухнастиків із вибором поз, анатомії, забарвлень, емоцій, аксесуарів та миттєвим експортом у чистий SVG/PNG.',
+  'cats.intro':
+    'Комбінаторний генератор векторних котиків, що створює мільярди унікальних пухнастиків із вибором поз, анатомії, забарвлень, емоцій, аксесуарів та миттєвим експортом у чистий SVG/PNG.',
   'cats.btn.random': '🎲 Згенерувати випадкового котика (Пробіл / R)',
   'cats.btn.exportSvg': 'Завантажити SVG',
   'cats.btn.exportPng': 'Завантажити PNG',
@@ -2108,11 +2445,15 @@ const uk: Record<UIKey, string> = {
   'cats.combinatorics': 'Понад 10¹⁵ унікальних математичних комбінацій',
   'archetypes.title': 'Архетипи',
   'archetypes.kicker': 'Не висновок',
-  'archetypes.intro': 'Прізвисько та місце на матриці для записів атласу — жарт у стилі alignment chart, а не твердження про когось. Тут немає доказів, посилань чи перевірки, як в решті сайту; ця сторінка існує саме тому, що формальні назви заробляють свою точність, відмовляючись від розваги.',
-  'archetypes.disclaimer': 'Розміщення — це підібраний вручну жарт, а не вимірювання. Воно не має епістемічної ваги і не підтверджує жодну тезу атласу — читайте пов’язаний запис для реального, підтвердженого джерелами опису.',
-  'archetypes.axis.x': 'Закономірне ↔ Хаотичне — наскільки систематичний механізм, а наскільки випадковий',
+  'archetypes.intro':
+    'Прізвисько та місце на матриці для записів атласу — жарт у стилі alignment chart, а не твердження про когось. Тут немає доказів, посилань чи перевірки, як в решті сайту; ця сторінка існує саме тому, що формальні назви заробляють свою точність, відмовляючись від розваги.',
+  'archetypes.disclaimer':
+    'Розміщення — це підібраний вручну жарт, а не вимірювання. Воно не має епістемічної ваги і не підтверджує жодну тезу атласу — читайте пов’язаний запис для реального, підтвердженого джерелами опису.',
+  'archetypes.axis.x':
+    'Закономірне ↔ Хаотичне — наскільки систематичний механізм, а наскільки випадковий',
   'archetypes.axis.y': 'Видиме ↔ Приховане — чи міг би той, з ким це сталося, взагалі це помітити',
-  'archetypes.coverageNote': 'Кожен запис атласу має прізвисько і місце тут — {n} загалом. Єдиний виняток — джерела-цитати: документу-джерелу жарт не покладено.',
+  'archetypes.coverageNote':
+    'Кожен запис атласу має прізвисько і місце тут — {n} загалом. Єдиний виняток — джерела-цитати: документу-джерелу жарт не покладено.',
   'archetypes.viewEntry': 'Відкрити справжній запис →',
   'archetypes.x.lawful': 'Закономірне',
   'archetypes.x.neutral': 'Нейтральне',
@@ -2124,74 +2465,97 @@ const uk: Record<UIKey, string> = {
 
   // --- Точки входу для читачів ---------------------------------------------
   'reader.title.candidate': 'Ви подалися, і щось сталося',
-  'reader.lead.candidate': 'Почніть із того, що ви справді отримали — лист, тишу, раптову зміну — і читайте назад, до того, що це породжує. Атлас не скаже, чому відхилили саме вашу заявку. Він скаже, що робить цей сигнал і чого цей сигнал не розрізняє.',
+  'reader.lead.candidate':
+    'Почніть із того, що ви справді отримали — лист, тишу, раптову зміну — і читайте назад, до того, що це породжує. Атлас не скаже, чому відхилили саме вашу заявку. Він скаже, що робить цей сигнал і чого цей сигнал не розрізняє.',
   'reader.title.recruiter': 'Ваш процес видає сигнали, яких ви не обирали',
-  'reader.lead.recruiter': 'Будь-яка лійка лишає сліди на своїх рубежах, і більшість із них — не чиєсь рішення. Прочитайте, що видає ваша, що це спричиняє і які зміни є питанням конфігурації, а не культури.',
+  'reader.lead.recruiter':
+    'Будь-яка лійка лишає сліди на своїх рубежах, і більшість із них — не чиєсь рішення. Прочитайте, що видає ваша, що це спричиняє і які зміни є питанням конфігурації, а не культури.',
   'reader.title.researcher': 'Модель, її докази і те, чого вона не вирішує',
-  'reader.lead.researcher': 'Кожне твердження тут має рівень доказовості й джерело, кожна прогалина опублікована, а весь реєстр можна звантажити. Читайте модель, а не дивіться з місця всередині неї.',
+  'reader.lead.researcher':
+    'Кожне твердження тут має рівень доказовості й джерело, кожна прогалина опублікована, а весь реєстр можна звантажити. Читайте модель, а не дивіться з місця всередині неї.',
 
   'reader.same.title': 'Той самий реєстр, прочитаний з вашого місця',
-  'reader.same.text': 'Ці числа однакові на всіх трьох сторінках, бо реєстр один. Між ними змінюється порядок записів, питання, яке їм ставлять, і місце, з якого починає лінза. Не змінюються самі записи, докази під ними й формулювання жодного твердження.',
+  'reader.same.text':
+    'Ці числа однакові на всіх трьох сторінках, бо реєстр один. Між ними змінюється порядок записів, питання, яке їм ставлять, і місце, з якого починає лінза. Не змінюються самі записи, докази під ними й формулювання жодного твердження.',
   'reader.same.entries': 'записів',
   'reader.same.evidence': 'доказових записів',
   'reader.same.languages': 'мови',
   'reader.same.others': 'Той самий реєстр, прочитаний як:',
 
   'reader.seat.title': 'Де ви сидите',
-  'reader.seat.inside': 'Ви посідаєте місце в лійці, яку описує цей атлас, і кожен запис фіксує, що з цього місця видно, а чого — ні. Якщо поставити лінзу на нього, кожна сторінка згорнеться до цієї точки зору — і скаже, коли запис звідти не видно взагалі, а це корисніша половина.',
-  'reader.seat.outside': 'Ви не сидите в цій лійці. На цій відмінності й побудована ця сторінка: два інші прочитання дивляться з точки всередині процесу, а ваше — на сам процес. Лінза не встановлена, тож усі місця лишаються видимими одночасно.',
+  'reader.seat.inside':
+    'Ви посідаєте місце в лійці, яку описує цей атлас, і кожен запис фіксує, що з цього місця видно, а чого — ні. Якщо поставити лінзу на нього, кожна сторінка згорнеться до цієї точки зору — і скаже, коли запис звідти не видно взагалі, а це корисніша половина.',
+  'reader.seat.outside':
+    'Ви не сидите в цій лійці. На цій відмінності й побудована ця сторінка: два інші прочитання дивляться з точки всередині процесу, а ваше — на сам процес. Лінза не встановлена, тож усі місця лишаються видимими одночасно.',
   'reader.seat.cta': 'Читати атлас із цього місця',
   'reader.seat.all': 'Усі місця й те, чого кожне не бачить',
 
   'reader.example.title': 'Один запис, два прочитання',
-  'reader.example.intro': 'Це слід, який породжує більше механізмів, ніж будь-який інший, — тому саме він за приклад. Нижче те, що реєстр записав як бачення двох місць: той самий запис, ті самі докази, виписані окремо, бо це не той самий досвід.',
+  'reader.example.intro':
+    'Це слід, який породжує більше механізмів, ніж будь-який інший, — тому саме він за приклад. Нижче те, що реєстр записав як бачення двох місць: той самий запис, ті самі докази, виписані окремо, бо це не той самий досвід.',
   'reader.example.open': 'Відкрити запис',
 
   'reader.start.title': 'З чого почати',
   'reader.limits.title': 'Чого це не скаже',
-  'reader.limits.candidate': 'Воно не скаже, що сталося у вашому випадку. Кілька механізмів дають однаковий слід, і атлас публікує саме те, чого не розрізняє: ця стеля — висновок, а не недогляд.',
-  'reader.limits.recruiter': 'Воно не звинувачує. Більшість записів тут — обмеження, а не зловживання, а деякі не прибрати взагалі: для них чесна зміна — розкриття, а не усунення, і кожен запис каже, що саме з двох.',
-  'reader.limits.researcher': 'Покриття нерівне й назване. Три записи не мають джерела, бо такого, що витримає вагу, не існує; механізми, яких не притисне жодне спостереження, перелічені; і все це на одній сторінці.',
-  'reader.step.candidate.1': 'Відповідайте, що ви бачили, — і воно назве механізми, які підходять, і ті, яких не розрізняє.',
+  'reader.limits.candidate':
+    'Воно не скаже, що сталося у вашому випадку. Кілька механізмів дають однаковий слід, і атлас публікує саме те, чого не розрізняє: ця стеля — висновок, а не недогляд.',
+  'reader.limits.recruiter':
+    'Воно не звинувачує. Більшість записів тут — обмеження, а не зловживання, а деякі не прибрати взагалі: для них чесна зміна — розкриття, а не усунення, і кожен запис каже, що саме з двох.',
+  'reader.limits.researcher':
+    'Покриття нерівне й назване. Три записи не мають джерела, бо такого, що витримає вагу, не існує; механізми, яких не притисне жодне спостереження, перелічені; і все це на одній сторінці.',
+  'reader.step.candidate.1':
+    'Відповідайте, що ви бачили, — і воно назве механізми, які підходять, і ті, яких не розрізняє.',
   'reader.step.candidate.2': 'Сам слід: що його породжує, на якому рубежі й наскільки надійно.',
   'reader.step.candidate.3': 'Що мало б змінитися і в чиїх руках кожен важіль. Кілька — у ваших.',
-  'reader.step.recruiter.1': 'Лійка такою, якою вона має йти: стан за станом, із зобовʼязанням кожного стану.',
-  'reader.step.recruiter.2': 'Проженіть вакансію й кандидата через арифметику й прочитайте вердикт на кожному рубежі.',
-  'reader.step.recruiter.3': 'Усі запропоновані зміни — з їхньою ціною, обсягом і місцем, яке має діяти.',
+  'reader.step.recruiter.1':
+    'Лійка такою, якою вона має йти: стан за станом, із зобовʼязанням кожного стану.',
+  'reader.step.recruiter.2':
+    'Проженіть вакансію й кандидата через арифметику й прочитайте вердикт на кожному рубежі.',
+  'reader.step.recruiter.3':
+    'Усі запропоновані зміни — з їхньою ціною, обсягом і місцем, яке має діяти.',
   'reader.step.researcher.1': 'Увесь реєстр як граф: записи, звʼязки й те, що чого досягає.',
-  'reader.step.researcher.2': 'Покриття, непоставлені сліди й механізми, яких не притисне жодне спостереження.',
-  'reader.step.researcher.3': 'Сім рівнів доказовості, що кожен дозволяє і що дискваліфікує джерело.',
+  'reader.step.researcher.2':
+    'Покриття, непоставлені сліди й механізми, яких не притисне жодне спостереження.',
+  'reader.step.researcher.3':
+    'Сім рівнів доказовості, що кожен дозволяє і що дискваліфікує джерело.',
   'reader.enter': 'Почати звідси',
   'reader.short.candidate': 'кандидат',
   'reader.short.recruiter': 'сторона найму',
   'reader.short.researcher': 'дослідник',
   // --- Надіслати те, чого в атласі немає ------------------------------------
   'submit.title': 'В атласі немає того, що сталося з вами',
-  'submit.lead': 'Тоді він неповний, і це найкорисніше, що йому можна сказати. Напишіть своїми словами, що ви отримали — лист, тишу, зміну. Надіслане не зʼявляється на сайті: його читає людина, і записом стає лише те, що описали кілька людей.',
+  'submit.lead':
+    'Тоді він неповний, і це найкорисніше, що йому можна сказати. Напишіть своїми словами, що ви отримали — лист, тишу, зміну. Надіслане не зʼявляється на сайті: його читає людина, і записом стає лише те, що описали кілька людей.',
   'submit.body.label': 'Що сталося',
   'submit.body.hint': 'Що ви бачили, коли і на якому місці процесу. Щонайменше 40 символів.',
   'submit.stage.label': 'Де в процесі',
   'submit.stage.any': 'Не певен',
   'submit.contact.label': 'Контакт, якщо хочете відповідь',
-  'submit.contact.hint': 'Необовʼязково і ніколи не публікується. Порожнє поле не робить розповідь менш корисною.',
+  'submit.contact.hint':
+    'Необовʼязково і ніколи не публікується. Порожнє поле не робить розповідь менш корисною.',
   'submit.send': 'Надіслати',
   'submit.sending': 'Надсилаю…',
   'submit.ok': 'Отримано. Це читає людина; автоматичної відповіді немає.',
-  'submit.privacy': 'Не називайте компанію чи людей. Атлас не може містити справжнього роботодавця — атлас, що називає роботодавця, стає тим чорним списком, аби не бути яким він і існує, — тож повідомлення з назвою відхиляється, а не зберігається.',
+  'submit.privacy':
+    'Не називайте компанію чи людей. Атлас не може містити справжнього роботодавця — атлас, що називає роботодавця, стає тим чорним списком, аби не бути яким він і існує, — тож повідомлення з назвою відхиляється, а не зберігається.',
   'submit.err.too_short': 'Трохи більше, будь ласка: що ви бачили і приблизно коли.',
   'submit.err.too_long': 'Це довше, ніж вміщає форма. Форма важливіша за повний переказ.',
-  'submit.err.names_a_party': 'Тут названо {party}. Приберіть назву компанії й надішліть ще раз — важлива розповідь, а не хто.',
+  'submit.err.names_a_party':
+    'Тут названо {party}. Приберіть назву компанії й надішліть ще раз — важлива розповідь, а не хто.',
   'submit.err.generic': 'Не надіслалось. Спробуйте ще раз або відкрийте issue на GitHub.',
   // --- Прочитати відмову назад у реєстр -------------------------------------
   'paste.title': 'Вставте саму відмову',
-  'paste.lead': 'Кроки нижче просять вас перекласти те, що сталося, мовою атласу. Тут навпаки: вставте повідомлення, яке ви отримали, і атлас сам знайде слід, якщо він у нього є.',
-  'paste.privacy': 'Читається у вашому браузері. Нікуди не надсилається й ніде не зберігається — саме тому сюди безпечно вставити лист, у якому названо компанію.',
+  'paste.lead':
+    'Кроки нижче просять вас перекласти те, що сталося, мовою атласу. Тут навпаки: вставте повідомлення, яке ви отримали, і атлас сам знайде слід, якщо він у нього є.',
+  'paste.privacy':
+    'Читається у вашому браузері. Нікуди не надсилається й ніде не зберігається — саме тому сюди безпечно вставити лист, у якому названо компанію.',
   'paste.label': 'Повідомлення, яке ви отримали',
   'paste.placeholder': 'Дякуємо за ваш інтерес. Після ретельного розгляду\u2026',
   'paste.read': 'Прочитати',
   'paste.answer': 'Ось слід, який атлас має для цього',
   'paste.unsure': 'Ніщо в атласі не впізнає цей лист',
-  'paste.unsureText': 'Відмова, яка не називає причини, збігається із загальними формулюваннями, спільними для всіх записів, і обрати переможця з них означало б угадати. Найближчі записи нижче — ви можете впізнати свій; атлас не впізнає.',
+  'paste.unsureText':
+    'Відмова, яка не називає причини, збігається із загальними формулюваннями, спільними для всіх записів, і обрати переможця з них означало б угадати. Найближчі записи нижче — ви можете впізнати свій; атлас не впізнає.',
   'paste.none': 'Жоден запис атласу на це не схожий.',
   'paste.words': 'Збіг за словами',
   'paste.continue': 'Продовжити з цим слідом',

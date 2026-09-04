@@ -58,14 +58,30 @@ console.error(`[hoba-mcp] v${version} — registry ${bundle.version} loaded from
 // Shared argument schemas
 // ---------------------------------------------------------------------------
 const searchableTypeSchema = z.enum(READER_FACING_TYPES);
-const relationSchema = z.enum(['operates_at', 'emits', 'amplifies', 'masks', 'precedes', 'instantiates', 'targets', 'mitigates']);
-const stageArg = stageIdSchema.optional().describe(`Hiring funnel stage. One of: ${stageIdSchema.options.join(', ')}`);
+const relationSchema = z.enum([
+  'operates_at',
+  'emits',
+  'amplifies',
+  'masks',
+  'precedes',
+  'instantiates',
+  'targets',
+  'mitigates',
+]);
+const stageArg = stageIdSchema
+  .optional()
+  .describe(`Hiring funnel stage. One of: ${stageIdSchema.options.join(', ')}`);
 
 type ToolResult = { content: { type: 'text'; text: string }[]; isError?: boolean };
 
 /** Every response carries the registry version (spec §14). */
 const ok = (payload: Record<string, unknown>): ToolResult => ({
-  content: [{ type: 'text', text: JSON.stringify({ registry_version: bundle.version, ...payload }, null, 2) }],
+  content: [
+    {
+      type: 'text',
+      text: JSON.stringify({ registry_version: bundle.version, ...payload }, null, 2),
+    },
+  ],
 });
 
 const fail = (message: string): ToolResult => ({
@@ -85,15 +101,19 @@ const METHODOLOGY = {
     Compatible_with: 'Mechanism could produce observation; logical compatibility only.',
     Supported: 'Evidence raises confidence beyond mere compatibility.',
     Strongly_supported: 'Converging evidence, short of direct verification of the causal claim.',
-    Proven: 'Verified causal claim, and refused by the validator unless a primary or research record backs it.',
+    Proven:
+      'Verified causal claim, and refused by the validator unless a primary or research record backs it.',
     Contradicted: 'The evidence runs against the claim.',
     Unknown: 'No claim about the world is being made — a description, not an assertion.',
   },
   ontology: {
-    artifact: 'obs.* — observable signal received by a candidate (silence, template rejection, repost).',
+    artifact:
+      'obs.* — observable signal received by a candidate (silence, template rejection, repost).',
     barrier: 'bar.* — structural funnel gate; `precedes` edges form a strictly acyclic DAG.',
-    mechanism: 'mech.* — force operating at gates, classified by actor / nature / visibility / removability.',
-    pattern: 'pat.* — recurring contradiction motif that is useful to name without asserting a single hidden cause.',
+    mechanism:
+      'mech.* — force operating at gates, classified by actor / nature / visibility / removability.',
+    pattern:
+      'pat.* — recurring contradiction motif that is useful to name without asserting a single hidden cause.',
     loop: 'loop.* — persistent causal cycle among mechanisms, validated from graph SCCs.',
     intervention: 'int.* — proposed change targeting a mechanism, barrier, pattern or loop.',
     evidence: 'evidence.* — citation record backing evidence levels.',
@@ -101,7 +121,8 @@ const METHODOLOGY = {
     actor: 'actor.* — a position the funnel is made of; addressed at /actors/<slug>.',
     era: 'era.* — a period of the hiring economy, told as where the money came from.',
     record: 'record.* — a financial record; flows between them conserve.',
-    legacy_ids: 'Every entity keeps its pre-migration short code as an alias, so A-001, B-005, M-014 and the rest still resolve.',
+    legacy_ids:
+      'Every entity keeps its pre-migration short code as an alias, so A-001, B-005, M-014 and the rest still resolve.',
   },
   non_goals: [
     'Not a company or recruiter blacklist.',
@@ -161,8 +182,17 @@ server.registerTool(
       'Search across all entities in the hoba knowledge graph (Observations, Barriers, Mechanisms, Patterns, Loops, Interventions) by ID, title or summary.',
     inputSchema: {
       query: z.string().min(1).describe('Search term or keyword'),
-      types: z.array(searchableTypeSchema).optional().describe('Optional entity types to filter by'),
-      limit: z.number().int().positive().max(100).optional().describe('Maximum number of results (default 25)'),
+      types: z
+        .array(searchableTypeSchema)
+        .optional()
+        .describe('Optional entity types to filter by'),
+      limit: z
+        .number()
+        .int()
+        .positive()
+        .max(100)
+        .optional()
+        .describe('Maximum number of results (default 25)'),
     },
   },
   async ({ query, types, limit }) => {
@@ -184,7 +214,8 @@ server.registerTool(
 server.registerTool(
   'get_node',
   {
-    description: 'Retrieve the full specification of an entity by its canonical dotted ID (e.g. obs.complete_silence_after_submission, bar.recruiter_screening_call, mech.employment_gap_downranking_bias, pat.seniority_double_bind, loop.employment_gap_penalty_loop, int.upfront_compensation_band_disclosure, EVD-001). Legacy short codes (A-001, B-005, M-014, …) still resolve as aliases.',
+    description:
+      'Retrieve the full specification of an entity by its canonical dotted ID (e.g. obs.complete_silence_after_submission, bar.recruiter_screening_call, mech.employment_gap_downranking_bias, pat.seniority_double_bind, loop.employment_gap_penalty_loop, int.upfront_compensation_band_disclosure, EVD-001). Legacy short codes (A-001, B-005, M-014, …) still resolve as aliases.',
     inputSchema: { id: z.string().describe('Canonical hoba entity identifier') },
   },
   async ({ id }) => {
@@ -201,14 +232,20 @@ server.registerTool(
       'Retrieve authored scenarios: validated compositions of ontology entities describing a coherent situation — what was observed, ' +
       'what is compatible with it, and what it explicitly does not establish. Omit `id` to list them all. Those carrying a summary and ' +
       'a stage double as diagnostic presets for explain_observation.',
-    inputSchema: { id: z.string().optional().describe('Scenario ID, e.g. "scenario.application_silence". Omit to list every scenario.') },
+    inputSchema: {
+      id: z
+        .string()
+        .optional()
+        .describe('Scenario ID, e.g. "scenario.application_silence". Omit to list every scenario.'),
+    },
   },
   async ({ id }) => {
     const scenarios = loadScenarios(registryRoot);
     if (!id) return ok({ count: scenarios.length, scenarios });
     const resolved = resolveScenarioId(scenarios, id);
     const found = scenarios.find((s) => s.id === resolved);
-    if (!found) return fail(`Unknown scenario "${id}". Available: ${scenarios.map((s) => s.id).join(', ')}`);
+    if (!found)
+      return fail(`Unknown scenario "${id}". Available: ${scenarios.map((s) => s.id).join(', ')}`);
     return ok({ scenario: found });
   }
 );
@@ -219,9 +256,17 @@ server.registerTool(
     description:
       'Execute the hoba forensic analysis protocol (H → O → B → A) for one or more observed artifacts or named empirical scenario at an optional funnel stage. Returns compatible mechanisms, agency partition, probes and explicit non-inferences. Never asserts a single hidden cause.',
     inputSchema: {
-      artifact_ids: z.array(z.string()).optional().describe('Observed Artifact IDs (e.g. ["A-004"])'),
+      artifact_ids: z
+        .array(z.string())
+        .optional()
+        .describe('Observed Artifact IDs (e.g. ["A-004"])'),
       stage: stageArg,
-      scenario_id: z.string().optional().describe('Scenario ID used as a preset, e.g. "scenario.ghost_refresh". The pre-migration bare names ("ghost-refresh") still resolve.'),
+      scenario_id: z
+        .string()
+        .optional()
+        .describe(
+          'Scenario ID used as a preset, e.g. "scenario.ghost_refresh". The pre-migration bare names ("ghost-refresh") still resolve.'
+        ),
     },
   },
   async ({ artifact_ids, stage, scenario_id }) => {
@@ -249,7 +294,9 @@ server.registerTool(
 
     const analysis = engine.analyze({ artifacts: effectiveArtifacts, stage: effectiveStage });
     if (analysis.hard_facts.selected_artifacts.length === 0) {
-      return fail(`None of the provided artifact IDs exist in the registry: ${effectiveArtifacts.join(', ')}`);
+      return fail(
+        `None of the provided artifact IDs exist in the registry: ${effectiveArtifacts.join(', ')}`
+      );
     }
     return ok({ scenario_id: scenario_id ?? null, analysis });
   }
@@ -258,7 +305,8 @@ server.registerTool(
 server.registerTool(
   'find_compatible_mechanisms',
   {
-    description: 'Retrieve all mechanisms structurally compatible with a set of observed artifacts and an optional funnel stage, partitioned by candidate agency.',
+    description:
+      'Retrieve all mechanisms structurally compatible with a set of observed artifacts and an optional funnel stage, partitioned by candidate agency.',
     inputSchema: {
       artifact_ids: z.array(z.string()).min(1).describe('List of observed artifact IDs'),
       stage: stageArg,
@@ -284,12 +332,14 @@ server.registerTool(
 server.registerTool(
   'get_diagnostic_probes',
   {
-    description: 'Retrieve the bounded, candidate-actionable diagnostic probes attached to an observed artifact.',
+    description:
+      'Retrieve the bounded, candidate-actionable diagnostic probes attached to an observed artifact.',
     inputSchema: { artifact_id: z.string().describe('Observed Artifact ID') },
   },
   async ({ artifact_id }) => {
     const node = graph.getNode(artifact_id);
-    if (!node || node.type !== 'observation') return fail(`Artifact ${artifact_id} not found in hoba registry.`);
+    if (!node || node.type !== 'observation')
+      return fail(`Artifact ${artifact_id} not found in hoba registry.`);
     return ok({ artifact_id, probes: node.probes, non_inferences: node.non_inferences });
   }
 );
@@ -311,7 +361,9 @@ server.registerTool(
     const filterApplied = artifacts.size + mechanisms.size > 0;
     const matched = filterApplied
       ? bundle.patterns.filter(
-          (p) => p.required_artifacts.some((a) => artifacts.has(a)) || p.compatible_mechanisms.some((m) => mechanisms.has(m))
+          (p) =>
+            p.required_artifacts.some((a) => artifacts.has(a)) ||
+            p.compatible_mechanisms.some((m) => mechanisms.has(m))
         )
       : bundle.patterns;
     return ok({ filter_applied: filterApplied, count: matched.length, patterns: matched });
@@ -321,14 +373,23 @@ server.registerTool(
 server.registerTool(
   'get_interventions',
   {
-    description: 'Retrieve targeted system interventions designed to mitigate a barrier, mechanism, pattern or causal loop.',
-    inputSchema: { target_id: z.string().describe('Target entity ID (e.g. mech.pre_selected_internal_candidate, bar.application_ingestion, pat.seniority_double_bind, loop.employment_gap_penalty_loop); legacy short codes resolve as aliases') },
+    description:
+      'Retrieve targeted system interventions designed to mitigate a barrier, mechanism, pattern or causal loop.',
+    inputSchema: {
+      target_id: z
+        .string()
+        .describe(
+          'Target entity ID (e.g. mech.pre_selected_internal_candidate, bar.application_ingestion, pat.seniority_double_bind, loop.employment_gap_penalty_loop); legacy short codes resolve as aliases'
+        ),
+    },
   },
   async ({ target_id }) => {
     const node = graph.getNode(target_id);
     if (!node) return fail(`Target ${target_id} not found in hoba registry.`);
     const canonicalId = node.id;
-    const interventions = bundle.interventions.filter((i) => i.targets.includes(canonicalId) || i.targets.includes(target_id));
+    const interventions = bundle.interventions.filter(
+      (i) => i.targets.includes(canonicalId) || i.targets.includes(target_id)
+    );
     return ok({ target_id, count: interventions.length, interventions });
   }
 );
@@ -336,7 +397,8 @@ server.registerTool(
 server.registerTool(
   'traverse_graph',
   {
-    description: 'Traverse the knowledge graph from a node, with optional relation filter, direction and depth limits (max depth 5).',
+    description:
+      'Traverse the knowledge graph from a node, with optional relation filter, direction and depth limits (max depth 5).',
     inputSchema: {
       start_id: z.string().describe('Starting node ID'),
       depth: z.number().int().min(1).max(5).optional().describe('Max traversal depth (default 1)'),
@@ -346,7 +408,11 @@ server.registerTool(
   },
   async ({ start_id, depth, direction, relations }) => {
     if (!graph.getNode(start_id)) return fail(`Node ${start_id} not found in hoba registry.`);
-    const res = graph.getNeighbors(start_id, { depth, direction, relations: relations as GraphRelation[] | undefined });
+    const res = graph.getNeighbors(start_id, {
+      depth,
+      direction,
+      relations: relations as GraphRelation[] | undefined,
+    });
     return ok({
       start_id,
       neighbors_count: res.nodes.length - 1,
@@ -360,7 +426,9 @@ server.registerTool(
   'get_methodology',
   {
     description: `Retrieve hoba methodology documentation. Topics: ${methodologyTopics.join(', ')}. Omit topic for everything.`,
-    inputSchema: { topic: z.enum(methodologyTopics as [MethodologyTopic, ...MethodologyTopic[]]).optional() },
+    inputSchema: {
+      topic: z.enum(methodologyTopics as [MethodologyTopic, ...MethodologyTopic[]]).optional(),
+    },
   },
   async ({ topic }) => ok(topic ? { topic, [topic]: METHODOLOGY[topic] } : { ...METHODOLOGY })
 );
@@ -373,13 +441,29 @@ server.registerTool(
     description:
       'Diagnose temporal dwell anomalies and identify stalled or implicated mechanisms across hiring funnel stages.',
     inputSchema: {
-      process_id: z.string().describe('Workflow ID (e.g. "proc.the_hiring_funnel_end_to_end", "proc.the_path_as_it_is_supposed_to_run", "proc.client_account_hiring_funnel"); legacy short codes resolve as aliases'),
-      from_state: z.string().describe('Starting state ID where candidate is currently dwelling (e.g. "recruiter-queue")'),
-      actual_days: z.number().nonnegative().describe('Number of elapsed calendar days in this state'),
+      process_id: z
+        .string()
+        .describe(
+          'Workflow ID (e.g. "proc.the_hiring_funnel_end_to_end", "proc.the_path_as_it_is_supposed_to_run", "proc.client_account_hiring_funnel"); legacy short codes resolve as aliases'
+        ),
+      from_state: z
+        .string()
+        .describe(
+          'Starting state ID where candidate is currently dwelling (e.g. "recruiter-queue")'
+        ),
+      actual_days: z
+        .number()
+        .nonnegative()
+        .describe('Number of elapsed calendar days in this state'),
     },
   },
   async ({ process_id, from_state, actual_days }) => {
-    const anomalies = substrateDetectTemporalAnomalies(lifted.substrate, process_id, from_state, actual_days);
+    const anomalies = substrateDetectTemporalAnomalies(
+      lifted.substrate,
+      process_id,
+      from_state,
+      actual_days
+    );
     return ok({
       process: process_id,
       from_state,
@@ -409,7 +493,8 @@ server.registerTool(
 server.registerTool(
   'verify_flow_conservation',
   {
-    description: 'Audit financial flow conservation across all records in the registry knowledge graph.',
+    description:
+      'Audit financial flow conservation across all records in the registry knowledge graph.',
     inputSchema: {},
   },
   async () => {
@@ -425,7 +510,8 @@ server.registerTool(
 server.registerTool(
   'evaluate_pattern_emptiness',
   {
-    description: 'Evaluate formal algebraic emptiness and contradiction proofs for all patterns in the registry.',
+    description:
+      'Evaluate formal algebraic emptiness and contradiction proofs for all patterns in the registry.',
     inputSchema: {},
   },
   async () => {
@@ -445,7 +531,11 @@ server.registerTool(
 const METHODOLOGY_RESOURCES: Record<string, { title: string; body: () => unknown }> = {
   core: {
     title: 'The HOBA protocol',
-    body: () => ({ protocol: METHODOLOGY.protocol, core_rule: METHODOLOGY.core_rule, ontology: METHODOLOGY.ontology }),
+    body: () => ({
+      protocol: METHODOLOGY.protocol,
+      core_rule: METHODOLOGY.core_rule,
+      ontology: METHODOLOGY.ontology,
+    }),
   },
   'epistemic-rules': {
     title: 'How strongly a claim may be made',
@@ -465,7 +555,8 @@ const METHODOLOGY_RESOURCES: Record<string, { title: string; body: () => unknown
     title: 'Who can change what',
     body: () => ({
       protocol_step: METHODOLOGY.protocol.A,
-      removability: 'Per mechanism: candidate | intermediary | none. What the Lean proofs and UI badges key off.',
+      removability:
+        'Per mechanism: candidate | intermediary | none. What the Lean proofs and UI badges key off.',
       agency_zones:
         'Per mechanism, per actor: high (holds an intervention targeting it), medium (it is their own force, or theirs to remove), ' +
         'low (they can see it and no more). Derived from the entities themselves, never authored, and absent for an actor with no declared relationship.',
@@ -494,7 +585,11 @@ for (const [topic, { title, body }] of Object.entries(METHODOLOGY_RESOURCES)) {
         {
           uri: uri.href,
           mimeType: 'application/json',
-          text: JSON.stringify({ registry_version: bundle.version, topic, ...(body() as object) }, null, 2),
+          text: JSON.stringify(
+            { registry_version: bundle.version, topic, ...(body() as object) },
+            null,
+            2
+          ),
         },
       ],
     })
@@ -530,14 +625,22 @@ server.registerTool(
     description:
       'Validate a scenario object against the Scenario schema and check that every entity it names exists. ' +
       'An unresolvable ID is an error, not a warning.',
-    inputSchema: { scenario: z.record(z.unknown()).describe('A scenario object, as stored under data/scenarios/') },
+    inputSchema: {
+      scenario: z
+        .record(z.unknown())
+        .describe('A scenario object, as stored under data/scenarios/'),
+    },
   },
   async ({ scenario }) => {
     const parsed = scenarioSchema.safeParse(scenario);
     if (!parsed.success) {
       return ok({
         valid: false,
-        issues: parsed.error.issues.map((i) => ({ severity: 'error', rule: 'schema', message: `${i.path.join('.') || '(root)'}: ${i.message}` })),
+        issues: parsed.error.issues.map((i) => ({
+          severity: 'error',
+          rule: 'schema',
+          message: `${i.path.join('.') || '(root)'}: ${i.message}`,
+        })),
       });
     }
     const issues = validateScenarios([parsed.data], bundle);
@@ -551,7 +654,11 @@ server.registerTool(
     description:
       'Validate a structured Analysis object: schema conformance, every named entity resolves, and no claim stands ' +
       'above the level the cited entity itself carries.',
-    inputSchema: { analysis: z.record(z.unknown()).describe('An Analysis object, per schema/analysis.schema.json') },
+    inputSchema: {
+      analysis: z
+        .record(z.unknown())
+        .describe('An Analysis object, per schema/analysis.schema.json'),
+    },
   },
   async ({ analysis }) => {
     const issues = validateAnalysis(analysis, bundle);
@@ -567,7 +674,9 @@ server.registerTool(
       'Answers whether the registry itself carries the claim that far.',
     inputSchema: {
       id: z.string().describe('Entity ID, canonical or legacy'),
-      claim_level: evidenceLevelSchema.describe(`One of: ${evidenceLevelSchema.options.join(', ')}`),
+      claim_level: evidenceLevelSchema.describe(
+        `One of: ${evidenceLevelSchema.options.join(', ')}`
+      ),
     },
   },
   async ({ id, claim_level }) => {

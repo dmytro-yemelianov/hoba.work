@@ -24,7 +24,9 @@ export function loadScenarios(root: string): Scenario[] {
       const full = path.join(dir, file);
       const parsed = scenarioSchema.safeParse(yaml.load(fs.readFileSync(full, 'utf-8')));
       if (!parsed.success) {
-        throw new Error(`${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+        throw new Error(
+          `${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`
+        );
       }
       return parsed.data;
     })
@@ -61,4 +63,3 @@ export function empiricalScenarios(root: string): EmpiricalScenario[] {
       artifacts: s.observations,
     }));
 }
-

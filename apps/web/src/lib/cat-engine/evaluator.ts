@@ -104,7 +104,9 @@ export function evaluateCatQuality(input: string | CatDNA): QualityScore {
 
   if (svg.includes('cat-root') && svg.includes('cat-face') && svg.includes('cat-head-ears')) {
     geomScore += 10;
-    notesGeom.push('Strict anatomy hierarchy (backdrop -> tail -> body -> head -> face -> acc -> props)');
+    notesGeom.push(
+      'Strict anatomy hierarchy (backdrop -> tail -> body -> head -> face -> acc -> props)'
+    );
   }
 
   // 4. Dimension 4: Vector Cleanliness & Web Efficiency (25 pts)

@@ -86,7 +86,12 @@ export function lift(bundle: RegistryBundle): Lifted {
   ];
 
   const records: SubstrateRecord[] = [
-    { id: 'rec:requisition.context', class: 'cls:requisition', title: 'Active Requisition Context', fields: {} },
+    {
+      id: 'rec:requisition.context',
+      class: 'cls:requisition',
+      title: 'Active Requisition Context',
+      fields: {},
+    },
   ];
   const eventClasses: EventClass[] = [];
   const statements: Statement[] = [];
@@ -113,7 +118,11 @@ export function lift(bundle: RegistryBundle): Lifted {
   ];
 
   const sidecar: Sidecar = {
-    bundle: { version: bundle.version, schema_version: bundle.schema_version, updated_at: bundle.updated_at },
+    bundle: {
+      version: bundle.version,
+      schema_version: bundle.schema_version,
+      updated_at: bundle.updated_at,
+    },
     entities: {},
     emissionMeta: {},
     order: {},
@@ -169,14 +178,21 @@ export function lift(bundle: RegistryBundle): Lifted {
   sidecar.order['processes'] = bundle.processes.map((w) => w.id);
   for (const w of bundle.processes) {
     for (const s of w.states)
-      eventClasses.push({ id: `evc:${low(w.id)}.${s.id}`, title: s.title, emitters: [], communicates: false });
+      eventClasses.push({
+        id: `evc:${low(w.id)}.${s.id}`,
+        title: s.title,
+        emitters: [],
+        communicates: false,
+      });
     processes.push({
       id: `prc:${low(w.id)}`,
       title: w.title,
       transitions: w.transitions.map((t) => ({
         from: `evc:${low(w.id)}.${t.from}`,
         to: `evc:${low(w.id)}.${t.to}`,
-        conditions: (t.entities ?? []).filter((e) => e.startsWith('B-') || e.startsWith('bar.')).map((e) => `cnd:${low(e)}`),
+        conditions: (t.entities ?? [])
+          .filter((e) => e.startsWith('B-') || e.startsWith('bar.'))
+          .map((e) => `cnd:${low(e)}`),
         latency_expected_days: t.latency_expected_days,
         latency_max_days: t.latency_max_days,
       })),
@@ -225,7 +241,8 @@ export function lift(bundle: RegistryBundle): Lifted {
 
   // One condition per mechanism: accounts for its barriers, causes its emissions.
   const facetParty = new Map<string, string>();
-  for (const a of bundle.actors) for (const f of a.aliases?.facet ?? []) facetParty.set(f, partyOfActor(a.id));
+  for (const a of bundle.actors)
+    for (const f of a.aliases?.facet ?? []) facetParty.set(f, partyOfActor(a.id));
 
   sidecar.order['mechanisms'] = bundle.mechanisms.map((m) => m.id);
   sidecar.emissionMeta = {};
@@ -240,14 +257,19 @@ export function lift(bundle: RegistryBundle): Lifted {
       gates,
       causes: m.emissions.map((e) => `evc:${low(e.artifact)}`),
       accounts_for: anchors,
-      owner: { position: 'inside', party: facetParty.get(m.facets.actor) ?? partyOfActor(m.facets.actor) },
+      owner: {
+        position: 'inside',
+        party: facetParty.get(m.facets.actor) ?? partyOfActor(m.facets.actor),
+      },
       determinacy: DETERMINACY[m.facets.nature] ?? 'judgement',
       arity: isComparative ? 'comparative' : 'absolute',
       cohort: isComparative ? 'coh:requisition.pool' : undefined,
       reads: [],
       text: m.summary,
     });
-    sidecar.emissionMeta[m.id] = m.emissions.map((e) => keep(e as unknown as Record<string, unknown>, ['artifact']));
+    sidecar.emissionMeta[m.id] = m.emissions.map((e) =>
+      keep(e as unknown as Record<string, unknown>, ['artifact'])
+    );
     sidecar.entities[m.id] = keep(m, ['title', 'operates_at', 'emissions']);
   }
 

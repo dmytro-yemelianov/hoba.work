@@ -66,7 +66,9 @@ export const asHeading = (value: string): string => value.replace(/\s*:\s*$/, ''
 
 function interpolate(template: string, vars?: Record<string, string | number>): string {
   if (!vars) return template;
-  return template.replace(/\{(\w+)\}/g, (_, name: string) => (name in vars ? String(vars[name]) : `{${name}}`));
+  return template.replace(/\{(\w+)\}/g, (_, name: string) =>
+    name in vars ? String(vars[name]) : `{${name}}`
+  );
 }
 
 /**
@@ -85,13 +87,15 @@ export function useTranslations(lang: Lang): Translate {
 }
 
 /** Pick a subset of the dictionary for client-side scripts. */
-export function clientDictionary<K extends UIKey>(lang: Lang, keys: readonly K[]): Record<K, string> {
+export function clientDictionary<K extends UIKey>(
+  lang: Lang,
+  keys: readonly K[]
+): Record<K, string> {
   const dict = ui[lang] as Record<UIKey, string>;
   const out = {} as Record<K, string>;
   for (const k of keys) out[k] = dict[k] ?? ui.en[k];
   return out;
 }
-
 
 export { ui };
 export type { UIKey };
@@ -118,7 +122,9 @@ const ESCAPES: Record<string, string> = {
 };
 
 export function branded(text: string): string {
-  return text.replace(/[&<>"']/g, (c) => ESCAPES[c]!).replace(WORDMARK, '<b class="wordmark">hoba</b>');
+  return text
+    .replace(/[&<>"']/g, (c) => ESCAPES[c]!)
+    .replace(WORDMARK, '<b class="wordmark">hoba</b>');
 }
 
 /** True when the string carries the name at all — lets a caller skip `set:html`. */

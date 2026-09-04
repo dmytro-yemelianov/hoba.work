@@ -8,18 +8,17 @@
  * that the answer to "what should I check next" can honestly be "nothing here
  * will tell you".
  */
-import type { DiagnosticProbe, Narrowing, ProbeResult, SeparationReport } from '@hoba/registry-core/types';
+import type {
+  DiagnosticProbe,
+  Narrowing,
+  ProbeResult,
+  SeparationReport,
+} from '@hoba/registry-core/types';
 import {
   substrateNarrow,
   substrateSeparates,
   substrateSeparation,
 } from './substrate/derivations.js';
-
-
-
-
-
-
 
 /**
  * Apply probe results in the order they were reported.
@@ -28,7 +27,11 @@ import {
  * result whose outcome excludes nothing still appears in the trace, because
  * "we checked and it settled nothing" is a finding the reader needs.
  */
-export function narrow(compatible: string[], probes: DiagnosticProbe[], results: ProbeResult[]): Narrowing {
+export function narrow(
+  compatible: string[],
+  probes: DiagnosticProbe[],
+  results: ProbeResult[]
+): Narrowing {
   return substrateNarrow(compatible, probes, results);
 }
 
@@ -36,8 +39,6 @@ export function narrow(compatible: string[], probes: DiagnosticProbe[], results:
 export function separates(probe: DiagnosticProbe, a: string, b: string): boolean {
   return substrateSeparates(probe, a, b);
 }
-
-
 
 /**
  * The smallest set of probes that distinguishes everything distinguishable,

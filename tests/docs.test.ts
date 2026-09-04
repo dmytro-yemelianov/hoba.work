@@ -21,8 +21,17 @@ const LIVING = ['README.md', 'CONTRIBUTING.md', 'ROADMAP.md', 'SPEC-MODEL.md', '
 
 const bundle = loadRegistryFromRoot(findRegistryRoot(REPO_ROOT)!, 'en');
 const collections = [
-  bundle.observations, bundle.barriers, bundle.mechanisms, bundle.patterns, bundle.loops,
-  bundle.interventions, bundle.evidence, bundle.actors, bundle.processes, bundle.eras, bundle.records,
+  bundle.observations,
+  bundle.barriers,
+  bundle.mechanisms,
+  bundle.patterns,
+  bundle.loops,
+  bundle.interventions,
+  bundle.evidence,
+  bundle.actors,
+  bundle.processes,
+  bundle.eras,
+  bundle.records,
 ];
 const ids = new Set<string>();
 const aliases = new Map<string, string>();
@@ -60,7 +69,9 @@ describe('the documents that describe the registry as it is', () => {
   it('cites no entity that is not in the registry', () => {
     const missing: string[] = [];
     for (const f of LIVING) {
-      for (const m of read(f).matchAll(/`((?:obs|bar|mech|pat|loop|int|proc|actor|era|record|evidence)\.[a-z0-9_]+)`/g)) {
+      for (const m of read(f).matchAll(
+        /`((?:obs|bar|mech|pat|loop|int|proc|actor|era|record|evidence)\.[a-z0-9_]+)`/g
+      )) {
         if (!ids.has(m[1])) missing.push(`${f}: ${m[1]}`);
       }
     }
@@ -76,8 +87,11 @@ describe('the documents that describe the registry as it is', () => {
   it('points only at files and directories that exist', () => {
     const missing: string[] = [];
     for (const f of LIVING) {
-      for (const m of read(f).matchAll(/`((?:packages|apps|scripts|tests|data|formal|e2e|docs)\/[A-Za-z0-9_.\/-]*)`/g)) {
-        if (!fs.existsSync(path.join(REPO_ROOT, m[1].replace(/\/$/, '')))) missing.push(`${f}: ${m[1]}`);
+      for (const m of read(f).matchAll(
+        /`((?:packages|apps|scripts|tests|data|formal|e2e|docs)\/[A-Za-z0-9_.\/-]*)`/g
+      )) {
+        if (!fs.existsSync(path.join(REPO_ROOT, m[1].replace(/\/$/, ''))))
+          missing.push(`${f}: ${m[1]}`);
       }
     }
     expect(missing).toEqual([]);

@@ -16,7 +16,14 @@
 import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { applyIdRename, CONTENT_DIRS, EVIDENCE_DIR, insertAlias, planFileRename, resolveRegistryRoot } from '@hoba/registry';
+import {
+  applyIdRename,
+  CONTENT_DIRS,
+  EVIDENCE_DIR,
+  insertAlias,
+  planFileRename,
+  resolveRegistryRoot,
+} from '@hoba/registry';
 
 const args = process.argv.slice(2);
 const typeIdx = args.indexOf('--type');
@@ -31,7 +38,9 @@ if (!typeArg || !dirArg) {
 }
 
 const root = resolveRegistryRoot();
-const mapping = JSON.parse(fs.readFileSync(path.join(root, 'migration', 'id-mapping.json'), 'utf8')) as {
+const mapping = JSON.parse(
+  fs.readFileSync(path.join(root, 'migration', 'id-mapping.json'), 'utf8')
+) as {
   mappings: Array<{ oldId: string; newId: string; type: string }>;
 };
 
@@ -51,9 +60,9 @@ for (const { oldId, newId } of entries) {
   if (renames.length === 0) {
     console.error(
       `\nERROR: no file found for "${oldId}" under ${trees.map((t) => `${t ? `${t}/` : ''}${dirArg}/`).join(' or ')} — ` +
-      `is --dir "${dirArg}" correct for type "${typeArg}"? ` +
-      `Content for this entity has already been rewritten in place by applyIdRename above; ` +
-      `review "git diff" before re-running.`
+        `is --dir "${dirArg}" correct for type "${typeArg}"? ` +
+        `Content for this entity has already been rewritten in place by applyIdRename above; ` +
+        `review "git diff" before re-running.`
     );
     process.exit(1);
   }

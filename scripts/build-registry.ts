@@ -60,7 +60,8 @@ const writeText = (filePath: string, text: string) => {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, text, 'utf-8');
 };
-const writeJson = (filePath: string, data: unknown) => writeText(filePath, JSON.stringify(data, null, 2) + '\n');
+const writeJson = (filePath: string, data: unknown) =>
+  writeText(filePath, JSON.stringify(data, null, 2) + '\n');
 const resetDir = (dir: string) => {
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
@@ -76,15 +77,60 @@ interface EntityDef {
 }
 
 const ENTITIES: EntityDef[] = [
-  { collection: 'actors', name: 'Actor', schema: actorSchema, summary: 'Actors whose decisions the funnel is made of' },
-  { collection: 'processes', name: 'Process', schema: processSchema, summary: 'State machines the funnel runs as' },
-  { collection: 'eras', name: 'Era', schema: eraSchema, summary: 'Periods of the hiring economy, told as where the money came from' },
-  { collection: 'observations', name: 'Observation', schema: observationSchema, summary: 'Observations' },
-  { collection: 'barriers', name: 'Barrier', schema: barrierSchema, summary: 'Funnel Barriers (strictly acyclic DAG)' },
-  { collection: 'mechanisms', name: 'Mechanism', schema: mechanismSchema, summary: 'Mechanisms with classification facets' },
-  { collection: 'patterns', name: 'Pattern', schema: patternSchema, summary: 'Recurring contradiction patterns' },
-  { collection: 'loops', name: 'Loop', schema: loopSchema, summary: 'Causal loops (Tarjan SCC validated)' },
-  { collection: 'interventions', name: 'Intervention', schema: interventionSchema, summary: 'Targeted system interventions' },
+  {
+    collection: 'actors',
+    name: 'Actor',
+    schema: actorSchema,
+    summary: 'Actors whose decisions the funnel is made of',
+  },
+  {
+    collection: 'processes',
+    name: 'Process',
+    schema: processSchema,
+    summary: 'State machines the funnel runs as',
+  },
+  {
+    collection: 'eras',
+    name: 'Era',
+    schema: eraSchema,
+    summary: 'Periods of the hiring economy, told as where the money came from',
+  },
+  {
+    collection: 'observations',
+    name: 'Observation',
+    schema: observationSchema,
+    summary: 'Observations',
+  },
+  {
+    collection: 'barriers',
+    name: 'Barrier',
+    schema: barrierSchema,
+    summary: 'Funnel Barriers (strictly acyclic DAG)',
+  },
+  {
+    collection: 'mechanisms',
+    name: 'Mechanism',
+    schema: mechanismSchema,
+    summary: 'Mechanisms with classification facets',
+  },
+  {
+    collection: 'patterns',
+    name: 'Pattern',
+    schema: patternSchema,
+    summary: 'Recurring contradiction patterns',
+  },
+  {
+    collection: 'loops',
+    name: 'Loop',
+    schema: loopSchema,
+    summary: 'Causal loops (Tarjan SCC validated)',
+  },
+  {
+    collection: 'interventions',
+    name: 'Intervention',
+    schema: interventionSchema,
+    summary: 'Targeted system interventions',
+  },
   { collection: 'evidence', name: 'Evidence', schema: evidenceSchema, summary: 'Evidence records' },
 ];
 
@@ -105,7 +151,9 @@ for (const [filename, schemaObj] of Object.entries(schemas)) {
   writeJson(path.join(schemasDir, filename), withId);
   writeJson(path.join(sitePublicDir, 'schemas', filename), withId);
 }
-console.log(`✓ Generated ${Object.keys(schemas).length} JSON schemas in schemas/ and apps/web/public/schemas/`);
+console.log(
+  `✓ Generated ${Object.keys(schemas).length} JSON schemas in schemas/ and apps/web/public/schemas/`
+);
 
 // ---------------------------------------------------------------------------
 // 2. Static data exports (latest + immutable release snapshot)
@@ -120,7 +168,9 @@ writeText(path.join(latestDir, 'registry.json'), registryJson);
 writeText(path.join(releaseDir, 'registry.json'), registryJson);
 
 const ndjson =
-  ENTITIES.flatMap((e) => (bundle[e.collection] as unknown[]).map((item) => JSON.stringify(item))).join('\n') + '\n';
+  ENTITIES.flatMap((e) =>
+    (bundle[e.collection] as unknown[]).map((item) => JSON.stringify(item))
+  ).join('\n') + '\n';
 writeText(path.join(latestDir, 'registry.ndjson'), ndjson);
 
 const { nodesCSV, edgesCSV } = graph.toCSV();
@@ -147,7 +197,9 @@ writeJson(path.join(latestDir, 'manifest.json'), {
   site_version: siteVersion,
   updated_at: bundle.updated_at,
 });
-console.log('✓ Generated machine exports (registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)');
+console.log(
+  '✓ Generated machine exports (registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
+);
 
 // ---------------------------------------------------------------------------
 // 3. Static REST API (apps/web/public/api/v1/**)
@@ -175,10 +227,19 @@ const withDerived = (collection: string, item: { id: string }) =>
   collection === 'mechanisms' ? { ...item, agency_zones: agencyZones(bundle, item.id) } : item;
 
 for (const e of ENTITIES) {
-  const items = (bundle[e.collection] as { id: string }[]).map((item) => withDerived(e.collection, item));
-  writeJson(path.join(apiDir, e.collection, 'index.json'), { registry_version: bundle.version, count: items.length, items });
+  const items = (bundle[e.collection] as { id: string }[]).map((item) =>
+    withDerived(e.collection, item)
+  );
+  writeJson(path.join(apiDir, e.collection, 'index.json'), {
+    registry_version: bundle.version,
+    count: items.length,
+    items,
+  });
   for (const item of items) {
-    writeJson(path.join(apiDir, e.collection, `${item.id}.json`), { registry_version: bundle.version, data: item });
+    writeJson(path.join(apiDir, e.collection, `${item.id}.json`), {
+      registry_version: bundle.version,
+      data: item,
+    });
   }
 }
 
@@ -217,7 +278,15 @@ const itemPath = (e: EntityDef) => ({
     operationId: `get${e.name}`,
     summary: `Get ${e.name} by ID`,
     tags: [e.name],
-    parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'string' }, description: `Canonical ${e.name} ID` }],
+    parameters: [
+      {
+        name: 'id',
+        in: 'path',
+        required: true,
+        schema: { type: 'string' },
+        description: `Canonical ${e.name} ID`,
+      },
+    ],
     responses: {
       ...jsonResponse('Successful response', {
         type: 'object',
@@ -233,7 +302,8 @@ const openApiSpec = {
   openapi: '3.1.0',
   info: {
     title: 'hoba API',
-    description: 'Hiring Obstacles & Barriers Atlas — versioned, read-only knowledge graph served as static JSON.',
+    description:
+      'Hiring Obstacles & Barriers Atlas — versioned, read-only knowledge graph served as static JSON.',
     version: siteVersion,
     'x-registry-version': bundle.version,
     'x-schema-version': bundle.schema_version,
@@ -243,7 +313,11 @@ const openApiSpec = {
   servers: [{ url: `${SITE_ORIGIN}/api/v1`, description: 'Canonical Production API' }],
   paths: {
     '/index.json': {
-      get: { operationId: 'getApiIndex', summary: 'API index and registry version', responses: jsonResponse('Successful response', { type: 'object' }) },
+      get: {
+        operationId: 'getApiIndex',
+        summary: 'API index and registry version',
+        responses: jsonResponse('Successful response', { type: 'object' }),
+      },
     },
     ...Object.fromEntries(
       ENTITIES.flatMap((e) => [
@@ -269,11 +343,18 @@ const openApiSpec = {
   },
   components: {
     schemas: Object.fromEntries(
-      ENTITIES.map((e) => [e.name, { $ref: `${SITE_ORIGIN}/schemas/${schemaFile(e.name)}#/definitions/${e.name}` }])
+      ENTITIES.map((e) => [
+        e.name,
+        { $ref: `${SITE_ORIGIN}/schemas/${schemaFile(e.name)}#/definitions/${e.name}` },
+      ])
     ),
   },
 };
 
 writeJson(path.join(sitePublicDir, 'openapi.json'), openApiSpec);
-console.log(`✓ Generated openapi.json and static REST endpoints for ${ENTITIES.length} collections`);
-console.log(`All registry build artifacts generated (registry ${bundle.version}, schema ${bundle.schema_version}, site ${siteVersion}).`);
+console.log(
+  `✓ Generated openapi.json and static REST endpoints for ${ENTITIES.length} collections`
+);
+console.log(
+  `All registry build artifacts generated (registry ${bundle.version}, schema ${bundle.schema_version}, site ${siteVersion}).`
+);

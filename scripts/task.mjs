@@ -30,7 +30,11 @@ const c = {
 };
 
 function run(command, args, { quiet = false } = {}) {
-  const result = spawnSync(command, args, { cwd: ROOT, stdio: quiet ? 'pipe' : 'inherit', encoding: 'utf8' });
+  const result = spawnSync(command, args, {
+    cwd: ROOT,
+    stdio: quiet ? 'pipe' : 'inherit',
+    encoding: 'utf8',
+  });
   if (result.status !== 0) {
     if (quiet && result.stdout) process.stdout.write(result.stdout);
     if (quiet && result.stderr) process.stderr.write(result.stderr);
@@ -52,7 +56,12 @@ const CHECKS = [
   ['types', 'pnpm', ['typecheck']],
   ['unit', 'pnpm', ['test']],
   ['build', 'pnpm', ['build']],
-  ['proofs', 'pnpm', ['lean'], { skip: () => (hasLake() ? null : 'no Lean toolchain — install elan to check the proofs') }],
+  [
+    'proofs',
+    'pnpm',
+    ['lean'],
+    { skip: () => (hasLake() ? null : 'no Lean toolchain — install elan to check the proofs') },
+  ],
   ['browser', 'pnpm', ['e2e']],
 ];
 
@@ -62,7 +71,8 @@ function hasLake() {
 
 function check(only) {
   const steps = only ? CHECKS.filter(([name]) => name === only) : CHECKS;
-  if (!steps.length) throw new Error(`unknown check "${only}" — one of ${CHECKS.map(([n]) => n).join(', ')}`);
+  if (!steps.length)
+    throw new Error(`unknown check "${only}" — one of ${CHECKS.map(([n]) => n).join(', ')}`);
   for (const [name, command, args, options] of steps) {
     const started = Date.now();
     const reason = options?.skip?.();
@@ -72,7 +82,9 @@ function check(only) {
     }
     process.stdout.write(c.bold(`\n▸ ${name}\n`));
     run(command, args);
-    process.stdout.write(c.green(`✓ ${name} ${c.dim(`${((Date.now() - started) / 1000).toFixed(1)}s`)}\n`));
+    process.stdout.write(
+      c.green(`✓ ${name} ${c.dim(`${((Date.now() - started) / 1000).toFixed(1)}s`)}\n`)
+    );
   }
 }
 
@@ -97,7 +109,10 @@ const TREES = [join('data', 'en', 'entities'), join('data', 'uk', 'entities')];
  * next number, which has produced nonsense since the ids stopped being numeric.
  */
 function idFor(prefix, title) {
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  const slug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
   if (!slug) throw new Error(`cannot derive an id from the title "${title}"`);
   return `${prefix}.${slug}`;
 }
@@ -133,7 +148,11 @@ function scaffold(type, title) {
     writeFileSync(file, template(type, id, title));
     process.stdout.write(`${c.green('created')} ${root}/${spec.dir}/${id}.md\n`);
   }
-  process.stdout.write(c.dim('\nBoth mirrors must stay structurally identical. Run `pnpm task check registry` when the text is in.\n'));
+  process.stdout.write(
+    c.dim(
+      '\nBoth mirrors must stay structurally identical. Run `pnpm task check registry` when the text is in.\n'
+    )
+  );
 }
 
 // ---- specimens -----------------------------------------------------------
@@ -167,7 +186,9 @@ async function specimens() {
   }
   for (const [id, byRoot] of Object.entries(shapes)) {
     if (byRoot.content !== byRoot['content-uk']) {
-      process.stdout.write(c.red(`mirrors differ  ${id}: ${byRoot.content} vs ${byRoot['content-uk']}\n`));
+      process.stdout.write(
+        c.red(`mirrors differ  ${id}: ${byRoot.content} vs ${byRoot['content-uk']}\n`)
+      );
       failures++;
     }
   }
@@ -217,13 +238,17 @@ async function sources() {
 
   const real = suspect.filter((s) => !s.excused);
   for (const s of suspect) {
-    const mark = s.excused ? c.dim(`${s.status || 'blocked'} (host refuses non-browsers)`) : c.red(String(s.status || 'unreachable'));
+    const mark = s.excused
+      ? c.dim(`${s.status || 'blocked'} (host refuses non-browsers)`)
+      : c.red(String(s.status || 'unreachable'));
     process.stdout.write(`  ${mark}  ${s.id}\n        ${s.url}\n`);
   }
   process.stdout.write(
     real.length
       ? c.red(`\n${real.length} source(s) need a human to look\n`)
-      : c.green(`\n✓ every source that answers a script is reachable (${suspect.length} excused as bot-hostile)\n`)
+      : c.green(
+          `\n✓ every source that answers a script is reachable (${suspect.length} excused as bot-hostile)\n`
+        )
   );
 }
 
@@ -250,7 +275,19 @@ async function preview() {
   // wrangler, not astro preview: public URLs carry no language, so every HTML
   // response comes from the worker resolving one.
   process.stdout.write(`starting preview on http://localhost:${PREVIEW_PORT}\n`);
-  run('pnpm', ['exec', 'wrangler', 'pages', 'dev', 'apps/web/dist', '--port', String(PREVIEW_PORT), '--compatibility-date', COMPAT_DATE, '--log-level', 'warn']);
+  run('pnpm', [
+    'exec',
+    'wrangler',
+    'pages',
+    'dev',
+    'apps/web/dist',
+    '--port',
+    String(PREVIEW_PORT),
+    '--compatibility-date',
+    COMPAT_DATE,
+    '--log-level',
+    'warn',
+  ]);
 }
 
 async function shots(paths) {
@@ -260,7 +297,8 @@ async function shots(paths) {
   const { loadRegistryFromRoot, resolveRegistryRoot } = await import('@hoba/registry');
   const sample = loadRegistryFromRoot(resolveRegistryRoot(), 'en').observations[0].id;
   const targets = paths.length ? paths : ['/', '/registry', '/graph', `/observations/${sample}`];
-  if (!(await serverUp())) throw new Error(`nothing on :${PREVIEW_PORT} — run "pnpm task preview" in another shell first`);
+  if (!(await serverUp()))
+    throw new Error(`nothing on :${PREVIEW_PORT} — run "pnpm task preview" in another shell first`);
   const out = join(ROOT, '.shots');
   mkdirSync(out, { recursive: true });
   const script = `
@@ -297,9 +335,18 @@ function deployPreview() {
   const branch = run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { quiet: true }).trim();
   if (branch === 'main') throw new Error('on main — preview deploys are for branches');
   run('pnpm', ['build']);
-  run('pnpm', ['exec', 'wrangler', 'pages', 'deploy', 'apps/web/dist', '--project-name', 'hoba-work', '--branch', branch]);
+  run('pnpm', [
+    'exec',
+    'wrangler',
+    'pages',
+    'deploy',
+    'apps/web/dist',
+    '--project-name',
+    'hoba-work',
+    '--branch',
+    branch,
+  ]);
 }
-
 
 /**
  * What readers sent that the atlas did not contain.
@@ -317,7 +364,16 @@ async function inbox(args) {
   const sql = `SELECT id, created_at, lang, reader, stage, status, body FROM submissions ${where}ORDER BY created_at ASC`;
   const raw = execFileSync(
     'pnpm',
-    ['exec', 'wrangler', 'd1', 'execute', 'hoba-submissions', '--remote', '--json', `--command=${sql}`],
+    [
+      'exec',
+      'wrangler',
+      'd1',
+      'execute',
+      'hoba-submissions',
+      '--remote',
+      '--json',
+      `--command=${sql}`,
+    ],
     { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
   );
   const rows = JSON.parse(raw)?.[0]?.results ?? [];
@@ -326,13 +382,27 @@ async function inbox(args) {
     return;
   }
   for (const row of rows) {
-    const where = [row.stage ?? 'stage unstated', row.reader ? `from /for/${row.reader}` : 'no page recorded'].join(', ');
-    process.stdout.write(`\n${c.dim(row.created_at)}  ${row.lang}  ${c.dim(where)}${row.status === 'new' ? '' : c.dim(`  [${row.status}]`)}\n`);
-    process.stdout.write(`${row.body.split('\n').map((l) => `  ${l}`).join('\n')}\n`);
+    const where = [
+      row.stage ?? 'stage unstated',
+      row.reader ? `from /for/${row.reader}` : 'no page recorded',
+    ].join(', ');
+    process.stdout.write(
+      `\n${c.dim(row.created_at)}  ${row.lang}  ${c.dim(where)}${row.status === 'new' ? '' : c.dim(`  [${row.status}]`)}\n`
+    );
+    process.stdout.write(
+      `${row.body
+        .split('\n')
+        .map((l) => `  ${l}`)
+        .join('\n')}\n`
+    );
     process.stdout.write(c.dim(`  ${row.id}\n`));
   }
   process.stdout.write(c.dim(`\n${rows.length} submission(s). Mark one read with:\n`));
-  process.stdout.write(c.dim(`  pnpm exec wrangler d1 execute hoba-submissions --remote --command="UPDATE submissions SET status='read' WHERE id='<id>'"\n`));
+  process.stdout.write(
+    c.dim(
+      `  pnpm exec wrangler d1 execute hoba-submissions --remote --command="UPDATE submissions SET status='read' WHERE id='<id>'"\n`
+    )
+  );
 }
 
 // ---- dispatch ------------------------------------------------------------
@@ -351,7 +421,14 @@ const TASKS = {
 
 if (!task || !TASKS[task]) {
   process.stdout.write(`usage: pnpm task <${Object.keys(TASKS).join('|')}>\n\n`);
-  process.stdout.write(readFileSync(fileURLToPath(import.meta.url), 'utf8').split('*/')[0].split('\n').slice(2, -1).map((l) => l.replace(/^ \* ?/, '')).join('\n'));
+  process.stdout.write(
+    readFileSync(fileURLToPath(import.meta.url), 'utf8')
+      .split('*/')[0]
+      .split('\n')
+      .slice(2, -1)
+      .map((l) => l.replace(/^ \* ?/, ''))
+      .join('\n')
+  );
   process.exit(task ? 1 : 0);
 }
 

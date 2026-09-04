@@ -47,7 +47,8 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
   }
   const evidenceIds = new Set<string>();
   for (const e of bundle.evidence) {
-    if (evidenceIds.has(e.id)) error('duplicate-id', `Duplicate evidence ID detected: ${e.id}`, e.id);
+    if (evidenceIds.has(e.id))
+      error('duplicate-id', `Duplicate evidence ID detected: ${e.id}`, e.id);
     evidenceIds.add(e.id);
   }
 
@@ -58,22 +59,38 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
   const loopById = new Map(bundle.loops.map((l) => [l.id, l]));
   const interventionById = new Map(bundle.interventions.map((i) => [i.id, i]));
 
-  const requireRef = (owner: string, field: string, ref: string, pool: Set<string>, label: string) => {
-    if (!pool.has(ref)) error('dangling-reference', `${field} references unknown ${label}: ${ref}`, owner);
+  const requireRef = (
+    owner: string,
+    field: string,
+    ref: string,
+    pool: Set<string>,
+    label: string
+  ) => {
+    if (!pool.has(ref))
+      error('dangling-reference', `${field} references unknown ${label}: ${ref}`, owner);
   };
 
   // 2. Evidence references and lifecycle fields on every node.
   for (const n of nodes) {
-    for (const e of n.evidence_ids) requireRef(n.id, 'evidence_ids', e, evidenceIds, 'evidence record');
+    for (const e of n.evidence_ids)
+      requireRef(n.id, 'evidence_ids', e, evidenceIds, 'evidence record');
 
     if (n.superseded_by !== undefined) {
       if (!nodeById.has(n.superseded_by)) {
-        error('dangling-reference', `superseded_by references unknown node: ${n.superseded_by}`, n.id);
+        error(
+          'dangling-reference',
+          `superseded_by references unknown node: ${n.superseded_by}`,
+          n.id
+        );
       } else if (n.superseded_by === n.id) {
         error('lifecycle', 'Node cannot supersede itself', n.id);
       }
       if (n.status !== 'deprecated') {
-        error('lifecycle', `Node declares superseded_by but status is "${n.status}" (expected "deprecated")`, n.id);
+        error(
+          'lifecycle',
+          `Node declares superseded_by but status is "${n.status}" (expected "deprecated")`,
+          n.id
+        );
       }
     }
   }
@@ -86,7 +103,8 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     for (const f of r.flows) {
       requireRef(r.id, 'flows.to', f.to, recordIds, 'record');
       if (f.amount) {
-        for (const ev of f.amount.evidence) requireRef(r.id, 'flows.amount.evidence', ev, evidenceIds, 'evidence record');
+        for (const ev of f.amount.evidence)
+          requireRef(r.id, 'flows.amount.evidence', ev, evidenceIds, 'evidence record');
       }
     }
   }
@@ -102,7 +120,11 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
       requireRef(b.id, 'precedes', next, barrierIds, 'barrier');
       const nb = bundle.barriers.find((x) => x.id === next);
       if (nb && nb.order <= b.order) {
-        error('barrier-order', `precedes ${next} (order ${nb.order}) but has order ${b.order}; funnel order must increase`, b.id);
+        error(
+          'barrier-order',
+          `precedes ${next} (order ${nb.order}) but has order ${b.order}; funnel order must increase`,
+          b.id
+        );
       }
     }
   }
@@ -116,9 +138,11 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     const emitted = new Set<string>();
     for (const em of m.emissions) {
       requireRef(m.id, 'emissions', em.artifact, artifactIds, 'observation');
-      if (emitted.has(em.artifact)) error('duplicate-edge', `Artifact ${em.artifact} is listed twice in emissions`, m.id);
+      if (emitted.has(em.artifact))
+        error('duplicate-edge', `Artifact ${em.artifact} is listed twice in emissions`, m.id);
       emitted.add(em.artifact);
-      for (const e of em.evidence) requireRef(m.id, `emissions[${em.artifact}].evidence`, e, evidenceIds, 'evidence record');
+      for (const e of em.evidence)
+        requireRef(m.id, `emissions[${em.artifact}].evidence`, e, evidenceIds, 'evidence record');
     }
     for (const amp of m.amplifies) {
       requireRef(m.id, 'amplifies', amp, mechanismIds, 'mechanism');
@@ -139,14 +163,20 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
 
   // 5. Patterns.
   for (const p of bundle.patterns) {
-    for (const aid of p.required_artifacts) requireRef(p.id, 'required_artifacts', aid, artifactIds, 'artifact');
-    for (const mid of p.compatible_mechanisms) requireRef(p.id, 'compatible_mechanisms', mid, mechanismIds, 'mechanism');
+    for (const aid of p.required_artifacts)
+      requireRef(p.id, 'required_artifacts', aid, artifactIds, 'artifact');
+    for (const mid of p.compatible_mechanisms)
+      requireRef(p.id, 'compatible_mechanisms', mid, mechanismIds, 'mechanism');
     for (const iid of p.interventions) {
       const intervention = interventionById.get(iid);
       if (!intervention) {
         error('dangling-reference', `interventions references unknown intervention: ${iid}`, p.id);
       } else if (!intervention.targets.includes(p.id)) {
-        warning('reciprocity', `lists intervention ${iid}, but ${iid}.targets does not include ${p.id}`, p.id);
+        warning(
+          'reciprocity',
+          `lists intervention ${iid}, but ${iid}.targets does not include ${p.id}`,
+          p.id
+        );
       }
     }
   }
@@ -157,11 +187,16 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     const members = new Set(l.mechanisms);
     for (const mid of l.mechanisms) requireRef(l.id, 'mechanisms', mid, mechanismIds, 'mechanism');
     for (const ep of l.entry_points) {
-      if (!members.has(ep)) error('loop-membership', `entry_point ${ep} is not in the loop's mechanisms list`, l.id);
+      if (!members.has(ep))
+        error('loop-membership', `entry_point ${ep} is not in the loop's mechanisms list`, l.id);
     }
     for (const edge of l.edges) {
       if (!members.has(edge.from) || !members.has(edge.to)) {
-        error('loop-membership', `edge ${edge.from} -> ${edge.to} references a mechanism outside the loop's mechanisms list`, l.id);
+        error(
+          'loop-membership',
+          `edge ${edge.from} -> ${edge.to} references a mechanism outside the loop's mechanisms list`,
+          l.id
+        );
         continue;
       }
       const from = bundle.mechanisms.find((m) => m.id === edge.from);
@@ -181,7 +216,11 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
       if (!intervention) {
         error('dangling-reference', `interventions references unknown intervention: ${iid}`, l.id);
       } else if (!intervention.targets.includes(l.id)) {
-        warning('reciprocity', `lists intervention ${iid}, but ${iid}.targets does not include ${l.id}`, l.id);
+        warning(
+          'reciprocity',
+          `lists intervention ${iid}, but ${iid}.targets does not include ${l.id}`,
+          l.id
+        );
       }
     }
   }
@@ -195,11 +234,19 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
       }
       const pattern = patternById.get(target);
       if (pattern && !pattern.interventions.includes(i.id)) {
-        warning('reciprocity', `targets ${target}, but ${target}.interventions does not list ${i.id}`, i.id);
+        warning(
+          'reciprocity',
+          `targets ${target}, but ${target}.interventions does not list ${i.id}`,
+          i.id
+        );
       }
       const loop = loopById.get(target);
       if (loop && !loop.interventions.includes(i.id)) {
-        warning('reciprocity', `targets ${target}, but ${target}.interventions does not list ${i.id}`, i.id);
+        warning(
+          'reciprocity',
+          `targets ${target}, but ${target}.interventions does not list ${i.id}`,
+          i.id
+        );
       }
     }
   }
@@ -236,11 +283,14 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
   //    and actors all have `evidence_ids` that nothing has been reading.
   const citedEvidence = new Set<string>();
   const citing = [...nodes, ...bundle.eras, ...bundle.processes, ...bundle.actors];
-  for (const n of citing) for (const id of (n as { evidence_ids?: string[] }).evidence_ids ?? []) citedEvidence.add(id);
+  for (const n of citing)
+    for (const id of (n as { evidence_ids?: string[] }).evidence_ids ?? []) citedEvidence.add(id);
   for (const e of bundle.eras) for (const i of e.indicators) citedEvidence.add(i.evidence);
-  for (const m of bundle.mechanisms) for (const em of m.emissions) for (const id of em.evidence ?? []) citedEvidence.add(id);
+  for (const m of bundle.mechanisms)
+    for (const em of m.emissions) for (const id of em.evidence ?? []) citedEvidence.add(id);
   for (const e of bundle.evidence) {
-    if (!citedEvidence.has(e.id)) warning('unused-evidence', 'is cited by no entry in the registry', e.id);
+    if (!citedEvidence.has(e.id))
+      warning('unused-evidence', 'is cited by no entry in the registry', e.id);
   }
 
   // 10. Every active mechanism must be targeted by some intervention. The atlas
@@ -255,7 +305,11 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
   for (const i of bundle.interventions) for (const t of i.targets) targeted.add(t);
   for (const m of bundle.mechanisms) {
     if (m.status === 'active' && !targeted.has(m.id)) {
-      warning('mechanisms', 'is targeted by no intervention, so the atlas explains it without saying what would change it', m.id);
+      warning(
+        'mechanisms',
+        'is targeted by no intervention, so the atlas explains it without saying what would change it',
+        m.id
+      );
     }
   }
 
@@ -267,10 +321,15 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
   //    because writing the trace before the mechanism that explains it is how
   //    the registry actually grows; `--strict` is what makes it stop.
   const emittedObservations = new Set<string>();
-  for (const m of bundle.mechanisms) for (const em of m.emissions) emittedObservations.add(em.artifact);
+  for (const m of bundle.mechanisms)
+    for (const em of m.emissions) emittedObservations.add(em.artifact);
   for (const a of bundle.observations) {
     if (!emittedObservations.has(a.id)) {
-      warning('emissions', 'is emitted by no mechanism, so the atlas shows it without explaining it', a.id);
+      warning(
+        'emissions',
+        'is emitted by no mechanism, so the atlas shows it without explaining it',
+        a.id
+      );
     }
   }
 
@@ -295,11 +354,19 @@ export function validateRegistry(bundle: RegistryBundle): ValidationReport {
   const issues = validateRegistryBundle(bundle);
 
   const hasBarrierRefErrors = issues.some(
-    (i) => i.severity === 'error' && i.rule === 'dangling-reference' && (i.nodeId?.startsWith('B-') || i.nodeId?.startsWith('bar.'))
+    (i) =>
+      i.severity === 'error' &&
+      i.rule === 'dangling-reference' &&
+      (i.nodeId?.startsWith('B-') || i.nodeId?.startsWith('bar.'))
   );
   if (!hasBarrierRefErrors) {
     const dag = new HOBAKnowledgeGraph(bundle).validateBarrierDAG();
-    if (!dag.valid) issues.push({ severity: 'error', rule: 'barrier-cycle', message: dag.error ?? 'Barrier graph contains a cycle' });
+    if (!dag.valid)
+      issues.push({
+        severity: 'error',
+        rule: 'barrier-cycle',
+        message: dag.error ?? 'Barrier graph contains a cycle',
+      });
   }
 
   const errors = issues.filter((i) => i.severity === 'error');
@@ -330,11 +397,13 @@ function structuralProjection(node: RegistryNode): string {
     if (TRANSLATABLE_FIELDS.has(key)) continue;
     if (key === 'probes' && Array.isArray(value)) {
       // Probe text is translatable; the probe identity and cost are structural.
-      projected[key] = value.map((p: { id: string; cost: string; removability_target?: string }) => ({
-        id: p.id,
-        cost: p.cost,
-        removability_target: p.removability_target,
-      }));
+      projected[key] = value.map(
+        (p: { id: string; cost: string; removability_target?: string }) => ({
+          id: p.id,
+          cost: p.cost,
+          removability_target: p.removability_target,
+        })
+      );
       continue;
     }
     projected[key] = value;
@@ -346,7 +415,10 @@ function structuralProjection(node: RegistryNode): string {
  * Check that a translated mirror has exactly the same IDs and graph structure as
  * the canonical bundle (spec §21: "IDs and graph structure never change by language").
  */
-export function compareBundleStructure(canonical: RegistryBundle, mirror: RegistryBundle): ValidationIssue[] {
+export function compareBundleStructure(
+  canonical: RegistryBundle,
+  mirror: RegistryBundle
+): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
   const mirrorById = new Map(allNodes(mirror).map((n) => [n.id, n]));
   const canonicalIds = new Set<string>();
@@ -355,7 +427,12 @@ export function compareBundleStructure(canonical: RegistryBundle, mirror: Regist
     canonicalIds.add(node.id);
     const twin = mirrorById.get(node.id);
     if (!twin) {
-      issues.push({ severity: 'error', rule: 'mirror-missing', nodeId: node.id, message: `Node ${node.id} is missing from the mirror` });
+      issues.push({
+        severity: 'error',
+        rule: 'mirror-missing',
+        nodeId: node.id,
+        message: `Node ${node.id} is missing from the mirror`,
+      });
       continue;
     }
     if (structuralProjection(node) !== structuralProjection(twin)) {
@@ -370,7 +447,12 @@ export function compareBundleStructure(canonical: RegistryBundle, mirror: Regist
 
   for (const id of mirrorById.keys()) {
     if (!canonicalIds.has(id)) {
-      issues.push({ severity: 'error', rule: 'mirror-extra', nodeId: id, message: `Node ${id} exists only in the mirror` });
+      issues.push({
+        severity: 'error',
+        rule: 'mirror-extra',
+        nodeId: id,
+        message: `Node ${id} exists only in the mirror`,
+      });
     }
   }
 

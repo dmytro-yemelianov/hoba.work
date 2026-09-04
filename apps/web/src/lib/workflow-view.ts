@@ -98,7 +98,11 @@ const MIN_SCALE = 0.68;
 const MAX_SCALE = 1.15;
 
 function parseRGB(value: string, fallback: RGB): RGB {
-  const parts = value.trim().split(/[\s,/]+/).slice(0, 3).map(Number);
+  const parts = value
+    .trim()
+    .split(/[\s,/]+/)
+    .slice(0, 3)
+    .map(Number);
   return parts.length === 3 && parts.every(Number.isFinite) ? (parts as RGB) : fallback;
 }
 
@@ -133,7 +137,14 @@ export class WorkflowView {
   private traceEdges: (ViewTransition | undefined)[] = [];
   private readonly outgoing = new Map<string, ViewTransition[]>();
 
-  private palette!: { text: RGB; muted: RGB; border: RGB; bg: RGB; accent: RGB; kind: Record<ViewState['kind'], RGB> };
+  private palette!: {
+    text: RGB;
+    muted: RGB;
+    border: RGB;
+    bg: RGB;
+    accent: RGB;
+    kind: Record<ViewState['kind'], RGB>;
+  };
   private scale = 1;
   private panX = 0;
   private panY = 0;
@@ -155,7 +166,8 @@ export class WorkflowView {
     this.options = options;
     this.transitions = data.transitions;
 
-    for (const t of data.transitions) this.outgoing.set(t.from, [...(this.outgoing.get(t.from) ?? []), t]);
+    for (const t of data.transitions)
+      this.outgoing.set(t.from, [...(this.outgoing.get(t.from) ?? []), t]);
     this.layout(data);
     this.buildPath();
     const start = this.states.find((s) => s.kind === 'initial') ?? this.states[0]!;
@@ -296,7 +308,10 @@ export class WorkflowView {
    */
   frame(immediate = false) {
     const { minX, maxX, minY, maxY } = this.bounds();
-    const fit = Math.min((this.width - PAD * 2) / (maxX - minX), (this.height - PAD * 2) / (maxY - minY));
+    const fit = Math.min(
+      (this.width - PAD * 2) / (maxX - minX),
+      (this.height - PAD * 2) / (maxY - minY)
+    );
     const focus = this.current()?.state;
 
     if (this.autoZoom && focus) {
@@ -373,7 +388,10 @@ export class WorkflowView {
 
   /** The states walked so far — what the canvas draws as already visited. */
   private walked(): Set<string> {
-    const source = this.mode === 'play' ? this.path.slice(0, this.cursor + 1).map((p) => p.state) : this.trace.slice(0, this.cursor + 1);
+    const source =
+      this.mode === 'play'
+        ? this.path.slice(0, this.cursor + 1).map((p) => p.state)
+        : this.trace.slice(0, this.cursor + 1);
     return new Set(source.map((s) => s.id));
   }
 
@@ -524,7 +542,8 @@ export class WorkflowView {
   selectState(id: string) {
     // In `choose` mode the position is the reader's walk, not an index into a
     // route, so clicking a state jumps only if they have already been there.
-    const source = this.mode === 'play' ? this.path.map((p) => p.state.id) : this.trace.map((s) => s.id);
+    const source =
+      this.mode === 'play' ? this.path.map((p) => p.state.id) : this.trace.map((s) => s.id);
     const index = source.indexOf(id);
     if (index >= 0) this.seek(index);
   }
@@ -647,7 +666,9 @@ export class WorkflowView {
     }
 
     ctx.save();
-    ctx.strokeStyle = live ? rgba(this.palette.accent, 1) : rgba(this.palette.border, walked ? 1 : 0.55);
+    ctx.strokeStyle = live
+      ? rgba(this.palette.accent, 1)
+      : rgba(this.palette.border, walked ? 1 : 0.55);
     ctx.lineWidth = live ? 2.5 : 1.4;
     if (isBack) ctx.setLineDash([5, 4]);
     ctx.beginPath();
@@ -658,7 +679,9 @@ export class WorkflowView {
 
     const angle = Math.atan2(y2 - c2y, x2 - c2x);
     const size = live ? 9 : 6;
-    ctx.fillStyle = live ? rgba(this.palette.accent, 1) : rgba(this.palette.border, walked ? 1 : 0.55);
+    ctx.fillStyle = live
+      ? rgba(this.palette.accent, 1)
+      : rgba(this.palette.border, walked ? 1 : 0.55);
     ctx.beginPath();
     ctx.moveTo(x2, y2);
     ctx.lineTo(x2 - Math.cos(angle - 0.4) * size, y2 - Math.sin(angle - 0.4) * size);
@@ -708,7 +731,13 @@ export class WorkflowView {
     if (marks) {
       const dot = 8 * this.scale;
       ctx.beginPath();
-      ctx.arc(x + w - 12 * this.scale, y + 12 * this.scale, dot / 2 + 3 * this.scale, 0, Math.PI * 2);
+      ctx.arc(
+        x + w - 12 * this.scale,
+        y + 12 * this.scale,
+        dot / 2 + 3 * this.scale,
+        0,
+        Math.PI * 2
+      );
       ctx.fillStyle = rgba(this.palette.kind.terminal, active || walked ? 0.9 : 0.5);
       ctx.fill();
       ctx.font = `700 ${Math.max(8, 9 * this.scale)}px Inter, system-ui, sans-serif`;

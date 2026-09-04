@@ -25,7 +25,8 @@ const post = (body: unknown) =>
     body: JSON.stringify(body),
   });
 
-const account = 'A rejection arrived four minutes after I applied, with no interview and no named reason.';
+const account =
+  'A rejection arrived four minutes after I applied, with no interview and no named reason.';
 
 describe('POST /submit', () => {
   it('answers on its own path and leaves every other alone', () => {
@@ -37,7 +38,9 @@ describe('POST /submit', () => {
 
   it('stores an account, with the stage when it is one the registry knows', async () => {
     const store = db();
-    const res = await handleSubmit(post({ body: account, stage: 'ingestion', lang: 'uk' }), { SUBMISSIONS: store });
+    const res = await handleSubmit(post({ body: account, stage: 'ingestion', lang: 'uk' }), {
+      SUBMISSIONS: store,
+    });
     expect(res.status).toBe(201);
     const [sql, , , lang, , stage, text] = store.rows[0]!;
     expect(String(sql)).toContain('INSERT INTO submissions');
@@ -59,7 +62,9 @@ describe('POST /submit', () => {
    */
   it('refuses an account that names a real employer, and stores nothing', async () => {
     const store = db();
-    const res = await handleSubmit(post({ body: `${account} It was Google.` }), { SUBMISSIONS: store });
+    const res = await handleSubmit(post({ body: `${account} It was Google.` }), {
+      SUBMISSIONS: store,
+    });
     expect(res.status).toBe(422);
     await expect(res.json()).resolves.toMatchObject({ error: 'names_a_party', party: 'Google' });
     expect(store.rows).toEqual([]);
@@ -67,22 +72,30 @@ describe('POST /submit', () => {
 
   it('checks the contact field for a name too', async () => {
     const store = db();
-    const res = await handleSubmit(post({ body: account, contact: 'me@revolut.com' }), { SUBMISSIONS: store });
+    const res = await handleSubmit(post({ body: account, contact: 'me@revolut.com' }), {
+      SUBMISSIONS: store,
+    });
     expect(res.status).toBe(422);
     expect(store.rows).toEqual([]);
   });
 
   it('takes a bot silently rather than telling it what failed', async () => {
     const store = db();
-    const res = await handleSubmit(post({ body: account, website: 'http://spam' }), { SUBMISSIONS: store });
+    const res = await handleSubmit(post({ body: account, website: 'http://spam' }), {
+      SUBMISSIONS: store,
+    });
     expect(res.status).toBe(202);
     expect(store.rows).toEqual([]);
   });
 
   it('asks for more than a fragment, and less than an essay', async () => {
     const store = db();
-    expect((await handleSubmit(post({ body: 'rejected' }), { SUBMISSIONS: store })).status).toBe(400);
-    expect((await handleSubmit(post({ body: 'x'.repeat(4001) }), { SUBMISSIONS: store })).status).toBe(400);
+    expect((await handleSubmit(post({ body: 'rejected' }), { SUBMISSIONS: store })).status).toBe(
+      400
+    );
+    expect(
+      (await handleSubmit(post({ body: 'x'.repeat(4001) }), { SUBMISSIONS: store })).status
+    ).toBe(400);
     expect(store.rows).toEqual([]);
   });
 

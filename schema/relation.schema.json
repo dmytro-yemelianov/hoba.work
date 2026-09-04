@@ -10,7 +10,16 @@
     "to": { "type": "string" },
     "relation": {
       "type": "string",
-      "enum": ["operates_at", "emits", "amplifies", "masks", "precedes", "instantiates", "targets", "mitigates"]
+      "enum": [
+        "operates_at",
+        "emits",
+        "amplifies",
+        "masks",
+        "precedes",
+        "instantiates",
+        "targets",
+        "mitigates"
+      ]
     }
   },
   "allOf": [

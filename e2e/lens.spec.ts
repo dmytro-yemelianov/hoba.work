@@ -23,7 +23,9 @@ test.describe('the lens', () => {
   });
 
   test('collapses to one seat, and says when that seat cannot see', async ({ page }) => {
-    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=recruiter');
+    await page.goto(
+      '/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=recruiter'
+    );
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'recruiter');
 
     const shown = page.locator('.lens-block:visible');
@@ -32,7 +34,9 @@ test.describe('the lens', () => {
 
     // An entry the chosen seat has no view of states that, rather than
     // silently rendering nothing.
-    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=public-policy');
+    await page.goto(
+      '/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=public-policy'
+    );
     const only = page.locator('.lens-block:visible');
     await expect(only).toHaveCount(1);
     await expect(only.first()).toHaveAttribute('data-actor', 'public-policy');
@@ -43,7 +47,9 @@ test.describe('the lens', () => {
   // while they listed six of the seven: choosing the client hid every
   // perspective and revealed none.
   test('offers no seat it cannot show, including the last one added', async ({ page }) => {
-    await page.goto('/barriers/bar.client_profile_approval_and_client_interview?lang=en&lens=client');
+    await page.goto(
+      '/barriers/bar.client_profile_approval_and_client_interview?lang=en&lens=client'
+    );
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'client');
     const shown = page.locator('.lens-block:visible');
     await expect(shown).toHaveCount(1);
@@ -51,7 +57,9 @@ test.describe('the lens', () => {
   });
 
   test('a chosen seat survives navigation and is applied before paint', async ({ page }) => {
-    await page.goto('/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=hiring-manager');
+    await page.goto(
+      '/mechanisms/mech.recruiter_volume_quota_incentive_distortion?lang=en&lens=hiring-manager'
+    );
     await page.goto('/barriers/bar.technical_screen_live_assessment?lang=en');
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'hiring-manager');
     // No flash: the attribute is on <html> from the inline script, not from a
@@ -94,7 +102,10 @@ test.describe('actors', () => {
 
   test('offers to read the whole atlas from one seat', async ({ page }) => {
     await page.goto('/actors/ats-vendor?lang=en');
-    await page.getByRole('link', { name: /read the whole atlas from here/i }).first().click();
+    await page
+      .getByRole('link', { name: /read the whole atlas from here/i })
+      .first()
+      .click();
     await expect(page.locator('html')).toHaveAttribute('data-lens', 'ats-vendor');
   });
 });
@@ -109,26 +120,40 @@ test.describe('actors', () => {
 test('every seat the registry has is offered, allowed and revealable', async ({ page }) => {
   await page.goto('/barriers/bar.client_profile_approval_and_client_interview?lang=en');
 
-  const offered = await page.locator('.lens-menu .lens-option[data-lens]:not([data-lens=""])').evaluateAll(
-    (els) => els.map((e) => (e as HTMLElement).dataset.lens).filter(Boolean).sort()
-  );
+  const offered = await page
+    .locator('.lens-menu .lens-option[data-lens]:not([data-lens=""])')
+    .evaluateAll((els) =>
+      els
+        .map((e) => (e as HTMLElement).dataset.lens)
+        .filter(Boolean)
+        .sort()
+    );
   expect(offered.length).toBeGreaterThan(0);
 
   const allowed = await page.evaluate(() => {
     // Astro's `define:vars` emits the value under its frontmatter name and the
     // script reads it from there, so the literal is `lensSlugs`, not `LENSES`.
-    const src = [...document.querySelectorAll('script')].map((s) => s.textContent ?? '').find((s) => s.includes('lensSlugs'));
-    return (JSON.parse(/lensSlugs\s*=\s*(\[[^\]]*\])/.exec(src ?? '')?.[1] ?? '[]') as string[]).sort();
+    const src = [...document.querySelectorAll('script')]
+      .map((s) => s.textContent ?? '')
+      .find((s) => s.includes('lensSlugs'));
+    return (
+      JSON.parse(/lensSlugs\s*=\s*(\[[^\]]*\])/.exec(src ?? '')?.[1] ?? '[]') as string[]
+    ).sort();
   });
 
   const revealed = await page.evaluate(() =>
-    [...new Set(
-      [...document.querySelectorAll('style')]
-        .flatMap((s) => [...(s.textContent ?? '').matchAll(/html\[data-lens="([a-z-]+)"\]/g)])
-        .map((m) => m[1]!)
-    )].sort()
+    [
+      ...new Set(
+        [...document.querySelectorAll('style')]
+          .flatMap((s) => [...(s.textContent ?? '').matchAll(/html\[data-lens="([a-z-]+)"\]/g)])
+          .map((m) => m[1]!)
+      ),
+    ].sort()
   );
 
   expect(allowed, 'the allowlist offers a different set of seats than the picker').toEqual(offered);
-  expect(revealed, 'some offered seat has no reveal rule, so choosing it would show nothing').toEqual(offered);
+  expect(
+    revealed,
+    'some offered seat has no reveal rule, so choosing it would show nothing'
+  ).toEqual(offered);
 });

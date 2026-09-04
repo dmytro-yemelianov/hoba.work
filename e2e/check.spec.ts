@@ -26,8 +26,12 @@ test.describe('conformance check', () => {
     await page.fill('#bandMax', '80');
 
     // Three conditions fail; the one named is the earliest in the funnel.
-    await expect(page.locator('#check-verdict')).toContainText('bar.automated_filter_parser_threshold');
-    await expect(page.locator('#check-verdict')).not.toContainText('bar.compensation_levelling_reconciliation');
+    await expect(page.locator('#check-verdict')).toContainText(
+      'bar.automated_filter_parser_threshold'
+    );
+    await expect(page.locator('#check-verdict')).not.toContainText(
+      'bar.compensation_levelling_reconciliation'
+    );
   });
 
   test('never turns a missing keyword into a failure', async ({ page }) => {
@@ -58,7 +62,13 @@ test.describe('conformance check', () => {
     // The refusal is on the page, in words.
     expect(body).toContain('how likely you are to be hired');
     // And nothing that would undo it.
-    for (const forbidden of ['% chance', 'probability of success', 'score:', 'optimise your cv', 'improve your cv']) {
+    for (const forbidden of [
+      '% chance',
+      'probability of success',
+      'score:',
+      'optimise your cv',
+      'improve your cv',
+    ]) {
       expect(body, forbidden).not.toContain(forbidden);
     }
     // No field invites a document, because the page must not rewrite one.

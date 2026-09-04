@@ -50,7 +50,9 @@ test.describe('navigation', () => {
     await drawer.locator('summary').click();
     // Four groups, plus the point-of-view picker, which is a control not a group.
     for (const group of ['Атлас', 'Процес', 'Дані', 'Проєкт']) {
-      await expect(drawer.locator('.nav-drawer .kicker').filter({ hasText: new RegExp(`^${group}$`) })).toHaveCount(1);
+      await expect(
+        drawer.locator('.nav-drawer .kicker').filter({ hasText: new RegExp(`^${group}$`) })
+      ).toHaveCount(1);
     }
     await expect(drawer.locator('.nav-drawer a[href$="/registry"]')).toHaveCount(1);
   });

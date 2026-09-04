@@ -6,7 +6,10 @@ import { LANGS, localeParams, useTranslations, type Lang } from '../../../i18n/u
 /** Same page, written for a reader who is piping it somewhere. */
 export function getStaticPaths() {
   return LANGS.flatMap((lang) =>
-    getBundle(lang).mechanisms.map((entity) => ({ params: { ...localeParams(lang), id: entity.id }, props: { lang, entity } }))
+    getBundle(lang).mechanisms.map((entity) => ({
+      params: { ...localeParams(lang), id: entity.id },
+      props: { lang, entity },
+    }))
   );
 }
 

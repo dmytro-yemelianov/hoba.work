@@ -31,7 +31,9 @@ export const observation = (over: Partial<ObservationNode> & { id: string }): Ob
   ...over,
 });
 
-export const barrier = (over: Partial<BarrierNode> & { id: string; order: number }): BarrierNode => ({
+export const barrier = (
+  over: Partial<BarrierNode> & { id: string; order: number }
+): BarrierNode => ({
   type: 'barrier',
   title: `Barrier ${over.id}`,
   stage: 'screening',
@@ -106,7 +108,9 @@ export const loop = (over: Partial<LoopNode> & { id: string }): LoopNode => ({
   ...over,
 });
 
-export const intervention = (over: Partial<InterventionNode> & { id: string }): InterventionNode => ({
+export const intervention = (
+  over: Partial<InterventionNode> & { id: string }
+): InterventionNode => ({
   type: 'intervention',
   title: `Intervention ${over.id}`,
   summary: 'A sufficiently long summary for the fixture.',
@@ -158,7 +162,15 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
         // The bundle calls itself fully valid, so it cites its own evidence
         // rather than carrying a record nothing points at.
         evidence_ids: ['EVD-001'],
-        probes: [{ id: 'PROBE-A-001-1', action: 'Check the spam folder.', expected_signal: 'An acknowledgement.', cost: 'low', outcomes: [] }],
+        probes: [
+          {
+            id: 'PROBE-A-001-1',
+            action: 'Check the spam folder.',
+            expected_signal: 'An acknowledgement.',
+            cost: 'low',
+            outcomes: [],
+          },
+        ],
       }),
     ],
     barriers: [
@@ -169,8 +181,21 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
       mechanism({
         id: 'M-001',
         operates_at: ['B-001'],
-        emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }],
-        facets: { actor: 'candidate', nature: 'rule', visibility: 'inferable', removability: 'candidate' },
+        emissions: [
+          {
+            artifact: 'A-001',
+            fidelity: 'direct',
+            likelihood: 'high',
+            evidence: [],
+            observed_at: [],
+          },
+        ],
+        facets: {
+          actor: 'candidate',
+          nature: 'rule',
+          visibility: 'inferable',
+          removability: 'candidate',
+        },
         honest_baseline: true,
         amplifies: ['M-002'],
       }),
@@ -182,7 +207,14 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
     // say what would change each of them, not only the one with an emission.
     interventions: [intervention({ id: 'I-001', targets: ['M-001', 'M-002', 'P-001'] })],
     evidence: [
-      { id: 'EVD-001', type: 'evidence', title: 'Fixture evidence', kind: 'research', summary: 'A fixture evidence record.', aliases: [] },
+      {
+        id: 'EVD-001',
+        type: 'evidence',
+        title: 'Fixture evidence',
+        kind: 'research',
+        summary: 'A fixture evidence record.',
+        aliases: [],
+      },
     ],
     records: [],
     ...over,

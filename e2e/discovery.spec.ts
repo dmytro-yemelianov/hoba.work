@@ -14,7 +14,14 @@ test.describe('discovery surface', () => {
     const body = await (await request.get('/sitemap.xml')).text();
     const locs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
     expect(locs.length).toBeGreaterThan(70);
-    for (const route of ['/', '/registry', '/graph', '/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade', '/mechanisms/mech.genuine_technical_skill_shortfall', '/interventions/int.upfront_compensation_band_disclosure']) {
+    for (const route of [
+      '/',
+      '/registry',
+      '/graph',
+      '/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade',
+      '/mechanisms/mech.genuine_technical_skill_shortfall',
+      '/interventions/int.upfront_compensation_band_disclosure',
+    ]) {
       expect(locs, route).toContain(`https://hoba.work${route === '/' ? '/' : route}`);
     }
     // No language segment: shareable links carry no locale.
@@ -35,7 +42,15 @@ test.describe('discovery surface', () => {
 
   test('llms-full.txt carries the whole registry', async ({ request }) => {
     const body = await (await request.get('/llms-full.txt')).text();
-    for (const heading of ['## Observations', '## Barriers', '## Mechanisms', '## Patterns', '## Loops', '## Interventions', '## Evidence']) {
+    for (const heading of [
+      '## Observations',
+      '## Barriers',
+      '## Mechanisms',
+      '## Patterns',
+      '## Loops',
+      '## Interventions',
+      '## Evidence',
+    ]) {
       expect(body, heading).toContain(heading);
     }
     expect(body).toContain('### mech.genuine_technical_skill_shortfall —');
@@ -83,7 +98,9 @@ test('the sitemap lists every page that was built, or says why not', async ({ re
 
   const xml = await (await request.get('/sitemap.xml')).text();
   const listed = new Set(
-    [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname.replace(/(.)\/$/, '$1'))
+    [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) =>
+      new URL(m[1]).pathname.replace(/(.)\/$/, '$1')
+    )
   );
 
   // Held back on purpose, and named here so the reason survives: an error page

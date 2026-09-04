@@ -4,14 +4,24 @@ import { describe, expect, it } from 'vitest';
 import * as S from '@hoba/registry';
 import { READER_SLUGS } from '../apps/web/src/lib/readers';
 import { ui } from '../apps/web/src/i18n/ui';
-import { branded, internalBase, localeFromParams, localeStaticPaths, publicPath, useTranslations, withLang } from '../apps/web/src/i18n/utils';
+import {
+  branded,
+  internalBase,
+  localeFromParams,
+  localeStaticPaths,
+  publicPath,
+  useTranslations,
+  withLang,
+} from '../apps/web/src/i18n/utils';
 
 describe('ui dictionary', () => {
   it('has the same keys in every locale, with no empty Ukrainian strings', () => {
     const en = Object.keys(ui.en).sort();
     const uk = Object.keys(ui.uk).sort();
     expect(uk).toEqual(en);
-    const emptyUk = Object.entries(ui.uk).filter(([k, v]) => v === '' && (ui.en as Record<string, string>)[k] !== '');
+    const emptyUk = Object.entries(ui.uk).filter(
+      ([k, v]) => v === '' && (ui.en as Record<string, string>)[k] !== ''
+    );
     expect(emptyUk).toEqual([]);
   });
 
@@ -24,7 +34,9 @@ describe('ui dictionary', () => {
 
   it('does not leave obviously untranslated Latin-only sentences in the Ukrainian UI (code identifiers excepted)', () => {
     const allowed = new Set(['dev.mcp.configComment2', 'about.p1.strong']);
-    const offenders = Object.entries(ui.uk).filter(([k, v]) => !allowed.has(k) && /[A-Za-z]{4,}/.test(v) && !/[Ѐ-ӿ]/.test(v));
+    const offenders = Object.entries(ui.uk).filter(
+      ([k, v]) => !allowed.has(k) && /[A-Za-z]{4,}/.test(v) && !/[Ѐ-ӿ]/.test(v)
+    );
     expect(offenders.map(([k]) => k)).toEqual([]);
   });
 
@@ -40,7 +52,10 @@ describe('ui dictionary', () => {
 
 describe('locale routing helpers', () => {
   it('prerenders one internal tree per language', () => {
-    expect(localeStaticPaths()).toEqual([{ params: { locale: '_i/en' } }, { params: { locale: '_i/uk' } }]);
+    expect(localeStaticPaths()).toEqual([
+      { params: { locale: '_i/en' } },
+      { params: { locale: '_i/uk' } },
+    ]);
     expect(localeFromParams({ locale: '_i/uk' })).toBe('uk');
     expect(localeFromParams({ locale: '_i/en' })).toBe('en');
     expect(localeFromParams({})).toBe('en');
@@ -59,8 +74,12 @@ describe('locale routing helpers', () => {
 
   it('carries the language as a query, never as a segment, and keeps the rest', () => {
     expect(withLang(new URL('https://hoba.work/_i/en/registry/'), 'uk')).toBe('/registry?lang=uk');
-    expect(withLang(new URL('https://hoba.work/_i/uk/registry/?type=loop'), 'en')).toBe('/registry?type=loop&lang=en');
-    expect(withLang(new URL('https://hoba.work/_i/uk/registry/?lang=uk#top'), 'en')).toBe('/registry?lang=en#top');
+    expect(withLang(new URL('https://hoba.work/_i/uk/registry/?type=loop'), 'en')).toBe(
+      '/registry?type=loop&lang=en'
+    );
+    expect(withLang(new URL('https://hoba.work/_i/uk/registry/?lang=uk#top'), 'en')).toBe(
+      '/registry?lang=en#top'
+    );
     expect(withLang(new URL('https://hoba.work/_i/en/'), 'uk')).toBe('/?lang=uk');
   });
 });
@@ -172,12 +191,25 @@ describe('the dictionary and the vocabularies it labels', () => {
    * something that is not a vocabulary.
    */
   const NOT_A_VOCABULARY = new Set([
-    'agency.', 'analyze.scenarios.', 'check.r.', 'check.v.', 'contrib.checks.',
-    'method.nongoals.', 'method.verbs.', 'nav.', 'nav.desc.', 'relation.',
-    'scenario.', 'specimen.subject.', 'view.', 'zone.',
+    'agency.',
+    'analyze.scenarios.',
+    'check.r.',
+    'check.v.',
+    'contrib.checks.',
+    'method.nongoals.',
+    'method.verbs.',
+    'nav.',
+    'nav.desc.',
+    'relation.',
+    'scenario.',
+    'specimen.subject.',
+    'view.',
+    'zone.',
     // Keyed by a local set — a zone, a card's position, a page of the tour —
     // rather than by a vocabulary the registry defines.
-    'analyze.a.zone.', 'home.gives.', 'tour.',
+    'analyze.a.zone.',
+    'home.gives.',
+    'tour.',
     // Two levels — reader, then step number — so the flat rule above cannot
     // check it; the test below walks it properly.
     'reader.step.',
@@ -186,7 +218,8 @@ describe('the dictionary and the vocabularies it labels', () => {
     'submit.err.',
     // The two axes of the /archetypes grid — a hand-picked joke, not a
     // registry vocabulary (see the doc comment on archetypeSchema).
-    'archetypes.x.', 'archetypes.y.',
+    'archetypes.x.',
+    'archetypes.y.',
   ]);
 
   it('classifies every prefix whose key is built at runtime', () => {
@@ -211,7 +244,8 @@ describe('the dictionary and the vocabularies it labels', () => {
       expect(start, selector).toBeGreaterThan(-1);
       return css.slice(start, css.indexOf('\n}', start));
     };
-    const names = (text: string) => new Set([...text.matchAll(/(--[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
+    const names = (text: string) =>
+      new Set([...text.matchAll(/(--[a-z0-9-]+)\s*:/g)].map((m) => m[1]));
     const light = names(block(':root'));
     const dark = names(block('.dark'));
 
@@ -234,12 +268,16 @@ describe('the onboarding tour', () => {
    */
   it('has a written step for everything it points at, and points at every step it has', () => {
     const src = fs.readFileSync(
-      path.join(__dirname, '..', 'apps', 'web', 'src', 'components', 'OnboardingTour.astro'), 'utf8');
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'components', 'OnboardingTour.astro'),
+      'utf8'
+    );
     const block = src.match(/const STEP_SELECTORS[^{]*\{([\s\S]*?)\n\};/)![1];
     const pages = [...block.matchAll(/^\s*(\w+):\s*\[([\s\S]*?)\],$/gm)]
       // Count string literals, not quote characters: one selector carries an
       // attribute filter with quotes of its own inside it.
-      .map(([, page, list]) => [page, (list.match(/'[^']*'|"[^"]*"|`[^`]*`/g) ?? []).length] as const);
+      .map(
+        ([, page, list]) => [page, (list.match(/'[^']*'|"[^"]*"|`[^`]*`/g) ?? []).length] as const
+      );
     expect(pages.length).toBeGreaterThan(0);
 
     const keys = new Set(Object.keys(ui.en));
@@ -256,7 +294,8 @@ describe('the onboarding tour', () => {
         .filter((k) => k.startsWith(`tour.${page}.step`) && k.endsWith('.title'))
         .map((k) => Number(k.match(/step(\d+)/)![1]));
       const orphaned = written.filter((n) => n > steps);
-      if (orphaned.length) problems.push(`${page}: step ${orphaned.join(', ')} written but never pointed at`);
+      if (orphaned.length)
+        problems.push(`${page}: step ${orphaned.join(', ')} written but never pointed at`);
     }
     expect(problems).toEqual([]);
   });
@@ -274,18 +313,29 @@ describe('the subsets of the evidence scale that are written out by hand', () =>
 
   it('keeps the four verbs methodology teaches inside the scale', () => {
     const src = fs.readFileSync(
-      path.join(__dirname, '..', 'apps', 'web', 'src', 'pages', '[...locale]', 'methodology.astro'), 'utf8');
-    const verbs = [...src.match(/const verbs = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'pages', '[...locale]', 'methodology.astro'),
+      'utf8'
+    );
+    const verbs = [...src.match(/const verbs = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map(
+      (m) => m[1]
+    );
     expect(verbs.length).toBeGreaterThan(0);
     expect(verbs.filter((v) => !levels.has(v))).toEqual([]);
   });
 
   it('keeps the ordered claim scale inside the scale, minus the two states that are not points on it', () => {
     const src = fs.readFileSync(
-      path.join(__dirname, '..', 'packages', 'validator', 'src', 'analysis.ts'), 'utf8');
-    const scale = [...src.match(/const CLAIM_SCALE = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map((m) => m[1]);
+      path.join(__dirname, '..', 'packages', 'validator', 'src', 'analysis.ts'),
+      'utf8'
+    );
+    const scale = [...src.match(/const CLAIM_SCALE = \[([^\]]*)\]/)![1].matchAll(/'([^']+)'/g)].map(
+      (m) => m[1]
+    );
     expect(scale.filter((v) => !levels.has(v))).toEqual([]);
-    expect([...levels].filter((v) => !scale.includes(v)).sort()).toEqual(['contradicted', 'unknown']);
+    expect([...levels].filter((v) => !scale.includes(v)).sort()).toEqual([
+      'contradicted',
+      'unknown',
+    ]);
   });
 });
 
@@ -297,7 +347,19 @@ describe('the reader entry points', () => {
    */
   it('explains every step of every reader, in both languages', () => {
     const src = fs.readFileSync(
-      path.join(__dirname, '..', 'apps', 'web', 'src', 'pages', '[...locale]', 'for', '[reader].astro'), 'utf8');
+      path.join(
+        __dirname,
+        '..',
+        'apps',
+        'web',
+        'src',
+        'pages',
+        '[...locale]',
+        'for',
+        '[reader].astro'
+      ),
+      'utf8'
+    );
     const missing: string[] = [];
     for (const reader of READER_SLUGS) {
       const block = src.match(new RegExp(`${reader}: \\[([\\s\\S]*?)\\],\\n`))?.[1] ?? '';
@@ -323,7 +385,9 @@ describe('the submission endpoint and the messages for it', () => {
    */
   it('has a message for every reason the worker can refuse', () => {
     const worker = fs.readFileSync(
-      path.join(__dirname, '..', 'apps', 'web', 'src', 'worker', 'submit.js'), 'utf8');
+      path.join(__dirname, '..', 'apps', 'web', 'src', 'worker', 'submit.js'),
+      'utf8'
+    );
     const codes = [...new Set([...worker.matchAll(/error:\s*'([a-z_]+)'/g)].map((m) => m[1]))];
     expect(codes.length).toBeGreaterThan(2);
     const missing: string[] = [];

@@ -9,7 +9,12 @@ const probe = (id: string, excludes: string[]): DiagnosticProbe => ({
   expected_signal: 'Something legible comes back.',
   cost: 'low',
   outcomes: [
-    { id: 'yes', label: 'It came back.', excludes, because: excludes.length ? 'Definitionally incompatible.' : '' },
+    {
+      id: 'yes',
+      label: 'It came back.',
+      excludes,
+      because: excludes.length ? 'Definitionally incompatible.' : '',
+    },
     { id: 'no', label: 'Nothing came back.', excludes: [], because: '' },
   ],
 });
@@ -48,10 +53,14 @@ describe('narrowing', () => {
   });
 
   it('reports a result naming something that does not exist rather than throwing', () => {
-    const out = narrow(ALL, [probe('A', ['M-001'])], [
-      { probe: 'PROBE-NOPE', outcome: 'yes' },
-      { probe: 'PROBE-A', outcome: 'not-an-outcome' },
-    ]);
+    const out = narrow(
+      ALL,
+      [probe('A', ['M-001'])],
+      [
+        { probe: 'PROBE-NOPE', outcome: 'yes' },
+        { probe: 'PROBE-A', outcome: 'not-an-outcome' },
+      ]
+    );
     expect(out.unknown).toHaveLength(2);
     expect(out.remaining).toEqual(ALL);
   });

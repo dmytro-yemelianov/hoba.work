@@ -145,13 +145,25 @@ export const conditionSchema = z
   })
   .superRefine((c, ctx) => {
     if (c.arity === 'comparative' && !c.cohort)
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'a comparative condition must name the cohort it ranks within' });
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'a comparative condition must name the cohort it ranks within',
+      });
     if (c.arity === 'absolute' && c.cohort)
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'an absolute condition tests one record alone and may not name a cohort' });
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'an absolute condition tests one record alone and may not name a cohort',
+      });
     if (c.owner.position === 'ownerless' && c.owner.party)
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'ownerless means nobody holds it; naming a party contradicts that' });
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'ownerless means nobody holds it; naming a party contradicts that',
+      });
     if (c.owner.position !== 'ownerless' && !c.owner.party)
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'an owned condition must name the party holding it' });
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'an owned condition must name the party holding it',
+      });
   });
 
 // ---------------------------------------------------------------------------

@@ -25,7 +25,13 @@ import type { ValidationIssue } from './validation.js';
  * `contradicted` and `unknown` are deliberately absent: they are states a claim
  * can be in, not points on the line, so they are never compared against it.
  */
-const CLAIM_SCALE = ['observed', 'compatible', 'supported', 'strongly_supported', 'proven'] as const;
+const CLAIM_SCALE = [
+  'observed',
+  'compatible',
+  'supported',
+  'strongly_supported',
+  'proven',
+] as const;
 
 /** Position on the scale, or null for the two states that are not on it. */
 export function claimRank(level: string): number | null {
@@ -37,7 +43,14 @@ const observationRef = z.string().regex(/^obs\.[a-z0-9_]+$/);
 const interventionRef = z.string().regex(/^int\.[a-z0-9_]+$/);
 
 export const analysisSchema = z.object({
-  input_type: z.enum(['social_post', 'candidate_story', 'funnel_metrics', 'recruiter_report', 'job_description', 'rejection_sequence']),
+  input_type: z.enum([
+    'social_post',
+    'candidate_story',
+    'funnel_metrics',
+    'recruiter_report',
+    'job_description',
+    'rejection_sequence',
+  ]),
   source_text: z.string(),
   observations: z.array(
     z.object({
@@ -71,7 +84,12 @@ export const analysisSchema = z.object({
    * one until §10 landed. Strict about leading zeros, which is the only thing
    * separating `1.0.0` from `2026.08.3` structurally.
    */
-  registry_version: z.string().regex(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/, 'registry_version must be semver (e.g. 1.0.0)'),
+  registry_version: z
+    .string()
+    .regex(
+      /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/,
+      'registry_version must be semver (e.g. 1.0.0)'
+    ),
 });
 
 export type Analysis = z.infer<typeof analysisSchema>;
@@ -99,7 +117,14 @@ export function validateAnalysis(input: unknown, bundle: RegistryBundle): Valida
   const issues: ValidationIssue[] = [];
 
   const levelById = new Map<string, string>();
-  for (const n of [...bundle.observations, ...bundle.mechanisms, ...bundle.barriers, ...bundle.patterns, ...bundle.loops, ...bundle.interventions]) {
+  for (const n of [
+    ...bundle.observations,
+    ...bundle.mechanisms,
+    ...bundle.barriers,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions,
+  ]) {
     levelById.set(n.id, (n as { evidence_level?: string }).evidence_level ?? 'unknown');
   }
   const interventionIds = new Set(bundle.interventions.map((i) => i.id));
@@ -108,7 +133,11 @@ export function validateAnalysis(input: unknown, bundle: RegistryBundle): Valida
   for (const o of analysis.observations) {
     for (const ref of o.registry_refs) {
       if (!levelById.has(ref)) {
-        issues.push({ severity: 'error', rule: 'dangling-reference', message: `observations.registry_refs references unknown entity: ${ref}` });
+        issues.push({
+          severity: 'error',
+          rule: 'dangling-reference',
+          message: `observations.registry_refs references unknown entity: ${ref}`,
+        });
       }
     }
   }
@@ -116,7 +145,12 @@ export function validateAnalysis(input: unknown, bundle: RegistryBundle): Valida
   for (const e of analysis.compatible_entities) {
     const authored = levelById.get(e.id);
     if (authored === undefined) {
-      issues.push({ severity: 'error', rule: 'dangling-reference', nodeId: e.id, message: `compatible_entities references unknown entity: ${e.id}` });
+      issues.push({
+        severity: 'error',
+        rule: 'dangling-reference',
+        nodeId: e.id,
+        message: `compatible_entities references unknown entity: ${e.id}`,
+      });
       continue;
     }
     const claimed = claimRank(e.claim_level);
@@ -133,11 +167,19 @@ export function validateAnalysis(input: unknown, bundle: RegistryBundle): Valida
 
   for (const [actor, interventions] of Object.entries(analysis.agency)) {
     if (!actorSlugs.has(actor)) {
-      issues.push({ severity: 'error', rule: 'dangling-reference', message: `agency names unknown actor: ${actor}` });
+      issues.push({
+        severity: 'error',
+        rule: 'dangling-reference',
+        message: `agency names unknown actor: ${actor}`,
+      });
     }
     for (const id of interventions) {
       if (!interventionIds.has(id)) {
-        issues.push({ severity: 'error', rule: 'dangling-reference', message: `agency.${actor} references unknown intervention: ${id}` });
+        issues.push({
+          severity: 'error',
+          rule: 'dangling-reference',
+          message: `agency.${actor} references unknown intervention: ${id}`,
+        });
       }
     }
   }

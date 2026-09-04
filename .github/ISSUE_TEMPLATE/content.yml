@@ -1,6 +1,6 @@
 name: Registry entry
 description: A new observation, barrier, mechanism, pattern, loop or intervention — or a correction to one
-labels: ["content"]
+labels: ['content']
 body:
   - type: markdown
     attributes:
@@ -11,7 +11,17 @@ body:
     id: type
     attributes:
       label: Entity type
-      options: [observation (A), barrier (B), mechanism (M), pattern (P), loop (L), intervention (I), evidence (EVD), correction to an existing entry]
+      options:
+        [
+          observation (A),
+          barrier (B),
+          mechanism (M),
+          pattern (P),
+          loop (L),
+          intervention (I),
+          evidence (EVD),
+          correction to an existing entry,
+        ]
     validations: { required: true }
   - type: textarea
     id: claim

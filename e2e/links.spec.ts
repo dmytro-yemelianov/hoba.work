@@ -36,7 +36,12 @@ test('built site has no broken internal links', () => {
     if (!clean) return true;
     const rel = clean.replace(/^\//, '');
     const roots = tree ? [path.join(dist, tree), dist] : [dist];
-    const candidates = [rel, path.join(rel, 'index.html'), `${rel}.html`, rel.replace(/\/$/, '') + '/index.html'];
+    const candidates = [
+      rel,
+      path.join(rel, 'index.html'),
+      `${rel}.html`,
+      rel.replace(/\/$/, '') + '/index.html',
+    ];
     return roots.some((root) => candidates.some((c) => fs.existsSync(path.join(root, c))));
   };
 

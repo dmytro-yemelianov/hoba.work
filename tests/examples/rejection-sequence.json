@@ -23,13 +23,32 @@
   ],
   "interpretations": [
     { "text": "They never actually had the headcount.", "classification": "author_interpretation" },
-    { "text": "The dwell time and the repost are both consistent with a requisition that outlived its funding decision, but the sequence alone does not separate that from three other mechanisms.", "classification": "analyzer_interpretation" }
+    {
+      "text": "The dwell time and the repost are both consistent with a requisition that outlived its funding decision, but the sequence alone does not separate that from three other mechanisms.",
+      "classification": "analyzer_interpretation"
+    }
   ],
   "compatible_entities": [
-    { "id": "mech.stale_or_orphaned_job_requisition", "claim_level": "compatible", "reason": "A requisition left open past its decision produces both the dwell and the refreshed repost." },
-    { "id": "mech.headcount_freeze_or_budget_cancellation", "claim_level": "compatible", "reason": "A withdrawn budget closes the search without a hire and reopens it when funding returns." },
-    { "id": "mech.automated_application_expiration_timeout", "claim_level": "compatible", "reason": "A timeout disposition explains a rejection with no human read in between." },
-    { "id": "bar.inbound_screening_triage", "claim_level": "compatible", "reason": "The application never demonstrably passed this gate." }
+    {
+      "id": "mech.stale_or_orphaned_job_requisition",
+      "claim_level": "compatible",
+      "reason": "A requisition left open past its decision produces both the dwell and the refreshed repost."
+    },
+    {
+      "id": "mech.headcount_freeze_or_budget_cancellation",
+      "claim_level": "compatible",
+      "reason": "A withdrawn budget closes the search without a hire and reopens it when funding returns."
+    },
+    {
+      "id": "mech.automated_application_expiration_timeout",
+      "claim_level": "compatible",
+      "reason": "A timeout disposition explains a rejection with no human read in between."
+    },
+    {
+      "id": "bar.inbound_screening_triage",
+      "claim_level": "compatible",
+      "reason": "The application never demonstrably passed this gate."
+    }
   ],
   "unknowns": [
     "Whether the application was read by a person at any point.",
@@ -38,7 +57,10 @@
   ],
   "agency": {
     "candidate": ["int.candidate_ats_parser_conformance_test_utility"],
-    "employer-policy": ["int.auto_close_stale_job_requisitions", "int.distinct_closure_status_for_unreviewed_applications"]
+    "employer-policy": [
+      "int.auto_close_stale_job_requisitions",
+      "int.distinct_closure_status_for_unreviewed_applications"
+    ]
   },
   "prohibited_conclusions": [
     "The posting was never a real opening.",

@@ -13,7 +13,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { READER_SLUGS } from '../apps/web/src/lib/readers';
-import { findRegistryRoot, HOBAKnowledgeGraph, loadRegistryFromRoot, type ContentLang, type RegistryBundle } from '@hoba/registry';
+import {
+  findRegistryRoot,
+  HOBAKnowledgeGraph,
+  loadRegistryFromRoot,
+  type ContentLang,
+  type RegistryBundle,
+} from '@hoba/registry';
 
 const SITE = 'https://hoba.work';
 const root = findRegistryRoot(process.cwd());
@@ -92,7 +98,10 @@ function sitemap(routes: string[], lastmod: string): string {
     `  <url>\n    <loc>${SITE}${route === '/' ? '/' : route}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority}</priority>\n  </url>`;
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">'.replace('www.sitemap.org', 'www.sitemaps.org'),
+    '<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">'.replace(
+      'www.sitemap.org',
+      'www.sitemaps.org'
+    ),
     ...routes.map((r) => url(r, r === '/' ? '1.0' : STATIC_ROUTES.includes(r) ? '0.8' : '0.6')),
     '</urlset>',
     '',
@@ -146,7 +155,11 @@ function llms(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
 /** The whole registry as one document, in the order a reader would need it. */
 function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
   const out: string[] = [llms(bundle, graph), '---', ''];
-  function section<T extends { id: string; title: string }>(heading: string, nodes: T[], body: (node: T) => string[]): void {
+  function section<T extends { id: string; title: string }>(
+    heading: string,
+    nodes: T[],
+    body: (node: T) => string[]
+  ): void {
     out.push(`## ${heading}`, '');
     for (const node of nodes) {
       out.push(`### ${node.id} — ${node.title}`, '');
@@ -175,7 +188,11 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     '',
     `- Actor: ${m.facets.actor} · Nature: ${m.facets.nature} · Visibility: ${m.facets.visibility} · Removability: ${m.facets.removability}`,
     `- Operates at: ${m.operates_at.join(', ')}${m.honest_baseline ? ' · honest baseline' : ''}`,
-    ...(m.emissions.length ? [`- Emits: ${m.emissions.map((e) => `${e.artifact} (${e.fidelity ?? 'unspecified'})`).join(', ')}`] : []),
+    ...(m.emissions.length
+      ? [
+          `- Emits: ${m.emissions.map((e) => `${e.artifact} (${e.fidelity ?? 'unspecified'})`).join(', ')}`,
+        ]
+      : []),
     ...m.non_inferences.map((n) => `- Does NOT establish: ${n}`),
   ]);
 
@@ -208,7 +225,9 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
     ...a.controls.map((c) => `- Decides: ${c}`),
     ...a.blind_to.map((b) => `- Cannot see: ${b}`),
     ...a.incentives.map((i) => `- Measured on: ${i}`),
-    ...a.recommendations.map((r) => `- Could do (${r.cost}): ${r.title} — ${r.rationale} Costs: ${r.costs}`),
+    ...a.recommendations.map(
+      (r) => `- Could do (${r.cost}): ${r.title} — ${r.rationale} Costs: ${r.costs}`
+    ),
   ]);
 
   section('Eras', bundle.eras, (e) => [
@@ -249,4 +268,6 @@ fs.writeFileSync(path.join(PUBLIC, 'sitemap.xml'), sitemap(routes, lastmod));
 fs.writeFileSync(path.join(PUBLIC, 'llms.txt'), llms(bundle, graph));
 fs.writeFileSync(path.join(PUBLIC, 'llms-full.txt'), llmsFull(bundle, graph));
 
-process.stdout.write(`discovery: robots.txt, sitemap.xml (${routes.length} urls), llms.txt, llms-full.txt\n`);
+process.stdout.write(
+  `discovery: robots.txt, sitemap.xml (${routes.length} urls), llms.txt, llms-full.txt\n`
+);

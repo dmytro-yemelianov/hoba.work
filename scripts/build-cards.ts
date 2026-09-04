@@ -25,7 +25,12 @@ import {
   type RegistryBundle,
   type Specimen,
 } from '@hoba/registry';
-import { CAT_PRESETS, generateDNA, renderCatSVG, type CatDNA } from '../apps/web/src/lib/cat-engine/index.js';
+import {
+  CAT_PRESETS,
+  generateDNA,
+  renderCatSVG,
+  type CatDNA,
+} from '../apps/web/src/lib/cat-engine/index.js';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-cards: registry root not found');
@@ -195,7 +200,12 @@ const rawSvg = (type: string, props: Record<string, unknown>, children?: unknown
   props: { ...props, children },
 });
 const text = (value: string, style: Record<string, unknown>): Node => el('div', style, value);
-const img = (src: string, width: number, height: number, style: Record<string, unknown> = {}): Node => ({
+const img = (
+  src: string,
+  width: number,
+  height: number,
+  style: Record<string, unknown> = {}
+): Node => ({
   type: 'img',
   props: { src, width, height, style },
 });
@@ -221,8 +231,13 @@ const MASCOT_RASTER_PX = 160;
 function catMascotDataUri(seed: string): string {
   let dataUri = MASCOT_CACHE.get(seed);
   if (!dataUri) {
-    const svg = renderCatSVG(generateDNA(seed), { width: MASCOT_RASTER_PX, height: MASCOT_RASTER_PX });
-    const png = new Resvg(svg, { fitTo: { mode: 'width', value: MASCOT_RASTER_PX } }).render().asPng();
+    const svg = renderCatSVG(generateDNA(seed), {
+      width: MASCOT_RASTER_PX,
+      height: MASCOT_RASTER_PX,
+    });
+    const png = new Resvg(svg, { fitTo: { mode: 'width', value: MASCOT_RASTER_PX } })
+      .render()
+      .asPng();
     dataUri = `data:image/png;base64,${png.toString('base64')}`;
     MASCOT_CACHE.set(seed, dataUri);
   }
@@ -231,7 +246,10 @@ function catMascotDataUri(seed: string): string {
 
 /** Deterministic PRNG seeded by string (SFC32) */
 function createRng(seedStr: string) {
-  let h1 = 1779033703, h2 = 3144134277, h3 = 1013904242, h4 = 2773480762;
+  let h1 = 1779033703,
+    h2 = 3144134277,
+    h3 = 1013904242,
+    h4 = 2773480762;
   for (let i = 0; i < seedStr.length; i++) {
     const k = seedStr.charCodeAt(i);
     h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
@@ -239,21 +257,33 @@ function createRng(seedStr: string) {
     h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
     h4 = h1 ^ Math.imul(h4 ^ k, 2716044179);
   }
-  let a = h1, b = h2, c = h3, d = h4;
+  let a = h1,
+    b = h2,
+    c = h3,
+    d = h4;
   return function () {
-    a |= 0; b |= 0; c |= 0; d |= 0;
-    const t = (a + b | 0) + d | 0;
-    d = d + 1 | 0;
+    a |= 0;
+    b |= 0;
+    c |= 0;
+    d |= 0;
+    const t = (((a + b) | 0) + d) | 0;
+    d = (d + 1) | 0;
     a = b ^ (b >>> 9);
-    b = c + (c << 3) | 0;
-    c = (c << 21 | c >>> 11);
-    c = c + t | 0;
+    b = (c + (c << 3)) | 0;
+    c = (c << 21) | (c >>> 11);
+    c = (c + t) | 0;
     return (t >>> 0) / 4294967296;
   };
 }
 
 /** Generates rich parametric generative vector graphics for the card background */
-function generateParametricBackground(id: string, type: string, primaryHue: string, width: number, height: number): Node {
+function generateParametricBackground(
+  id: string,
+  type: string,
+  primaryHue: string,
+  width: number,
+  height: number
+): Node {
   const rng = createRng(`${id}-${type}-v3`);
   const secondaryHue = SECONDARY_HUE[type] ?? '#38bdf8';
   const elements: Node[] = [];
@@ -270,10 +300,14 @@ function generateParametricBackground(id: string, type: string, primaryHue: stri
       rawSvg('stop', { offset: '50%', 'stop-color': secondaryHue, 'stop-opacity': '0.06' }),
       rawSvg('stop', { offset: '100%', 'stop-color': secondaryHue, 'stop-opacity': '0' }),
     ]),
-    rawSvg('linearGradient', { id: `line-grad-${id}`, x1: '0%', y1: '0%', x2: '100%', y2: '100%' }, [
-      rawSvg('stop', { offset: '0%', 'stop-color': primaryHue, 'stop-opacity': '0.7' }),
-      rawSvg('stop', { offset: '100%', 'stop-color': secondaryHue, 'stop-opacity': '0.2' }),
-    ]),
+    rawSvg(
+      'linearGradient',
+      { id: `line-grad-${id}`, x1: '0%', y1: '0%', x2: '100%', y2: '100%' },
+      [
+        rawSvg('stop', { offset: '0%', 'stop-color': primaryHue, 'stop-opacity': '0.7' }),
+        rawSvg('stop', { offset: '100%', 'stop-color': secondaryHue, 'stop-opacity': '0.2' }),
+      ]
+    ),
   ]);
   elements.push(defs);
 
@@ -288,8 +322,24 @@ function generateParametricBackground(id: string, type: string, primaryHue: stri
       if (rng() > 0.6) {
         // Micro crosshair (+)
         elements.push(
-          rawSvg('line', { x1: x - 4, y1: y, x2: x + 4, y2: y, stroke: '#ffffff', 'stroke-opacity': '0.12', 'stroke-width': '1' }),
-          rawSvg('line', { x1: x, y1: y - 4, x2: x, y2: y + 4, stroke: '#ffffff', 'stroke-opacity': '0.12', 'stroke-width': '1' })
+          rawSvg('line', {
+            x1: x - 4,
+            y1: y,
+            x2: x + 4,
+            y2: y,
+            stroke: '#ffffff',
+            'stroke-opacity': '0.12',
+            'stroke-width': '1',
+          }),
+          rawSvg('line', {
+            x1: x,
+            y1: y - 4,
+            x2: x,
+            y2: y + 4,
+            stroke: '#ffffff',
+            'stroke-opacity': '0.12',
+            'stroke-width': '1',
+          })
         );
       }
     }
@@ -298,7 +348,7 @@ function generateParametricBackground(id: string, type: string, primaryHue: stri
   // 4. Parametric Flow Waves (Topological Iso-contours)
   const curveCount = 8;
   for (let i = 0; i < curveCount; i++) {
-    const yStart = height * 0.15 + (height * 0.7 * (i / curveCount)) + (rng() - 0.5) * 60;
+    const yStart = height * 0.15 + height * 0.7 * (i / curveCount) + (rng() - 0.5) * 60;
     const cp1x = width * (0.3 + (rng() - 0.5) * 0.2);
     const cp1y = yStart + (rng() - 0.5) * 180;
     const cp2x = width * (0.7 + (rng() - 0.5) * 0.2);
@@ -417,18 +467,22 @@ function generateParametricBackground(id: string, type: string, primaryHue: stri
     );
   }
 
-  return rawSvg('svg', {
-    width,
-    height,
-    viewBox: `0 0 ${width} ${height}`,
-    style: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
+  return rawSvg(
+    'svg',
+    {
+      width,
+      height,
+      viewBox: `0 0 ${width} ${height}`,
+      style: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+      },
     },
-  }, elements);
+    elements
+  );
 }
 
 /** The line the entry exists to point at, if the entity has one. */
@@ -475,7 +529,8 @@ function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: '
 
   // Resolve Stage badge
   const operatesAt = Array.isArray(entity.operates_at) ? entity.operates_at[0] : entity.operates_at;
-  const rawStage = entity.stage ?? entity.target_stage ?? operatesAt ?? (entity.stages && entity.stages[0]);
+  const rawStage =
+    entity.stage ?? entity.target_stage ?? operatesAt ?? (entity.stages && entity.stages[0]);
   const stageLabel = rawStage && STAGE_LABELS[lang][rawStage];
 
   // Resolve Removability / Agency Zone badge
@@ -488,47 +543,67 @@ function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: '
 
   // Badges list with glassmorphism glow
   const badges: Node[] = [
-    el('div', {
-      alignItems: 'center',
-      gap: 10,
-      padding: size === 'og' ? '6px 14px' : '8px 18px',
-      borderRadius: 10,
-      backgroundColor: 'rgba(255, 255, 255, 0.07)',
-      border: `1px solid rgba(255, 255, 255, 0.12)`,
-    }, [
-      el('div', { width: 10, height: 10, borderRadius: 999, backgroundColor: hue, boxShadow: `0 0 10px ${hue}` }),
-      text(`${labels[entity.type] ?? entity.type} · ${entity.id}`, {
-        fontSize: size === 'og' ? 20 : 26,
-        color: TEXT,
-        fontWeight: 700,
-        letterSpacing: '-0.01em',
-      }),
-    ]),
+    el(
+      'div',
+      {
+        alignItems: 'center',
+        gap: 10,
+        padding: size === 'og' ? '6px 14px' : '8px 18px',
+        borderRadius: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.07)',
+        border: `1px solid rgba(255, 255, 255, 0.12)`,
+      },
+      [
+        el('div', {
+          width: 10,
+          height: 10,
+          borderRadius: 999,
+          backgroundColor: hue,
+          boxShadow: `0 0 10px ${hue}`,
+        }),
+        text(`${labels[entity.type] ?? entity.type} · ${entity.id}`, {
+          fontSize: size === 'og' ? 20 : 26,
+          color: TEXT,
+          fontWeight: 700,
+          letterSpacing: '-0.01em',
+        }),
+      ]
+    ),
   ];
 
   if (stageLabel) {
     badges.push(
-      el('div', {
-        padding: size === 'og' ? '6px 14px' : '8px 18px',
-        borderRadius: 10,
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        border: '1px solid rgba(255, 255, 255, 0.09)',
-      }, [
-        text(stageLabel, { fontSize: size === 'og' ? 19 : 24, color: '#c9d1d9', fontWeight: 500 }),
-      ])
+      el(
+        'div',
+        {
+          padding: size === 'og' ? '6px 14px' : '8px 18px',
+          borderRadius: 10,
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.09)',
+        },
+        [text(stageLabel, { fontSize: size === 'og' ? 19 : 24, color: '#c9d1d9', fontWeight: 500 })]
+      )
     );
   }
 
   if (removabilityLabel) {
     badges.push(
-      el('div', {
-        padding: size === 'og' ? '6px 14px' : '8px 18px',
-        borderRadius: 10,
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        border: `1px solid ${removabilityColor ?? 'rgba(255, 255, 255, 0.1)'}44`,
-      }, [
-        text(removabilityLabel, { fontSize: size === 'og' ? 19 : 24, color: removabilityColor ?? MUTED, fontWeight: 700 }),
-      ])
+      el(
+        'div',
+        {
+          padding: size === 'og' ? '6px 14px' : '8px 18px',
+          borderRadius: 10,
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          border: `1px solid ${removabilityColor ?? 'rgba(255, 255, 255, 0.1)'}44`,
+        },
+        [
+          text(removabilityLabel, {
+            fontSize: size === 'og' ? 19 : 24,
+            color: removabilityColor ?? MUTED,
+            fontWeight: 700,
+          }),
+        ]
+      )
     );
   }
 
@@ -536,7 +611,13 @@ function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: '
   const header = el('div', { flexDirection: 'column', width: '100%', gap: 14 }, [
     el('div', { alignItems: 'center', justifyContent: 'space-between', width: '100%' }, [
       el('div', { alignItems: 'center', gap: 10 }, [
-        el('div', { width: 8, height: 8, borderRadius: 999, backgroundColor: hue, boxShadow: `0 0 8px ${hue}` }),
+        el('div', {
+          width: 8,
+          height: 8,
+          borderRadius: 999,
+          backgroundColor: hue,
+          boxShadow: `0 0 8px ${hue}`,
+        }),
         text(hookKicker, {
           fontSize: size === 'og' ? 15 : 20,
           color: '#8b949e',
@@ -574,114 +655,151 @@ function card(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: '
 
   // Specimen / Tell Callout (The Emotional Core)
   const middle = excerpt
-    ? el('div', {
-        flexDirection: 'column',
-        marginTop: size === 'og' ? 20 : 36,
-        padding: size === 'og' ? '18px 24px' : '26px 32px',
-        borderRadius: 14,
-        backgroundColor: 'rgba(13, 17, 23, 0.85)',
-        border: `1px solid rgba(255, 255, 255, 0.12)`,
-        borderLeft: `6px solid ${hue}`,
-        position: 'relative',
-      }, [
-        el('div', { alignItems: 'flex-start', gap: 14 }, [
-          text('“', {
-            fontSize: size === 'og' ? 44 : 58,
-            lineHeight: 0.9,
-            color: hue,
-            fontWeight: 800,
-          }),
-          el('div', { flexDirection: 'column', flexGrow: 1 }, [
-            text(truncate(excerpt.line, size === 'og' ? 180 : 320), {
-              fontSize: size === 'og' ? 26 : 32,
-              lineHeight: 1.4,
-              color: '#f0f6fc',
-              fontWeight: 500,
+    ? el(
+        'div',
+        {
+          flexDirection: 'column',
+          marginTop: size === 'og' ? 20 : 36,
+          padding: size === 'og' ? '18px 24px' : '26px 32px',
+          borderRadius: 14,
+          backgroundColor: 'rgba(13, 17, 23, 0.85)',
+          border: `1px solid rgba(255, 255, 255, 0.12)`,
+          borderLeft: `6px solid ${hue}`,
+          position: 'relative',
+        },
+        [
+          el('div', { alignItems: 'flex-start', gap: 14 }, [
+            text('“', {
+              fontSize: size === 'og' ? 44 : 58,
+              lineHeight: 0.9,
+              color: hue,
+              fontWeight: 800,
             }),
-            el('div', { alignItems: 'center', gap: 10, marginTop: 12 }, [
-              text(excerpt.label, { fontSize: size === 'og' ? 18 : 22, color: '#8b949e', fontWeight: 600 }),
-              text('·', { fontSize: size === 'og' ? 18 : 22, color: '#484f58' }),
-              text(labels.badge, { fontSize: size === 'og' ? 17 : 21, color: hue, fontWeight: 600 }),
+            el('div', { flexDirection: 'column', flexGrow: 1 }, [
+              text(truncate(excerpt.line, size === 'og' ? 180 : 320), {
+                fontSize: size === 'og' ? 26 : 32,
+                lineHeight: 1.4,
+                color: '#f0f6fc',
+                fontWeight: 500,
+              }),
+              el('div', { alignItems: 'center', gap: 10, marginTop: 12 }, [
+                text(excerpt.label, {
+                  fontSize: size === 'og' ? 18 : 22,
+                  color: '#8b949e',
+                  fontWeight: 600,
+                }),
+                text('·', { fontSize: size === 'og' ? 18 : 22, color: '#484f58' }),
+                text(labels.badge, {
+                  fontSize: size === 'og' ? 17 : 21,
+                  color: hue,
+                  fontWeight: 600,
+                }),
+              ]),
             ]),
           ]),
-        ]),
-      ])
-    : el('div', {
-        flexDirection: 'column',
-        marginTop: size === 'og' ? 20 : 36,
-        padding: size === 'og' ? '18px 24px' : '26px 32px',
-        borderRadius: 14,
-        backgroundColor: 'rgba(13, 17, 23, 0.7)',
-        border: `1px solid rgba(255, 255, 255, 0.08)`,
-      }, [
-        text(truncate(body, size === 'og' ? 220 : 380), {
-          fontSize: size === 'og' ? 26 : 32,
-          lineHeight: 1.45,
-          color: '#c9d1d9',
-        }),
-      ]);
+        ]
+      )
+    : el(
+        'div',
+        {
+          flexDirection: 'column',
+          marginTop: size === 'og' ? 20 : 36,
+          padding: size === 'og' ? '18px 24px' : '26px 32px',
+          borderRadius: 14,
+          backgroundColor: 'rgba(13, 17, 23, 0.7)',
+          border: `1px solid rgba(255, 255, 255, 0.08)`,
+        },
+        [
+          text(truncate(body, size === 'og' ? 220 : 380), {
+            fontSize: size === 'og' ? 26 : 32,
+            lineHeight: 1.45,
+            color: '#c9d1d9',
+          }),
+        ]
+      );
 
   // Bottom Status & Attribution Bar
-  const footer = el('div', {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-    paddingTop: 16,
-    width: '100%',
-  }, [
-    el('div', { alignItems: 'center', gap: 16 }, [
-      text('https://hoba.work', {
-        fontSize: size === 'og' ? 21 : 26,
-        color: '#ffffff',
-        fontWeight: 700,
-        letterSpacing: '-0.01em',
-      }),
-      evidenceLabel
-        ? el('div', {
-            padding: '3px 10px',
-            borderRadius: 6,
-            backgroundColor: 'rgba(255, 255, 255, 0.06)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-          }, [
-            text(evidenceLabel, { fontSize: size === 'og' ? 16 : 20, color: '#8b949e', fontWeight: 500 }),
-          ])
-        : null,
-    ].filter(Boolean)),
-    el('div', { alignItems: 'center', gap: 10 }, [
-      text(`${entity.id} · ${bundle.version}`, {
-        fontSize: size === 'og' ? 18 : 22,
-        color: '#8b949e',
-        fontFamily: 'monospace',
-      }),
-    ]),
-  ]);
+  const footer = el(
+    'div',
+    {
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+      paddingTop: 16,
+      width: '100%',
+    },
+    [
+      el(
+        'div',
+        { alignItems: 'center', gap: 16 },
+        [
+          text('https://hoba.work', {
+            fontSize: size === 'og' ? 21 : 26,
+            color: '#ffffff',
+            fontWeight: 700,
+            letterSpacing: '-0.01em',
+          }),
+          evidenceLabel
+            ? el(
+                'div',
+                {
+                  padding: '3px 10px',
+                  borderRadius: 6,
+                  backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                },
+                [
+                  text(evidenceLabel, {
+                    fontSize: size === 'og' ? 16 : 20,
+                    color: '#8b949e',
+                    fontWeight: 500,
+                  }),
+                ]
+              )
+            : null,
+        ].filter(Boolean)
+      ),
+      el('div', { alignItems: 'center', gap: 10 }, [
+        text(`${entity.id} · ${bundle.version}`, {
+          fontSize: size === 'og' ? 18 : 22,
+          color: '#8b949e',
+          fontFamily: 'monospace',
+        }),
+      ]),
+    ]
+  );
 
   // Complete Card Layout with Parametric Background Underlay
   const bgVisual = generateParametricBackground(entity.id, entity.type, hue, width, height);
 
   return {
-    tree: el('div', {
-      width,
-      height,
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      backgroundColor: '#07090e',
-      padding: pad,
-      fontFamily: FAMILY,
-      position: 'relative',
-      overflow: 'hidden',
-    }, [
-      bgVisual,
-      el('div', {
+    tree: el(
+      'div',
+      {
+        width,
+        height,
         flexDirection: 'column',
-        flexGrow: 1,
         justifyContent: 'space-between',
+        backgroundColor: '#07090e',
+        padding: pad,
+        fontFamily: FAMILY,
         position: 'relative',
-      }, [
-        el('div', { flexDirection: 'column' }, [header, title, middle]),
-        footer,
-      ]),
-    ]),
+        overflow: 'hidden',
+      },
+      [
+        bgVisual,
+        el(
+          'div',
+          {
+            flexDirection: 'column',
+            flexGrow: 1,
+            justifyContent: 'space-between',
+            position: 'relative',
+          },
+          [el('div', { flexDirection: 'column' }, [header, title, middle]), footer]
+        ),
+      ]
+    ),
     width,
     height,
   };
@@ -697,8 +815,14 @@ interface SectionCard {
 
 const READER_FACING_COUNT = (() => {
   const b = loadRegistryFromRoot(root!, 'en');
-  return b.observations.length + b.barriers.length + b.mechanisms.length +
-    b.patterns.length + b.loops.length + b.interventions.length;
+  return (
+    b.observations.length +
+    b.barriers.length +
+    b.mechanisms.length +
+    b.patterns.length +
+    b.loops.length +
+    b.interventions.length
+  );
 })();
 
 /**
@@ -877,7 +1001,13 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
   const header = el('div', { flexDirection: 'column', width: '100%', gap: 14 }, [
     el('div', { alignItems: 'center', justifyContent: 'space-between', width: '100%' }, [
       el('div', { alignItems: 'center', gap: 10 }, [
-        el('div', { width: 8, height: 8, borderRadius: 999, backgroundColor: hue, boxShadow: `0 0 8px ${hue}` }),
+        el('div', {
+          width: 8,
+          height: 8,
+          borderRadius: 999,
+          backgroundColor: hue,
+          boxShadow: `0 0 8px ${hue}`,
+        }),
         text(sec.kicker[lang].toUpperCase(), {
           fontSize: 16,
           color: '#8b949e',
@@ -901,25 +1031,31 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
       ]),
     ]),
     el('div', { alignItems: 'center', gap: 10 }, [
-      el('div', {
-        padding: '6px 14px',
-        borderRadius: 10,
-        backgroundColor: 'rgba(255, 255, 255, 0.07)',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        alignItems: 'center',
-        gap: 8,
-      }, [
-        el('div', { width: 8, height: 8, borderRadius: 999, backgroundColor: hue }),
-        text(LABELS[lang].causalAtlas, { fontSize: 18, color: '#f0f6fc', fontWeight: 600 }),
-      ]),
-      el('div', {
-        padding: '6px 14px',
-        borderRadius: 10,
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-      }, [
-        text(bundle.version, { fontSize: 17, color: '#8b949e', fontFamily: 'monospace' }),
-      ]),
+      el(
+        'div',
+        {
+          padding: '6px 14px',
+          borderRadius: 10,
+          backgroundColor: 'rgba(255, 255, 255, 0.07)',
+          border: '1px solid rgba(255, 255, 255, 0.12)',
+          alignItems: 'center',
+          gap: 8,
+        },
+        [
+          el('div', { width: 8, height: 8, borderRadius: 999, backgroundColor: hue }),
+          text(LABELS[lang].causalAtlas, { fontSize: 18, color: '#f0f6fc', fontWeight: 600 }),
+        ]
+      ),
+      el(
+        'div',
+        {
+          padding: '6px 14px',
+          borderRadius: 10,
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+        },
+        [text(bundle.version, { fontSize: 17, color: '#8b949e', fontFamily: 'monospace' })]
+      ),
     ]),
   ]);
 
@@ -934,102 +1070,135 @@ function sectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle
     marginTop: 22,
   });
 
-  const middle = el('div', {
-    flexDirection: 'column',
-    marginTop: 24,
-    padding: '20px 26px',
-    borderRadius: 14,
-    backgroundColor: 'rgba(13, 17, 23, 0.85)',
-    border: '1px solid rgba(255, 255, 255, 0.12)',
-    borderLeft: `6px solid ${hue}`,
-  }, [
-    text(truncate(sec.summary[lang], 240), {
-      fontSize: hasCatVisual ? 22 : 26,
-      lineHeight: 1.45,
-      color: '#e6edf3',
-      fontWeight: 500,
-    }),
-  ]);
+  const middle = el(
+    'div',
+    {
+      flexDirection: 'column',
+      marginTop: 24,
+      padding: '20px 26px',
+      borderRadius: 14,
+      backgroundColor: 'rgba(13, 17, 23, 0.85)',
+      border: '1px solid rgba(255, 255, 255, 0.12)',
+      borderLeft: `6px solid ${hue}`,
+    },
+    [
+      text(truncate(sec.summary[lang], 240), {
+        fontSize: hasCatVisual ? 22 : 26,
+        lineHeight: 1.45,
+        color: '#e6edf3',
+        fontWeight: 500,
+      }),
+    ]
+  );
 
   const catVisual = hasCatVisual
-    ? el('div', {
-        width: 336,
-        height: 336,
-        flexShrink: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 28,
-        backgroundColor: 'rgba(255, 255, 255, 0.04)',
-        border: `1px solid ${hue}3d`,
-        boxShadow: `0 0 16px ${hue}30`,
-      }, [img(catPortraitDataUri('borys-loaf', 300), 300, 300)])
+    ? el(
+        'div',
+        {
+          width: 336,
+          height: 336,
+          flexShrink: 0,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 28,
+          backgroundColor: 'rgba(255, 255, 255, 0.04)',
+          border: `1px solid ${hue}3d`,
+          boxShadow: `0 0 16px ${hue}30`,
+        },
+        [img(catPortraitDataUri('borys-loaf', 300), 300, 300)]
+      )
     : null;
 
   const body = catVisual
-    ? el('div', { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: 28 }, [
-        el('div', { flexDirection: 'column', width: 636 }, [title, middle]),
-        catVisual,
-      ])
+    ? el(
+        'div',
+        {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          gap: 28,
+        },
+        [el('div', { flexDirection: 'column', width: 636 }, [title, middle]), catVisual]
+      )
     : el('div', { flexDirection: 'column' }, [title, middle]);
 
-  const footer = el('div', {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-    paddingTop: 16,
-    width: '100%',
-  }, [
-    text('https://hoba.work', {
-      fontSize: 21,
-      color: '#ffffff',
-      fontWeight: 700,
-      letterSpacing: '-0.01em',
-    }),
-    text('CAUSAL GRAPH · OPEN RESEARCH', {
-      fontSize: 16,
-      color: '#8b949e',
-      fontFamily: 'monospace',
-      letterSpacing: '1px',
-    }),
-  ]);
+  const footer = el(
+    'div',
+    {
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+      paddingTop: 16,
+      width: '100%',
+    },
+    [
+      text('https://hoba.work', {
+        fontSize: 21,
+        color: '#ffffff',
+        fontWeight: 700,
+        letterSpacing: '-0.01em',
+      }),
+      text('CAUSAL GRAPH · OPEN RESEARCH', {
+        fontSize: 16,
+        color: '#8b949e',
+        fontFamily: 'monospace',
+        letterSpacing: '1px',
+      }),
+    ]
+  );
 
   const bgVisual = generateParametricBackground(sec.id, 'section', hue, width, height);
 
   return {
-    tree: el('div', {
-      width,
-      height,
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      backgroundColor: '#07090e',
-      padding: pad,
-      fontFamily: FAMILY,
-      position: 'relative',
-      overflow: 'hidden',
-    }, [
-      bgVisual,
-      el('div', {
+    tree: el(
+      'div',
+      {
+        width,
+        height,
         flexDirection: 'column',
-        flexGrow: 1,
         justifyContent: 'space-between',
+        backgroundColor: '#07090e',
+        padding: pad,
+        fontFamily: FAMILY,
         position: 'relative',
-      }, [
-        el('div', { flexDirection: 'column' }, [header, body]),
-        footer,
-      ]),
-    ]),
+        overflow: 'hidden',
+      },
+      [
+        bgVisual,
+        el(
+          'div',
+          {
+            flexDirection: 'column',
+            flexGrow: 1,
+            justifyContent: 'space-between',
+            position: 'relative',
+          },
+          [el('div', { flexDirection: 'column' }, [header, body]), footer]
+        ),
+      ]
+    ),
     width,
     height,
   };
 }
 
-async function renderEntityCard(entity: Entity, lang: ContentLang, bundle: RegistryBundle, size: 'og' | 'postcard'): Promise<Buffer> {
+async function renderEntityCard(
+  entity: Entity,
+  lang: ContentLang,
+  bundle: RegistryBundle,
+  size: 'og' | 'postcard'
+): Promise<Buffer> {
   const { tree, width, height } = card(entity, lang, bundle, size);
   const svg = await satori(tree as never, { width, height, fonts: FONTS });
   return Buffer.from(new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render().asPng());
 }
 
-async function renderSectionCard(sec: SectionCard, lang: ContentLang, bundle: RegistryBundle): Promise<Buffer> {
+async function renderSectionCard(
+  sec: SectionCard,
+  lang: ContentLang,
+  bundle: RegistryBundle
+): Promise<Buffer> {
   const { tree, width, height } = sectionCard(sec, lang, bundle);
   const svg = await satori(tree as never, { width, height, fonts: FONTS });
   return Buffer.from(new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render().asPng());
@@ -1107,7 +1276,9 @@ async function main(): Promise<void> {
     }
   }
 
-  process.stdout.write(`cards: ${written} PNGs, ${(bytes / 1024 / 1024).toFixed(1)} MB in apps/web/dist/cards/\n`);
+  process.stdout.write(
+    `cards: ${written} PNGs, ${(bytes / 1024 / 1024).toFixed(1)} MB in apps/web/dist/cards/\n`
+  );
 }
 
 main().catch((error) => {

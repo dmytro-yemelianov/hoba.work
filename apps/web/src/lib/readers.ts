@@ -28,11 +28,19 @@ export const READER_SEAT: Record<ReaderSlug, string | null> = {
  * the three readings share a registry is checked by arithmetic rather than
  * asserted in prose.
  */
-export function sharedFooting(bundle: RegistryBundle): { entries: number; evidence: number; languages: number } {
+export function sharedFooting(bundle: RegistryBundle): {
+  entries: number;
+  evidence: number;
+  languages: number;
+} {
   return {
     entries:
-      bundle.observations.length + bundle.barriers.length + bundle.mechanisms.length +
-      bundle.patterns.length + bundle.loops.length + bundle.interventions.length,
+      bundle.observations.length +
+      bundle.barriers.length +
+      bundle.mechanisms.length +
+      bundle.patterns.length +
+      bundle.loops.length +
+      bundle.interventions.length,
     evidence: bundle.evidence.length,
     languages: 2,
   };
@@ -44,10 +52,13 @@ export function sharedFooting(bundle: RegistryBundle): { entries: number; eviden
  * by counting rather than picked.
  */
 export function sharedExample(bundle: RegistryBundle) {
-  const emitCount = (id: string) => bundle.mechanisms.filter((m) => m.emissions.some((e) => e.artifact === id)).length;
+  const emitCount = (id: string) =>
+    bundle.mechanisms.filter((m) => m.emissions.some((e) => e.artifact === id)).length;
   const withBothSeats = bundle.observations.filter((o) => {
     const seats = (o.perspectives ?? []).map((p) => p.actor);
     return seats.includes('actor.candidate') && seats.includes('actor.recruiter');
   });
-  return [...withBothSeats].sort((a, b) => emitCount(b.id) - emitCount(a.id) || a.id.localeCompare(b.id))[0]!;
+  return [...withBothSeats].sort(
+    (a, b) => emitCount(b.id) - emitCount(a.id) || a.id.localeCompare(b.id)
+  )[0]!;
 }

@@ -65,7 +65,10 @@ const surfaceOf = (o: ObservationLike): string =>
   [
     o.title,
     o.summary ?? '',
-    ...(o.specimens ?? []).flatMap((s) => [...(s.lines ?? []).map((l) => l.text ?? ''), s.reading ?? '']),
+    ...(o.specimens ?? []).flatMap((s) => [
+      ...(s.lines ?? []).map((l) => l.text ?? ''),
+      s.reading ?? '',
+    ]),
   ].join(' ');
 
 /**
@@ -113,7 +116,8 @@ export function matchObservations(text: string, observations: readonly Observati
   // Two shared distinctive words is a coincidence; the floor is what makes
   // "not about hiring" return nothing instead of a ranked list of nothing.
   const MIN_HITS = 3;
-  const eligible = scored.filter((s) => s.hits.length >= MIN_HITS && s.score > 0)
+  const eligible = scored
+    .filter((s) => s.hits.length >= MIN_HITS && s.score > 0)
     .sort((a, b) => b.score - a.score);
   if (eligible.length === 0) return [];
 

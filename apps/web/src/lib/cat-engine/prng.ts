@@ -266,7 +266,10 @@ const CAT_TITLES_EN = [
   'Supreme Void Entity',
 ];
 
-export function generateCatName(seed: string, lang: 'uk' | 'en' = 'uk'): { name: string; title: string } {
+export function generateCatName(
+  seed: string,
+  lang: 'uk' | 'en' = 'uk'
+): { name: string; title: string } {
   const rng = createRng(`${seed}-identity`);
   if (lang === 'uk') {
     return {
@@ -296,9 +299,24 @@ export function generateDNA(seed: string): CatDNA {
   const tailType = pick(TAIL_TYPES, rng);
 
   // Accessories have weighted distribution so not every cat is overloaded, but 60% have fun items
-  const headAccessory = chance(0.45, rng) ? pick(HEAD_ACCESSORIES.filter((x) => x !== 'none'), rng) : 'none';
-  const neckAccessory = chance(0.55, rng) ? pick(NECK_ACCESSORIES.filter((x) => x !== 'none'), rng) : 'none';
-  const propItem = chance(0.4, rng) ? pick(PROP_ITEMS.filter((x) => x !== 'none'), rng) : 'none';
+  const headAccessory = chance(0.45, rng)
+    ? pick(
+        HEAD_ACCESSORIES.filter((x) => x !== 'none'),
+        rng
+      )
+    : 'none';
+  const neckAccessory = chance(0.55, rng)
+    ? pick(
+        NECK_ACCESSORIES.filter((x) => x !== 'none'),
+        rng
+      )
+    : 'none';
+  const propItem = chance(0.4, rng)
+    ? pick(
+        PROP_ITEMS.filter((x) => x !== 'none'),
+        rng
+      )
+    : 'none';
   const backdropTheme = pick(BACKDROP_THEMES, rng);
 
   return {
@@ -330,8 +348,30 @@ export function generateDNA(seed: string): CatDNA {
 
 /** Creates a new random seed */
 export function randomSeed(): string {
-  const adj = ['cosmic', 'chonky', 'fluffy', 'sleepy', 'spicy', 'noble', 'derpy', 'golden', 'velvet', 'quantum'];
-  const noun = ['cat', 'loaf', 'paw', 'purr', 'tail', 'whiskers', 'biscuit', 'panther', 'muffin', 'feline'];
+  const adj = [
+    'cosmic',
+    'chonky',
+    'fluffy',
+    'sleepy',
+    'spicy',
+    'noble',
+    'derpy',
+    'golden',
+    'velvet',
+    'quantum',
+  ];
+  const noun = [
+    'cat',
+    'loaf',
+    'paw',
+    'purr',
+    'tail',
+    'whiskers',
+    'biscuit',
+    'panther',
+    'muffin',
+    'feline',
+  ];
   const num = Math.floor(Math.random() * 9000 + 1000);
   const a = adj[Math.floor(Math.random() * adj.length)];
   const n = noun[Math.floor(Math.random() * noun.length)];

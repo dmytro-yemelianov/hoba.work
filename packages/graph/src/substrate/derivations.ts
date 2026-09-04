@@ -9,8 +9,19 @@
  *     hidden state (prose_asserted).
  */
 import type { DiagnosticProbe } from '@hoba/registry-core/types';
-import type { CandidateProfile, ConformanceReport, GateOutcome, PostingFacets } from '@hoba/registry-core/types';
-import type { GapReport, Identifiability, Indistinguishable, Unaddressed, UnplacedEmission } from '@hoba/registry-core/types';
+import type {
+  CandidateProfile,
+  ConformanceReport,
+  GateOutcome,
+  PostingFacets,
+} from '@hoba/registry-core/types';
+import type {
+  GapReport,
+  Identifiability,
+  Indistinguishable,
+  Unaddressed,
+  UnplacedEmission,
+} from '@hoba/registry-core/types';
 import type { Narrowing, ProbeResult, SeparationReport } from '@hoba/registry-core/types';
 import type { Condition, Substrate } from './schema.js';
 import type { Lifted } from './lift.js';
@@ -30,11 +41,9 @@ const toPublicId = (substrateId: string): string => {
 const getMechanismConditions = (substrate: Substrate): Condition[] =>
   substrate.conditions.filter((c) => c.id.startsWith('cnd:m-') || c.id.startsWith('cnd:mech.'));
 
-const getCausesPublic = (c: Condition): string[] =>
-  c.causes.map((evc) => toPublicId(evc)).sort();
+const getCausesPublic = (c: Condition): string[] => c.causes.map((evc) => toPublicId(evc)).sort();
 
-const signatureOfCondition = (c: Condition): string =>
-  getCausesPublic(c).join(',');
+const signatureOfCondition = (c: Condition): string => getCausesPublic(c).join(',');
 
 /**
  * Groups mechanism conditions that cause the exact same event classes.
@@ -67,7 +76,9 @@ export function substrateIdentifiability(substrate: Substrate): Identifiability 
   }));
 
   const identifying: { artifact: string; mechanism: string }[] = [];
-  const observationEventClasses = substrate.eventClasses.filter((e) => e.id.startsWith('evc:a-') || e.id.startsWith('evc:obs.'));
+  const observationEventClasses = substrate.eventClasses.filter(
+    (e) => e.id.startsWith('evc:a-') || e.id.startsWith('evc:obs.')
+  );
 
   for (const obs of observationEventClasses) {
     const pubObs = toPublicId(obs.id);
@@ -216,7 +227,9 @@ export function substrateGaps(lifted: Lifted): GapReport {
       };
     });
 
-  const gatesOfMechanism = new Map(mechs.map((m) => [toPublicId(m.id), m.accounts_for.map(toPublicId)] as const));
+  const gatesOfMechanism = new Map(
+    mechs.map((m) => [toPublicId(m.id), m.accounts_for.map(toPublicId)] as const)
+  );
   const byActor = new Map<string, Set<string>>();
   const reached = new Set<string>();
 
@@ -225,7 +238,8 @@ export function substrateGaps(lifted: Lifted): GapReport {
     if (!byActor.has(actor)) byActor.set(actor, new Set());
     const gates = byActor.get(actor)!;
     for (const t of (i.targets as string[]) ?? []) {
-      const hit = (t.startsWith('B-') || t.startsWith('bar.')) ? [t] : (gatesOfMechanism.get(t) ?? []);
+      const hit =
+        t.startsWith('B-') || t.startsWith('bar.') ? [t] : (gatesOfMechanism.get(t) ?? []);
       for (const g of hit) {
         gates.add(g);
         reached.add(g);
@@ -233,8 +247,8 @@ export function substrateGaps(lifted: Lifted): GapReport {
     }
   }
 
-  const barrierIds = (sidecar.order['barriers'] ?? []);
-  const artifactIds = (sidecar.order['observations'] ?? []);
+  const barrierIds = sidecar.order['barriers'] ?? [];
+  const artifactIds = sidecar.order['observations'] ?? [];
 
   const unexplainedPairs: [string, string][] = [];
   const emissions = mechs.map((m) => new Set(getCausesPublic(m)));
@@ -253,13 +267,20 @@ export function substrateGaps(lifted: Lifted): GapReport {
     barrierIds.map((bId) => [bId, sidecar.entities[bId]?.stage as string | undefined] as const)
   );
   const stagesOfArtifact = new Map(
-    artifactIds.map((aId) => [aId, new Set((sidecar.entities[aId]?.stages as string[]) ?? [])] as const)
+    artifactIds.map(
+      (aId) => [aId, new Set((sidecar.entities[aId]?.stages as string[]) ?? [])] as const
+    )
   );
 
   const unplaced: UnplacedEmission[] = [];
   for (const m of mechs) {
     const mId = toPublicId(m.id);
-    const operates = new Set(m.accounts_for.map(toPublicId).map((g) => stageOfGate.get(g)).filter(Boolean));
+    const operates = new Set(
+      m.accounts_for
+        .map(toPublicId)
+        .map((g) => stageOfGate.get(g))
+        .filter(Boolean)
+    );
     const metaList = sidecar.emissionMeta[mId] ?? [];
     for (let idx = 0; idx < m.causes.length; idx++) {
       const art = toPublicId(m.causes[idx]!);
@@ -348,7 +369,10 @@ export function substrateSeparation(
   for (let i = 0; i < normCompatible.length; i++) {
     for (let j = i + 1; j < normCompatible.length; j++) {
       const pair: [string, string] = [normCompatible[i]!, normCompatible[j]!];
-      (usable.some((p) => substrateSeparates(p, pair[0], pair[1])) ? separable : indistinguishable).push(pair);
+      (usable.some((p) => substrateSeparates(p, pair[0], pair[1]))
+        ? separable
+        : indistinguishable
+      ).push(pair);
     }
   }
 
@@ -586,12 +610,13 @@ export interface PatternEmptinessReport {
  *   -> prose_asserted.
  */
 export function evaluatePatternEmptiness(lifted: Lifted): PatternEmptinessReport {
-  const patternIds = (lifted.sidecar.order['patterns'] ?? []);
+  const patternIds = lifted.sidecar.order['patterns'] ?? [];
   const evaluations: PatternEmptinessEvaluation[] = [];
 
   for (const pId of patternIds) {
     const ent = lifted.sidecar.entities[pId] ?? {};
-    const title = (lifted.substrate.records.find((r) => r.id === `rec:${pId.toLowerCase()}`)?.title ?? pId);
+    const title =
+      lifted.substrate.records.find((r) => r.id === `rec:${pId.toLowerCase()}`)?.title ?? pId;
     const summary = (ent.summary as string) ?? '';
     const triggerRule = (ent.trigger_rule as string) ?? '';
     const requiredArtifacts = (ent.required_artifacts as string[]) ?? [];
@@ -604,7 +629,8 @@ export function evaluatePatternEmptiness(lifted: Lifted): PatternEmptinessReport
         status: 'computed_empty',
         summary,
         triggerRule,
-        satisfyingSetDescription: '{ level in Z | N < level < N+1 } = empty set over discrete rank lattice',
+        satisfyingSetDescription:
+          '{ level in Z | N < level < N+1 } = empty set over discrete rank lattice',
         contradictionDetails:
           'Candidate experience simultaneously satisfies overqualification predicate (level > N) and underqualification predicate (level < N+1) at adjacent discrete levels.',
         requiredArtifacts,
@@ -685,7 +711,8 @@ export function substrateCheckConformance(
   _substrate?: Substrate
 ): ConformanceReport {
   const norm = (value: string) => value.trim().toLowerCase();
-  const has = (list: string[] | undefined, value: string) => (list ?? []).some((v) => norm(v) === norm(value));
+  const has = (list: string[] | undefined, value: string) =>
+    (list ?? []).some((v) => norm(v) === norm(value));
 
   const gates: GateOutcome[] = [];
 
@@ -698,9 +725,18 @@ export function substrateCheckConformance(
       state: 'real-need',
       verdict: impossible ? 'unsatisfiable' : 'passes',
       reason: impossible
-        ? { code: 'years.impossible', params: { required: posting.required_years, existed: posting.technology_age } }
-        : { code: 'years.possible', params: { required: posting.required_years, existed: posting.technology_age } },
-      mechanisms: ['mech.inflated_requisition_requirements_vs_actual_team_needs', 'mech.experience_age_grading_mismatch'],
+        ? {
+            code: 'years.impossible',
+            params: { required: posting.required_years, existed: posting.technology_age },
+          }
+        : {
+            code: 'years.possible',
+            params: { required: posting.required_years, existed: posting.technology_age },
+          },
+      mechanisms: [
+        'mech.inflated_requisition_requirements_vs_actual_team_needs',
+        'mech.experience_age_grading_mismatch',
+      ],
     });
   }
 
@@ -716,9 +752,18 @@ export function substrateCheckConformance(
       reason: !known
         ? { code: 'years.unknown', params: { required: posting.required_years } }
         : short
-          ? { code: 'years.short', params: { required: posting.required_years, have: profile.years! } }
-          : { code: 'years.met', params: { required: posting.required_years, have: profile.years! } },
-      mechanisms: ['mech.automated_keyword_qualification_filter', 'mech.employment_gap_downranking_bias'],
+          ? {
+              code: 'years.short',
+              params: { required: posting.required_years, have: profile.years! },
+            }
+          : {
+              code: 'years.met',
+              params: { required: posting.required_years, have: profile.years! },
+            },
+      mechanisms: [
+        'mech.automated_keyword_qualification_filter',
+        'mech.employment_gap_downranking_bias',
+      ],
     });
   }
 
@@ -749,10 +794,19 @@ export function substrateCheckConformance(
       state: 'machine-check',
       verdict: !known ? 'undetermined' : inside ? 'passes' : 'fails',
       reason: !known
-        ? { code: 'location.unknown', params: { places: (posting.hiring_locations ?? []).join(', ') } }
+        ? {
+            code: 'location.unknown',
+            params: { places: (posting.hiring_locations ?? []).join(', ') },
+          }
         : inside
           ? { code: 'location.inside', params: { where: profile.located_in! } }
-          : { code: 'location.outside', params: { where: profile.located_in!, places: (posting.hiring_locations ?? []).join(', ') } },
+          : {
+              code: 'location.outside',
+              params: {
+                where: profile.located_in!,
+                places: (posting.hiring_locations ?? []).join(', '),
+              },
+            },
       mechanisms: ['mech.location_or_timezone_compliance_constraint'],
     });
   }
@@ -769,12 +823,19 @@ export function substrateCheckConformance(
         missing.length > 0
           ? { code: 'skills.missing', params: { missing: missing.join(', '), n: missing.length } }
           : { code: 'skills.present', params: { n: (posting.required_skills ?? []).length } },
-      mechanisms: ['mech.ats_parser_extraction_failure', 'mech.automated_keyword_qualification_filter', 'mech.employment_gap_downranking_bias'],
+      mechanisms: [
+        'mech.ats_parser_extraction_failure',
+        'mech.automated_keyword_qualification_filter',
+        'mech.employment_gap_downranking_bias',
+      ],
     });
   }
 
   // The band is the other place the answer is a number.
-  if (profile.expectation !== undefined && (posting.band_min !== undefined || posting.band_max !== undefined)) {
+  if (
+    profile.expectation !== undefined &&
+    (posting.band_min !== undefined || posting.band_max !== undefined)
+  ) {
     const above = posting.band_max !== undefined && profile.expectation > posting.band_max;
     const below = posting.band_min !== undefined && profile.expectation < posting.band_min;
     gates.push({
@@ -783,13 +844,23 @@ export function substrateCheckConformance(
       state: 'level-and-band',
       verdict: above ? 'fails' : 'passes',
       reason: above
-        ? { code: 'band.above', params: { expectation: profile.expectation, max: posting.band_max! } }
+        ? {
+            code: 'band.above',
+            params: { expectation: profile.expectation, max: posting.band_max! },
+          }
         : below
-          ? { code: 'band.under', params: { expectation: profile.expectation, min: posting.band_min! } }
+          ? {
+              code: 'band.under',
+              params: { expectation: profile.expectation, min: posting.band_min! },
+            }
           : { code: 'band.inside', params: { expectation: profile.expectation } },
       mechanisms: ['mech.unstated_compensation_band_discrepancy'],
     });
-  } else if (posting.band_min === undefined && posting.band_max === undefined && profile.expectation !== undefined) {
+  } else if (
+    posting.band_min === undefined &&
+    posting.band_max === undefined &&
+    profile.expectation !== undefined
+  ) {
     gates.push({
       gate: 'bar.compensation_levelling_reconciliation',
       stage: 'compensation',
@@ -842,12 +913,10 @@ export function substrateDetectTemporalAnomalies(
     id.toLowerCase().startsWith(statePrefix.toLowerCase()) ? id.slice(statePrefix.length) : id;
 
   const normTarget = bareState(fromState).toLowerCase();
-  const transitions = proc.transitions.filter(
-    (t): t is typeof t & { from: string; to: string } => {
-      if (!t.from || !t.to) return false;
-      return t.from === fromState || bareState(t.from).toLowerCase() === normTarget;
-    }
-  );
+  const transitions = proc.transitions.filter((t): t is typeof t & { from: string; to: string } => {
+    if (!t.from || !t.to) return false;
+    return t.from === fromState || bareState(t.from).toLowerCase() === normTarget;
+  });
   const anomalies: TemporalAnomaly[] = [];
 
   for (const t of transitions) {
@@ -860,12 +929,31 @@ export function substrateDetectTemporalAnomalies(
 
     if (actualDays > max) {
       severity = 'stalled_anomalous';
-      if (fromStr.includes('queue') || fromStr.includes('publish') || fromStr.includes('received')) {
-        implicated.push('mech.stale_or_orphaned_job_requisition', 'mech.automated_application_expiration_timeout', 'mech.bid_conditional_talent_pool');
-      } else if (fromStr.includes('screen') || fromStr.includes('technical') || fromStr.includes('panel')) {
-        implicated.push('mech.recruiter_volume_quota_incentive_distortion', 'mech.take_home_evaluation_fatigue_asymmetry', 'mech.hiring_manager_consensus_impasse');
+      if (
+        fromStr.includes('queue') ||
+        fromStr.includes('publish') ||
+        fromStr.includes('received')
+      ) {
+        implicated.push(
+          'mech.stale_or_orphaned_job_requisition',
+          'mech.automated_application_expiration_timeout',
+          'mech.bid_conditional_talent_pool'
+        );
+      } else if (
+        fromStr.includes('screen') ||
+        fromStr.includes('technical') ||
+        fromStr.includes('panel')
+      ) {
+        implicated.push(
+          'mech.recruiter_volume_quota_incentive_distortion',
+          'mech.take_home_evaluation_fatigue_asymmetry',
+          'mech.hiring_manager_consensus_impasse'
+        );
       } else if (fromStr.includes('offer') || fromStr.includes('verification')) {
-        implicated.push('mech.headcount_freeze_or_budget_cancellation', 'mech.start_date_slippage_and_post_acceptance_revocation');
+        implicated.push(
+          'mech.headcount_freeze_or_budget_cancellation',
+          'mech.start_date_slippage_and_post_acceptance_revocation'
+        );
       }
     } else if (actualDays > expected) {
       severity = 'delayed';
@@ -904,10 +992,12 @@ export function substrateCalculateRunway(savings: number, monthlyBurn: number): 
 
   if (runwayMonths < 3) {
     riskStatus = 'acute_exhaustion_vulnerability';
-    vulnerabilityNote = 'Acute vulnerability: search duration approaches reserve depletion; high exposure to mech.experience_age_grading_mismatch (structural down-levelling) and pat.compensation_double_bind.';
+    vulnerabilityNote =
+      'Acute vulnerability: search duration approaches reserve depletion; high exposure to mech.experience_age_grading_mismatch (structural down-levelling) and pat.compensation_double_bind.';
   } else if (runwayMonths < 6) {
     riskStatus = 'moderate_runway_stress';
-    vulnerabilityNote = 'Moderate stress: search duration may exceed average multi-stage latency (3-6 months).';
+    vulnerabilityNote =
+      'Moderate stress: search duration may exceed average multi-stage latency (3-6 months).';
   }
 
   return { savings, monthlyBurn, runwayMonths, riskStatus, vulnerabilityNote };

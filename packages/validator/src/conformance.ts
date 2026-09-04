@@ -18,18 +18,6 @@
  * outside the system, so the honest verdict is that it cannot be determined.
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
 import { substrateCheckConformance } from '@hoba/graph/substrate/derivations';
 import type { CandidateProfile, ConformanceReport, PostingFacets } from '@hoba/registry-core/types';
 
@@ -39,6 +27,9 @@ import type { CandidateProfile, ConformanceReport, PostingFacets } from '@hoba/r
  * Order matters: the gates are returned in funnel order so that `stops_at` is
  * the first place a run would actually halt, not the worst-sounding one.
  */
-export function checkConformance(profile: CandidateProfile, posting: PostingFacets): ConformanceReport {
+export function checkConformance(
+  profile: CandidateProfile,
+  posting: PostingFacets
+): ConformanceReport {
   return substrateCheckConformance(profile, posting);
 }

@@ -49,7 +49,9 @@ export class HOBADiagnosticEngine {
     } else {
       for (const a of selectedArtifacts) for (const s of a.stages) stagesInScope.add(s);
     }
-    const identifiedBarriers = this.bundle.barriers.filter((b) => b.status === 'active' && stagesInScope.has(b.stage));
+    const identifiedBarriers = this.bundle.barriers.filter(
+      (b) => b.status === 'active' && stagesInScope.has(b.stage)
+    );
     const barrierSet = new Set(identifiedBarriers.map((b) => b.id));
 
     // 3. Step B: Behind the Obstacle — mechanisms that operate at an identified barrier OR emit a selected artifact.
@@ -79,7 +81,9 @@ export class HOBADiagnosticEngine {
           m.emissions.some(
             (e) =>
               e.artifact === id &&
-              (!selectedStage || e.observed_at.length === 0 || e.observed_at.includes(selectedStage))
+              (!selectedStage ||
+                e.observed_at.length === 0 ||
+                e.observed_at.includes(selectedStage))
           )
         );
 
@@ -111,7 +115,8 @@ export class HOBADiagnosticEngine {
 
     const nonInferenceSet = new Set<string>();
     for (const a of selectedArtifacts) for (const ni of a.non_inferences) nonInferenceSet.add(ni);
-    for (const { mechanism } of compatibleMechanisms) for (const ni of mechanism.non_inferences) nonInferenceSet.add(ni);
+    for (const { mechanism } of compatibleMechanisms)
+      for (const ni of mechanism.non_inferences) nonInferenceSet.add(ni);
     for (const p of relatedPatterns) for (const ni of p.non_inferences) nonInferenceSet.add(ni);
 
     // 4. Probes are attached to observations; de-duplicate by probe ID (IDs are
@@ -148,7 +153,11 @@ export class HOBADiagnosticEngine {
       }
     }
 
-    const agencyZone = classifyAgencyZone(candidateRemovable.length, intermediaryDependent.length, exogenousNoAgency.length);
+    const agencyZone = classifyAgencyZone(
+      candidateRemovable.length,
+      intermediaryDependent.length,
+      exogenousNoAgency.length
+    );
 
     /**
      * A verdict of `diagnostic` claims the observation narrowed the field. When
@@ -169,7 +178,8 @@ export class HOBADiagnosticEngine {
     if (selectedArtifacts.length === 0) {
       verdict = 'low_signal_ambiguity';
       lowSignalReason = 'no-anchors';
-      probesSummary = 'No direct observations provided. Cannot establish compatible mechanisms without factual anchors.';
+      probesSummary =
+        'No direct observations provided. Cannot establish compatible mechanisms without factual anchors.';
     } else if (narrowedNothing) {
       verdict = 'low_signal_ambiguity';
       lowSignalReason = 'no-narrowing';
@@ -235,7 +245,11 @@ export class HOBADiagnosticEngine {
   }
 }
 
-export function classifyAgencyZone(candidate: number, intermediary: number, exogenous: number): AgencyZone {
+export function classifyAgencyZone(
+  candidate: number,
+  intermediary: number,
+  exogenous: number
+): AgencyZone {
   if (candidate + intermediary + exogenous === 0) return 'undetermined';
   if (candidate > 0 && intermediary === 0 && exogenous === 0) return 'endogenous';
   if (candidate === 0) return 'exogenous';

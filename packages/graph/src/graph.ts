@@ -1,4 +1,9 @@
-import type { AnyRecord, GraphEdge, GraphRelation, RegistryBundle } from '@hoba/registry-core/types';
+import type {
+  AnyRecord,
+  GraphEdge,
+  GraphRelation,
+  RegistryBundle,
+} from '@hoba/registry-core/types';
 
 export interface NeighborhoodOptions {
   depth?: number;
@@ -39,7 +44,12 @@ export class HOBAKnowledgeGraph {
     }
   }
 
-  private addEdge(source: string, target: string, type: GraphRelation, meta: Partial<GraphEdge> = {}) {
+  private addEdge(
+    source: string,
+    target: string,
+    type: GraphRelation,
+    meta: Partial<GraphEdge> = {}
+  ) {
     const edge: GraphEdge = { id: `${source}->${type}->${target}`, source, target, type, ...meta };
     this.edges.push(edge);
 
@@ -91,7 +101,10 @@ export class HOBAKnowledgeGraph {
   }
 
   /** Breadth-first neighbourhood of `id` up to `depth` hops. */
-  public getNeighbors(id: string, options: NeighborhoodOptions = {}): { nodes: AnyRecord[]; edges: GraphEdge[] } {
+  public getNeighbors(
+    id: string,
+    options: NeighborhoodOptions = {}
+  ): { nodes: AnyRecord[]; edges: GraphEdge[] } {
     const depth = Math.max(1, options.depth ?? 1);
     const direction = options.direction ?? 'both';
     const relations = options.relations ? new Set<GraphRelation>(options.relations) : undefined;
@@ -198,7 +211,10 @@ export class HOBAKnowledgeGraph {
     }
 
     if (sorted.length !== barrierIds.size) {
-      return { valid: false, error: 'Barrier funnel graph contains cycles! Must be strictly acyclic (DAG).' };
+      return {
+        valid: false,
+        error: 'Barrier funnel graph contains cycles! Must be strictly acyclic (DAG).',
+      };
     }
 
     return { valid: true, sorted };
@@ -220,7 +236,10 @@ export class HOBAKnowledgeGraph {
     const mechIds = new Set(this.bundle.mechanisms.map((m) => m.id));
     const mechAdj = new Map<string, string[]>();
     for (const m of this.bundle.mechanisms) {
-      mechAdj.set(m.id, [...m.amplifies, ...m.masks].filter((id) => mechIds.has(id)));
+      mechAdj.set(
+        m.id,
+        [...m.amplifies, ...m.masks].filter((id) => mechIds.has(id))
+      );
     }
 
     const strongConnect = (v: string) => {
@@ -262,11 +281,24 @@ export class HOBAKnowledgeGraph {
   public toCytoscapeJSON(): { elements: { nodes: CytoscapeNode[]; edges: CytoscapeEdge[] } } {
     const nodes: CytoscapeNode[] = [
       ...this.bundle.observations.map((a) => ({
-        data: { id: a.id, label: a.title, type: 'observation', evidence_level: a.evidence_level, stages: a.stages },
+        data: {
+          id: a.id,
+          label: a.title,
+          type: 'observation',
+          evidence_level: a.evidence_level,
+          stages: a.stages,
+        },
         classes: 'node-artifact',
       })),
       ...this.bundle.barriers.map((b) => ({
-        data: { id: b.id, label: b.title, type: 'barrier', stage: b.stage, order: b.order, evidence_level: b.evidence_level },
+        data: {
+          id: b.id,
+          label: b.title,
+          type: 'barrier',
+          stage: b.stage,
+          order: b.order,
+          evidence_level: b.evidence_level,
+        },
         classes: 'node-barrier',
       })),
       ...this.bundle.mechanisms.map((m) => ({
@@ -292,13 +324,27 @@ export class HOBAKnowledgeGraph {
         classes: 'node-loop',
       })),
       ...this.bundle.interventions.map((i) => ({
-        data: { id: i.id, label: i.title, type: 'intervention', actor: i.actor, cost: i.cost, evidence_level: i.evidence_level },
+        data: {
+          id: i.id,
+          label: i.title,
+          type: 'intervention',
+          actor: i.actor,
+          cost: i.cost,
+          evidence_level: i.evidence_level,
+        },
         classes: 'node-intervention',
       })),
     ];
 
     const edges: CytoscapeEdge[] = this.edges.map((e) => ({
-      data: { id: e.id, source: e.source, target: e.target, type: e.type, fidelity: e.fidelity, likelihood: e.likelihood },
+      data: {
+        id: e.id,
+        source: e.source,
+        target: e.target,
+        type: e.type,
+        fidelity: e.fidelity,
+        likelihood: e.likelihood,
+      },
       classes: `edge-${e.type}`,
     }));
 
@@ -329,7 +375,9 @@ export class HOBAKnowledgeGraph {
     }
 
     for (const { data: d } of edges) {
-      lines.push(`    <edge id="${escapeXml(d.id)}" source="${escapeXml(d.source)}" target="${escapeXml(d.target)}">`);
+      lines.push(
+        `    <edge id="${escapeXml(d.id)}" source="${escapeXml(d.source)}" target="${escapeXml(d.target)}">`
+      );
       lines.push(`      <data key="d_edge_type">${escapeXml(d.type)}</data>`);
       lines.push('    </edge>');
     }
@@ -341,8 +389,26 @@ export class HOBAKnowledgeGraph {
   public toCSV(): { nodesCSV: string; edgesCSV: string } {
     const nodeRows: (string | number | undefined)[][] = [
       ['id', 'type', 'title', 'evidence_level', 'stage', 'removability', 'nature', 'actor'],
-      ...this.bundle.observations.map((a) => [a.id, 'observation', a.title, a.evidence_level, a.stages.join(';'), '', '', '']),
-      ...this.bundle.barriers.map((b) => [b.id, 'barrier', b.title, b.evidence_level, b.stage, '', '', '']),
+      ...this.bundle.observations.map((a) => [
+        a.id,
+        'observation',
+        a.title,
+        a.evidence_level,
+        a.stages.join(';'),
+        '',
+        '',
+        '',
+      ]),
+      ...this.bundle.barriers.map((b) => [
+        b.id,
+        'barrier',
+        b.title,
+        b.evidence_level,
+        b.stage,
+        '',
+        '',
+        '',
+      ]),
       ...this.bundle.mechanisms.map((m) => [
         m.id,
         'mechanism',
@@ -353,14 +419,39 @@ export class HOBAKnowledgeGraph {
         m.facets.nature,
         m.facets.actor,
       ]),
-      ...this.bundle.patterns.map((p) => [p.id, 'pattern', p.title, p.evidence_level, '', '', '', '']),
+      ...this.bundle.patterns.map((p) => [
+        p.id,
+        'pattern',
+        p.title,
+        p.evidence_level,
+        '',
+        '',
+        '',
+        '',
+      ]),
       ...this.bundle.loops.map((l) => [l.id, 'loop', l.title, l.evidence_level, '', '', '', '']),
-      ...this.bundle.interventions.map((i) => [i.id, 'intervention', i.title, i.evidence_level, '', '', '', i.actor]),
+      ...this.bundle.interventions.map((i) => [
+        i.id,
+        'intervention',
+        i.title,
+        i.evidence_level,
+        '',
+        '',
+        '',
+        i.actor,
+      ]),
     ];
 
     const edgeRows: (string | number | undefined | null)[][] = [
       ['id', 'source', 'target', 'type', 'fidelity', 'likelihood'],
-      ...this.edges.map((e) => [e.id, e.source, e.target, e.type, e.fidelity ?? '', e.likelihood ?? '']),
+      ...this.edges.map((e) => [
+        e.id,
+        e.source,
+        e.target,
+        e.type,
+        e.fidelity ?? '',
+        e.likelihood ?? '',
+      ]),
     ];
 
     return { nodesCSV: toCsv(nodeRows), edgesCSV: toCsv(edgeRows) };
@@ -388,5 +479,9 @@ function escapeXml(value: unknown): string {
 
 /** RFC 4180 CSV: every field quoted, embedded quotes doubled, CRLF-free output. */
 function toCsv(rows: (string | number | undefined | null)[][]): string {
-  return rows.map((row) => row.map((v) => `"${String(v ?? '').replace(/"/g, '""')}"`).join(',')).join('\n') + '\n';
+  return (
+    rows
+      .map((row) => row.map((v) => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','))
+      .join('\n') + '\n'
+  );
 }

@@ -162,7 +162,11 @@ const LANE_WIDTH = 210;
 const AXIS_HEIGHT = 26;
 
 function parseRGB(value: string, fallback: RGB): RGB {
-  const parts = value.trim().split(/[\s,/]+/).slice(0, 3).map(Number);
+  const parts = value
+    .trim()
+    .split(/[\s,/]+/)
+    .slice(0, 3)
+    .map(Number);
   return parts.length === 3 && parts.every((n) => Number.isFinite(n)) ? (parts as RGB) : fallback;
 }
 
@@ -287,7 +291,9 @@ export class GraphView {
       {
         id: 'solutions',
         types: ['pattern', 'loop', 'intervention'],
-        label: isUk ? 'Інтервенції, патерни та цикли (I / P / L)' : 'Interventions, Patterns & Loops (I/P/L)',
+        label: isUk
+          ? 'Інтервенції, патерни та цикли (I / P / L)'
+          : 'Interventions, Patterns & Loops (I/P/L)',
         icon: '🛡️',
         targetY: 215,
         topY: 140,
@@ -326,7 +332,10 @@ export class GraphView {
     // Bucket nodes by (stage column, swimlane) to compute aligned slots
     const buckets = new Map<string, SimNode[]>();
     for (const input of data.nodes) {
-      const col = Math.max(0, Math.min(this.lanes.length - 1, Math.round(input.lane ?? this.lanes.length / 2)));
+      const col = Math.max(
+        0,
+        Math.min(this.lanes.length - 1, Math.round(input.lane ?? this.lanes.length / 2))
+      );
       const swimlane = this.getSwimlaneFor(input.type);
       const bucketKey = `${col}|${swimlane.id}`;
       if (!buckets.has(bucketKey)) buckets.set(bucketKey, []);
@@ -559,7 +568,10 @@ export class GraphView {
     const floor = this.width < 640 ? 0.45 : MIN_ZOOM;
     this.zoom = Math.min(
       MAX_ZOOM,
-      Math.max(floor, Math.min((this.width - padding * 2) / spanX, (this.height - top - padding) / spanY))
+      Math.max(
+        floor,
+        Math.min((this.width - padding * 2) / spanX, (this.height - top - padding) / spanY)
+      )
     );
     this.panX = this.width / 2 - ((minX + maxX) / 2) * this.zoom;
     this.panY = (top + this.height - padding) / 2 - ((minY + maxY) / 2) * this.zoom;
@@ -644,7 +656,10 @@ export class GraphView {
 
     const isLit = (node: SimNode) => {
       if (isIdealActive) {
-        return activeStepNodeIds.has(node.id) || (this.idealCurrentStep === -1 && allIdealNodeIds.has(node.id));
+        return (
+          activeStepNodeIds.has(node.id) ||
+          (this.idealCurrentStep === -1 && allIdealNodeIds.has(node.id))
+        );
       }
       return !focus || node === focus || related!.has(node.id);
     };
@@ -669,7 +684,8 @@ export class GraphView {
     for (const edge of this.edges) {
       if (edge.hidden) continue;
       if (isIdealActive) {
-        const isIdealEdge = allIdealNodeIds.has(edge.source.id) && allIdealNodeIds.has(edge.target.id);
+        const isIdealEdge =
+          allIdealNodeIds.has(edge.source.id) && allIdealNodeIds.has(edge.target.id);
         this.drawEdge(edge, isIdealEdge ? 0.75 : 0.05, isIdealEdge);
       } else {
         const lit = !focus || edge.source === focus || edge.target === focus;
@@ -705,17 +721,25 @@ export class GraphView {
       const lit = isLit(node);
       const important = node === focus || (focus !== null && lit) || (isIdealActive && lit);
       if (!important && this.zoom < 0.35) continue;
-      if (node.sx < -60 || node.sx > this.width + 60 || node.sy < -40 || node.sy > this.height + 40) continue;
+      if (node.sx < -60 || node.sx > this.width + 60 || node.sy < -40 || node.sy > this.height + 40)
+        continue;
       const width = ctx.measureText(node.id).width;
       const left = node.sx - width / 2 - 3;
       const top = node.sy + node.sr + 4;
       const box = [left, top, left + width + 6, top + 13];
-      if (!important && boxes.some((b) => box[0]! < b[2]! && b[0]! < box[2]! && box[1]! < b[3]! && b[1]! < box[3]!)) continue;
+      if (
+        !important &&
+        boxes.some((b) => box[0]! < b[2]! && b[0]! < box[2]! && box[1]! < b[3]! && b[1]! < box[3]!)
+      )
+        continue;
       boxes.push(box);
       ctx.lineWidth = 3;
       ctx.strokeStyle = rgba(this.palette.bg, lit ? 0.85 : 0.2);
       ctx.strokeText(node.id, node.sx, top);
-      ctx.fillStyle = rgba(node === focus || (isIdealActive && lit) ? this.palette.text : this.palette.muted, lit ? 1 : 0.15);
+      ctx.fillStyle = rgba(
+        node === focus || (isIdealActive && lit) ? this.palette.text : this.palette.muted,
+        lit ? 1 : 0.15
+      );
       ctx.fillText(node.id, node.sx, top);
     }
   }
@@ -831,7 +855,10 @@ export class GraphView {
       }
 
       // Horizontal divider line
-      ctx.strokeStyle = rgba(isFocused ? this.palette.accent : this.palette.border, isFocused ? 0.6 : 0.4);
+      ctx.strokeStyle = rgba(
+        isFocused ? this.palette.accent : this.palette.border,
+        isFocused ? 0.6 : 0.4
+      );
       ctx.lineWidth = isFocused ? 1.5 : 1;
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -845,7 +872,9 @@ export class GraphView {
       if (centerScreenY > AXIS_HEIGHT + 14 && centerScreenY < this.height - 14) {
         const count = this.nodes.filter((n) => !n.hidden && lane.types.includes(n.type)).length;
         const text = `${lane.icon} ${lane.label} · ${count}`;
-        ctx.font = isFocused ? '700 11px Inter, system-ui, sans-serif' : '600 11px Inter, system-ui, sans-serif';
+        ctx.font = isFocused
+          ? '700 11px Inter, system-ui, sans-serif'
+          : '600 11px Inter, system-ui, sans-serif';
         const textWidth = ctx.measureText(text).width;
         const pillW = textWidth + 18;
         const pillH = 22;
@@ -853,7 +882,10 @@ export class GraphView {
         const pillY = centerScreenY - pillH / 2;
 
         ctx.fillStyle = rgba(this.palette.card, 0.92);
-        ctx.strokeStyle = rgba(isFocused ? this.palette.accent : this.palette.border, isFocused ? 0.95 : 0.8);
+        ctx.strokeStyle = rgba(
+          isFocused ? this.palette.accent : this.palette.border,
+          isFocused ? 0.95 : 0.8
+        );
         ctx.lineWidth = isFocused ? 1.5 : 1;
         if (isFocused) {
           ctx.shadowColor = rgba(this.palette.accent, 0.5);
@@ -897,7 +929,10 @@ export class GraphView {
       if (x < -LANE_WIDTH || x > this.width + LANE_WIDTH) continue;
       const isFocused = i === focusCol;
 
-      ctx.strokeStyle = rgba(isFocused ? this.palette.accent : this.palette.border, isFocused ? 0.6 : 0.55);
+      ctx.strokeStyle = rgba(
+        isFocused ? this.palette.accent : this.palette.border,
+        isFocused ? 0.6 : 0.55
+      );
       ctx.lineWidth = isFocused ? 1.5 : 1;
       ctx.beginPath();
       ctx.moveTo(x, AXIS_HEIGHT);
@@ -906,7 +941,10 @@ export class GraphView {
       if (maxLabel < 34) continue;
       const label = this.lanes[i]!.label;
       const width = ctx.measureText(label).width;
-      const text = width > maxLabel ? `${label.slice(0, Math.max(1, Math.floor((maxLabel / width) * label.length) - 1))}…` : label;
+      const text =
+        width > maxLabel
+          ? `${label.slice(0, Math.max(1, Math.floor((maxLabel / width) * label.length) - 1))}…`
+          : label;
       const painted = Math.min(width, maxLabel);
       if (x - painted / 2 < 4 || x + painted / 2 > this.width - 4) continue;
 
@@ -953,13 +991,21 @@ export class GraphView {
     for (let i = 0; i < this.idealSteps.length - 1; i++) {
       const stepA = this.idealSteps[i]!;
       const stepB = this.idealSteps[i + 1]!;
-      const nodesA = stepA.entities.map((id) => this.byId.get(id)).filter((n): n is SimNode => Boolean(n && !n.hidden));
-      const nodesB = stepB.entities.map((id) => this.byId.get(id)).filter((n): n is SimNode => Boolean(n && !n.hidden));
+      const nodesA = stepA.entities
+        .map((id) => this.byId.get(id))
+        .filter((n): n is SimNode => Boolean(n && !n.hidden));
+      const nodesB = stepB.entities
+        .map((id) => this.byId.get(id))
+        .filter((n): n is SimNode => Boolean(n && !n.hidden));
       if (!nodesA.length || !nodesB.length) continue;
 
       const isCurrentTransition = this.idealCurrentStep === i;
-      const isPastOrNext = this.idealCurrentStep === -1 || this.idealCurrentStep === i || this.idealCurrentStep === i + 1;
-      const alpha = this.idealCurrentStep === -1 ? 0.92 : isCurrentTransition ? 1.0 : isPastOrNext ? 0.6 : 0.2;
+      const isPastOrNext =
+        this.idealCurrentStep === -1 ||
+        this.idealCurrentStep === i ||
+        this.idealCurrentStep === i + 1;
+      const alpha =
+        this.idealCurrentStep === -1 ? 0.92 : isCurrentTransition ? 1.0 : isPastOrNext ? 0.6 : 0.2;
       const lineWidth = isCurrentTransition ? 3.5 : 2.5;
 
       for (const src of nodesA) {
@@ -1183,7 +1229,10 @@ export class GraphView {
         return;
       }
 
-      if (this.pointerStart && Math.hypot(point.x - this.pointerStart.x, point.y - this.pointerStart.y) > 4) {
+      if (
+        this.pointerStart &&
+        Math.hypot(point.x - this.pointerStart.x, point.y - this.pointerStart.y) > 4
+      ) {
         this.pointerMoved = true;
       }
 
@@ -1239,7 +1288,11 @@ export class GraphView {
       (event) => {
         event.preventDefault();
         const rect = canvas.getBoundingClientRect();
-        this.zoomBy(Math.exp(-event.deltaY * 0.0015), event.clientX - rect.left, event.clientY - rect.top);
+        this.zoomBy(
+          Math.exp(-event.deltaY * 0.0015),
+          event.clientX - rect.left,
+          event.clientY - rect.top
+        );
       },
       { passive: false }
     );
@@ -1247,7 +1300,12 @@ export class GraphView {
     canvas.addEventListener('keydown', (event) => {
       const visible = this.nodes.filter((n) => !n.hidden);
       if (!visible.length) return;
-      if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      if (
+        event.key === 'ArrowRight' ||
+        event.key === 'ArrowDown' ||
+        event.key === 'ArrowLeft' ||
+        event.key === 'ArrowUp'
+      ) {
         event.preventDefault();
         const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
         const index = this.selected ? visible.indexOf(this.selected) : -1;
@@ -1301,7 +1359,7 @@ export class GraphView {
   }
 
   select(id: string | null) {
-    const node = id ? this.byId.get(id) ?? null : null;
+    const node = id ? (this.byId.get(id) ?? null) : null;
     if (node?.hidden) return;
     // The panel now carries everything the tooltip was hinting at.
     if (node) this.emitHover(null);

@@ -1,15 +1,31 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { loadArchetypes, loadRegistryFromRoot, resolveRegistryRoot, validateArchetypes } from '@hoba/registry';
+import {
+  loadArchetypes,
+  loadRegistryFromRoot,
+  resolveRegistryRoot,
+  validateArchetypes,
+} from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 
 const root = resolveRegistryRoot();
 const bundle = loadRegistryFromRoot(root, 'en');
-const knownIds = new Set<string>([
-  ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops,
-  ...bundle.interventions, ...bundle.evidence, ...bundle.actors, ...bundle.processes, ...bundle.eras, ...bundle.records,
-].map((e) => e.id));
+const knownIds = new Set<string>(
+  [
+    ...bundle.observations,
+    ...bundle.barriers,
+    ...bundle.mechanisms,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions,
+    ...bundle.evidence,
+    ...bundle.actors,
+    ...bundle.processes,
+    ...bundle.eras,
+    ...bundle.records,
+  ].map((e) => e.id)
+);
 
 /**
  * Every entity type except evidence: a citation is a source document, not a
@@ -18,10 +34,20 @@ const knownIds = new Set<string>([
  * was added to the registry without a matching archetype, not an in-progress
  * rollout (the rollout finished; see the commit history under data/archetypes/).
  */
-const coverageIds = new Set<string>([
-  ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms, ...bundle.patterns, ...bundle.loops,
-  ...bundle.interventions, ...bundle.actors, ...bundle.processes, ...bundle.eras, ...bundle.records,
-].map((e) => e.id));
+const coverageIds = new Set<string>(
+  [
+    ...bundle.observations,
+    ...bundle.barriers,
+    ...bundle.mechanisms,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions,
+    ...bundle.actors,
+    ...bundle.processes,
+    ...bundle.eras,
+    ...bundle.records,
+  ].map((e) => e.id)
+);
 
 /**
  * Archetypes are flavor, not fact — deliberately not part of `validateRegistry`
@@ -56,7 +82,10 @@ describe('the /archetypes grid names entities that exist, once each', () => {
     for (const file of fs.readdirSync(dir)) {
       expect(file).toBe(`${file.replace(/\.ya?ml$/, '')}.yaml`);
       const id = file.replace(/\.ya?ml$/, '');
-      expect(archetypes.some((a) => a.id === id), file).toBe(true);
+      expect(
+        archetypes.some((a) => a.id === id),
+        file
+      ).toBe(true);
     }
   });
 });

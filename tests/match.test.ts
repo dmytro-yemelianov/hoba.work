@@ -27,7 +27,9 @@ describe('reading a rejection back into the registry', () => {
   it('places a rejection that names the internal hire', () => {
     const letter = `We have filled the position internally — one of our own team members moved
       into the role, so we are closing the search and will not be proceeding with external candidates.`;
-    const ids = matchObservations(letter, en).slice(0, 3).map((m) => m.id);
+    const ids = matchObservations(letter, en)
+      .slice(0, 3)
+      .map((m) => m.id);
     expect(ids).toContain('obs.rejection_naming_an_internal_hire_as_the_outcome');
   });
 

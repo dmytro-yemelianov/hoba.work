@@ -24,7 +24,10 @@ program
   .name('hoba')
   .description('Hiring Obstacles & Barriers Atlas CLI tool')
   .version(readPackageVersion(new URL('../package.json', import.meta.url)))
-  .option('-d, --dir <path>', 'Registry root directory (defaults to $HOBA_ROOT, then auto-detection from cwd)')
+  .option(
+    '-d, --dir <path>',
+    'Registry root directory (defaults to $HOBA_ROOT, then auto-detection from cwd)'
+  )
   .option('--json', 'Emit machine-readable JSON instead of formatted text');
 
 function run(action: () => number | void) {
@@ -44,7 +47,10 @@ function run(action: () => number | void) {
 program
   .command('search <query>')
   .description('Search across all entities in the hoba knowledge graph')
-  .option('-t, --types <list>', 'Comma-separated entity types to include (artifact,barrier,mechanism,pattern,loop,intervention)')
+  .option(
+    '-t, --types <list>',
+    'Comma-separated entity types to include (artifact,barrier,mechanism,pattern,loop,intervention)'
+  )
   .action((query: string, opts: { types?: string }, cmd: Command) => {
     run(() => cmdSearch(query, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
   });
@@ -55,7 +61,9 @@ program
   // commands (design doc §11 flags the overlap), it is one command under both
   // names.
   .alias('get')
-  .description('Display detailed specification of a given entity ID (e.g. mech.employment_gap_downranking_bias); legacy short codes resolve as aliases')
+  .description(
+    'Display detailed specification of a given entity ID (e.g. mech.employment_gap_downranking_bias); legacy short codes resolve as aliases'
+  )
   .action((id: string, _opts: unknown, cmd: Command) => {
     run(() => cmdShow(id, cmd.optsWithGlobals() as GlobalOptions));
   });
@@ -84,16 +92,27 @@ program
 
 program
   .command('explain [artifact_ids...]')
-  .description('Execute the hoba forensic analysis protocol for one or more observed artifacts or named empirical scenario')
+  .description(
+    'Execute the hoba forensic analysis protocol for one or more observed artifacts or named empirical scenario'
+  )
   .option('-s, --stage <stage>', 'Hiring funnel stage the process reached')
-  .option('--scenario <name>', 'Pre-configured empirical diagnostic scenario (ghost-refresh, ats-knockout, post-panel-freeze, downlevelling-trap)')
+  .option(
+    '--scenario <name>',
+    'Pre-configured empirical diagnostic scenario (ghost-refresh, ats-knockout, post-panel-freeze, downlevelling-trap)'
+  )
   .option(
     '-p, --probe <result...>',
     'Probe results already gathered, as PROBE-ID:outcome — each one can only narrow the compatible set'
   )
-  .action((artifactIds: string[], opts: { stage?: string; scenario?: string; probe?: string[] }, cmd: Command) => {
-    run(() => cmdExplain(artifactIds, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
-  });
+  .action(
+    (
+      artifactIds: string[],
+      opts: { stage?: string; scenario?: string; probe?: string[] },
+      cmd: Command
+    ) => {
+      run(() => cmdExplain(artifactIds, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
+    }
+  );
 
 program
   .command('latency <workflow_id> <state_id> <days>')
@@ -104,14 +123,18 @@ program
 
 program
   .command('runway <savings> <monthly_burn>')
-  .description('Compute candidate financial runway horizon, exhaustion risk profile, and vulnerability notes')
+  .description(
+    'Compute candidate financial runway horizon, exhaustion risk profile, and vulnerability notes'
+  )
   .action((savings: string, monthlyBurn: string, _opts: unknown, cmd: Command) => {
     run(() => cmdRunway(savings, monthlyBurn, cmd.optsWithGlobals() as GlobalOptions));
   });
 
 program
   .command('patterns')
-  .description('Display formal algebraic emptiness evaluation and contradiction proofs across all patterns')
+  .description(
+    'Display formal algebraic emptiness evaluation and contradiction proofs across all patterns'
+  )
   .action((_opts: unknown, cmd: Command) => {
     run(() => cmdPatterns(cmd.optsWithGlobals() as GlobalOptions));
   });
@@ -125,7 +148,9 @@ program
 
 program
   .command('validate')
-  .description('Validate registry content: schemas, referential integrity, barrier DAG, loop declarations, mirror parity')
+  .description(
+    'Validate registry content: schemas, referential integrity, barrier DAG, loop declarations, mirror parity'
+  )
   .option('--strict', 'Treat warnings as errors')
   .option('-l, --lang <lang>', 'Content mirror to validate: en, uk or all', 'all')
   .action((opts: { strict?: boolean; lang?: string }, cmd: Command) => {

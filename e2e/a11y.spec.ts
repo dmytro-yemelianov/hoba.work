@@ -17,7 +17,7 @@ const bundle = loadRegistryFromRoot(findRegistryRoot(REPO_ROOT)!, 'en');
 
 /** A template's representative address: an entity page needs a real entry. */
 const SAMPLE: Record<string, string> = {
-  'index': '/',
+  index: '/',
   '404': '/a-path-that-is-not-a-page',
   'actors/index': '/actors',
   'for/[reader]': '/for/candidate',
@@ -53,8 +53,18 @@ test.describe('accessibility on a phone', () => {
     test(`${path} has no serious or critical axe violations`, async ({ page }) => {
       await page.goto(path);
       const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
-      const severe = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
-      expect(severe.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(', ')}`)).toEqual([]);
+      const severe = results.violations.filter(
+        (v) => v.impact === 'serious' || v.impact === 'critical'
+      );
+      expect(
+        severe.map(
+          (v) =>
+            `${v.id}: ${v.nodes
+              .map((n) => n.target.join(' '))
+              .slice(0, 3)
+              .join(', ')}`
+        )
+      ).toEqual([]);
     });
   }
 });
@@ -68,8 +78,18 @@ for (const scheme of ['dark', 'light'] as const) {
       test(`${path} has no serious or critical axe violations`, async ({ page }) => {
         await page.goto(path);
         const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
-        const severe = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
-        expect(severe.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(', ')}`)).toEqual([]);
+        const severe = results.violations.filter(
+          (v) => v.impact === 'serious' || v.impact === 'critical'
+        );
+        expect(
+          severe.map(
+            (v) =>
+              `${v.id}: ${v.nodes
+                .map((n) => n.target.join(' '))
+                .slice(0, 3)
+                .join(', ')}`
+          )
+        ).toEqual([]);
       });
     }
   });

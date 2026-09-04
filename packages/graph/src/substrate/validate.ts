@@ -43,23 +43,37 @@ export function validateSubstrate(sub: Substrate): SubstrateProblem[] {
       const emitterClass = classes.get(emitter.class);
       need(e.id, !!emitterClass?.party, `emitter ${e.emitter} is not a party — only parties emit`);
       if (cls && cls.emitters.length > 0)
-        need(e.id, cls.emitters.includes(emitter.class), `class ${cls.id} does not accept ${emitter.class} as an emitter`);
+        need(
+          e.id,
+          cls.emitters.includes(emitter.class),
+          `class ${cls.id} does not accept ${emitter.class} as an emitter`
+        );
     }
     for (const rid of e.records) need(e.id, records.has(rid), `record ${rid} does not exist`);
-    if (e.statement) need(e.id, statements.has(e.statement), `statement ${e.statement} does not exist`);
-    if (e.statement && cls) need(e.id, cls.communicates, `class ${cls.id} does not communicate, yet the event carries a statement`);
+    if (e.statement)
+      need(e.id, statements.has(e.statement), `statement ${e.statement} does not exist`);
+    if (e.statement && cls)
+      need(
+        e.id,
+        cls.communicates,
+        `class ${cls.id} does not communicate, yet the event carries a statement`
+      );
   }
 
-  for (const s of sub.statements) need(s.id, records.has(s.about), `subject ${s.about} does not exist`);
+  for (const s of sub.statements)
+    need(s.id, records.has(s.about), `subject ${s.about} does not exist`);
 
   for (const c of sub.conditions) {
-    for (const g of c.gates) need(c.id, eventClasses.has(g), `gated event class ${g} does not exist`);
-    for (const e of c.causes) need(c.id, eventClasses.has(e), `caused event class ${e} does not exist`);
+    for (const g of c.gates)
+      need(c.id, eventClasses.has(g), `gated event class ${g} does not exist`);
+    for (const e of c.causes)
+      need(c.id, eventClasses.has(e), `caused event class ${e} does not exist`);
     for (const a of c.accounts_for) {
       need(c.id, conditions.has(a), `accounted condition ${a} does not exist`);
       need(c.id, a !== c.id, `a condition cannot account for itself`);
     }
-    if (c.owner.party) need(c.id, records.has(c.owner.party), `owning party ${c.owner.party} does not exist`);
+    if (c.owner.party)
+      need(c.id, records.has(c.owner.party), `owning party ${c.owner.party} does not exist`);
     if (c.cohort) need(c.id, cohorts.has(c.cohort), `cohort ${c.cohort} does not exist`);
     for (const read of c.reads) {
       const [rid, field] = read.split('#') as [string, string];
@@ -67,7 +81,11 @@ export function validateSubstrate(sub: Substrate): SubstrateProblem[] {
       need(c.id, !!rec, `read ${read}: record does not exist`);
       if (rec) {
         const cls = classes.get(rec.class);
-        need(c.id, !!cls && field in cls.fields, `read ${read}: field not declared on ${rec.class}`);
+        need(
+          c.id,
+          !!cls && field in cls.fields,
+          `read ${read}: field not declared on ${rec.class}`
+        );
       }
     }
   }
@@ -75,7 +93,11 @@ export function validateSubstrate(sub: Substrate): SubstrateProblem[] {
   for (const v of sub.visibilityRules) {
     need('visibility', classes.has(v.audience), `audience class ${v.audience} does not exist`);
     need('visibility', classes.has(v.subject), `subject class ${v.subject} does not exist`);
-    need('visibility', !!classes.get(v.audience)?.party, `audience ${v.audience} is not a party class`);
+    need(
+      'visibility',
+      !!classes.get(v.audience)?.party,
+      `audience ${v.audience} is not a party class`
+    );
   }
   for (const v of sub.visibilityOverrides) {
     need('visibility', classes.has(v.audience), `audience class ${v.audience} does not exist`);
@@ -90,7 +112,8 @@ export function validateSubstrate(sub: Substrate): SubstrateProblem[] {
 
   for (const p of sub.processes) {
     for (const t of p.transitions) {
-      if (t.from) need(p.id, eventClasses.has(t.from), `transition source ${t.from} does not exist`);
+      if (t.from)
+        need(p.id, eventClasses.has(t.from), `transition source ${t.from} does not exist`);
       need(p.id, eventClasses.has(t.to), `transition target ${t.to} does not exist`);
       for (const c of t.conditions) need(p.id, conditions.has(c), `condition ${c} does not exist`);
     }

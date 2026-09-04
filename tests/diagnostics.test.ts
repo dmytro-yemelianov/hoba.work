@@ -17,7 +17,9 @@ describe('HOBADiagnosticEngine', () => {
 
   it('marks mechanisms that emit the observed artifact and lists who amplifies them', () => {
     const res = engine.analyze({ artifacts: ['A-001'], stage: 'technical' });
-    const byId = Object.fromEntries(res.behind.compatible_mechanisms.map((c) => [c.mechanism.id, c]));
+    const byId = Object.fromEntries(
+      res.behind.compatible_mechanisms.map((c) => [c.mechanism.id, c])
+    );
     expect(byId['M-001'].emitted_by_evidence).toBe(true); // emits A-001
     expect(byId['M-002'].emitted_by_evidence).toBe(false); // only operates at B-002
     expect(byId['M-001'].amplified_by).toEqual(['M-002']);
@@ -38,8 +40,21 @@ describe('HOBADiagnosticEngine', () => {
           id: `M-1${String(i).padStart(2, '0')}`,
           operates_at: ['B-001'],
           honest_baseline: i === 0,
-          facets: { actor: 'candidate', nature: 'rule', visibility: 'inferable', removability: 'candidate' },
-          emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }],
+          facets: {
+            actor: 'candidate',
+            nature: 'rule',
+            visibility: 'inferable',
+            removability: 'candidate',
+          },
+          emissions: [
+            {
+              artifact: 'A-001',
+              fidelity: 'direct',
+              likelihood: 'high',
+              evidence: [],
+              observed_at: [],
+            },
+          ],
         })
       );
 
@@ -47,7 +62,9 @@ describe('HOBADiagnosticEngine', () => {
       makeBundle({
         mechanisms: [
           ...emitters(emitting),
-          ...Array.from({ length: silent }, (_, i) => mechanism({ id: `M-2${String(i).padStart(2, '0')}`, operates_at: ['B-002'] })),
+          ...Array.from({ length: silent }, (_, i) =>
+            mechanism({ id: `M-2${String(i).padStart(2, '0')}`, operates_at: ['B-002'] })
+          ),
         ],
         patterns: [],
         interventions: [],
@@ -102,8 +119,33 @@ describe('HOBADiagnosticEngine', () => {
           observation({ id: 'A-002', stages: ['screening'] }),
         ],
         mechanisms: [
-          mechanism({ id: 'M-001', operates_at: ['B-001'], honest_baseline: true, emissions: [{ artifact: 'A-001', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }] }),
-          mechanism({ id: 'M-002', operates_at: ['B-001'], emissions: [{ artifact: 'A-002', fidelity: 'direct', likelihood: 'high', evidence: [], observed_at: [] }] }),
+          mechanism({
+            id: 'M-001',
+            operates_at: ['B-001'],
+            honest_baseline: true,
+            emissions: [
+              {
+                artifact: 'A-001',
+                fidelity: 'direct',
+                likelihood: 'high',
+                evidence: [],
+                observed_at: [],
+              },
+            ],
+          }),
+          mechanism({
+            id: 'M-002',
+            operates_at: ['B-001'],
+            emissions: [
+              {
+                artifact: 'A-002',
+                fidelity: 'direct',
+                likelihood: 'high',
+                evidence: [],
+                observed_at: [],
+              },
+            ],
+          }),
         ],
         patterns: [],
         interventions: [],
@@ -142,9 +184,16 @@ describe('HOBADiagnosticEngine', () => {
   it('excludes deprecated nodes from the analysis', () => {
     const bundle = makeBundle();
     bundle.mechanisms.push(
-      mechanism({ id: 'M-003', operates_at: ['B-001'], status: 'deprecated', superseded_by: 'M-001' })
+      mechanism({
+        id: 'M-003',
+        operates_at: ['B-001'],
+        status: 'deprecated',
+        superseded_by: 'M-001',
+      })
     );
-    bundle.observations.push(observation({ id: 'A-002', status: 'deprecated', superseded_by: 'A-001' }));
+    bundle.observations.push(
+      observation({ id: 'A-002', status: 'deprecated', superseded_by: 'A-001' })
+    );
     const res = new HOBADiagnosticEngine(bundle).analyze({ artifacts: ['A-001', 'A-002'] });
     expect(res.behind.compatible_mechanisms.map((c) => c.mechanism.id)).not.toContain('M-003');
     expect(res.hard_facts.unknown_artifact_ids).toEqual(['A-002']);
@@ -207,7 +256,9 @@ describe('a recorded emission stage sharpens attribution and nothing else', () =
 
   it('credits only the mechanism whose trace is read at the named stage', () => {
     const res = engine.analyze({ artifacts: ['A-001'], stage: 'screening' });
-    const byId = Object.fromEntries(res.behind.compatible_mechanisms.map((c) => [c.mechanism.id, c]));
+    const byId = Object.fromEntries(
+      res.behind.compatible_mechanisms.map((c) => [c.mechanism.id, c])
+    );
 
     expect(byId['M-001']!.emitted_by_evidence).toBe(true);
     expect(byId['M-002']!.emitted_by_evidence).toBe(false);

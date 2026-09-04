@@ -7,12 +7,27 @@ import { actor, intervention, makeBundle, mechanism } from './helpers';
  * a facet name and an intervention-actor name that both resolve back to them.
  */
 const ACTORS = [
-  actor({ id: 'actor.candidate', slug: 'candidate', aliases: { facet: ['candidate'], intervention: ['candidate-action'] } }),
-  actor({ id: 'actor.recruiter', slug: 'recruiter', aliases: { facet: ['recruiter'], intervention: ['recruiter-process'] } }),
-  actor({ id: 'actor.employer_policy', slug: 'employer-policy', aliases: { facet: ['policy'], intervention: ['employer-policy'] } }),
+  actor({
+    id: 'actor.candidate',
+    slug: 'candidate',
+    aliases: { facet: ['candidate'], intervention: ['candidate-action'] },
+  }),
+  actor({
+    id: 'actor.recruiter',
+    slug: 'recruiter',
+    aliases: { facet: ['recruiter'], intervention: ['recruiter-process'] },
+  }),
+  actor({
+    id: 'actor.employer_policy',
+    slug: 'employer-policy',
+    aliases: { facet: ['policy'], intervention: ['employer-policy'] },
+  }),
 ];
 
-const bundleWith = (m: Parameters<typeof mechanism>[0], interventions: Parameters<typeof intervention>[0][] = []) =>
+const bundleWith = (
+  m: Parameters<typeof mechanism>[0],
+  interventions: Parameters<typeof intervention>[0][] = []
+) =>
   makeBundle({
     actors: ACTORS,
     mechanisms: [mechanism({ honest_baseline: true, operates_at: ['B-001'], ...m })],
@@ -23,19 +38,28 @@ const bundleWith = (m: Parameters<typeof mechanism>[0], interventions: Parameter
 describe('agencyZones', () => {
   it('gives an actor who can enact an intervention against the mechanism the highest zone', () => {
     const bundle = bundleWith(
-      { id: 'M-100', facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'none' } },
+      {
+        id: 'M-100',
+        facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'none' },
+      },
       [{ id: 'I-100', targets: ['M-100'], actor: 'recruiter-process' }]
     );
     expect(agencyZones(bundle, 'M-100').recruiter).toBe('high');
   });
 
-  it("gives the actor whose own force the mechanism is the middle zone", () => {
-    const bundle = bundleWith({ id: 'M-100', facets: { actor: 'recruiter', nature: 'rule', visibility: 'opaque', removability: 'none' } });
+  it('gives the actor whose own force the mechanism is the middle zone', () => {
+    const bundle = bundleWith({
+      id: 'M-100',
+      facets: { actor: 'recruiter', nature: 'rule', visibility: 'opaque', removability: 'none' },
+    });
     expect(agencyZones(bundle, 'M-100').recruiter).toBe('medium');
   });
 
   it('reads removability as a statement about the candidate specifically', () => {
-    const bundle = bundleWith({ id: 'M-100', facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'candidate' } });
+    const bundle = bundleWith({
+      id: 'M-100',
+      facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'candidate' },
+    });
     expect(agencyZones(bundle, 'M-100').candidate).toBe('medium');
   });
 
@@ -49,7 +73,10 @@ describe('agencyZones', () => {
   });
 
   it('omits an actor with no declared relationship to the mechanism at all', () => {
-    const bundle = bundleWith({ id: 'M-100', facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'none' } });
+    const bundle = bundleWith({
+      id: 'M-100',
+      facets: { actor: 'system', nature: 'rule', visibility: 'opaque', removability: 'none' },
+    });
     expect(agencyZones(bundle, 'M-100')).toEqual({});
   });
 
@@ -94,7 +121,9 @@ describe('agencyZones over the real registry', () => {
   });
 
   it('finds at least one actor with a real lever somewhere in the registry', () => {
-    const anyHigh = bundle.mechanisms.some((m) => Object.values(agencyZones(bundle, m.id)).includes('high'));
+    const anyHigh = bundle.mechanisms.some((m) =>
+      Object.values(agencyZones(bundle, m.id)).includes('high')
+    );
     expect(anyHigh).toBe(true);
   });
 });

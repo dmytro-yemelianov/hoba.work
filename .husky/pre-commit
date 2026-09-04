@@ -1,5 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# Lint + format check, validation, and typecheck before committing
+# Quality gate before every commit:
+# lint (ESLint + Prettier), strict registry validation, typecheck.
 pnpm lint && pnpm validate:strict && pnpm typecheck

@@ -12,7 +12,14 @@
  * the atlas is internally complete, not that it is finished.
  */
 import type { RegistryBundle } from '@hoba/registry-core/types';
-import type { GapReport, Identifiability, Indistinguishable, NeverAlone, Unaddressed, UnplacedEmission } from '@hoba/registry-core/types';
+import type {
+  GapReport,
+  Identifiability,
+  Indistinguishable,
+  NeverAlone,
+  Unaddressed,
+  UnplacedEmission,
+} from '@hoba/registry-core/types';
 
 /** Ids reachable from a starting entry, and the relations walked to get there. */
 export interface Closure {
@@ -30,18 +37,6 @@ export interface Closure {
   directAffects: string[];
   directAffectedBy: string[];
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 const emissionsOf = (m: { emissions: { artifact: string }[] }): Set<string> =>
   new Set(m.emissions.map((e) => e.artifact));
@@ -164,7 +159,9 @@ export function identifiability(bundle: RegistryBundle): Identifiability {
  */
 export function unplacedEmissions(bundle: RegistryBundle): UnplacedEmission[] {
   const stageOfGate = new Map(bundle.barriers.map((b) => [b.id, b.stage] as const));
-  const stagesOfArtifact = new Map(bundle.observations.map((a) => [a.id, new Set(a.stages)] as const));
+  const stagesOfArtifact = new Map(
+    bundle.observations.map((a) => [a.id, new Set(a.stages)] as const)
+  );
   const out: UnplacedEmission[] = [];
 
   for (const m of bundle.mechanisms) {
@@ -173,7 +170,11 @@ export function unplacedEmissions(bundle: RegistryBundle): UnplacedEmission[] {
       if (e.observed_at.length > 0) continue;
       const seen = stagesOfArtifact.get(e.artifact) ?? new Set();
       const overlap = [...operates].filter((stage) => seen.has(stage!));
-      out.push({ mechanism: m.id, artifact: e.artifact, reason: overlap.length ? 'ambiguous' : 'conflicting' });
+      out.push({
+        mechanism: m.id,
+        artifact: e.artifact,
+        reason: overlap.length ? 'ambiguous' : 'conflicting',
+      });
     }
   }
   return out;
@@ -209,7 +210,8 @@ export function gaps(bundle: RegistryBundle): GapReport {
     if (!byActor.has(i.actor)) byActor.set(i.actor, new Set());
     const gates = byActor.get(i.actor)!;
     for (const t of i.targets) {
-      const hit = (t.startsWith('B-') || t.startsWith('bar.')) ? [t] : (gatesOfMechanism.get(t) ?? []);
+      const hit =
+        t.startsWith('B-') || t.startsWith('bar.') ? [t] : (gatesOfMechanism.get(t) ?? []);
       for (const g of hit) {
         gates.add(g);
         reached.add(g);

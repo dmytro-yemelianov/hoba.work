@@ -41,7 +41,8 @@ function documentedCliCommands(source: string): string[] {
 
 function cliArgs(command: string): string[] {
   const tokens = command.match(/"[^"]*"|'[^']*'|\S+/g) ?? [];
-  if (tokens.shift() !== 'hoba') throw new Error(`Documented command must start with hoba: ${command}`);
+  if (tokens.shift() !== 'hoba')
+    throw new Error(`Documented command must start with hoba: ${command}`);
   return tokens.map((token) => {
     const quote = token[0];
     return (quote === '"' || quote === "'") && token.at(-1) === quote ? token.slice(1, -1) : token;
@@ -74,7 +75,9 @@ describe('projection integrity', () => {
   it('keeps documented REST collections aligned with OpenAPI and generated JSON', () => {
     const developers = readFileSync(developersPath, 'utf8');
     const documented = literalArray(developers, 'endpoints').sort();
-    const openapi = JSON.parse(readFileSync(resolve(root, 'apps/web/public/openapi.json'), 'utf8')) as {
+    const openapi = JSON.parse(
+      readFileSync(resolve(root, 'apps/web/public/openapi.json'), 'utf8')
+    ) as {
       paths: Record<string, unknown>;
     };
     const collections = Object.keys(openapi.paths)
@@ -83,14 +86,19 @@ describe('projection integrity', () => {
 
     expect(documented).toEqual(collections);
     for (const endpoint of documented) {
-      expect(existsSync(resolve(root, `apps/web/public/api/v1/${endpoint}/index.json`)), endpoint).toBe(true);
+      expect(
+        existsSync(resolve(root, `apps/web/public/api/v1/${endpoint}/index.json`)),
+        endpoint
+      ).toBe(true);
     }
   });
 
   it('documents exactly the generated latest data exports', () => {
     const developers = readFileSync(developersPath, 'utf8');
     const documented = literalArray(developers, 'exports').sort();
-    const generated = readdirSync(resolve(root, 'apps/web/public/data/latest'), { withFileTypes: true })
+    const generated = readdirSync(resolve(root, 'apps/web/public/data/latest'), {
+      withFileTypes: true,
+    })
       .filter((entry) => entry.isFile())
       .map((entry) => entry.name)
       .sort();
@@ -125,7 +133,12 @@ describe('projection integrity', () => {
     for (const value of Object.values(bundle)) {
       if (!Array.isArray(value)) continue;
       for (const candidate of value) {
-        if (candidate && typeof candidate === 'object' && 'id' in candidate && typeof candidate.id === 'string') {
+        if (
+          candidate &&
+          typeof candidate === 'object' &&
+          'id' in candidate &&
+          typeof candidate.id === 'string'
+        ) {
           canonicalIds.add(candidate.id);
         }
       }
@@ -138,10 +151,12 @@ describe('projection integrity', () => {
     // avoids mistaking property access and i18n keys (`actor.title`,
     // `bar.order`) for authored entity IDs. The three one-word actor IDs are
     // the only intentional exceptions in the current ontology.
-    const idPattern = /\b(?:(?:actor|bar|era|evidence|int|loop|mech|obs|pat|proc|record|scenario)\.[a-z0-9]+_[a-z0-9_]+|actor\.(?:candidate|client|recruiter))\b/g;
+    const idPattern =
+      /\b(?:(?:actor|bar|era|evidence|int|loop|mech|obs|pat|proc|record|scenario)\.[a-z0-9]+_[a-z0-9_]+|actor\.(?:candidate|client|recruiter))\b/g;
     for (const file of sourceFiles(resolve(root, 'apps/web/src'))) {
       const source = readFileSync(file, 'utf8');
-      const literals = source.match(/'(?:\\.|[^'\\\r\n])*'|"(?:\\.|[^"\\\r\n])*"|`(?:\\.|[^`\\])*`/g) ?? [];
+      const literals =
+        source.match(/'(?:\\.|[^'\\\r\n])*'|"(?:\\.|[^"\\\r\n])*"|`(?:\\.|[^`\\])*`/g) ?? [];
       for (const literal of literals) {
         const authoredText = literal.slice(1, -1).replace(/\$\{[\s\S]*?\}/g, '');
         for (const match of authoredText.matchAll(idPattern)) {
@@ -169,15 +184,29 @@ describe('projection integrity', () => {
       expect(preview.barrier.stage).toBe(preview.stage);
       expect(preview.mechanism.operates_at).toContain(preview.barrier.id);
       expect(preview.mechanism.emissions).toContainEqual(
-        expect.objectContaining({ artifact: preview.observation.id, observed_at: expect.arrayContaining([preview.stage]) })
+        expect.objectContaining({
+          artifact: preview.observation.id,
+          observed_at: expect.arrayContaining([preview.stage]),
+        })
       );
       expect(preview.probe).toEqual(preview.observation.probes[0]);
 
-      expect(preview.observation.title).toBe(bundle.observations.find((node) => node.id === preview.observation.id)?.title);
-      expect(preview.barrier.title).toBe(bundle.barriers.find((node) => node.id === preview.barrier.id)?.title);
-      expect(preview.mechanism.title).toBe(bundle.mechanisms.find((node) => node.id === preview.mechanism.id)?.title);
+      expect(preview.observation.title).toBe(
+        bundle.observations.find((node) => node.id === preview.observation.id)?.title
+      );
+      expect(preview.barrier.title).toBe(
+        bundle.barriers.find((node) => node.id === preview.barrier.id)?.title
+      );
+      expect(preview.mechanism.title).toBe(
+        bundle.mechanisms.find((node) => node.id === preview.mechanism.id)?.title
+      );
 
-      idsByLanguage.push([preview.observation.id, preview.barrier.id, preview.mechanism.id, preview.probe.id]);
+      idsByLanguage.push([
+        preview.observation.id,
+        preview.barrier.id,
+        preview.mechanism.id,
+        preview.probe.id,
+      ]);
     }
 
     expect(idsByLanguage[1]).toEqual(idsByLanguage[0]);
@@ -200,7 +229,10 @@ describe('projection integrity', () => {
   });
 
   it('renders diagnostic entity facts only from the resolved preview object', () => {
-    const component = readFileSync(resolve(root, 'apps/web/src/components/DiagnosticPreview.astro'), 'utf8');
+    const component = readFileSync(
+      resolve(root, 'apps/web/src/components/DiagnosticPreview.astro'),
+      'utf8'
+    );
 
     expect(component).not.toMatch(/\b(?:obs|bar|mech)\.[a-z0-9_]+\b/);
     expect(component).toContain('{observation.title}');

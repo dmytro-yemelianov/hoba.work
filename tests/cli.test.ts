@@ -4,14 +4,27 @@ import { describe, expect, it } from 'vitest';
 import { REPO_ROOT } from './helpers';
 
 /** Runs the CLI from source (tsx + root tsconfig paths), so no build step is required. */
-function hoba(args: string[], opts: { expectFailure?: boolean } = {}): { stdout: string; status: number } {
+function hoba(
+  args: string[],
+  opts: { expectFailure?: boolean } = {}
+): { stdout: string; status: number } {
   try {
-    const stdout = execFileSync('npx', ['tsx', '--tsconfig', path.join(REPO_ROOT, 'tsconfig.json'), 'packages/cli/src/cli.ts', ...args], {
-      cwd: REPO_ROOT,
-      encoding: 'utf-8',
-      env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
+    const stdout = execFileSync(
+      'npx',
+      [
+        'tsx',
+        '--tsconfig',
+        path.join(REPO_ROOT, 'tsconfig.json'),
+        'packages/cli/src/cli.ts',
+        ...args,
+      ],
+      {
+        cwd: REPO_ROOT,
+        encoding: 'utf-8',
+        env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      }
+    );
     return { stdout, status: 0 };
   } catch (error) {
     const e = error as { stdout?: string; stderr?: string; status?: number };
@@ -22,36 +35,69 @@ function hoba(args: string[], opts: { expectFailure?: boolean } = {}): { stdout:
 
 describe('hoba CLI', { timeout: 20000 }, () => {
   it('shows an entity and emits JSON on request', () => {
-    expect(hoba(['show', 'mech.genuine_technical_skill_shortfall']).stdout).toContain('Genuine Technical Skill Shortfall');
-    const json = JSON.parse(hoba(['show', 'bar.requisition_approval_public_posting', '--json']).stdout);
+    expect(hoba(['show', 'mech.genuine_technical_skill_shortfall']).stdout).toContain(
+      'Genuine Technical Skill Shortfall'
+    );
+    const json = JSON.parse(
+      hoba(['show', 'bar.requisition_approval_public_posting', '--json']).stdout
+    );
     expect(json.node.stage).toBe('pre-posting');
     expect(json.registry_version).toMatch(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
   });
 
   it('explains an observation and reports unknown ids', () => {
-    const json = JSON.parse(hoba(['explain', 'obs.materially_similar_role_reposted_shortly_after_rejection', 'A-999', '--stage', 'technical', '--json']).stdout);
+    const json = JSON.parse(
+      hoba([
+        'explain',
+        'obs.materially_similar_role_reposted_shortly_after_rejection',
+        'A-999',
+        '--stage',
+        'technical',
+        '--json',
+      ]).stdout
+    );
     expect(json.analysis.hard_facts.unknown_artifact_ids).toEqual(['A-999']);
-    expect(json.analysis.obstacle.identified_barriers.map((b: { id: string }) => b.id)).toEqual(['bar.technical_screen_live_assessment', 'bar.take_home_work_sample_evaluation']);
+    expect(json.analysis.obstacle.identified_barriers.map((b: { id: string }) => b.id)).toEqual([
+      'bar.technical_screen_live_assessment',
+      'bar.take_home_work_sample_evaluation',
+    ]);
     expect(json.analysis.counts.probes).toBe(1);
   });
 
   it('rejects an unknown stage and an unknown id with exit code 1', () => {
-    const stage = hoba(['explain', 'obs.materially_similar_role_reposted_shortly_after_rejection', '--stage', 'bogus'], { expectFailure: true });
+    const stage = hoba(
+      [
+        'explain',
+        'obs.materially_similar_role_reposted_shortly_after_rejection',
+        '--stage',
+        'bogus',
+      ],
+      { expectFailure: true }
+    );
     expect(stage.status).toBe(1);
     expect(stage.stdout).toContain('Unknown stage');
     expect(hoba(['show', 'Z-000'], { expectFailure: true }).status).toBe(1);
   });
 
   it('searches with type filters', () => {
-    const json = JSON.parse(hoba(['search', 'reposted', '--types', 'observation', '--json']).stdout);
+    const json = JSON.parse(
+      hoba(['search', 'reposted', '--types', 'observation', '--json']).stdout
+    );
     expect(json.results.every((r: { type: string }) => r.type === 'observation')).toBe(true);
-    expect(json.results.map((r: { id: string }) => r.id)).toContain('obs.materially_similar_role_reposted_shortly_after_rejection');
+    expect(json.results.map((r: { id: string }) => r.id)).toContain(
+      'obs.materially_similar_role_reposted_shortly_after_rejection'
+    );
   });
 
   it('diagnoses temporal latency and dwell anomalies', () => {
-    const json = JSON.parse(hoba(['latency', 'proc.the_hiring_funnel_end_to_end', 'recruiter-queue', '45', '--json']).stdout);
+    const json = JSON.parse(
+      hoba(['latency', 'proc.the_hiring_funnel_end_to_end', 'recruiter-queue', '45', '--json'])
+        .stdout
+    );
     expect(json.anomalies.length).toBeGreaterThan(0);
-    const queued = json.anomalies.find((a: { toState: string }) => a.toState === 'recruiter-screen');
+    const queued = json.anomalies.find(
+      (a: { toState: string }) => a.toState === 'recruiter-screen'
+    );
     expect(queued.severity).toBe('stalled_anomalous');
     expect(queued.implicatedMechanisms).toContain('mech.stale_or_orphaned_job_requisition');
   });
@@ -102,8 +148,12 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   // reconcile rather than ship two near-duplicates, so it is one command
   // reachable by both names.
   it('reaches the same entity under `get` as under `show`, by canonical ID and by legacy code', () => {
-    const canonical = JSON.parse(hoba(['get', 'mech.genuine_technical_skill_shortfall', '--json']).stdout);
-    const viaShow = JSON.parse(hoba(['show', 'mech.genuine_technical_skill_shortfall', '--json']).stdout);
+    const canonical = JSON.parse(
+      hoba(['get', 'mech.genuine_technical_skill_shortfall', '--json']).stdout
+    );
+    const viaShow = JSON.parse(
+      hoba(['show', 'mech.genuine_technical_skill_shortfall', '--json']).stdout
+    );
     const viaAlias = JSON.parse(hoba(['get', 'M-001', '--json']).stdout);
     expect(canonical.node.id).toBe('mech.genuine_technical_skill_shortfall');
     expect(viaShow).toEqual(canonical);
@@ -111,7 +161,9 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   });
 
   it('prints an entity’s neighbourhood with `graph`', () => {
-    const json = JSON.parse(hoba(['graph', 'mech.genuine_technical_skill_shortfall', '--json']).stdout);
+    const json = JSON.parse(
+      hoba(['graph', 'mech.genuine_technical_skill_shortfall', '--json']).stdout
+    );
     expect(json.id).toBe('mech.genuine_technical_skill_shortfall');
     expect(json.neighbours.length).toBeGreaterThan(0);
     for (const n of json.neighbours) expect(n).toHaveProperty('relation');

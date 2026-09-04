@@ -1,12 +1,25 @@
 import fs from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { applyActorIdRename, EVIDENCE_DIR, applyIdRename, buildIdMapping, slugifyTitle, TYPE_ID_PREFIX, loadRegistryFromRoot, resolveRegistryRoot, insertAlias, planFileRename } from '@hoba/registry';
+import {
+  applyActorIdRename,
+  EVIDENCE_DIR,
+  applyIdRename,
+  buildIdMapping,
+  slugifyTitle,
+  TYPE_ID_PREFIX,
+  loadRegistryFromRoot,
+  resolveRegistryRoot,
+  insertAlias,
+  planFileRename,
+} from '@hoba/registry';
 import type { RegistryBundle } from '@hoba/registry';
 import { writeTempRegistry } from './helpers';
 
 describe('slugifyTitle', () => {
   it('lowercases and joins words with underscores', () => {
-    expect(slugifyTitle('Automated Filter & Parser Threshold')).toBe('automated_filter_parser_threshold');
+    expect(slugifyTitle('Automated Filter & Parser Threshold')).toBe(
+      'automated_filter_parser_threshold'
+    );
   });
 
   it('collapses runs of punctuation into a single underscore', () => {
@@ -67,7 +80,12 @@ describe('buildIdMapping', () => {
     });
     const result = buildIdMapping(bundle);
     expect(result.mappings).toEqual([
-      { oldId: 'B-002', newId: 'bar.automated_filter_parser_threshold', type: 'barrier', title: 'Automated Filter & Parser Threshold' },
+      {
+        oldId: 'B-002',
+        newId: 'bar.automated_filter_parser_threshold',
+        type: 'barrier',
+        title: 'Automated Filter & Parser Threshold',
+      },
     ]);
     expect(result.collisions).toEqual([]);
   });
@@ -150,8 +168,10 @@ describe('buildIdMapping against the real registry', () => {
 describe('applyIdRename', () => {
   it('replaces the quoted old ID with the quoted new ID in every file that contains it', () => {
     const root = writeTempRegistry({
-      'data/en/entities/pattern/P-001.md': '---\nid: "P-001"\ntype: "pattern"\nrequired_artifacts:\n  - "A-002"\n---\n\n# Body\n',
-      'data/en/entities/intervention/I-002.md': '---\nid: "I-002"\ntype: "intervention"\ntargets:\n  - "P-001"\n  - "B-002"\n---\n',
+      'data/en/entities/pattern/P-001.md':
+        '---\nid: "P-001"\ntype: "pattern"\nrequired_artifacts:\n  - "A-002"\n---\n\n# Body\n',
+      'data/en/entities/intervention/I-002.md':
+        '---\nid: "I-002"\ntype: "intervention"\ntargets:\n  - "P-001"\n  - "B-002"\n---\n',
       'data/uk/entities/pattern/P-001.md': '---\nid: "P-001"\ntype: "pattern"\n---\n\n# Тіло\n',
       'data/evidence/EVD-001.md': '---\nid: "EVD-001"\ntype: "evidence"\n---\n',
     });
@@ -187,7 +207,9 @@ describe('applyIdRename', () => {
     });
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
     expect(result.filesChanged).toEqual([]);
-    expect(fs.readFileSync(`${root}/data/en/entities/pattern/P-002.md`, 'utf8')).toContain('"P-002"');
+    expect(fs.readFileSync(`${root}/data/en/entities/pattern/P-002.md`, 'utf8')).toContain(
+      '"P-002"'
+    );
   });
 
   it('does not match a substring of a longer ID', () => {
@@ -197,7 +219,9 @@ describe('applyIdRename', () => {
     });
     const result = applyIdRename(root, 'P-001', 'pat.seniority_double_bind');
     expect(result.filesChanged).toEqual(['data/en/entities/pattern/P-001.md']);
-    expect(fs.readFileSync(`${root}/data/en/entities/pattern/P-0010.md`, 'utf8')).toContain('"P-0010"');
+    expect(fs.readFileSync(`${root}/data/en/entities/pattern/P-0010.md`, 'utf8')).toContain(
+      '"P-0010"'
+    );
   });
 });
 
@@ -234,8 +258,12 @@ describe('applyActorIdRename', () => {
     expect(intervention).toContain('\nactor: "recruiter"'); // intervention vocabulary, untouched
     expect(intervention).toContain('    actor: "actor.recruiter"');
 
-    expect(fs.readFileSync(`${root}/data/en/entities/process/proc.z.md`, 'utf8')).toContain('    owner: "actor.recruiter"');
-    expect(fs.readFileSync(`${root}/data/en/entities/record/record.w.md`, 'utf8')).toContain('owner_actor: "actor.recruiter"');
+    expect(fs.readFileSync(`${root}/data/en/entities/process/proc.z.md`, 'utf8')).toContain(
+      '    owner: "actor.recruiter"'
+    );
+    expect(fs.readFileSync(`${root}/data/en/entities/record/record.w.md`, 'utf8')).toContain(
+      'owner_actor: "actor.recruiter"'
+    );
 
     const actor = fs.readFileSync(`${root}/data/en/entities/actor/recruiter.md`, 'utf8');
     expect(actor).toContain('id: "actor.recruiter"');
@@ -249,7 +277,9 @@ describe('applyActorIdRename', () => {
         '---\nid: "mech.x"\ntype: "mechanism"\nperspectives:\n  -\n    actor: "public-policy"\n---\n',
     });
     applyActorIdRename(root, 'policy', 'actor.policy');
-    expect(fs.readFileSync(`${root}/data/en/entities/mechanism/mech.x.md`, 'utf8')).toContain('    actor: "public-policy"');
+    expect(fs.readFileSync(`${root}/data/en/entities/mechanism/mech.x.md`, 'utf8')).toContain(
+      '    actor: "public-policy"'
+    );
   });
 });
 
@@ -261,8 +291,14 @@ describe('planFileRename', () => {
     });
     const plans = planFileRename(root, 'pattern', 'P-001', 'pat.seniority_double_bind');
     expect(plans).toEqual([
-      { oldPath: `${root}/data/en/entities/pattern/P-001.md`, newPath: `${root}/data/en/entities/pattern/pat.seniority_double_bind.md` },
-      { oldPath: `${root}/data/uk/entities/pattern/P-001.md`, newPath: `${root}/data/uk/entities/pattern/pat.seniority_double_bind.md` },
+      {
+        oldPath: `${root}/data/en/entities/pattern/P-001.md`,
+        newPath: `${root}/data/en/entities/pattern/pat.seniority_double_bind.md`,
+      },
+      {
+        oldPath: `${root}/data/uk/entities/pattern/P-001.md`,
+        newPath: `${root}/data/uk/entities/pattern/pat.seniority_double_bind.md`,
+      },
     ]);
   });
 
@@ -274,7 +310,10 @@ describe('planFileRename', () => {
     });
     const plans = planFileRename(root, '', 'EVD-001', 'evidence.hidden_workers', [EVIDENCE_DIR]);
     expect(plans).toEqual([
-      { oldPath: `${root}/data/evidence/EVD-001.md`, newPath: `${root}/data/evidence/evidence.hidden_workers.md` },
+      {
+        oldPath: `${root}/data/evidence/EVD-001.md`,
+        newPath: `${root}/data/evidence/evidence.hidden_workers.md`,
+      },
     ]);
   });
 
@@ -298,7 +337,8 @@ describe('planFileRename', () => {
 describe('insertAlias', () => {
   it('inserts an aliases block immediately after the type: line', () => {
     const root = writeTempRegistry({
-      'data/en/entities/pattern/pat.seniority_double_bind.md': '---\nid: "pat.seniority_double_bind"\ntype: "pattern"\nsummary: "..."\n---\n\n# Body\n',
+      'data/en/entities/pattern/pat.seniority_double_bind.md':
+        '---\nid: "pat.seniority_double_bind"\ntype: "pattern"\nsummary: "..."\n---\n\n# Body\n',
     });
     const filePath = `${root}/data/en/entities/pattern/pat.seniority_double_bind.md`;
     insertAlias(filePath, 'P-001');
@@ -312,7 +352,9 @@ describe('insertAlias', () => {
     const root = writeTempRegistry({
       'data/en/entities/pattern/broken.md': '---\nid: "x"\n---\n',
     });
-    expect(() => insertAlias(`${root}/data/en/entities/pattern/broken.md`, 'P-001')).toThrow(/no "type:" line/);
+    expect(() => insertAlias(`${root}/data/en/entities/pattern/broken.md`, 'P-001')).toThrow(
+      /no "type:" line/
+    );
   });
 
   it('throws a clear error when the file already has an aliases: field', () => {

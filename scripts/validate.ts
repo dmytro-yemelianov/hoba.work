@@ -34,7 +34,10 @@ function report(label: string, issues: ValidationIssue[]) {
 
 // 1. Canonical (English) content
 const bundleEn = loadRegistryFromRoot(root, 'en');
-report(`English content (registry ${bundleEn.version}, schema ${bundleEn.schema_version})`, validateRegistry(bundleEn).issues);
+report(
+  `English content (registry ${bundleEn.version}, schema ${bundleEn.schema_version})`,
+  validateRegistry(bundleEn).issues
+);
 
 const graphEn = new HOBAKnowledgeGraph(bundleEn);
 const dag = graphEn.validateBarrierDAG();
@@ -45,7 +48,9 @@ console.log(`✓ Tarjan SCC check: ${sccs.length} strongly connected mechanism c
 for (const scc of sccs) console.log(`  - [${scc.join(', ')}]`);
 for (const loop of bundleEn.loops) {
   const confirmed = sccs.some((scc) => loop.mechanisms.every((m) => scc.includes(m)));
-  console.log(`  ${confirmed ? '✓' : '⚠'} ${loop.id} ${confirmed ? 'is backed by a declared SCC' : 'is NOT fully backed by a declared mechanism cycle'}`);
+  console.log(
+    `  ${confirmed ? '✓' : '⚠'} ${loop.id} ${confirmed ? 'is backed by a declared SCC' : 'is NOT fully backed by a declared mechanism cycle'}`
+  );
 }
 
 // 2. Scenarios: compositions over the ontology, checked against it. Design doc
@@ -56,7 +61,10 @@ report(`Scenarios (${scenarios.length})`, validateScenarios(scenarios, bundleEn)
 
 // 3. Ukrainian mirror: same rules + structural parity with the canonical content
 const bundleUk = loadRegistryFromRoot(root, 'uk');
-report('Ukrainian mirror', [...validateRegistry(bundleUk).issues, ...compareBundleStructure(bundleEn, bundleUk)]);
+report('Ukrainian mirror', [
+  ...validateRegistry(bundleUk).issues,
+  ...compareBundleStructure(bundleEn, bundleUk),
+]);
 
 console.log(
   `\n${bundleEn.observations.length} artifacts, ${bundleEn.barriers.length} barriers, ${bundleEn.mechanisms.length} mechanisms, ` +
@@ -66,7 +74,11 @@ console.log(
 console.log(`${errorCount} error(s), ${warningCount} warning(s)`);
 
 if (errorCount > 0 || (strict && warningCount > 0)) {
-  console.error(strict && errorCount === 0 ? '--strict: warnings are treated as errors' : 'Registry validation FAILED');
+  console.error(
+    strict && errorCount === 0
+      ? '--strict: warnings are treated as errors'
+      : 'Registry validation FAILED'
+  );
   process.exit(1);
 }
 console.log('--- Registry Validation PASSED ---');

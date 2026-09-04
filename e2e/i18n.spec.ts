@@ -16,7 +16,9 @@ test.describe('language without a URL', () => {
     expect(hrefs.filter((h) => /^\/uk(\/|$)/.test(h))).toEqual([]);
     expect(hrefs.filter((h) => h.startsWith('/_i/'))).toEqual([]);
     // The switcher is the one exception, and it uses a query.
-    const switcher = await page.locator('[data-lang-switch]').evaluateAll((as) => as.map((a) => a.getAttribute('href')!));
+    const switcher = await page
+      .locator('[data-lang-switch]')
+      .evaluateAll((as) => as.map((a) => a.getAttribute('href')!));
     expect(switcher.every((h) => h.includes('lang='))).toBe(true);
     expect(switcher.every((h) => !h.includes('/uk'))).toBe(true);
   });
@@ -24,8 +26,14 @@ test.describe('language without a URL', () => {
   test('the canonical URL is the language-free one, in either language', async ({ page }) => {
     for (const lang of ['en', 'uk']) {
       await page.goto(`/mechanisms/mech.genuine_technical_skill_shortfall?lang=${lang}`);
-      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall');
-      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall');
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        'href',
+        'https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall'
+      );
+      await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
+        'content',
+        'https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall'
+      );
       await expect(page.locator('html')).toHaveAttribute('lang', lang);
     }
     // Nothing to alternate between any more.
@@ -42,7 +50,9 @@ test.describe('language without a URL', () => {
       const response = await page.goto('/registry');
       expect(response!.headers()['content-language'], locale).toBe(expected);
       await expect(page.locator('html')).toHaveAttribute('lang', expected);
-      await expect(page.getByRole('heading', { level: 1 })).toHaveText(says(expected, 'registry.title'));
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+        says(expected, 'registry.title')
+      );
       await context.close();
     }
   });
@@ -91,7 +101,12 @@ test.describe('language without a URL', () => {
   test('a reader who chose Ukrainian sees no English interface strings', async ({ browser }) => {
     const context = await browser.newContext({ locale: 'uk-UA' });
     const page = await context.newPage();
-    for (const path of ['/', '/registry', '/analyze', '/mechanisms/mech.genuine_technical_skill_shortfall']) {
+    for (const path of [
+      '/',
+      '/registry',
+      '/analyze',
+      '/mechanisms/mech.genuine_technical_skill_shortfall',
+    ]) {
       await page.goto(path);
       const nav = await page.locator('header nav a').allInnerTexts();
       expect(nav.join(' '), path).not.toMatch(/\b(Registry|Patterns|Graph|Data|Analyze)\b/);
@@ -104,10 +119,27 @@ test.describe('every page reaches the worker', () => {
   // A route-exclusion pattern that swallows a page is invisible until someone
   // opens it: the page 404s while every other test stays green.
   const PAGES = [
-    '/', '/analyze', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/check', '/data',
-    '/methodology', '/developers', '/contribute', '/about',
-    '/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade', '/barriers/bar.headcount_executive_budget_approval', '/mechanisms/mech.genuine_technical_skill_shortfall',
-    '/patterns/pat.seniority_double_bind', '/loops/loop.employment_gap_penalty_loop', '/interventions/int.upfront_compensation_band_disclosure', '/actors/recruiter',
+    '/',
+    '/analyze',
+    '/registry',
+    '/patterns',
+    '/graph',
+    '/process',
+    '/eras',
+    '/actors',
+    '/check',
+    '/data',
+    '/methodology',
+    '/developers',
+    '/contribute',
+    '/about',
+    '/observations/obs.feedback_stating_candidate_is_overqualified_for_the_grade',
+    '/barriers/bar.headcount_executive_budget_approval',
+    '/mechanisms/mech.genuine_technical_skill_shortfall',
+    '/patterns/pat.seniority_double_bind',
+    '/loops/loop.employment_gap_penalty_loop',
+    '/interventions/int.upfront_compensation_band_disclosure',
+    '/actors/recruiter',
   ];
 
   for (const path of PAGES) {

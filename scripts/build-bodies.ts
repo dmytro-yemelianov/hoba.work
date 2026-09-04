@@ -12,7 +12,13 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { CONTENT_DIRS, findRegistryRoot, loadRegistryFromRoot, type ContentLang, type RegistryBundle } from '@hoba/registry';
+import {
+  CONTENT_DIRS,
+  findRegistryRoot,
+  loadRegistryFromRoot,
+  type ContentLang,
+  type RegistryBundle,
+} from '@hoba/registry';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-bodies: registry root not found');
@@ -90,7 +96,8 @@ const bullets = (items: string[]): string[] => items.map((i) => `- ${i}`);
 
 function body(node: Record<string, any>, bundle: RegistryBundle, w: Words): string {
   const title = (id: string) =>
-    [...bundle.mechanisms, ...bundle.observations, ...bundle.barriers].find((n) => n.id === id)?.title ?? id;
+    [...bundle.mechanisms, ...bundle.observations, ...bundle.barriers].find((n) => n.id === id)
+      ?.title ?? id;
   const out: string[] = [`# ${node.title}`, '', node.summary ?? node.description, ''];
 
   switch (node.type) {
@@ -111,10 +118,13 @@ function body(node: Record<string, any>, bundle: RegistryBundle, w: Words): stri
       );
       if (node.amplifies.length > 0 || node.masks.length > 0) {
         out.push(
-          ...section(w.causalRelations, ...bullets([
-            ...node.amplifies.map((id: string) => `${w.amplifies} \`${id}\` — ${title(id)}`),
-            ...node.masks.map((id: string) => `${w.masks} \`${id}\` — ${title(id)}`),
-          ]))
+          ...section(
+            w.causalRelations,
+            ...bullets([
+              ...node.amplifies.map((id: string) => `${w.amplifies} \`${id}\` — ${title(id)}`),
+              ...node.masks.map((id: string) => `${w.masks} \`${id}\` — ${title(id)}`),
+            ])
+          )
         );
       }
       out.push(...section(w.mechanismNonInferences, ...bullets(node.non_inferences)));
@@ -135,10 +145,17 @@ function body(node: Record<string, any>, bundle: RegistryBundle, w: Words): stri
       break;
     case 'intervention':
       out.push(...section(w.expectedEffects, ...bullets(node.expected_effects)));
-      out.push(...section(w.measurements, ...bullets(node.measurements.map((m: string) => `\`${m}\``))));
+      out.push(
+        ...section(w.measurements, ...bullets(node.measurements.map((m: string) => `\`${m}\``)))
+      );
       break;
   }
-  return out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
+  return (
+    out
+      .join('\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trimEnd() + '\n'
+  );
 }
 
 /**

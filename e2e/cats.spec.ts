@@ -4,7 +4,9 @@ test.describe('Vector Cat Generator (/cats)', () => {
   test('renders interactive cat studio in Ukrainian and English', async ({ page }) => {
     // 1. Ukrainian version
     await page.goto('/cats?lang=uk');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Векторний генератор котиків');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(
+      'Векторний генератор котиків'
+    );
 
     const viewport = page.locator('#cat-svg-viewport');
     await expect(viewport).toBeVisible();
@@ -67,7 +69,9 @@ test.describe('Vector Cat Generator (/cats)', () => {
     await expect(page.locator('#tab-pane-acc')).toBeVisible();
 
     // Select Crown accessory
-    const crownBtn = page.locator('.param-choice-btn[data-param="headAccessory"][data-value="royalCrown"]');
+    const crownBtn = page.locator(
+      '.param-choice-btn[data-param="headAccessory"][data-value="royalCrown"]'
+    );
     await crownBtn.click();
     await expect(page.locator('#cat-svg-viewport .acc-crown')).toBeVisible();
   });

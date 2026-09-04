@@ -5,11 +5,17 @@ import { loadRegistryFromRoot, resolveRegistryRoot } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 // @ts-expect-error plain JS worker without type declarations
 import { isValidateRoute } from '../apps/web/src/worker/validate.js';
+// prettier-ignore
 // @ts-expect-error plain JS worker without type declarations
 import worker, { parseAcceptLanguage, preferredLocale, legacyRedirect, internalPath, isStaticAsset } from '../apps/web/src/worker/index.js';
 
 /** A stand-in for the Pages ASSETS binding that echoes the path it was asked for. */
-const assets = { fetch: async (req: Request) => new Response(`asset:${new URL(req.url).pathname}`, { headers: { 'content-type': 'text/html' } }) };
+const assets = {
+  fetch: async (req: Request) =>
+    new Response(`asset:${new URL(req.url).pathname}`, {
+      headers: { 'content-type': 'text/html' },
+    }),
+};
 const env = { ASSETS: assets };
 
 describe('language resolution', () => {
@@ -21,17 +27,25 @@ describe('language resolution', () => {
 
   it('takes signals strongest first: query, cookie, header, geography', () => {
     // ?lang= is the explicit, shareable override and outranks everything.
-    expect(preferredLocale({ query: 'en', cookie: 'hoba_lang=uk', acceptLanguage: 'uk', country: 'UA' })).toBe('en');
+    expect(
+      preferredLocale({ query: 'en', cookie: 'hoba_lang=uk', acceptLanguage: 'uk', country: 'UA' })
+    ).toBe('en');
     expect(preferredLocale({ query: 'uk', acceptLanguage: 'en-US', country: 'US' })).toBe('uk');
     // A junk value falls through rather than being honoured.
     expect(preferredLocale({ query: 'de', acceptLanguage: 'uk' })).toBe('uk');
 
-    expect(preferredLocale({ cookie: 'hoba_lang=en', acceptLanguage: 'uk', country: 'UA' })).toBe('en');
-    expect(preferredLocale({ cookie: 'a=b; hoba_lang=uk', acceptLanguage: 'en-US', country: 'US' })).toBe('uk');
+    expect(preferredLocale({ cookie: 'hoba_lang=en', acceptLanguage: 'uk', country: 'UA' })).toBe(
+      'en'
+    );
+    expect(
+      preferredLocale({ cookie: 'a=b; hoba_lang=uk', acceptLanguage: 'en-US', country: 'US' })
+    ).toBe('uk');
   });
 
   it('lets a browser that named its languages outrank geography', () => {
-    expect(preferredLocale({ acceptLanguage: 'en-US,en;q=0.9,uk;q=0.5', country: 'DE' })).toBe('uk');
+    expect(preferredLocale({ acceptLanguage: 'en-US,en;q=0.9,uk;q=0.5', country: 'DE' })).toBe(
+      'uk'
+    );
     // Someone in Kyiv running an English browser has stated a preference;
     // geography is an inference about the same question and does not overrule it.
     // This also keeps the suite from depending on where it is run from.
@@ -73,7 +87,15 @@ describe('addresses', () => {
   });
 
   it('leaves assets, the API and the exports out of negotiation', () => {
-    for (const path of ['/favicon.svg', '/llms.txt', '/sitemap.xml', '/api/v1/index.json', '/data/latest/registry.json', '/_astro/x.css', '/icons/icon-192.png']) {
+    for (const path of [
+      '/favicon.svg',
+      '/llms.txt',
+      '/sitemap.xml',
+      '/api/v1/index.json',
+      '/data/latest/registry.json',
+      '/_astro/x.css',
+      '/icons/icon-192.png',
+    ]) {
       expect(isStaticAsset(path), path).toBe(true);
     }
     for (const path of ['/', '/registry', '/mechanisms/M-001']) {
@@ -83,16 +105,23 @@ describe('addresses', () => {
 });
 
 describe('fetch handler', () => {
-  const get = (url: string, headers: Record<string, string> = {}) => worker.fetch(new Request(url, { headers }), env);
+  const get = (url: string, headers: Record<string, string> = {}) =>
+    worker.fetch(new Request(url, { headers }), env);
 
   it('serves the internal tree for the resolved language under the public URL', async () => {
-    expect(await (await get('https://hoba.work/registry', { 'accept-language': 'uk' })).text()).toBe('asset:/_i/uk/registry/');
-    expect(await (await get('https://hoba.work/registry', { 'accept-language': 'en-GB' })).text()).toBe('asset:/_i/en/registry/');
+    expect(
+      await (await get('https://hoba.work/registry', { 'accept-language': 'uk' })).text()
+    ).toBe('asset:/_i/uk/registry/');
+    expect(
+      await (await get('https://hoba.work/registry', { 'accept-language': 'en-GB' })).text()
+    ).toBe('asset:/_i/en/registry/');
     expect(await (await get('https://hoba.work/')).text()).toBe('asset:/_i/en/');
   });
 
   it('honours ?lang= and remembers it in a cookie', async () => {
-    const response = await get('https://hoba.work/registry?lang=uk', { 'accept-language': 'en-GB' });
+    const response = await get('https://hoba.work/registry?lang=uk', {
+      'accept-language': 'en-GB',
+    });
     expect(await response.text()).toBe('asset:/_i/uk/registry/');
     expect(response.headers.get('content-language')).toBe('uk');
     expect(response.headers.get('set-cookie')).toContain('hoba_lang=uk');
@@ -101,7 +130,9 @@ describe('fetch handler', () => {
   it('does not leak the public query into the internal request', async () => {
     // ?type= belongs to the page, ?lang= to the worker. Neither may reach the
     // asset lookup, which would miss the file and pollute any cache key.
-    expect(await (await get('https://hoba.work/registry?type=loop&lang=uk')).text()).toBe('asset:/_i/uk/registry/');
+    expect(await (await get('https://hoba.work/registry?type=loop&lang=uk')).text()).toBe(
+      'asset:/_i/uk/registry/'
+    );
   });
 
   it('301s every legacy and internal address, keeping the query', async () => {
@@ -124,7 +155,9 @@ describe('fetch handler', () => {
   });
 
   it('passes assets and non-GET requests straight through', async () => {
-    expect(await (await get('https://hoba.work/api/v1/index.json')).text()).toBe('asset:/api/v1/index.json');
+    expect(await (await get('https://hoba.work/api/v1/index.json')).text()).toBe(
+      'asset:/api/v1/index.json'
+    );
     expect(await (await get('https://hoba.work/llms.txt')).text()).toBe('asset:/llms.txt');
     const posted = await worker.fetch(new Request('https://hoba.work/', { method: 'POST' }), env);
     expect(await posted.text()).toBe('asset:/');
@@ -158,35 +191,51 @@ describe('legacy entity-ID redirects', () => {
   });
 
   it('redirects an old barrier short code to its new dotted-namespace path', () => {
-    expect(legacyRedirect('/barriers/B-002')).toBe('/barriers/bar.automated_filter_parser_threshold');
+    expect(legacyRedirect('/barriers/B-002')).toBe(
+      '/barriers/bar.automated_filter_parser_threshold'
+    );
   });
 
   it('redirects an old barrier short code requesting its Markdown representation', () => {
-    expect(legacyRedirect('/barriers/B-002.md')).toBe('/barriers/bar.automated_filter_parser_threshold.md');
+    expect(legacyRedirect('/barriers/B-002.md')).toBe(
+      '/barriers/bar.automated_filter_parser_threshold.md'
+    );
   });
 
   it('redirects an old mechanism short code to its new dotted-namespace path', () => {
-    expect(legacyRedirect('/mechanisms/M-001')).toBe('/mechanisms/mech.genuine_technical_skill_shortfall');
+    expect(legacyRedirect('/mechanisms/M-001')).toBe(
+      '/mechanisms/mech.genuine_technical_skill_shortfall'
+    );
   });
 
   it('redirects an old mechanism short code requesting its Markdown representation', () => {
-    expect(legacyRedirect('/mechanisms/M-001.md')).toBe('/mechanisms/mech.genuine_technical_skill_shortfall.md');
+    expect(legacyRedirect('/mechanisms/M-001.md')).toBe(
+      '/mechanisms/mech.genuine_technical_skill_shortfall.md'
+    );
   });
 
   it('redirects an old artifact short code to its new dotted-namespace path', () => {
-    expect(legacyRedirect('/observations/A-001')).toBe('/observations/obs.complete_silence_after_submission');
+    expect(legacyRedirect('/observations/A-001')).toBe(
+      '/observations/obs.complete_silence_after_submission'
+    );
   });
 
   it('redirects an old artifact short code requesting its Markdown representation', () => {
-    expect(legacyRedirect('/observations/A-001.md')).toBe('/observations/obs.complete_silence_after_submission.md');
+    expect(legacyRedirect('/observations/A-001.md')).toBe(
+      '/observations/obs.complete_silence_after_submission.md'
+    );
   });
 
   it('redirects an old intervention short code to its new dotted-namespace path', () => {
-    expect(legacyRedirect('/interventions/I-001')).toBe('/interventions/int.auto_close_stale_job_requisitions');
+    expect(legacyRedirect('/interventions/I-001')).toBe(
+      '/interventions/int.auto_close_stale_job_requisitions'
+    );
   });
 
   it('redirects an old intervention short code requesting its Markdown representation', () => {
-    expect(legacyRedirect('/interventions/I-001.md')).toBe('/interventions/int.auto_close_stale_job_requisitions.md');
+    expect(legacyRedirect('/interventions/I-001.md')).toBe(
+      '/interventions/int.auto_close_stale_job_requisitions.md'
+    );
   });
 
   it('redirects an old loop short code to its new dotted-namespace path', () => {
@@ -228,23 +277,33 @@ describe('POST /validate/*', () => {
     );
 
   it('accepts a claim the registry carries, and refuses one it does not', async () => {
-    const within = await (await post('/validate/claim', { id: 'M-001', claim_level: 'observed' })).json();
+    const within = await (
+      await post('/validate/claim', { id: 'M-001', claim_level: 'observed' })
+    ).json();
     expect(within.valid).toBe(true);
     expect(within.registry_version).toBeDefined();
 
-    const over = await (await post('/validate/claim', { id: 'M-001', claim_level: 'proven' })).json();
+    const over = await (
+      await post('/validate/claim', { id: 'M-001', claim_level: 'proven' })
+    ).json();
     expect(over.registry_level).toBeDefined();
     if (!over.valid) expect(over.issues[0].rule).toBe('overclaim');
   });
 
   it('reports an unknown entity rather than pretending the claim is fine', async () => {
-    const res = await (await post('/validate/claim', { id: 'nope.nothing', claim_level: 'observed' })).json();
+    const res = await (
+      await post('/validate/claim', { id: 'nope.nothing', claim_level: 'observed' })
+    ).json();
     expect(res.valid).toBe(false);
     expect(JSON.stringify(res.issues)).toContain('nope.nothing');
   });
 
   it('validates a scenario, and names the entity a broken one invents', async () => {
-    const good = { id: 'scenario.worker_fixture', title: { en: 'A', uk: 'Б' }, observations: ['obs.complete_silence_after_submission'] };
+    const good = {
+      id: 'scenario.worker_fixture',
+      title: { en: 'A', uk: 'Б' },
+      observations: ['obs.complete_silence_after_submission'],
+    };
     expect((await (await post('/validate/scenario', good)).json()).valid).toBe(true);
 
     const bad = { ...good, observations: ['obs.no_such_observation'] };
@@ -254,7 +313,10 @@ describe('POST /validate/*', () => {
   });
 
   it('refuses a GET, and refuses a body that is not JSON', async () => {
-    const got = await worker.fetch(new Request('https://hoba.work/validate/claim'), envWithRegistry);
+    const got = await worker.fetch(
+      new Request('https://hoba.work/validate/claim'),
+      envWithRegistry
+    );
     expect(got.status).toBe(405);
 
     const notJson = await worker.fetch(
@@ -293,11 +355,22 @@ describe('the redirect table is generated, current, and in the right file', () =
   it('names every alias every entity declares, and nothing else', () => {
     const bundle = loadRegistryFromRoot(resolveRegistryRoot(), 'en');
     const ROUTE: Record<string, string> = {
-      barrier: 'barriers', observation: 'observations', mechanism: 'mechanisms',
-      pattern: 'patterns', loop: 'loops', intervention: 'interventions',
+      barrier: 'barriers',
+      observation: 'observations',
+      mechanism: 'mechanisms',
+      pattern: 'patterns',
+      loop: 'loops',
+      intervention: 'interventions',
     };
     const expected: Record<string, string> = {};
-    for (const collection of [bundle.barriers, bundle.observations, bundle.mechanisms, bundle.patterns, bundle.loops, bundle.interventions]) {
+    for (const collection of [
+      bundle.barriers,
+      bundle.observations,
+      bundle.mechanisms,
+      bundle.patterns,
+      bundle.loops,
+      bundle.interventions,
+    ]) {
       for (const item of collection as { id: string; type: string; aliases?: string[] }[]) {
         for (const alias of Array.isArray(item.aliases) ? item.aliases : []) {
           expected[alias] = `/${ROUTE[item.type]}/${item.id}`;
@@ -308,6 +381,8 @@ describe('the redirect table is generated, current, and in the right file', () =
   });
 
   it('survives into the built bundle that actually ships', () => {
-    expect(tableOf(read('apps/web/public/_worker.js'))).toEqual(tableOf(read('apps/web/src/worker/index.js')));
+    expect(tableOf(read('apps/web/public/_worker.js'))).toEqual(
+      tableOf(read('apps/web/src/worker/index.js'))
+    );
   });
 });

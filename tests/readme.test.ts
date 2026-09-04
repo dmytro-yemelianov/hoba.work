@@ -35,11 +35,21 @@ describe('the README is executable', { timeout: 60000 }, () => {
   });
 
   it.each(commands)('hoba %s', (command) => {
-    execFileSync('npx', ['tsx', '--tsconfig', path.join(REPO_ROOT, 'tsconfig.json'), 'packages/cli/src/cli.ts', ...splitArgs(command)], {
-      cwd: REPO_ROOT,
-      encoding: 'utf-8',
-      env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
+    execFileSync(
+      'npx',
+      [
+        'tsx',
+        '--tsconfig',
+        path.join(REPO_ROOT, 'tsconfig.json'),
+        'packages/cli/src/cli.ts',
+        ...splitArgs(command),
+      ],
+      {
+        cwd: REPO_ROOT,
+        encoding: 'utf-8',
+        env: { ...process.env, NO_COLOR: '1', FORCE_COLOR: '0' },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      }
+    );
   });
 });

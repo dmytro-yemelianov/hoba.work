@@ -9,7 +9,10 @@ test.describe('registry data views', () => {
     await page.goto('/registry');
     await expect(page.locator('[data-view-root] > [data-view="table"]')).toBeVisible();
     await expect(page.locator('[data-view-root] > [data-view="cards"]')).toBeHidden();
-    await expect(page.locator('[data-view-choice="table"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-view-choice="table"]')).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
     expect(await page.locator('[data-view="table"] tr.node-item').count()).toBe(entryCount());
 
     await page.locator('[data-view-choice="list"]').click();
@@ -25,7 +28,10 @@ test.describe('registry data views', () => {
   test('filters apply to every view and support ?type= deep links', async ({ page }) => {
     await page.goto('/registry?type=loop');
     expect(await visibleCount(page, '[data-view="table"] tr.node-item')).toBe(3);
-    await expect(page.locator('.type-tab[data-type="loop"]')).toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('.type-tab[data-type="loop"]')).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
 
     await page.locator('[data-view-choice="cards"]').click();
     expect(await visibleCount(page, '[data-view-root] > [data-view="cards"] .node-item')).toBe(3);

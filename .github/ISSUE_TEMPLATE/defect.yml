@@ -1,6 +1,6 @@
 name: Defect
 description: Something on the site or in the packages is wrong
-labels: ["defect"]
+labels: ['defect']
 body:
   - type: textarea
     id: what
@@ -28,4 +28,4 @@ body:
     attributes:
       label: Before filing
       options:
-        - label: "`pnpm task check` was run and its output is included above, or this is a defect only visible in a browser."
+        - label: '`pnpm task check` was run and its output is included above, or this is a defect only visible in a browser.'

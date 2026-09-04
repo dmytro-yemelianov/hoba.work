@@ -12,7 +12,9 @@ import { expect, test } from '@playwright/test';
  * and nothing was checking, because a URL in prose has no import to break.
  */
 const README = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8');
-const urls = [...new Set([...README.matchAll(/https:\/\/hoba\.work(\/[A-Za-z0-9/._-]*)/g)].map((m) => m[1]))]
+const urls = [
+  ...new Set([...README.matchAll(/https:\/\/hoba\.work(\/[A-Za-z0-9/._-]*)/g)].map((m) => m[1])),
+]
   // A trailing slash marks a prefix the prose points at ("flat files under
   // …/api/v1/"), not an address it hands out.
   .filter((u) => u !== '/' && !u.endsWith('/'))

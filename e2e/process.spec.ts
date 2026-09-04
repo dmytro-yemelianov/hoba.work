@@ -56,10 +56,16 @@ test.describe('the process player', () => {
 
   test('the same machine is readable with the canvas ignored', async ({ page }) => {
     await page.goto('/process?lang=en');
-    const fallback = page.locator('[data-workflow="proc.the_path_as_it_is_supposed_to_run"] details');
+    const fallback = page.locator(
+      '[data-workflow="proc.the_path_as_it_is_supposed_to_run"] details'
+    );
     await fallback.locator('summary').click();
-    await expect(fallback.locator('li[id^="proc.the_path_as_it_is_supposed_to_run-"]')).toHaveCount(15);
-    await expect(fallback.locator('[id="proc.the_path_as_it_is_supposed_to_run-declined"]')).toContainText(/decline/i);
+    await expect(fallback.locator('li[id^="proc.the_path_as_it_is_supposed_to_run-"]')).toHaveCount(
+      15
+    );
+    await expect(
+      fallback.locator('[id="proc.the_path_as_it_is_supposed_to_run-declined"]')
+    ).toContainText(/decline/i);
   });
 });
 
@@ -70,12 +76,16 @@ test.describe('the canonical path anchors the registry', () => {
     await expect(note).toContainText('Machine work stays mechanical');
 
     await note.getByRole('link').first().click();
-    await expect(page).toHaveURL(/\/process#proc\.the_path_as_it_is_supposed_to_run-machine-check$/);
+    await expect(page).toHaveURL(
+      /\/process#proc\.the_path_as_it_is_supposed_to_run-machine-check$/
+    );
     await expect(page.locator('.wf-detail[data-index="0"]')).toContainText('machine-check');
   });
 
   test('an entity says which era made it ordinary', async ({ page }) => {
-    await page.goto('/mechanisms/mech.inflated_requisition_requirements_vs_actual_team_needs?lang=en');
+    await page.goto(
+      '/mechanisms/mech.inflated_requisition_requirements_vs_actual_team_needs?lang=en'
+    );
     const note = page.getByRole('region', { name: /made this ordinary/i });
     await expect(note).toContainText('A fixed number of seats');
     await note.getByRole('link').first().click();
@@ -120,7 +130,10 @@ test.describe('walking it yourself', () => {
     await page.goto('/process?lang=en');
 
     await page.locator('.wf-mode[data-index="0"][data-mode="choose"]').click();
-    await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
     // Nothing to auto-play when the fork belongs to the reader.
     await expect(page.locator('.wf-play[data-index="0"]')).toBeHidden();
     await expect(page.locator('.wf-scrub[data-index="0"]')).toBeHidden();
@@ -142,16 +155,23 @@ test.describe('walking it yourself', () => {
   });
 
   test('a walk is a link, and the link replays it', async ({ page }) => {
-    await page.goto('/process?lang=en&walk=proc.the_path_as_it_is_supposed_to_run:published,closed');
+    await page.goto(
+      '/process?lang=en&walk=proc.the_path_as_it_is_supposed_to_run:published,closed'
+    );
     const panel = page.locator('.wf-branches[data-index="0"]');
-    await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.wf-mode[data-index="0"][data-mode="choose"]')).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
     await expect(panel).toContainText(/where this walk ended/i);
     await expect(panel).toContainText('Search closed');
     await expect(page.locator('.wf-detail[data-index="0"]')).toContainText('closed');
   });
 
   test('stepping back and choosing again discards the rest of the old walk', async ({ page }) => {
-    await page.goto('/process?lang=en&walk=proc.the_path_as_it_is_supposed_to_run:published,closed');
+    await page.goto(
+      '/process?lang=en&walk=proc.the_path_as_it_is_supposed_to_run:published,closed'
+    );
     const panel = page.locator('.wf-branches[data-index="0"]');
     await page.locator('.wf-prev[data-index="0"]').click();
     // Back at `published`, which forks: applied, or the search closes.

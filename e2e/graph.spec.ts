@@ -75,12 +75,16 @@ test.describe('knowledge graph explorer', () => {
     await hoverANode(page);
     const tooltip = page.locator('#graph-tooltip');
     await expect(tooltip).toBeVisible();
-    await expect(tooltip.locator('#tip-id')).toHaveText(/^(obs|bar|mech|pat|loop|int|[ABMPLI])(\.|\-)[a-z0-9_]+$/);
+    await expect(tooltip.locator('#tip-id')).toHaveText(
+      /^(obs|bar|mech|pat|loop|int|[ABMPLI])(\.|\-)[a-z0-9_]+$/
+    );
     await expect(tooltip.locator('#tip-title')).not.toBeEmpty();
     await expect(tooltip).toContainText(says('uk', 'graph.tooltipHint'));
   });
 
-  test('selecting a node opens details with connections that navigate the graph', async ({ page }) => {
+  test('selecting a node opens details with connections that navigate the graph', async ({
+    page,
+  }) => {
     await page.goto('/graph');
     const panel = page.locator('#graph-panel');
     await expect(panel).toHaveAttribute('inert', '');
@@ -104,7 +108,10 @@ test.describe('knowledge graph explorer', () => {
     await expect(panel.locator('#panel-id')).toHaveText(hoveredId!);
     await expect(panel.locator('#panel-title')).not.toBeEmpty();
     await expect(panel.locator('#panel-facts li').first()).toBeVisible();
-    await expect(panel.locator('#panel-link')).toHaveAttribute('href', new RegExp(`/${hoveredId}$`));
+    await expect(panel.locator('#panel-link')).toHaveAttribute(
+      'href',
+      new RegExp(`/${hoveredId}$`)
+    );
 
     // Walking a connection re-targets the panel.
     const connection = panel.locator('#panel-edges button').first();
@@ -156,7 +163,9 @@ test.describe('knowledge graph explorer', () => {
     await expect(links.first()).toBeVisible();
   });
 
-  test('ideal canonical route toggle opens walkthrough HUD and steps through states', async ({ page }) => {
+  test('ideal canonical route toggle opens walkthrough HUD and steps through states', async ({
+    page,
+  }) => {
     await page.goto('/graph');
     const idealBtn = page.locator('#graph-ideal-toggle');
     await expect(idealBtn).toBeVisible();

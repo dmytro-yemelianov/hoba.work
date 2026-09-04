@@ -10,7 +10,9 @@ import { expect, test } from '@playwright/test';
  * something a person can act on whatever comes back.
  */
 test.describe('sending what the atlas does not have', () => {
-  test('the form is reachable, labelled, and refuses a fragment before sending', async ({ page }) => {
+  test('the form is reachable, labelled, and refuses a fragment before sending', async ({
+    page,
+  }) => {
     await page.goto('/contribute?lang=en#contrib-send');
     const body = page.locator('#submit-body');
     await expect(body).toBeVisible();
@@ -25,16 +27,22 @@ test.describe('sending what the atlas does not have', () => {
     await expect(page.locator('#submit-status')).toHaveText('');
   });
 
-  test('a real account reaches the endpoint and the page reports what came back', async ({ page }) => {
+  test('a real account reaches the endpoint and the page reports what came back', async ({
+    page,
+  }) => {
     await page.goto('/contribute?lang=en#contrib-send');
-    await page.locator('#submit-body').fill(
-      'The rejection arrived four minutes after I applied, with no interview and no named reason.'
-    );
+    await page
+      .locator('#submit-body')
+      .fill(
+        'The rejection arrived four minutes after I applied, with no interview and no named reason.'
+      );
     await page.getByRole('button', { name: /send/i }).click();
     await expect(page.locator('#submit-status')).not.toHaveText('', { timeout: 10_000 });
   });
 
-  test('every reader page offers the way to say the atlas is missing something', async ({ page }) => {
+  test('every reader page offers the way to say the atlas is missing something', async ({
+    page,
+  }) => {
     for (const reader of ['candidate', 'recruiter', 'researcher']) {
       await page.goto(`/for/${reader}?lang=en`);
       const link = page.locator(`a[href*="/contribute?from=${reader}"]`);

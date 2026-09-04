@@ -27,8 +27,17 @@ describe('schema/entity.schema.json', () => {
   it('enumerates exactly the 11 ontology types, and never "scenario"', () => {
     expect(schema.properties.type.enum).toEqual(
       expect.arrayContaining([
-        'observation', 'barrier', 'mechanism', 'pattern', 'loop',
-        'intervention', 'process', 'actor', 'era', 'record', 'evidence',
+        'observation',
+        'barrier',
+        'mechanism',
+        'pattern',
+        'loop',
+        'intervention',
+        'process',
+        'actor',
+        'era',
+        'record',
+        'evidence',
       ])
     );
     expect(schema.properties.type.enum).toHaveLength(11);
@@ -62,7 +71,13 @@ describe('schema/entity.schema.json', () => {
 
   it('evidence_level enumerates the 7-state epistemic model, not the old 4-state one', () => {
     expect(schema.properties.evidence_level.enum).toEqual([
-      'observed', 'compatible', 'supported', 'strongly_supported', 'proven', 'contradicted', 'unknown',
+      'observed',
+      'compatible',
+      'supported',
+      'strongly_supported',
+      'proven',
+      'contradicted',
+      'unknown',
     ]);
   });
 
@@ -99,8 +114,14 @@ describe('schema/relation.schema.json', () => {
 
   it('enumerates the 8 relation types used by the graph builder', () => {
     expect(schema.properties.relation.enum).toEqual([
-      'operates_at', 'emits', 'amplifies', 'masks',
-      'precedes', 'instantiates', 'targets', 'mitigates',
+      'operates_at',
+      'emits',
+      'amplifies',
+      'masks',
+      'precedes',
+      'instantiates',
+      'targets',
+      'mitigates',
     ]);
   });
 });
@@ -122,10 +143,16 @@ describe('schema/scenario.schema.json', () => {
     expect(schema.properties.id.pattern).toBe('^scenario\\.[a-z0-9_]+$');
   });
 
-  it('every entity-referencing array is pattern-constrained to that entity type\'s prefix', () => {
-    expect((schema.properties.observations as { items: { pattern: string } }).items.pattern).toBe('^obs\\.[a-z0-9_]+$');
-    expect((schema.properties.compatible_mechanisms as { items: { pattern: string } }).items.pattern).toBe('^mech\\.[a-z0-9_]+$');
-    expect((schema.properties.compatible_barriers as { items: { pattern: string } }).items.pattern).toBe('^bar\\.[a-z0-9_]+$');
+  it("every entity-referencing array is pattern-constrained to that entity type's prefix", () => {
+    expect((schema.properties.observations as { items: { pattern: string } }).items.pattern).toBe(
+      '^obs\\.[a-z0-9_]+$'
+    );
+    expect(
+      (schema.properties.compatible_mechanisms as { items: { pattern: string } }).items.pattern
+    ).toBe('^mech\\.[a-z0-9_]+$');
+    expect(
+      (schema.properties.compatible_barriers as { items: { pattern: string } }).items.pattern
+    ).toBe('^bar\\.[a-z0-9_]+$');
   });
 });
 
@@ -138,8 +165,15 @@ describe('schema/analysis.schema.json', () => {
 
   it('requires the full structured-analysis shape from the design doc', () => {
     expect(schema.required).toEqual([
-      'input_type', 'source_text', 'observations', 'interpretations',
-      'compatible_entities', 'unknowns', 'agency', 'prohibited_conclusions', 'registry_version',
+      'input_type',
+      'source_text',
+      'observations',
+      'interpretations',
+      'compatible_entities',
+      'unknowns',
+      'agency',
+      'prohibited_conclusions',
+      'registry_version',
     ]);
   });
 
@@ -148,11 +182,25 @@ describe('schema/analysis.schema.json', () => {
   });
 
   it('confidence and claim_level use the same 7-state epistemic enum as entity.schema.json', () => {
-    const entitySchema = readSchema('entity.schema.json') as { properties: { evidence_level: { enum: string[] } } };
-    const observationItem = (schema.properties.observations as { items: { properties: { confidence: { enum: string[] } } } }).items;
-    const compatibleItem = (schema.properties.compatible_entities as { items: { properties: { claim_level: { enum: string[] } } } }).items;
+    const entitySchema = readSchema('entity.schema.json') as {
+      properties: { evidence_level: { enum: string[] } };
+    };
+    const observationItem = (
+      schema.properties.observations as {
+        items: { properties: { confidence: { enum: string[] } } };
+      }
+    ).items;
+    const compatibleItem = (
+      schema.properties.compatible_entities as {
+        items: { properties: { claim_level: { enum: string[] } } };
+      }
+    ).items;
 
-    expect(observationItem.properties.confidence.enum).toEqual(entitySchema.properties.evidence_level.enum);
-    expect(compatibleItem.properties.claim_level.enum).toEqual(entitySchema.properties.evidence_level.enum);
+    expect(observationItem.properties.confidence.enum).toEqual(
+      entitySchema.properties.evidence_level.enum
+    );
+    expect(compatibleItem.properties.claim_level.enum).toEqual(
+      entitySchema.properties.evidence_level.enum
+    );
   });
 });

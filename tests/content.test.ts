@@ -13,7 +13,18 @@ import {
 } from '@hoba/registry';
 import { CONTENT_DIRS } from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
-import { namesForbiddenParty, observationSchema, barrierSchema, mechanismSchema, patternSchema, loopSchema, interventionSchema, processSchema, eraSchema, actorSchema } from '@hoba/registry';
+import {
+  namesForbiddenParty,
+  observationSchema,
+  barrierSchema,
+  mechanismSchema,
+  patternSchema,
+  loopSchema,
+  interventionSchema,
+  processSchema,
+  eraSchema,
+  actorSchema,
+} from '@hoba/registry';
 
 /**
  * Zod strips unknown keys, so frontmatter naming a field its schema does not
@@ -92,7 +103,9 @@ describe('registry content', () => {
   it('has at least one declared mechanism cycle backing a loop', () => {
     const sccs = graph.findMechanismSCCs();
     expect(sccs.length).toBeGreaterThanOrEqual(1);
-    expect(bundle.loops.some((l) => sccs.some((scc) => l.mechanisms.every((m) => scc.includes(m))))).toBe(true);
+    expect(
+      bundle.loops.some((l) => sccs.some((scc) => l.mechanisms.every((m) => scc.includes(m))))
+    ).toBe(true);
   });
 
   it('runs the protocol end-to-end for a reposted-role observation', () => {
@@ -114,7 +127,9 @@ describe('registry content', () => {
       expect(nodeIds.has(e.data.source)).toBe(true);
       expect(nodeIds.has(e.data.target)).toBe(true);
     }
-    expect(new Set(cyto.elements.edges.map((e) => e.data.id)).size).toBe(cyto.elements.edges.length);
+    expect(new Set(cyto.elements.edges.map((e) => e.data.id)).size).toBe(
+      cyto.elements.edges.length
+    );
 
     const graphml = graph.toGraphML();
     expect(graphml.startsWith('<?xml')).toBe(true);
@@ -134,8 +149,14 @@ describe('registry content', () => {
 });
 
 describe('specimens', () => {
-  const readerFacing = (b: typeof bundle) =>
-    [...b.observations, ...b.barriers, ...b.mechanisms, ...b.patterns, ...b.loops, ...b.interventions];
+  const readerFacing = (b: typeof bundle) => [
+    ...b.observations,
+    ...b.barriers,
+    ...b.mechanisms,
+    ...b.patterns,
+    ...b.loops,
+    ...b.interventions,
+  ];
 
   it('covers every entity in the registry, in both languages', () => {
     for (const b of [bundle, uk]) {
@@ -155,7 +176,10 @@ describe('specimens', () => {
   it('marks the line each specimen is about, and says what to notice', () => {
     for (const node of readerFacing(bundle)) {
       for (const specimen of node.specimens) {
-        expect(specimen.lines.some((line) => line.tell), `${node.id} ${specimen.label}`).toBe(true);
+        expect(
+          specimen.lines.some((line) => line.tell),
+          `${node.id} ${specimen.label}`
+        ).toBe(true);
         expect(specimen.reading, `${node.id} ${specimen.label}`).toBeTruthy();
       }
     }
@@ -173,7 +197,13 @@ describe('specimens', () => {
     for (const b of [bundle, uk]) {
       for (const node of readerFacing(b)) {
         for (const specimen of node.specimens) {
-          const text = [specimen.label, specimen.subject, specimen.context, specimen.reading, ...specimen.lines.map((l) => `${l.speaker ?? ''} ${l.text}`)].join(' ');
+          const text = [
+            specimen.label,
+            specimen.subject,
+            specimen.context,
+            specimen.reading,
+            ...specimen.lines.map((l) => `${l.speaker ?? ''} ${l.text}`),
+          ].join(' ');
           expect(namesForbiddenParty(text), `${node.id}: ${text.slice(0, 80)}`).toBeNull();
         }
       }
@@ -190,8 +220,10 @@ describe('actors', () => {
     const facetOwners = new Map<string, string[]>();
     const interventionOwners = new Map<string, string[]>();
     for (const actor of bundle.actors) {
-      for (const value of actor.aliases.facet) facetOwners.set(value, [...(facetOwners.get(value) ?? []), actor.id]);
-      for (const value of actor.aliases.intervention) interventionOwners.set(value, [...(interventionOwners.get(value) ?? []), actor.id]);
+      for (const value of actor.aliases.facet)
+        facetOwners.set(value, [...(facetOwners.get(value) ?? []), actor.id]);
+      for (const value of actor.aliases.intervention)
+        interventionOwners.set(value, [...(interventionOwners.get(value) ?? []), actor.id]);
     }
 
     const usedFacets = new Set(bundle.mechanisms.map((m) => m.facets.actor));
@@ -220,9 +252,12 @@ describe('actors', () => {
 
 describe('processes', () => {
   const ids = new Set([
-    ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
-    ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
-    ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
+    ...bundle.observations.map((n) => n.id),
+    ...bundle.barriers.map((n) => n.id),
+    ...bundle.mechanisms.map((n) => n.id),
+    ...bundle.patterns.map((n) => n.id),
+    ...bundle.loops.map((n) => n.id),
+    ...bundle.interventions.map((n) => n.id),
   ]);
   const actorIds = new Set(bundle.actors.map((a) => a.id));
 
@@ -250,7 +285,12 @@ describe('processes', () => {
       const start = wf.states.find((s) => s.kind === 'initial')!;
       const seen = new Set([start.id]);
       const queue = [start.id];
-      while (queue.length) for (const next of out.get(queue.shift()!) ?? []) if (!seen.has(next)) { seen.add(next); queue.push(next); }
+      while (queue.length)
+        for (const next of out.get(queue.shift()!) ?? [])
+          if (!seen.has(next)) {
+            seen.add(next);
+            queue.push(next);
+          }
       const unreachable = wf.states.filter((s) => !seen.has(s.id)).map((s) => s.id);
       expect(unreachable, wf.id).toEqual([]);
     }
@@ -259,7 +299,9 @@ describe('processes', () => {
   it('leaves no active state without a way out', () => {
     for (const wf of bundle.processes) {
       const hasExit = new Set(wf.transitions.map((t) => t.from));
-      const stuck = wf.states.filter((s) => s.kind !== 'terminal' && !hasExit.has(s.id)).map((s) => s.id);
+      const stuck = wf.states
+        .filter((s) => s.kind !== 'terminal' && !hasExit.has(s.id))
+        .map((s) => s.id);
       expect(stuck, wf.id).toEqual([]);
     }
   });
@@ -268,25 +310,37 @@ describe('processes', () => {
     for (const wf of bundle.processes) {
       for (const s of wf.states) {
         expect(actorIds.has(s.owner), `${wf.id}/${s.id}`).toBe(true);
-        expect(s.entities.filter((e) => !ids.has(e)), `${wf.id}/${s.id}`).toEqual([]);
+        expect(
+          s.entities.filter((e) => !ids.has(e)),
+          `${wf.id}/${s.id}`
+        ).toEqual([]);
       }
       for (const t of wf.transitions) {
         expect(actorIds.has(t.owner), `${wf.id}: ${t.from} -> ${t.to}`).toBe(true);
-        expect(t.entities.filter((e) => !ids.has(e)), `${wf.id}: ${t.from} -> ${t.to}`).toEqual([]);
+        expect(
+          t.entities.filter((e) => !ids.has(e)),
+          `${wf.id}: ${t.from} -> ${t.to}`
+        ).toEqual([]);
       }
     }
   });
 
   it('keeps the two mirrors identical in shape', () => {
     const shape = (b: typeof bundle) =>
-      b.processes.map((w) => `${w.id}:${w.states.map((s) => s.id).join('|')}:${w.transitions.map((t) => `${t.from}>${t.to}`).join('|')}`);
+      b.processes.map(
+        (w) =>
+          `${w.id}:${w.states.map((s) => s.id).join('|')}:${w.transitions.map((t) => `${t.from}>${t.to}`).join('|')}`
+      );
     expect(shape(uk)).toEqual(shape(bundle));
   });
 
   it('names a real entity in every deviation', () => {
     for (const wf of bundle.processes) {
       for (const s of wf.states) {
-        expect(s.deviations.filter((e) => !ids.has(e)), `${wf.id}/${s.id}`).toEqual([]);
+        expect(
+          s.deviations.filter((e) => !ids.has(e)),
+          `${wf.id}/${s.id}`
+        ).toEqual([]);
       }
     }
   });
@@ -301,8 +355,12 @@ describe('processes', () => {
  */
 describe('body and frontmatter agree', () => {
   const everything = (b: typeof bundle) => [
-    ...b.observations, ...b.barriers, ...b.mechanisms,
-    ...b.patterns, ...b.loops, ...b.interventions,
+    ...b.observations,
+    ...b.barriers,
+    ...b.mechanisms,
+    ...b.patterns,
+    ...b.loops,
+    ...b.interventions,
   ];
 
   /** Every string anywhere in the entry, which is what the body may quote. */
@@ -327,7 +385,10 @@ describe('body and frontmatter agree', () => {
           // another entry's title, which this entry's frontmatter holds only as
           // an id. What must agree is the prose an entry repeats about itself.
           if (/`([A-Z]+-\d+|[a-z0-9_.-]+)`/.test(line)) continue;
-          const text = line.slice(2).replace(/^\*\*[^*]+\*\*:?\s*/, '').trim();
+          const text = line
+            .slice(2)
+            .replace(/^\*\*[^*]+\*\*:?\s*/, '')
+            .trim();
           if (text.length < 20 || /^`[^`]+`$/.test(text)) continue;
           if (!pool.includes(text)) drifted.push(`${node.id}: ${text.slice(0, 70)}`);
         }
@@ -351,7 +412,8 @@ describe('intervention effects', () => {
   // of mind the atlas cannot observe from outside the system.
   const PROMISES =
     /\b(eliminat\w*|prevent\w*|ensur\w*|guarantee\w*|усува\w*|усунення|унеможлив\w*|гаранту\w*|запобіга\w*)\b/i;
-  const FEELINGS = /\b(confidence|trust|satisfaction|fatigue|respect|впевненіст\w*|довір\w*|задоволен\w*|втом\w*)\b/i;
+  const FEELINGS =
+    /\b(confidence|trust|satisfaction|fatigue|respect|впевненіст\w*|довір\w*|задоволен\w*|втом\w*)\b/i;
 
   it('states what changes, never what is promised', () => {
     for (const b of [bundle, uk]) {
@@ -403,28 +465,38 @@ describe('probe outcomes', () => {
       expect(probe.outcomes.length, probe.id).toBeGreaterThan(1);
       const slugs = probe.outcomes.map((o) => o.id);
       expect(new Set(slugs).size, probe.id).toBe(slugs.length);
-      for (const o of probe.outcomes) expect(o.label.length, `${probe.id}/${o.id}`).toBeGreaterThan(20);
+      for (const o of probe.outcomes)
+        expect(o.label.length, `${probe.id}/${o.id}`).toBeGreaterThan(20);
     }
   });
 
   it('never rules out something that is not a mechanism, and never without a reason', () => {
     for (const probe of probes) {
       for (const o of probe.outcomes) {
-        expect(o.excludes.filter((m) => !mechanismIds.has(m)), `${probe.id}/${o.id}`).toEqual([]);
-        if (o.excludes.length > 0) expect(o.because.trim().length, `${probe.id}/${o.id}`).toBeGreaterThan(19);
+        expect(
+          o.excludes.filter((m) => !mechanismIds.has(m)),
+          `${probe.id}/${o.id}`
+        ).toEqual([]);
+        if (o.excludes.length > 0)
+          expect(o.because.trim().length, `${probe.id}/${o.id}`).toBeGreaterThan(19);
       }
     }
   });
 
   it('mirrors the same outcomes into Ukrainian, and translates them', () => {
     const shape = (list: typeof probes) =>
-      list.map((p) => `${p.id}:${p.outcomes.map((o) => `${o.id}[${o.excludes.join('|')}]`).join(',')}`);
+      list.map(
+        (p) => `${p.id}:${p.outcomes.map((o) => `${o.id}[${o.excludes.join('|')}]`).join(',')}`
+      );
     expect(shape(ukProbes)).toEqual(shape(probes));
 
     const byId = new Map(ukProbes.map((p) => [p.id, p]));
     for (const probe of probes) {
       probe.outcomes.forEach((o, i) => {
-        expect(byId.get(probe.id)!.outcomes[i]!.label, `${probe.id}/${o.id} was not translated`).not.toBe(o.label);
+        expect(
+          byId.get(probe.id)!.outcomes[i]!.label,
+          `${probe.id}/${o.id} was not translated`
+        ).not.toBe(o.label);
       });
     }
   });
@@ -439,19 +511,32 @@ describe('probe outcomes', () => {
 describe('perspectives', () => {
   const actorIds = new Set(bundle.actors.map((a) => a.id));
   const readerFacingEntities = [
-    ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
-    ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+    ...bundle.observations,
+    ...bundle.barriers,
+    ...bundle.mechanisms,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions,
   ];
   const ukEntities = [
-    ...uk.observations, ...uk.barriers, ...uk.mechanisms,
-    ...uk.patterns, ...uk.loops, ...uk.interventions,
+    ...uk.observations,
+    ...uk.barriers,
+    ...uk.mechanisms,
+    ...uk.patterns,
+    ...uk.loops,
+    ...uk.interventions,
   ];
 
   it('names a real actor, once each', () => {
     for (const node of readerFacingEntities) {
       const actors = node.perspectives.map((p) => p.actor);
-      expect(actors.filter((a) => !actorIds.has(a)), node.id).toEqual([]);
-      expect(new Set(actors).size, `${node.id} gives one actor two perspectives`).toBe(actors.length);
+      expect(
+        actors.filter((a) => !actorIds.has(a)),
+        node.id
+      ).toEqual([]);
+      expect(new Set(actors).size, `${node.id} gives one actor two perspectives`).toBe(
+        actors.length
+      );
     }
   });
 
@@ -486,7 +571,9 @@ describe('perspectives', () => {
     for (const node of readerFacingEntities) {
       const mirrored = byId.get(node.id)!;
       node.perspectives.forEach((p, i) => {
-        expect(mirrored.perspectives[i]!.sees, `${node.id}/${p.actor} was not translated`).not.toBe(p.sees);
+        expect(mirrored.perspectives[i]!.sees, `${node.id}/${p.actor} was not translated`).not.toBe(
+          p.sees
+        );
       });
     }
   });
@@ -494,9 +581,12 @@ describe('perspectives', () => {
 
 describe('recommendations', () => {
   const ids = new Set([
-    ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
-    ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
-    ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
+    ...bundle.observations.map((n) => n.id),
+    ...bundle.barriers.map((n) => n.id),
+    ...bundle.mechanisms.map((n) => n.id),
+    ...bundle.patterns.map((n) => n.id),
+    ...bundle.loops.map((n) => n.id),
+    ...bundle.interventions.map((n) => n.id),
   ]);
   const interventionIds = new Set(bundle.interventions.map((i) => i.id));
 
@@ -516,8 +606,14 @@ describe('recommendations', () => {
   it('resolves every entry and intervention it cites', () => {
     for (const actor of bundle.actors) {
       for (const rec of actor.recommendations) {
-        expect(rec.targets.filter((t) => !ids.has(t)), `${actor.id}/${rec.id}`).toEqual([]);
-        expect(rec.interventions.filter((i) => !interventionIds.has(i)), `${actor.id}/${rec.id}`).toEqual([]);
+        expect(
+          rec.targets.filter((t) => !ids.has(t)),
+          `${actor.id}/${rec.id}`
+        ).toEqual([]);
+        expect(
+          rec.interventions.filter((i) => !interventionIds.has(i)),
+          `${actor.id}/${rec.id}`
+        ).toEqual([]);
       }
     }
   });
@@ -532,12 +628,16 @@ describe('recommendations', () => {
   });
 
   it('mirrors the same set into Ukrainian, and translates it', () => {
-    const shape = (b: typeof bundle) => b.actors.map((a) => `${a.id}:${a.recommendations.map((r) => r.id).join(',')}`);
+    const shape = (b: typeof bundle) =>
+      b.actors.map((a) => `${a.id}:${a.recommendations.map((r) => r.id).join(',')}`);
     expect(shape(uk)).toEqual(shape(bundle));
     const byId = new Map(uk.actors.map((a) => [a.id, a]));
     for (const actor of bundle.actors) {
       actor.recommendations.forEach((rec, i) => {
-        expect(byId.get(actor.id)!.recommendations[i]!.title, `${actor.id}/${rec.id} was not translated`).not.toBe(rec.title);
+        expect(
+          byId.get(actor.id)!.recommendations[i]!.title,
+          `${actor.id}/${rec.id} was not translated`
+        ).not.toBe(rec.title);
       });
     }
   });
@@ -549,9 +649,12 @@ describe('recommendations', () => {
  */
 describe('eras', () => {
   const ids = new Set([
-    ...bundle.observations.map((n) => n.id), ...bundle.barriers.map((n) => n.id),
-    ...bundle.mechanisms.map((n) => n.id), ...bundle.patterns.map((n) => n.id),
-    ...bundle.loops.map((n) => n.id), ...bundle.interventions.map((n) => n.id),
+    ...bundle.observations.map((n) => n.id),
+    ...bundle.barriers.map((n) => n.id),
+    ...bundle.mechanisms.map((n) => n.id),
+    ...bundle.patterns.map((n) => n.id),
+    ...bundle.loops.map((n) => n.id),
+    ...bundle.interventions.map((n) => n.id),
   ]);
   const evidenceIds = new Set(bundle.evidence.map((e) => e.id));
 
@@ -574,7 +677,10 @@ describe('eras', () => {
 
   it('names real registry entities', () => {
     for (const era of bundle.eras) {
-      expect(era.entities.filter((e) => !ids.has(e)), era.id).toEqual([]);
+      expect(
+        era.entities.filter((e) => !ids.has(e)),
+        era.id
+      ).toEqual([]);
     }
   });
 
@@ -582,7 +688,9 @@ describe('eras', () => {
     const ordered = [...bundle.eras].sort((a, b) => a.from - b.from);
     for (const era of ordered) expect(era.to, era.id).toBeGreaterThanOrEqual(era.from);
     for (let i = 1; i < ordered.length; i++) {
-      expect(ordered[i]!.from, `${ordered[i - 1]!.id} → ${ordered[i]!.id}`).toBe(ordered[i - 1]!.to + 1);
+      expect(ordered[i]!.from, `${ordered[i - 1]!.id} → ${ordered[i]!.id}`).toBe(
+        ordered[i - 1]!.to + 1
+      );
     }
   });
 
@@ -595,7 +703,10 @@ describe('eras', () => {
 
   it('mirrors every figure and source into Ukrainian unchanged', () => {
     const shape = (b: typeof bundle) =>
-      b.eras.map((e) => `${e.id}:${e.from}-${e.to}:${e.indicators.map((i) => i.evidence).join(',')}:${e.entities.join(',')}`);
+      b.eras.map(
+        (e) =>
+          `${e.id}:${e.from}-${e.to}:${e.indicators.map((i) => i.evidence).join(',')}:${e.entities.join(',')}`
+      );
     expect(shape(uk)).toEqual(shape(bundle));
   });
 });
@@ -607,7 +718,8 @@ describe('eras', () => {
  */
 describe('the canonical path', () => {
   const ideal = bundle.processes.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
-  const homes = (id: string) => ideal.states.filter((s) => s.deviations.includes(id)).map((s) => s.id);
+  const homes = (id: string) =>
+    ideal.states.filter((s) => s.deviations.includes(id)).map((s) => s.id);
 
   it('exists, and is the one workflow written as commitments', () => {
     expect(ideal, 'proc.the_path_as_it_is_supposed_to_run is missing').toBeDefined();
@@ -615,7 +727,9 @@ describe('the canonical path', () => {
   });
 
   it('gives every barrier exactly one commitment it breaks', () => {
-    const misplaced = bundle.barriers.map((b) => [b.id, homes(b.id)] as const).filter(([, at]) => at.length !== 1);
+    const misplaced = bundle.barriers
+      .map((b) => [b.id, homes(b.id)] as const)
+      .filter(([, at]) => at.length !== 1);
     expect(misplaced).toEqual([]);
   });
 
@@ -639,7 +753,8 @@ describe('the canonical path', () => {
 
   it('mirrors every deviation list into Ukrainian unchanged', () => {
     const ukIdeal = uk.processes.find((w) => w.id === 'proc.the_path_as_it_is_supposed_to_run')!;
-    const shape = (w: typeof ideal) => w.states.map((s) => `${s.id}:${s.deviations.join(',')}:${s.entities.join(',')}`);
+    const shape = (w: typeof ideal) =>
+      w.states.map((s) => `${s.id}:${s.deviations.join(',')}:${s.entities.join(',')}`);
     expect(shape(ukIdeal)).toEqual(shape(ideal));
   });
 });

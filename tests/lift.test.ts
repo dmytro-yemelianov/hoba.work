@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { findRegistryRoot, lift, loadRegistryFromRoot, project, validateSubstrate } from '@hoba/registry';
+import {
+  findRegistryRoot,
+  lift,
+  loadRegistryFromRoot,
+  project,
+  validateSubstrate,
+} from '@hoba/registry';
 import { REPO_ROOT } from './helpers';
 
 /**
@@ -28,7 +34,8 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
     // assert that keeps "computed before authored" honest.
     for (const [id, rest] of Object.entries(lifted.sidecar.entities)) {
       expect(rest, id).not.toHaveProperty('title');
-      if (id.startsWith('B-') || id.startsWith('bar.')) expect(rest, id).not.toHaveProperty('pass_condition');
+      if (id.startsWith('B-') || id.startsWith('bar.'))
+        expect(rest, id).not.toHaveProperty('pass_condition');
       if (id.startsWith('M-') || id.startsWith('mech.')) {
         expect(rest, id).not.toHaveProperty('operates_at');
         expect(rest, id).not.toHaveProperty('emissions');
@@ -43,7 +50,9 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
     for (const w of bundle.processes) {
       const proc = lifted.substrate.processes.find((p) => p.id === `prc:${w.id.toLowerCase()}`)!;
       w.transitions.forEach((t, i) => {
-        const fromEntities = (t.entities ?? []).filter((e) => e.startsWith('B-') || e.startsWith('bar.')).map((e) => `cnd:${e.toLowerCase()}`);
+        const fromEntities = (t.entities ?? [])
+          .filter((e) => e.startsWith('B-') || e.startsWith('bar.'))
+          .map((e) => `cnd:${e.toLowerCase()}`);
         expect(proc.transitions[i]!.conditions, `${w.id} #${i}`).toEqual(fromEntities);
       });
     }
@@ -54,7 +63,10 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
       expect(c.gates.length, c.id).toBeGreaterThan(0);
       if (c.accounts_for.length > 0)
         for (const anchor of c.accounts_for)
-          expect(lifted.substrate.conditions.some((x) => x.id === anchor), `${c.id} -> ${anchor}`).toBe(true);
+          expect(
+            lifted.substrate.conditions.some((x) => x.id === anchor),
+            `${c.id} -> ${anchor}`
+          ).toBe(true);
     }
   });
 
@@ -80,13 +92,23 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
   });
 
   it('distinguishes absences (A-001) from communicative statement observations (A4)', () => {
-    const silence = lifted.substrate.eventClasses.find((e) => e.id === 'evc:obs.complete_silence_after_submission')!;
+    const silence = lifted.substrate.eventClasses.find(
+      (e) => e.id === 'evc:obs.complete_silence_after_submission'
+    )!;
     expect(silence.communicates).toBe(false);
-    expect(lifted.substrate.statements.some((s) => s.id === 'sta:obs.complete_silence_after_submission')).toBe(false);
+    expect(
+      lifted.substrate.statements.some((s) => s.id === 'sta:obs.complete_silence_after_submission')
+    ).toBe(false);
 
-    const rejection = lifted.substrate.eventClasses.find((e) => e.id === 'evc:obs.generic_closer_alignment_rejection_template')!;
+    const rejection = lifted.substrate.eventClasses.find(
+      (e) => e.id === 'evc:obs.generic_closer_alignment_rejection_template'
+    )!;
     expect(rejection.communicates).toBe(true);
-    expect(lifted.substrate.statements.some((s) => s.id === 'sta:obs.generic_closer_alignment_rejection_template')).toBe(true);
+    expect(
+      lifted.substrate.statements.some(
+        (s) => s.id === 'sta:obs.generic_closer_alignment_rejection_template'
+      )
+    ).toBe(true);
   });
 
   it('declares visibility rules across candidate audience and subject classes (A4)', () => {
@@ -99,11 +121,14 @@ describe.each(['en', 'uk'] as const)('the equivalence gate (%s)', (lang) => {
     expect(bundle.records.length).toBe(13);
     expect(lifted.substrate.flows.length).toBeGreaterThan(0);
     for (const r of bundle.records) {
-      expect(lifted.substrate.records.some((rec) => rec.id === `rec:${r.id.toLowerCase()}`)).toBe(true);
+      expect(lifted.substrate.records.some((rec) => rec.id === `rec:${r.id.toLowerCase()}`)).toBe(
+        true
+      );
       for (const f of r.flows) {
         expect(
           lifted.substrate.flows.some(
-            (flow) => flow.from === `rec:${r.id.toLowerCase()}` && flow.to === `rec:${f.to.toLowerCase()}`
+            (flow) =>
+              flow.from === `rec:${r.id.toLowerCase()}` && flow.to === `rec:${f.to.toLowerCase()}`
           )
         ).toBe(true);
       }

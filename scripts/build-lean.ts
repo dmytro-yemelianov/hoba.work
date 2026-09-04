@@ -14,7 +14,13 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { findRegistryRoot, loadRegistryFromRoot, lift, type RegistryBundle, type ProcessNode } from '@hoba/registry';
+import {
+  findRegistryRoot,
+  loadRegistryFromRoot,
+  lift,
+  type RegistryBundle,
+  type ProcessNode,
+} from '@hoba/registry';
 
 const root = findRegistryRoot(process.cwd());
 if (!root) throw new Error('build-lean: registry root not found');
@@ -24,12 +30,22 @@ const bundle: RegistryBundle = loadRegistryFromRoot(root, 'en');
 
 /** One index space for every entity a state can point at. */
 const entityIds = [
-  ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
-  ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
-].map((n) => n.id).sort();
+  ...bundle.observations,
+  ...bundle.barriers,
+  ...bundle.mechanisms,
+  ...bundle.patterns,
+  ...bundle.loops,
+  ...bundle.interventions,
+]
+  .map((n) => n.id)
+  .sort();
 const entityIndex = new Map(entityIds.map((id, i) => [id, i] as const));
 
-const KIND: Record<string, string> = { initial: 'Kind.initial', active: 'Kind.active', terminal: 'Kind.terminal' };
+const KIND: Record<string, string> = {
+  initial: 'Kind.initial',
+  active: 'Kind.active',
+  terminal: 'Kind.terminal',
+};
 
 interface Emitted {
   n: number;
@@ -65,11 +81,16 @@ function machineFromWorkflow(workflow: ProcessNode): Emitted {
     (a, b) => Number(b.kind === 'initial') - Number(a.kind === 'initial')
   );
   const index = new Map(states.map((s, i) => [s.id, i] as const));
-  const edges: [number, number][] = workflow.transitions.map((t) => [index.get(t.from)!, index.get(t.to)!]);
+  const edges: [number, number][] = workflow.transitions.map((t) => [
+    index.get(t.from)!,
+    index.get(t.to)!,
+  ]);
   return {
     n: states.length,
     kinds: states.map((s) => KIND[s.kind]!),
-    deviations: states.map((s) => s.deviations.map((d) => entityIndex.get(d)).filter((i): i is number => i !== undefined)),
+    deviations: states.map((s) =>
+      s.deviations.map((d) => entityIndex.get(d)).filter((i): i is number => i !== undefined)
+    ),
     edges,
     rank: layer(states.length, edges),
     names: states.map((s) => s.id),
@@ -81,11 +102,14 @@ function machineFromBarriers(): Emitted {
   const barriers = [...bundle.barriers].sort((a, b) => a.order - b.order);
   const index = new Map(barriers.map((b, i) => [b.id, i] as const));
   const edges: [number, number][] = [];
-  for (const b of barriers) for (const next of b.precedes) edges.push([index.get(b.id)!, index.get(next)!]);
+  for (const b of barriers)
+    for (const next of b.precedes) edges.push([index.get(b.id)!, index.get(next)!]);
   const hasExit = new Set(edges.map(([from]) => from));
   return {
     n: barriers.length,
-    kinds: barriers.map((_barrier, i) => (hasExit.has(i) ? (i === 0 ? KIND.initial! : KIND.active!) : KIND.terminal!)),
+    kinds: barriers.map((_barrier, i) =>
+      hasExit.has(i) ? (i === 0 ? KIND.initial! : KIND.active!) : KIND.terminal!
+    ),
     deviations: barriers.map(() => []),
     edges,
     rank: layer(barriers.length, edges),
@@ -127,7 +151,8 @@ function findCycle(m: Emitted): { start: number; tail: number[] } | undefined {
 }
 
 const list = (values: (string | number)[]) => `[${values.join(', ')}]`;
-const pairs = (values: [number, number][]) => `[${values.map(([a, b]) => `(${a}, ${b})`).join(', ')}]`;
+const pairs = (values: [number, number][]) =>
+  `[${values.map(([a, b]) => `(${a}, ${b})`).join(', ')}]`;
 const nested = (values: number[][]) => `[${values.map((v) => list(v)).join(', ')}]`;
 
 function emit(name: string, m: Emitted, comment: string): string[] {
@@ -152,21 +177,27 @@ const OBSERVED_ID = 'proc.the_hiring_funnel_end_to_end';
 
 const ideal = bundle.processes.find((w) => w.id === IDEAL_ID);
 const observed = bundle.processes.find((w) => w.id === OBSERVED_ID);
-if (!ideal || !observed) throw new Error(`build-lean: ${IDEAL_ID} and ${OBSERVED_ID} are both required`);
+if (!ideal || !observed)
+  throw new Error(`build-lean: ${IDEAL_ID} and ${OBSERVED_ID} are both required`);
 
 const idealM = machineFromWorkflow(ideal);
 const observedM = machineFromWorkflow(observed);
 const gatesM = machineFromBarriers();
 const cycle = findCycle(observedM);
-if (!cycle) throw new Error(`build-lean: ${OBSERVED_ID} is expected to contain a back edge; none was found`);
+if (!cycle)
+  throw new Error(`build-lean: ${OBSERVED_ID} is expected to contain a back edge; none was found`);
 
 const barrierIdx = bundle.barriers.map((b) => entityIndex.get(b.id)!).sort((a, b) => a - b);
 const mechanismIdx = bundle.mechanisms.map((m) => entityIndex.get(m.id)!).sort((a, b) => a - b);
 
 const lifted = lift(bundle);
 const substrate = lifted.substrate;
-const substrateBarrierConditions = substrate.conditions.filter((c) => c.id.startsWith('cnd:b-') || c.id.startsWith('cnd:bar.'));
-const substrateMechanismConditions = substrate.conditions.filter((c) => c.id.startsWith('cnd:m-') || c.id.startsWith('cnd:mech.'));
+const substrateBarrierConditions = substrate.conditions.filter(
+  (c) => c.id.startsWith('cnd:b-') || c.id.startsWith('cnd:bar.')
+);
+const substrateMechanismConditions = substrate.conditions.filter(
+  (c) => c.id.startsWith('cnd:m-') || c.id.startsWith('cnd:mech.')
+);
 
 const out: string[] = [
   '/-',
@@ -177,7 +208,11 @@ const out: string[] = [
   '',
   'namespace Hoba',
   '',
-  ...emit('ideal', idealM, `${IDEAL_ID}, the canonical path: the process as the commitments it is supposed to keep.`),
+  ...emit(
+    'ideal',
+    idealM,
+    `${IDEAL_ID}, the canonical path: the process as the commitments it is supposed to keep.`
+  ),
   ...emit('observed', observedM, `${OBSERVED_ID}, the funnel as it actually runs.`),
   ...emit('gates', gatesM, 'The barrier DAG, ordered by funnel position.'),
   '/-- Every entity a state can name, in index order. -/',

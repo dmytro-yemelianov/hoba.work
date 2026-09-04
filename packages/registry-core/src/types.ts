@@ -235,7 +235,6 @@ export interface EmpiricalScenario {
   artifacts: string[];
 }
 
-
 // ---------------------------------------------------------------------------
 // Result shapes
 //

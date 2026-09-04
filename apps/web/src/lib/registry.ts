@@ -38,7 +38,9 @@ import pkg from '../../package.json' with { type: 'json' };
 
 const root = findRegistryRoot(process.cwd());
 if (!root) {
-  throw new Error(`hoba-site: could not find the registry root (content/ + registry.yaml) above ${process.cwd()}`);
+  throw new Error(
+    `hoba-site: could not find the registry root (content/ + registry.yaml) above ${process.cwd()}`
+  );
 }
 
 export const registryRoot: string = root;
@@ -66,8 +68,6 @@ export function getGraph(lang: ContentLang = 'en'): HOBAKnowledgeGraph {
   }
   return graph;
 }
-
-
 
 export function countGraphNodes(bundle: RegistryBundle): number {
   return nodesOfTypes(bundle, READER_FACING_TYPES).length;
@@ -100,7 +100,9 @@ export function getHomepageDiagnosticPreview(lang: ContentLang = 'en'): Homepage
 
   const issues = validateScenarios([scenario], bundle);
   if (issues.length > 0) {
-    throw new Error(`Homepage scenario is invalid: ${issues.map((issue) => issue.message).join('; ')}`);
+    throw new Error(
+      `Homepage scenario is invalid: ${issues.map((issue) => issue.message).join('; ')}`
+    );
   }
   if (!scenario.stage) throw new Error(`Homepage scenario has no diagnostic stage: ${scenario.id}`);
 
@@ -109,7 +111,9 @@ export function getHomepageDiagnosticPreview(lang: ContentLang = 'en'): Homepage
     stage: scenario.stage,
   });
   if (result.hard_facts.unknown_artifact_ids.length > 0) {
-    throw new Error(`Homepage scenario has unresolved observations: ${result.hard_facts.unknown_artifact_ids.join(', ')}`);
+    throw new Error(
+      `Homepage scenario has unresolved observations: ${result.hard_facts.unknown_artifact_ids.join(', ')}`
+    );
   }
   if (result.obstacle.identified_barriers.length !== 1) {
     throw new Error(
@@ -133,7 +137,8 @@ export function getHomepageDiagnosticPreview(lang: ContentLang = 'en'): Homepage
   );
   traces.sort(
     (left, right) =>
-      likelihoodRank[right.emission.likelihood ?? 'low'] - likelihoodRank[left.emission.likelihood ?? 'low'] ||
+      likelihoodRank[right.emission.likelihood ?? 'low'] -
+        likelihoodRank[left.emission.likelihood ?? 'low'] ||
       right.emission.evidence.length - left.emission.evidence.length
   );
 
@@ -141,7 +146,8 @@ export function getHomepageDiagnosticPreview(lang: ContentLang = 'en'): Homepage
   const equallySupported = best
     ? traces.filter(
         ({ emission }) =>
-          likelihoodRank[emission.likelihood ?? 'low'] === likelihoodRank[best.emission.likelihood ?? 'low'] &&
+          likelihoodRank[emission.likelihood ?? 'low'] ===
+            likelihoodRank[best.emission.likelihood ?? 'low'] &&
           emission.evidence.length === best.emission.evidence.length
       )
     : [];
@@ -181,7 +187,6 @@ export function slimBundle(bundle: RegistryBundle): RegistryBundle {
   };
 }
 
-
 /**
  * The canonical path.
  *
@@ -214,18 +219,19 @@ export function idealDeviation(bundle: RegistryBundle, id: string): IdealPlaceme
 export function idealSupport(bundle: RegistryBundle, id: string): IdealPlacement[] {
   const workflow = idealPath(bundle);
   if (!workflow) return [];
-  return workflow.states.filter((s) => s.entities.includes(id)).map((state) => ({ workflow, state }));
+  return workflow.states
+    .filter((s) => s.entities.includes(id))
+    .map((state) => ({ workflow, state }));
 }
 
 /** Anchor for one state of one workflow on /process. */
-export const stateAnchor = (workflowId: string, stateId: string): string => `${workflowId}-${stateId}`;
-
+export const stateAnchor = (workflowId: string, stateId: string): string =>
+  `${workflowId}-${stateId}`;
 
 /** The eras that name this entity as one of the things they made ordinary. */
 export function erasNaming(bundle: RegistryBundle, id: string): EraNode[] {
   return bundle.eras.filter((era) => era.entities.includes(id));
 }
-
 
 const PERSPECTIVE_ROUTES: Record<string, string> = {
   observation: 'observations',
@@ -244,10 +250,18 @@ export interface SeenEntry {
 }
 
 /** Every entry this actor has a recorded view of — the actor page's index. */
-export function entriesSeenBy(bundle: RegistryBundle, actor: ActorNode['id'], prefix: string): SeenEntry[] {
+export function entriesSeenBy(
+  bundle: RegistryBundle,
+  actor: ActorNode['id'],
+  prefix: string
+): SeenEntry[] {
   const all = [
-    ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
-    ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+    ...bundle.observations,
+    ...bundle.barriers,
+    ...bundle.mechanisms,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions,
   ];
   return all
     .filter((node) => node.perspectives.some((p) => p.actor === actor))
@@ -258,7 +272,6 @@ export function entriesSeenBy(bundle: RegistryBundle, actor: ActorNode['id'], pr
       href: `${prefix}/${PERSPECTIVE_ROUTES[node.type]}/${node.id}`,
     }));
 }
-
 
 export interface RouteCount {
   total: number;
@@ -301,7 +314,6 @@ export function countRoutes(workflow: ProcessNode): RouteCount {
   return { total: Object.values(byTerminal).reduce((a, b) => a + b, 0), byTerminal };
 }
 
-
 export interface Coverage {
   /** Gates with no proposed change attached to them. */
   gatesWithoutIntervention: string[];
@@ -325,17 +337,29 @@ export interface Coverage {
 export function coverage(bundle: RegistryBundle): Coverage {
   const targeted = new Set(bundle.interventions.flatMap((i) => i.targets));
   const entries = [
-    ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
-    ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
+    ...bundle.observations,
+    ...bundle.barriers,
+    ...bundle.mechanisms,
+    ...bundle.patterns,
+    ...bundle.loops,
+    ...bundle.interventions,
   ];
   const observedStages = new Set(bundle.observations.flatMap((a) => a.stages));
 
   return {
     gatesWithoutIntervention: bundle.barriers.filter((b) => !targeted.has(b.id)).map((b) => b.id),
-    mechanismsWithoutIntervention: bundle.mechanisms.filter((m) => !targeted.has(m.id)).map((m) => m.id),
+    mechanismsWithoutIntervention: bundle.mechanisms
+      .filter((m) => !targeted.has(m.id))
+      .map((m) => m.id),
     entriesWithoutEvidence: entries.filter((e) => e.evidence_ids.length === 0).map((e) => e.id),
-    stagesWithoutObservation: [...new Set(bundle.barriers.map((b) => b.stage))].filter((s) => !observedStages.has(s)),
-    totals: { gates: bundle.barriers.length, mechanisms: bundle.mechanisms.length, entries: entries.length },
+    stagesWithoutObservation: [...new Set(bundle.barriers.map((b) => b.stage))].filter(
+      (s) => !observedStages.has(s)
+    ),
+    totals: {
+      gates: bundle.barriers.length,
+      mechanisms: bundle.mechanisms.length,
+      entries: entries.length,
+    },
   };
 }
 
@@ -385,7 +409,9 @@ export function archetypeEntityHref(bundle: RegistryBundle, id: string): string 
 export function archetypeEntityTitle(bundle: RegistryBundle, id: string): string | undefined {
   for (const value of Object.values(bundle)) {
     if (!Array.isArray(value)) continue;
-    const match = value.find((e) => e && typeof e === 'object' && 'id' in e && (e as { id: unknown }).id === id) as { title?: string } | undefined;
+    const match = value.find(
+      (e) => e && typeof e === 'object' && 'id' in e && (e as { id: unknown }).id === id
+    ) as { title?: string } | undefined;
     if (match?.title) return match.title;
   }
   return undefined;

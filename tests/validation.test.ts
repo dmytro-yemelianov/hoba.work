@@ -1,10 +1,24 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { COLLECTION_FOR, ID_PATTERNS, registryContentHash, READER_FACING_TYPES, compareBundleStructure, entityTypeSchema, loadRegistryFromRoot, nodesOfTypes, resolveRegistryRoot, validateRegistry, validateRegistryBundle, evidenceSchema } from '@hoba/registry';
+import {
+  COLLECTION_FOR,
+  ID_PATTERNS,
+  registryContentHash,
+  READER_FACING_TYPES,
+  compareBundleStructure,
+  entityTypeSchema,
+  loadRegistryFromRoot,
+  nodesOfTypes,
+  resolveRegistryRoot,
+  validateRegistry,
+  validateRegistryBundle,
+  evidenceSchema,
+} from '@hoba/registry';
 import { barrier, intervention, loop, makeBundle, mechanism, pattern } from './helpers';
 
-const rules = (bundle: ReturnType<typeof makeBundle>) => validateRegistryBundle(bundle).map((i) => `${i.severity}:${i.rule}`);
+const rules = (bundle: ReturnType<typeof makeBundle>) =>
+  validateRegistryBundle(bundle).map((i) => `${i.severity}:${i.rule}`);
 
 describe('validateRegistryBundle', () => {
   it('accepts a minimal valid bundle without issues', () => {
@@ -15,15 +29,30 @@ describe('validateRegistryBundle', () => {
   it('flags dangling references for every relation type', () => {
     const bundle = makeBundle({
       mechanisms: [
-        mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-999'], emissions: [{ artifact: 'A-999', evidence: ['EVD-999'], observed_at: [] }], amplifies: ['M-999'], masks: ['M-998'] }),
+        mechanism({
+          id: 'M-001',
+          honest_baseline: true,
+          operates_at: ['B-999'],
+          emissions: [{ artifact: 'A-999', evidence: ['EVD-999'], observed_at: [] }],
+          amplifies: ['M-999'],
+          masks: ['M-998'],
+        }),
       ],
-      patterns: [pattern({ id: 'P-001', required_artifacts: ['A-999'], compatible_mechanisms: ['M-999'], interventions: ['I-999'] })],
+      patterns: [
+        pattern({
+          id: 'P-001',
+          required_artifacts: ['A-999'],
+          compatible_mechanisms: ['M-999'],
+          interventions: ['I-999'],
+        }),
+      ],
       loops: [loop({ id: 'L-001', mechanisms: ['M-001', 'M-999'] })],
       interventions: [intervention({ id: 'I-001', targets: ['M-999'], evidence_ids: ['EVD-999'] })],
     });
     const issues = validateRegistryBundle(bundle).filter((i) => i.rule === 'dangling-reference');
     const messages = issues.map((i) => i.message).join('\n');
-    for (const ref of ['B-999', 'A-999', 'EVD-999', 'M-999', 'M-998', 'I-999']) expect(messages).toContain(ref);
+    for (const ref of ['B-999', 'A-999', 'EVD-999', 'M-999', 'M-998', 'I-999'])
+      expect(messages).toContain(ref);
     expect(issues.every((i) => i.severity === 'error')).toBe(true);
   });
 
@@ -34,19 +63,40 @@ describe('validateRegistryBundle', () => {
   describe('the proven tier', () => {
     const withEvidence = (kind: string) =>
       makeBundle({
-        mechanisms: [mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-001'], evidence_level: 'proven', evidence_ids: ['EVD-001'] })],
-        evidence: [{ id: 'EVD-001', type: 'evidence', title: 'A source', kind, summary: 'A fixture evidence record.', aliases: [] } as never],
+        mechanisms: [
+          mechanism({
+            id: 'M-001',
+            honest_baseline: true,
+            operates_at: ['B-001'],
+            evidence_level: 'proven',
+            evidence_ids: ['EVD-001'],
+          }),
+        ],
+        evidence: [
+          {
+            id: 'EVD-001',
+            type: 'evidence',
+            title: 'A source',
+            kind,
+            summary: 'A fixture evidence record.',
+            aliases: [],
+          } as never,
+        ],
       });
 
     it('accepts proven when the linked evidence is primary or research', () => {
       for (const kind of ['primary', 'research']) {
-        expect(validateRegistryBundle(withEvidence(kind)).filter((i) => i.rule === 'unsupported-claim')).toEqual([]);
+        expect(
+          validateRegistryBundle(withEvidence(kind)).filter((i) => i.rule === 'unsupported-claim')
+        ).toEqual([]);
       }
     });
 
     it('rejects proven when the linked evidence is too weak to carry it', () => {
       for (const kind of ['survey', 'reporting', 'anecdote', 'illustrative']) {
-        const issues = validateRegistryBundle(withEvidence(kind)).filter((i) => i.rule === 'unsupported-claim');
+        const issues = validateRegistryBundle(withEvidence(kind)).filter(
+          (i) => i.rule === 'unsupported-claim'
+        );
         expect(issues, kind).toHaveLength(1);
         expect(issues[0]!.severity).toBe('error');
         expect(issues[0]!.nodeId).toBe('M-001');
@@ -55,17 +105,45 @@ describe('validateRegistryBundle', () => {
 
     it('rejects proven with no linked evidence at all', () => {
       const bundle = makeBundle({
-        mechanisms: [mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-001'], evidence_level: 'proven', evidence_ids: [] })],
+        mechanisms: [
+          mechanism({
+            id: 'M-001',
+            honest_baseline: true,
+            operates_at: ['B-001'],
+            evidence_level: 'proven',
+            evidence_ids: [],
+          }),
+        ],
       });
-      expect(validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim')).toHaveLength(1);
+      expect(
+        validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim')
+      ).toHaveLength(1);
     });
 
     it('leaves every tier below proven alone, however thin its evidence', () => {
-      for (const level of ['observed', 'compatible', 'supported', 'strongly_supported', 'contradicted', 'unknown']) {
+      for (const level of [
+        'observed',
+        'compatible',
+        'supported',
+        'strongly_supported',
+        'contradicted',
+        'unknown',
+      ]) {
         const bundle = makeBundle({
-          mechanisms: [mechanism({ id: 'M-001', honest_baseline: true, operates_at: ['B-001'], evidence_level: level as never, evidence_ids: [] })],
+          mechanisms: [
+            mechanism({
+              id: 'M-001',
+              honest_baseline: true,
+              operates_at: ['B-001'],
+              evidence_level: level as never,
+              evidence_ids: [],
+            }),
+          ],
         });
-        expect(validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim'), level).toEqual([]);
+        expect(
+          validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim'),
+          level
+        ).toEqual([]);
       }
     });
   });
@@ -76,7 +154,17 @@ describe('validateRegistryBundle', () => {
   describe('unused evidence', () => {
     it('warns about an evidence record no entry cites', () => {
       const bundle = makeBundle();
-      bundle.evidence = [...bundle.evidence, { id: 'EVD-777', type: 'evidence', title: 'Nobody cites me', kind: 'research', summary: 'A fixture evidence record.', aliases: [] } as never];
+      bundle.evidence = [
+        ...bundle.evidence,
+        {
+          id: 'EVD-777',
+          type: 'evidence',
+          title: 'Nobody cites me',
+          kind: 'research',
+          summary: 'A fixture evidence record.',
+          aliases: [],
+        } as never,
+      ];
       const issues = validateRegistryBundle(bundle).filter((i) => i.rule === 'unused-evidence');
       expect(issues).toHaveLength(1);
       expect(issues[0]!.severity).toBe('warning');
@@ -88,17 +176,33 @@ describe('validateRegistryBundle', () => {
       // were invisible to every rule that reads it.
       for (const collection of ['eras', 'processes', 'actors'] as const) {
         const bundle = makeBundle();
-        bundle.evidence = [...bundle.evidence, { id: 'EVD-777', type: 'evidence', title: 'Cited', kind: 'research', summary: 'A fixture evidence record.', aliases: [] } as never];
-        (bundle as never as Record<string, unknown[]>)[collection] = [{ id: 'x', evidence_ids: ['EVD-777'], indicators: [] } as never];
+        bundle.evidence = [
+          ...bundle.evidence,
+          {
+            id: 'EVD-777',
+            type: 'evidence',
+            title: 'Cited',
+            kind: 'research',
+            summary: 'A fixture evidence record.',
+            aliases: [],
+          } as never,
+        ];
+        (bundle as never as Record<string, unknown[]>)[collection] = [
+          { id: 'x', evidence_ids: ['EVD-777'], indicators: [] } as never,
+        ];
         expect(
-          validateRegistryBundle(bundle).filter((i) => i.rule === 'unused-evidence' && i.nodeId === 'EVD-777'),
+          validateRegistryBundle(bundle).filter(
+            (i) => i.rule === 'unused-evidence' && i.nodeId === 'EVD-777'
+          ),
           collection
         ).toEqual([]);
       }
     });
 
     it('stays quiet when every record is cited', () => {
-      expect(validateRegistryBundle(makeBundle()).filter((i) => i.rule === 'unused-evidence')).toEqual([]);
+      expect(
+        validateRegistryBundle(makeBundle()).filter((i) => i.rule === 'unused-evidence')
+      ).toEqual([]);
     });
   });
 
@@ -108,7 +212,11 @@ describe('validateRegistryBundle', () => {
     expect(rules(bundle)).toContain('error:honest-baseline');
 
     const deprecated = makeBundle();
-    deprecated.mechanisms[0] = { ...deprecated.mechanisms[0], status: 'deprecated', superseded_by: 'M-002' };
+    deprecated.mechanisms[0] = {
+      ...deprecated.mechanisms[0],
+      status: 'deprecated',
+      superseded_by: 'M-002',
+    };
     expect(rules(deprecated)).toContain('error:honest-baseline');
   });
 
@@ -117,12 +225,17 @@ describe('validateRegistryBundle', () => {
     bundle.observations[0] = { ...bundle.observations[0], superseded_by: 'A-001' };
     const found = rules(bundle);
     expect(found).toContain('error:lifecycle');
-    expect(validateRegistryBundle(bundle).some((i) => i.message.includes('cannot supersede itself'))).toBe(true);
+    expect(
+      validateRegistryBundle(bundle).some((i) => i.message.includes('cannot supersede itself'))
+    ).toBe(true);
   });
 
   it('enforces barrier order uniqueness and monotonic precedes', () => {
     const bundle = makeBundle({
-      barriers: [barrier({ id: 'B-001', order: 2, precedes: ['B-002'] }), barrier({ id: 'B-002', order: 2 })],
+      barriers: [
+        barrier({ id: 'B-001', order: 2, precedes: ['B-002'] }),
+        barrier({ id: 'B-002', order: 2 }),
+      ],
     });
     const found = validateRegistryBundle(bundle).filter((i) => i.rule === 'barrier-order');
     expect(found).toHaveLength(2);
@@ -130,25 +243,46 @@ describe('validateRegistryBundle', () => {
 
   it('detects barrier cycles via the full pipeline', () => {
     const bundle = makeBundle({
-      barriers: [barrier({ id: 'B-001', order: 1, precedes: ['B-002'] }), barrier({ id: 'B-002', order: 2, precedes: ['B-001'] })],
+      barriers: [
+        barrier({ id: 'B-001', order: 1, precedes: ['B-002'] }),
+        barrier({ id: 'B-002', order: 2, precedes: ['B-001'] }),
+      ],
     });
     const report = validateRegistry(bundle);
     expect(report.ok).toBe(false);
-    expect(report.errors.some((e) => e.rule === 'barrier-cycle' || e.rule === 'barrier-order')).toBe(true);
+    expect(
+      report.errors.some((e) => e.rule === 'barrier-cycle' || e.rule === 'barrier-order')
+    ).toBe(true);
   });
 
   it('warns when a loop edge is not declared on the mechanism (editorial-only loop)', () => {
     const bundle = makeBundle();
     bundle.mechanisms[1] = { ...bundle.mechanisms[1], amplifies: [] }; // M-002 no longer amplifies M-001
     const issues = validateRegistryBundle(bundle);
-    expect(issues.some((i) => i.rule === 'undeclared-loop-edge' && i.severity === 'warning' && i.nodeId === 'L-001')).toBe(true);
+    expect(
+      issues.some(
+        (i) => i.rule === 'undeclared-loop-edge' && i.severity === 'warning' && i.nodeId === 'L-001'
+      )
+    ).toBe(true);
   });
 
   it('errors when loop edges or entry points leave the loop membership', () => {
     const bundle = makeBundle({
-      loops: [loop({ id: 'L-001', mechanisms: ['M-001', 'M-002'], entry_points: ['M-999'], edges: [{ from: 'M-001', to: 'M-999', relation: 'amplifies' }, { from: 'M-002', to: 'M-001', relation: 'amplifies' }] })],
+      loops: [
+        loop({
+          id: 'L-001',
+          mechanisms: ['M-001', 'M-002'],
+          entry_points: ['M-999'],
+          edges: [
+            { from: 'M-001', to: 'M-999', relation: 'amplifies' },
+            { from: 'M-002', to: 'M-001', relation: 'amplifies' },
+          ],
+        }),
+      ],
     });
-    expect(validateRegistryBundle(bundle).filter((i) => i.rule === 'loop-membership')).toHaveLength(2);
+    expect(validateRegistryBundle(bundle).filter((i) => i.rule === 'loop-membership')).toHaveLength(
+      2
+    );
   });
 
   it('warns on non-reciprocal pattern/loop ↔ intervention links in both directions', () => {
@@ -164,7 +298,13 @@ describe('validateRegistryBundle', () => {
   it('rejects duplicate probe IDs and duplicate emissions', () => {
     const bundle = makeBundle();
     bundle.observations.push({ ...bundle.observations[0], id: 'A-002' }); // same probe id
-    bundle.mechanisms[0] = { ...bundle.mechanisms[0], emissions: [{ artifact: 'A-001', evidence: [], observed_at: [] }, { artifact: 'A-001', evidence: [], observed_at: [] }] };
+    bundle.mechanisms[0] = {
+      ...bundle.mechanisms[0],
+      emissions: [
+        { artifact: 'A-001', evidence: [], observed_at: [] },
+        { artifact: 'A-001', evidence: [], observed_at: [] },
+      ],
+    };
     const found = rules(bundle);
     expect(found).toContain('error:duplicate-id');
     expect(found).toContain('error:duplicate-edge');
@@ -175,7 +315,12 @@ describe('compareBundleStructure', () => {
   it('ignores translated prose but catches structural drift, missing and extra nodes', () => {
     const en = makeBundle();
     const uk = makeBundle();
-    uk.observations[0] = { ...uk.observations[0], title: 'Переклад', summary: 'Перекладений опис достатньої довжини.', non_inferences: ['Не доводить.'] };
+    uk.observations[0] = {
+      ...uk.observations[0],
+      title: 'Переклад',
+      summary: 'Перекладений опис достатньої довжини.',
+      non_inferences: ['Не доводить.'],
+    };
     expect(compareBundleStructure(en, uk)).toEqual([]);
 
     uk.mechanisms[0] = { ...uk.mechanisms[0], operates_at: ['B-002'] };
@@ -228,7 +373,9 @@ describe('the actual renamed pattern content validates', () => {
     const issues = validateRegistry(bundle).issues;
     const errors = issues.filter((i) => i.severity === 'error');
     if (errors.length > 0) {
-      throw new Error(`Validation errors:\n${errors.map((e) => `  ${e.rule}: ${e.message}`).join('\n')}`);
+      throw new Error(
+        `Validation errors:\n${errors.map((e) => `  ${e.rule}: ${e.message}`).join('\n')}`
+      );
     }
     expect(errors).toEqual([]);
     // Confirm at least one pattern is actually in the new format, proving this
@@ -249,7 +396,9 @@ describe('aliases survive Zod parsing', () => {
   it('loads a renamed mechanism entity with its aliases field intact, not stripped', () => {
     const root = resolveRegistryRoot();
     const bundle = loadRegistryFromRoot(root, 'en');
-    const renamed = bundle.mechanisms.find((m) => m.id === 'mech.genuine_technical_skill_shortfall');
+    const renamed = bundle.mechanisms.find(
+      (m) => m.id === 'mech.genuine_technical_skill_shortfall'
+    );
     expect(renamed).toBeDefined();
     expect(renamed!.aliases).toEqual(['M-001']);
   });
@@ -297,11 +446,19 @@ describe('the map from a kind to where a bundle keeps it', () => {
 
   it('gathers the reader-facing kinds and nothing else', () => {
     const bundle = makeBundle();
-    const gathered = nodesOfTypes(bundle, READER_FACING_TYPES).map((n) => n.id).sort();
+    const gathered = nodesOfTypes(bundle, READER_FACING_TYPES)
+      .map((n) => n.id)
+      .sort();
     const expected = [
-      ...bundle.observations, ...bundle.barriers, ...bundle.mechanisms,
-      ...bundle.patterns, ...bundle.loops, ...bundle.interventions,
-    ].map((n) => n.id).sort();
+      ...bundle.observations,
+      ...bundle.barriers,
+      ...bundle.mechanisms,
+      ...bundle.patterns,
+      ...bundle.loops,
+      ...bundle.interventions,
+    ]
+      .map((n) => n.id)
+      .sort();
     expect(gathered).toEqual(expected);
   });
 });
@@ -319,7 +476,10 @@ describe('the release manifest and the content it names', () => {
     const root = resolveRegistryRoot();
     const manifest = fs.readFileSync(path.join(root, 'registry.yaml'), 'utf8');
     const declared = manifest.match(/^release_hash:\s*"([0-9a-f]{64})"/m)?.[1];
-    expect(declared, 'registry.yaml must record the hash of the content this version names').toBeDefined();
+    expect(
+      declared,
+      'registry.yaml must record the hash of the content this version names'
+    ).toBeDefined();
     expect(registryContentHash(root)).toBe(declared);
   });
 });

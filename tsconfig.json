@@ -8,5 +8,11 @@
       "@hoba/registry/core": ["./packages/registry/src/core.ts"]
     }
   },
-  "include": ["scripts/**/*.ts", "tests/**/*.ts", "e2e/**/*.ts", "vitest.config.ts", "playwright.config.ts"]
+  "include": [
+    "scripts/**/*.ts",
+    "tests/**/*.ts",
+    "e2e/**/*.ts",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ]
 }

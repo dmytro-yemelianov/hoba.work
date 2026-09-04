@@ -60,8 +60,12 @@ const workerPath = path.join(root, 'apps', 'web', 'src', 'worker', 'index.js');
 const source = fs.readFileSync(workerPath, 'utf8');
 const updated = source.replace(/\/\/ GENERATED[\s\S]*?\/\/ END GENERATED/, block);
 if (updated === source && !source.includes('// GENERATED')) {
-  throw new Error('generate-redirects: no GENERATED block found in _worker.js — has it been removed?');
+  throw new Error(
+    'generate-redirects: no GENERATED block found in _worker.js — has it been removed?'
+  );
 }
 fs.writeFileSync(workerPath, updated);
 
-console.log(`Wrote ${Object.keys(sorted).length} redirect(s) to ${path.relative(root, workerPath)}.`);
+console.log(
+  `Wrote ${Object.keys(sorted).length} redirect(s) to ${path.relative(root, workerPath)}.`
+);

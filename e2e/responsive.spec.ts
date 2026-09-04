@@ -1,11 +1,29 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const PAGES = ['/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze', '/methodology', '/mechanisms/mech.genuine_technical_skill_shortfall', '/patterns/pat.closed_then_reposted_requisition_motif', '/barriers/bar.client_profile_approval_and_client_interview'];
+const PAGES = [
+  '/',
+  '/registry',
+  '/patterns',
+  '/graph',
+  '/process',
+  '/eras',
+  '/actors',
+  '/actors/recruiter',
+  '/check',
+  '/data',
+  '/analyze',
+  '/methodology',
+  '/mechanisms/mech.genuine_technical_skill_shortfall',
+  '/patterns/pat.closed_then_reposted_requisition_motif',
+  '/barriers/bar.client_profile_approval_and_client_interview',
+];
 const WIDTHS = [360, 768, 1280];
 
 /** Anything wider than the viewport means a layout leak, not a design choice. */
 async function overflow(page: Page): Promise<number> {
-  return page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  return page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+  );
 }
 
 test.describe('responsive layout', () => {
@@ -29,10 +47,28 @@ test.describe('responsive layout', () => {
   test('every page sits in the same frame as the navbar and the footer', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     const FRAMED = [
-      '/', '/registry', '/patterns', '/graph', '/process', '/eras', '/actors', '/actors/recruiter', '/check', '/data', '/analyze',
-      '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/observations/obs.complete_silence_after_submission',
-      '/patterns/pat.seniority_double_bind', '/loops/loop.employment_gap_penalty_loop', '/interventions/int.auto_close_stale_job_requisitions', '/404',
+      '/',
+      '/registry',
+      '/patterns',
+      '/graph',
+      '/process',
+      '/eras',
+      '/actors',
+      '/actors/recruiter',
+      '/check',
+      '/data',
+      '/analyze',
+      '/methodology',
+      '/developers',
+      '/contribute',
+      '/about',
+      '/mechanisms/mech.genuine_technical_skill_shortfall',
+      '/barriers/bar.application_ingestion',
+      '/observations/obs.complete_silence_after_submission',
+      '/patterns/pat.seniority_double_bind',
+      '/loops/loop.employment_gap_penalty_loop',
+      '/interventions/int.auto_close_stale_job_requisitions',
+      '/404',
     ];
     let reference: Record<string, number> | null = null;
 
@@ -40,7 +76,11 @@ test.describe('responsive layout', () => {
       await page.goto(path);
       const frame = await page.evaluate(() => {
         const edge = (el: Element | null) =>
-          el ? Math.round(el.getBoundingClientRect().left + parseFloat(getComputedStyle(el).paddingLeft)) : -1;
+          el
+            ? Math.round(
+                el.getBoundingClientRect().left + parseFloat(getComputedStyle(el).paddingLeft)
+              )
+            : -1;
         const main = document.querySelector('main');
         return {
           content: edge(main),
@@ -70,10 +110,23 @@ test.describe('responsive layout', () => {
   test('every block of every page body spans the frame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     const PAGES = [
-      '/', '/registry', '/patterns', '/graph', '/data', '/analyze',
-      '/methodology', '/developers', '/contribute', '/about',
-      '/mechanisms/mech.genuine_technical_skill_shortfall', '/barriers/bar.application_ingestion', '/observations/obs.complete_silence_after_submission',
-      '/patterns/pat.seniority_double_bind', '/loops/loop.employment_gap_penalty_loop', '/interventions/int.auto_close_stale_job_requisitions', '/404',
+      '/',
+      '/registry',
+      '/patterns',
+      '/graph',
+      '/data',
+      '/analyze',
+      '/methodology',
+      '/developers',
+      '/contribute',
+      '/about',
+      '/mechanisms/mech.genuine_technical_skill_shortfall',
+      '/barriers/bar.application_ingestion',
+      '/observations/obs.complete_silence_after_submission',
+      '/patterns/pat.seniority_double_bind',
+      '/loops/loop.employment_gap_penalty_loop',
+      '/interventions/int.auto_close_stale_job_requisitions',
+      '/404',
     ];
     for (const path of PAGES) {
       await page.goto(path);
@@ -81,8 +134,13 @@ test.describe('responsive layout', () => {
       // structural blocks may not: a narrow body is what reads as another template.
       const narrow = await page.evaluate(() => {
         const main = document.querySelector('main')!;
-        const frame = Math.round(main.getBoundingClientRect().width - parseFloat(getComputedStyle(main).paddingLeft) * 2);
-        const bodies = [main, ...Array.from(main.children).filter((el) => /^(ARTICLE|DIV)$/.test(el.tagName))];
+        const frame = Math.round(
+          main.getBoundingClientRect().width - parseFloat(getComputedStyle(main).paddingLeft) * 2
+        );
+        const bodies = [
+          main,
+          ...Array.from(main.children).filter((el) => /^(ARTICLE|DIV)$/.test(el.tagName)),
+        ];
         const offenders: string[] = [];
         for (const body of bodies) {
           // A container that declares columns has columns; its children are not

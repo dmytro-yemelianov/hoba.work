@@ -15,13 +15,17 @@ const report = gaps(bundle);
 test.describe('the atlas reports its own limits', () => {
   test('publishes every group of causes no observation separates', async ({ page }) => {
     await page.goto('/data?lang=en');
-    const section = page.locator('section', { has: page.getByRole('heading', { name: says('en', 'gap.merged') }) });
+    const section = page.locator('section', {
+      has: page.getByRole('heading', { name: says('en', 'gap.merged') }),
+    });
 
     // Derived from the registry, so growing the catalogue cannot silently
     // leave a merged group unpublished.
     for (const group of report.indistinguishable) {
-      for (const id of group.mechanisms) await expect(section.getByRole('link', { name: id })).toBeVisible();
-      for (const id of group.signature) await expect(section.getByRole('link', { name: id })).toBeVisible();
+      for (const id of group.mechanisms)
+        await expect(section.getByRole('link', { name: id })).toBeVisible();
+      for (const id of group.signature)
+        await expect(section.getByRole('link', { name: id })).toBeVisible();
     }
   });
 
@@ -39,28 +43,39 @@ test.describe('the atlas reports its own limits', () => {
     }
 
     for (const id of reach) {
-      await expect(page.locator(`[data-gap-id="${id}"]`)).toContainText(says('en', 'gap.outOfReach'));
+      await expect(page.locator(`[data-gap-id="${id}"]`)).toContainText(
+        says('en', 'gap.outOfReach')
+      );
     }
     // An omission carrying the badge would read as a finding, which is the
     // error this whole section exists to stop.
     for (const id of omissions) {
-      await expect(page.locator(`[data-gap-id="${id}"]`)).not.toContainText(says('en', 'gap.outOfReach'));
+      await expect(page.locator(`[data-gap-id="${id}"]`)).not.toContainText(
+        says('en', 'gap.outOfReach')
+      );
     }
   });
 
-  test('publishes the ceiling: every cause nothing can settle, and what covers it', async ({ page }) => {
+  test('publishes the ceiling: every cause nothing can settle, and what covers it', async ({
+    page,
+  }) => {
     await page.goto('/data?lang=en');
     for (const entry of report.identifiability.neverAlone) {
       // Addressed by the row's own subject: a mechanism also appears as the
       // thing covering someone else, so matching on the link alone is ambiguous.
       const row = page.locator(`[data-ceiling-id="${entry.mechanism}"]`);
       await expect(row).toBeVisible();
-      for (const id of entry.coveredBy) await expect(row.getByRole('link', { name: id, exact: true })).toBeVisible();
+      for (const id of entry.coveredBy)
+        await expect(row.getByRole('link', { name: id, exact: true })).toBeVisible();
     }
   });
-  test('an entry states what it reaches past its own links, and counts it right', async ({ page }) => {
+  test('an entry states what it reaches past its own links, and counts it right', async ({
+    page,
+  }) => {
     await page.goto('/mechanisms/mech.genuine_technical_skill_shortfall?lang=en');
-    const section = page.locator('section', { has: page.getByRole('heading', { name: says('en', 'reach.title') }) });
+    const section = page.locator('section', {
+      has: page.getByRole('heading', { name: says('en', 'reach.title') }),
+    });
     await expect(section).toBeVisible();
 
     // The published number is the transitive reach minus what the relation
@@ -68,7 +83,10 @@ test.describe('the atlas reports its own limits', () => {
     // links would fail here.
     const reach = closure(bundle, 'mech.genuine_technical_skill_shortfall');
     const indirect = reach.affects.filter((id) => !reach.directAffects.includes(id));
-    expect(indirect.length, 'mech.genuine_technical_skill_shortfall must reach something past its own edges for this to test anything').toBeGreaterThan(0);
+    expect(
+      indirect.length,
+      'mech.genuine_technical_skill_shortfall must reach something past its own edges for this to test anything'
+    ).toBeGreaterThan(0);
     await expect(section).toContainText(String(indirect.length));
   });
 });

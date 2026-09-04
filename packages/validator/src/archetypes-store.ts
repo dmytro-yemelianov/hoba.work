@@ -20,7 +20,9 @@ export function loadArchetypes(root: string): Archetype[] {
       const full = path.join(dir, file);
       const parsed = archetypeSchema.safeParse(yaml.load(fs.readFileSync(full, 'utf-8')));
       if (!parsed.success) {
-        throw new Error(`${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+        throw new Error(
+          `${full}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`
+        );
       }
       return parsed.data;
     })

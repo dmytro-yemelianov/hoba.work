@@ -24,8 +24,15 @@ const loopId = z.string().regex(ID_PATTERNS.loop);
 const interventionId = z.string().regex(ID_PATTERNS.intervention);
 const evidenceId = z.string().regex(ID_PATTERNS.evidence);
 const recordId = z.string().regex(ID_PATTERNS.record);
-const workflowId = z.string().regex(/^(WF-\d{3}|proc\.[a-z0-9_]+)$/, 'workflow id must look like proc.<name> or the legacy WF-001');
-const eraId = z.string().regex(ID_PATTERNS.era, 'era id must look like era.<name> or the legacy E-001');
+const workflowId = z
+  .string()
+  .regex(
+    /^(WF-\d{3}|proc\.[a-z0-9_]+)$/,
+    'workflow id must look like proc.<name> or the legacy WF-001'
+  );
+const eraId = z
+  .string()
+  .regex(ID_PATTERNS.era, 'era id must look like era.<name> or the legacy E-001');
 
 // Ordered by funnel progression. The order of this list is meaningful and is
 // reused by the site (stage pickers) and the CLI/MCP (stage validation).
@@ -59,7 +66,13 @@ export const visibilityTypeSchema = z.enum(['observable', 'inferable', 'opaque']
 
 export const removabilityTypeSchema = z.enum(['candidate', 'intermediary', 'none']);
 
-export const emissionFidelitySchema = z.enum(['direct', 'euphemism', 'distortion', 'noise', 'void']);
+export const emissionFidelitySchema = z.enum([
+  'direct',
+  'euphemism',
+  'distortion',
+  'noise',
+  'void',
+]);
 
 export const emissionLikelihoodSchema = z.enum(['low', 'medium', 'high']);
 
@@ -107,14 +120,27 @@ export const PROVING_EVIDENCE_KINDS = ['primary', 'research'] as const;
  * `artifact` kind became `observation`, and nothing would have caught the one
  * that was missed.
  */
-export const READER_FACING_TYPES = ['observation', 'barrier', 'mechanism', 'pattern', 'loop', 'intervention'] as const;
+export const READER_FACING_TYPES = [
+  'observation',
+  'barrier',
+  'mechanism',
+  'pattern',
+  'loop',
+  'intervention',
+] as const;
 export type ReaderFacingType = (typeof READER_FACING_TYPES)[number];
 
 export const nodeStatusSchema = z.enum(['active', 'deprecated']);
 
 export const costBandSchema = z.enum(['low', 'medium', 'high']);
 
-export const scopeTypeSchema = z.enum(['individual', 'team', 'organizational', 'industry', 'ecosystem']);
+export const scopeTypeSchema = z.enum([
+  'individual',
+  'team',
+  'organizational',
+  'industry',
+  'ecosystem',
+]);
 
 export const interventionActorSchema = z.enum([
   'employer-policy',
@@ -646,7 +672,12 @@ export const authoredRecordSchema = z
 // Keeps the three version axes required by spec §17 in one place.
 export const registryManifestSchema = z.object({
   /** Strict semver: no leading zeros, so the retired `2026.08.3` form cannot come back. */
-  version: z.string().regex(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/, 'registry version must be semver (e.g. 1.0.0)'),
+  version: z
+    .string()
+    .regex(
+      /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/,
+      'registry version must be semver (e.g. 1.0.0)'
+    ),
   schema_version: z.string().regex(/^\d+\.\d+\.\d+$/, 'schema_version must be semver'),
   updated_at: z.string().datetime(),
 });
