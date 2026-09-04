@@ -11,7 +11,7 @@
     "url": "git+https://github.com/dmytro-yemelianov/hoba.work.git"
   },
   "scripts": {
-    "lint": "eslint . --ext .ts,.tsx --quiet && prettier --check .",
+    "lint": "eslint . --quiet && prettier --check .",
     "format": "prettier --write .",
     "coverage": "vitest run --coverage",
     "release": "pnpm changeset version && pnpm changeset publish && pnpm validate && pnpm build",
@@ -54,7 +54,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
     "esbuild": "^0.28.2",
-    "eslint": "^9.4.0",
+    "eslint": "^10.10.0",
     "husky": "^9.1.6",
     "prettier": "^3.9.6",
     "rimraf": "^6.0.1",
@@ -68,6 +68,6 @@
   },
   "packageManager": "pnpm@10.33.0",
   "engines": {
-    "node": ">=22.12"
+    "node": ">=22.13"
   }
 }

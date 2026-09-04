@@ -112,7 +112,7 @@ The substrate is never a second, competing model: `project(substrate)` regenerat
 ## 4. Quick Start & Development
 
 ### Prerequisites
-- Node.js >= 22.12
+- Node.js >= 22.13
 - pnpm >= 10
 
 ### Installation & Build
