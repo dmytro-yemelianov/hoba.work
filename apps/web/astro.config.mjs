@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -13,11 +12,6 @@ export default defineConfig({
     locales: ['en', 'uk'],
     routing: { prefixDefaultLocale: false },
   },
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-  ],
   vite: {
     resolve: {
       // Build straight from the registry sources so the site never depends on a
