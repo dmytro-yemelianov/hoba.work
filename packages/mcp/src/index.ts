@@ -627,7 +627,7 @@ server.registerTool(
       'An unresolvable ID is an error, not a warning.',
     inputSchema: {
       scenario: z
-        .record(z.unknown())
+        .record(z.string(), z.unknown())
         .describe('A scenario object, as stored under data/scenarios/'),
     },
   },
@@ -656,7 +656,7 @@ server.registerTool(
       'above the level the cited entity itself carries.',
     inputSchema: {
       analysis: z
-        .record(z.unknown())
+        .record(z.string(), z.unknown())
         .describe('An Analysis object, per schema/analysis.schema.json'),
     },
   },

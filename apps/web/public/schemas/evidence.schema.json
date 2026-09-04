@@ -43,11 +43,11 @@
           "type": "string"
         },
         "aliases": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "default": []
+          }
         }
       },
       "required": [

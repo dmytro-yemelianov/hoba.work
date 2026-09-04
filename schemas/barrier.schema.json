@@ -10,34 +10,33 @@
           "minLength": 3
         },
         "status": {
+          "default": "active",
           "type": "string",
           "enum": [
             "active",
             "deprecated"
-          ],
-          "default": "active"
+          ]
         },
         "evidence_ids": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string",
             "pattern": "^(EVD-\\d{3}|evidence\\.[a-z0-9_]+)$"
-          },
-          "default": []
+          }
         },
         "content": {
           "type": "string"
         },
         "aliases": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "default": []
+          }
         },
         "id": {
-          "type": "string",
-          "pattern": "^(B-\\d{3}|bar\\.[a-z0-9_]+)$"
+          "$ref": "#/definitions/__schema0"
         },
         "type": {
           "type": "string",
@@ -62,14 +61,15 @@
         },
         "order": {
           "type": "integer",
-          "exclusiveMinimum": 0
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
         },
         "precedes": {
+          "default": [],
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Barrier/properties/id"
-          },
-          "default": []
+            "$ref": "#/definitions/__schema0"
+          }
         },
         "description": {
           "type": "string",
@@ -80,9 +80,14 @@
           "minLength": 5
         },
         "superseded_by": {
-          "$ref": "#/definitions/Barrier/properties/id"
+          "allOf": [
+            {
+              "$ref": "#/definitions/__schema0"
+            }
+          ]
         },
         "evidence_level": {
+          "default": "strongly_supported",
           "type": "string",
           "enum": [
             "observed",
@@ -92,10 +97,10 @@
             "proven",
             "contradicted",
             "unknown"
-          ],
-          "default": "strongly_supported"
+          ]
         },
         "specimens": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
@@ -122,31 +127,11 @@
                 "type": "string"
               },
               "lines": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "speaker": {
-                      "type": "string"
-                    },
-                    "at": {
-                      "type": "string"
-                    },
-                    "text": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "tell": {
-                      "type": "boolean",
-                      "default": false
-                    }
-                  },
-                  "required": [
-                    "text"
-                  ],
-                  "additionalProperties": false
-                },
-                "minItems": 1
+                  "$ref": "#/definitions/__schema1"
+                }
               },
               "reading": {
                 "type": "string",
@@ -159,10 +144,10 @@
               "lines"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         },
         "perspectives": {
+          "default": [],
           "type": "array",
           "items": {
             "type": "object",
@@ -199,8 +184,7 @@
               "does"
             ],
             "additionalProperties": false
-          },
-          "default": []
+          }
         }
       },
       "required": [
@@ -211,6 +195,33 @@
         "order",
         "description",
         "pass_condition"
+      ],
+      "additionalProperties": false
+    },
+    "__schema0": {
+      "type": "string",
+      "pattern": "^(B-\\d{3}|bar\\.[a-z0-9_]+)$"
+    },
+    "__schema1": {
+      "type": "object",
+      "properties": {
+        "speaker": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tell": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "text"
       ],
       "additionalProperties": false
     }
