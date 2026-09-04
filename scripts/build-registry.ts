@@ -11,7 +11,10 @@ import path from 'node:path';
 import { z } from 'zod';
 import {
   actorSchema,
+  authoredRecordSchema,
   agencyZones,
+  buildDataInventory,
+  ENTITY_CATALOG,
   registryContentHash,
   processSchema,
   eraSchema,
@@ -21,7 +24,9 @@ import {
   formatValidationIssue,
   HOBAKnowledgeGraph,
   interventionSchema,
+  loadArchetypes,
   loadRegistryFromRoot,
+  loadScenarios,
   loopSchema,
   mechanismSchema,
   patternSchema,
@@ -29,7 +34,7 @@ import {
   registryBundleSchema,
   resolveRegistryRoot,
   validateRegistry,
-  type RegistryBundle,
+  type EntityType,
 } from '@hoba/registry';
 
 const SITE_ORIGIN = 'https://hoba.work';
@@ -66,74 +71,25 @@ const resetDir = (dir: string) => {
   fs.mkdirSync(dir, { recursive: true });
 };
 
-type EntityCollection = Exclude<keyof RegistryBundle, 'version' | 'schema_version' | 'updated_at'>;
+const ENTITY_SCHEMAS: Record<EntityType, z.ZodType> = {
+  observation: observationSchema,
+  barrier: barrierSchema,
+  mechanism: mechanismSchema,
+  pattern: patternSchema,
+  loop: loopSchema,
+  intervention: interventionSchema,
+  actor: actorSchema,
+  process: processSchema,
+  era: eraSchema,
+  evidence: evidenceSchema,
+  record: authoredRecordSchema,
+};
 
-interface EntityDef {
-  collection: EntityCollection;
-  name: string;
-  schema: z.ZodType;
-  summary: string;
-}
-
-const ENTITIES: EntityDef[] = [
-  {
-    collection: 'actors',
-    name: 'Actor',
-    schema: actorSchema,
-    summary: 'Actors whose decisions the funnel is made of',
-  },
-  {
-    collection: 'processes',
-    name: 'Process',
-    schema: processSchema,
-    summary: 'State machines the funnel runs as',
-  },
-  {
-    collection: 'eras',
-    name: 'Era',
-    schema: eraSchema,
-    summary: 'Periods of the hiring economy, told as where the money came from',
-  },
-  {
-    collection: 'observations',
-    name: 'Observation',
-    schema: observationSchema,
-    summary: 'Observations',
-  },
-  {
-    collection: 'barriers',
-    name: 'Barrier',
-    schema: barrierSchema,
-    summary: 'Funnel Barriers (strictly acyclic DAG)',
-  },
-  {
-    collection: 'mechanisms',
-    name: 'Mechanism',
-    schema: mechanismSchema,
-    summary: 'Mechanisms with classification facets',
-  },
-  {
-    collection: 'patterns',
-    name: 'Pattern',
-    schema: patternSchema,
-    summary: 'Recurring contradiction patterns',
-  },
-  {
-    collection: 'loops',
-    name: 'Loop',
-    schema: loopSchema,
-    summary: 'Causal loops (Tarjan SCC validated)',
-  },
-  {
-    collection: 'interventions',
-    name: 'Intervention',
-    schema: interventionSchema,
-    summary: 'Targeted system interventions',
-  },
-  { collection: 'evidence', name: 'Evidence', schema: evidenceSchema, summary: 'Evidence records' },
-];
-
-const schemaFile = (name: string) => `${name.toLowerCase()}.schema.json`;
+type EntityDef = (typeof ENTITY_CATALOG)[number] & { schema: z.ZodType };
+const ENTITIES: EntityDef[] = ENTITY_CATALOG.map((entry) => ({
+  ...entry,
+  schema: ENTITY_SCHEMAS[entry.type],
+}));
 
 /**
  * Keep the public draft-07 + `#/definitions/<Name>` contract while using
@@ -171,7 +127,7 @@ function namedJsonSchema(schema: z.ZodType, name: string): Record<string, unknow
 // 1. JSON Schemas
 // ---------------------------------------------------------------------------
 const schemas: Record<string, unknown> = Object.fromEntries(
-  ENTITIES.map((e) => [schemaFile(e.name), namedJsonSchema(e.schema, e.name)])
+  ENTITIES.map((e) => [e.schema_file, namedJsonSchema(e.schema, e.name)])
 );
 schemas['registry.schema.json'] = namedJsonSchema(registryBundleSchema, 'RegistryBundle');
 
@@ -198,6 +154,13 @@ const registryJson = JSON.stringify(bundle, null, 2) + '\n';
 writeText(path.join(latestDir, 'registry.json'), registryJson);
 writeText(path.join(releaseDir, 'registry.json'), registryJson);
 
+const inventory = buildDataInventory(bundle, {
+  scenarios: loadScenarios(root).length,
+  archetypes: loadArchetypes(root).length,
+});
+writeJson(path.join(latestDir, 'inventory.json'), inventory);
+writeJson(path.join(releaseDir, 'inventory.json'), inventory);
+
 const ndjson =
   ENTITIES.flatMap((e) =>
     (bundle[e.collection] as unknown[]).map((item) => JSON.stringify(item))
@@ -212,7 +175,8 @@ const graphml = graph.toGraphML() + '\n';
 writeText(path.join(latestDir, 'graph.graphml'), graphml);
 writeText(path.join(releaseDir, 'graph.graphml'), graphml);
 
-writeJson(path.join(latestDir, 'graph.json'), graph.toCytoscapeJSON());
+const graphProjection = graph.toCytoscapeJSON();
+writeJson(path.join(latestDir, 'graph.json'), graphProjection);
 writeJson(path.join(latestDir, 'schema.json'), schemas['registry.schema.json']);
 writeJson(path.join(latestDir, 'manifest.json'), {
   registry_version: bundle.version,
@@ -229,7 +193,7 @@ writeJson(path.join(latestDir, 'manifest.json'), {
   updated_at: bundle.updated_at,
 });
 console.log(
-  '✓ Generated machine exports (registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
+  '✓ Generated machine exports (inventory.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
 );
 
 // ---------------------------------------------------------------------------
@@ -244,6 +208,7 @@ writeJson(path.join(apiDir, 'index.json'), {
   registry_version: bundle.version,
   schema_version: bundle.schema_version,
   openapi: '/openapi.json',
+  inventory: '/data/latest/inventory.json',
   endpoints: [...ENTITIES.map((e) => `/api/v1/${e.collection}`), '/api/v1/graph'],
 });
 
@@ -276,9 +241,9 @@ for (const e of ENTITIES) {
 
 writeJson(path.join(apiDir, 'graph', 'index.json'), {
   registry_version: bundle.version,
-  nodes_count: graph.nodeMap.size,
+  nodes_count: graphProjection.elements.nodes.length,
   edges_count: graph.edges.length,
-  elements: graph.toCytoscapeJSON().elements,
+  elements: graphProjection.elements,
 });
 
 // ---------------------------------------------------------------------------
@@ -291,7 +256,7 @@ const jsonResponse = (description: string, schema: unknown) => ({
 const listPath = (e: EntityDef) => ({
   get: {
     operationId: `list${e.name}s`,
-    summary: `List all ${e.summary}`,
+    summary: `List all ${e.plural.en}`,
     tags: [e.name],
     responses: jsonResponse('Successful response', {
       type: 'object',
@@ -342,6 +307,10 @@ const openApiSpec = {
     license: { name: 'MIT (code) / CC BY-SA 4.0 (content)', url: `${SITE_ORIGIN}/about#license` },
   },
   servers: [{ url: `${SITE_ORIGIN}/api/v1`, description: 'Canonical Production API' }],
+  externalDocs: {
+    description: 'Complete data inventory, boundaries, formats, and usage guidance',
+    url: `${SITE_ORIGIN}/data/latest/inventory.json`,
+  },
   paths: {
     '/index.json': {
       get: {
@@ -359,7 +328,7 @@ const openApiSpec = {
     '/graph/index.json': {
       get: {
         operationId: 'getGraph',
-        summary: 'Retrieve the complete knowledge graph (Cytoscape.js elements)',
+        summary: 'Retrieve the reader-facing relationship projection (Cytoscape.js elements)',
         responses: jsonResponse('Successful response', {
           type: 'object',
           properties: {
@@ -376,7 +345,7 @@ const openApiSpec = {
     schemas: Object.fromEntries(
       ENTITIES.map((e) => [
         e.name,
-        { $ref: `${SITE_ORIGIN}/schemas/${schemaFile(e.name)}#/definitions/${e.name}` },
+        { $ref: `${SITE_ORIGIN}/schemas/${e.schema_file}#/definitions/${e.name}` },
       ])
     ),
   },

@@ -1,6 +1,8 @@
 import pc from 'picocolors';
 import {
+  buildDataInventory,
   compareBundleStructure,
+  ENTITY_CATALOG,
   evaluatePatternEmptiness,
   formatValidationIssue,
   HOBADiagnosticEngine,
@@ -8,6 +10,7 @@ import {
   empiricalScenarios,
   registryContentHash,
   loadScenarios,
+  loadArchetypes,
   resolveScenarioId,
   lift,
   loadRegistryFromRoot,
@@ -54,22 +57,20 @@ export function parseStage(value: string | undefined): StageId | undefined {
 
 const printJson = (value: unknown) => console.log(JSON.stringify(value, null, 2));
 
-const TYPE_LABELS: Record<SearchableType, string> = {
-  observation: 'Observation',
-  barrier: 'Barrier (B)',
-  mechanism: 'Mechanism (M)',
-  pattern: 'Pattern (P)',
-  loop: 'Loop (L)',
-  intervention: 'Intervention (I)',
-  record: 'Financial Record (R)',
-};
+const TYPE_LABELS = Object.fromEntries(
+  ENTITY_CATALOG.map((entry) => [entry.type, entry.label.en])
+) as Record<SearchableType, string>;
 
 export function cmdSearch(query: string, options: GlobalOptions & { types?: string }) {
   const { bundle } = loadBundle(options);
-  const types = options.types
-    ?.split(',')
-    .map((t) => t.trim())
-    .filter((t): t is SearchableType => t in TYPE_LABELS);
+  const requested = options.types?.split(',').map((t) => t.trim()) ?? [];
+  const unknown = requested.filter((type) => !(type in TYPE_LABELS));
+  if (unknown.length > 0) {
+    throw new CliError(
+      `Unknown entity type(s): ${unknown.join(', ')}. Expected: ${Object.keys(TYPE_LABELS).join(', ')}.`
+    );
+  }
+  const types = requested as SearchableType[];
   const hits = searchBundle(bundle, query, { types: types?.length ? types : undefined });
 
   if (options.json) {
@@ -119,7 +120,9 @@ export function cmdShow(id: string, options: GlobalOptions) {
     return;
   }
 
-  console.log(`Status: ${node.status} | Evidence: ${node.evidence_level}\n`);
+  console.log(
+    `Status: ${node.status}${'evidence_level' in node ? ` | Evidence: ${node.evidence_level}` : ''}\n`
+  );
 
   if ('summary' in node) {
     console.log(pc.yellow('Summary:'));
@@ -182,6 +185,44 @@ export function cmdShow(id: string, options: GlobalOptions) {
       console.log(pc.yellow('Expected Effects:'));
       for (const e of node.expected_effects) console.log(`  - ${e}`);
       console.log(pc.yellow('Measurements:'), node.measurements.join(', '));
+      break;
+    case 'actor':
+      console.log(pc.yellow('Controls:'));
+      for (const item of node.controls) console.log(`  - ${item}`);
+      console.log(pc.yellow('Blind to:'));
+      for (const item of node.blind_to) console.log(`  - ${item}`);
+      console.log(pc.yellow('Incentives:'));
+      for (const item of node.incentives) console.log(`  - ${item}`);
+      break;
+    case 'process':
+      console.log(pc.yellow('Subject:'), node.subject);
+      console.log(pc.yellow('States:'), node.states.length);
+      for (const state of node.states)
+        console.log(`  - ${state.id} [${state.kind}] — ${state.owner}: ${state.title}`);
+      console.log(pc.yellow('Transitions:'), node.transitions.length);
+      break;
+    case 'era':
+      console.log(pc.yellow('Span:'), `${node.from}–${node.to}`);
+      console.log(pc.yellow('Capital:'), node.capital);
+      console.log(pc.yellow('Hiring:'), node.hiring);
+      console.log(pc.yellow('Entry:'), node.entry);
+      if (node.ended_by) console.log(pc.yellow('Ended by:'), node.ended_by);
+      break;
+    case 'record':
+      console.log(
+        pc.yellow('Class:'),
+        node.record_class,
+        '|',
+        pc.yellow('Owner:'),
+        node.owner_actor ?? node.owner,
+        '|',
+        pc.yellow('Visibility:'),
+        node.visibility_default
+      );
+      if (node.flows.length > 0) {
+        console.log(pc.yellow('Flows:'));
+        for (const flow of node.flows) console.log(`  - ${flow.to}: ${flow.label}`);
+      }
       break;
   }
 
@@ -685,9 +726,13 @@ export function cmdScenario(id: string | undefined, options: GlobalOptions) {
     list(`Agency — ${act}`, interventions);
 }
 
-/** `hoba registry stats|version` — what this registry is, in one place (§11). */
+/** `hoba registry stats|version|inventory` — what this registry is, in one place (§11). */
 export function cmdRegistry(sub: string, options: GlobalOptions) {
   const { root, bundle } = loadBundle(options);
+  const inventory = buildDataInventory(bundle, {
+    scenarios: loadScenarios(root).length,
+    archetypes: loadArchetypes(root).length,
+  });
 
   if (sub === 'version') {
     if (options.json) {
@@ -704,23 +749,34 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
     return;
   }
 
-  if (sub !== 'stats')
-    throw new CliError(`Unknown "registry" subcommand "${sub}". Expected "stats" or "version".`);
+  if (sub === 'inventory') {
+    if (options.json) {
+      printJson(inventory);
+      return;
+    }
+    console.log(pc.bold(pc.cyan(`\n=== hoba data inventory ${bundle.version} ===\n`)));
+    for (const entry of inventory.collections) {
+      console.log(
+        `  ${entry.type.padEnd(13)} ${pc.bold(String(entry.count).padStart(3))}  ${pc.dim(entry.purpose.en)}`
+      );
+    }
+    console.log(pc.dim(`\n  ${inventory.totals.ontology_entries} canonical ontology entries`));
+    console.log(
+      pc.dim(
+        `  ${inventory.totals.scenarios} scenario compositions · ${inventory.totals.archetypes} presentation archetypes\n`
+      )
+    );
+    return;
+  }
 
-  const counts = {
-    artifacts: bundle.observations.length,
-    barriers: bundle.barriers.length,
-    mechanisms: bundle.mechanisms.length,
-    patterns: bundle.patterns.length,
-    loops: bundle.loops.length,
-    interventions: bundle.interventions.length,
-    workflows: bundle.processes.length,
-    actors: bundle.actors.length,
-    eras: bundle.eras.length,
-    records: bundle.records.length,
-    evidence: bundle.evidence.length,
-    scenarios: loadScenarios(root).length,
-  };
+  if (sub !== 'stats')
+    throw new CliError(
+      `Unknown "registry" subcommand "${sub}". Expected "stats", "version", or "inventory".`
+    );
+
+  const counts = Object.fromEntries(
+    inventory.collections.map((entry) => [entry.collection, entry.count])
+  );
 
   if (options.json) {
     printJson({
@@ -728,6 +784,10 @@ export function cmdRegistry(sub: string, options: GlobalOptions) {
       registry_hash: registryContentHash(root),
       schema_version: bundle.schema_version,
       counts,
+      auxiliary: {
+        scenarios: inventory.totals.scenarios,
+        archetypes: inventory.totals.archetypes,
+      },
     });
     return;
   }

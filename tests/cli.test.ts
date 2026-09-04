@@ -87,6 +87,13 @@ describe('hoba CLI', { timeout: 20000 }, () => {
     expect(json.results.map((r: { id: string }) => r.id)).toContain(
       'obs.materially_similar_role_reposted_shortly_after_rejection'
     );
+    const actor = JSON.parse(
+      hoba(['search', 'actor.candidate', '--types', 'actor', '--json']).stdout
+    );
+    expect(actor.results[0].id).toBe('actor.candidate');
+    expect(
+      hoba(['search', 'reposted', '--types', 'artifact'], { expectFailure: true }).status
+    ).toBe(1);
   });
 
   it('diagnoses temporal latency and dwell anomalies', () => {
@@ -182,7 +189,10 @@ describe('hoba CLI', { timeout: 20000 }, () => {
   it('reports registry stats and version', () => {
     const stats = JSON.parse(hoba(['registry', 'stats', '--json']).stdout);
     expect(stats.counts.mechanisms).toBeGreaterThan(0);
-    expect(stats.counts.scenarios).toBeGreaterThanOrEqual(2);
+    expect(stats.auxiliary.scenarios).toBeGreaterThanOrEqual(2);
+    const inventory = JSON.parse(hoba(['registry', 'inventory', '--json']).stdout);
+    expect(inventory.collections).toHaveLength(11);
+    expect(inventory.totals.ontology_entries).toBeGreaterThan(100);
     const version = JSON.parse(hoba(['registry', 'version', '--json']).stdout);
     expect(version.registry_version).toMatch(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
     expect(version.registry_hash).toMatch(/^[0-9a-f]{64}$/);

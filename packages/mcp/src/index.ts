@@ -3,11 +3,13 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import {
+  buildDataInventory,
   claimRank,
-  READER_FACING_TYPES,
+  entityTypeSchema,
   registryContentHash,
   empiricalScenarios,
   loadScenarios,
+  loadArchetypes,
   resolveScenarioId,
   evidenceKindSchema,
   evidenceLevelSchema,
@@ -52,12 +54,16 @@ try {
 const bundle = loadRegistryFromRoot(registryRoot);
 const graph = new HOBAKnowledgeGraph(bundle);
 const engine = new HOBADiagnosticEngine(bundle, graph);
+const inventory = buildDataInventory(bundle, {
+  scenarios: loadScenarios(registryRoot).length,
+  archetypes: loadArchetypes(registryRoot).length,
+});
 console.error(`[hoba-mcp] v${version} — registry ${bundle.version} loaded from ${registryRoot}`);
 
 // ---------------------------------------------------------------------------
 // Shared argument schemas
 // ---------------------------------------------------------------------------
-const searchableTypeSchema = z.enum(READER_FACING_TYPES);
+const searchableTypeSchema = entityTypeSchema;
 const relationSchema = z.enum([
   'operates_at',
   'emits',
@@ -107,7 +113,7 @@ const METHODOLOGY = {
     Unknown: 'No claim about the world is being made — a description, not an assertion.',
   },
   ontology: {
-    artifact:
+    observation:
       'obs.* — observable signal received by a candidate (silence, template rejection, repost).',
     barrier: 'bar.* — structural funnel gate; `precedes` edges form a strictly acyclic DAG.',
     mechanism:
@@ -117,7 +123,7 @@ const METHODOLOGY = {
     loop: 'loop.* — persistent causal cycle among mechanisms, validated from graph SCCs.',
     intervention: 'int.* — proposed change targeting a mechanism, barrier, pattern or loop.',
     evidence: 'evidence.* — citation record backing evidence levels.',
-    workflow: 'proc.* — a state machine over one subject, with the actor owning each state named.',
+    process: 'proc.* — a state machine over one subject, with the actor owning each state named.',
     actor: 'actor.* — a position the funnel is made of; addressed at /actors/<slug>.',
     era: 'era.* — a period of the hiring economy, told as where the money came from.',
     record: 'record.* — a financial record; flows between them conserve.',
@@ -157,29 +163,32 @@ server.registerTool(
       schema_version: bundle.schema_version,
       updated_at: bundle.updated_at,
       mode: 'topological_uncalibrated',
-      counts: {
-        artifacts: bundle.observations.length,
-        barriers: bundle.barriers.length,
-        mechanisms: bundle.mechanisms.length,
-        patterns: bundle.patterns.length,
-        loops: bundle.loops.length,
-        interventions: bundle.interventions.length,
-        workflows: bundle.processes.length,
-        actors: bundle.actors.length,
-        eras: bundle.eras.length,
-        records: bundle.records.length,
-        evidence: bundle.evidence.length,
-        scenarios: loadScenarios(registryRoot).length,
+      counts: Object.fromEntries(
+        inventory.collections.map((entry) => [entry.collection, entry.count])
+      ),
+      auxiliary: {
+        scenarios: inventory.totals.scenarios,
+        archetypes: inventory.totals.archetypes,
       },
       stages: stageIdSchema.options,
     })
 );
 
 server.registerTool(
+  'get_data_inventory',
+  {
+    description:
+      'Return the complete data catalog: all 11 canonical ontology collections, auxiliary composition/presentation/derived datasets, supported surfaces, and situation-to-tool guidance.',
+    inputSchema: {},
+  },
+  async () => ok({ inventory })
+);
+
+server.registerTool(
   'search_registry',
   {
     description:
-      'Search across all entities in the hoba knowledge graph (Observations, Barriers, Mechanisms, Patterns, Loops, Interventions) by ID, title or summary.',
+      'Search all 11 canonical ontology collections by ID, title, summary, or description.',
     inputSchema: {
       query: z.string().min(1).describe('Search term or keyword'),
       types: z
@@ -204,8 +213,8 @@ server.registerTool(
         id: h.id,
         title: h.title,
         summary: h.text,
-        status: h.node.status,
-        evidence_level: h.node.evidence_level,
+        status: 'status' in h.node ? h.node.status : undefined,
+        evidence_level: 'evidence_level' in h.node ? h.node.evidence_level : undefined,
       })),
     });
   }
@@ -215,7 +224,7 @@ server.registerTool(
   'get_node',
   {
     description:
-      'Retrieve the full specification of an entity by its canonical dotted ID (e.g. obs.complete_silence_after_submission, bar.recruiter_screening_call, mech.employment_gap_downranking_bias, pat.seniority_double_bind, loop.employment_gap_penalty_loop, int.upfront_compensation_band_disclosure, EVD-001). Legacy short codes (A-001, B-005, M-014, …) still resolve as aliases.',
+      'Retrieve any of the 11 ontology entity types by canonical dotted ID, including actors, processes, eras, evidence, and financial records. Legacy short codes still resolve as aliases where defined.',
     inputSchema: { id: z.string().describe('Canonical hoba entity identifier') },
   },
   async ({ id }) => {

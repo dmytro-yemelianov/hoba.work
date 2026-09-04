@@ -1,0 +1,1035 @@
+{
+  "inventory_version": "1.0.0",
+  "registry_version": "1.1.0",
+  "schema_version": "1.3.0",
+  "updated_at": "2026-09-05T00:00:00Z",
+  "authority_model": {
+    "canonical": {
+      "en": "Authored ontology and evidence: the source of truth.",
+      "uk": "Авторська онтологія та джерела: джерело правди."
+    },
+    "composition": {
+      "en": "Validated references over canonical IDs; never a new entity kind.",
+      "uk": "Валідовані посилання на канонічні ID; ніколи не новий тип сутності."
+    },
+    "presentation": {
+      "en": "Browsing metadata with no evidentiary authority.",
+      "uk": "Метадані для огляду без доказової сили."
+    },
+    "derived": {
+      "en": "Recomputed output; never edited as source.",
+      "uk": "Перерахований результат; ніколи не редагується як джерело."
+    }
+  },
+  "totals": {
+    "ontology_entries": 175,
+    "non_evidence_entries": 124,
+    "collections": 11,
+    "scenarios": 6,
+    "archetypes": 124
+  },
+  "collections": [
+    {
+      "type": "observation",
+      "collection": "observations",
+      "authority": "canonical",
+      "schema_file": "observation.schema.json",
+      "api_path": "/api/v1/observations",
+      "name": "Observation",
+      "plural": {
+        "en": "Observations",
+        "uk": "Спостереження"
+      },
+      "label": {
+        "en": "Observation",
+        "uk": "Спостереження"
+      },
+      "layer": "finding",
+      "source": "data/{lang}/entities/observation/*.md",
+      "id_pattern": "obs.* (legacy A-### aliases resolve)",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/observations/{id}"
+      },
+      "purpose": {
+        "en": "A directly observable trace left by the hiring process.",
+        "uk": "Безпосередньо спостережуваний слід, який залишає процес найму."
+      },
+      "use_when": {
+        "en": "Record what happened before interpreting why it happened.",
+        "uk": "Фіксуйте, що сталося, перш ніж тлумачити, чому це сталося."
+      },
+      "not_for": {
+        "en": "Not a hidden-cause claim or a verdict about intent.",
+        "uk": "Не твердження про приховану причину і не висновок про намір."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": true
+      },
+      "count": 21
+    },
+    {
+      "type": "barrier",
+      "collection": "barriers",
+      "authority": "canonical",
+      "schema_file": "barrier.schema.json",
+      "api_path": "/api/v1/barriers",
+      "name": "Barrier",
+      "plural": {
+        "en": "Barriers",
+        "uk": "Бар’єри"
+      },
+      "label": {
+        "en": "Barrier",
+        "uk": "Бар’єр"
+      },
+      "layer": "finding",
+      "source": "data/{lang}/entities/barrier/*.md",
+      "id_pattern": "bar.* (legacy B-### aliases resolve)",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/barriers/{id}"
+      },
+      "purpose": {
+        "en": "A gate where the nominal hiring path can stop or diverge.",
+        "uk": "Точка, де нормативний шлях найму може зупинитися або відхилитися."
+      },
+      "use_when": {
+        "en": "Locate where progress was blocked.",
+        "uk": "Визначайте, де саме рух зупинився."
+      },
+      "not_for": {
+        "en": "Not an explanation of the force behind the blockage.",
+        "uk": "Не пояснення сили, що спричинила блокування."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": true
+      },
+      "count": 16
+    },
+    {
+      "type": "mechanism",
+      "collection": "mechanisms",
+      "authority": "canonical",
+      "schema_file": "mechanism.schema.json",
+      "api_path": "/api/v1/mechanisms",
+      "name": "Mechanism",
+      "plural": {
+        "en": "Mechanisms",
+        "uk": "Механізми"
+      },
+      "label": {
+        "en": "Mechanism",
+        "uk": "Механізм"
+      },
+      "layer": "finding",
+      "source": "data/{lang}/entities/mechanism/*.md",
+      "id_pattern": "mech.* (legacy M-### aliases resolve)",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/mechanisms/{id}"
+      },
+      "purpose": {
+        "en": "A causal force compatible with one or more observations and barriers.",
+        "uk": "Причинна сила, сумісна з одним або кількома спостереженнями й бар’єрами."
+      },
+      "use_when": {
+        "en": "Build a bounded set of compatible explanations.",
+        "uk": "Будуйте обмежений набір сумісних пояснень."
+      },
+      "not_for": {
+        "en": "Compatibility is not proof, probability, or attribution of motive.",
+        "uk": "Сумісність — не доказ, не ймовірність і не приписування мотиву."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": true
+      },
+      "count": 28
+    },
+    {
+      "type": "pattern",
+      "collection": "patterns",
+      "authority": "canonical",
+      "schema_file": "pattern.schema.json",
+      "api_path": "/api/v1/patterns",
+      "name": "Pattern",
+      "plural": {
+        "en": "Patterns",
+        "uk": "Патерни"
+      },
+      "label": {
+        "en": "Pattern",
+        "uk": "Патерн"
+      },
+      "layer": "finding",
+      "source": "data/{lang}/entities/pattern/*.md",
+      "id_pattern": "pat.* (legacy P-### aliases resolve)",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/patterns/{id}"
+      },
+      "purpose": {
+        "en": "A recurring, rule-defined combination of observations and compatible mechanisms.",
+        "uk": "Повторювана, формально визначена комбінація спостережень і сумісних механізмів."
+      },
+      "use_when": {
+        "en": "Name a cross-case structure.",
+        "uk": "Називайте структуру, що повторюється між випадками."
+      },
+      "not_for": {
+        "en": "Not proof of one cause in one case.",
+        "uk": "Не доказ однієї причини в одному випадку."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": true
+      },
+      "count": 4
+    },
+    {
+      "type": "loop",
+      "collection": "loops",
+      "authority": "canonical",
+      "schema_file": "loop.schema.json",
+      "api_path": "/api/v1/loops",
+      "name": "Loop",
+      "plural": {
+        "en": "Loops",
+        "uk": "Петлі"
+      },
+      "label": {
+        "en": "Loop",
+        "uk": "Петля"
+      },
+      "layer": "finding",
+      "source": "data/{lang}/entities/loop/*.md",
+      "id_pattern": "loop.* (legacy L-### aliases resolve)",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/loops/{id}"
+      },
+      "purpose": {
+        "en": "A validated reinforcing cycle among mechanisms.",
+        "uk": "Валідований підсилювальний цикл між механізмами."
+      },
+      "use_when": {
+        "en": "Explain why a condition persists or compounds.",
+        "uk": "Пояснюйте, чому стан зберігається або посилюється."
+      },
+      "not_for": {
+        "en": "Not every repetition is a feedback loop.",
+        "uk": "Не кожне повторення є петлею зворотного зв’язку."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": true
+      },
+      "count": 3
+    },
+    {
+      "type": "intervention",
+      "collection": "interventions",
+      "authority": "canonical",
+      "schema_file": "intervention.schema.json",
+      "api_path": "/api/v1/interventions",
+      "name": "Intervention",
+      "plural": {
+        "en": "Interventions",
+        "uk": "Втручання"
+      },
+      "label": {
+        "en": "Intervention",
+        "uk": "Втручання"
+      },
+      "layer": "finding",
+      "source": "data/{lang}/entities/intervention/*.md",
+      "id_pattern": "int.* (legacy I-### aliases resolve)",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/interventions/{id}"
+      },
+      "purpose": {
+        "en": "An actor-owned change aimed at a barrier, mechanism, pattern, or loop.",
+        "uk": "Зміна під контролем визначеного актора, спрямована на бар’єр, механізм, патерн або петлю."
+      },
+      "use_when": {
+        "en": "Ask what could change the system and who can do it.",
+        "uk": "Визначайте, що може змінити систему і хто це контролює."
+      },
+      "not_for": {
+        "en": "Not a promise of an employment outcome.",
+        "uk": "Не обіцянка працевлаштування."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": true
+      },
+      "count": 24
+    },
+    {
+      "type": "actor",
+      "collection": "actors",
+      "authority": "canonical",
+      "schema_file": "actor.schema.json",
+      "api_path": "/api/v1/actors",
+      "name": "Actor",
+      "plural": {
+        "en": "Actors",
+        "uk": "Актори"
+      },
+      "label": {
+        "en": "Actor",
+        "uk": "Актор"
+      },
+      "layer": "context",
+      "source": "data/{lang}/entities/actor/*.md",
+      "id_pattern": "actor.*",
+      "web": {
+        "availability": "detail",
+        "path": "/{locale}/actors/{slug}"
+      },
+      "purpose": {
+        "en": "A decision seat with explicit controls, blind spots, and incentives.",
+        "uk": "Позиція ухвалення рішень із явними важелями, сліпими зонами та стимулами."
+      },
+      "use_when": {
+        "en": "Identify who controls a state or intervention.",
+        "uk": "Визначайте, хто контролює стан або втручання."
+      },
+      "not_for": {
+        "en": "Not a named person, employer, or moral category.",
+        "uk": "Не конкретна особа, роботодавець чи моральна категорія."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": false
+      },
+      "count": 7
+    },
+    {
+      "type": "process",
+      "collection": "processes",
+      "authority": "canonical",
+      "schema_file": "process.schema.json",
+      "api_path": "/api/v1/processes",
+      "name": "Process",
+      "plural": {
+        "en": "Processes",
+        "uk": "Процеси"
+      },
+      "label": {
+        "en": "Process",
+        "uk": "Процес"
+      },
+      "layer": "context",
+      "source": "data/{lang}/entities/process/*.md",
+      "id_pattern": "proc.* (legacy WF-### aliases resolve)",
+      "web": {
+        "availability": "index",
+        "path": "/{locale}/process"
+      },
+      "purpose": {
+        "en": "A state machine naming the subject, states, owners, transitions, and expected timing.",
+        "uk": "Машина станів із предметом, станами, власниками, переходами та очікуваною тривалістю."
+      },
+      "use_when": {
+        "en": "Locate a situation in the hiring workflow.",
+        "uk": "Розміщуйте ситуацію в процесі найму."
+      },
+      "not_for": {
+        "en": "Not a claim that every employer follows one path.",
+        "uk": "Не твердження, що кожен роботодавець іде одним шляхом."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": false
+      },
+      "count": 4
+    },
+    {
+      "type": "era",
+      "collection": "eras",
+      "authority": "canonical",
+      "schema_file": "era.schema.json",
+      "api_path": "/api/v1/eras",
+      "name": "Era",
+      "plural": {
+        "en": "Eras",
+        "uk": "Ери"
+      },
+      "label": {
+        "en": "Era",
+        "uk": "Ера"
+      },
+      "layer": "context",
+      "source": "data/{lang}/entities/era/*.md",
+      "id_pattern": "era.* (legacy E-### aliases resolve)",
+      "web": {
+        "availability": "index",
+        "path": "/{locale}/eras"
+      },
+      "purpose": {
+        "en": "A sourced period of hiring economics: capital, hiring behavior, entry paths, and its ending.",
+        "uk": "Підкріплений джерелами період економіки найму: капітал, поведінка найму, шляхи входу та завершення."
+      },
+      "use_when": {
+        "en": "Add macroeconomic context to a change over time.",
+        "uk": "Додавайте макроекономічний контекст до змін у часі."
+      },
+      "not_for": {
+        "en": "Not an individual forecast.",
+        "uk": "Не індивідуальний прогноз."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": false
+      },
+      "count": 4
+    },
+    {
+      "type": "evidence",
+      "collection": "evidence",
+      "authority": "canonical",
+      "schema_file": "evidence.schema.json",
+      "api_path": "/api/v1/evidence",
+      "name": "Evidence",
+      "plural": {
+        "en": "Evidence records",
+        "uk": "Записи джерел"
+      },
+      "label": {
+        "en": "Evidence record",
+        "uk": "Запис джерела"
+      },
+      "layer": "support",
+      "source": "data/evidence/*.md",
+      "id_pattern": "evidence.* (legacy EVD-### aliases resolve)",
+      "web": {
+        "availability": "none"
+      },
+      "purpose": {
+        "en": "A language-neutral source supporting registry claims.",
+        "uk": "Мовно нейтральне джерело, що підтримує твердження реєстру."
+      },
+      "use_when": {
+        "en": "Verify where a claim came from and how strong it is.",
+        "uk": "Перевіряйте походження твердження та силу його підтвердження."
+      },
+      "not_for": {
+        "en": "A citation does not establish claims the source does not make.",
+        "uk": "Посилання не доводить тверджень, яких джерело не робить."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": false
+      },
+      "count": 51
+    },
+    {
+      "type": "record",
+      "collection": "records",
+      "authority": "canonical",
+      "schema_file": "record.schema.json",
+      "api_path": "/api/v1/records",
+      "name": "Record",
+      "plural": {
+        "en": "Financial records",
+        "uk": "Фінансові записи"
+      },
+      "label": {
+        "en": "Financial record",
+        "uk": "Фінансовий запис"
+      },
+      "layer": "support",
+      "source": "data/{lang}/entities/record/*.md",
+      "id_pattern": "record.* (legacy R-### aliases resolve)",
+      "web": {
+        "availability": "none"
+      },
+      "purpose": {
+        "en": "A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.",
+        "uk": "Стійкий стан бюджету, контракту, фінансування, комісії, зарплат, підписки або runway з явними потоками."
+      },
+      "use_when": {
+        "en": "Trace ownership, funding, and conservation of value.",
+        "uk": "Відстежуйте власність, фінансування та збереження вартості."
+      },
+      "not_for": {
+        "en": "Not a public-company filing or personal financial advice.",
+        "uk": "Не корпоративна звітність і не персональна фінансова порада."
+      },
+      "surfaces": {
+        "bulk_json": true,
+        "ndjson": true,
+        "rest": true,
+        "json_schema": true,
+        "search": true,
+        "lookup": true,
+        "graph_projection": false
+      },
+      "count": 13
+    }
+  ],
+  "auxiliary_datasets": [
+    {
+      "id": "scenarios",
+      "authority": "composition",
+      "label": {
+        "en": "Validated scenarios",
+        "uk": "Валідовані сценарії"
+      },
+      "source": "data/scenarios/*.yaml",
+      "purpose": {
+        "en": "Reusable situations composed from canonical entity IDs and explicit non-inferences.",
+        "uk": "Повторно використовувані ситуації, складені з канонічних ID та явних невисновків."
+      },
+      "use_when": {
+        "en": "Start from a known situation instead of individual IDs.",
+        "uk": "Починайте з відомої ситуації, а не з окремих ID."
+      },
+      "not_for": {
+        "en": "A scenario is not an ontology entity or a claim that every case matches it.",
+        "uk": "Сценарій не є сутністю онтології й не стверджує, що кожен випадок йому відповідає."
+      },
+      "count": 6
+    },
+    {
+      "id": "archetypes",
+      "authority": "presentation",
+      "label": {
+        "en": "Archetype overlays",
+        "uk": "Архетипні накладки"
+      },
+      "source": "data/archetypes/*.yaml",
+      "purpose": {
+        "en": "A nickname and grid placement for browsing every non-evidence ontology entry.",
+        "uk": "Псевдонім і позиція в сітці для огляду кожної сутності онтології, крім джерел."
+      },
+      "use_when": {
+        "en": "Browse or remember the catalog informally.",
+        "uk": "Неформально переглядайте або запам’ятовуйте каталог."
+      },
+      "not_for": {
+        "en": "Archetypes are presentation, not evidence or canonical facts.",
+        "uk": "Архетипи — подання, а не докази чи канонічні факти."
+      },
+      "count": 124
+    },
+    {
+      "id": "formal-substrate",
+      "authority": "derived",
+      "label": {
+        "en": "Formal substrate",
+        "uk": "Формальний субстрат"
+      },
+      "source": "Derived by lift(bundle); never authored directly",
+      "purpose": {
+        "en": "A four-primitive projection used for proofs, conservation checks, and cross-cutting queries.",
+        "uk": "Проєкція на чотири примітиви для доказів, перевірок збереження та наскрізних запитів."
+      },
+      "use_when": {
+        "en": "Run formal checks over the authored registry.",
+        "uk": "Запускайте формальні перевірки над авторським реєстром."
+      },
+      "not_for": {
+        "en": "Never edit the substrate as a second source of truth.",
+        "uk": "Ніколи не редагуйте субстрат як друге джерело правди."
+      },
+      "count": null
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "web",
+      "label": {
+        "en": "Website",
+        "uk": "Вебсайт"
+      },
+      "location": "https://hoba.work",
+      "includes": {
+        "en": "Curated reader views, analysis, scenarios, context, and this inventory.",
+        "uk": "Кураторські читацькі подання, аналіз, сценарії, контекст і цей інвентар."
+      },
+      "best_for": {
+        "en": "Reading and exploration.",
+        "uk": "Читання та дослідження."
+      },
+      "caveat": {
+        "en": "Not every support record has a dedicated page.",
+        "uk": "Не кожен допоміжний запис має окрему сторінку."
+      }
+    },
+    {
+      "id": "source",
+      "label": {
+        "en": "Authored source",
+        "uk": "Авторські джерела"
+      },
+      "location": "data/** + registry.yaml",
+      "includes": {
+        "en": "The canonical bilingual ontology, evidence, scenarios, and presentation overlays.",
+        "uk": "Канонічна двомовна онтологія, джерела, сценарії та презентаційні накладки."
+      },
+      "best_for": {
+        "en": "Reviewing or proposing changes.",
+        "uk": "Перегляд або пропозиція змін."
+      },
+      "caveat": {
+        "en": "Generated files must never be edited by hand.",
+        "uk": "Згенеровані файли не можна редагувати вручну."
+      }
+    },
+    {
+      "id": "rest",
+      "label": {
+        "en": "Static REST API",
+        "uk": "Статичний REST API"
+      },
+      "location": "/api/v1/{collection}",
+      "includes": {
+        "en": "Lists and per-ID documents for all 11 ontology collections, plus the graph projection.",
+        "uk": "Списки та документи за ID для всіх 11 колекцій онтології, а також графова проєкція."
+      },
+      "best_for": {
+        "en": "Simple HTTP integrations and one-record lookup.",
+        "uk": "Прості HTTP-інтеграції та отримання одного запису."
+      },
+      "caveat": {
+        "en": "Read-only and release-versioned.",
+        "uk": "Лише читання та версіонування за релізами."
+      }
+    },
+    {
+      "id": "bulk-json",
+      "label": {
+        "en": "Registry JSON",
+        "uk": "JSON реєстру"
+      },
+      "location": "/data/latest/registry.json",
+      "includes": {
+        "en": "The complete 11-collection ontology bundle.",
+        "uk": "Повний пакет онтології з 11 колекцій."
+      },
+      "best_for": {
+        "en": "Bulk ingestion and reproducible snapshots.",
+        "uk": "Масове завантаження та відтворювані знімки."
+      },
+      "caveat": {
+        "en": "Scenarios and archetypes are separate datasets.",
+        "uk": "Сценарії та архетипи є окремими наборами."
+      }
+    },
+    {
+      "id": "ndjson",
+      "label": {
+        "en": "NDJSON",
+        "uk": "NDJSON"
+      },
+      "location": "/data/latest/registry.ndjson",
+      "includes": {
+        "en": "One line per ontology entry across all 11 collections.",
+        "uk": "Один рядок на кожну сутність усіх 11 колекцій."
+      },
+      "best_for": {
+        "en": "Streaming, indexing, and line-oriented ETL.",
+        "uk": "Потокова обробка, індексація та рядковий ETL."
+      },
+      "caveat": {
+        "en": "Release metadata lives in manifest.json.",
+        "uk": "Метадані релізу містяться в manifest.json."
+      }
+    },
+    {
+      "id": "graph",
+      "label": {
+        "en": "Graph exports",
+        "uk": "Графові експорти"
+      },
+      "location": "/data/latest/{graph.json,graph.graphml,nodes.csv,edges.csv}",
+      "includes": {
+        "en": "The six reader-facing finding types and their causal/topological relations.",
+        "uk": "Шість читацьких типів знахідок та їхні причинні/топологічні зв’язки."
+      },
+      "best_for": {
+        "en": "Network analysis and visualization.",
+        "uk": "Мережевий аналіз і візуалізація."
+      },
+      "caveat": {
+        "en": "This is a projection, not the complete ontology inventory.",
+        "uk": "Це проєкція, а не повний інвентар онтології."
+      }
+    },
+    {
+      "id": "schemas",
+      "label": {
+        "en": "JSON Schemas",
+        "uk": "JSON Schema"
+      },
+      "location": "/schemas/*.schema.json",
+      "includes": {
+        "en": "Draft-07 schemas for all 11 entity types and the complete bundle.",
+        "uk": "Draft-07 схеми для всіх 11 типів сутностей і повного пакета."
+      },
+      "best_for": {
+        "en": "Validating files and generating typed clients.",
+        "uk": "Валідація файлів і генерація типізованих клієнтів."
+      },
+      "caveat": {
+        "en": "Semantic cross-record rules still require the validator.",
+        "uk": "Семантичні міжзаписні правила все одно потребують валідатора."
+      }
+    },
+    {
+      "id": "openapi",
+      "label": {
+        "en": "OpenAPI",
+        "uk": "OpenAPI"
+      },
+      "location": "/openapi.json",
+      "includes": {
+        "en": "The read-only REST contract for all 11 collections and graph projection.",
+        "uk": "Контракт REST лише для читання для всіх 11 колекцій і графової проєкції."
+      },
+      "best_for": {
+        "en": "Client generation and API discovery.",
+        "uk": "Генерація клієнтів і огляд API."
+      },
+      "caveat": {
+        "en": "Static hosting means there are no write operations.",
+        "uk": "Статичний хостинг не має операцій запису."
+      }
+    },
+    {
+      "id": "cli",
+      "label": {
+        "en": "CLI",
+        "uk": "CLI"
+      },
+      "location": "hoba",
+      "includes": {
+        "en": "Search, lookup, scenarios, diagnostics, validation, timing, runway, graph, and formal checks.",
+        "uk": "Пошук, lookup, сценарії, діагностика, валідація, час, runway, граф і формальні перевірки."
+      },
+      "best_for": {
+        "en": "Local automation, CI, and human-readable investigation.",
+        "uk": "Локальна автоматизація, CI та читабельне дослідження."
+      },
+      "caveat": {
+        "en": "Run against a registry checkout; use --json for automation.",
+        "uk": "Запускайте на checkout реєстру; для автоматизації використовуйте --json."
+      }
+    },
+    {
+      "id": "mcp",
+      "label": {
+        "en": "MCP server",
+        "uk": "MCP-сервер"
+      },
+      "location": "@hoba/mcp",
+      "includes": {
+        "en": "Canonical lookup/search plus deterministic diagnostic and validation tools.",
+        "uk": "Канонічний lookup/search та детерміновані діагностичні й валідаційні інструменти."
+      },
+      "best_for": {
+        "en": "Agent and LLM tool use without copying the dataset into prompts.",
+        "uk": "Використання агентами та LLM без копіювання набору в промпти."
+      },
+      "caveat": {
+        "en": "Natural-language reasoning belongs to the client; MCP returns data and checks.",
+        "uk": "Мовне міркування належить клієнту; MCP повертає дані та перевірки."
+      }
+    },
+    {
+      "id": "llm-text",
+      "label": {
+        "en": "LLM discovery text",
+        "uk": "Текст для LLM"
+      },
+      "location": "/llms.txt + /llms-full.txt",
+      "includes": {
+        "en": "A compact map and a full readable snapshot of the documented registry.",
+        "uk": "Компактна мапа та повний читабельний знімок задокументованого реєстру."
+      },
+      "best_for": {
+        "en": "Retrieval/bootstrap when MCP is unavailable.",
+        "uk": "Початкове завантаження або retrieval, коли MCP недоступний."
+      },
+      "caveat": {
+        "en": "Prefer MCP or structured exports for exact IDs and current counts.",
+        "uk": "Для точних ID і актуальних підрахунків віддавайте перевагу MCP або структурованим експортам."
+      }
+    },
+    {
+      "id": "validation",
+      "label": {
+        "en": "Validation tools",
+        "uk": "Інструменти валідації"
+      },
+      "location": "hoba validate / MCP validate_* / HTTP validation endpoints",
+      "includes": {
+        "en": "Schema, referential, graph, mirror-parity, scenario, analysis, and claim checks.",
+        "uk": "Перевірки схем, посилань, графа, паритету мовних дзеркал, сценаріїв, аналізів і тверджень."
+      },
+      "best_for": {
+        "en": "Checking proposed data and integrations before publication.",
+        "uk": "Перевірка запропонованих даних та інтеграцій до публікації."
+      },
+      "caveat": {
+        "en": "Validation proves conformance, not that a causal claim is true.",
+        "uk": "Валідація доводить відповідність, а не істинність причинного твердження."
+      }
+    },
+    {
+      "id": "lean",
+      "label": {
+        "en": "Lean projection",
+        "uk": "Lean-проєкція"
+      },
+      "location": "formal/HOBA/GeneratedData.lean",
+      "includes": {
+        "en": "Generated formal data used by theorem checks.",
+        "uk": "Згенеровані формальні дані для перевірки теорем."
+      },
+      "best_for": {
+        "en": "Machine-checked invariants.",
+        "uk": "Машинно перевірені інваріанти."
+      },
+      "caveat": {
+        "en": "Derived from canonical data; never edit generated Lean by hand.",
+        "uk": "Виводиться з канонічних даних; не редагуйте згенерований Lean вручну."
+      }
+    }
+  ],
+  "situations": [
+    {
+      "id": "read",
+      "situation": {
+        "en": "Understand one concept in context",
+        "uk": "Зрозуміти одне поняття в контексті"
+      },
+      "recommended": [
+        "web"
+      ],
+      "action": {
+        "en": "Open the reader page; follow related entries and evidence.",
+        "uk": "Відкрийте читацьку сторінку; переходьте до пов’язаних сутностей і джерел."
+      }
+    },
+    {
+      "id": "lookup",
+      "situation": {
+        "en": "Fetch one known canonical ID",
+        "uk": "Отримати один відомий канонічний ID"
+      },
+      "recommended": [
+        "rest",
+        "cli",
+        "mcp"
+      ],
+      "action": {
+        "en": "GET the collection item, run hoba show, or call get_node.",
+        "uk": "Зробіть GET елемента колекції, виконайте hoba show або викличте get_node."
+      }
+    },
+    {
+      "id": "search",
+      "situation": {
+        "en": "Find concepts without knowing an ID",
+        "uk": "Знайти поняття без знання ID"
+      },
+      "recommended": [
+        "cli",
+        "mcp"
+      ],
+      "action": {
+        "en": "Search all 11 ontology collections by ID, title, and prose.",
+        "uk": "Шукайте в усіх 11 колекціях за ID, назвою та текстом."
+      }
+    },
+    {
+      "id": "known-situation",
+      "situation": {
+        "en": "Start from a recurring real-world situation",
+        "uk": "Почати з повторюваної реальної ситуації"
+      },
+      "recommended": [
+        "web",
+        "cli",
+        "mcp"
+      ],
+      "action": {
+        "en": "Use a validated scenario, then inspect its explicit non-inferences.",
+        "uk": "Використайте валідований сценарій і перевірте його явні невисновки."
+      }
+    },
+    {
+      "id": "diagnose",
+      "situation": {
+        "en": "Separate observations from compatible causes",
+        "uk": "Відокремити спостереження від сумісних причин"
+      },
+      "recommended": [
+        "cli",
+        "mcp",
+        "web"
+      ],
+      "action": {
+        "en": "Run the H→O→B→A diagnostic protocol; do not jump from signal to motive.",
+        "uk": "Запустіть діагностичний протокол H→O→B→A; не переходьте від сигналу прямо до мотиву."
+      }
+    },
+    {
+      "id": "bulk",
+      "situation": {
+        "en": "Load the entire ontology into a data system",
+        "uk": "Завантажити всю онтологію в систему даних"
+      },
+      "recommended": [
+        "bulk-json",
+        "ndjson"
+      ],
+      "action": {
+        "en": "Use registry.json for one snapshot or NDJSON for streaming.",
+        "uk": "Використайте registry.json для знімка або NDJSON для потоку."
+      }
+    },
+    {
+      "id": "network",
+      "situation": {
+        "en": "Analyze causal/topological relationships",
+        "uk": "Аналізувати причинні/топологічні зв’язки"
+      },
+      "recommended": [
+        "graph"
+      ],
+      "action": {
+        "en": "Use graph JSON/GraphML/CSV; remember it is the six-type finding projection.",
+        "uk": "Використайте graph JSON/GraphML/CSV; пам’ятайте, що це проєкція шести типів знахідок."
+      }
+    },
+    {
+      "id": "integrate",
+      "situation": {
+        "en": "Build a typed integration",
+        "uk": "Побудувати типізовану інтеграцію"
+      },
+      "recommended": [
+        "openapi",
+        "schemas",
+        "rest"
+      ],
+      "action": {
+        "en": "Generate a client from OpenAPI and validate payloads with JSON Schema.",
+        "uk": "Згенеруйте клієнт з OpenAPI та валідуйте payload через JSON Schema."
+      }
+    },
+    {
+      "id": "agent",
+      "situation": {
+        "en": "Give an agent exact registry access",
+        "uk": "Дати агенту точний доступ до реєстру"
+      },
+      "recommended": [
+        "mcp"
+      ],
+      "action": {
+        "en": "Connect the MCP server so the model calls tools instead of guessing from copied prose.",
+        "uk": "Під’єднайте MCP-сервер, щоб модель викликала інструменти, а не вгадувала з копійованого тексту."
+      }
+    },
+    {
+      "id": "contribute",
+      "situation": {
+        "en": "Add or change registry data",
+        "uk": "Додати або змінити дані реєстру"
+      },
+      "recommended": [
+        "source",
+        "validation"
+      ],
+      "action": {
+        "en": "Edit authored data only, run strict validation and the build, then review generated drift.",
+        "uk": "Редагуйте лише авторські дані, запустіть strict validation і build, потім перевірте generated drift."
+      }
+    },
+    {
+      "id": "prove",
+      "situation": {
+        "en": "Verify formal invariants",
+        "uk": "Перевірити формальні інваріанти"
+      },
+      "recommended": [
+        "validation",
+        "lean"
+      ],
+      "action": {
+        "en": "Regenerate the formal projection and run the Lean checks.",
+        "uk": "Перегенеруйте формальну проєкцію та запустіть Lean-перевірки."
+      }
+    }
+  ],
+  "latest_exports": [
+    "inventory.json",
+    "registry.json",
+    "registry.ndjson",
+    "nodes.csv",
+    "edges.csv",
+    "graph.graphml",
+    "graph.json",
+    "schema.json",
+    "manifest.json"
+  ]
+}

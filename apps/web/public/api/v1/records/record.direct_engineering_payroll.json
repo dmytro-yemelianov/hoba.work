@@ -1,0 +1,21 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Direct Engineering Payroll",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Direct Engineering Payroll\n\nDirect recurring payroll compensation paid to the employed engineer.",
+    "aliases": [
+      "R-003"
+    ],
+    "id": "record.direct_engineering_payroll",
+    "type": "record",
+    "record_class": "payroll",
+    "owner": "inside",
+    "owner_actor": "actor.employer_policy",
+    "summary": "Direct recurring payroll compensation paid to the employed engineer.",
+    "flows": [],
+    "visibility_default": "observable",
+    "evidence_level": "supported"
+  }
+}

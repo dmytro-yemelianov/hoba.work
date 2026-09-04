@@ -49,7 +49,7 @@ program
   .description('Search across all entities in the hoba knowledge graph')
   .option(
     '-t, --types <list>',
-    'Comma-separated entity types to include (artifact,barrier,mechanism,pattern,loop,intervention)'
+    'Comma-separated ontology types to include (observation,barrier,mechanism,pattern,loop,intervention,actor,process,era,evidence,record)'
   )
   .action((query: string, opts: { types?: string }, cmd: Command) => {
     run(() => cmdSearch(query, { ...(cmd.optsWithGlobals() as GlobalOptions), ...opts }));
@@ -85,7 +85,9 @@ program
 
 program
   .command('registry <subcommand>')
-  .description('Registry metadata: "stats" for entity counts, "version" for the release it is')
+  .description(
+    'Registry metadata: "stats" for counts, "version" for release metadata, "inventory" for the full data catalog'
+  )
   .action((sub: string, _opts: unknown, cmd: Command) => {
     run(() => cmdRegistry(sub, cmd.optsWithGlobals() as GlobalOptions));
   });

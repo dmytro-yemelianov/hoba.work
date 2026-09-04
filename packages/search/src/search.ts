@@ -1,15 +1,15 @@
-import { READER_FACING_TYPES, type ReaderFacingType } from '@hoba/registry-core/schemas';
-import type { RegistryBundle, RegistryNode } from '@hoba/registry-core/types';
+import { ENTITY_TYPES } from '@hoba/registry-core/catalog';
+import {
+  nodesOfTypes,
+  type AnyRecord,
+  type EntityType,
+  type RegistryBundle,
+} from '@hoba/registry-core/types';
 
 /**
- * What `searchBundle` actually indexes: the six kinds a reader meets, plus
- * records.
- *
- * It used to be `Exclude<EntityType, 'evidence'>`, which was only correct while
- * those two lists happened to agree. They no longer do: the type enum covers
- * all eleven ontology kinds, and search covers the seven with prose to search.
+ * What `searchBundle` indexes: every canonical ontology collection.
  */
-export type SearchableType = ReaderFacingType | 'record';
+export type SearchableType = EntityType;
 
 export interface SearchHit {
   type: SearchableType;
@@ -17,7 +17,7 @@ export interface SearchHit {
   title: string;
   /** The searchable prose for the node (summary, or description for barriers). */
   text: string;
-  node: RegistryNode;
+  node: AnyRecord;
   /** Lower is better. 0 = exact ID match, 1 = title match, 2 = prose match. */
   rank: number;
 }
@@ -27,8 +27,7 @@ export interface SearchOptions {
   limit?: number;
 }
 
-const nodeText = (node: RegistryNode): string =>
-  'summary' in node ? node.summary : node.description;
+const nodeText = (node: AnyRecord): string => ('summary' in node ? node.summary : node.description);
 
 /**
  * Case-insensitive substring search across IDs, titles and summaries.
@@ -43,17 +42,8 @@ export function searchBundle(
   const q = query.trim().toLowerCase();
   if (!q) return [];
 
-  const wanted = new Set<SearchableType>(options.types ?? [...READER_FACING_TYPES, 'record']);
-
-  const pools: RegistryNode[] = [
-    ...bundle.observations,
-    ...bundle.barriers,
-    ...bundle.mechanisms,
-    ...bundle.patterns,
-    ...bundle.loops,
-    ...bundle.interventions,
-    ...(bundle.records ?? []),
-  ];
+  const wanted = new Set<SearchableType>(options.types ?? ENTITY_TYPES);
+  const pools = nodesOfTypes(bundle, ENTITY_TYPES);
 
   const hits: SearchHit[] = [];
   for (const node of pools) {

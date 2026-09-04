@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Candidate Liquid Savings",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Candidate Liquid Savings\n\nTotal liquid personal savings allocated to sustain the job search interval.",
+    "aliases": [
+      "R-011"
+    ],
+    "id": "record.candidate_liquid_savings",
+    "type": "record",
+    "record_class": "runway",
+    "owner": "inside",
+    "owner_actor": "actor.candidate",
+    "summary": "Total liquid personal savings allocated to sustain the job search interval.",
+    "flows": [
+      {
+        "to": "record.candidate_search_runway",
+        "label": "search runway allocation",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "burn"
+      }
+    ],
+    "visibility_default": "observable",
+    "evidence_level": "supported"
+  }
+}

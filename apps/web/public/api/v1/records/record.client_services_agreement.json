@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Client Services Agreement",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Client Services Agreement\n\nCommercial contract defining billing rate and seat scope.",
+    "aliases": [
+      "R-005"
+    ],
+    "id": "record.client_services_agreement",
+    "type": "record",
+    "record_class": "contract",
+    "owner": "outside-party",
+    "owner_actor": "actor.client",
+    "summary": "Commercial contract defining billing rate and seat scope.",
+    "flows": [
+      {
+        "to": "record.vendor_margin_and_headcount_allocation",
+        "label": "vendor margin split",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "margin"
+      }
+    ],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

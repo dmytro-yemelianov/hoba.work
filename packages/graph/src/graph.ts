@@ -4,6 +4,8 @@ import type {
   GraphRelation,
   RegistryBundle,
 } from '@hoba/registry-core/types';
+import { nodesOfTypes } from '@hoba/registry-core/types';
+import { ENTITY_TYPES } from '@hoba/registry-core/catalog';
 
 export interface NeighborhoodOptions {
   depth?: number;
@@ -25,20 +27,12 @@ export class HOBAKnowledgeGraph {
   }
 
   private indexNodes() {
-    const collections = [
-      this.bundle.observations,
-      this.bundle.barriers,
-      this.bundle.mechanisms,
-      this.bundle.patterns,
-      this.bundle.loops,
-      this.bundle.interventions,
-      this.bundle.evidence,
-    ];
-    for (const coll of collections) {
-      for (const item of coll) {
-        this.nodeMap.set(item.id, item);
-        for (const alias of (item as { aliases?: string[] }).aliases ?? []) {
-          this.nodeMap.set(alias, item);
+    for (const item of nodesOfTypes(this.bundle, ENTITY_TYPES)) {
+      this.nodeMap.set(item.id, item);
+      const aliases = (item as { aliases?: unknown }).aliases;
+      if (Array.isArray(aliases)) {
+        for (const alias of aliases) {
+          if (typeof alias === 'string') this.nodeMap.set(alias, item);
         }
       }
     }

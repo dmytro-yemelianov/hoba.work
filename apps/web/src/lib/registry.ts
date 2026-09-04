@@ -6,6 +6,7 @@
  */
 import {
   archetypeBoxName,
+  buildDataInventory,
   empiricalScenarios,
   findRegistryRoot,
   HOBADiagnosticEngine,
@@ -377,6 +378,14 @@ export { type EmpiricalScenario };
  */
 export const ARCHETYPES = loadArchetypes(registryRoot);
 export { archetypeBoxName, type Archetype, type ArchetypeAxisX, type ArchetypeAxisY };
+
+/** The same measured inventory published as `/data/latest/inventory.json`. */
+export function getDataInventory(lang: ContentLang = 'en') {
+  return buildDataInventory(getBundle(lang), {
+    scenarios: loadScenarios(registryRoot).length,
+    archetypes: ARCHETYPES.length,
+  });
+}
 
 /** Only the entity types that render an individual detail page today. */
 const ARCHETYPE_ENTITY_ROUTES: Record<string, string> = {

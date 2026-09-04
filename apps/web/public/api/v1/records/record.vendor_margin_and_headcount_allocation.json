@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Vendor Margin and Headcount Allocation",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Vendor Margin and Headcount Allocation\n\nInternal vendor allocation splitting client billing into gross margin and candidate cost.",
+    "aliases": [
+      "R-006"
+    ],
+    "id": "record.vendor_margin_and_headcount_allocation",
+    "type": "record",
+    "record_class": "requisition-funding",
+    "owner": "inside",
+    "owner_actor": "actor.employer_policy",
+    "summary": "Internal vendor allocation splitting client billing into gross margin and candidate cost.",
+    "flows": [
+      {
+        "to": "record.subcontractor_compensation",
+        "label": "contractor payroll allocation",
+        "percentage": 75,
+        "fraction": 0.75,
+        "split_type": "payroll"
+      }
+    ],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

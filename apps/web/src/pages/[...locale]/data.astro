@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import { coverage, getBundle, STAGES } from '../../lib/registry';
+import { coverage, getBundle, getDataInventory, STAGES } from '../../lib/registry';
 import { evaluatePatternEmptiness, gaps as derived, lift, substrateVerifyFlowConservation } from '@hoba/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations, interpolated } from '../../i18n/utils';
 
@@ -13,6 +13,7 @@ export function getStaticPaths() {
 const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const bundle = getBundle(lang);
+const inventory = getDataInventory(lang);
 const lifted = lift(bundle);
 const patternReport = evaluatePatternEmptiness(lifted);
 const flowReport = substrateVerifyFlowConservation(lifted.substrate);
@@ -81,6 +82,7 @@ const bars = [
 ];
 
 const tocItems = [
+  { id: 'data-inventory', label: lang === 'uk' ? 'Інвентар' : 'Inventory', icon: '🧭' },
   { id: 'data-overview', label: t('data.metric.barriers'), icon: '📊' },
   { id: 'data-removability', label: t('data.removability.title'), icon: '🎯' },
   { id: 'data-nature-grid', label: t('data.natureGrid.title'), icon: '🧩' },
@@ -105,6 +107,37 @@ const tocItems = [
         <p class="text-base font-medium text-hoba-text">{t('data.guard.title')}</p>
         <p class="mt-1 text-base text-hoba-muted">{t('data.guard.text')}</p>
       </aside>
+
+      <section id="data-inventory" class="section scroll-mt-24">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="kicker">{lang === 'uk' ? 'Єдине джерело правди' : 'Single source of truth'}</p>
+            <h2 class="section-title">{lang === 'uk' ? 'Що саме входить до даних' : 'What the data actually contains'}</h2>
+          </div>
+          <a href="/data/latest/inventory.json" target="_blank" class="btn btn-secondary font-mono">inventory.json</a>
+        </div>
+        <p class="text-base text-hoba-muted max-w-3xl mt-2">
+          {lang === 'uk'
+            ? `${inventory.totals.ontology_entries} канонічних сутностей у ${inventory.totals.collections} колекціях. Сценарії — композиції над ними, архетипи — лише презентаційна накладка, а формальний субстрат завжди обчислюється заново.`
+            : `${inventory.totals.ontology_entries} canonical entities across ${inventory.totals.collections} collections. Scenarios compose them, archetypes are presentation-only overlays, and the formal substrate is always recomputed.`}
+        </p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
+          {inventory.collections.map((entry) => (
+            <article data-inventory-type={entry.type} class="rounded-xl border border-hoba-border bg-hoba-card p-4">
+              <div class="flex items-baseline justify-between gap-3">
+                <h3 class="font-semibold text-hoba-text">{entry.plural[lang]}</h3>
+                <span class="font-mono text-lg font-semibold">{entry.count}</span>
+              </div>
+              <p class="text-sm text-hoba-muted mt-2">{entry.purpose[lang]}</p>
+              <p class="text-xs text-hoba-muted mt-3"><code>{entry.type}</code> · {entry.layer}</p>
+            </article>
+          ))}
+        </div>
+        <p class="text-sm text-hoba-muted mt-5">
+          {lang === 'uk' ? 'Ситуації, формати й інструменти:' : 'Situations, formats, and tools:'}{' '}
+          <a href={`${prefix}/developers#dev-choose`} class="text-hoba-accent underline underline-offset-2">{lang === 'uk' ? 'довідник використання' : 'usage guide'}</a>.
+        </p>
+      </section>
 
       <section id="data-overview" class="scroll-mt-24">
         <dl class="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 py-6 border-y border-hoba-border">

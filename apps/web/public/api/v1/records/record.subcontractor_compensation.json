@@ -1,0 +1,21 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Subcontractor Compensation",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Subcontractor Compensation\n\nNet compensation disbursed to the engineer delivering client services.",
+    "aliases": [
+      "R-007"
+    ],
+    "id": "record.subcontractor_compensation",
+    "type": "record",
+    "record_class": "payroll",
+    "owner": "inside",
+    "owner_actor": "actor.employer_policy",
+    "summary": "Net compensation disbursed to the engineer delivering client services.",
+    "flows": [],
+    "visibility_default": "observable",
+    "evidence_level": "supported"
+  }
+}

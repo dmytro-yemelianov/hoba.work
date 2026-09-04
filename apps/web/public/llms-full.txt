@@ -1,26 +1,31 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.1.0, schema 1.2.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.1.0, schema 1.3.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
 ## Ontology
 
-- **Observations** (`A-*`, 21) — signals a candidate can actually witness.
-- **Barriers** (`B-*`, 16) — the funnel gates, a strict DAG ordered by stage.
-- **Mechanisms** (`M-*`, 28) — causes that can emit those signals, each with an actor, a nature, a visibility and a removability.
-- **Patterns** (`P-*`, 4) — named motifs where several defensible decisions combine into a bind.
-- **Loops** (`L-*`, 3) — reinforcing cycles, detected as strongly connected components.
-- **Interventions** (`I-*`, 24) — concrete changes, each attributed to the actor who can make it.
-- **Actors** (7) — the positions the funnel is made of. Every entry carries a per-actor perspective; https://hoba.work/actors, and `?lens=<actor>` on any page reads the whole atlas from one of them.
-- **Eras** (`E-*`, 4) — periods of the hiring economy, told as where the money came from and how a person got in.
-- **Evidence** (`EVD-*`, 51) — the published sources behind the claims.
+- **Observations** (`observation`, 21; IDs obs.* (legacy A-### aliases resolve)) — A directly observable trace left by the hiring process.
+- **Barriers** (`barrier`, 16; IDs bar.* (legacy B-### aliases resolve)) — A gate where the nominal hiring path can stop or diverge.
+- **Mechanisms** (`mechanism`, 28; IDs mech.* (legacy M-### aliases resolve)) — A causal force compatible with one or more observations and barriers.
+- **Patterns** (`pattern`, 4; IDs pat.* (legacy P-### aliases resolve)) — A recurring, rule-defined combination of observations and compatible mechanisms.
+- **Loops** (`loop`, 3; IDs loop.* (legacy L-### aliases resolve)) — A validated reinforcing cycle among mechanisms.
+- **Interventions** (`intervention`, 24; IDs int.* (legacy I-### aliases resolve)) — An actor-owned change aimed at a barrier, mechanism, pattern, or loop.
+- **Actors** (`actor`, 7; IDs actor.*) — A decision seat with explicit controls, blind spots, and incentives.
+- **Processes** (`process`, 4; IDs proc.* (legacy WF-### aliases resolve)) — A state machine naming the subject, states, owners, transitions, and expected timing.
+- **Eras** (`era`, 4; IDs era.* (legacy E-### aliases resolve)) — A sourced period of hiring economics: capital, hiring behavior, entry paths, and its ending.
+- **Evidence records** (`evidence`, 51; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
+- **Financial records** (`record`, 13; IDs record.* (legacy R-### aliases resolve)) — A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.
 
-The graph has 233 nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
+Scenarios (6) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
+
+The graph export is deliberately narrower than the ontology: 96 reader-facing finding nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
 ## Reading it by machine
 
 - Full registry: https://hoba.work/data/latest/registry.json
+- Inventory, boundaries and usage choices: https://hoba.work/data/latest/inventory.json
 - One entity: https://hoba.work/api/v1/mechanisms/mech.genuine_technical_skill_shortfall.json
 - Any page as Markdown: https://hoba.work/mechanisms/mech.genuine_technical_skill_shortfall.md — or the canonical URL with `Accept: text/markdown`
 - The whole catalogue as one document: https://hoba.work/registry.md
@@ -1024,6 +1029,155 @@ The function that moves people through the funnel. Holds the most information ab
 - Could do (medium): Say whether an approved requisition sits behind the call — Outreach and the first conversation are where the recruiter states what the contact is for. Whether a requisition is open and approved, or whether this is a pool for headcount that does not exist yet, is a fact available at the moment of contact. Without it, the silence that follows such a conversation is read as a decision about the candidate. Costs: It costs replies: outreach that states there is no open requisition gives less reason to answer, and reply volume is what the sourcing side of the pipeline is counted in.
 - Could do (high): Set the reading order in advance and in writing — Which applications are read and in what order is decided in this seat, and the order can be fixed before the week's queue exists: a stated share of screening capacity for inbound, order of arrival within each source, and no sort on how recently someone was last employed. The rule adds no screening capacity; it decides once where the capacity goes, instead of deciding it profile by profile against the length of the queue. Costs: Reading without that sort covers fewer profiles per hour, and outbound candidates the hiring manager has asked about wait behind inbound ones.
 
+## Processes
+
+### proc.an_application_inside_the_ats — An application inside the ATS
+
+The machine the candidate never sees: what happens to a submitted application between the form and a human being, and the four ways it can end without anyone reading it.
+
+- Subject: one application record · Evidence: strongly_supported
+- State submitted (initial, owner actor.candidate): A form submission has been accepted. Fields are validated against the requisition schema; nothing has been interpreted.
+- State parsing (active, owner actor.ats_vendor): The document is converted to structured fields. Multi-column layouts, graphics and custom fonts routinely lose whole sections silently.
+- State scoring (active, owner actor.ats_vendor): Knockout rules, keyword coverage, years thresholds and ranking features run in sequence, short-circuiting on the first failure.
+- State queued (active, owner actor.ats_vendor): The record is above the threshold and waiting. Queue position depends on source: outbound lists are usually read first.
+- State reviewed (active, owner actor.recruiter): A recruiter opens the profile. The median attention available per profile is measured in seconds when the queue is deep.
+- State advanced (terminal, owner actor.recruiter): The record leaves this machine and enters proc.the_hiring_funnel_end_to_end at the recruiter screen.
+- State auto-rejected (terminal, owner actor.ats_vendor): A rule failed. The notification is often queued and sent minutes later, which is what produces a rejection at midnight.
+- State human-rejected (terminal, owner actor.recruiter): Someone read it and did not take it forward. What the message says about why is a separate decision, usually a template.
+- State expired (terminal, owner actor.ats_vendor): A scheduled job closed the record after a threshold. Nobody read it, and the email it sends is indistinguishable from one that followed a review.
+- Transition submitted → parsing (actor.ats_vendor): document accepted · guard: Required fields validate and the file is a supported type.
+- Transition parsing → scoring (actor.ats_vendor): fields extracted · guard: Extraction completes, whether or not it recovered the work history.
+- Transition scoring → queued (actor.ats_vendor): all rules pass · guard: Every knockout rule passes and the rank clears the advance threshold.
+- Transition scoring → auto-rejected (actor.ats_vendor): a rule fails · guard: Any knockout rule fails, or the ranking falls below the threshold.
+- Transition queued → reviewed (actor.recruiter): a recruiter opens it · guard: Capacity reaches this position in the queue before the expiry threshold.
+- Transition queued → expired (actor.ats_vendor): threshold reached first · guard: The record ages past the configured limit with no review recorded.
+- Transition reviewed → advanced (actor.recruiter): short-listed · guard: The profile is put on the active list for outreach.
+- Transition reviewed → human-rejected (actor.recruiter): passed over · guard: The recruiter decides not to advance it.
+
+### proc.client_account_hiring_funnel — Client account hiring funnel
+
+From client demand and commercial contract to profile submission, client interview, and placement or unannounced closure.
+
+- Subject: a seat funded by a client contract and the candidate moving towards it · Evidence: strongly_supported
+- State demand (initial, owner actor.client): The end client identifies project headcount demand or issues a vendor tender. Budget exists if the contract is signed or is contingent on winning the bid.
+- State search-open (active, owner actor.recruiter): Vendor recruiting opens direct outreach or listings. Whether an executed contract or an unawarded bid sits behind it is not disclosed.
+- State vendor-screen (active, owner actor.recruiter): Introductory conversation assessing experience and target compensation against the vendor target margin.
+- State vendor-technical (active, owner actor.hiring_manager): Technical interview or test task scored against the vendor assessment of the client technical threshold.
+- State submitted (active, owner actor.client): The candidate CV is submitted to the client account team for profile review and interview selection.
+- State client-interview (active, owner actor.client): Interview conducted directly by client engineering or project management leadership.
+- State offer (active, owner actor.recruiter): Compensation package calculated from client billing rate minus required gross margin.
+- State verification (active, owner actor.employer_policy): Client-mandated background checks, certifications, and compliance paperwork.
+- State placed (terminal, owner actor.employer_policy): Contract executed and candidate onboarded onto active client delivery.
+- State vendor-declined (terminal, owner actor.recruiter): The search terminates at vendor screening or technical evaluation before client submission.
+- State declined-by-client (terminal, owner actor.client): The client declines the CV submission or rejects the candidate after the client interview.
+- State closed-unfunded (terminal, owner actor.client): The search closes because the client tender was lost, project budget was cancelled, or the commercial contract was paused.
+- State bench-filled (terminal, owner actor.employer_policy): The position is allocated to an existing internal specialist released from another account, closing the external process.
+- Transition demand → search-open (actor.client): Contract signed or tender profiles required · guard: Commercial contract signed or tender requires candidate CVs
+- Transition search-open → vendor-screen (actor.recruiter): Candidate responds to vendor outreach · guard: Outreach accepted and screen booked
+- Transition search-open → closed-unfunded (actor.client): Tender lost or client contract cancelled early · guard: Commercial opportunity discontinued before screening
+- Transition vendor-screen → vendor-technical (actor.recruiter): Vendor recruiter screen passed · guard: Expectations aligned with client billing margin
+- Transition vendor-screen → vendor-declined (actor.recruiter): Screening mismatch or rate misalignment · guard: Candidate rate exceeds allowable vendor margin or skills misfit
+- Transition vendor-technical → submitted (actor.hiring_manager): Vendor assessment passed · guard: Technical bar meets vendor expectation of client threshold
+- Transition vendor-technical → vendor-declined (actor.hiring_manager): Vendor assessment not met · guard: Profile does not meet vendor internal quality bar
+- Transition submitted → client-interview (actor.client): Client approves CV submission · guard: Client manager accepts profile and requests interview
+- Transition submitted → declined-by-client (actor.client): Client rejects CV submission · guard: Client manager rejects profile on CV review
+- Transition submitted → bench-filled (actor.employer_policy): Vendor assigns internal bench specialist · guard: Bench consultant becomes available mid-search
+- Transition submitted → closed-unfunded (actor.client): Client cancels requisition or loses project funding · guard: Client withdraws demand during profile review
+- Transition client-interview → offer (actor.client): Client approves interview · guard: Client confirms candidate meets project requirements
+- Transition client-interview → declined-by-client (actor.client): Client declines after interview · guard: Client decides against candidate after meeting
+- Transition offer → verification (actor.recruiter): Offer agreed and contract drafted · guard: Candidate accepts offer parameters
+- Transition offer → closed-unfunded (actor.client): Client pulls project before signing · guard: Client cancels funding after offer extended
+- Transition verification → placed (actor.employer_policy): Background check passed and start date confirmed · guard: Verification complete and project onboarding commences
+
+### proc.the_hiring_funnel_end_to_end — The hiring funnel, end to end
+
+From the moment headcount is authorised to a signed contract or a closed search, with the actor who owns each step and what the candidate can see from where they stand.
+
+- Subject: a requisition and the candidate moving through it · Evidence: strongly_supported
+- State drafted (initial, owner actor.hiring_manager): A manager writes the role. Level, band and requirements are decided here, usually by copying the last search for the same team.
+- State authorised (active, owner actor.employer_policy): Finance and leadership commit budget against the requisition. Approval can lapse or be withdrawn later without the funnel noticing.
+- State published (active, owner actor.recruiter): The role is public. It may also be refreshed automatically every thirty days, which looks identical to a new opening.
+- State received (active, owner actor.ats_vendor): A record exists and is linked to the requisition. Nothing has been read.
+- State machine-screened (active, owner actor.ats_vendor): Parser extraction, keyword thresholds, knockout rules and ranking. Decided in under a second.
+- State recruiter-queue (active, owner actor.recruiter): Waiting to be read by a person, in an inbound queue that usually holds more profiles than the week has hours.
+- State recruiter-screen (active, owner actor.recruiter): A conversation about compensation, timeline, location and a two-minute version of the last project.
+- State technical (active, owner actor.hiring_manager): A live exercise, a take-home, or both, scored against a rubric the candidate does not see.
+- State panel (active, owner actor.hiring_manager): Depth, ownership and collaboration, assessed across several interviewers who may be measuring different things.
+- State levelling (active, owner actor.employer_policy): The level the panel assigned meets the band finance approved. First time the two are compared.
+- State approval (active, owner actor.employer_policy): Manager, director, finance and the talent committee sign off in sequence. Everyone the candidate met has already said yes.
+- State offer (active, owner actor.recruiter): A written offer exists. The requisition is still open until the countersignature lands.
+- State verification (active, owner actor.employer_policy): A third-party record is compared against what the candidate claimed.
+- State hired (terminal, owner actor.employer_policy): Contract executed both ways, start date set, onboarding triggered.
+- State rejected (terminal, owner actor.recruiter): A decision was made and communicated. What it says about the cause is a separate question entirely.
+- State frozen (terminal, owner actor.employer_policy): Budget withdrawn or the requisition put on hold. Can happen at any point, including after an offer.
+- State lapsed (terminal, owner actor.ats_vendor): No one decided anything. The record aged past a threshold, or the posting was never taken down.
+- Transition drafted → authorised (actor.employer_policy): budget signed off · guard: Finance commits headcount against the requisition.
+- Transition authorised → published (actor.recruiter): posting goes live · guard: An approved requisition with a written description is published.
+- Transition published → received (actor.candidate): application submitted · guard: The candidate applies, or answers outbound outreach.
+- Transition received → machine-screened (actor.ats_vendor): rules evaluated · guard: The record is complete enough for the configured rules to run.
+- Transition machine-screened → recruiter-queue (actor.ats_vendor): thresholds cleared · guard: Extraction score and every knockout rule pass.
+- Transition machine-screened → rejected (actor.ats_vendor): filtered out · guard: Any knockout rule fails, or the ranking falls below the advance threshold.
+- Transition recruiter-queue → recruiter-screen (actor.recruiter): short-listed · guard: A person reads the profile and puts it on the list.
+- Transition recruiter-queue → lapsed (actor.ats_vendor): aged out · guard: No review happened before the expiry threshold.
+- Transition recruiter-screen → technical (actor.recruiter): parameters align · guard: Expectations, timeline and location are compatible, and the profile is submitted to the team.
+- Transition recruiter-screen → rejected (actor.recruiter): parameters do not align · guard: Compensation, level, location or availability rules the candidate out before any engineering is discussed.
+- Transition technical → panel (actor.hiring_manager): assessment passed · guard: The score clears the rubric threshold.
+- Transition technical → rejected (actor.hiring_manager): assessment not passed · guard: The score falls short, or the review is too shallow to find what is there.
+- Transition panel → levelling (actor.hiring_manager): panel recommends hire · guard: Consensus reaches the hire threshold.
+- Transition panel → rejected (actor.hiring_manager): panel does not reach consensus · guard: A split panel under a unanimity rule defaults to no hire.
+- Transition levelling → approval (actor.employer_policy): level and band reconcile · guard: The assigned level and the approved band overlap.
+- Transition levelling → rejected (actor.employer_policy): level and band do not reconcile · guard: Expectation sits outside the band and neither the level nor the number moves.
+- Transition approval → offer (actor.employer_policy): sign-off complete · guard: Every approver in the chain has cleared it.
+- Transition approval → frozen (actor.employer_policy): headcount withdrawn · guard: Budget is pulled or a freeze is announced before the offer is issued.
+- Transition offer → verification (actor.candidate): offer accepted · guard: The candidate signs and the checks begin.
+- Transition offer → frozen (actor.employer_policy): offer retracted · guard: A freeze reaches an outstanding offer before the countersignature.
+- Transition verification → hired (actor.employer_policy): checks clear · guard: No unresolved discrepancy in the third-party record.
+- Transition verification → rejected (actor.employer_policy): discrepancy unresolved · guard: A record mismatch or an eligibility bar is not reconciled.
+- Transition published → lapsed (actor.ats_vendor): posting outlives the search · guard: Hiring stops but the listing is never withdrawn.
+- Transition rejected → published (actor.recruiter): requisition reopened · guard: The search restarts, sometimes with a revised profile, sometimes as an automatic refresh.
+
+### proc.the_path_as_it_is_supposed_to_run — The path as it is supposed to run
+
+One opening, from a real need to a decision the candidate can act on, with each step written as the commitment it is supposed to keep. Every barrier in the registry is a place where one of these commitments stops being kept.
+
+- Subject: one opening, and one candidate moving through it · Evidence: unknown
+- State real-need (initial, owner actor.hiring_manager): The requisition describes work that exists now, at a level the team actually needs, inside a band the budget already covers. Nothing here is aspirational: the list of requirements is what the job uses, not what the last four candidates happened to have.
+- State published (active, owner actor.recruiter): The posting states the compensation band, the location rules, the stages the process has and roughly how long each takes. It comes down when the search ends.
+- State applied (active, owner actor.candidate): The application is submitted and acknowledged. The record holds what the candidate actually wrote, and the candidate can tell that it arrived.
+- State machine-check (active, owner actor.ats_vendor): Automation deduplicates, extracts and orders. It does not decide. Where a rule does end an application, the rule is stated and it is one a person would defend out loud.
+- State human-read (active, owner actor.recruiter): Every application that clears the mechanical stage is read by someone, and read before the window the posting promised runs out.
+- State terms-check (active, owner actor.recruiter): Band, level, location, notice period and start date are put side by side in the first conversation, before any assessment is scheduled. Either side can stop here at no cost to the other.
+- State work-sample (active, owner actor.hiring_manager): One timeboxed exercise that resembles the job. The candidate is given the criteria before starting, the timebox is enforced against the evaluator as well, and the same rubric scores everyone.
+- State panel (active, owner actor.hiring_manager): Every interviewer knows what they are measuring and that nobody else is measuring it. The rule that turns their scores into a decision is agreed before the first conversation, and no round is added after the process has started.
+- State level-and-band (active, owner actor.employer_policy): The level follows from the evidence the panel gathered, and the band was public from the first day. Reconciling them is arithmetic, not a negotiation about whether the band exists.
+- State approval (active, owner actor.employer_policy): Headcount was signed before the role was published, so this step is a countersignature rather than a second decision. If the budget goes, the search closes and everyone inside it is told.
+- State offer (active, owner actor.recruiter): Salary, level, title, location terms, start date and anything conditional, in writing, with a decision window the candidate agreed to. Nothing in it changes after acceptance.
+- State verification (active, owner actor.employer_policy): Only the checks the role actually requires. Where a third-party record disagrees with what the candidate said, the discrepancy is put to the candidate before it decides anything.
+- State hired (terminal, owner actor.employer_policy): Contract executed both ways on the terms that were on the page from the beginning, with a start date both sides chose.
+- State declined (terminal, owner actor.recruiter): Not every candidate is hired, and a decline is not a deviation. What makes it part of this path is that it arrives, it names the stage it happened at and the criterion that decided it, and it says whether applying again is worth anything.
+- State closed (terminal, owner actor.employer_policy): A search can legitimately stop: the need changes, the budget goes, someone internal turns out to be right for it. What this path requires is that the posting comes down and every candidate still inside the process is told within days.
+- Transition real-need → published (actor.recruiter): posted with its terms · guard: An approved requisition, a band and a described process go live together.
+- Transition published → applied (actor.candidate): application submitted · guard: The candidate applies against terms they could read beforehand.
+- Transition applied → machine-check (actor.ats_vendor): record processed · guard: The submission is parsed and acknowledged.
+- Transition machine-check → human-read (actor.ats_vendor): passed to a person · guard: No automated rule ended it, so a person now has it.
+- Transition human-read → terms-check (actor.recruiter): worth a conversation · guard: A person read the profile and wants to talk.
+- Transition terms-check → work-sample (actor.recruiter): terms are compatible · guard: Band, level, location and timing work for both sides, said out loud.
+- Transition work-sample → panel (actor.hiring_manager): work meets the rubric · guard: The exercise was scored against the criteria the candidate was given.
+- Transition panel → level-and-band (actor.hiring_manager): panel decides by its rule · guard: The agreed decision rule returns a hire.
+- Transition level-and-band → approval (actor.employer_policy): level lands inside the band · guard: The evidence-assigned level maps to a point in the published band.
+- Transition approval → offer (actor.employer_policy): countersigned · guard: The approval that existed before publication is confirmed.
+- Transition offer → verification (actor.candidate): offer accepted · guard: The candidate accepts a complete written offer inside the agreed window.
+- Transition verification → hired (actor.employer_policy): checks clear · guard: Nothing proportionate to the role is unresolved.
+- Transition human-read → declined (actor.recruiter): declined after reading · guard: A person decided no, and said at which stage and on what criterion.
+- Transition terms-check → declined (actor.recruiter): terms are incompatible · guard: The gap is named in the same conversation, before any assessment is booked.
+- Transition work-sample → declined (actor.hiring_manager): work did not meet the rubric · guard: The score is below the shared criteria, and the criterion is named.
+- Transition panel → declined (actor.hiring_manager): decision rule returns no hire · guard: The rule agreed beforehand returns no hire, and which dimension decided it is stated.
+- Transition level-and-band → declined (actor.employer_policy): level and expectation do not meet · guard: The published band and the candidate's stated expectation do not overlap, which both sides already knew.
+- Transition verification → declined (actor.employer_policy): discrepancy stands · guard: The candidate was shown the discrepancy and it remains unresolved.
+- Transition published → closed (actor.employer_policy): need changed · guard: The work no longer exists, and the posting comes down the same week.
+- Transition approval → closed (actor.employer_policy): budget withdrawn · guard: Headcount is pulled, and every candidate in the process is told within days.
+- Transition offer → closed (actor.employer_policy): offer withdrawn and explained · guard: An outstanding offer cannot stand, and the candidate is told why, in writing, immediately.
+
 ## Eras
 
 ### era.zero_rates_and_a_same_year_deduction — Zero rates and a same-year deduction
@@ -1089,6 +1243,95 @@ The conditions that made hiring expensive were reversed; the number of positions
 - 69.3% senior, 4.5% entry — Software postings by level, one job board (Q1 2026, evidence.seniority_mix_of_software_postings_indeed_hiring_lab)
 - ≈ −20% — Employment of software developers aged 22–25 (late 2022 → Sep 2025, evidence.employment_of_young_software_developers_stanford_digital_economy_lab)
 - 149,023 — Announced technology job cuts, not a census (Jan–Jul 2026, evidence.announced_job_cuts_technology_sector_challenger_gray_christmas)
+
+## Financial records
+
+### record.annual_engineering_department_budget — Annual Engineering Department Budget
+
+Annual operating budget allocation assigned to engineering department headcount.
+
+- Class: budget-line · Owner: inside (actor.employer_policy) · Visibility: opaque
+- Flow to record.approved_requisition_funding: requisition headcount allocation · 100% · fraction 1
+
+### record.approved_requisition_funding — Approved Requisition Funding
+
+Headcount allocation and salary band approved for the active requisition.
+
+- Class: requisition-funding · Owner: inside (actor.hiring_manager) · Visibility: opaque
+- Flow to record.direct_engineering_payroll: hired candidate compensation · 100% · fraction 1
+
+### record.candidate_liquid_savings — Candidate Liquid Savings
+
+Total liquid personal savings allocated to sustain the job search interval.
+
+- Class: runway · Owner: inside (actor.candidate) · Visibility: observable
+- Flow to record.candidate_search_runway: search runway allocation · 100% · fraction 1
+
+### record.candidate_search_runway — Candidate Search Runway
+
+Available runway in months derived from personal savings and monthly burn rate.
+
+- Class: runway · Owner: inside (actor.candidate) · Visibility: observable
+- Flow to record.search_month_burn_allocation: monthly living expenditure · 100% · fraction 1
+
+### record.client_project_budget — Client Project Budget
+
+Client total budget line earmarked for third-party engineering services.
+
+- Class: budget-line · Owner: outside-party (actor.client) · Visibility: opaque
+- Flow to record.client_services_agreement: master services contract · 100% · fraction 1
+
+### record.client_services_agreement — Client Services Agreement
+
+Commercial contract defining billing rate and seat scope.
+
+- Class: contract · Owner: outside-party (actor.client) · Visibility: opaque
+- Flow to record.vendor_margin_and_headcount_allocation: vendor margin split · 100% · fraction 1
+
+### record.contingency_placement_fee_commitment — Contingency Placement Fee Commitment
+
+Placement commission contingent upon candidate starting and passing warranty period.
+
+- Class: placement-fee · Owner: inside (actor.recruiter) · Visibility: opaque
+- Flow to record.external_agency_settlement: agency invoice disbursement · 20% · fraction 0.2
+
+### record.direct_engineering_payroll — Direct Engineering Payroll
+
+Direct recurring payroll compensation paid to the employed engineer.
+
+- Class: payroll · Owner: inside (actor.employer_policy) · Visibility: observable
+
+### record.employer_hiring_and_sourcing_budget — Employer Hiring and Sourcing Budget
+
+Operational recruiting budget covering external agency fees and search costs.
+
+- Class: budget-line · Owner: inside (actor.employer_policy) · Visibility: opaque
+- Flow to record.contingency_placement_fee_commitment: success fee commitment · 100% · fraction 1
+
+### record.external_agency_settlement — External Agency Settlement
+
+Commercial fee settlement received by the external recruitment agency.
+
+- Class: contract · Owner: outside-party (actor.client) · Visibility: opaque
+
+### record.search_month_burn_allocation — Search-Month Burn Allocation
+
+Living and tooling expenses incurred per month of active job search.
+
+- Class: payroll · Owner: inside (actor.candidate) · Visibility: observable
+
+### record.subcontractor_compensation — Subcontractor Compensation
+
+Net compensation disbursed to the engineer delivering client services.
+
+- Class: payroll · Owner: inside (actor.employer_policy) · Visibility: observable
+
+### record.vendor_margin_and_headcount_allocation — Vendor Margin and Headcount Allocation
+
+Internal vendor allocation splitting client billing into gross margin and candidate cost.
+
+- Class: requisition-funding · Owner: inside (actor.employer_policy) · Visibility: opaque
+- Flow to record.subcontractor_compensation: contractor payroll allocation · 75% · fraction 0.75
 
 ## Evidence
 
@@ -1448,3 +1691,174 @@ US federal contracting regulation turns on whether an expression of interest was
 
 - 41 C.F.R. §60-1.3, definition of "Internet Applicant", paragraphs (1)-(3). Office of Federal Contract Compliance Programs.
 - https://www.ecfr.gov/current/title-41/subtitle-B/chapter-60/part-60-1/subpart-A/section-60-1.3
+
+## Validated scenario compositions
+
+### scenario.application_silence — Application followed by silence
+
+- Observations: obs.complete_silence_after_submission, obs.rejection_after_the_application_sat_pending_for_months
+- Compatible barriers: bar.application_ingestion, bar.automated_filter_parser_threshold, bar.inbound_screening_triage
+- Compatible mechanisms: mech.stale_or_orphaned_job_requisition, mech.automated_application_expiration_timeout, mech.ats_parser_extraction_failure, mech.recruiter_volume_quota_incentive_distortion, mech.speculative_sourcing_talent_pooling_without_opening
+- Does NOT establish: The recruiter deliberately ghosted the candidate.
+- Does NOT establish: The application was read and rejected on its merits.
+- Does NOT establish: The requisition was open at the moment the application arrived.
+
+### scenario.ats_knockout — Automated Parsing Knockout
+
+Instant rejection outside business hours combined with rigid uncontextualized filters.
+
+- Observations: obs.generic_closer_alignment_rejection_template, obs.explicit_feedback_citing_skill_depth_shortfall, obs.unsolicited_recruiter_outreach_followed_by_ghosting
+
+### scenario.closed_then_reposted — Rejected, then the same role is posted again
+
+- Observations: obs.position_closed_after_final_interview_without_hire, obs.materially_similar_role_reposted_shortly_after_rejection, obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body
+- Compatible barriers: bar.headcount_executive_budget_approval, bar.requisition_approval_public_posting
+- Compatible mechanisms: mech.headcount_freeze_or_budget_cancellation, mech.mid_process_role_requirement_redefinition, mech.pre_selected_internal_candidate, mech.stale_or_orphaned_job_requisition
+- Does NOT establish: The reposted requisition is the same requisition.
+- Does NOT establish: The candidate was rejected in order to hire someone already chosen.
+- Does NOT establish: The employer acted in bad faith.
+
+### scenario.downlevelling_trap — Down-Levelling & Delayed Start
+
+Scope expansion, sub-band compensation offer, and post-acceptance start date slippage.
+
+- Observations: obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground, obs.rejection_naming_a_specific_industry_sector_as_required, obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation
+
+### scenario.ghost_refresh — Ghost Requisition & Pipeline Refresh
+
+Stale posting refreshed with identical body while active applicants experience silence.
+
+- Observations: obs.complete_silence_after_submission, obs.materially_similar_role_reposted_shortly_after_rejection, obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body
+
+### scenario.post_panel_freeze — Post-Panel Freeze & Silence
+
+Strong verbal engagement followed by multi-week offer hold and sudden ghosting.
+
+- Observations: obs.complete_silence_after_submission, obs.multiple_interview_reschedulings_or_interviewer_no_show, obs.rejection_naming_an_internal_hire_as_the_outcome
+
+## Presentation-only archetype overlays
+
+- **actor.ats_vendor — The Silent Landlord of the Funnel** (lawful/hidden): Sets no policy and hires no one — just ships the defaults that decide what a great many other decisions ever see.
+- **actor.candidate — The One With the Least Information and the Most at Stake** (neutral/visible): Sees every stage of their own process and almost none of anyone else's — the only actor for whom this whole atlas exists at all.
+- **actor.client — The Boss You'll Never Know You Had** (lawful/hidden): Signs the contract the whole requisition depends on, and holds a gate the candidate is never even told has a name.
+- **actor.employer_policy — The Rulemaker Who Never Shows Up** (lawful/hidden): Fixes the bands, authorises the headcount, writes the rules everyone downstream executes — and meets exactly zero candidates while doing it.
+- **actor.hiring_manager — Grading You Between Meetings** (chaotic/visible): Owns the outcome and sets the bar, while doing this alongside the actual job the role exists to do — the panel's calibration is whatever their week left them with.
+- **actor.public_policy_and_industry_standards — The Slowest Actor in the Room** (lawful/ambiguous): Public, codified, and knowable in principle — and moving on a timescale no single hiring process will ever wait around to feel.
+- **actor.recruiter — Knows Everything, Decides Nothing** (neutral/visible): Holds more information about your process than anyone else in it, and less authority over how it ends than almost anyone else too.
+- **bar.application_ingestion — The Database Says Yes** (lawful/hidden): A schema check and a link to a real requisition — the only gate in the whole funnel a human doesn't touch.
+- **bar.automated_filter_parser_threshold — The Score You'll Never See** (lawful/hidden): A number crosses a threshold somewhere in the pipeline, and you find out only which side of it you landed on.
+- **bar.client_profile_approval_and_client_interview — A Client You'll Never Meet Grades You Anyway** (lawful/hidden): The sign-off that actually decides belongs to someone the candidate is never introduced to.
+- **bar.compensation_levelling_reconciliation — The Spreadsheet That Decides the Level** (lawful/hidden): Your stated expectation gets checked against a band you were never shown, by a process that happens entirely off to the side.
+- **bar.headcount_executive_budget_approval — A Committee You've Never Heard Of** (lawful/hidden): Finance and leadership certify the money three approvals before the offer is ever written, in a room the candidate has no reason to know exists.
+- **bar.hiring_manager_in_depth_review — One Person's Read on Your Whole Career** (chaotic/hidden): Seniority, ownership, trade-off reasoning — real dimensions, evaluated by exactly one person's judgment, with no second opinion built into the gate.
+- **bar.inbound_screening_triage — Whoever's Queue You Landed In** (chaotic/hidden): No stated rubric — a person decides whether you're worth a first conversation, and which person that is changes what happens to you.
+- **bar.offer_closing_contract_execution — The One Gate You Sign Yourself** (lawful/visible): The rare barrier where the candidate is a required party to the pass condition, not a subject of it.
+- **bar.outbound_sourcing_talent_pool_contact — The Message That Started It** (chaotic/visible): The one gate that begins with the company reaching out, not the candidate applying — you feel it happen because it happens to you directly.
+- **bar.probation_period_post_start_confirmation — Still Being Interviewed, Just Employed Now** (lawful/hidden): A statutory evaluation window with a real legal shape, running on judgments the newly-hired employee mostly can't see being made.
+- **bar.recruiter_screening_call — The Vibe Check With a Job Title** (chaotic/visible): Fluency, timeline, tone — assessed live, conversationally, with no rubric standing between the call and the verdict.
+- **bar.reference_background_verification — Checked Without You in the Room** (lawful/hidden): Every check clears or it doesn't, in a process the candidate is the subject of and no part of.
+- **bar.requisition_approval_public_posting — The Gate That Closes Before You Arrive** (lawful/hidden): The funnel's first barrier, and the only one no candidate is ever present for — by the time you apply, it's already been decided that you could.
+- **bar.take_home_work_sample_evaluation — Graded Off-Camera** (lawful/hidden): A stated rubric — architecture, tests, docs — applied by a reviewer you never watch read it.
+- **bar.team_cross_functional_panel — A Room Full of People Scoring You Silently** (lawful/hidden): A consensus threshold exists, but what any one panelist actually wrote stays theirs.
+- **bar.technical_screen_live_assessment — The One You Can Actually Watch Yourself Pass or Fail** (lawful/visible): Live, synchronous, against a stated threshold — the closest thing in the whole funnel to a test you get to see yourself take.
+- **era.a_fixed_number_of_seats — The Recession That Never Shows Up in the Layoff Numbers** (lawful/ambiguous): Layoffs stayed roughly flat while hires fell 29% — the contraction runs through who never gets hired at all, which is exactly the kind of shortage that never makes a headline.
+- **era.rates_up_payroll_repriced — The Year Every Posting Wanted Someone Already Doing the Job** (lawful/visible): A rate peak and a tax rule change landed in the same eighteen months, and hiring narrowed to replacing a specific person who had just left — which is why the evidence bar suddenly meant this exact stack, this exact scale, right now.
+- **era.the_record_funding_years — When the Funnel Ran Backwards** (lawful/visible): Two years when employers competed for candidates instead of the reverse — shorter loops, bigger offers, a job without a current job as no obstacle at all.
+- **era.zero_rates_and_a_same_year_deduction — The Decade When Junior Was Cheap to Bet On** (lawful/ambiguous): Seven years at the policy floor and a same-year tax deduction made an empty seat more expensive than a wrong hire — a decade of demand policy nobody applying for a job ever had to read to benefit from.
+- **int.a_named_decider_and_a_written_rule_for_a_split_panel — Someone Has to Break the Tie** (lawful/visible): A named decider before the panel splits, so the outcome is a rule applied instead of a vote nobody remembers taking.
+- **int.auto_close_stale_job_requisitions — The Listing Cleans Up After Itself** (lawful/hidden): A posting that expires itself the moment headcount lapses, instead of outliving the search by months.
+- **int.bench_availability_declared_at_each_stage_gate — The Bench Has to Announce Itself** (lawful/visible): The internal option is stated at every gate it passes, with a date — so a bench fill can never look like a search that simply vanished.
+- **int.candidate_ats_parser_conformance_test_utility — Test Your Résumé Against the Machine First** (lawful/visible): The same parser that will read your CV, handed to you before you submit it.
+- **int.candidate_work_index_submitted_with_the_application — A Table of Contents for Your Own Work** (lawful/visible): One page naming exactly where the real work is, opened in the first minutes — so the screener never has to guess which repository is yours.
+- **int.contractable_jurisdictions_listed_in_the_posting — The Map Comes With the Job Ad** (lawful/visible): The jurisdictions the company can actually hire in, named before the first call — not discovered after three rounds.
+- **int.critique_injected_on_script_in_the_collaborative_exercise — Everyone Gets the Same Curveball** (lawful/hidden): The same objection, at the same point, scripted for every candidate — fair precisely because you'll never know it was rehearsed.
+- **int.dated_funding_certification_before_the_final_round — No Final Round Without the Money Being Real** (lawful/hidden): A funding date checked live before the last interview is booked, so the panel that likes you can't be overruled by a budget nobody re-confirmed.
+- **int.disqualifying_criteria_published_with_the_posting — The Filter's Rules, Printed on the Box** (lawful/visible): Every acronym and year-count the automated gate checks for, listed in the posting — a deterministic filter stops being a secret the moment it's published.
+- **int.distinct_closure_status_for_unreviewed_applications — Told the Truth: Nobody Opened It** (lawful/visible): A status that says exactly what happened — closed unread — instead of borrowing the label used for an application someone actually considered.
+- **int.domain_requirement_carries_a_stated_ramp_time — How Long It Actually Takes to Learn** (lawful/visible): A stated ramp time turns a hard requirement into what it actually is — a preference, scored honestly instead of gating on a technicality.
+- **int.internal_candidacy_stated_in_the_posting — Naming the Internal Candidate Out Loud** (lawful/visible): If the seat already has a name attached, the posting says so — and says what the external search is actually deciding.
+- **int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota — A Backup Interviewer, Just in Case** (lawful/hidden): A second name on the rota, so one overloaded engineer's sprint doesn't become your third rescheduled round.
+- **int.outreach_states_the_requisition_behind_it — Naming the Req in the First Message** (lawful/visible): The recruiter's opening line states what they're actually recruiting against — an approved role, or a pool built on a forecast.
+- **int.publish_the_technical_screen_s_columns_and_threshold_before_the_round — The Rubric, Published Before You Walk In** (lawful/visible): The columns, the weights, the passing threshold — printed next to the posting instead of existing only in the panel's heads.
+- **int.recorded_finalist_standing_with_a_dated_re_entry_route — A Second Chance, With a Date on It** (lawful/visible): Clearing the bar and not getting the offer becomes a recorded standing with a real re-entry date, not a story that ends at rejection.
+- **int.remove_career_gap_feature_from_automated_ranking_models — Deleted From the Algorithm, Quietly** (lawful/hidden): The gap penalty doesn't get explained or disclosed — it gets removed from the model, which is the more honest fix.
+- **int.requirement_changes_versioned_and_sent_to_candidates_in_flight — You Get a Changelog Too** (lawful/visible): When the role changes mid-search, everyone already in the pipeline gets told what changed and which of their completed rounds still counts.
+- **int.requirements_drawn_from_the_team_s_own_backlog — Every Requirement Traces to a Real Ticket** (lawful/visible): Drawn from two quarters of the team's actual backlog — and anything that doesn't trace to a task gets published separately, unscreened.
+- **int.screening_note_bound_to_observations_and_disposition_codes — The Note Can Only Say What It Saw** (lawful/hidden): A screening note restricted to what the record actually shows, closed with a fixed code — no room left for an impression to pass as a finding.
+- **int.standardized_late_stage_rejection_feedback_taxonomy — A Real Reason, From a Real Menu** (lawful/visible): Structured categories replace the generic template — a stated reason instead of a form letter shaped like one.
+- **int.strict_take_home_timebox_blinded_evaluation_rubric — Three Hours, Graded Blind** (lawful/visible): A hard timebox, paid compensation for anything longer, and a reviewer who doesn't know whose submission they're reading.
+- **int.upfront_compensation_band_disclosure — The Band, Published Before You Ask** (lawful/visible): The number that ends the compensation double bind before it starts — stated in the posting, not extracted from the candidate first.
+- **int.verification_discrepancy_disclosure_and_reconciliation_window — Both Numbers, Shown Side by Side** (lawful/visible): The discrepancy the check found, and what the candidate's own record says, released together — with time to reconcile them before the offer dies.
+- **loop.employment_gap_penalty_loop — The Gap That Feeds Itself** (lawful/hidden): A downranking and a keyword filter amplifying each other in a closed loop — every rejection the gap causes makes the gap look worse to the next algorithm that reads it.
+- **loop.inflated_requirements_search_saturation_loop — The Search That Outlasts Its Own Reason** (chaotic/visible): Requirements too high filter out the people who'd fit, the search drags, the team gets tired of it and redefines the role — which resets the filter that started the whole loop.
+- **loop.take_home_opportunity_cost_saturation_loop — Everyone's Too Busy for Everyone Else** (chaotic/hidden): Overloaded interviewers move rounds and read submissions fast; unbounded take-homes eat the hours that would have gone to more applications — each side of the loop makes the other side worse.
+- **mech.ats_parser_extraction_failure — Lost in Translation** (neutral/hidden): A parser doing exactly what it was built to do to a résumé it was never tested against — nobody chose this outcome, and nobody sees it happen.
+- **mech.automated_application_expiration_timeout — The 60-Day Countdown** (lawful/hidden): A clock the candidate never sees start, counting down to a rejection that will look exactly like every other one.
+- **mech.automated_keyword_qualification_filter — Missing the Magic Word** (lawful/ambiguous): A binary filter keyed to one exact acronym or year count — provable if you know to check the posting against the filter, invisible if you don't.
+- **mech.bench_priority_fill — The Bench Beat You To It** (lawful/hidden): A standard internal-mobility policy, working exactly as designed — the search was real, and so was the seat that had already been informally filled.
+- **mech.bid_conditional_talent_pool — Hired for a Job That Doesn't Exist Yet** (lawful/hidden): The search is real and the role is not — recruiters build pipeline against a contract that may never be signed, and nothing in the posting says so.
+- **mech.communication_or_working_style_friction — The Personality Test You Didn't Know You Took** (chaotic/visible): No rubric, no calibration between panels — just one interviewer's read on tone, formed live and rarely written down the same way twice.
+- **mech.domain_specificity_over_weighting — Wrong Flavor of Experience** (chaotic/ambiguous): One interviewer's exact-vertical preference standing in for transferable depth — you might feel the pushback in the room, but never see it scored.
+- **mech.employment_gap_downranking_bias — The Gap Tax** (lawful/hidden): Verified project history counts for less than a blank stretch on the calendar, applied by a ranking system the candidate never sees run.
+- **mech.experience_age_grading_mismatch — Too Senior to Stay** (chaotic/hidden): A forecast about your future boredom, written into a screening note you will never read, standing in for an assessment of the work in front of them.
+- **mech.genuine_technical_skill_shortfall — The Honest One** (lawful/visible): The mandatory honest-baseline entry: sometimes the bar really is the bar, and the candidate's own performance in the room is the whole story.
+- **mech.headcount_freeze_or_budget_cancellation — The Budget Got There First** (lawful/ambiguous): A finance decision made three floors up from the panel that liked you — sometimes named honestly, sometimes indistinguishable from being ghosted.
+- **mech.hidden_evaluation_rubric_or_undisclosed_priority — The Rubric Nobody Published** (lawful/hidden): A real rubric, scored consistently — just never written into the posting or said out loud in the round.
+- **mech.hiring_manager_consensus_impasse — Lost the Tie You Never Knew Existed** (lawful/hidden): A real governance rule — no consensus defaults to no hire — deciding an outcome the candidate will only ever read as an ordinary rejection.
+- **mech.inflated_requisition_requirements_vs_actual_team_needs — Ten Technologies for a Two-Technology Job** (lawful/visible): The proof is the posting itself — a Staff-level bar stacked onto work that is, by its own description, feature delivery.
+- **mech.interview_resource_scheduling_saturation — Sat In On Someone Else's Sprint** (chaotic/visible): The interviewer had a sprint commitment before they had you — the reschedule, the cold read, the dropped round are all things you actually felt happen.
+- **mech.location_or_timezone_compliance_constraint — Right Candidate, Wrong Country** (lawful/visible): Not a judgment about the candidate at all — a legal-entity gap that a company can, and often does, simply name out loud.
+- **mech.mid_process_role_requirement_redefinition — The Role You Interviewed For Doesn't Exist Anymore** (chaotic/hidden): The stack, the level or the scope moved while you were mid-pipeline, and the assessment you already passed was for a role that no longer exists.
+- **mech.portfolio_work_artifact_misinterpretation — Looked in the Wrong Repo** (chaotic/hidden): The real work exists, in a layout or an organisation the screener never opened — a filing accident standing in for a verdict on the work itself.
+- **mech.pre_selected_internal_candidate — The Posting Was a Formality** (lawful/hidden): Advertised to satisfy a policy, not to find someone — the seat was filled before the listing ever went up, and nothing in it says so.
+- **mech.probation_used_as_extended_de_facto_interview — The Interview That Kept Going After You Signed** (lawful/ambiguous): The bar quietly drops before the offer and quietly returns after it — you find out which interview you were actually in only if it ends.
+- **mech.recruiter_volume_quota_incentive_distortion — Read at the Speed of the Queue** (lawful/hidden): Five hundred applications and one shift to clear them — a real triage process, running exactly as the incentive built it to, that the candidate never gets to watch happen.
+- **mech.reference_check_discrepancy_or_regulatory_ineligibility — The Check That Didn't Come Back Clean** (lawful/ambiguous): A formal verification step with a real outcome — you know your own history, but rarely which line of it the checker couldn't confirm.
+- **mech.speculative_sourcing_talent_pooling_without_opening — Recruited for a Headcount That Doesn't Exist** (lawful/hidden): A conversation opened, a pool built, against a headcount that finance never actually approved — indistinguishable, from the outside, from a real search.
+- **mech.stale_or_orphaned_job_requisition — Nobody Remembered to Close It** (neutral/hidden): Not a decision — an omission. The listing outlives the search that opened it because closing it was nobody's specific job.
+- **mech.start_date_slippage_and_post_acceptance_revocation — Hired, Then Un-Hired** (chaotic/visible): The one part of this you actually see happen — a signed date moving, or an offer pulled, between the handshake and day one.
+- **mech.stronger_competing_candidate_in_final_cohort — Someone Else Needed Less Ramp-Up** (lawful/hidden): You cleared every bar — someone else cleared them with less onboarding cost attached, and you'll never be told who.
+- **mech.take_home_evaluation_fatigue_asymmetry — Fifteen Hours, Ninety Seconds** (chaotic/hidden): The asymmetry is the whole mechanism — the time you spent and the time it got reviewed were never going to be the same number, and you'll never know the second one.
+- **mech.unstated_compensation_band_discrepancy — The Band That Was Never Written Down** (lawful/hidden): A real budget ceiling, set before the search opened and never shared with the candidate — the gap it creates looks like rejection, not arithmetic.
+- **obs.communication_mismatch_or_tone_friction_in_panel — Vibes, Officially Noted** (chaotic/hidden): A feeling in the room, recorded as if it were data — the observation is real, but it explains nothing about why.
+- **obs.compensation_band_reduced_or_altered_mid_process — The Number Moved** (lawful/visible): One of the few observations that is also, on its own, most of the evidence — a stated figure that became a different stated figure.
+- **obs.complete_silence_after_submission — The Loudest Nothing** (neutral/hidden): The most common observation in the atlas and the least informative one — an absence that is compatible with almost everything.
+- **obs.conflicting_feedback_across_different_interviewers — Two Verdicts, One Candidate** (lawful/visible): Put the two rounds' notes side by side and the contradiction argues itself — the rare observation where the evidence is self-sufficient.
+- **obs.explicit_feedback_citing_skill_depth_shortfall — The Itemized Rejection** (lawful/visible): A structured note naming a specific deficit — the honest-baseline observation, stated plainly enough to be checked against your own performance.
+- **obs.feedback_naming_as_absent_something_the_submitted_work_contains — They Didn't Open the File** (lawful/ambiguous): A specific, falsifiable claim — checkable against your own submission, but only if you think to go back and check.
+- **obs.feedback_stating_candidate_is_overqualified_for_the_grade — Too Much, On the Record** (lawful/visible): The reason is stated in plain language — which is what makes it possible to notice, months later, that the opposite reason arrived from somewhere else.
+- **obs.generic_closer_alignment_rejection_template — The Template Everyone Gets** (lawful/hidden): The most common document in the whole registry, and the one that establishes the least — a form letter wearing the shape of an explanation.
+- **obs.materially_similar_role_reposted_shortly_after_rejection — Still Advertised** (neutral/visible): The one observation you can go verify yourself, on a public job board, without anyone's cooperation — what it means once verified is a separate question.
+- **obs.multiple_interview_reschedulings_or_interviewer_no_show — Rescheduled Into Oblivion** (chaotic/visible): You watched it happen, calendar invite by calendar invite — what you can't see is whether it was one overloaded interviewer or the whole process falling apart.
+- **obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation — Signed, Then Stalled** (chaotic/visible): A date moving, or a signature quietly not mattering — the one part of the whole funnel you watch happen to you in real time, after you thought it was over.
+- **obs.offer_rescinded_or_delayed_due_to_internal_freeze — The Offer That Un-Happened** (lawful/ambiguous): Sometimes named for what it is — a freeze — and sometimes left to read exactly like every other kind of silence.
+- **obs.position_closed_after_final_interview_without_hire — Everyone Passed and Then So Did the Job** (neutral/ambiguous): You cleared the whole funnel and the funnel itself disappeared — cancelled, frozen or closed are three different stories that read identically from where you're standing.
+- **obs.rejection_after_the_application_sat_pending_for_months — Filed and Forgotten** (lawful/ambiguous): A measurable fact — six weeks, no contact, no stage entered — that narrows the field of causes without naming one of them.
+- **obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground — It Was Never About the Work** (lawful/visible): The reason is named in the message itself — where you live, not what you can do — which is exactly what makes it checkable against the posting's own claims.
+- **obs.rejection_naming_a_specific_industry_sector_as_required — Right Skills, Wrong Logo** (lawful/visible): The stated reason names a sector, not a skill — visible enough to compare against what the role actually asked a person to do.
+- **obs.rejection_naming_an_internal_hire_as_the_outcome — The Seat Was Never Empty** (lawful/visible): One of the few closing messages that names an actual outcome instead of a template — which is what makes it possible to ask what an external posting was for.
+- **obs.rejection_within_minutes_of_application_submission — Rejected Before Anyone Could Have Read It** (lawful/visible): The arithmetic does the work here — minutes between submission and rejection is a number you can read straight off two timestamps.
+- **obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body — Same Job, New Coat of Paint** (neutral/visible): A timestamp changed and nothing else did — checkable by anyone willing to compare two snapshots of the same listing.
+- **obs.take_home_assignment_exceeding_reasonable_stated_scope — The Take-Home That Wasn't** (lawful/visible): A budget was stated in hours and the ask wasn't — the mismatch is arithmetic you can do yourself before you start typing.
+- **obs.unsolicited_recruiter_outreach_followed_by_ghosting — Chased, Then Dropped** (chaotic/visible): You didn't apply — they found you, said so enthusiastically, and then the enthusiasm simply stopped the moment you answered.
+- **pat.closed_then_reposted_requisition_motif — The Boomerang Requisition** (neutral/hidden): Could be an abandoned req nobody closed properly, or a rubric nobody disclosed — the generic template gives no way to tell which.
+- **pat.compensation_double_bind — Show Your Hand First** (lawful/ambiguous): A completely standard script, asked in plain sight — the unfairness is in what it structurally withholds, not in how it's asked.
+- **pat.experience_age_impossibility — The Time Traveler Requirement** (lawful/visible): An automated rule enforcing a threshold no human could have met — the rare hiring claim you can disprove with a release date, not an opinion.
+- **pat.seniority_double_bind — The Impossible Middle** (lawful/ambiguous): Two rejections, two reasonable-sounding reasons, no level in between where either applies — the trap is only visible once you set them side by side.
+- **proc.an_application_inside_the_ats — The Machine You Never Get to Watch** (lawful/hidden): Four different ways an application can end without a human ever reading it — all of them happening in a system built for exactly this candidate to never see.
+- **proc.client_account_hiring_funnel — A Second Funnel, Layered on Top of the First** (lawful/hidden): Runs on its own contract, its own approval, its own silent way of closing — a whole parallel process the candidate experiences as just one more delay.
+- **proc.the_hiring_funnel_end_to_end — The Whole Thing, As Far As You Can See It** (lawful/ambiguous): The complete funnel, headcount to signature, with the one variable that actually matters written in at every step: what you, specifically, can see from where you're standing.
+- **proc.the_path_as_it_is_supposed_to_run — The Version of This Where Every Promise Gets Kept** (lawful/visible): Not a prediction and not a rule — the baseline every barrier in this registry is measured against, the one path where nothing quietly stops being true.
+- **record.annual_engineering_department_budget — The Number Nobody Outside Finance Sees** (lawful/hidden): The top of the whole financial chain that ends in your paycheck, and the one figure in it you will never be shown.
+- **record.approved_requisition_funding — Approved, Never Announced** (lawful/hidden): The headcount and band exist, signed off, before the posting ever goes up — and stay exactly as invisible as the posting itself is silent about them.
+- **record.candidate_liquid_savings — The Clock Only You Can See** (neutral/visible): The one financial fact in this whole registry that belongs entirely to the candidate, and the one that actually decides how long they can hold out.
+- **record.candidate_search_runway — How Long You Can Afford to Say No** (neutral/visible): Savings divided by burn, in months — the number that quietly decides which offers get a real no and which get accepted out of arithmetic.
+- **record.client_project_budget — The Client's Number, Never Shared Down the Chain** (lawful/hidden): A budget line that funds the whole search, held one level further away from the candidate than even the recruiter's own numbers.
+- **record.client_services_agreement — The Contract Setting Your Price Before You're Hired** (lawful/hidden): The billing rate and seat scope are fixed in a commercial agreement before you're ever interviewed — the number this negotiates is not the one on your offer letter.
+- **record.contingency_placement_fee_commitment — The Recruiter's Bet on You Surviving Ninety Days** (chaotic/hidden): A fee that isn't earned at the hire — it's earned if you're still there past warranty, which ties the recruiter's incentive to your first few months, not just your first day.
+- **record.direct_engineering_payroll — The One Number You Actually Get to See** (lawful/visible): At the very end of a chain full of budgets you never saw, this is the one figure that actually lands in your account.
+- **record.employer_hiring_and_sourcing_budget — What They Budgeted to Find You** (lawful/hidden): A whole operating line exists just to fund the search that found you — agency fees, sourcing costs — and none of it appears anywhere you'd read it.
+- **record.external_agency_settlement — The Fee That Changes Hands Without You** (lawful/hidden): Money settles between the company and the agency on the strength of your hire, in a transaction you are the subject of and no party to.
+- **record.search_month_burn_allocation — What Each Month of Looking Actually Costs** (neutral/visible): Rent, tools, the coffee at the interview — a real monthly number the candidate tracks, whether or not anyone else in the funnel ever thinks about it.
+- **record.subcontractor_compensation — Your Half of the Invoice** (lawful/visible): The company bills the client one number and pays you a smaller one — this record is your half, the only half you're actually shown.
+- **record.vendor_margin_and_headcount_allocation — The Split Between What They Bill and What You're Paid** (lawful/hidden): One internal record holds both numbers at once — the client's billing rate and your compensation — and only ever shows you which side of the split you're on.

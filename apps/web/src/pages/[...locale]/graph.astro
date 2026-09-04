@@ -159,7 +159,7 @@ const strings = json({
 });
 
 const layers = READER_FACING_TYPES;
-const nodeCount = graph.nodeMap.size - bundle.evidence.length;
+const nodeCount = nodes.length;
 ---
 <Layout lang={lang} title={t('graph.title')} activeNav="graph">
   <PageHeader kicker={t('graph.kicker')} title={t('graph.title')} lead={t('graph.intro', { nodes: nodeCount, edges: graph.edges.length })} wide tourPageKey="graph" lang={lang}>

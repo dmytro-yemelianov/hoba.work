@@ -1,0 +1,21 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Search-Month Burn Allocation",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Search-Month Burn Allocation\n\nLiving and tooling expenses incurred per month of active job search.",
+    "aliases": [
+      "R-013"
+    ],
+    "id": "record.search_month_burn_allocation",
+    "type": "record",
+    "record_class": "payroll",
+    "owner": "inside",
+    "owner_actor": "actor.candidate",
+    "summary": "Living and tooling expenses incurred per month of active job search.",
+    "flows": [],
+    "visibility_default": "observable",
+    "evidence_level": "supported"
+  }
+}

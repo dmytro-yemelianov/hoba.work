@@ -1,0 +1,29 @@
+{
+  "registry_version": "1.1.0",
+  "data": {
+    "title": "Annual Engineering Department Budget",
+    "status": "active",
+    "evidence_ids": [],
+    "content": "# Annual Engineering Department Budget\n\nAnnual operating budget allocation assigned to engineering department headcount.",
+    "aliases": [
+      "R-001"
+    ],
+    "id": "record.annual_engineering_department_budget",
+    "type": "record",
+    "record_class": "budget-line",
+    "owner": "inside",
+    "owner_actor": "actor.employer_policy",
+    "summary": "Annual operating budget allocation assigned to engineering department headcount.",
+    "flows": [
+      {
+        "to": "record.approved_requisition_funding",
+        "label": "requisition headcount allocation",
+        "percentage": 100,
+        "fraction": 1,
+        "split_type": "allocation"
+      }
+    ],
+    "visibility_default": "opaque",
+    "evidence_level": "supported"
+  }
+}

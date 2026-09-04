@@ -5,7 +5,7 @@
     "description": "Hiring Obstacles & Barriers Atlas — versioned, read-only knowledge graph served as static JSON.",
     "version": "0.6.0",
     "x-registry-version": "1.1.0",
-    "x-schema-version": "1.2.0",
+    "x-schema-version": "1.3.0",
     "contact": {
       "name": "Dmytro Yemelianov",
       "url": "https://hoba.work/about"
@@ -21,6 +21,10 @@
       "description": "Canonical Production API"
     }
   ],
+  "externalDocs": {
+    "description": "Complete data inventory, boundaries, formats, and usage guidance",
+    "url": "https://hoba.work/data/latest/inventory.json"
+  },
   "paths": {
     "/index.json": {
       "get": {
@@ -36,267 +40,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/actors/index.json": {
-      "get": {
-        "operationId": "listActors",
-        "summary": "List all Actors whose decisions the funnel is made of",
-        "tags": [
-          "Actor"
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "registry_version",
-                    "count",
-                    "items"
-                  ],
-                  "properties": {
-                    "registry_version": {
-                      "type": "string"
-                    },
-                    "count": {
-                      "type": "integer"
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Actor"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/actors/{id}.json": {
-      "get": {
-        "operationId": "getActor",
-        "summary": "Get Actor by ID",
-        "tags": [
-          "Actor"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Canonical Actor ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "registry_version",
-                    "data"
-                  ],
-                  "properties": {
-                    "registry_version": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Actor"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Unknown ID"
-          }
-        }
-      }
-    },
-    "/processes/index.json": {
-      "get": {
-        "operationId": "listProcesss",
-        "summary": "List all State machines the funnel runs as",
-        "tags": [
-          "Process"
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "registry_version",
-                    "count",
-                    "items"
-                  ],
-                  "properties": {
-                    "registry_version": {
-                      "type": "string"
-                    },
-                    "count": {
-                      "type": "integer"
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Process"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/processes/{id}.json": {
-      "get": {
-        "operationId": "getProcess",
-        "summary": "Get Process by ID",
-        "tags": [
-          "Process"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Canonical Process ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "registry_version",
-                    "data"
-                  ],
-                  "properties": {
-                    "registry_version": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Process"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Unknown ID"
-          }
-        }
-      }
-    },
-    "/eras/index.json": {
-      "get": {
-        "operationId": "listEras",
-        "summary": "List all Periods of the hiring economy, told as where the money came from",
-        "tags": [
-          "Era"
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "registry_version",
-                    "count",
-                    "items"
-                  ],
-                  "properties": {
-                    "registry_version": {
-                      "type": "string"
-                    },
-                    "count": {
-                      "type": "integer"
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Era"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/eras/{id}.json": {
-      "get": {
-        "operationId": "getEra",
-        "summary": "Get Era by ID",
-        "tags": [
-          "Era"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Canonical Era ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "registry_version",
-                    "data"
-                  ],
-                  "properties": {
-                    "registry_version": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Era"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Unknown ID"
           }
         }
       }
@@ -391,7 +134,7 @@
     "/barriers/index.json": {
       "get": {
         "operationId": "listBarriers",
-        "summary": "List all Funnel Barriers (strictly acyclic DAG)",
+        "summary": "List all Barriers",
         "tags": [
           "Barrier"
         ],
@@ -478,7 +221,7 @@
     "/mechanisms/index.json": {
       "get": {
         "operationId": "listMechanisms",
-        "summary": "List all Mechanisms with classification facets",
+        "summary": "List all Mechanisms",
         "tags": [
           "Mechanism"
         ],
@@ -565,7 +308,7 @@
     "/patterns/index.json": {
       "get": {
         "operationId": "listPatterns",
-        "summary": "List all Recurring contradiction patterns",
+        "summary": "List all Patterns",
         "tags": [
           "Pattern"
         ],
@@ -652,7 +395,7 @@
     "/loops/index.json": {
       "get": {
         "operationId": "listLoops",
-        "summary": "List all Causal loops (Tarjan SCC validated)",
+        "summary": "List all Loops",
         "tags": [
           "Loop"
         ],
@@ -739,7 +482,7 @@
     "/interventions/index.json": {
       "get": {
         "operationId": "listInterventions",
-        "summary": "List all Targeted system interventions",
+        "summary": "List all Interventions",
         "tags": [
           "Intervention"
         ],
@@ -811,6 +554,267 @@
                     },
                     "data": {
                       "$ref": "#/components/schemas/Intervention"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
+    "/actors/index.json": {
+      "get": {
+        "operationId": "listActors",
+        "summary": "List all Actors",
+        "tags": [
+          "Actor"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Actor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actors/{id}.json": {
+      "get": {
+        "operationId": "getActor",
+        "summary": "Get Actor by ID",
+        "tags": [
+          "Actor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Actor ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Actor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
+    "/processes/index.json": {
+      "get": {
+        "operationId": "listProcesss",
+        "summary": "List all Processes",
+        "tags": [
+          "Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Process"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/processes/{id}.json": {
+      "get": {
+        "operationId": "getProcess",
+        "summary": "Get Process by ID",
+        "tags": [
+          "Process"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Process ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Process"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
+    "/eras/index.json": {
+      "get": {
+        "operationId": "listEras",
+        "summary": "List all Eras",
+        "tags": [
+          "Era"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Era"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/eras/{id}.json": {
+      "get": {
+        "operationId": "getEra",
+        "summary": "Get Era by ID",
+        "tags": [
+          "Era"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Era ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Era"
                     }
                   }
                 }
@@ -910,10 +914,97 @@
         }
       }
     },
+    "/records/index.json": {
+      "get": {
+        "operationId": "listRecords",
+        "summary": "List all Financial records",
+        "tags": [
+          "Record"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "count",
+                    "items"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Record"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/records/{id}.json": {
+      "get": {
+        "operationId": "getRecord",
+        "summary": "Get Record by ID",
+        "tags": [
+          "Record"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Canonical Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "registry_version",
+                    "data"
+                  ],
+                  "properties": {
+                    "registry_version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Record"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown ID"
+          }
+        }
+      }
+    },
     "/graph/index.json": {
       "get": {
         "operationId": "getGraph",
-        "summary": "Retrieve the complete knowledge graph (Cytoscape.js elements)",
+        "summary": "Retrieve the reader-facing relationship projection (Cytoscape.js elements)",
         "responses": {
           "200": {
             "description": "Successful response",
@@ -945,15 +1036,6 @@
   },
   "components": {
     "schemas": {
-      "Actor": {
-        "$ref": "https://hoba.work/schemas/actor.schema.json#/definitions/Actor"
-      },
-      "Process": {
-        "$ref": "https://hoba.work/schemas/process.schema.json#/definitions/Process"
-      },
-      "Era": {
-        "$ref": "https://hoba.work/schemas/era.schema.json#/definitions/Era"
-      },
       "Observation": {
         "$ref": "https://hoba.work/schemas/observation.schema.json#/definitions/Observation"
       },
@@ -972,8 +1054,20 @@
       "Intervention": {
         "$ref": "https://hoba.work/schemas/intervention.schema.json#/definitions/Intervention"
       },
+      "Actor": {
+        "$ref": "https://hoba.work/schemas/actor.schema.json#/definitions/Actor"
+      },
+      "Process": {
+        "$ref": "https://hoba.work/schemas/process.schema.json#/definitions/Process"
+      },
+      "Era": {
+        "$ref": "https://hoba.work/schemas/era.schema.json#/definitions/Era"
+      },
       "Evidence": {
         "$ref": "https://hoba.work/schemas/evidence.schema.json#/definitions/Evidence"
+      },
+      "Record": {
+        "$ref": "https://hoba.work/schemas/record.schema.json#/definitions/Record"
       }
     }
   }
