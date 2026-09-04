@@ -52,8 +52,8 @@ const payload = JSON.stringify({
   {processes.map((workflow, index) => (
     <section class="section" data-workflow={workflow.id}>
       <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2 min-w-0 max-w-full">
-        <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0 min-w-0 max-w-full break-words">
-          <span class="min-w-0 break-words"><span class="break-all">{workflow.id}</span> · {workflow.title}</span>
+        <h2 class="section-title flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-0 min-w-0 max-w-full wrap-break-word">
+          <span class="min-w-0 wrap-break-word"><span class="break-all">{workflow.id}</span> · {workflow.title}</span>
           {workflow.id === IDEAL_PATH_ID && <span class="pill pill-muted shrink-0">{t('ideal.badge')}</span>}
         </h2>
         <span class="pill pill-muted text-xs font-mono max-w-full truncate"><span class="text-hoba-muted">{t('wf.subject')}:</span> {workflow.subject}</span>

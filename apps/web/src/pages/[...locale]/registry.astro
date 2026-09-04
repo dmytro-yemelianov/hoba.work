@@ -78,7 +78,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
   <div class="space-y-4 mb-8">
     <div class="relative max-w-xl">
       <label for="search-input" class="sr-only">{t('registry.search')}</label>
-      <input type="text" id="search-input" placeholder={t('registry.search')} class="w-full rounded-md border border-hoba-border bg-hoba-card pl-10 pr-4 py-2 text-base text-hoba-text placeholder-hoba-muted focus:outline-none focus:border-hoba-accent" />
+      <input type="text" id="search-input" placeholder={t('registry.search')} class="w-full rounded-md border border-hoba-border bg-hoba-card pl-10 pr-4 py-2 text-base text-hoba-text placeholder-hoba-muted focus:outline-hidden focus:border-hoba-accent" />
       <svg class="w-4 h-4 text-hoba-muted absolute left-3 top-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </div>
     <div class="flex flex-wrap gap-2" role="tablist" aria-label={t('registry.typeTabs')}>
@@ -99,7 +99,7 @@ const agency: { key: RemovabilityType | 'all'; label: string; dot?: string }[] =
       </div>
       <div class="flex items-center gap-2 min-w-0 max-w-full shrink-0">
         <label for="group-select" class="text-xs font-mono text-hoba-muted shrink-0">{t('registry.group.label')}:</label>
-        <select id="group-select" class="rounded-lg border border-hoba-border bg-hoba-card px-2.5 py-1 text-xs text-hoba-text focus:outline-none focus:border-hoba-accent cursor-pointer max-w-[200px] truncate">
+        <select id="group-select" class="rounded-lg border border-hoba-border bg-hoba-card px-2.5 py-1 text-xs text-hoba-text focus:outline-hidden focus:border-hoba-accent cursor-pointer max-w-[200px] truncate">
           <option value="none">{t('registry.group.none')}</option>
           <option value="type">{t('registry.group.type')}</option>
           <option value="stage">{t('registry.group.stage')}</option>

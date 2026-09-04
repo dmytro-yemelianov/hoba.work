@@ -148,7 +148,7 @@ const tocItems = [
               <>
                 <div class="flex items-center text-xs font-bold uppercase tracking-wider text-hoba-muted pr-2">{t(`nature.${row.nature}`)}</div>
                 {row.cells.map((cell) => (
-                  <div class="rounded-xl border border-hoba-border bg-hoba-card p-3 min-h-[5rem]">
+                  <div class="rounded-xl border border-hoba-border bg-hoba-card p-3 min-h-20">
                     <p class="font-mono text-lg font-semibold text-hoba-text">{cell.mechanisms.length}</p>
                     {cell.mechanisms.length === 0 ? (
                       <p class="text-xs text-hoba-muted italic mt-1">{t('data.natureGrid.empty')}</p>
@@ -196,7 +196,7 @@ const tocItems = [
                 <a href={href(e.mechanism)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{e.mechanism}</a>
                 <span class="text-hoba-border" aria-hidden="true">→</span>
                 <a href={href(e.artifact)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{e.artifact}</a>
-                <span class="text-base text-hoba-muted min-w-0 break-words">{titleOf(e.mechanism)}</span>
+                <span class="text-base text-hoba-muted min-w-0 wrap-break-word">{titleOf(e.mechanism)}</span>
               </li>
             ))}
           </ul>
@@ -214,7 +214,7 @@ const tocItems = [
             {report.identifiability.neverAlone.map((n) => (
               <li data-ceiling-id={n.mechanism} class="py-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <a href={href(n.mechanism)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{n.mechanism}</a>
-                <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(n.mechanism)}</span>
+                <span class="text-base text-hoba-text min-w-0 wrap-break-word">{titleOf(n.mechanism)}</span>
                 <span class="meta ml-auto shrink-0">{t('gap.ceilingCovered')}</span>
                 <span class="flex flex-wrap gap-1.5">
                   {n.coveredBy.map((id) => <a href={href(id)} class="pill pill-muted font-mono">{id}</a>)}
@@ -244,7 +244,7 @@ const tocItems = [
                   {group.mechanisms.map((id) => (
                     <li class="flex flex-wrap items-baseline gap-x-3">
                       <a href={href(id)} class="font-mono text-sm text-hoba-accent break-all max-w-full">{id}</a>
-                      <span class="text-base text-hoba-text min-w-0 break-words">{titleOf(id)}</span>
+                      <span class="text-base text-hoba-text min-w-0 wrap-break-word">{titleOf(id)}</span>
                     </li>
                   ))}
                 </ul>
@@ -350,7 +350,7 @@ const tocItems = [
           {bundle.processes.map((wf) => (
             <div class="border border-hoba-border rounded-lg p-4 bg-hoba-card/30">
               <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-3 min-w-0">
-                <h3 class="font-medium text-base text-hoba-text min-w-0 break-words">
+                <h3 class="font-medium text-base text-hoba-text min-w-0 wrap-break-word">
                   <span class="font-mono text-hoba-accent mr-2 break-all">{wf.id}</span>
                   {wf.title}
                 </h3>

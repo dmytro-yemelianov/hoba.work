@@ -51,7 +51,7 @@ const actors = getBundle(lang).actors;
 // internal links stay bare and the language survives the next navigation.
 const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: withLang(Astro.url, l) }));
 ---
-<header class="sticky top-0 z-50 w-full relative border-b border-hoba-border bg-hoba-bg/95 backdrop-blur supports-[backdrop-filter]:bg-hoba-bg/80">
+<header class="sticky top-0 z-50 w-full relative border-b border-hoba-border bg-hoba-bg/95 backdrop-blur-sm supports-backdrop-filter:bg-hoba-bg/80">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center gap-3">
     <a href={prefix || '/'} class="shrink-0 rounded-md hover:opacity-90 transition-opacity" aria-label="hoba">
       <Logo />
@@ -94,7 +94,7 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
             lang={s.lang}
             data-lang-switch={s.lang}
             aria-current={s.lang === lang ? 'true' : undefined}
-            class={`px-2 py-1 rounded transition-colors ${s.lang === lang ? 'bg-hoba-border text-hoba-text font-semibold' : 'text-hoba-muted hover:text-hoba-text'}`}
+            class={`px-2 py-1 rounded-sm transition-colors ${s.lang === lang ? 'bg-hoba-border text-hoba-text font-semibold' : 'text-hoba-muted hover:text-hoba-text'}`}
           >
             {s.label}
           </a>
