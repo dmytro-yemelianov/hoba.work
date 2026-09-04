@@ -62,7 +62,7 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
   </button>
 
   <!-- Floating Popover Dialog (Non-blocking smart card) -->
-  <dialog id="tour-dialog" class="backdrop:bg-black/55 backdrop:backdrop-blur-[2px] bg-transparent p-3 sm:p-4 max-w-lg w-full rounded-2xl shadow-2xl open:animate-in open:fade-in open:zoom-in-95 outline-none border-0 text-hoba-text fixed bottom-4 sm:bottom-6 right-4 sm:right-6 m-0 z-[1000]">
+  <dialog id="tour-dialog" class="backdrop:bg-black/55 backdrop:backdrop-blur-[2px] bg-transparent p-3 sm:p-4 max-w-lg w-full rounded-2xl shadow-2xl open:animate-in open:fade-in open:zoom-in-95 outline-hidden border-0 text-hoba-text fixed bottom-4 sm:bottom-6 right-4 sm:right-6 m-0 z-1000">
     <div class="rounded-2xl border border-hoba-border bg-hoba-card/95 backdrop-blur-xl p-5 shadow-2xl relative flex flex-col justify-between">
       <!-- Header -->
       <div class="flex items-center justify-between border-b border-hoba-border pb-3 mb-3">
@@ -153,7 +153,7 @@ const tourTitle = t(`tour.${pageKey}.title` as any);
 <!-- Spotlight Highlight Box (Injected globally in document) -->
 <div
   id="tour-spotlight-box"
-  class="fixed pointer-events-none transition-all duration-300 ease-out border-2 border-hoba-accent rounded-xl shadow-[0_0_0_9999px_rgba(0,0,0,0.65),0_0_25px_rgba(88,166,255,0.4)] z-[999] opacity-0 hidden"
+  class="fixed pointer-events-none transition-all duration-300 ease-out border-2 border-hoba-accent rounded-xl shadow-[0_0_0_9999px_rgba(0,0,0,0.65),0_0_25px_rgba(88,166,255,0.4)] z-999 opacity-0 hidden"
   aria-hidden="true"
 ></div>
 

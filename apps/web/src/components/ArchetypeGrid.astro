@@ -47,7 +47,7 @@ const cells = AXIS_Y.flatMap((y) =>
           {AXIS_X.map((x) => {
             const cell = cells.find((c) => c.x === x && c.y === y)!;
             return (
-              <div class:list={["rounded-xl border p-3 min-h-[6rem] flex flex-col gap-2", x === 'neutral' && y === 'ambiguous' ? 'border-hoba-accent/40 bg-hoba-accent/5' : 'border-hoba-border bg-hoba-card']}>
+              <div class:list={["rounded-xl border p-3 min-h-24 flex flex-col gap-2", x === 'neutral' && y === 'ambiguous' ? 'border-hoba-accent/40 bg-hoba-accent/5' : 'border-hoba-border bg-hoba-card']}>
                 <p class="text-[11px] font-semibold text-hoba-muted uppercase tracking-wide">{cell.name}</p>
                 {cell.entries.length === 0 ? (
                   <p class="text-xs text-hoba-muted italic">—</p>

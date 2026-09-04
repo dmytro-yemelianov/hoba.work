@@ -134,7 +134,7 @@ const en = {
   'check.turnaround.nominal': 'Nominal Turnaround',
   'check.turnaround.breach': 'Critical Dwell Anomaly',
   'check.turnaround.stalled':
-    'Stage exceeds max expected turnaround of {max} days. Active risk of pipeline freeze or shadow ghosting.',
+    'Stage exceeds max expected turnaround of {max} days. Active risk of pipeline freeze or shadow-sm ghosting.',
   'check.turnaround.normal': 'Within nominal turnaround window of {expected} days.',
   'check.runway.title': 'Candidate Runway & Solvency Calculator',
   'check.runway.desc':

@@ -201,7 +201,7 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
         <div class="flex items-center gap-2 p-1 bg-hoba-bg rounded-xl border border-hoba-border self-start text-xs font-mono">
           <button
             type="button"
-            class="px-3 py-1.5 rounded-lg bg-hoba-card text-hoba-text font-semibold shadow-sm js-tab-landscape active"
+            class="px-3 py-1.5 rounded-lg bg-hoba-card text-hoba-text font-semibold shadow-xs js-tab-landscape active"
             data-target="landscape"
           >
             🖼️ Landscape (1200×630)
@@ -335,9 +335,9 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
         img.src = baseLandscapeUrl;
         downloadBtn.dataset.cardUrl = baseLandscapeUrl;
         downloadBtn.dataset.filename = `hoba-${entry}-${cardLang}.png`;
-        tabLandscape.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabLandscape.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-xs');
         tabLandscape.classList.remove('text-hoba-muted');
-        tabPortrait.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabPortrait.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-xs');
         tabPortrait.classList.add('text-hoba-muted');
       });
 
@@ -345,9 +345,9 @@ const dialogId = `share-dialog-${id.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
         img.src = basePortraitUrl;
         downloadBtn.dataset.cardUrl = basePortraitUrl;
         downloadBtn.dataset.filename = `hoba-${entry}-postcard-${cardLang}.png`;
-        tabPortrait.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabPortrait.classList.add('bg-hoba-card', 'text-hoba-text', 'shadow-xs');
         tabPortrait.classList.remove('text-hoba-muted');
-        tabLandscape.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-sm');
+        tabLandscape.classList.remove('bg-hoba-card', 'text-hoba-text', 'shadow-xs');
         tabLandscape.classList.add('text-hoba-muted');
       });
     });

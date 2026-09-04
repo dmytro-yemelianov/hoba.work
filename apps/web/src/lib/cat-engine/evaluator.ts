@@ -99,7 +99,7 @@ export function evaluateCatQuality(input: string | CatDNA): QualityScore {
 
   if (svg.includes('<filter id=') && svg.includes('<feDropShadow')) {
     geomScore += 7;
-    notesGeom.push('Volumetric soft drop shadow and ambient depth active');
+    notesGeom.push('Volumetric soft drop shadow-sm and ambient depth active');
   }
 
   if (svg.includes('cat-root') && svg.includes('cat-face') && svg.includes('cat-head-ears')) {

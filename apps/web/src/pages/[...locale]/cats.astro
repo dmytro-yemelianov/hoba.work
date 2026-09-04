@@ -51,7 +51,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
       <div class="lg:col-span-6 flex flex-col items-center">
         <div class="cat-stage-container w-full rounded-2xl border border-slate-700/60 bg-slate-900/95 p-6 flex flex-col items-center shadow-2xl relative backdrop-blur-md overflow-hidden">
           <!-- Ambient Glow Background -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-pink-500/10 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-linear-to-tr from-cyan-500/10 via-purple-500/10 to-pink-500/10 pointer-events-none"></div>
 
           <!-- Top Cat Identity Badge -->
           <div class="w-full flex items-center justify-between z-10 mb-4 pb-3 border-b border-slate-800">
@@ -66,7 +66,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
               <button
                 id="randomize-btn"
                 type="button"
-                class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-sm font-semibold rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center gap-2 cursor-pointer"
+                class="px-4 py-2 bg-linear-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-sm font-semibold rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center gap-2 cursor-pointer"
                 title="Press Space or R to randomize"
               >
                 <span>🎲</span>
@@ -89,7 +89,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
                 type="text"
                 value={initialSeed}
                 placeholder={t('cats.customSeed')}
-                class="w-full bg-slate-950/80 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-2 font-mono focus:outline-none focus:border-cyan-400"
+                class="w-full bg-slate-950/80 border border-slate-700 text-slate-200 text-sm rounded-lg px-3 py-2 font-mono focus:outline-hidden focus:border-cyan-400"
               />
             </div>
             <div class="flex items-center gap-2 w-full sm:w-auto">
@@ -672,7 +672,7 @@ const initialSVG = renderCatSVG(initialDNA, { width: 440, height: 440, idPrefix:
 
       const card = document.createElement('button');
       card.type = 'button';
-      card.className = 'p-3 rounded-xl border border-slate-800 bg-slate-950/95 hover:bg-slate-900 hover:border-cyan-500/60 transition-all flex flex-col items-center text-center cursor-pointer group shadow';
+      card.className = 'p-3 rounded-xl border border-slate-800 bg-slate-950/95 hover:bg-slate-900 hover:border-cyan-500/60 transition-all flex flex-col items-center text-center cursor-pointer group shadow-sm';
       card.innerHTML = `
         <div class="w-20 h-20 flex items-center justify-center group-hover:scale-105 transition-transform">${svg}</div>
         <span class="text-xs font-bold text-slate-300 mt-2 truncate w-full group-hover:text-cyan-300">${dna.name}</span>

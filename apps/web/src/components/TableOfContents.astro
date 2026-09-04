@@ -21,7 +21,7 @@ const heading = title ?? (lang === 'uk' ? 'Зміст сторінки' : 'On th
 ---
 <nav class={`table-of-contents toc-container ${className}`} aria-label={heading}>
   <!-- Desktop Sticky Sidebar -->
-  <div class="hidden lg:block w-64 shrink-0 sticky top-24 self-start rounded-2xl border border-hoba-border bg-hoba-card/60 backdrop-blur-md p-4 text-xs shadow-sm">
+  <div class="hidden lg:block w-64 shrink-0 sticky top-24 self-start rounded-2xl border border-hoba-border bg-hoba-card/60 backdrop-blur-md p-4 text-xs shadow-xs">
     <div class="flex items-center gap-2 font-mono font-bold text-hoba-text uppercase tracking-wider text-[11px] pb-2.5 mb-2 border-b border-hoba-border">
       <span class="w-1.5 h-1.5 rounded-full bg-hoba-accent animate-pulse"></span>
       <span>{heading}</span>
@@ -48,7 +48,7 @@ const heading = title ?? (lang === 'uk' ? 'Зміст сторінки' : 'On th
   </div>
 
   <!-- Mobile / Tablet Collapsible Top Bar -->
-  <details class="lg:hidden mb-6 rounded-xl border border-hoba-border bg-hoba-card/75 backdrop-blur p-3 text-xs group">
+  <details class="lg:hidden mb-6 rounded-xl border border-hoba-border bg-hoba-card/75 backdrop-blur-sm p-3 text-xs group">
     <summary class="flex items-center justify-between font-mono font-semibold text-hoba-text cursor-pointer select-none">
       <span class="flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full bg-hoba-accent"></span>
@@ -61,7 +61,7 @@ const heading = title ?? (lang === 'uk' ? 'Зміст сторінки' : 'On th
         <li>
           <a
             href={`#${item.id}`}
-            class="flex items-center justify-between gap-2 px-2 py-1.5 rounded text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover no-underline"
+            class="flex items-center justify-between gap-2 px-2 py-1.5 rounded-sm text-hoba-muted hover:text-hoba-text hover:bg-hoba-hover no-underline"
           >
             <span class="flex items-center gap-1.5 truncate">
               {item.icon && <span class="text-xs shrink-0">{item.icon}</span>}
