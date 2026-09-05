@@ -676,6 +676,16 @@ const en = {
   'analyze.tab.a': '4. Agency and probes',
   'analyze.h.title': 'Step H — What actually happened?',
   'analyze.h.sub': 'Select the observations you witnessed yourself. Do not guess at intent.',
+  'intake.nearby.title': 'Nearby validated cases',
+  'intake.nearby.lead':
+    'These cases share facts with yours. They are structural comparisons, not estimates of what caused your outcome.',
+  'intake.nearby.shared': '{shared}/{total} shared signals',
+  'intake.nearby.stage': 'same stage',
+  'intake.nearby.missing': '{n} case signals not observed',
+  'intake.nearby.use': 'Use this case',
+  'intake.nearby.limit':
+    'A nearby case can show what else to check. It does not establish that the same mechanism operated in your case.',
+  'intake.nearby.none': 'No validated case shares the selected signals yet.',
   'analyze.scenarios.label': 'Empirical scenarios & typical cases:',
   'analyze.scenarios.badge': 'Typical Scenario',
   'analyze.scenarios.ghost_refresh': 'Ghost Requisition & Pipeline Refresh',
@@ -1972,6 +1982,16 @@ const uk: Record<UIKey, string> = {
   'analyze.tab.a': '4. Вплив і проби',
   'analyze.h.title': 'Крок H — Що саме сталося?',
   'analyze.h.sub': 'Оберіть спостереження, які ви зафіксували самі. Без здогадок про наміри.',
+  'intake.nearby.title': 'Найближчі валідовані випадки',
+  'intake.nearby.lead':
+    'Ці випадки мають спільні факти з вашим. Це структурне порівняння, а не оцінка причини вашого результату.',
+  'intake.nearby.shared': 'Спільних сигналів: {shared}/{total}',
+  'intake.nearby.stage': 'той самий етап',
+  'intake.nearby.missing': 'Сигналів випадку не зафіксовано: {n}',
+  'intake.nearby.use': 'Використати цей випадок',
+  'intake.nearby.limit':
+    'Схожий випадок підказує, що ще перевірити. Він не доводить, що у вашому випадку діяв той самий механізм.',
+  'intake.nearby.none': 'Жоден валідований випадок поки не має спільних з обраними сигналів.',
   'analyze.scenarios.label': 'Емпіричні сценарії та типові випадки:',
   'analyze.scenarios.badge': 'Типовий випадок',
   'analyze.scenarios.ghost_refresh': 'Фантомна вакансія та оновлення пулу',
