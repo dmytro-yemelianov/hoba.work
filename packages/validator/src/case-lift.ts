@@ -18,6 +18,7 @@ import {
 import type {
   AuthoredRecordNode,
   BarrierNode,
+  EraNode,
   EntityType,
   EvidenceLevel,
   InterventionNode,
@@ -374,6 +375,19 @@ function liftProcess(node: ProcessNode): CaseLift {
   return lift.build({ id: node.id, type: 'process', title: node.title });
 }
 
+const eraRegimeById: Readonly<Record<string, string>> = {
+  'era.the_record_funding_years': 'record_funding',
+  'era.zero_rates_and_a_same_year_deduction': 'zero_rates_same_year_deduction',
+  'era.rates_up_payroll_repriced': 'rates_up_payroll_repriced',
+  'era.a_fixed_number_of_seats': 'fixed_seats',
+};
+
+function liftEra(node: EraNode): CaseLift {
+  const lift = new LiftBuilder();
+  lift.set('era.regime', eraRegimeById[node.id] ?? 'unclassified', 'era.id', 'direct');
+  return lift.build({ id: node.id, type: 'era', title: node.title });
+}
+
 function liftScenario(scenario: Scenario, byId: ReadonlyMap<string, CaseLift>): CaseLift {
   const lift = new LiftBuilder();
   for (const assignment of scenario.case_assignments) {
@@ -411,6 +425,7 @@ export function liftRegistryCaseSpace(
     ...bundle.interventions.map(liftIntervention),
     ...bundle.records.map(liftRecord),
     ...bundle.processes.map(liftProcess),
+    ...bundle.eras.map(liftEra),
   ];
   const byId = new Map(base.map((lift) => [lift.source.id, lift] as const));
   const derived = [
