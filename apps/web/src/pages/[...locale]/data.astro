@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import { coverage, getBundle, getCaseLift, getDataInventory, STAGES } from '../../lib/registry';
+import { coverage, getBundle, getCaseLift, getCoverageBacklog, getDataInventory, STAGES } from '../../lib/registry';
 import { evaluatePatternEmptiness, gaps as derived, lift, substrateVerifyFlowConservation } from '@hoba/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations, interpolated } from '../../i18n/utils';
 
@@ -15,6 +15,7 @@ const t = useTranslations(lang);
 const bundle = getBundle(lang);
 const inventory = getDataInventory(lang);
 const caseLift = getCaseLift(lang);
+const coverageBacklog = getCoverageBacklog(lang);
 const lifted = lift(bundle);
 const patternReport = evaluatePatternEmptiness(lifted);
 const flowReport = substrateVerifyFlowConservation(lifted.substrate);
@@ -119,6 +120,7 @@ const tocItems = [
             <a href="/data/latest/inventory.json" target="_blank" class="btn btn-secondary font-mono">inventory.json</a>
             <a href="/data/latest/coverage.json" target="_blank" class="btn btn-secondary font-mono">coverage.json</a>
             <a href="/data/latest/case-lift.json" target="_blank" class="btn btn-secondary font-mono">case-lift.json</a>
+            <a href="/data/latest/coverage-backlog.json" target="_blank" class="btn btn-secondary font-mono">coverage-backlog.json</a>
           </div>
         </div>
         <p class="text-base text-hoba-muted max-w-3xl mt-2">
@@ -185,6 +187,35 @@ const tocItems = [
               </dd>
             </div>
           </dl>
+          <div class="mt-6 border-t border-hoba-border pt-5">
+            <div class="flex flex-wrap items-baseline justify-between gap-3">
+              <div>
+                <h4 class="font-semibold text-hoba-text">
+                  {lang === 'uk' ? 'Що добирати далі' : 'What to acquire next'}
+                </h4>
+                <p class="text-sm text-hoba-muted mt-1">
+                  {lang === 'uk'
+                    ? `${coverageBacklog.summary.coordinates_absent} координат без прикладу, ${coverageBacklog.summary.coordinates_thin} тонких координат, ${coverageBacklog.summary.scenario_unknowns} reviewed unknown у сценаріях.`
+                    : `${coverageBacklog.summary.coordinates_absent} coordinates have no example, ${coverageBacklog.summary.coordinates_thin} are thin, and ${coverageBacklog.summary.scenario_unknowns} reviewed scenario coordinates remain unknown.`}
+                </p>
+              </div>
+              <span class="font-mono text-xs text-hoba-muted">backlog {coverageBacklog.version}</span>
+            </div>
+            <ol class="mt-4 grid gap-3">
+              {coverageBacklog.priority_targets.slice(0, 5).map((target) => (
+                <li class="rounded-xl border border-hoba-border bg-hoba-bg/60 p-3">
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <p class="font-mono text-xs text-hoba-muted">{target.id}</p>
+                    <span class="pill pill-muted">{target.priority}</span>
+                  </div>
+                  <p class="text-sm text-hoba-text mt-2">{target.reason}</p>
+                  <p class="text-xs text-hoba-muted mt-2">
+                    {lang === 'uk' ? 'Потрібно:' : 'Needed:'} {target.needed.join(', ')}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 

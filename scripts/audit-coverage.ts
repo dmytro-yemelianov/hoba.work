@@ -3,6 +3,7 @@ import {
   loadCoverageModel,
   loadRegistryFromRoot,
   loadScenarios,
+  buildCoverageBacklog,
   liftRegistryCaseSpace,
   resolveRegistryRoot,
   serializeCaseSpaceMetrics,
@@ -23,6 +24,7 @@ if (issues.length > 0) {
 const summary = summarizeCoverage(model);
 const caseSpace = serializeCaseSpaceMetrics();
 const lift = liftRegistryCaseSpace(bundle, scenarios);
+const backlog = buildCoverageBacklog(lift);
 const compactLift = {
   version: lift.version,
   method: lift.method,
@@ -30,7 +32,23 @@ const compactLift = {
   coordinates: lift.coordinates,
 };
 if (process.argv.includes('--json')) {
-  console.log(JSON.stringify({ ...summary, case_space: caseSpace, lift: compactLift }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        ...summary,
+        case_space: caseSpace,
+        lift: compactLift,
+        backlog: {
+          version: backlog.version,
+          method: backlog.method,
+          summary: backlog.summary,
+          priority_targets: backlog.priority_targets.slice(0, 20),
+        },
+      },
+      null,
+      2
+    )
+  );
   process.exit(0);
 }
 
@@ -48,6 +66,16 @@ console.log(
     `${lift.summary.one_wise_slots_touched}/${lift.summary.one_wise_slots_total} 1-wise slots, ` +
     `${lift.summary.pairwise_slots_touched} observed 2-wise slots from ${lift.summary.assigned_sources} sources.`
 );
+console.log(
+  `Acquisition backlog: ${backlog.summary.coordinates_absent} absent coordinates, ` +
+    `${backlog.summary.coordinates_thin} thin coordinates, ` +
+    `${backlog.summary.values_missing} missing values, ` +
+    `${backlog.summary.scenario_unknowns} scenario unknowns.`
+);
+console.log('\nTop acquisition targets:');
+for (const target of backlog.priority_targets.slice(0, 10)) {
+  console.log(`- ${target.priority}: ${target.id} — ${target.reason}`);
+}
 for (const dimension of [...summary.dimensions].sort(
   (a, b) => a.score_percent - b.score_percent || a.id.localeCompare(b.id)
 )) {

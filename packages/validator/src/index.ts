@@ -10,3 +10,4 @@ export * from './archetypes-store.js';
 export * from './coverage.js';
 export * from './coverage-store.js';
 export * from './case-lift.js';
+export * from './coverage-backlog.js';

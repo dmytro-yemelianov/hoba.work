@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   buildDataInventory,
+  buildCoverageBacklog,
+  type CoverageBacklogReport,
   COLLECTION_FOR,
   ENTITY_CATALOG,
   ENTITY_TYPES,
@@ -156,6 +158,7 @@ describe('canonical data inventory', () => {
       readFileSync(resolve(root, 'apps/web/public/data/latest/case-lift.json'), 'utf8')
     );
     const expectedLift = liftRegistryCaseSpace(bundle, scenarios);
+    const expectedBacklog = buildCoverageBacklog(expectedLift);
 
     expect(published).toEqual({
       ...model,
@@ -166,6 +169,12 @@ describe('canonical data inventory', () => {
         method: expectedLift.method,
         summary: expectedLift.summary,
         coordinates: expectedLift.coordinates,
+      },
+      backlog: {
+        version: expectedBacklog.version,
+        method: expectedBacklog.method,
+        summary: expectedBacklog.summary,
+        priority_targets: expectedBacklog.priority_targets.slice(0, 20),
       },
     });
     expect(publishedLift).toEqual(expectedLift);
@@ -195,5 +204,33 @@ describe('canonical data inventory', () => {
       declared_inferred: 7,
       declared_unknown: 20,
     });
+  });
+
+  it('publishes a generated acquisition backlog from the case-space lift', () => {
+    const publishedBacklog = JSON.parse(
+      readFileSync(resolve(root, 'apps/web/public/data/latest/coverage-backlog.json'), 'utf8')
+    ) as CoverageBacklogReport;
+    const expectedBacklog = buildCoverageBacklog(liftRegistryCaseSpace(bundle, scenarios));
+
+    expect(publishedBacklog).toEqual(expectedBacklog);
+    expect(inventory.latest_exports).toContain('coverage-backlog.json');
+    expect(publishedBacklog.summary).toMatchObject({
+      coordinates_total: 37,
+      coordinates_absent: 23,
+      coordinates_thin: 6,
+      values_missing: 171,
+      scenario_unknowns: 20,
+      pairwise_targets: 9,
+    });
+    expect(publishedBacklog.priority_targets.map((target) => target.id)).toEqual(
+      expect.arrayContaining([
+        'coordinate:worksite.mode',
+        'coordinate:military.status',
+        'coordinate:population.affected',
+        'pairwise:worksite.mode:population.affected',
+        'pairwise:military.status:jurisdiction',
+        'scenario_unknown:scenario.ghost_refresh:funding.state',
+      ])
+    );
   });
 });

@@ -736,6 +736,7 @@ export const LATEST_EXPORTS = [
   'inventory.json',
   'coverage.json',
   'case-lift.json',
+  'coverage-backlog.json',
   'registry.json',
   'registry.ndjson',
   'nodes.csv',

@@ -20,6 +20,7 @@ import {
   eraSchema,
   observationSchema,
   barrierSchema,
+  buildCoverageBacklog,
   evidenceSchema,
   formatValidationIssue,
   HOBAKnowledgeGraph,
@@ -168,6 +169,7 @@ writeJson(path.join(releaseDir, 'inventory.json'), inventory);
 const coverageModel = loadCoverageModel(root);
 const loadedScenarios = loadScenarios(root);
 const caseLift = liftRegistryCaseSpace(bundle, loadedScenarios);
+const coverageBacklog = buildCoverageBacklog(caseLift);
 const coverage = {
   ...coverageModel,
   summary: summarizeCoverage(coverageModel),
@@ -178,11 +180,19 @@ const coverage = {
     summary: caseLift.summary,
     coordinates: caseLift.coordinates,
   },
+  backlog: {
+    version: coverageBacklog.version,
+    method: coverageBacklog.method,
+    summary: coverageBacklog.summary,
+    priority_targets: coverageBacklog.priority_targets.slice(0, 20),
+  },
 };
 writeJson(path.join(latestDir, 'coverage.json'), coverage);
 writeJson(path.join(releaseDir, 'coverage.json'), coverage);
 writeJson(path.join(latestDir, 'case-lift.json'), caseLift);
 writeJson(path.join(releaseDir, 'case-lift.json'), caseLift);
+writeJson(path.join(latestDir, 'coverage-backlog.json'), coverageBacklog);
+writeJson(path.join(releaseDir, 'coverage-backlog.json'), coverageBacklog);
 
 const ndjson =
   ENTITIES.flatMap((e) =>
@@ -216,7 +226,7 @@ writeJson(path.join(latestDir, 'manifest.json'), {
   updated_at: bundle.updated_at,
 });
 console.log(
-  '✓ Generated machine exports (inventory.json, coverage.json, case-lift.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
+  '✓ Generated machine exports (inventory.json, coverage.json, case-lift.json, coverage-backlog.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
 );
 
 // ---------------------------------------------------------------------------
