@@ -194,13 +194,13 @@ describe('canonical data inventory', () => {
       sources: 124,
       assigned_sources: 124,
       refuted: 0,
-      coordinates_touched: 30,
+      coordinates_touched: 31,
       coordinates_total: 71,
-      one_wise_slots_touched: 98,
+      one_wise_slots_touched: 100,
       one_wise_slots_total: 261,
-      pairwise_slots_touched: 1575,
-      declared_coordinates: 141,
-      declared_known: 113,
+      pairwise_slots_touched: 1661,
+      declared_coordinates: 145,
+      declared_known: 117,
       declared_inferred: 7,
       declared_unknown: 21,
     });
@@ -216,19 +216,17 @@ describe('canonical data inventory', () => {
     expect(inventory.latest_exports).toContain('coverage-backlog.json');
     expect(publishedBacklog.summary).toMatchObject({
       coordinates_total: 37,
-      coordinates_absent: 7,
-      coordinates_thin: 17,
-      values_missing: 125,
+      coordinates_absent: 6,
+      coordinates_thin: 18,
+      values_missing: 123,
       scenario_unknowns: 21,
-      pairwise_targets: 3,
+      pairwise_targets: 2,
     });
     expect(publishedBacklog.priority_targets.map((target) => target.id)).toEqual(
       expect.arrayContaining([
-        'coordinate:cost.borne_by',
         'coordinate:era.regime',
         'pairwise:entry.path:cohort.state',
         'pairwise:evidence.level:evidence.role',
-        'pairwise:funding.source:requisition.state',
         'scenario_unknown:scenario.ghost_refresh:funding.state',
       ])
     );
@@ -236,8 +234,10 @@ describe('canonical data inventory', () => {
       expect.arrayContaining([
         'coordinate:worksite.mode',
         'coordinate:military.status',
+        'coordinate:cost.borne_by',
         'pairwise:worksite.mode:population.affected',
         'pairwise:military.status:jurisdiction',
+        'pairwise:funding.source:requisition.state',
       ])
     );
   });
