@@ -131,6 +131,34 @@ describe('validateScenarios', () => {
       validateScenarios(loadScenarios(dir), bundle).some((i) => i.rule === 'duplicate-id')
     ).toBe(true);
   });
+
+  it('validates case-space assignment coordinates, values and admissibility', () => {
+    const broken = `${VALID}
+case_assignments:
+  - coordinate: "worksite.mode"
+    status: "known"
+    value: "remote_global"
+    basis: "Remote global is deliberately paired with an impossible weekly office cadence."
+  - coordinate: "worksite.cadence"
+    status: "known"
+    value: "4_5_per_week"
+    basis: "Four or five days per week is not compatible with a remote-global worksite."
+  - coordinate: "party.set"
+    status: "known"
+    value: "candidate"
+    basis: "Subset coordinates must use arrays, not scalar values."
+  - coordinate: "no.such.coordinate"
+    status: "unknown"
+    basis: "The coordinate must come from CASE_AXES or DERIVED_CASE_COORDINATES."
+`;
+    const rules = validateScenarios(loadScenarios(writeScenarios({ 'a.yaml': broken })), bundle)
+      .map((issue) => issue.rule)
+      .sort();
+
+    expect(rules).toContain('case-assignment-refuted');
+    expect(rules).toContain('case-assignment-shape');
+    expect(rules).toContain('unknown-case-coordinate');
+  });
 });
 
 describe('the one-directional guarantee', () => {

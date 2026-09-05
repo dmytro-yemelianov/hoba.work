@@ -185,11 +185,15 @@ describe('canonical data inventory', () => {
       sources: 119,
       assigned_sources: 119,
       refuted: 0,
-      coordinates_touched: 9,
+      coordinates_touched: 14,
       coordinates_total: 71,
-      one_wise_slots_touched: 40,
+      one_wise_slots_touched: 52,
       one_wise_slots_total: 261,
-      pairwise_slots_touched: 245,
+      pairwise_slots_touched: 332,
+      declared_coordinates: 42,
+      declared_known: 15,
+      declared_inferred: 7,
+      declared_unknown: 20,
     });
   });
 });

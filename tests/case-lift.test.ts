@@ -31,10 +31,14 @@ describe('case-space lift', () => {
     expect(lift.summary.one_wise_slots_total).toBe(summarizeCaseSpace().oneWiseSlots);
   });
 
-  it('makes the structured-data skew visible without claiming prose coverage', () => {
-    expect(lift.summary.coordinates_touched).toBe(9);
-    expect(lift.summary.one_wise_slots_touched).toBe(40);
-    expect(lift.summary.pairwise_slots_touched).toBe(245);
+  it('makes reviewed scenario assignments visible without claiming full prose coverage', () => {
+    expect(lift.summary.coordinates_touched).toBe(14);
+    expect(lift.summary.one_wise_slots_touched).toBe(52);
+    expect(lift.summary.pairwise_slots_touched).toBe(332);
+    expect(lift.summary.declared_coordinates).toBe(42);
+    expect(lift.summary.declared_known).toBe(15);
+    expect(lift.summary.declared_inferred).toBe(7);
+    expect(lift.summary.declared_unknown).toBe(20);
 
     const touched = new Set(lift.coordinates.map((coordinate) => coordinate.coordinate));
     expect(touched).toEqual(
@@ -42,9 +46,14 @@ describe('case-space lift', () => {
         'block.nature',
         'block.owner',
         'chain.class',
+        'cohort.state',
+        'entry.path',
         'epilogue',
         'evidence.level',
+        'jurisdiction',
+        'outcome.signal',
         'party.set',
+        'requisition.state',
         'stage.terminal',
         'statement.fidelity',
         'visibility.candidate',
@@ -57,6 +66,7 @@ describe('case-space lift', () => {
     expect(scenario).toBeDefined();
     expect(scenario!.source.type).toBe('scenario');
     expect(Object.keys(scenario!.assignment).length).toBeLessThan(12);
+    expect(scenario!.declarations.length).toBeGreaterThan(0);
     expect(scenario!.assignment['evidence.level']).toBeDefined();
     expect(scenario!.admissibility.verdict).toBe('admissible');
   });
