@@ -5,6 +5,7 @@ aliases:
   - "EVD-038"
 title: "Publishing the band before the interview becomes a duty in the EU (Directive 2023/970, Art. 5)"
 kind: primary
+role: claim_scoped
 summary: >-
   EU law requires employers to give applicants the initial pay or its range for
   the advertised position, set on objective and gender-neutral criteria, "in a

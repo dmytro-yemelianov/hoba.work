@@ -3,6 +3,7 @@ id: "evidence.citizenship_status_as_a_hiring_ground_is_unlawful_unless_a_rule_re
 type: "evidence"
 title: "Citizenship status as a hiring ground is unlawful unless a rule requires it (8 U.S.C. § 1324b)"
 kind: primary
+role: claim_scoped
 summary: >-
   US law makes it "an unfair immigration-related employment practice for a
   person or other entity to discriminate against any individual … with respect

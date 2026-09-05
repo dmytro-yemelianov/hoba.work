@@ -18935,6 +18935,14 @@ var evidenceKindSchema = external_exports.enum([
   "anecdote",
   "illustrative"
 ]);
+var evidenceRoleSchema = external_exports.enum([
+  "descriptive_fact",
+  "mechanism_support",
+  "claim_scoped",
+  "edge_scoped",
+  "intervention_effectiveness",
+  "synthetic_labelled"
+]);
 var evidenceLevelSchema = external_exports.enum([
   "observed",
   "compatible",
@@ -19299,6 +19307,7 @@ var evidenceSchema = external_exports.object({
   type: external_exports.literal("evidence"),
   title: external_exports.string().min(3),
   kind: evidenceKindSchema,
+  role: evidenceRoleSchema,
   summary: external_exports.string().min(10),
   citation: external_exports.string().optional(),
   url: external_exports.string().url().optional(),

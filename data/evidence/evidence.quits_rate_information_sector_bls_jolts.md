@@ -5,6 +5,7 @@ aliases:
   - "EVD-026"
 title: "Quits rate, information sector (BLS JOLTS)"
 kind: primary
+role: descriptive_fact
 summary: >-
   The seasonally adjusted quits rate in the US information sector was 1.1% in
   June 2026 (preliminary), down from 1.9% in June 2022: fewer seats are being

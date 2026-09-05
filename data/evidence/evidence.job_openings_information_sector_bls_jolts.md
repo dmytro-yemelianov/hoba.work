@@ -5,6 +5,7 @@ aliases:
   - "EVD-020"
 title: "Job openings, information sector (BLS JOLTS)"
 kind: primary
+role: descriptive_fact
 summary: >-
   Job openings in the US information sector averaged 224,000 a month in 2022
   and 121,000 a month in 2025, and stood at 90,000 in June 2026, against an

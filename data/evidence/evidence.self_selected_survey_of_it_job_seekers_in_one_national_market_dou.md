@@ -5,6 +5,7 @@ aliases:
   - "EVD-031"
 title: "Self-selected survey of IT job seekers in one national market (DOU)"
 kind: survey
+role: descriptive_fact
 summary: >-
   A web survey run on a national IT community site in March–April 2026, covering
   3,777 professionals in the country, 943 working abroad, and 363 looking for a

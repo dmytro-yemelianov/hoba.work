@@ -874,6 +874,8 @@ const en = {
   'method.evidence.levelsLead': 'The level describes how far the claim is carried:',
   'method.evidence.levelsTail':
     ' — the last two are not points on that line but states a claim can be in. A citation raises a claim only when it addresses the specific mechanism rather than the general topic, and “proven” is refused outright unless a primary or research record is cited.',
+  'method.evidence.rolesLead':
+    'The role describes what the source is doing in the model, not its format:',
   'method.evidence.text2.before':
     'Each evidence record currently points to one published source: a peer-reviewed study, an institutional report, or a practitioner survey. A level stays provisional where the node cites a source about its general topic rather than the specific mechanism; loops with no source about the feedback cycle itself are marked ',
   'method.evidence.text2.after': '.',
@@ -2161,6 +2163,7 @@ const uk: Record<UIKey, string> = {
   'method.evidence.levelsLead': 'Рівень описує, наскільки твердження несе вагу:',
   'method.evidence.levelsTail':
     ' — два останні не є точками на цій шкалі, а станами, в яких твердження може бути. Цитата підіймає твердження лише тоді, коли стосується конкретного механізму, а не теми загалом, а «доведено» не приймається без первинного чи дослідницького запису.',
+  'method.evidence.rolesLead': 'Роль описує, що джерело робить у моделі, а не його формат:',
   'method.evidence.text2.before':
     'Кожен запис доказу нині спирається на одне опубліковане джерело: рецензоване дослідження, інституційний звіт або опитування практиків. Рівень лишається попереднім там, де вузол цитує джерело про тему загалом, а не про конкретний механізм; цикли без джерела про сам зворотний звʼязок позначені як ',
   'method.evidence.text2.after': '.',

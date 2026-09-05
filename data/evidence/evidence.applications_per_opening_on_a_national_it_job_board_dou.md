@@ -5,6 +5,7 @@ aliases:
   - "EVD-030"
 title: "Applications per opening on a national IT job board (DOU)"
 kind: primary
+role: descriptive_fact
 summary: >-
   Platform-reported counts for a single national IT job board. In March 2026 the
   board carried 7,987 openings and recorded 131,000 applications from 22,800

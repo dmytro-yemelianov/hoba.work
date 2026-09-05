@@ -5,6 +5,7 @@ aliases:
   - "EVD-037"
 title: "A rejection issued without human involvement is regulated in the EU (GDPR Art. 22)"
 kind: primary
+role: claim_scoped
 summary: >-
   Under EU data protection law a person has the right not to be subject to a
   decision based solely on automated processing which produces legal effects or

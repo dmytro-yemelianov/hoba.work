@@ -5,6 +5,7 @@ aliases:
   - "EVD-047"
 title: "Algorithmic Bias In Recruitment: Evaluating Resume Screeners & Video Analysis (Yadav & Ahirwar, 2026)"
 kind: research
+role: mechanism_support
 summary: >-
   Reports that unaudited AI resume/video screeners produce a Disparate Impact
   Ratio below 0.72 for protected groups (improving to 0.88 once mitigation is

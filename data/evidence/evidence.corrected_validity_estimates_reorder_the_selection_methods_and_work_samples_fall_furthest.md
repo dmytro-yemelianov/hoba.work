@@ -5,6 +5,7 @@ aliases:
   - "EVD-033"
 title: "Corrected validity estimates reorder the selection methods, and work samples fall furthest"
 kind: research
+role: intervention_effectiveness
 summary: >-
   Sackett et al. (2022) showed that the range-restriction corrections long used
   in personnel-selection meta-analyses systematically overstated validity, and

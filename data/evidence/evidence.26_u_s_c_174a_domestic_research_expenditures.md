@@ -5,6 +5,7 @@ aliases:
   - "EVD-015"
 title: "26 U.S.C. §174A — domestic research expenditures"
 kind: primary
+role: descriptive_fact
 summary: >-
   Section 70302(a) of Public Law 119-21, enacted 4 July 2025, added section
   174A, which allows a deduction for domestic research or experimental

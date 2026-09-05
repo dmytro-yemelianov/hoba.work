@@ -3,6 +3,7 @@ id: "evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice
 type: "evidence"
 title: "Naming staff for a contract not yet won is an adjudicated practice (GAO, ASRC Federal Data Solutions)"
 kind: primary
+role: mechanism_support
 summary: >-
   Hiring against unsigned funding is regular enough in US federal procurement
   to have its own body of decided law. To sustain a protest that an awardee

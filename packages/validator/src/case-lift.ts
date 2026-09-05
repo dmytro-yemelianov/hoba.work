@@ -21,6 +21,8 @@ import type {
   EraNode,
   EntityType,
   EvidenceLevel,
+  EvidenceRecord,
+  EvidenceRole,
   InterventionNode,
   LoopNode,
   MechanismNode,
@@ -388,6 +390,13 @@ function liftEra(node: EraNode): CaseLift {
   return lift.build({ id: node.id, type: 'era', title: node.title });
 }
 
+function liftEvidence(node: EvidenceRecord): CaseLift {
+  const lift = new LiftBuilder();
+  lift.set('evidence.level', 'observed', 'evidence.source_record', 'direct');
+  lift.set('evidence.role', node.role satisfies EvidenceRole, 'evidence.role', 'direct');
+  return lift.build({ id: node.id, type: 'evidence', title: node.title });
+}
+
 function liftScenario(scenario: Scenario, byId: ReadonlyMap<string, CaseLift>): CaseLift {
   const lift = new LiftBuilder();
   for (const assignment of scenario.case_assignments) {
@@ -426,6 +435,7 @@ export function liftRegistryCaseSpace(
     ...bundle.records.map(liftRecord),
     ...bundle.processes.map(liftProcess),
     ...bundle.eras.map(liftEra),
+    ...bundle.evidence.map(liftEvidence),
   ];
   const byId = new Map(base.map((lift) => [lift.source.id, lift] as const));
   const derived = [

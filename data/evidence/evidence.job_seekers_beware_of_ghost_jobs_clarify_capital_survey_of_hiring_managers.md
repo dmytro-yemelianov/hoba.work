@@ -5,6 +5,7 @@ aliases:
   - "EVD-004"
 title: "Job Seekers Beware of Ghost Jobs (Clarify Capital survey of hiring managers)"
 kind: survey
+role: mechanism_support
 summary: >-
   Survey of 1,045 managers involved in hiring (fielded 31 Aug – 1 Sep 2022) on job postings kept live without active hiring: about half keep postings open because they are "always open to new people", 43% cite giving the impression that the company is growing or keeping existing employees motivated, one in three postings had been active for more than 30 days, and one in four respondents did not plan to fill the role for three months or longer.
 citation: "Clarify Capital (2022). Job Seekers Beware of Ghost Jobs. Survey of 1,045 hiring managers, 31 Aug – 1 Sep 2022."

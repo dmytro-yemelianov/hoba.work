@@ -3,6 +3,7 @@ id: "evidence.mean_vacancy_duration_information_sector_dhi_dfh"
 type: "evidence"
 title: "Mean vacancy duration, information sector (DHI-DFH)"
 kind: research
+role: descriptive_fact
 summary: >-
   The DHI-DFH measure reports the average number of working days taken to fill
   a vacant post, counting Monday to Saturday and excluding major holidays. For

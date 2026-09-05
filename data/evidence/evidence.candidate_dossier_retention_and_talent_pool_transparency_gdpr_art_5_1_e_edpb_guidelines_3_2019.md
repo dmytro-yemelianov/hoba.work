@@ -5,6 +5,7 @@ aliases:
   - "EVD-045"
 title: "Candidate Dossier Retention and Talent Pool Transparency (GDPR Art. 5(1)(e) & EDPB Guidelines 3/2019)"
 kind: primary
+role: claim_scoped
 summary: >-
   Article 5(1)(e) of the General Data Protection Regulation (Regulation (EU) 2016/679)
   and European Data Protection Board Guidelines 3/2019 establish strict storage

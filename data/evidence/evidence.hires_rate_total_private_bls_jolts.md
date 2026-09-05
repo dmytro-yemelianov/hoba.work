@@ -5,6 +5,7 @@ aliases:
   - "EVD-025"
 title: "Hires rate, total private (BLS JOLTS)"
 kind: primary
+role: descriptive_fact
 summary: >-
   The seasonally adjusted hires rate for total private employment was 3.7% in
   June 2026 (preliminary), a full percentage point below its June 2022 level

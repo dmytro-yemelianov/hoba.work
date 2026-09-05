@@ -5,6 +5,7 @@ aliases:
   - "EVD-027"
 title: "Applications per opening (Greenhouse hiring benchmarks)"
 kind: research
+role: descriptive_fact
 summary: >-
   Applications received per open role across the reporting platform's customer
   base rose from 116 in 2022 to 244 in 2025, an increase of 111%. The stated

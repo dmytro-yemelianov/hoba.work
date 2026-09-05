@@ -5,6 +5,7 @@ aliases:
   - "EVD-014"
 title: "Rev. Proc. 2025-28 (IRS)"
 kind: primary
+role: descriptive_fact
 summary: >-
   IRS guidance on the 2025 restoration: foreign research or experimental
   expenditures keep the 15-year amortisation period; balances capitalised

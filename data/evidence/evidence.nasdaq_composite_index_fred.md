@@ -5,6 +5,7 @@ aliases:
   - "EVD-017"
 title: "NASDAQ Composite Index (FRED)"
 kind: primary
+role: descriptive_fact
 summary: >-
   The NASDAQ Composite fell 36.4% from its record close of 16,057.44 on 19
   November 2021 to its cycle low close of 10,213.29 on 28 December 2022.

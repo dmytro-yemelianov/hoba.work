@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import { branded, localeFromParams, localeStaticPaths, useTranslations } from '../../i18n/utils';
-import { evidenceKindSchema, evidenceLevelSchema } from '@hoba/registry';
+import { evidenceKindSchema, evidenceLevelSchema, evidenceRoleSchema } from '@hoba/registry';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -101,6 +101,12 @@ const tocItems = [
             <><code>{l}</code>{i < evidenceLevelSchema.options.length - 1 ? ', ' : ''}</>
           ))}
           {t('method.evidence.levelsTail')}
+        </p>
+        <p>
+          {t('method.evidence.rolesLead')}{' '}
+          {evidenceRoleSchema.options.map((r, i) => (
+            <><code>{r}</code>{i < evidenceRoleSchema.options.length - 1 ? ', ' : '.'}</>
+          ))}
         </p>
         <p>{t('method.evidence.text2.before')}<code>compatible</code>{t('method.evidence.text2.after')}</p>
       </section>

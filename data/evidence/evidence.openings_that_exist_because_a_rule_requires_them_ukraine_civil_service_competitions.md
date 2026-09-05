@@ -5,6 +5,7 @@ aliases:
   - "EVD-039"
 title: "Openings that exist because a rule requires them (Ukraine, civil service competitions)"
 kind: primary
+role: claim_scoped
 summary: >-
   Ukrainian law requires a competition to fill a civil service post: "З метою
   добору осіб, здатних професійно виконувати посадові обов'язки, проводиться

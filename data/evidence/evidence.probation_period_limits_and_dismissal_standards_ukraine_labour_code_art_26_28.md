@@ -5,6 +5,7 @@ aliases:
   - "EVD-040"
 title: "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)"
 kind: primary
+role: claim_scoped
 summary: >-
   Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України)
   establish statutory boundaries for probationary periods: probation may not
