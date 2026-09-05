@@ -60,7 +60,7 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
     <nav class="hidden lg:flex items-center gap-0.5 ml-4" aria-label="Primary">
       <a
         href={analyze.href}
-        class={`nav-link ${active === analyze.key ? 'nav-link-active' : 'text-hoba-accent'}`}
+        class={`nav-link ${active === analyze.key ? 'nav-link-active' : 'text-hoba-text'}`}
         aria-current={active === analyze.key ? 'page' : undefined}
       >
         {analyze.name}
@@ -94,7 +94,7 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
             lang={s.lang}
             data-lang-switch={s.lang}
             aria-current={s.lang === lang ? 'true' : undefined}
-            class={`px-2 py-1 rounded-sm transition-colors ${s.lang === lang ? 'bg-hoba-border text-hoba-text font-semibold' : 'text-hoba-muted hover:text-hoba-text'}`}
+            class={`px-2 py-1 rounded-sm transition-colors ${s.lang === lang ? 'bg-hoba-hover text-hoba-text font-semibold' : 'text-hoba-muted hover:text-hoba-text'}`}
           >
             {s.label}
           </a>
@@ -123,7 +123,7 @@ const switchLinks = LANGS.map((l) => ({ lang: l, label: LANG_LABELS[l], href: wi
         </summary>
         <div class="nav-drawer">
           <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4" aria-label="Primary (mobile)">
-            <a href={analyze.href} class={`nav-link-mobile ${active === analyze.key ? 'nav-link-active' : 'text-hoba-accent'}`} aria-current={active === analyze.key ? 'page' : undefined}>{analyze.name}</a>
+            <a href={analyze.href} class={`nav-link-mobile ${active === analyze.key ? 'nav-link-active' : 'text-hoba-text'}`} aria-current={active === analyze.key ? 'page' : undefined}>{analyze.name}</a>
 
             {groups.map((group) => (
               <>
