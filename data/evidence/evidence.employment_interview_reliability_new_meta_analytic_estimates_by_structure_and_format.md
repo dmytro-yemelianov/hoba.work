@@ -5,6 +5,7 @@ aliases:
   - "EVD-006"
 title: "Employment Interview Reliability: New Meta-Analytic Estimates by Structure and Format"
 kind: research
+role: mechanism_support
 summary: >-
   Meta-analysis of 125 inter-rater reliability coefficients (N = 32,428): reliability is substantially higher for panel interviews than for separate interviews by different interviewers (.74 vs .44) and rises with interview structure — quantifying how much interviewer variance, rather than candidate performance, drives divergent verdicts.
 citation: "Huffcutt, A. I., Culbertson, S. S., & Weyhrauch, W. S. (2013). International Journal of Selection and Assessment, 21(3), 264–276."

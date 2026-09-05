@@ -5,6 +5,7 @@ aliases:
   - "EVD-028"
 title: "Seniority mix of software postings (Indeed Hiring Lab)"
 kind: research
+role: descriptive_fact
 summary: >-
   Senior-level roles accounted for 69.3% of software development postings and
   entry-level roles for 4.5% in the first quarter of 2026, measured on one job

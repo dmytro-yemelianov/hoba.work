@@ -5,6 +5,7 @@ aliases:
   - "EVD-013"
 title: "26 U.S.C. §174 after the 2017 amendment"
 kind: primary
+role: descriptive_fact
 summary: >-
   Section 13206(a) of Public Law 115-97 rewrote section 174 to deny any
   current deduction for specified research or experimental expenditures and to

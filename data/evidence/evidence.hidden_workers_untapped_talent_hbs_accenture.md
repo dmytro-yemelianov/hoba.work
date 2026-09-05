@@ -5,6 +5,7 @@ aliases:
   - "EVD-001"
 title: "Hidden Workers: Untapped Talent (HBS / Accenture)"
 kind: research
+role: mechanism_support
 summary: >-
   Survey of 8,000 workers and 2,250 executives in the US, UK and Germany on automated hiring. 88% of employers agree that qualified high-skill candidates are vetted out of the process by applicant tracking systems because they do not match the exact criteria of the job description; the report attributes a large "hidden worker" population to configurable ATS exclusion rules and knock-out filters.
 citation: "Fuller, J. B., Raman, M., Sage-Gavin, E., & Hines, K. (2021). Hidden Workers: Untapped Talent. Harvard Business School Project on Managing the Future of Work & Accenture."

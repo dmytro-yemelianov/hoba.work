@@ -5,6 +5,7 @@ aliases:
   - "EVD-007"
 title: "Federal funds target range and effective rate (FRED)"
 kind: primary
+role: descriptive_fact
 summary: >-
   The FOMC held the federal funds target range at 0.00–0.25% from 16 December
   2008 to 15 December 2015 and again from 16 March 2020 to 16 March 2022. In

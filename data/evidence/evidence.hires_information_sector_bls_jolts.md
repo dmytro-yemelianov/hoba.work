@@ -5,6 +5,7 @@ aliases:
   - "EVD-022"
 title: "Hires, information sector (BLS JOLTS)"
 kind: primary
+role: descriptive_fact
 summary: >-
   Gross hires in the US information sector fell from 1,270,000 in 2022 to
   903,000 in 2025, a decline of 367,000 or 28.9%. The measure counts hiring

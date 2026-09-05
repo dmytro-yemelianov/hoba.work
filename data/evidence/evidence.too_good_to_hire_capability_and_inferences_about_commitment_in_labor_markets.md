@@ -5,6 +5,7 @@ aliases:
   - "EVD-002"
 title: "Too Good to Hire? Capability and Inferences about Commitment in Labor Markets"
 kind: research
+role: mechanism_support
 summary: >-
   Four experiments with hiring managers show that candidates signalling more capability than the role requires are perceived as less committed to the organization and are penalized in hiring decisions — direct evidence for "overqualified" rejections and the seniority double bind.
 citation: "Galperin, R. V., Hahl, O., Sterling, A. D., & Guo, J. (2020). Administrative Science Quarterly, 65(2), 275–313."

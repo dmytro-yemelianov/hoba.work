@@ -5,6 +5,7 @@ aliases:
   - "EVD-034"
 title: "Postings without a fillable requisition, measured on one ATS platform (Greenhouse)"
 kind: survey
+role: edge_scoped
 summary: >-
   A hiring platform reports that in any given quarter 18–22% of the roles posted
   through it are classified by the vendor as postings not attached to a search

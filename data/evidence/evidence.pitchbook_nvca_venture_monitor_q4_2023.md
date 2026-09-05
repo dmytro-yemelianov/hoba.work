@@ -5,6 +5,7 @@ aliases:
   - "EVD-018"
 title: "PitchBook-NVCA Venture Monitor, Q4 2023"
 kind: research
+role: descriptive_fact
 summary: >-
   Every stage of the US private funding chain contracted at once. Deal value
   fell from $348.0 billion in 2021 to $170.6 billion in 2023. Exit value

@@ -1,10 +1,11 @@
 {
-  "registry_version": "1.7.0",
+  "registry_version": "1.8.0",
   "data": {
     "id": "evidence.layoffs_and_discharges_information_sector_bls_jolts",
     "type": "evidence",
     "title": "Layoffs and discharges, information sector (BLS JOLTS)",
     "kind": "primary",
+    "role": "descriptive_fact",
     "summary": "Official separations in the US information sector were 451,000 in 2022, 399,000 in 2023, 395,000 in 2024 and 447,000 in 2025 — roughly flat across the period, and without the year-to-year collapse reported by tracked-layoff counts over the same span.",
     "citation": "US Bureau of Labor Statistics, Job Openings and Labor Turnover Survey, series JTU510000000000000LDL (Layoffs and discharges, information, total US, not seasonally adjusted).",
     "url": "https://data.bls.gov/timeseries/JTU510000000000000LDL",

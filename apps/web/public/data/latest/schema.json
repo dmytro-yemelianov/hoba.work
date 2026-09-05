@@ -1162,6 +1162,17 @@
                   "illustrative"
                 ]
               },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "descriptive_fact",
+                  "mechanism_support",
+                  "claim_scoped",
+                  "edge_scoped",
+                  "intervention_effectiveness",
+                  "synthetic_labelled"
+                ]
+              },
               "summary": {
                 "type": "string",
                 "minLength": 10
@@ -1189,6 +1200,7 @@
               "type",
               "title",
               "kind",
+              "role",
               "summary"
             ],
             "additionalProperties": false

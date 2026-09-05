@@ -5,6 +5,7 @@ aliases:
   - "EVD-032"
 title: "Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))"
 kind: primary
+role: claim_scoped
 summary: >-
   Under US federal law, an employer intending to take adverse action based in
   whole or in part on a consumer report for employment purposes must first give

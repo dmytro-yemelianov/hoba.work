@@ -435,6 +435,7 @@ describe('evidence aliases survive Zod parsing', () => {
       type: 'evidence',
       title: 'Test evidence fixture for alias round-trip',
       kind: 'research',
+      role: 'mechanism_support',
       summary: 'A synthetic fixture used only to verify aliases is not stripped.',
       aliases: ['EVD-999'],
     });
@@ -447,6 +448,7 @@ describe('evidence aliases survive Zod parsing', () => {
       type: 'evidence',
       title: 'Test evidence fixture with no aliases field',
       kind: 'research',
+      role: 'mechanism_support',
       summary: 'A synthetic fixture used only to verify the default value.',
     });
     expect(parsed.aliases).toEqual([]);

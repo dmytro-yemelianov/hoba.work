@@ -5,6 +5,7 @@ aliases:
   - "EVD-046"
 title: "The Algorithmic Barrier: Quantifying Frictional Unemployment in Automated Recruitment (Fofanah, 2026)"
 kind: research
+role: intervention_effectiveness
 summary: >-
   Benchmarks a legacy keyword-based ATS parser against a proposed semantic
   matching system on the same applicant pool. The legacy system's recall is

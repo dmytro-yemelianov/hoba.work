@@ -23,6 +23,7 @@ import type {
   eraSchema,
   evidenceKindSchema,
   evidenceLevelSchema,
+  evidenceRoleSchema,
   evidenceSchema,
   interventionActorSchema,
   interventionSchema,
@@ -65,6 +66,7 @@ export type EmissionFidelity = z.infer<typeof emissionFidelitySchema>;
 export type EmissionLikelihood = z.infer<typeof emissionLikelihoodSchema>;
 export type EvidenceKind = z.infer<typeof evidenceKindSchema>;
 export type EvidenceLevel = z.infer<typeof evidenceLevelSchema>;
+export type EvidenceRole = z.infer<typeof evidenceRoleSchema>;
 export type NodeStatus = z.infer<typeof nodeStatusSchema>;
 export type InterventionActor = z.infer<typeof interventionActorSchema>;
 export type CostBand = z.infer<typeof costBandSchema>;

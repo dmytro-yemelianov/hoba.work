@@ -85,6 +85,15 @@ export const evidenceKindSchema = z.enum([
   'illustrative',
 ]);
 
+export const evidenceRoleSchema = z.enum([
+  'descriptive_fact',
+  'mechanism_support',
+  'claim_scoped',
+  'edge_scoped',
+  'intervention_effectiveness',
+  'synthetic_labelled',
+]);
+
 /**
  * How strongly a claim is being made, from the external spec via design doc §6.
  *
@@ -613,6 +622,7 @@ export const evidenceSchema = z.object({
   type: z.literal('evidence'),
   title: z.string().min(3),
   kind: evidenceKindSchema,
+  role: evidenceRoleSchema,
   summary: z.string().min(10),
   citation: z.string().optional(),
   url: z.string().url().optional(),

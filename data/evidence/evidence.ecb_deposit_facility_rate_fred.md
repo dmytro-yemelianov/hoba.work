@@ -5,6 +5,7 @@ aliases:
   - "EVD-008"
 title: "ECB deposit facility rate (FRED)"
 kind: primary
+role: descriptive_fact
 summary: >-
   The ECB deposit facility rate was cut to 0.00% on 11 July 2012, turned
   negative at −0.10% on 11 June 2014, reached −0.50% on 18 September 2019 and

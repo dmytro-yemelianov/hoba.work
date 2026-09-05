@@ -191,14 +191,14 @@ describe('canonical data inventory', () => {
       twoWiseUnfilteredSlots: 33384,
     });
     expect(publishedLift.summary).toMatchObject({
-      sources: 128,
-      assigned_sources: 128,
+      sources: 180,
+      assigned_sources: 180,
       refuted: 0,
-      coordinates_touched: 32,
+      coordinates_touched: 33,
       coordinates_total: 71,
-      one_wise_slots_touched: 104,
+      one_wise_slots_touched: 110,
       one_wise_slots_total: 261,
-      pairwise_slots_touched: 1661,
+      pairwise_slots_touched: 1666,
       declared_coordinates: 145,
       declared_known: 117,
       declared_inferred: 7,
@@ -216,18 +216,15 @@ describe('canonical data inventory', () => {
     expect(inventory.latest_exports).toContain('coverage-backlog.json');
     expect(publishedBacklog.summary).toMatchObject({
       coordinates_total: 37,
-      coordinates_absent: 5,
+      coordinates_absent: 4,
       coordinates_thin: 18,
-      values_missing: 119,
+      values_missing: 113,
       scenario_unknowns: 21,
-      pairwise_targets: 2,
+      pairwise_targets: 7,
+      critical_targets: 1,
     });
     expect(publishedBacklog.priority_targets.map((target) => target.id)).toEqual(
-      expect.arrayContaining([
-        'pairwise:entry.path:cohort.state',
-        'pairwise:evidence.level:evidence.role',
-        'scenario_unknown:scenario.ghost_refresh:funding.state',
-      ])
+      expect.arrayContaining(['pairwise:entry.path:cohort.state'])
     );
     expect(publishedBacklog.priority_targets.map((target) => target.id)).not.toEqual(
       expect.arrayContaining([
@@ -235,6 +232,7 @@ describe('canonical data inventory', () => {
         'coordinate:military.status',
         'coordinate:cost.borne_by',
         'coordinate:era.regime',
+        'pairwise:evidence.level:evidence.role',
         'pairwise:worksite.mode:population.affected',
         'pairwise:military.status:jurisdiction',
         'pairwise:funding.source:requisition.state',

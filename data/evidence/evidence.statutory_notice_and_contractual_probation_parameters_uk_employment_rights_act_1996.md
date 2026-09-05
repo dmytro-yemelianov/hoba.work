@@ -5,6 +5,7 @@ aliases:
   - "EVD-041"
 title: "Statutory minimum notice (UK, Employment Rights Act 1996 §86)"
 kind: primary
+role: claim_scoped
 summary: >-
   Section 86 of the UK Employment Rights Act 1996 sets statutory minimum notice
   periods once an employee has been continuously employed for at least one month,

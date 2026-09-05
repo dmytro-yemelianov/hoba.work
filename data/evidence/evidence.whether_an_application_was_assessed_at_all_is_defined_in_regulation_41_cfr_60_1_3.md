@@ -5,6 +5,7 @@ aliases:
   - "EVD-036"
 title: "Whether an application was assessed at all is defined in regulation (41 CFR 60-1.3)"
 kind: primary
+role: claim_scoped
 summary: >-
   US federal contracting regulation turns on whether an expression of interest
   was actually assessed. An individual counts as an "Internet Applicant" only

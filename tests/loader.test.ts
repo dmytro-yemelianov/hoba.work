@@ -40,7 +40,7 @@ describe('loadRegistryFromDirectory', () => {
     const root = writeTempRegistry({
       'content/evidence-free/.keep': '',
       'data/evidence/EVD-001.yaml':
-        'id: EVD-001\ntype: evidence\ntitle: Some study\nkind: research\nsummary: A long enough summary.\n',
+        'id: EVD-001\ntype: evidence\ntitle: Some study\nkind: research\nrole: mechanism_support\nsummary: A long enough summary.\n',
     });
     const bundle = loadRegistryFromDirectory(path.join(root, CONTENT_DIRS.en));
     expect(bundle.evidence.map((e) => e.id)).toEqual(['EVD-001']);

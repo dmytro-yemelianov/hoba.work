@@ -5,6 +5,7 @@ aliases:
   - "EVD-023"
 title: "Tracked technology layoffs (Layoffs.fyi)"
 kind: survey
+role: descriptive_fact
 summary: >-
   A privately maintained tracker that compiles publicly reported layoff events
   at technology and startup companies worldwide, revised as new reports

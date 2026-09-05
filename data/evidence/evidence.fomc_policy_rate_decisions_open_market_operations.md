@@ -5,6 +5,7 @@ aliases:
   - "EVD-016"
 title: "FOMC policy rate decisions (Open Market Operations)"
 kind: primary
+role: descriptive_fact
 summary: >-
   The FOMC raised the federal funds target range to 5.25–5.50% effective 27
   July 2023, the peak of the tightening cycle, and held it there until the 25

@@ -5,6 +5,7 @@ aliases:
   - "EVD-048"
 title: "Behind the privilege shield: Safeguarding AI bias-testing data in employment decisions (Norton Rose Fulbright, 2026)"
 kind: reporting
+role: claim_scoped
 summary: >-
   Legal analysis of a May 28, 2026 discovery order in Mobley v. Workday
   (N.D. Cal.), the pending federal case alleging that Workday's applicant

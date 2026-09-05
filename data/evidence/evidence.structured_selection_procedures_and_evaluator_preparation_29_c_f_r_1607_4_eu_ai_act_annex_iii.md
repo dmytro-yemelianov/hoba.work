@@ -5,6 +5,7 @@ aliases:
   - "EVD-043"
 title: "Selection-procedure impact records and oversight of high-risk recruitment AI"
 kind: primary
+role: intervention_effectiveness
 summary: >-
   The EEOC Uniform Guidelines require users of employee-selection procedures to
   maintain information about adverse impact and, where adverse impact exists,

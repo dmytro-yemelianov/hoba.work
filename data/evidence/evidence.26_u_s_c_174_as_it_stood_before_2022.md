@@ -5,6 +5,7 @@ aliases:
   - "EVD-012"
 title: "26 U.S.C. §174 as it stood before 2022"
 kind: primary
+role: descriptive_fact
 summary: >-
   Under section 174(a)(1) as it stood before the Tax Cuts and Jobs Act took
   effect, a taxpayer could treat research or experimental expenditures paid or

@@ -5,6 +5,7 @@ aliases:
   - "EVD-024"
 title: "Announced job cuts, technology sector (Challenger, Gray & Christmas)"
 kind: survey
+role: descriptive_fact
 summary: >-
   A count of announcements of planned job cuts by US-based employers rather
   than of completed separations; not an official statistic. It reports 133,988

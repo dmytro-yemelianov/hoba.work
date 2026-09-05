@@ -5,6 +5,7 @@ aliases:
   - "EVD-011"
 title: "Technology IPO profitability, 1980–2025 (Ritter)"
 kind: research
+role: descriptive_fact
 summary: >-
   Of 121 US technology listings in 2021, 21% were profitable on trailing-
   twelve-month earnings. The profitable share ranged from 15% to 43% in every

@@ -5,6 +5,7 @@ aliases:
   - "EVD-035"
 title: "Stated requirements set above what current jobholders hold (HBS, Dismissed by Degrees)"
 kind: research
+role: mechanism_support
 summary: >-
   Across 26 million job postings, 67% of postings for production supervisor
   asked for a college degree while 16% of the people then doing that job held

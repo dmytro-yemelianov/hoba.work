@@ -5,6 +5,7 @@ aliases:
   - "EVD-029"
 title: "Employment of young software developers (Stanford Digital Economy Lab)"
 kind: research
+role: descriptive_fact
 summary: >-
   In payroll records covering 3.5–5 million workers a month, employment of
   software developers aged 22–25 fell by close to 20% between its late-2022

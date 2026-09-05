@@ -5,6 +5,7 @@ aliases:
   - "EVD-042"
 title: "Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)"
 kind: primary
+role: claim_scoped
 summary: >-
   5 U.S.C. § 2301 states merit-system principles for the US federal civil service,
   including recruitment from appropriate sources and selection after fair and open

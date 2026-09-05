@@ -212,6 +212,7 @@ export function makeBundle(over: Partial<RegistryBundle> = {}): RegistryBundle {
         type: 'evidence',
         title: 'Fixture evidence',
         kind: 'research',
+        role: 'mechanism_support',
         summary: 'A fixture evidence record.',
         aliases: [],
       },

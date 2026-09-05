@@ -5,6 +5,7 @@ aliases:
   - "EVD-019"
 title: "US information-sector employment (BLS CES)"
 kind: primary
+role: descriptive_fact
 summary: >-
   US payroll employment in the information sector (NAICS 51 — software
   publishing, data processing and telecommunications, but not computer systems

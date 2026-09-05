@@ -22,6 +22,7 @@ describe('case-space lift', () => {
         bundle.loops.length +
         bundle.interventions.length +
         bundle.records.length +
+        bundle.evidence.length +
         bundle.processes.length +
         bundle.eras.length +
         scenarios.length
@@ -33,9 +34,9 @@ describe('case-space lift', () => {
   });
 
   it('makes reviewed scenario assignments visible without claiming full prose coverage', () => {
-    expect(lift.summary.coordinates_touched).toBe(32);
-    expect(lift.summary.one_wise_slots_touched).toBe(104);
-    expect(lift.summary.pairwise_slots_touched).toBe(1661);
+    expect(lift.summary.coordinates_touched).toBe(33);
+    expect(lift.summary.one_wise_slots_touched).toBe(110);
+    expect(lift.summary.pairwise_slots_touched).toBe(1666);
     expect(lift.summary.declared_coordinates).toBe(145);
     expect(lift.summary.declared_known).toBe(117);
     expect(lift.summary.declared_inferred).toBe(7);
@@ -59,6 +60,7 @@ describe('case-space lift', () => {
         'epilogue',
         'era.regime',
         'evidence.level',
+        'evidence.role',
         'funding.source',
         'funding.state',
         'jurisdiction',

@@ -5,6 +5,7 @@ aliases:
   - "EVD-009"
 title: "PitchBook-NVCA Venture Monitor, Q4 2021"
 kind: research
+role: descriptive_fact
 summary: >-
   US venture-backed companies raised $329.6 billion in 2021, against a
   previous record of $166.6 billion in 2020. The report states the figures

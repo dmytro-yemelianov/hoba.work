@@ -5,6 +5,7 @@ aliases:
   - "EVD-021"
 title: "Layoffs and discharges, information sector (BLS JOLTS)"
 kind: primary
+role: descriptive_fact
 summary: >-
   Official separations in the US information sector were 451,000 in 2022,
   399,000 in 2023, 395,000 in 2024 and 447,000 in 2025 — roughly flat across

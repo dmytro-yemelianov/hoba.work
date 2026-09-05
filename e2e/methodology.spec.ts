@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { evidenceKindSchema, evidenceLevelSchema } from '@hoba/registry';
+import { evidenceKindSchema, evidenceLevelSchema, evidenceRoleSchema } from '@hoba/registry';
 
 /**
  * The methodology page describes what the registry may claim, so its
@@ -11,7 +11,9 @@ import { evidenceKindSchema, evidenceLevelSchema } from '@hoba/registry';
  */
 test.describe('the methodology page reads the schema', () => {
   for (const lang of ['en', 'uk'] as const) {
-    test(`names every evidence kind and level the schema defines (${lang})`, async ({ page }) => {
+    test(`names every evidence kind, level and role the schema defines (${lang})`, async ({
+      page,
+    }) => {
       await page.goto(`/methodology?lang=${lang}`);
       const section = page.locator('#method-evidence');
       await expect(section).toBeVisible();
@@ -22,6 +24,9 @@ test.describe('the methodology page reads the schema', () => {
       }
       for (const level of evidenceLevelSchema.options) {
         expect(text, `${lang}: evidence level "${level}"`).toContain(level);
+      }
+      for (const role of evidenceRoleSchema.options) {
+        expect(text, `${lang}: evidence role "${role}"`).toContain(role);
       }
     });
   }

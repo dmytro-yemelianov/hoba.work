@@ -5,6 +5,7 @@ aliases:
   - "EVD-010"
 title: "KPMG Venture Pulse, Q4 2021"
 kind: research
+role: descriptive_fact
 summary: >-
   Global venture capital investment totalled $671 billion across 2021, the
   highest annual figure in the series, of which $171.4 billion was invested in

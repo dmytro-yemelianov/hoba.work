@@ -5,6 +5,7 @@ aliases:
   - "EVD-044"
 title: "Promissory Estoppel and Pre-Employment Good Faith (Restatement of Employment Law § 2.02)"
 kind: primary
+role: claim_scoped
 summary: >-
   Section 2.02 of the Restatement of Employment Law (American Law Institute, 2015)
   and prevailing common-law promissory estoppel doctrines establish actionable
