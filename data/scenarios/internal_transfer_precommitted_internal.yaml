@@ -1,0 +1,75 @@
+# Internal transfer is a separate entry route from public inbound application.
+# It can meet a cohort that is already committed to another internal candidate.
+id: scenario.internal_transfer_precommitted_internal
+title:
+  en: "Internal transfer meets a pre-committed internal candidate"
+  uk: "Внутрішній перехід стикається з уже обраним внутрішнім кандидатом"
+summary: "An employee seeks an internal transfer, but the process was effectively committed to another internal candidate before the visible interview path completed."
+stage: "hiring-manager"
+observations:
+  - "obs.rejection_naming_an_internal_hire_as_the_outcome"
+  - "obs.conflicting_feedback_across_different_interviewers"
+compatible_mechanisms:
+  - "mech.pre_selected_internal_candidate"
+  - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
+  - "mech.hiring_manager_consensus_impasse"
+compatible_barriers:
+  - "bar.hiring_manager_in_depth_review"
+  - "bar.team_cross_functional_panel"
+process_states:
+  - "proc.the_hiring_funnel_end_to_end"
+evidence:
+  - "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
+excluded_claims:
+  - "An internal-transfer process proves that every candidate received the same route."
+  - "Naming an internal hire proves unlawful preference in every jurisdiction."
+  - "The rejected employee can infer when the commitment to the selected candidate was made."
+agency:
+  employer-policy:
+    - "int.internal_candidacy_stated_in_the_posting"
+    - "int.requirement_changes_versioned_and_sent_to_candidates_in_flight"
+  hiring-manager:
+    - "int.a_named_decider_and_a_written_rule_for_a_split_panel"
+case_assignments:
+  - coordinate: "entry.path"
+    status: "known"
+    value: "internal_transfer"
+    basis: "The candidate is already inside the employer and enters through an internal transfer route."
+  - coordinate: "cohort.state"
+    status: "known"
+    value: "pre_committed_internal"
+    basis: "The visible terminal statement names an internal hire, while the scenario is about a prior internal commitment."
+    evidence:
+      - "evidence.internal_candidacy_and_public_competition_governance_5_u_s_c_2301_uk_civil_service_management_code"
+  - coordinate: "plurality"
+    status: "known"
+    value: "repeat_same_employer"
+    basis: "The candidate is not a first-time external applicant; the process is a second route inside the same employer."
+  - coordinate: "block.owner"
+    status: "known"
+    value: "inside"
+    basis: "The internal selection rule is owned by employer policy or the hiring manager."
+  - coordinate: "block.arity"
+    status: "known"
+    value: "comparative"
+    basis: "The transfer candidate is compared against another internal candidate or named incumbent path."
+  - coordinate: "block.determinacy"
+    status: "known"
+    value: "judgement"
+    basis: "The internal selection is a judgement inside the organization, not a fixed external rule."
+  - coordinate: "block.nature"
+    status: "known"
+    value: "rule"
+    basis: "The mechanism is an internal-candidacy governance rule or priority, not merely interviewer noise."
+  - coordinate: "outcome.signal"
+    status: "known"
+    value: "internal_fill"
+    basis: "The candidate is told that the role went to an internal hire."
+  - coordinate: "statement.fidelity"
+    status: "known"
+    value: "direct"
+    basis: "The terminal statement names internal hiring rather than only generic fit."
+  - coordinate: "visibility.candidate"
+    status: "known"
+    value: "partial"
+    basis: "The candidate sees the internal-fill outcome but not the timing of the commitment."

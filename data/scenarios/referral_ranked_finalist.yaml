@@ -1,0 +1,73 @@
+# A referral can still end as an ordinary comparative finalist decision. The
+# scenario is here to separate network entry from proof of preferential outcome.
+id: scenario.referral_ranked_finalist
+title:
+  en: "Referral reaches a ranked finalist cohort"
+  uk: "Рекомендований кандидат потрапляє до ранжованої фінальної когорти"
+summary: "A referred candidate reaches the final stage and receives a comparative rejection after the employer ranks finalists."
+stage: "team"
+observations:
+  - "obs.generic_closer_alignment_rejection_template"
+  - "obs.conflicting_feedback_across_different_interviewers"
+  - "obs.position_closed_after_final_interview_without_hire"
+compatible_mechanisms:
+  - "mech.stronger_competing_candidate_in_final_cohort"
+  - "mech.hiring_manager_consensus_impasse"
+  - "mech.hidden_evaluation_rubric_or_undisclosed_priority"
+compatible_barriers:
+  - "bar.hiring_manager_in_depth_review"
+  - "bar.team_cross_functional_panel"
+process_states:
+  - "proc.the_hiring_funnel_end_to_end"
+evidence:
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+excluded_claims:
+  - "A referral proves that the candidate had a privileged path to the offer."
+  - "A comparative rejection proves the panel acted unfairly."
+  - "Conflicting feedback identifies the exact finalist ranking rule."
+agency:
+  candidate:
+    - "int.recorded_finalist_standing_with_a_dated_re_entry_route"
+  employer-policy:
+    - "int.standardized_late_stage_rejection_feedback_taxonomy"
+  hiring-manager:
+    - "int.a_named_decider_and_a_written_rule_for_a_split_panel"
+case_assignments:
+  - coordinate: "entry.path"
+    status: "known"
+    value: "referral"
+    basis: "The scenario is defined by a candidate entering through a referral rather than a public inbound application."
+  - coordinate: "cohort.state"
+    status: "known"
+    value: "ranked_within_cohort"
+    basis: "The terminal decision is comparative among finalists, not an absolute rule or a pre-committed internal outcome."
+    evidence:
+      - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+  - coordinate: "plurality"
+    status: "known"
+    value: "single"
+    basis: "The scenario describes one employer process with multiple finalists inside it."
+  - coordinate: "block.arity"
+    status: "known"
+    value: "comparative"
+    basis: "The block is relative standing inside a finalist cohort."
+  - coordinate: "block.determinacy"
+    status: "known"
+    value: "judgement"
+    basis: "A finalist ranking is a panel judgement, even when a rubric exists."
+  - coordinate: "block.nature"
+    status: "known"
+    value: "noise"
+    basis: "Conflicting interviewer feedback makes the visible barrier partly noisy rather than a clean rule."
+  - coordinate: "outcome.signal"
+    status: "known"
+    value: "generic_rejection"
+    basis: "The visible terminal artifact is a generic closer-alignment rejection."
+  - coordinate: "statement.fidelity"
+    status: "known"
+    value: "euphemism"
+    basis: "Closer alignment hides the actual comparative rank from the candidate."
+  - coordinate: "visibility.candidate"
+    status: "known"
+    value: "partial"
+    basis: "The candidate sees finalist-stage signals but not the full ranking rule."

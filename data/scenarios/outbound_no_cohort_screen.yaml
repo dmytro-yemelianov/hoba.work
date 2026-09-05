@@ -1,0 +1,74 @@
+# Outbound sourcing is not automatically a competition. Sometimes it is only a
+# contact attempt, a screen, or a pool-refresh pass with no active cohort.
+id: scenario.outbound_no_cohort_screen
+title:
+  en: "Outbound screen with no active cohort"
+  uk: "Вихідний контакт без активної когорти"
+summary: "A recruiter contacts a candidate first, but the exchange ends before a real applicant cohort exists."
+stage: "sourcing"
+observations:
+  - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
+  - "obs.generic_closer_alignment_rejection_template"
+compatible_mechanisms:
+  - "mech.speculative_sourcing_talent_pooling_without_opening"
+  - "mech.recruiter_volume_quota_incentive_distortion"
+  - "mech.stale_or_orphaned_job_requisition"
+compatible_barriers:
+  - "bar.outbound_sourcing_talent_pool_contact"
+  - "bar.recruiter_screening_call"
+process_states:
+  - "proc.the_path_as_it_is_supposed_to_run"
+evidence:
+  - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
+excluded_claims:
+  - "A recruiter message proves that a funded seat exists."
+  - "No reply proves that the candidate was ranked below someone else."
+  - "Outbound contact proves that the candidate entered the employer's ATS."
+agency:
+  employer-policy:
+    - "int.outreach_states_the_requisition_behind_it"
+  recruiter:
+    - "int.screening_note_bound_to_observations_and_disposition_codes"
+case_assignments:
+  - coordinate: "entry.path"
+    status: "known"
+    value: "outbound"
+    basis: "The initiating action is a recruiter contacting the candidate before the candidate applies."
+  - coordinate: "cohort.state"
+    status: "known"
+    value: "none"
+    basis: "The scenario ends before an assessed candidate cohort is established."
+  - coordinate: "requisition.state"
+    status: "inferred"
+    value: "never_existed"
+    basis: "Speculative sourcing is compatible and the scenario never establishes a fillable requisition."
+    evidence:
+      - "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
+  - coordinate: "block.owner"
+    status: "known"
+    value: "inside"
+    basis: "The sourcing process and outreach volume are owned inside the recruiting function."
+  - coordinate: "block.arity"
+    status: "known"
+    value: "absolute"
+    basis: "The candidate is not ranked against a cohort; the process fails to become a real competition."
+  - coordinate: "block.determinacy"
+    status: "known"
+    value: "stochastic"
+    basis: "Pool refresh and outreach volume make the candidate-facing outcome noisy rather than rule-determined."
+  - coordinate: "block.nature"
+    status: "known"
+    value: "incentive"
+    basis: "The compatible mechanism is recruiter volume or pool-building incentive."
+  - coordinate: "outcome.signal"
+    status: "known"
+    value: "no_response"
+    basis: "The visible outcome is recruiter ghosting after outbound contact."
+  - coordinate: "statement.fidelity"
+    status: "known"
+    value: "void"
+    basis: "Silence carries no substantive explanation of the process state."
+  - coordinate: "visibility.candidate"
+    status: "known"
+    value: "opaque"
+    basis: "The candidate cannot see whether the outreach had a funded role behind it."
