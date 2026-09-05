@@ -1347,5 +1347,341 @@
       "defeasible": 3
     },
     "executableHardConstraints": 12
+  },
+  "lift": {
+    "version": "1.0.0",
+    "method": {
+      "unit": "partial case assignment per canonical entity or scenario",
+      "boundary": "structured fields only; prose is not classified by this lift",
+      "limitation": "This is a lower bound on corpus coverage. Unknown coordinates mean not machine-authored yet, not impossible."
+    },
+    "summary": {
+      "sources": 119,
+      "assigned_sources": 119,
+      "admissible": 119,
+      "refuted": 0,
+      "undetermined": 0,
+      "coordinates_touched": 9,
+      "coordinates_total": 71,
+      "one_wise_slots_touched": 40,
+      "one_wise_slots_total": 261,
+      "pairwise_slots_touched": 245,
+      "pairwise_sources": 119,
+      "weakest_coordinates": [
+        {
+          "coordinate": "epilogue",
+          "kind": "scalar",
+          "assigned_sources": 6,
+          "values": {
+            "not_reached": 6
+          }
+        },
+        {
+          "coordinate": "block.owner",
+          "kind": "scalar",
+          "assigned_sources": 13,
+          "values": {
+            "inside": 10,
+            "outside_party": 3
+          }
+        },
+        {
+          "coordinate": "chain.class",
+          "kind": "scalar",
+          "assigned_sources": 13,
+          "values": {
+            "none": 5,
+            "candidate_runway": 2,
+            "client_margin": 2,
+            "agency_fee": 1,
+            "internal_payroll": 3
+          }
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "kind": "scalar",
+          "assigned_sources": 32,
+          "values": {
+            "direct": 32
+          }
+        },
+        {
+          "coordinate": "block.nature",
+          "kind": "scalar",
+          "assigned_sources": 37,
+          "values": {
+            "bias": 7,
+            "incentive": 9,
+            "noise": 6,
+            "rule": 13,
+            "void": 2
+          }
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "kind": "scalar",
+          "assigned_sources": 50,
+          "values": {
+            "partial": 19,
+            "opaque": 23,
+            "legible": 8
+          }
+        },
+        {
+          "coordinate": "party.set",
+          "kind": "subset",
+          "assigned_sources": 65,
+          "values": {
+            "hiring_manager": 22,
+            "employer_policy": 23,
+            "candidate": 13,
+            "ats_vendor": 16,
+            "recruiter": 16,
+            "client": 1
+          }
+        },
+        {
+          "coordinate": "stage.terminal",
+          "kind": "scalar",
+          "assigned_sources": 78,
+          "values": {
+            "ingestion": 7,
+            "client": 1,
+            "compensation": 2,
+            "offer": 9,
+            "hiring-manager": 1,
+            "screening": 7,
+            "post-offer": 14,
+            "sourcing": 5,
+            "recruiter": 8,
+            "pre-posting": 1,
+            "technical": 10,
+            "team": 13
+          }
+        },
+        {
+          "coordinate": "evidence.level",
+          "kind": "scalar",
+          "assigned_sources": 119,
+          "values": {
+            "proven": 19,
+            "strongly_supported": 7,
+            "supported": 68,
+            "compatible": 8,
+            "unknown": 17
+          }
+        }
+      ],
+      "strongest_coordinates": [
+        {
+          "coordinate": "evidence.level",
+          "kind": "scalar",
+          "assigned_sources": 119,
+          "values": {
+            "proven": 19,
+            "strongly_supported": 7,
+            "supported": 68,
+            "compatible": 8,
+            "unknown": 17
+          }
+        },
+        {
+          "coordinate": "stage.terminal",
+          "kind": "scalar",
+          "assigned_sources": 78,
+          "values": {
+            "ingestion": 7,
+            "client": 1,
+            "compensation": 2,
+            "offer": 9,
+            "hiring-manager": 1,
+            "screening": 7,
+            "post-offer": 14,
+            "sourcing": 5,
+            "recruiter": 8,
+            "pre-posting": 1,
+            "technical": 10,
+            "team": 13
+          }
+        },
+        {
+          "coordinate": "party.set",
+          "kind": "subset",
+          "assigned_sources": 65,
+          "values": {
+            "hiring_manager": 22,
+            "employer_policy": 23,
+            "candidate": 13,
+            "ats_vendor": 16,
+            "recruiter": 16,
+            "client": 1
+          }
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "kind": "scalar",
+          "assigned_sources": 50,
+          "values": {
+            "partial": 19,
+            "opaque": 23,
+            "legible": 8
+          }
+        },
+        {
+          "coordinate": "block.nature",
+          "kind": "scalar",
+          "assigned_sources": 37,
+          "values": {
+            "bias": 7,
+            "incentive": 9,
+            "noise": 6,
+            "rule": 13,
+            "void": 2
+          }
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "kind": "scalar",
+          "assigned_sources": 32,
+          "values": {
+            "direct": 32
+          }
+        },
+        {
+          "coordinate": "chain.class",
+          "kind": "scalar",
+          "assigned_sources": 13,
+          "values": {
+            "none": 5,
+            "candidate_runway": 2,
+            "client_margin": 2,
+            "agency_fee": 1,
+            "internal_payroll": 3
+          }
+        },
+        {
+          "coordinate": "block.owner",
+          "kind": "scalar",
+          "assigned_sources": 13,
+          "values": {
+            "inside": 10,
+            "outside_party": 3
+          }
+        },
+        {
+          "coordinate": "epilogue",
+          "kind": "scalar",
+          "assigned_sources": 6,
+          "values": {
+            "not_reached": 6
+          }
+        }
+      ]
+    },
+    "coordinates": [
+      {
+        "coordinate": "block.nature",
+        "kind": "scalar",
+        "assigned_sources": 37,
+        "values": {
+          "bias": 7,
+          "incentive": 9,
+          "noise": 6,
+          "rule": 13,
+          "void": 2
+        }
+      },
+      {
+        "coordinate": "block.owner",
+        "kind": "scalar",
+        "assigned_sources": 13,
+        "values": {
+          "inside": 10,
+          "outside_party": 3
+        }
+      },
+      {
+        "coordinate": "chain.class",
+        "kind": "scalar",
+        "assigned_sources": 13,
+        "values": {
+          "none": 5,
+          "candidate_runway": 2,
+          "client_margin": 2,
+          "agency_fee": 1,
+          "internal_payroll": 3
+        }
+      },
+      {
+        "coordinate": "epilogue",
+        "kind": "scalar",
+        "assigned_sources": 6,
+        "values": {
+          "not_reached": 6
+        }
+      },
+      {
+        "coordinate": "evidence.level",
+        "kind": "scalar",
+        "assigned_sources": 119,
+        "values": {
+          "proven": 19,
+          "strongly_supported": 7,
+          "supported": 68,
+          "compatible": 8,
+          "unknown": 17
+        }
+      },
+      {
+        "coordinate": "party.set",
+        "kind": "subset",
+        "assigned_sources": 65,
+        "values": {
+          "hiring_manager": 22,
+          "employer_policy": 23,
+          "candidate": 13,
+          "ats_vendor": 16,
+          "recruiter": 16,
+          "client": 1
+        }
+      },
+      {
+        "coordinate": "stage.terminal",
+        "kind": "scalar",
+        "assigned_sources": 78,
+        "values": {
+          "ingestion": 7,
+          "client": 1,
+          "compensation": 2,
+          "offer": 9,
+          "hiring-manager": 1,
+          "screening": 7,
+          "post-offer": 14,
+          "sourcing": 5,
+          "recruiter": 8,
+          "pre-posting": 1,
+          "technical": 10,
+          "team": 13
+        }
+      },
+      {
+        "coordinate": "statement.fidelity",
+        "kind": "scalar",
+        "assigned_sources": 32,
+        "values": {
+          "direct": 32
+        }
+      },
+      {
+        "coordinate": "visibility.candidate",
+        "kind": "scalar",
+        "assigned_sources": 50,
+        "values": {
+          "partial": 19,
+          "opaque": 23,
+          "legible": 8
+        }
+      }
+    ]
   }
 }

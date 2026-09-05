@@ -3,6 +3,7 @@ import {
   loadCoverageModel,
   loadRegistryFromRoot,
   loadScenarios,
+  liftRegistryCaseSpace,
   resolveRegistryRoot,
   serializeCaseSpaceMetrics,
   summarizeCoverage,
@@ -21,8 +22,15 @@ if (issues.length > 0) {
 
 const summary = summarizeCoverage(model);
 const caseSpace = serializeCaseSpaceMetrics();
+const lift = liftRegistryCaseSpace(bundle, scenarios);
+const compactLift = {
+  version: lift.version,
+  method: lift.method,
+  summary: lift.summary,
+  coordinates: lift.coordinates,
+};
 if (process.argv.includes('--json')) {
-  console.log(JSON.stringify({ ...summary, case_space: caseSpace }, null, 2));
+  console.log(JSON.stringify({ ...summary, case_space: caseSpace, lift: compactLift }, null, 2));
   process.exit(0);
 }
 
@@ -34,6 +42,11 @@ console.log(
   `Case space denominator: ${caseSpace.coverageCoordinates} coordinates, ` +
     `${caseSpace.oneWiseSlots} 1-wise slots, ` +
     `${caseSpace.twoWiseUnfilteredSlots} unfiltered 2-wise slots before Γ.`
+);
+console.log(
+  `Lift lower bound: ${lift.summary.coordinates_touched}/${lift.summary.coordinates_total} coordinates, ` +
+    `${lift.summary.one_wise_slots_touched}/${lift.summary.one_wise_slots_total} 1-wise slots, ` +
+    `${lift.summary.pairwise_slots_touched} observed 2-wise slots from ${lift.summary.assigned_sources} sources.`
 );
 for (const dimension of [...summary.dimensions].sort(
   (a, b) => a.score_percent - b.score_percent || a.id.localeCompare(b.id)
