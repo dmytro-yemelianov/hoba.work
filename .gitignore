@@ -30,6 +30,8 @@ dist/
 
 # Test & coverage
 coverage/
+!data/coverage/
+!data/coverage/model.json
 .nyc_output/
 
 site/dist/

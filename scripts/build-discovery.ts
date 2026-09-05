@@ -294,7 +294,7 @@ function llmsFull(bundle: RegistryBundle, graph: HOBAKnowledgeGraph): string {
   out.push('## Presentation-only archetype overlays', '');
   for (const archetype of loadArchetypes(registryRoot)) {
     out.push(
-      `- **${archetype.id} — ${archetype.nickname.en}** (${archetype.axis_x}/${archetype.axis_y}): ${archetype.blurb.en}`
+      `- **${archetype.id} — ${archetype.nickname.en}** (${({ lawful: 'systematic', neutral: 'mixed', chaotic: 'ad hoc' } as const)[archetype.axis_x]}/${archetype.axis_y}): ${archetype.blurb.en}`
     );
   }
   out.push('');

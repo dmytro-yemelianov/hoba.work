@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Probation Period & Post-Start Confirmation",
     "status": "active",
@@ -7,7 +7,7 @@
       "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
       "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
     ],
-    "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
+    "content": "# Probation Period & Post-Start Confirmation\n\nThe post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.\n\n### Pass Condition\nThe applicable probation interval ends without a valid probation-based termination, and employment continues under the governing contract and law.",
     "aliases": [
       "B-016"
     ],
@@ -17,8 +17,8 @@
     "order": 16,
     "precedes": [],
     "description": "The post-hire evaluation interval (statutory or contractual probation) during which performance, delivery, and team alignment are formally confirmed.",
-    "pass_condition": "The candidate completes the probationary period without termination notice and transitions into confirmed permanent employment.",
-    "evidence_level": "proven",
+    "pass_condition": "The applicable probation interval ends without a valid probation-based termination, and employment continues under the governing contract and law.",
+    "evidence_level": "supported",
     "specimens": [
       {
         "kind": "note",
@@ -33,31 +33,31 @@
             "tell": true
           },
           {
-            "text": "Status: Full permanent standing confirmed",
+            "text": "Status: Probation review completed; employment continues",
             "tell": false
           }
         ],
-        "reading": "The transition from conditional probation to permanent standing requires explicit managerial evaluation or statutory lapse."
+        "reading": "Completion may be recorded by an explicit review or follow from the interval expiring under the applicable rule; employment did not begin only at this milestone."
       }
     ],
     "perspectives": [
       {
         "actor": "actor.hiring_manager",
         "sees": "Direct on-the-job execution during the first three months, assessing delivery speed, architecture decisions, and team communication.",
-        "reads": "Probation provides a low-friction termination window if the hire demonstrates unexpected capability gaps.",
+        "reads": "A probation clause may provide a specific evaluation and termination procedure where the governing law and contract allow it.",
         "does": "Conducts regular 1-on-1 reviews and files the final probation confirmation report."
       },
       {
         "actor": "actor.candidate",
         "sees": "Initial project onboarding, ramp-up expectations, and milestone checkpoints toward passing probation.",
-        "reads": "Employment remains contingent on early performance until the probation gate is officially cleared.",
+        "reads": "Employment already exists; probation may change particular notice or termination rules but does not postpone every employment right.",
         "does": "Delivers against sprint goals and seeks written confirmation upon completion of the probation interval."
       },
       {
         "actor": "actor.employer_policy",
         "sees": "Legal compliance boundaries (statutory 3-month caps under the Ukrainian Labour Code, or contractual notice rules under the UK Employment Rights Act 1996).",
-        "reads": "Probation defines the boundary where statutory employment protections and standard dismissal standards take full effect.",
-        "does": "Enforces notice requirements and confirms payroll status transition upon probation completion."
+        "reads": "Only the protections or procedures expressly varied by applicable law or contract change during probation; other rights remain in force.",
+        "does": "Checks that the clause, duration, notice, reasons, and recorded outcome comply with the applicable regime."
       }
     ]
   }

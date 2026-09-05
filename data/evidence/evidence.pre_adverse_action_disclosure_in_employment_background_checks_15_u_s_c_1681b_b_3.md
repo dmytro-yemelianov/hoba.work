@@ -9,13 +9,12 @@ summary: >-
   Under US federal law, an employer intending to take adverse action based in
   whole or in part on a consumer report for employment purposes must first give
   the candidate a copy of the report and a written description of their rights.
-  A separate route applies where the candidate applied remotely: notice may
-  instead follow within three business days of the action, naming the reporting
-  agency, stating that the agency did not make the decision, and telling the
-  candidate they may request a free copy and dispute its accuracy. The statute
-  therefore already requires disclosure of the record, but only the first route
-  places it before the decision is final, and neither fixes how long an offer
-  stays open while a disputed field is reconciled.
+  A narrower exception applies to specified transportation employment when the
+  application was made by mail, telephone, computer, or a similar means: the
+  required notice may follow within three business days of the action. The
+  statute therefore requires disclosure of the record in the general route,
+  but it does not set a reconciliation period or make the transportation
+  exception available to remote applications generally.
 citation: "15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes."
 url: "https://www.law.cornell.edu/uscode/text/15/1681b"
 period: "current"
@@ -23,7 +22,7 @@ period: "current"
 
 # Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))
 
-Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A separate route applies where the candidate applied remotely: notice may instead follow within three business days of the action, naming the reporting agency, stating that the agency did not make the decision, and telling the candidate they may request a free copy and dispute its accuracy. The statute therefore already requires disclosure of the record, but only the first route places it before the decision is final, and neither fixes how long an offer stays open while a disputed field is reconciled.
+Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A narrower exception applies to specified transportation employment when the application was made by mail, telephone, computer, or a similar means: the required notice may follow within three business days of the action. The statute therefore requires disclosure of the record in the general route, but it does not set a reconciliation period or make the transportation exception available to remote applications generally.
 
 - **Kind:** `primary`
 - **Citation:** 15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes.

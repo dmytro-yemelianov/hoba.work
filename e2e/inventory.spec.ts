@@ -15,6 +15,16 @@ test.describe('data inventory', () => {
     expect(inventory.surfaces.length).toBeGreaterThanOrEqual(10);
     expect(inventory.situations.length).toBeGreaterThanOrEqual(10);
 
+    const coverage = await (await request.get('/data/latest/coverage.json')).json();
+    expect(coverage.dimensions).toHaveLength(15);
+    expect(coverage.summary).toMatchObject({
+      total: 92,
+      covered: 50,
+      partial: 19,
+      absent: 23,
+      score_percent: 64.7,
+    });
+
     const records = await (await request.get('/api/v1/records/index.json')).json();
     expect(records.count).toBe(
       inventory.collections.find((entry: { type: string }) => entry.type === 'record').count
@@ -28,12 +38,17 @@ test.describe('data inventory', () => {
   }) => {
     const inventory = await (await request.get('/data/latest/inventory.json')).json();
     await page.goto('/data?lang=en');
+    await expect(page.getByRole('link', { name: 'coverage.json' })).toHaveAttribute(
+      'href',
+      '/data/latest/coverage.json'
+    );
     await expect(page.locator('#data-inventory [data-inventory-type]')).toHaveCount(
       inventory.collections.length
     );
     await expect(page.locator('[data-inventory-type="record"]')).toContainText('Financial records');
 
     await page.goto('/developers?lang=en');
+    await expect(page.getByRole('link', { name: '/data/latest/coverage.json' })).toBeVisible();
     await expect(page.locator('#dev-inventory [data-inventory-type]')).toHaveCount(
       inventory.collections.length
     );

@@ -75,10 +75,11 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
           {
             id: 'out-1',
             label: 'Yes',
+            weighs_against: [],
             excludes: [compatible[0]!, compatible[1]!],
             because: 'Rule',
           },
-          { id: 'out-2', label: 'No', excludes: [], because: '' },
+          { id: 'out-2', label: 'No', weighs_against: [], excludes: [], because: '' },
         ],
       },
       {
@@ -90,6 +91,7 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
           {
             id: 'out-3',
             label: 'Yes',
+            weighs_against: [],
             excludes: [compatible[0]!, compatible[2]!],
             because: 'Rule',
           },
@@ -110,7 +112,15 @@ describe.each(['en', 'uk'] as const)('substrate derivations equivalence (%s)', (
         action: 'Action',
         expected_signal: 'Signal',
         cost: 'low',
-        outcomes: [{ id: 'yes', label: 'Yes', excludes: [compatible[0]!], because: 'Exclusion' }],
+        outcomes: [
+          {
+            id: 'yes',
+            label: 'Yes',
+            weighs_against: [],
+            excludes: [compatible[0]!],
+            because: 'Exclusion',
+          },
+        ],
       },
     ];
     const results: ProbeResult[] = [{ probe: 'PROBE-1', outcome: 'yes' }];

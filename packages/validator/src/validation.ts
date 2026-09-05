@@ -251,18 +251,26 @@ export function validateRegistryBundle(bundle: RegistryBundle): ValidationIssue[
     }
   }
 
-  // 8. The proven tier is earned, not authored (design doc §6). A claim may not
-  //    stand at `proven` without at least one linked evidence record whose kind
-  //    is `primary` or `research` — so a tier is never jumped without the
-  //    evidence for the jump. Every weaker tier is left alone: this rule is
-  //    about the strongest claim the registry can make, not about evidence
-  //    coverage in general.
+  // 8. Evidence-bearing tiers are earned, not authored (design doc §6).
+  //    `supported`, `strongly_supported`, and `contradicted` require at least
+  //    one linked source. `proven` additionally requires primary or research
+  //    evidence. Descriptive records and authored workflow models belong at
+  //    `unknown` until a source is attached rather than borrowing an
+  //    evidence-sounding label from the schema default.
   const evidenceKindById = new Map(bundle.evidence.map((e) => [e.id, e.kind]));
   const proving = new Set<string>(PROVING_EVIDENCE_KINDS);
-  for (const n of nodes) {
+  const evidenceClaimNodes = [...nodes, ...bundle.eras, ...bundle.processes, ...bundle.actors];
+  for (const n of evidenceClaimNodes) {
     const claim = (n as { evidence_level?: string }).evidence_level;
-    if (claim !== 'proven') continue;
     const linked = (n as { evidence_ids?: string[] }).evidence_ids ?? [];
+    if (
+      ['supported', 'strongly_supported', 'contradicted', 'proven'].includes(claim ?? '') &&
+      linked.length === 0
+    ) {
+      error('unsupported-claim', `is authored as "${claim}" but links no evidence`, n.id);
+      continue;
+    }
+    if (claim !== 'proven') continue;
     if (linked.some((id) => proving.has(evidenceKindById.get(id) ?? ''))) continue;
     error(
       'unsupported-claim',

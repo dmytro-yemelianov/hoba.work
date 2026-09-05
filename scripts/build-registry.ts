@@ -25,6 +25,7 @@ import {
   HOBAKnowledgeGraph,
   interventionSchema,
   loadArchetypes,
+  loadCoverageModel,
   loadRegistryFromRoot,
   loadScenarios,
   loopSchema,
@@ -33,6 +34,7 @@ import {
   readPackageVersion,
   registryBundleSchema,
   resolveRegistryRoot,
+  summarizeCoverage,
   validateRegistry,
   type EntityType,
 } from '@hoba/registry';
@@ -161,6 +163,11 @@ const inventory = buildDataInventory(bundle, {
 writeJson(path.join(latestDir, 'inventory.json'), inventory);
 writeJson(path.join(releaseDir, 'inventory.json'), inventory);
 
+const coverageModel = loadCoverageModel(root);
+const coverage = { ...coverageModel, summary: summarizeCoverage(coverageModel) };
+writeJson(path.join(latestDir, 'coverage.json'), coverage);
+writeJson(path.join(releaseDir, 'coverage.json'), coverage);
+
 const ndjson =
   ENTITIES.flatMap((e) =>
     (bundle[e.collection] as unknown[]).map((item) => JSON.stringify(item))
@@ -193,7 +200,7 @@ writeJson(path.join(latestDir, 'manifest.json'), {
   updated_at: bundle.updated_at,
 });
 console.log(
-  '✓ Generated machine exports (inventory.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
+  '✓ Generated machine exports (inventory.json, coverage.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
 );
 
 // ---------------------------------------------------------------------------
@@ -209,6 +216,7 @@ writeJson(path.join(apiDir, 'index.json'), {
   schema_version: bundle.schema_version,
   openapi: '/openapi.json',
   inventory: '/data/latest/inventory.json',
+  coverage: '/data/latest/coverage.json',
   endpoints: [
     ...ENTITIES.flatMap((entity) => [
       `/api/v1/${entity.collection}/index.json`,

@@ -358,10 +358,11 @@ export function cmdExplain(
     console.log(`  - [${p.id}] ${p.action}`);
     console.log(`    Expected Signal: ${pc.dim(p.expected_signal)} (Cost: ${p.cost})`);
     for (const o of p.outcomes) {
-      const effect =
-        o.excludes.length > 0
-          ? pc.green(`rules out ${o.excludes.join(', ')}`)
-          : pc.dim('rules nothing out');
+      const effects: string[] = [];
+      if (o.excludes.length > 0) effects.push(pc.green(`rules out ${o.excludes.join(', ')}`));
+      if (o.weighs_against.length > 0)
+        effects.push(pc.yellow(`weighs against ${o.weighs_against.join(', ')}`));
+      const effect = effects.length > 0 ? effects.join('; ') : pc.dim('no directional effect');
       console.log(`      · ${o.id}: ${o.label} — ${effect}`);
     }
   }

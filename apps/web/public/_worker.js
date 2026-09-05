@@ -18979,12 +18979,17 @@ var probeOutcomeSchema = external_exports.object({
   id: external_exports.string().regex(/^[a-z0-9-]+$/, "outcome ids are lowercase slugs"),
   /** What the candidate actually observes when this is the answer. */
   label: external_exports.string().min(5),
+  /** Mechanisms this outcome makes less plausible without ruling them out. */
+  weighs_against: external_exports.array(mechanismId).default([]),
   /** Mechanisms this outcome is logically incompatible with. Often empty. */
   excludes: external_exports.array(mechanismId).default([]),
-  /** Why each exclusion is forced, not merely likely. Required if anything is excluded. */
+  /** Why the outcome changes the reading. Required for either directional claim. */
   because: external_exports.string().default("")
-}).refine((o) => o.excludes.length === 0 || o.because.trim().length >= 20, {
-  message: "an outcome that excludes a mechanism must say why the exclusion is forced",
+}).refine((o) => o.excludes.length === 0 && o.weighs_against.length === 0 || o.because.trim().length >= 20, {
+  message: "an outcome with a directional claim must explain why",
+  path: ["because"]
+}).refine((o) => o.excludes.every((id) => !o.weighs_against.includes(id)), {
+  message: "the same mechanism cannot be both ruled out and merely weighed against",
   path: ["because"]
 });
 var diagnosticProbeSchema = external_exports.object({

@@ -28,6 +28,9 @@ export const EVIDENCE_DIR = path.join(DATA_DIR, 'evidence');
 /** Scenarios compose the ontology rather than belonging to it, but they are data. */
 export const SCENARIO_DIR = path.join(DATA_DIR, 'scenarios');
 
+/** Authored map of the situations the atlas covers, partly covers, or does not cover yet. */
+export const COVERAGE_MODEL_PATH = path.join(DATA_DIR, 'coverage', 'model.json');
+
 /**
  * Archetypes are hand-authored flavor, not canonical fact — a nickname and a
  * grid placement for an entity, never validated against evidence the way the

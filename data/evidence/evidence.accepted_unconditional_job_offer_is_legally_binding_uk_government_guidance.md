@@ -1,0 +1,23 @@
+---
+id: "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance"
+type: "evidence"
+title: "Accepted unconditional job offers and withdrawal (UK government guidance)"
+kind: primary
+summary: >-
+  UK government guidance states that an accepted unconditional job offer forms
+  a legally binding employment contract. If an employer then withdraws the offer,
+  the applicant may be able to pursue breach of contract; a conditional offer may
+  be withdrawn when its conditions are not met. The guidance establishes legal
+  consequences, not how often withdrawal occurs or what motive caused it.
+citation: "GOV.UK, Job offers: your rights — withdrawing a job offer."
+url: "https://www.gov.uk/job-offers-your-rights"
+period: "current"
+---
+
+# Accepted unconditional job offers and withdrawal (UK government guidance)
+
+UK government guidance states that an accepted unconditional job offer forms a legally binding employment contract. If an employer then withdraws the offer, the applicant may be able to pursue breach of contract; a conditional offer may be withdrawn when its conditions are not met. The guidance establishes legal consequences, not how often withdrawal occurs or what motive caused it.
+
+- **Kind:** `primary`
+- **Citation:** GOV.UK, Job offers: your rights — withdrawing a job offer.
+- **Source:** [gov.uk](https://www.gov.uk/job-offers-your-rights)

@@ -174,27 +174,38 @@ export const entityTypeSchema = z.enum([
 ]);
 
 /**
- * One thing a probe can come back with, and what that rules out.
+ * One thing a probe can come back with, and how it changes the candidate's reading.
  *
  * Strict: `excludes` may name a mechanism only when the outcome is logically
  * incompatible with that mechanism's definition — not when it makes it feel
- * unlikely. `because` has to state the incompatibility, which is what makes the
- * claim reviewable. Most outcomes exclude nothing, and that is the honest
- * result: it is what turns the minimal-probe answer into a statement about the
- * limits of what a candidate can determine rather than a promise of certainty.
+ * unlikely. `weighs_against` holds that weaker, non-eliminating signal instead.
+ * `because` has to state the reasoning for either claim, which is what makes it
+ * reviewable. Most outcomes exclude nothing, and that is the honest result: it
+ * turns the minimal-probe answer into a statement about the limits of what a
+ * candidate can determine rather than a promise of certainty.
  */
 export const probeOutcomeSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/, 'outcome ids are lowercase slugs'),
     /** What the candidate actually observes when this is the answer. */
     label: z.string().min(5),
+    /** Mechanisms this outcome makes less plausible without ruling them out. */
+    weighs_against: z.array(mechanismId).default([]),
     /** Mechanisms this outcome is logically incompatible with. Often empty. */
     excludes: z.array(mechanismId).default([]),
-    /** Why each exclusion is forced, not merely likely. Required if anything is excluded. */
+    /** Why the outcome changes the reading. Required for either directional claim. */
     because: z.string().default(''),
   })
-  .refine((o) => o.excludes.length === 0 || o.because.trim().length >= 20, {
-    message: 'an outcome that excludes a mechanism must say why the exclusion is forced',
+  .refine(
+    (o) =>
+      (o.excludes.length === 0 && o.weighs_against.length === 0) || o.because.trim().length >= 20,
+    {
+      message: 'an outcome with a directional claim must explain why',
+      path: ['because'],
+    }
+  )
+  .refine((o) => o.excludes.every((id) => !o.weighs_against.includes(id)), {
+    message: 'the same mechanism cannot be both ruled out and merely weighed against',
     path: ['because'],
   });
 

@@ -12,8 +12,9 @@ summary: >-
   cases agreed with trade unions). If the probation period expires and the employee
   continues working, they are deemed to have passed probation, and subsequent
   dismissal is permitted only under standard general grounds. During probation,
-  termination for failure to meet the role's requirements requires written
-  justification with three days' notice.
+  an employer finding that the employee does not meet the role or work may dismiss
+  on that ground after giving written notice three days in advance; the employee
+  may challenge the termination through the labour-dispute procedure.
 citation: "Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування)."
 url: "https://zakon.rada.gov.ua/laws/show/322-08"
 period: "current"
@@ -21,7 +22,7 @@ period: "current"
 
 # Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)
 
-Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.
+Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, an employer finding that the employee does not meet the role or work may dismiss on that ground after giving written notice three days in advance; the employee may challenge the termination through the labour-dispute procedure.
 
 - **Kind:** `primary`
 - **Citation:** Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).

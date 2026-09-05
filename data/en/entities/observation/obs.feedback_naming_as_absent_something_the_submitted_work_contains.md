@@ -37,9 +37,10 @@ probes:
       -
         id: "named-work-on-first-screen"
         label: "The work named as absent is visible on the first screen, without navigating."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Overlooking prominent first-screen evidence indicates superficial keyword/automated parsing or neglected review rather than an honest thorough evaluation."
+        excludes: []
+        because: "Overlooking prominent first-screen evidence is more consistent with superficial parsing or a missed review than with a thorough review of that material."
       -
         id: "reachable-but-buried"
         label: "The work is there, but behind a non-default branch, a subdirectory, or an account other than the candidate's own."
@@ -47,10 +48,11 @@ probes:
       -
         id: "not-reachable"
         label: "The path does not resolve, or resolves to something private."
-        excludes:
+        weighs_against:
           - "mech.automated_keyword_qualification_filter"
           - "mech.mid_process_role_requirement_redefinition"
-        because: "An unreachable or private submission link confirms candidate omission rather than evaluator negligence or automated screening error."
+        excludes: []
+        because: "An unreachable or private link makes a submission-access problem more plausible and weighs against negligence or parsing error as the sole explanation."
       -
         id: "no-path-was-given"
         label: "No path was submitted; the claim rests on the profile text alone."

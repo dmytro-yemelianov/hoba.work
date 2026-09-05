@@ -1,12 +1,12 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Compensation Double Bind",
     "status": "active",
     "evidence_ids": [
       "evidence.salary_transparency_growth_slows_but_momentum_continues_indeed_hiring_lab"
     ],
-    "content": "# Compensation Double Bind\n\nThe candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.\n\n### Trigger Rule\nThe candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.\n\n### What this Establishes\n- An information asymmetry works as an uncalibrated filter before technical merit is assessed.\n\n### What this Does NOT Establish\n- Does not establish that the employer has an unlimited budget, or that any of this is malicious.",
+    "content": "# Compensation Double Bind\n\nThe candidate has to name a compensation expectation first: a high number ends the process, and a low one lowers the level the candidate is assessed at.\n\n### Trigger Rule\nThe candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.\n\n### What this Establishes\n- The candidate's compensation number was requested before the role's band was disclosed, creating an information asymmetry at that point in the process.\n\n### What this Does NOT Establish\n- Does not establish that the employer has an unlimited budget, or that any of this is malicious.",
     "aliases": [
       "P-004"
     ],
@@ -23,7 +23,7 @@
     ],
     "trigger_rule": "The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.",
     "establishes": [
-      "An information asymmetry works as an uncalibrated filter before technical merit is assessed."
+      "The candidate's compensation number was requested before the role's band was disclosed, creating an information asymmetry at that point in the process."
     ],
     "non_inferences": [
       "Does not establish that the employer has an unlimited budget, or that any of this is malicious."

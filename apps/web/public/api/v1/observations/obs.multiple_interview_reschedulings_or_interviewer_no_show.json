@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Multiple interview reschedulings or interviewer no-show",
     "status": "active",
@@ -29,24 +29,28 @@
           {
             "id": "slot-held",
             "label": "One of the offered times is confirmed, the two-hour check is answered, and the interview runs at that time.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "confirmed-then-moved",
             "label": "A time is confirmed and then withdrawn by the organiser again, with a replacement date offered in the same message.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "no-one-joins",
             "label": "The time stands, the two-hour check goes unanswered, and no one joins the call at that time.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "no-reply",
             "label": "The availability message goes unanswered and no new date arrives.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

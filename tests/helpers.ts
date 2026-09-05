@@ -22,7 +22,7 @@ export const observation = (over: Partial<ObservationNode> & { id: string }): Ob
   stages: ['screening'],
   status: 'active',
   evidence_level: 'supported',
-  evidence_ids: [],
+  evidence_ids: ['EVD-001'],
   aliases: [],
   probes: [],
   specimens: [],
@@ -44,7 +44,7 @@ export const barrier = (
   perspectives: [],
   status: 'active',
   evidence_level: 'strongly_supported',
-  evidence_ids: [],
+  evidence_ids: ['EVD-001'],
   aliases: [],
   ...over,
 });
@@ -61,7 +61,7 @@ export const mechanism = (over: Partial<MechanismNode> & { id: string }): Mechan
   status: 'active',
   evidence_level: 'supported',
   honest_baseline: false,
-  evidence_ids: [],
+  evidence_ids: ['EVD-001'],
   aliases: [],
   specimens: [],
   perspectives: [],
@@ -83,7 +83,7 @@ export const pattern = (over: Partial<PatternNode> & { id: string }): PatternNod
   interventions: [],
   status: 'active',
   evidence_level: 'supported',
-  evidence_ids: [],
+  evidence_ids: ['EVD-001'],
   aliases: [],
   ...over,
 });
@@ -103,7 +103,7 @@ export const loop = (over: Partial<LoopNode> & { id: string }): LoopNode => ({
   perspectives: [],
   status: 'active',
   evidence_level: 'supported',
-  evidence_ids: [],
+  evidence_ids: ['EVD-001'],
   aliases: [],
   ...over,
 });
@@ -124,7 +124,7 @@ export const intervention = (
   evidence_level: 'supported',
   expected_effects: ['Less noise.'],
   measurements: ['noise_rate'],
-  evidence_ids: [],
+  evidence_ids: ['EVD-001'],
   aliases: [],
   ...over,
 });

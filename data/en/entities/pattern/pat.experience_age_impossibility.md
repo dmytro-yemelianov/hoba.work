@@ -13,7 +13,7 @@ compatible_mechanisms:
   - "mech.inflated_requisition_requirements_vs_actual_team_needs"
 trigger_rule: "Job description or automated screen requires X years of experience where X > technology_age."
 establishes:
-  - "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."
+  - "The published numeric requirement exceeds the technology's age; if an ATS log shows the same threshold running, the impossible requirement was also operational."
 specimens:
   -
     kind: "posting"
@@ -44,7 +44,7 @@ specimens:
         text: "Status: Rejected — does not meet minimum criteria"
     reading: "No one decided anything about this candidate. An impossible threshold was copied into a rule and the rule ran."
 non_inferences:
-  - "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
+  - "Does not establish who authored or reviewed the requirement, or that it caused a rejection unless an operational rule or decision record confirms that link."
 interventions:
   - "int.candidate_ats_parser_conformance_test_utility"
 perspectives:
@@ -77,7 +77,7 @@ A requisition requires more years of hands-on experience with a specific framewo
 Job description or automated screen requires X years of experience where X > technology_age.
 
 ### What this Establishes
-- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.
+- The published numeric requirement exceeds the technology's age; if an ATS log shows the same threshold running, the impossible requirement was also operational.
 
 ### What this Does NOT Establish
-- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.
+- Does not establish who authored or reviewed the requirement, or that it caused a rejection unless an operational rule or decision record confirms that link.

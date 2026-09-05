@@ -17,7 +17,7 @@ flows:
 visibility_default: "observable"
 evidence_ids: []
 status: "active"
-evidence_level: "supported"
+evidence_level: "unknown"
 ---
 
 # Ліквідні заощадження кандидата

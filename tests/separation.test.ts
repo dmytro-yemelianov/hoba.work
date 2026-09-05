@@ -12,16 +12,29 @@ const probe = (id: string, excludes: string[]): DiagnosticProbe => ({
     {
       id: 'yes',
       label: 'It came back.',
+      weighs_against: [],
       excludes,
       because: excludes.length ? 'Definitionally incompatible.' : '',
     },
-    { id: 'no', label: 'Nothing came back.', excludes: [], because: '' },
+    { id: 'no', label: 'Nothing came back.', weighs_against: [], excludes: [], because: '' },
   ],
 });
 
 const ALL = ['M-001', 'M-002', 'M-003', 'M-004'];
 
 describe('narrowing', () => {
+  it('does not eliminate a mechanism when an outcome only weighs against it', () => {
+    const diagnostic = probe('WEIGHT', []);
+    diagnostic.outcomes[0]!.weighs_against = ['M-001'];
+    diagnostic.outcomes[0]!.because =
+      'This makes the mechanism less plausible without ruling it out.';
+
+    const out = narrow(ALL, [diagnostic], [{ probe: 'PROBE-WEIGHT', outcome: 'yes' }]);
+
+    expect(out.remaining).toEqual(ALL);
+    expect(out.steps[0]!.eliminated).toEqual([]);
+  });
+
   it('only ever removes, and records a step that removed nothing', () => {
     const probes = [probe('A', ['M-001']), probe('B', [])];
     const results: ProbeResult[] = [

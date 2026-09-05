@@ -4,7 +4,7 @@ type: "mechanism"
 aliases:
   - "M-028"
 title: "Probation Used as Extended De-Facto Interview"
-summary: "Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal."
+summary: "An employer may rely on probation as an additional selection stage, using on-the-job assessment to resolve uncertainty that the interview process left open."
 operates_at:
   - "bar.probation_period_post_start_confirmation"
 emissions:
@@ -12,9 +12,7 @@ emissions:
     artifact: "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
     fidelity: "direct"
     likelihood: "medium"
-    evidence:
-      - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-      - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+    evidence: []
     observed_at:
       - "post-offer"
   -
@@ -40,10 +38,8 @@ amplifies: []
 masks: []
 honest_baseline: false
 status: "active"
-evidence_level: "proven"
-evidence_ids:
-  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+evidence_level: "compatible"
+evidence_ids: []
 specimens:
   -
     kind: "note"
@@ -58,17 +54,17 @@ specimens:
       -
         text: "Notice issued under the statutory probation clause of the Ukrainian Labour Code."
         tell: false
-    reading: "The interview process was truncated under the assumption that probation serves as the true filtering phase."
+    reading: "This composite illustrates the mechanism, but the exit note alone does not establish that the interview threshold was deliberately lowered."
 perspectives:
   -
     actor: "actor.hiring_manager"
     sees: "Direct on-the-job output under real sprint pressure, treating probation as a higher-fidelity filter than multi-round panel interviews."
-    reads: "Hiring fast and pruning early during probation reduces upfront interview coordination costs."
-    does: "Replaces extensive technical testing with early probationary evaluation."
+    reads: "Some managers may treat on-the-job evidence as more informative than another interview round, but that policy must be established rather than inferred from one exit."
+    does: "May shorten pre-hire assessment and shift unresolved evaluation questions into documented probation reviews."
   -
     actor: "actor.candidate"
-    sees: "A full employment offer that operates in practice as a temporary contract with heightened termination exposure."
-    reads: "The real hiring threshold was shifted post-start without explicit pre-acceptance disclosure."
+    sees: "An employment contract with a probation clause and a potentially different evaluation or termination procedure."
+    reads: "A post-start evaluation may be carrying questions that were not resolved before acceptance, but the clause alone does not prove that."
     does: "Delivers aggressively during initial months while maintaining external professional networks."
   -
     actor: "actor.employer_policy"
@@ -77,11 +73,12 @@ perspectives:
     does: "Monitors probation pass rates and reviews termination justifications."
 non_inferences:
   - "Does not establish that the employee committed gross misconduct."
+  - "Probation rules define legal boundaries; they do not establish that employers systematically lower interview thresholds or use probation as a filtering strategy."
 ---
 
 # Probation Used as Extended De-Facto Interview
 
-Managers lower late-stage interview thresholds, treating the statutory probation period as an extended live trial where underperformance results in immediate low-friction dismissal.
+An employer may rely on probation as an additional selection stage, using on-the-job assessment to resolve uncertainty that the interview process left open.
 
 ### Structural Context
 - **Actor:** `hiring-manager`
@@ -90,3 +87,4 @@ Managers lower late-stage interview thresholds, treating the statutory probation
 
 ### Non-Inferences
 - Does not establish that the employee committed gross misconduct.
+- Probation rules define legal boundaries; they do not establish that employers systematically lower interview thresholds or use probation as a filtering strategy.

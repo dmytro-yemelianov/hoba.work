@@ -4,7 +4,7 @@ type: "intervention"
 aliases:
   - "I-001"
 title: "Auto-Close Stale Job Requisitions"
-summary: "Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days."
+summary: "Implement an automated ATS policy to expire public listings when headcount authorisation lapses or the configured interview-inactivity interval elapses."
 targets:
   - "mech.stale_or_orphaned_job_requisition"
   - "bar.application_ingestion"
@@ -64,7 +64,7 @@ evidence_ids:
 
 # Auto-Close Stale Job Requisitions
 
-Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.
+Implement an automated ATS policy to expire public listings when headcount authorisation lapses or the configured interview-inactivity interval elapses.
 
 ### Expected Effects
 - mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it

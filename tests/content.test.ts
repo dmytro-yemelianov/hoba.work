@@ -470,14 +470,18 @@ describe('probe outcomes', () => {
     }
   });
 
-  it('never rules out something that is not a mechanism, and never without a reason', () => {
+  it('never directs against something that is not a mechanism, and never without a reason', () => {
     for (const probe of probes) {
       for (const o of probe.outcomes) {
         expect(
-          o.excludes.filter((m) => !mechanismIds.has(m)),
+          [...o.excludes, ...o.weighs_against].filter((m) => !mechanismIds.has(m)),
           `${probe.id}/${o.id}`
         ).toEqual([]);
-        if (o.excludes.length > 0)
+        expect(
+          o.excludes.filter((m) => o.weighs_against.includes(m)),
+          `${probe.id}/${o.id}`
+        ).toEqual([]);
+        if (o.excludes.length > 0 || o.weighs_against.length > 0)
           expect(o.because.trim().length, `${probe.id}/${o.id}`).toBeGreaterThan(19);
       }
     }
@@ -486,7 +490,12 @@ describe('probe outcomes', () => {
   it('mirrors the same outcomes into Ukrainian, and translates them', () => {
     const shape = (list: typeof probes) =>
       list.map(
-        (p) => `${p.id}:${p.outcomes.map((o) => `${o.id}[${o.excludes.join('|')}]`).join(',')}`
+        (p) =>
+          `${p.id}:${p.outcomes
+            .map(
+              (o) => `${o.id}[exclude:${o.excludes.join('|')};weigh:${o.weighs_against.join('|')}]`
+            )
+            .join(',')}`
       );
     expect(shape(ukProbes)).toEqual(shape(probes));
 

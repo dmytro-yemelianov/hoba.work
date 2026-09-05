@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Complete silence after submission",
     "status": "active",
@@ -28,24 +28,28 @@
           {
             "id": "acknowledgement-in-quarantine",
             "label": "A dated automated acknowledgement carrying a confirmation ID is sitting in spam or in the security quarantine, filtered on the day of submission.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "nothing-from-the-sender",
             "label": "Neither folder holds anything from the employer or from its ATS domain; the only record of the submission is the confirmation screen the candidate saved.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "later-mail-only",
             "label": "Quarantine holds later automated mail against the same requisition — a status change, an expiry or a closure notice — but no acknowledgement from the day of submission.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "retention-window-closed",
             "label": "The check cannot be completed: quarantine retention has already rolled over, or the quarantine is held by the mail administrator, so nothing from that period is visible.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

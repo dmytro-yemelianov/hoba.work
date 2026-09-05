@@ -7,10 +7,9 @@ title: "Прийнятий офер зі зсувом дати старту аб
 summary: "Підписаний офер супроводжується неодноразовими перенесеннями дати виходу, тишею перед першим днем або скасуванням під час раннього онбордингу."
 stages:
   - "post-offer"
-evidence_level: "proven"
+evidence_level: "supported"
 evidence_ids:
-  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+  - "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance"
 probes:
   -
     id: "PROBE-A-020-1"
@@ -21,22 +20,25 @@ probes:
       -
         id: "written-confirmation-received"
         label: "Роботодавець надає підтвердження дати з деталями доставки техніки."
-        excludes:
+        weighs_against:
           - "mech.headcount_freeze_or_budget_cancellation"
           - "mech.start_date_slippage_and_post_acceptance_revocation"
-        because: "Відправка техніки та чітке підтвердження дати виключають замороження ставки та відкликання оферу."
+        excludes: []
+        because: "Відправка техніки й підтверджена дата знижують правдоподібність поточного замороження або відкликання, але не унеможливлюють пізнішої зміни."
       -
         id: "evasive-delay-notice"
         label: "Роботодавець надсилає ухильні відповіді без фіксації конкретної дати онбордингу."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Ухильні повідомлення про затримку без конкретних строків суперечать чесному процесу онбордингу."
+        excludes: []
+        because: "Повторні повідомлення без дати зменшують правдоподібність звичайної адміністративної затримки за наявності узгодженого плану онбордингу."
       -
         id: "revocation-or-freeze-confirmed"
         label: "Роботодавець підтверджує скасування ставки або безстрокове призупинення найму до початку роботи."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Підтверджене скасування вакансії до першого робочого дня прямо суперечить чесному найму."
+        excludes: []
+        because: "Підтверджене скасування штатної одиниці робить пояснення через результативність кандидата менш правдоподібним для події до старту."
 specimens:
   -
     kind: "email"

@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Candidate ATS Parser Conformance Test Utility",
     "status": "active",
@@ -57,7 +57,7 @@
             "tell": false
           }
         ],
-        "reading": "This is the one intervention on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
+        "reading": "This is a candidate-side intervention. Seeing what the parser sees turns an invisible failure into a fixable file."
       }
     ],
     "perspectives": [

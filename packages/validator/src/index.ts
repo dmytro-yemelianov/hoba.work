@@ -7,3 +7,5 @@ export * from './scenarios.js';
 export * from './scenarios-store.js';
 export * from './archetypes.js';
 export * from './archetypes-store.js';
+export * from './coverage.js';
+export * from './coverage-store.js';

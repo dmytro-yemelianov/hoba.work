@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "count": 24,
   "items": [
     {
@@ -81,13 +81,13 @@
       "evidence_ids": [
         "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
       ],
-      "content": "# Auto-Close Stale Job Requisitions\n\nImplement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.\n\n### Expected Effects\n- mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it\n- Silence after applying acquires a bound — the record is closed and the closure is sent\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`",
+      "content": "# Auto-Close Stale Job Requisitions\n\nImplement an automated ATS policy to expire public listings when headcount authorisation lapses or the configured interview-inactivity interval elapses.\n\n### Expected Effects\n- mech.stale_or_orphaned_job_requisition stops operating: a listing cannot outlive the authorisation that funded it\n- Silence after applying acquires a bound — the record is closed and the closure is sent\n\n### Measurements\n- `stale_requisition_rate`\n- `closure_latency_days`",
       "aliases": [
         "I-001"
       ],
       "id": "int.auto_close_stale_job_requisitions",
       "type": "intervention",
-      "summary": "Implement automated ATS policy to expire public listings when headcount authorisation lapses or no interview activity occurs within 60 days.",
+      "summary": "Implement an automated ATS policy to expire public listings when headcount authorisation lapses or the configured interview-inactivity interval elapses.",
       "targets": [
         "mech.stale_or_orphaned_job_requisition",
         "bar.application_ingestion",
@@ -287,7 +287,7 @@
               "tell": false
             }
           ],
-          "reading": "This is the one intervention on the candidate side of the line. Seeing what the parser sees turns an invisible failure into a fixable file."
+          "reading": "This is a candidate-side intervention. Seeing what the parser sees turns an invisible failure into a fixable file."
         }
       ],
       "perspectives": [
@@ -945,7 +945,7 @@
       "actor": "hiring-manager",
       "scope": "team",
       "cost": "medium",
-      "evidence_level": "supported",
+      "evidence_level": "compatible",
       "expected_effects": [
         "mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date",
         "A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name",

@@ -1,12 +1,12 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Experience-Age Impossibility",
     "status": "active",
     "evidence_ids": [
       "evidence.hidden_workers_untapped_talent_hbs_accenture"
     ],
-    "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The job description was written without technical review, from a copied template whose thresholds run as automated gating rules.\n\n### What this Does NOT Establish\n- Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review.",
+    "content": "# Experience-Age Impossibility\n\nA requisition requires more years of hands-on experience with a specific framework or tool than that technology has existed in the open-source ecosystem.\n\n### Trigger Rule\nJob description or automated screen requires X years of experience where X > technology_age.\n\n### What this Establishes\n- The published numeric requirement exceeds the technology's age; if an ATS log shows the same threshold running, the impossible requirement was also operational.\n\n### What this Does NOT Establish\n- Does not establish who authored or reviewed the requirement, or that it caused a rejection unless an operational rule or decision record confirms that link.",
     "aliases": [
       "P-003"
     ],
@@ -23,10 +23,10 @@
     ],
     "trigger_rule": "Job description or automated screen requires X years of experience where X > technology_age.",
     "establishes": [
-      "The job description was written without technical review, from a copied template whose thresholds run as automated gating rules."
+      "The published numeric requirement exceeds the technology's age; if an ATS log shows the same threshold running, the impossible requirement was also operational."
     ],
     "non_inferences": [
-      "Does not establish that the technical team is incompetent, only that the HR screening pipeline has no technical review."
+      "Does not establish who authored or reviewed the requirement, or that it caused a rejection unless an operational rule or decision record confirms that link."
     ],
     "interventions": [
       "int.candidate_ats_parser_conformance_test_utility"

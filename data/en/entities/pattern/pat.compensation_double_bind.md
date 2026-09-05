@@ -13,7 +13,7 @@ compatible_mechanisms:
   - "mech.experience_age_grading_mismatch"
 trigger_rule: "The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return."
 establishes:
-  - "An information asymmetry works as an uncalibrated filter before technical merit is assessed."
+  - "The candidate's compensation number was requested before the role's band was disclosed, creating an information asymmetry at that point in the process."
 specimens:
   -
     kind: "chat"
@@ -88,7 +88,7 @@ The candidate has to name a compensation expectation first: a high number ends t
 The candidate is asked for a compensation number before the band for the role is stated, and the band is not stated in return.
 
 ### What this Establishes
-- An information asymmetry works as an uncalibrated filter before technical merit is assessed.
+- The candidate's compensation number was requested before the role's band was disclosed, creating an information asymmetry at that point in the process.
 
 ### What this Does NOT Establish
 - Does not establish that the employer has an unlimited budget, or that any of this is malicious.

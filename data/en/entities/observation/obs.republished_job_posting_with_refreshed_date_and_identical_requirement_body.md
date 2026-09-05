@@ -22,15 +22,17 @@ probes:
       -
         id: "active-funded-search-confirmed"
         label: "The recruiter confirms an active search with initial screening calls scheduled within the week."
-        excludes:
+        weighs_against:
           - "mech.stale_or_orphaned_job_requisition"
-        because: "An active screening schedule is incompatible with a ghost requisition maintained without hiring intent."
+        excludes: []
+        because: "An active screening schedule weighs against a listing maintained solely without present hiring activity."
       -
         id: "evergreen-pipeline-confirmed"
         label: "The recruiter confirms the listing is maintained continuously for future project demand."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "An evergreen pipeline posting is incompatible with an honest baseline search for an immediate single opening."
+        excludes: []
+        because: "An explicitly evergreen pipeline weighs against interpreting the posting as one immediate opening, without implying deception."
 specimens:
   -
     kind: "posting"

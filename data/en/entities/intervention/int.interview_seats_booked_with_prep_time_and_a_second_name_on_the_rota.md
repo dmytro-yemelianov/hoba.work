@@ -11,7 +11,7 @@ targets:
 actor: "hiring-manager"
 scope: "team"
 cost: "medium"
-evidence_level: "supported"
+evidence_level: "compatible"
 expected_effects:
   - "mech.interview_resource_scheduling_saturation loses one of its two outputs: a seat that cannot be filled moves the seat, not the date"
   - "A round at bar.technical_screen_live_assessment is booked with reading time attached to it, so the material is opened before the session or the seat passes to the second name"

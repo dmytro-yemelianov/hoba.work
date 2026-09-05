@@ -3,24 +3,25 @@ id: "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r
 type: "evidence"
 aliases:
   - "EVD-043"
-title: "Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)"
+title: "Selection-procedure impact records and oversight of high-risk recruitment AI"
 kind: primary
 summary: >-
-  The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4)
-  and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a))
-  mandate structured assessment mechanisms and verified evaluator competency in
-  employment screening. Rushed, unreviewed interview panels operating without
-  dedicated preparation time increase inter-rater noise and introduce arbitrary
-  disqualification factors inconsistent with job-related qualification metrics.
-citation: "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. § 1607.4 (Information on impact) & Regulation (EU) 2024/1689 Annex III, Item 4(a) (High-risk AI systems in recruitment and selection)."
+  The EEOC Uniform Guidelines require users of employee-selection procedures to
+  maintain information about adverse impact and, where adverse impact exists,
+  address validity and alternatives. The EU AI Act classifies specified AI used
+  in recruitment or selection as high-risk and requires effective human oversight
+  of such systems. Neither source mandates preparation time, a tie-break rule, or
+  a rota for an ordinary human interview panel; those remain design proposals
+  requiring separate effectiveness evidence.
+citation: "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. Part 1607 §§4, 15; Regulation (EU) 2024/1689, Annex III(4)(a) and Article 14."
 url: "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607"
 period: "current"
 ---
 
-# Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)
+# Selection-procedure impact records and oversight of high-risk recruitment AI
 
-The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4) and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a)) mandate structured assessment mechanisms and verified evaluator competency in employment screening. Rushed, unreviewed interview panels operating without dedicated preparation time increase inter-rater noise and introduce arbitrary disqualification factors inconsistent with job-related qualification metrics.
+The EEOC Uniform Guidelines require users of employee-selection procedures to maintain information about adverse impact and, where adverse impact exists, address validity and alternatives. The EU AI Act classifies specified AI used in recruitment or selection as high-risk and requires effective human oversight of such systems. Neither source mandates preparation time, a tie-break rule, or a rota for an ordinary human interview panel; those remain design proposals requiring separate effectiveness evidence.
 
 - **Kind:** `primary`
-- **Citation:** 29 C.F.R. § 1607.4 & Regulation (EU) 2024/1689 Annex III(4)(a).
+- **Citation:** 29 C.F.R. Part 1607 §§4, 15; Regulation (EU) 2024/1689, Annex III(4)(a) and Article 14.
 - **Source:** [ecfr.gov](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607)

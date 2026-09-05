@@ -38,15 +38,17 @@ probes:
       -
         id: "nothing-added"
         label: "A reply arrives that adds nothing to the note: the summary line comes back as it was written — communication not calibrated to the audience — or the answer states that feedback beyond what was already sent is not given. No round, no minute and no exchange is attached to it."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Inability to provide a single grounded communicative exchange points to non-calibrated impression scoring rather than an evidence-based panel."
+        excludes: []
+        because: "Inability to name a grounded exchange makes non-calibrated impression scoring more plausible than a finding tied to recorded behaviour."
       -
         id: "moment-named"
         label: "The recruiter names a specific exchange — which round, roughly when, what the question was about — and describes it as one moment rather than something that held across the session."
-        excludes:
+        weighs_against:
           - "mech.domain_specificity_over_weighting"
-        because: "A concrete communicative exchange demonstrates individualized panel recall, ruling out arbitrary non-specific impression bias."
+        excludes: []
+        because: "A concrete exchange provides evidence of individualized recall and weighs against a wholly non-specific impression, without proving the scoring was calibrated."
       -
         id: "reception-framing"
         label: "The answer moves from pacing to reception: the concern is put as how critique was taken, not as which level the answers sat at."

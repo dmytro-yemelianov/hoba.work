@@ -37,9 +37,10 @@ probes:
       -
         id: "listed-as-required"
         label: "The posting named the sector among the requirements."
-        excludes:
+        weighs_against:
           - "mech.speculative_sourcing_talent_pooling_without_opening"
-        because: "An explicit mandatory requirement stated up front rules out covert post-hoc goalpost shifting."
+        excludes: []
+        because: "An explicit requirement stated up front weighs against the claim that the domain criterion was introduced only after assessment began."
       -
         id: "listed-as-preferred"
         label: "The posting named the sector, among preferences or nice-to-haves rather than requirements."
@@ -47,9 +48,10 @@ probes:
       -
         id: "absent-from-the-posting"
         label: "The posting did not mention the sector at all."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Disqualifying a candidate over an unmentioned sector criterion contradicts an honest evaluation against published standards."
+        excludes: []
+        because: "An unmentioned sector criterion makes post-hoc goalpost shifting more plausible than evaluation solely against published standards."
       -
         id: "no-saved-copy"
         label: "No copy of the posting as applied to was kept."

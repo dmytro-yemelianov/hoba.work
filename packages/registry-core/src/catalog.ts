@@ -734,6 +734,7 @@ export const USAGE_SITUATIONS: readonly UsageSituation[] = [
 
 export const LATEST_EXPORTS = [
   'inventory.json',
+  'coverage.json',
   'registry.json',
   'registry.ndjson',
   'nodes.csv',

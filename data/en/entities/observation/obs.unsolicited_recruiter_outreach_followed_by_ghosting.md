@@ -38,9 +38,10 @@ probes:
       -
         id: "no-reply"
         label: "Neither the follow-up nor the earlier answer is replied to, and the thread stays as it was: an outreach message, a same-day answer, and silence."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Complete recruiter silence following initial candidate reply indicates discarded pipeline sourcing or talent pooling (mech.pre_selected_internal_candidate/mech.bid_conditional_talent_pool)."
+        excludes: []
+        because: "Silence after an initial reply is more consistent with low-commitment sourcing or pooling than with an active scheduled search, but does not identify the cause."
       -
         id: "automated-reply-only"
         label: "The only thing that arrives is automated: an absence notice with a return date, or a notice that the address is no longer monitored. Nothing follows it from a person."
@@ -48,16 +49,18 @@ probes:
       -
         id: "thread-resumes"
         label: "A person replies and the conversation continues: a call is booked, or the role is described in more detail."
-        excludes:
+        weighs_against:
           - "mech.pre_selected_internal_candidate"
           - "mech.bid_conditional_talent_pool"
-        because: "Active conversational resumption and call scheduling rule out speculative ghost sourcing and bench pooling."
+        excludes: []
+        because: "A resumed conversation and scheduled call weigh against outreach with no present follow-through, though the requisition may still be conditional."
       -
         id: "reply-without-next-step"
         label: "A reply arrives with no next step in it: the search is paused, the role is already filled, or there is no open requisition behind the outreach yet."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Outreach without an active requisition behind it contradicts an immediate honest search."
+        excludes: []
+        because: "Confirmation that no active requisition exists weighs against interpreting the outreach as an immediate search for an approved opening."
 specimens:
   -
     kind: "chat"

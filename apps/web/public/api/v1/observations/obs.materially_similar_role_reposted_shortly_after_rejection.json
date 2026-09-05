@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Materially similar role reposted shortly after rejection",
     "status": "active",
@@ -29,24 +29,28 @@
           {
             "id": "same-req-refresh",
             "label": "The listing carries the requisition number you applied against, and the recruiter says the board re-posts it on a fixed interval; the record itself has not changed.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "new-req-number",
             "label": "The listing carries a requisition number that did not exist when you applied, and the recruiter describes it as a separately approved opening on the same team.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "req-should-be-down",
             "label": "The recruiter answers that the team stopped hiring for this and the listing should not still be up; it comes down within days.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "no-answer",
             "label": "The board shows no requisition number and the question goes unanswered; the two posted dates and the identical body text are all you hold.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

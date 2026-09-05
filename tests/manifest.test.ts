@@ -20,6 +20,7 @@ const BASE = {
   'data/uk/entities/mechanism/mech.a.md': '---\nid: "mech.a"\n---\n',
   'data/evidence/evidence.a.md': '---\nid: "evidence.a"\n---\n',
   'data/scenarios/a.yaml': 'id: scenario.a\n',
+  'data/coverage/model.json': '{"version":"1.0.0"}\n',
 };
 
 describe('registryContentHash', () => {
@@ -58,6 +59,14 @@ describe('registryContentHash', () => {
     const before = registryContentHash(tempRegistry(BASE));
     const after = registryContentHash(
       tempRegistry({ ...BASE, 'data/scenarios/a.yaml': 'id: scenario.b\n' })
+    );
+    expect(after).not.toBe(before);
+  });
+
+  it('covers the explicit coverage boundary', () => {
+    const before = registryContentHash(tempRegistry(BASE));
+    const after = registryContentHash(
+      tempRegistry({ ...BASE, 'data/coverage/model.json': '{"version":"1.0.1"}\n' })
     );
     expect(after).not.toBe(before);
   });
