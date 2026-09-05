@@ -114,7 +114,10 @@ const tocItems = [
             <p class="kicker">{lang === 'uk' ? 'Єдине джерело правди' : 'Single source of truth'}</p>
             <h2 class="section-title">{lang === 'uk' ? 'Що саме входить до даних' : 'What the data actually contains'}</h2>
           </div>
-          <a href="/data/latest/inventory.json" target="_blank" class="btn btn-secondary font-mono">inventory.json</a>
+          <div class="flex flex-wrap gap-2">
+            <a href="/data/latest/inventory.json" target="_blank" class="btn btn-secondary font-mono">inventory.json</a>
+            <a href="/data/latest/coverage.json" target="_blank" class="btn btn-secondary font-mono">coverage.json</a>
+          </div>
         </div>
         <p class="text-base text-hoba-muted max-w-3xl mt-2">
           {lang === 'uk'

@@ -14,6 +14,7 @@
     "lint": "eslint . --quiet && prettier --check .",
     "format": "prettier --write .",
     "coverage": "vitest run --coverage",
+    "audit:coverage": "pnpm build:packages && tsx scripts/audit-coverage.ts",
     "release": "pnpm changeset version && pnpm changeset publish && pnpm validate && pnpm build",
     "build": "pnpm build:packages && pnpm build:bodies && pnpm build:registry && pnpm generate:redirects && pnpm build:worker && pnpm build:discovery && pnpm --filter hoba-site build && pnpm build:cards",
     "build:bodies": "tsx scripts/build-bodies.ts",

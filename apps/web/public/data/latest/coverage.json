@@ -1,0 +1,1332 @@
+{
+  "version": "1.0.0",
+  "method": {
+    "source": "SPEC-MODEL.md §1 adequacy test plus the 2026-09-05 full-corpus editorial review",
+    "unit": "A slot is a materially distinct situation the atlas claims it should be able to express. Slots are not Cartesian products.",
+    "status": {
+      "covered": "The registry has a direct structured representation and at least one usable path through it.",
+      "partial": "The subject is mentioned or structurally representable, but lacks a complete case, evidence, outcome, or agency path.",
+      "absent": "No canonical entity or scenario directly represents the slot."
+    }
+  },
+  "dimensions": [
+    {
+      "id": "demand",
+      "label": {
+        "en": "Demand and funding",
+        "uk": "Попит і фінансування"
+      },
+      "values": [
+        {
+          "id": "internal_budget",
+          "label": {
+            "en": "Internal budget",
+            "uk": "Внутрішній бюджет"
+          },
+          "status": "covered",
+          "refs": [
+            "record.annual_engineering_department_budget",
+            "proc.the_hiring_funnel_end_to_end"
+          ]
+        },
+        {
+          "id": "signed_client_contract",
+          "label": {
+            "en": "Signed client contract",
+            "uk": "Підписаний клієнтський контракт"
+          },
+          "status": "covered",
+          "refs": [
+            "record.client_services_agreement",
+            "proc.client_account_hiring_funnel"
+          ]
+        },
+        {
+          "id": "bid_not_yet_won",
+          "label": {
+            "en": "Bid not yet won",
+            "uk": "Ще не виграний тендер"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.bid_conditional_talent_pool",
+            "proc.client_account_hiring_funnel"
+          ]
+        },
+        {
+          "id": "public_budget",
+          "label": {
+            "en": "Public or statutory budget",
+            "uk": "Публічний або статутний бюджет"
+          },
+          "status": "partial",
+          "refs": [
+            "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
+          ]
+        },
+        {
+          "id": "revenue_or_credit",
+          "label": {
+            "en": "Revenue or credit-funded seat",
+            "uk": "Місце з доходу або кредиту"
+          },
+          "status": "partial",
+          "refs": [
+            "era.zero_rates_and_a_same_year_deduction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "money",
+      "label": {
+        "en": "Financial chain",
+        "uk": "Фінансовий ланцюг"
+      },
+      "values": [
+        {
+          "id": "internal_payroll_chain",
+          "label": {
+            "en": "Internal budget to payroll",
+            "uk": "Від внутрішнього бюджету до зарплати"
+          },
+          "status": "covered",
+          "refs": [
+            "record.annual_engineering_department_budget",
+            "record.approved_requisition_funding",
+            "record.direct_engineering_payroll"
+          ]
+        },
+        {
+          "id": "client_margin_chain",
+          "label": {
+            "en": "Client rate to vendor margin and pay",
+            "uk": "Від клієнтської ставки до маржі й оплати"
+          },
+          "status": "covered",
+          "refs": [
+            "record.client_project_budget",
+            "record.vendor_margin_and_headcount_allocation",
+            "record.subcontractor_compensation"
+          ]
+        },
+        {
+          "id": "agency_fee",
+          "label": {
+            "en": "Contingency agency fee",
+            "uk": "Умовна комісія агентства"
+          },
+          "status": "covered",
+          "refs": [
+            "record.contingency_placement_fee_commitment",
+            "record.external_agency_settlement"
+          ]
+        },
+        {
+          "id": "candidate_runway",
+          "label": {
+            "en": "Candidate runway and burn",
+            "uk": "Фінансовий запас і витрати кандидата"
+          },
+          "status": "covered",
+          "refs": [
+            "record.candidate_liquid_savings",
+            "record.candidate_search_runway",
+            "record.search_month_burn_allocation"
+          ]
+        },
+        {
+          "id": "equity_bonus_benefits",
+          "label": {
+            "en": "Equity, bonus, and benefits",
+            "uk": "Опціони, бонуси й пільги"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "travel_and_relocation",
+          "label": {
+            "en": "Travel and relocation costs",
+            "uk": "Витрати на поїздки й переїзд"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "entry",
+      "label": {
+        "en": "Entry path",
+        "uk": "Шлях входу"
+      },
+      "values": [
+        {
+          "id": "inbound",
+          "label": {
+            "en": "Inbound application",
+            "uk": "Вхідна заявка"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.application_ingestion",
+            "proc.an_application_inside_the_ats"
+          ]
+        },
+        {
+          "id": "outbound",
+          "label": {
+            "en": "Outbound outreach",
+            "uk": "Вихідний пошук"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.outbound_sourcing_talent_pool_contact",
+            "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
+          ]
+        },
+        {
+          "id": "referral",
+          "label": {
+            "en": "Employee referral",
+            "uk": "Рекомендація працівника"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "agency_submission",
+          "label": {
+            "en": "Agency submission",
+            "uk": "Подача через агентство"
+          },
+          "status": "partial",
+          "refs": [
+            "record.contingency_placement_fee_commitment",
+            "proc.client_account_hiring_funnel"
+          ]
+        },
+        {
+          "id": "internal_transfer",
+          "label": {
+            "en": "Internal transfer or bench fill",
+            "uk": "Внутрішній перехід або заповнення з бенчу"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.bench_priority_fill",
+            "mech.pre_selected_internal_candidate"
+          ]
+        },
+        {
+          "id": "rehire",
+          "label": {
+            "en": "Rehire",
+            "uk": "Повторний найм"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "contract_to_hire",
+          "label": {
+            "en": "Contract-to-hire",
+            "uk": "Контракт із переходом у штат"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "re_entry",
+          "label": {
+            "en": "Dated re-entry after a prior process",
+            "uk": "Повернення після попереднього процесу"
+          },
+          "status": "partial",
+          "refs": [
+            "int.recorded_finalist_standing_with_a_dated_re_entry_route"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialogue",
+      "label": {
+        "en": "Dialogue and interaction",
+        "uk": "Діалог і взаємодія"
+      },
+      "values": [
+        {
+          "id": "recruiter_screen",
+          "label": {
+            "en": "Recruiter screen",
+            "uk": "Скринінг рекрутера"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.recruiter_screening_call"
+          ]
+        },
+        {
+          "id": "live_technical",
+          "label": {
+            "en": "Live technical round",
+            "uk": "Технічний раунд наживо"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.technical_screen_live_assessment"
+          ]
+        },
+        {
+          "id": "take_home",
+          "label": {
+            "en": "Take-home work sample",
+            "uk": "Домашнє тестове завдання"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.take_home_work_sample_evaluation",
+            "obs.take_home_assignment_exceeding_reasonable_stated_scope"
+          ]
+        },
+        {
+          "id": "panel",
+          "label": {
+            "en": "Panel",
+            "uk": "Панель"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.team_cross_functional_panel"
+          ]
+        },
+        {
+          "id": "negotiation",
+          "label": {
+            "en": "Offer negotiation",
+            "uk": "Переговори про офер"
+          },
+          "status": "partial",
+          "refs": [
+            "pat.compensation_double_bind",
+            "bar.compensation_levelling_reconciliation"
+          ]
+        },
+        {
+          "id": "reference_or_background",
+          "label": {
+            "en": "Reference or background check",
+            "uk": "Перевірка рекомендацій або бекграунду"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.reference_background_verification",
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility"
+          ]
+        },
+        {
+          "id": "silence",
+          "label": {
+            "en": "Silence",
+            "uk": "Тиша"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.complete_silence_after_submission",
+            "scenario.application_silence"
+          ]
+        },
+        {
+          "id": "candidate_withdrawal",
+          "label": {
+            "en": "Candidate withdrawal or decline",
+            "uk": "Вихід кандидата або відмова від оферу"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "accommodation",
+          "label": {
+            "en": "Accommodation request",
+            "uk": "Запит на розумне пристосування"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "internal",
+      "label": {
+        "en": "Internal decision process",
+        "uk": "Внутрішній процес рішень"
+      },
+      "values": [
+        {
+          "id": "drafting",
+          "label": {
+            "en": "Requisition drafting",
+            "uk": "Підготовка реквізиції"
+          },
+          "status": "covered",
+          "refs": [
+            "proc.the_hiring_funnel_end_to_end",
+            "bar.requisition_approval_public_posting"
+          ]
+        },
+        {
+          "id": "headcount_approval",
+          "label": {
+            "en": "Headcount approval",
+            "uk": "Погодження штатної одиниці"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.headcount_executive_budget_approval"
+          ]
+        },
+        {
+          "id": "levelling",
+          "label": {
+            "en": "Levelling",
+            "uk": "Визначення рівня"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.compensation_levelling_reconciliation"
+          ]
+        },
+        {
+          "id": "committee_signoff",
+          "label": {
+            "en": "Committee sign-off",
+            "uk": "Погодження комітету"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.headcount_executive_budget_approval",
+            "mech.hiring_manager_consensus_impasse"
+          ]
+        },
+        {
+          "id": "freeze",
+          "label": {
+            "en": "Freeze or cancellation",
+            "uk": "Замороження або скасування"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.headcount_freeze_or_budget_cancellation",
+            "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
+          ]
+        },
+        {
+          "id": "reorganisation",
+          "label": {
+            "en": "Reorganisation or scope change",
+            "uk": "Реорганізація або зміна обсягу"
+          },
+          "status": "partial",
+          "refs": [
+            "mech.mid_process_role_requirement_redefinition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cohort_and_plurality",
+      "label": {
+        "en": "Cohort and plurality",
+        "uk": "Когорта і множинність"
+      },
+      "values": [
+        {
+          "id": "finalist_ranking",
+          "label": {
+            "en": "Finalist cohort ranking",
+            "uk": "Ранжування фіналістів"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.stronger_competing_candidate_in_final_cohort"
+          ]
+        },
+        {
+          "id": "parallel_applications",
+          "label": {
+            "en": "Several concurrent applications",
+            "uk": "Кілька паралельних процесів"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "competing_offers",
+          "label": {
+            "en": "Competing offers",
+            "uk": "Конкурентні офери"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "incumbent_replacement",
+          "label": {
+            "en": "Replacing a specific incumbent",
+            "uk": "Заміна конкретного працівника"
+          },
+          "status": "partial",
+          "refs": [
+            "era.rates_up_payroll_repriced"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statements",
+      "label": {
+        "en": "Statements and fidelity",
+        "uk": "Твердження і точність передачі"
+      },
+      "values": [
+        {
+          "id": "euphemism",
+          "label": {
+            "en": "Euphemistic outcome",
+            "uk": "Евфемістичний результат"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.generic_closer_alignment_rejection_template"
+          ]
+        },
+        {
+          "id": "stale_posting",
+          "label": {
+            "en": "Stale public statement",
+            "uk": "Застаріле публічне твердження"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.stale_or_orphaned_job_requisition"
+          ]
+        },
+        {
+          "id": "parser_distortion",
+          "label": {
+            "en": "Channel or parser distortion",
+            "uk": "Спотворення каналом або парсером"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.ats_parser_extraction_failure"
+          ]
+        },
+        {
+          "id": "candidate_misstatement",
+          "label": {
+            "en": "Candidate-side misstatement",
+            "uk": "Неточне твердження кандидата"
+          },
+          "status": "partial",
+          "refs": [
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility"
+          ]
+        },
+        {
+          "id": "verification_disagreement",
+          "label": {
+            "en": "Conflicting records",
+            "uk": "Суперечливі записи"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.reference_check_discrepancy_or_regulatory_ineligibility"
+          ]
+        },
+        {
+          "id": "void",
+          "label": {
+            "en": "Missing statement or silence",
+            "uk": "Відсутність повідомлення або тиша"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.complete_silence_after_submission"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "label": {
+        "en": "Memory across processes",
+        "uk": "Памʼять між процесами"
+      },
+      "values": [
+        {
+          "id": "talent_pool",
+          "label": {
+            "en": "Talent pool retention",
+            "uk": "Збереження в пулі кандидатів"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.speculative_sourcing_talent_pooling_without_opening"
+          ]
+        },
+        {
+          "id": "re_entry_standing",
+          "label": {
+            "en": "Re-entry standing",
+            "uk": "Статус для повторного входу"
+          },
+          "status": "partial",
+          "refs": [
+            "int.recorded_finalist_standing_with_a_dated_re_entry_route"
+          ]
+        },
+        {
+          "id": "do_not_rehire",
+          "label": {
+            "en": "Do-not-rehire flag",
+            "uk": "Позначка «не наймати повторно»"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "model_trained_on_history",
+          "label": {
+            "en": "Ranker trained on past decisions",
+            "uk": "Ранжувальник, навчений на минулих рішеннях"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "label": {
+        "en": "After acceptance and start",
+        "uk": "Після прийняття й виходу"
+      },
+      "values": [
+        {
+          "id": "start_date_shift",
+          "label": {
+            "en": "Start-date shift",
+            "uk": "Зсув дати виходу"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
+          ]
+        },
+        {
+          "id": "offer_revocation",
+          "label": {
+            "en": "Post-acceptance revocation",
+            "uk": "Скасування після прийняття"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.start_date_slippage_and_post_acceptance_revocation"
+          ]
+        },
+        {
+          "id": "probation",
+          "label": {
+            "en": "Probation",
+            "uk": "Випробувальний строк"
+          },
+          "status": "partial",
+          "refs": [
+            "bar.probation_period_post_start_confirmation",
+            "mech.probation_used_as_extended_de_facto_interview"
+          ]
+        },
+        {
+          "id": "failed_probation_observation",
+          "label": {
+            "en": "Observable probation outcome",
+            "uk": "Спостережуваний результат випробування"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "reliance_and_correction_cost",
+          "label": {
+            "en": "Reliance and correction cost",
+            "uk": "Ціна покладання й виправлення"
+          },
+          "status": "partial",
+          "refs": [
+            "evidence.promissory_estoppel_and_pre_employment_good_faith_restatement_of_employment_law_2_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "side",
+      "label": {
+        "en": "Side and agency",
+        "uk": "Сторона й агентність"
+      },
+      "values": [
+        {
+          "id": "employer_to_candidate",
+          "label": {
+            "en": "Employer evaluates candidate",
+            "uk": "Роботодавець оцінює кандидата"
+          },
+          "status": "covered",
+          "refs": [
+            "proc.the_hiring_funnel_end_to_end"
+          ]
+        },
+        {
+          "id": "candidate_to_employer",
+          "label": {
+            "en": "Candidate evaluates employer",
+            "uk": "Кандидат оцінює роботодавця"
+          },
+          "status": "partial",
+          "refs": [
+            "actor.candidate",
+            "record.candidate_search_runway"
+          ]
+        },
+        {
+          "id": "intermediary",
+          "label": {
+            "en": "Intermediary or client decides",
+            "uk": "Посередник або клієнт вирішує"
+          },
+          "status": "covered",
+          "refs": [
+            "actor.client",
+            "proc.client_account_hiring_funnel"
+          ]
+        },
+        {
+          "id": "external_force",
+          "label": {
+            "en": "External policy or market force",
+            "uk": "Зовнішня політика або ринкова сила"
+          },
+          "status": "covered",
+          "refs": [
+            "actor.public_policy_and_industry_standards",
+            "era.a_fixed_number_of_seats"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "outcome",
+      "label": {
+        "en": "Observable outcome",
+        "uk": "Спостережуваний результат"
+      },
+      "values": [
+        {
+          "id": "no_response",
+          "label": {
+            "en": "No response",
+            "uk": "Немає відповіді"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.complete_silence_after_submission"
+          ]
+        },
+        {
+          "id": "generic_rejection",
+          "label": {
+            "en": "Generic rejection",
+            "uk": "Шаблонна відмова"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.generic_closer_alignment_rejection_template"
+          ]
+        },
+        {
+          "id": "specific_skill_feedback",
+          "label": {
+            "en": "Specific skill feedback",
+            "uk": "Конкретний відгук про навичку"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.explicit_feedback_citing_skill_depth_shortfall"
+          ]
+        },
+        {
+          "id": "compensation_change",
+          "label": {
+            "en": "Compensation changes",
+            "uk": "Зміна компенсації"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.compensation_band_reduced_or_altered_mid_process"
+          ]
+        },
+        {
+          "id": "internal_fill",
+          "label": {
+            "en": "Internal fill",
+            "uk": "Внутрішнє заповнення"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.rejection_naming_an_internal_hire_as_the_outcome"
+          ]
+        },
+        {
+          "id": "closure_or_repost",
+          "label": {
+            "en": "Closure or repost",
+            "uk": "Закриття або повторна публікація"
+          },
+          "status": "covered",
+          "refs": [
+            "pat.closed_then_reposted_requisition_motif"
+          ]
+        },
+        {
+          "id": "offer_delay_or_rescind",
+          "label": {
+            "en": "Offer delay or rescission",
+            "uk": "Затримка або скасування оферу"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.offer_rescinded_or_delayed_due_to_internal_freeze"
+          ]
+        },
+        {
+          "id": "successful_hire",
+          "label": {
+            "en": "Successful hire",
+            "uk": "Успішний найм"
+          },
+          "status": "partial",
+          "refs": [
+            "proc.the_path_as_it_is_supposed_to_run"
+          ]
+        },
+        {
+          "id": "candidate_declines",
+          "label": {
+            "en": "Candidate declines or reneges",
+            "uk": "Кандидат відмовляється або відкликає згоду"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "domain",
+      "label": {
+        "en": "Domain and arrangement",
+        "uk": "Галузь і формат роботи"
+      },
+      "values": [
+        {
+          "id": "software",
+          "label": {
+            "en": "Software and technical hiring",
+            "uk": "Найм у розробці й технічних ролях"
+          },
+          "status": "covered",
+          "refs": [
+            "bar.technical_screen_live_assessment",
+            "era.a_fixed_number_of_seats"
+          ]
+        },
+        {
+          "id": "client_vendor",
+          "label": {
+            "en": "Client-vendor staffing",
+            "uk": "Клієнтсько-вендорний найм"
+          },
+          "status": "covered",
+          "refs": [
+            "proc.client_account_hiring_funnel"
+          ]
+        },
+        {
+          "id": "public_sector",
+          "label": {
+            "en": "Public-sector competition",
+            "uk": "Конкурс у публічному секторі"
+          },
+          "status": "partial",
+          "refs": [
+            "evidence.openings_that_exist_because_a_rule_requires_them_ukraine_civil_service_competitions"
+          ]
+        },
+        {
+          "id": "nontechnical",
+          "label": {
+            "en": "Non-technical occupations",
+            "uk": "Нетехнічні професії"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "contractor_freelance",
+          "label": {
+            "en": "Contractor or freelance",
+            "uk": "Підряд або фриланс"
+          },
+          "status": "partial",
+          "refs": [
+            "record.subcontractor_compensation"
+          ]
+        },
+        {
+          "id": "temporary_or_seasonal",
+          "label": {
+            "en": "Temporary or seasonal work",
+            "uk": "Тимчасова або сезонна робота"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "jurisdiction",
+      "label": {
+        "en": "Jurisdiction",
+        "uk": "Юрисдикція"
+      },
+      "values": [
+        {
+          "id": "us",
+          "label": {
+            "en": "United States",
+            "uk": "США"
+          },
+          "status": "covered",
+          "refs": [
+            "evidence.whether_an_application_was_assessed_at_all_is_defined_in_regulation_41_cfr_60_1_3"
+          ]
+        },
+        {
+          "id": "uk",
+          "label": {
+            "en": "United Kingdom",
+            "uk": "Велика Британія"
+          },
+          "status": "partial",
+          "refs": [
+            "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+          ]
+        },
+        {
+          "id": "eu",
+          "label": {
+            "en": "European Union",
+            "uk": "Європейський Союз"
+          },
+          "status": "covered",
+          "refs": [
+            "evidence.a_rejection_issued_without_human_involvement_is_regulated_in_the_eu_gdpr_art_22",
+            "evidence.publishing_the_band_before_the_interview_becomes_a_duty_in_the_eu_directive_2023_970_art_5"
+          ]
+        },
+        {
+          "id": "ukraine",
+          "label": {
+            "en": "Ukraine",
+            "uk": "Україна"
+          },
+          "status": "covered",
+          "refs": [
+            "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
+          ]
+        },
+        {
+          "id": "other",
+          "label": {
+            "en": "Other jurisdictions",
+            "uk": "Інші юрисдикції"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "affected_population",
+      "label": {
+        "en": "Affected population",
+        "uk": "Група, якої стосується"
+      },
+      "values": [
+        {
+          "id": "career_gap",
+          "label": {
+            "en": "People with career gaps",
+            "uk": "Люди з перервами в карʼєрі"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.employment_gap_downranking_bias",
+            "loop.employment_gap_penalty_loop"
+          ]
+        },
+        {
+          "id": "early_career",
+          "label": {
+            "en": "Early-career candidates",
+            "uk": "Кандидати на початку карʼєри"
+          },
+          "status": "partial",
+          "refs": [
+            "era.a_fixed_number_of_seats"
+          ]
+        },
+        {
+          "id": "cross_border",
+          "label": {
+            "en": "Cross-border candidates",
+            "uk": "Кандидати в іншій юрисдикції"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.location_or_timezone_compliance_constraint"
+          ]
+        },
+        {
+          "id": "disabled_or_accommodation",
+          "label": {
+            "en": "Disabled candidates and accommodations",
+            "uk": "Кандидати з інвалідністю та пристосування"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "race_ethnicity",
+          "label": {
+            "en": "Race or ethnicity",
+            "uk": "Раса або етнічність"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "gender_pregnancy",
+          "label": {
+            "en": "Gender or pregnancy",
+            "uk": "Гендер або вагітність"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "religion",
+          "label": {
+            "en": "Religion",
+            "uk": "Релігія"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "sexual_orientation_gender_identity",
+          "label": {
+            "en": "Sexual orientation or gender identity",
+            "uk": "Сексуальна орієнтація або гендерна ідентичність"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "caregiving_schedule",
+          "label": {
+            "en": "Caregiving and scheduling constraints",
+            "uk": "Доглядові обовʼязки й часові обмеження"
+          },
+          "status": "absent",
+          "refs": []
+        }
+      ]
+    },
+    {
+      "id": "evidence_role",
+      "label": {
+        "en": "Evidence role",
+        "uk": "Роль доказу"
+      },
+      "values": [
+        {
+          "id": "descriptive_fact",
+          "label": {
+            "en": "Descriptive fact",
+            "uk": "Описовий факт"
+          },
+          "status": "covered",
+          "refs": [
+            "era.a_fixed_number_of_seats"
+          ]
+        },
+        {
+          "id": "mechanism_support",
+          "label": {
+            "en": "Mechanism support",
+            "uk": "Підтримка механізму"
+          },
+          "status": "covered",
+          "refs": [
+            "mech.employment_gap_downranking_bias"
+          ]
+        },
+        {
+          "id": "claim_scoped_support",
+          "label": {
+            "en": "Claim-scoped support",
+            "uk": "Доказ для конкретного твердження"
+          },
+          "status": "partial",
+          "refs": [
+            "obs.explicit_feedback_citing_skill_depth_shortfall"
+          ]
+        },
+        {
+          "id": "edge_scoped_support",
+          "label": {
+            "en": "Causal-edge support",
+            "uk": "Доказ для причинного ребра"
+          },
+          "status": "partial",
+          "refs": [
+            "mech.ats_parser_extraction_failure"
+          ]
+        },
+        {
+          "id": "intervention_effectiveness",
+          "label": {
+            "en": "Intervention effectiveness",
+            "uk": "Ефективність втручання"
+          },
+          "status": "absent",
+          "refs": []
+        },
+        {
+          "id": "synthetic_example_label",
+          "label": {
+            "en": "Synthetic example explicitly labelled",
+            "uk": "Явно позначений синтетичний приклад"
+          },
+          "status": "covered",
+          "refs": [
+            "obs.generic_closer_alignment_rejection_template"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 92,
+    "covered": 50,
+    "partial": 19,
+    "absent": 23,
+    "score_percent": 64.7,
+    "dimensions": [
+      {
+        "id": "demand",
+        "label": {
+          "en": "Demand and funding",
+          "uk": "Попит і фінансування"
+        },
+        "total": 5,
+        "covered": 3,
+        "partial": 2,
+        "absent": 0,
+        "score_percent": 80
+      },
+      {
+        "id": "money",
+        "label": {
+          "en": "Financial chain",
+          "uk": "Фінансовий ланцюг"
+        },
+        "total": 6,
+        "covered": 4,
+        "partial": 0,
+        "absent": 2,
+        "score_percent": 66.7
+      },
+      {
+        "id": "entry",
+        "label": {
+          "en": "Entry path",
+          "uk": "Шлях входу"
+        },
+        "total": 8,
+        "covered": 3,
+        "partial": 2,
+        "absent": 3,
+        "score_percent": 50
+      },
+      {
+        "id": "dialogue",
+        "label": {
+          "en": "Dialogue and interaction",
+          "uk": "Діалог і взаємодія"
+        },
+        "total": 9,
+        "covered": 6,
+        "partial": 1,
+        "absent": 2,
+        "score_percent": 72.2
+      },
+      {
+        "id": "internal",
+        "label": {
+          "en": "Internal decision process",
+          "uk": "Внутрішній процес рішень"
+        },
+        "total": 6,
+        "covered": 5,
+        "partial": 1,
+        "absent": 0,
+        "score_percent": 91.7
+      },
+      {
+        "id": "cohort_and_plurality",
+        "label": {
+          "en": "Cohort and plurality",
+          "uk": "Когорта і множинність"
+        },
+        "total": 4,
+        "covered": 1,
+        "partial": 1,
+        "absent": 2,
+        "score_percent": 37.5
+      },
+      {
+        "id": "statements",
+        "label": {
+          "en": "Statements and fidelity",
+          "uk": "Твердження і точність передачі"
+        },
+        "total": 6,
+        "covered": 5,
+        "partial": 1,
+        "absent": 0,
+        "score_percent": 91.7
+      },
+      {
+        "id": "memory",
+        "label": {
+          "en": "Memory across processes",
+          "uk": "Памʼять між процесами"
+        },
+        "total": 4,
+        "covered": 1,
+        "partial": 1,
+        "absent": 2,
+        "score_percent": 37.5
+      },
+      {
+        "id": "epilogue",
+        "label": {
+          "en": "After acceptance and start",
+          "uk": "Після прийняття й виходу"
+        },
+        "total": 5,
+        "covered": 2,
+        "partial": 2,
+        "absent": 1,
+        "score_percent": 60
+      },
+      {
+        "id": "side",
+        "label": {
+          "en": "Side and agency",
+          "uk": "Сторона й агентність"
+        },
+        "total": 4,
+        "covered": 3,
+        "partial": 1,
+        "absent": 0,
+        "score_percent": 87.5
+      },
+      {
+        "id": "outcome",
+        "label": {
+          "en": "Observable outcome",
+          "uk": "Спостережуваний результат"
+        },
+        "total": 9,
+        "covered": 7,
+        "partial": 1,
+        "absent": 1,
+        "score_percent": 83.3
+      },
+      {
+        "id": "domain",
+        "label": {
+          "en": "Domain and arrangement",
+          "uk": "Галузь і формат роботи"
+        },
+        "total": 6,
+        "covered": 2,
+        "partial": 2,
+        "absent": 2,
+        "score_percent": 50
+      },
+      {
+        "id": "jurisdiction",
+        "label": {
+          "en": "Jurisdiction",
+          "uk": "Юрисдикція"
+        },
+        "total": 5,
+        "covered": 3,
+        "partial": 1,
+        "absent": 1,
+        "score_percent": 70
+      },
+      {
+        "id": "affected_population",
+        "label": {
+          "en": "Affected population",
+          "uk": "Група, якої стосується"
+        },
+        "total": 9,
+        "covered": 2,
+        "partial": 1,
+        "absent": 6,
+        "score_percent": 27.8
+      },
+      {
+        "id": "evidence_role",
+        "label": {
+          "en": "Evidence role",
+          "uk": "Роль доказу"
+        },
+        "total": 6,
+        "covered": 3,
+        "partial": 2,
+        "absent": 1,
+        "score_percent": 66.7
+      }
+    ]
+  }
+}

@@ -42,15 +42,17 @@ probes:
       -
         id: "message-on-a-round-interval"
         label: "The message arrived a round number of days after submission — thirty, forty-five, sixty — and the posting's state did not change around it."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "A rejection arriving on a round calendar interval (e.g. 30/60 days) demonstrates an automated ATS queue expiry rule (mech.employment_gap_downranking_bias) rather than an active reviewer decision."
+        excludes: []
+        because: "A rejection on a round calendar interval is more consistent with an automated queue-expiry rule than with a reviewer acting on that exact schedule."
       -
         id: "posting-still-live"
         label: "The posting was still accepting applications when the rejection arrived."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "A rejection arriving while the role remains active and seeking candidates indicates an automated knockout filter or ghost listing (mech.stale_or_orphaned_job_requisition/mech.automated_keyword_qualification_filter)."
+        excludes: []
+        because: "A rejection while the role remains active makes an automated filter or stale-listing explanation more plausible, without identifying which one operated."
       -
         id: "history-unavailable"
         label: "The posting's history cannot be recovered and no copy was kept."

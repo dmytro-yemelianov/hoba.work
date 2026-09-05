@@ -1,6 +1,6 @@
 {
-  "registry_version": "1.1.0",
-  "count": 51,
+  "registry_version": "1.2.0",
+  "count": 52,
   "items": [
     {
       "id": "evidence.26_u_s_c_174_after_the_2017_amendment",
@@ -53,6 +53,17 @@
       "aliases": [
         "EVD-037"
       ]
+    },
+    {
+      "id": "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance",
+      "type": "evidence",
+      "title": "Accepted unconditional job offers and withdrawal (UK government guidance)",
+      "kind": "primary",
+      "summary": "UK government guidance states that an accepted unconditional job offer forms a legally binding employment contract. If an employer then withdraws the offer, the applicant may be able to pursue breach of contract; a conditional offer may be withdrawn when its conditions are not met. The guidance establishes legal consequences, not how often withdrawal occurs or what motive caused it.",
+      "citation": "GOV.UK, Job offers: your rights — withdrawing a job offer.",
+      "url": "https://www.gov.uk/job-offers-your-rights",
+      "period": "current",
+      "aliases": []
     },
     {
       "id": "evidence.algorithmic_bias_in_recruitment_evaluating_resume_screeners_video_analysis_yadav_ahirwar_2026",
@@ -278,7 +289,7 @@
       "type": "evidence",
       "title": "Internal Candidacy and Public Competition Governance (5 U.S.C. § 2301 & UK Civil Service Management Code)",
       "kind": "primary",
-      "summary": "5 U.S.C. § 2301 (Merit system principles) and the UK Civil Service Management Code (Section 1.1 on fair and open competition) require transparent declaration of whether positions are open exclusively to internal promotion slates or contested in open public competition. Open competitions running parallel to pre-identified incumbent candidacies must state evaluation rules explicitly to prevent deceptive solicitation of external applicant labor.",
+      "summary": "5 U.S.C. § 2301 states merit-system principles for the US federal civil service, including recruitment from appropriate sources and selection after fair and open competition. UK Civil Service recruitment rules likewise govern appointment on merit after fair and open competition, subject to defined exceptions. These are public-service rules; they do not create a general private-sector duty to disclose an internal candidate or prove that an external process is deceptive.",
       "citation": "5 U.S.C. § 2301(b)(1) ('Recruitment should be from qualified individuals from appropriate sources in an endeavor to achieve a work force from all segments of society, and selection and advancement should be determined solely on the basis of relative ability, knowledge, and skills, after fair and open competition which assures that all receive equal opportunity.').",
       "url": "https://www.law.cornell.edu/uscode/text/5/2301",
       "period": "current",
@@ -430,7 +441,7 @@
       "type": "evidence",
       "title": "Pre-adverse-action disclosure in employment background checks (15 U.S.C. §1681b(b)(3))",
       "kind": "primary",
-      "summary": "Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A separate route applies where the candidate applied remotely: notice may instead follow within three business days of the action, naming the reporting agency, stating that the agency did not make the decision, and telling the candidate they may request a free copy and dispute its accuracy. The statute therefore already requires disclosure of the record, but only the first route places it before the decision is final, and neither fixes how long an offer stays open while a disputed field is reconciled.",
+      "summary": "Under US federal law, an employer intending to take adverse action based in whole or in part on a consumer report for employment purposes must first give the candidate a copy of the report and a written description of their rights. A narrower exception applies to specified transportation employment when the application was made by mail, telephone, computer, or a similar means: the required notice may follow within three business days of the action. The statute therefore requires disclosure of the record in the general route, but it does not set a reconciliation period or make the transportation exception available to remote applications generally.",
       "citation": "15 U.S.C. §1681b(b)(3) — Fair Credit Reporting Act, conditions on use of consumer reports for employment purposes.",
       "url": "https://www.law.cornell.edu/uscode/text/15/1681b",
       "period": "current",
@@ -443,7 +454,7 @@
       "type": "evidence",
       "title": "Probation period limits and dismissal standards (Ukraine, Labour Code art. 26–28)",
       "kind": "primary",
-      "summary": "Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, termination for failure to meet the role's requirements requires written justification with three days' notice.",
+      "summary": "Articles 26–28 of the Labour Code of Ukraine (Кодекс законів про працю України) establish statutory boundaries for probationary periods: probation may not exceed three months for standard employees (or six months in exceptional cases agreed with trade unions). If the probation period expires and the employee continues working, they are deemed to have passed probation, and subsequent dismissal is permitted only under standard general grounds. During probation, an employer finding that the employee does not meet the role or work may dismiss on that ground after giving written notice three days in advance; the employee may challenge the termination through the labour-dispute procedure.",
       "citation": "Кодекс законів про працю України, статті 26, 27, 28 (Випробування при прийнятті на роботу, строк випробування, наслідки результату випробування).",
       "url": "https://zakon.rada.gov.ua/laws/show/322-08",
       "period": "current",
@@ -558,9 +569,9 @@
     {
       "id": "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996",
       "type": "evidence",
-      "title": "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)",
+      "title": "Statutory minimum notice (UK, Employment Rights Act 1996 §86)",
       "kind": "primary",
-      "summary": "The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.",
+      "summary": "Section 86 of the UK Employment Rights Act 1996 sets statutory minimum notice periods once an employee has been continuously employed for at least one month, with longer employer notice minima based on completed service. The section does not define probation, govern withdrawal before employment starts, or establish why an employer uses a probation clause.",
       "citation": "UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).",
       "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/86",
       "period": "current",
@@ -571,10 +582,10 @@
     {
       "id": "evidence.structured_selection_procedures_and_evaluator_preparation_29_c_f_r_1607_4_eu_ai_act_annex_iii",
       "type": "evidence",
-      "title": "Structured Selection Procedures and Evaluator Preparation (29 C.F.R. § 1607.4 & EU AI Act Annex III)",
+      "title": "Selection-procedure impact records and oversight of high-risk recruitment AI",
       "kind": "primary",
-      "summary": "The EEOC Uniform Guidelines on Employee Selection Procedures (29 C.F.R. § 1607.4) and the EU Artificial Intelligence Act (Regulation (EU) 2024/1689 Annex III(4)(a)) mandate structured assessment mechanisms and verified evaluator competency in employment screening. Rushed, unreviewed interview panels operating without dedicated preparation time increase inter-rater noise and introduce arbitrary disqualification factors inconsistent with job-related qualification metrics.",
-      "citation": "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. § 1607.4 (Information on impact) & Regulation (EU) 2024/1689 Annex III, Item 4(a) (High-risk AI systems in recruitment and selection).",
+      "summary": "The EEOC Uniform Guidelines require users of employee-selection procedures to maintain information about adverse impact and, where adverse impact exists, address validity and alternatives. The EU AI Act classifies specified AI used in recruitment or selection as high-risk and requires effective human oversight of such systems. Neither source mandates preparation time, a tie-break rule, or a rota for an ordinary human interview panel; those remain design proposals requiring separate effectiveness evidence.",
+      "citation": "EEOC Uniform Guidelines on Employee Selection Procedures, 29 C.F.R. Part 1607 §§4, 15; Regulation (EU) 2024/1689, Annex III(4)(a) and Article 14.",
       "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607",
       "period": "current",
       "aliases": [

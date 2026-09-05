@@ -9,10 +9,12 @@ import {
   entityTypeSchema,
   HOBAKnowledgeGraph,
   loadArchetypes,
+  loadCoverageModel,
   loadRegistryFromRoot,
   loadScenarios,
   READER_FACING_TYPES,
   searchBundle,
+  summarizeCoverage,
 } from '@hoba/registry';
 
 const root = process.cwd();
@@ -140,5 +142,21 @@ describe('canonical data inventory', () => {
       expect(openapi.paths[`/${entry.collection}/{id}.json`], entry.collection).toBeDefined();
       expect(openapi.components.schemas[entry.name], entry.name).toBeDefined();
     }
+  });
+
+  it('publishes the executable coverage boundary with its derived summary', () => {
+    const model = loadCoverageModel(root);
+    const published = JSON.parse(
+      readFileSync(resolve(root, 'apps/web/public/data/latest/coverage.json'), 'utf8')
+    );
+
+    expect(published).toEqual({ ...model, summary: summarizeCoverage(model) });
+    expect(published.summary).toMatchObject({
+      total: 92,
+      covered: 50,
+      partial: 19,
+      absent: 23,
+      score_percent: 64.7,
+    });
   });
 });

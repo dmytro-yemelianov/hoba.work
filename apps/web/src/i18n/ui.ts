@@ -1176,14 +1176,15 @@ const en = {
     'A nickname and a grid position for entries in the atlas — a joke on the alignment chart, not a claim about anyone. Nothing here is evidence, cited, or checked the way the rest of this site is; it exists because the formal titles earn their precision by giving up being fun.',
   'archetypes.disclaimer':
     'Placement is a hand-picked joke, not a measurement. It carries no epistemic weight and backs no claim the atlas makes elsewhere — read the linked entry for the real, sourced account.',
-  'archetypes.axis.x': 'Lawful ↔ Chaotic — how systematic the mechanism is, versus how ad hoc',
+  'archetypes.axis.x':
+    'Systematic ↔ Ad hoc — how consistently the mechanism follows a repeatable rule',
   'archetypes.axis.y': 'Visible ↔ Hidden — whether the person it happens to could ever spot it',
   'archetypes.coverageNote':
     'Every entry in the atlas has a nickname and a place here — {n} in all. Evidence citations are the one exception: a source document doesn’t get a joke.',
   'archetypes.viewEntry': 'Open the real entry →',
-  'archetypes.x.lawful': 'Lawful',
-  'archetypes.x.neutral': 'Neutral',
-  'archetypes.x.chaotic': 'Chaotic',
+  'archetypes.x.lawful': 'Systematic',
+  'archetypes.x.neutral': 'Mixed',
+  'archetypes.x.chaotic': 'Ad hoc',
   'archetypes.y.visible': 'Visible',
   'archetypes.y.ambiguous': 'Ambiguous',
   'archetypes.y.hidden': 'Hidden',
@@ -2450,14 +2451,14 @@ const uk: Record<UIKey, string> = {
   'archetypes.disclaimer':
     'Розміщення — це підібраний вручну жарт, а не вимірювання. Воно не має епістемічної ваги і не підтверджує жодну тезу атласу — читайте пов’язаний запис для реального, підтвердженого джерелами опису.',
   'archetypes.axis.x':
-    'Закономірне ↔ Хаотичне — наскільки систематичний механізм, а наскільки випадковий',
+    'Системне ↔ Ситуативне — наскільки послідовно механізм працює за повторюваним правилом',
   'archetypes.axis.y': 'Видиме ↔ Приховане — чи міг би той, з ким це сталося, взагалі це помітити',
   'archetypes.coverageNote':
     'Кожен запис атласу має прізвисько і місце тут — {n} загалом. Єдиний виняток — джерела-цитати: документу-джерелу жарт не покладено.',
   'archetypes.viewEntry': 'Відкрити справжній запис →',
-  'archetypes.x.lawful': 'Закономірне',
-  'archetypes.x.neutral': 'Нейтральне',
-  'archetypes.x.chaotic': 'Хаотичне',
+  'archetypes.x.lawful': 'Системне',
+  'archetypes.x.neutral': 'Змішане',
+  'archetypes.x.chaotic': 'Ситуативне',
   'archetypes.y.visible': 'Видиме',
   'archetypes.y.ambiguous': 'Двозначне',
   'archetypes.y.hidden': 'Приховане',

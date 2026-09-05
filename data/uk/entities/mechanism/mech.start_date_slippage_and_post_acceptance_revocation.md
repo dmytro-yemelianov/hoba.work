@@ -4,7 +4,7 @@ type: "mechanism"
 aliases:
   - "M-027"
 title: "Зсув дати виходу та скасування оферу після прийняття"
-summary: "Роботодавці переносять підтверджені дати виходу або відкликають прийняті пропозиції між підписанням та першим днем через зміну бюджетних пріоритетів чи авторизації проєктів."
+summary: "Зміна бюджету або дозволу на проєкт може спонукати роботодавця перенести підтверджену дату виходу чи відкликати прийнятий офер між підписанням і першим днем."
 operates_at:
   - "bar.offer_closing_contract_execution"
   - "bar.probation_period_post_start_confirmation"
@@ -13,9 +13,7 @@ emissions:
     artifact: "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
     fidelity: "direct"
     likelihood: "high"
-    evidence:
-      - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-      - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+    evidence: []
     observed_at:
       - "post-offer"
   -
@@ -41,10 +39,9 @@ amplifies: []
 masks: []
 honest_baseline: false
 status: "active"
-evidence_level: "proven"
+evidence_level: "compatible"
 evidence_ids:
-  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+  - "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance"
 specimens:
   -
     kind: "email"
@@ -66,8 +63,8 @@ perspectives:
   -
     actor: "actor.candidate"
     sees: "Підписаний офер із невизначеною або відкладеною датою після звільнення з попередньої роботи."
-    reads: "Зобов'язання виявилися асиметричними: звільнення є незворотним, а старт відкладається."
-    does: "Оцінює правові можливості компенсації за британським Employment Rights Act 1996 та розглядає поновлення активного пошуку."
+    reads: "Покладання може бути асиметричним: кандидат уже міг залишити попередню роботу, тоді як новий старт відкладається."
+    does: "Перевіряє умови оферу й застосовні правові розʼяснення, документує зміну та розглядає поновлення пошуку."
   -
     actor: "actor.recruiter"
     sees: "Закриту вакансію, яка зависає через неможливість призначити перший робочий день."
@@ -75,11 +72,12 @@ perspectives:
     does: "Намагається підтримувати комунікацію з кандидатом, доки керівництво вирішує питання фінансування."
 non_inferences:
   - "Не свідчить про проблеми з кваліфікацією кандидата або негативні результати перевірки."
+  - "Повʼязане британське розʼяснення встановлює можливі правові наслідки відкликання, а не мотив роботодавця чи частоту цього механізму."
 ---
 
 # Зсув дати виходу та скасування оферу після прийняття
 
-Роботодавці переносять підтверджені дати виходу або відкликають прийняті пропозиції між підписанням та першим днем через зміну бюджетних пріоритетів чи авторизації проєктів.
+Зміна бюджету або дозволу на проєкт може спонукати роботодавця перенести підтверджену дату виходу чи відкликати прийнятий офер між підписанням і першим днем.
 
 ### Структурний контекст
 - **Актор:** `policy`
@@ -88,3 +86,4 @@ non_inferences:
 
 ### Не-висновки
 - Не свідчить про проблеми з кваліфікацією кандидата або негативні результати перевірки.
+- Повʼязане британське розʼяснення встановлює можливі правові наслідки відкликання, а не мотив роботодавця чи частоту цього механізму.

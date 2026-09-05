@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Feedback stating candidate is overqualified for the grade",
     "status": "active",
@@ -29,28 +29,32 @@
           {
             "id": "higher-req-named",
             "label": "A reply names an open requisition at a higher level and gives a next step for it: a link, an introduction, or a referral.",
-            "excludes": [
+            "weighs_against": [
               "mech.experience_age_grading_mismatch"
             ],
-            "because": "Active referral to an unblocked higher level band rules out structural down-levelling with a hard ceiling."
+            "excludes": [],
+            "because": "An active referral to an open higher-level role weighs against a hard organizational ceiling, though it does not guarantee that role is attainable."
           },
           {
             "id": "answered-on-level-none-named",
             "label": "A reply answers about level and names no requisition: nothing is open above this band, or the profile stays on file, or a pointer to the careers page — no requisition id, no date.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "answered-as-budget",
             "label": "The reply answers about money rather than level: it names the approved ceiling for the closed requisition, or says the stated expectation sat above it.",
-            "excludes": [
+            "weighs_against": [
               "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "Stating rigid departmental budget ceilings rather than technical qualification gaps confirms pay band constraints rather than skill deficiencies."
+            "excludes": [],
+            "because": "A stated departmental budget ceiling makes a pay-band constraint more plausible than a skill deficit as the immediate reason."
           },
           {
             "id": "no-reply",
             "label": "No reply arrives, and the thread ends on the rejection already received.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

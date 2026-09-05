@@ -1,6 +1,6 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.1.0, schema 1.3.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.2.0, schema 1.4.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
@@ -15,7 +15,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Actors** (`actor`, 7; IDs actor.*) — A decision seat with explicit controls, blind spots, and incentives.
 - **Processes** (`process`, 4; IDs proc.* (legacy WF-### aliases resolve)) — A state machine naming the subject, states, owners, transitions, and expected timing.
 - **Eras** (`era`, 4; IDs era.* (legacy E-### aliases resolve)) — A sourced period of hiring economics: capital, hiring behavior, entry paths, and its ending.
-- **Evidence records** (`evidence`, 51; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
+- **Evidence records** (`evidence`, 52; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
 - **Financial records** (`record`, 13; IDs record.* (legacy R-### aliases resolve)) — A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.
 
 Scenarios (6) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.

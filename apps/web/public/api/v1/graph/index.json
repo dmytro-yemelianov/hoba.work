@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "nodes_count": 96,
   "edges_count": 276,
   "elements": {
@@ -150,7 +150,7 @@
           "id": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
           "label": "Offer accepted followed by delayed start date or post-signing revocation",
           "type": "observation",
-          "evidence_level": "proven",
+          "evidence_level": "supported",
           "stages": [
             "post-offer"
           ]
@@ -457,7 +457,7 @@
           "type": "barrier",
           "stage": "post-offer",
           "order": 16,
-          "evidence_level": "proven"
+          "evidence_level": "supported"
         },
         "classes": "node-barrier"
       },
@@ -737,7 +737,7 @@
           "visibility": "inferable",
           "removability": "intermediary",
           "honest_baseline": false,
-          "evidence_level": "proven"
+          "evidence_level": "compatible"
         },
         "classes": "node-mechanism removability-intermediary"
       },
@@ -807,7 +807,7 @@
           "visibility": "opaque",
           "removability": "none",
           "honest_baseline": false,
-          "evidence_level": "proven"
+          "evidence_level": "compatible"
         },
         "classes": "node-mechanism removability-none"
       },
@@ -1055,7 +1055,7 @@
           "type": "intervention",
           "actor": "hiring-manager",
           "cost": "medium",
-          "evidence_level": "supported"
+          "evidence_level": "compatible"
         },
         "classes": "node-intervention"
       },

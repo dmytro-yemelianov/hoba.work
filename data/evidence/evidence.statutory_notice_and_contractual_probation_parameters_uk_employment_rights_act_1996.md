@@ -3,24 +3,22 @@ id: "evidence.statutory_notice_and_contractual_probation_parameters_uk_employmen
 type: "evidence"
 aliases:
   - "EVD-041"
-title: "Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)"
+title: "Statutory minimum notice (UK, Employment Rights Act 1996 §86)"
 kind: primary
 summary: >-
-  The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice
-  periods (Section 86) and governs contractual rights during initial employment.
-  While probation periods in the UK are contractual rather than statutory,
-  an employer may terminate an accepted unconditional employment contract before
-  day one or during probation only by providing the agreed contractual or
-  statutory notice pay, establishing that pre-start revocation represents an
-  actionable contractual termination rather than costless cancellation.
+  Section 86 of the UK Employment Rights Act 1996 sets statutory minimum notice
+  periods once an employee has been continuously employed for at least one month,
+  with longer employer notice minima based on completed service. The section does
+  not define probation, govern withdrawal before employment starts, or establish
+  why an employer uses a probation clause.
 citation: "UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice)."
 url: "https://www.legislation.gov.uk/ukpga/1996/18/section/86"
 period: "current"
 ---
 
-# Statutory notice and contractual probation parameters (UK, Employment Rights Act 1996)
+# Statutory minimum notice (UK, Employment Rights Act 1996 §86)
 
-The UK Employment Rights Act 1996 (c. 18) sets statutory minimum notice periods (Section 86) and governs contractual rights during initial employment. While probation periods in the UK are contractual rather than statutory, an employer may terminate an accepted unconditional employment contract before day one or during probation only by providing the agreed contractual or statutory notice pay, establishing that pre-start revocation represents an actionable contractual termination rather than costless cancellation.
+Section 86 of the UK Employment Rights Act 1996 sets statutory minimum notice periods once an employee has been continuously employed for at least one month, with longer employer notice minima based on completed service. The section does not define probation, govern withdrawal before employment starts, or establish why an employer uses a probation clause.
 
 - **Kind:** `primary`
 - **Citation:** UK Employment Rights Act 1996, Section 86 (Rights of employer and employee to minimum notice).

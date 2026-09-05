@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Take-home assignment exceeding reasonable stated scope",
     "status": "active",
@@ -27,24 +27,28 @@
           {
             "id": "readme-cited",
             "label": "Written feedback, or the next conversation, refers to the timebox note and the cuts you named, and treats them as part of what was submitted.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "cuts-read-as-gaps",
             "label": "The reply lists the stubbed items as missing work, with no reference to the note that names them as deliberate.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "template-rejection",
             "label": "A rejection in standard wording arrives with nothing in it specific to the submission.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "no-reply",
             "label": "No reply arrives at all; the brief and the submission date are the only dated records you keep.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

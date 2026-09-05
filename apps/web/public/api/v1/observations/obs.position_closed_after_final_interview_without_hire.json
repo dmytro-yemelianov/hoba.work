@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Position closed after final interview without hire",
     "status": "active",
@@ -28,24 +28,28 @@
           {
             "id": "cause-named-in-writing",
             "label": "The recruiter answers and names a funding decision and its scope in writing: the requisition unfunded for the quarter, or a hold covering more than this one role.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "work-absorbed-internally",
             "label": "The recruiter answers that the work was reallocated — taken on by the existing team or covered by someone already inside — and that no external hire is being made.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "search-continues-changed",
             "label": "The recruiter answers that the search did not stop: the requisition has been re-scoped or re-levelled and is now being worked against a different profile.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "no-characterisation",
             "label": "No reply arrives, or the reply repeats the wording of the closing email and adds nothing that separates a budget decision from a team one.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

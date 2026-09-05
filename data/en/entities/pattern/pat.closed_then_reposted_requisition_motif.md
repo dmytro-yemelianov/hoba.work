@@ -15,7 +15,7 @@ compatible_mechanisms:
   - "mech.mid_process_role_requirement_redefinition"
 trigger_rule: "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days."
 establishes:
-  - "The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process."
+  - "The prior process ended without placing this candidate, and a materially similar public listing appeared within the stated interval."
 specimens:
   -
     kind: "ats"
@@ -99,7 +99,7 @@ A candidate completes multiple late-stage interviews, is rejected with a generic
 The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.
 
 ### What this Establishes
-- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.
+- The prior process ended without placing this candidate, and a materially similar public listing appeared within the stated interval.
 
 ### What this Does NOT Establish
 - Does not establish that the original job listing was fake or a ghost job.

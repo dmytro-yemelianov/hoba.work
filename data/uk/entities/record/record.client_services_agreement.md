@@ -17,7 +17,7 @@ flows:
 visibility_default: "opaque"
 evidence_ids: []
 status: "active"
-evidence_level: "supported"
+evidence_level: "unknown"
 ---
 
 # Контракт на надання послуг із замовником

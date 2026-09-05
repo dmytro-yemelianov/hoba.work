@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Rejection naming an internal hire as the outcome",
     "status": "active",
@@ -29,30 +29,34 @@
           {
             "id": "withdrawn-and-not-reposted",
             "label": "The posting came down and no materially similar role appeared afterwards.",
-            "excludes": [
+            "weighs_against": [
               "mech.stale_or_orphaned_job_requisition"
             ],
-            "because": "Clean requisition withdrawal without reposting is incompatible with an evergreen ghost opening."
+            "excludes": [],
+            "because": "Withdrawal without reposting weighs against an evergreen listing, though it does not by itself verify who filled the role."
           },
           {
             "id": "reposted-same-scope",
             "label": "A role with the same level and scope was published again within weeks.",
-            "excludes": [
+            "weighs_against": [
               "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "Immediate reposting of the identical role contradicts honest closure via internal transfer."
+            "excludes": [],
+            "because": "Immediate identical reposting makes a completed internal fill less plausible as the whole explanation."
           },
           {
             "id": "still-live",
             "label": "The posting continued to accept applications after the message arrived.",
-            "excludes": [
+            "weighs_against": [
               "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "A requisition that continues accepting applications while claiming an internal hire contradicts honest closure."
+            "excludes": [],
+            "because": "Continued application intake makes a fully completed closure less plausible, though multiple openings or delayed administration remain possible."
           },
           {
             "id": "cannot-establish",
             "label": "The posting's state after the message cannot be established.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

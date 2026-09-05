@@ -38,15 +38,17 @@ probes:
       -
         id: "criteria-differ-by-round"
         label: "A summary comes back naming what each round scored, and the two lines about depth turn out to be scores on two different exercises."
-        excludes:
+        weighs_against:
           - "mech.take_home_evaluation_fatigue_asymmetry"
-        because: "Different criteria across distinct rounds establish separate evaluation dimensions rather than noisy evaluator disagreement."
+        excludes: []
+        because: "Different criteria across rounds make separate evaluation dimensions more plausible than direct disagreement on the same criterion."
       -
         id: "same-criterion-opposite-scores"
         label: "A summary comes back naming what each round scored, and both rounds scored the same criterion and recorded opposite results."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Opposing scores on the identical criterion within the same interview loop demonstrate high inter-rater noise (mech.take_home_evaluation_fatigue_asymmetry) rather than an honest calibrated verdict."
+        excludes: []
+        because: "Opposing scores on the same criterion are consistent with inter-rater noise and weigh against a fully calibrated shared verdict."
       -
         id: "reply-adds-nothing"
         label: "A reply arrives that adds nothing to the decision already sent: the two verdicts restated, or the scoring described as internal and not shared with candidates."

@@ -7,10 +7,9 @@ title: "Offer accepted followed by delayed start date or post-signing revocation
 summary: "A signed offer is met with repeated start-date delays, pre-day-one communication freezes, or sudden revocation during early onboarding."
 stages:
   - "post-offer"
-evidence_level: "proven"
+evidence_level: "supported"
 evidence_ids:
-  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+  - "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance"
 probes:
   -
     id: "PROBE-A-020-1"
@@ -21,22 +20,25 @@ probes:
       -
         id: "written-confirmation-received"
         label: "The employer confirms the date with tracking details for onboarding equipment."
-        excludes:
+        weighs_against:
           - "mech.headcount_freeze_or_budget_cancellation"
           - "mech.start_date_slippage_and_post_acceptance_revocation"
-        because: "Active equipment dispatch and confirmed start date rule out pre-start headcount freeze and offer revocation."
+        excludes: []
+        because: "Active equipment dispatch and a confirmed date weigh against a current freeze or revocation, but do not make a later change impossible."
       -
         id: "evasive-delay-notice"
         label: "The employer provides vague holding notices without committing to a fixed onboarding date."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Evasive holding notices without confirmed dates contradict an honest post-offer onboarding path."
+        excludes: []
+        because: "Repeated holding notices without a date weigh against a routine administrative delay with a settled onboarding plan."
       -
         id: "revocation-or-freeze-confirmed"
         label: "The employer confirms headcount revocation or indefinite pause prior to start date."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Confirmed headcount cancellation prior to day one directly contradicts an honest hire."
+        excludes: []
+        because: "A confirmed headcount cancellation makes candidate-performance explanations less plausible for the pre-start outcome."
 specimens:
   -
     kind: "email"

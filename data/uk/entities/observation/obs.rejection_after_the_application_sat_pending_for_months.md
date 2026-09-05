@@ -42,15 +42,17 @@ probes:
       -
         id: "message-on-a-round-interval"
         label: "Лист прийшов через кругле число днів після подання — тридцять, сорок пʼять, шістдесят, — а стан вакансії поряд із цією датою не змінювався."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Відмова через кругле число днів свідчить про автоматичне правило закриття черги в ATS (mech.employment_gap_downranking_bias), а не про рішення людини."
+        excludes: []
+        because: "Відмова через кругле число днів більше узгоджується з автоматичним правилом закриття черги, ніж із рішенням людини саме за таким графіком."
       -
         id: "posting-still-live"
         label: "Вакансія ще приймала відгуки, коли надійшла відмова."
-        excludes:
+        weighs_against:
           - "mech.genuine_technical_skill_shortfall"
-        because: "Відмова за умови активного прийому відгуків свідчить про автоматичний відсів або фіктивну вакансію (mech.stale_or_orphaned_job_requisition/mech.automated_keyword_qualification_filter)."
+        excludes: []
+        because: "Відмова за активного прийому заявок робить автоматичний відсів або застаріле оголошення правдоподібнішими, не визначаючи, що саме спрацювало."
       -
         id: "history-unavailable"
         label: "Історію вакансії відновити не вдається, копії не збереглося."

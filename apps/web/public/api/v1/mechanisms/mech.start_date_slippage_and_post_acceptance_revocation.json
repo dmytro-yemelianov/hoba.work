@@ -1,19 +1,18 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Start-Date Slippage and Post-Acceptance Revocation",
     "status": "active",
     "evidence_ids": [
-      "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
-      "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+      "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance"
     ],
-    "content": "# Start-Date Slippage and Post-Acceptance Revocation\n\nEmployers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not establish that candidate credentials or references failed validation.",
+    "content": "# Start-Date Slippage and Post-Acceptance Revocation\n\nA budgeting or project-authorisation change can lead an employer to defer a confirmed start date or withdraw an accepted offer between signing and day one.\n\n### Structural Context\n- **Actor:** `policy`\n- **Nature:** `incentive`\n- **Removability:** `none`\n\n### Non-Inferences\n- Does not establish that candidate credentials or references failed validation.\n- The linked UK guidance establishes potential legal consequences of withdrawal, not the employer's motive or the frequency of this mechanism.",
     "aliases": [
       "M-027"
     ],
     "id": "mech.start_date_slippage_and_post_acceptance_revocation",
     "type": "mechanism",
-    "summary": "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.",
+    "summary": "A budgeting or project-authorisation change can lead an employer to defer a confirmed start date or withdraw an accepted offer between signing and day one.",
     "operates_at": [
       "bar.offer_closing_contract_execution",
       "bar.probation_period_post_start_confirmation"
@@ -23,10 +22,7 @@
         "artifact": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
         "fidelity": "direct",
         "likelihood": "high",
-        "evidence": [
-          "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28",
-          "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
-        ],
+        "evidence": [],
         "observed_at": [
           "post-offer"
         ]
@@ -58,7 +54,7 @@
     },
     "amplifies": [],
     "masks": [],
-    "evidence_level": "proven",
+    "evidence_level": "compatible",
     "honest_baseline": false,
     "specimens": [
       {
@@ -87,8 +83,8 @@
       {
         "actor": "actor.candidate",
         "sees": "A signed offer with an indefinite or pushed start date after resigning from previous employment.",
-        "reads": "Contractual commitment was asymmetrical: candidate resignation is irreversible while company start date is deferred.",
-        "does": "Assesses legal notice entitlements under the UK Employment Rights Act 1996 and evaluates reopening active job search."
+        "reads": "Reliance may be asymmetric: the candidate may already have left another role while the new start date is deferred.",
+        "does": "Checks the offer's conditions and applicable legal guidance, documents the change, and evaluates reopening the job search."
       },
       {
         "actor": "actor.recruiter",
@@ -98,7 +94,8 @@
       }
     ],
     "non_inferences": [
-      "Does not establish that candidate credentials or references failed validation."
+      "Does not establish that candidate credentials or references failed validation.",
+      "The linked UK guidance establishes potential legal consequences of withdrawal, not the employer's motive or the frequency of this mechanism."
     ],
     "agency_zones": {
       "employer-policy": "high",

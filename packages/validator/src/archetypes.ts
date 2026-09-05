@@ -30,7 +30,7 @@ export const archetypeSchema = z.object({
   nickname: z.object({ en: z.string().min(1), uk: z.string().min(1) }),
   /** One line on why it sits where it sits — the joke's punchline, not a citation. */
   blurb: z.object({ en: z.string().min(1), uk: z.string().min(1) }),
-  /** How systematic (lawful) vs. ad hoc (chaotic) the mechanism behind it is. */
+  /** How systematic vs. ad hoc the mechanism is (`lawful` is the legacy key for systematic). */
   axis_x: archetypeAxisXSchema,
   /** Whether the person it happens to could ever spot it happening. */
   axis_y: archetypeAxisYSchema,
@@ -42,10 +42,15 @@ export type Archetype = z.infer<typeof archetypeSchema>;
 export type ArchetypeAxisX = z.infer<typeof archetypeAxisXSchema>;
 export type ArchetypeAxisY = z.infer<typeof archetypeAxisYSchema>;
 
-/** The center-cell nod to "True Neutral" — every other cell is `${x} ${y}`, capitalized. */
+/** Human labels for the legacy axis keys; `lawful` never means a legal conclusion. */
 export function archetypeBoxName(x: ArchetypeAxisX, y: ArchetypeAxisY): string {
   if (x === 'neutral' && y === 'ambiguous') return 'True Neutral';
-  return `${x[0]!.toUpperCase()}${x.slice(1)} ${y[0]!.toUpperCase()}${y.slice(1)}`;
+  const xLabel: Record<ArchetypeAxisX, string> = {
+    lawful: 'Systematic',
+    neutral: 'Mixed',
+    chaotic: 'Ad Hoc',
+  };
+  return `${xLabel[x]} ${y[0]!.toUpperCase()}${y.slice(1)}`;
 }
 
 export interface ArchetypeIssue {

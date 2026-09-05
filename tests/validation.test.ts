@@ -120,15 +120,8 @@ describe('validateRegistryBundle', () => {
       ).toHaveLength(1);
     });
 
-    it('leaves every tier below proven alone, however thin its evidence', () => {
-      for (const level of [
-        'observed',
-        'compatible',
-        'supported',
-        'strongly_supported',
-        'contradicted',
-        'unknown',
-      ]) {
+    it('allows descriptive and compatibility tiers without evidence', () => {
+      for (const level of ['observed', 'compatible', 'unknown']) {
         const bundle = makeBundle({
           mechanisms: [
             mechanism({
@@ -140,6 +133,37 @@ describe('validateRegistryBundle', () => {
             }),
           ],
         });
+        expect(
+          validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim'),
+          level
+        ).toEqual([]);
+      }
+    });
+
+    it('rejects evidence-bearing tiers when they link no evidence', () => {
+      for (const level of ['supported', 'strongly_supported', 'contradicted']) {
+        const bundle = makeBundle({
+          mechanisms: [
+            mechanism({
+              id: 'M-001',
+              honest_baseline: true,
+              operates_at: ['B-001'],
+              evidence_level: level as never,
+              evidence_ids: [],
+            }),
+          ],
+        });
+        expect(
+          validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim'),
+          level
+        ).toHaveLength(1);
+      }
+    });
+
+    it('accepts supported tiers with a linked source of any kind', () => {
+      for (const level of ['supported', 'strongly_supported', 'contradicted']) {
+        const bundle = withEvidence('survey');
+        bundle.mechanisms[0]!.evidence_level = level as never;
         expect(
           validateRegistryBundle(bundle).filter((i) => i.rule === 'unsupported-claim'),
           level

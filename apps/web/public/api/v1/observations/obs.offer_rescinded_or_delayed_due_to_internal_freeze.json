@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Offer rescinded or delayed due to internal freeze",
     "status": "active",
@@ -28,31 +28,35 @@
           {
             "id": "deferred-with-date",
             "label": "A written reply states that the requisition is paused rather than closed, names the quarter or the date on which the freeze is reviewed, and says the offer is revisited if headcount returns.",
-            "excludes": [
+            "weighs_against": [
               "mech.genuine_technical_skill_shortfall",
               "mech.stale_or_orphaned_job_requisition"
             ],
-            "because": "A formal written pause date confirms a genuine headcount freeze (mech.headcount_freeze_or_budget_cancellation) rather than an honest hire or an evergreen ghost posting."
+            "excludes": [],
+            "because": "A written pause date is more consistent with a headcount freeze than with a skill decision or an undated evergreen listing."
           },
           {
             "id": "cancelled-in-writing",
             "label": "A written reply states that the requisition is closed and the headcount withdrawn, and names no date to return to.",
-            "excludes": [
+            "weighs_against": [
               "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "Definitive written headcount cancellation after offer issuance directly confirms retraction."
+            "excludes": [],
+            "because": "Written headcount cancellation makes a candidate-skill explanation less plausible for the withdrawn offer."
           },
           {
             "id": "scope-without-date",
             "label": "A written reply confirms the freeze and its scope — every open requisition, other offers in the same position — and states that whether the role is cancelled or deferred is not known from inside the hiring process.",
-            "excludes": [
+            "weighs_against": [
               "mech.genuine_technical_skill_shortfall"
             ],
-            "because": "Company-wide freeze confirmation confirms systemic budget suspension."
+            "excludes": [],
+            "because": "A company-wide scope makes a systemic budget or policy constraint more plausible than an individual candidate cause."
           },
           {
             "id": "no-written-answer",
             "label": "Nothing further arrives in writing: the answer is given verbally, or the thread stops, and the two dated documents already held remain the whole record.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

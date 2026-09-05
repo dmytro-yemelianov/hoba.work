@@ -4,7 +4,7 @@ type: "mechanism"
 aliases:
   - "M-027"
 title: "Start-Date Slippage and Post-Acceptance Revocation"
-summary: "Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change."
+summary: "A budgeting or project-authorisation change can lead an employer to defer a confirmed start date or withdraw an accepted offer between signing and day one."
 operates_at:
   - "bar.offer_closing_contract_execution"
   - "bar.probation_period_post_start_confirmation"
@@ -13,9 +13,7 @@ emissions:
     artifact: "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation"
     fidelity: "direct"
     likelihood: "high"
-    evidence:
-      - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-      - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+    evidence: []
     observed_at:
       - "post-offer"
   -
@@ -41,10 +39,9 @@ amplifies: []
 masks: []
 honest_baseline: false
 status: "active"
-evidence_level: "proven"
+evidence_level: "compatible"
 evidence_ids:
-  - "evidence.probation_period_limits_and_dismissal_standards_ukraine_labour_code_art_26_28"
-  - "evidence.statutory_notice_and_contractual_probation_parameters_uk_employment_rights_act_1996"
+  - "evidence.accepted_unconditional_job_offer_is_legally_binding_uk_government_guidance"
 specimens:
   -
     kind: "email"
@@ -66,8 +63,8 @@ perspectives:
   -
     actor: "actor.candidate"
     sees: "A signed offer with an indefinite or pushed start date after resigning from previous employment."
-    reads: "Contractual commitment was asymmetrical: candidate resignation is irreversible while company start date is deferred."
-    does: "Assesses legal notice entitlements under the UK Employment Rights Act 1996 and evaluates reopening active job search."
+    reads: "Reliance may be asymmetric: the candidate may already have left another role while the new start date is deferred."
+    does: "Checks the offer's conditions and applicable legal guidance, documents the change, and evaluates reopening the job search."
   -
     actor: "actor.recruiter"
     sees: "A closed search reopened administratively because the approved start date cannot be scheduled."
@@ -75,11 +72,12 @@ perspectives:
     does: "Attempts to maintain contact while leadership resolves headcount funding."
 non_inferences:
   - "Does not establish that candidate credentials or references failed validation."
+  - "The linked UK guidance establishes potential legal consequences of withdrawal, not the employer's motive or the frequency of this mechanism."
 ---
 
 # Start-Date Slippage and Post-Acceptance Revocation
 
-Employers defer confirmed start dates or revoke accepted offers between signing and day one when budgeting priorities or project authorisations change.
+A budgeting or project-authorisation change can lead an employer to defer a confirmed start date or withdraw an accepted offer between signing and day one.
 
 ### Structural Context
 - **Actor:** `policy`
@@ -88,3 +86,4 @@ Employers defer confirmed start dates or revoke accepted offers between signing 
 
 ### Non-Inferences
 - Does not establish that candidate credentials or references failed validation.
+- The linked UK guidance establishes potential legal consequences of withdrawal, not the employer's motive or the frequency of this mechanism.

@@ -14,6 +14,16 @@ The measured, serializable projection is generated at:
 - `/data/latest/inventory.json` — current inventory;
 - `/data/releases/<registry-version>/inventory.json` — release snapshot.
 
+The explicit coverage boundary is authored at `data/coverage/model.json` and
+published with a derived summary at:
+
+- `/data/latest/coverage.json` — current coverage model and metrics;
+- `/data/releases/<registry-version>/coverage.json` — release snapshot.
+
+Run `pnpm audit:coverage` to print the weakest dimensions and every partial or
+absent slot. The detailed editorial baseline is recorded in
+`docs/audits/2026-09-05-content-and-coverage-audit.md`.
+
 Counts come from the validated registry bundle and auxiliary data loaders. They
 are never hand-authored in documentation.
 
@@ -23,6 +33,7 @@ are never hand-authored in documentation.
 | --- | --- | --- |
 | Ontology and evidence | `data/{en,uk}/entities/**`, `data/evidence/**` | Canonical source of truth |
 | Scenarios | `data/scenarios/*.yaml` | Validated compositions over canonical IDs; not an entity type |
+| Coverage boundary | `data/coverage/model.json` | Authored inventory of covered, partial, and absent situation slots |
 | Archetypes | `data/archetypes/*.yaml` | Presentation-only nicknames and grid positions; not evidence |
 | Formal substrate | Produced by `lift(bundle)` | Derived output; never authored or edited as a second model |
 | REST, OpenAPI, schemas, exports, LLM text, Lean, worker bundle | Build output | Deterministic projections; never edit by hand |

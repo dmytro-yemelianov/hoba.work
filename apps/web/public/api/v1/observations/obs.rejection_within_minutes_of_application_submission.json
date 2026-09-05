@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Rejection within minutes of application submission",
     "status": "active",
@@ -27,24 +27,28 @@
           {
             "id": "answer-outside-a-stated-condition",
             "label": "The answers are as intended, and one of them falls outside a condition the posting states: a country outside the listed hiring locations, no permit where the posting requires one, or fewer years than the stated minimum.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "all-answers-inside",
             "label": "The answers are as intended, and every mandatory one meets the conditions the posting states.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "stored-answer-differs",
             "label": "The stored application shows an answer other than the one intended — a field left blank, or a dropdown submitted at its default value.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "answers-unrecoverable",
             "label": "The answers cannot be retrieved: the portal shows no submitted application and no confirmation copy was kept.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }

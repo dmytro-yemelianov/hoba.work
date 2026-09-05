@@ -136,11 +136,14 @@
                     "label": {
                       "$ref": "#/definitions/__schema3"
                     },
-                    "excludes": {
+                    "weighs_against": {
                       "$ref": "#/definitions/__schema4"
                     },
+                    "excludes": {
+                      "$ref": "#/definitions/__schema6"
+                    },
                     "because": {
-                      "$ref": "#/definitions/__schema5"
+                      "$ref": "#/definitions/__schema7"
                     }
                   },
                   "required": [
@@ -191,7 +194,7 @@
                 "minItems": 1,
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/__schema6"
+                  "$ref": "#/definitions/__schema8"
                 }
               },
               "reading": {
@@ -251,7 +254,7 @@
           "minItems": 1,
           "type": "array",
           "items": {
-            "$ref": "#/definitions/__schema7"
+            "$ref": "#/definitions/__schema9"
           }
         }
       },
@@ -298,15 +301,25 @@
       "default": [],
       "type": "array",
       "items": {
-        "type": "string",
-        "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
+        "$ref": "#/definitions/__schema5"
       }
     },
     "__schema5": {
+      "type": "string",
+      "pattern": "^(M-\\d{3}|mech\\.[a-z0-9_]+)$"
+    },
+    "__schema6": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/__schema5"
+      }
+    },
+    "__schema7": {
       "default": "",
       "type": "string"
     },
-    "__schema6": {
+    "__schema8": {
       "type": "object",
       "properties": {
         "speaker": {
@@ -329,7 +342,7 @@
       ],
       "additionalProperties": false
     },
-    "__schema7": {
+    "__schema9": {
       "type": "string"
     }
   },

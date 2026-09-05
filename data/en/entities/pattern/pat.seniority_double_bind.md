@@ -14,7 +14,7 @@ compatible_mechanisms:
   - "mech.experience_age_grading_mismatch"
 trigger_rule: "The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle."
 establishes:
-  - "The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier."
+  - "Within one market cycle, the candidate received stated outcomes placing them above one level and below the adjacent level."
 specimens:
   -
     kind: "email"
@@ -81,7 +81,7 @@ The same candidate is rejected as overqualified for junior and mid-level roles a
 The candidate is rejected as overqualified at level N and as short on depth at level N+1 within the same market cycle.
 
 ### What this Establishes
-- The candidate falls into a gap between evaluation tiers, where the compensation and experience expected match neither tier.
+- Within one market cycle, the candidate received stated outcomes placing them above one level and below the adjacent level.
 
 ### What this Does NOT Establish
 - Does not establish that the candidate lacks market value.

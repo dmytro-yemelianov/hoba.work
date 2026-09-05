@@ -8,8 +8,11 @@ import {
   formatValidationIssue,
   HOBAKnowledgeGraph,
   loadRegistryFromRoot,
+  loadCoverageModel,
   loadScenarios,
   resolveRegistryRoot,
+  summarizeCoverage,
+  validateCoverageModel,
   validateRegistry,
   validateScenarios,
   type ValidationIssue,
@@ -58,6 +61,17 @@ for (const loop of bundleEn.loops) {
 //    scenario naming an entity the registry does not have is broken, not weak.
 const scenarios = loadScenarios(root);
 report(`Scenarios (${scenarios.length})`, validateScenarios(scenarios, bundleEn));
+
+const coverage = loadCoverageModel(root);
+report(
+  `Coverage model (${coverage.dimensions.length} dimensions)`,
+  validateCoverageModel(coverage, bundleEn, scenarios)
+);
+const coverageSummary = summarizeCoverage(coverage);
+console.log(
+  `✓ Coverage boundary: ${coverageSummary.covered} covered, ${coverageSummary.partial} partial, ` +
+    `${coverageSummary.absent} absent (${coverageSummary.score_percent}% weighted)`
+);
 
 // 3. Ukrainian mirror: same rules + structural parity with the canonical content
 const bundleUk = loadRegistryFromRoot(root, 'uk');

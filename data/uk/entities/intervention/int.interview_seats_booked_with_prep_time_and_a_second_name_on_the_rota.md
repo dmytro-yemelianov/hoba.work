@@ -11,7 +11,7 @@ targets:
 actor: "hiring-manager"
 scope: "team"
 cost: "medium"
-evidence_level: "supported"
+evidence_level: "compatible"
 expected_effects:
   - "mech.interview_resource_scheduling_saturation втрачає один із двох своїх виходів: незакрите місце пересуває місце, а не дату"
   - "Раунд bar.technical_screen_live_assessment бронюють разом із часом на читання, тож матеріали відкривають до сесії — або місце переходить до другого імені"
@@ -28,20 +28,20 @@ specimens:
     lines:
       -
         at: "Wed 17:40"
-        speaker: "Engineering manager"
+        speaker: "Менеджер інженерної команди"
         text: "На четвер потрібне місце в панелі. Цього спринту ти в ротації, і дошка вже на два бали легша через це."
       -
         at: "Wed 17:52"
-        speaker: "Interviewer"
+        speaker: "Інтервʼюер"
         text: "Я на чергуванні по релізу. Якщо візьму, це буде читання з листа."
       -
         at: "Wed 17:55"
-        speaker: "Engineering manager"
+        speaker: "Менеджер інженерної команди"
         text: "Тоді місце йде до другого імені в ротації: блок підготовки в тому календарі о 09:00, і матеріали вже там."
         tell: true
       -
         at: "Wed 18:10"
-        speaker: "Coordinator"
+        speaker: "Координатор"
         text: "Кандидату сказали того ж дня: слот той самий, інтервʼюер інший, дата не змінюється."
     reading: "Чергування по релізу нікуди не поділося. Змінилося те, що в раунда є друге імʼя ще до початку тижня, тож зайнятий інтервʼюер віддає місце, а не зсуває дату."
 perspectives:

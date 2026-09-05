@@ -293,7 +293,7 @@ transitions:
       - "bar.probation_period_post_start_confirmation"
 specimens: []
 status: "active"
-evidence_level: "strongly_supported"
+evidence_level: "unknown"
 evidence_ids: []
 ---
 

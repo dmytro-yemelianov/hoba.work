@@ -1,12 +1,12 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Closed-Then-Reposted Requisition Motif",
     "status": "active",
     "evidence_ids": [
       "evidence.job_seekers_beware_of_ghost_jobs_clarify_capital_survey_of_hiring_managers"
     ],
-    "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
+    "content": "# Closed-Then-Reposted Requisition Motif\n\nA candidate completes multiple late-stage interviews, is rejected with a generic message, and sees the identical role reposted weeks later.\n\n### Trigger Rule\nThe role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.\n\n### What this Establishes\n- The prior process ended without placing this candidate, and a materially similar public listing appeared within the stated interval.\n\n### What this Does NOT Establish\n- Does not establish that the original job listing was fake or a ghost job.\n- Does not establish that the candidate was intentionally misled.",
     "aliases": [
       "P-002"
     ],
@@ -25,7 +25,7 @@
     ],
     "trigger_rule": "The role is closed and the candidate rejected, and a materially similar listing is publicly reopened within 60 days.",
     "establishes": [
-      "The interviewed pool did not meet the requisition's requirements or target profile, or the search criteria changed mid-process."
+      "The prior process ended without placing this candidate, and a materially similar public listing appeared within the stated interval."
     ],
     "non_inferences": [
       "Does not establish that the original job listing was fake or a ghost job.",

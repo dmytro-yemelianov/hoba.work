@@ -1,5 +1,5 @@
 {
-  "registry_version": "1.1.0",
+  "registry_version": "1.2.0",
   "data": {
     "title": "Explicit feedback citing skill-depth shortfall",
     "status": "active",
@@ -28,24 +28,28 @@
           {
             "id": "feedback-matches-the-code",
             "label": "The solution has the property the feedback names, and the approach it expected is a standard pattern for that problem.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "expectation-is-local",
             "label": "The solution has the property the feedback names, and the approach it expected is specific to one stack or house pattern rather than a general one.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "feedback-misdescribes-the-code",
             "label": "The solution does not have the property the feedback names — the code already does what the notes say was missing.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           },
           {
             "id": "nothing-retained",
             "label": "Nothing was retained from the exercise — a shared editor closed, a whiteboard erased — so the claim cannot be checked against anything.",
+            "weighs_against": [],
             "excludes": [],
             "because": ""
           }
