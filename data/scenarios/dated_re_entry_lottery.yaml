@@ -1,0 +1,81 @@
+# A dated re-entry route records memory without guaranteeing priority. When the
+# next seat opens, finalists can still be practically indistinguishable.
+id: scenario.dated_re_entry_lottery
+title:
+  en: "Dated re-entry turns into a finalist lottery"
+  uk: "Датований повторний вхід перетворюється на лотерею фіналістів"
+summary: "A prior finalist is invited back through a dated re-entry route, but the next search ends with several equivalent finalists and no legible differentiator."
+stage: "team"
+observations:
+  - "obs.position_closed_after_final_interview_without_hire"
+  - "obs.multiple_interview_reschedulings_or_interviewer_no_show"
+  - "obs.generic_closer_alignment_rejection_template"
+compatible_mechanisms:
+  - "mech.interview_resource_scheduling_saturation"
+  - "mech.stronger_competing_candidate_in_final_cohort"
+  - "mech.hiring_manager_consensus_impasse"
+compatible_barriers:
+  - "bar.team_cross_functional_panel"
+  - "bar.hiring_manager_in_depth_review"
+process_states:
+  - "proc.the_hiring_funnel_end_to_end"
+evidence:
+  - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+excluded_claims:
+  - "A re-entry route guarantees priority over new finalists."
+  - "A generic finalist rejection proves a hidden disqualifier."
+  - "Panel scheduling noise proves that no real cohort existed."
+agency:
+  candidate:
+    - "int.recorded_finalist_standing_with_a_dated_re_entry_route"
+  employer-policy:
+    - "int.standardized_late_stage_rejection_feedback_taxonomy"
+    - "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota"
+case_assignments:
+  - coordinate: "entry.path"
+    status: "known"
+    value: "dated_re_entry"
+    basis: "The candidate re-enters through a dated finalist-standing route rather than a new cold application."
+  - coordinate: "cohort.state"
+    status: "known"
+    value: "lottery_among_equals"
+    basis: "The scenario is defined by several finalist-equivalent candidates and no legible differentiator."
+    evidence:
+      - "evidence.employment_interview_reliability_new_meta_analytic_estimates_by_structure_and_format"
+  - coordinate: "memory.carried"
+    status: "known"
+    value:
+      - "re_entry_standing"
+    basis: "The re-entry route carries dated finalist standing from a prior process."
+  - coordinate: "plurality"
+    status: "known"
+    value: "repeat_same_employer"
+    basis: "The candidate returns to the same employer process after prior finalist standing."
+  - coordinate: "block.owner"
+    status: "known"
+    value: "inside"
+    basis: "The employer owns whether dated re-entry standing affects the new finalist comparison."
+  - coordinate: "block.arity"
+    status: "known"
+    value: "comparative"
+    basis: "The block is comparative among finalists, even if the comparison is practically indistinguishable."
+  - coordinate: "block.determinacy"
+    status: "known"
+    value: "judgement"
+    basis: "The employer still makes a finalist judgement; the lottery-like quality is the candidate-visible indistinguishability, not literal randomness."
+  - coordinate: "block.nature"
+    status: "known"
+    value: "noise"
+    basis: "The limiting condition is indistinguishability and panel noise rather than a crisp rule."
+  - coordinate: "outcome.signal"
+    status: "known"
+    value: "generic_rejection"
+    basis: "The visible terminal artifact is a generic rejection after re-entry."
+  - coordinate: "statement.fidelity"
+    status: "known"
+    value: "euphemism"
+    basis: "The generic closer-alignment language hides the lottery-like finalist equivalence."
+  - coordinate: "visibility.candidate"
+    status: "known"
+    value: "partial"
+    basis: "The candidate knows they were re-entered but cannot see the actual finalist equivalence class."

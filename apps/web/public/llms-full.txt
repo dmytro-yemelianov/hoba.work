@@ -1,6 +1,6 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.8.0, schema 1.7.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.9.0, schema 1.7.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
@@ -18,7 +18,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Evidence records** (`evidence`, 52; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
 - **Financial records** (`record`, 13; IDs record.* (legacy R-### aliases resolve)) — A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.
 
-Scenarios (11) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
+Scenarios (16) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
 
 The graph export is deliberately narrower than the ontology: 96 reader-facing finding nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -1703,6 +1703,17 @@ US federal contracting regulation turns on whether an expression of interest was
 
 ## Validated scenario compositions
 
+### scenario.agency_bench_pool_submission — Agency submission compared with a bench pool
+
+An agency or vendor submits a candidate for a client seat, but the client or supplier compares them with already available bench talent.
+
+- Observations: obs.unsolicited_recruiter_outreach_followed_by_ghosting, obs.rejection_naming_a_specific_industry_sector_as_required, obs.generic_closer_alignment_rejection_template
+- Compatible barriers: bar.client_profile_approval_and_client_interview, bar.outbound_sourcing_talent_pool_contact
+- Compatible mechanisms: mech.bench_priority_fill, mech.bid_conditional_talent_pool, mech.domain_specificity_over_weighting
+- Does NOT establish: Client rejection proves the external candidate was weaker than every applicant.
+- Does NOT establish: Bench priority is ownerless just because the candidate cannot see the bench.
+- Does NOT establish: A vendor submission proves the client seat was already funded.
+
 ### scenario.application_silence — Application followed by silence
 
 - Observations: obs.complete_silence_after_submission, obs.rejection_after_the_application_sat_pending_for_months
@@ -1738,6 +1749,17 @@ A vendor process advances through internal screening, then the client gate revea
 - Does NOT establish: The candidate was rejected in order to hire someone already chosen.
 - Does NOT establish: The employer acted in bad faith.
 
+### scenario.dated_re_entry_lottery — Dated re-entry turns into a finalist lottery
+
+A prior finalist is invited back through a dated re-entry route, but the next search ends with several equivalent finalists and no legible differentiator.
+
+- Observations: obs.position_closed_after_final_interview_without_hire, obs.multiple_interview_reschedulings_or_interviewer_no_show, obs.generic_closer_alignment_rejection_template
+- Compatible barriers: bar.team_cross_functional_panel, bar.hiring_manager_in_depth_review
+- Compatible mechanisms: mech.interview_resource_scheduling_saturation, mech.stronger_competing_candidate_in_final_cohort, mech.hiring_manager_consensus_impasse
+- Does NOT establish: A re-entry route guarantees priority over new finalists.
+- Does NOT establish: A generic finalist rejection proves a hidden disqualifier.
+- Does NOT establish: Panel scheduling noise proves that no real cohort existed.
+
 ### scenario.downlevelling_trap — Down-Levelling & Delayed Start
 
 Scope expansion, sub-band compensation offer, and post-acceptance start date slippage.
@@ -1761,11 +1783,44 @@ A candidate passes the first compatibility checks, then the process closes becau
 - Does NOT establish: The candidate rejected the employer rather than failing an undisclosed condition.
 - Does NOT establish: The attendance rule proves a lack of skill or interest.
 
+### scenario.internal_transfer_precommitted_internal — Internal transfer meets a pre-committed internal candidate
+
+An employee seeks an internal transfer, but the process was effectively committed to another internal candidate before the visible interview path completed.
+
+- Observations: obs.rejection_naming_an_internal_hire_as_the_outcome, obs.conflicting_feedback_across_different_interviewers
+- Compatible barriers: bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
+- Compatible mechanisms: mech.pre_selected_internal_candidate, mech.hidden_evaluation_rubric_or_undisclosed_priority, mech.hiring_manager_consensus_impasse
+- Does NOT establish: An internal-transfer process proves that every candidate received the same route.
+- Does NOT establish: Naming an internal hire proves unlawful preference in every jurisdiction.
+- Does NOT establish: The rejected employee can infer when the commitment to the selected candidate was made.
+
+### scenario.outbound_no_cohort_screen — Outbound screen with no active cohort
+
+A recruiter contacts a candidate first, but the exchange ends before a real applicant cohort exists.
+
+- Observations: obs.unsolicited_recruiter_outreach_followed_by_ghosting, obs.generic_closer_alignment_rejection_template
+- Compatible barriers: bar.outbound_sourcing_talent_pool_contact, bar.recruiter_screening_call
+- Compatible mechanisms: mech.speculative_sourcing_talent_pooling_without_opening, mech.recruiter_volume_quota_incentive_distortion, mech.stale_or_orphaned_job_requisition
+- Does NOT establish: A recruiter message proves that a funded seat exists.
+- Does NOT establish: No reply proves that the candidate was ranked below someone else.
+- Does NOT establish: Outbound contact proves that the candidate entered the employer's ATS.
+
 ### scenario.post_panel_freeze — Post-Panel Freeze & Silence
 
 Strong verbal engagement followed by multi-week offer hold and sudden ghosting.
 
 - Observations: obs.complete_silence_after_submission, obs.multiple_interview_reschedulings_or_interviewer_no_show, obs.rejection_naming_an_internal_hire_as_the_outcome
+
+### scenario.referral_ranked_finalist — Referral reaches a ranked finalist cohort
+
+A referred candidate reaches the final stage and receives a comparative rejection after the employer ranks finalists.
+
+- Observations: obs.generic_closer_alignment_rejection_template, obs.conflicting_feedback_across_different_interviewers, obs.position_closed_after_final_interview_without_hire
+- Compatible barriers: bar.hiring_manager_in_depth_review, bar.team_cross_functional_panel
+- Compatible mechanisms: mech.stronger_competing_candidate_in_final_cohort, mech.hiring_manager_consensus_impasse, mech.hidden_evaluation_rubric_or_undisclosed_priority
+- Does NOT establish: A referral proves that the candidate had a privileged path to the offer.
+- Does NOT establish: A comparative rejection proves the panel acted unfairly.
+- Does NOT establish: Conflicting feedback identifies the exact finalist ranking rule.
 
 ### scenario.remote_country_payroll_mismatch — Remote role, country payroll mismatch
 

@@ -34,12 +34,12 @@ describe('case-space lift', () => {
   });
 
   it('makes reviewed scenario assignments visible without claiming full prose coverage', () => {
-    expect(lift.summary.coordinates_touched).toBe(33);
-    expect(lift.summary.one_wise_slots_touched).toBe(110);
-    expect(lift.summary.pairwise_slots_touched).toBe(1666);
-    expect(lift.summary.declared_coordinates).toBe(145);
-    expect(lift.summary.declared_known).toBe(117);
-    expect(lift.summary.declared_inferred).toBe(7);
+    expect(lift.summary.coordinates_touched).toBe(35);
+    expect(lift.summary.one_wise_slots_touched).toBe(127);
+    expect(lift.summary.pairwise_slots_touched).toBe(2047);
+    expect(lift.summary.declared_coordinates).toBe(196);
+    expect(lift.summary.declared_known).toBe(166);
+    expect(lift.summary.declared_inferred).toBe(9);
     expect(lift.summary.declared_unknown).toBe(21);
 
     const touched = new Set(lift.coordinates.map((coordinate) => coordinate.coordinate));
@@ -66,9 +66,11 @@ describe('case-space lift', () => {
         'jurisdiction',
         'latitude.candidate',
         'latitude.employer',
+        'memory.carried',
         'military.status',
         'outcome.signal',
         'party.set',
+        'plurality',
         'population.affected',
         'principal.side',
         'requisition.state',

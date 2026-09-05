@@ -1,0 +1,81 @@
+# Agency submission can compete against a bench before the candidate is really
+# competing against outside applicants. The cohort is inside the supplier layer.
+id: scenario.agency_bench_pool_submission
+title:
+  en: "Agency submission compared with a bench pool"
+  uk: "Агентська подача порівнюється з bench-пулом"
+summary: "An agency or vendor submits a candidate for a client seat, but the client or supplier compares them with already available bench talent."
+stage: "client"
+observations:
+  - "obs.unsolicited_recruiter_outreach_followed_by_ghosting"
+  - "obs.rejection_naming_a_specific_industry_sector_as_required"
+  - "obs.generic_closer_alignment_rejection_template"
+compatible_mechanisms:
+  - "mech.bench_priority_fill"
+  - "mech.bid_conditional_talent_pool"
+  - "mech.domain_specificity_over_weighting"
+compatible_barriers:
+  - "bar.client_profile_approval_and_client_interview"
+  - "bar.outbound_sourcing_talent_pool_contact"
+process_states:
+  - "proc.client_account_hiring_funnel"
+evidence:
+  - "evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice"
+excluded_claims:
+  - "Client rejection proves the external candidate was weaker than every applicant."
+  - "Bench priority is ownerless just because the candidate cannot see the bench."
+  - "A vendor submission proves the client seat was already funded."
+agency:
+  candidate:
+    - "int.domain_requirement_carries_a_stated_ramp_time"
+  employer-policy:
+    - "int.bench_availability_declared_at_each_stage_gate"
+  recruiter:
+    - "int.outreach_states_the_requisition_behind_it"
+case_assignments:
+  - coordinate: "entry.path"
+    status: "known"
+    value: "agency_submission"
+    basis: "The candidate enters through an agency or vendor submission to a client account."
+  - coordinate: "cohort.state"
+    status: "known"
+    value: "bench_pool"
+    basis: "The comparison is against already available bench or named supplier talent rather than only external applicants."
+    evidence:
+      - "evidence.naming_staff_for_a_contract_not_yet_won_is_an_adjudicated_practice"
+  - coordinate: "domain"
+    status: "known"
+    value: "client_vendor_staffing"
+    basis: "The relevant process is the client-account funnel rather than direct employer hiring."
+  - coordinate: "requisition.state"
+    status: "inferred"
+    value: "conditional_on_bid"
+    basis: "The compatible bid-conditional mechanism means the client seat may depend on winning or staffing a contract."
+  - coordinate: "principal.side"
+    status: "known"
+    value: "intermediary_decides"
+    basis: "The agency and client layer determine whether the submitted candidate reaches the seat."
+  - coordinate: "block.owner"
+    status: "known"
+    value: "outside_party"
+    basis: "The decisive bench/client comparison sits outside the candidate's direct conversation."
+  - coordinate: "block.arity"
+    status: "known"
+    value: "comparative"
+    basis: "The block is comparison against a bench or supplier cohort."
+  - coordinate: "block.determinacy"
+    status: "known"
+    value: "judgement"
+    basis: "Client profile approval and bench substitution require judgement about fit and availability."
+  - coordinate: "block.nature"
+    status: "known"
+    value: "incentive"
+    basis: "Bench priority is an allocation incentive, not a claim that the candidate lacks skill."
+  - coordinate: "outcome.signal"
+    status: "known"
+    value: "generic_rejection"
+    basis: "The candidate-facing message is a generic client or vendor rejection."
+  - coordinate: "visibility.candidate"
+    status: "known"
+    value: "opaque"
+    basis: "The candidate cannot see the supplier bench or client allocation rule."
