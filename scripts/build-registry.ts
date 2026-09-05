@@ -28,6 +28,7 @@ import {
   loadCoverageModel,
   loadRegistryFromRoot,
   loadScenarios,
+  liftRegistryCaseSpace,
   loopSchema,
   mechanismSchema,
   patternSchema,
@@ -165,13 +166,23 @@ writeJson(path.join(latestDir, 'inventory.json'), inventory);
 writeJson(path.join(releaseDir, 'inventory.json'), inventory);
 
 const coverageModel = loadCoverageModel(root);
+const loadedScenarios = loadScenarios(root);
+const caseLift = liftRegistryCaseSpace(bundle, loadedScenarios);
 const coverage = {
   ...coverageModel,
   summary: summarizeCoverage(coverageModel),
   case_space: serializeCaseSpaceMetrics(),
+  lift: {
+    version: caseLift.version,
+    method: caseLift.method,
+    summary: caseLift.summary,
+    coordinates: caseLift.coordinates,
+  },
 };
 writeJson(path.join(latestDir, 'coverage.json'), coverage);
 writeJson(path.join(releaseDir, 'coverage.json'), coverage);
+writeJson(path.join(latestDir, 'case-lift.json'), caseLift);
+writeJson(path.join(releaseDir, 'case-lift.json'), caseLift);
 
 const ndjson =
   ENTITIES.flatMap((e) =>
@@ -205,7 +216,7 @@ writeJson(path.join(latestDir, 'manifest.json'), {
   updated_at: bundle.updated_at,
 });
 console.log(
-  '✓ Generated machine exports (inventory.json, coverage.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
+  '✓ Generated machine exports (inventory.json, coverage.json, case-lift.json, registry.json, registry.ndjson, nodes.csv, edges.csv, graph.graphml, graph.json, schema.json, manifest.json)'
 );
 
 // ---------------------------------------------------------------------------

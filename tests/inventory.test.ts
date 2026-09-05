@@ -12,6 +12,7 @@ import {
   loadCoverageModel,
   loadRegistryFromRoot,
   loadScenarios,
+  liftRegistryCaseSpace,
   READER_FACING_TYPES,
   searchBundle,
   serializeCaseSpaceMetrics,
@@ -136,6 +137,7 @@ describe('canonical data inventory', () => {
     const openapi = JSON.parse(readFileSync(resolve(root, 'apps/web/public/openapi.json'), 'utf8'));
 
     expect(published).toEqual(inventory);
+    expect(inventory.latest_exports).toContain('case-lift.json');
     expect(ndjson).toHaveLength(inventory.totals.ontology_entries);
     expect(ndjson.filter((item) => item.type === 'record')).toHaveLength(bundle.records.length);
     for (const entry of inventory.collections) {
@@ -150,12 +152,23 @@ describe('canonical data inventory', () => {
     const published = JSON.parse(
       readFileSync(resolve(root, 'apps/web/public/data/latest/coverage.json'), 'utf8')
     );
+    const publishedLift = JSON.parse(
+      readFileSync(resolve(root, 'apps/web/public/data/latest/case-lift.json'), 'utf8')
+    );
+    const expectedLift = liftRegistryCaseSpace(bundle, scenarios);
 
     expect(published).toEqual({
       ...model,
       summary: summarizeCoverage(model),
       case_space: serializeCaseSpaceMetrics(),
+      lift: {
+        version: expectedLift.version,
+        method: expectedLift.method,
+        summary: expectedLift.summary,
+        coordinates: expectedLift.coordinates,
+      },
     });
+    expect(publishedLift).toEqual(expectedLift);
     expect(published.summary).toMatchObject({
       total: 92,
       covered: 50,
@@ -167,6 +180,16 @@ describe('canonical data inventory', () => {
       coverageCoordinates: 71,
       oneWiseSlots: 261,
       twoWiseUnfilteredSlots: 33384,
+    });
+    expect(publishedLift.summary).toMatchObject({
+      sources: 119,
+      assigned_sources: 119,
+      refuted: 0,
+      coordinates_touched: 9,
+      coordinates_total: 71,
+      one_wise_slots_touched: 40,
+      one_wise_slots_total: 261,
+      pairwise_slots_touched: 245,
     });
   });
 });
