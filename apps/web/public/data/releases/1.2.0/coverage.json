@@ -1328,5 +1328,24 @@
         "score_percent": 66.7
       }
     ]
+  },
+  "case_space": {
+    "nominalOrdinalAxes": 28,
+    "subsetAxes": 4,
+    "subsetArity": 38,
+    "derivedCoordinates": 5,
+    "coverageCoordinates": 71,
+    "authoredContextCardinality": "74331795750912000000",
+    "subsetCardinality": "274877906944",
+    "contextCardinality": "20432168435399603339132928000000",
+    "oneWiseSlots": 261,
+    "twoWiseCoordinatePairs": 2485,
+    "twoWiseUnfilteredSlots": 33384,
+    "constraints": {
+      "schema": 4,
+      "hard": 14,
+      "defeasible": 3
+    },
+    "executableHardConstraints": 12
   }
 }

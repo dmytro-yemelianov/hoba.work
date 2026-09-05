@@ -34,6 +34,7 @@ import {
   readPackageVersion,
   registryBundleSchema,
   resolveRegistryRoot,
+  serializeCaseSpaceMetrics,
   summarizeCoverage,
   validateRegistry,
   type EntityType,
@@ -164,7 +165,11 @@ writeJson(path.join(latestDir, 'inventory.json'), inventory);
 writeJson(path.join(releaseDir, 'inventory.json'), inventory);
 
 const coverageModel = loadCoverageModel(root);
-const coverage = { ...coverageModel, summary: summarizeCoverage(coverageModel) };
+const coverage = {
+  ...coverageModel,
+  summary: summarizeCoverage(coverageModel),
+  case_space: serializeCaseSpaceMetrics(),
+};
 writeJson(path.join(latestDir, 'coverage.json'), coverage);
 writeJson(path.join(releaseDir, 'coverage.json'), coverage);
 

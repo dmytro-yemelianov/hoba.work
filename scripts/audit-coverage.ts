@@ -4,6 +4,7 @@ import {
   loadRegistryFromRoot,
   loadScenarios,
   resolveRegistryRoot,
+  serializeCaseSpaceMetrics,
   summarizeCoverage,
   validateCoverageModel,
 } from '@hoba/registry';
@@ -19,14 +20,20 @@ if (issues.length > 0) {
 }
 
 const summary = summarizeCoverage(model);
+const caseSpace = serializeCaseSpaceMetrics();
 if (process.argv.includes('--json')) {
-  console.log(JSON.stringify(summary, null, 2));
+  console.log(JSON.stringify({ ...summary, case_space: caseSpace }, null, 2));
   process.exit(0);
 }
 
 console.log(
   `Coverage ${summary.score_percent}% weighted: ${summary.covered} covered, ` +
     `${summary.partial} partial, ${summary.absent} absent (${summary.total} slots).`
+);
+console.log(
+  `Case space denominator: ${caseSpace.coverageCoordinates} coordinates, ` +
+    `${caseSpace.oneWiseSlots} 1-wise slots, ` +
+    `${caseSpace.twoWiseUnfilteredSlots} unfiltered 2-wise slots before Γ.`
 );
 for (const dimension of [...summary.dimensions].sort(
   (a, b) => a.score_percent - b.score_percent || a.id.localeCompare(b.id)
