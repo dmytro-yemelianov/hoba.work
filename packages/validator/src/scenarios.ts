@@ -16,6 +16,12 @@
  * disk lives in `scenarios-store.ts`.
  */
 import { z } from 'zod';
+import {
+  CASE_AXES,
+  DERIVED_CASE_COORDINATES,
+  assessCaseAssignment,
+  type CaseAssignment,
+} from '@hoba/registry-core/case-space';
 import { stageIdSchema } from '@hoba/registry-core/schemas';
 import type { RegistryBundle } from '@hoba/registry-core/types';
 import type { ValidationIssue } from './validation.js';
@@ -26,6 +32,21 @@ const barrierRef = z.string().regex(/^bar\.[a-z0-9_]+$/);
 const processRef = z.string().regex(/^proc\.[a-z0-9_]+$/);
 const evidenceRef = z.string().regex(/^evidence\.[a-z0-9_]+$/);
 const interventionRef = z.string().regex(/^int\.[a-z0-9_]+$/);
+
+export const scenarioCaseAssignmentStatusSchema = z.enum([
+  'known',
+  'inferred',
+  'unknown',
+  'not_applicable',
+]);
+
+export const scenarioCaseAssignmentSchema = z.object({
+  coordinate: z.string().min(1),
+  status: scenarioCaseAssignmentStatusSchema,
+  value: z.union([z.string(), z.array(z.string()).min(1)]).optional(),
+  basis: z.string().min(20),
+  evidence: z.array(evidenceRef).default([]),
+});
 
 export const scenarioSchema = z.object({
   id: z.string().regex(/^scenario\.[a-z0-9_]+$/, 'scenario id must look like scenario.<name>'),
@@ -48,9 +69,24 @@ export const scenarioSchema = z.object({
    */
   summary: z.string().optional(),
   stage: stageIdSchema.optional(),
+  /**
+   * Reviewed case-space coordinates for the scenario. These are an editorial
+   * overlay on top of the entity composition: `known`/`inferred` coordinates
+   * join the machine lift, while `unknown` and `not_applicable` make gaps
+   * explicit without pretending to classify prose.
+   */
+  case_assignments: z.array(scenarioCaseAssignmentSchema).default([]),
 });
 
 export type Scenario = z.infer<typeof scenarioSchema>;
+export type ScenarioCaseAssignment = z.infer<typeof scenarioCaseAssignmentSchema>;
+
+const coordinateDomains = new Map(
+  [...CASE_AXES, ...DERIVED_CASE_COORDINATES].map((axis) => [axis.id, axis.values] as const)
+);
+const subsetCoordinates = new Set(
+  CASE_AXES.filter((axis) => axis.kind === 'subset').map((axis) => axis.id)
+);
 
 export function validateScenarios(
   scenarios: Scenario[],
@@ -95,6 +131,91 @@ export function validateScenarios(
     check('compatible_barriers', s.compatible_barriers);
     check('process_states', s.process_states);
     check('evidence', s.evidence);
+
+    const caseCoordinates = new Set<string>();
+    const caseAssignment: CaseAssignment = {};
+    for (const assignment of s.case_assignments) {
+      if (caseCoordinates.has(assignment.coordinate)) {
+        issues.push({
+          severity: 'error',
+          rule: 'duplicate-case-assignment',
+          nodeId: s.id,
+          message: `case_assignments repeats coordinate: ${assignment.coordinate}`,
+        });
+      }
+      caseCoordinates.add(assignment.coordinate);
+
+      const domain = coordinateDomains.get(assignment.coordinate);
+      if (domain === undefined) {
+        issues.push({
+          severity: 'error',
+          rule: 'unknown-case-coordinate',
+          nodeId: s.id,
+          message: `case_assignments names unknown coordinate: ${assignment.coordinate}`,
+        });
+        continue;
+      }
+
+      const carriesValue = assignment.status === 'known' || assignment.status === 'inferred';
+      if (carriesValue && assignment.value === undefined) {
+        issues.push({
+          severity: 'error',
+          rule: 'missing-case-assignment-value',
+          nodeId: s.id,
+          message: `case_assignments.${assignment.coordinate} is ${assignment.status} but has no value`,
+        });
+        continue;
+      }
+      if (!carriesValue && assignment.value !== undefined) {
+        issues.push({
+          severity: 'error',
+          rule: 'unexpected-case-assignment-value',
+          nodeId: s.id,
+          message: `case_assignments.${assignment.coordinate} is ${assignment.status} and must not carry a value`,
+        });
+        continue;
+      }
+
+      const isSubset = subsetCoordinates.has(assignment.coordinate);
+      if (assignment.value !== undefined) {
+        const values = Array.isArray(assignment.value) ? assignment.value : [assignment.value];
+        if (isSubset !== Array.isArray(assignment.value)) {
+          issues.push({
+            severity: 'error',
+            rule: 'case-assignment-shape',
+            nodeId: s.id,
+            message: `case_assignments.${assignment.coordinate} must be ${
+              isSubset ? 'an array' : 'a scalar'
+            }`,
+          });
+          continue;
+        }
+        for (const value of values) {
+          if (domain.includes(value)) continue;
+          issues.push({
+            severity: 'error',
+            rule: 'invalid-case-assignment-value',
+            nodeId: s.id,
+            message: `case_assignments.${assignment.coordinate} has invalid value: ${value}`,
+          });
+        }
+        if (!values.some((value) => !domain.includes(value))) {
+          caseAssignment[assignment.coordinate] = assignment.value;
+        }
+      }
+
+      check(`case_assignments.${assignment.coordinate}.evidence`, assignment.evidence);
+    }
+
+    const admissibility = assessCaseAssignment(caseAssignment);
+    if (admissibility.verdict === 'refuted') {
+      issues.push({
+        severity: 'error',
+        rule: 'case-assignment-refuted',
+        nodeId: s.id,
+        message: `case_assignments violates Γ: ${admissibility.violations.join(', ')}`,
+      });
+    }
 
     for (const [actor, interventions] of Object.entries(s.agency)) {
       if (!actorSlugs.has(actor)) {

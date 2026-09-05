@@ -29,7 +29,7 @@ import type {
   RegistryBundle,
   StageId,
 } from '@hoba/registry-core/types';
-import type { Scenario } from './scenarios.js';
+import type { Scenario, ScenarioCaseAssignment } from './scenarios.js';
 
 type LiftSourceType = EntityType | 'scenario';
 
@@ -40,6 +40,14 @@ export interface CaseLiftRule {
   readonly confidence: 'direct' | 'derived' | 'weak';
 }
 
+export interface CaseLiftDeclaration {
+  readonly coordinate: string;
+  readonly status: ScenarioCaseAssignment['status'];
+  readonly value?: string | readonly string[];
+  readonly basis: string;
+  readonly evidence: readonly string[];
+}
+
 export interface CaseLift {
   readonly source: {
     readonly id: string;
@@ -47,6 +55,7 @@ export interface CaseLift {
     readonly title?: string;
   };
   readonly assignment: CaseAssignment;
+  readonly declarations: readonly CaseLiftDeclaration[];
   readonly rules: readonly CaseLiftRule[];
   readonly admissibility: CaseAdmissibility;
 }
@@ -70,6 +79,11 @@ export interface CaseLiftSummary {
   readonly one_wise_slots_total: number;
   readonly pairwise_slots_touched: number;
   readonly pairwise_sources: number;
+  readonly declared_coordinates: number;
+  readonly declared_known: number;
+  readonly declared_inferred: number;
+  readonly declared_unknown: number;
+  readonly declared_not_applicable: number;
   readonly weakest_coordinates: readonly CaseLiftCoordinateSummary[];
   readonly strongest_coordinates: readonly CaseLiftCoordinateSummary[];
 }
@@ -155,6 +169,7 @@ const levelValue = (level: EvidenceLevel | undefined): string | undefined => lev
 
 class LiftBuilder {
   private readonly assignment: Record<string, string | readonly string[]> = {};
+  private readonly declarations: CaseLiftDeclaration[] = [];
   private readonly rules: CaseLiftRule[] = [];
 
   set(
@@ -204,11 +219,28 @@ class LiftBuilder {
     }
   }
 
+  declareScenarioAssignment(assignment: ScenarioCaseAssignment) {
+    this.declarations.push({
+      coordinate: assignment.coordinate,
+      status: assignment.status,
+      value: assignment.value,
+      basis: assignment.basis,
+      evidence: assignment.evidence,
+    });
+    if (assignment.value === undefined) return;
+    const confidence = assignment.status === 'known' ? 'direct' : 'derived';
+    const rule = `scenario.case_assignments.${assignment.coordinate}`;
+    if (Array.isArray(assignment.value))
+      this.addMany(assignment.coordinate, assignment.value, rule, confidence);
+    else this.set(assignment.coordinate, assignment.value, rule, confidence);
+  }
+
   build(source: CaseLift['source']): CaseLift {
     const assignment = this.assignment;
     return {
       source,
       assignment,
+      declarations: this.declarations,
       rules: this.rules,
       admissibility: assessCaseAssignment(assignment),
     };
@@ -344,6 +376,9 @@ function liftProcess(node: ProcessNode): CaseLift {
 
 function liftScenario(scenario: Scenario, byId: ReadonlyMap<string, CaseLift>): CaseLift {
   const lift = new LiftBuilder();
+  for (const assignment of scenario.case_assignments) {
+    lift.declareScenarioAssignment(assignment);
+  }
   lift.set('stage.terminal', scenario.stage, 'scenario.stage', 'direct');
   for (const id of [
     ...scenario.observations,
@@ -437,7 +472,19 @@ export function summarizeCaseLifts(lifts: readonly CaseLift[]): CaseLiftSummary 
   const touchedSlots = new Set<string>();
   const touchedPairs = new Set<string>();
   let pairwiseSources = 0;
+  const declaredCoordinateKeys = new Set<string>();
+  let declaredKnown = 0;
+  let declaredInferred = 0;
+  let declaredUnknown = 0;
+  let declaredNotApplicable = 0;
   for (const lift of lifts) {
+    for (const declaration of lift.declarations) {
+      declaredCoordinateKeys.add(`${lift.source.id}:${declaration.coordinate}`);
+      if (declaration.status === 'known') declaredKnown += 1;
+      else if (declaration.status === 'inferred') declaredInferred += 1;
+      else if (declaration.status === 'unknown') declaredUnknown += 1;
+      else declaredNotApplicable += 1;
+    }
     const slots: string[] = [];
     for (const [coordinate, value] of Object.entries(lift.assignment)) {
       const values = Array.isArray(value)
@@ -469,6 +516,11 @@ export function summarizeCaseLifts(lifts: readonly CaseLift[]): CaseLiftSummary 
     one_wise_slots_total: caseSpaceMetrics.oneWiseSlots,
     pairwise_slots_touched: touchedPairs.size,
     pairwise_sources: pairwiseSources,
+    declared_coordinates: declaredCoordinateKeys.size,
+    declared_known: declaredKnown,
+    declared_inferred: declaredInferred,
+    declared_unknown: declaredUnknown,
+    declared_not_applicable: declaredNotApplicable,
     weakest_coordinates: [...coordinates].sort(byAssigned).slice(0, 10),
     strongest_coordinates: [...coordinates].sort(byAssigned).slice(-10).reverse(),
   };

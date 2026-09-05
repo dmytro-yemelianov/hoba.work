@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import { coverage, getBundle, getDataInventory, STAGES } from '../../lib/registry';
+import { coverage, getBundle, getCaseLift, getDataInventory, STAGES } from '../../lib/registry';
 import { evaluatePatternEmptiness, gaps as derived, lift, substrateVerifyFlowConservation } from '@hoba/registry';
 import { localeFromParams, localePrefix, localeStaticPaths, useTranslations, interpolated } from '../../i18n/utils';
 
@@ -14,6 +14,7 @@ const lang = localeFromParams(Astro.params);
 const t = useTranslations(lang);
 const bundle = getBundle(lang);
 const inventory = getDataInventory(lang);
+const caseLift = getCaseLift(lang);
 const lifted = lift(bundle);
 const patternReport = evaluatePatternEmptiness(lifted);
 const flowReport = substrateVerifyFlowConservation(lifted.substrate);
@@ -141,6 +142,50 @@ const tocItems = [
           {lang === 'uk' ? 'Ситуації, формати й інструменти:' : 'Situations, formats, and tools:'}{' '}
           <a href={`${prefix}/developers#dev-choose`} class="text-hoba-accent underline underline-offset-2">{lang === 'uk' ? 'довідник використання' : 'usage guide'}</a>.
         </p>
+        <div class="mt-6 rounded-2xl border border-hoba-border bg-hoba-card/70 p-5">
+          <div class="flex flex-wrap items-baseline justify-between gap-3">
+            <div>
+              <h3 class="font-semibold text-hoba-text">
+                {lang === 'uk' ? 'Логічне покриття простору кейсів' : 'Logical case-space coverage'}
+              </h3>
+              <p class="text-sm text-hoba-muted mt-1">
+                {lang === 'uk'
+                  ? 'Це нижня межа: координата рахується лише тоді, коли вона структурно задана або явно reviewed у сценарії.'
+                  : 'This is a lower bound: a coordinate counts only when it is structured or explicitly reviewed in a scenario.'}
+              </p>
+            </div>
+            <span class="font-mono text-xs text-hoba-muted">case-lift {caseLift.version}</span>
+          </div>
+          <dl class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+            <div>
+              <dt class="meta">{lang === 'uk' ? 'Координати' : 'Coordinates'}</dt>
+              <dd class="mt-1 font-mono text-xl font-semibold text-hoba-text">
+                {caseLift.summary.coordinates_touched}/{caseLift.summary.coordinates_total}
+              </dd>
+            </div>
+            <div>
+              <dt class="meta">1-wise slots</dt>
+              <dd class="mt-1 font-mono text-xl font-semibold text-hoba-text">
+                {caseLift.summary.one_wise_slots_touched}/{caseLift.summary.one_wise_slots_total}
+              </dd>
+            </div>
+            <div>
+              <dt class="meta">2-wise slots</dt>
+              <dd class="mt-1 font-mono text-xl font-semibold text-hoba-text">
+                {caseLift.summary.pairwise_slots_touched.toLocaleString('en-US')}
+              </dd>
+            </div>
+            <div>
+              <dt class="meta">{lang === 'uk' ? 'Scenario declarations' : 'Scenario declarations'}</dt>
+              <dd class="mt-1 font-mono text-xl font-semibold text-hoba-text">
+                {caseLift.summary.declared_coordinates}
+              </dd>
+              <dd class="text-xs text-hoba-muted">
+                {caseLift.summary.declared_known} known · {caseLift.summary.declared_inferred} inferred · {caseLift.summary.declared_unknown} unknown
+              </dd>
+            </div>
+          </dl>
+        </div>
       </section>
 
       <section id="data-overview" class="scroll-mt-24">

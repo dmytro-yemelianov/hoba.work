@@ -14,6 +14,7 @@ import {
   loadArchetypes,
   loadRegistryFromRoot,
   loadScenarios,
+  liftRegistryCaseSpace,
   nodesOfTypes,
   READER_FACING_TYPES,
   stageIdSchema,
@@ -385,6 +386,11 @@ export function getDataInventory(lang: ContentLang = 'en') {
     scenarios: loadScenarios(registryRoot).length,
     archetypes: ARCHETYPES.length,
   });
+}
+
+/** The executable lower-bound projection published as `/data/latest/case-lift.json`. */
+export function getCaseLift(lang: ContentLang = 'en') {
+  return liftRegistryCaseSpace(getBundle(lang), loadScenarios(registryRoot));
 }
 
 /** Only the entity types that render an individual detail page today. */
