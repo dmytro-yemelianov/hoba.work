@@ -60,6 +60,11 @@ case_assignments:
     status: "known"
     value: "2_3_per_week"
     basis: "The authored case represents the common two-to-three-day hybrid requirement rather than occasional attendance."
+  - coordinate: "cost.borne_by"
+    status: "known"
+    value:
+      - "candidate"
+    basis: "The operative cost is the candidate-side commute, care, access, or relocation burden created by a fixed office cadence."
   - coordinate: "block.owner"
     status: "known"
     value: "inside"
