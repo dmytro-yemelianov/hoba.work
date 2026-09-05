@@ -88,4 +88,26 @@ test.describe('analysis wizard', () => {
       'pat.closed_then_reposted_requisition_motif'
     );
   });
+
+  test('shows nearby cases from observed facts and can load one', async ({ page }) => {
+    await page.goto('/analyze');
+    await page
+      .locator(
+        'input[name="artifacts_selected"][value="obs.materially_similar_role_reposted_shortly_after_rejection"]'
+      )
+      .check();
+
+    const nearby = page.locator('#nearby-scenarios');
+    await expect(nearby).toBeVisible();
+    await expect(nearby).toContainText('Ghost Requisition & Pipeline Refresh');
+    await expect(nearby).toContainText('1/3 shared signals');
+
+    await nearby.locator('button[data-scenario-id="scenario.ghost_refresh"]').click();
+    await expect(page.locator('input[name="stage_select"][value="sourcing"]')).toBeChecked();
+    await expect(
+      page.locator(
+        'input[name="artifacts_selected"][value="obs.complete_silence_after_submission"]'
+      )
+    ).toBeChecked();
+  });
 });

@@ -18,6 +18,7 @@ const stagesWithBarriers = STAGES.filter((st) => bundle.barriers.some((b) => b.s
 
 const WIZ_KEYS = [
   'paste.answer', 'paste.unsure', 'paste.unsureText', 'paste.none', 'paste.words', 'paste.continue', 'paste.missing',
+  'intake.nearby.title', 'intake.nearby.lead', 'intake.nearby.shared', 'intake.nearby.stage', 'intake.nearby.missing', 'intake.nearby.use', 'intake.nearby.limit', 'intake.nearby.none',
   'wiz.noSelection', 'wiz.noGate', 'wiz.passCondition', 'wiz.gate', 'wiz.noMechanisms', 'wiz.honestBaseline', 'wiz.emitsSignal', 'wiz.emitsTitle',
   'wiz.noPatterns', 'wiz.noLoops', 'wiz.noNonInf', 'wiz.noneIdentified', 'wiz.probe', 'wiz.cost', 'wiz.action', 'wiz.expectedSignal', 'wiz.noProbes',
   'wiz.ranIt', 'wiz.clearProbe', 'wiz.narrowing', 'wiz.narrowingFrom', 'wiz.remaining', 'wiz.ruledOut', 'wiz.ruledNothing',
@@ -104,6 +105,10 @@ const SCENARIO_ICONS: Record<string, string> = {
  * into `analyze.scenarios.scenario.<name>`.
  */
 const presetKey = (id: string) => id.replace(/^scenario\./, '');
+const clientScenarios = EMPIRICAL_SCENARIOS.map((scenario) => ({
+  ...scenario,
+  title: t(interpolated(`analyze.scenarios.${presetKey(scenario.id)}`)),
+}));
 
 const tabs = [
   { k: 'h', letter: 'H', stepNum: '1', title: t('analyze.tab.h') },
@@ -273,6 +278,18 @@ const zones = [
         </div>
       </div>
 
+      <section
+        id="nearby-scenarios"
+        class="border-y border-hoba-border py-5"
+        aria-live="polite"
+        hidden
+      >
+        <h3 class="text-base font-semibold text-hoba-text">{t('intake.nearby.title')}</h3>
+        <p class="mt-1 text-sm text-hoba-muted max-w-3xl">{t('intake.nearby.lead')}</p>
+        <div id="nearby-scenarios-output" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3"></div>
+        <p class="mt-3 text-xs text-hoba-muted max-w-3xl">{t('intake.nearby.limit')}</p>
+      </section>
+
       <div class="pt-6 border-t border-hoba-border flex items-center justify-between">
         <span id="step-h-summary" class="text-sm text-hoba-muted font-mono"></span>
         <button data-goto="o" class="btn btn-primary">{t('analyze.h.next')}</button>
@@ -380,6 +397,11 @@ const zones = [
 
   <script type="application/json" id="hoba-bundle" set:html={bundleJSON} />
   <script type="application/json" id="hoba-i18n" set:html={i18n} />
+  <script
+    type="application/json"
+    id="hoba-scenarios"
+    set:html={JSON.stringify(clientScenarios).replace(/</g, '\\u003c')}
+  />
   <script>
     // Reads the letter against the registry the page already carries. Nothing
     // leaves the browser, which is what makes it safe to paste a real one.
@@ -440,7 +462,8 @@ const zones = [
 
   <script>
     // The wizard runs the very same HOBADiagnosticEngine as the CLI and the MCP server.
-    import { HOBADiagnosticEngine, type DiagnosticResult, type ProbeResult, type RegistryBundle, type StageId } from '@hoba/registry/core';
+    import { HOBADiagnosticEngine, type DiagnosticResult, type EmpiricalScenario, type ProbeResult, type RegistryBundle, type StageId } from '@hoba/registry/core';
+    import { matchScenarios } from '../../lib/scenario-match';
 
     type Step = 'h' | 'o' | 'b' | 'a';
     const STEPS: Step[] = ['h', 'o', 'b', 'a'];
@@ -451,6 +474,9 @@ const zones = [
       (i18n[key] ?? key).replace(/\{(\w+)\}/g, (_, n: string) => (vars && n in vars ? String(vars[n]) : `{${n}}`));
     const prefix = i18n.prefix ?? '';
     const engine = new HOBADiagnosticEngine(bundle);
+    const scenarios = JSON.parse(
+      document.getElementById('hoba-scenarios')!.textContent!
+    ) as EmpiricalScenario[];
 
     const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
     const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -483,6 +509,48 @@ const zones = [
     }
     const analyze = (): DiagnosticResult => engine.analyze(collectInputs());
 
+    function applyScenario(scenario: EmpiricalScenario) {
+      probeResults.clear();
+      document.querySelectorAll<HTMLInputElement>('input[name="stage_select"]').forEach((el) => {
+        el.checked = el.value === (scenario.stage ?? '');
+      });
+      document
+        .querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]')
+        .forEach((el) => {
+          el.checked = scenario.artifacts.includes(el.value);
+        });
+      updateSelectionCounter();
+      setStep('h');
+    }
+
+    function renderNearbyScenarios() {
+      const panel = $('nearby-scenarios');
+      const output = $('nearby-scenarios-output');
+      const inputs = collectInputs();
+      const matches = matchScenarios(inputs, scenarios).slice(0, 3);
+      panel.hidden = inputs.artifacts.length === 0;
+      if (panel.hidden) return;
+
+      output.innerHTML = matches.length
+        ? matches
+            .map(
+              ({ scenario, shared, missing, stageMatch }) => `
+                <article class="min-w-0 border border-hoba-border bg-hoba-card p-4 rounded-lg">
+                  <p class="text-sm font-semibold text-hoba-text wrap-break-word">${esc(scenario.title)}</p>
+                  <div class="mt-2 flex flex-wrap gap-1.5">
+                    ${pill(t('intake.nearby.shared', { shared: shared.length, total: scenario.artifacts.length }))}
+                    ${stageMatch ? pill(t('intake.nearby.stage')) : ''}
+                    ${missing.length ? pill(t('intake.nearby.missing', { n: missing.length })) : ''}
+                  </div>
+                  <button type="button" class="btn btn-secondary text-xs mt-3 nearby-scenario" data-scenario-id="${esc(scenario.id)}">
+                    ${esc(t('intake.nearby.use'))}
+                  </button>
+                </article>`
+            )
+            .join('')
+        : empty(t('intake.nearby.none'));
+    }
+
     function updateSelectionCounter() {
       const inputs = collectInputs();
       const count = inputs.artifacts.length;
@@ -492,8 +560,9 @@ const zones = [
       if (clearBtn) clearBtn.classList.toggle('hidden', count === 0);
       const summary = $('step-h-summary');
       if (summary) {
-        summary.textContent = count > 0 ? `${count} signals selected` : '';
+        summary.textContent = count > 0 ? t('analyze.h.selectedCount', { n: count }) : '';
       }
+      renderNearbyScenarios();
     }
 
     // Recording an outcome is an input, so it re-runs the analysis the same way
@@ -547,6 +616,10 @@ const zones = [
 
     document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]').forEach((chk) => {
       chk.addEventListener('change', updateSelectionCounter);
+    });
+
+    document.querySelectorAll<HTMLInputElement>('input[name="stage_select"]').forEach((radio) => {
+      radio.addEventListener('change', renderNearbyScenarios);
     });
 
     $('clear-selected-btn')?.addEventListener('click', () => {
@@ -754,23 +827,14 @@ const zones = [
       setStep('h');
     });
 
-    document.querySelectorAll<HTMLButtonElement>('.scenario-preset').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        probeResults.clear();
-        const targetStage = btn.dataset.stage ?? '';
-        const targetArtifacts: string[] = JSON.parse(btn.dataset.artifacts ?? '[]');
-
-        document.querySelectorAll<HTMLInputElement>('input[name="stage_select"]').forEach((el) => {
-          el.checked = el.value === targetStage;
-        });
-
-        document.querySelectorAll<HTMLInputElement>('input[name="artifacts_selected"]').forEach((el) => {
-          el.checked = targetArtifacts.includes(el.value);
-        });
-
-        updateSelectionCounter();
-        setStep('h');
-      });
+    document.addEventListener('click', (event) => {
+      const button =
+        event.target instanceof Element
+          ? event.target.closest<HTMLButtonElement>('.scenario-preset, .nearby-scenario')
+          : null;
+      if (!button) return;
+      const scenario = scenarios.find((candidate) => candidate.id === button.dataset.scenarioId);
+      if (scenario) applyScenario(scenario);
     });
 
     updateSelectionCounter();
