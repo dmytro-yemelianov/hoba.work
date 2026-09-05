@@ -9,7 +9,7 @@
 # that is what it is numbered. What a release *contains* is identified by
 # `registry_hash` in the generated manifest, which is derived from the content
 # rather than from the clock.
-version: "1.9.0"
+version: "1.10.0"
 schema_version: "1.7.0"
 updated_at: "2026-09-05T00:00:00Z"
 
@@ -17,4 +17,4 @@ updated_at: "2026-09-05T00:00:00Z"
 # fails the gate, and so does changing content without bumping — the two used
 # to drift silently: the site published "1.0.0, 28 August" over content that
 # had moved twelve times since.
-release_hash: "bfd2af9d1fb28e65dd045e67295fc1383348fa6c67bee0a4592dc60dd4e49b20"
+release_hash: "a52c90de3418c4f33f0684aeb8ee8015746b108c7406a53c75ac7072d16387f7"
