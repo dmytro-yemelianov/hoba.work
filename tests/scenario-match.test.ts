@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { EmpiricalScenario } from '@hoba/registry';
-import { matchScenarios } from '../apps/web/src/lib/scenario-match';
+import { matchScenarios, type EmpiricalScenario } from '@hoba/registry';
 
 const scenarios: EmpiricalScenario[] = [
   {

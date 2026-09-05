@@ -22,6 +22,7 @@ import {
   HOBAKnowledgeGraph,
   lift,
   loadRegistryFromRoot,
+  matchScenarios,
   readPackageVersion,
   resolveRegistryRoot,
   searchBundle,
@@ -256,6 +257,65 @@ server.registerTool(
     if (!found)
       return fail(`Unknown scenario "${id}". Available: ${scenarios.map((s) => s.id).join(', ')}`);
     return ok({ scenario: found });
+  }
+);
+
+server.registerTool(
+  'find_nearby_scenarios',
+  {
+    description:
+      'Rank validated scenarios by shared observed artifacts and optional exact funnel stage. Returns the shared, missing, and extra signals that explain each match. Scores are relative structural fit, never probabilities or causal confidence.',
+    inputSchema: {
+      artifact_ids: z.array(z.string()).min(1).describe('Observed Artifact IDs'),
+      stage: stageArg,
+      limit: z
+        .number()
+        .int()
+        .positive()
+        .max(25)
+        .optional()
+        .describe('Maximum number of matches (default 5)'),
+    },
+  },
+  async ({ artifact_ids, stage, limit }) => {
+    const resolved = artifact_ids.map((input) => ({ input, node: graph.getNode(input) }));
+    const observations = resolved.filter(
+      (
+        entry
+      ): entry is {
+        input: string;
+        node: Extract<ReturnType<typeof graph.getNode>, { type: 'observation' }>;
+      } => entry.node?.type === 'observation'
+    );
+    const resolvedIds = observations.map(({ node }) => node.id);
+    const unknownArtifactIds = resolved
+      .filter(({ node }) => node?.type !== 'observation')
+      .map(({ input }) => input);
+
+    if (resolvedIds.length === 0) {
+      return fail(
+        `None of the provided artifact IDs exist in the registry: ${artifact_ids.join(', ')}`
+      );
+    }
+
+    const matches = matchScenarios(
+      { artifacts: resolvedIds, stage },
+      empiricalScenarios(registryRoot)
+    ).slice(0, limit ?? 5);
+
+    return ok({
+      mode: 'structural_retrieval_not_causal_inference',
+      unknown_artifact_ids: unknownArtifactIds,
+      count: matches.length,
+      matches: matches.map((match) => ({
+        scenario: match.scenario,
+        score: match.score,
+        shared: match.shared,
+        missing: match.missing,
+        extra: match.extra,
+        stage_match: match.stageMatch,
+      })),
+    });
   }
 );
 

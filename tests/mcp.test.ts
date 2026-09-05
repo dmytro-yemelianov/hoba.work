@@ -78,6 +78,7 @@ describe('hoba MCP server', () => {
         'evaluate_pattern_emptiness',
         'explain_observation',
         'find_compatible_mechanisms',
+        'find_nearby_scenarios',
         'find_patterns',
         'get_data_inventory',
         'get_diagnostic_probes',
@@ -313,6 +314,34 @@ describe('hoba MCP server', () => {
       'obs.unsolicited_recruiter_outreach_followed_by_ghosting',
     ]);
     expect(scExplain.analysis.counts.compatible_mechanisms).toBeGreaterThan(0);
+  });
+
+  it('finds nearby scenarios with an explainable structural match', async () => {
+    const nearby = payload(
+      await client.request('tools/call', {
+        name: 'find_nearby_scenarios',
+        arguments: {
+          artifact_ids: ['A-004'],
+          stage: 'sourcing',
+          limit: 1,
+        },
+      })
+    );
+
+    expect(nearby.mode).toBe('structural_retrieval_not_causal_inference');
+    expect(nearby.count).toBe(1);
+    expect(nearby.matches[0].scenario.id).toBe('scenario.ghost_refresh');
+    expect(nearby.matches[0].shared).toContain(
+      'obs.materially_similar_role_reposted_shortly_after_rejection'
+    );
+    expect(nearby.matches[0].missing).toHaveLength(2);
+    expect(nearby.matches[0].stage_match).toBe(true);
+
+    const unknown = await client.request('tools/call', {
+      name: 'find_nearby_scenarios',
+      arguments: { artifact_ids: ['A-999'] },
+    });
+    expect(unknown.result.isError).toBe(true);
   });
 
   it('evaluates temporal anomalies, runway, flow conservation, and pattern emptiness over MCP', async () => {

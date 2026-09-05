@@ -463,7 +463,7 @@ const zones = [
   <script>
     // The wizard runs the very same HOBADiagnosticEngine as the CLI and the MCP server.
     import { HOBADiagnosticEngine, type DiagnosticResult, type EmpiricalScenario, type ProbeResult, type RegistryBundle, type StageId } from '@hoba/registry/core';
-    import { matchScenarios } from '../../lib/scenario-match';
+    import { matchScenarios } from '@hoba/registry/search';
 
     type Step = 'h' | 'o' | 'b' | 'a';
     const STEPS: Step[] = ['h', 'o', 'b', 'a'];
