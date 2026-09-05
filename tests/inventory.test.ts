@@ -14,6 +14,7 @@ import {
   loadScenarios,
   READER_FACING_TYPES,
   searchBundle,
+  serializeCaseSpaceMetrics,
   summarizeCoverage,
 } from '@hoba/registry';
 
@@ -150,13 +151,22 @@ describe('canonical data inventory', () => {
       readFileSync(resolve(root, 'apps/web/public/data/latest/coverage.json'), 'utf8')
     );
 
-    expect(published).toEqual({ ...model, summary: summarizeCoverage(model) });
+    expect(published).toEqual({
+      ...model,
+      summary: summarizeCoverage(model),
+      case_space: serializeCaseSpaceMetrics(),
+    });
     expect(published.summary).toMatchObject({
       total: 92,
       covered: 50,
       partial: 19,
       absent: 23,
       score_percent: 64.7,
+    });
+    expect(published.case_space).toMatchObject({
+      coverageCoordinates: 71,
+      oneWiseSlots: 261,
+      twoWiseUnfilteredSlots: 33384,
     });
   });
 });

@@ -7,3 +7,4 @@ export * from './paths.js';
 export * from './loader.js';
 export * from './migration.js';
 export * from './hash.js';
+export * from './case-space.js';

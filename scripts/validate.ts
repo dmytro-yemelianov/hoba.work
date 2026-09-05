@@ -11,6 +11,7 @@ import {
   loadCoverageModel,
   loadScenarios,
   resolveRegistryRoot,
+  summarizeCaseSpace,
   summarizeCoverage,
   validateCoverageModel,
   validateRegistry,
@@ -68,9 +69,16 @@ report(
   validateCoverageModel(coverage, bundleEn, scenarios)
 );
 const coverageSummary = summarizeCoverage(coverage);
+const caseSpaceSummary = summarizeCaseSpace();
 console.log(
   `✓ Coverage boundary: ${coverageSummary.covered} covered, ${coverageSummary.partial} partial, ` +
     `${coverageSummary.absent} absent (${coverageSummary.score_percent}% weighted)`
+);
+console.log(
+  `✓ Case space: ${caseSpaceSummary.coverageCoordinates} coordinates, ` +
+    `${caseSpaceSummary.oneWiseSlots} 1-wise slots, ` +
+    `${caseSpaceSummary.twoWiseUnfilteredSlots} unfiltered 2-wise slots, ` +
+    `${caseSpaceSummary.constraints.hard} hard Γ constraints`
 );
 
 // 3. Ukrainian mirror: same rules + structural parity with the canonical content
