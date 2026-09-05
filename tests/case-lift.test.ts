@@ -34,11 +34,11 @@ describe('case-space lift', () => {
   });
 
   it('makes reviewed scenario assignments visible without claiming full prose coverage', () => {
-    expect(lift.summary.coordinates_touched).toBe(35);
-    expect(lift.summary.one_wise_slots_touched).toBe(127);
-    expect(lift.summary.pairwise_slots_touched).toBe(2047);
-    expect(lift.summary.declared_coordinates).toBe(196);
-    expect(lift.summary.declared_known).toBe(166);
+    expect(lift.summary.coordinates_touched).toBe(36);
+    expect(lift.summary.one_wise_slots_touched).toBe(131);
+    expect(lift.summary.pairwise_slots_touched).toBe(2081);
+    expect(lift.summary.declared_coordinates).toBe(201);
+    expect(lift.summary.declared_known).toBe(171);
     expect(lift.summary.declared_inferred).toBe(9);
     expect(lift.summary.declared_unknown).toBe(21);
 
@@ -66,6 +66,7 @@ describe('case-space lift', () => {
         'jurisdiction',
         'latitude.candidate',
         'latitude.employer',
+        'latency.class',
         'memory.carried',
         'military.status',
         'outcome.signal',
