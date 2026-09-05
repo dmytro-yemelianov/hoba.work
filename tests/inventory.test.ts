@@ -194,11 +194,11 @@ describe('canonical data inventory', () => {
       sources: 185,
       assigned_sources: 185,
       refuted: 0,
-      coordinates_touched: 36,
+      coordinates_touched: 37,
       coordinates_total: 71,
-      one_wise_slots_touched: 131,
+      one_wise_slots_touched: 134,
       one_wise_slots_total: 261,
-      pairwise_slots_touched: 2081,
+      pairwise_slots_touched: 2268,
       declared_coordinates: 201,
       declared_known: 171,
       declared_inferred: 9,
@@ -219,6 +219,20 @@ describe('canonical data inventory', () => {
         unbounded: 1,
       },
     });
+    expect(
+      publishedLift.coordinates.find(
+        (item: { coordinate: string }) => item.coordinate === 'visibility.summary'
+      )
+    ).toEqual({
+      coordinate: 'visibility.summary',
+      kind: 'scalar',
+      assigned_sources: 62,
+      values: {
+        partial: 23,
+        opaque: 27,
+        legible: 12,
+      },
+    });
   });
 
   it('publishes a generated acquisition backlog from the case-space lift', () => {
@@ -231,9 +245,9 @@ describe('canonical data inventory', () => {
     expect(inventory.latest_exports).toContain('coverage-backlog.json');
     expect(publishedBacklog.summary).toMatchObject({
       coordinates_total: 37,
-      coordinates_absent: 1,
+      coordinates_absent: 0,
       coordinates_thin: 17,
-      values_missing: 92,
+      values_missing: 89,
       scenario_unknowns: 21,
       pairwise_targets: 10,
       critical_targets: 0,
@@ -256,10 +270,14 @@ describe('canonical data inventory', () => {
         'coordinate:cost.borne_by',
         'coordinate:era.regime',
         'coordinate:latency.class',
+        'coordinate:visibility.summary',
         'value:latency.class:over_expected',
         'value:latency.class:over_max',
         'value:latency.class:unbounded',
         'value:latency.class:within_expected',
+        'value:visibility.summary:legible',
+        'value:visibility.summary:opaque',
+        'value:visibility.summary:partial',
         'pairwise:evidence.level:evidence.role',
         'pairwise:worksite.mode:population.affected',
         'pairwise:military.status:jurisdiction',
