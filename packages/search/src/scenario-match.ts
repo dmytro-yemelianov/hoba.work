@@ -1,4 +1,4 @@
-import type { EmpiricalScenario, StageId } from '@hoba/registry/core';
+import type { EmpiricalScenario, StageId } from '@hoba/registry-core';
 
 export interface ScenarioMatch {
   scenario: EmpiricalScenario;
@@ -16,13 +16,10 @@ export interface ScenarioMatchInput {
 }
 
 /**
- * Rank validated scenarios by facts the reader selected.
+ * Rank validated scenarios by observed facts.
  *
- * Signal fit is the F1 score over observation IDs: it rewards both covering
- * the scenario and avoiding a broad scenario that only incidentally overlaps.
- * An exact stage contributes a small, bounded tie-breaker. A stage alone can
- * never produce a match, because that would present every case at one funnel
- * gate as similar without a shared observed fact.
+ * Signal fit is the F1 score over observation IDs. An exact stage contributes
+ * a small, bounded tie-breaker. A stage alone can never produce a match.
  */
 export function matchScenarios(
   input: ScenarioMatchInput,
