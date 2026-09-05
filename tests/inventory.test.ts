@@ -191,18 +191,18 @@ describe('canonical data inventory', () => {
       twoWiseUnfilteredSlots: 33384,
     });
     expect(publishedLift.summary).toMatchObject({
-      sources: 119,
-      assigned_sources: 119,
+      sources: 124,
+      assigned_sources: 124,
       refuted: 0,
-      coordinates_touched: 14,
+      coordinates_touched: 30,
       coordinates_total: 71,
-      one_wise_slots_touched: 52,
+      one_wise_slots_touched: 98,
       one_wise_slots_total: 261,
-      pairwise_slots_touched: 332,
-      declared_coordinates: 42,
-      declared_known: 15,
+      pairwise_slots_touched: 1575,
+      declared_coordinates: 141,
+      declared_known: 113,
       declared_inferred: 7,
-      declared_unknown: 20,
+      declared_unknown: 21,
     });
   });
 
@@ -216,20 +216,28 @@ describe('canonical data inventory', () => {
     expect(inventory.latest_exports).toContain('coverage-backlog.json');
     expect(publishedBacklog.summary).toMatchObject({
       coordinates_total: 37,
-      coordinates_absent: 23,
-      coordinates_thin: 6,
-      values_missing: 171,
-      scenario_unknowns: 20,
-      pairwise_targets: 9,
+      coordinates_absent: 7,
+      coordinates_thin: 17,
+      values_missing: 125,
+      scenario_unknowns: 21,
+      pairwise_targets: 3,
     });
     expect(publishedBacklog.priority_targets.map((target) => target.id)).toEqual(
       expect.arrayContaining([
+        'coordinate:cost.borne_by',
+        'coordinate:era.regime',
+        'pairwise:entry.path:cohort.state',
+        'pairwise:evidence.level:evidence.role',
+        'pairwise:funding.source:requisition.state',
+        'scenario_unknown:scenario.ghost_refresh:funding.state',
+      ])
+    );
+    expect(publishedBacklog.priority_targets.map((target) => target.id)).not.toEqual(
+      expect.arrayContaining([
         'coordinate:worksite.mode',
         'coordinate:military.status',
-        'coordinate:population.affected',
         'pairwise:worksite.mode:population.affected',
         'pairwise:military.status:jurisdiction',
-        'scenario_unknown:scenario.ghost_refresh:funding.state',
       ])
     );
   });

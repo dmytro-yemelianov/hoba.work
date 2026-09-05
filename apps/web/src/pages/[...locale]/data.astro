@@ -203,9 +203,9 @@ const tocItems = [
             </div>
             <ol class="mt-4 grid gap-3">
               {coverageBacklog.priority_targets.slice(0, 5).map((target) => (
-                <li class="rounded-xl border border-hoba-border bg-hoba-bg/60 p-3">
-                  <div class="flex flex-wrap items-baseline justify-between gap-2">
-                    <p class="font-mono text-xs text-hoba-muted">{target.id}</p>
+                <li class="min-w-0 rounded-xl border border-hoba-border bg-hoba-bg/60 p-3">
+                  <div class="flex min-w-0 flex-wrap items-baseline justify-between gap-2">
+                    <p class="min-w-0 break-all font-mono text-xs text-hoba-muted">{target.id}</p>
                     <span class="pill pill-muted">{target.priority}</span>
                   </div>
                   <p class="text-sm text-hoba-text mt-2">{target.reason}</p>
