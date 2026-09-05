@@ -32,31 +32,47 @@ describe('case-space lift', () => {
   });
 
   it('makes reviewed scenario assignments visible without claiming full prose coverage', () => {
-    expect(lift.summary.coordinates_touched).toBe(14);
-    expect(lift.summary.one_wise_slots_touched).toBe(52);
-    expect(lift.summary.pairwise_slots_touched).toBe(332);
-    expect(lift.summary.declared_coordinates).toBe(42);
-    expect(lift.summary.declared_known).toBe(15);
+    expect(lift.summary.coordinates_touched).toBe(30);
+    expect(lift.summary.one_wise_slots_touched).toBe(98);
+    expect(lift.summary.pairwise_slots_touched).toBe(1575);
+    expect(lift.summary.declared_coordinates).toBe(141);
+    expect(lift.summary.declared_known).toBe(113);
     expect(lift.summary.declared_inferred).toBe(7);
-    expect(lift.summary.declared_unknown).toBe(20);
+    expect(lift.summary.declared_unknown).toBe(21);
 
     const touched = new Set(lift.coordinates.map((coordinate) => coordinate.coordinate));
     expect(touched).toEqual(
       new Set([
+        'arrangement',
+        'bargain.state',
+        'block.arity',
+        'block.determinacy',
         'block.nature',
         'block.owner',
         'chain.class',
         'cohort.state',
+        'distortion.origin',
+        'domain',
         'entry.path',
         'epilogue',
         'evidence.level',
+        'funding.source',
+        'funding.state',
         'jurisdiction',
+        'latitude.candidate',
+        'latitude.employer',
+        'military.status',
         'outcome.signal',
         'party.set',
+        'population.affected',
+        'principal.side',
         'requisition.state',
         'stage.terminal',
         'statement.fidelity',
         'visibility.candidate',
+        'worksite.anchor',
+        'worksite.cadence',
+        'worksite.mode',
       ])
     );
   });

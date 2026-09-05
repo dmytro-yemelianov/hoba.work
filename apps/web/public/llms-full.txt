@@ -1,6 +1,6 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.4.0, schema 1.6.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.5.0, schema 1.6.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
@@ -18,7 +18,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Evidence records** (`evidence`, 52; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
 - **Financial records** (`record`, 13; IDs record.* (legacy R-### aliases resolve)) — A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.
 
-Scenarios (6) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
+Scenarios (11) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
 
 The graph export is deliberately narrower than the ontology: 96 reader-facing finding nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
@@ -1718,6 +1718,17 @@ Instant rejection outside business hours combined with rigid uncontextualized fi
 
 - Observations: obs.generic_closer_alignment_rejection_template, obs.explicit_feedback_citing_skill_depth_shortfall, obs.unsolicited_recruiter_outreach_followed_by_ghosting
 
+### scenario.client_site_vendor_constraint — Vendor process blocked by client-site terms
+
+A vendor process advances through internal screening, then the client gate reveals that the work must be performed at a client site or under a client-controlled schedule.
+
+- Observations: obs.generic_closer_alignment_rejection_template, obs.rejection_naming_a_specific_industry_sector_as_required
+- Compatible barriers: bar.client_profile_approval_and_client_interview, bar.recruiter_screening_call, bar.technical_screen_live_assessment
+- Compatible mechanisms: mech.domain_specificity_over_weighting, mech.location_or_timezone_compliance_constraint, mech.bid_conditional_talent_pool
+- Does NOT establish: The vendor can unilaterally waive the client's site or schedule condition.
+- Does NOT establish: A generic vendor rejection proves that the candidate failed the vendor's technical screen.
+- Does NOT establish: The client-site requirement is ownerless just because it is invisible to the candidate at first.
+
 ### scenario.closed_then_reposted — Rejected, then the same role is posted again
 
 - Observations: obs.position_closed_after_final_interview_without_hire, obs.materially_similar_role_reposted_shortly_after_rejection, obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body
@@ -1739,11 +1750,55 @@ Stale posting refreshed with identical body while active applicants experience s
 
 - Observations: obs.complete_silence_after_submission, obs.materially_similar_role_reposted_shortly_after_rejection, obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body
 
+### scenario.hybrid_cadence_disclosed_late — Hybrid cadence appears after screening
+
+A candidate passes the first compatibility checks, then the process closes because a fixed office cadence or city anchor was not stated early enough to be evaluated before the screen.
+
+- Observations: obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground, obs.generic_closer_alignment_rejection_template
+- Compatible barriers: bar.recruiter_screening_call, bar.inbound_screening_triage
+- Compatible mechanisms: mech.location_or_timezone_compliance_constraint, mech.hidden_evaluation_rubric_or_undisclosed_priority
+- Does NOT establish: The word hybrid is enough to disclose the weekly attendance burden.
+- Does NOT establish: The candidate rejected the employer rather than failing an undisclosed condition.
+- Does NOT establish: The attendance rule proves a lack of skill or interest.
+
 ### scenario.post_panel_freeze — Post-Panel Freeze & Silence
 
 Strong verbal engagement followed by multi-week offer hold and sudden ghosting.
 
 - Observations: obs.complete_silence_after_submission, obs.multiple_interview_reschedulings_or_interviewer_no_show, obs.rejection_naming_an_internal_hire_as_the_outcome
+
+### scenario.remote_country_payroll_mismatch — Remote role, country payroll mismatch
+
+A role is presented as remote, the screen proceeds normally, and the closing reason later names residence, work eligibility, or an unsupported contracting country.
+
+- Observations: obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground
+- Compatible barriers: bar.recruiter_screening_call, bar.offer_closing_contract_execution
+- Compatible mechanisms: mech.location_or_timezone_compliance_constraint, mech.hidden_evaluation_rubric_or_undisclosed_priority
+- Does NOT establish: The remote label means the employer can issue a contract in every country.
+- Does NOT establish: The jurisdiction ground proves that no technical or cohort evaluation happened.
+- Does NOT establish: The recruiter personally controls the payroll coverage list.
+
+### scenario.remote_timezone_overlap_limit — Remote role bounded by timezone overlap
+
+A role can be performed remotely, but the process closes when the team requires overlap hours that the candidate cannot reliably cover.
+
+- Observations: obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground, obs.communication_mismatch_or_tone_friction_in_panel
+- Compatible barriers: bar.recruiter_screening_call, bar.team_cross_functional_panel
+- Compatible mechanisms: mech.location_or_timezone_compliance_constraint, mech.communication_or_working_style_friction
+- Does NOT establish: Remote work implies timezone-neutral work.
+- Does NOT establish: Timezone mismatch proves a communication-style defect.
+- Does NOT establish: The candidate can solve the overlap requirement without a trade-off.
+
+### scenario.ua_reservation_worksite_constraint — Ukrainian reservation status meets worksite constraint
+
+A Ukrainian hiring process becomes constrained by the interaction between military registration status, employer reservation capacity, and where the role must be performed.
+
+- Observations: obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground, obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation
+- Compatible barriers: bar.recruiter_screening_call, bar.offer_closing_contract_execution, bar.reference_background_verification
+- Compatible mechanisms: mech.location_or_timezone_compliance_constraint, mech.start_date_slippage_and_post_acceptance_revocation
+- Does NOT establish: The military-status constraint proves discriminatory intent.
+- Does NOT establish: Every Ukrainian employer can create or waive reservation status for any candidate.
+- Does NOT establish: The candidate's registration state is interchangeable with ordinary relocation preference.
 
 ## Presentation-only archetype overlays
 

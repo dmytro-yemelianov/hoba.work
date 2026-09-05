@@ -1,6 +1,6 @@
 # hoba — Hiring Obstacles & Barriers Atlas
 
-> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.4.0, schema 1.6.0. Content CC BY-SA 4.0, code MIT.
+> A public, versioned, machine-readable registry of what goes wrong in hiring and what can be inferred from it. Registry 1.5.0, schema 1.6.0. Content CC BY-SA 4.0, code MIT.
 
 hoba separates an observation from its cause. A rejection email is a signal; the mechanisms that could have produced it are a separate layer; which of them a candidate can act on is a third. The registry never asserts which mechanism fired — only which are compatible, and which probes distinguish them.
 
@@ -18,7 +18,7 @@ hoba separates an observation from its cause. A rejection email is a signal; the
 - **Evidence records** (`evidence`, 52; IDs evidence.* (legacy EVD-### aliases resolve)) — A language-neutral source supporting registry claims.
 - **Financial records** (`record`, 13; IDs record.* (legacy R-### aliases resolve)) — A durable budget, contract, funding, fee, payroll, subscription, or runway state with explicit flows.
 
-Scenarios (6) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
+Scenarios (11) are validated compositions over canonical IDs. Archetypes (124) are presentation-only overlays. The formal substrate is derived and never authored as a second source of truth.
 
 The graph export is deliberately narrower than the ontology: 96 reader-facing finding nodes and 276 edges over the relations `operates_at`, `emits`, `amplifies`, `masks`, `precedes`, `instantiates`, `targets`, `mitigates`.
 
