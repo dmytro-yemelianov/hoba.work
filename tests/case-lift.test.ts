@@ -34,9 +34,9 @@ describe('case-space lift', () => {
   });
 
   it('makes reviewed scenario assignments visible without claiming full prose coverage', () => {
-    expect(lift.summary.coordinates_touched).toBe(36);
-    expect(lift.summary.one_wise_slots_touched).toBe(131);
-    expect(lift.summary.pairwise_slots_touched).toBe(2081);
+    expect(lift.summary.coordinates_touched).toBe(37);
+    expect(lift.summary.one_wise_slots_touched).toBe(134);
+    expect(lift.summary.pairwise_slots_touched).toBe(2268);
     expect(lift.summary.declared_coordinates).toBe(201);
     expect(lift.summary.declared_known).toBe(171);
     expect(lift.summary.declared_inferred).toBe(9);
@@ -78,6 +78,7 @@ describe('case-space lift', () => {
         'stage.terminal',
         'statement.fidelity',
         'visibility.candidate',
+        'visibility.summary',
         'worksite.anchor',
         'worksite.cadence',
         'worksite.mode',

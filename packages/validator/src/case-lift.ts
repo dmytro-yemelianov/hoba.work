@@ -238,7 +238,20 @@ class LiftBuilder {
     else this.set(assignment.coordinate, assignment.value, rule, confidence);
   }
 
+  deriveVisibilitySummary() {
+    if (this.assignment['visibility.summary'] !== undefined) return;
+    const candidateVisibility = this.assignment['visibility.candidate'];
+    if (typeof candidateVisibility !== 'string') return;
+    this.set(
+      'visibility.summary',
+      candidateVisibility,
+      'derived.visibility.summary_from_candidate',
+      'derived'
+    );
+  }
+
   build(source: CaseLift['source']): CaseLift {
+    this.deriveVisibilitySummary();
     const assignment = this.assignment;
     return {
       source,
