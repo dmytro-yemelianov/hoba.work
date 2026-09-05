@@ -286,6 +286,9 @@ Key kernel-proved theorems include:
 
 ### Machine-readable inventory and exports
 - Inventory and usage guide: [`/data/latest/inventory.json`](https://hoba.work/data/latest/inventory.json)
+- Coverage boundary: [`/data/latest/coverage.json`](https://hoba.work/data/latest/coverage.json)
+- Case-space lift: [`/data/latest/case-lift.json`](https://hoba.work/data/latest/case-lift.json)
+- Acquisition backlog: [`/data/latest/coverage-backlog.json`](https://hoba.work/data/latest/coverage-backlog.json)
 - JSON bundle: [`/data/latest/registry.json`](https://hoba.work/data/latest/registry.json)
 - NDJSON lines: [`/data/latest/registry.ndjson`](https://hoba.work/data/latest/registry.ndjson)
 - CSV Nodes: [`/data/latest/nodes.csv`](https://hoba.work/data/latest/nodes.csv)

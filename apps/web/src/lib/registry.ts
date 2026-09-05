@@ -6,6 +6,7 @@
  */
 import {
   archetypeBoxName,
+  buildCoverageBacklog,
   buildDataInventory,
   empiricalScenarios,
   findRegistryRoot,
@@ -391,6 +392,11 @@ export function getDataInventory(lang: ContentLang = 'en') {
 /** The executable lower-bound projection published as `/data/latest/case-lift.json`. */
 export function getCaseLift(lang: ContentLang = 'en') {
   return liftRegistryCaseSpace(getBundle(lang), loadScenarios(registryRoot));
+}
+
+/** The generated acquisition backlog published as `/data/latest/coverage-backlog.json`. */
+export function getCoverageBacklog(lang: ContentLang = 'en') {
+  return buildCoverageBacklog(getCaseLift(lang));
 }
 
 /** Only the entity types that render an individual detail page today. */

@@ -1,0 +1,1991 @@
+{
+  "version": "1.0.0",
+  "method": {
+    "unit": "missing or thin coordinate/value/pair target",
+    "boundary": "Generated from the executable case-space denominator and current case lift; no synthetic prose or inferred cases are authored here.",
+    "limitation": "A target is an acquisition prompt, not a claim that the missing combination exists in the world."
+  },
+  "summary": {
+    "coordinates_total": 37,
+    "coordinates_absent": 23,
+    "coordinates_thin": 6,
+    "values_missing": 171,
+    "scenario_unknowns": 20,
+    "pairwise_targets": 9,
+    "critical_targets": 24,
+    "high_targets": 56,
+    "medium_targets": 0
+  },
+  "coordinates": [
+    {
+      "coordinate": "arrangement",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 6,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "permanent",
+        "contractor",
+        "freelance",
+        "temporary_seasonal",
+        "internship",
+        "contract_to_hire"
+      ],
+      "unknown_declarations": 1,
+      "status": "absent"
+    },
+    {
+      "coordinate": "bargain.state",
+      "block": "derived",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "overlap",
+        "disjoint",
+        "undetermined",
+        "not_negotiated"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "block.arity",
+      "block": "blocking_condition",
+      "kind": "scalar",
+      "values_total": 2,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "absolute",
+        "comparative"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "block.determinacy",
+      "block": "blocking_condition",
+      "kind": "scalar",
+      "values_total": 3,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "deterministic",
+        "judgement",
+        "stochastic"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "block.nature",
+      "block": "blocking_condition",
+      "kind": "scalar",
+      "values_total": 5,
+      "values_touched": 5,
+      "assigned_sources": 38,
+      "missing_values": [],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "block.owner",
+      "block": "blocking_condition",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 2,
+      "assigned_sources": 13,
+      "missing_values": [
+        "ownerless",
+        "none"
+      ],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "chain.class",
+      "block": "demand_money",
+      "kind": "scalar",
+      "values_total": 5,
+      "values_touched": 5,
+      "assigned_sources": 13,
+      "missing_values": [],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "cohort.state",
+      "block": "process_shape",
+      "kind": "scalar",
+      "values_total": 5,
+      "values_touched": 1,
+      "assigned_sources": 1,
+      "missing_values": [
+        "none",
+        "ranked_within_cohort",
+        "bench_pool",
+        "lottery_among_equals"
+      ],
+      "unknown_declarations": 1,
+      "status": "thin"
+    },
+    {
+      "coordinate": "cost.borne_by",
+      "block": "demand_money",
+      "kind": "subset",
+      "values_total": 5,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "employer",
+        "agency",
+        "ats_vendor",
+        "job_board",
+        "candidate"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "distortion.origin",
+      "block": "communication",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "none",
+        "speaker",
+        "channel",
+        "relay"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "domain",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 6,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "software",
+        "other_technical",
+        "non_technical",
+        "client_vendor_staffing",
+        "public_sector",
+        "regulated_profession"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "entry.path",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 9,
+      "values_touched": 1,
+      "assigned_sources": 3,
+      "missing_values": [
+        "outbound",
+        "referral",
+        "agency_submission",
+        "internal_transfer",
+        "rehire",
+        "contract_to_hire",
+        "dated_re_entry",
+        "speculative_pool"
+      ],
+      "unknown_declarations": 1,
+      "status": "thin"
+    },
+    {
+      "coordinate": "epilogue",
+      "block": "time_memory_epilogue",
+      "kind": "scalar",
+      "values_total": 7,
+      "values_touched": 2,
+      "assigned_sources": 7,
+      "missing_values": [
+        "post_acceptance_revocation",
+        "no_show_candidate",
+        "no_show_employer",
+        "probation_confirmed",
+        "probation_terminated"
+      ],
+      "unknown_declarations": 0,
+      "status": "thin"
+    },
+    {
+      "coordinate": "era.regime",
+      "block": "exterior_status",
+      "kind": "scalar",
+      "values_total": 5,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "record_funding",
+        "zero_rates_same_year_deduction",
+        "rates_up_payroll_repriced",
+        "fixed_seats",
+        "unclassified"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "evidence.level",
+      "block": "epistemic_status",
+      "kind": "scalar",
+      "values_total": 7,
+      "values_touched": 5,
+      "assigned_sources": 119,
+      "missing_values": [
+        "observed",
+        "contradicted"
+      ],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "evidence.role",
+      "block": "epistemic_status",
+      "kind": "scalar",
+      "values_total": 6,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "descriptive_fact",
+        "mechanism_support",
+        "claim_scoped",
+        "edge_scoped",
+        "intervention_effectiveness",
+        "synthetic_labelled"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "funding.source",
+      "block": "demand_money",
+      "kind": "scalar",
+      "values_total": 7,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "internal_budget",
+        "signed_client_contract",
+        "unwon_bid",
+        "public_statutory",
+        "investment_round",
+        "credit",
+        "none"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "funding.state",
+      "block": "demand_money",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "committed",
+        "conditional",
+        "withdrawn",
+        "absent"
+      ],
+      "unknown_declarations": 3,
+      "status": "absent"
+    },
+    {
+      "coordinate": "jurisdiction",
+      "block": "exterior_status",
+      "kind": "scalar",
+      "values_total": 6,
+      "values_touched": 1,
+      "assigned_sources": 1,
+      "missing_values": [
+        "us",
+        "uk",
+        "eu",
+        "ua",
+        "other"
+      ],
+      "unknown_declarations": 0,
+      "status": "thin"
+    },
+    {
+      "coordinate": "latency.class",
+      "block": "derived",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "within_expected",
+        "over_expected",
+        "over_max",
+        "unbounded"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "latitude.candidate",
+      "block": "blocking_condition",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "rigid",
+        "slack",
+        "slack_conditional",
+        "unknown"
+      ],
+      "unknown_declarations": 3,
+      "status": "absent"
+    },
+    {
+      "coordinate": "latitude.employer",
+      "block": "blocking_condition",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "rigid",
+        "slack_inside",
+        "slack_outside_party",
+        "unknown"
+      ],
+      "unknown_declarations": 4,
+      "status": "absent"
+    },
+    {
+      "coordinate": "memory.carried",
+      "block": "time_memory_epilogue",
+      "kind": "subset",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "talent_pool",
+        "re_entry_standing",
+        "do_not_rehire",
+        "trained_ranker"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "military.status",
+      "block": "exterior_status",
+      "kind": "scalar",
+      "values_total": 10,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "not_applicable",
+        "registered_liable",
+        "deferred",
+        "reserved_by_employer",
+        "unfit",
+        "excluded",
+        "reservist",
+        "serving",
+        "demobilised_veteran",
+        "registration_violation"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "outcome.signal",
+      "block": "derived",
+      "kind": "scalar",
+      "values_total": 10,
+      "values_touched": 5,
+      "assigned_sources": 6,
+      "missing_values": [
+        "specific_skill_feedback",
+        "compensation_change",
+        "successful_hire",
+        "candidate_declines",
+        "not_terminal"
+      ],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "party.set",
+      "block": "parties",
+      "kind": "subset",
+      "values_total": 11,
+      "values_touched": 6,
+      "assigned_sources": 65,
+      "missing_values": [
+        "interviewer",
+        "approver",
+        "public_policy",
+        "agency",
+        "referrer"
+      ],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "plurality",
+      "block": "process_shape",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "single",
+        "parallel_processes",
+        "competing_offers",
+        "repeat_same_employer"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "population.affected",
+      "block": "exterior_status",
+      "kind": "subset",
+      "values_total": 18,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "career_gap",
+        "early_career",
+        "age",
+        "caregiving",
+        "disability_accommodation",
+        "neurodivergence",
+        "mental_health",
+        "race_ethnicity",
+        "gender_pregnancy",
+        "religion",
+        "orientation_identity",
+        "criminal_record",
+        "military_status",
+        "displacement",
+        "origin_territory",
+        "language",
+        "security_vetting",
+        "cross_border"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "principal.side",
+      "block": "parties",
+      "kind": "scalar",
+      "values_total": 4,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "employer_evaluates",
+        "candidate_evaluates",
+        "intermediary_decides",
+        "exterior_force"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "requisition.state",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 6,
+      "values_touched": 2,
+      "assigned_sources": 2,
+      "missing_values": [
+        "funded_open",
+        "funded_pre_committed",
+        "conditional_on_bid",
+        "never_existed"
+      ],
+      "unknown_declarations": 1,
+      "status": "thin"
+    },
+    {
+      "coordinate": "stage.terminal",
+      "block": "derived",
+      "kind": "scalar",
+      "values_total": 12,
+      "values_touched": 12,
+      "assigned_sources": 78,
+      "missing_values": [],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "statement.fidelity",
+      "block": "communication",
+      "kind": "scalar",
+      "values_total": 5,
+      "values_touched": 2,
+      "assigned_sources": 32,
+      "missing_values": [
+        "distortion",
+        "noise",
+        "void"
+      ],
+      "unknown_declarations": 0,
+      "status": "thin"
+    },
+    {
+      "coordinate": "visibility.candidate",
+      "block": "epistemic_status",
+      "kind": "scalar",
+      "values_total": 3,
+      "values_touched": 3,
+      "assigned_sources": 52,
+      "missing_values": [],
+      "unknown_declarations": 0
+    },
+    {
+      "coordinate": "visibility.summary",
+      "block": "derived",
+      "kind": "scalar",
+      "values_total": 3,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "legible",
+        "partial",
+        "opaque"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "worksite.anchor",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 7,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "none",
+        "named_city",
+        "commute_radius",
+        "country",
+        "timezone_band",
+        "client_site",
+        "entity_jurisdiction"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "worksite.cadence",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 6,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "none",
+        "occasional",
+        "1_per_week",
+        "2_3_per_week",
+        "4_5_per_week",
+        "unstated"
+      ],
+      "unknown_declarations": 0,
+      "status": "absent"
+    },
+    {
+      "coordinate": "worksite.mode",
+      "block": "entry_object",
+      "kind": "scalar",
+      "values_total": 8,
+      "values_touched": 0,
+      "assigned_sources": 0,
+      "missing_values": [
+        "onsite",
+        "hybrid_fixed",
+        "hybrid_flexible",
+        "remote_metro",
+        "remote_national",
+        "remote_global",
+        "field_or_travel",
+        "unstated"
+      ],
+      "unknown_declarations": 6,
+      "status": "absent"
+    }
+  ],
+  "priority_targets": [
+    {
+      "id": "coordinate:arrangement",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "arrangement",
+      "reason": "arrangement has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:block.arity",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "block.arity",
+      "reason": "block.arity has no machine-authored assignment in the current lift.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:block.determinacy",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "block.determinacy",
+      "reason": "block.determinacy has no machine-authored assignment in the current lift.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:cost.borne_by",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "cost.borne_by",
+      "reason": "cost.borne_by has no machine-authored assignment in the current lift.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:domain",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "domain",
+      "reason": "domain has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:era.regime",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "era.regime",
+      "reason": "era.regime has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:funding.source",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "funding.source",
+      "reason": "funding.source has no machine-authored assignment in the current lift.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:funding.state",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "funding.state",
+      "reason": "funding.state has no machine-authored assignment in the current lift.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:latitude.candidate",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "latitude.candidate",
+      "reason": "latitude.candidate has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:latitude.employer",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "latitude.employer",
+      "reason": "latitude.employer has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:military.status",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "military.status",
+      "reason": "military.status has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:population.affected",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "population.affected",
+      "reason": "population.affected has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:worksite.anchor",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "worksite.anchor",
+      "reason": "worksite.anchor has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:worksite.cadence",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "worksite.cadence",
+      "reason": "worksite.cadence has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:worksite.mode",
+      "kind": "coordinate",
+      "priority": "critical",
+      "status": "absent",
+      "coordinate": "worksite.mode",
+      "reason": "worksite.mode has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "record",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:entry.path:cohort.state",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "entry.path",
+        "right": "cohort.state",
+        "touched_slots": 0,
+        "total_slots": 45,
+        "coverage_ratio": 0
+      },
+      "reason": "entry.path × cohort.state has 0/45 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:evidence.level:evidence.role",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "evidence.level",
+        "right": "evidence.role",
+        "touched_slots": 0,
+        "total_slots": 42,
+        "coverage_ratio": 0
+      },
+      "reason": "evidence.level × evidence.role has 0/42 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:funding.source:requisition.state",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "funding.source",
+        "right": "requisition.state",
+        "touched_slots": 0,
+        "total_slots": 42,
+        "coverage_ratio": 0
+      },
+      "reason": "funding.source × requisition.state has 0/42 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:latitude.employer:latitude.candidate",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "latitude.employer",
+        "right": "latitude.candidate",
+        "touched_slots": 0,
+        "total_slots": 16,
+        "coverage_ratio": 0
+      },
+      "reason": "latitude.employer × latitude.candidate has 0/16 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:military.status:jurisdiction",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "military.status",
+        "right": "jurisdiction",
+        "touched_slots": 0,
+        "total_slots": 60,
+        "coverage_ratio": 0
+      },
+      "reason": "military.status × jurisdiction has 0/60 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:military.status:population.affected",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "military.status",
+        "right": "population.affected",
+        "touched_slots": 0,
+        "total_slots": 180,
+        "coverage_ratio": 0
+      },
+      "reason": "military.status × population.affected has 0/180 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:worksite.anchor:military.status",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "worksite.anchor",
+        "right": "military.status",
+        "touched_slots": 0,
+        "total_slots": 70,
+        "coverage_ratio": 0
+      },
+      "reason": "worksite.anchor × military.status has 0/70 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:worksite.cadence:population.affected",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "worksite.cadence",
+        "right": "population.affected",
+        "touched_slots": 0,
+        "total_slots": 108,
+        "coverage_ratio": 0
+      },
+      "reason": "worksite.cadence × population.affected has 0/108 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "pairwise:worksite.mode:population.affected",
+      "kind": "pairwise",
+      "priority": "critical",
+      "status": "absent",
+      "pair": {
+        "left": "worksite.mode",
+        "right": "population.affected",
+        "touched_slots": 0,
+        "total_slots": 144,
+        "coverage_ratio": 0
+      },
+      "reason": "worksite.mode × population.affected has 0/144 observed authored combinations.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "scenario_unknown:scenario.downlevelling_trap:arrangement",
+      "kind": "scenario_unknown",
+      "priority": "high",
+      "status": "unknown_in_scenario",
+      "coordinate": "arrangement",
+      "scenario": "scenario.downlevelling_trap",
+      "reason": "scenario.downlevelling_trap explicitly marks arrangement as unknown: Down-levelling and delayed starts can occur in permanent, contract, or contract-to-hire arrangements.",
+      "needed": [
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:arrangement:contractor",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "arrangement",
+      "value": "contractor",
+      "reason": "arrangement.contractor has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:arrangement:freelance",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "arrangement",
+      "value": "freelance",
+      "reason": "arrangement.freelance has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:arrangement:permanent",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "arrangement",
+      "value": "permanent",
+      "reason": "arrangement.permanent has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:arrangement:temporary_seasonal",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "arrangement",
+      "value": "temporary_seasonal",
+      "reason": "arrangement.temporary_seasonal has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:bargain.state",
+      "kind": "coordinate",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "bargain.state",
+      "reason": "bargain.state has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:bargain.state:disjoint",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "bargain.state",
+      "value": "disjoint",
+      "reason": "bargain.state.disjoint has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:bargain.state:not_negotiated",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "bargain.state",
+      "value": "not_negotiated",
+      "reason": "bargain.state.not_negotiated has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:bargain.state:overlap",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "bargain.state",
+      "value": "overlap",
+      "reason": "bargain.state.overlap has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:bargain.state:undetermined",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "bargain.state",
+      "value": "undetermined",
+      "reason": "bargain.state.undetermined has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:block.arity:absolute",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "block.arity",
+      "value": "absolute",
+      "reason": "block.arity.absolute has no current example.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:block.arity:comparative",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "block.arity",
+      "value": "comparative",
+      "reason": "block.arity.comparative has no current example.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:block.determinacy:deterministic",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "block.determinacy",
+      "value": "deterministic",
+      "reason": "block.determinacy.deterministic has no current example.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:block.determinacy:judgement",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "block.determinacy",
+      "value": "judgement",
+      "reason": "block.determinacy.judgement has no current example.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:block.determinacy:stochastic",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "block.determinacy",
+      "value": "stochastic",
+      "reason": "block.determinacy.stochastic has no current example.",
+      "needed": [
+        "mechanism",
+        "observation",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:cohort.state",
+      "kind": "coordinate",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "cohort.state",
+      "reason": "cohort.state is thin: 1/5 values touched across 1 source(s).",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "scenario_unknown:scenario.closed_then_reposted:cohort.state",
+      "kind": "scenario_unknown",
+      "priority": "high",
+      "status": "unknown_in_scenario",
+      "coordinate": "cohort.state",
+      "scenario": "scenario.closed_then_reposted",
+      "reason": "scenario.closed_then_reposted explicitly marks cohort.state as unknown: Internal-fill is compatible, but the scenario explicitly excludes proving that someone was already chosen.",
+      "needed": [
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:cohort.state:bench_pool",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "cohort.state",
+      "value": "bench_pool",
+      "reason": "cohort.state.bench_pool has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:cohort.state:lottery_among_equals",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "cohort.state",
+      "value": "lottery_among_equals",
+      "reason": "cohort.state.lottery_among_equals has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:cohort.state:none",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "cohort.state",
+      "value": "none",
+      "reason": "cohort.state.none has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:cohort.state:ranked_within_cohort",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "cohort.state",
+      "value": "ranked_within_cohort",
+      "reason": "cohort.state.ranked_within_cohort has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:cost.borne_by:agency",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "cost.borne_by",
+      "value": "agency",
+      "reason": "cost.borne_by.agency has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:cost.borne_by:ats_vendor",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "cost.borne_by",
+      "value": "ats_vendor",
+      "reason": "cost.borne_by.ats_vendor has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:cost.borne_by:employer",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "cost.borne_by",
+      "value": "employer",
+      "reason": "cost.borne_by.employer has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:cost.borne_by:job_board",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "cost.borne_by",
+      "value": "job_board",
+      "reason": "cost.borne_by.job_board has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "coordinate:distortion.origin",
+      "kind": "coordinate",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "distortion.origin",
+      "reason": "distortion.origin has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:distortion.origin:channel",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "distortion.origin",
+      "value": "channel",
+      "reason": "distortion.origin.channel has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:distortion.origin:none",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "distortion.origin",
+      "value": "none",
+      "reason": "distortion.origin.none has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:distortion.origin:relay",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "distortion.origin",
+      "value": "relay",
+      "reason": "distortion.origin.relay has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:distortion.origin:speaker",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "distortion.origin",
+      "value": "speaker",
+      "reason": "distortion.origin.speaker has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:domain:client_vendor_staffing",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "domain",
+      "value": "client_vendor_staffing",
+      "reason": "domain.client_vendor_staffing has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:domain:non_technical",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "domain",
+      "value": "non_technical",
+      "reason": "domain.non_technical has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:domain:other_technical",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "domain",
+      "value": "other_technical",
+      "reason": "domain.other_technical has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:domain:software",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "domain",
+      "value": "software",
+      "reason": "domain.software has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:entry.path",
+      "kind": "coordinate",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "entry.path",
+      "reason": "entry.path is thin: 1/9 values touched across 3 source(s).",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "scenario_unknown:scenario.ats_knockout:entry.path",
+      "kind": "scenario_unknown",
+      "priority": "high",
+      "status": "unknown_in_scenario",
+      "coordinate": "entry.path",
+      "scenario": "scenario.ats_knockout",
+      "reason": "scenario.ats_knockout explicitly marks entry.path as unknown: The observations combine outreach and rejection; the scenario does not say whether the candidate applied inbound.",
+      "needed": [
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:entry.path:agency_submission",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "entry.path",
+      "value": "agency_submission",
+      "reason": "entry.path.agency_submission has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:entry.path:internal_transfer",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "entry.path",
+      "value": "internal_transfer",
+      "reason": "entry.path.internal_transfer has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:entry.path:outbound",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "entry.path",
+      "value": "outbound",
+      "reason": "entry.path.outbound has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:entry.path:referral",
+      "kind": "value",
+      "priority": "high",
+      "status": "thin",
+      "coordinate": "entry.path",
+      "value": "referral",
+      "reason": "entry.path.referral has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:era.regime:fixed_seats",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "era.regime",
+      "value": "fixed_seats",
+      "reason": "era.regime.fixed_seats has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:era.regime:rates_up_payroll_repriced",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "era.regime",
+      "value": "rates_up_payroll_repriced",
+      "reason": "era.regime.rates_up_payroll_repriced has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:era.regime:record_funding",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "era.regime",
+      "value": "record_funding",
+      "reason": "era.regime.record_funding has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:era.regime:zero_rates_same_year_deduction",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "era.regime",
+      "value": "zero_rates_same_year_deduction",
+      "reason": "era.regime.zero_rates_same_year_deduction has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "coordinate:evidence.role",
+      "kind": "coordinate",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "evidence.role",
+      "reason": "evidence.role has no machine-authored assignment in the current lift.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:evidence.role:claim_scoped",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "evidence.role",
+      "value": "claim_scoped",
+      "reason": "evidence.role.claim_scoped has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:evidence.role:descriptive_fact",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "evidence.role",
+      "value": "descriptive_fact",
+      "reason": "evidence.role.descriptive_fact has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:evidence.role:edge_scoped",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "evidence.role",
+      "value": "edge_scoped",
+      "reason": "evidence.role.edge_scoped has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:evidence.role:mechanism_support",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "evidence.role",
+      "value": "mechanism_support",
+      "reason": "evidence.role.mechanism_support has no current example.",
+      "needed": [
+        "scenario",
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "value:funding.source:internal_budget",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "funding.source",
+      "value": "internal_budget",
+      "reason": "funding.source.internal_budget has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:funding.source:public_statutory",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "funding.source",
+      "value": "public_statutory",
+      "reason": "funding.source.public_statutory has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:funding.source:signed_client_contract",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "funding.source",
+      "value": "signed_client_contract",
+      "reason": "funding.source.signed_client_contract has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "value:funding.source:unwon_bid",
+      "kind": "value",
+      "priority": "high",
+      "status": "absent",
+      "coordinate": "funding.source",
+      "value": "unwon_bid",
+      "reason": "funding.source.unwon_bid has no current example.",
+      "needed": [
+        "record",
+        "evidence",
+        "case_assignment"
+      ]
+    },
+    {
+      "id": "scenario_unknown:scenario.closed_then_reposted:funding.state",
+      "kind": "scenario_unknown",
+      "priority": "high",
+      "status": "unknown_in_scenario",
+      "coordinate": "funding.state",
+      "scenario": "scenario.closed_then_reposted",
+      "reason": "scenario.closed_then_reposted explicitly marks funding.state as unknown: Budget cancellation and role redefinition are both compatible, so funding cannot be read from the surface.",
+      "needed": [
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "scenario_unknown:scenario.ghost_refresh:funding.state",
+      "kind": "scenario_unknown",
+      "priority": "high",
+      "status": "unknown_in_scenario",
+      "coordinate": "funding.state",
+      "scenario": "scenario.ghost_refresh",
+      "reason": "scenario.ghost_refresh explicitly marks funding.state as unknown: A refreshed posting may be funded, stale, speculative, or awaiting approval.",
+      "needed": [
+        "case_assignment",
+        "evidence"
+      ]
+    },
+    {
+      "id": "scenario_unknown:scenario.post_panel_freeze:funding.state",
+      "kind": "scenario_unknown",
+      "priority": "high",
+      "status": "unknown_in_scenario",
+      "coordinate": "funding.state",
+      "scenario": "scenario.post_panel_freeze",
+      "reason": "scenario.post_panel_freeze explicitly marks funding.state as unknown: The freeze could be budget, approval, prioritization, or internal-fill driven.",
+      "needed": [
+        "case_assignment",
+        "evidence"
+      ]
+    }
+  ],
+  "pairwise_skews": [
+    {
+      "left": "population.affected",
+      "right": "stage.terminal",
+      "touched_slots": 0,
+      "total_slots": 216,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "party.set",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 198,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "military.status",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 180,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "outcome.signal",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 180,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "entry.path",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 162,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "population.affected",
+      "right": "worksite.mode",
+      "touched_slots": 0,
+      "total_slots": 144,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "epilogue",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 126,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "evidence.level",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 126,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "funding.source",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 126,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "population.affected",
+      "right": "worksite.anchor",
+      "touched_slots": 0,
+      "total_slots": 126,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "military.status",
+      "right": "stage.terminal",
+      "touched_slots": 0,
+      "total_slots": 120,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "military.status",
+      "right": "party.set",
+      "touched_slots": 0,
+      "total_slots": 110,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "arrangement",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 108,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "domain",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 108,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "evidence.role",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 108,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "jurisdiction",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 108,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "population.affected",
+      "right": "requisition.state",
+      "touched_slots": 0,
+      "total_slots": 108,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "population.affected",
+      "right": "worksite.cadence",
+      "touched_slots": 0,
+      "total_slots": 108,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "military.status",
+      "right": "outcome.signal",
+      "touched_slots": 0,
+      "total_slots": 100,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "stage.terminal",
+      "right": "worksite.mode",
+      "touched_slots": 0,
+      "total_slots": 96,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "block.nature",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "chain.class",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "cohort.state",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "cost.borne_by",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "entry.path",
+      "right": "military.status",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "era.regime",
+      "right": "population.affected",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "population.affected",
+      "right": "statement.fidelity",
+      "touched_slots": 0,
+      "total_slots": 90,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "party.set",
+      "right": "worksite.mode",
+      "touched_slots": 0,
+      "total_slots": 88,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "funding.source",
+      "right": "stage.terminal",
+      "touched_slots": 0,
+      "total_slots": 84,
+      "coverage_ratio": 0
+    },
+    {
+      "left": "stage.terminal",
+      "right": "worksite.anchor",
+      "touched_slots": 0,
+      "total_slots": 84,
+      "coverage_ratio": 0
+    }
+  ]
+}

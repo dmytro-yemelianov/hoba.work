@@ -27,9 +27,16 @@ generated at:
 - `/data/latest/case-lift.json` — current per-source assignments and rule trace;
 - `/data/releases/<registry-version>/case-lift.json` — release snapshot.
 
+The acquisition backlog is generated from that lift and the executable
+case-space denominator at:
+
+- `/data/latest/coverage-backlog.json` — current missing/thin coordinate,
+  value, scenario-unknown, and strategic pairwise targets;
+- `/data/releases/<registry-version>/coverage-backlog.json` — release snapshot.
+
 Run `pnpm audit:coverage` to print the weakest dimensions and every partial or
-absent slot, plus the structured-data lower bound from the lift. The detailed
-editorial baseline is recorded in
+absent slot, plus the structured-data lower bound from the lift and the top
+acquisition targets. The detailed editorial baseline is recorded in
 `docs/audits/2026-09-05-content-and-coverage-audit.md`; the lift semantics are
 recorded in `docs/decided/case-space-lift.md`.
 
@@ -44,6 +51,7 @@ are never hand-authored in documentation.
 | Scenarios | `data/scenarios/*.yaml` | Validated compositions over canonical IDs; not an entity type |
 | Coverage boundary | `data/coverage/model.json` | Authored inventory of covered, partial, and absent situation slots |
 | Case-space lift | `packages/validator/src/case-lift.ts` | Deterministic lower-bound projection from structured fields into partial fibres |
+| Acquisition backlog | `packages/validator/src/coverage-backlog.ts` | Generated targets for missing/thin coordinates, values, scenario unknowns, and strategic 2-wise skews |
 | Archetypes | `data/archetypes/*.yaml` | Presentation-only nicknames and grid positions; not evidence |
 | Formal substrate | Produced by `lift(bundle)` | Derived output; never authored or edited as a second model |
 | REST, OpenAPI, schemas, exports, LLM text, Lean, worker bundle | Build output | Deterministic projections; never edit by hand |

@@ -1,0 +1,6754 @@
+{
+  "version": "1.0.0",
+  "method": {
+    "unit": "partial case assignment per canonical entity or scenario",
+    "boundary": "structured fields only; prose is not classified by this lift",
+    "limitation": "This is a lower bound on corpus coverage. Unknown coordinates mean not machine-authored yet, not impossible."
+  },
+  "summary": {
+    "sources": 119,
+    "assigned_sources": 119,
+    "admissible": 119,
+    "refuted": 0,
+    "undetermined": 0,
+    "coordinates_touched": 14,
+    "coordinates_total": 71,
+    "one_wise_slots_touched": 52,
+    "one_wise_slots_total": 261,
+    "pairwise_slots_touched": 332,
+    "pairwise_sources": 119,
+    "declared_coordinates": 42,
+    "declared_known": 15,
+    "declared_inferred": 7,
+    "declared_unknown": 20,
+    "declared_not_applicable": 0,
+    "weakest_coordinates": [
+      {
+        "coordinate": "cohort.state",
+        "kind": "scalar",
+        "assigned_sources": 1,
+        "values": {
+          "pre_committed_internal": 1
+        }
+      },
+      {
+        "coordinate": "jurisdiction",
+        "kind": "scalar",
+        "assigned_sources": 1,
+        "values": {
+          "cross_border": 1
+        }
+      },
+      {
+        "coordinate": "requisition.state",
+        "kind": "scalar",
+        "assigned_sources": 2,
+        "values": {
+          "closed_reposted": 1,
+          "stale_orphaned": 1
+        }
+      },
+      {
+        "coordinate": "entry.path",
+        "kind": "scalar",
+        "assigned_sources": 3,
+        "values": {
+          "inbound": 3
+        }
+      },
+      {
+        "coordinate": "outcome.signal",
+        "kind": "scalar",
+        "assigned_sources": 6,
+        "values": {
+          "no_response": 1,
+          "generic_rejection": 1,
+          "closure_or_repost": 2,
+          "offer_delay_or_rescind": 1,
+          "internal_fill": 1
+        }
+      },
+      {
+        "coordinate": "epilogue",
+        "kind": "scalar",
+        "assigned_sources": 7,
+        "values": {
+          "not_reached": 6,
+          "start_date_shift": 1
+        }
+      },
+      {
+        "coordinate": "block.owner",
+        "kind": "scalar",
+        "assigned_sources": 13,
+        "values": {
+          "inside": 10,
+          "outside_party": 3
+        }
+      },
+      {
+        "coordinate": "chain.class",
+        "kind": "scalar",
+        "assigned_sources": 13,
+        "values": {
+          "none": 5,
+          "candidate_runway": 2,
+          "client_margin": 2,
+          "agency_fee": 1,
+          "internal_payroll": 3
+        }
+      },
+      {
+        "coordinate": "statement.fidelity",
+        "kind": "scalar",
+        "assigned_sources": 32,
+        "values": {
+          "direct": 31,
+          "euphemism": 1
+        }
+      },
+      {
+        "coordinate": "block.nature",
+        "kind": "scalar",
+        "assigned_sources": 38,
+        "values": {
+          "bias": 7,
+          "incentive": 9,
+          "noise": 6,
+          "rule": 14,
+          "void": 2
+        }
+      }
+    ],
+    "strongest_coordinates": [
+      {
+        "coordinate": "evidence.level",
+        "kind": "scalar",
+        "assigned_sources": 119,
+        "values": {
+          "proven": 19,
+          "strongly_supported": 7,
+          "supported": 68,
+          "compatible": 8,
+          "unknown": 17
+        }
+      },
+      {
+        "coordinate": "stage.terminal",
+        "kind": "scalar",
+        "assigned_sources": 78,
+        "values": {
+          "ingestion": 7,
+          "client": 1,
+          "compensation": 2,
+          "offer": 9,
+          "hiring-manager": 1,
+          "screening": 7,
+          "post-offer": 14,
+          "sourcing": 5,
+          "recruiter": 8,
+          "pre-posting": 1,
+          "technical": 10,
+          "team": 13
+        }
+      },
+      {
+        "coordinate": "party.set",
+        "kind": "subset",
+        "assigned_sources": 65,
+        "values": {
+          "hiring_manager": 22,
+          "employer_policy": 23,
+          "candidate": 13,
+          "ats_vendor": 16,
+          "recruiter": 16,
+          "client": 1
+        }
+      },
+      {
+        "coordinate": "visibility.candidate",
+        "kind": "scalar",
+        "assigned_sources": 52,
+        "values": {
+          "partial": 21,
+          "opaque": 23,
+          "legible": 8
+        }
+      },
+      {
+        "coordinate": "block.nature",
+        "kind": "scalar",
+        "assigned_sources": 38,
+        "values": {
+          "bias": 7,
+          "incentive": 9,
+          "noise": 6,
+          "rule": 14,
+          "void": 2
+        }
+      },
+      {
+        "coordinate": "statement.fidelity",
+        "kind": "scalar",
+        "assigned_sources": 32,
+        "values": {
+          "direct": 31,
+          "euphemism": 1
+        }
+      },
+      {
+        "coordinate": "chain.class",
+        "kind": "scalar",
+        "assigned_sources": 13,
+        "values": {
+          "none": 5,
+          "candidate_runway": 2,
+          "client_margin": 2,
+          "agency_fee": 1,
+          "internal_payroll": 3
+        }
+      },
+      {
+        "coordinate": "block.owner",
+        "kind": "scalar",
+        "assigned_sources": 13,
+        "values": {
+          "inside": 10,
+          "outside_party": 3
+        }
+      },
+      {
+        "coordinate": "epilogue",
+        "kind": "scalar",
+        "assigned_sources": 7,
+        "values": {
+          "not_reached": 6,
+          "start_date_shift": 1
+        }
+      },
+      {
+        "coordinate": "outcome.signal",
+        "kind": "scalar",
+        "assigned_sources": 6,
+        "values": {
+          "no_response": 1,
+          "generic_rejection": 1,
+          "closure_or_repost": 2,
+          "offer_delay_or_rescind": 1,
+          "internal_fill": 1
+        }
+      }
+    ]
+  },
+  "coordinates": [
+    {
+      "coordinate": "block.nature",
+      "kind": "scalar",
+      "assigned_sources": 38,
+      "values": {
+        "bias": 7,
+        "incentive": 9,
+        "noise": 6,
+        "rule": 14,
+        "void": 2
+      }
+    },
+    {
+      "coordinate": "block.owner",
+      "kind": "scalar",
+      "assigned_sources": 13,
+      "values": {
+        "inside": 10,
+        "outside_party": 3
+      }
+    },
+    {
+      "coordinate": "chain.class",
+      "kind": "scalar",
+      "assigned_sources": 13,
+      "values": {
+        "none": 5,
+        "candidate_runway": 2,
+        "client_margin": 2,
+        "agency_fee": 1,
+        "internal_payroll": 3
+      }
+    },
+    {
+      "coordinate": "cohort.state",
+      "kind": "scalar",
+      "assigned_sources": 1,
+      "values": {
+        "pre_committed_internal": 1
+      }
+    },
+    {
+      "coordinate": "entry.path",
+      "kind": "scalar",
+      "assigned_sources": 3,
+      "values": {
+        "inbound": 3
+      }
+    },
+    {
+      "coordinate": "epilogue",
+      "kind": "scalar",
+      "assigned_sources": 7,
+      "values": {
+        "not_reached": 6,
+        "start_date_shift": 1
+      }
+    },
+    {
+      "coordinate": "evidence.level",
+      "kind": "scalar",
+      "assigned_sources": 119,
+      "values": {
+        "proven": 19,
+        "strongly_supported": 7,
+        "supported": 68,
+        "compatible": 8,
+        "unknown": 17
+      }
+    },
+    {
+      "coordinate": "jurisdiction",
+      "kind": "scalar",
+      "assigned_sources": 1,
+      "values": {
+        "cross_border": 1
+      }
+    },
+    {
+      "coordinate": "outcome.signal",
+      "kind": "scalar",
+      "assigned_sources": 6,
+      "values": {
+        "no_response": 1,
+        "generic_rejection": 1,
+        "closure_or_repost": 2,
+        "offer_delay_or_rescind": 1,
+        "internal_fill": 1
+      }
+    },
+    {
+      "coordinate": "party.set",
+      "kind": "subset",
+      "assigned_sources": 65,
+      "values": {
+        "hiring_manager": 22,
+        "employer_policy": 23,
+        "candidate": 13,
+        "ats_vendor": 16,
+        "recruiter": 16,
+        "client": 1
+      }
+    },
+    {
+      "coordinate": "requisition.state",
+      "kind": "scalar",
+      "assigned_sources": 2,
+      "values": {
+        "closed_reposted": 1,
+        "stale_orphaned": 1
+      }
+    },
+    {
+      "coordinate": "stage.terminal",
+      "kind": "scalar",
+      "assigned_sources": 78,
+      "values": {
+        "ingestion": 7,
+        "client": 1,
+        "compensation": 2,
+        "offer": 9,
+        "hiring-manager": 1,
+        "screening": 7,
+        "post-offer": 14,
+        "sourcing": 5,
+        "recruiter": 8,
+        "pre-posting": 1,
+        "technical": 10,
+        "team": 13
+      }
+    },
+    {
+      "coordinate": "statement.fidelity",
+      "kind": "scalar",
+      "assigned_sources": 32,
+      "values": {
+        "direct": 31,
+        "euphemism": 1
+      }
+    },
+    {
+      "coordinate": "visibility.candidate",
+      "kind": "scalar",
+      "assigned_sources": 52,
+      "values": {
+        "partial": 21,
+        "opaque": 23,
+        "legible": 8
+      }
+    }
+  ],
+  "lifts": [
+    {
+      "source": {
+        "id": "bar.application_ingestion",
+        "type": "barrier",
+        "title": "Application Ingestion"
+      },
+      "assignment": {
+        "stage.terminal": "ingestion",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.automated_filter_parser_threshold",
+        "type": "barrier",
+        "title": "Automated Filter & Parser Threshold"
+      },
+      "assignment": {
+        "stage.terminal": "ingestion",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.client_profile_approval_and_client_interview",
+        "type": "barrier",
+        "title": "Client Profile Approval and Client Interview"
+      },
+      "assignment": {
+        "stage.terminal": "client",
+        "evidence.level": "strongly_supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "client",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.compensation_levelling_reconciliation",
+        "type": "barrier",
+        "title": "Compensation & Levelling Reconciliation"
+      },
+      "assignment": {
+        "stage.terminal": "compensation",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "compensation",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.headcount_executive_budget_approval",
+        "type": "barrier",
+        "title": "Headcount & Executive Budget Approval"
+      },
+      "assignment": {
+        "stage.terminal": "offer",
+        "evidence.level": "strongly_supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.hiring_manager_in_depth_review",
+        "type": "barrier",
+        "title": "Hiring Manager In-Depth Review"
+      },
+      "assignment": {
+        "stage.terminal": "hiring-manager",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "hiring-manager",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.inbound_screening_triage",
+        "type": "barrier",
+        "title": "Inbound Screening & Triage"
+      },
+      "assignment": {
+        "stage.terminal": "screening",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.offer_closing_contract_execution",
+        "type": "barrier",
+        "title": "Offer Closing & Contract Execution"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "evidence.level": "strongly_supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.outbound_sourcing_talent_pool_contact",
+        "type": "barrier",
+        "title": "Outbound Sourcing & Talent Pool Contact"
+      },
+      "assignment": {
+        "stage.terminal": "sourcing",
+        "evidence.level": "strongly_supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.probation_period_post_start_confirmation",
+        "type": "barrier",
+        "title": "Probation Period & Post-Start Confirmation"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.recruiter_screening_call",
+        "type": "barrier",
+        "title": "Recruiter Screening Call"
+      },
+      "assignment": {
+        "stage.terminal": "recruiter",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.reference_background_verification",
+        "type": "barrier",
+        "title": "Reference & Background Verification"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.requisition_approval_public_posting",
+        "type": "barrier",
+        "title": "Requisition Approval & Public Posting"
+      },
+      "assignment": {
+        "stage.terminal": "pre-posting",
+        "evidence.level": "strongly_supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "pre-posting",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.take_home_work_sample_evaluation",
+        "type": "barrier",
+        "title": "Take-Home / Work Sample Evaluation"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.team_cross_functional_panel",
+        "type": "barrier",
+        "title": "Team & Cross-Functional Panel"
+      },
+      "assignment": {
+        "stage.terminal": "team",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "bar.technical_screen_live_assessment",
+        "type": "barrier",
+        "title": "Technical Screen / Live Assessment"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "barrier.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "barrier.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.a_named_decider_and_a_written_rule_for_a_split_panel",
+        "type": "intervention",
+        "title": "A named decider and a written rule for a split panel"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.auto_close_stale_job_requisitions",
+        "type": "intervention",
+        "title": "Auto-Close Stale Job Requisitions"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.bench_availability_declared_at_each_stage_gate",
+        "type": "intervention",
+        "title": "Bench availability declared at each stage gate"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.candidate_ats_parser_conformance_test_utility",
+        "type": "intervention",
+        "title": "Candidate ATS Parser Conformance Test Utility"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.candidate_work_index_submitted_with_the_application",
+        "type": "intervention",
+        "title": "Candidate Work Index Submitted With the Application"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.contractable_jurisdictions_listed_in_the_posting",
+        "type": "intervention",
+        "title": "Contractable jurisdictions listed in the posting"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.critique_injected_on_script_in_the_collaborative_exercise",
+        "type": "intervention",
+        "title": "Critique injected on script in the collaborative exercise"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.dated_funding_certification_before_the_final_round",
+        "type": "intervention",
+        "title": "Dated Funding Certification Before the Final Round"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.disqualifying_criteria_published_with_the_posting",
+        "type": "intervention",
+        "title": "Disqualifying criteria published with the posting"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.distinct_closure_status_for_unreviewed_applications",
+        "type": "intervention",
+        "title": "Distinct Closure Status for Unreviewed Applications"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.domain_requirement_carries_a_stated_ramp_time",
+        "type": "intervention",
+        "title": "Domain requirement carries a stated ramp time"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.internal_candidacy_stated_in_the_posting",
+        "type": "intervention",
+        "title": "Internal Candidacy Stated in the Posting"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.interview_seats_booked_with_prep_time_and_a_second_name_on_the_rota",
+        "type": "intervention",
+        "title": "Interview Seats Booked With Prep Time and a Second Name on the Rota"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "evidence.level": "compatible"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.outreach_states_the_requisition_behind_it",
+        "type": "intervention",
+        "title": "Outreach States the Requisition Behind It"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.publish_the_technical_screen_s_columns_and_threshold_before_the_round",
+        "type": "intervention",
+        "title": "Publish the Technical Screen's Columns and Threshold Before the Round"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "compatible"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.recorded_finalist_standing_with_a_dated_re_entry_route",
+        "type": "intervention",
+        "title": "Recorded Finalist Standing With a Dated Re-Entry Route"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.remove_career_gap_feature_from_automated_ranking_models",
+        "type": "intervention",
+        "title": "Remove Career Gap Feature from Automated Ranking Models"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.requirement_changes_versioned_and_sent_to_candidates_in_flight",
+        "type": "intervention",
+        "title": "Requirement changes versioned and sent to candidates in flight"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.requirements_drawn_from_the_team_s_own_backlog",
+        "type": "intervention",
+        "title": "Requirements Drawn From the Team's Own Backlog"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.screening_note_bound_to_observations_and_disposition_codes",
+        "type": "intervention",
+        "title": "Screening Note Bound to Observations and Disposition Codes"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.standardized_late_stage_rejection_feedback_taxonomy",
+        "type": "intervention",
+        "title": "Standardized Late-Stage Rejection Feedback Taxonomy"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.strict_take_home_timebox_blinded_evaluation_rubric",
+        "type": "intervention",
+        "title": "Strict Take-Home Timebox & Blinded Evaluation Rubric"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.upfront_compensation_band_disclosure",
+        "type": "intervention",
+        "title": "Upfront Compensation Band Disclosure"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "int.verification_discrepancy_disclosure_and_reconciliation_window",
+        "type": "intervention",
+        "title": "Verification Discrepancy Disclosure and Reconciliation Window"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "intervention.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "intervention.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "loop.employment_gap_penalty_loop",
+        "type": "loop",
+        "title": "Employment Gap Penalty Loop"
+      },
+      "assignment": {
+        "evidence.level": "supported",
+        "party.set": [
+          "ats_vendor"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "partial",
+        "stage.terminal": "screening"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "loop.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "loop references mech.employment_gap_downranking_bias",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "loop references mech.employment_gap_downranking_bias",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "loop references mech.employment_gap_downranking_bias",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "loop references mech.employment_gap_downranking_bias",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "loop references mech.employment_gap_downranking_bias",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "loop references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "loop references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "loop.inflated_requirements_search_saturation_loop",
+        "type": "loop",
+        "title": "Inflated-Requirements Search Saturation Loop"
+      },
+      "assignment": {
+        "evidence.level": "compatible",
+        "party.set": [
+          "ats_vendor",
+          "hiring_manager"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "partial",
+        "stage.terminal": "recruiter"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "loop.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "loop references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "loop references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "loop references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "loop references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "loop references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "loop references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "loop references mech.mid_process_role_requirement_redefinition",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "loop references mech.mid_process_role_requirement_redefinition",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "loop.take_home_opportunity_cost_saturation_loop",
+        "type": "loop",
+        "title": "Take-Home Opportunity-Cost Saturation Loop"
+      },
+      "assignment": {
+        "evidence.level": "supported",
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "noise",
+        "visibility.candidate": "partial",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "loop.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "loop references mech.interview_resource_scheduling_saturation",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "loop references mech.interview_resource_scheduling_saturation",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "loop references mech.interview_resource_scheduling_saturation",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "loop references mech.interview_resource_scheduling_saturation",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "loop references mech.interview_resource_scheduling_saturation",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "loop references mech.take_home_evaluation_fatigue_asymmetry",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "loop references mech.take_home_evaluation_fatigue_asymmetry",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "loop references mech.take_home_evaluation_fatigue_asymmetry",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.ats_parser_extraction_failure",
+        "type": "mechanism",
+        "title": "ATS Parser Extraction Failure"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "block.nature": "noise",
+        "visibility.candidate": "partial",
+        "evidence.level": "proven",
+        "stage.terminal": "ingestion"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.automated_application_expiration_timeout",
+        "type": "mechanism",
+        "title": "Automated Application Expiration Timeout"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "opaque",
+        "evidence.level": "proven",
+        "stage.terminal": "screening"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.automated_keyword_qualification_filter",
+        "type": "mechanism",
+        "title": "Automated Keyword / Qualification Filter"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "partial",
+        "evidence.level": "proven",
+        "stage.terminal": "ingestion"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.bench_priority_fill",
+        "type": "mechanism",
+        "title": "Bench-Priority Fill"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "opaque",
+        "evidence.level": "compatible",
+        "stage.terminal": "offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.bid_conditional_talent_pool",
+        "type": "mechanism",
+        "title": "Bid-Conditional Talent Pool"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "sourcing"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.communication_or_working_style_friction",
+        "type": "mechanism",
+        "title": "Communication or Working Style Friction"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "legible",
+        "evidence.level": "proven",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.domain_specificity_over_weighting",
+        "type": "mechanism",
+        "title": "Domain Specificity Over-Weighting"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.employment_gap_downranking_bias",
+        "type": "mechanism",
+        "title": "Employment Gap Downranking Bias"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "screening"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.experience_age_grading_mismatch",
+        "type": "mechanism",
+        "title": "Experience-Age Grading Mismatch"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "recruiter"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.genuine_technical_skill_shortfall",
+        "type": "mechanism",
+        "title": "Genuine Technical Skill Shortfall"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "partial",
+        "evidence.level": "proven",
+        "stage.terminal": "technical"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.headcount_freeze_or_budget_cancellation",
+        "type": "mechanism",
+        "title": "Headcount Freeze or Budget Cancellation"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "partial",
+        "evidence.level": "strongly_supported",
+        "statement.fidelity": "direct",
+        "stage.terminal": "post-offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "mechanism.emissions.fidelity",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.hidden_evaluation_rubric_or_undisclosed_priority",
+        "type": "mechanism",
+        "title": "Hidden Evaluation Rubric or Undisclosed Priority"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.hiring_manager_consensus_impasse",
+        "type": "mechanism",
+        "title": "Hiring Manager Consensus Impasse"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "bias",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "bias",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.inflated_requisition_requirements_vs_actual_team_needs",
+        "type": "mechanism",
+        "title": "Inflated Requisition Requirements vs Actual Team Needs"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "recruiter"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.interview_resource_scheduling_saturation",
+        "type": "mechanism",
+        "title": "Interview Resource & Scheduling Saturation"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "noise",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.location_or_timezone_compliance_constraint",
+        "type": "mechanism",
+        "title": "Location or Timezone Compliance Constraint"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "legible",
+        "evidence.level": "proven",
+        "stage.terminal": "recruiter"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.mid_process_role_requirement_redefinition",
+        "type": "mechanism",
+        "title": "Mid-Process Role Requirement Redefinition"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "noise",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "team"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.portfolio_work_artifact_misinterpretation",
+        "type": "mechanism",
+        "title": "Portfolio / Work Artifact Misinterpretation"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "block.nature": "noise",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "technical"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.pre_selected_internal_candidate",
+        "type": "mechanism",
+        "title": "Pre-Selected Internal Candidate"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.probation_used_as_extended_de_facto_interview",
+        "type": "mechanism",
+        "title": "Probation Used as Extended De-Facto Interview"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "partial",
+        "evidence.level": "compatible",
+        "stage.terminal": "post-offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.recruiter_volume_quota_incentive_distortion",
+        "type": "mechanism",
+        "title": "Recruiter Volume & Quota Incentive Distortion"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "partial",
+        "evidence.level": "supported",
+        "stage.terminal": "recruiter"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.reference_check_discrepancy_or_regulatory_ineligibility",
+        "type": "mechanism",
+        "title": "Reference Check Discrepancy or Regulatory Ineligibility"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "legible",
+        "evidence.level": "proven",
+        "stage.terminal": "post-offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.speculative_sourcing_talent_pooling_without_opening",
+        "type": "mechanism",
+        "title": "Speculative Sourcing / Talent Pooling Without Opening"
+      },
+      "assignment": {
+        "party.set": [
+          "recruiter"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "sourcing"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.stale_or_orphaned_job_requisition",
+        "type": "mechanism",
+        "title": "Stale or Orphaned Job Requisition"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor"
+        ],
+        "block.nature": "void",
+        "visibility.candidate": "opaque",
+        "evidence.level": "strongly_supported",
+        "stage.terminal": "screening"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "void",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "strongly_supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.start_date_slippage_and_post_acceptance_revocation",
+        "type": "mechanism",
+        "title": "Start-Date Slippage and Post-Acceptance Revocation"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "block.nature": "incentive",
+        "visibility.candidate": "opaque",
+        "evidence.level": "compatible",
+        "stage.terminal": "post-offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "incentive",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.stronger_competing_candidate_in_final_cohort",
+        "type": "mechanism",
+        "title": "Stronger Competing Candidate in Final Cohort"
+      },
+      "assignment": {
+        "party.set": [
+          "candidate"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "opaque",
+        "evidence.level": "proven",
+        "stage.terminal": "offer"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.take_home_evaluation_fatigue_asymmetry",
+        "type": "mechanism",
+        "title": "Take-Home Evaluation Fatigue & Asymmetry"
+      },
+      "assignment": {
+        "party.set": [
+          "hiring_manager"
+        ],
+        "block.nature": "noise",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "technical"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "noise",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "mech.unstated_compensation_band_discrepancy",
+        "type": "mechanism",
+        "title": "Unstated Compensation Band Discrepancy"
+      },
+      "assignment": {
+        "party.set": [
+          "employer_policy"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "opaque",
+        "evidence.level": "supported",
+        "stage.terminal": "compensation"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "mechanism.facets.actor",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "mechanism.facets.nature",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "mechanism.facets.visibility",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "mechanism.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "compensation",
+          "rule": "mechanism.emissions.observed_at",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.communication_mismatch_or_tone_friction_in_panel",
+        "type": "observation",
+        "title": "Communication mismatch or tone friction in panel"
+      },
+      "assignment": {
+        "stage.terminal": "team",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.compensation_band_reduced_or_altered_mid_process",
+        "type": "observation",
+        "title": "Compensation band reduced or altered mid-process"
+      },
+      "assignment": {
+        "stage.terminal": "offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.complete_silence_after_submission",
+        "type": "observation",
+        "title": "Complete silence after submission"
+      },
+      "assignment": {
+        "stage.terminal": "ingestion",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.conflicting_feedback_across_different_interviewers",
+        "type": "observation",
+        "title": "Conflicting feedback across different interviewers"
+      },
+      "assignment": {
+        "stage.terminal": "team",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.explicit_feedback_citing_skill_depth_shortfall",
+        "type": "observation",
+        "title": "Explicit feedback citing skill-depth shortfall"
+      },
+      "assignment": {
+        "stage.terminal": "team",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.feedback_naming_as_absent_something_the_submitted_work_contains",
+        "type": "observation",
+        "title": "Feedback naming as absent something the submitted work contains"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "statement.fidelity": "direct",
+        "evidence.level": "compatible"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.feedback_stating_candidate_is_overqualified_for_the_grade",
+        "type": "observation",
+        "title": "Feedback stating candidate is overqualified for the grade"
+      },
+      "assignment": {
+        "stage.terminal": "team",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.generic_closer_alignment_rejection_template",
+        "type": "observation",
+        "title": "Generic \"closer alignment\" rejection template"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.materially_similar_role_reposted_shortly_after_rejection",
+        "type": "observation",
+        "title": "Materially similar role reposted shortly after rejection"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.multiple_interview_reschedulings_or_interviewer_no_show",
+        "type": "observation",
+        "title": "Multiple interview reschedulings or interviewer no-show"
+      },
+      "assignment": {
+        "stage.terminal": "team",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "team",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+        "type": "observation",
+        "title": "Offer accepted followed by delayed start date or post-signing revocation"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.offer_rescinded_or_delayed_due_to_internal_freeze",
+        "type": "observation",
+        "title": "Offer rescinded or delayed due to internal freeze"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.position_closed_after_final_interview_without_hire",
+        "type": "observation",
+        "title": "Position closed after final interview without hire"
+      },
+      "assignment": {
+        "stage.terminal": "offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.rejection_after_the_application_sat_pending_for_months",
+        "type": "observation",
+        "title": "Rejection after the application sat pending for months"
+      },
+      "assignment": {
+        "stage.terminal": "screening",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
+        "type": "observation",
+        "title": "Rejection naming a jurisdiction or work-eligibility ground"
+      },
+      "assignment": {
+        "stage.terminal": "recruiter",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.rejection_naming_a_specific_industry_sector_as_required",
+        "type": "observation",
+        "title": "Rejection naming a specific industry sector as required"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "statement.fidelity": "direct",
+        "evidence.level": "compatible"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "compatible",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.rejection_naming_an_internal_hire_as_the_outcome",
+        "type": "observation",
+        "title": "Rejection naming an internal hire as the outcome"
+      },
+      "assignment": {
+        "stage.terminal": "offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.rejection_within_minutes_of_application_submission",
+        "type": "observation",
+        "title": "Rejection within minutes of application submission"
+      },
+      "assignment": {
+        "stage.terminal": "ingestion",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+        "type": "observation",
+        "title": "Republished job posting with refreshed date and identical requirement body"
+      },
+      "assignment": {
+        "stage.terminal": "sourcing",
+        "statement.fidelity": "direct",
+        "evidence.level": "proven"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "proven",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.take_home_assignment_exceeding_reasonable_stated_scope",
+        "type": "observation",
+        "title": "Take-home assignment exceeding reasonable stated scope"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "obs.unsolicited_recruiter_outreach_followed_by_ghosting",
+        "type": "observation",
+        "title": "Unsolicited recruiter outreach followed by ghosting"
+      },
+      "assignment": {
+        "stage.terminal": "recruiter",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "recruiter",
+          "rule": "observation.stages",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "observation.fidelity",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "observation.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "pat.closed_then_reposted_requisition_motif",
+        "type": "pattern",
+        "title": "Closed-Then-Reposted Requisition Motif"
+      },
+      "assignment": {
+        "evidence.level": "supported",
+        "stage.terminal": "offer",
+        "statement.fidelity": "direct",
+        "party.set": [
+          "ats_vendor",
+          "candidate",
+          "hiring_manager"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "opaque"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "pattern references obs.position_closed_after_final_interview_without_hire",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.position_closed_after_final_interview_without_hire",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.position_closed_after_final_interview_without_hire",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.materially_similar_role_reposted_shortly_after_rejection",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.materially_similar_role_reposted_shortly_after_rejection",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "pattern references mech.stronger_competing_candidate_in_final_cohort",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "pattern references mech.stronger_competing_candidate_in_final_cohort",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "pattern references mech.stronger_competing_candidate_in_final_cohort",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "pattern references mech.stronger_competing_candidate_in_final_cohort",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "pattern references mech.stale_or_orphaned_job_requisition",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "pattern references mech.stale_or_orphaned_job_requisition",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "pattern references mech.hidden_evaluation_rubric_or_undisclosed_priority",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "pattern references mech.hidden_evaluation_rubric_or_undisclosed_priority",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.hidden_evaluation_rubric_or_undisclosed_priority",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "pattern references mech.mid_process_role_requirement_redefinition",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.mid_process_role_requirement_redefinition",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "pat.compensation_double_bind",
+        "type": "pattern",
+        "title": "Compensation Double Bind"
+      },
+      "assignment": {
+        "evidence.level": "supported",
+        "stage.terminal": "post-offer",
+        "statement.fidelity": "direct",
+        "party.set": [
+          "employer_policy",
+          "recruiter"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "opaque"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.compensation_band_reduced_or_altered_mid_process",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.compensation_band_reduced_or_altered_mid_process",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "pattern references mech.experience_age_grading_mismatch",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.experience_age_grading_mismatch",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "pat.experience_age_impossibility",
+        "type": "pattern",
+        "title": "Experience-Age Impossibility"
+      },
+      "assignment": {
+        "evidence.level": "supported",
+        "stage.terminal": "post-offer",
+        "statement.fidelity": "direct",
+        "party.set": [
+          "ats_vendor",
+          "hiring_manager"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "partial"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.rejection_within_minutes_of_application_submission",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.rejection_within_minutes_of_application_submission",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "pattern references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "pattern references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "pattern references mech.automated_keyword_qualification_filter",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "pattern references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "pattern references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.inflated_requisition_requirements_vs_actual_team_needs",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "pat.seniority_double_bind",
+        "type": "pattern",
+        "title": "Seniority Double Bind"
+      },
+      "assignment": {
+        "evidence.level": "supported",
+        "stage.terminal": "post-offer",
+        "statement.fidelity": "direct",
+        "party.set": [
+          "candidate",
+          "employer_policy",
+          "recruiter"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "partial"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern.evidence_level",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.generic_closer_alignment_rejection_template",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "pattern references obs.feedback_stating_candidate_is_overqualified_for_the_grade",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references obs.feedback_stating_candidate_is_overqualified_for_the_grade",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "pattern references mech.genuine_technical_skill_shortfall",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "pattern references mech.genuine_technical_skill_shortfall",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "pattern references mech.genuine_technical_skill_shortfall",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.unstated_compensation_band_discrepancy",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "pattern references mech.experience_age_grading_mismatch",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "pattern references mech.experience_age_grading_mismatch",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "pattern references mech.experience_age_grading_mismatch",
+          "confidence": "weak"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "proc.an_application_inside_the_ats",
+        "type": "process",
+        "title": "An application inside the ATS"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor",
+          "candidate",
+          "recruiter"
+        ],
+        "epilogue": "not_reached",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "not_reached",
+          "rule": "process.terminal_state",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "process.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "proc.client_account_hiring_funnel",
+        "type": "process",
+        "title": "Client account hiring funnel"
+      },
+      "assignment": {
+        "party.set": [
+          "client",
+          "employer_policy",
+          "hiring_manager",
+          "recruiter"
+        ],
+        "epilogue": "not_reached",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "client",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "client",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "client",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "client",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "client",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "not_reached",
+          "rule": "process.terminal_state",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "process.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "proc.the_hiring_funnel_end_to_end",
+        "type": "process",
+        "title": "The hiring funnel, end to end"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor",
+          "employer_policy",
+          "hiring_manager",
+          "recruiter"
+        ],
+        "epilogue": "not_reached",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "not_reached",
+          "rule": "process.terminal_state",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "process.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "proc.the_path_as_it_is_supposed_to_run",
+        "type": "process",
+        "title": "The path as it is supposed to run"
+      },
+      "assignment": {
+        "party.set": [
+          "ats_vendor",
+          "candidate",
+          "employer_policy",
+          "hiring_manager",
+          "recruiter"
+        ],
+        "epilogue": "not_reached",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "process.states.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "not_reached",
+          "rule": "process.terminal_state",
+          "confidence": "weak"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "process.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.annual_engineering_department_budget",
+        "type": "record",
+        "title": "Annual Engineering Department Budget"
+      },
+      "assignment": {
+        "chain.class": "none",
+        "block.owner": "inside",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "none",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.approved_requisition_funding",
+        "type": "record",
+        "title": "Approved Requisition Funding"
+      },
+      "assignment": {
+        "chain.class": "none",
+        "block.owner": "inside",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "none",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.candidate_liquid_savings",
+        "type": "record",
+        "title": "Candidate Liquid Savings"
+      },
+      "assignment": {
+        "chain.class": "candidate_runway",
+        "block.owner": "inside",
+        "visibility.candidate": "legible",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "candidate_runway",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.candidate_search_runway",
+        "type": "record",
+        "title": "Candidate Search Runway"
+      },
+      "assignment": {
+        "chain.class": "candidate_runway",
+        "block.owner": "inside",
+        "visibility.candidate": "legible",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "candidate_runway",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.client_project_budget",
+        "type": "record",
+        "title": "Client Project Budget"
+      },
+      "assignment": {
+        "chain.class": "none",
+        "block.owner": "outside_party",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "none",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "outside_party",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.client_services_agreement",
+        "type": "record",
+        "title": "Client Services Agreement"
+      },
+      "assignment": {
+        "chain.class": "client_margin",
+        "block.owner": "outside_party",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "client_margin",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "outside_party",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.contingency_placement_fee_commitment",
+        "type": "record",
+        "title": "Contingency Placement Fee Commitment"
+      },
+      "assignment": {
+        "chain.class": "agency_fee",
+        "block.owner": "inside",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "agency_fee",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.direct_engineering_payroll",
+        "type": "record",
+        "title": "Direct Engineering Payroll"
+      },
+      "assignment": {
+        "chain.class": "internal_payroll",
+        "block.owner": "inside",
+        "visibility.candidate": "legible",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "internal_payroll",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.employer_hiring_and_sourcing_budget",
+        "type": "record",
+        "title": "Employer Hiring and Sourcing Budget"
+      },
+      "assignment": {
+        "chain.class": "none",
+        "block.owner": "inside",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "none",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.external_agency_settlement",
+        "type": "record",
+        "title": "External Agency Settlement"
+      },
+      "assignment": {
+        "chain.class": "client_margin",
+        "block.owner": "outside_party",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "client_margin",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "outside_party",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.search_month_burn_allocation",
+        "type": "record",
+        "title": "Search-Month Burn Allocation"
+      },
+      "assignment": {
+        "chain.class": "internal_payroll",
+        "block.owner": "inside",
+        "visibility.candidate": "legible",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "internal_payroll",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.subcontractor_compensation",
+        "type": "record",
+        "title": "Subcontractor Compensation"
+      },
+      "assignment": {
+        "chain.class": "internal_payroll",
+        "block.owner": "inside",
+        "visibility.candidate": "legible",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "internal_payroll",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "legible",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "record.vendor_margin_and_headcount_allocation",
+        "type": "record",
+        "title": "Vendor Margin and Headcount Allocation"
+      },
+      "assignment": {
+        "chain.class": "none",
+        "block.owner": "inside",
+        "visibility.candidate": "opaque",
+        "evidence.level": "unknown"
+      },
+      "declarations": [],
+      "rules": [
+        {
+          "coordinate": "chain.class",
+          "value": "none",
+          "rule": "record.record_class",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.owner",
+          "value": "inside",
+          "rule": "record.owner",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "record.visibility_default",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "unknown",
+          "rule": "record.evidence_level",
+          "confidence": "direct"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "scenario.application_silence",
+        "type": "scenario",
+        "title": "Application followed by silence"
+      },
+      "assignment": {
+        "entry.path": "inbound",
+        "outcome.signal": "no_response",
+        "stage.terminal": "ingestion",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported",
+        "party.set": [
+          "ats_vendor",
+          "candidate",
+          "employer_policy",
+          "recruiter"
+        ],
+        "block.nature": "void",
+        "visibility.candidate": "opaque",
+        "epilogue": "not_reached"
+      },
+      "declarations": [
+        {
+          "coordinate": "entry.path",
+          "status": "known",
+          "value": "inbound",
+          "basis": "The scenario starts after a submitted application and names the ATS application process.",
+          "evidence": []
+        },
+        {
+          "coordinate": "outcome.signal",
+          "status": "known",
+          "value": "no_response",
+          "basis": "The defining observation is silence after submission; a later generic disposition does not identify the cause.",
+          "evidence": []
+        },
+        {
+          "coordinate": "requisition.state",
+          "status": "unknown",
+          "basis": "The compatible mechanisms include stale, expired, parser-failed, quota-driven, and speculative-pool explanations.",
+          "evidence": []
+        },
+        {
+          "coordinate": "worksite.mode",
+          "status": "unknown",
+          "basis": "No scenario field or linked observation states whether the job was onsite, hybrid, or remote.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.employer",
+          "status": "unknown",
+          "basis": "The scenario does not reveal whether anyone inside or outside the employer can reopen or alter the condition.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.candidate",
+          "status": "unknown",
+          "basis": "The scenario records submitted material but no candidate-side constraint or exchange condition.",
+          "evidence": []
+        }
+      ],
+      "rules": [
+        {
+          "coordinate": "entry.path",
+          "value": "inbound",
+          "rule": "scenario.case_assignments.entry.path",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "outcome.signal",
+          "value": "no_response",
+          "rule": "scenario.case_assignments.outcome.signal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.rejection_after_the_application_sat_pending_for_months",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.rejection_after_the_application_sat_pending_for_months",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "scenario references mech.stale_or_orphaned_job_requisition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "void",
+          "rule": "scenario references mech.stale_or_orphaned_job_requisition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "scenario references mech.stale_or_orphaned_job_requisition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "scenario references mech.automated_application_expiration_timeout",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "scenario references mech.automated_application_expiration_timeout",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "scenario references mech.ats_parser_extraction_failure",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "scenario references mech.ats_parser_extraction_failure",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "scenario references mech.recruiter_volume_quota_incentive_distortion",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references mech.recruiter_volume_quota_incentive_distortion",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "scenario references mech.speculative_sourcing_talent_pooling_without_opening",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "opaque",
+          "rule": "scenario references mech.speculative_sourcing_talent_pooling_without_opening",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references mech.speculative_sourcing_talent_pooling_without_opening",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "scenario references bar.application_ingestion",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "ingestion",
+          "rule": "scenario references bar.automated_filter_parser_threshold",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "scenario references proc.an_application_inside_the_ats",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "scenario references proc.an_application_inside_the_ats",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "scenario references proc.an_application_inside_the_ats",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "not_reached",
+          "rule": "scenario references proc.an_application_inside_the_ats",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "scenario.agency",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "scenario.agency",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "scenario.agency",
+          "confidence": "derived"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "scenario.ats_knockout",
+        "type": "scenario",
+        "title": "Automated Parsing Knockout"
+      },
+      "assignment": {
+        "stage.terminal": "screening",
+        "outcome.signal": "generic_rejection",
+        "statement.fidelity": "euphemism",
+        "block.nature": "rule",
+        "evidence.level": "supported"
+      },
+      "declarations": [
+        {
+          "coordinate": "stage.terminal",
+          "status": "known",
+          "value": "screening",
+          "basis": "The diagnostic preset stage is screening, and the title names an automated knockout.",
+          "evidence": []
+        },
+        {
+          "coordinate": "outcome.signal",
+          "status": "known",
+          "value": "generic_rejection",
+          "basis": "The scenario includes a generic closer-alignment rejection template as its first observation.",
+          "evidence": []
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "status": "inferred",
+          "value": "euphemism",
+          "basis": "The template says closer alignment while the scenario frame treats it as a filter result.",
+          "evidence": []
+        },
+        {
+          "coordinate": "block.nature",
+          "status": "inferred",
+          "value": "rule",
+          "basis": "Rigid uncontextualized filters are rule-shaped blocks, not stochastic noise or a named incentive.",
+          "evidence": []
+        },
+        {
+          "coordinate": "entry.path",
+          "status": "unknown",
+          "basis": "The observations combine outreach and rejection; the scenario does not say whether the candidate applied inbound.",
+          "evidence": []
+        },
+        {
+          "coordinate": "worksite.mode",
+          "status": "unknown",
+          "basis": "The scenario does not mention workplace format, city anchoring, or in-office cadence.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.employer",
+          "status": "unknown",
+          "basis": "The scenario describes rigid filters but not whether the employer has override slack inside the process.",
+          "evidence": []
+        }
+      ],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "scenario.case_assignments.stage.terminal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "outcome.signal",
+          "value": "generic_rejection",
+          "rule": "scenario.case_assignments.outcome.signal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "euphemism",
+          "rule": "scenario.case_assignments.statement.fidelity",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "scenario.case_assignments.block.nature",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "screening",
+          "rule": "scenario.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.generic_closer_alignment_rejection_template",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.explicit_feedback_citing_skill_depth_shortfall",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.unsolicited_recruiter_outreach_followed_by_ghosting",
+          "confidence": "derived"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "scenario.closed_then_reposted",
+        "type": "scenario",
+        "title": "Rejected, then the same role is posted again"
+      },
+      "assignment": {
+        "entry.path": "inbound",
+        "requisition.state": "closed_reposted",
+        "outcome.signal": "closure_or_repost",
+        "stage.terminal": "offer",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported",
+        "party.set": [
+          "ats_vendor",
+          "candidate",
+          "employer_policy",
+          "hiring_manager",
+          "recruiter"
+        ],
+        "block.nature": "rule",
+        "visibility.candidate": "partial",
+        "epilogue": "not_reached"
+      },
+      "declarations": [
+        {
+          "coordinate": "entry.path",
+          "status": "known",
+          "value": "inbound",
+          "basis": "The scenario begins from a candidate process that reaches rejection before a public repost is observed.",
+          "evidence": []
+        },
+        {
+          "coordinate": "requisition.state",
+          "status": "known",
+          "value": "closed_reposted",
+          "basis": "The title and observations require closure followed by a materially similar repost.",
+          "evidence": []
+        },
+        {
+          "coordinate": "outcome.signal",
+          "status": "known",
+          "value": "closure_or_repost",
+          "basis": "The terminal signal is the role being closed or reposted rather than a final cause attribution.",
+          "evidence": []
+        },
+        {
+          "coordinate": "cohort.state",
+          "status": "unknown",
+          "basis": "Internal-fill is compatible, but the scenario explicitly excludes proving that someone was already chosen.",
+          "evidence": []
+        },
+        {
+          "coordinate": "funding.state",
+          "status": "unknown",
+          "basis": "Budget cancellation and role redefinition are both compatible, so funding cannot be read from the surface.",
+          "evidence": []
+        },
+        {
+          "coordinate": "worksite.mode",
+          "status": "unknown",
+          "basis": "The repost comparison says the requirement body is similar, not what worksite format it contains.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.candidate",
+          "status": "unknown",
+          "basis": "The candidate can preserve finalist standing, but no concrete candidate-side condition is authored here.",
+          "evidence": []
+        }
+      ],
+      "rules": [
+        {
+          "coordinate": "entry.path",
+          "value": "inbound",
+          "rule": "scenario.case_assignments.entry.path",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "requisition.state",
+          "value": "closed_reposted",
+          "rule": "scenario.case_assignments.requisition.state",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "outcome.signal",
+          "value": "closure_or_repost",
+          "rule": "scenario.case_assignments.outcome.signal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "scenario references obs.position_closed_after_final_interview_without_hire",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.position_closed_after_final_interview_without_hire",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.position_closed_after_final_interview_without_hire",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.materially_similar_role_reposted_shortly_after_rejection",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.materially_similar_role_reposted_shortly_after_rejection",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "scenario references mech.headcount_freeze_or_budget_cancellation",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "block.nature",
+          "value": "rule",
+          "rule": "scenario references mech.headcount_freeze_or_budget_cancellation",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "scenario references mech.headcount_freeze_or_budget_cancellation",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references mech.headcount_freeze_or_budget_cancellation",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "scenario references mech.mid_process_role_requirement_redefinition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "scenario references mech.mid_process_role_requirement_redefinition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references mech.mid_process_role_requirement_redefinition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "scenario references mech.pre_selected_internal_candidate",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references mech.pre_selected_internal_candidate",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "scenario references mech.pre_selected_internal_candidate",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "scenario references mech.stale_or_orphaned_job_requisition",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "offer",
+          "rule": "scenario references bar.headcount_executive_budget_approval",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "ats_vendor",
+          "rule": "scenario references proc.the_hiring_funnel_end_to_end",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "scenario references proc.the_hiring_funnel_end_to_end",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "hiring_manager",
+          "rule": "scenario references proc.the_hiring_funnel_end_to_end",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "recruiter",
+          "rule": "scenario references proc.the_hiring_funnel_end_to_end",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "not_reached",
+          "rule": "scenario references proc.the_hiring_funnel_end_to_end",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "candidate",
+          "rule": "scenario.agency",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "party.set",
+          "value": "employer_policy",
+          "rule": "scenario.agency",
+          "confidence": "derived"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "scenario.downlevelling_trap",
+        "type": "scenario",
+        "title": "Down-Levelling & Delayed Start"
+      },
+      "assignment": {
+        "stage.terminal": "post-offer",
+        "outcome.signal": "offer_delay_or_rescind",
+        "epilogue": "start_date_shift",
+        "jurisdiction": "cross_border",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [
+        {
+          "coordinate": "stage.terminal",
+          "status": "known",
+          "value": "post-offer",
+          "basis": "The diagnostic preset stage is post-offer and includes accepted-offer delay or revocation.",
+          "evidence": []
+        },
+        {
+          "coordinate": "outcome.signal",
+          "status": "known",
+          "value": "offer_delay_or_rescind",
+          "basis": "The terminal observation is delayed start date or post-signing revocation after acceptance.",
+          "evidence": []
+        },
+        {
+          "coordinate": "epilogue",
+          "status": "known",
+          "value": "start_date_shift",
+          "basis": "The scenario summary names start-date slippage as the epilogue-shaped event.",
+          "evidence": []
+        },
+        {
+          "coordinate": "jurisdiction",
+          "status": "inferred",
+          "value": "cross_border",
+          "basis": "The observation names jurisdiction or work-eligibility grounds without specifying a single country.",
+          "evidence": []
+        },
+        {
+          "coordinate": "arrangement",
+          "status": "unknown",
+          "basis": "Down-levelling and delayed starts can occur in permanent, contract, or contract-to-hire arrangements.",
+          "evidence": []
+        },
+        {
+          "coordinate": "worksite.mode",
+          "status": "unknown",
+          "basis": "Jurisdiction or eligibility is not the same as where the work must be performed.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.employer",
+          "status": "unknown",
+          "basis": "The scenario does not state whether the employer can move level, start date, or compensation internally.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.candidate",
+          "status": "unknown",
+          "basis": "The scenario names candidate-facing changes but not what concessions the candidate can trade against them.",
+          "evidence": []
+        }
+      ],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "scenario.case_assignments.stage.terminal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "outcome.signal",
+          "value": "offer_delay_or_rescind",
+          "rule": "scenario.case_assignments.outcome.signal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "epilogue",
+          "value": "start_date_shift",
+          "rule": "scenario.case_assignments.epilogue",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "jurisdiction",
+          "value": "cross_border",
+          "rule": "scenario.case_assignments.jurisdiction",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "scenario.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.rejection_naming_a_jurisdiction_or_work_eligibility_ground",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.rejection_naming_a_specific_industry_sector_as_required",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "post-offer",
+          "rule": "scenario references obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.offer_accepted_followed_by_delayed_start_date_or_post_signing_revocation",
+          "confidence": "derived"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "scenario.ghost_refresh",
+        "type": "scenario",
+        "title": "Ghost Requisition & Pipeline Refresh"
+      },
+      "assignment": {
+        "stage.terminal": "sourcing",
+        "entry.path": "inbound",
+        "requisition.state": "stale_orphaned",
+        "outcome.signal": "closure_or_repost",
+        "visibility.candidate": "partial",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [
+        {
+          "coordinate": "stage.terminal",
+          "status": "known",
+          "value": "sourcing",
+          "basis": "The diagnostic preset stage is sourcing and the scenario is about posting refresh behavior.",
+          "evidence": []
+        },
+        {
+          "coordinate": "entry.path",
+          "status": "known",
+          "value": "inbound",
+          "basis": "The scenario explicitly combines active applicants with silence after submission.",
+          "evidence": []
+        },
+        {
+          "coordinate": "requisition.state",
+          "status": "inferred",
+          "value": "stale_orphaned",
+          "basis": "The scenario names a ghost requisition and an identical refreshed posting body.",
+          "evidence": []
+        },
+        {
+          "coordinate": "outcome.signal",
+          "status": "known",
+          "value": "closure_or_repost",
+          "basis": "The distinctive public signal is a refreshed or reposted vacancy, not a final causal explanation.",
+          "evidence": []
+        },
+        {
+          "coordinate": "funding.state",
+          "status": "unknown",
+          "basis": "A refreshed posting may be funded, stale, speculative, or awaiting approval.",
+          "evidence": []
+        },
+        {
+          "coordinate": "worksite.mode",
+          "status": "unknown",
+          "basis": "The scenario does not say whether the refreshed posting is onsite, hybrid, or remote.",
+          "evidence": []
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "status": "inferred",
+          "value": "partial",
+          "basis": "The candidate can see the refreshed posting and silence but cannot see the requisition owner or funding state.",
+          "evidence": []
+        }
+      ],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "scenario.case_assignments.stage.terminal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "entry.path",
+          "value": "inbound",
+          "rule": "scenario.case_assignments.entry.path",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "requisition.state",
+          "value": "stale_orphaned",
+          "rule": "scenario.case_assignments.requisition.state",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "outcome.signal",
+          "value": "closure_or_repost",
+          "rule": "scenario.case_assignments.outcome.signal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "scenario.case_assignments.visibility.candidate",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "scenario.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.materially_similar_role_reposted_shortly_after_rejection",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.materially_similar_role_reposted_shortly_after_rejection",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "sourcing",
+          "rule": "scenario references obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.republished_job_posting_with_refreshed_date_and_identical_requirement_body",
+          "confidence": "derived"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    },
+    {
+      "source": {
+        "id": "scenario.post_panel_freeze",
+        "type": "scenario",
+        "title": "Post-Panel Freeze & Silence"
+      },
+      "assignment": {
+        "stage.terminal": "technical",
+        "outcome.signal": "internal_fill",
+        "cohort.state": "pre_committed_internal",
+        "visibility.candidate": "partial",
+        "statement.fidelity": "direct",
+        "evidence.level": "supported"
+      },
+      "declarations": [
+        {
+          "coordinate": "stage.terminal",
+          "status": "known",
+          "value": "technical",
+          "basis": "The diagnostic preset stage is technical and the title places the case after a panel.",
+          "evidence": []
+        },
+        {
+          "coordinate": "outcome.signal",
+          "status": "known",
+          "value": "internal_fill",
+          "basis": "The scenario includes a rejection that names an internal hire as the outcome.",
+          "evidence": []
+        },
+        {
+          "coordinate": "cohort.state",
+          "status": "inferred",
+          "value": "pre_committed_internal",
+          "basis": "The internal-hire outcome makes an internal cohort relevant, while not proving bad faith or timing.",
+          "evidence": []
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "status": "inferred",
+          "value": "partial",
+          "basis": "The candidate sees rescheduling, silence, and an internal-hire statement but not the freeze decision.",
+          "evidence": []
+        },
+        {
+          "coordinate": "funding.state",
+          "status": "unknown",
+          "basis": "The freeze could be budget, approval, prioritization, or internal-fill driven.",
+          "evidence": []
+        },
+        {
+          "coordinate": "worksite.mode",
+          "status": "unknown",
+          "basis": "The scenario concerns interview-panel timing and does not state where the job is performed.",
+          "evidence": []
+        },
+        {
+          "coordinate": "latitude.employer",
+          "status": "unknown",
+          "basis": "The scenario does not reveal who could unblock the freeze or internal-fill decision.",
+          "evidence": []
+        }
+      ],
+      "rules": [
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "scenario.case_assignments.stage.terminal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "outcome.signal",
+          "value": "internal_fill",
+          "rule": "scenario.case_assignments.outcome.signal",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "cohort.state",
+          "value": "pre_committed_internal",
+          "rule": "scenario.case_assignments.cohort.state",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "visibility.candidate",
+          "value": "partial",
+          "rule": "scenario.case_assignments.visibility.candidate",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "stage.terminal",
+          "value": "technical",
+          "rule": "scenario.stage",
+          "confidence": "direct"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.complete_silence_after_submission",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.multiple_interview_reschedulings_or_interviewer_no_show",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.multiple_interview_reschedulings_or_interviewer_no_show",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "statement.fidelity",
+          "value": "direct",
+          "rule": "scenario references obs.rejection_naming_an_internal_hire_as_the_outcome",
+          "confidence": "derived"
+        },
+        {
+          "coordinate": "evidence.level",
+          "value": "supported",
+          "rule": "scenario references obs.rejection_naming_an_internal_hire_as_the_outcome",
+          "confidence": "derived"
+        }
+      ],
+      "admissibility": {
+        "verdict": "admissible",
+        "violations": [],
+        "undetermined": []
+      }
+    }
+  ]
+}

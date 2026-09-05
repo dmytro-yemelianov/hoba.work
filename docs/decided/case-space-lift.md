@@ -31,9 +31,12 @@ author YAML/MD
 ## Published artifacts
 
 - `/data/latest/coverage.json` contains the checklist-era coverage boundary, the
-  case-space denominator, and a compact lift summary.
+  case-space denominator, compact lift summary, and compact acquisition backlog.
 - `/data/latest/case-lift.json` contains the full per-source assignments and
   rule trace.
+- `/data/latest/coverage-backlog.json` contains the generated acquisition
+  backlog: absent/thin coordinate dimensions, missing values, reviewed scenario
+  unknowns, and strategically important pairwise skews.
 
 Release snapshots live under `/data/releases/<registry-version>/` with the same
 filenames.
@@ -47,9 +50,11 @@ yet encoded as structured coordinates:
 | --- | ---: |
 | Lifted sources | 119 |
 | Γ-refuted lifted fibres | 0 |
-| Coordinates touched | 9 / 71 |
-| 1-wise slots touched | 40 / 261 |
-| Observed 2-wise slots | 245 |
+| Coordinates touched | 14 / 71 |
+| 1-wise slots touched | 52 / 261 |
+| Observed 2-wise slots | 332 |
+| Acquisition backlog | 23 absent coordinate dimensions, 6 thin dimensions |
+| Strategic pairwise targets | 9 |
 
 Strong axes: evidence level, funnel stage, party, candidate visibility, block
 nature. Weak or absent axes: worksite, military status, population affected,
