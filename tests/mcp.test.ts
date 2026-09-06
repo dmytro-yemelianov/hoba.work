@@ -345,25 +345,27 @@ describe('hoba MCP server', () => {
     expect(unknown.result.isError).toBe(true);
   });
 
-  it('normalizes a social complaint without inventing a causal projection', async () => {
+  it('maps only explicit social-complaint observations before structural retrieval', async () => {
     const complaint = payload(
       await client.request('tools/call', {
         name: 'analyze_social_complaint',
         arguments: {
-          text: 'I applied to 30 jobs. The ATS rejected me. Contact me@example.com.',
+          text: 'I never heard back after applying. The same job was reposted. The ATS rejected me. Contact me@example.com.',
           language: 'en',
+          stage: 'sourcing',
           source_url: 'https://example.com/post',
         },
       })
     );
 
-    expect(complaint.mode).toBe('phase_1_claim_normalization_not_case_space_projection');
+    expect(complaint.mode).toBe('phase_2a_explicit_observation_mapping_structural_retrieval');
     expect(complaint.analysis.claims.map((claim: { kind: string }) => claim.kind)).toEqual([
+      'observation',
       'observation',
       'causal_claim',
       'observation',
     ]);
-    expect(complaint.analysis.claims[1].status).toBe('unverifiable');
+    expect(complaint.analysis.claims[2].status).toBe('unverifiable');
     expect(complaint.analysis.source.text).not.toContain('me@example.com');
     expect(complaint.analysis.source.source.url).toBeUndefined();
     expect(complaint.analysis.privacy).toMatchObject({
@@ -371,8 +373,37 @@ describe('hoba MCP server', () => {
       manual_review_required: true,
       source_url_withheld: true,
     });
+    expect(complaint.mapped_observation_ids).toEqual([
+      'obs.complete_silence_after_submission',
+      'obs.materially_similar_role_reposted_shortly_after_rejection',
+    ]);
+    expect(complaint.analysis.observations[0].registry_mappings[0]).toMatchObject({
+      rule_id: 'social_complaint.en.complete_silence_after_submission',
+      status: 'reported',
+    });
     expect(complaint.analysis.projection).toEqual([]);
-    expect(complaint.analysis.nearby_cases).toEqual([]);
+    expect(complaint.analysis.nearby_cases).toContain('scenario.ghost_refresh');
+    expect(complaint.nearby_case_matches[0]).toMatchObject({
+      scenario: { id: 'scenario.ghost_refresh' },
+      stage_match: true,
+    });
+    expect(complaint.retrieval_note).toContain('not probabilities or causal confidence');
+  });
+
+  it('does not turn a social causal claim into an observation mapping', async () => {
+    const complaint = payload(
+      await client.request('tools/call', {
+        name: 'analyze_social_complaint',
+        arguments: { text: 'The ATS rejected me because of my age.', language: 'en' },
+      })
+    );
+
+    expect(complaint.mapped_observation_ids).toEqual([]);
+    expect(complaint.nearby_case_matches).toEqual([]);
+    expect(complaint.analysis.claims[0]).toMatchObject({
+      kind: 'causal_claim',
+      status: 'unverifiable',
+    });
   });
 
   it('evaluates temporal anomalies, runway, flow conservation, and pattern emptiness over MCP', async () => {

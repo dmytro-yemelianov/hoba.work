@@ -141,7 +141,7 @@ Aggregation is not individual scoring: normalized cases may reveal recurring mec
 
 **Exit criteria:** malformed input is rejected; no inferred claim is emitted as a reported observation; EN/UK schema parity passes.
 
-**Implemented:** deterministic claim segmentation with redacted source spans, explicit causal-claim separation, deterministic contact/username redaction, and `analyze_social_complaint` MCP access. Names, addresses, and identifiers remain an explicit manual-review risk in Phase 1. The endpoint deliberately returns no case-space projection or nearby cases yet.
+**Implemented:** deterministic claim segmentation with redacted source spans, explicit causal-claim separation, deterministic contact/username redaction, and `analyze_social_complaint` MCP access. Names, addresses, and identifiers remain an explicit manual-review risk in Phase 1. Phase 1 itself deliberately returned no case-space projection or nearby cases; Phase 2a below adds only direct observation mappings and structural retrieval.
 
 ### Phase 2 — Case-space projection
 
@@ -151,6 +151,8 @@ Aggregation is not individual scoring: normalized cases may reveal recurring mec
 - Add projection tests for protected traits, military status, worksite, latency, and cohort states.
 
 **Exit criteria:** every assignment has provenance; no Γ-refuted projection is returned; mechanism scores cannot affect retrieval ranking.
+
+**Implemented Phase 2a:** a versioned, conservative EN/UK phrase ruleset maps only directly reported observation phrases to existing `obs.*` IDs. Every mapping preserves its claim ID, matched source span, exact matched phrase, rule ID, and `reported` status. The shared nearby-scenario matcher receives only those mapped observation IDs plus an optional user-supplied stage. Causal claims, emotions, requests, unmatched text, and all case-space coordinates remain outside retrieval. Full coordinate projection remains pending explicit coordinate rules and Γ validation.
 
 ### Phase 3 — Explainable response renderer
 
