@@ -6,6 +6,7 @@ import {
   extractComplaintClaims,
   redactComplaintText,
 } from '@hoba/validator';
+import { extractSocialComplaint } from '@hoba/validator/browser';
 
 describe('social complaint intake contract', () => {
   it('keeps causal language separate from reported observations', () => {
@@ -112,5 +113,16 @@ describe('social complaint intake contract', () => {
     expect(analysis.observations[1]?.registry_mappings[0]?.rule_id).toBe(
       'social_complaint.uk.similar_role_reposted_after_rejection'
     );
+  });
+
+  it('keeps the browser-safe extractor identical to the validated MCP path', () => {
+    const text =
+      'I never heard back after applying. The same job was reposted. The ATS rejected me.';
+    const browser = extractSocialComplaint({ text, language: 'en' });
+    const validated = analyzeSocialComplaint({ text, language: 'en' });
+
+    expect(browser.text).toBe(validated.source.text);
+    expect(browser.claims).toEqual(validated.claims);
+    expect(browser.observations).toEqual(validated.observations);
   });
 });
