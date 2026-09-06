@@ -464,7 +464,10 @@ const zones = [
 
         const extraction = extractSocialComplaint({
           text,
-          language: s.lang === 'uk' ? 'uk' : s.lang === 'en' ? 'en' : 'other',
+          // A reader can paste either language regardless of the UI locale.
+          // `auto` runs only explicit EN/UK phrase rules; it does not infer a
+          // language, coordinate, cause, or identity from prose.
+          language: 'auto',
         });
         const mappings = extraction.observations.flatMap((observation) =>
           observation.registry_mappings.map((mapping) => ({ observation, mapping }))

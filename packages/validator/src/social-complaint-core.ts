@@ -7,6 +7,7 @@
  */
 
 export type ComplaintLanguage = 'en' | 'uk' | 'other';
+export type ComplaintMappingLanguage = ComplaintLanguage | 'auto';
 export type ComplaintClaimKind =
   'observation' | 'interpretation' | 'emotion' | 'causal_claim' | 'request' | 'omission';
 export type ComplaintClaimStatus =
@@ -260,16 +261,16 @@ function findRuleMatches(text: string, rule: ObservationMappingRule): RegExpMatc
 /** Map only explicit reported phrases to existing observation IDs with provenance. */
 export function mapComplaintObservations(
   claims: readonly BrowserComplaintClaim[],
-  language: ComplaintLanguage
+  language: ComplaintMappingLanguage
 ): Map<string, BrowserComplaintObservationMapping[]> {
   const mappings = new Map<string, BrowserComplaintObservationMapping[]>();
-  if (language !== 'en' && language !== 'uk') return mappings;
+  if (language !== 'en' && language !== 'uk' && language !== 'auto') return mappings;
 
   for (const claim of claims) {
     if (claim.kind !== 'observation' || claim.status !== 'reported') continue;
     const claimMappings: BrowserComplaintObservationMapping[] = [];
     for (const rule of observationMappingRules) {
-      if (rule.language !== language) continue;
+      if (language !== 'auto' && rule.language !== language) continue;
       for (const match of findRuleMatches(claim.text_span, rule)) {
         const matchedText = match[0];
         const localStart = match.index ?? 0;
@@ -296,7 +297,7 @@ export function mapComplaintObservations(
  */
 export function extractSocialComplaint(input: {
   text: string;
-  language: ComplaintLanguage;
+  language: ComplaintMappingLanguage;
 }): BrowserComplaintExtraction {
   const redaction = redactComplaintText(input.text);
   const claims = extractComplaintClaims({ text: redaction.text });

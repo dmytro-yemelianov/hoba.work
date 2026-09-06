@@ -50,5 +50,15 @@ test.describe('private social complaint intake', () => {
       await expect(result).toContainText('Чого це не встановлює');
       await expect(result).toContainText('Мене відсік ATS.');
     });
+
+    test('also maps an explicit English report when the UI is Ukrainian', async ({ page }) => {
+      await page.goto('/analyze');
+      await page.locator('#complaint-input').fill('I never heard back after applying.');
+      await page.locator('#complaint-analyze').click();
+
+      await expect(page.locator('#complaint-result')).toContainText(
+        'Повна тиша після відправки заявки'
+      );
+    });
   });
 });
