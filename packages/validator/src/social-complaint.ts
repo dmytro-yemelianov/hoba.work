@@ -82,6 +82,19 @@ export const complaintAnalysisSchema = z.object({
       claim_id: z.string().regex(/^claim\.[a-z0-9_]+$/),
       text: z.string().min(1),
       registry_refs: z.array(z.string().regex(/^obs\.[a-z0-9_]+$/)),
+      /**
+       * Direct phrase matches only. These are provenance records, not model
+       * inferences: each mapping points back to a reported claim/span/rule.
+       */
+      registry_mappings: z.array(
+        z.object({
+          registry_ref: z.string().regex(/^obs\.[a-z0-9_]+$/),
+          rule_id: z.string().regex(/^social_complaint\.[a-z0-9_.-]+$/),
+          matched_text: z.string().min(1),
+          source_span: sourceSpanSchema,
+          status: z.literal('reported'),
+        })
+      ),
       status: claimStatusSchema,
     })
   ),
@@ -103,6 +116,8 @@ export const complaintAnalysisSchema = z.object({
 export type ComplaintInput = z.infer<typeof complaintInputSchema>;
 export type ComplaintClaim = z.infer<typeof complaintClaimSchema>;
 export type ComplaintAnalysis = z.infer<typeof complaintAnalysisSchema>;
+export type ComplaintObservationMapping =
+  ComplaintAnalysis['observations'][number]['registry_mappings'][number];
 
 export interface RedactedComplaintText {
   text: string;
@@ -116,6 +131,133 @@ const requestPattern = /\?|\b(why|what should|how can|порад|чому|що �
 const emailPattern = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
 const phonePattern = /(?:\+?\d{1,3}[\s-])?(?:\(?\d{2,3}\)?[\s-])\d{3}[\s-]\d{2}[\s-]\d{2}/g;
 const usernamePattern = /(^|(?<![\w.]))@[a-zA-Z0-9_]{2,}/g;
+
+export const SOCIAL_COMPLAINT_OBSERVATION_RULESET_VERSION = '2026-09-06.1';
+
+interface ObservationMappingRule {
+  id: `social_complaint.${string}`;
+  observationId: `obs.${string}`;
+  language: 'en' | 'uk';
+  pattern: RegExp;
+}
+
+/**
+ * Deliberately small, explicit phrase rules. A phrase rule establishes only
+ * that the author reported the named observation; it never establishes why it
+ * happened. Rules run only against claims already classified as observations.
+ */
+const observationMappingRules: readonly ObservationMappingRule[] = [
+  {
+    id: 'social_complaint.en.complete_silence_after_submission',
+    observationId: 'obs.complete_silence_after_submission',
+    language: 'en',
+    pattern:
+      /\b(?:never|did not|didn't) (?:hear|heard) (?:back|anything) (?:after|following) (?:I |we )?(?:applied|applying|submitted)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.complete_silence_after_submission',
+    observationId: 'obs.complete_silence_after_submission',
+    language: 'uk',
+    pattern:
+      /(?:не|так і не) (?:відповіли|написали|почув(?:ла|ли)?) (?:після|після того як) (?:я |ми )?(?:под(?:ав|ала|али)|відгукнув(?:ся|лась|лися))/i,
+  },
+  {
+    id: 'social_complaint.en.generic_closer_alignment_rejection',
+    observationId: 'obs.generic_closer_alignment_rejection_template',
+    language: 'en',
+    pattern:
+      /\b(?:closer alignment|decided to move forward with (?:another|other) candidate|moving forward with (?:another|other) candidate)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.generic_closer_alignment_rejection',
+    observationId: 'obs.generic_closer_alignment_rejection_template',
+    language: 'uk',
+    pattern:
+      /(?:вирішили (?:рухатися|йти) далі|обрали іншого кандидата|більш(?:е)? відповідн(?:ого|ий) кандидата)/i,
+  },
+  {
+    id: 'social_complaint.en.recruiter_outreach_followed_by_ghosting',
+    observationId: 'obs.unsolicited_recruiter_outreach_followed_by_ghosting',
+    language: 'en',
+    pattern:
+      /\brecruiter (?:reached out|contacted me|wrote to me).{0,160}\b(?:ghosted|stopped replying|never replied)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.recruiter_outreach_followed_by_ghosting',
+    observationId: 'obs.unsolicited_recruiter_outreach_followed_by_ghosting',
+    language: 'uk',
+    pattern:
+      /рекрутер (?:написав|написала|звернувся|звернулась).{0,160}(?:зник|зникла|перестав(?:ла)? відповідати|не відповів(?:ла)?)/i,
+  },
+  {
+    id: 'social_complaint.en.similar_role_reposted_after_rejection',
+    observationId: 'obs.materially_similar_role_reposted_shortly_after_rejection',
+    language: 'en',
+    pattern:
+      /\b(?:same|identical|near-identical) (?:job|role|position).{0,120}\b(?:reposted|posted again|refreshed)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.similar_role_reposted_after_rejection',
+    observationId: 'obs.materially_similar_role_reposted_shortly_after_rejection',
+    language: 'uk',
+    pattern:
+      /(?:ту саму|ідентичну|майже ідентичну) (?:вакансію|роль|посаду).{0,120}(?:опублікували знову|переопублікували|оновили)/i,
+  },
+  {
+    id: 'social_complaint.en.rejection_within_minutes',
+    observationId: 'obs.rejection_within_minutes_of_application_submission',
+    language: 'en',
+    pattern:
+      /\b(?:rejected|rejection) (?:within|in) (?:\d+|one|two|three|four|five|ten|fifteen|twenty|thirty) minutes? (?:of|after) (?:applying|submission)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.rejection_within_minutes',
+    observationId: 'obs.rejection_within_minutes_of_application_submission',
+    language: 'uk',
+    pattern:
+      /відмов(?:или|а) (?:за|через) (?:\d+|одну|дві|три|чотири|п'ять|десять|п'ятнадцять|двадцять|тридцять) хвилин(?:и)? (?:після|від) подачі/i,
+  },
+  {
+    id: 'social_complaint.en.pending_for_months_then_rejection',
+    observationId: 'obs.rejection_after_the_application_sat_pending_for_months',
+    language: 'en',
+    pattern:
+      /\b(?:application|my application) (?:sat )?pending for (?:\d+|several|many) months?.{0,120}\b(?:rejected|rejection)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.pending_for_months_then_rejection',
+    observationId: 'obs.rejection_after_the_application_sat_pending_for_months',
+    language: 'uk',
+    pattern:
+      /(?:заявка|відгук) (?:висів|була в статусі очікування) (?:\d+|кілька) місяц(?:і|ів).{0,120}відмов(?:или|а)/i,
+  },
+  {
+    id: 'social_complaint.en.internal_hire_named',
+    observationId: 'obs.rejection_naming_an_internal_hire_as_the_outcome',
+    language: 'en',
+    pattern: /\b(?:they|the company) (?:hired|selected) an internal candidate\b/i,
+  },
+  {
+    id: 'social_complaint.uk.internal_hire_named',
+    observationId: 'obs.rejection_naming_an_internal_hire_as_the_outcome',
+    language: 'uk',
+    pattern: /(?:взяли|обрали) внутрішнього кандидата/i,
+  },
+  {
+    id: 'social_complaint.en.interview_rescheduled_or_no_show',
+    observationId: 'obs.multiple_interview_reschedulings_or_interviewer_no_show',
+    language: 'en',
+    pattern:
+      /\b(?:interview (?:was )?(?:rescheduled|cancelled) (?:again|twice|multiple times)|interviewer (?:did not|didn't) show)\b/i,
+  },
+  {
+    id: 'social_complaint.uk.interview_rescheduled_or_no_show',
+    observationId: 'obs.multiple_interview_reschedulings_or_interviewer_no_show',
+    language: 'uk',
+    pattern:
+      /(?:співбесіду (?:знову |двічі |кілька разів )?(?:перенесли|скасували)|інтерв'юер не з[’']явився)/i,
+  },
+];
 
 /** Redact deterministic, high-confidence PII forms before producing output. */
 export function redactComplaintText(text: string): RedactedComplaintText {
@@ -178,9 +320,48 @@ function requestModeFor(claims: readonly ComplaintClaim[]): ComplaintAnalysis['r
   return 'explanation';
 }
 
+function findRuleMatches(text: string, rule: ObservationMappingRule): RegExpMatchArray[] {
+  const flags = rule.pattern.flags.includes('g') ? rule.pattern.flags : `${rule.pattern.flags}g`;
+  return [...text.matchAll(new RegExp(rule.pattern.source, flags))];
+}
+
+/** Map only explicit reported phrases to existing observation IDs with provenance. */
+export function mapComplaintObservations(
+  claims: readonly ComplaintClaim[],
+  language: ComplaintInput['language']
+): Map<string, ComplaintObservationMapping[]> {
+  const mappings = new Map<string, ComplaintObservationMapping[]>();
+  if (language !== 'en' && language !== 'uk') return mappings;
+
+  for (const claim of claims) {
+    if (claim.kind !== 'observation' || claim.status !== 'reported') continue;
+    const claimMappings: ComplaintObservationMapping[] = [];
+    for (const rule of observationMappingRules) {
+      if (rule.language !== language) continue;
+      for (const match of findRuleMatches(claim.text_span, rule)) {
+        const matchedText = match[0];
+        const localStart = match.index ?? 0;
+        claimMappings.push({
+          registry_ref: rule.observationId,
+          rule_id: rule.id,
+          matched_text: matchedText,
+          source_span: {
+            start: claim.span.start + localStart,
+            end: claim.span.start + localStart + matchedText.length,
+          },
+          status: 'reported',
+        });
+      }
+    }
+    if (claimMappings.length > 0) mappings.set(claim.id, claimMappings);
+  }
+  return mappings;
+}
+
 /**
- * Phase-1 normalized analysis. It intentionally stops before case-space
- * projection: only explicit registry mappings may enter Phase 2.
+ * Phase-2a normalized analysis. It maps only explicit reported phrases to
+ * observations. Case-space coordinates remain empty until explicit coordinate
+ * rules can be validated against Γ.
  */
 export function analyzeSocialComplaint(rawInput: unknown): ComplaintAnalysis {
   const input = complaintInputSchema.parse(rawInput);
@@ -191,14 +372,19 @@ export function analyzeSocialComplaint(rawInput: unknown): ComplaintAnalysis {
     source: { ...input.source, url: undefined },
   };
   const claims = extractComplaintClaims(source);
+  const mappingsByClaim = mapComplaintObservations(claims, source.language);
   const observations = claims
     .filter((claim) => claim.kind === 'observation')
-    .map((claim) => ({
-      claim_id: claim.id,
-      text: claim.text_span,
-      registry_refs: [],
-      status: claim.status,
-    }));
+    .map((claim) => {
+      const registryMappings = mappingsByClaim.get(claim.id) ?? [];
+      return {
+        claim_id: claim.id,
+        text: claim.text_span,
+        registry_refs: [...new Set(registryMappings.map((mapping) => mapping.registry_ref))],
+        registry_mappings: registryMappings,
+        status: claim.status,
+      };
+    });
 
   return complaintAnalysisSchema.parse({
     source,
@@ -208,7 +394,8 @@ export function analyzeSocialComplaint(rawInput: unknown): ComplaintAnalysis {
     projection: [],
     nearby_cases: [],
     uncertainty: [
-      'Phase 1 does not map free text to registry observations or case-space coordinates.',
+      `Phase 2a maps only explicit phrases using ruleset ${SOCIAL_COMPLAINT_OBSERVATION_RULESET_VERSION}; unmatched text remains unmapped.`,
+      'Case-space coordinates remain unknown until an explicit, Γ-validated coordinate rule exists.',
       'Causal claims remain unverifiable unless independently corroborated.',
     ],
     next_tests:

@@ -31,6 +31,7 @@ import {
   substrateDetectTemporalAnomalies,
   substrateVerifyFlowConservation,
   analyzeSocialComplaint,
+  SOCIAL_COMPLAINT_OBSERVATION_RULESET_VERSION,
   type GraphRelation,
 } from '@hoba/registry';
 
@@ -265,7 +266,7 @@ server.registerTool(
   'analyze_social_complaint',
   {
     description:
-      'Normalize a social complaint into redacted reported observations, causal claims, emotions, requests, uncertainty, and low-cost next checks. Phase 1 deliberately does not map free text to case-space coordinates or infer a hidden cause.',
+      'Normalize a social complaint into redacted reported observations, causal claims, emotions, requests, uncertainty, and low-cost next checks. Phase 2a maps only explicit EN/UK observation phrases with provenance, then retrieves structurally nearby scenarios. It never infers a hidden cause or case-space coordinate from free text.',
     inputSchema: {
       text: z
         .string()
@@ -298,21 +299,47 @@ server.registerTool(
         .describe(
           'Consent state for any future corpus contribution; no contribution happens in this tool.'
         ),
+      stage: stageArg,
     },
   },
-  async ({ text, language, source_kind, source_url, author_consent }) =>
-    ok({
-      mode: 'phase_1_claim_normalization_not_case_space_projection',
-      analysis: analyzeSocialComplaint({
-        text,
-        language,
-        source: {
-          kind: source_kind,
-          url: source_url,
-          author_consent,
-        },
-      }),
-    })
+  async ({ text, language, source_kind, source_url, author_consent, stage }) => {
+    const analysis = analyzeSocialComplaint({
+      text,
+      language,
+      source: {
+        kind: source_kind,
+        url: source_url,
+        author_consent,
+      },
+    });
+    const observationIds = [
+      ...new Set(analysis.observations.flatMap((observation) => observation.registry_refs)),
+    ];
+    const matches =
+      observationIds.length === 0
+        ? []
+        : matchScenarios(
+            { artifacts: observationIds, stage },
+            empiricalScenarios(registryRoot)
+          ).slice(0, 5);
+
+    return ok({
+      mode: 'phase_2a_explicit_observation_mapping_structural_retrieval',
+      mapping_ruleset_version: SOCIAL_COMPLAINT_OBSERVATION_RULESET_VERSION,
+      analysis: { ...analysis, nearby_cases: matches.map((match) => match.scenario.id) },
+      mapped_observation_ids: observationIds,
+      nearby_case_matches: matches.map((match) => ({
+        scenario: match.scenario,
+        score: match.score,
+        shared: match.shared,
+        missing: match.missing,
+        extra: match.extra,
+        stage_match: match.stageMatch,
+      })),
+      retrieval_note:
+        'Scores are relative structural fit over explicit reported observation mappings and optional exact stage only; they are not probabilities or causal confidence.',
+    });
+  }
 );
 
 server.registerTool(

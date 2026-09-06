@@ -79,4 +79,38 @@ describe('social complaint intake contract', () => {
     );
     expect(claims[0]).toMatchObject({ kind: 'observation', status: 'reported' });
   });
+
+  it('maps direct English observations with rule provenance but never causal claims', () => {
+    const analysis = analyzeSocialComplaint({
+      text: 'I never heard back after applying. The same job was reposted. The ATS rejected me.',
+      language: 'en',
+    });
+
+    expect(analysis.observations.map((observation) => observation.registry_refs)).toEqual([
+      ['obs.complete_silence_after_submission'],
+      ['obs.materially_similar_role_reposted_shortly_after_rejection'],
+    ]);
+    expect(analysis.observations[0]?.registry_mappings[0]).toMatchObject({
+      rule_id: 'social_complaint.en.complete_silence_after_submission',
+      matched_text: 'never heard back after applying',
+      status: 'reported',
+    });
+    expect(analysis.claims[2]).toMatchObject({ kind: 'causal_claim', status: 'unverifiable' });
+    expect(analysis.projection).toEqual([]);
+  });
+
+  it('maps direct Ukrainian observations with their own phrase rule', () => {
+    const analysis = analyzeSocialComplaint({
+      text: 'Я подав заявку, але не відповіли після того як я подав. Згодом ту саму вакансію переопублікували.',
+      language: 'uk',
+    });
+
+    expect(analysis.observations.flatMap((observation) => observation.registry_refs)).toEqual([
+      'obs.complete_silence_after_submission',
+      'obs.materially_similar_role_reposted_shortly_after_rejection',
+    ]);
+    expect(analysis.observations[1]?.registry_mappings[0]?.rule_id).toBe(
+      'social_complaint.uk.similar_role_reposted_after_rejection'
+    );
+  });
 });
