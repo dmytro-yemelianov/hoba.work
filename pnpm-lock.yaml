@@ -23,6 +23,9 @@ importers:
       '@hoba/registry':
         specifier: workspace:*
         version: link:packages/registry
+      '@hoba/validator':
+        specifier: workspace:*
+        version: link:packages/validator
       '@playwright/test':
         specifier: ^1.62.1
         version: 1.62.1
