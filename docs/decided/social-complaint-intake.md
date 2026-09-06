@@ -163,7 +163,7 @@ Aggregation is not individual scoring: normalized cases may reveal recurring mec
 
 **Exit criteria:** a user can paste a complaint and receive a useful answer without knowing ontology IDs; mobile/dark/light accessibility passes.
 
-**Implemented Phase 3a:** `/analyze#complaint-box` now runs the same browser-safe conservative extractor used by the validated MCP path. It renders direct reported mappings, causal claims that remain unestablished, structural nearby-case retrieval, unmapped facts, coordinate limits, a next check, and a one-click transfer of only mapped `obs.*` facts into Step H. It is local-only: no complaint text is sent or saved. Contact details and usernames are redacted in the rendered extraction; names, addresses, and identifiers remain manual-review risks. A dedicated PII preview before rendering or any future sharing action remains pending.
+**Implemented Phase 3a:** `/analyze#complaint-box` now runs the same browser-safe conservative extractor used by the validated MCP path. It renders direct reported mappings, causal claims that remain unestablished, structural nearby-case retrieval, unmapped facts, coordinate limits, a next check, and a one-click transfer of only mapped `obs.*` facts into Step H. The browser runs both explicit EN/UK phrase sets so a reader may paste either language regardless of UI locale; this is rule application, not language or causal inference. It is local-only: no complaint text is sent or saved. Contact details and usernames are redacted in the rendered extraction; names, addresses, and identifiers remain manual-review risks. A dedicated PII preview before rendering or any future sharing action remains pending.
 
 ### Phase 4 — MCP parity
 

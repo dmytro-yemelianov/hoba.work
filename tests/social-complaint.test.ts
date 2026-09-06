@@ -125,4 +125,16 @@ describe('social complaint intake contract', () => {
     expect(browser.claims).toEqual(validated.claims);
     expect(browser.observations).toEqual(validated.observations);
   });
+
+  it('can apply both explicit phrase sets without inferring the pasted language', () => {
+    const extraction = extractSocialComplaint({
+      text: 'I never heard back after applying. Я подав заявку, але не відповіли після того як я подав.',
+      language: 'auto',
+    });
+
+    expect(extraction.observations.flatMap((observation) => observation.registry_refs)).toEqual([
+      'obs.complete_silence_after_submission',
+      'obs.complete_silence_after_submission',
+    ]);
+  });
 });
