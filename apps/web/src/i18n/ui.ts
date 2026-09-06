@@ -676,6 +676,36 @@ const en = {
   'analyze.tab.a': '4. Agency and probes',
   'analyze.h.title': 'Step H — What actually happened?',
   'analyze.h.sub': 'Select the observations you witnessed yourself. Do not guess at intent.',
+  'complaint.title': 'Structure a complaint or social post',
+  'complaint.lead':
+    'Paste a first-person account. hoba separates directly reported facts from causal claims, then compares only the mapped facts with validated cases.',
+  'complaint.privacy':
+    'Runs locally in your browser. Contact details and usernames are redacted before this result is rendered; do not paste names, addresses, or identifiers.',
+  'complaint.label': 'The account or complaint',
+  'complaint.placeholder':
+    'I never heard back after applying. The same job was reposted. The ATS rejected me.',
+  'complaint.run': 'Structure this complaint',
+  'complaint.reported': 'What you reported',
+  'complaint.notEstablished': 'What this does not establish',
+  'complaint.nearby': 'Closest validated cases',
+  'complaint.missing': 'What is still missing',
+  'complaint.nextTest': 'Useful next check',
+  'complaint.useFacts': 'Use mapped facts in Step H',
+  'complaint.noMappings':
+    'No direct observation phrase matched yet. Add a concrete timeline, funnel stage, or exact response wording.',
+  'complaint.noCoordinates': 'No case-space coordinates are inferred from prose alone.',
+  'complaint.nextTestText':
+    'Add the hiring stage, timeline, and exact wording of any response before comparing possible explanations.',
+  'complaint.stageHint':
+    'Choose the last stage you reached in Step H to refine nearby-case comparison.',
+  'complaint.rule': 'mapped by an explicit phrase rule',
+  'complaint.manualReview':
+    'Names, addresses, and other identifiers still require your manual review.',
+  'complaint.shared': '{shared}/{total} shared signals',
+  'complaint.stage': 'same stage',
+  'complaint.caseMissing': '{n} case signals not reported',
+  'complaint.limit':
+    'A structural match is not a cause, probability, or judgment about the person who wrote the complaint.',
   'intake.nearby.title': 'Nearby validated cases',
   'intake.nearby.lead':
     'These cases share facts with yours. They are structural comparisons, not estimates of what caused your outcome.',
@@ -1982,6 +2012,36 @@ const uk: Record<UIKey, string> = {
   'analyze.tab.a': '4. Вплив і проби',
   'analyze.h.title': 'Крок H — Що саме сталося?',
   'analyze.h.sub': 'Оберіть спостереження, які ви зафіксували самі. Без здогадок про наміри.',
+  'complaint.title': 'Структурувати скаргу або допис',
+  'complaint.lead':
+    'Вставте опис від першої особи. hoba відділить безпосередньо повідомлені факти від причинних тверджень і порівняє з валідованими випадками лише зіставлені факти.',
+  'complaint.privacy':
+    'Працює локально у вашому браузері. Контакти й usernames редагуються до показу результату; не вставляйте імена, адреси чи ідентифікатори.',
+  'complaint.label': 'Опис або скарга',
+  'complaint.placeholder':
+    'Я подав заявку, але не відповіли після того як я подав. Згодом ту саму вакансію переопублікували. Мене відсік ATS.',
+  'complaint.run': 'Структурувати цю скаргу',
+  'complaint.reported': 'Що ви повідомили',
+  'complaint.notEstablished': 'Чого це не встановлює',
+  'complaint.nearby': 'Найближчі валідовані випадки',
+  'complaint.missing': 'Чого ще бракує',
+  'complaint.nextTest': 'Корисна наступна перевірка',
+  'complaint.useFacts': 'Використати зіставлені факти на кроці H',
+  'complaint.noMappings':
+    'Поки не знайдено прямого збігу фрази зі спостереженням. Додайте конкретну часову лінію, етап воронки або точний текст відповіді.',
+  'complaint.noCoordinates': 'Координати case-space не виводяться лише з прози.',
+  'complaint.nextTestText':
+    'Додайте етап найму, часову лінію й точне формулювання відповіді перед порівнянням можливих пояснень.',
+  'complaint.stageHint':
+    'Оберіть останній досягнутий етап на кроці H, щоб уточнити порівняння близьких випадків.',
+  'complaint.rule': 'зіставлено явним правилом фрази',
+  'complaint.manualReview':
+    'Імена, адреси та інші ідентифікатори все одно потребують вашої ручної перевірки.',
+  'complaint.shared': 'Спільних сигналів: {shared}/{total}',
+  'complaint.stage': 'той самий етап',
+  'complaint.caseMissing': 'Сигналів випадку не повідомлено: {n}',
+  'complaint.limit':
+    'Структурний збіг не є причиною, імовірністю чи оцінкою людини, яка написала скаргу.',
   'intake.nearby.title': 'Найближчі валідовані випадки',
   'intake.nearby.lead':
     'Ці випадки мають спільні факти з вашим. Це структурне порівняння, а не оцінка причини вашого результату.',

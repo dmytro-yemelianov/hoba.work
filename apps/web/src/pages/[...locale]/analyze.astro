@@ -17,6 +17,10 @@ const bundleJSON = JSON.stringify(slimBundle(bundle)).replace(/</g, '\\u003c');
 const stagesWithBarriers = STAGES.filter((st) => bundle.barriers.some((b) => b.stage === st));
 
 const WIZ_KEYS = [
+  'complaint.title', 'complaint.lead', 'complaint.privacy', 'complaint.label', 'complaint.placeholder', 'complaint.run',
+  'complaint.reported', 'complaint.notEstablished', 'complaint.nearby', 'complaint.missing', 'complaint.nextTest', 'complaint.useFacts',
+  'complaint.noMappings', 'complaint.noCoordinates', 'complaint.nextTestText', 'complaint.stageHint', 'complaint.rule', 'complaint.manualReview',
+  'complaint.shared', 'complaint.stage', 'complaint.caseMissing', 'complaint.limit',
   'paste.answer', 'paste.unsure', 'paste.unsureText', 'paste.none', 'paste.words', 'paste.continue', 'paste.missing',
   'intake.nearby.title', 'intake.nearby.lead', 'intake.nearby.shared', 'intake.nearby.stage', 'intake.nearby.missing', 'intake.nearby.use', 'intake.nearby.limit', 'intake.nearby.none',
   'wiz.noSelection', 'wiz.noGate', 'wiz.passCondition', 'wiz.gate', 'wiz.noMechanisms', 'wiz.honestBaseline', 'wiz.emitsSignal', 'wiz.emitsTitle',
@@ -149,6 +153,21 @@ const zones = [
         </button>
       ))}
     </nav>
+
+    <section id="complaint-box" class="section scroll-mt-24">
+      <h2 class="section-title">{t('complaint.title')}</h2>
+      <p class="mt-2 text-base text-hoba-muted max-w-3xl">{t('complaint.lead')}</p>
+      <p class="mt-2 text-base text-hoba-muted max-w-3xl">{t('complaint.privacy')}</p>
+
+      <label for="complaint-input" class="meta block mt-5 mb-1">{t('complaint.label')}</label>
+      <textarea id="complaint-input" rows="7" placeholder={t('complaint.placeholder')}
+        class="w-full max-w-3xl rounded-md border border-hoba-border bg-hoba-card p-3 text-base text-hoba-text"></textarea>
+      <p class="mt-3">
+        <button type="button" id="complaint-analyze" class="btn btn-primary text-sm">{t('complaint.run')}</button>
+      </p>
+
+      <div id="complaint-result" class="mt-5 max-w-3xl" hidden aria-live="polite"></div>
+    </section>
 
     <section id="paste-box" class="section scroll-mt-24">
       <h2 class="section-title">{t('paste.title')}</h2>
@@ -402,6 +421,134 @@ const zones = [
     id="hoba-scenarios"
     set:html={JSON.stringify(clientScenarios).replace(/</g, '\\u003c')}
   />
+  <script>
+    // The same conservative rules power the MCP tool. This browser entry has
+    // no Node or network dependency: pasted text stays on this device.
+    import { extractSocialComplaint } from '@hoba/validator/browser';
+    import { matchScenarios } from '@hoba/registry/search';
+    import type { EmpiricalScenario, RegistryBundle, StageId } from '@hoba/registry/core';
+
+    const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
+    const input = el<HTMLTextAreaElement>('complaint-input');
+    const button = el<HTMLButtonElement>('complaint-analyze');
+    const output = el<HTMLDivElement>('complaint-result');
+    const bundleTag = el<HTMLScriptElement>('hoba-bundle');
+    const i18nTag = el<HTMLScriptElement>('hoba-i18n');
+    const scenariosTag = el<HTMLScriptElement>('hoba-scenarios');
+
+    if (input && button && output && bundleTag && i18nTag && scenariosTag) {
+      const bundle = JSON.parse(bundleTag.textContent ?? '{}') as RegistryBundle;
+      const scenarios = JSON.parse(scenariosTag.textContent ?? '[]') as EmpiricalScenario[];
+      const s = JSON.parse(i18nTag.textContent ?? '{}') as Record<string, string>;
+      const t = (key: string, vars?: Record<string, string | number>) =>
+        (s[key] ?? key).replace(/\{(\w+)\}/g, (_match, name: string) =>
+          vars && name in vars ? String(vars[name]) : `{${name}}`
+        );
+      const esc = (value: unknown) =>
+        String(value ?? '').replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;',
+        })[char]!);
+      const observationTitles = new Map(bundle.observations.map((observation) => [observation.id, observation.title]));
+
+      button.addEventListener('click', () => {
+        const text = input.value.trim();
+        output.hidden = false;
+        if (!text) {
+          output.innerHTML = `<p class="text-base text-hoba-muted">${esc(t('complaint.noMappings'))}</p>`;
+          return;
+        }
+
+        const extraction = extractSocialComplaint({
+          text,
+          language: s.lang === 'uk' ? 'uk' : s.lang === 'en' ? 'en' : 'other',
+        });
+        const mappings = extraction.observations.flatMap((observation) =>
+          observation.registry_mappings.map((mapping) => ({ observation, mapping }))
+        );
+        const artifacts = [...new Set(mappings.map(({ mapping }) => mapping.registry_ref))];
+        const stage = document.querySelector<HTMLInputElement>('input[name="stage_select"]:checked')?.value as StageId | undefined;
+        const matches = matchScenarios({ artifacts, stage }, scenarios).slice(0, 3);
+        const causalClaims = extraction.claims.filter((claim) => claim.kind === 'causal_claim');
+        const unmatchedObservations = extraction.observations.filter(
+          (observation) => observation.registry_refs.length === 0
+        );
+
+        const reported = mappings.length
+          ? `<ul class="row-list mt-3 divide-y divide-hoba-border">${mappings
+              .map(
+                ({ mapping }) => `<li class="py-3">
+                  <p class="text-base font-medium text-hoba-text">${esc(observationTitles.get(mapping.registry_ref) ?? mapping.registry_ref)}</p>
+                  <p class="mt-1 text-sm text-hoba-muted"><span class="font-mono">${esc(mapping.matched_text)}</span> · ${esc(t('complaint.rule'))}</p>
+                </li>`
+              )
+              .join('')}</ul>`
+          : `<p class="mt-3 text-base text-hoba-muted">${esc(t('complaint.noMappings'))}</p>`;
+        const notEstablished = causalClaims.length
+          ? `<section class="mt-6 rounded-lg border border-hoba-border bg-hoba-card/60 p-4">
+              <h3 class="text-base font-semibold text-hoba-text">${esc(t('complaint.notEstablished'))}</h3>
+              <ul class="mt-2 list-disc pl-5 text-sm text-hoba-muted">${causalClaims.map((claim) => `<li>${esc(claim.text_span)}</li>`).join('')}</ul>
+            </section>`
+          : '';
+        const nearby = matches.length
+          ? `<section class="mt-6 rounded-lg border border-hoba-border bg-hoba-card/60 p-4">
+              <h3 class="text-base font-semibold text-hoba-text">${esc(t('complaint.nearby'))}</h3>
+              <div class="mt-3 grid gap-3 sm:grid-cols-2">${matches
+                .map(
+                  ({ scenario, shared, missing, stageMatch }) => `<article class="min-w-0 rounded-md border border-hoba-border bg-hoba-bg p-3">
+                    <p class="text-sm font-semibold text-hoba-text wrap-break-word">${esc(scenario.title)}</p>
+                    <p class="mt-1 text-xs text-hoba-muted">${esc(t('complaint.shared', { shared: shared.length, total: scenario.artifacts.length }))}${stageMatch ? ` · ${esc(t('complaint.stage'))}` : ''}</p>
+                    ${missing.length ? `<p class="mt-1 text-xs text-hoba-muted">${esc(t('complaint.caseMissing', { n: missing.length }))}</p>` : ''}
+                  </article>`
+                )
+                .join('')}</div>
+              <p class="mt-3 text-sm text-hoba-muted">${esc(t('complaint.limit'))}</p>
+            </section>`
+          : '';
+        const missing = `<section class="mt-6 rounded-lg border border-hoba-border bg-hoba-card/60 p-4">
+            <h3 class="text-base font-semibold text-hoba-text">${esc(t('complaint.missing'))}</h3>
+            <ul class="mt-2 list-disc pl-5 text-sm text-hoba-muted">
+              ${unmatchedObservations.map((observation) => `<li>${esc(observation.text)}</li>`).join('')}
+              <li>${esc(t('complaint.noCoordinates'))}</li>
+              <li>${esc(t('complaint.manualReview'))}</li>
+            </ul>
+          </section>`;
+        const useFacts = artifacts.length
+          ? `<p class="mt-5"><button type="button" id="complaint-use-facts" class="btn btn-secondary text-sm">${esc(t('complaint.useFacts'))}</button></p>`
+          : '';
+
+        output.innerHTML = `<section class="rounded-lg border border-hoba-border bg-hoba-card p-4">
+            <h3 class="text-base font-semibold text-hoba-text">${esc(t('complaint.reported'))}</h3>
+            ${reported}
+          </section>
+          ${notEstablished}
+          ${nearby}
+          ${missing}
+          <section class="mt-6 rounded-lg border border-hoba-border bg-hoba-card/60 p-4">
+            <h3 class="text-base font-semibold text-hoba-text">${esc(t('complaint.nextTest'))}</h3>
+            <p class="mt-2 text-sm text-hoba-muted">${esc(t('complaint.nextTestText'))}</p>
+            <p class="mt-2 text-sm text-hoba-muted">${esc(t('complaint.stageHint'))}</p>
+          </section>
+          ${useFacts}`;
+
+        output.querySelector<HTMLButtonElement>('#complaint-use-facts')?.addEventListener('click', () => {
+          for (const artifact of artifacts) {
+            const checkbox = document.querySelector<HTMLInputElement>(
+              `input[name="artifacts_selected"][value="${artifact}"]`
+            );
+            if (!checkbox || checkbox.checked) continue;
+            checkbox.checked = true;
+            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+          document.getElementById('step-h')?.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+  </script>
+
   <script>
     // Reads the letter against the registry the page already carries. Nothing
     // leaves the browser, which is what makes it safe to paste a real one.

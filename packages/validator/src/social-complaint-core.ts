@@ -1,124 +1,56 @@
-import { z } from 'zod';
-import { extractSocialComplaint as extractSocialComplaintCore } from './social-complaint-core.js';
+/**
+ * Browser-safe social-complaint extraction.
+ *
+ * This module intentionally has no Zod or filesystem dependency. The browser
+ * and the MCP/validator facade call the same conservative phrase rules; only
+ * the latter adds schema validation and source/provenance policy.
+ */
 
-const sourceKindSchema = z.enum([
-  'social_post',
-  'first_person_report',
-  'second_hand_report',
-  'advice_request',
-  'rant',
-  'question',
-  'workplace_document',
-  'news_report',
-  'conversation',
-  'other',
-]);
+export type ComplaintLanguage = 'en' | 'uk' | 'other';
+export type ComplaintClaimKind =
+  'observation' | 'interpretation' | 'emotion' | 'causal_claim' | 'request' | 'omission';
+export type ComplaintClaimStatus =
+  'reported' | 'corroborated' | 'inferred' | 'contested' | 'unverifiable' | 'contradicted';
+export type ComplaintConfidence = 'high' | 'medium' | 'low';
 
-export const complaintInputSchema = z.object({
-  text: z.string().trim().min(1),
-  source: z
-    .object({
-      kind: sourceKindSchema.default('social_post'),
-      platform: z.enum(['reddit', 'linkedin', 'x', 'forum', 'email', 'other']).optional(),
-      url: z.string().url().optional(),
-      published_at: z.string().datetime().optional(),
-      author_consent: z.enum(['not_requested', 'granted', 'denied']).default('not_requested'),
-    })
-    .default({ kind: 'social_post', author_consent: 'not_requested' }),
-  language: z.enum(['en', 'uk', 'other']).default('other'),
-  attachments: z
-    .array(z.object({ kind: z.enum(['document', 'image', 'link']), label: z.string().optional() }))
-    .default([]),
-});
+export interface ComplaintSourceSpan {
+  start: number;
+  end: number;
+}
 
-export const claimStatusSchema = z.enum([
-  'reported',
-  'corroborated',
-  'inferred',
-  'contested',
-  'unverifiable',
-  'contradicted',
-]);
+export interface BrowserComplaintClaim {
+  id: `claim.${string}`;
+  text_span: string;
+  span: ComplaintSourceSpan;
+  kind: ComplaintClaimKind;
+  status: ComplaintClaimStatus;
+  confidence: ComplaintConfidence;
+}
 
-const sourceSpanSchema = z.object({
-  start: z.number().int().nonnegative(),
-  end: z.number().int().positive(),
-});
+export interface BrowserComplaintObservationMapping {
+  registry_ref: `obs.${string}`;
+  rule_id: `social_complaint.${string}`;
+  matched_text: string;
+  source_span: ComplaintSourceSpan;
+  status: 'reported';
+}
 
-export const complaintClaimSchema = z.object({
-  id: z.string().regex(/^claim\.[a-z0-9_]+$/),
-  text_span: z.string().min(1),
-  span: sourceSpanSchema,
-  kind: z.enum(['observation', 'interpretation', 'emotion', 'causal_claim', 'request', 'omission']),
-  status: claimStatusSchema,
-  confidence: z.enum(['high', 'medium', 'low']),
-  supports_observations: z.array(z.string()).optional(),
-});
+export interface BrowserComplaintObservation {
+  claim_id: `claim.${string}`;
+  text: string;
+  registry_refs: Array<`obs.${string}`>;
+  registry_mappings: BrowserComplaintObservationMapping[];
+  status: ComplaintClaimStatus;
+}
 
-export const complaintPrivacySchema = z.object({
-  pii_detected: z.array(z.enum(['name', 'contact', 'address', 'username', 'identifier'])),
-  redaction_applied: z.boolean(),
-  /** Phase 1 cannot reliably identify names or addresses from free text. */
-  manual_review_required: z.boolean(),
-  undetected_pii_risks: z.array(z.enum(['name', 'address', 'identifier'])),
-  /** Source URLs are deliberately omitted from analysis output. */
-  source_url_withheld: z.boolean(),
-  corpus_contribution: z.enum(['not_requested', 'consented', 'declined']),
-});
-
-export const complaintAnalysisSchema = z.object({
-  /** Redacted input only; callers retain raw input, never this analysis object. */
-  source: complaintInputSchema,
-  request_mode: z.enum([
-    'explanation',
-    'validation',
-    'advice',
-    'warning_others',
-    'seeking_witnesses',
-    'venting',
-  ]),
-  claims: z.array(complaintClaimSchema),
-  observations: z.array(
-    z.object({
-      claim_id: z.string().regex(/^claim\.[a-z0-9_]+$/),
-      text: z.string().min(1),
-      registry_refs: z.array(z.string().regex(/^obs\.[a-z0-9_]+$/)),
-      /**
-       * Direct phrase matches only. These are provenance records, not model
-       * inferences: each mapping points back to a reported claim/span/rule.
-       */
-      registry_mappings: z.array(
-        z.object({
-          registry_ref: z.string().regex(/^obs\.[a-z0-9_]+$/),
-          rule_id: z.string().regex(/^social_complaint\.[a-z0-9_.-]+$/),
-          matched_text: z.string().min(1),
-          source_span: sourceSpanSchema,
-          status: z.literal('reported'),
-        })
-      ),
-      status: claimStatusSchema,
-    })
-  ),
-  projection: z.array(
-    z.object({
-      coordinate: z.string().min(1),
-      value: z.union([z.string(), z.array(z.string())]),
-      claim_id: z.string().regex(/^claim\.[a-z0-9_]+$/),
-      status: z.enum(['reported', 'corroborated', 'inferred', 'unknown']),
-    })
-  ),
-  nearby_cases: z.array(z.string()),
-  uncertainty: z.array(z.string()),
-  next_tests: z.array(z.string()),
-  prohibited_conclusions: z.array(z.string()),
-  privacy: complaintPrivacySchema,
-});
-
-export type ComplaintInput = z.infer<typeof complaintInputSchema>;
-export type ComplaintClaim = z.infer<typeof complaintClaimSchema>;
-export type ComplaintAnalysis = z.infer<typeof complaintAnalysisSchema>;
-export type ComplaintObservationMapping =
-  ComplaintAnalysis['observations'][number]['registry_mappings'][number];
+export interface BrowserComplaintExtraction {
+  text: string;
+  pii_detected: Array<'contact' | 'username'>;
+  request_mode:
+    'explanation' | 'validation' | 'advice' | 'warning_others' | 'seeking_witnesses' | 'venting';
+  claims: BrowserComplaintClaim[];
+  observations: BrowserComplaintObservation[];
+}
 
 export interface RedactedComplaintText {
   text: string;
@@ -138,14 +70,13 @@ export const SOCIAL_COMPLAINT_OBSERVATION_RULESET_VERSION = '2026-09-06.1';
 interface ObservationMappingRule {
   id: `social_complaint.${string}`;
   observationId: `obs.${string}`;
-  language: 'en' | 'uk';
+  language: Exclude<ComplaintLanguage, 'other'>;
   pattern: RegExp;
 }
 
 /**
- * Deliberately small, explicit phrase rules. A phrase rule establishes only
- * that the author reported the named observation; it never establishes why it
- * happened. Rules run only against claims already classified as observations.
+ * Deliberately small, explicit phrase rules. A rule establishes only that the
+ * author reported the named observation; it never establishes why it happened.
  */
 const observationMappingRules: readonly ObservationMappingRule[] = [
   {
@@ -278,7 +209,9 @@ export function redactComplaintText(text: string): RedactedComplaintText {
   return { text: redacted, piiDetected: [...piiDetected] };
 }
 
-function classifyClaim(text: string): Pick<ComplaintClaim, 'kind' | 'status' | 'confidence'> {
+function classifyClaim(
+  text: string
+): Pick<BrowserComplaintClaim, 'kind' | 'status' | 'confidence'> {
   if (causalPattern.test(text)) {
     return { kind: 'causal_claim', status: 'unverifiable', confidence: 'low' };
   }
@@ -291,13 +224,9 @@ function classifyClaim(text: string): Pick<ComplaintClaim, 'kind' | 'status' | '
   return { kind: 'observation', status: 'reported', confidence: 'medium' };
 }
 
-/**
- * Conservative Phase-1 extraction. It deliberately does not infer ontology
- * coordinates or causes. Source spans refer to the redacted text returned in
- * ComplaintAnalysis.source.text.
- */
-export function extractComplaintClaims(input: ComplaintInput): ComplaintClaim[] {
-  const claims: ComplaintClaim[] = [];
+/** Segment already-redacted prose without inferring ontology coordinates or causes. */
+export function extractComplaintClaims(input: { text: string }): BrowserComplaintClaim[] {
+  const claims: BrowserComplaintClaim[] = [];
   const sentencePattern = /[^.!?]+(?:[.!?]+|$)/g;
   for (const match of input.text.matchAll(sentencePattern)) {
     const raw = match[0] ?? '';
@@ -315,6 +244,14 @@ export function extractComplaintClaims(input: ComplaintInput): ComplaintClaim[] 
   return claims;
 }
 
+function requestModeFor(
+  claims: readonly BrowserComplaintClaim[]
+): BrowserComplaintExtraction['request_mode'] {
+  if (claims.some((claim) => claim.kind === 'request')) return 'explanation';
+  if (claims.some((claim) => claim.kind === 'emotion')) return 'venting';
+  return 'explanation';
+}
+
 function findRuleMatches(text: string, rule: ObservationMappingRule): RegExpMatchArray[] {
   const flags = rule.pattern.flags.includes('g') ? rule.pattern.flags : `${rule.pattern.flags}g`;
   return [...text.matchAll(new RegExp(rule.pattern.source, flags))];
@@ -322,15 +259,15 @@ function findRuleMatches(text: string, rule: ObservationMappingRule): RegExpMatc
 
 /** Map only explicit reported phrases to existing observation IDs with provenance. */
 export function mapComplaintObservations(
-  claims: readonly ComplaintClaim[],
-  language: ComplaintInput['language']
-): Map<string, ComplaintObservationMapping[]> {
-  const mappings = new Map<string, ComplaintObservationMapping[]>();
+  claims: readonly BrowserComplaintClaim[],
+  language: ComplaintLanguage
+): Map<string, BrowserComplaintObservationMapping[]> {
+  const mappings = new Map<string, BrowserComplaintObservationMapping[]>();
   if (language !== 'en' && language !== 'uk') return mappings;
 
   for (const claim of claims) {
     if (claim.kind !== 'observation' || claim.status !== 'reported') continue;
-    const claimMappings: ComplaintObservationMapping[] = [];
+    const claimMappings: BrowserComplaintObservationMapping[] = [];
     for (const rule of observationMappingRules) {
       if (rule.language !== language) continue;
       for (const match of findRuleMatches(claim.text_span, rule)) {
@@ -354,57 +291,34 @@ export function mapComplaintObservations(
 }
 
 /**
- * Phase-2a normalized analysis. It maps only explicit reported phrases to
- * observations. Case-space coordinates remain empty until explicit coordinate
- * rules can be validated against Γ.
+ * Extract conservative, explainable complaint structure in any browser-safe
+ * runtime. No cause or case-space coordinate is inferred from prose.
  */
-export function analyzeSocialComplaint(rawInput: unknown): ComplaintAnalysis {
-  const input = complaintInputSchema.parse(rawInput);
-  const extraction = extractSocialComplaintCore({ text: input.text, language: input.language });
-  const source = {
-    ...input,
-    text: extraction.text,
-    source: { ...input.source, url: undefined },
+export function extractSocialComplaint(input: {
+  text: string;
+  language: ComplaintLanguage;
+}): BrowserComplaintExtraction {
+  const redaction = redactComplaintText(input.text);
+  const claims = extractComplaintClaims({ text: redaction.text });
+  const mappingsByClaim = mapComplaintObservations(claims, input.language);
+  const observations = claims
+    .filter((claim) => claim.kind === 'observation')
+    .map((claim) => {
+      const registryMappings = mappingsByClaim.get(claim.id) ?? [];
+      return {
+        claim_id: claim.id,
+        text: claim.text_span,
+        registry_refs: [...new Set(registryMappings.map((mapping) => mapping.registry_ref))],
+        registry_mappings: registryMappings,
+        status: claim.status,
+      };
+    });
+
+  return {
+    text: redaction.text,
+    pii_detected: redaction.piiDetected,
+    request_mode: requestModeFor(claims),
+    claims,
+    observations,
   };
-
-  return complaintAnalysisSchema.parse({
-    source,
-    request_mode: extraction.request_mode,
-    claims: extraction.claims,
-    observations: extraction.observations,
-    projection: [],
-    nearby_cases: [],
-    uncertainty: [
-      `Phase 2a maps only explicit phrases using ruleset ${SOCIAL_COMPLAINT_OBSERVATION_RULESET_VERSION}; unmatched text remains unmapped.`,
-      'Case-space coordinates remain unknown until an explicit, Γ-validated coordinate rule exists.',
-      'Causal claims remain unverifiable unless independently corroborated.',
-    ],
-    next_tests:
-      extraction.observations.length === 0
-        ? ['Add a concrete timeline, funnel stage, and exact wording of any response.']
-        : [
-            'Add the hiring stage, timeline, and exact response wording before comparing scenarios.',
-          ],
-    prohibited_conclusions: [
-      'Do not infer a hidden cause, protected-trait discrimination, or author intent from this complaint alone.',
-      'Do not treat one social post as prevalence evidence.',
-    ],
-    privacy: {
-      pii_detected: extraction.pii_detected,
-      redaction_applied: extraction.pii_detected.length > 0,
-      manual_review_required: true,
-      undetected_pii_risks: ['name', 'address', 'identifier'],
-      source_url_withheld: Boolean(input.source.url),
-      corpus_contribution:
-        input.source.author_consent === 'granted'
-          ? 'consented'
-          : input.source.author_consent === 'denied'
-            ? 'declined'
-            : 'not_requested',
-    },
-  });
-}
-
-export function validateComplaintAnalysis(input: unknown): ComplaintAnalysis {
-  return complaintAnalysisSchema.parse(input);
 }
