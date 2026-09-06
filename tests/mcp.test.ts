@@ -73,6 +73,7 @@ describe('hoba MCP server', () => {
     const names = res.result.tools.map((t: { name: string }) => t.name).sort();
     expect(names).toEqual(
       [
+        'analyze_social_complaint',
         'calculate_runway',
         'detect_temporal_anomalies',
         'evaluate_pattern_emptiness',
@@ -342,6 +343,36 @@ describe('hoba MCP server', () => {
       arguments: { artifact_ids: ['A-999'] },
     });
     expect(unknown.result.isError).toBe(true);
+  });
+
+  it('normalizes a social complaint without inventing a causal projection', async () => {
+    const complaint = payload(
+      await client.request('tools/call', {
+        name: 'analyze_social_complaint',
+        arguments: {
+          text: 'I applied to 30 jobs. The ATS rejected me. Contact me@example.com.',
+          language: 'en',
+          source_url: 'https://example.com/post',
+        },
+      })
+    );
+
+    expect(complaint.mode).toBe('phase_1_claim_normalization_not_case_space_projection');
+    expect(complaint.analysis.claims.map((claim: { kind: string }) => claim.kind)).toEqual([
+      'observation',
+      'causal_claim',
+      'observation',
+    ]);
+    expect(complaint.analysis.claims[1].status).toBe('unverifiable');
+    expect(complaint.analysis.source.text).not.toContain('me@example.com');
+    expect(complaint.analysis.source.source.url).toBeUndefined();
+    expect(complaint.analysis.privacy).toMatchObject({
+      redaction_applied: true,
+      manual_review_required: true,
+      source_url_withheld: true,
+    });
+    expect(complaint.analysis.projection).toEqual([]);
+    expect(complaint.analysis.nearby_cases).toEqual([]);
   });
 
   it('evaluates temporal anomalies, runway, flow conservation, and pattern emptiness over MCP', async () => {

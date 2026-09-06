@@ -222,7 +222,7 @@ npm**; run the server from a local checkout (`pnpm install && pnpm build:package
 }
 ```
 The registry root is resolved from `--dir`, then `$HOBA_ROOT`, then by walking up from the working directory.
-Tools: `get_registry_info`, `get_data_inventory`, `search_registry`, `get_node`, `get_scenario`, `find_nearby_scenarios`, `explain_observation`, `find_compatible_mechanisms`,
+Tools: `get_registry_info`, `get_data_inventory`, `search_registry`, `get_node`, `get_scenario`, `analyze_social_complaint`, `find_nearby_scenarios`, `explain_observation`, `find_compatible_mechanisms`,
 `get_diagnostic_probes`, `find_patterns`, `get_interventions`, `traverse_graph`, `get_methodology`,
 `detect_temporal_anomalies`, `calculate_runway`, `verify_flow_conservation`, `evaluate_pattern_emptiness`,
 `validate_entity_ids`, `validate_scenario`, `validate_analysis`, `validate_claim`.

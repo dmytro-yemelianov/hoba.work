@@ -30,6 +30,7 @@ import {
   substrateCalculateRunway,
   substrateDetectTemporalAnomalies,
   substrateVerifyFlowConservation,
+  analyzeSocialComplaint,
   type GraphRelation,
 } from '@hoba/registry';
 
@@ -258,6 +259,60 @@ server.registerTool(
       return fail(`Unknown scenario "${id}". Available: ${scenarios.map((s) => s.id).join(', ')}`);
     return ok({ scenario: found });
   }
+);
+
+server.registerTool(
+  'analyze_social_complaint',
+  {
+    description:
+      'Normalize a social complaint into redacted reported observations, causal claims, emotions, requests, uncertainty, and low-cost next checks. Phase 1 deliberately does not map free text to case-space coordinates or infer a hidden cause.',
+    inputSchema: {
+      text: z
+        .string()
+        .min(1)
+        .describe('Complaint text. Deterministic contact details are redacted before output.'),
+      language: z.enum(['en', 'uk', 'other']).optional().describe('Language of the supplied text.'),
+      source_kind: z
+        .enum([
+          'social_post',
+          'first_person_report',
+          'second_hand_report',
+          'advice_request',
+          'rant',
+          'question',
+          'workplace_document',
+          'news_report',
+          'conversation',
+          'other',
+        ])
+        .optional()
+        .describe('How the complaint was supplied.'),
+      source_url: z
+        .string()
+        .url()
+        .optional()
+        .describe('Optional provenance URL; it is withheld from output.'),
+      author_consent: z
+        .enum(['not_requested', 'granted', 'denied'])
+        .optional()
+        .describe(
+          'Consent state for any future corpus contribution; no contribution happens in this tool.'
+        ),
+    },
+  },
+  async ({ text, language, source_kind, source_url, author_consent }) =>
+    ok({
+      mode: 'phase_1_claim_normalization_not_case_space_projection',
+      analysis: analyzeSocialComplaint({
+        text,
+        language,
+        source: {
+          kind: source_kind,
+          url: source_url,
+          author_consent,
+        },
+      }),
+    })
 );
 
 server.registerTool(
